@@ -1,0 +1,9 @@
+node_modules
+build
+coverage
+.idea
+craco.config.js
+package-lock.json
+openapi-spec.json
+/test/__mocks__/file.mock.js
+/.nyc_output/

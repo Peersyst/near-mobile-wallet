@@ -1,0 +1,245 @@
+{
+    "openapi": "3.0.0",
+    "info": { "title": "backend-base-project", "description": "Backend Base API", "version": "0.0.0", "contact": {} },
+    "tags": [],
+    "servers": [],
+    "components": {
+        "securitySchemes": { "bearer": { "scheme": "bearer", "bearerFormat": "JWT", "type": "http" } },
+        "schemas": {
+            "ApiException": {
+                "type": "object",
+                "properties": { "statusCode": { "type": "number" }, "message": { "type": "string" } },
+                "required": ["statusCode", "message"]
+            },
+            "CreateUserRequest": {
+                "type": "object",
+                "properties": {
+                    "email": { "type": "string", "format": "email" },
+                    "password": {
+                        "type": "string",
+                        "description": "at least 8 characters long, 1 uppercase & 1 lowercase letter, 1 number, 1 special character",
+                        "pattern": "(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\\W_]).*"
+                    }
+                },
+                "required": ["email", "password"]
+            },
+            "UserDto": {
+                "type": "object",
+                "properties": {
+                    "id": { "type": "number" },
+                    "email": { "type": "string" },
+                    "type": { "enum": ["admin", "user"], "type": "string" }
+                },
+                "required": ["id", "email", "type"]
+            },
+            "LoginRequest": {
+                "type": "object",
+                "properties": {
+                    "email": { "type": "string", "format": "email" },
+                    "password": {
+                        "type": "string",
+                        "description": "Min 8, at least 1 uppercase, 1 lowercase, 1 special( !@$%^&(){}[]:;<>,.?/~_+-=| ) characters"
+                    }
+                },
+                "required": ["email", "password"]
+            },
+            "AuthCredentialsDto": { "type": "object", "properties": { "access_token": { "type": "string" } }, "required": ["access_token"] }
+        }
+    },
+    "paths": {
+        "/api/users/create": {
+            "post": {
+                "operationId": "UserController_create",
+                "summary": "Create user",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CreateUserRequest" } } }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserDto" } } }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiException" } } }
+                    }
+                },
+                "tags": ["user"]
+            }
+        },
+        "/api/users/info": {
+            "get": {
+                "operationId": "UserController_info",
+                "summary": "Show user info",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserDto" } } }
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "UnauthorizedException": {
+                                        "description": "Unauthorized",
+                                        "value": { "statusCode": 401, "message": "Unauthorized", "error": "Unauthorized" }
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "statusCode": { "type": "number", "example": 401 },
+                                        "message": { "type": "string", "example": "Unauthorized" },
+                                        "error": { "type": "string", "example": "Unauthorized" }
+                                    },
+                                    "required": ["statusCode", "message"]
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "ForbiddenException": {
+                                        "description": "Forbidden",
+                                        "value": { "statusCode": 403, "message": "Forbidden", "error": "Forbidden" }
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "statusCode": { "type": "number", "example": 403 },
+                                        "message": { "type": "string", "example": "Forbidden" },
+                                        "error": { "type": "string", "example": "Forbidden" }
+                                    },
+                                    "required": ["statusCode", "message"]
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "default": {
+                        "description": "Error",
+                        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiException" } } }
+                    }
+                },
+                "tags": ["user"],
+                "security": [{ "bearer": [] }]
+            }
+        },
+        "/api/users/all": {
+            "get": {
+                "operationId": "UserController_findAll",
+                "summary": "Find all users",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/UserDto" } } }
+                        }
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "UnauthorizedException": {
+                                        "description": "Unauthorized",
+                                        "value": { "statusCode": 401, "message": "Unauthorized", "error": "Unauthorized" }
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "statusCode": { "type": "number", "example": 401 },
+                                        "message": { "type": "string", "example": "Unauthorized" },
+                                        "error": { "type": "string", "example": "Unauthorized" }
+                                    },
+                                    "required": ["statusCode", "message"]
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "ForbiddenException": {
+                                        "description": "Forbidden",
+                                        "value": { "statusCode": 403, "message": "Forbidden", "error": "Forbidden" }
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "statusCode": { "type": "number", "example": 403 },
+                                        "message": { "type": "string", "example": "Forbidden" },
+                                        "error": { "type": "string", "example": "Forbidden" }
+                                    },
+                                    "required": ["statusCode", "message"]
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "default": {
+                        "description": "Error",
+                        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiException" } } }
+                    }
+                },
+                "tags": ["user"],
+                "security": [{ "bearer": [] }]
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "operationId": "AuthController_login",
+                "summary": "Authenticate user",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": { "application/json": { "schema": { "$ref": "#/components/schemas/LoginRequest" } } }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AuthCredentialsDto" } } }
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "UnauthorizedException": {
+                                        "description": "Unauthorized",
+                                        "value": { "statusCode": 401, "message": "Unauthorized", "error": "Unauthorized" }
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "statusCode": { "type": "number", "example": 401 },
+                                        "message": { "type": "string", "example": "Unauthorized" },
+                                        "error": { "type": "string", "example": "Unauthorized" }
+                                    },
+                                    "required": ["statusCode", "message"]
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "default": {
+                        "description": "Error",
+                        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiException" } } }
+                    }
+                },
+                "tags": ["authenticate"]
+            }
+        }
+    }
+}

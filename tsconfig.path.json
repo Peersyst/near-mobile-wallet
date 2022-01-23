@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+            "locale": ["locale"],
+            "asset": ["asset"],
+            "icons": ["module/common/icons"],
+            "module/*": ["module/*"],
+            "utils/*": ["utils/*"],
+            "test-utils": ["../test/utils/test-utils"]
+        }
+    }
+}
