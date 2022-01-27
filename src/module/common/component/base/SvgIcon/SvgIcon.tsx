@@ -12,7 +12,14 @@ const SvgIcon = ({ style, color: colorProp, size: sizeProp = "24px", ...rest }: 
         });
     }
     return (
-        <Svg viewBox="0 0 24 24" /*xmlns="http://www.w3.org/2000/svg"*/ fill={color || colorProp} width={size} height={size} {...rest} />
+        <Svg
+            viewBox="0 0 24 24"
+            /*xmlns="http://www.w3.org/2000/svg"*/ fill={color || colorProp}
+            width={size}
+            height={size}
+            accessibilityRole="image"
+            {...rest}
+        />
     );
 };
 
