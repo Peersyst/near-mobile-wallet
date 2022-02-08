@@ -34,7 +34,8 @@ module.exports = {
         "!./src/module/common/hook/(useCachedResources.ts|useColorScheme.ts)",
         "!./src/Providers.tsx",
         "!./src/**/*Navigator.(tsx|ts)",
-        "!./src/utils/(createNavigation.tsx|isWeb.ts|color.js|debounce.ts|deepmerge.ts|setRef.ts)",
+        "!./src/Stack.ts",
+        "!./src/utils/isWeb.ts",
     ],
     coverageDirectory: "./coverage",
     coverageThreshold: {

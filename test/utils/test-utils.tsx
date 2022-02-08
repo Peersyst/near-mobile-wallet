@@ -5,7 +5,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import StylesProvider from "module/common/style";
 import { RecoilRoot } from "recoil";
 import { renderHook, RenderHookOptions, RenderHookResult } from "@testing-library/react-hooks";
-import deepmerge from "utils/deepmerge";
+import { deepmerge } from "@peersyst/react-utils";
 
 export interface CreateWrapperConfig {
     queryClientConfig?: QueryClientConfig;

@@ -13,6 +13,8 @@ module.exports = function (api) {
                         icons: "./src/module/common/icons",
                         module: "./src/module",
                         utils: "./src/utils",
+                        "stack-navigator": "./src/Stack.ts",
+                        "query-utils": "./src/query/react-query-overrides.ts"
                     },
                 },
             ],

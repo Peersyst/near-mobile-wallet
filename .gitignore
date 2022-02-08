@@ -23,8 +23,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/.idea
-/.eslintcache
+.idea
+.vscode/*
+!.vscode/launch.json
+.eslintcache
 
 /.nyc_output
 

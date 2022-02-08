@@ -1,14 +1,13 @@
-import { JSXElementConstructor } from "react";
-import { createNavigation } from "utils/createNavigation";
 import { DashboardNavigator, DashboardScreens } from "module/dashboard/DashboardNavigator";
+import { NavigationContainer } from "@react-navigation/native";
+import Stack from "stack-navigator";
 
-export interface NavigatorScreen {
-    name: string;
-    component: JSXElementConstructor<unknown>;
-}
-
-const navigators: NavigatorScreen[][] = [DashboardNavigator];
-
-const Navigator = (): JSX.Element => createNavigation(navigators, DashboardScreens.MAIN);
+const Navigator = (): JSX.Element => (
+    <NavigationContainer>
+        <Stack.Navigator initialRouteName={DashboardScreens.MAIN} screenOptions={{ headerShown: false }}>
+            {DashboardNavigator}
+        </Stack.Navigator>
+    </NavigationContainer>
+);
 
 export default Navigator;

@@ -1,5 +1,5 @@
 import * as SecureStorage from "expo-secure-store";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import isWeb from "utils/isWeb";
 
 export abstract class BaseStorageService<T> {

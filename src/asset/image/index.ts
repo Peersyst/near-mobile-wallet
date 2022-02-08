@@ -1,4 +1,4 @@
 const image = {
-	logo: require("./logo.svg")
+    logo: require("./logo.svg"),
 };
 export { image };

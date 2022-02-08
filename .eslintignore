@@ -2,9 +2,11 @@ node_modules
 build
 coverage
 .idea
-craco.config.js
+babel.config.js
 package-lock.json
 openapi-spec.json
+/.git
+/.yarn
 /test/unit/__mocks__/file.mock.js
 /test/cypress/support/commands/utils.ts
 /.nyc_output/
@@ -12,6 +14,3 @@ openapi-spec.json
 /src/module/common/icons
 /src/script/iconGeneratorNative.js
 /src/script/imagesGenerator.js
-/src/utils/color.js
-/src/utils/debounce.ts
-/src/utils/deepmerge.ts
