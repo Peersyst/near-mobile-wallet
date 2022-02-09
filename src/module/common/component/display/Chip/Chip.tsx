@@ -1,8 +1,15 @@
-import { Text } from "react-native";
 import { ChipProps } from "./Chip.types";
+import { ChipRoot, ChipLabel, shadowStyle } from "./Chip.styles";
 
-const Chip = ({ title, appearance="light" }: ChipProps): JSX.Element => {
-    return <Text>{title}</Text>;
+const Chip = ({ label, variant = "light", style}: ChipProps): JSX.Element => {
+    return (
+        <ChipRoot variant={variant} style={[
+            shadowStyle.shadow, 
+            style, 
+            shadowStyle.innerWhiteShadow]}>
+            <ChipLabel variant={variant}>{label}</ChipLabel>
+        </ChipRoot>
+    );
 };
 
 export default Chip;
