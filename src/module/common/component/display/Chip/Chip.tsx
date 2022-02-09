@@ -6,7 +6,7 @@ const Chip = ({ label, variant = "light", style}: ChipProps): JSX.Element => {
         <ChipRoot variant={variant} style={[
             shadowStyle.shadow, 
             style, 
-            shadowStyle.innerWhiteShadow]}>
+            variant==="dark" && shadowStyle.innerWhiteShadow]}>
             <ChipLabel variant={variant}>{label}</ChipLabel>
         </ChipRoot>
     );
