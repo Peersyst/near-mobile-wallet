@@ -19,6 +19,6 @@ export interface Theme {
         red: string;
     };
     readonly borders: {
-        chipBorder: string;
+        chipBorder: number;
     }
 }

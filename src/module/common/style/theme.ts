@@ -21,6 +21,6 @@ export const theme: Theme = {
         red: "#FF0E0E",
     },
     borders: {
-        chipBorder:"24px"
+        chipBorder:24
     }
 };

@@ -1,51 +1,15 @@
-import { StyleSheet, StyleProp, TextStyle } from "react-native"
-import styled, { css } from "styled-components/native";
+import { StyleSheet } from "react-native"
 import { theme } from "module/common/style/theme";
-import { ChipVariant, ChipRootProps } from "./Chip.types";
+import { ChipStylesProps } from "./Chip.types";
 
-const variantRootStyles: Record<ChipVariant, ReturnType<typeof css>> = {
-    light: css(() => ({
-        backgroundColor: theme.palette.lighterGray,
-    })),
-    dark: css({
-        backgroundColor: theme.palette.black
-    }),
-};
-
-const variantLabelStyles: Record<ChipVariant, ReturnType<typeof css>> = {
-    light: css(() => ({
-        color: theme.palette.darkFont,
-    })),
-    dark: css({
-        color: theme.palette.white
-    }),
-};
-
-export const ChipRoot = styled.View<ChipRootProps>(({ theme, variant }) => {
-    return css`
-    height:48px;
-    align-self: flex-start;
-    padding: 0 20px;
-    align-items: center;
-    display:flex;
-    justify-content: center;
-    ${variantRootStyles[variant || "light"]};
-    border-radius: ${theme.borders.chipBorder}
-    `;
-});
-
-export const ChipLabel = styled.Text<ChipRootProps>(({ theme, variant }) => {
-    return css`
-    font-size: 18px;
-    margin-bottom: 2px;
-    color: #363636;
-    ${variantLabelStyles[variant || "light"]};
-    `;
-});
-
-
-export const shadowStyle = StyleSheet.create({
-    shadow: {
+export const ChipStyles = ({ variant }: ChipStylesProps) => StyleSheet.create({
+    chipRoot: {
+        height: 48,
+        paddingHorizontal: 20,
+        alignItems: "center",
+        display: "flex",
+        justifyContent: "center",
+        borderRadius: theme.borders.chipBorder,
         shadowColor: theme.palette.fullBlack,
         shadowOffset: {
             width: 0,
@@ -54,15 +18,14 @@ export const shadowStyle = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 24,
         elevation: 12,
+        backgroundColor: variant === "light" ? (theme.palette.lighterGray) : (theme.palette.black)
     },
-    innerWhiteShadow: {
-        shadowColor: theme.palette.white,
-        shadowOffset: {
-            width: 0,
-            height: -6,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 24,
-        elevation: -2,
+    notFullWidth: {
+        alignSelf: "flex-start",
+    },
+    chipLabel: {
+        fontSize: 18,
+        marginBottom: 2,
+        color: variant === "light" ? theme.palette.darkFont : theme.palette.white
     }
 })
