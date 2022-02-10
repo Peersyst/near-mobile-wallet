@@ -20,6 +20,7 @@ export const TextLogoStyles =  StyleSheet.create({
     },
     TextLogoFont: {
         fontSize: 23,
+        textTransform: "uppercase",
     },
     Icon: {
         color: theme.palette.black,
