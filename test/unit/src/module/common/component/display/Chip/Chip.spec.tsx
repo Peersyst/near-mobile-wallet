@@ -1,5 +1,5 @@
 import { render } from "test-utils";
-import { fireEvent, Debug } from "@testing-library/react-native";
+import { fireEvent } from "@testing-library/react-native";
 import Chip from "module/common/component/display/Chip/Chip";
 import { theme } from "module/common/style/theme";
 
@@ -19,18 +19,12 @@ describe("Chip tests", () => {
     });
     test("Renders full correctly", () => {
         const screen = render(<Chip label="Peersyst" fullWidth />);
-        const {debug} = render(<Chip label="Peersyst" fullWidth />);
         const chipRoot = screen.getByTestId("chipRoot");
-        /*
-         * Test dark variant
-         * Normally the chipRoot has the alignSelf start on it
-        */
-        debug(JSON.stringify(chipRoot.props.style));
         /**
          * Style array:
-         * 1 - Style prop
-         * 2 - ChipRoot styles
-         * 3 - FullWidth style
+         * 0 - Style prop
+         * 1 - ChipRoot styles
+         * 2 - FullWidth style
          */
         expect(chipRoot.props.style[1].alignSelf).not.toEqual("flex-start");
     });
