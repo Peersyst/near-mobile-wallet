@@ -6,7 +6,7 @@ const Chip = ({ label, variant = "light", style, fullWidth, onPress }: ChipProps
     const { chipRoot, chipLabel, notFullWidth } = ChipStyles({ variant });
     return (
         <TouchableWithoutFeedback onPress={onPress} accessibilityRole={onPress ? "button" : "text"}>
-            <View style={[style, chipRoot, !fullWidth && notFullWidth]}>
+            <View testID="chipRoot" style={[style, chipRoot, !fullWidth && notFullWidth]}>
                 <Text style={[chipLabel]}>{label}</Text>
             </View>
         </TouchableWithoutFeedback>
