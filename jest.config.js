@@ -35,7 +35,7 @@ module.exports = {
         "!./src/Providers.tsx",
         "!./src/**/*Navigator.(tsx|ts)",
         "!./src/Stack.ts",
-        "!./src/utils/isWeb.ts",
+        "!./src/utils/(isWeb|extractTextStyles).ts",
     ],
     coverageDirectory: "./coverage",
     coverageThreshold: {

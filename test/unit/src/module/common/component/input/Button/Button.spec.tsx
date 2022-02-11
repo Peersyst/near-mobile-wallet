@@ -1,7 +1,7 @@
-import Button from "module/common/component/input/Button/Button";
 import { render } from "test-utils";
 import { Text } from "react-native";
 import { fireEvent } from "@testing-library/react-native";
+import { Button } from "react-native-components";
 
 describe("Button tests", () => {
     test("Renders correctly", () => {
