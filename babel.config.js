@@ -4,17 +4,6 @@ module.exports = function (api) {
         presets: ["babel-preset-expo"],
         plugins: [
             [
-                "module:react-native-dotenv",
-                {
-                    "moduleName": "@env",
-                    "path": ".env",
-                    "blacklist": null,
-                    "whitelist": null,
-                    "safe": false,
-                    "allowUndefined": true
-                }
-            ],
-            [
                 "babel-plugin-module-resolver",
                 {
                     root: ["./src"],
@@ -25,11 +14,11 @@ module.exports = function (api) {
                         module: "./src/module",
                         utils: "./src/utils",
                         "stack-navigator": "./src/Stack.ts",
-                        "query-utils": "./src/query/react-query-overrides.ts"
+                        "query-utils": "./src/query/react-query-overrides.ts",
+                        "react-native-components": "./src/module/common/component/base"
                     },
                 },
             ],
-            ["babel-plugin-styled-components", { displayName: true }],
         ],
     };
 };
