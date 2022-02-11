@@ -35,7 +35,7 @@ const Button = ({
             onPressIn={() => pressable && setPressed(true)}
             onPressOut={() => pressable && setPressed(false)}
         >
-            <ButtonRoot style={rootStyle} variant={variant} size={size} fullWidth={fullWidth} pressed={pressed} disabled={disabled}>
+            <ButtonRoot style={rootStyle} fullWidth={fullWidth} >
                 {loading && (
                     <ButtonLoader>
                         {loadingElement ? <Icon style={textStyle}>{loadingElement}</Icon> : <ActivityIndicator color={textStyle.color} />}
