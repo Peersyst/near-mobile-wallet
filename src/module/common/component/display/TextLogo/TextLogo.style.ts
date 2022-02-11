@@ -1,22 +1,16 @@
 import styled from "@peersyst/react-native-styled";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 import { LogoIcon } from "icons";
+import { Row } from "react-native-components";
 
-export const TextLogoRoot = styled(View)(() => ({
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-}))
+export const TextLogoRoot = styled(Row, { alignItems: "center" })()
 
 export const TextLogoIcon = styled(LogoIcon)(({ theme }) => ({
     color: theme.palette.black,
     fontSize: 37
 }))
 
-export const TextRoot = styled(View)(() => ({
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
+export const TextRoot = styled(Row, { alignItems: "center" })(() => ({
     marginLeft: 8,
 }))
 
@@ -25,3 +19,7 @@ export const TextLogoFont = styled(Text)(() => ({
     textTransform: "uppercase",
 }))
 
+export const TextLogoBold = styled(TextLogoFont)(() => ({ 
+    fontWeight: "bold", 
+    marginLeft: 1 
+}))

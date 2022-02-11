@@ -1,4 +1,4 @@
-import { TextLogoRoot, TextLogoIcon, TextRoot, TextLogoFont } from "./TextLogo.style";
+import { TextLogoRoot, TextLogoIcon, TextRoot, TextLogoFont, TextLogoBold } from "./TextLogo.style";
 
 const TextLogo = (): JSX.Element => {
     return (
@@ -6,7 +6,7 @@ const TextLogo = (): JSX.Element => {
             <TextLogoIcon />
             <TextRoot>
                 <TextLogoFont>CK</TextLogoFont>
-                <TextLogoFont style={{ fontWeight: "bold", marginLeft: 1 }}>BULL</TextLogoFont>
+                <TextLogoBold>BULL</TextLogoBold>
             </TextRoot>
         </TextLogoRoot>
     );
