@@ -1,6 +1,5 @@
 import React from "react";
-import SvgIcon from "module/common/component/base/SvgIcon/SvgIcon";
-import { SvgIconProps } from "module/common/component/base/SvgIcon/SvgIcon.types";
+import { SvgIcon, SvgIconProps } from "react-native-components";
 import { ClipPath, Defs, G, Path, Rect } from "react-native-svg";
 
 export function LogoIcon(props: Omit<SvgIconProps, "children">): JSX.Element {

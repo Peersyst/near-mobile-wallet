@@ -1,17 +1,14 @@
-import { LogoIcon } from "icons";
-import { TextLogoStyles } from "./TextLogo.style";
-import { Text, View } from "react-native";
+import { TextLogoRoot, TextLogoIcon, TextRoot, TextLogoFont } from "./TextLogo.style";
 
 const TextLogo = (): JSX.Element => {
-    const { Icon, TextLogoRoot, TextLogoFont, TextRoot, SecondText } = TextLogoStyles;
     return (
-        <View style={[TextLogoRoot]}>
-            <LogoIcon style={[Icon]} />
-            <View style={[TextRoot]}>
-                <Text style={[TextLogoFont]}>CK</Text>
-                <Text style={[TextLogoFont, SecondText]}>BULL</Text>
-            </View>
-        </View>
+        <TextLogoRoot>
+            <TextLogoIcon />
+            <TextRoot>
+                <TextLogoFont>CK</TextLogoFont>
+                <TextLogoFont style={{fontWeight: "bold", marginLeft:1}}>BULL</TextLogoFont>
+            </TextRoot>
+        </TextLogoRoot>
     );
 };
 
