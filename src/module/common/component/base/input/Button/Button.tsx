@@ -1,10 +1,10 @@
-import { ButtonRoot, ButtonLoader, ButtonContent, ButtonText } from "./Button.styles";
+import { ButtonRoot, ButtonLoader, ButtonContent } from "./Button.styles";
 import { ButtonProps } from "./Button.types";
-import { TouchableWithoutFeedback, StyleSheet, TextStyle, ActivityIndicator } from "react-native";
+import { TouchableWithoutFeedback, StyleSheet, ActivityIndicator, Text } from "react-native";
 import { useState } from "react";
-import { extractTextStyles } from "utils/extractTextStyles";
-import { useStyled, useTheme } from "@peersyst/react-native-styled";
-import ButtonIcon from "module/common/component/base/input/Button/ButtonIcon";
+import { useStyled } from "@peersyst/react-native-styled";
+import { Icon } from "module/common/component/base";
+import useButtonStyles from "module/common/component/base/input/Button/hooks/useButtonStyles";
 
 const Button = ({
     onPress,
@@ -21,11 +21,10 @@ const Button = ({
     sx: sxProp,
 }: ButtonProps): JSX.Element => {
     const [pressed, setPressed] = useState(false);
-    const sx = useStyled(sxProp, { variant, size, disabled, pressed });
 
-    const theme = useTheme();
+    const sx = useStyled(sxProp, { variant, size, disabled, pressed });
     const styles = StyleSheet.flatten([style, sx()]);
-    const [textStyles, rootStyles] = extractTextStyles(styles as TextStyle);
+    const { textStyle, rootStyle } = useButtonStyles(styles, variant, size, disabled, pressed);
 
     const pressable = !disabled && !loading;
 
@@ -36,36 +35,16 @@ const Button = ({
             onPressIn={() => pressable && setPressed(true)}
             onPressOut={() => pressable && setPressed(false)}
         >
-            <ButtonRoot variant={variant} size={size} fullWidth={fullWidth} style={rootStyles} pressed={pressed} disabled={disabled}>
+            <ButtonRoot style={rootStyle} fullWidth={fullWidth} >
                 {loading && (
                     <ButtonLoader>
-                        {loadingElement ? (
-                            loadingElement
-                        ) : (
-                            <ActivityIndicator
-                                color={
-                                    disabled
-                                        ? theme.palette.disabled
-                                        : textStyles.color || (variant === "contained" ? theme.palette.text : theme.palette.primary)
-                                }
-                            />
-                        )}
+                        {loadingElement ? <Icon style={textStyle}>{loadingElement}</Icon> : <ActivityIndicator color={textStyle.color} />}
                     </ButtonLoader>
                 )}
                 <ButtonContent isLoading={loading}>
-                    {leftIcon && (
-                        <ButtonIcon variant={variant} size={size} disabled={disabled}>
-                            {leftIcon}
-                        </ButtonIcon>
-                    )}
-                    <ButtonText style={{ ...textStyles }} size={size} variant={variant} disabled={disabled}>
-                        {children}
-                    </ButtonText>
-                    {rightIcon && (
-                        <ButtonIcon variant={variant} size={size} disabled={disabled}>
-                            {rightIcon}
-                        </ButtonIcon>
-                    )}
+                    {leftIcon && <Icon style={textStyle}>{leftIcon}</Icon>}
+                    <Text style={textStyle}>{children}</Text>
+                    {rightIcon && <Icon style={textStyle}>{rightIcon}</Icon>}
                 </ButtonContent>
             </ButtonRoot>
         </TouchableWithoutFeedback>
