@@ -1,16 +1,17 @@
-import { SvgIconProps } from "module/common/component/base/SvgIcon/SvgIcon.types";
-import { CSSProperties } from "react";
+import { SvgIconProps } from "./SvgIcon.types";
 import Svg from "react-native-svg";
+import { StyleSheet } from "react-native";
 
 const SvgIcon = ({ style, color: colorProp, size: sizeProp = "24px", ...rest }: SvgIconProps): JSX.Element => {
     let color,
         size = sizeProp;
     if (style) {
-        (style as Array<CSSProperties>).forEach((s) => {
-            if (s.color) color = s.color;
-            if (s.fontSize) size = s.fontSize;
-        });
+        const flattenedStyle = StyleSheet.flatten(style);
+
+        if (flattenedStyle.color) color = flattenedStyle.color;
+        if (flattenedStyle.fontSize) size = flattenedStyle.fontSize;
     }
+
     return (
         <Svg
             viewBox="0 0 24 24"

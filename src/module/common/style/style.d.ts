@@ -1,17 +1,25 @@
-import "styled-components";
-import "styled-components/cssprop";
-import { CSSProp } from "styled-components";
-import { Theme } from "module/common/style/theme.types";
+/* eslint-disable @typescript-eslint/no-empty-interface */
+import "@peersyst/react-native-styled";
+import { Theme as ExtendedTheme } from "react-native-components";
 
-// Type styled components theme with our components theme
-declare module "styled-components" {
-    // eslint-disable-next-line
-    export interface DefaultTheme extends Theme {}
+declare module "@peersyst/react-native-styled" {
+    export interface Theme extends ExtendedTheme {}
 }
 
-// Use css prop in components
-declare module "react" {
-    export interface Attributes {
-        css?: CSSProp<Theme>;
+declare module "react-native-components" {
+    export interface ThemePalette {
+        white: string;
+        black: string;
+        darkGray: string;
+        darkerGray: string;
+        gray: string;
+        lightGray: string;
+        turquoise: string;
+        gold: string;
+        violet: string;
+        pink: string;
+        blue: string;
+        purple: string;
+        red: string;
     }
 }

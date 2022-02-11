@@ -25,11 +25,11 @@ module.exports = function (api) {
                         module: "./src/module",
                         utils: "./src/utils",
                         "stack-navigator": "./src/Stack.ts",
-                        "query-utils": "./src/query/react-query-overrides.ts"
+                        "query-utils": "./src/query/react-query-overrides.ts",
+                        "react-native-components": "./src/module/common/component/base"
                     },
                 },
             ],
-            ["babel-plugin-styled-components", { displayName: true }],
         ],
     };
 };
