@@ -1,14 +1,15 @@
 import { ChipProps } from "./Chip.types";
-import { ChipStyles } from "./Chip.styles";
-import { TouchableWithoutFeedback, View, Text } from "react-native";
+import { ChipStyles, ChipRoot, ChipText } from "./Chip.styles";
+import { TouchableWithoutFeedback } from "react-native";
 
-const Chip = ({ label, variant = "light", style, fullWidth, onPress }: ChipProps): JSX.Element => {
-    const { chipRoot, chipLabel, notFullWidth } = ChipStyles({ variant });
+const Chip = ({ label, variant = "light", style, labelStyle, fullWidth, onPress }: ChipProps): JSX.Element => {
     return (
         <TouchableWithoutFeedback onPress={onPress} accessibilityRole={onPress ? "button" : "text"}>
-            <View testID="chipRoot" style={[style, chipRoot, !fullWidth && notFullWidth]}>
-                <Text style={[chipLabel]}>{label}</Text>
-            </View>
+            <ChipRoot variant={variant} testID="chipRoot" style={[style, !fullWidth && ChipStyles.notFullWidth]}>
+                <ChipText variant={variant} style={labelStyle}>
+                    {label}
+                </ChipText>
+            </ChipRoot>
         </TouchableWithoutFeedback>
     );
 };
