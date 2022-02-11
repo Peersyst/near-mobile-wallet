@@ -11,5 +11,5 @@ export interface ChipProps {
     labelStyle?:StyleProp<TextStyle>
 }
 
-export type ChipStylesProps = Pick<ChipProps, "variant">;
-export type ChipRootProps = Pick<ChipProps, "variant">;
+export type ChipTextProps = Pick<ChipProps, "variant">;
+export type ChipRootProps = Pick<ChipProps, "variant" | "fullWidth">;
