@@ -3,10 +3,11 @@ import { TextLogoRoot, TextLogoIcon, TextRoot, TextLogoFont, TextLogoBold } from
 const TextLogo = (): JSX.Element => {
     return (
         <TextLogoRoot>
-            <TextLogoIcon />
-            <TextRoot>
-                <TextLogoFont>CK</TextLogoFont>
-                <TextLogoBold>BULL</TextLogoBold>
+            <TextLogoIcon accessibilityRole="image"/>
+            <TextRoot accessibilityRole="text">
+                <TextLogoFont>
+                    CK<TextLogoBold>BULL</TextLogoBold>
+                </TextLogoFont>
             </TextRoot>
         </TextLogoRoot>
     );
