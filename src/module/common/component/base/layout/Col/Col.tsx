@@ -1,4 +1,4 @@
-import { ReactNode, Children } from "react";
+import { Children, Fragment } from "react";
 import { View } from "react-native";
 import { ColRoot } from "./Col.styles";
 import { ColProps } from "./Col.types";
@@ -9,10 +9,11 @@ const Col = ({ children: childrenProp, gap, justifyContent, alignItems, style, f
 
     return (
         <ColRoot style={[{ alignItems, justifyContent, flex }, style]}>
-            {Children.map(children, (child: ReactNode, index: number) => (
-                <View style={{ marginBottom: index < childrenLength - 1 ? gap : 0 }} key={index}>
+            {Children.map(children, (child, index: number) => (
+                <Fragment key={index}>
                     {child}
-                </View>
+                    <View style={{ flex: 0, marginBottom: index < childrenLength - 1 ? gap : 0 }} />
+                </Fragment>
             ))}
         </ColRoot>
     );

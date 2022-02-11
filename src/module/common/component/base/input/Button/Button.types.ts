@@ -6,31 +6,29 @@ export type ButtonSize = "sm" | "md" | "lg";
 
 export type ButtonVariant = "contained" | "text" | "outlined";
 
-export type ButtonStyle = StyleProp<ViewStyle> & StyleProp<TextStyle>;
+export type ButtonStyle = ViewStyle & TextStyle;
+export interface ButtonVariantStyle {
+    contained?: ButtonStyle;
+    text?: ButtonStyle;
+    outlined?: ButtonStyle;
+}
+export type ButtonStyleWithVariant = ButtonStyle & ButtonVariantStyle;
+export interface ButtonSizeStyle {
+    sm?: ButtonStyle;
+    md?: ButtonStyle;
+    lg?: ButtonStyle;
+}
+export type ButtonStyles = ButtonStyleWithVariant & {
+    disabled?: ButtonStyleWithVariant;
+    pressed?: ButtonStyleWithVariant;
+} & ButtonSizeStyle;
 
 export interface ButtonRootProps {
-    variant: ButtonVariant;
-    size: ButtonSize;
     fullWidth: boolean;
-    pressed: boolean;
-    disabled: boolean;
 }
 
 export interface ButtonContainerProps {
     isLoading: boolean;
-}
-
-export interface ButtonTextProps {
-    variant: ButtonVariant;
-    size: ButtonSize;
-    disabled: boolean;
-}
-
-export interface ButtonIconProps {
-    variant: ButtonVariant;
-    size: ButtonSize;
-    disabled: boolean;
-    children: ReactElement;
 }
 
 export interface ButtonSxProps {
@@ -59,7 +57,7 @@ export interface ButtonProps extends Omit<NativeButtonProps, "title" | "color" |
     /**
      * Add custom loading element *
      */
-    loadingElement?: ReactNode;
+    loadingElement?: ReactElement;
     /**
      * Button variant.
      */
@@ -75,11 +73,11 @@ export interface ButtonProps extends Omit<NativeButtonProps, "title" | "color" |
     /**
      * Button's style
      */
-    style?: StyleProp<ButtonStyle>;
+    style?: StyleProp<ButtonStyles>;
     /**
      * Button sx
      */
-    sx?: SX<ButtonSxProps, ButtonStyle>;
+    sx?: SX<ButtonSxProps, ButtonStyles>;
     /**
      * Button's text content
      */
