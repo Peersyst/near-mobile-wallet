@@ -1,7 +1,3 @@
-import { Theme } from "./theme.types";
+import { createTheme } from "react-native-components";
 
-export const theme: Theme = {
-    palette: {
-        primary: "cyan",
-    },
-};
+export const theme = createTheme({});
