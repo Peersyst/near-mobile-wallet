@@ -6,7 +6,7 @@ const TextLogo = (): JSX.Element => {
             <TextLogoIcon />
             <TextRoot>
                 <TextLogoFont>CK</TextLogoFont>
-                <TextLogoFont style={{fontWeight: "bold", marginLeft:1}}>BULL</TextLogoFont>
+                <TextLogoFont style={{ fontWeight: "bold", marginLeft: 1 }}>BULL</TextLogoFont>
             </TextRoot>
         </TextLogoRoot>
     );
