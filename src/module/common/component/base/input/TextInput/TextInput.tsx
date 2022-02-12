@@ -1,13 +1,12 @@
 import { TextInputProps } from "./TextInput.types";
 import { Input, InvalidIcon, TextInputRoot, ValidIcon } from "./TextInput.styles";
-import { NativeSyntheticEvent, TextInputFocusEventData } from "react-native";
+import { NativeSyntheticEvent, TextInputFocusEventData, Text } from "react-native";
 import { useControlled } from "@peersyst/react-hooks";
 import { useEffect, useMemo, useState } from "react";
 import { useTextInputValidation } from "./hooks/useTextInputValidation";
 import { useFormNotification } from "../Form";
 import { useStyled, useTheme } from "@peersyst/react-native-styled";
 import useTextInputStyles from "./hooks/useTextInputStyles";
-import { Text } from "react-native";
 import { deepmerge } from "@peersyst/react-utils";
 import { Col } from "../../layout/Col";
 import { Icon } from "../../display/Icon";
