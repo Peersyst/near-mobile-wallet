@@ -11,8 +11,8 @@ export function createTheme({
     /*toastAnimation,
     toastPosition,*/
     zIndex,
-    /*skeletonAnimations,
-    translate,*/
+    /*skeletonAnimations,*/
+    translate,
     ...rest
 }: CreateTheme): Theme {
     return {
@@ -24,8 +24,8 @@ export function createTheme({
         /*toastAnimation: toastAnimation || defaultTheme.toastAnimation,
         toastPosition: toastPosition || defaultTheme.toastPosition,*/
         zIndex: { ...defaultTheme.zIndex, ...zIndex },
-        /*skeletonAnimations: skeletonAnimations || defaultTheme.skeletonAnimations,
-        translate: translate || defaultTheme.translate,*/
+        /*skeletonAnimations: skeletonAnimations || defaultTheme.skeletonAnimations,*/
+        translate: translate || defaultTheme.translate,
         ...rest,
     };
 }
