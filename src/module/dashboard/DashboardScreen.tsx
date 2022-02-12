@@ -12,7 +12,7 @@ const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 const Spacer = styled(View)(() => ({ height: 20 }));
 
 const CustomView = styled(View)(({ theme }) => ({
-    backgroundColor: lighten(theme.palette.primary, 0.5),
+    backgroundColor: lighten(theme.palette.gold, 0.5),
     height: 40,
     alignItems: "center",
     justifyContent: "center",
