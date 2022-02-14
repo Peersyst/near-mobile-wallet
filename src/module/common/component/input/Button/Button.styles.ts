@@ -26,10 +26,10 @@ export const ButtonRoot = styled(Button, { variant: "outlined", size: "lg" })<Bu
         },
         shadowOffset: {
             width: type === "dark" ? 0 : undefined,
-            height: type === "dark" ? 3 : undefined,
+            height: type === "dark" ? 2 : undefined,
         },
         shadowOpacity: type === "dark" ? 0 : undefined,
-        shadowRadius: type === "dark" ? 24 : undefined,
+        shadowRadius: type === "dark" ? 42 : undefined,
         elevation: type === "dark" ? 10 : undefined,
     }),
 );
