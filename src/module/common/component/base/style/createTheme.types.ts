@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { StyleProp, TextStyle } from "react-native";
 import { ThemeFonts, ThemeIcons, ThemePalette, ThemeZIndex } from "./theme.types";
+import { TranslateFn } from "../input/TextInput/utils";
 
 export interface CreateDefaultThemeTypography {
     h1?: StyleProp<TextStyle>;
@@ -31,6 +32,6 @@ export interface CreateDefaultTheme {
     toastAnimation?: ToastAnimation;
     toastPosition?: ToastPosition;*/
     zIndex?: Partial<ThemeZIndex>;
-    /*translate?: TranslateFn;*/
+    translate?: TranslateFn;
 }
 export interface CreateTheme extends CreateDefaultTheme {}

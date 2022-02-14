@@ -1,4 +1,5 @@
 import { createTheme } from "react-native-components";
+import { translate } from "locale";
 
 export const theme = createTheme({
     palette: {
@@ -17,5 +18,6 @@ export const theme = createTheme({
         lightGray: "#F9F9F966",
         red: "#FF0E0E",
     },
-    borderRadius: 24
+    borderRadius: 24,
+    translate,
 });
