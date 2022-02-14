@@ -16,6 +16,7 @@ export const theme = createTheme({
         darkerGray: "#141414",
         gray: "#00000069",
         lightGray: "#F9F9F966",
+        backgroundGray: "#F9F9F9DE",
         red: "#FF0E0E",
     },
     borderRadius: 24,

@@ -14,6 +14,7 @@ declare module "react-native-components" {
         darkerGray: string;
         gray: string;
         lightGray: string;
+        backgroundGray: string;
         turquoise: string;
         gold: string;
         violet: string;
