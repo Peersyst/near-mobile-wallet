@@ -17,4 +17,5 @@ export const theme = createTheme({
         lightGray: "#F9F9F966",
         red: "#FF0E0E",
     },
+    borderRadius: 24
 });
