@@ -3,7 +3,7 @@ import { ButtonProps as ButtonBaseProps } from "../../base/input/Button/Button.t
 export type ButtonType = "light" | "dark";
 
 export interface ButtonProps extends ButtonBaseProps {
-    type: ButtonType;
+    type?: ButtonType;
 }
 export interface ButtonRootProps {
     type: ButtonType;
