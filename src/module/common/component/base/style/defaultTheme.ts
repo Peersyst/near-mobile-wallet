@@ -1,9 +1,20 @@
 import { Theme } from "./theme.types";
 import shadows from "./shadows";
 import { typography } from "./typography";
+import { CrossIcon, ErrorIcon, HideIcon, InfoIcon, InvalidIcon, ShowIcon, SuccessIcon, WarningIcon } from "../assets/icons";
 
 export const defaultTheme: Theme = {
-    icons: {},
+    icons: {
+        info: InfoIcon,
+        error: ErrorIcon,
+        success: SuccessIcon,
+        warning: WarningIcon,
+        invalid: InvalidIcon,
+        valid: SuccessIcon,
+        hide: HideIcon,
+        show: ShowIcon,
+        cross: CrossIcon,
+    },
     typography,
     palette: {
         mode: "light",
@@ -30,5 +41,5 @@ export const defaultTheme: Theme = {
         selectMenu: 5,
         toast: 9999,
     },
-    /*translate: (w: string) => w,*/
+    translate: (w: string) => w,
 };

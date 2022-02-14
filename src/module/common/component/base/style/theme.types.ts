@@ -1,9 +1,21 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { StyleProp, TextStyle } from "react-native";
+import { TranslateFn } from "../input/TextInput/utils";
+import { JSXElementConstructor } from "react";
 
 export type PaletteMode = "light" | "dark";
 
-export interface ThemeIcons {}
+export interface ThemeIcons {
+    info: JSXElementConstructor<any>;
+    error: JSXElementConstructor<any>;
+    success: JSXElementConstructor<any>;
+    warning: JSXElementConstructor<any>;
+    invalid: JSXElementConstructor<any>;
+    valid: JSXElementConstructor<any>;
+    hide: JSXElementConstructor<any>;
+    show: JSXElementConstructor<any>;
+    cross: JSXElementConstructor<any>;
+}
 
 export type TypographyVariants =
     | "h1"
@@ -72,6 +84,6 @@ export interface DefaultTheme {
     toastAnimation: ToastAnimation;
     toastPosition: ToastPosition;*/
     zIndex: ThemeZIndex;
-    /*translate: TranslateFn;*/
+    translate: TranslateFn;
 }
 export interface Theme extends DefaultTheme {}
