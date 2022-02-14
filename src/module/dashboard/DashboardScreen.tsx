@@ -7,6 +7,7 @@ import { ArrowIcon } from "icons";
 import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
+import RippleNumer from "module/common/component/input/RippleNumber/RippleNumber";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 const Spacer = styled(View)(() => ({ height: 20 }));
@@ -73,6 +74,11 @@ const DashboardScreen = (): JSX.Element => {
                         <Button fullWidth variant="outlined" style={{ outlined: { borderColor: "pink" } }}>
                             Submit
                         </Button>
+                        <View style={{ display: "flex", justifyContent: "space-between", flexDirection:"row" }}>
+                            <RippleNumer number={1} />
+                            <RippleNumer number={2} />
+                            <RippleNumer number={3} />
+                        </View>
                     </Col>
                 </Form>
             </Col>
