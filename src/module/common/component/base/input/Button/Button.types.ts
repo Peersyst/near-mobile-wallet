@@ -13,6 +13,7 @@ export interface ButtonVariantStyle {
     outlined?: ButtonStyle;
 }
 export type ButtonStyleWithVariant = ButtonStyle & ButtonVariantStyle;
+
 export interface ButtonSizeStyle {
     sm?: ButtonStyle;
     md?: ButtonStyle;

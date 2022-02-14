@@ -1,10 +1,12 @@
-import Button from "module/common/component/base/input/Button/Button"
+import { Button } from "react-native-components";
 import styled from "@peersyst/react-native-styled";
-import {ButtonRootProps} from "./Button.types";
+import { ButtonRootProps, ButtonProps } from "./Button.types";
+import {StyleSheet} from "react-native";
 
-export const ButtonRoot = styled(Button,{variant: "outlined"})<ButtonRootProps>(({ theme, type }) => ({
-   color: type === "dark" ? theme.palette.black : theme.palette.white,
+export const ButtonRoot = styled(Button, { variant: "outlined", size: "lg", fullWidth: true })<ButtonRootProps>(({ theme, type }) => ({
+   color: theme.palette.black,
    borderWidth: 4,
-   borderColor: type === "dark" ? theme.palette.black : theme.palette.white,
+   borderColor: theme.palette.black,
    borderRadius: theme.borderRadius,
 }))
+
