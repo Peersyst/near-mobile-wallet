@@ -55,6 +55,8 @@ export default function useButtonStyles(
         [defaultStyles, styles, variant],
     );
 
+    console.log(variant, styles[variant]);
+
     const [sizeTextStyles, sizeRootStyles] = useMemo(
         () => extractTextStyles({ ...defaultSizeStyles[size], ...styles[size] }),
         [defaultSizeStyles, styles, size],

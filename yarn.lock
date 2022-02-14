@@ -1617,10 +1617,10 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^1.0.0"
 
-"@peersyst/react-native-styled@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-styled/-/react-native-styled-0.0.3.tgz#5e8adbc6add1c2e91f488fdfd550afaf57d436ac"
-  integrity sha512-hDYFEfMfcGkVzpjZ0A0D/gm2rVYNhDKJt1zbGBgbrrhN8tdESl4JdVr2vLG81Um6qQcCC6P9qyuC37/Ro4ZaIA==
+"@peersyst/react-native-styled@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-styled/-/react-native-styled-0.0.4.tgz#d11ca356ef40b2c26c1bdbcab9c005c9ce2bf09c"
+  integrity sha512-QVfsbzver+V9YsuxmKHkoMQgrqzeWcTwKaGrNuo8pyDqOsCLXoR14QvXtTAsl1bClUBBiwVytkldI89fOhjq5w==
   dependencies:
     "@babel/runtime" "^7.16.7"
 
