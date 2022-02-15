@@ -1,15 +1,15 @@
 import { StyleProp, ViewStyle, TextStyle } from "react-native";
 
-export type ChipVariant = "light" | "dark";
+export type ChipAppearance = "light" | "dark";
 
 export interface ChipProps {
     onPress?: () => unknown;
     label: string,
-    variant?: ChipVariant,
+    appearance?: ChipAppearance,
     fullWidth?: boolean,
     style?: StyleProp<ViewStyle>;
     labelStyle?:StyleProp<TextStyle>
 }
 
-export type ChipTextProps = Pick<ChipProps, "variant">;
-export type ChipRootProps = Pick<ChipProps, "variant" | "fullWidth">;
+export type ChipTextProps = Required<Pick<ChipProps, "appearance">>;
+export type ChipRootProps = Pick<ChipProps,"fullWidth"> & Required<Pick<ChipProps, "appearance">>;
