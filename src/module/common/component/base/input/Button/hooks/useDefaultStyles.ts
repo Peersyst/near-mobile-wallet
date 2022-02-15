@@ -1,5 +1,5 @@
 import { useTheme } from "@peersyst/react-native-styled";
-import { ButtonSizeStyle, ButtonStyleWithVariant } from "react-native-components";
+import { ButtonSizeStyle, ButtonStyleWithVariant } from "../Button.types";
 import { alpha, darken, emphasize } from "@peersyst/react-utils";
 
 export interface UseDefaultStylesResult {

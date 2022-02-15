@@ -1,6 +1,8 @@
+import { ExpoConfig, ConfigContext } from "@expo/config";
 import "dotenv/config";
 
-export default {
+export default ({ config }: ConfigContext): ExpoConfig => ({
+    ...config,
     name: "mobile-base-project",
     slug: "mobile-base-project",
     version: "1.0.0",
@@ -29,4 +31,4 @@ export default {
     web: {
         favicon: "./assets/images/favicon.png",
     },
-};
+});
