@@ -26,8 +26,8 @@ const DashboardScreen = (): JSX.Element => {
         logout,
     } = useAuth();
     return (
-        <SafeAreaView >
-            <Col gap={10} >
+        <SafeAreaView>
+            <Col gap={10}>
                 <CustomView>
                     <CustomText>{translate("name")}</CustomText>
                 </CustomView>
