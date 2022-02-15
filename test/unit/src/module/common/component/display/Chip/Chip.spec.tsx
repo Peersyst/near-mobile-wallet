@@ -8,21 +8,16 @@ describe("Chip tests", () => {
         const screen = render(<Chip label="Peersyst" />);
         const chip = screen.getByText("Peersyst");
         expect(chip).toBeDefined();
-
-        /* Test light default variant */
         expect(chip.props.style.color).toEqual(theme.palette.darkFont);
     });
     test("Renders dark variant correctly", () => {
-        const screen = render(<Chip label="Peersyst" variant="dark" />);
+        const screen = render(<Chip label="Peersyst" appearance="dark" />);
         const chip = screen.getByText("Peersyst");
-        /* Test dark variant */
-
         expect(chip.props.style.color).toEqual(theme.palette.white);
     });
-    test("Renders full correctly", () => {
+    test("Renders fullWidth correctly", () => {
         const screen = render(<Chip label="Peersyst" fullWidth />);
         const chipRoot = screen.getByTestId("chipRoot");
-
         expect(chipRoot.props.style.alignSelf).not.toEqual("flex-start");
     });
     test("onPress is called", () => {
