@@ -1,12 +1,12 @@
 import { TextStyle, ViewStyle } from "react-native";
 import useDefaultStyles from "./useDefaultStyles";
 import { extractTextStyles } from "utils/extractTextStyles";
-import { ButtonSize, ButtonStyles, ButtonVariant } from "../Button.types";
+import { ButtonSize, ButtonStyle, ButtonStyles, ButtonVariant } from "../Button.types";
 import { useMemo } from "react";
 
 export interface UseButtonStylesResult {
     textStyle: TextStyle;
-    rootStyle: ViewStyle;
+    rootStyle: Omit<ButtonStyle, keyof TextStyle> & ViewStyle;
 }
 
 export default function useButtonStyles(
@@ -54,7 +54,6 @@ export default function useButtonStyles(
         () => extractTextStyles({ ...defaultStyles[variant], ...styles[variant] }),
         [defaultStyles, styles, variant],
     );
-
 
     const [sizeTextStyles, sizeRootStyles] = useMemo(
         () => extractTextStyles({ ...defaultSizeStyles[size], ...styles[size] }),

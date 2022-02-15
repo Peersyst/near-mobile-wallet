@@ -1617,10 +1617,10 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^1.0.0"
 
-"@peersyst/react-native-styled@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-styled/-/react-native-styled-0.0.4.tgz#d11ca356ef40b2c26c1bdbcab9c005c9ce2bf09c"
-  integrity sha512-QVfsbzver+V9YsuxmKHkoMQgrqzeWcTwKaGrNuo8pyDqOsCLXoR14QvXtTAsl1bClUBBiwVytkldI89fOhjq5w==
+"@peersyst/react-native-styled@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-styled/-/react-native-styled-0.0.6.tgz#949bffa296f487cb1875160ed7090a4d058a9cd4"
+  integrity sha512-PTCHWeckhssmoNUYspUBQQa9VtcMfELLHV/hjjDBGVdlAZZ4iPczCON4zwfgI2loBCnzEy6HgEpQajHrbEHiuw==
   dependencies:
     "@babel/runtime" "^7.16.7"
 
@@ -1628,6 +1628,11 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@peersyst/react-types/-/react-types-1.0.0.tgz#42231dc6ce345138c3ebed6b235a7222f6b0f9e7"
   integrity sha512-kp/i2iCYP1WVbupIAySR+qUKlF3nHlsQum8h3fMINSM258a7LTf0XBOro+OutHUJggOTscm8dLpcCTjXPf0T4Q==
+
+"@peersyst/react-types@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-types/-/react-types-1.2.0.tgz#7a97b61b8093ce7369cf969a9f2cd725b7c49252"
+  integrity sha512-p6zapXl2iikJUcy3LWJdAt5Hu5HBkCmlNKB3FIvQOtcebDGEF7VSxmTk6MdfU97vLm5gdP1SrwzuNVFw6aJJ8A==
 
 "@peersyst/react-utils@^1.0.0":
   version "1.0.0"
