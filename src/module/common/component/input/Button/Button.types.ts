@@ -1,15 +1,19 @@
-import { ButtonProps as ButtonBaseProps } from "../../base/input/Button/Button.types";
+import { ButtonProps as ButtonBaseProps, ButtonStyle, ButtonVariant} from "../../base/input/Button/Button.types";
 
-export type ButtonType = "light" | "dark";
+export type ButtonAppearance = "light" | "dark";
 
 export interface ButtonProps extends ButtonBaseProps {
-    backgroundColor?: string;
-    type?: ButtonType;
+    appearence?: ButtonAppearance;
 }
 export interface ButtonRootProps {
-    backgroundColor?: string;
-    type: ButtonType;
+    appearence: ButtonAppearance;
 }
 export interface ButtonSXProps {
-    type: ButtonType;
+    appearence: ButtonAppearance;
 }
+
+export type ButtonStates = "outlined" | "pressed";
+
+export type ButtonAppeareanceStyle  = Record<ButtonAppearance, ButtonStyle>
+
+export type GetVariantStyleProps = Record<ButtonStates, ButtonAppeareanceStyle>

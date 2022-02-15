@@ -1,35 +1,56 @@
 import { Button } from "react-native-components";
-import { ButtonRootProps } from "./Button.types";
+import { ButtonRootProps, GetVariantStyleProps } from "./Button.types";
 import styled from "@peersyst/react-native-styled";
+import { Theme } from "@peersyst/react-native-styled";
 
-export const ButtonRoot = styled(Button, { variant: "outlined", size: "lg" })<ButtonRootProps>(
-    ({ theme, type, backgroundColor }) => ({
-        width: "86%",
-        marginLeft: "7%",
-        borderRadius: 42,
-        textTransform: "uppercase",
-        fontWeight: "bold",
-        outlined: {
-            backgroundColor: type === "dark" ? backgroundColor ? backgroundColor : theme.palette.backgroundGray : undefined,
-            color: type === "dark" ? theme.palette.black : theme.palette.white,
-            borderWidth: type === "dark" ? 5 : 3,
-            borderColor: type === "dark" ? theme.palette.black : theme.palette.white,
+function getVariantStyle(theme: Theme): GetVariantStyleProps {
+    const outlined = {
+        dark : {
+            color: theme.palette.black,
+            borderColor: theme.palette.black,
+            borderWidth: 5
         },
-        lg: {
-            height: 70,
-            fontSize: 22,
-            paddingHorizontal: 26
+        light : {
+            color: theme.palette.white,
+            borderColor: theme.palette.white,
+            borderWidth:3
+        }
+    } 
+    const pressed = {
+        dark : {
+            color: theme.palette.white,
+            backgroundColor: theme.palette.black
         },
-        pressed: {
-            color: type === "dark" ? theme.palette.white : theme.palette.black,
-            backgroundColor: type === "dark" ? theme.palette.black : theme.palette.white
-        },
-        shadowOffset: {
-            width: type === "dark" ? 0 : undefined,
-            height: type === "dark" ? 2 : undefined,
-        },
-        shadowOpacity: type === "dark" ? 0 : undefined,
-        shadowRadius: type === "dark" ? 42 : undefined,
-        elevation: type === "dark" ? 10 : undefined,
-    }),
+        light : {
+            color: theme.palette.black,
+            backgroundColor: theme.palette.white
+        }
+    }
+    return {outlined, pressed}
+
+}
+
+export const ButtonRoot = styled(Button, { variant: "outlined" })<ButtonRootProps>(
+
+    ({ theme, appearence }) => {
+
+        const {outlined,pressed } = getVariantStyle(theme) 
+        
+        return {
+            borderRadius: 42,
+            textTransform: "uppercase",
+            fontWeight: "bold",
+            lg: {
+                height: 70,
+                fontSize: 22,
+                paddingHorizontal: 26
+            },
+            outlined : {
+                ...outlined[appearence]
+            },
+            pressed : {
+                ...pressed[appearence]
+            }
+        }
+    },
 );

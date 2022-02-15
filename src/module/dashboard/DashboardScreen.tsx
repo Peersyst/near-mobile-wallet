@@ -34,7 +34,7 @@ const DashboardScreen = (): JSX.Element => {
                 <ArrowIcon color="black" />
                 <Spacer />
                 <Button
-                    type="dark"
+                    appearence="dark"
                     leftIcon={<ArrowIcon />}
                     loading={login.isLoading}
                     onPress={() => (!isLogged ? login.mutate({ username: "Charlie", password: "Test1234" }) : logout())}
@@ -72,14 +72,11 @@ const DashboardScreen = (): JSX.Element => {
                             prefix={<ArrowIcon />}
                             suffix={<ArrowIcon />}
                         />
-                        <Button type="light" variant="outlined" style={{ outlined: { borderColor: "pink" } }}>
+                        <Button appearence="light" variant="outlined" style={{ outlined: { borderColor: "pink" } }}>
                             Submit
                         </Button>
                     </Col>
                 </Form>
-                <Button type="dark">
-                            Hola
-                </Button>
             </Col>
         </SafeAreaView>
     );

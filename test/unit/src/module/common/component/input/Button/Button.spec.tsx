@@ -18,7 +18,7 @@ describe("Button tests", () => {
     });
     test("Renders correctly white type", () => {
         const screen = render(
-            <Button type="light">
+            <Button appearence="light">
                 Press me
             </Button>,
         );
