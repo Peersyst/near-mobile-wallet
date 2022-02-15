@@ -1,8 +1,7 @@
-import { ViewStyle, ScaleTransform } from "react-native"
+import { ScaleTransform } from "react-native"
 
 export interface RippleAnimCircleProps {
-    scaleStart?: ScaleTransform;
-    styles?: ViewStyle;
+    scaleStart?: ScaleTransform["scale"];
     size?: number;
     zIndex?: number;
     color1?: string;

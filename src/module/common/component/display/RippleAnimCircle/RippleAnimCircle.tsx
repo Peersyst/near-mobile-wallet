@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { RippleAnimCircleProps } from "./RippleAnimCircle.types";
 import { RippleAnimCircleRoot, Ripple } from "./RippleAnimCircle.styles";
 
-const RippleAnimCircle = ({ scaleStart, size, zIndex, color1, color2, duration}: RippleAnimCircleProps): JSX.Element => {
+const RippleAnimCircle = ({ scaleStart = 0.5, size, zIndex, color1, color2, duration = 200 }: RippleAnimCircleProps): JSX.Element => {
     
     const scaleAnim = useRef(new Animated.Value(0)).current;
     const opacityAnim = useRef(new Animated.Value(1)).current;
@@ -11,30 +11,30 @@ const RippleAnimCircle = ({ scaleStart, size, zIndex, color1, color2, duration}:
     const opacityAnim2 = useRef(new Animated.Value(1)).current;
 
     const showAnim = () => {
-        scaleAnim.setValue(scaleStart?.scale || 0.5);
-        scaleAnim2.setValue(scaleStart?.scale || 0.5);
+        scaleAnim.setValue(scaleStart);
+        scaleAnim2.setValue(scaleStart);
         opacityAnim.setValue(0.8);
         opacityAnim2.setValue(0.8);
         Animated.parallel([
             Animated.timing(scaleAnim, {
                 toValue: 0.8,
                 useNativeDriver: true,
-                duration: duration ? duration/2 :  200,
+                duration: duration / 2,
             }),
             Animated.timing(opacityAnim, {
                 toValue: 0,
                 useNativeDriver: true,
-                duration: duration ? duration/2 : 200,
+                duration: duration / 2,
             }),
             Animated.timing(scaleAnim2, {
                 toValue: 1,
                 useNativeDriver: true,
-                duration: duration || 400,
+                duration: duration,
             }),
             Animated.timing(opacityAnim2, {
                 toValue: 0,
                 useNativeDriver: true,
-                duration: duration || 400,
+                duration: duration,
             }),
         ]).start();
     };
@@ -49,6 +49,7 @@ const RippleAnimCircle = ({ scaleStart, size, zIndex, color1, color2, duration}:
                 }}
             />
             <Ripple
+                size={size}
                 color={color2}
                 style={{
                     opacity: opacityAnim2,

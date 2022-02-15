@@ -7,7 +7,10 @@ const RippleNumer = ({ number }: RippleNumberProps) => {
 
     return (
         <RippleNumberRoot>
-            <RippleAnimCircle color2={theme.palette.lightGray} />
+            <RippleAnimCircle 
+            duration={600}
+            size={70}
+            color2={theme.palette.lightGray} />
             <TextNumber>{number}</TextNumber>
         </RippleNumberRoot>
     );

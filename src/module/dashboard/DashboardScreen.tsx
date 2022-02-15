@@ -74,31 +74,6 @@ const DashboardScreen = (): JSX.Element => {
                         <Button fullWidth variant="outlined" style={{ outlined: { borderColor: "pink" } }}>
                             Submit
                         </Button>
-                        <View style={{ display: "flex", 
-                        justifyContent: "space-between", 
-                        flexDirection:"row", 
-                        paddingHorizontal: "20%",
-                        paddingTop: 20,
-                        height: 80,
-                        backgroundColor: "black",
-                        alignItems: "center"}}>
-                            <RippleNumer number={1} />
-                            <RippleNumer number={2} />
-                            <RippleNumer number={3} />
-                        </View>
-                        <View style={{ display: "flex", 
-                        justifyContent: "space-between", 
-                        flexDirection:"row",
-                        marginTop: -10, 
-                        paddingHorizontal: "20%",
-                        paddingTop: 20,
-                        height: 80,
-                        backgroundColor: "black",
-                        alignItems: "center"}}>
-                            <RippleNumer number={4} />
-                            <RippleNumer number={5} />
-                            <RippleNumer number={6} />
-                        </View>
                     </Col>
                 </Form>
             </Col>

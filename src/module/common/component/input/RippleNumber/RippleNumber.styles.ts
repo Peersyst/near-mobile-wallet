@@ -2,8 +2,8 @@ import styled from "@peersyst/react-native-styled";
 import { View, Text } from "react-native";
 
 export const RippleNumberRoot = styled(View)(() => ({
-    height:50,
-    width:50,
+    height:70,
+    width:70,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "black",
