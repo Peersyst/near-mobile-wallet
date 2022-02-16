@@ -1,18 +1,17 @@
-import { RippleNumberProps } from "./RippleNumber.types";
-import { RippleNumberRoot, Item } from "./RippleNumber.styles";
+import { PadItemProps } from "./PadItem.types";
+import { PadItemRoot, Item, ItemIcon } from "./PadItem.styles";
 import RippleAnimCircle from "../../display/RippleAnimCircle/RippleAnimCircle";
 import { theme } from "module/common/style/theme";
 
-const PadItem = ({ number }: RippleNumberProps) => {
-
+const PadItem = ({ number, icon }: PadItemProps) => {
     return (
-        <RippleNumberRoot>
+        <PadItemRoot>
             <RippleAnimCircle 
             duration={600}
             size={70}
             color2={theme.palette.lightGray} />
-            <Item>{number}</Item>
-        </RippleNumberRoot>
+            {icon ? <ItemIcon>{icon}</ItemIcon> : <Item>{number}</Item> }
+        </PadItemRoot>
     );
 };
 

@@ -3,11 +3,11 @@ import { translate } from "locale";
 import { Button, Col, TextField, TextArea, Form } from "react-native-components";
 import { Text, View } from "react-native";
 import { useLogin } from "module/auth/query/useLogin";
-import { ArrowIcon } from "icons";
+import { ArrowIcon, CrossIcon, BackIcon } from "icons";
 import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
-import PadItem from "module/common/component/input/RippleNumber/PadItem";
+import PadItem from "module/common/component/input/PadItem/PadItem";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 const Spacer = styled(View)(() => ({ height: 20 }));
@@ -78,6 +78,8 @@ const DashboardScreen = (): JSX.Element => {
                 </Form>
             </Col>
             <PadItem number={0} />
+            <PadItem icon={<BackIcon />} />
+            <PadItem icon={<CrossIcon />} />
         </SafeAreaView>
     );
 };
