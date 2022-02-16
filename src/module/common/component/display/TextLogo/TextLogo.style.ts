@@ -1,18 +1,22 @@
 import styled from "@peersyst/react-native-styled";
 import { Text } from "react-native";
 import { LogoIcon } from "icons";
-import { Row } from "react-native-components";
+import { ButtonStyles, Row } from "react-native-components";
+import { TextLogoAppearance, TextLogoProps } from "./TextLogo.types";
 
-export const TextLogoRoot = styled(Row, { alignItems: "center" })()
+const appearanceStyles: Record<TextLogoAppearance, ButtonStyles> = {
+    dark: {},
+    light: {}
+}
 
-export const TextLogoIcon = styled(LogoIcon)(({ theme }) => ({
+export const TextLogoRoot = styled(Row, { alignItems: "center", gap: 8 })()
+
+export const TextLogoIcon = styled(LogoIcon)<TextLogoProps>(({ theme, appearance }) => ({
     color: theme.palette.black,
     fontSize: 37
 }))
 
-export const TextRoot = styled(Row, { alignItems: "center" })(() => ({
-    marginLeft: 8,
-}))
+export const TextRoot = styled(Row, { alignItems: "center" })()
 
 export const TextLogoFont = styled(Text)(() => ({
     fontSize: 23,
