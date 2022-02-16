@@ -5,28 +5,28 @@ import { Theme } from "@peersyst/react-native-styled";
 
 function getVariantStyle(theme: Theme): GetVariantStyleProps {
     const outlined = {
-        dark : {
+        dark: {
             color: theme.palette.black,
             borderColor: theme.palette.black,
             borderWidth: 5
         },
-        light : {
+        light: {
             color: theme.palette.white,
             borderColor: theme.palette.white,
-            borderWidth:3
+            borderWidth: 3
         }
-    } 
+    }
     const pressed = {
-        dark : {
+        dark: {
             color: theme.palette.white,
             backgroundColor: theme.palette.black
         },
-        light : {
+        light: {
             color: theme.palette.black,
             backgroundColor: theme.palette.white
         }
     }
-    return {outlined, pressed}
+    return { outlined, pressed }
 
 }
 
@@ -34,8 +34,8 @@ export const ButtonRoot = styled(Button, { variant: "outlined" })<ButtonRootProp
 
     ({ theme, appearence }) => {
 
-        const {outlined,pressed } = getVariantStyle(theme) 
-        
+        const { outlined, pressed } = getVariantStyle(theme)
+
         return {
             borderRadius: 42,
             textTransform: "uppercase",
@@ -45,10 +45,10 @@ export const ButtonRoot = styled(Button, { variant: "outlined" })<ButtonRootProp
                 fontSize: 22,
                 paddingHorizontal: 26
             },
-            outlined : {
+            outlined: {
                 ...outlined[appearence]
             },
-            pressed : {
+            pressed: {
                 ...pressed[appearence]
             }
         }
