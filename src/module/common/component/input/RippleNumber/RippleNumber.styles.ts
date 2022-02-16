@@ -10,7 +10,7 @@ export const RippleNumberRoot = styled(View)(() => ({
 }));
 
 
-export const TextNumber = styled(Text)(({ theme }) => ({
+export const Item = styled(Text)(({ theme }) => ({
     color: theme.palette.white,
     fontWeight: "bold",
     fontSize:34

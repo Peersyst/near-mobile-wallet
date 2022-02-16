@@ -7,7 +7,7 @@ import { ArrowIcon } from "icons";
 import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
-import RippleNumer from "module/common/component/input/RippleNumber/RippleNumber";
+import PadItem from "module/common/component/input/RippleNumber/PadItem";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 const Spacer = styled(View)(() => ({ height: 20 }));
@@ -77,6 +77,7 @@ const DashboardScreen = (): JSX.Element => {
                     </Col>
                 </Form>
             </Col>
+            <PadItem number={0} />
         </SafeAreaView>
     );
 };

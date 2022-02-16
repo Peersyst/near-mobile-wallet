@@ -1,9 +1,9 @@
 import { RippleNumberProps } from "./RippleNumber.types";
-import { RippleNumberRoot, TextNumber } from "./RippleNumber.styles";
+import { RippleNumberRoot, Item } from "./RippleNumber.styles";
 import RippleAnimCircle from "../../display/RippleAnimCircle/RippleAnimCircle";
 import { theme } from "module/common/style/theme";
 
-const RippleNumer = ({ number }: RippleNumberProps) => {
+const PadItem = ({ number }: RippleNumberProps) => {
 
     return (
         <RippleNumberRoot>
@@ -11,9 +11,9 @@ const RippleNumer = ({ number }: RippleNumberProps) => {
             duration={600}
             size={70}
             color2={theme.palette.lightGray} />
-            <TextNumber>{number}</TextNumber>
+            <Item>{number}</Item>
         </RippleNumberRoot>
     );
 };
 
-export default RippleNumer;
+export default PadItem;
