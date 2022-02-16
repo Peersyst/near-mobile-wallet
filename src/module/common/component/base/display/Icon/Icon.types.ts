@@ -1,5 +1,5 @@
-import { SvgIconProps } from "react-native-components";
 import { ReactElement } from "react";
+import { SvgIconProps } from "../SvgIcon";
 
 export interface IconProps {
     style?: SvgIconProps["style"];
