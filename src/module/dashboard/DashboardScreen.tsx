@@ -8,6 +8,7 @@ import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
 import PadItem from "module/common/component/input/PadItem/PadItem";
+import PasswordCircle from "module/common/component/display/PasswordCircle/PasswordCircle";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 const Spacer = styled(View)(() => ({ height: 20 }));
@@ -78,8 +79,7 @@ const DashboardScreen = (): JSX.Element => {
                 </Form>
             </Col>
             <PadItem number={0} />
-            <PadItem icon={<BackIcon />} />
-            <PadItem icon={<CrossIcon />} />
+            <PasswordCircle active={true} />
         </SafeAreaView>
     );
 };
