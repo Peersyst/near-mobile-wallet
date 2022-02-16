@@ -15,7 +15,7 @@ export function useLoad(): boolean {
 
             setLoading(false);
         });
-    }, []);
+    }, [setAuthState]);
 
     return loading;
 }
