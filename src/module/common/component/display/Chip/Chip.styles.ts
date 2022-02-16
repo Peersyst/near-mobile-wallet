@@ -5,7 +5,7 @@ import { View, Text } from "react-native";
 export const ChipRoot = styled(View)<ChipRootProps>(({ theme, appearance, fullWidth }) =>
 ({
     height: 48,
-    paddingHorizontal: 20,
+    paddingHorizontal: 22,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: theme.borderRadius,
@@ -16,7 +16,7 @@ export const ChipRoot = styled(View)<ChipRootProps>(({ theme, appearance, fullWi
     },
     shadowOpacity: 0.4,
     shadowRadius: 10,
-    elevation: 8,
+    elevation: 7,
     alignSelf: fullWidth ? undefined : "flex-start",
     backgroundColor: appearance === "light" ? (theme.palette.lighterGray) : (theme.palette.black)
 }))
