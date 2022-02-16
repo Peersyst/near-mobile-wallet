@@ -6,23 +6,21 @@ import { theme } from "module/common/style/theme";
 
 
 describe("Button tests", () => {
-    test("Renders correctly + darkmode default", () => {
+    test("Renders correctly + dark appearance", () => {
         const screen = render(
             <Button>
                 Press me
             </Button>,
         );
         expect(screen.getByText("Press me")).toBeDefined();
-        //test default dark type
         expect(screen.getByRole("button").props.style.outlined.borderColor).toEqual(theme.palette.black)
     });
-    test("Renders correctly white type", () => {
+    test("Renders correctly light appearance", () => {
         const screen = render(
             <Button appearence="light">
                 Press me
             </Button>,
         );
-        //test default white type
         expect(screen.getByRole("button").props.style.outlined.borderColor).toEqual(theme.palette.white)
     });
     test("onPress is called", () => {
