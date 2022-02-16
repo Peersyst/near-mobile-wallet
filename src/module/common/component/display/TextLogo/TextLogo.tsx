@@ -1,13 +1,16 @@
-import { TextLogoRoot, TextLogoIcon, TextRoot, TextLogoFont, TextLogoBold } from "./TextLogo.style";
-import { TextLogoProps } from "./TextLogo.types";
+import { AppearanceProps } from "module/common/types";
+import { TextLogoRoot, TextLogoIcon, TextRoot, TextLogoFont } from "./TextLogo.style";
 
-const TextLogo = ({appearance="light"}: TextLogoProps): JSX.Element => {
+const TextLogo = ({appearance="dark"}: Partial<AppearanceProps>): JSX.Element => {
     return (
-        <TextLogoRoot>
+        <TextLogoRoot appearance={appearance}>
             <TextLogoIcon appearance={appearance} />
             <TextRoot accessibilityRole="text">
-                <TextLogoFont>
-                    CK<TextLogoBold>BULL</TextLogoBold>
+                <TextLogoFont appearance={appearance}>
+                    CK
+                </TextLogoFont>
+                <TextLogoFont style={{fontWeight: "bold"}} appearance={appearance}>
+                    BULL
                 </TextLogoFont>
             </TextRoot>
         </TextLogoRoot>
