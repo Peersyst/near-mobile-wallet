@@ -5,8 +5,9 @@ export interface ButtonProps extends ButtonBaseProps {
     appearance?: Appearance;
 }
 
-export type ButtonStates = "outlined" | "pressed";
+export type ButtonStates = "outlined" | "pressed" | "contained" | "pressedContained";
 
-export type ButtonAppeareanceStyle = Record<Appearance, ButtonStyle>;
+export type ButtonAppeareanceStyle = Partial<Record<Appearance, ButtonStyle>>;
 
 export type GetVariantStyleProps = Record<ButtonStates, ButtonAppeareanceStyle>;
+

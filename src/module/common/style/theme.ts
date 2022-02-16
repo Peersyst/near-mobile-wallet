@@ -7,6 +7,7 @@ export const theme = createTheme({
         white: "#FFFFFF",
         black: "#0B0D1E",
         darkGray: "#707070",
+        darkLightGray: "#7070707F",
         turquoise: "#15C8BD",
         gold: "#E4AF4C",
         violet: "#924AD9",
