@@ -1,40 +1,13 @@
 import { Button } from "react-native-components";
-import { ButtonRootProps, GetVariantStyleProps } from "./Button.types";
+import { ButtonRootProps } from "./Button.types";
 import styled from "@peersyst/react-native-styled";
-import { Theme } from "@peersyst/react-native-styled";
-
-function getVariantStyle(theme: Theme): GetVariantStyleProps {
-    const outlined = {
-        dark: {
-            color: theme.palette.black,
-            borderColor: theme.palette.black,
-            borderWidth: 5
-        },
-        light: {
-            color: theme.palette.white,
-            borderColor: theme.palette.white,
-            borderWidth: 3
-        }
-    }
-    const pressed = {
-        dark: {
-            color: theme.palette.white,
-            backgroundColor: theme.palette.black
-        },
-        light: {
-            color: theme.palette.black,
-            backgroundColor: theme.palette.white
-        }
-    }
-    return { outlined, pressed }
-
-}
+import { useButtonStyles } from "./hooks/useButtonStyles";
 
 export const ButtonRoot = styled(Button, { variant: "outlined" })<ButtonRootProps>(
 
     ({ theme, appearence }) => {
 
-        const { outlined, pressed } = getVariantStyle(theme)
+        const { outlined, pressed } = useButtonStyles(theme)
 
         return {
             borderRadius: 42,
