@@ -1,7 +1,6 @@
 import { render } from "test-utils";
 import TextLogo from "module/common/component/display/TextLogo/TextLogo";
 
-
 describe("Chip tests", () => {
     test("Renders correctly", () => {
         const screen = render(<TextLogo />);
@@ -9,5 +8,4 @@ describe("Chip tests", () => {
         expect(chip).toBeDefined();
         expect(screen.getByTestId("LogoIcon"));
     });
- 
 });
