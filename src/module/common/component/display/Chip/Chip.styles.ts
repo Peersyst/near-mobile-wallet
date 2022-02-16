@@ -1,6 +1,7 @@
-import { ChipRootProps, ChipTextProps } from "./Chip.types";
+import { ChipRootProps } from "./Chip.types";
 import styled from "@peersyst/react-native-styled";
 import { View, Text } from "react-native";
+import { AppearanceProps } from "module/common/types";
 
 export const ChipRoot = styled(View)<ChipRootProps>(({ theme, appearance, fullWidth }) =>
 ({
@@ -21,7 +22,7 @@ export const ChipRoot = styled(View)<ChipRootProps>(({ theme, appearance, fullWi
     backgroundColor: appearance === "light" ? (theme.palette.lighterGray) : (theme.palette.black)
 }))
 
-export const ChipText = styled(Text)<ChipTextProps>(({ theme, appearance }) =>
+export const ChipText = styled(Text)<AppearanceProps>(({ theme, appearance }) =>
 ({
     fontSize: 18,
     color: appearance === "light" ? theme.palette.darkFont : theme.palette.white
