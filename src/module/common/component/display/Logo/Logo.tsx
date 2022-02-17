@@ -4,7 +4,6 @@ import { LogoRoot } from "./Logo.style";
 import TextLogo from "module/common/component/display/TextLogo/TextLogo";
 
 export type LogoProps = Partial<AppearanceProps> & {
-    showLogo?: boolean;
     showText?: boolean;
     direction: "horizontal" | "vertical";
     size: "sm" | "md" | "lg";
@@ -47,13 +46,13 @@ const sizeRelations = {
     },
 };
 
-const Logo = ({ appearance = "dark", showLogo = true, showText = true, direction, size }: LogoProps): JSX.Element => {
+const Logo = ({ appearance = "dark", showText = true, direction, size }: LogoProps): JSX.Element => {
     const Wrapper = direction === "horizontal" ? Row : Col;
     const { logoSize, textSize, gap } = sizeRelations[direction][size];
 
     return (
         <Wrapper alignItems={"center"} justifyContent={"center"} gap={gap}>
-            {showLogo && <LogoRoot appearance={appearance} fontSize={logoSize} />}
+            <LogoRoot appearance={appearance} fontSize={logoSize} />
             {showText && <TextLogo appearance={appearance} fontSize={textSize} />}
         </Wrapper>
     );
