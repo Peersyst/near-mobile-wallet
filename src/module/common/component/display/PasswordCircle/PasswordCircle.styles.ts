@@ -3,5 +3,5 @@ import { Icon } from "react-native-components"
 
 export const StyledCircle = styled(Icon)(({theme})=> ({ 
     color:theme.palette.white, 
-    fontSize:22
+    fontSize:15
 }))

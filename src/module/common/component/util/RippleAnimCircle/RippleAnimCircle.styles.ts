@@ -8,8 +8,6 @@ export const RippleAnimCircleRoot = styled(Pressable)<Pick<RippleAnimCircleProps
     backgroundColor: "transparent",
     width: size || 50,
     height: size || 50,
-    /* Center the circle correctly */
-    top: size ? size * 0.04 : 2,
 }))
 
 export const Ripple = styled(Animated.View)<RippleColor>(({ size, color }) => ({

@@ -7,8 +7,9 @@ const PadItem = ({ number, icon }: PadItemProps) => {
     return (
         <PadItemRoot>
             <RippleAnimCircle 
-            duration={600}
+            duration={400}
             size={70}
+            scaleStart={0.7}
             color2={theme.palette.lightGray} />
             {icon ? <ItemIcon>{icon}</ItemIcon> : <Item>{number}</Item> }
         </PadItemRoot>
