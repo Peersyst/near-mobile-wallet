@@ -1,4 +1,4 @@
-export type Appearance = "light" | "dark" | "gray";
+export type Appearance = "light" | "dark";
 
 export interface AppearanceProps {
     appearance: Appearance;
