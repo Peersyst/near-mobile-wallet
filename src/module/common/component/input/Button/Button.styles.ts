@@ -1,9 +1,10 @@
 import { Button } from "react-native-components";
 import styled from "@peersyst/react-native-styled";
 import { useButtonStyles } from "./hooks/useButtonStyles";
-import { AppearanceProps } from "module/common/types";
+import { ButtonAppearanceProps } from "./Button.types";
 
-export const ButtonRoot = styled(Button)<AppearanceProps>(({ theme, appearance }) => {
+
+export const ButtonRoot = styled(Button)<ButtonAppearanceProps>(({ theme, appearance }) => {
     const { outlined, pressed, contained, pressedContained } = useButtonStyles(theme);
     return {
         borderRadius: 42,
