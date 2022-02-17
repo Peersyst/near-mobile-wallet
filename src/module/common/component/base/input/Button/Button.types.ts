@@ -32,13 +32,6 @@ export interface ButtonContainerProps {
     isLoading: boolean;
 }
 
-export interface ButtonSxProps {
-    variant?: ButtonVariant;
-    size?: ButtonSize;
-    pressed?: boolean;
-    disabled?: boolean;
-}
-
 /**
  * Buttons props omit title in order to make button generic
  */
@@ -78,7 +71,7 @@ export interface ButtonProps extends Omit<NativeButtonProps, "title" | "color" |
     /**
      * Button sx
      */
-    sx?: SX<ButtonSxProps, ButtonStyles>;
+    sx?: SX<ButtonStyles>;
     /**
      * Button's text content
      */

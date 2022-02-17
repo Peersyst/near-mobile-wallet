@@ -62,8 +62,6 @@ const DashboardScreen = (): JSX.Element => {
                             suffix={<ArrowIcon />}
                             clearable
                             secureTextEntry
-                            disabled
-                            value="Hola"
                         />
                         <TextArea
                             name="input2"
@@ -77,7 +75,7 @@ const DashboardScreen = (): JSX.Element => {
                             Submit
                         </Button>
                     </Col>
-                    <TextFieldCustom value={""} placeholder={"Hello"} />
+                    <TextFieldCustom placeholder={"Hello"} />
                 </Form>
             </Col>
         </SafeAreaView>

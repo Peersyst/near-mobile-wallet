@@ -14,5 +14,6 @@ export const TextFieldRoot = styled(TextField)(({ theme }) => {
             placeholderColor: theme.palette.darkGray,
             paddingHorizontal: 15,
         },
+        ...theme.shadows[7],
     };
 });

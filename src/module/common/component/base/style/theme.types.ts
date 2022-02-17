@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { StyleProp, TextStyle } from "react-native";
+import { ShadowPropTypesIOSStatic, StyleProp, TextStyle } from "react-native";
 import { TranslateFn } from "../input/TextInput/utils";
 import { JSXElementConstructor } from "react";
 
@@ -65,6 +65,8 @@ export interface DefaultThemePalette {
 }
 export interface ThemePalette extends DefaultThemePalette {}
 
+export type Shadow = ShadowPropTypesIOSStatic & { elevation?: number | undefined };
+
 export interface DefaultThemeZIndex {
     popover: number;
     modal: number;
@@ -78,7 +80,7 @@ export interface DefaultTheme {
     typography: ThemeTypography;
     fonts?: ThemeFonts;
     palette: ThemePalette;
-    shadows: string[];
+    shadows: Shadow[];
     borderRadius: number;
     /*skeletonAnimations: SkeletonAnimation;
     toastAnimation: ToastAnimation;
