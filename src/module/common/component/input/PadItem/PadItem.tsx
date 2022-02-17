@@ -1,7 +1,7 @@
 import { PadItemProps } from "./PadItem.types";
 import { PadItemRoot, Item, ItemIcon } from "./PadItem.styles";
-import RippleAnimCircle from "../../display/RippleAnimCircle/RippleAnimCircle";
 import { theme } from "module/common/style/theme";
+import RippleAnimCircle from "../../util/RippleAnimCircle/RippleAnimCircle";
 
 const PadItem = ({ number, icon }: PadItemProps) => {
     return (
