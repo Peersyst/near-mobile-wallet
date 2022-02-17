@@ -8,6 +8,7 @@ import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
 import Button from "module/common/component/input/Button/Button";
+import TextFieldCustom from "module/common/component/input/TextField/TextField";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 const Spacer = styled(View)(() => ({ height: 20 }));
@@ -76,6 +77,7 @@ const DashboardScreen = (): JSX.Element => {
                             Submit
                         </Button>
                     </Col>
+                    <TextFieldCustom value={""} placeholder={"Hello"} />
                 </Form>
             </Col>
         </SafeAreaView>
