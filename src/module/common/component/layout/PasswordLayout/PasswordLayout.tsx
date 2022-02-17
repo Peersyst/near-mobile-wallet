@@ -1,14 +1,18 @@
 import { Row } from "react-native-components";
 import PasswordCircle from "../../display/PasswordCircle/PasswordCircle";
 
+export type ZeroToFour = 0 | 1 | 2 | 3 | 4;
+
 export interface NumActivedPasswords {
-    activated: 0 | 1 | 2 | 3 | 4;
+    activated: ZeroToFour;
 }
 
-const PasswordLayout = (): JSX.Element => {
+const PasswordLayout = ({ activated }: NumActivedPasswords): JSX.Element => {
     return (
-        <Row>
-            <PasswordCircle />
+        <Row gap={10}>
+            {[...Array(4)].map((_, i) => {
+                return <PasswordCircle active={i < activated}></PasswordCircle>;
+            })}
         </Row>
     );
 };
