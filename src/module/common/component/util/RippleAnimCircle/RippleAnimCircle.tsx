@@ -4,7 +4,6 @@ import { RippleAnimCircleProps } from "./RippleAnimCircle.types";
 import { RippleAnimCircleRoot, Ripple } from "./RippleAnimCircle.styles";
 
 const RippleAnimCircle = ({ scaleStart = 0.5, size, zIndex, color1, color2, duration = 200 }: RippleAnimCircleProps): JSX.Element => {
-    
     const scaleAnim = useRef(new Animated.Value(0)).current;
     const opacityAnim = useRef(new Animated.Value(1)).current;
     const scaleAnim2 = useRef(new Animated.Value(0)).current;
@@ -39,7 +38,7 @@ const RippleAnimCircle = ({ scaleStart = 0.5, size, zIndex, color1, color2, dura
         ]).start();
     };
     return (
-        <RippleAnimCircleRoot onPressIn={showAnim} size={size} zIndex={zIndex}>
+        <RippleAnimCircleRoot testID="rippleAnim" onPressIn={showAnim} size={size} zIndex={zIndex}>
             <Ripple
                 color={color1}
                 size={size}
