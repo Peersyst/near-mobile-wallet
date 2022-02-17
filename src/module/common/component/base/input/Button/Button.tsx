@@ -46,7 +46,14 @@ const Button = ({
             <ButtonRoot style={rootStyle} fullWidth={fullWidth}>
                 {loading && (
                     <ButtonLoader>
-                        {loadingElement ? <Icon style={textStyle}>{loadingElement}</Icon> : <ActivityIndicator color={textStyle.color} />}
+                        {loadingElement ? (
+                            <Icon style={textStyle}>{loadingElement}</Icon>
+                        ) : (
+                            <ActivityIndicator
+                                size={textStyle.fontSize && textStyle.fontSize > 20 ? "large" : "small"}
+                                color={textStyle.color}
+                            />
+                        )}
                     </ButtonLoader>
                 )}
                 <ButtonContent isLoading={loading}>
