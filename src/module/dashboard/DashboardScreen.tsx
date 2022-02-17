@@ -20,7 +20,7 @@ const CustomView = styled(View)(({ theme }) => ({
     justifyContent: "center",
 }));
 
-const DashboardScreen = (): JSX.Element => {
+const DashboardScreen = ({navigation}: any): JSX.Element => {
     const login = useLogin();
     const {
         state: { token, isLogged },
@@ -80,6 +80,7 @@ const DashboardScreen = (): JSX.Element => {
             </Col>
             <PadItem number={0} />
             <PasswordCircle active={true} />
+            <Button onPress={() => navigation.navigate("Login")} >Login</Button>
         </SafeAreaView>
     );
 };

@@ -5,7 +5,7 @@ export interface PasswordCircleProps {
 }
 
 const PasswordCircle = ({ active = true }: PasswordCircleProps): JSX.Element => {
-    return <FilledCircleIcon style={{color: 'black'}} />;
+    return active ? <FilledCircleIcon color="white"/> : <CircleIcon color="white" />;
 };
 
 export default PasswordCircle;
