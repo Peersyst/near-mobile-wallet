@@ -32,7 +32,7 @@ export function useTextInputValidation(
         setErrors(newErrors);
 
         if (invalid) onInvalid?.(newErrors);
-    }, [value, rawValidators, customValidators, onInvalid]);
+    }, [value, rawValidators, customValidators, onInvalid, translate]);
 
     return { valid, errors };
 }

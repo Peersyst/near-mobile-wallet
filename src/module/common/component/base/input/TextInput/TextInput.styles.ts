@@ -1,8 +1,8 @@
-import styled from "@peersyst/react-native-styled";
 import { TextInput } from "react-native";
 import { Row } from "../../layout/Row";
 import { Icon } from "../../display/Icon";
 import { InputProps } from "./TextInput.types";
+import styled from "@peersyst/react-native-styled";
 
 export const Input = styled(TextInput)<InputProps>(({ multiline = false, numberOfLines = 1 }) => ({
     flex: 1,

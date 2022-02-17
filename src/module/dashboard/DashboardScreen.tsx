@@ -1,14 +1,15 @@
 import { SafeAreaView } from "react-native";
 import { translate } from "locale";
-import { Button, Col, TextField, TextArea, Form } from "react-native-components";
+import { Col, TextField, TextArea, Form } from "react-native-components";
 import { Text, View } from "react-native";
 import { useLogin } from "module/auth/query/useLogin";
-import { ArrowIcon, CrossIcon, BackIcon } from "icons";
+import { ArrowIcon } from "icons";
 import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
 import PadItem from "module/common/component/input/PadItem/PadItem";
 import PasswordCircle from "module/common/component/display/PasswordCircle/PasswordCircle";
+import Button from "module/common/component/input/Button/Button";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 const Spacer = styled(View)(() => ({ height: 20 }));
@@ -35,6 +36,7 @@ const DashboardScreen = ({navigation}: any): JSX.Element => {
                 <ArrowIcon color="black" />
                 <Spacer />
                 <Button
+                    appearance="dark"
                     leftIcon={<ArrowIcon />}
                     loading={login.isLoading}
                     onPress={() => (!isLogged ? login.mutate({ username: "Charlie", password: "Test1234" }) : logout())}
@@ -72,7 +74,7 @@ const DashboardScreen = ({navigation}: any): JSX.Element => {
                             prefix={<ArrowIcon />}
                             suffix={<ArrowIcon />}
                         />
-                        <Button fullWidth variant="outlined" style={{ outlined: { borderColor: "pink" } }}>
+                        <Button appearance="light" variant="outlined" style={{ outlined: { borderColor: "pink" } }}>
                             Submit
                         </Button>
                     </Col>
