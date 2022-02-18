@@ -23,14 +23,8 @@ const NumericPad = (): JSX.Element => {
                 setPassword(password + item);
                 if (password.length === 3) {
                     //TODO: check pw
-                    try {
-                        await login.mutate({ username: "Charlie", password: password });
-                        {
-                            login.isSuccess ? Alert.alert("Password correct") : Alert.alert("Password incorrect");
-                        }
-                    } catch (err) {
-                        Alert.alert("Network error");
-                    }
+                    login.mutate({ username: "Charlie", password: password });
+                    {login.isSuccess ? Alert.alert("Password correct") : Alert.alert("Password incorrect");}
                     setPassword("");
                 }
                 return;
@@ -42,7 +36,7 @@ const NumericPad = (): JSX.Element => {
             <PasswordLayout activated={zeroToFour[password.length]} />
             <Keyboard>
                 {zeroToNine.map((num) => {
-                    return num !== "0" && <PadItem style={{marginBottom:18}} onPress={() => hadleClick(num)} key={num} item={num} />;
+                    return num !== "0" && <PadItem style={{ marginBottom: 18 }} onPress={() => hadleClick(num)} key={num} item={num} />;
                 })}
                 <PadItem item={"X"} onPress={() => hadleClick("X")} />
                 <PadItem item={"0"} onPress={() => hadleClick("0")} />
