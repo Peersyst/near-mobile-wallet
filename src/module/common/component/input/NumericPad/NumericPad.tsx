@@ -24,7 +24,9 @@ const NumericPad = (): JSX.Element => {
                 if (password.length === 3) {
                     //TODO: check pw
                     login.mutate({ username: "Charlie", password: password });
-                    {login.isSuccess ? Alert.alert("Password correct") : Alert.alert("Password incorrect");}
+                    {
+                        login.isSuccess ? Alert.alert("Password correct") : Alert.alert("Password incorrect");
+                    }
                     setPassword("");
                 }
                 return;
