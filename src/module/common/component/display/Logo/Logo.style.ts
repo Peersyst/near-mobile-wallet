@@ -1,6 +1,5 @@
 import styled from "@peersyst/react-native-styled";
 import { LogoIcon } from "icons";
-import { AppearanceProps } from "module/common/types";
 import { getTextColor } from "utils/getTextColor";
 import { LogoRootProps, sizeRelationProps } from "./Logo.types";
 
