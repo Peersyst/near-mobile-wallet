@@ -1,5 +1,7 @@
 import { ScaleTransform, NativeSyntheticEvent, NativeTouchEvent } from "react-native";
 
+export type RippleFunctionType = (param?: any, ev?: NativeSyntheticEvent<NativeTouchEvent>) => void;
+
 export interface RippleAnimCircleProps {
     scaleStart?: ScaleTransform["scale"];
     size?: number;
@@ -7,7 +9,7 @@ export interface RippleAnimCircleProps {
     color1?: string;
     color2?: string;
     duration?: number;
-    onPress?: (param?: any, ev?: NativeSyntheticEvent<NativeTouchEvent>) => void;
+    onPress?: RippleFunctionType;
 }
 
 export interface RippleColor extends Pick<RippleAnimCircleProps, "size"> {

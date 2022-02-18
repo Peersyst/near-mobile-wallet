@@ -1,10 +1,10 @@
 import PasswordCircle from "../../display/PasswordCircle/PasswordCircle";
 import { PasswordLayoutRoot } from "./PasswordLayout.styles";
 
-export type ZeroToFour = 0 | 1 | 2 | 3 | 4;
+export type ZeroToFourType = 0 | 1 | 2 | 3 | 4;
 
 export interface NumActivedPasswords {
-    activated: ZeroToFour;
+    activated: ZeroToFourType;
 }
 
 const PasswordLayout = ({ activated }: NumActivedPasswords): JSX.Element => {

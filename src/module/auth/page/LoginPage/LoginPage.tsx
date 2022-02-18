@@ -4,7 +4,7 @@ import { SafeAreaView, StatusBar } from "react-native";
 const LoginPage = (): JSX.Element => {
     return (
         <SafeAreaView
-            //Temporary styles to see the page
+            //TODO: Remove this temporary styles to see the page
             style={{
                 marginTop: StatusBar.currentHeight,
                 flexDirection: "column",
