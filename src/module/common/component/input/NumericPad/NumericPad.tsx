@@ -34,8 +34,8 @@ const NumericPad = (): JSX.Element => {
                 <PasswordLayout activated={zeroToFour[password.length]} />
             </View>
             <Keyboard>
-                {zeroToNine.map((num, i) => {
-                    return i > 0 && <PadItem onPress={()=>hadleClick("2")} key={Math.random() * 1000 + i} item={num} />;
+                {zeroToNine.map((num) => {
+                    return num !== "0" && <PadItem onPress={()=>hadleClick(num)} key={num} item={num} />;
                 })}
                 <PadItem item={"X"} onPress={() => hadleClick("X")} />
                 <PadItem item={"0"} onPress={() => hadleClick("0")} />

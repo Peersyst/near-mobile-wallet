@@ -1,4 +1,4 @@
-import { ScaleTransform, ButtonProps as NativeButtonProps } from "react-native";
+import { ScaleTransform, NativeSyntheticEvent, NativeTouchEvent } from "react-native";
 
 export interface RippleAnimCircleProps {
     scaleStart?: ScaleTransform["scale"];
@@ -7,7 +7,7 @@ export interface RippleAnimCircleProps {
     color1?: string;
     color2?: string;
     duration?: number;
-    onPress: (ev: any) => void;
+    onPress: (param?: any, ev?: NativeSyntheticEvent<NativeTouchEvent>) => void;
 }
 
 export interface RippleColor extends Pick<RippleAnimCircleProps, "size">{

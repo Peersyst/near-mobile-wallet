@@ -12,5 +12,5 @@ export type PadItemType = ZeroToNine | PadIconType;
 
 export interface PadItemProps {
     item: PadItemType,
-    onPress: (e:any) => void;
+    onPress: (param?: any, ev?: NativeSyntheticEvent<NativeTouchEvent>) => void;
 }
