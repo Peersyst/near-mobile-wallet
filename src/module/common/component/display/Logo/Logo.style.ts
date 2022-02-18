@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import { LogoIcon } from "icons";
 import { getTextColor } from "utils/getTextColor";
-import { LogoRootProps, sizeRelationProps } from "./Logo.types";
+import { LogoRootProps, SizeRelationType } from "./Logo.types";
 
 export const LogoRoot = styled(LogoIcon)<LogoRootProps>(({ theme, appearance, fontSize }) => {
     const color = getTextColor(theme);
@@ -11,7 +11,7 @@ export const LogoRoot = styled(LogoIcon)<LogoRootProps>(({ theme, appearance, fo
     };
 });
 
-export const sizeRelations: sizeRelationProps = {
+export const sizeRelations: SizeRelationType = {
     horizontal: {
         sm: {
             logoSize: 12,

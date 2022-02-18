@@ -2,7 +2,7 @@ import { AppearanceProps, DirectionProps, DirectionType, SizeProps, SizeTypes } 
 
 type T = Record<SizeTypes, { logoSize: number; fontSize: number; gap: number }>;
 
-export type sizeRelationProps = Record<DirectionType, T>;
+export type SizeRelationType = Record<DirectionType, T>;
 
 export type LogoProps = Partial<AppearanceProps> & SizeProps & DirectionProps & { showText?: boolean };
 
