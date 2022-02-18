@@ -11,7 +11,7 @@ const LoginPage = (): JSX.Element => {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                paddingTop:"80%",
+                paddingTop:"57%",
                 backgroundColor: "black",
                 height: "100%",
             }}

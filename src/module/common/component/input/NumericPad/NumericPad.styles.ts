@@ -3,7 +3,7 @@ import { Row } from "react-native-components"
 
 export const RowPad = styled(Row, { gap: 28 })()
 
-export const Keyboard = styled(Row, { gap:8 })(() => ({
+export const Keyboard = styled(Row, { gap:5 })(() => ({
     width: "80%",
     flex: 1,
     flexDirection: "row",
