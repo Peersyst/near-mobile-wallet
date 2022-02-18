@@ -9,14 +9,13 @@ export const PadItemRoot = styled(View)(() => ({
     justifyContent: "center",
 }));
 
-
 export const Item = styled(Text)(({ theme }) => ({
     color: theme.palette.white,
     fontWeight: "bold",
-    fontSize: 38
+    fontSize: 38,
 }));
 
 export const ItemIcon = styled(Icon)(({ theme }) => ({
     color: theme.palette.white,
-    fontSize: 20
+    fontSize: 20,
 }));

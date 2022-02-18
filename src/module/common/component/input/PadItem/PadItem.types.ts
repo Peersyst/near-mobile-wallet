@@ -12,6 +12,6 @@ export const isZeroToNine = (x: any): x is ZeroToNine => zeroToNine.includes(x);
 
 export interface PadItemProps {
     style?: StyleProp<ViewStyle>;
-    item: PadItemType,
+    item: PadItemType;
     onPress: (param?: any, ev?: NativeSyntheticEvent<NativeTouchEvent>) => void;
 }

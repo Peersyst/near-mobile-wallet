@@ -2,7 +2,6 @@ import NumericPad from "module/common/component/input/NumericPad/NumericPad";
 import { SafeAreaView, StatusBar } from "react-native";
 
 const LoginPage = (): JSX.Element => {
-
     return (
         <SafeAreaView
             //Temporary styles to see the page
@@ -11,7 +10,7 @@ const LoginPage = (): JSX.Element => {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                paddingTop:"57%",
+                paddingTop: "57%",
                 paddingHorizontal: 20,
                 backgroundColor: "black",
                 height: "100%",

@@ -9,7 +9,7 @@ const NumericPad = (): JSX.Element => {
     return (
         <Col gap={40} alignItems={"center"}>
             <PasswordLayout activated={zeroToFour[password.length]} />
-            <Keyboard password={password} setPassword={setPassword}/>
+            <Keyboard password={password} setPassword={setPassword} />
         </Col>
     );
 };

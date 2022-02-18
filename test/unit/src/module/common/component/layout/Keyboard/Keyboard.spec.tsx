@@ -3,7 +3,7 @@ import { fireEvent, render } from "test-utils";
 
 describe("Keyboard test", () => {
     test("Keyboard renders correctly", () => {
-        const screen = render(<Keyboard password={""}  setPassword={()=>""}/>);
+        const screen = render(<Keyboard password={""} setPassword={() => ""} />);
         expect(screen.getByText("0"));
         expect(screen.getByText("1"));
         expect(screen.getByText("2"));
@@ -20,7 +20,7 @@ describe("Keyboard test", () => {
 
     test("onPress is called", () => {
         const onPress = jest.fn();
-        const screen = render(<Keyboard password={""}  setPassword={onPress}/>);
+        const screen = render(<Keyboard password={""} setPassword={onPress} />);
         const padItem = screen.getByTestId("CrossIcon");
         fireEvent.press(padItem);
         expect(onPress).toHaveBeenCalled();

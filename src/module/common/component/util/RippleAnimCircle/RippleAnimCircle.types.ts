@@ -12,4 +12,4 @@ export interface RippleAnimCircleProps {
 
 export interface RippleColor extends Pick<RippleAnimCircleProps, "size"> {
     color?: string;
-};
+}

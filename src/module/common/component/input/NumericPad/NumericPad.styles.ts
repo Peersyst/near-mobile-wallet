@@ -1,4 +1,4 @@
-import styled from "@peersyst/react-native-styled"
-import { Row } from "react-native-components"
+import styled from "@peersyst/react-native-styled";
+import { Row } from "react-native-components";
 
-export const RowPad = styled(Row, { gap: 28 })()
+export const RowPad = styled(Row, { gap: 28 })();

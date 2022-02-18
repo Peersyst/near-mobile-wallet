@@ -7,8 +7,6 @@ import { ArrowIcon } from "icons";
 import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
-import PadItem from "module/common/component/input/PadItem/PadItem";
-import PasswordCircle from "module/common/component/display/PasswordCircle/PasswordCircle";
 import Button from "module/common/component/input/Button/Button";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
@@ -21,7 +19,7 @@ const CustomView = styled(View)(({ theme }) => ({
     justifyContent: "center",
 }));
 
-const DashboardScreen = ({navigation}: any): JSX.Element => {
+const DashboardScreen = ({ navigation }: any): JSX.Element => {
     const login = useLogin();
     const {
         state: { token, isLogged },
@@ -80,7 +78,7 @@ const DashboardScreen = ({navigation}: any): JSX.Element => {
                     </Col>
                 </Form>
             </Col>
-            <Button onPress={() => navigation.navigate("Login")} >Login</Button>
+            <Button onPress={() => navigation.navigate("Login")}>Login</Button>
         </SafeAreaView>
     );
 };
