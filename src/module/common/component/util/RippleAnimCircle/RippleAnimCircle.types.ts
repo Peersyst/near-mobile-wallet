@@ -10,6 +10,6 @@ export interface RippleAnimCircleProps {
     onPress: (param?: any, ev?: NativeSyntheticEvent<NativeTouchEvent>) => void;
 }
 
-export interface RippleColor extends Pick<RippleAnimCircleProps, "size">{
+export interface RippleColor extends Pick<RippleAnimCircleProps, "size"> {
     color?: string;
 };

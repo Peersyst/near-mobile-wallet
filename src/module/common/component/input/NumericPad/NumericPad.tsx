@@ -1,7 +1,6 @@
-import { useAuth } from "module/auth/hook/useAuth";
 import { useLogin } from "module/auth/query/useLogin";
 import { useState } from "react";
-import { Alert, View } from "react-native";
+import { Alert } from "react-native";
 import { Col } from "react-native-components";
 import PasswordLayout, { ZeroToFour } from "../../layout/PasswordLayout/PasswordLayout";
 import PadItem from "../PadItem/PadItem";
@@ -12,9 +11,6 @@ const NumericPad = (): JSX.Element => {
     const [password, setPassword] = useState<string>("");
     const zeroToFour: ZeroToFour[] = [0, 1, 2, 3, 4];
     const login = useLogin();
-    const {
-        state: { isLogged },
-    } = useAuth();
     const hadleClick = async (item: PadItemType) => {
         switch (item) {
             case "X":
@@ -29,21 +25,21 @@ const NumericPad = (): JSX.Element => {
                     //TODO: check pw
                     try {
                         await login.mutate({ username: "Charlie", password: password });
-                        {login.isSuccess ? Alert.alert("Password"): Alert.alert("Password incorrect")}
+                        {
+                            login.isSuccess ? Alert.alert("Password correct") : Alert.alert("Password incorrect");
+                        }
                     } catch (err) {
-                        Alert.alert("Network error")
+                        Alert.alert("Network error");
                     }
-                    setPassword("")
+                    setPassword("");
                 }
                 return;
         }
     };
 
     return (
-        <Col gap={40}>
-            <View style={{ alignItems: "center" }}>
-                <PasswordLayout activated={zeroToFour[password.length]} />
-            </View>
+        <Col gap={40} alignItems={"center"}>
+            <PasswordLayout activated={zeroToFour[password.length]} />
             <Keyboard>
                 {zeroToNine.map((num) => {
                     return num !== "0" && <PadItem onPress={() => hadleClick(num)} key={num} item={num} />;
