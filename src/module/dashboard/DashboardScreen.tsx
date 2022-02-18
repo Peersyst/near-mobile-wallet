@@ -80,8 +80,6 @@ const DashboardScreen = ({navigation}: any): JSX.Element => {
                     </Col>
                 </Form>
             </Col>
-            <PadItem number={0} />
-            <PasswordCircle active={true} />
             <Button onPress={() => navigation.navigate("Login")} >Login</Button>
         </SafeAreaView>
     );

@@ -2,10 +2,9 @@ import styled from "@peersyst/react-native-styled";
 import { View, Text } from "react-native";
 import { Icon } from "react-native-components";
 
-export const PadItemRoot = styled(View)(({ theme }) => ({
+export const PadItemRoot = styled(View)(() => ({
     height: 70,
-    width: 70,
-    borderRadius: 50,
+    width: "30%",
     alignItems: "center",
     justifyContent: "center",
 }));

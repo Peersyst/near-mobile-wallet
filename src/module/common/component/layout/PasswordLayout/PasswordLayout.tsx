@@ -11,7 +11,7 @@ const PasswordLayout = ({ activated }: NumActivedPasswords): JSX.Element => {
     return (
         <Row gap={10}>
             {[...Array(4)].map((_, i) => {
-                return <PasswordCircle active={i < activated}></PasswordCircle>;
+                return <PasswordCircle key={Math.random() * 1000 + i} active={i < activated}></PasswordCircle>;
             })}
         </Row>
     );

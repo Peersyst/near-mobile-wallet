@@ -1,15 +1,15 @@
-import { Animated } from "react-native";
+import { Animated, NativeSyntheticEvent, NativeTouchEvent } from "react-native";
 import { useRef } from "react";
 import { RippleAnimCircleProps } from "./RippleAnimCircle.types";
 import { RippleAnimCircleRoot, Ripple } from "./RippleAnimCircle.styles";
 
-const RippleAnimCircle = ({ scaleStart = 0.5, size, zIndex, color1, color2, duration = 200 }: RippleAnimCircleProps): JSX.Element => {
+const RippleAnimCircle = ({ onPress, scaleStart = 0.5, size, zIndex, color1, color2, duration = 200 }: RippleAnimCircleProps): JSX.Element => {
     const scaleAnim = useRef(new Animated.Value(0)).current;
     const opacityAnim = useRef(new Animated.Value(1)).current;
     const scaleAnim2 = useRef(new Animated.Value(0)).current;
     const opacityAnim2 = useRef(new Animated.Value(1)).current;
 
-    const showAnim = () => {
+    const showAnim = (e: NativeSyntheticEvent<NativeTouchEvent>) => {
         scaleAnim.setValue(scaleStart);
         scaleAnim2.setValue(scaleStart);
         opacityAnim.setValue(0.8);
@@ -36,9 +36,10 @@ const RippleAnimCircle = ({ scaleStart = 0.5, size, zIndex, color1, color2, dura
                 duration: duration,
             }),
         ]).start();
+        if(onPress) onPress(e);
     };
     return (
-        <RippleAnimCircleRoot testID="rippleAnim" onPressIn={showAnim} size={size} zIndex={zIndex}>
+        <RippleAnimCircleRoot testID="rippleAnim" onPressIn={(e)=>showAnim(e)} size={size} zIndex={zIndex}>
             <Ripple
                 color={color1}
                 size={size}
