@@ -1,9 +1,9 @@
 import { ViewStyle, TextStyle, ButtonProps as NativeButtonProps } from "react-native";
 import { ReactElement, ReactNode } from "react";
 import { SX } from "@peersyst/react-native-styled";
-import { SizeTypes } from "module/common/types";
+import { SizeType } from "module/common/types";
 
-export type ButtonSize = SizeTypes;
+export type ButtonSize = SizeType;
 
 export type ButtonVariant = "contained" | "text" | "outlined";
 

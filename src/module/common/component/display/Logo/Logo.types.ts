@@ -1,6 +1,6 @@
-import { AppearanceProps, DirectionProps, DirectionType, SizeProps, SizeTypes } from "module/common/types";
+import { AppearanceProps, DirectionProps, DirectionType, SizeProps, SizeType } from "module/common/types";
 
-type T = Record<SizeTypes, { logoSize: number; fontSize: number; gap: number }>;
+type T = Record<SizeType, { logoSize: number; fontSize: number; gap: number }>;
 
 export type SizeRelationType = Record<DirectionType, T>;
 
