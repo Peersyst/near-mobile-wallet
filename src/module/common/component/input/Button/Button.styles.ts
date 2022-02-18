@@ -3,7 +3,6 @@ import styled from "@peersyst/react-native-styled";
 import { useButtonStyles } from "./hooks/useButtonStyles";
 import { ButtonAppearanceProps } from "./Button.types";
 
-
 export const ButtonRoot = styled(Button)<ButtonAppearanceProps>(({ theme, appearance }) => {
     const { outlined, pressed, contained, pressedContained } = useButtonStyles(theme);
     return {
@@ -16,7 +15,7 @@ export const ButtonRoot = styled(Button)<ButtonAppearanceProps>(({ theme, appear
             paddingHorizontal: 20,
         },
         sm: {
-            borderWidth:2,
+            borderWidth: 2,
             height: 36,
             fontSize: 14,
             paddingHorizontal: 30,
@@ -32,6 +31,6 @@ export const ButtonRoot = styled(Button)<ButtonAppearanceProps>(({ theme, appear
         },
         contained: {
             ...contained[appearance],
-        }
+        },
     };
 });

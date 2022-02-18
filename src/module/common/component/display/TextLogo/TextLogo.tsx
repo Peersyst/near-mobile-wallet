@@ -1,17 +1,16 @@
 import { AppearanceProps } from "module/common/types";
-import { TextLogoRoot, TextLogoIcon, TextRoot, TextLogoFont } from "./TextLogo.style";
+import { TextRoot, TextLogoFont } from "./TextLogo.style";
 
-const TextLogo = ({ appearance = "dark" }: Partial<AppearanceProps>): JSX.Element => {
+const TextLogo = ({ appearance = "dark", fontSize = 23 }: Partial<AppearanceProps & { fontSize?: number }>): JSX.Element => {
     return (
-        <TextLogoRoot appearance={appearance}>
-            <TextLogoIcon appearance={appearance} />
-            <TextRoot accessibilityRole="text">
-                <TextLogoFont appearance={appearance}>CK</TextLogoFont>
-                <TextLogoFont style={{ fontWeight: "bold" }} appearance={appearance}>
-                    BULL
-                </TextLogoFont>
-            </TextRoot>
-        </TextLogoRoot>
+        <TextRoot accessibilityRole="text">
+            <TextLogoFont appearance={appearance} fontSize={fontSize}>
+                CK
+            </TextLogoFont>
+            <TextLogoFont style={{ fontWeight: "bold", fontSize }} appearance={appearance} fontSize={fontSize}>
+                BULL
+            </TextLogoFont>
+        </TextRoot>
     );
 };
 

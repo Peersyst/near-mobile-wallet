@@ -15,4 +15,3 @@ export type ButtonStates = "outlined" | "pressed" | "contained" | "pressedContai
 export type ButtonAppeareanceStyle = Partial<Record<ButtonAppearance, ButtonStyle>>;
 
 export type GetVariantStyleProps = Record<ButtonStates, ButtonAppeareanceStyle>;
-

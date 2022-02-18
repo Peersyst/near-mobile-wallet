@@ -14,7 +14,7 @@ export function useButtonStyles(theme: Theme): GetVariantStyleProps {
         gray: {
             color: theme.palette.darkGray,
             borderColor: theme.palette.darkGray,
-        }
+        },
     };
     const contained = {
         dark: {
@@ -26,7 +26,7 @@ export function useButtonStyles(theme: Theme): GetVariantStyleProps {
             backgroundColor: theme.palette.white,
             color: theme.palette.black,
             borderColor: theme.palette.white,
-        }, 
+        },
         gray: {
             backgroundColor: theme.palette.darkLightGray,
             color: theme.palette.white,
@@ -43,7 +43,7 @@ export function useButtonStyles(theme: Theme): GetVariantStyleProps {
             backgroundColor: theme.palette.white,
         },
         gray: {
-            color: theme.palette.white ,
+            color: theme.palette.white,
             backgroundColor: theme.palette.darkGray,
         },
     };
@@ -62,7 +62,7 @@ export function useButtonStyles(theme: Theme): GetVariantStyleProps {
             backgroundColor: theme.palette.black,
             color: theme.palette.white,
             borderColor: theme.palette.black,
-        }
-    }
+        },
+    };
     return { outlined, pressed, contained, pressedContained };
 }
