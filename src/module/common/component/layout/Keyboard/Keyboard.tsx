@@ -37,7 +37,7 @@ const Keyboard = ({ password, setPassword }: KeyboardProps): JSX.Element => {
     return (
         <KeyboardRoot>
             {zeroToNine.map((num) => {
-                return num !== "0" && <PadItem style={{ marginBottom: 18 }} onPress={() => hadleClick(num)} key={num} item={num} />;
+                return num !== "0" && <PadItem style={{ marginBottom: 14 }} onPress={() => hadleClick(num)} key={num} item={num} />;
             })}
             <PadItem item={"X"} onPress={() => hadleClick("X")} />
             <PadItem item={"0"} onPress={() => hadleClick("0")} />

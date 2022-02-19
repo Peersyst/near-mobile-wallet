@@ -3,5 +3,5 @@ import { Icon } from "react-native-components";
 
 export const PasswordCircleRoot = styled(Icon)(({ theme }) => ({
     color: theme.palette.white,
-    fontSize: 15,
+    fontSize: 13,
 }));
