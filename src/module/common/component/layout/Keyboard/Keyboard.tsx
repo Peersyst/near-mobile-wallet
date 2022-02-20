@@ -1,5 +1,5 @@
 import { useLogin } from "module/auth/query/useLogin";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Alert } from "react-native";
 import PadItem from "../../input/PadItem/PadItem";
 import { PadItemType, zeroToNine } from "../../input/PadItem/PadItem.types";
@@ -8,11 +8,15 @@ import { KeyboardRoot } from "./Keyboard.styles";
 export interface KeyboardProps {
     password: string;
     setPassword: Dispatch<SetStateAction<string>>;
+    setError: Dispatch<SetStateAction<boolean>>;
+    error: boolean;
 }
 
-const Keyboard = ({ password, setPassword }: KeyboardProps): JSX.Element => {
+const Keyboard = ({ password, setPassword, setError, error }: KeyboardProps): JSX.Element => {
     const login = useLogin();
+
     const hadleClick = async (item: PadItemType) => {
+        if(error) setError(false)
         switch (item) {
             case "X":
                 setPassword("");
@@ -22,11 +26,12 @@ const Keyboard = ({ password, setPassword }: KeyboardProps): JSX.Element => {
                 return;
             default:
                 setPassword(password + item);
+                setError(false);
                 if (password.length === 3) {
                     //TODO: check pw
                     login.mutate({ username: "Charlie", password: password });
                     {
-                        login.isSuccess ? Alert.alert("Password correct") : Alert.alert("Password incorrect");
+                        login.isSuccess ? Alert.alert("Password correct") : setError(true);
                     }
                     setPassword("");
                 }

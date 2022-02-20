@@ -7,7 +7,7 @@ import { CrossIcon, BackIcon } from "icons";
 const PadItem = ({ item, style, onPress }: PadItemProps) => {
     return (
         <PadItemRoot style={style}>
-            <RippleAnimCircle onPress={onPress} duration={300} size={65} scaleStart={0.6} color2={theme.palette.lightGray} />
+            <RippleAnimCircle onPress={onPress} duration={400} size={70} scaleStart={0.6} color2={theme.palette.lightGray} />
             {isZeroToNine(item) ? <Item>{item}</Item> : <ItemIcon>{item === "X" ? <CrossIcon /> : <BackIcon />}</ItemIcon>}
         </PadItemRoot>
     );
