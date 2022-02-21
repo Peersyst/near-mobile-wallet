@@ -1,24 +1,22 @@
 import { CircleIcon, FilledCircleIcon } from "icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Animated, Easing } from "react-native";
 import { PasswordCircleRoot } from "./PasswordCircle.styles";
 
 export interface PasswordCircleProps {
     active?: boolean;
-    height: number;
-    delay: number;
+    animationHeight: number;
     duration: number;
     error?: boolean;
 }
 
-const PasswordCircle = ({ active = true, duration, height, delay, error }: PasswordCircleProps): JSX.Element => {
-    const animated = new Animated.Value(0);
+const PasswordCircle = ({ active = true, duration, animationHeight, error }: PasswordCircleProps): JSX.Element => {
+    const animated = useRef(new Animated.Value(0)).current;
     useEffect(() => {
         if (error) {
             Animated.sequence([
-                Animated.delay(delay),
                 Animated.timing(animated, {
-                    toValue: height,
+                    toValue: animationHeight,
                     easing: Easing.ease,
                     duration: duration,
                     useNativeDriver: true,

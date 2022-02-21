@@ -8,16 +8,14 @@ export interface NumActivedPasswords {
     error?: boolean;
 }
 
+const animationDuration: number[] = [60, 90, 130, 120];
+
 const PasswordLayout = ({ activated, error }: NumActivedPasswords): JSX.Element => {
     return (
         <PasswordLayoutRoot>
-            {/* {[...Array(4)].map((_, i) => {
-                return <PasswordCircle error={error} height={-10-2*i} delay={-20+i*3} key={i} active={i < activated} />;
-            })} */}
-            <PasswordCircle error={error} height={-6} delay={0} duration={120} active={activated >= 1} />
-            <PasswordCircle error={error} height={-6} delay={0} duration={130} active={activated >= 2} />
-            <PasswordCircle error={error} height={-6} delay={0} duration={90} active={activated >= 3} />
-            <PasswordCircle error={error} height={-6} delay={0} duration={60} active={activated >= 4} />
+            {[...Array(4)].map((_, i) => {
+                return <PasswordCircle error={error} animationHeight={-6} duration={animationDuration[i]} key={i} active={i < activated} />;
+            })}
         </PasswordLayoutRoot>
     );
 };

@@ -26,7 +26,6 @@ const Keyboard = ({ password, setPassword, setError, error }: KeyboardProps): JS
                 return;
             default:
                 setPassword(password + item);
-                setError(false);
                 if (password.length === 3) {
                     //TODO: check pw
                     login.mutate({ username: "Charlie", password: password });
