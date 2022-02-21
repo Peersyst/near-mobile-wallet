@@ -9,7 +9,7 @@ const Notification = ({ hasNotifications }: NotificationProps): JSX.Element => {
     return (
         <NotificationRoot>
             <Icon color="black"/>
-            <AlertCircle hasNotifications={hasNotifications}/>
+            <AlertCircle testID={"activeCircle"} hasNotifications={hasNotifications}/>
         </NotificationRoot>
     );
 };
