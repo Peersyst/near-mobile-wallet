@@ -1,8 +1,9 @@
-import { SettingsIcon, NotificationIcon } from "icons";
+import { SettingsIcon } from "icons";
 import { AppearanceProps } from "module/common/types";
 import { Row } from "../../base/layout/Row";
 import Logo from "../../display/Logo/Logo";
 import { HeaderRoot } from "./Header.styles";
+import Notification from "../../display/Notification/Notification";
 
 const Header = ({ appearance = "dark" }: Partial<AppearanceProps>): JSX.Element => {
     return (
@@ -10,7 +11,7 @@ const Header = ({ appearance = "dark" }: Partial<AppearanceProps>): JSX.Element 
             <Logo size={"md"} direction={"horizontal"} appearance={appearance} />
             <Row gap={10}>
                 <SettingsIcon color="black" />
-                <NotificationIcon color="black" />
+                <Notification />
             </Row>
         </HeaderRoot>
     );
