@@ -29,7 +29,7 @@ const PasswordCircle = ({ active = true, duration, animationHeight, error }: Pas
                 }),
             ]).start();
         }
-    }, [error]);
+    }, [error, animated, animationHeight, duration]);
     return (
         <Animated.View style={[{ transform: [{ translateY: animated }] }]}>
             <PasswordCircleRoot>{active ? <FilledCircleIcon /> : <CircleIcon />}</PasswordCircleRoot>

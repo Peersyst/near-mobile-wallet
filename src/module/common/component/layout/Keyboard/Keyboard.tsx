@@ -1,5 +1,5 @@
 import { useLogin } from "module/auth/query/useLogin";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Alert } from "react-native";
 import PadItem from "../../input/PadItem/PadItem";
 import { PadItemType, zeroToNine } from "../../input/PadItem/PadItem.types";
@@ -16,7 +16,7 @@ const Keyboard = ({ password, setPassword, setError, error }: KeyboardProps): JS
     const login = useLogin();
 
     const hadleClick = async (item: PadItemType) => {
-        if(error) setError(false)
+        if (error) setError(false);
         switch (item) {
             case "X":
                 setPassword("");
