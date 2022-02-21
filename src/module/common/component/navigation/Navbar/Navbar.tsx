@@ -1,12 +1,20 @@
 import { NavbarProps } from "./Navbar.types";
-import { LeftRoot, RightRoot, NavbarRoot } from "./Navbar.styles";
+import { BackStyledIcon, NavbarRoot, BackIconRoot, Title } from "./Navbar.styles";
+import Logo from "../../display/Logo/Logo";
+import { NavigationContext } from "@react-navigation/native";
+import { useContext } from "react";
 
-const Navbar = ({ leftChildren, centerChildren, rightChildren }: NavbarProps): JSX.Element => {
+const Navbar = ({ back, title, withIcon = false }: NavbarProps): JSX.Element => {
+    const navigation = useContext(NavigationContext);
     return (
         <NavbarRoot>
-            <LeftRoot>{leftChildren}</LeftRoot>
-            {centerChildren}
-            <RightRoot>{rightChildren}</RightRoot>
+            {back && (
+                <BackIconRoot onPress={() => navigation?.goBack()}>
+                    <BackStyledIcon />
+                </BackIconRoot>
+            )}
+            {withIcon && <Logo size={"md"} direction={"horizontal"} />}
+            {title && <Title>{title}</Title>}
         </NavbarRoot>
     );
 };

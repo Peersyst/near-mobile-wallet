@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled"
-import { BackIcon as Icon } from "icons"
-import { View } from "react-native"
+import { BackIcon } from "icons"
+import { View, Text, Pressable } from "react-native"
 
 export const NavbarRoot = styled(View)(() => ({
     flexDirection: "row",
@@ -9,12 +9,19 @@ export const NavbarRoot = styled(View)(() => ({
     position: "relative",
 }))
 
-export const LeftRoot = styled(View)(() => ({
+export const BackIconRoot = styled(Pressable)(() => ({
     position: "absolute",
     left: 0,
 }))
 
-export const RightRoot = styled(View)(() => ({
-    position: "absolute",
-    right: 0,
+export const BackStyledIcon = styled(BackIcon)(({ theme }) => ({
+    color: theme.palette.darkLightGray2,
+    fontSize: 30,
+}))
+
+export const Title = styled(Text)(({ theme }) => ({
+    color: theme.palette.darkGray2,
+    fontSize: 20,
+    textTransform: "uppercase",
+    fontWeight: "bold",
 }))

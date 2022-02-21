@@ -6,7 +6,7 @@ export const HeaderRoot = styled(View)(() => ({
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
 }))
 
 export const SettingsIcon = styled(Settings)(({ theme }) => ({

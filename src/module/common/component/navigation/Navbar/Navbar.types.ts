@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface NavbarProps {
-    leftChildren?: ReactNode;
-    centerChildren?: ReactNode;
-    rightChildren?: ReactNode;
+    back?: ReactNode;
+    title?: string;
+    withIcon?: boolean;
 }
