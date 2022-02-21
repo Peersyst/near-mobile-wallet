@@ -6,7 +6,7 @@ export const NotificationRoot = styled(View)(() => ({
     position: "relative",
 }))
 
-export const AlertCircle = styled(View)<NotificationProps>(({ hasNotifications }) => ({
+export const AlertCircle = styled(View)<NotificationProps>(({ hasNotifications, theme }) => ({
     position: "absolute",
     top: -2,
     right: -3,
@@ -15,5 +15,5 @@ export const AlertCircle = styled(View)<NotificationProps>(({ hasNotifications }
     borderRadius:50,
     borderWidth: 2,
     borderColor: "black",
-    backgroundColor: hasNotifications ? "red" : undefined,
+    backgroundColor: hasNotifications ? theme.palette.red : undefined,
 }))
