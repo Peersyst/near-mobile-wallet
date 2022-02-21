@@ -9,7 +9,7 @@ describe("Notifications tests", () => {
         expect(screen.getByTestId("activeCircle"));
     });
     test("Renders notification active", () => {
-        const screen = render(<Notification hasNotifications/>);
+        const screen = render(<Notification hasNotifications />);
         const circle = screen.getByTestId("activeCircle");
         expect(circle.props.style.backgroundColor).toEqual(theme.palette.red);
     });

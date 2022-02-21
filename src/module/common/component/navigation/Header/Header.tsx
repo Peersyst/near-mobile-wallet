@@ -4,8 +4,9 @@ import Logo from "../../display/Logo/Logo";
 import { HeaderRoot, SettingsIcon } from "./Header.styles";
 import Notification from "../../display/Notification/Notification";
 import { TouchableWithoutFeedback } from "react-native";
-import { NavigationContext } from "@react-navigation/native";
-import { useContext } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamsList } from "Navigator";
 
 export interface HeaderProps {
     appearance?: Appearance;
@@ -13,16 +14,16 @@ export interface HeaderProps {
 }
 
 const Header = ({ appearance = "dark", showIcons = false }: HeaderProps): JSX.Element => {
-    const navigation = useContext(NavigationContext);
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
     return (
         <HeaderRoot>
             <Logo size={"md"} direction={"horizontal"} appearance={appearance} />
             {showIcons && (
                 <Row gap={10}>
-                    <TouchableWithoutFeedback onPress={() => navigation?.navigate("settings")}>
+                    <TouchableWithoutFeedback onPress={() => navigation?.navigate("Settings")}>
                         <SettingsIcon />
                     </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={() => navigation?.navigate("notifications")}>
+                    <TouchableWithoutFeedback onPress={() => navigation?.navigate("Notifications")}>
                         <Notification />
                     </TouchableWithoutFeedback>
                 </Row>

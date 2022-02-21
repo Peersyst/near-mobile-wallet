@@ -6,6 +6,7 @@ import StylesProvider from "module/common/style";
 import { RecoilRoot } from "recoil";
 import { renderHook, RenderHookOptions, RenderHookResult } from "@testing-library/react-hooks";
 import { deepmerge } from "@peersyst/react-utils";
+import { NavigationContainer } from "@react-navigation/native";
 
 export interface CreateWrapperConfig {
     queryClientConfig?: QueryClientConfig;
@@ -30,7 +31,9 @@ export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): 
             <RecoilRoot>
                 <QueryClientProvider client={queryClient}>
                     <SafeAreaProvider initialSafeAreaInsets={{ top: 0, left: 0, right: 0, bottom: 0 }}>
-                        <StylesProvider>{children}</StylesProvider>
+                        <StylesProvider>
+                            <NavigationContainer>{children}</NavigationContainer>
+                        </StylesProvider>
                     </SafeAreaProvider>
                 </QueryClientProvider>
             </RecoilRoot>

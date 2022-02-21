@@ -1,8 +1,8 @@
 import DashboardScreen from "module/dashboard/DashboardScreen";
-import Stack from "stack-navigator";
+import { Stack } from "Navigator";
 
 export enum DashboardScreens {
-    MAIN = "dashboard",
+    MAIN = "Main",
 }
 
 export const DashboardNavigator = (

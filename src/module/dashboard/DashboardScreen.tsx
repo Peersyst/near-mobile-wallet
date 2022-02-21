@@ -34,6 +34,7 @@ const DashboardScreen = (): JSX.Element => {
                     <CustomText>{translate("name")}</CustomText>
                 </CustomView>
                 <Header showIcons/>
+                <Navbar back /> 
                 <Spacer />
                 <Button
                     appearance="dark"
