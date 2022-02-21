@@ -8,6 +8,8 @@ import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
 import Button from "module/common/component/input/Button/Button";
+import Navbar from "module/common/component/navigation/Navbar/Navbar";
+import Header from "module/common/component/navigation/Header/Header";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 const Spacer = styled(View)(() => ({ height: 20 }));
@@ -31,7 +33,7 @@ const DashboardScreen = (): JSX.Element => {
                 <CustomView>
                     <CustomText>{translate("name")}</CustomText>
                 </CustomView>
-                <ArrowIcon color="black" />
+                <Header />
                 <Spacer />
                 <Button
                     appearance="dark"
