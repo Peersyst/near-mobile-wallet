@@ -1,6 +1,7 @@
 import Navbar from "module/common/component/navigation/Navbar/Navbar";
 import { render } from "test-utils";
 import { fireEvent } from "@testing-library/react-native";
+import * as Navigation from "@react-navigation/native";
 
 describe("Test for the Navbar", () => {
     test("Renders correctly text variant", () => {
@@ -14,13 +15,7 @@ describe("Test for the Navbar", () => {
     });
     test("Go back click works correctly", () => {
         const mockedNavigation = jest.fn();
-        jest.mock("@react-navigation/native", () => {
-            return {
-                useNavigation: () => ({
-                    navigate: mockedNavigation,
-                }),
-            };
-        });
+        jest.spyOn(Navigation, "useNavigation").mockReturnValue({goBack: mockedNavigation});
         const screen = render(<Navbar withIcon back />);
         const icon = screen.getByTestId("BackIcon");
         fireEvent.press(icon);
