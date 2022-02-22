@@ -10,13 +10,13 @@ describe("Test for the Navbar", () => {
         expect(screen.getByTestId("BackIcon"));
     });
     test("Renders correctly logo variant", () => {
-        const screen = render(<Navbar withIcon />);
+        const screen = render(<Navbar withLogo />);
         expect(screen.getByText("BULL"));
     });
     test("Go back click works correctly", () => {
         const mockedNavigation = jest.fn();
         jest.spyOn(Navigation, "useNavigation").mockReturnValue({ goBack: mockedNavigation });
-        const screen = render(<Navbar withIcon back />);
+        const screen = render(<Navbar withLogo back />);
         const icon = screen.getByTestId("BackIcon");
         fireEvent.press(icon);
         expect(mockedNavigation).toHaveBeenCalled();

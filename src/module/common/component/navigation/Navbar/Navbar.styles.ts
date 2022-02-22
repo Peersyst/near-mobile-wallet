@@ -1,9 +1,9 @@
 import styled from "@peersyst/react-native-styled";
 import { BackIcon } from "icons";
-import { View, Text, Pressable } from "react-native";
+import { Text, Pressable } from "react-native";
+import { Row } from "react-native-components";
 
-export const NavbarRoot = styled(View)(() => ({
-    flexDirection: "row",
+export const NavbarRoot = styled(Row)(() => ({
     alignItems: "center",
     justifyContent: "center",
     position: "relative",

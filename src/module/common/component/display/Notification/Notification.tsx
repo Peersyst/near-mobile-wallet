@@ -1,5 +1,4 @@
-import { NotificationIcon as Icon } from "icons";
-import { AlertCircle, NotificationRoot } from "./Notification.styles";
+import { AlertCircle, NotificationRoot, NotificationIcon } from "./Notification.styles";
 
 export interface NotificationProps {
     hasNotifications?: boolean;
@@ -8,7 +7,7 @@ export interface NotificationProps {
 const Notification = ({ hasNotifications }: NotificationProps): JSX.Element => {
     return (
         <NotificationRoot>
-            <Icon color="black" />
+            <NotificationIcon color="black" />
             <AlertCircle testID={"activeCircle"} hasNotifications={hasNotifications} />
         </NotificationRoot>
     );

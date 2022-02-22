@@ -24,7 +24,7 @@ const Header = ({ appearance = "dark", showIcons = false }: HeaderProps): JSX.El
                         <SettingsIcon />
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback onPress={() => navigation.navigate("Notifications")}>
-                        <Notification />
+                        <Notification hasNotifications={Math.random() < 0.5} />
                     </TouchableWithoutFeedback>
                 </Row>
             )}

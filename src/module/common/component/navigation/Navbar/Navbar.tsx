@@ -3,7 +3,7 @@ import { BackStyledIcon, NavbarRoot, BackIconRoot, Title } from "./Navbar.styles
 import Logo from "../../display/Logo/Logo";
 import { useNavigation } from "@react-navigation/native";
 
-const Navbar = ({ back, title, withIcon = false }: NavbarProps): JSX.Element => {
+const Navbar = ({ back, title, withLogo = false }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
     return (
         <NavbarRoot>
@@ -12,7 +12,7 @@ const Navbar = ({ back, title, withIcon = false }: NavbarProps): JSX.Element => 
                     <BackStyledIcon />
                 </BackIconRoot>
             )}
-            {withIcon && <Logo size={"md"} direction={"horizontal"} />}
+            {withLogo && <Logo size={"md"} direction={"horizontal"} />}
             {title && <Title>{title}</Title>}
         </NavbarRoot>
     );
