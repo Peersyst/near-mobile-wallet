@@ -4,13 +4,13 @@ import { render } from "test-utils";
 import { fireEvent } from "@testing-library/react-native";
 import * as Navigation from "@react-navigation/native";
 
-describe("Notifications tests", () => {
+describe("Header tests", () => {
     test("Renders correctly - Light Appearance", () => {
         const screen = render(<Header appearance={"light"} />);
         const Logo = screen.getByText("BULL");
         expect(Logo.props.style.color).toEqual(theme.palette.white);
     });
-    test("Renders correctly - Dark Appearance", () => {
+    test("Renders correctly - Dark Appearance + withIcons", () => {
         const screen = render(<Header showIcons />);
         expect(screen.getByTestId("NotificationIcon"));
         expect(screen.getByTestId("SettingsIcon"));
@@ -26,7 +26,7 @@ describe("Notifications tests", () => {
         fireEvent.press(icon);
         expect(mockedNavigation).toHaveBeenCalled();
     });
-    test("Goes to settings", () => {
+    test("Goes to notification", () => {
         const mockedNavigation = jest.fn();
         jest.spyOn(Navigation, "useNavigation").mockReturnValue({ navigate: mockedNavigation });
         const screen = render(<Header showIcons />);
