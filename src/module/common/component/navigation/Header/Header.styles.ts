@@ -7,8 +7,8 @@ export const HeaderRoot = styled(View)(() => ({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 15,
-}))
+}));
 
 export const SettingsIcon = styled(Settings)(({ theme }) => ({
-    color: theme.palette.black
-}))
+    color: theme.palette.black,
+}));

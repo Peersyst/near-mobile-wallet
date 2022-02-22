@@ -8,8 +8,8 @@ export interface NotificationProps {
 const Notification = ({ hasNotifications }: NotificationProps): JSX.Element => {
     return (
         <NotificationRoot>
-            <Icon color="black"/>
-            <AlertCircle testID={"activeCircle"} hasNotifications={hasNotifications}/>
+            <Icon color="black" />
+            <AlertCircle testID={"activeCircle"} hasNotifications={hasNotifications} />
         </NotificationRoot>
     );
 };

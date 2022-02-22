@@ -2,7 +2,6 @@ import { NavbarProps } from "./Navbar.types";
 import { BackStyledIcon, NavbarRoot, BackIconRoot, Title } from "./Navbar.styles";
 import Logo from "../../display/Logo/Logo";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const Navbar = ({ back, title, withIcon = false }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();

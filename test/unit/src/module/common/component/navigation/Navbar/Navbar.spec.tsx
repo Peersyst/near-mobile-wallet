@@ -15,7 +15,7 @@ describe("Test for the Navbar", () => {
     });
     test("Go back click works correctly", () => {
         const mockedNavigation = jest.fn();
-        jest.spyOn(Navigation, "useNavigation").mockReturnValue({goBack: mockedNavigation});
+        jest.spyOn(Navigation, "useNavigation").mockReturnValue({ goBack: mockedNavigation });
         const screen = render(<Navbar withIcon back />);
         const icon = screen.getByTestId("BackIcon");
         fireEvent.press(icon);
