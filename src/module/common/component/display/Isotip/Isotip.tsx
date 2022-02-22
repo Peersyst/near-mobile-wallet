@@ -1,7 +1,3 @@
-import { Text } from "react-native";
-
-const Isotip = (): JSX.Element => {
-    return <Text>Hola</Text>;
-};
+import { Isotip } from "./Isotip.styles";
 
 export default Isotip;
