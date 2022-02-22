@@ -30,7 +30,7 @@ yarn-error.log*
 
 /.nyc_output
 
-/.expo
+.expo
 /.expo-shared
 npm-debug.*
 *.jks
