@@ -15,6 +15,7 @@ export interface HeaderProps {
 
 const Header = ({ appearance = "dark", showIcons = false }: HeaderProps): JSX.Element => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
+    
     return (
         <HeaderRoot>
             <Logo size={"md"} direction={"horizontal"} appearance={appearance} />
@@ -24,7 +25,7 @@ const Header = ({ appearance = "dark", showIcons = false }: HeaderProps): JSX.El
                         <SettingsIcon />
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback onPress={() => navigation.navigate("Notifications")}>
-                        <Notification hasNotifications={Math.random() < 0.5} />
+                        <Notification />
                     </TouchableWithoutFeedback>
                 </Row>
             )}
