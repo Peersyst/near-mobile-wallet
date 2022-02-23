@@ -13,7 +13,7 @@ export interface HeaderProps {
     showIcons?: boolean;
 }
 
-const Header = ({ appearance = "dark", showIcons = false }: HeaderProps): JSX.Element => {
+const Header = ({ appearance, showIcons = false }: HeaderProps): JSX.Element => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
 
     return (

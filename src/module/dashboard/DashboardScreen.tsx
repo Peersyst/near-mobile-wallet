@@ -1,4 +1,3 @@
-import { SafeAreaView } from "react-native";
 import { translate } from "locale";
 import { Col } from "react-native-components";
 import { Text, View } from "react-native";
@@ -8,7 +7,7 @@ import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
 import Button from "module/common/component/input/Button/Button";
-import Header from "module/common/component/navigation/Header/Header";
+import BasePage from "module/common/component/layout/BasePage/BasePage";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 
@@ -26,12 +25,11 @@ const DashboardScreen = ({ navigation }: any): JSX.Element => {
         logout,
     } = useAuth();
     return (
-        <SafeAreaView>
+        <BasePage appearance="light">
             <Col gap={10}>
                 <CustomView>
                     <CustomText>{translate("name")}</CustomText>
                 </CustomView>
-                <Header showIcons />
                 <Button
                     appearance="dark"
                     leftIcon={<ArrowIcon />}
@@ -45,7 +43,7 @@ const DashboardScreen = ({ navigation }: any): JSX.Element => {
                 {login.error && <Text>{JSON.stringify(login.error)}</Text>}
             </Col>
             <Button onPress={() => navigation.navigate("Login")}>Login</Button>
-        </SafeAreaView>
+        </BasePage>
     );
 };
 

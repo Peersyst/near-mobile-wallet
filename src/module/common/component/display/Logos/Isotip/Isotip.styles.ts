@@ -3,11 +3,11 @@ import { LogoIcon } from "icons";
 import { getTextColor } from "utils/getTextColor";
 import { IsotipProps, SizeIsotipRelationType } from "./Isotip.types";
 
-export const Isotip = styled(LogoIcon)<IsotipProps>(({ theme, appearance = "dark", size }) => {
-    const color = getTextColor(theme);
+export const Isotip = styled(LogoIcon)<IsotipProps>(({ theme, appearance, size }) => {
+    const color = getTextColor(theme, appearance);
     const { fontSize } = sizeRelations[size];
     return {
-        ...color[appearance],
+        color,
         fontSize: fontSize,
     };
 });
