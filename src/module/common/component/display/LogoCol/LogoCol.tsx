@@ -1,16 +1,9 @@
 import { Col } from "react-native-components";
 import Logotip from "../Logotip/Logotip";
 import Isotip from "../Isotip/Isotip";
-import { AppearanceProps, SizeType } from "module/common/types";
-import { IsotipSizeType } from "../Isotip/Isotip.types";
+import { LogoColRelationsType, LogoColProps } from "./LogoCol.types";
 
-export type LogoColSizeType = "md" | "lg";
-
-export interface LogoColProps extends Partial<AppearanceProps> {
-    size: LogoColSizeType;
-}
-
-const LogoColRelations: Record<LogoColSizeType, { gap: number; isotipSize: IsotipSizeType; logotipSize: SizeType }> = {
+const LogoColRelations: LogoColRelationsType = {
     lg: {
         isotipSize: "xl",
         logotipSize: "lg",

@@ -5,4 +5,6 @@ export interface LogotipProps extends AppearanceProps {
     size: SizeType;
 }
 
+export type LogotipSizeRelationsType = Record<SizeType, { width: number, height: number }>;
+
 export default Logo;

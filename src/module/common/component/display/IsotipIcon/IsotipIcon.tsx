@@ -1,11 +1,11 @@
 import Svg, { SvgProps, Path, Color } from "react-native-svg";
 import { StyleProp, StyleSheet, TextStyle } from "react-native";
 
-export type TextLogoIconProps = Omit<SvgProps, "children" | "xmlns" | "fill" | "stroke" | "style"> & {
+export type IsotipIconProps = Omit<SvgProps, "children" | "xmlns" | "fill" | "stroke" | "style"> & {
     style?: StyleProp<TextStyle>;
 };
 
-export const TextLogoIcon = ({ style, width: widthProps, height: heightProps, color: ColorProp, ...rest }: TextLogoIconProps) => {
+export const IsotipIcon = ({ style, width: widthProps, height: heightProps, color: ColorProp, ...rest }: IsotipIconProps) => {
     let color, width, height;
     if (style) {
         const flattenedStyle = StyleSheet.flatten(style);

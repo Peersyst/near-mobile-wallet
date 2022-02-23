@@ -1,10 +1,9 @@
 import styled from "@peersyst/react-native-styled";
 import { getTextColor } from "utils/getTextColor";
-import { TextLogoIcon as Icon } from "asset/image/HorizontalLogo/TextLogoIcon";
-import { LogotipProps } from "./Logotip";
-import { SizeType } from "module/common/types";
+import { LogotipProps, LogotipSizeRelationsType } from "./Logotip";
+import { IsotipIcon } from "../IsotipIcon/IsotipIcon";
 
-export const TextLogoSizeRelations: Record<SizeType, { width: number, height: number }> = {
+export const LogotipSizeRelations:LogotipSizeRelationsType  = {
     sm: {
         width: 103.62,
         height: 16.27,
@@ -19,10 +18,9 @@ export const TextLogoSizeRelations: Record<SizeType, { width: number, height: nu
     }
 }
 
-export const Logotip = styled(Icon)<LogotipProps>(({ theme, appearance, size }) => {
+export const Logotip = styled(IsotipIcon)<LogotipProps>(({ theme, appearance, size }) => {
     const color = getTextColor(theme);
-    const { width, height } = TextLogoSizeRelations[size];
-    
+    const { width, height } = LogotipSizeRelations[size];
     return {
         ...color[appearance],
         width,
