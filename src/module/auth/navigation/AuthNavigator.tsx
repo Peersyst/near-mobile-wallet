@@ -1,4 +1,5 @@
 import Stack from "stack-navigator";
+import LoginPage from "../page/LoginPage/LoginPage";
 
 export enum AuthScreen {
     LOGIN = "Login",
@@ -6,6 +7,6 @@ export enum AuthScreen {
 
 export const AuthNavigator = (
     <>
-        <Stack.Screen name={AuthScreen.LOGIN} component={} />
+        <Stack.Screen name={AuthScreen.LOGIN} component={LoginPage} />
     </>
 );
