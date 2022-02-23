@@ -9,6 +9,8 @@ export const theme = createTheme({
         fullBlack: "#000000",
         darkGray: "#707070",
         darkLightGray: "#7070707F",
+        darkLightGray2: "#24242487",
+        darkGray2: "#242424EA",
         darkFont: "#343434",
         turquoise: "#15C8BD",
         gold: "#E4AF4C",
