@@ -25,14 +25,6 @@ export type TextInputStyles = TextInputStyle & {
     hint?: TextStyle;
 };
 
-export interface TextInputSxProps {
-    invalid?: boolean;
-    showValid?: boolean;
-    focused?: boolean;
-    disabled?: boolean;
-    readonly?: boolean;
-}
-
 export interface InputProps {
     multiline?: boolean;
     numberOfLines?: number;
@@ -119,7 +111,7 @@ export interface TextInputProps
     /**
      * TextInput sx
      */
-    sx?: SX<TextInputSxProps, TextInputStyles>;
+    sx?: SX<TextInputStyles>;
 }
 
 export type TextFieldProps = Omit<TextInputProps, "multiline" | "numberOfLines">;
