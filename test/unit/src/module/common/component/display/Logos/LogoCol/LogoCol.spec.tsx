@@ -13,7 +13,7 @@ describe("LogoCol test", () => {
         expect(isotip.props.width).toEqual(103.61);
     });
     test("Renders correctly", () => {
-        const screen = render(<LogoCol size={"lg"}  appearance={"light"}/>);
+        const screen = render(<LogoCol size={"lg"} appearance={"light"} />);
         const isotipIcon = screen.getByTestId("LogotipIcon");
         expect(isotipIcon.props.width).toEqual(165.42);
         expect(isotipIcon.props.height).toEqual(25.99);

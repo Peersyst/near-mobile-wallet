@@ -9,4 +9,3 @@ describe("Logotip tests", () => {
         expect(isotipIcon.props.height).toEqual(16.27);
     });
 });
-

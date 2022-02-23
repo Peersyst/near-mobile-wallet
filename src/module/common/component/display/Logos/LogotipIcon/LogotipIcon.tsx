@@ -15,12 +15,13 @@ export const LogotipIcon = ({ style, width: widthProps, height: heightProps, col
     }
     return (
         <Svg
+            // eslint-disable-next-line
+            //@ts-ignore
+            xmlns="http://www.w3.org/2000/svg"
             width={widthProps || width}
             height={heightProps || height}
             fill="none"
             viewBox="0 0 134 21"
-            //@ts-ignore
-            xmlns="http://www.w3.org/2000/svg"
             {...rest}
             {...{ testID: "LogotipIcon" }}
         >

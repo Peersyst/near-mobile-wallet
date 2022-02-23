@@ -5,6 +5,6 @@ export interface LogotipProps extends Partial<AppearanceProps> {
     size?: SizeType;
 }
 
-export type LogotipSizeRelationsType = Record<SizeType, { width: number, height: number }>;
+export type LogotipSizeRelationsType = Record<SizeType, { width: number; height: number }>;
 
 export default Logo;
