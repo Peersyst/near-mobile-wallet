@@ -7,16 +7,16 @@ import * as Navigation from "@react-navigation/native";
 describe("Header tests", () => {
     test("Renders correctly - Light Appearance", () => {
         const screen = render(<Header appearance={"light"} />);
-        const Logo = screen.getByText("BULL");
-        expect(Logo.props.style.color).toEqual(theme.palette.white);
+        const isotip = screen.getByTestId("LogoIcon");
+        expect(isotip.props.fill).toEqual(theme.palette.white);
     });
     test("Renders correctly - Dark Appearance + withIcons", () => {
         const screen = render(<Header showIcons />);
         expect(screen.getByTestId("NotificationIcon"));
         expect(screen.getByTestId("SettingsIcon"));
         expect(screen.getByTestId("activeCircle"));
-        const Logo = screen.getByText("BULL");
-        expect(Logo.props.style.color).toEqual(theme.palette.black);
+        const isotip = screen.getByTestId("LogoIcon");
+        expect(isotip.props.fill).toEqual(theme.palette.black);
     });
     test("Goes to settings", () => {
         const mockedNavigation = jest.fn();

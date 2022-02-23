@@ -11,7 +11,7 @@ describe("Test for the Navbar", () => {
     });
     test("Renders correctly logo variant", () => {
         const screen = render(<Navbar withLogo />);
-        expect(screen.getByText("BULL"));
+        expect(screen.getByTestId("LogoIcon"));
     });
     test("Go back click works correctly", () => {
         const mockedNavigation = jest.fn();
