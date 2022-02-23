@@ -9,6 +9,7 @@ import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
 import Button from "module/common/component/input/Button/Button";
 import BaseHeader from "module/common/component/navigation/BaseHeader/BaseHeader";
+import Header from "module/common/component/navigation/Header/Header";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 
@@ -27,11 +28,11 @@ const DashboardScreen = (): JSX.Element => {
     } = useAuth();
     return (
         <SafeAreaView>
+            <Header appearance={"light"} />
             <Col gap={10}>
                 <CustomView>
                     <CustomText>{translate("name")}</CustomText>
                 </CustomView>
-                <BaseHeader showIcons />
                 <Button
                     appearance="dark"
                     leftIcon={<ArrowIcon />}
