@@ -8,8 +8,8 @@ import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
 import Button from "module/common/component/input/Button/Button";
-import Logo from "module/common/component/display/Logo/Logo";
-import Logotip from "module/common/component/display/Logotip/Logotip";
+import Isotip from "module/common/component/display/Isotip/Isotip";
+import LogoCol from "module/common/component/display/LogoCol/LogoCol";
 
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
@@ -47,7 +47,6 @@ const DashboardScreen = (): JSX.Element => {
                 <Text>Query result: {JSON.stringify(login.data)}</Text>
                 <Text>Auth state: {JSON.stringify({ token: token || null, isLogged })}</Text>
                 {login.error && <Text>{JSON.stringify(login.error)}</Text>}
-                <Logotip size="lg" appearance={"dark"}/>
             </Col>
         </SafeAreaView>
     );

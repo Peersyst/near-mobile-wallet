@@ -5,17 +5,18 @@ export type TextLogoIconProps = Omit<SvgProps, "children" | "xmlns" | "fill" | "
     style?: StyleProp<TextStyle>;
 };
 
-export const TextLogoIcon = ({ style, width, height, color: ColorProp, ...rest }: TextLogoIconProps) => {
-    let color;
+export const TextLogoIcon = ({ style, width: widthProps, height: heightProps, color: ColorProp, ...rest }: TextLogoIconProps) => {
+    let color, width, height;
     if (style) {
         const flattenedStyle = StyleSheet.flatten(style);
         if (flattenedStyle.color) color = flattenedStyle.color;
+        if (flattenedStyle.width) width = flattenedStyle.width;
+        if (flattenedStyle.height) height = flattenedStyle.height;
     }
-    
     return (
         <Svg
-            width={width || 134}
-            height={height || 21}
+            width={widthProps || width}
+            height={heightProps || height}
             fill="none"
             viewBox="0 0 134 21"
             //@ts-ignore

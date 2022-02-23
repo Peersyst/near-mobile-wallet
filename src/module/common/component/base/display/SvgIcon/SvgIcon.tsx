@@ -7,7 +7,6 @@ const SvgIcon = ({ style, color: colorProp, size: sizeProp = "24px", ...rest }: 
         size = sizeProp;
     if (style) {
         const flattenedStyle = StyleSheet.flatten(style);
-
         if (flattenedStyle.color) color = flattenedStyle.color;
         if (flattenedStyle.fontSize) size = flattenedStyle.fontSize;
     }

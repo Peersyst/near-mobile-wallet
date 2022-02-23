@@ -4,4 +4,4 @@ export type IsotipSizeType = SizeType | "xl";
 
 export type SizeIsotipRelationType = Record<IsotipSizeType, { fontSize: number }>;
 
-export type IsotipProps = AppearanceProps & { size: IsotipSizeType };
+export type IsotipProps = Partial<AppearanceProps> & { size: IsotipSizeType };
