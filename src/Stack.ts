@@ -1,3 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-export default createNativeStackNavigator();
+export type RootStackParamsList = {
+    Main: undefined;
+    Settings: undefined;
+    Notifications: undefined;
+    Loader: undefined;
+    Login: undefined;
+};
+
+export default createNativeStackNavigator<RootStackParamsList>();
