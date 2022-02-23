@@ -1,6 +1,6 @@
 import { SafeAreaView } from "react-native";
 import { translate } from "locale";
-import { Col, TextField, TextArea, Form } from "react-native-components";
+import { Col } from "react-native-components";
 import { Text, View } from "react-native";
 import { useLogin } from "module/auth/query/useLogin";
 import { ArrowIcon } from "icons";
@@ -8,12 +8,8 @@ import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
 import Button from "module/common/component/input/Button/Button";
-import Isotip from "module/common/component/display/Isotip/Isotip";
-import LogoCol from "module/common/component/display/LogoCol/LogoCol";
-
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
-const Spacer = styled(View)(() => ({ height: 20 }));
 
 const CustomView = styled(View)(({ theme }) => ({
     backgroundColor: lighten(theme.palette.gold, 0.5),
@@ -34,8 +30,6 @@ const DashboardScreen = (): JSX.Element => {
                 <CustomView>
                     <CustomText>{translate("name")}</CustomText>
                 </CustomView>
-                <ArrowIcon color="black" />
-                <Spacer />
                 <Button
                     appearance="dark"
                     leftIcon={<ArrowIcon />}

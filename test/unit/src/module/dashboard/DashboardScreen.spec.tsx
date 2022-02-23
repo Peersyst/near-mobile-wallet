@@ -15,7 +15,7 @@ describe("DashboardScreen tests", () => {
         const screen = render(<DashboardScreen />);
         expect(screen.getByText(translate("name")));
         expect(screen.getByText("Log in"));
-        expect(screen.getAllByTestId("ArrowIcon")).toHaveLength(6);
+        expect(screen.getByTestId("ArrowIcon")).toBeDefined();
     });
 
     test("Log in succeeds", async () => {
