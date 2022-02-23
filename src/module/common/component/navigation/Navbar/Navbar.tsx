@@ -1,9 +1,9 @@
 import { NavbarProps } from "./Navbar.types";
 import { BackStyledIcon, NavbarRoot, BackIconRoot, Title } from "./Navbar.styles";
-import Logo from "../../display/Logo/Logo";
 import { useNavigation } from "@react-navigation/native";
+import LogoRow from "../../display/Logos/LogoRow/LogoRow";
 
-const Navbar = ({ back, title, withLogo = false }: NavbarProps): JSX.Element => {
+const Navbar = ({ back, title, withLogo = false, appearance="dark" }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
     return (
         <NavbarRoot>
@@ -12,7 +12,7 @@ const Navbar = ({ back, title, withLogo = false }: NavbarProps): JSX.Element => 
                     <BackStyledIcon />
                 </BackIconRoot>
             )}
-            {withLogo && <Logo size={"md"} direction={"horizontal"} />}
+            {withLogo && <LogoRow appearance={appearance} />}
             {title && <Title>{title}</Title>}
         </NavbarRoot>
     );
