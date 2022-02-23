@@ -1,6 +1,6 @@
 import { Appearance } from "module/common/types";
 import { Row } from "../../base/layout/Row";
-import { HeaderRoot, SettingsIcon } from "./Header.styles";
+import { BaseHeaderRoot, SettingsIcon } from "./BaseHeader.styles";
 import Notification from "../../display/Notification/Notification";
 import { TouchableWithoutFeedback } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -13,11 +13,11 @@ export interface HeaderProps {
     showIcons?: boolean;
 }
 
-const Header = ({ appearance = "dark", showIcons = false }: HeaderProps): JSX.Element => {
+const BaseHeader = ({ appearance = "dark", showIcons = false }: HeaderProps): JSX.Element => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
 
     return (
-        <HeaderRoot>
+        <BaseHeaderRoot>
             <LogoRow appearance={appearance} />
             {showIcons && (
                 <Row gap={10}>
@@ -29,8 +29,8 @@ const Header = ({ appearance = "dark", showIcons = false }: HeaderProps): JSX.El
                     </TouchableWithoutFeedback>
                 </Row>
             )}
-        </HeaderRoot>
+        </BaseHeaderRoot>
     );
 };
 
-export default Header;
+export default BaseHeader;

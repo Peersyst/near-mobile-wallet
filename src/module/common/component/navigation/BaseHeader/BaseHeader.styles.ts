@@ -2,7 +2,7 @@ import styled from "@peersyst/react-native-styled";
 import { View } from "react-native";
 import { SettingsIcon as Settings } from "icons";
 
-export const HeaderRoot = styled(View)(() => ({
+export const BaseHeaderRoot = styled(View)(() => ({
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center",
