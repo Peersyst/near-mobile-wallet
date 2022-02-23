@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import { getTextColor } from "utils/getTextColor";
 import { LogotipProps, LogotipSizeRelationsType } from "./Logotip";
-import { IsotipIcon } from "../IsotipIcon/IsotipIcon";
+import { LogotipIcon } from "../LogotipIcon/LogotipIcon";
 
 export const LogotipSizeRelations:LogotipSizeRelationsType  = {
     sm: {
@@ -18,7 +18,7 @@ export const LogotipSizeRelations:LogotipSizeRelationsType  = {
     }
 }
 
-export const Logotip = styled(IsotipIcon)<LogotipProps>(({ theme, appearance, size }) => {
+export const Logotip = styled(LogotipIcon)<LogotipProps>(({ theme, appearance="dark", size="md" }) => {
     const color = getTextColor(theme);
     const { width, height } = LogotipSizeRelations[size];
     return {

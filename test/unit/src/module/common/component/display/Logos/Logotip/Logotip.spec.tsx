@@ -3,8 +3,10 @@ import { render } from "test-utils";
 
 describe("Logotip tests", () => {
     test("Renders correctly", () => {
-        const screen = render(<Logotip size={"sm"} appearance={"light"} />);
-        const chip = screen.getByText("BULL");
-        expect(chip).toBeDefined();
+        const screen = render(<Logotip size={"sm"} />);
+        const isotipIcon = screen.getByTestId("LogotipIcon");
+        expect(isotipIcon.props.width).toEqual(103.62);
+        expect(isotipIcon.props.height).toEqual(16.27);
     });
 });
+
