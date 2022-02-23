@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { StyleProp, TextStyle } from "react-native";
-import { ThemeFonts, ThemeIcons, ThemePalette, ThemeZIndex } from "./theme.types";
+import { Shadow, ThemeFonts, ThemeIcons, ThemePalette, ThemeZIndex } from "./theme.types";
 import { TranslateFn } from "../input/TextInput/utils";
 
 export interface CreateDefaultThemeTypography {
@@ -26,7 +26,7 @@ export interface CreateDefaultTheme {
     typography?: CreateThemeTypography;
     fonts?: ThemeFonts;
     palette?: CreateThemePalette;
-    shadows?: string[];
+    shadows?: Shadow[];
     borderRadius?: number;
     /*skeletonAnimations?: SkeletonAnimation;
     toastAnimation?: ToastAnimation;

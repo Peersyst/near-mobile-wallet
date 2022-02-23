@@ -8,6 +8,7 @@ import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
 import Button from "module/common/component/input/Button/Button";
+import TextFieldCustom from "module/common/component/input/TextField/TextField";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 

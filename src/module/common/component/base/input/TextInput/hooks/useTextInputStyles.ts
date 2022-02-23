@@ -53,17 +53,17 @@ export default function useTextInputStyles(
     return {
         inputStyle: {
             ...inputStyle,
+            ...(focused && focusedInputStyle),
+            ...(disabled && disabledInputStyle),
             ...(invalid && invalidInputStyle),
             ...(showValid && validInputStyle),
-            ...(disabled && disabledInputStyle),
-            ...(focused && focusedInputStyle),
         },
         rootStyle: {
             ...style,
+            ...(focused && focusedStyle),
+            ...(disabled && disabledStyle),
             ...(invalid && invalidStyle),
             ...(showValid && validStyle),
-            ...(disabled && disabledStyle),
-            ...(focused && focusedStyle),
         },
         errorStyle,
         hintStyle,
