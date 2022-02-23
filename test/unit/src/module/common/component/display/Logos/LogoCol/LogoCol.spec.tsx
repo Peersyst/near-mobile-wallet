@@ -3,7 +3,7 @@ import { render } from "test-utils";
 import { theme } from "module/common/style/theme";
 
 describe("LogoCol test", () => {
-    test("Renders correctly", () => {
+    test("Renders correctly -> medium + dark", () => {
         const screen = render(<LogoCol size={"md"} />);
         const isotipIcon = screen.getByTestId("LogotipIcon");
         expect(isotipIcon.props.width).toEqual(103.62);
@@ -12,7 +12,7 @@ describe("LogoCol test", () => {
         expect(isotip.props.fill).toEqual(theme.palette.black);
         expect(isotip.props.width).toEqual(103.61);
     });
-    test("Renders correctly", () => {
+    test("Renders correctly -> large + light ", () => {
         const screen = render(<LogoCol size={"lg"} appearance={"light"} />);
         const isotipIcon = screen.getByTestId("LogotipIcon");
         expect(isotipIcon.props.width).toEqual(165.42);

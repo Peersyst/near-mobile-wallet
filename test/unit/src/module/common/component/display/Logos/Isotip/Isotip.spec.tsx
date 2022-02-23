@@ -8,7 +8,7 @@ describe("Isotip tests", () => {
         const isotip = screen.getByTestId("LogoIcon");
         expect(isotip.props.fill).toEqual(theme.palette.white);
     });
-    test("Renders correctly -> light mode", () => {
+    test("Renders correctly -> dark mode", () => {
         const screen = render(<Isotip size={"sm"} appearance={"dark"} />);
         const isotip = screen.getByTestId("LogoIcon");
         expect(isotip.props.fill).toEqual(theme.palette.black);
