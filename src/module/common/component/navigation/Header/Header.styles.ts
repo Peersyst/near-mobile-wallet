@@ -10,5 +10,5 @@ export const HeaderRoot = styled(View)(() => ({
 }));
 
 export const SettingsIcon = styled(Settings)(({ theme }) => ({
-    color: theme.palette.black,
+    color: theme.palette.text,
 }));

@@ -1,11 +1,11 @@
-export type Appearance = "light" | "dark";
+import { PaletteMode } from "react-native-components";
 
 export type DirectionType = "horizontal" | "vertical";
 
 export type SizeType = "sm" | "md" | "lg";
 
 export interface AppearanceProps {
-    appearance: Appearance;
+    appearance: PaletteMode;
 }
 
 export interface DirectionProps {

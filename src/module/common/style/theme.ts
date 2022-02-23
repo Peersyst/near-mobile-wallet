@@ -3,7 +3,7 @@ import { translate } from "locale";
 
 export const theme = createTheme({
     palette: {
-        primary: "#623EDF",
+        primary: "#0B0D1E",
         white: "#FFFFFF",
         black: "#0B0D1E",
         fullBlack: "#000000",

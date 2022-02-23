@@ -15,10 +15,10 @@ export const AlertCircle = styled(View)<NotificationProps>(({ hasNotifications, 
     height: 12,
     borderRadius: 50,
     borderWidth: 2,
-    borderColor: "black",
+    borderColor: theme.palette.text,
     backgroundColor: hasNotifications ? theme.palette.red : undefined,
 }));
 
 export const NotificationIcon = styled(Icon)(({ theme }) => ({
-    color: theme.palette.black,
+    color: theme.palette.text,
 }));

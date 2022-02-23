@@ -1,14 +1,7 @@
 import { Theme } from "@peersyst/react-native-styled";
 import { Appearance } from "module/common/types";
-import { TextStyle } from "react-native";
 
-export function getTextColor(theme: Theme): Record<Appearance, Pick<TextStyle, "color">> {
-    return {
-        dark: {
-            color: theme.palette.black,
-        },
-        light: {
-            color: theme.palette.white,
-        },
-    };
+export function getTextColor(theme: Theme, appearance?: Appearance): string {
+    if (appearance) return appearance === "dark" ? theme.palette.black : theme.palette.white;
+    else return theme.palette.text;
 }

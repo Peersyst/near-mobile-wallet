@@ -1,12 +1,11 @@
-import { DarkPageRoot } from "module/common/component/surface/DarkPageRoot/DarkPageRoot";
 import { Text } from "react-native";
+import BasePage from "module/common/component/layout/BasePage/BasePage";
 
 const LogoPage = (): JSX.Element => {
     return (
-        
-        <DarkPageRoot>
-            <Text style={{color:"white"}}>Hola</Text>
-        </DarkPageRoot>
+        <BasePage appearance="dark">
+            <Text style={{ color: "white" }}>Hola</Text>
+        </BasePage>
     );
 };
 
