@@ -1,4 +1,4 @@
-import Logotip from "module/common/component/display/Logotip/Logotip";
+import Logotip from "module/common/component/display/Logos/Logotip/Logotip";
 import { render } from "test-utils";
 
 describe("Logotip tests", () => {
