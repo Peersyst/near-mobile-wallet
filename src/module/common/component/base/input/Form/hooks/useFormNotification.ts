@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { FormContext } from "../FormContext";
 
-export function useFormNotification(name: string | undefined, value: unknown, valid = true): void {
+export default function useFormNotification(name: string | undefined, value: unknown, valid = true): void {
     const { notifyForm } = useContext(FormContext);
 
     useEffect(() => {

@@ -24,7 +24,7 @@ const Button = ({
 
     const { handleSubmit, valid } = useContext(FormContext);
     const onPress = onPressProp || handleSubmit;
-    const disabled = disabledProp || valid === false;
+    const disabled = disabledProp || !valid;
 
     const { textStyle, rootStyle } = useButtonStyles(style, variant, size, disabled, pressed);
 

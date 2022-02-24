@@ -1,9 +1,9 @@
-import Keyboard from "module/common/component/layout/Keyboard/Keyboard";
+import Keyboard from "module/common/component/input/Keyboard/Keyboard";
 import { fireEvent, render } from "test-utils";
 
 describe("Keyboard test", () => {
     test("Keyboard renders correctly", () => {
-        const screen = render(<Keyboard password={""} setPassword={() => ""} />);
+        const screen = render(<Keyboard setValue={() => ""} />);
         expect(screen.getByText("0"));
         expect(screen.getByText("1"));
         expect(screen.getByText("2"));
@@ -20,7 +20,7 @@ describe("Keyboard test", () => {
 
     test("onPress is called", () => {
         const onPress = jest.fn();
-        const screen = render(<Keyboard password={""} setPassword={onPress} />);
+        const screen = render(<Keyboard setValue={onPress} />);
         const padItem = screen.getByTestId("CrossIcon");
         fireEvent.press(padItem);
         expect(onPress).toHaveBeenCalled();

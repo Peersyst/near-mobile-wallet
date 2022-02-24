@@ -21,8 +21,8 @@ const RippleAnimCircle = ({
         if (onPress) onPress(e);
         scaleAnim.setValue(scaleStart);
         scaleAnim2.setValue(scaleStart);
-        opacityAnim.setValue(0.8);
-        opacityAnim2.setValue(0.8);
+        opacityAnim.setValue(0.6);
+        opacityAnim2.setValue(0.6);
         Animated.parallel([
             Animated.timing(scaleAnim, {
                 toValue: 0.8,
