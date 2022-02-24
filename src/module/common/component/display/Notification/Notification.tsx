@@ -1,15 +1,15 @@
-import { AppearanceProps } from "module/common/types";
-import { AlertCircle, NotificationRoot, NotificationIcon } from "./Notification.styles";
+import { NotificationIcon } from "icons";
+import { AlertCircle, NotificationRoot } from "./Notification.styles";
 
-export interface NotificationProps extends AppearanceProps {
+export interface NotificationProps {
     hasNotifications?: boolean;
 }
 
-const Notification = ({ hasNotifications, appearance }: NotificationProps): JSX.Element => {
+const Notification = ({ hasNotifications }: NotificationProps): JSX.Element => {
     return (
         <NotificationRoot>
-            <NotificationIcon appearance={appearance} />
-            <AlertCircle testID={"activeCircle"} appearance={appearance} hasNotifications={hasNotifications} />
+            <NotificationIcon />
+            <AlertCircle testID={"activeCircle"} hasNotifications={hasNotifications} />
         </NotificationRoot>
     );
 };

@@ -1,19 +1,20 @@
 import { NavbarProps } from "./Navbar.types";
-import { BackStyledIcon, NavbarRoot, BackIconRoot, Title } from "./Navbar.styles";
+import { NavbarRoot, BackIconRoot, Title } from "./Navbar.styles";
 import { useNavigation } from "@react-navigation/native";
 import LogoRow from "../../display/Logos/LogoRow/LogoRow";
+import { BackIcon } from "icons";
 
-const Navbar = ({ back, title, withLogo = false, appearance = "dark" }: NavbarProps): JSX.Element => {
+const Navbar = ({ back, title, logo = false }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
     return (
         <NavbarRoot>
             {back && (
                 <BackIconRoot onPress={() => navigation.goBack()}>
-                    <BackStyledIcon />
+                    <BackIcon />
                 </BackIconRoot>
             )}
-            {withLogo && <LogoRow appearance={appearance} />}
-            {title && <Title>{title}</Title>}
+            {logo && <LogoRow />}
+            {title && <Title variant="h2">{title}</Title>}
         </NavbarRoot>
     );
 };

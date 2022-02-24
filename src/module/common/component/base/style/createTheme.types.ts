@@ -28,6 +28,7 @@ export interface CreateDefaultTheme {
     palette?: CreateThemePalette;
     shadows?: Shadow[];
     borderRadius?: number;
+    toolbarHeight?: number;
     /*skeletonAnimations?: SkeletonAnimation;
     toastAnimation?: ToastAnimation;
     toastPosition?: ToastPosition;*/
