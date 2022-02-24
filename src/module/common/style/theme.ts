@@ -3,7 +3,8 @@ import { translate } from "locale";
 
 export const theme = createTheme({
     palette: {
-        primary: "#0B0D1E",
+        background: "#FFFFFF",
+        primary: "#623EDF",
         white: "#FFFFFF",
         black: "#0B0D1E",
         fullBlack: "#000000",
@@ -41,5 +42,6 @@ export const theme = createTheme({
         subtitle2: undefined,
     },
     borderRadius: 24,
+    toolbarHeight: 70,
     translate,
 });

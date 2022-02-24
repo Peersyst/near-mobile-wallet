@@ -7,12 +7,14 @@ const Col = ({ children: childrenProp, gap, justifyContent, alignItems, style, f
     const children = Children.toArray(childrenProp).filter((child) => !!child);
     const childrenLength = Children.count(children);
 
+    const hasGap = !alignItems || alignItems === "flex-start" || alignItems === "flex-end" || alignItems === "center";
+
     return (
         <ColRoot style={[{ alignItems, justifyContent, flex }, style]}>
             {Children.map(children, (child, index: number) => (
                 <Fragment key={index}>
                     {child}
-                    <View style={{ flex: 0, marginBottom: index < childrenLength - 1 ? gap : 0 }} />
+                    {hasGap && <View style={{ flex: 0, marginBottom: index < childrenLength - 1 ? gap : 0 }} />}
                 </Fragment>
             ))}
         </ColRoot>

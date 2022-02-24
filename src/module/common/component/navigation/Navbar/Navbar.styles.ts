@@ -1,27 +1,20 @@
 import styled from "@peersyst/react-native-styled";
-import { BackIcon } from "icons";
-import { Text, Pressable } from "react-native";
-import { Row } from "react-native-components";
+import { IconButton, Row, Typography } from "react-native-components";
 
 export const NavbarRoot = styled(Row)(() => ({
     alignItems: "center",
     justifyContent: "center",
     position: "relative",
+    height: 40,
 }));
 
-export const BackIconRoot = styled(Pressable)(() => ({
+export const BackIconRoot = styled(IconButton)(({ theme }) => ({
     position: "absolute",
     left: 0,
-}));
-
-export const BackStyledIcon = styled(BackIcon)(({ theme }) => ({
     color: theme.palette.darkLightGray2,
     fontSize: 30,
 }));
 
-export const Title = styled(Text)(({ theme }) => ({
+export const Title = styled(Typography, { fontWeight: "bold", textTransform: "uppercase" })(({ theme }) => ({
     color: theme.palette.darkGray2,
-    fontSize: 20,
-    textTransform: "uppercase",
-    fontWeight: "bold",
 }));

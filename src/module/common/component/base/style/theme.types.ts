@@ -77,27 +77,16 @@ export interface ThemeZIndex extends DefaultThemeZIndex {}
 
 export interface DefaultTheme {
     icons: ThemeIcons;
-    typography: DefaultThemeTypography;
-    fonts?: ThemeFonts;
-    palette: DefaultThemePalette;
-    shadows: Shadow[];
-    borderRadius: number;
-    /*skeletonAnimations: SkeletonAnimation;
-    toastAnimation: ToastAnimation;
-    toastPosition: ToastPosition;*/
-    zIndex: DefaultThemeZIndex;
-    translate: TranslateFn;
-}
-export interface Theme {
-    icons: ThemeIcons;
     typography: ThemeTypography;
     fonts?: ThemeFonts;
     palette: ThemePalette;
     shadows: Shadow[];
     borderRadius: number;
+    toolbarHeight: number;
     /*skeletonAnimations: SkeletonAnimation;
     toastAnimation: ToastAnimation;
     toastPosition: ToastPosition;*/
     zIndex: ThemeZIndex;
     translate: TranslateFn;
 }
+export interface Theme extends DefaultTheme {}
