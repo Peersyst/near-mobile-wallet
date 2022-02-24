@@ -20,10 +20,10 @@ export const typography: DefaultThemeTypography = {
         fontSize: 20,
     },
     subtitle1: {
-        fontSize: 16,
+        fontSize: 18,
     },
     subtitle2: {
-        fontSize: 14,
+        fontSize: 16,
     },
     body1: {
         fontSize: 16,
