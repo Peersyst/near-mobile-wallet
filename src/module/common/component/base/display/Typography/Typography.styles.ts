@@ -5,6 +5,7 @@ import { TypographyStyleProps } from "module/common/component/base/display/Typog
 export const TypographyRoot = styled(Text)<TypographyStyleProps>(
     ({ textTransform, textAlign, fontStyle, fontWeight, light, font, variantStyles, theme }) => ({
         ...variantStyles,
+        color: theme.palette.text,
         textTransform,
         textAlign,
         fontStyle,
