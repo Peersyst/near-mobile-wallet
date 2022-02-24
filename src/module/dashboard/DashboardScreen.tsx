@@ -1,6 +1,6 @@
 import { SafeAreaView } from "react-native";
 import { translate } from "locale";
-import { Col, TextField, TextArea, Form } from "react-native-components";
+import { Col, Typography } from "react-native-components";
 import { Text, View } from "react-native";
 import { useLogin } from "module/auth/query/useLogin";
 import { ArrowIcon } from "icons";
@@ -8,7 +8,6 @@ import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
 import { lighten } from "@peersyst/react-utils";
 import Button from "module/common/component/input/Button/Button";
-import TextFieldCustom from "module/common/component/input/TextField/TextField";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 const Spacer = styled(View)(() => ({ height: 20 }));
@@ -47,36 +46,9 @@ const DashboardScreen = ({ navigation }: any): JSX.Element => {
                 <Text>Auth state: {JSON.stringify({ token: token || null, isLogged })}</Text>
                 {login.error && <Text>{JSON.stringify(login.error)}</Text>}
 
-                <Form onSubmit={(data) => console.log(data)}>
-                    <Col gap={10}>
-                        <TextField
-                            name="input1"
-                            style={{
-                                input: { highlightColor: "green", textAlign: "center", color: "pink" },
-                                invalid: { borderColor: "pink" },
-                                focused: { borderColor: "orange", input: { color: "cyan" } },
-                                disabled: { borderColor: "purple", input: { color: "red" } },
-                            }}
-                            validators="not-null|number"
-                            prefix={<ArrowIcon />}
-                            suffix={<ArrowIcon />}
-                            clearable
-                            secureTextEntry
-                        />
-                        <TextArea
-                            name="input2"
-                            hint="Hi I'm a hint :D"
-                            showValid
-                            validators="not-null|number"
-                            prefix={<ArrowIcon />}
-                            suffix={<ArrowIcon />}
-                        />
-                        <Button appearance="light" variant="outlined" style={{ outlined: { borderColor: "pink" } }}>
-                            Submit
-                        </Button>
-                    </Col>
-                    <TextFieldCustom placeholder={"Hello"} />
-                </Form>
+                <Typography variant="h1" style={{ color: "red" }} textTransform="lowercase">
+                    HOLA
+                </Typography>
             </Col>
             <Button onPress={() => navigation.navigate("Login")}>Login</Button>
         </SafeAreaView>

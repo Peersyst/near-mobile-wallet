@@ -1,5 +1,6 @@
 export * from "./display/SvgIcon";
 export * from "./display/Icon";
+export * from "./display/Typography";
 export * from "./input/Button";
 export * from "./input/Form";
 export * from "./input/IconButton";
