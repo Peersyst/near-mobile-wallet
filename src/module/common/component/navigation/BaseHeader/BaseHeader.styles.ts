@@ -4,8 +4,8 @@ import { SettingsIcon as Settings } from "icons";
 import { getTextColor } from "utils/getTextColor";
 import { AppearanceProps } from "module/common/types";
 
-export const BaseHeaderRoot = styled(View)(({theme}) => ({
-    width:"100%",
+export const BaseHeaderRoot = styled(View)(({ theme }) => ({
+    width: "100%",
     height: 37,
     justifyContent: "space-between",
     flexDirection: "row",
@@ -18,5 +18,5 @@ export const SettingsIcon = styled(Settings)<AppearanceProps>(({ theme, appearan
     const color = getTextColor(theme);
     return {
         ...color[appearance],
-    }
+    };
 });

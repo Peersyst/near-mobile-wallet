@@ -20,12 +20,12 @@ export const AlertCircle = styled(View)<NotificationProps>(({ hasNotifications, 
         borderWidth: 2,
         borderColor: appearance === "light" ? theme.palette.white : theme.palette.black,
         backgroundColor: hasNotifications ? theme.palette.red : undefined,
-    }
+    };
 });
 
 export const NotificationIcon = styled(Icon)<AppearanceProps>(({ theme, appearance }) => {
     const color = getTextColor(theme);
     return {
         ...color[appearance],
-    }
+    };
 });

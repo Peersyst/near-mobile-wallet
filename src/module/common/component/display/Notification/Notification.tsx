@@ -1,7 +1,7 @@
 import { AppearanceProps } from "module/common/types";
 import { AlertCircle, NotificationRoot, NotificationIcon } from "./Notification.styles";
 
-export interface NotificationProps extends AppearanceProps{
+export interface NotificationProps extends AppearanceProps {
     hasNotifications?: boolean;
 }
 
