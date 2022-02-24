@@ -10,6 +10,7 @@ export const BaseHeaderRoot = styled(View)(({theme}) => ({
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center",
+    paddingHorizontal: 20,
     ...theme.shadows[7],
 }));
 

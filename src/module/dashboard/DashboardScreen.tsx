@@ -10,6 +10,7 @@ import { lighten } from "@peersyst/react-utils";
 import Button from "module/common/component/input/Button/Button";
 import BaseHeader from "module/common/component/navigation/BaseHeader/BaseHeader";
 import Header from "module/common/component/navigation/Header/Header";
+import TextField from "module/common/component/input/TextField/TextField";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 
@@ -44,6 +45,7 @@ const DashboardScreen = (): JSX.Element => {
                 <Text>Query result: {JSON.stringify(login.data)}</Text>
                 <Text>Auth state: {JSON.stringify({ token: token || null, isLogged })}</Text>
                 {login.error && <Text>{JSON.stringify(login.error)}</Text>}
+                <TextField /> 
             </Col>
         </SafeAreaView>
     );

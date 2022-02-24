@@ -15,19 +15,18 @@ export interface BaseHeaderProps {
 }
 
 const BaseHeader = ({ appearance = "dark", showIcons = false, style }: BaseHeaderProps): JSX.Element => {
-    
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
-    
+
     return (
         <BaseHeaderRoot style={style}>
             <LogoRow appearance={appearance} />
             {showIcons && (
-                <Row gap={10}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate("Settings")}>
-                        <SettingsIcon appearance={appearance} />
-                    </TouchableWithoutFeedback>
+                <Row gap={16}>
                     <TouchableWithoutFeedback onPress={() => navigation.navigate("Notifications")}>
                         <Notification appearance={appearance} />
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={() => navigation.navigate("Settings")}>
+                        <SettingsIcon appearance={appearance} />
                     </TouchableWithoutFeedback>
                 </Row>
             )}
