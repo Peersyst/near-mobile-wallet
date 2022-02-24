@@ -18,9 +18,9 @@ export const LogotipSizeRelations: LogotipSizeRelationsType = {
     },
 };
 
-export const Logotip = styled(LogotipIcon)<LogotipProps>(({ theme, appearance, size = "md" }) => {
+export const Logotip = styled(LogotipIcon)<LogotipProps>(({ theme, appearance, fixedSize = "md" }) => {
     const color = getTextColor(theme, appearance);
-    const { width, height } = LogotipSizeRelations[size];
+    const { width, height } = LogotipSizeRelations[fixedSize];
     return {
         color,
         width,
