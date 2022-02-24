@@ -5,7 +5,7 @@ export type LogoColProps = Omit<SvgIconProps, "children">;
 
 export type LogoColRootProps = Pick<SvgIconProps, "size">;
 
-const LogoCol = ({ size, ...rest }: Omit<SvgIconProps, "children">): JSX.Element => {
+const LogoCol = ({ size, ...rest }: LogoColProps): JSX.Element => {
     return (
         <LogoColRoot size={size}>
             <LogoColIcon size="100%" {...rest} />

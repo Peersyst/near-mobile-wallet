@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { getTextColor } from "utils/getTextColor";
 import { LogoColProps, LogoColRootProps } from "./LogoCol";
 
-export const LogoColIcon = styled(Icon)<Omit<LogoColProps, "size">>(({ theme }) => {
+export const LogoColIcon = styled(Icon)<LogoColProps>(({ theme }) => {
     const color = getTextColor(theme);
     return {
         color: color,
