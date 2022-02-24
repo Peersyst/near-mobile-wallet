@@ -9,7 +9,7 @@ export interface HeaderRootProps extends AppearanceProps {
 
 export const HeaderRoot = styled(View)<HeaderRootProps>(({ theme, appearance}) => {
     return {
-        width: Dimensions.get("window").width,
+        width: "100%",
         height: 108,
         justifyContent: "flex-end",
         paddingBottom: appearance === "dark" ? 20 : undefined,
@@ -21,13 +21,13 @@ export const HeaderShadowRoot = styled(View)(({ theme }) => ({
     overflow: 'hidden',
     height: 20,
     marginTop: 5,
-    width: Dimensions.get("window").width,
+    width: "100%",
     position: "relative",
 }));
 
 export const HeaderShadow = styled(View)(({ theme }) => ({
     height: 20,
-    width: Dimensions.get("window").width * 2,
+    width: "110%",
     top: -5,
     left: -10,
     position: "absolute",
