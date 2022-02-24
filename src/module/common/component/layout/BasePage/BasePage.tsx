@@ -15,7 +15,7 @@ const BasePage = ({ children, appearance: appearanceProp, header = true }: BaseP
     return (
         <ThemeProvider theme={appearance === "light" ? theme : darkTheme}>
             <BasePageRoot>
-                {header && <Header showIcons />}
+                {header && <Header showIcons appearance={appearance} />}
                 {children}
             </BasePageRoot>
         </ThemeProvider>
