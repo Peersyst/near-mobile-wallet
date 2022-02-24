@@ -29,7 +29,7 @@ const DashboardScreen = (): JSX.Element => {
     } = useAuth();
     return (
         <SafeAreaView>
-            <Header appearance={"light"} />
+            <Header appearance={"dark"} />
             <Col gap={10}>
                 <CustomView>
                     <CustomText>{translate("name")}</CustomText>

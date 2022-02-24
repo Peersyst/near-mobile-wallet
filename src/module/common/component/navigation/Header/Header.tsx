@@ -1,16 +1,18 @@
-import { AppearanceProps } from "module/common/types";
-import { View, Text } from "react-native";
+import { StatusBar } from "react-native";
 import BaseHeader, { BaseHeaderProps } from "../BaseHeader/BaseHeader";
 import { HeaderRoot, HeaderShadow, HeaderShadowRoot } from "./Header.styles";
 
-const Header = ({ appearance }: AppearanceProps): JSX.Element => {
+const Header = ({ appearance = "dark", showIcons }: Omit<BaseHeaderProps, "styles">): JSX.Element => {
+    const BaseHeaderAppearance = appearance === "dark" ? "light" : "dark";
     return (
         <HeaderRoot appearance={appearance}>
-            <BaseHeader appearance={"dark"} showIcons={true} />
-            <HeaderShadowRoot>
-                <HeaderShadow>
-                </HeaderShadow>
-            </HeaderShadowRoot>
+            <StatusBar barStyle={appearance==="dark" ? 'light-content' : 'dark-content'} />
+            <BaseHeader appearance={BaseHeaderAppearance} showIcons={showIcons} />
+            {appearance === "light" && (
+                <HeaderShadowRoot>
+                    <HeaderShadow></HeaderShadow>
+                </HeaderShadowRoot>
+            )}
         </HeaderRoot>
     );
 };
