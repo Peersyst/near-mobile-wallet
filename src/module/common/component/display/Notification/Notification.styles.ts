@@ -9,7 +9,7 @@ export const NotificationRoot = styled(View)(() => ({
 export const AlertCircle = styled(View)<Pick<NotificationProps, "hasNotifications">>(({ hasNotifications, theme }) => {
     return {
         position: "absolute",
-        top: -2,
+        top: -2.5,
         right: -3,
         width: 12,
         height: 12,
