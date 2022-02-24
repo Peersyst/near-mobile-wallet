@@ -10,5 +10,6 @@
     "invalid_number_gte": "The number must be greater or equal than {n}",
     "invalid_number_eq": "The number must be equal to {n}",
     "invalid_number_lt": "The number must be lower than {n}",
-    "invalid_number_lte": "The number must be lower or equal than {n}"
+    "invalid_number_lte": "The number must be lower or equal than {n}",
+    "enter_your_pin": "Enter your PIN"
 }

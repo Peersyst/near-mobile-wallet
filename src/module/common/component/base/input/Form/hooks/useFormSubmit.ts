@@ -1,12 +1,16 @@
 import { FormEvent, useCallback, useState } from "react";
 import { FieldState } from "../Form.types";
 
-interface UseFormSubmitResult {
+export interface UseFormSubmitResult {
     submitted: boolean;
     handleSubmit: () => void;
 }
 
-export function useFormSubmit(data: Record<string, FieldState>, onSubmit: (data: any) => any, onInvalid?: () => any): UseFormSubmitResult {
+export default function useFormSubmit(
+    data: Record<string, FieldState>,
+    onSubmit: (data: any) => any,
+    onInvalid?: () => any,
+): UseFormSubmitResult {
     const [submitted, setSubmitted] = useState(false);
 
     const handleSubmit = useCallback(
