@@ -1,9 +1,9 @@
-import { Theme } from "./theme.types";
+import { DefaultTheme } from "./theme.types";
 import shadows from "./shadows";
 import { typography } from "./typography";
 import { CrossIcon, ErrorIcon, HideIcon, InfoIcon, InvalidIcon, ShowIcon, SuccessIcon, WarningIcon } from "../assets/icons";
 
-export const defaultTheme: Theme = {
+export const defaultTheme: DefaultTheme = {
     icons: {
         info: InfoIcon,
         error: ErrorIcon,

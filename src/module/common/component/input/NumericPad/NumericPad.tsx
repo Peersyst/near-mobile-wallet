@@ -1,16 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col } from "react-native-components";
-import Keyboard from "../../layout/Keyboard/Keyboard";
-import PasswordLayout, { ZeroToFourType } from "../../layout/PasswordLayout/PasswordLayout";
+import Keyboard from "../Keyboard/Keyboard";
+import PinDisplay from "../../display/PinDisplay/PinDisplay";
+import { NumericPadProps } from "module/common/component/input/NumericPad/NumericPad.types";
 
-const NumericPad = (): JSX.Element => {
-    const [password, setPassword] = useState<string>("");
-    const [error, setError] = useState<boolean>(false);
-    const zeroToFour: ZeroToFourType[] = [0, 1, 2, 3, 4];
+const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style: styleProp }: NumericPadProps): JSX.Element => {
+    const [value, setValue] = useState<string>("");
+    const [error, setError] = useState<boolean>(errorProp);
+
+    useEffect(() => {
+        if (value.length > 3) {
+            onSubmit(value);
+            setValue("");
+        }
+    }, [onSubmit, value]);
+
+    useEffect(() => {
+        setError(errorProp);
+    }, [errorProp]);
+
+    const { gap = 40, ...style } = styleProp || {};
     return (
-        <Col gap={40} alignItems={"center"}>
-            <PasswordLayout activated={zeroToFour[password.length]} error={error} />
-            <Keyboard error={error} password={password} setPassword={setPassword} setError={setError} />
+        <Col gap={gap} justifyContent="space-between" alignItems={"center"} style={style}>
+            <PinDisplay length={value.length} error={error && !value.length} placeholder={error ? undefined : placeholder} />
+            <Keyboard setValue={setValue} />
         </Col>
     );
 };

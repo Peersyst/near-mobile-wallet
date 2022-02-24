@@ -1,7 +1,7 @@
 import { CircleIcon, FilledCircleIcon } from "icons";
 import { useEffect, useRef } from "react";
 import { Animated, Easing } from "react-native";
-import { PasswordCircleRoot } from "./PasswordCircle.styles";
+import { PinItemRoot } from "./PinItem.styles";
 
 export interface PasswordCircleProps {
     active?: boolean;
@@ -10,7 +10,7 @@ export interface PasswordCircleProps {
     error?: boolean;
 }
 
-const PasswordCircle = ({ active = true, duration, animationHeight, error }: PasswordCircleProps): JSX.Element => {
+const PinItem = ({ active = true, duration, animationHeight, error }: PasswordCircleProps): JSX.Element => {
     const animated = useRef(new Animated.Value(0)).current;
     useEffect(() => {
         if (error) {
@@ -32,9 +32,9 @@ const PasswordCircle = ({ active = true, duration, animationHeight, error }: Pas
     }, [error, animated, animationHeight, duration]);
     return (
         <Animated.View style={[{ transform: [{ translateY: animated }] }]}>
-            <PasswordCircleRoot>{active ? <FilledCircleIcon /> : <CircleIcon />}</PasswordCircleRoot>
+            <PinItemRoot>{active ? <FilledCircleIcon /> : <CircleIcon />}</PinItemRoot>
         </Animated.View>
     );
 };
 
-export default PasswordCircle;
+export default PinItem;

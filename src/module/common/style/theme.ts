@@ -24,6 +24,22 @@ export const theme = createTheme({
         lighterGray: "#F9F9F9D8",
         red: "#FF0E0E",
     },
+    typography: {
+        h1: {
+            fontSize: 24,
+        },
+        h2: {
+            fontSize: 20,
+        },
+        h3: {
+            fontSize: 18,
+        },
+        h4: undefined,
+        h5: undefined,
+        h6: undefined,
+        subtitle1: undefined,
+        subtitle2: undefined,
+    },
     borderRadius: 24,
     translate,
 });

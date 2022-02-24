@@ -28,4 +28,11 @@ declare module "react-native-components" {
         purple: string;
         red: string;
     }
+    export interface TypographyVariantsOverrides {
+        h4: false;
+        h5: false;
+        h6: false;
+        subtitle1: false;
+        subtitle2: false;
+    }
 }

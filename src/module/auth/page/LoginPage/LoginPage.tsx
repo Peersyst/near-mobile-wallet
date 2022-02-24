@@ -1,7 +1,18 @@
 import NumericPad from "module/common/component/input/NumericPad/NumericPad";
-import { SafeAreaView, StatusBar } from "react-native";
+import { Alert, SafeAreaView, StatusBar } from "react-native";
+import { useState } from "react";
+import { translate } from "locale";
 
 const LoginPage = (): JSX.Element => {
+    const [error, setError] = useState(false);
+    const handleSubmit = (pin: string) => {
+        if (pin === "1234") {
+            setError(false);
+            Alert.alert("Correct");
+        } else setError(true);
+    };
+    console.log("main", error);
+
     return (
         <SafeAreaView
             //TODO: Remove this temporary styles to see the page
@@ -16,7 +27,7 @@ const LoginPage = (): JSX.Element => {
                 height: "100%",
             }}
         >
-            <NumericPad />
+            <NumericPad onSubmit={handleSubmit} error={error} placeholder={translate("enter_your_pin")} />
         </SafeAreaView>
     );
 };

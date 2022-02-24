@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import { Icon } from "react-native-components";
 
-export const PasswordCircleRoot = styled(Icon)(({ theme }) => ({
+export const PinItemRoot = styled(Icon)(({ theme }) => ({
     color: theme.palette.white,
-    fontSize: 13,
+    fontSize: 8,
 }));

@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { Icon } from "react-native-components";
 
 export const PadItemRoot = styled(View)(() => ({
-    minHeight: 70,
+    minHeight: 90,
     width: "30%",
     alignItems: "center",
     justifyContent: "center",

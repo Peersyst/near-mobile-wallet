@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { ShadowPropTypesIOSStatic, StyleProp, TextStyle } from "react-native";
+import { ShadowPropTypesIOSStatic, TextStyle } from "react-native";
 import { TranslateFn } from "../input/TextInput/utils";
 import { JSXElementConstructor } from "react";
 
@@ -32,18 +32,18 @@ export type TypographyVariants =
     | "button";
 export interface TypographyVariantsOverrides {}
 export interface DefaultThemeTypography {
-    h1: StyleProp<TextStyle>;
-    h2: StyleProp<TextStyle>;
-    h3: StyleProp<TextStyle>;
-    h4: StyleProp<TextStyle>;
-    h5: StyleProp<TextStyle>;
-    h6: StyleProp<TextStyle>;
-    subtitle1: StyleProp<TextStyle>;
-    subtitle2: StyleProp<TextStyle>;
-    body1: StyleProp<TextStyle>;
-    body2: StyleProp<TextStyle>;
-    button: StyleProp<TextStyle>;
-    caption: StyleProp<TextStyle>;
+    h1: TextStyle;
+    h2: TextStyle;
+    h3: TextStyle;
+    h4: TextStyle;
+    h5: TextStyle;
+    h6: TextStyle;
+    subtitle1: TextStyle;
+    subtitle2: TextStyle;
+    body1: TextStyle;
+    body2: TextStyle;
+    button: TextStyle;
+    caption: TextStyle;
 }
 export interface ThemeTypography extends DefaultThemeTypography {}
 
@@ -77,6 +77,19 @@ export interface ThemeZIndex extends DefaultThemeZIndex {}
 
 export interface DefaultTheme {
     icons: ThemeIcons;
+    typography: DefaultThemeTypography;
+    fonts?: ThemeFonts;
+    palette: DefaultThemePalette;
+    shadows: Shadow[];
+    borderRadius: number;
+    /*skeletonAnimations: SkeletonAnimation;
+    toastAnimation: ToastAnimation;
+    toastPosition: ToastPosition;*/
+    zIndex: DefaultThemeZIndex;
+    translate: TranslateFn;
+}
+export interface Theme {
+    icons: ThemeIcons;
     typography: ThemeTypography;
     fonts?: ThemeFonts;
     palette: ThemePalette;
@@ -88,4 +101,3 @@ export interface DefaultTheme {
     zIndex: ThemeZIndex;
     translate: TranslateFn;
 }
-export interface Theme extends DefaultTheme {}
