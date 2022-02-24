@@ -20,7 +20,7 @@ const CustomView = styled(View)(({ theme }) => ({
     justifyContent: "center",
 }));
 
-const DashboardScreen = (): JSX.Element => {
+const DashboardScreen = ({ navigation }: any): JSX.Element => {
     const login = useLogin();
     const {
         state: { token, isLogged },
@@ -78,6 +78,7 @@ const DashboardScreen = (): JSX.Element => {
                     <TextFieldCustom placeholder={"Hello"} />
                 </Form>
             </Col>
+            <Button onPress={() => navigation.navigate("Login")}>Login</Button>
         </SafeAreaView>
     );
 };
