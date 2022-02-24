@@ -1,33 +1,17 @@
-import { Appearance } from "module/common/types";
-import { Row } from "../../base/layout/Row";
-import { HeaderRoot, SettingsIcon } from "./Header.styles";
-import Notification from "../../display/Notification/Notification";
-import { TouchableWithoutFeedback } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamsList } from "stack-navigator";
-import LogoRow from "../../display/Logos/LogoRow/LogoRow";
+import { Platform, StatusBar } from "react-native";
+import BaseHeader, { BaseHeaderProps } from "../BaseHeader/BaseHeader";
+import { HeaderRoot, HeaderShadow, HeaderShadowRoot } from "./Header.styles";
 
-export interface HeaderProps {
-    appearance?: Appearance;
-    showIcons?: boolean;
-}
-
-const Header = ({ appearance = "dark", showIcons = false }: HeaderProps): JSX.Element => {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
-
+const Header = ({ appearance = "dark", showIcons }: Omit<BaseHeaderProps, "styles">): JSX.Element => {
+    const BaseHeaderAppearance = appearance === "dark" ? "light" : "dark";
     return (
-        <HeaderRoot>
-            <LogoRow appearance={appearance} />
-            {showIcons && (
-                <Row gap={10}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate("Settings")}>
-                        <SettingsIcon />
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate("Notifications")}>
-                        <Notification />
-                    </TouchableWithoutFeedback>
-                </Row>
+        <HeaderRoot appearance={appearance}>
+            {Platform.OS === "android" && <StatusBar barStyle={appearance === "dark" ? "light-content" : "dark-content"} />}
+            <BaseHeader appearance={BaseHeaderAppearance} showIcons={showIcons} />
+            {appearance === "light" && (
+                <HeaderShadowRoot>
+                    <HeaderShadow></HeaderShadow>
+                </HeaderShadowRoot>
             )}
         </HeaderRoot>
     );

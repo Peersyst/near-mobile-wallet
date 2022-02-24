@@ -3,7 +3,7 @@ import { BackStyledIcon, NavbarRoot, BackIconRoot, Title } from "./Navbar.styles
 import { useNavigation } from "@react-navigation/native";
 import LogoRow from "../../display/Logos/LogoRow/LogoRow";
 
-const Navbar = ({ back, title, withLogo = false, appearance="dark" }: NavbarProps): JSX.Element => {
+const Navbar = ({ back, title, withLogo = false, appearance = "dark" }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
     return (
         <NavbarRoot>
