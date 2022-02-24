@@ -6,7 +6,6 @@ const Header = ({ appearance = "dark", showIcons }: Omit<BaseHeaderProps, "style
     const BaseHeaderAppearance = appearance === "dark" ? "light" : "dark";
     return (
         <HeaderRoot appearance={appearance}>
-            {Platform.OS === "android" && <StatusBar barStyle={appearance === "dark" ? "light-content" : "dark-content"} />}
             <BaseHeader appearance={BaseHeaderAppearance} showIcons={showIcons} />
             {appearance === "light" && (
                 <HeaderShadowRoot>

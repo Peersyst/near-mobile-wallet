@@ -8,7 +8,7 @@ export interface NotificationProps extends AppearanceProps {
 const Notification = ({ hasNotifications, appearance }: NotificationProps): JSX.Element => {
     return (
         <NotificationRoot>
-            <NotificationIcon appearance={appearance} />
+            <NotificationIcon />
             <AlertCircle testID={"activeCircle"} appearance={appearance} hasNotifications={hasNotifications} />
         </NotificationRoot>
     );

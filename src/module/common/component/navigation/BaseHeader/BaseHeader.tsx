@@ -1,4 +1,4 @@
-import { Appearance } from "module/common/types";
+import { PaletteMode } from "react-native-components";
 import { Row } from "../../base/layout/Row";
 import { BaseHeaderRoot, SettingsIcon } from "./BaseHeader.styles";
 import Notification from "../../display/Notification/Notification";
@@ -9,7 +9,7 @@ import { RootStackParamsList } from "stack-navigator";
 import LogoRow from "../../display/Logos/LogoRow/LogoRow";
 
 export interface BaseHeaderProps {
-    appearance?: Appearance;
+    appearance?: PaletteMode;
     showIcons?: boolean;
     style?: StyleProp<ViewStyle>;
 }
@@ -26,7 +26,7 @@ const BaseHeader = ({ appearance = "dark", showIcons = false, style }: BaseHeade
                         <Notification appearance={appearance} />
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback onPress={() => navigation.navigate("Settings")}>
-                        <SettingsIcon appearance={appearance} />
+                        <SettingsIcon  />
                     </TouchableWithoutFeedback>
                 </Row>
             )}

@@ -3,7 +3,7 @@ import BasePage from "module/common/component/layout/BasePage/BasePage";
 
 const LogoPage = (): JSX.Element => {
     return (
-        <BasePage appearance="dark">
+        <BasePage appearance="dark" header={false}>
             <Text style={{ color: "white" }}>Hola</Text>
         </BasePage>
     );

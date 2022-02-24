@@ -2,7 +2,6 @@ import styled from "@peersyst/react-native-styled";
 import { View } from "react-native";
 import { SettingsIcon as Settings } from "icons";
 import { getTextColor } from "utils/getTextColor";
-import { AppearanceProps } from "module/common/types";
 
 export const BaseHeaderRoot = styled(View)(({ theme }) => ({
     width: "100%",
@@ -14,9 +13,9 @@ export const BaseHeaderRoot = styled(View)(({ theme }) => ({
     ...theme.shadows[7],
 }));
 
-export const SettingsIcon = styled(Settings)<AppearanceProps>(({ theme, appearance }) => {
+export const SettingsIcon = styled(Settings)(({ theme }) => {
     const color = getTextColor(theme);
     return {
-        ...color[appearance],
+        color: color,
     };
 });

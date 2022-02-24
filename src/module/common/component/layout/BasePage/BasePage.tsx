@@ -4,8 +4,9 @@ import { theme } from "module/common/style/theme";
 import { darkTheme } from "module/common/style/darkTheme";
 import Header from "module/common/component/navigation/Header/Header";
 import { BasePageRoot } from "./BasePage.styles";
+import { Platform, StatusBar } from "react-native";
 
-const BasePage = ({ children, appearance: appearanceProp, header = true }: BasePageProps): JSX.Element => {
+const BasePage = ({ children, appearance: appearanceProp, header = true, showIcons }: BasePageProps): JSX.Element => {
     const {
         palette: { mode },
     } = useTheme();
@@ -15,7 +16,8 @@ const BasePage = ({ children, appearance: appearanceProp, header = true }: BaseP
     return (
         <ThemeProvider theme={appearance === "light" ? theme : darkTheme}>
             <BasePageRoot>
-                {header && <Header showIcons appearance={appearance} />}
+                {Platform.OS === "android" && <StatusBar barStyle={appearance === "dark" ? "light-content" : "dark-content"} />}
+                {header && <Header showIcons={showIcons} appearance={appearance} />}
                 {children}
             </BasePageRoot>
         </ThemeProvider>

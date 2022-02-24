@@ -5,4 +5,5 @@ export interface BasePageProps {
     appearance?: PaletteMode;
     header?: boolean;
     children?: ReactNode;
+    showIcons?: boolean;
 }

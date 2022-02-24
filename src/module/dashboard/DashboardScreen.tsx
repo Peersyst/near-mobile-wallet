@@ -25,7 +25,7 @@ const DashboardScreen = ({ navigation }: any): JSX.Element => {
         logout,
     } = useAuth();
     return (
-        <BasePage appearance="light">
+        <BasePage appearance="light" showIcons>
             <Col gap={10}>
                 <CustomView>
                     <CustomText>{translate("name")}</CustomText>
