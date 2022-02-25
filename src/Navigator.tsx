@@ -6,7 +6,6 @@ import { AuthNavigator, AuthScreen } from "module/auth/navigation/AuthNavigator"
 const Navigator = (): JSX.Element => (
     <NavigationContainer>
         <Stack.Navigator initialRouteName={AuthScreen.LOGIN} screenOptions={{ headerShown: false }}>
-            {/* TODO: remove dashboard navigator */}
             {DashboardNavigator}
             {AuthNavigator}
         </Stack.Navigator>
