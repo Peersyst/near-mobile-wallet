@@ -12,7 +12,7 @@ export interface SkeletonProps {
     /**
      * Skeleton height
      */
-    height?: ViewStyle["width"];
+    height?: ViewStyle["height"];
     /**
      * Skeleton shape
      */
