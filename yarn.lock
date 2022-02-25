@@ -1642,6 +1642,14 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-types" "^1.0.0"
 
+"@peersyst/react-utils@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-utils/-/react-utils-1.1.2.tgz#dab49fa8817810d32913868e95535887aee1d827"
+  integrity sha512-n7fV9nrcs04OReWfL+EpaAPVc/mJ/I0jFOMrDB9mwQFmWQFjf75nxFEeOmyaSns6LX4uGCwFt2WryyGGukObvg==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+    "@peersyst/react-types" "^1.0.0"
+
 "@react-native-async-storage/async-storage@~1.15.0":
   version "1.15.17"
   resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.15.17.tgz#0dae263a52e476ffce871086f1fef5b8e44708eb"

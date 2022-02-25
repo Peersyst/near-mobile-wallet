@@ -10,4 +10,5 @@ export * from "./layout/Col";
 export * from "./layout/Row";
 export * from "./layout/Toolbar";
 export * from "./surface/Paper";
+export * from "./util/Animated";
 export * from "./style";
