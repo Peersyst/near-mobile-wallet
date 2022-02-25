@@ -16,8 +16,8 @@ const BasePage = ({ children, appearance: appearanceProp, header = true, showIco
     return (
         <ThemeProvider theme={appearance === "light" ? theme : darkTheme}>
             <BasePageRoot>
-                {Platform.OS === "android" && <StatusBar barStyle={appearance === "dark" ? "light-content" : "dark-content"} />}
-                {header && <Header showIcons={showIcons} appearance={appearance} />}
+                {Platform.OS === "android" || "ios" && <StatusBar barStyle={appearance === "dark" ? "light-content" : "dark-content"} />}
+                {header && <Header showIcons={showIcons}/>}
                 {children}
             </BasePageRoot>
         </ThemeProvider>
