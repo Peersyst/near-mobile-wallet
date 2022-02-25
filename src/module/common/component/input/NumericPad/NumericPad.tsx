@@ -20,7 +20,7 @@ const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style: st
         setError(errorProp);
     }, [errorProp]);
 
-    const { gap=30, ...style } = styleProp || {};
+    const { gap = 30, ...style } = styleProp || {};
     return (
         <NumericPadRoot style={style} gap={gap}>
             <PinDisplay length={value.length} error={error && !value.length} placeholder={error ? undefined : placeholder} />

@@ -19,6 +19,6 @@ export const LogoColRoot = styled(View)<LogoColRootProps>(({ size: sizeProps }) 
         alignItems: "center",
         justifyContent: "center",
         maxHeight: 166,
-        minHeight: 90,
+        minHeight: 70,
     };
 });
