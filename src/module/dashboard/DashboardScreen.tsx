@@ -1,6 +1,6 @@
 import { SafeAreaView } from "react-native";
 import { translate } from "locale";
-import { Col } from "react-native-components";
+import { Col, Skeleton } from "react-native-components";
 import { Text, View } from "react-native";
 import { useLogin } from "module/auth/query/useLogin";
 import { ArrowIcon } from "icons";
@@ -47,6 +47,9 @@ const DashboardScreen = ({ navigation }: any): JSX.Element => {
                 <Text>Auth state: {JSON.stringify({ token: token || null, isLogged })}</Text>
                 {login.error && <Text>{JSON.stringify(login.error)}</Text>}
                 <TextField />
+                <Skeleton>
+                    <TextField style={{ backgroundColor: "red" }} />
+                </Skeleton>
             </Col>
             <Button onPress={() => navigation.navigate("Login")}>Login</Button>
         </SafeAreaView>
