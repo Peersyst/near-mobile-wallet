@@ -12,8 +12,7 @@ export const LogoColIcon = styled(Icon)<LogoColProps>(({ theme }) => {
 });
 
 export const LogoColRoot = styled(View)<LogoColRootProps>(({ size: sizeProps }) => {
-    let size;
-    size = sizeProps || "100%";
+    const size = sizeProps || "100%";
     return {
         width: size,
         height: size,

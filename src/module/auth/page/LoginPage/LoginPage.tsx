@@ -1,5 +1,5 @@
 import NumericPad from "module/common/component/input/NumericPad/NumericPad";
-import { Alert, Text, View } from "react-native";
+import { Alert } from "react-native";
 import { useState } from "react";
 import { translate } from "locale";
 import LogoPage from "../LogoPage/LogoPage";
