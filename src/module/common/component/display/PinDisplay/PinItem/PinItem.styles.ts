@@ -3,5 +3,5 @@ import { Icon } from "react-native-components";
 
 export const PinItemRoot = styled(Icon)(({ theme }) => ({
     color: theme.palette.white,
-    fontSize: 8,
+    fontSize: 13,
 }));
