@@ -16,7 +16,8 @@ const LoginPage = (): JSX.Element => {
 
     return (
         <LogoPage>
-            <NumericPad onSubmit={handleSubmit} error={error} placeholder={translate("enter_your_pin")} />
+            <NumericPad onSubmit={handleSubmit} error={error} placeholder={translate("enter_your_pin")} 
+            style={{height:"60%"}}/>
         </LogoPage>
     );
 };
