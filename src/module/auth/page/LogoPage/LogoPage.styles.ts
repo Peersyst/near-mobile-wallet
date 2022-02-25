@@ -5,5 +5,5 @@ export const LogoPageIconRoot = styled(View)(() => ({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: "30%",
+    paddingVertical: "20%",
 }));
