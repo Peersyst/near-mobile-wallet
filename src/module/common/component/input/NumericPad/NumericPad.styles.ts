@@ -4,4 +4,4 @@ import { NumericPadStyle } from "./NumericPad.types";
 
 export const NumericPadRoot = styled(Col, { justifyContent: "space-between", alignItems: "center" })<NumericPadStyle>((style) => ({
     ...style,
-}))
+}));

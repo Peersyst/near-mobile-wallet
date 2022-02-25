@@ -3,8 +3,8 @@ import { PaletteMode } from "react-native-components";
 import { ViewStyle } from "react-native";
 
 /**
- * Circular -> with borderRadius 
- * Stadium -> theme borderRadius 
+ * Circular -> with borderRadius
+ * Stadium -> theme borderRadius
  * Reactangular -> no borderRadius
  */
 export type SkeletonShape = "circular" | "rectangular" | "stadium";

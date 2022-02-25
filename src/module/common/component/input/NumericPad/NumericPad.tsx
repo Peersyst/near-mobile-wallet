@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Col } from "react-native-components";
 import Keyboard from "../Keyboard/Keyboard";
 import PinDisplay from "../../display/PinDisplay/PinDisplay";
 import { NumericPadProps } from "module/common/component/input/NumericPad/NumericPad.types";
