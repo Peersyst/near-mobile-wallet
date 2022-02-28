@@ -4,5 +4,6 @@ export * from "./CircleIcon";
 export * from "./CrossIcon";
 export * from "./FilledCircleIcon";
 export * from "./LogoIcon";
+export * from "./LogoColIcon";
 export * from "./NotificationIcon";
 export * from "./SettingsIcon";

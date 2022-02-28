@@ -1,7 +1,7 @@
-import { AppearanceProps, SizeType } from "module/common/types";
+import { SizeType } from "module/common/types";
 import { Logotip as Logo } from "./Logotip.styles";
 
-export interface LogotipProps extends Partial<AppearanceProps> {
+export interface LogotipProps {
     size?: SizeType;
 }
 

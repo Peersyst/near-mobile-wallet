@@ -68,6 +68,7 @@ export interface ThemePalette extends DefaultThemePalette {}
 export type Shadow = ShadowPropTypesIOSStatic & { elevation?: number | undefined };
 
 export interface DefaultThemeZIndex {
+    header: number;
     popover: number;
     modal: number;
     selectMenu: number;

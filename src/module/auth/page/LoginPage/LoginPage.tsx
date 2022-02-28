@@ -1,34 +1,30 @@
 import NumericPad from "module/common/component/input/NumericPad/NumericPad";
-import { Alert, SafeAreaView, StatusBar } from "react-native";
 import { useState } from "react";
 import { translate } from "locale";
+import LogoPage from "../LogoPage/LogoPage";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamsList } from "stack-navigator";
 
 const LoginPage = (): JSX.Element => {
     const [error, setError] = useState(false);
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
     const handleSubmit = (pin: string) => {
         if (pin === "1234") {
             setError(false);
-            Alert.alert("Correct");
+            navigation.navigate("Home");
         } else setError(true);
     };
-    console.log("main", error);
 
     return (
-        <SafeAreaView
-            //TODO: Remove this temporary styles to see the page
-            style={{
-                marginTop: StatusBar.currentHeight,
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                paddingTop: "57%",
-                paddingHorizontal: 20,
-                backgroundColor: "black",
-                height: "100%",
-            }}
-        >
-            <NumericPad onSubmit={handleSubmit} error={error} placeholder={translate("enter_your_pin")} />
-        </SafeAreaView>
+        <LogoPage>
+            <NumericPad
+                onSubmit={handleSubmit}
+                error={error}
+                placeholder={translate("enter_your_pin")}
+                style={{ height: "65%", gap: "5%" }}
+            />
+        </LogoPage>
     );
 };
 
