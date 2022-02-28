@@ -1,6 +1,6 @@
 import DashboardScreen from "module/main/DashboardScreen";
-import WelcomeBack from "module/auth/page/WelcomeBack/WelcomeBack";
 import Stack from "stack-navigator";
+import WelcomeBackPage from "module/auth/page/WelcomeBack/WelcomeBackPage";
 
 export enum DashboardScreens {
     WELCOME_BACK = "WelcomeBack",
@@ -9,7 +9,7 @@ export enum DashboardScreens {
 
 export const MainNavigatorGroup = (
     <Stack.Group>
-          <Stack.Screen name={DashboardScreens.HOME} component={DashboardScreen} />
-          <Stack.Screen name={DashboardScreens.WELCOME_BACK} component={WelcomeBack} />
+        <Stack.Screen name={DashboardScreens.WELCOME_BACK} component={WelcomeBackPage} />
+        <Stack.Screen name={DashboardScreens.HOME} component={DashboardScreen} />
     </Stack.Group>
 );

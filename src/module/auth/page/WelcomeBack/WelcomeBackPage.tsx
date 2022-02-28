@@ -4,9 +4,9 @@ import LogoPage from "module/auth/page/LogoPage/LogoPage";
 import { useEffect } from "react";
 import { Typography } from "react-native-components";
 import { RootStackParamsList } from "stack-navigator";
-import { WelcomeBackRoot } from "./WelcomeBack.styles";
+import { WelcomeBackPageRoot } from "./WelcomeBackPage.styles";
 
-const WelcomeBack = (): JSX.Element => {
+const WelcomeBackPage = (): JSX.Element => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
     useEffect(() => {
         const goToHome = async () => {
@@ -17,11 +17,11 @@ const WelcomeBack = (): JSX.Element => {
     }, []);
     return (
         <LogoPage>
-            <WelcomeBackRoot>
+            <WelcomeBackPageRoot>
                 <Typography variant="body1">Welcome back</Typography>
-            </WelcomeBackRoot>
+            </WelcomeBackPageRoot>
         </LogoPage>
     );
 };
 
-export default WelcomeBack;
+export default WelcomeBackPage;
