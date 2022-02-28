@@ -25,8 +25,8 @@ export default function (): UseDefaultStylesResult {
             borderColor: theme.palette.primary,
         },
         text: {
-            borderColor: "transparent"
-        }
+            borderColor: "transparent",
+        },
     };
 
     const defaultDisabledStyles: ButtonStyleWithVariant = {
@@ -48,7 +48,7 @@ export default function (): UseDefaultStylesResult {
         text: {
             backgroundColor: "transparent",
             textDecorationLine: "underline",
-        }
+        },
     };
 
     const defaultSizeStyles: ButtonSizeStyle = {

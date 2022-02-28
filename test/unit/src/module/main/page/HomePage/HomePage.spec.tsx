@@ -1,18 +1,18 @@
 import { FailApiCall, render, SuccessApiCall } from "test-utils";
-import DashboardScreen from "module/main/DashboardScreen";
+import HomePage from "module/main/page/HomePage/HomePage";
 import { translate } from "locale";
 import * as Login from "module/auth/utils/loginCall";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { RecoilState, useRecoilState } from "recoil";
 import * as Recoil from "recoil";
 
-describe("DashboardScreen tests", () => {
+describe("HomePage tests", () => {
     afterEach(() => {
         jest.restoreAllMocks();
     });
 
     test("Renders correctly", () => {
-        const screen = render(<DashboardScreen />);
+        const screen = render(<HomePage />);
         expect(screen.getByText(translate("name")));
         expect(screen.getByText("Log in"));
         expect(screen.getByTestId("ArrowIcon")).toBeDefined();
@@ -21,7 +21,7 @@ describe("DashboardScreen tests", () => {
     test("Log in succeeds", async () => {
         jest.spyOn(Login, "loginCall").mockImplementation(() => SuccessApiCall({ auth_token: "test_token" }));
 
-        const screen = render(<DashboardScreen />);
+        const screen = render(<HomePage />);
         const button = screen.getByText("Log in");
         fireEvent.press(button);
         await waitFor(() => expect(screen.getByText("Log out")));
@@ -30,7 +30,7 @@ describe("DashboardScreen tests", () => {
     test("Log in fails", async () => {
         jest.spyOn(Login, "loginCall").mockImplementation(() => FailApiCall({ code: 403, message: "Invalid credentials" }));
 
-        const screen = render(<DashboardScreen />);
+        const screen = render(<HomePage />);
         const button = screen.getByText("Log in");
         fireEvent.press(button);
         await waitFor(() => expect(screen.getByText(JSON.stringify({ code: 403, message: "Invalid credentials" }))));
@@ -47,7 +47,7 @@ describe("DashboardScreen tests", () => {
             }
         });
 
-        const screen = render(<DashboardScreen />);
+        const screen = render(<HomePage />);
         const button = screen.getByText("Log out");
         fireEvent.press(button);
         await waitFor(() => expect(setAuthState).toHaveBeenCalledWith({ token: undefined, isLogged: false }));

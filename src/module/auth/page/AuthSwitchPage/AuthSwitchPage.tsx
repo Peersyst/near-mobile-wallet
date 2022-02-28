@@ -11,7 +11,6 @@ export interface TouchableTextProps {
     pressed: boolean;
 }
 
-
 const AuthSwitchPage = (): JSX.Element => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
     const [pressed, setPressed] = useState<boolean>(false);
@@ -20,13 +19,11 @@ const AuthSwitchPage = (): JSX.Element => {
             <AuthSwitchPageRoot>
                 <CreatWalletButton onPress={() => navigation.navigate("CreateWallet")}>{translate("create_wallet")}</CreatWalletButton>
                 <ImportRoot>
-                    <InfoText variant="body1">
-                        {translate("already_have_wallet")}
-                    </InfoText>
+                    <InfoText variant="body1">{translate("already_have_wallet")}</InfoText>
                     <Pressable
-                    onPressIn={()=>setPressed(true)}
-                    onPressOut={()=>setPressed(false)}
-                    onPress={() => navigation.navigate("ImportWallet")}
+                        onPressIn={() => setPressed(true)}
+                        onPressOut={() => setPressed(false)}
+                        onPress={() => navigation.navigate("ImportWallet")}
                     >
                         <TouchableText variant="body1" pressed={pressed}>
                             {translate("import_it")}

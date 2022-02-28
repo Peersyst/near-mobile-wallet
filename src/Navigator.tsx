@@ -11,7 +11,7 @@ const Navigator = (): JSX.Element => {
     } = useAuth();
 
     const initialRoute = isLogged ? MainScreens.WELCOME_BACK : token ? AuthScreen.LOGIN : AuthScreen.AUTH_SWITCH;
-   
+
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName={initialRoute} screenOptions={{ headerShown: false, animation: "slide_from_right" }}>

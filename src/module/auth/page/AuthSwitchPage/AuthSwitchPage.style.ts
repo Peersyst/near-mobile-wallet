@@ -7,7 +7,7 @@ export const AuthSwitchPageRoot = styled(Col, { gap: "7%" })(() => ({
     paddingHorizontal: "7.5%",
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: "10%"
+    paddingBottom: "10%",
 }));
 
 export const ImportRoot = styled(Col)(() => ({}));
@@ -21,8 +21,8 @@ export const InfoText = styled(Typography)(() => ({
     textAlign: "center",
 }));
 
-export const TouchableText = styled(Typography)<TouchableTextProps>(({pressed}) => ({
+export const TouchableText = styled(Typography)<TouchableTextProps>(({ pressed }) => ({
     textAlign: "center",
     fontWeight: "bold",
     textDecorationLine: pressed ? "underline" : undefined,
-}))
+}));

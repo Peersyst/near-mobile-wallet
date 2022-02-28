@@ -4,7 +4,7 @@ import { Text } from "react-native";
 const ImportWalletPage = (): JSX.Element => {
     return (
         <LogoPage>
-            <Text style={{color: 'white'}}>Create wallet page</Text>
+            <Text style={{ color: "white" }}>Create wallet page</Text>
         </LogoPage>
     );
 };

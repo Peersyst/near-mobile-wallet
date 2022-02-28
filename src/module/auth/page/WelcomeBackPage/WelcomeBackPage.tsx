@@ -15,7 +15,7 @@ const WelcomeBackPage = (): JSX.Element => {
             navigation.navigate("Home");
         };
         goToHome();
-    }, []);
+    }, [navigation]);
     return (
         <LogoPage>
             <WelcomeBackPageRoot>
