@@ -6,7 +6,7 @@ export enum AuthScreen {
     AUTH = "Auth",
 }
 
-export const AuthGroup = (
+export const AuthNavigatorGroup = (
     <Stack.Group>
         <Stack.Screen name={AuthScreen.LOGIN} component={LoginPage} />
     </Stack.Group>

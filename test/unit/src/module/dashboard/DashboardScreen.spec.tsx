@@ -1,5 +1,5 @@
 import { FailApiCall, render, SuccessApiCall } from "test-utils";
-import DashboardScreen from "module/dashboard/DashboardScreen";
+import DashboardScreen from "module/main/DashboardScreen";
 import { translate } from "locale";
 import * as Login from "module/auth/utils/loginCall";
 import { fireEvent, waitFor } from "@testing-library/react-native";
