@@ -1,6 +1,6 @@
 import { SafeAreaView } from "react-native";
 import { translate } from "locale";
-import { Col, Skeleton } from "react-native-components";
+import { Col, Skeleton, Animated } from "react-native-components";
 import { Text, View } from "react-native";
 import { useLogin } from "module/auth/query/useLogin";
 import { ArrowIcon } from "icons";
@@ -11,6 +11,7 @@ import Button from "module/common/component/input/Button/Button";
 import TextField from "module/common/component/input/TextField/TextField";
 import Header from "module/common/component/navigation/Header/Header";
 import Navbar from "module/common/component/navigation/Navbar/Navbar";
+import { useState } from "react";
 
 const CustomText = styled(Text)(({ theme }) => ({ color: theme.palette.text }));
 
@@ -21,12 +22,17 @@ const CustomView = styled(View)(({ theme }) => ({
     justifyContent: "center",
 }));
 
+const AnimatedButton = Animated.createAnimatedComponent.slide(Button, { direction: "left" });
+
 const DashboardScreen = ({ navigation }: any): JSX.Element => {
     const login = useLogin();
     const {
         state: { token, isLogged },
         logout,
     } = useAuth();
+
+    const [visible, setVisible] = useState(false);
+
     return (
         <SafeAreaView style={{ backgroundColor: "#FFFFFF", flex: 1 }}>
             <Col gap={10} style={{ overflow: "hidden" }}>
@@ -35,14 +41,17 @@ const DashboardScreen = ({ navigation }: any): JSX.Element => {
                 <CustomView>
                     <CustomText>{translate("name")}</CustomText>
                 </CustomView>
-                <Button
+                <AnimatedButton
+                    in={visible}
                     appearance="dark"
                     leftIcon={<ArrowIcon />}
                     loading={login.isLoading}
                     onPress={() => (!isLogged ? login.mutate({ username: "Charlie", password: "Test1234" }) : logout())}
+                    duration={500}
                 >
                     {!isLogged ? <Text>Log in</Text> : <Text>Log out</Text>}
-                </Button>
+                </AnimatedButton>
+                <Button onPress={() => setVisible(!visible)}>Toggle visible</Button>
                 <Text>Query result: {JSON.stringify(login.data)}</Text>
                 <Text>Auth state: {JSON.stringify({ token: token || null, isLogged })}</Text>
                 {login.error && <Text>{JSON.stringify(login.error)}</Text>}
