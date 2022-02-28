@@ -4,7 +4,6 @@ export type RootStackParamsList = {
     Home: undefined;
     Settings: undefined;
     Notifications: undefined;
-    Loader: undefined;
     Login: undefined;
 };
 

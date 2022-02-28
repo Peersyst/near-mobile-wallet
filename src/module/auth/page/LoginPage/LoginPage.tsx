@@ -18,14 +18,15 @@ const LoginPage = (): JSX.Element => {
     console.log("main", error);
 
     return (
-        <LogoPage>
+        <>
+            <Text></Text>
             <NumericPad
                 onSubmit={handleSubmit}
                 error={error}
                 placeholder={translate("enter_your_pin")}
                 style={{ height: "65%", gap: "5%" }}
             />
-        </LogoPage>
+        </>
     );
 };
 
