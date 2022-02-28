@@ -21,7 +21,7 @@ const CustomView = styled(View)(({ theme }) => ({
 
 const AnimatedButton = Animated.createAnimatedComponent.slide(Button, { direction: "left" });
 
-const DashboardScreen = (): JSX.Element => {
+const HomePage = (): JSX.Element => {
     const login = useLogin();
     const {
         state: { token, isLogged },
@@ -55,4 +55,4 @@ const DashboardScreen = (): JSX.Element => {
     );
 };
 
-export default DashboardScreen;
+export default HomePage;

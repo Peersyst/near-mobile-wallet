@@ -12,7 +12,7 @@ export enum AuthScreen {
 }
 
 export const AuthNavigatorGroup = (
-    <Stack.Group>
+    <Stack.Group >
         <Stack.Screen name={AuthScreen.AUTH_SWITCH} component={AuthSwitchPage} />
         <Stack.Screen name={AuthScreen.LOGIN} component={LoginPage} />
         <Stack.Screen name={AuthScreen.IMPORT_WALLET} component={ImportWalletPage} />
