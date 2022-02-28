@@ -6,7 +6,7 @@ export enum DashboardScreens {
 }
 
 export const DashboardNavigator = (
-    <>
+    <Stack.Group>
         <Stack.Screen name={DashboardScreens.HOME} component={DashboardScreen} />
-    </>
+    </Stack.Group>
 );

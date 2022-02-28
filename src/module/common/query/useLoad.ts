@@ -8,11 +8,11 @@ export function useLoad(): boolean {
     const setAuthState = useSetRecoilState(authState);
 
     useEffect(() => {
-        AuthTokenStorage.get().then((token) => {
+        
+        AuthTokenStorage.get().then(async (token) => {
             if (token) setAuthState({ token, isLogged: true });
-
             // OTHER STUFF
-
+            await new Promise((resolve) => setTimeout(resolve, 3000))
             setLoading(false);
         });
     }, [setAuthState]);
