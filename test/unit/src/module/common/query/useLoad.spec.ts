@@ -22,6 +22,7 @@ describe("useLoad tests", () => {
         const { result } = renderUseLoad();
         expect(result.current.loading).toBe(true);
         expect(getAuthToken).toHaveBeenCalled();
+        await new Promise((r) => setTimeout(r, 3100));
         await waitFor(() => expect(result.current.loading).toBe(false));
         expect(result.current.token).toBeUndefined();
         expect(result.current.isLogged).toBe(false);
@@ -33,6 +34,7 @@ describe("useLoad tests", () => {
         const { result } = renderUseLoad();
         expect(result.current.loading).toBe(true);
         expect(getAuthToken).toHaveBeenCalled();
+        await new Promise((r) => setTimeout(r, 3100));
         await waitFor(() => expect(result.current.loading).toBe(false));
         expect(result.current.isLogged).toBe(true);
         expect(result.current.token).toEqual("test_token");
