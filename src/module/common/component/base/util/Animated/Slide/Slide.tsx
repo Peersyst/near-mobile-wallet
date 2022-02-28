@@ -16,6 +16,7 @@ export default function slide<P extends { style?: any; onLayout?: ((event: Layou
         delay = configDelay,
         easing = configEasing,
         in: inProp,
+        appear = false,
         direction = directionConfig,
         style: { opacity = 1, ...style } = {},
         unmountOnExit = false,
@@ -25,12 +26,14 @@ export default function slide<P extends { style?: any; onLayout?: ((event: Layou
         onExited,
         ...rest
     }: P & SlideProps): JSX.Element => {
-        const slideAnim = useRef(new Animated.Value(inProp ? 0 : opacity)).current;
-
         const [layout, setLayout] = useState<LayoutRectangle>();
         const handleLayout = ({ nativeEvent: { layout: eventLayout } }: LayoutChangeEvent): void => {
             if (!layout) setLayout(eventLayout);
         };
+
+        const exitPos = getExitedPosition(layout || { width: 0, height: 0, x: 0, y: 0 }, direction || "left");
+        const [startPos, endPos] = appear ? [0, exitPos] : [exitPos, 0];
+        const slideAnim = useRef(new Animated.Value(inProp ? endPos : startPos)).current;
 
         const { mounted } = useAnimatedTiming(inProp, slideAnim, {
             toValue: { enter: 0, exit: getExitedPosition(layout || { width: 0, height: 0, x: 0, y: 0 }, direction || "left") },

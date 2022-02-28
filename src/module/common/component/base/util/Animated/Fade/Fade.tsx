@@ -25,6 +25,7 @@ export default function fade<P extends { style?: any }>(
         easing = configEasing,
         unmountOnExit = configUnmountOnExit,
         in: inProp,
+        appear,
         onEnter = configOnEnter,
         onEntered = configOnEntered,
         onExit = configOnExit,
@@ -32,7 +33,8 @@ export default function fade<P extends { style?: any }>(
         style: { opacity = 1, ...style } = {},
         ...rest
     }: P & AnimatedProps): JSX.Element => {
-        const fadeAnim = useRef(new Animated.Value(inProp ? 0 : opacity)).current;
+        const [startPos, endPos] = appear ? [0, opacity] : [opacity, 0];
+        const fadeAnim = useRef(new Animated.Value(inProp ? startPos : endPos)).current;
 
         const { mounted } = useAnimatedTiming(inProp, fadeAnim, {
             toValue: { enter: opacity, exit: 0 },

@@ -1,6 +1,17 @@
 import { SafeAreaView } from "react-native";
 import { translate } from "locale";
-import { Col, Skeleton, Animated } from "react-native-components";
+import {
+    Col,
+    Skeleton,
+    Animated,
+    Backdrop,
+    useBackdrop,
+    createBackdrop,
+    createModal,
+    Modal,
+    useModal,
+    Typography,
+} from "react-native-components";
 import { Text, View } from "react-native";
 import { useLogin } from "module/auth/query/useLogin";
 import { ArrowIcon } from "icons";
@@ -24,6 +35,9 @@ const CustomView = styled(View)(({ theme }) => ({
 
 const AnimatedButton = Animated.createAnimatedComponent.slide(Button, { direction: "left" });
 
+const NewBackdrop = createBackdrop(Backdrop);
+const NewModal = createModal(Modal);
+
 const DashboardScreen = ({ navigation }: any): JSX.Element => {
     const login = useLogin();
     const {
@@ -32,6 +46,8 @@ const DashboardScreen = ({ navigation }: any): JSX.Element => {
     } = useAuth();
 
     const [visible, setVisible] = useState(false);
+    const { showBackdrop } = useBackdrop();
+    const { showModal } = useModal();
 
     return (
         <SafeAreaView style={{ backgroundColor: "#FFFFFF", flex: 1 }}>
@@ -61,6 +77,10 @@ const DashboardScreen = ({ navigation }: any): JSX.Element => {
                 </Skeleton>
             </Col>
             <Button onPress={() => navigation.navigate("Login")}>Login</Button>
+            <Button onPress={() => showBackdrop(NewBackdrop)}>Open Backdrop</Button>
+            <Button onPress={() => showModal(NewModal, { children: <Typography variant="h1">HOLA</Typography>, animation: "from-bottom" })}>
+                Open Modal
+            </Button>
         </SafeAreaView>
     );
 };
