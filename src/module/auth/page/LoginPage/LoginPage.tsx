@@ -15,7 +15,6 @@ const LoginPage = (): JSX.Element => {
             navigation.navigate("Home");
         } else setError(true);
     };
-    console.log("main", error);
 
     return (
         <LogoPage>

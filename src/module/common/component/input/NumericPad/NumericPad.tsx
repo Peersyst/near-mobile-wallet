@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Keyboard from "../Keyboard/Keyboard";
 import PinDisplay from "../../display/PinDisplay/PinDisplay";
 import { NumericPadProps } from "module/common/component/input/NumericPad/NumericPad.types";
-import { NumericPadRoot } from "./NumericPad.styles";
+import { Col } from "react-native-components";
 
 const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style: styleProp }: NumericPadProps): JSX.Element => {
     const [value, setValue] = useState<string>("");
@@ -21,10 +21,10 @@ const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style: st
 
     const { gap = 30, ...style } = styleProp || {};
     return (
-        <NumericPadRoot style={style} gap={gap}>
+        <Col style={style} alignItems="center" justifyContent="space-between" gap={gap}>
             <PinDisplay length={value.length} error={error && !value.length} placeholder={error ? undefined : placeholder} />
             <Keyboard setValue={setValue} />
-        </NumericPadRoot>
+        </Col>
     );
 };
 
