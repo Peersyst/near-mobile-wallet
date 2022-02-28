@@ -1,7 +1,6 @@
 import { translate } from "locale";
 import { Col, Animated } from "react-native-components";
 import { Text, View } from "react-native";
-import { useLogin } from "module/auth/query/useLogin";
 import { ArrowIcon } from "icons";
 import { useAuth } from "module/auth/hook/useAuth";
 import styled from "@peersyst/react-native-styled";
@@ -22,11 +21,7 @@ const CustomView = styled(View)(({ theme }) => ({
 const AnimatedButton = Animated.createAnimatedComponent.slide(Button, { direction: "left" });
 
 const HomePage = (): JSX.Element => {
-    const login = useLogin();
-    const {
-        state: { token, isLogged },
-        logout,
-    } = useAuth();
+    const { logout } = useAuth();
 
     const [visible, setVisible] = useState(false);
 
@@ -36,20 +31,10 @@ const HomePage = (): JSX.Element => {
                 <CustomView>
                     <CustomText>{translate("name")}</CustomText>
                 </CustomView>
-                <AnimatedButton
-                    in={visible}
-                    appearance="dark"
-                    leftIcon={<ArrowIcon />}
-                    loading={login.isLoading}
-                    onPress={() => (!isLogged ? login.mutate({ username: "Charlie", password: "Test1234" }) : logout())}
-                    duration={500}
-                >
-                    {!isLogged ? <Text>Log in</Text> : <Text>Log out</Text>}
+                <AnimatedButton in={visible} appearance="dark" leftIcon={<ArrowIcon />} onPress={() => logout()} duration={500}>
+                    <Text>Log out</Text>
                 </AnimatedButton>
                 <Button onPress={() => setVisible(!visible)}>Toggle visible</Button>
-                <Text>Query result: {JSON.stringify(login.data)}</Text>
-                <Text>Auth state: {JSON.stringify({ token: token || null, isLogged })}</Text>
-                {login.error && <Text>{JSON.stringify(login.error)}</Text>}
             </Col>
         </BasePage>
     );
