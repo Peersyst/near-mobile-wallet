@@ -1,6 +1,7 @@
 import BasePage from "module/common/component/layout/BasePage/BasePage";
 import LogoCol from "module/common/component/display/Logos/LogoCol/LogoCol";
 import { LogoPageIconRoot } from "./LogoPage.styles";
+import { ReactNode } from "react";
 
 export interface LogoPageProps {
     children?: React.ReactNode;

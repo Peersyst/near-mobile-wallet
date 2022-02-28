@@ -37,6 +37,7 @@ export const defaultTheme: DefaultTheme = {
     toastAnimation: "fadingSlide",
     toastPosition: "top-right",*/
     zIndex: {
+        header: 10,
         popover: 10,
         modal: 100,
         selectMenu: 5,

@@ -13,6 +13,7 @@ const LoginPage = (): JSX.Element => {
             setError(login.isError);
         }
     };
+
     return (
         <LogoPage>
             <NumericPad
