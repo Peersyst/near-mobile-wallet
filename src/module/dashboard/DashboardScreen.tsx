@@ -21,7 +21,7 @@ const CustomView = styled(View)(({ theme }) => ({
 
 const AnimatedButton = Animated.createAnimatedComponent.slide(Button, { direction: "left" });
 
-const DashboardScreen = ({ navigation }: any): JSX.Element => {
+const DashboardScreen = (): JSX.Element => {
     const login = useLogin();
     const {
         state: { token, isLogged },
@@ -51,7 +51,6 @@ const DashboardScreen = ({ navigation }: any): JSX.Element => {
                 <Text>Auth state: {JSON.stringify({ token: token || null, isLogged })}</Text>
                 {login.error && <Text>{JSON.stringify(login.error)}</Text>}
             </Col>
-            <Button onPress={() => navigation.navigate("Login")}>Login</Button>
         </BasePage>
     );
 };
