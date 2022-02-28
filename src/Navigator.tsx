@@ -1,7 +1,7 @@
-import { DashboardNavigator } from "module/dashboard/DashboardNavigator";
+import { DashboardNavigator, DashboardScreens } from "module/dashboard/DashboardNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 import Stack from "stack-navigator";
-import { AuthScreen, AuthGroup } from "module/auth/navigation/AuthGroup";
+import { AuthGroup } from "module/auth/navigation/AuthGroup";
 import { useAuth } from "module/auth/hook/useAuth";
 
 const Navigator = (): JSX.Element => {
@@ -11,7 +11,7 @@ const Navigator = (): JSX.Element => {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName={AuthScreen.LOGIN} screenOptions={{ headerShown: false }}>
+            <Stack.Navigator initialRouteName={DashboardScreens.WELCOME_BACK} screenOptions={{ headerShown: false }}>
                 {isLogged ? DashboardNavigator : AuthGroup}
             </Stack.Navigator>
         </NavigationContainer>

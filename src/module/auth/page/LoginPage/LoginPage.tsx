@@ -18,7 +18,6 @@ const LoginPage = (): JSX.Element => {
             <NumericPad
                 onSubmit={handleSubmit}
                 error={error}
-                loading={login.isLoading}
                 placeholder={translate("enter_your_pin")}
                 style={{ height: "65%", gap: "5%" }}
             />

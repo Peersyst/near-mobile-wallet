@@ -5,6 +5,7 @@ export type RootStackParamsList = {
     Settings: undefined;
     Notifications: undefined;
     Login: undefined;
+    WelcomeBack: undefined;
 };
 
 export default createNativeStackNavigator<RootStackParamsList>();
