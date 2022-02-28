@@ -1,4 +1,3 @@
-//Polyfill some js utilities like setImmediate
 import "core-js";
 // Load localization for translated assertions
 import { loadLocalization } from "locale";
