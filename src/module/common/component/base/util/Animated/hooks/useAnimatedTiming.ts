@@ -35,7 +35,7 @@ export default function useAnimatedTiming(
                 duration: getDuration(duration, "enter"),
                 delay: getDelay(delay, "enter"),
                 easing,
-                useNativeDriver: true,
+                useNativeDriver: false,
             }).start(onEntered);
         } else {
             onExit?.();
@@ -44,7 +44,7 @@ export default function useAnimatedTiming(
                 duration: getDuration(duration, "exit"),
                 delay: getDelay(delay, "exit"),
                 easing,
-                useNativeDriver: true,
+                useNativeDriver: false,
             }).start(() => {
                 onExited?.();
                 setMounted(false);
