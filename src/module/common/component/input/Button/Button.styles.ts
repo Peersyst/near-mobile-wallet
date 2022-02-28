@@ -19,6 +19,9 @@ export const ButtonRoot = styled(Button)<ButtonAppearanceProps>(({ theme, appear
             height: 36,
             fontSize: 14,
             paddingHorizontal: 30,
+            text: {
+                fontSize: 16,
+            }
         },
         outlined: {
             ...outlined[appearance],
@@ -32,5 +35,8 @@ export const ButtonRoot = styled(Button)<ButtonAppearanceProps>(({ theme, appear
         contained: {
             ...contained[appearance],
         },
+        text: {
+            fontSize:16
+        }
     };
 });

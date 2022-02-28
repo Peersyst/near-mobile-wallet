@@ -1,6 +1,6 @@
 import DashboardScreen from "module/main/DashboardScreen";
 import Stack from "stack-navigator";
-import WelcomeBackPage from "module/auth/page/WelcomeBack/WelcomeBackPage";
+import WelcomeBackPage from "module/auth/page/WelcomeBackPage/WelcomeBackPage";
 
 export enum DashboardScreens {
     WELCOME_BACK = "WelcomeBack",

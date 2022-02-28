@@ -9,6 +9,7 @@ export type RootStackParamsList = {
     //Auth
     Login: undefined;
     AuthSwitch: undefined;
+    CreateWallet: undefined;
 };
 
 export default createNativeStackNavigator<RootStackParamsList>();

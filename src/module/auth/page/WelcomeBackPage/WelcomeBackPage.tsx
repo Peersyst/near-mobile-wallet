@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { Typography } from "react-native-components";
 import { RootStackParamsList } from "stack-navigator";
 import { WelcomeBackPageRoot } from "./WelcomeBackPage.styles";
+import { translate } from "locale";
 
 const WelcomeBackPage = (): JSX.Element => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
@@ -18,7 +19,7 @@ const WelcomeBackPage = (): JSX.Element => {
     return (
         <LogoPage>
             <WelcomeBackPageRoot>
-                <Typography variant="body1">Welcome back</Typography>
+                <Typography variant="body1">{translate("welcome_back")}</Typography>
             </WelcomeBackPageRoot>
         </LogoPage>
     );
