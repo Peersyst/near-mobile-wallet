@@ -14,6 +14,6 @@
     "invalid_number_lte": "The number must be lower or equal than {n}",
     "enter_your_pin": "Enter your PIN",
     "create_wallet": "Create Wallet",
-    "already_have_wallet": "Already have a CKBull Wallet",
+    "already_have_wallet": "Already have a CKBull Wallet?",
     "import_it": "Import it"
 }
