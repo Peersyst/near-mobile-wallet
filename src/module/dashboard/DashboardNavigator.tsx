@@ -2,11 +2,11 @@ import DashboardScreen from "module/dashboard/DashboardScreen";
 import Stack from "stack-navigator";
 
 export enum DashboardScreens {
-    MAIN = "Main",
+    HOME = "Home",
 }
 
 export const DashboardNavigator = (
     <>
-        <Stack.Screen name={DashboardScreens.MAIN} component={DashboardScreen} />
+        <Stack.Screen name={DashboardScreens.HOME} component={DashboardScreen} />
     </>
 );

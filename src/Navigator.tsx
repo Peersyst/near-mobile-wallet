@@ -1,11 +1,11 @@
-import { DashboardNavigator, DashboardScreens } from "module/dashboard/DashboardNavigator";
+import { DashboardNavigator } from "module/dashboard/DashboardNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 import Stack from "stack-navigator";
-import { AuthNavigator } from "module/auth/navigation/AuthNavigator";
+import { AuthNavigator, AuthScreen } from "module/auth/navigation/AuthNavigator";
 
 const Navigator = (): JSX.Element => (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName={DashboardScreens.MAIN} screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName={AuthScreen.LOGIN} screenOptions={{ headerShown: false }}>
             {DashboardNavigator}
             {AuthNavigator}
         </Stack.Navigator>

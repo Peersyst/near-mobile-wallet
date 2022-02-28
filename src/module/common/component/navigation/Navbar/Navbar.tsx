@@ -6,10 +6,15 @@ import { BackIcon } from "icons";
 
 const Navbar = ({ back, title, logo = false }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
+    const goBack = () => {
+        if (navigation.canGoBack()) {
+            navigation.goBack();
+        }
+    };
     return (
         <NavbarRoot>
             {back && (
-                <BackIconRoot onPress={() => navigation.goBack()}>
+                <BackIconRoot onPress={goBack}>
                     <BackIcon />
                 </BackIconRoot>
             )}

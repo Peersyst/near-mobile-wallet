@@ -1,28 +1,15 @@
-import { Col } from "react-native-components";
-import Logotip from "../Logotip/Logotip";
-import Isotip from "../Isotip/Isotip";
-import { LogoColRelationsType, LogoColProps } from "./LogoCol.types";
+import { SvgIconProps } from "react-native-components";
+import { LogoColIcon, LogoColRoot } from "./LogoCol.styles";
 
-const LogoColRelations: LogoColRelationsType = {
-    lg: {
-        isotipSize: "xl",
-        logotipSize: "lg",
-        gap: 28,
-    },
-    md: {
-        isotipSize: "lg",
-        logotipSize: "sm",
-        gap: 17,
-    },
-};
+export type LogoColProps = Omit<SvgIconProps, "children">;
 
-const LogoCol = ({ appearance = "dark", size }: LogoColProps): JSX.Element => {
-    const { isotipSize, logotipSize, gap } = LogoColRelations[size];
+export type LogoColRootProps = Pick<SvgIconProps, "size">;
+
+const LogoCol = ({ size, ...rest }: LogoColProps): JSX.Element => {
     return (
-        <Col alignItems={"center"} justifyContent={"center"} gap={gap}>
-            <Isotip size={isotipSize} appearance={appearance} />
-            <Logotip size={logotipSize} appearance={appearance} />
-        </Col>
+        <LogoColRoot size={size}>
+            <LogoColIcon size="100%" {...rest} />
+        </LogoColRoot>
     );
 };
 

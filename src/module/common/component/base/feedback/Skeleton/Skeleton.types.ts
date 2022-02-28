@@ -2,6 +2,11 @@ import { ReactElement } from "react";
 import { PaletteMode } from "react-native-components";
 import { ViewStyle } from "react-native";
 
+/**
+ * Circular -> with borderRadius
+ * Stadium -> theme borderRadius
+ * Reactangular -> no borderRadius
+ */
 export type SkeletonShape = "circular" | "rectangular" | "stadium";
 
 export interface SkeletonProps {
@@ -12,7 +17,7 @@ export interface SkeletonProps {
     /**
      * Skeleton height
      */
-    height?: ViewStyle["width"];
+    height?: ViewStyle["height"];
     /**
      * Skeleton shape
      */
