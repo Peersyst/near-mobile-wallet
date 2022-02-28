@@ -1,4 +1,4 @@
-import { MainNavigatorGroup, DashboardScreens } from "module/main/MainNavigatorGroup";
+import { MainNavigatorGroup, MainScreens } from "module/main/MainNavigatorGroup";
 import { NavigationContainer } from "@react-navigation/native";
 import Stack from "stack-navigator";
 import { AuthNavigatorGroup } from "module/auth/navigation/AuthNavigationGroup";
@@ -12,7 +12,7 @@ const Navigator = (): JSX.Element => {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName={DashboardScreens.WELCOME_BACK} screenOptions={{ headerShown: false }}>
+            <Stack.Navigator initialRouteName={MainScreens.WELCOME_BACK} screenOptions={{ headerShown: false, animation: "slide_from_right" }}>
                 {isLogged ? MainNavigatorGroup : AuthNavigatorGroup}
             </Stack.Navigator>
         </NavigationContainer>
