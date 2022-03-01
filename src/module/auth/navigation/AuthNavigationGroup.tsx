@@ -4,7 +4,7 @@ import CreateWalletPage from "../page/CreateWalletPage/CreateWalletPage";
 import ImportWalletPage from "../page/ImportWalletPage/ImportWalletPage";
 import LoginPage from "../page/LoginPage/LoginPage";
 
-export enum AuthScreen {
+export enum AuthScreens {
     LOGIN = "Login",
     AUTH_SWITCH = "AuthSwitch",
     IMPORT_WALLET = "ImportWallet",
@@ -13,9 +13,9 @@ export enum AuthScreen {
 
 export const AuthNavigatorGroup = (
     <Stack.Group>
-        <Stack.Screen name={AuthScreen.AUTH_SWITCH} component={AuthSwitchPage} />
-        <Stack.Screen name={AuthScreen.LOGIN} component={LoginPage} />
-        <Stack.Screen name={AuthScreen.IMPORT_WALLET} component={ImportWalletPage} />
-        <Stack.Screen name={AuthScreen.CREATE_WALLET} component={CreateWalletPage} />
+        <Stack.Screen name={AuthScreens.AUTH_SWITCH} component={AuthSwitchPage} />
+        <Stack.Screen name={AuthScreens.LOGIN} component={LoginPage} />
+        <Stack.Screen name={AuthScreens.IMPORT_WALLET} component={ImportWalletPage} />
+        <Stack.Screen name={AuthScreens.CREATE_WALLET} component={CreateWalletPage} />
     </Stack.Group>
 );
