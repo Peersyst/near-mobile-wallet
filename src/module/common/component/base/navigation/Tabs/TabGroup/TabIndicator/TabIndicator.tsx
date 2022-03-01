@@ -15,7 +15,6 @@ export default function TabIndicator({ tabGroupLayout, style }: TabIndicatorProp
             width: 0,
             x: 0,
         };
-        console.log(activeLayout);
         setTabWidth(width);
         setTabX(x);
         setTabGroupX(tabGroupLayout?.x || 0);
