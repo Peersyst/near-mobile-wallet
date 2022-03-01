@@ -10,11 +10,7 @@ import { translate } from "locale";
 const WelcomeBackPage = (): JSX.Element => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
     useEffect(() => {
-        const goToHome = async () => {
-            await new Promise((resolve) => setTimeout(resolve, 3000));
-            navigation.navigate("Home");
-        };
-        goToHome();
+        new Promise((resolve) => setTimeout(resolve, 3000)).then(() => navigation.navigate("Home"));
     }, [navigation]);
     return (
         <LogoPage>
