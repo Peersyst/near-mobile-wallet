@@ -16,6 +16,6 @@ export async function loginCall(req: LoginRequest): Promise<LoginResponse> {
                 if (req.password !== "1234") reject({ code: 403, message: "Invalid credentials" });
                 resolve({ auth_token: "auth_token" });
             }
-        }, 2000),
+        }, 100),
     );
 }

@@ -1,5 +1,5 @@
 import LogoPage from "../LogoPage/LogoPage";
-import { AuthSwitchPageRoot, CreatWalletButton, ImportRoot, InfoText, TouchableText } from "./AuthSwitchPage.style";
+import { AuthSwitchPageRoot, CreatWalletButton, ImportRoot, InfoText, TouchableText } from "./AuthSwitchPage.styles";
 import { translate } from "locale";
 import { Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
