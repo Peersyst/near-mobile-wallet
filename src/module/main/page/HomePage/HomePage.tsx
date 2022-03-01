@@ -1,5 +1,5 @@
 import { translate } from "locale";
-import { Col, Animated } from "react-native-components";
+import { Col, Animated, Tabs, TabPanel, TabGroup, Typography, Tab } from "react-native-components";
 import { Text, View } from "react-native";
 import { ArrowIcon } from "icons";
 import { useAuth } from "module/auth/hook/useAuth";
@@ -36,6 +36,22 @@ const HomePage = (): JSX.Element => {
                 </AnimatedButton>
                 <Button onPress={() => setVisible(!visible)}>Toggle visible</Button>
             </Col>
+            <Tabs style={{ marginLeft: 100 }}>
+                <TabGroup>
+                    <Tab index={0}>
+                        <Typography variant="body1">1</Typography>
+                    </Tab>
+                    <Tab index={1}>
+                        <Typography variant="body1">2</Typography>
+                    </Tab>
+                </TabGroup>
+                <TabPanel index={0}>
+                    <Text>Log in</Text>
+                </TabPanel>
+                <TabPanel index={1}>
+                    <Text>Log out</Text>
+                </TabPanel>
+            </Tabs>
         </BasePage>
     );
 };
