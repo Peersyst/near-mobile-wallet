@@ -6,6 +6,7 @@ export interface AnimatedConfig {
     easing?: ((value: number) => number) | undefined;
     duration?: TransitionDuration;
     delay?: TransitionDelay;
+    appear?: boolean;
     unmountOnExit?: boolean;
     onEnter?: () => unknown;
     onEntered?: () => unknown;
