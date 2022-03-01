@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import { View } from "react-native";
 import { Row } from "../../base/layout/Row";
-import { BreadcrumpProps } from "./Breadcrump.types";
+import { BreadcrumpProps } from "./Breadcrumb.types";
 
 export const BreadcrumpRoot = styled(Row, { justifyContent: "space-between", alignItems: "center" })<Pick<BreadcrumpProps, "length">>(({ length }) => ({
     width: length <= 1 ? 0 : length * 63,

@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled";
 import { View, Text } from "react-native";
-import { ActiveProps } from "../Breadcrump.types";
+import { ActiveProps } from "../Breadcrumb.types";
 
 export const BreadcrumpItemRoot = styled(View)<ActiveProps>(({ active, theme }) => ({
     height: active ? 20 : 18,

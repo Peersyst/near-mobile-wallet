@@ -1,6 +1,6 @@
 import { BreadcrumpActiveLine, BreadcrumpLine, BreadcrumpRoot } from "./Breadcrump.styles";
-import BreadcrumpItem from "./BreadcrumpItem/BreadcrumpItem";
-import { BreadcrumpProps } from "./Breadcrump.types";
+import BreadcrumpItem from "./BreadcrumbItem/BreadcrumbItem";
+import { BreadcrumpProps } from "./Breadcrumb.types";
 
 const Breadcrump = ({ numberOfActive, length }: BreadcrumpProps): JSX.Element => {
     return (

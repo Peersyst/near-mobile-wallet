@@ -10,4 +10,3 @@ export interface BreadcrumpProps {
     numberOfActive: number;
     length: number;
 }
-
