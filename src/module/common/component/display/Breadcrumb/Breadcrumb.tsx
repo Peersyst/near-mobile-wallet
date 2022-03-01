@@ -1,17 +1,17 @@
-import { BreadcrumpActiveLine, BreadcrumpLine, BreadcrumpRoot } from "./Breadcrump.styles";
-import BreadcrumpItem from "./BreadcrumbItem/BreadcrumbItem";
-import { BreadcrumpProps } from "./Breadcrumb.types";
+import { BreadcrumbActiveLine, BreadcrumbLine, BreadcrumbRoot } from "./Breadcrumb.styles";
+import BreadcrumbItem from "./BreadcrumbItem/BreadcrumbItem";
+import { BreadcrumbProps } from "./Breadcrumb.types";
 
-const Breadcrump = ({ numberOfActive, length }: BreadcrumpProps): JSX.Element => {
+const Breadcrumb = ({ numberOfActive, length }: BreadcrumbProps): JSX.Element => {
     return (
-        <BreadcrumpRoot length={length}>
+        <BreadcrumbRoot length={length}>
             {[...Array(length)].map((_, i) => (
-                <BreadcrumpItem key={i} active={i < numberOfActive} number={i} />
+                <BreadcrumbItem key={i} active={i < numberOfActive} number={i} />
             ))}
-            <BreadcrumpLine />
-            <BreadcrumpActiveLine length={length} numberOfActive={numberOfActive} />
-        </BreadcrumpRoot>
+            <BreadcrumbLine />
+            <BreadcrumbActiveLine length={length} numberOfActive={numberOfActive} />
+        </BreadcrumbRoot>
     );
 };
 
-export default Breadcrump;
+export default Breadcrumb;

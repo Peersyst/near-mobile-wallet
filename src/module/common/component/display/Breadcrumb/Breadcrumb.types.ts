@@ -2,11 +2,11 @@ export interface ActiveProps {
     active: boolean;
 }
 
-export interface BreadcrumpItemProps extends ActiveProps {
+export interface BreadcrumbItemProps extends ActiveProps {
     number: number;
 }
 
-export interface BreadcrumpProps {
+export interface BreadcrumbProps {
     numberOfActive: number;
     length: number;
 }

@@ -2,7 +2,7 @@ import styled from "@peersyst/react-native-styled";
 import { View, Text } from "react-native";
 import { ActiveProps } from "../Breadcrumb.types";
 
-export const BreadcrumpItemRoot = styled(View)<ActiveProps>(({ active, theme }) => ({
+export const BreadcrumbItemRoot = styled(View)<ActiveProps>(({ active, theme }) => ({
     height: active ? 20 : 18,
     width: active ? 20 : 18,
     borderRadius: 50,
@@ -13,7 +13,7 @@ export const BreadcrumpItemRoot = styled(View)<ActiveProps>(({ active, theme }) 
     justifyContent: "center"
 }));
 
-export const BreadcrumpNumber = styled(Text)<ActiveProps>(({ active, theme }) => ({
+export const BreadcrumbNumber = styled(Text)<ActiveProps>(({ active, theme }) => ({
     fontSize: 11,
     color: active ? theme.palette.white : theme.palette.gray300,
     marginTop: -1,

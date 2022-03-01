@@ -1,14 +1,14 @@
-import { BreadcrumpItemProps } from "../Breadcrumb.types";
-import { BreadcrumpItemRoot, BreadcrumpNumber } from "./BreadcrumbItem.styles";
+import { BreadcrumbItemProps } from "../Breadcrumb.types";
+import { BreadcrumbItemRoot, BreadcrumbNumber } from "./BreadcrumbItem.styles";
 
-const BreadcrumpItem = ({active, number}: BreadcrumpItemProps): JSX.Element => {
+const BreadcrumbItem = ({active, number}: BreadcrumbItemProps): JSX.Element => {
     return (
-        <BreadcrumpItemRoot active={active}>
-            <BreadcrumpNumber active={active} >
+        <BreadcrumbItemRoot active={active} >
+            <BreadcrumbNumber active={active} >
                 {number}
-            </BreadcrumpNumber>
-        </BreadcrumpItemRoot>
+            </BreadcrumbNumber>
+        </BreadcrumbItemRoot>
     );
 };
 
-export default BreadcrumpItem;
+export default BreadcrumbItem;
