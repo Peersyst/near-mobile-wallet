@@ -3,7 +3,7 @@ import { loadLocalization } from "locale";
 import Providers from "./Providers";
 import Navigator from "./Navigator";
 import { useLoad } from "module/common/query/useLoad";
-import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native";
+import LogoPage from "module/auth/page/LogoPage/LogoPage";
 
 loadLocalization();
 
@@ -11,15 +11,7 @@ const App = (): JSX.Element => {
     const loading = useLoad();
     return (
         <>
-            {loading ? (
-                <Text>Loading app</Text>
-            ) : (
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                    <View style={{ flex: 1 }}>
-                        <Navigator />
-                    </View>
-                </TouchableWithoutFeedback>
-            )}
+            {loading ? <LogoPage /> : <Navigator />}
             <StatusBar />
         </>
     );

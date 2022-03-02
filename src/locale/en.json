@@ -1,5 +1,6 @@
 {
     "welcome": "Hello",
+    "welcome_back": "Welcome back",
     "name": "Charlie",
     "invalid_not_null": "This field is required",
     "invalid_number": "Value must be a number",
@@ -11,5 +12,8 @@
     "invalid_number_eq": "The number must be equal to {n}",
     "invalid_number_lt": "The number must be lower than {n}",
     "invalid_number_lte": "The number must be lower or equal than {n}",
-    "enter_your_pin": "Enter your PIN"
+    "enter_your_pin": "Enter your PIN",
+    "create_wallet": "Create Wallet",
+    "already_have_wallet": "Already have a CKBull Wallet?",
+    "import_it": "Import it"
 }
