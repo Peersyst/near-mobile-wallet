@@ -7,7 +7,6 @@ describe("Test for the BreadcrumbItem", () => {
         const screen = render(<BreadcrumbItem number={0} active={false} />);
         const number = screen.getByText("0");
         expect(number).toBeDefined();
-        expect(number.props.style.color).toEqual(theme.palette.gray300);
     });
     test("Renders correctly active", () => {
         const screen = render(<BreadcrumbItem number={1} active={true} />);

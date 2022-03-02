@@ -11,7 +11,7 @@ export enum AuthScreens {
     CREATE_WALLET = "CreateWallet",
 }
 
-export const AuthNavigatorGroup = (
+const AuthNavigatorGroup = (
     <Stack.Group>
         <Stack.Screen name={AuthScreens.AUTH_SWITCH} component={AuthSwitchPage} />
         <Stack.Screen name={AuthScreens.LOGIN} component={LoginPage} />
@@ -19,3 +19,5 @@ export const AuthNavigatorGroup = (
         <Stack.Screen name={AuthScreens.CREATE_WALLET} component={CreateWalletPage} />
     </Stack.Group>
 );
+
+export default AuthNavigatorGroup;

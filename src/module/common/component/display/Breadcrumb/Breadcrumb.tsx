@@ -1,6 +1,7 @@
 import { BreadcrumbLine, BreadcrumbRoot } from "./Breadcrumb.styles";
 import BreadcrumbItem from "./BreadcrumbItem/BreadcrumbItem";
 import { BreadcrumbProps } from "./Breadcrumb.types";
+import { Fragment } from "react";
 
 const Breadcrumb = ({ numberOfActive, length }: BreadcrumbProps): JSX.Element => {
     return (
@@ -8,10 +9,10 @@ const Breadcrumb = ({ numberOfActive, length }: BreadcrumbProps): JSX.Element =>
             {[...Array(length)].map((_, i) => {
                 const active = i <= numberOfActive;
                 return (
-                    <>
+                    <Fragment key={i}>
                         {i > 0 && <BreadcrumbLine length={length} active={active} />}
-                        <BreadcrumbItem key={i} active={active} number={i + 1} />
-                    </>
+                        <BreadcrumbItem active={active} number={i + 1} />
+                    </Fragment>
                 );
             })}
         </BreadcrumbRoot>
