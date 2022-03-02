@@ -1,23 +1,15 @@
+import { Pressable } from "react-native";
 import useNativeNavigation from "../../hooks/useNativeNavigation";
 import { BottomBarLinkProps } from "../BottomBar.types";
-import { BottomBarLinkRoot, LinkIcon, LinkText } from "./BottomBarLink.styles";
 
-const BottomBarLink = ({ label, Icon, link, state }: BottomBarLinkProps): JSX.Element => {
+const BottomBarLink = ({ link, children, isActive }: BottomBarLinkProps): JSX.Element => {
     const navigation = useNativeNavigation();
-    const isActive = state.routeNames[state.index] === label;
     const handleNavigation = () => {
         if (!isActive) {
             navigation.navigate(link);
         }
     };
-    return (
-        <BottomBarLinkRoot accessibilityRole="button" onPress={handleNavigation}>
-            <LinkIcon isActive={isActive}>{Icon}</LinkIcon>
-            <LinkText variant="caption" isActive={isActive}>
-                {label}
-            </LinkText>
-        </BottomBarLinkRoot>
-    );
+    return <Pressable onPress={() => handleNavigation()}>{children}</Pressable>;
 };
 
 export default BottomBarLink;

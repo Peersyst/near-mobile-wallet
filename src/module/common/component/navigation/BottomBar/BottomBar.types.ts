@@ -1,10 +1,15 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { IconProps, TypographyProps } from "react-native-components";
 import { MainStackParamsList } from "stack-navigator";
 
-export interface BottomBarLinkProps extends BottomTabBarProps {
+export interface BottomBarLinkProps {
     link: keyof MainStackParamsList;
+    isActive: boolean;
+    children?: ReactNode;
+}
+
+export interface BottomBarItemProps extends Pick<BottomTabBarProps, "state"> {
     Icon: ReactElement;
     label: string;
 }

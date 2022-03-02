@@ -1,18 +1,18 @@
 import styled from "@peersyst/react-native-styled";
-import { Pressable } from "react-native";
+import { View } from "react-native";
 import { Icon, Typography } from "react-native-components";
 import { LinkIconProps, LinkTextProps } from "../BottomBar.types";
 
-export const LinkText = styled(Typography, { textAlign: "center" })<LinkTextProps>(({ theme, isActive }) => ({
+export const LinkItemText = styled(Typography, { textAlign: "center" })<LinkTextProps>(({ theme, isActive }) => ({
     color: isActive ? theme.palette.black : theme.palette.darkGray,
 }))
 
-export const LinkIcon = styled(Icon)<LinkIconProps>(({ theme, isActive }) => ({
+export const LinkItemIcon = styled(Icon)<LinkIconProps>(({ theme, isActive }) => ({
     color: isActive ? theme.palette.black : theme.palette.darkGray,
     fontSize: 24,
 }));
 
-export const BottomBarLinkRoot = styled(Pressable)(() => ({
+export const BottomBarLinkRoot = styled(View)(() => ({
     flexDirection: "column",
     height: "100%",
     width: 60,
