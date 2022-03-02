@@ -8,7 +8,7 @@ const BottomBar = (props: BottomTabBarProps): JSX.Element => {
     return (
         <BottomBarRoot>
             <BottomBarLink {...props} label={"Dao"} link={"Dao"} Icon={<DAOIcon />} />
-            <BottomBarLogoLink />
+            <BottomBarLogoLink {...props} />
             <BottomBarLink {...props} label={"News"} link={"News"} Icon={<NewsIcon />} />
         </BottomBarRoot>
     );

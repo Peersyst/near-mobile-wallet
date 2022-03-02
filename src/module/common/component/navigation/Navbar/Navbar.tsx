@@ -2,7 +2,7 @@ import { NavbarProps } from "./Navbar.types";
 import { NavbarRoot, BackIconRoot, Title } from "./Navbar.styles";
 import LogoRow from "../../display/Logos/LogoRow/LogoRow";
 import { BackIcon } from "icons";
-import useNativeNavigation from "../hooks/useNavigation";
+import useNativeNavigation from "../hooks/useNativeNavigation";
 
 const Navbar = ({ back, title, logo = false }: NavbarProps): JSX.Element => {
     const navigation = useNativeNavigation();

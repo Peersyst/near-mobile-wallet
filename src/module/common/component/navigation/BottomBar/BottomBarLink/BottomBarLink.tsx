@@ -1,4 +1,4 @@
-import useNativeNavigation from "../../hooks/useNavigation";
+import useNativeNavigation from "../../hooks/useNativeNavigation";
 import { BottomBarLinkProps } from "../BottomBar.types";
 import { BottomBarLinkRoot, LinkIcon, LinkText } from "./BottomBarLink.styles";
 

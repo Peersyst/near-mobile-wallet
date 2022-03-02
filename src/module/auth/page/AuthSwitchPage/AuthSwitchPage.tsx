@@ -2,7 +2,7 @@ import LogoPage from "../LogoPage/LogoPage";
 import { AuthSwitchPageRoot, CreatWalletButton, TouchableText } from "./AuthSwitchPage.styles";
 import { translate } from "locale";
 import { Col, Typography } from "react-native-components";
-import useNativeNavigation from "module/common/component/navigation/hooks/useNavigation";
+import useNativeNavigation from "module/common/component/navigation/hooks/useNativeNavigation";
 
 export interface TouchableTextProps {
     pressed: boolean;
