@@ -11,13 +11,13 @@ const BottomBar = ({ state }: BottomTabBarProps): JSX.Element => {
     return (
         <BottomBarRoot>
             <BottomBarLink isActive={activeTab === MainScreens.DAO} link={MainScreens.DAO}>
-                <BottomBarItem state={state} label={MainScreens.DAO} Icon={<DAOIcon />} />
+                <BottomBarItem isActive={activeTab === MainScreens.DAO} label={MainScreens.DAO} Icon={<DAOIcon />} />
             </BottomBarLink>
-            <BottomBarLink isActive={activeTab === MainScreens.DAO} link={MainScreens.DAO}>
+            <BottomBarLink isActive={activeTab === MainScreens.HOME} link={MainScreens.HOME}>
                 <BottomBarLogoItem />
             </BottomBarLink>
             <BottomBarLink isActive={activeTab === MainScreens.NEWS} link={MainScreens.NEWS}>
-                <BottomBarItem state={state} label={MainScreens.NEWS} Icon={<NewsIcon />} />
+                <BottomBarItem isActive={activeTab === MainScreens.NEWS} label={MainScreens.NEWS} Icon={<NewsIcon />} />
             </BottomBarLink>
         </BottomBarRoot>
     );

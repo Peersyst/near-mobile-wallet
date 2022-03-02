@@ -1,10 +1,7 @@
 import { BottomBarItemProps } from "../BottomBar.types";
 import { BottomBarLinkRoot, LinkItemIcon, LinkItemText } from "./BottomBarItem.styles";
 
-const BottomBarItem = ({ label, Icon, state }: BottomBarItemProps): JSX.Element => {
-    
-    const isActive = state.routeNames[state.index] === label;
- 
+const BottomBarItem = ({ label, Icon, isActive }: BottomBarItemProps): JSX.Element => {
     return (
         <BottomBarLinkRoot>
             <LinkItemIcon isActive={isActive}>{Icon}</LinkItemIcon>
