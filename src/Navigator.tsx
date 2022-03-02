@@ -1,15 +1,23 @@
-import { DashboardNavigator } from "module/dashboard/DashboardNavigator";
+import { MainNavigatorGroup, MainScreens } from "module/main/MainNavigatorGroup";
 import { NavigationContainer } from "@react-navigation/native";
 import Stack from "stack-navigator";
-import { AuthNavigator, AuthScreen } from "module/auth/navigation/AuthNavigator";
+import { AuthNavigatorGroup, AuthScreens } from "module/auth/navigation/AuthNavigationGroup";
+import { useAuth } from "module/auth/hook/useAuth";
 
-const Navigator = (): JSX.Element => (
-    <NavigationContainer>
-        <Stack.Navigator initialRouteName={AuthScreen.LOGIN} screenOptions={{ headerShown: false }}>
-            {DashboardNavigator}
-            {AuthNavigator}
-        </Stack.Navigator>
-    </NavigationContainer>
-);
+const Navigator = (): JSX.Element => {
+    const {
+        state: { token, isLogged },
+    } = useAuth();
+
+    const initialRoute = isLogged ? MainScreens.WELCOME_BACK : token ? AuthScreens.LOGIN : AuthScreens.AUTH_SWITCH;
+
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName={initialRoute} screenOptions={{ headerShown: false, animation: "slide_from_right" }}>
+                {isLogged ? MainNavigatorGroup : AuthNavigatorGroup}
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+};
 
 export default Navigator;

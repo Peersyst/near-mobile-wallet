@@ -10,9 +10,7 @@ export function useLoad(): boolean {
     useEffect(() => {
         AuthTokenStorage.get().then((token) => {
             if (token) setAuthState({ token, isLogged: true });
-
             // OTHER STUFF
-
             setLoading(false);
         });
     }, [setAuthState]);
