@@ -4,13 +4,12 @@ import { translate } from "locale";
 export const theme = createTheme({
     palette: {
         background: "#FFFFFF",
-        primary: "#623EDF",
+        primary: "#0B0D1E",
         white: "#FFFFFF",
         black: "#0B0D1E",
         fullBlack: "#000000",
         darkGray: "#707070",
         darkLightGray: "#7070707F",
-        gray300: "#858585",
         darkLightGray2: "#24242487",
         darkGray2: "#242424EA",
         darkFont: "#343434",

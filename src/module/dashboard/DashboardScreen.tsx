@@ -6,7 +6,7 @@ const DashboardScreen = ({ navigation }: any): JSX.Element => {
     return (
         <BasePage appearance="light" showIcons>
             <Button onPress={() => navigation.navigate("Login")}>Login</Button>
-            <Breadcrumb numberOfActive={0} length={4} />
+            <Breadcrumb numberOfActive={1} length={6} />
         </BasePage>
     );
 };
