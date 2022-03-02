@@ -8,7 +8,7 @@ import useNativeNavigation from "module/common/component/navigation/hooks/useNav
 const WelcomeBackPage = (): JSX.Element => {
     const navigation = useNativeNavigation();
     useEffect(() => {
-        new Promise((resolve) => setTimeout(resolve, 3000)).then(() => navigation.navigate("Home"));
+        new Promise((resolve) => setTimeout(resolve, 3000)).then(() => navigation.navigate("Main"));
     }, [navigation]);
     return (
         <LogoPage>

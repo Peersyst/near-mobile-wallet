@@ -1,18 +1,22 @@
-import { TouchableWithoutFeedback } from "react-native";
-import { Col } from "react-native-components";
 import useNativeNavigation from "../../hooks/useNavigation";
 import { BottomBarLinkProps } from "../BottomBar.types";
-import { LinkIcon, LinkText } from "./BottomBarLink.styles";
+import { BottomBarLinkRoot, LinkIcon, LinkText } from "./BottomBarLink.styles";
 
-const BottomBarLink = ({ label, Icon, link }: BottomBarLinkProps): JSX.Element => {
+const BottomBarLink = ({ label, Icon, link, state }: BottomBarLinkProps): JSX.Element => {
     const navigation = useNativeNavigation();
+    const isActive = state.routeNames[state.index] === label;
+    const handleNavigation = () => {
+        if (!isActive) {
+            navigation.navigate(link);
+        }
+    };
     return (
-        <TouchableWithoutFeedback onPress={() => navigation.navigate(link)}>
-            <Col alignItems="center" gap={2}>
-                <LinkIcon>{Icon}</LinkIcon>
-                <LinkText variant="caption">{label}</LinkText>
-            </Col>
-        </TouchableWithoutFeedback>
+        <BottomBarLinkRoot accessibilityRole="button" onPress={handleNavigation}>
+            <LinkIcon isActive={isActive}>{Icon}</LinkIcon>
+            <LinkText variant="caption" isActive={isActive}>
+                {label}
+            </LinkText>
+        </BottomBarLinkRoot>
     );
 };
 
