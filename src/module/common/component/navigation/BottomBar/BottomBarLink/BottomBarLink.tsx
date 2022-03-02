@@ -8,9 +8,9 @@ const BottomBarLink = ({ label, Icon, link }: BottomBarLinkProps): JSX.Element =
     const navigation = useNativeNavigation();
     return (
         <TouchableWithoutFeedback onPress={() => navigation.navigate(link)}>
-            <Col>
-                <LinkText variant="body1">{label}</LinkText>
+            <Col alignItems="center" gap={2}>
                 <LinkIcon>{Icon}</LinkIcon>
+                <LinkText variant="caption">{label}</LinkText>
             </Col>
         </TouchableWithoutFeedback>
     );
