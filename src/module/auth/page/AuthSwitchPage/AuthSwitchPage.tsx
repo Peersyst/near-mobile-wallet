@@ -1,4 +1,4 @@
-import LogoPage from "../LogoPage/LogoPage";
+import LogoPage from "../../../common/component/layout/LogoPage/LogoPage";
 import { AuthSwitchPageRoot, CreatWalletButton, TouchableText } from "./AuthSwitchPage.styles";
 import { translate } from "locale";
 import { useNavigation } from "@react-navigation/native";

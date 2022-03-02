@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import LogoPage from "module/auth/page/LogoPage/LogoPage";
+import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
 import { useEffect } from "react";
 import { Typography } from "react-native-components";
 import { RootStackParamsList } from "stack-navigator";
