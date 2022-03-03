@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { View } from "react-native";
+import { Pressable } from "react-native";
 import { Icon, Typography } from "react-native-components";
 import { LinkIconProps, LinkTextProps } from "../BottomBar.types";
 
@@ -12,7 +12,7 @@ export const LinkItemIcon = styled(Icon)<LinkIconProps>(({ theme, isActive }) =>
     fontSize: 24,
 }));
 
-export const BottomBarLinkRoot = styled(View)(() => ({
+export const BottomBarLinkRoot = styled(Pressable)(() => ({
     flexDirection: "column",
     height: "100%",
     width: 60,
