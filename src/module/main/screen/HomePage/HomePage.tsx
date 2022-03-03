@@ -9,7 +9,7 @@ const HomePage = (): JSX.Element => {
     return (
         <BasePage appearance="light" showIcons>
             <Button onPress={logout}>Log out</Button>
-            <Breadcrumbs index={0} length={6} />
+            <Breadcrumbs index={2} length={6} />
         </BasePage>
     );
 };
