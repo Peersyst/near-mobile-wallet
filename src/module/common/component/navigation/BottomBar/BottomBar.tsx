@@ -1,24 +1,35 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { DAOIcon, NewsIcon } from "icons";
 import { MainScreens } from "module/main/MainNavigatorGroup";
+import { MainStackParamsList } from "stack-navigator";
+import useNativeNavigation from "../hooks/useNativeNavigation";
 import { BottomBarRoot } from "./BottomBar.styles";
 import BottomBarItem from "./BottomBarItem/BottomBarItem";
-import BottomBarLink from "./BottomBarLink/BottomBarLink";
 import BottomBarLogoItem from "./BottomBarLogoItem/BottomBarLogoItem";
 
 const BottomBar = ({ state }: BottomTabBarProps): JSX.Element => {
     const activeTab = state.routeNames[state.index];
+    const navigation = useNativeNavigation();
+    const handleNavigation = (link: keyof MainStackParamsList) => {
+        if (activeTab !== link) {
+            navigation.navigate(link);
+        }
+    };
     return (
         <BottomBarRoot>
-            <BottomBarLink isActive={activeTab === MainScreens.DAO} link={MainScreens.DAO}>
-                <BottomBarItem isActive={activeTab === MainScreens.DAO} label={MainScreens.DAO} Icon={<DAOIcon />} />
-            </BottomBarLink>
-            <BottomBarLink isActive={activeTab === MainScreens.HOME} link={MainScreens.HOME}>
-                <BottomBarLogoItem />
-            </BottomBarLink>
-            <BottomBarLink isActive={activeTab === MainScreens.NEWS} link={MainScreens.NEWS}>
-                <BottomBarItem isActive={activeTab === MainScreens.NEWS} label={MainScreens.NEWS} Icon={<NewsIcon />} />
-            </BottomBarLink>
+            <BottomBarItem
+                onPress={() => handleNavigation(MainScreens.DAO)}
+                isActive={activeTab === MainScreens.DAO}
+                label={MainScreens.DAO}
+                Icon={<DAOIcon />}
+            />
+            <BottomBarLogoItem onPress={() => handleNavigation(MainScreens.HOME)}/>
+            <BottomBarItem
+                onPress={() => handleNavigation(MainScreens.NEWS)}
+                isActive={activeTab === MainScreens.NEWS}
+                label={MainScreens.NEWS}
+                Icon={<NewsIcon />}
+            />
         </BottomBarRoot>
     );
 };

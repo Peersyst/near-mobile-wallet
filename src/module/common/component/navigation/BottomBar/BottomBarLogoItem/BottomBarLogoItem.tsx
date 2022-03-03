@@ -1,14 +1,16 @@
 import { image } from "asset/image/index";
-import { LogoImage, LogoItemRoot } from "./BottomBarLogoItem.styles";
+import { LogoImage, LogoItemRoot, PressableImageRoot } from "./BottomBarLogoItem.styles";
 
-interface BottomBarLogoItem {
-    isActive: boolean;
+interface BottomBarLogoItemProps {
+    onPress: () => void;
 }
 
-const BottomBarLogoItem = (): JSX.Element => {
+const BottomBarLogoItem = ({ onPress }: BottomBarLogoItemProps): JSX.Element => {
     return (
-        <LogoItemRoot >
-            <LogoImage source={image.coloredLogo} />
+        <LogoItemRoot>
+            <PressableImageRoot accessibilityRole="imagebutton" onPress={onPress}>
+                <LogoImage accessibilityRole="image" source={image.coloredLogo} />
+            </PressableImageRoot>
         </LogoItemRoot>
     );
 };

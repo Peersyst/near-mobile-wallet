@@ -9,6 +9,7 @@ export interface BottomBarLinkProps {
 }
 
 export interface BottomBarItemProps {
+    onPress: () => void;
     isActive: boolean;
     Icon: ReactElement;
     label: string;
