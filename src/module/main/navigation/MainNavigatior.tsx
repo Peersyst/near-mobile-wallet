@@ -1,5 +1,5 @@
 import BottomBar from "module/common/component/navigation/BottomBar/BottomBar";
-import DaoScreen from "module/Dao/page/DaoScreen";
+import DaoScreen from "module/dao/page/DaoScreen";
 import NewsScreen from "module/news/page/NewsScreen";
 import { BottomTab } from "stack-navigator";
 import { MainScreens } from "../MainNavigatorGroup";

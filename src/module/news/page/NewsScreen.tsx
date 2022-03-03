@@ -4,7 +4,7 @@ import { Text } from "react-native";
 const NewsScreen = (): JSX.Element => {
     return (
         <BasePage appearance="light" showIcons>
-            <Text>News</Text>
+            <Text>News Screen</Text>
         </BasePage>
     );
 };

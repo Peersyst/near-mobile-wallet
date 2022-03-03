@@ -23,6 +23,3 @@ export interface LinkTextProps extends TypographyProps {
     isActive?: boolean;
 }
 
-export interface LogoLinkProps {
-    isActive?: boolean;
-}

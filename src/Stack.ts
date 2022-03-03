@@ -19,7 +19,6 @@ export type RootStackParamsList = {
     ImportWallet: undefined;
 } & MainStackParamsList;
 
-
 export const BottomTab = createBottomTabNavigator<MainStackParamsList>();
 
 export default createNativeStackNavigator<RootStackParamsList>();

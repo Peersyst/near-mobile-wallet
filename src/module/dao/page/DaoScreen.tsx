@@ -4,7 +4,7 @@ import { Text } from "react-native";
 const DaoScreen = (): JSX.Element => {
     return (
         <BasePage appearance="light" showIcons>
-            <Text>Dao</Text>
+            <Text>Dao Screen</Text>
         </BasePage>
     );
 };
