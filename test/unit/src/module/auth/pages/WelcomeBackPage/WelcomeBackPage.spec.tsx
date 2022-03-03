@@ -1,4 +1,4 @@
-import WelcomeBackPage from "module/auth/page/WelcomeBackPage/WelcomeBackPage";
+import WelcomeBackPage from "module/auth/screen/WelcomeBackPage/WelcomeBackPage";
 import { render } from "test-utils";
 import { translate } from "locale";
 import * as Navigation from "@react-navigation/native";

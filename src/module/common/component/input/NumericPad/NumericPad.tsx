@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import Keyboard from "../Keyboard/Keyboard";
 import PinDisplay from "../../display/PinDisplay/PinDisplay";
 import { NumericPadProps } from "module/common/component/input/NumericPad/NumericPad.types";
-import { Col } from "react-native-components";
+import { Col, Row } from "react-native-components";
+import PressableText from "module/common/component/base/input/PressableText/PressableText";
+import { translate } from "locale";
 
-const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style: styleProp }: NumericPadProps): JSX.Element => {
+const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style, onCancel }: NumericPadProps): JSX.Element => {
     const [value, setValue] = useState<string>("");
     const [error, setError] = useState<boolean>(errorProp);
 
@@ -19,11 +21,22 @@ const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style: st
         setError(errorProp);
     }, [errorProp]);
 
-    const { gap = 30, ...style } = styleProp || {};
     return (
-        <Col style={style} alignItems="center" justifyContent="space-between" gap={gap}>
-            <PinDisplay length={value.length} error={error && !value.length} placeholder={error ? undefined : placeholder} />
-            <Keyboard setValue={setValue} />
+        <Col style={style} justifyContent="space-around" flex={1}>
+            <Row justifyContent="center">
+                <PinDisplay length={value.length} error={error && !value.length} placeholder={error ? undefined : placeholder} />
+            </Row>
+            <Col style={style} gap={"8%"}>
+                <Keyboard setValue={setValue} />
+                <PressableText
+                    style={{ marginHorizontal: "17.8%", marginBottom: "2%" }}
+                    variant="body1"
+                    textAlign="right"
+                    onPress={onCancel}
+                >
+                    {translate("cancel")}
+                </PressableText>
+            </Col>
         </Col>
     );
 };

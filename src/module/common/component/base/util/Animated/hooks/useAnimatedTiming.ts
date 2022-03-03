@@ -38,19 +38,22 @@ export default function useAnimatedTiming(
                 useNativeDriver: false,
             }).start(onEntered);
         } else {
-            onExit?.();
-            Animated.timing(value, {
-                toValue: toValue.exit,
-                duration: getDuration(duration, "exit"),
-                delay: getDelay(delay, "exit"),
-                easing,
-                useNativeDriver: false,
-            }).start(() => {
-                onExited?.();
-                setMounted(false);
-            });
+            if (mounted) {
+                onExit?.();
+                Animated.timing(value, {
+                    toValue: toValue.exit,
+                    duration: getDuration(duration, "exit"),
+                    delay: getDelay(delay, "exit"),
+                    easing,
+                    useNativeDriver: false,
+                }).start(() => {
+                    setMounted(false);
+                    onExited?.();
+                });
+            }
         }
-    }, [delay, duration, easing, value, inValue, onEnter, onEntered, onExit, onExited, toValue.enter, toValue.exit]);
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [inValue]);
 
     return { mounted: !unmountOnExit || mounted };
 }

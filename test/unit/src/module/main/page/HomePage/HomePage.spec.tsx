@@ -1,5 +1,5 @@
 import { render } from "test-utils";
-import HomePage from "module/main/page/HomePage/HomePage";
+import HomePage from "module/main/screen/HomePage/HomePage";
 
 describe("HomePage tests", () => {
     afterEach(() => {

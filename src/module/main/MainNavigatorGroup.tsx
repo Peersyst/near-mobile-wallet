@@ -1,6 +1,6 @@
 import Stack from "stack-navigator";
-import WelcomeBackPage from "module/auth/page/WelcomeBackPage/WelcomeBackPage";
-import HomePage from "./page/HomePage/HomePage";
+import WelcomeBackPage from "module/auth/screen/WelcomeBackPage/WelcomeBackPage";
+import HomePage from "./screen/HomePage/HomePage";
 
 export enum MainScreens {
     WELCOME_BACK = "WelcomeBack",

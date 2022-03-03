@@ -14,7 +14,6 @@ const getOverlayAlpha = (elevation: number): number => {
 };
 
 export const PaperRoot = styled(View)<PaperRootProps>(({ theme, elevation, square }) => ({
-    position: "relative",
     backgroundColor: theme.palette.background,
     borderRadius: square ? 0 : theme.borderRadius,
     ...theme.shadows[elevation],
