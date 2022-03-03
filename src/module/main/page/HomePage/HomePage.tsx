@@ -11,7 +11,7 @@ const HomePage = (): JSX.Element => {
     return (
         <BasePage appearance="light" showIcons>
             <Button onPress={() => navigation.navigate("Login")}>Log out</Button>
-            <Breadcrumb numberOfActive={0} length={6} />
+            <Breadcrumb numberOfActive={2} length={4} />
         </BasePage>
     );
 };

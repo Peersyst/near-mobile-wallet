@@ -7,7 +7,7 @@ const Breadcrumb = ({ numberOfActive, length }: BreadcrumbProps): JSX.Element =>
     return (
         <BreadcrumbRoot length={length}>
             {[...Array(length)].map((_, i) => {
-                const active = i <= numberOfActive;
+                const active = i < numberOfActive;
                 return (
                     <Fragment key={i}>
                         {i > 0 && <BreadcrumbLine length={length} active={active} />}
