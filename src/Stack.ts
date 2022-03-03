@@ -10,7 +10,7 @@ export type MainStackParamsList = {
     WelcomeBack: undefined;
     Dao: undefined;
     News: undefined;
-}
+};
 export type RootStackParamsList = {
     //Auth
     Login: undefined;

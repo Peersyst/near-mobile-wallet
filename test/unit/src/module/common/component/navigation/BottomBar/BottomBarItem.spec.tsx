@@ -12,5 +12,4 @@ describe("Test for the BottomBarItem", () => {
         fireEvent.press(icon);
         expect(mockedOnPress).toHaveBeenCalled();
     });
-    
 });

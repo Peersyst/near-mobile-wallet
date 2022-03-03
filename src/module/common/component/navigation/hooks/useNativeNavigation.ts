@@ -3,5 +3,5 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamsList } from "stack-navigator";
 
 export default function useNativeNavigation() {
-   return useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
+    return useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
 }

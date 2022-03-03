@@ -22,4 +22,3 @@ export interface LinkIconProps extends IconProps {
 export interface LinkTextProps extends TypographyProps {
     isActive?: boolean;
 }
-

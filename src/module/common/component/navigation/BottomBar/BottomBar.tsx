@@ -15,7 +15,7 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
             navigation.navigate(link);
         }
     };
-   
+
     return (
         <BottomBarRoot>
             <BottomBarItem
