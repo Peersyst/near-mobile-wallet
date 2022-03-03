@@ -1,8 +1,8 @@
 import { MainNavigatorGroup, MainScreens } from "module/main/MainNavigatorGroup";
 import { NavigationContainer } from "@react-navigation/native";
 import Stack from "stack-navigator";
-import { AuthNavigatorGroup, AuthScreens } from "module/auth/navigation/AuthNavigationGroup";
 import { useAuth } from "module/auth/hook/useAuth";
+import AuthNavigatorGroup, { AuthScreens } from "module/auth/navigation/AuthNavigatorGroup";
 
 const Navigator = (): JSX.Element => {
     const {

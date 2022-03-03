@@ -1,7 +1,7 @@
 import NumericPad from "module/common/component/input/NumericPad/NumericPad";
 import { useState } from "react";
 import { translate } from "locale";
-import LogoPage from "../LogoPage/LogoPage";
+import LogoPage from "../../../common/component/layout/LogoPage/LogoPage";
 import { useLogin } from "module/auth/query/useLogin";
 
 const LoginPage = (): JSX.Element => {

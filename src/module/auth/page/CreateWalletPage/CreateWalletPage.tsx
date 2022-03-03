@@ -1,4 +1,4 @@
-import LogoPage from "../LogoPage/LogoPage";
+import LogoPage from "../../../common/component/layout/LogoPage/LogoPage";
 import { Text } from "react-native";
 
 const ImportWalletPage = (): JSX.Element => {

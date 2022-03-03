@@ -1,4 +1,4 @@
-import LogoPage from "module/auth/page/LogoPage/LogoPage";
+import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
 import { render } from "test-utils";
 import { Text } from "react-native";
 

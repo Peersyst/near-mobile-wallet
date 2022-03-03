@@ -1,9 +1,9 @@
-import LogoPage from "module/auth/page/LogoPage/LogoPage";
 import { useEffect } from "react";
 import { Typography } from "react-native-components";
 import { WelcomeBackPageRoot } from "./WelcomeBackPage.styles";
 import { translate } from "locale";
 import useNativeNavigation from "module/common/component/navigation/hooks/useNativeNavigation";
+import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
 
 const WelcomeBackPage = (): JSX.Element => {
     const navigation = useNativeNavigation();
