@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import { View } from "react-native";
 
-export const GlassRoot = styled(View)(({theme}) => ({
+export const GlassRoot = styled(View)(() => ({
     position: "absolute",
     bottom: 0,
     width: "100%",

@@ -1,7 +1,6 @@
 import Stack from "stack-navigator";
 import { MainBottomTabNavigator } from "./navigation/MainNavigatior";
 import WelcomeBackPage from "module/auth/screen/WelcomeBackPage/WelcomeBackPage";
-import HomePage from "./screen/HomePage/HomePage";
 
 export enum MainScreens {
     MAIN = "Main",
