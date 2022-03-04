@@ -7,7 +7,13 @@ import useAnimatedTiming from "module/common/component/base/util/Animated/hooks/
 
 export default function slide<P extends { style?: any; onLayout?: ((event: LayoutChangeEvent) => void) | undefined }>(
     Component: ComponentType<P>,
-    { duration: configDuration = 500, delay: configDelay = 0, easing: configEasing, direction: directionConfig }: SlideConfig = {},
+    {
+        duration: configDuration = 500,
+        delay: configDelay = 0,
+        easing: configEasing,
+        direction: directionConfig,
+        appear: configAppear = false,
+    }: SlideConfig = {},
 ): ComponentType<P & SlideProps> {
     const AnimatedComponent = Animated.createAnimatedComponent(classify(Component));
 
@@ -16,7 +22,7 @@ export default function slide<P extends { style?: any; onLayout?: ((event: Layou
         delay = configDelay,
         easing = configEasing,
         in: inProp,
-        appear = false,
+        appear = configAppear,
         direction = directionConfig,
         style: { opacity = 1, ...style } = {},
         unmountOnExit = false,

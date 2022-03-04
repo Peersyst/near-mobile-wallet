@@ -3,11 +3,11 @@ import "dotenv/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
     ...config,
-    name: "mobile-base-project",
-    slug: "mobile-base-project",
+    name: "CKBull",
+    slug: "CKBull",
     version: "1.0.0",
     orientation: "portrait",
-    icon: "./assets/images/icon.png",
+    icon: "./assets/images/ckbull-icon.png",
     scheme: "myapp",
     userInterfaceStyle: "automatic",
     splash: {
