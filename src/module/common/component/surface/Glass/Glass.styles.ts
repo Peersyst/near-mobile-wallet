@@ -9,5 +9,6 @@ export const GlassRoot = styled(View)(({theme}) => ({
     paddingTop: 20,
     borderTopStartRadius: 30,
     borderTopEndRadius: 30,
-    backgroundColor: theme.palette.grayBackground,
+    //TODO: add the correct blur effect
+    backgroundColor: "#F9F9F9D8",
 }));

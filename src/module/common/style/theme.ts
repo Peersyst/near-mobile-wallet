@@ -9,7 +9,7 @@ export const theme = createTheme({
         black: "#0B0D1E",
         fullBlack: "#000000",
         darkGray: "#707070",
-        grayBackground: "#F9F9F9D8",
+        grayBackground: "#F9F9F9",
         darkLightGray: "#B0B0B0",
         darkLightGray2: "#808080",
         darkGray2: "#444444",
