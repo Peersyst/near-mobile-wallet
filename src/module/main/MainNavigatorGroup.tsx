@@ -1,5 +1,5 @@
 import Stack from "stack-navigator";
-import { MainBottomTabNavigator } from "./navigation/MainNavigatior";
+import { MainBottomTabNavigator } from "./navigation/MainBottomTabNavigatior";
 import WelcomeBackPage from "module/auth/screen/WelcomeBackPage/WelcomeBackPage";
 
 export enum MainScreens {
