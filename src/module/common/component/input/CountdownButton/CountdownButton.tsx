@@ -31,6 +31,7 @@ const CountdownButton = ({
             loading={disabled || loading}
             loadingElement={loading ? undefined : <Text style={{ ...textStyle, textTransform: "none" }}>{`... ${seconds}s`}</Text>}
             disabled={disabled}
+            style={style}
             {...buttonProps}
         >
             {children}

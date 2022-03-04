@@ -21,5 +21,12 @@
     "set_pin": "Set Pin",
     "repeat_pin": "Repeat PIN",
     "pins_did_not_match": "PINs did not match",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "generate_mnemonic": "Generate Mnemonic",
+    "advise": "Advise",
+    "next": "Next",
+    "advise1_text": "Sed aliquam lorem gravida ipsum feugiat, a maximus ligula feugiat. Phasellus a vestibulum leo, semper sagittis dui. Quisque lacinia, mi sit amet gravida feugiat, enim eros scelerisque elit. Sed aliquam lorem gravida ipsum feugiat, a maximus ligula feugiat. Phasellus a vestibulum leo, semper sagittis dui. Quisque lacinia, mi sit amet gravida feugiat, enim eros scelerisque elit.",
+    "advise2_text": "Sed aliquam lorem gravida ipsum feugiat, a maximus ligula feugiat. Phasellus a vestibulum leo, semper sagittis dui. Quisque lacinia, mi sit amet gravida feugiat, enim eros scelerisque elit. Sed aliquam lorem gravida ipsum feugiat, a maximus ligula feugiat. Phasellus a vestibulum leo, semper sagittis dui. Quisque lacinia, mi sit amet gravida feugiat, enim eros scelerisque elit.",
+    "advise3_text": "Sed aliquam lorem gravida ipsum feugiat, a maximus ligula feugiat. Phasellus a vestibulum leo, semper sagittis dui. Quisque lacinia, mi sit amet gravida feugiat, enim eros scelerisque elit. Sed aliquam lorem gravida ipsum feugiat, a maximus ligula feugiat. Phasellus a vestibulum leo, semper sagittis dui. Quisque lacinia, mi sit amet gravida feugiat, enim eros scelerisque elit."
+
 }
