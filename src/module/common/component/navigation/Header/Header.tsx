@@ -4,14 +4,14 @@ import LogoRow from "module/common/component/display/Logos/LogoRow/LogoRow";
 import { IconButton, Row } from "react-native-components";
 import Notification from "module/common/component/display/Notification/Notification";
 import { SettingsIcon } from "icons";
-import useNativeNavigation from "../hooks/useNativeNavigation";
+import useNavigation from "../hooks/useNavigation";
 
 export interface HeaderProps {
     showIcons?: boolean;
 }
 
 const Header = ({ showIcons = true }: HeaderProps): JSX.Element => {
-    const navigation = useNativeNavigation();
+    const navigation = useNavigation();
     return (
         <HeaderRoot elevation={6} square>
             <Toolbar>

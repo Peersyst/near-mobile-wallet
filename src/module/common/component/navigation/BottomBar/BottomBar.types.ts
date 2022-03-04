@@ -15,7 +15,7 @@ export interface BottomBarItemProps {
     label: string;
 }
 
-export interface LinkIconProps extends IconProps {
+export interface LinkItemIconProps extends IconProps {
     isActive?: boolean;
 }
 

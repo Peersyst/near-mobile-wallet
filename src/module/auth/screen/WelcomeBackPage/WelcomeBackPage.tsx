@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { Typography } from "react-native-components";
 import { WelcomeBackPageRoot } from "./WelcomeBackPage.styles";
 import { translate } from "locale";
-import useNativeNavigation from "module/common/component/navigation/hooks/useNativeNavigation";
+import useNavigation from "module/common/component/navigation/hooks/useNavigation";
 import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
 
 const WelcomeBackPage = (): JSX.Element => {
-    const navigation = useNativeNavigation();
+    const navigation = useNavigation();
     useEffect(() => {
         new Promise((resolve) => setTimeout(resolve, 3000)).then(() => navigation.navigate("Main"));
     }, [navigation]);

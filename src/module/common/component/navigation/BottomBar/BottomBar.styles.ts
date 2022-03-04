@@ -8,5 +8,5 @@ export const BottomBarRoot = styled(Row, { justifyContent: "space-around" })(({ 
     borderTopWidth: 1.2,
     borderTopColor: "rgba(0,0,0,0.05)",
     paddingTop: 10,
-    paddingHorizontal: "5%",
+    paddingHorizontal: theme.palette.grayBackground,
 }));
