@@ -62,7 +62,7 @@ const CreateWalletNavigatorGroup = () => {
                 style={{ height: "170%", flex: 1 }}
                 onExited={() => (showPin ? setActiveTab(CreateWalletScreens.SET_WALLET_PIN) : setTab(AuthScreens.AUTH_SWITCH))}
                 navbar={{ back: true, title: translate("create_wallet"), onBack: handleBack }}
-                breadcrumbs={{ index: activeTab + 1, length: 4 }}
+                breadcrumbs={{ index: activeTab, length: 4 }}
             >
                 <TabPanel index={CreateWalletScreens.SET_WALLET_NAME}>
                     <SetWalletNameScreen />
