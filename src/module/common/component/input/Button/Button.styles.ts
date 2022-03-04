@@ -33,5 +33,8 @@ export const ButtonRoot = styled(Button)<ButtonAppearanceProps>(({ theme, appear
         contained: {
             ...contained[appearance],
         },
+        disabled: {
+            borderColor: theme.palette.disabled,
+        },
     };
 });
