@@ -6,6 +6,7 @@ import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
 import { translate } from "locale";
 import GlassNavigator from "module/common/component/navigation/GlassNavigator/GlassNavigator";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
+import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 
 export enum CreateWalletScreens {
     SET_WALLET_NAME,
@@ -67,7 +68,7 @@ const CreateWalletNavigatorGroup = () => {
                     <SetWalletNameScreen />
                 </TabPanel>
                 <TabPanel index={CreateWalletScreens.WALLET_ADVISES}>
-                    <SetWalletNameScreen />
+                    <WalletAdvisesScreen />
                 </TabPanel>
                 <TabPanel index={CreateWalletScreens.WALLET_MNEMONIC}>
                     <SetWalletNameScreen />
