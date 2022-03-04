@@ -15,5 +15,11 @@
     "enter_your_pin": "Enter your PIN",
     "create_wallet": "Create Wallet",
     "already_have_wallet": "Already have a CKBull Wallet?",
-    "import_it": "Import it"
+    "import_it": "Import it",
+    "set_wallet_name_text": "Security information. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus placerat facilisis. Maecenas fermentum est.",
+    "wallet_name": "Wallet name",
+    "set_pin": "Set Pin",
+    "repeat_pin": "Repeat PIN",
+    "pins_did_not_match": "PINs did not match",
+    "cancel": "Cancel"
 }

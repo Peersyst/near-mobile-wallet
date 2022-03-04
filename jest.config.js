@@ -33,6 +33,7 @@ module.exports = {
         "!./src/module/common/component/base/**/*",
         "!./src/module/common/hook/(useCachedResources.ts|useColorScheme.ts)",
         "!./src/Providers.tsx",
+        "!./src/Navigator.tsx",
         "!./src/**/*NavigatorGroup.(tsx|ts)",
         "!./src/Stack.ts",
         "!./src/utils/(isWeb|extractTextStyles).ts",

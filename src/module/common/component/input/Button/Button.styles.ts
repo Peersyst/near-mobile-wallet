@@ -7,15 +7,16 @@ export const ButtonRoot = styled(Button)<ButtonAppearanceProps>(({ theme, appear
     const { outlined, pressed, contained, pressedContained } = useButtonStyles(theme);
     return {
         borderRadius: 42,
-        fontWeight: "bold",
+        fontWeight: "700",
+        textTransform: "uppercase",
         lg: {
-            borderWidth: 3,
+            borderWidth: 5,
             height: 58,
             fontSize: 20,
             paddingHorizontal: 20,
         },
         sm: {
-            borderWidth: 2,
+            borderWidth: 3,
             height: 36,
             fontSize: 14,
             paddingHorizontal: 30,
