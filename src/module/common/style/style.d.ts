@@ -12,7 +12,6 @@ declare module "react-native-components" {
         black: string;
         darkGray: string;
         darkLightGray: string;
-        grayBackground: string;
         darkerGray: string;
         darkGray2: string;
         darkLightGray2: string;
