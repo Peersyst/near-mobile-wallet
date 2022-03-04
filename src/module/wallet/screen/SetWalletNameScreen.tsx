@@ -25,7 +25,7 @@ const SetWalletNameScreen = (): JSX.Element => {
     };
 
     return (
-        <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
+        <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }} style={{ overflow: "visible" }}>
             <Col flex={1} gap={30} justifyContent="flex-end">
                 <Card>
                     <Typography variant="body1">{translate("set_wallet_name_text")}</Typography>
