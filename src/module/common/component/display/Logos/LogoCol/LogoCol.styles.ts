@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled";
 import { LogoColIcon as Icon } from "module/common/icons/LogoColIcon";
-import { View } from "react-native";
+import { Dimensions, View } from "react-native";
 import { getTextColor } from "utils/getTextColor";
 import { LogoColProps, LogoColRootProps } from "./LogoCol";
 
@@ -11,14 +11,14 @@ export const LogoColIcon = styled(Icon)<LogoColProps>(({ theme }) => {
     };
 });
 
-export const LogoColRoot = styled(View)<LogoColRootProps>(({ size: sizeProps }) => {
-    const size = sizeProps || "100%";
+export const LogoColRoot = styled(View)<LogoColRootProps>(({ size = "100%" }) => {
     return {
-        width: size,
-        height: size,
+        flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        maxHeight: 166,
-        minHeight: 70,
+        width: size,
+        height: size,
+        maxHeight: Dimensions.get("window").width * 0.5,
+        minHeight: 120,
     };
 });

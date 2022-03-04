@@ -15,6 +15,7 @@ export default function fade<P extends { style?: any }>(
         onEntered: configOnEntered,
         onExit: configOnExit,
         onExited: configOnExited,
+        appear: configAppear = false,
     }: AnimatedConfig = {},
 ): ComponentType<P & AnimatedProps> {
     const AnimatedComponent = Animated.createAnimatedComponent(classify(Component));
@@ -25,7 +26,7 @@ export default function fade<P extends { style?: any }>(
         easing = configEasing,
         unmountOnExit = configUnmountOnExit,
         in: inProp,
-        appear,
+        appear = configAppear,
         onEnter = configOnEnter,
         onEntered = configOnEntered,
         onExit = configOnExit,

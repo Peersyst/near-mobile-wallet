@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
-import { View } from "react-native";
+import { Animated, View } from "react-native";
 
-export const LogoPageIconRoot = styled(View)(() => ({
+export const LogoPageIconRoot = styled(Animated.createAnimatedComponent(View))(() => ({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",

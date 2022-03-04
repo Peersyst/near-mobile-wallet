@@ -8,7 +8,7 @@ export const TextFieldRoot = styled(TextField)(({ theme }) => {
         backgroundColor: theme.palette.lighterGray,
         borderColor: "transparent",
         focused: {
-            borderColor: "unset",
+            borderColor: "transparent",
         },
         input: {
             placeholderColor: theme.palette.darkGray,

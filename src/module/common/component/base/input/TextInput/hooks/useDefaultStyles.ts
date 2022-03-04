@@ -17,6 +17,7 @@ export default function useDefaultStyles(): UseDefaultStylesResult {
     const theme = useTheme();
 
     const defaultStyle: TextInputStyle = {
+        borderColor: theme.palette.text,
         input: {
             color: theme.palette.text,
             fontSize: 14,

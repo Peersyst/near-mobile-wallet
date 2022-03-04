@@ -3,17 +3,15 @@ import Toolbar from "../../layout/Toolbar/Toolbar";
 import LogoRow from "module/common/component/display/Logos/LogoRow/LogoRow";
 import { IconButton, Row } from "react-native-components";
 import Notification from "module/common/component/display/Notification/Notification";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamsList } from "stack-navigator";
 import { SettingsIcon } from "icons";
+import useNavigation from "../hooks/useNavigation";
 
 export interface HeaderProps {
     showIcons?: boolean;
 }
 
 const Header = ({ showIcons = true }: HeaderProps): JSX.Element => {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
+    const navigation = useNavigation();
     return (
         <HeaderRoot elevation={6} square>
             <Toolbar>

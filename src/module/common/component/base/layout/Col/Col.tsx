@@ -7,7 +7,7 @@ const Col = ({ children: childrenProp, gap, justifyContent, alignItems, style, f
     const children = Children.toArray(childrenProp).filter((child) => !!child);
     const childrenLength = Children.count(children);
 
-    const hasGap = !alignItems || alignItems === "flex-start" || alignItems === "flex-end" || alignItems === "center";
+    const hasGap = !justifyContent || justifyContent === "flex-start" || justifyContent === "flex-end" || justifyContent === "center";
 
     return (
         <ColRoot style={[{ alignItems, justifyContent, flex }, style]}>

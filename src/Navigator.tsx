@@ -2,20 +2,25 @@ import { MainNavigatorGroup, MainScreens } from "module/main/MainNavigatorGroup"
 import { NavigationContainer } from "@react-navigation/native";
 import Stack from "stack-navigator";
 import { useAuth } from "module/auth/hook/useAuth";
-import AuthNavigatorGroup, { AuthScreens } from "module/auth/navigation/AuthNavigatorGroup";
+import AuthNavigatorGroup from "module/auth/AuthNavigatorGroup";
 
 const Navigator = (): JSX.Element => {
     const {
-        state: { token, isLogged },
+        state: { isLogged },
     } = useAuth();
-
-    const initialRoute = isLogged ? MainScreens.WELCOME_BACK : token ? AuthScreens.LOGIN : AuthScreens.AUTH_SWITCH;
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName={initialRoute} screenOptions={{ headerShown: false, animation: "slide_from_right" }}>
-                {!isLogged ? MainNavigatorGroup : AuthNavigatorGroup}
-            </Stack.Navigator>
+            {!isLogged ? (
+                <Stack.Navigator
+                    initialRouteName={MainScreens.WELCOME_BACK}
+                    screenOptions={{ headerShown: false, animation: "slide_from_right" }}
+                >
+                    {MainNavigatorGroup}
+                </Stack.Navigator>
+            ) : (
+                AuthNavigatorGroup
+            )}
         </NavigationContainer>
     );
 };
