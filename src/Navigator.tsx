@@ -10,7 +10,7 @@ const Navigator = (): JSX.Element => {
 
     return (
         <NavigationContainer>
-            {hasWallet && isAuthenticated ? (
+            {!hasWallet && !isAuthenticated ? (
                 <Stack.Navigator
                     initialRouteName={MainScreens.WELCOME_BACK}
                     screenOptions={{ headerShown: false, animation: "slide_from_right" }}

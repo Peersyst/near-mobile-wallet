@@ -6,6 +6,7 @@ import { ScrollView } from "react-native";
 import Slider from "module/common/component/layout/Slider/Slider";
 import { useSetRecoilState } from "recoil";
 import walletState from "module/wallet/state/WalletState";
+import AccountCard from "module/wallet/component/core/AccountCard/AccountCard";
 
 const DATA = [
     {
@@ -36,7 +37,7 @@ const HomePage = (): JSX.Element => {
                     pagginationGap={0}
                     keyExtractor={(item) => item.id}
                     data={DATA}
-                    renderItem={() => <AddAccountCard />}
+                    renderItem={() => <AccountCard />}
                 />
                 <Col style={{ paddingHorizontal: "5%" }}>
                     <Button onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>Log out</Button>

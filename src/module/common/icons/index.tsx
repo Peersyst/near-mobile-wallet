@@ -1,6 +1,7 @@
 export * from "./ArrowIcon";
 export * from "./BackIcon";
 export * from "./CircleIcon";
+export * from "./CopyIcon";
 export * from "./CrossIcon";
 export * from "./DAOIcon";
 export * from "./FilledCircleIcon";
@@ -10,3 +11,4 @@ export * from "./NewsIcon";
 export * from "./NotificationIcon";
 export * from "./PlusIcon";
 export * from "./SettingsIcon";
+export * from "./StarIcon";

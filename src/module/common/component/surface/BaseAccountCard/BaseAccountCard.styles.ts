@@ -1,9 +1,9 @@
 import styled from "@peersyst/react-native-styled";
-import { useWindowDimensions } from "react-native";
+import { Dimensions } from "react-native";
 import Card from "../Card/Card";
 
 export const BaseAccountCardRoot = styled(Card)(() => {
-    const { width } = useWindowDimensions();
+    const width  = Dimensions.get("window").width;
     return {
         width: width * 0.9,
         height: 200,

@@ -1,10 +1,10 @@
-import { useWindowDimensions } from "react-native";
+import { Dimensions } from "react-native";
 import { Row } from "react-native-components";
 import { AnimatedDot } from "../Slider.styles";
 import { PaginatorProps } from "../Slider.types";
 
 const Paginator = ({ scrollX, data, dotColor }: PaginatorProps) => {
-    const { width } = useWindowDimensions();
+    const width  = Dimensions.get("window").width;
     return (
         <Row justifyContent="center">
             {data.map((_, i) => {
