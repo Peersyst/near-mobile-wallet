@@ -8,4 +8,5 @@ export * from "./LogoIcon";
 export * from "./LogoColIcon";
 export * from "./NewsIcon";
 export * from "./NotificationIcon";
+export * from "./PlusIcon";
 export * from "./SettingsIcon";
