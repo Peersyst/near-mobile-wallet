@@ -1,14 +1,14 @@
 import { useLoad } from "module/common/query/useLoad";
-import { AuthTokenStorage } from "module/auth/AuthTokenStorage";
+import { WalletStorage } from "module/wallet/WalletStorage";
 import { useRecoilValue } from "recoil";
-import { authState } from "module/auth/AuthState";
 import { renderHook, waitFor } from "test-utils";
+import walletState from "module/wallet/state/WalletState";
 
 const renderUseLoad = () =>
     renderHook(() => {
         const loading = useLoad();
-        const { token, isLogged } = useRecoilValue(authState);
-        return { loading, token, isLogged };
+        const { hasWallet, name, isAuthenticated } = useRecoilValue(walletState);
+        return { loading, hasWallet, name, isAuthenticated };
     });
 
 describe("useLoad tests", () => {
@@ -16,25 +16,25 @@ describe("useLoad tests", () => {
         jest.restoreAllMocks();
     });
 
-    test("Loads without token", async () => {
-        const getAuthToken = jest.spyOn(AuthTokenStorage, "get").mockImplementation(() => new Promise((resolve) => resolve(null)));
+    test("Loads without wallet", async () => {
+        const getAuthToken = jest.spyOn(WalletStorage, "getName").mockImplementation(() => new Promise((resolve) => resolve(undefined)));
 
         const { result } = renderUseLoad();
         expect(result.current.loading).toBe(true);
         expect(getAuthToken).toHaveBeenCalled();
         await waitFor(() => expect(result.current.loading).toBe(false));
-        expect(result.current.token).toBeUndefined();
-        expect(result.current.isLogged).toBe(false);
+        expect(result.current.name).toBeUndefined();
+        expect(result.current.hasWallet).toBe(false);
     });
 
-    test("Loads with token", async () => {
-        const getAuthToken = jest.spyOn(AuthTokenStorage, "get").mockImplementation(() => new Promise((resolve) => resolve("test_token")));
+    test("Loads with wallet", async () => {
+        const getAuthToken = jest.spyOn(WalletStorage, "getName").mockImplementation(() => new Promise((resolve) => resolve("wallet")));
 
         const { result } = renderUseLoad();
         expect(result.current.loading).toBe(true);
         expect(getAuthToken).toHaveBeenCalled();
         await waitFor(() => expect(result.current.loading).toBe(false));
-        expect(result.current.isLogged).toBe(true);
-        expect(result.current.token).toEqual("test_token");
+        expect(result.current.hasWallet).toBe(true);
+        expect(result.current.name).toEqual("wallet");
     });
 });
