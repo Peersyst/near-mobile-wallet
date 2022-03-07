@@ -8,7 +8,7 @@ const Paginator = ({ scrollX, data, dotColor }: PaginatorProps) => {
     return (
         <Row justifyContent="center">
             {data.map((_, i) => {
-                //Create an array as a reference to interpolate with 
+                //Create an array as a reference to interpolate with
                 //the correct value of the outputRange for each dot
                 const inputRange = [(i - 1) * width, i * width, (i + 1) * width];
 
@@ -23,7 +23,7 @@ const Paginator = ({ scrollX, data, dotColor }: PaginatorProps) => {
                     outputRange: [0.3, 1, 0.3],
                     extrapolate: "clamp",
                 });
-               
+
                 return (
                     <AnimatedDot
                         color={dotColor}

@@ -16,4 +16,6 @@ export interface PaginatorProps {
     dotColor?: string;
 }
 
-export interface AnimatedDotProps { color?: string }
+export interface AnimatedDotProps {
+    color?: string;
+}

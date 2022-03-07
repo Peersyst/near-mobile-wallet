@@ -16,7 +16,19 @@ const DATA = [
     {
         id: "2",
         title: "Third Item",
-    }
+    },
+    {
+        id: "3",
+        title: "Third Item",
+    },
+    {
+        id: "4",
+        title: "Third Item",
+    },
+    {
+        id: "5",
+        title: "Third Item",
+    },
 ];
 interface ItemProps {
     item: {
@@ -29,13 +41,12 @@ const Item = ({ item }: ItemProps): JSX.Element => {
     return <View style={flattenStyle} />;
 };
 
-
 const HomePage = (): JSX.Element => {
     const { logout } = useAuth();
     return (
         <BasePage appearance="light" showIcons>
             <Button onPress={logout}>Log out</Button>
-            <Slider data={DATA} renderItem={({ item }) => <Item item={item} />} />
+            <Slider keyExtractor={(item) => item.id} data={DATA} renderItem={({ item }) => <Item item={item} />} />
         </BasePage>
     );
 };

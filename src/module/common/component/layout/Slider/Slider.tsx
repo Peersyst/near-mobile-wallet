@@ -4,7 +4,15 @@ import { Col } from "react-native-components";
 import { SliderProps } from "./Slider.types";
 import SliderPagination from "./SliderPagination/SliderPagination";
 
-const Slider = ({ data, renderItem, keyExtractor, dotColor, style, showPaginaton = true, pagginationGap = 14 }: SliderProps): JSX.Element => {
+const Slider = ({
+    data,
+    renderItem,
+    keyExtractor,
+    dotColor,
+    style,
+    showPaginaton = true,
+    pagginationGap = 14,
+}: SliderProps): JSX.Element => {
     const scrollX = useRef(new Animated.Value(0)).current;
     const viewConfig = useRef({ waitForInteraction: true, viewAreaCoveragePercentThreshold: 50 });
     return (
