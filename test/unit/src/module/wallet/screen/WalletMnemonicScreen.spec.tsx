@@ -2,7 +2,7 @@ import { render } from "test-utils";
 import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import { translate } from "locale";
 import { fireEvent } from "@testing-library/react-native";
-import * as UseCreateWalletState from "module/wallet/hook/useCreateWalletState";
+import * as UseCreateWalletState from "module/wallet/hook/useCreateWallet";
 import * as UseTabs from "module/common/component/base/navigation/Tabs/hook/useTabs";
 import { CreateWalletScreens } from "module/wallet/CreateWalletNavigatorGroup";
 
@@ -53,6 +53,6 @@ describe("WalletMnemonicScreen tests", () => {
             "ice",
             "least",
         ]);
-        expect(setTab).toHaveBeenCalledWith(CreateWalletScreens.ENTER_WALLET_MNEMONIC);
+        expect(setTab).toHaveBeenCalledWith(CreateWalletScreens.PICK_WALLET_MNEMONIC);
     });
 });

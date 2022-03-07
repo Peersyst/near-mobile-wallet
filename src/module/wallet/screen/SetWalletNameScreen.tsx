@@ -5,7 +5,7 @@ import TextField from "module/common/component/input/TextField/TextField";
 import Button from "module/common/component/input/Button/Button";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { CreateWalletScreens } from "module/wallet/CreateWalletNavigatorGroup";
-import useCreateWalletState from "module/wallet/hook/useCreateWalletState";
+import useCreateWallet from "module/wallet/hook/useCreateWallet";
 
 interface SetWalletNameForm {
     walletName: string;
@@ -15,7 +15,7 @@ const SetWalletNameScreen = (): JSX.Element => {
     const {
         setName,
         state: { name },
-    } = useCreateWalletState();
+    } = useCreateWallet();
 
     const setTab = useTabs()[1];
 

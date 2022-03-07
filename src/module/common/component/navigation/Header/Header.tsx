@@ -4,7 +4,7 @@ import LogoRow from "module/common/component/display/Logos/LogoRow/LogoRow";
 import { IconButton, Row } from "react-native-components";
 import Notification from "module/common/component/display/Notification/Notification";
 import { SettingsIcon } from "icons";
-import useNavigation from "../hooks/useNavigation";
+import useNavigation from "../../../hook/useNavigation";
 
 export interface HeaderProps {
     showIcons?: boolean;
