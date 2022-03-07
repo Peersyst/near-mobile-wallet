@@ -1,10 +1,11 @@
 import Button from "module/common/component/input/Button/Button";
 import BasePage from "module/common/component/layout/BasePage/BasePage";
-import { useAuth } from "module/auth/hook/useAuth";
-import Slider from "module/common/component/layout/Slider/Slider";
 import AddAccountCard from "module/common/component/input/AddAccountCard/AddAccountCard";
 import { Col } from "react-native-components";
 import { ScrollView } from "react-native";
+import Slider from "module/common/component/layout/Slider/Slider";
+import { useSetRecoilState } from "recoil";
+import walletState from "module/wallet/state/WalletState";
 
 const DATA = [
     {
@@ -26,8 +27,7 @@ const DATA = [
 ];
 
 const HomePage = (): JSX.Element => {
-    const { logout } = useAuth();
-
+    const setWalletState = useSetRecoilState(walletState);
     return (
         <BasePage appearance="light" showIcons>
             <ScrollView>
@@ -39,7 +39,7 @@ const HomePage = (): JSX.Element => {
                     renderItem={() => <AddAccountCard />}
                 />
                 <Col style={{ paddingHorizontal: "5%" }}>
-                    <Button onPress={logout}>Log out</Button>
+                    <Button onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>Log out</Button>
                 </Col>
             </ScrollView>
         </BasePage>

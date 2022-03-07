@@ -1,14 +1,14 @@
 import { useRecoilState } from "recoil";
 import createWalletState, { CreateWalletState } from "module/wallet/state/CreateWalletState";
 
-export interface UseCreateWalletStateResult {
+export interface UseCreateWalletResult {
     state: CreateWalletState;
     setName: (name: string) => void;
     setPin: (pin: string) => void;
     setMnemonic: (mnemonic: string[]) => void;
 }
 
-const useCreateWalletState = (): UseCreateWalletStateResult => {
+const useCreateWallet = (): UseCreateWalletResult => {
     const [state, setState] = useRecoilState(createWalletState);
 
     return {
@@ -19,4 +19,4 @@ const useCreateWalletState = (): UseCreateWalletStateResult => {
     };
 };
 
-export default useCreateWalletState;
+export default useCreateWallet;

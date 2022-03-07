@@ -3,7 +3,7 @@ import NumericPad from "module/common/component/input/NumericPad/NumericPad";
 import { translate } from "locale";
 import { CreateWalletScreens } from "module/wallet/CreateWalletNavigatorGroup";
 import { useState } from "react";
-import useCreateWalletState from "../hook/useCreateWalletState";
+import useCreateWallet from "../hook/useCreateWallet";
 
 const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { duration: 200, appear: true });
 
@@ -11,7 +11,7 @@ const SetWalletPinScreen = (): JSX.Element => {
     const [pin, setPin] = useState<string>();
     const [error, setError] = useState(false);
     const setTab = useTabs()[1];
-    const { setPin: setWalletPin } = useCreateWalletState();
+    const { setPin: setWalletPin } = useCreateWallet();
 
     const handleCancel = () => setTab(CreateWalletScreens.SET_WALLET_NAME);
 

@@ -3,6 +3,7 @@ import BottomBar from "module/common/component/navigation/BottomBar/BottomBar";
 import { MainScreens } from "module/main/MainNavigatorGroup";
 import { fireEvent, render } from "test-utils";
 import mockedState from "./utils/mockedState";
+import { translate } from "locale";
 
 describe("BottomBar test", () => {
     test("Renders correctly", () => {

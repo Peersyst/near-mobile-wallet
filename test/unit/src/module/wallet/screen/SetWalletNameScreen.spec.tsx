@@ -2,7 +2,7 @@ import { render } from "test-utils";
 import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
 import { translate } from "locale";
 import * as UseTabs from "module/common/component/base/navigation/Tabs/hook/useTabs";
-import * as UseCreateWalletState from "module/wallet/hook/useCreateWalletState";
+import * as UseCreateWalletState from "module/wallet/hook/useCreateWallet";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { CreateWalletScreens } from "module/wallet/CreateWalletNavigatorGroup";
 
