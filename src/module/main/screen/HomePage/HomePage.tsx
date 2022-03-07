@@ -3,6 +3,8 @@ import BasePage from "module/common/component/layout/BasePage/BasePage";
 import { useAuth } from "module/auth/hook/useAuth";
 import Slider from "module/common/component/layout/Slider/Slider";
 import AddAccountCard from "module/common/component/input/AddAccountCard/AddAccountCard";
+import { Col } from "react-native-components";
+import { ScrollView } from "react-native";
 
 const DATA = [
     {
@@ -28,8 +30,18 @@ const HomePage = (): JSX.Element => {
 
     return (
         <BasePage appearance="light" showIcons>
-            <Slider pagginationGap={0} keyExtractor={(item) => item.id} data={DATA} renderItem={() => <AddAccountCard />} />
-            <Button onPress={logout}>Log out</Button>
+            <ScrollView>
+                <Slider
+                    style={{ marginTop: "4%" }}
+                    pagginationGap={0}
+                    keyExtractor={(item) => item.id}
+                    data={DATA}
+                    renderItem={() => <AddAccountCard />}
+                />
+                <Col style={{ paddingHorizontal: "5%" }}>
+                    <Button onPress={logout}>Log out</Button>
+                </Col>
+            </ScrollView>
         </BasePage>
     );
 };

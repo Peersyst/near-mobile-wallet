@@ -1,3 +1,4 @@
+import { translate } from "locale";
 import BottomBar from "module/common/component/navigation/BottomBar/BottomBar";
 import { MainScreens } from "module/main/MainNavigatorGroup";
 import { fireEvent, render } from "test-utils";
@@ -6,8 +7,8 @@ import mockedState from "./utils/mockedState";
 describe("BottomBar test", () => {
     test("Renders correctly", () => {
         const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: jest.fn() } as any} />);
-        expect(screen.getByText("Dao")).toBeDefined();
-        expect(screen.getByText("News")).toBeDefined();
+        expect(screen.getByText(translate("dao"))).toBeDefined();
+        expect(screen.getByText(translate("news"))).toBeDefined();
         expect(screen.getByTestId("NewsIcon")).toBeDefined();
         expect(screen.getByTestId("DAOIcon")).toBeDefined();
         expect(screen.getByRole("imagebutton")).toBeDefined();
