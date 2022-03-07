@@ -12,7 +12,7 @@ describe("Welcome back page", () => {
         expect(screen.getByTestId("LogoColIcon")).toBeDefined();
         expect(screen.getByText(translate("welcome_back")));
         jest.runAllTimers();
-        expect(mockedNavigation).toHaveBeenCalledWith("Home");
+        expect(mockedNavigation).toHaveBeenCalledWith("Main");
         jest.useRealTimers();
     });
 });

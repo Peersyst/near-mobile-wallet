@@ -1,16 +1,14 @@
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
 import { useEffect } from "react";
 import { Typography } from "react-native-components";
-import { RootStackParamsList } from "stack-navigator";
 import { WelcomeBackPageRoot } from "./WelcomeBackPage.styles";
 import { translate } from "locale";
+import useNavigation from "module/common/component/navigation/hooks/useNavigation";
+import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
 
 const WelcomeBackPage = (): JSX.Element => {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
+    const navigation = useNavigation();
     useEffect(() => {
-        new Promise((resolve) => setTimeout(resolve, 3000)).then(() => navigation.navigate("Home"));
+        new Promise((resolve) => setTimeout(resolve, 3000)).then(() => navigation.navigate("Main"));
     }, [navigation]);
     return (
         <LogoPage>

@@ -1,8 +1,8 @@
 import { NavbarProps } from "./Navbar.types";
 import { NavbarRoot, BackIconRoot, Title } from "./Navbar.styles";
-import { useNavigation } from "@react-navigation/native";
 import LogoRow from "../../display/Logos/LogoRow/LogoRow";
 import { BackIcon } from "icons";
+import useNavigation from "../hooks/useNavigation";
 
 const Navbar = ({ back, title, logo = false, onBack }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
