@@ -1,6 +1,6 @@
 import Button from "module/common/component/input/Button/Button";
 import BasePage from "module/common/component/layout/BasePage/BasePage";
-import AddAccountCard from "module/common/component/input/AddAccountCard/AddAccountCard";
+import AddAccountCard from "module/wallet/component/input/AddAccountCard/AddAccountCard";
 import { Col } from "react-native-components";
 import { ScrollView } from "react-native";
 import Slider from "module/common/component/layout/Slider/Slider";

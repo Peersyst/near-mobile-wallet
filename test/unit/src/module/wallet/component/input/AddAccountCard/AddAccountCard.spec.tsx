@@ -1,5 +1,5 @@
 import { translate } from "locale";
-import AddAccountCard from "module/common/component/input/AddAccountCard/AddAccountCard";
+import AddAccountCard from "module/wallet/component/input/AddAccountCard/AddAccountCard";
 import { fireEvent, render } from "test-utils";
 import { Alert } from "react-native";
 

@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import { PlusIcon } from "icons";
 import { Row, Typography } from "react-native-components";
-import { BaseAccountCardRoot } from "../../surface/BaseAccountCard/BaseAccountCard.styles";
+import { BaseAccountCardRoot } from "../../../../common/component/surface/BaseAccountCard/BaseAccountCard.styles";
 
 export const AddIcon = styled(PlusIcon)(({ theme }) => ({
     color: theme.palette.white,
