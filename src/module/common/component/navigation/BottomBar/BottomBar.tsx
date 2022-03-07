@@ -5,6 +5,7 @@ import { MainStackParamsList } from "stack-navigator";
 import { BottomBarRoot } from "./BottomBar.styles";
 import BottomBarItem from "./BottomBarItem/BottomBarItem";
 import BottomBarLogoItem from "./BottomBarLogoItem/BottomBarLogoItem";
+import { translate } from "locale";
 
 type BottomBarProps = Pick<BottomTabBarProps, "state" | "navigation">;
 
@@ -20,14 +21,14 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
             <BottomBarItem
                 onPress={() => handleNavigation(MainScreens.DAO)}
                 isActive={activeTab === MainScreens.DAO}
-                label={MainScreens.DAO}
+                label={translate("dao")}
                 Icon={<DAOIcon />}
             />
             <BottomBarLogoItem onPress={() => handleNavigation(MainScreens.HOME)} />
             <BottomBarItem
                 onPress={() => handleNavigation(MainScreens.NEWS)}
                 isActive={activeTab === MainScreens.NEWS}
-                label={MainScreens.NEWS}
+                label={translate("news")}
                 Icon={<NewsIcon />}
             />
         </BottomBarRoot>
