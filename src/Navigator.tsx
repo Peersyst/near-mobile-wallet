@@ -11,7 +11,7 @@ const Navigator = (): JSX.Element => {
 
     return (
         <NavigationContainer>
-            {!isLogged ? (
+            {isLogged ? (
                 <Stack.Navigator
                     initialRouteName={MainScreens.WELCOME_BACK}
                     screenOptions={{ headerShown: false, animation: "slide_from_right" }}
