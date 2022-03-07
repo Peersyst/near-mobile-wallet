@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { AccountCardRoot } from "./AccountCard.styles";
 
-export default AccountCardRoot;
+export default memo(AccountCardRoot);

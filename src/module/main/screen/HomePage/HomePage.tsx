@@ -21,25 +21,17 @@ const DATA = [
         id: "3",
         title: "Third Item",
     },
-    {
-        id: "4",
-        title: "Third Item",
-    },
-    {
-        id: "5",
-        title: "Third Item",
-    },
 ];
 
 const HomePage = (): JSX.Element => {
     const { logout } = useAuth();
+
     return (
         <BasePage appearance="light" showIcons>
-            <Slider pagginationGap={0} keyExtractor={(item) => item.id} data={DATA} renderItem={() => <AddAccountCard text="hola" number={0} />} />
+            <Slider pagginationGap={0} keyExtractor={(item) => item.id} data={DATA} renderItem={() => <AddAccountCard />} />
             <Button onPress={logout}>Log out</Button>
         </BasePage>
     );
 };
- 
 
 export default HomePage;

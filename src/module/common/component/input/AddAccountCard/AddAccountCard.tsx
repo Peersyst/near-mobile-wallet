@@ -1,14 +1,17 @@
-import { AdviseCardProps } from "module/common/component/display/AdviseCard/AdviseCard.types";
-import { Col, Typography } from "react-native-components";
-import AccountCard from "../../surface/AccountCard/AccountCard";
+import { Alert, TouchableWithoutFeedback } from "react-native";
+import { AddAccountCardRoot, AddIcon, AddText, ContentRoot } from "./AddAccountCard.style";
+import { translate } from "locale";
 
-const AddAccountCard = ({ text = "hola" }: AdviseCardProps): JSX.Element => {
+const AddAccountCard = (): JSX.Element => {
     return (
-        <AccountCard>
-            <Col flex={1} justifyContent="space-between">
-                <Typography variant="body2">{text}</Typography>
-            </Col>
-        </AccountCard>
+        <TouchableWithoutFeedback onPress={() => Alert.alert("IMPORT_WALLET")}>
+            <AddAccountCardRoot>
+                <ContentRoot>
+                    <AddIcon />
+                    <AddText variant="h3">{translate("add_an_account")}</AddText>
+                </ContentRoot>
+            </AddAccountCardRoot>
+        </TouchableWithoutFeedback>
     );
 };
 
