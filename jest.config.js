@@ -24,6 +24,7 @@ module.exports = {
         "./src/**/*.(ts|js|tsx|jsx)",
         "!./src/**/index.(ts|js|tsx|jsx)",
         "!./src/**/*.d.ts",
+        "!./src/**/mock/**/*",
         "!./src/module/api/**/*",
         "!./src/script/**/*",
         "!./src/**/*.(styles|types).(ts|js|tsx|jsx)",
