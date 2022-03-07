@@ -5,11 +5,13 @@ import { LinkItemIconProps, LinkTextProps } from "../BottomBar.types";
 
 export const LinkItemText = styled(Typography, { textAlign: "center" })<LinkTextProps>(({ theme, isActive }) => ({
     color: isActive ? theme.palette.black : theme.palette.darkGray,
+    fontSize: 14,
+    marginTop: 2,
 }));
 
 export const LinkItemIcon = styled(Icon)<LinkItemIconProps>(({ theme, isActive }) => ({
     color: isActive ? theme.palette.black : theme.palette.darkGray,
-    fontSize: 24,
+    fontSize: 30,
 }));
 
 export const BottomBarItemRoot = styled(Pressable)(() => ({
