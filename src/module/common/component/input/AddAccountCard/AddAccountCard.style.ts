@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import { PlusIcon } from "icons";
 import { Row, Typography } from "react-native-components";
-import { AccountCardRoot } from "../../surface/AccountCard/AccountCard.styles";
+import { BaseAccountCardRoot } from "../../surface/BaseAccountCard/BaseAccountCard.styles";
 
 export const AddIcon = styled(PlusIcon)(({ theme }) => ({
     color: theme.palette.white,
@@ -13,7 +13,7 @@ export const AddText = styled(Typography, { textTransform: "uppercase" })(({ the
     fontWeight: "bold",
 }));
 
-export const AddAccountCardRoot = styled(AccountCardRoot)(({ theme }) => ({
+export const AddAccountCardRoot = styled(BaseAccountCardRoot)(({ theme }) => ({
     backgroundColor: theme.palette.darkLightGray,
 }));
 

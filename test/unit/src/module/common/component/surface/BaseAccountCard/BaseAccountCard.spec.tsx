@@ -1,13 +1,13 @@
-import AccountCard from "module/common/component/surface/AccountCard/AccountCard";
+import BaseAccountCard from "module/common/component/surface/BaseAccountCard/BaseAccountCard";
 import { render } from "test-utils";
 import { Text } from "react-native";
 
-describe("Account card test", () => {
+describe("BaseAccountCard test", () => {
     test("Renders correctly", () => {
         const screen = render(
-            <AccountCard>
+            <BaseAccountCard>
                 <Text>Hola</Text>
-            </AccountCard>,
+            </BaseAccountCard>,
         );
         expect(screen.getByText("Hola")).toBeDefined();
     });
