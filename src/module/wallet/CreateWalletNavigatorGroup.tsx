@@ -10,6 +10,7 @@ import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
+import { useBackHandler } from "@react-native-community/hooks";
 
 export enum CreateWalletScreens {
     SET_WALLET_NAME,
@@ -34,6 +35,10 @@ const CreateWalletNavigatorGroup = () => {
     const [showPin, setShowPin] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     useLogoPageFlex(showPin ? 0.1 : showSuccess ? 1 : 0.4);
+    useBackHandler(() => {
+        handleBack();
+        return true;
+    });
 
     const handleBack = () => {
         if (activeTab === CreateWalletScreens.SET_WALLET_NAME) {
@@ -45,7 +50,7 @@ const CreateWalletNavigatorGroup = () => {
         } else if (activeTab === CreateWalletScreens.WALLET_ADVISES) {
             setShowPin(true);
             setShowGlass(false);
-        } else setActiveTab((t) => t - 1);
+        } else if (activeTab >= 0) setActiveTab((t) => t - 1);
     };
 
     const handleTabChange = (t: number) => {
