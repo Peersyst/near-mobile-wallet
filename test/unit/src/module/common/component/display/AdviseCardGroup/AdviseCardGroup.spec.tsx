@@ -13,7 +13,7 @@ describe("AdviseCardGroup tests", () => {
         expect(screen.getByText(translate("advise") + " 1")).toBeDefined();
         expect(screen.getByText("1/3")).toBeDefined();
         expect(screen.getByText(advises[0])).toBeDefined();
-        expect(screen.getByText("... 10s")).toBeDefined();
+        expect(screen.getByText("... 5s")).toBeDefined();
         act(() => jest.runAllTimers());
         fireEvent.press(screen.getByText(translate("next")));
         expect(screen.getByText(translate("advise") + " 2")).toBeDefined();
