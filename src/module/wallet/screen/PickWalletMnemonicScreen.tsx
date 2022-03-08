@@ -3,7 +3,7 @@ import MnemonicPicker from "module/wallet/component/input/MnemonicPicker/Mnemoni
 import Card from "module/common/component/surface/Card/Card";
 import { Col, Typography, useTabs } from "react-native-components";
 import { translate } from "locale";
-import { CreateWalletScreens } from "module/wallet/CreateWalletNavigatorGroup";
+import { CreateWalletScreens } from "module/wallet/navigator/CreateWalletNavigatorGroup";
 
 const PickWalletMnemonicScreen = (): JSX.Element => {
     const setTab = useTabs()[1];

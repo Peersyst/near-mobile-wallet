@@ -4,7 +4,7 @@ import { translate } from "locale";
 import { fireEvent } from "@testing-library/react-native";
 import * as UseCreateWalletState from "module/wallet/hook/useCreateWallet";
 import * as UseTabs from "module/common/component/base/navigation/Tabs/hook/useTabs";
-import { CreateWalletScreens } from "module/wallet/CreateWalletNavigatorGroup";
+import { CreateWalletScreens } from "module/wallet/navigator/CreateWalletNavigatorGroup";
 
 describe("WalletMnemonicScreen tests", () => {
     afterAll(() => {

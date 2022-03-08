@@ -31,5 +31,10 @@
     "news": "News",
     "dao": "DAO",
     "keep_this_safe": "Keep This Safe",
-    "select_in_order": "Select In Order"
+    "select_in_order": "Select In Order",
+    "import_wallet": "Import Wallet",
+    "enter_mnemonic": "Enter Mnemonic",
+    "mnemonic_input_text": "Type a word and press enter to add it or tap one to remove it.",
+    "mnemonic": "Mnemonic",
+    "add_a_word": "Add a word"
 }

@@ -4,6 +4,7 @@ import { View, StyleSheet } from "react-native";
 import PagerView from "module/common/component/layout/PagerView/PagerView";
 import { useSetRecoilState } from "recoil";
 import walletState from "module/wallet/state/WalletState";
+import { WalletStorage } from "module/wallet/WalletStorage";
 
 const DATA = [
     {
@@ -47,6 +48,14 @@ const HomePage = (): JSX.Element => {
     return (
         <BasePage appearance="light" showIcons>
             <Button onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>Log out</Button>
+            <Button
+                onPress={async () => {
+                    await WalletStorage.clear();
+                    setWalletState({ isAuthenticated: false, hasWallet: false, name: undefined });
+                }}
+            >
+                Erase
+            </Button>
             <PagerView showPageIndicator height={200}>
                 {DATA.map((item, i) => (
                     <Item item={item} key={i} />

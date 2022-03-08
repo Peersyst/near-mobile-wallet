@@ -33,6 +33,7 @@ const CountdownButton = ({
             disabled={disabled}
             style={style}
             variant={variant}
+            size={size}
             {...buttonProps}
         >
             {children}

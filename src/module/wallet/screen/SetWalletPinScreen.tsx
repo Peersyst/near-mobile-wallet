@@ -1,19 +1,20 @@
-import { Animated, useTabs } from "react-native-components";
+import { Animated } from "react-native-components";
 import NumericPad from "module/common/component/input/NumericPad/NumericPad";
 import { translate } from "locale";
-import { CreateWalletScreens } from "module/wallet/CreateWalletNavigatorGroup";
 import { useState } from "react";
 import useCreateWallet from "../hook/useCreateWallet";
 
-const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { duration: 200, appear: true });
+export interface SetWalletPinScreen {
+    onCancel: () => void;
+    onSuccess: () => void;
+}
 
-const SetWalletPinScreen = (): JSX.Element => {
+const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { duration: 200 });
+
+const SetWalletPinScreen = ({ onCancel, onSuccess }: SetWalletPinScreen): JSX.Element => {
     const [pin, setPin] = useState<string>();
     const [error, setError] = useState(false);
-    const setTab = useTabs()[1];
     const { setPin: setWalletPin } = useCreateWallet();
-
-    const handleCancel = () => setTab(CreateWalletScreens.SET_WALLET_NAME);
 
     const handlePinSubmit = (p: string) => {
         setPin(p);
@@ -22,21 +23,28 @@ const SetWalletPinScreen = (): JSX.Element => {
     const handleRepeatPinSubmit = (p: string) => {
         if (p === pin) {
             setWalletPin(p);
-            setTab(CreateWalletScreens.WALLET_ADVISES);
+            onSuccess();
         } else {
             setError(true);
             setPin(undefined);
-            return false;
         }
     };
 
     return pin ? (
-        <AnimatedNumericPad in={true} onSubmit={handleRepeatPinSubmit} onCancel={handleCancel} placeholder={translate("repeat_pin")} />
+        <AnimatedNumericPad
+            key="repeat_pin"
+            in
+            onSubmit={handleRepeatPinSubmit}
+            onCancel={onCancel}
+            placeholder={translate("repeat_pin")}
+        />
     ) : (
         <AnimatedNumericPad
-            in={true}
+            key="set_pin"
+            in
+            appear
             onSubmit={handlePinSubmit}
-            onCancel={handleCancel}
+            onCancel={onCancel}
             placeholder={error ? translate("pins_did_not_match") : translate("enter_your_pin")}
         />
     );

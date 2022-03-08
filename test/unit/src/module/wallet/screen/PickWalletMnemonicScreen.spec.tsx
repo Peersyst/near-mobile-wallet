@@ -3,7 +3,7 @@ import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScr
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import * as UseTabs from "module/common/component/base/navigation/Tabs/hook/useTabs";
 import { fireEvent } from "@testing-library/react-native";
-import { CreateWalletScreens } from "module/wallet/CreateWalletNavigatorGroup";
+import { CreateWalletScreens } from "module/wallet/navigator/CreateWalletNavigatorGroup";
 
 describe("PickWalletMnemonicScreen tests", () => {
     afterAll(() => {

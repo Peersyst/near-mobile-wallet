@@ -14,7 +14,7 @@ const MnemonicList = ({ mnemonic, appearance = "light", onPress }: MnemonicListP
         renderItem={({ item, index }) => (
             <Chip label={item} style={{ marginLeft: index % 3 === 0 ? 0 : 15 }} appearance={appearance} onPress={() => onPress?.(item)} />
         )}
-        keyExtractor={(item) => item}
+        keyExtractor={(item, index) => item + index}
         style={{ overflow: "visible" }}
         numColumns={3}
         columnWrapperStyle={{ marginBottom: 15, justifyContent: "center" }}

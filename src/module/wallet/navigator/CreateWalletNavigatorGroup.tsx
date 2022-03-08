@@ -84,7 +84,10 @@ const CreateWalletNavigatorGroup = () => {
                 breadcrumbs={{ index: activeTab, length: 4 }}
             >
                 <TabPanel index={CreateWalletScreens.SET_WALLET_NAME}>
-                    <SetWalletNameScreen />
+                    <SetWalletNameScreen
+                        onSubmit={() => handleTabChange(CreateWalletScreens.SET_WALLET_PIN)}
+                        submitText={translate("set_pin")}
+                    />
                 </TabPanel>
                 <TabPanel index={CreateWalletScreens.WALLET_ADVISES}>
                     <WalletAdvisesScreen />
@@ -97,7 +100,10 @@ const CreateWalletNavigatorGroup = () => {
                 </TabPanel>
             </AnimatedGlassNavigator>
             <TabPanel index={CreateWalletScreens.SET_WALLET_PIN}>
-                <SetWalletPinScreen />
+                <SetWalletPinScreen
+                    onSuccess={() => handleTabChange(CreateWalletScreens.WALLET_ADVISES)}
+                    onCancel={() => handleTabChange(CreateWalletScreens.SET_WALLET_NAME)}
+                />
             </TabPanel>
             <TabPanel index={CreateWalletScreens.CREATE_WALLET_SUCCESS}>
                 <CreateWalletSuccessScreen />

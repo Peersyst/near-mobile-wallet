@@ -12,8 +12,9 @@ const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style, on
 
     useEffect(() => {
         if (value.length > 3) {
-            onSubmit(value);
-            setValue("");
+            onSubmit(value)?.then(() => {
+                setValue("");
+            });
         }
     }, [onSubmit, value]);
 
@@ -28,14 +29,16 @@ const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style, on
             </Row>
             <Col style={style} gap={"8%"}>
                 <Keyboard setValue={setValue} />
-                <PressableText
-                    style={{ marginHorizontal: "17.8%", marginBottom: "2%" }}
-                    variant="body1"
-                    textAlign="right"
-                    onPress={onCancel}
-                >
-                    {translate("cancel")}
-                </PressableText>
+                {onCancel && (
+                    <PressableText
+                        style={{ marginHorizontal: "17.8%", marginBottom: "2%" }}
+                        variant="body1"
+                        textAlign="right"
+                        onPress={onCancel}
+                    >
+                        {translate("cancel")}
+                    </PressableText>
+                )}
             </Col>
         </Col>
     );
