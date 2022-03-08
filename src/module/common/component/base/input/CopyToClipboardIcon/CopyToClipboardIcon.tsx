@@ -8,11 +8,10 @@ interface CopyToClipboardIconProps {
 }
 
 const CopyToClipboardIcon = ({ text, style }: CopyToClipboardIconProps): JSX.Element => {
-
     const copyToClipboard = () => {
         Clipboard.setString(text);
     };
-    
+
     return (
         <IconButton style={style} onPress={copyToClipboard}>
             <CopyIcon />

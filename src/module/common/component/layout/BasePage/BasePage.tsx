@@ -15,7 +15,7 @@ const BasePage = ({ children, appearance: appearanceProp, header = true, showIco
 
     return (
         <ThemeProvider theme={appearance === "light" ? theme : darkTheme}>
-            <BasePageRoot >
+            <BasePageRoot>
                 <StatusBar />
                 <BasePageContent>
                     {header && <Header showIcons={showIcons} />}

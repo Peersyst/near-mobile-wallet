@@ -1,22 +1,14 @@
 import PagerView from "module/common/component/layout/PagerView/PagerView";
+import { MAIN_SCREEN_PADDING } from "module/main/MainNavigatorGroup";
 import AddAccountCard from "module/wallet/component/input/AddAccountCard/AddAccountCard";
+import walletState from "module/wallet/state/WalletState";
+import { useRecoilValue } from "recoil";
 
-const DATA = [
-    {
-        id: "0",
-        title: "First Item",
-    },
-    {
-        id: "1",
-        title: "First Item",
-    },
-];
 const MainSlider = (): JSX.Element => {
+    const { hasWallet, wallets } = useRecoilValue(walletState);
     return (
-        <PagerView showPageIndicator height={230} onPageSelected={(e) => console.log(e)}>
-            {DATA.map(() => (
-                <AddAccountCard />
-            ))}
+        <PagerView innerPadding={MAIN_SCREEN_PADDING} showPageIndicator height={250} gap={0}>
+            {hasWallet ? wallets.map((_, i) => <AddAccountCard key={i} />) : <AddAccountCard />}
         </PagerView>
     );
 };
