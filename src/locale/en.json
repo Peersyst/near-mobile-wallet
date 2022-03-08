@@ -31,6 +31,8 @@
     "news": "News",
     "dao": "DAO",
     "add_an_account": "Add an account",
+    "my_account": "My Account",
     "keep_this_safe": "Keep This Safe",
-    "select_in_order": "Select In Order"
+    "select_in_order": "Select In Order",
+    "token": "ckb"
 }

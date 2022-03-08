@@ -1,6 +1,7 @@
 import { atom } from "recoil";
+import { cells } from "../mock/cells";
 
-export interface Account {
+export interface Cell {
     address: string;
     balance: string
 }
@@ -9,12 +10,12 @@ export interface WalletState {
     hasWallet: boolean;
     isAuthenticated: boolean;
     name?: string;
-    accounts: Account[];
+    cells: Cell[];
 }
 
 const walletState = atom<WalletState>({
     key: "wallet",
-    default: { hasWallet: false, isAuthenticated: false, accounts:[] },
+    default: { hasWallet: true, isAuthenticated: true, cells: cells },
 });
 
 export default walletState;

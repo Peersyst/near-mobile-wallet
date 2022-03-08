@@ -5,6 +5,8 @@ import { RippleAnimCircleRoot, Ripple } from "./RippleAnimCircle.styles";
 
 const RippleAnimCircle = ({
     onPress,
+    onPressIn,
+    onPressOut,
     scaleStart = 0.5,
     size,
     zIndex,
@@ -18,7 +20,7 @@ const RippleAnimCircle = ({
     const opacityAnim2 = useRef(new Animated.Value(1)).current;
 
     const showAnim = (e: NativeSyntheticEvent<NativeTouchEvent>) => {
-        if (onPress) onPress(e);
+        if (onPressIn) onPressIn(e);
         scaleAnim.setValue(scaleStart);
         scaleAnim2.setValue(scaleStart);
         opacityAnim.setValue(0.6);
@@ -47,7 +49,7 @@ const RippleAnimCircle = ({
         ]).start();
     };
     return (
-        <RippleAnimCircleRoot testID="rippleAnim" onPressIn={(e) => showAnim(e)} size={size} zIndex={zIndex}>
+        <RippleAnimCircleRoot testID="rippleAnim" onPressIn={(e) => showAnim(e)} onPressOut={onPressOut} onPress={onPress} size={size} zIndex={zIndex}>
             <Ripple
                 color={color1}
                 size={size}

@@ -1,6 +1,7 @@
 import { ButtonProps as NativeButtonProps, TextStyle, ViewStyle } from "react-native";
 import { SX } from "@peersyst/react-native-styled";
 import { ReactElement } from "react";
+import { RippleAnimCircleProps } from "module/common/component/util/RippleAnimCircle/RippleAnimCircle.types";
 
 export type IconButtonStyle = ViewStyle & TextStyle;
 export type IconButtonStyles = IconButtonStyle & {
@@ -13,11 +14,7 @@ export interface IconButtonSxProps {
     disabled?: boolean;
 }
 
-export interface IconButtonProps {
-    /**
-     * onPress handler
-     */
-    onPress?: NativeButtonProps["onPress"];
+export interface IconButtonProps extends RippleAnimCircleProps {
     /**
      * Disables button
      */
@@ -34,4 +31,8 @@ export interface IconButtonProps {
      * Button's text content
      */
     children: ReactElement;
-}
+    /**
+     * Should ripple animation be displayed
+     */
+    withAnimation?: boolean;
+} 
