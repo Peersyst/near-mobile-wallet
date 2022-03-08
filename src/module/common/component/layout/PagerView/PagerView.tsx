@@ -21,7 +21,7 @@ const PagerView = ({
     };
 
     return (
-        <Col style={[style, { height }]} gap={10}>
+        <Col style={[style, { height }]} gap={0}>
             <BasePagerView style={{ flex: 1 }} initialPage={initialPage} onPageSelected={handlePageSelected} {...rest}>
                 {Children.map(children, (child, key) => (
                     <View style={{ alignItems: "center" }} collapsable key={key}>
