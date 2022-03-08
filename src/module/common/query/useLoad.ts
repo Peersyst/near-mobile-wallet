@@ -1,19 +1,18 @@
 import { useSetRecoilState } from "recoil";
-import { authState } from "module/auth/AuthState";
-import { AuthTokenStorage } from "module/auth/AuthTokenStorage";
 import { useEffect, useState } from "react";
+import { WalletStorage } from "module/wallet/WalletStorage";
+import walletState from "module/wallet/state/WalletState";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
-    const setAuthState = useSetRecoilState(authState);
+    const setWalletState = useSetRecoilState(walletState);
 
     useEffect(() => {
-        AuthTokenStorage.get().then((token) => {
-            if (token) setAuthState({ token, isLogged: true });
-            // OTHER STUFF
+        WalletStorage.getName().then((name) => {
+            if (name) setWalletState((state) => ({ ...state, hasWallet: true, name }));
             setLoading(false);
         });
-    }, [setAuthState]);
+    }, [setWalletState]);
 
     return loading;
 }
