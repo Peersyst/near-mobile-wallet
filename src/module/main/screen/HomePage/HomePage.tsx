@@ -1,8 +1,9 @@
 import Button from "module/common/component/input/Button/Button";
 import BasePage from "module/common/component/layout/BasePage/BasePage";
-import { useAuth } from "module/auth/hook/useAuth";
 import { View, StyleSheet } from "react-native";
 import PagerView from "module/common/component/layout/PagerView/PagerView";
+import { useSetRecoilState } from "recoil";
+import walletState from "module/wallet/state/WalletState";
 
 const DATA = [
     {
@@ -42,10 +43,10 @@ const Item = ({ item }: ItemProps): JSX.Element => {
 };
 
 const HomePage = (): JSX.Element => {
-    const { logout } = useAuth();
+    const setWalletState = useSetRecoilState(walletState);
     return (
         <BasePage appearance="light" showIcons>
-            <Button onPress={logout}>Log out</Button>
+            <Button onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>Log out</Button>
             <PagerView showPageIndicator height={200}>
                 {DATA.map((item, i) => (
                     <Item item={item} key={i} />
