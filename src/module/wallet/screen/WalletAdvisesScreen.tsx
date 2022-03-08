@@ -17,7 +17,7 @@ const WalletAdvisesScreen = (): JSX.Element => {
         <Col flex={1} gap={30}>
             <AdviseCardGroup index={index} onIndexChange={setIndex} advises={advises.map((advise) => ({ text: advise }))} />
             {index === 2 ? (
-                <CountdownButton seconds={10} fullWidth variant="outlined" style={{ marginHorizontal: 20 }} onPress={handleNext}>
+                <CountdownButton seconds={5} fullWidth variant="outlined" style={{ marginHorizontal: 20 }} onPress={handleNext}>
                     {translate("generate_mnemonic")}
                 </CountdownButton>
             ) : (

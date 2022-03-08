@@ -28,7 +28,7 @@ const AdviseCard = ({ number, totalAdvises, text, style, onBack, onNext }: Advis
                         </BackIconButton>
                     )}
                     {onNext && (
-                        <CountdownButton style={{ width: 150 }} seconds={10} onPress={onNext}>
+                        <CountdownButton style={{ width: 150 }} seconds={5} onPress={onNext}>
                             {translate("next")}
                         </CountdownButton>
                     )}
