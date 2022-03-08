@@ -13,7 +13,7 @@ describe("AdviseCard tests", () => {
         expect(screen.getByText("Advise 1")).toBeDefined();
         expect(screen.getByText("1/3")).toBeDefined();
         expect(screen.getByText("Advise text")).toBeDefined();
-        expect(screen.getByText("... 10s")).toBeDefined();
+        expect(screen.getByText("... 5s")).toBeDefined();
 
         const backButton = screen.getByTestId("BackIcon");
         fireEvent.press(backButton);
