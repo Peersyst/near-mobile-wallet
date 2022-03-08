@@ -5,10 +5,10 @@ import walletState from "module/wallet/state/WalletState";
 import { useRecoilValue } from "recoil";
 
 const MainSlider = (): JSX.Element => {
-    const { hasWallet, wallets } = useRecoilValue(walletState);
+    const { hasWallet, accounts } = useRecoilValue(walletState);
     return (
         <PagerView innerPadding={MAIN_SCREEN_PADDING} showPageIndicator height={250} gap={0}>
-            {hasWallet ? wallets.map((_, i) => <AddAccountCard key={i} />) : <AddAccountCard />}
+            {hasWallet ? accounts.map((_, i) => <AddAccountCard key={i} />) : <AddAccountCard />}
         </PagerView>
     );
 };

@@ -1,11 +1,11 @@
-import BasePagerView, { PagerViewProps as PagerViewLibProps } from "react-native-pager-view";
+import BasePagerView, { PagerViewProps as BasePagerViewProps } from "react-native-pager-view";
 import { Col, ColProps } from "react-native-components";
 import { Children, useState } from "react";
 import { NativeSyntheticEvent, View, ViewStyle } from "react-native";
 import { PagerViewOnPageSelectedEventData } from "react-native-pager-view/src/types";
 import DottedPagination from "module/common/component/display/DottedPagination/DottedPagination";
 
-interface PagerViewProps extends PagerViewLibProps {
+interface PagerViewProps extends BasePagerViewProps {
     height: ViewStyle["height"];
     gap?: ColProps["gap"];
     innerPadding?: ViewStyle["padding"];
