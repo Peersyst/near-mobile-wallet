@@ -31,5 +31,6 @@
     "news": "News",
     "dao": "DAO",
     "keep_this_safe": "Keep This Safe",
-    "select_in_order": "Select In Order"
+    "select_in_order": "Select In Order",
+    "incorrect_mnemonic": "Mnemonic is not correct"
 }
