@@ -1,7 +1,8 @@
-import { ToastAnimation, ToastContainer, ToastContainerStylesProps } from "module/common/component/base/feedback/Toast";
+import { ToastAnimation, ToastContainerStylesProps } from "../Toast.types";
 import { ComponentType } from "react";
-import { Animated, AnimatedProps } from "react-native-components";
-import { SlideProps } from "module/common/component/base/util/Animated/Slide";
+import { Animated, AnimatedProps } from "../../../util/Animated";
+import { SlideProps } from "../../../util/Animated/Slide";
+import { ToastContainer } from "../Toast.styles";
 
 const FadingToast = Animated.createAnimatedComponent.fade(ToastContainer);
 const ScalingToast = Animated.createAnimatedComponent.scale(ToastContainer);
