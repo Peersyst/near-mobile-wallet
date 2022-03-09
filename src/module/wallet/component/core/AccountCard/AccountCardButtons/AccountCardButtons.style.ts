@@ -1,0 +1,37 @@
+import styled from "@peersyst/react-native-styled";
+import { alpha } from "@peersyst/react-utils";
+import { View } from "react-native";
+import { Button, Icon } from "react-native-components";
+
+interface CardButtonProps {
+    position: "left" | "right";
+}
+
+export const CardButton = styled(Button, { size: "md", variant: "outlined" })<CardButtonProps>(({ theme, position }) => ({
+    borderTopRightRadius: position === "left" ? 0 : undefined,
+    borderBottomRightRadius: position === "left" ? 0 : undefined,
+    borderTopLeftRadius: position === "right" ? 0 : undefined,
+    borderBottomLeftRadius: position === "right" ? 0 : undefined,
+    fontWeight: "bold",
+    justifyContent: "space-between", alignItems: "center",
+    width: 120,
+    outlined: {
+        borderWidth:0,
+        color: theme.palette.white,
+        textTransform: "none",
+    },
+    backgroundColor: alpha(theme.palette.white, 0.3),
+    opacity: 0.9
+}));
+
+export const IconButton = styled(Icon)(({ theme })=> ({ 
+    color: theme.palette.white,
+    fontSize: 27
+}))
+
+export const Separator = styled(View)(({theme})=>({
+    height:"100%",
+    width:2,
+    backgroundColor: theme.palette.white,
+    opacity: 0.5,
+}))

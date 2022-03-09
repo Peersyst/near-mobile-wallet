@@ -15,7 +15,7 @@ export interface WalletState {
 
 const walletState = atom<WalletState>({
     key: "wallet",
-    default: { hasWallet: true, isAuthenticated: true, cells: cells },
+    default: { hasWallet: false, isAuthenticated: false, cells: cells },
 });
 
 export default walletState;

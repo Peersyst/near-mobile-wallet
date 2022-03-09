@@ -1,33 +1,26 @@
-import styled from "@peersyst/react-native-styled";
-import { alpha } from "@peersyst/react-utils";
-import Button from "module/common/component/input/Button/Button";
+import { SendIcon, ReceiveIcon } from "icons";
 import { Row } from "react-native-components";
+import { CardButton, IconButton, Separator } from "./AccountCardButtons.style";
 
-const CardButton = styled(Button, { size: "sm", variant: "outlined" })<{ position: "left" | "right" }>(({ theme, position }) => ({
-    borderTopRightRadius: position === "left" ? 0 : undefined,
-    borderBottomRightRadius: position === "left" ? 0 : undefined,
-    borderTopLeftRadius: position === "right" ? 0 : undefined,
-    borderBottomLeftRadius: position === "right" ? 0 : undefined,
-    borderLeftWidth: position === "left" ? 0 : 1,
-    borderRightWidth: position === "left" ? 1 : 0,
-    borderTopWidth: 0,
-    borderBottomWidth: 0,
-    borderColor: "red",
-    outlined: {
-        color: theme.palette.white,
-        borderColor: theme.palette.white,
-        textTransform: "none",
-    },
-    backgroundColor: alpha(theme.palette.white, 0.3),
-}));
+interface ActionButtonProps {
+    action: "send" | "receive";
+}
+const ActionButton = ({ action }: ActionButtonProps): JSX.Element => {
+    return <IconButton>{action === "send" ? <SendIcon /> : <ReceiveIcon />}</IconButton>;
+};
 
-const AccountCardButtons = (): JSX.Element => {
+const CardButtons = (): JSX.Element => {
     return (
-        <Row justifyContent="center">
-            <CardButton position="left">Send</CardButton>
-            {/* <CardButton position="right">Right</CardButton> */}
+        <Row justifyContent="center" style={{marginBottom:10}}>
+            <CardButton position="left" leftIcon={<ActionButton action="send" />}>
+                Send
+            </CardButton>
+            <Separator />
+            <CardButton position="right" rightIcon={<ActionButton action="receive" />}>
+                Receive
+            </CardButton>
         </Row>
     );
 };
 
-export default AccountCardButtons;
+export default CardButtons;

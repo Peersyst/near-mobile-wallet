@@ -3,7 +3,7 @@ import { TouchableWithoutFeedback } from "react-native";
 import { AccountCardBalance, AccountCardRoot, AccountContent } from "./AccountCard.styles";
 import AccountCardHeader from "./AccountCardHeader/AccountCardHeader";
 import { translate } from "locale";
-import AccountCardButtons from "./AccountCardButtons/AccountCardButtons";
+import AccountButtons from "./AccountCardButtons/AccountCardButtons";
 
 export interface AccountCardProps {
     colorIndex: number;
@@ -17,7 +17,7 @@ const AccountCard = ({ colorIndex, cell }: AccountCardProps): JSX.Element => {
                 <AccountContent>
                     <AccountCardHeader address={cell.address} />
                     <AccountCardBalance variant="h1" balance={cell.balance} units={translate("token")} />
-                    <AccountCardButtons />
+                    <AccountButtons />
                 </AccountContent>
             </AccountCardRoot>
         </TouchableWithoutFeedback>
