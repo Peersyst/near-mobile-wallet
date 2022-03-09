@@ -8,7 +8,6 @@ import DottedPagination from "module/common/component/display/DottedPagination/D
 interface PagerViewProps extends BasePagerViewProps {
     height: ViewStyle["height"];
     gap?: ColProps["gap"];
-    innerPadding?: ViewStyle["padding"];
 }
 
 const PagerView = ({
@@ -20,7 +19,6 @@ const PagerView = ({
     height,
     pageMargin,
     gap = 10,
-    innerPadding,
     ...rest
 }: PagerViewProps): JSX.Element => {
     const [currentPage, setCurrentPage] = useState(initialPage);
@@ -39,7 +37,7 @@ const PagerView = ({
                 {...rest}
             >
                 {Children.map(children, (child, key) => (
-                    <View style={{ alignItems: "center", justifyContent: "center", padding: innerPadding }} collapsable key={key}>
+                    <View style={{ alignItems: "center", justifyContent: "center" }} collapsable key={key}>
                         {child}
                     </View>
                 ))}
