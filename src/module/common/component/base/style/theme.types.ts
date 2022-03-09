@@ -2,6 +2,7 @@
 import { ShadowPropTypesIOSStatic, TextStyle } from "react-native";
 import { TranslateFn } from "../input/TextInput/utils";
 import { JSXElementConstructor } from "react";
+import { ToastAnimation, ToastPosition } from "../feedback/Toast";
 
 export type PaletteMode = "light" | "dark";
 
@@ -84,9 +85,9 @@ export interface DefaultTheme {
     shadows: Shadow[];
     borderRadius: number;
     toolbarHeight: number;
-    /*skeletonAnimations: SkeletonAnimation;
+    /*skeletonAnimations: SkeletonAnimation;*/
     toastAnimation: ToastAnimation;
-    toastPosition: ToastPosition;*/
+    toastPosition: ToastPosition;
     zIndex: ThemeZIndex;
     translate: TranslateFn;
 }

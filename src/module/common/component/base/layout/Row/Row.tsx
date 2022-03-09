@@ -3,14 +3,14 @@ import { RowRoot } from "./Row.styles";
 import { RowProps } from "./Row.types";
 import { View } from "react-native";
 
-const Row = ({ children: childrenProp, gap, justifyContent, alignItems, style, flex }: RowProps): JSX.Element => {
+const Row = ({ children: childrenProp, gap, justifyContent, alignItems, style, flex, wrap = false }: RowProps): JSX.Element => {
     const children = Children.toArray(childrenProp).filter((child) => !!child);
     const childrenLength = Children.count(children);
 
     const hasGap = !justifyContent || justifyContent === "flex-start" || justifyContent === "flex-end" || justifyContent === "center";
 
     return (
-        <RowRoot style={[{ alignItems, justifyContent, flex }, style]}>
+        <RowRoot style={[{ alignItems, justifyContent, flex }, style]} wrap={wrap}>
             {Children.map(children, (child, index: number) => (
                 <Fragment key={index}>
                     {child}

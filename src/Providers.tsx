@@ -4,6 +4,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
 import { ModalProvider } from "react-native-components";
+import { ToastProvider } from "module/common/component/base/feedback/ToastProvider";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -19,10 +20,12 @@ const Providers = ({ children }: PropsWithChildren<unknown>): JSX.Element => (
         <QueryClientProvider client={queryClient}>
             <SafeAreaProvider initialSafeAreaInsets={{ top: 0, left: 0, right: 0, bottom: 0 }}>
                 <StylesProvider>
-                    <ModalProvider>
-                        {children}
-                        {/*{process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}*/}
-                    </ModalProvider>
+                    <ToastProvider>
+                        <ModalProvider>
+                            {children}
+                            {/*{process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}*/}
+                        </ModalProvider>
+                    </ToastProvider>
                 </StylesProvider>
             </SafeAreaProvider>
         </QueryClientProvider>
