@@ -2,7 +2,8 @@ import styled from "@peersyst/react-native-styled";
 import { StarIcon } from "icons";
 import CopyToClipboardIcon from "module/common/component/input/CopyToClipboardIcon/CopyToClipboardIcon";
 import BaseAccountCard from "module/common/component/surface/BaseAccountCard/BaseAccountCard";
-import { Typography } from "react-native-components";
+import { Col, Typography } from "react-native-components";
+import Balance from "../../display/Balance/Balance";
 import { AccountCardProps } from "./AccountCard";
 import { getCardColor } from "./utils/getCardColors";
 
@@ -28,11 +29,10 @@ export const AccountCardTitle = styled(Typography, { textTransform: "uppercase" 
     fontWeight: "bold",
 }))
 
-export const BalanceInteger = styled(Typography)(({ theme }) => ({
+export const AccountCardBalance = styled(Balance, { tokenBold: true, smallBalance:true})(({ theme }) => ({
     color: theme.palette.white,
 }))
 
-export const TokenText = styled(Typography, { textTransform: "uppercase" })(({ theme }) => ({
-    color: theme.palette.white,
-    fontWeight: "bold",
+export const AccountContent = styled(Col, {justifyContent: "space-between"},)(()=>({
+    height: "100%",
 }))

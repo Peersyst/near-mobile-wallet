@@ -1,4 +1,4 @@
-import { translate } from "i18n-js";
+import { translate } from "locale";
 import { Row } from "react-native-components";
 import { FavouriteIcon, AccountCardTitle, CopyIcon } from "../AccountCard.styles";
 
@@ -11,7 +11,7 @@ const AccountCardHeader = ({ address }: AccountCardHeaderProps): JSX.Element => 
         <Row justifyContent="space-between" alignItems="center">
             <FavouriteIcon />
             <AccountCardTitle variant="h3">{translate("my_account")}</AccountCardTitle>
-            <CopyIcon text={address} scaleStart={0.6} withAnimation={true} duration={700} color2="transparent" />
+            <CopyIcon text={address} scaleStart={0.9} withAnimation={true} duration={400} color1="transparent" />
         </Row>
     );
 };

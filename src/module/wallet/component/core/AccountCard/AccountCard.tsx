@@ -1,8 +1,9 @@
 import { Cell } from "module/wallet/state/WalletState";
 import { TouchableWithoutFeedback } from "react-native";
-import { AccountCardRoot } from "./AccountCard.styles";
-import AccountCardBalance from "../../display/AccountCardBalance/AccountCardBalance";
+import { AccountCardBalance, AccountCardRoot, AccountContent } from "./AccountCard.styles";
 import AccountCardHeader from "./AccountCardHeader/AccountCardHeader";
+import { translate } from "locale";
+import AccountCardButtons from "./AccountCardButtons/AccountCardButtons";
 
 export interface AccountCardProps {
     colorIndex: number;
@@ -13,8 +14,11 @@ const AccountCard = ({ colorIndex, cell }: AccountCardProps): JSX.Element => {
     return (
         <TouchableWithoutFeedback>
             <AccountCardRoot colorIndex={colorIndex}>
-                <AccountCardHeader address={cell.address} />
-                <AccountCardBalance balance={cell.balance} />
+                <AccountContent>
+                    <AccountCardHeader address={cell.address} />
+                    <AccountCardBalance variant="h1" balance={cell.balance} units={translate("token")} />
+                    <AccountCardButtons />
+                </AccountContent>
             </AccountCardRoot>
         </TouchableWithoutFeedback>
     );
