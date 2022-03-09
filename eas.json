@@ -12,6 +12,9 @@
         },
         "production": {
             "node": "14.18.3",
+            "env": {
+                "BUILD_NUMBER": "__BUILD_NUMBER__"
+            },
             "android": {
                 "buildType": "apk"
             }

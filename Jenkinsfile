@@ -34,6 +34,7 @@ pipeline {
                             string(credentialsId: 'peersyst-expo-token', variable: 'EXPO_TOKEN'),
                         ]) {
                             sh 'rm .npmrc || true'
+                            sh "sed -i -e 's/__BUILD_NUMBER__/${BUILD_NUMBER}/' eas.json"
                             sh 'npx eas-cli build --platform=android --profile=production --non-interactive'
                         }
                     }
@@ -44,6 +45,7 @@ pipeline {
                             string(credentialsId: 'peersyst-expo-token', variable: 'EXPO_TOKEN'),
                         ]) {
                             sh 'rm .npmrc || true'
+                            sh "sed -i -e 's/__BUILD_NUMBER__/${BUILD_NUMBER}/' eas.json"
                             sh 'npx eas-cli build --platform=ios --auto-submit --profile=production --non-interactive'
                         }
                     }
