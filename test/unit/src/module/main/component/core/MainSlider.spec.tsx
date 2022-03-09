@@ -2,6 +2,9 @@ import MainSlider from "module/main/component/core/MainSlider";
 import { fireEvent, render } from "test-utils";
 import { translate } from "locale";
 import { Alert } from "react-native";
+import * as Recoil from "recoil";
+import walletState from "module/wallet/state/WalletState";
+import { cells } from "module/wallet/mock/cells";
 
 describe("Test for the Main Slider", () => {
     test("Renders correctly without accounts", () => {
@@ -12,4 +15,9 @@ describe("Test for the Main Slider", () => {
         fireEvent.press(button);
         expect(Alert.alert).toHaveBeenCalledWith("Add account");
     });
+    test("Renders correctly with cells", () => {
+        jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ hasWallet: true, isAuthenticated: true, name: "wallet", cells: cells});
+        const screen = render(<MainSlider />);
+        expect(screen.getAllByText(translate("my_account"))).toHaveLength(3);
+    })
 });

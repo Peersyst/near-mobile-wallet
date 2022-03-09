@@ -16,7 +16,7 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
     useEffect(() => {
         WalletStorage.set({ name: name!, pin: pin!, mnemonic: mnemonic! }).then(async () => {
             await new Promise((resolve) => setTimeout(() => resolve(null), 2000));
-            setWalletState({ hasWallet: true, isAuthenticated: true, name: name });
+            setWalletState({ hasWallet: true, isAuthenticated: true, name: name, cells: [] });
             navigate(MainScreens.MAIN);
         });
         //eslint-disable-next-line react-hooks/exhaustive-deps
