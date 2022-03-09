@@ -1,4 +1,4 @@
-import { ButtonProps as NativeButtonProps, TextStyle, ViewStyle } from "react-native";
+import { TextStyle, ViewStyle } from "react-native";
 import { SX } from "@peersyst/react-native-styled";
 import { ReactElement } from "react";
 import { RippleAnimCircleProps } from "module/common/component/util/RippleAnimCircle/RippleAnimCircle.types";
@@ -35,4 +35,4 @@ export interface IconButtonProps extends RippleAnimCircleProps {
      * Should ripple animation be displayed
      */
     withAnimation?: boolean;
-} 
+}

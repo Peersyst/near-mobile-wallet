@@ -3,7 +3,7 @@ import { ThemeFonts, TypographyVariants, TypographyVariantsOverrides } from "../
 import { OverridableStringUnion } from "@peersyst/react-types";
 import { TextStyle } from "react-native";
 
-export type TypographyVariantType = OverridableStringUnion<TypographyVariants, TypographyVariantsOverrides>
+export type TypographyVariantType = OverridableStringUnion<TypographyVariants, TypographyVariantsOverrides>;
 
 export interface TypographyProps {
     /**

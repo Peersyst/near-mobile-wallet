@@ -6,5 +6,5 @@ export const IconButtonRoot = styled(View)(() => ({
     padding: 2,
     alignItems: "center",
     justifyContent: "center",
-    position: "relative"
+    position: "relative",
 }));

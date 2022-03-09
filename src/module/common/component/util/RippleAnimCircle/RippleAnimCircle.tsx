@@ -49,7 +49,14 @@ const RippleAnimCircle = ({
         ]).start();
     };
     return (
-        <RippleAnimCircleRoot testID="rippleAnim" onPressIn={(e) => showAnim(e)} onPressOut={onPressOut} onPress={onPress} size={size} zIndex={zIndex}>
+        <RippleAnimCircleRoot
+            testID="rippleAnim"
+            onPressIn={(e) => showAnim(e)}
+            onPressOut={onPressOut}
+            onPress={onPress}
+            size={size}
+            zIndex={zIndex}
+        >
             <Ripple
                 color={color1}
                 size={size}

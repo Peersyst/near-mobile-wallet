@@ -3,7 +3,7 @@ import { cells } from "../mock/cells";
 
 export interface Cell {
     address: string;
-    balance: string
+    balance: string;
 }
 
 export interface WalletState {

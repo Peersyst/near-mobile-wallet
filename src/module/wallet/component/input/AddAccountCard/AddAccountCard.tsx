@@ -1,6 +1,5 @@
 import { Alert, TouchableWithoutFeedback } from "react-native";
-import { AddAccountCardRoot, AddIcon, AddText, ContentRoot } from "./AddAccountCard.style";
-import { translate } from "locale";
+import { AddAccountCardRoot } from "./AddAccountCard.style";
 
 const AddAccountCard = (): JSX.Element => {
     const handleOnPress = () => {
@@ -9,10 +8,10 @@ const AddAccountCard = (): JSX.Element => {
     return (
         <TouchableWithoutFeedback onPress={handleOnPress}>
             <AddAccountCardRoot>
-                {/* <ContentRoot>
+                <ContentRoot>
                     <AddIcon />
                     <AddText variant="h3">{translate("add_an_account")}</AddText>
-                </ContentRoot> */}
+                </ContentRoot>
             </AddAccountCardRoot>
         </TouchableWithoutFeedback>
     );

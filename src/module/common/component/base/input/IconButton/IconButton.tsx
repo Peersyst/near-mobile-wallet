@@ -6,7 +6,16 @@ import useIconButtonStyles from "./hook/useIconButtonStyles";
 import { TouchableWithoutFeedback } from "react-native";
 import RippleAnimCircle from "module/common/component/util/RippleAnimCircle/RippleAnimCircle";
 
-const IconButton = ({ onPress, disabled = false, style = {}, children, onPressIn, onPressOut, withAnimation, ...rest }: IconButtonProps): JSX.Element => {
+const IconButton = ({
+    onPress,
+    disabled = false,
+    style = {},
+    children,
+    onPressIn,
+    onPressOut,
+    withAnimation,
+    ...rest
+}: IconButtonProps): JSX.Element => {
     const [pressed, setPressed] = useState(false);
 
     const { textStyle, rootStyle } = useIconButtonStyles(style, pressed, disabled);

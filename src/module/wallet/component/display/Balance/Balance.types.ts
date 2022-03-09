@@ -1,5 +1,5 @@
 import { TextStyle, ViewStyle } from "react-native";
-import { TypographyProps, } from "react-native-components";
+import { TypographyProps } from "react-native-components";
 
 export interface BalanceProps extends Pick<TypographyProps, "variant"> {
     balance: string;

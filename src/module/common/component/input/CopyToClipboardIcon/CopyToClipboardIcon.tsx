@@ -13,7 +13,7 @@ const CopyToClipboardIcon = ({ text, style, withAnimation, ...rest }: CopyToClip
     };
 
     return (
-        <IconButton {...rest} style={style} onPress={()=>copyToClipboard()} withAnimation={withAnimation}>
+        <IconButton {...rest} style={style} onPress={() => copyToClipboard()} withAnimation={withAnimation}>
             <CopyIcon />
         </IconButton>
     );

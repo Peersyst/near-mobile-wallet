@@ -11,28 +11,28 @@ export const AccountCardRoot = styled(BaseAccountCard)<Pick<AccountCardProps, "c
     const color = getCardColor(colorIndex, theme);
     return {
         backgroundColor: color,
-    }
-})
+    };
+});
 
 export const FavouriteIcon = styled(StarIcon)(({ theme }) => ({
     color: theme.palette.white,
     fontSize: 23,
-}))
+}));
 
 export const CopyIcon = styled(CopyToClipboardIcon)(({ theme }) => ({
-    color: "white",
+    color: theme.palette.white,
     fontSize: 23,
-}))
+}));
 
 export const AccountCardTitle = styled(Typography, { textTransform: "uppercase" })(({ theme }) => ({
     color: theme.palette.white,
     fontWeight: "bold",
-}))
+}));
 
-export const AccountCardBalance = styled(Balance, { tokenBold: true, smallBalance:true})(({ theme }) => ({
+export const AccountCardBalance = styled(Balance, { tokenBold: true, smallBalance: true })(({ theme }) => ({
     color: theme.palette.white,
-}))
+}));
 
-export const AccountContent = styled(Col, {justifyContent: "space-between"},)(()=>({
+export const AccountContent = styled(Col, { justifyContent: "space-between" })(() => ({
     height: "100%",
-}))
+}));
