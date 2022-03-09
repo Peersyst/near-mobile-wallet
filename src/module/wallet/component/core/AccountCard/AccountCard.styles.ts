@@ -11,6 +11,7 @@ export const AccountCardRoot = styled(BaseAccountCard)<Pick<AccountCardProps, "c
     const color = getCardColor(colorIndex, theme);
     return {
         backgroundColor: color,
+        paddingBottom:30,
     };
 });
 

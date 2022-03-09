@@ -12,7 +12,7 @@ const HomePage = (): JSX.Element => {
         <BasePage appearance="light" showIcons>
             <MainSlider />
             <Col style={{ paddingHorizontal: MAIN_SCREEN_PADDING }}>
-                <Button onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>Log out</Button>
+                <Button loading={true} style={{marginTop: 10}} onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>Log out</Button>
             </Col>
         </BasePage>
     );

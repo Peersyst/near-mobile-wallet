@@ -13,13 +13,18 @@ export const CardButton = styled(Button, { size: "md", variant: "outlined" })<Ca
     borderTopLeftRadius: position === "right" ? 0 : undefined,
     borderBottomLeftRadius: position === "right" ? 0 : undefined,
     fontWeight: "bold",
-    justifyContent: "space-between", alignItems: "center",
+    justifyContent: "space-between", 
     width: 120,
     outlined: {
         borderWidth:0,
         color: theme.palette.white,
         textTransform: "none",
+        paddingHorizontal:0,
     },
+    sm : {
+        paddingHorizontal:0,
+    },
+    paddingHorizontal:0,
     backgroundColor: alpha(theme.palette.white, 0.3),
     opacity: 0.9
 }));
