@@ -41,6 +41,7 @@ export default function Toast({
                 clearTimeout(hideTimeout);
             };
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);
 
     const AnimatedComponent = getAnimatedComponent(animation);
