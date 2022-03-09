@@ -30,12 +30,20 @@ pipeline {
             parallel {
                 stage("Build and publish - Android") {
                     steps {
-                        sh 'npx eas-cli build --platform=android --profile=production --non-interactive'
+                        withCredentials([
+                            string(credentialsId: 'peersyst-expo-token', variable: 'EXPO_TOKEN'),
+                        ]) {
+                            sh 'npx eas-cli build --platform=android --profile=production --non-interactive'
+                        }
                     }
                 }
                 stage("Build and publish - iOS") {
                     steps {
-                        sh 'npx eas-cli build --platform=ios --auto-submit --profile=production --non-interactive'
+                        withCredentials([
+                            string(credentialsId: 'peersyst-expo-token', variable: 'EXPO_TOKEN'),
+                        ]) {
+                            sh 'npx eas-cli build --platform=ios --auto-submit --profile=production --non-interactive'
+                        }
                     }
                 }
             }
