@@ -1,0 +1,27 @@
+{
+    "cli": {
+        "version": ">= 0.47.0"
+    },
+    "build": {
+        "development": {
+            "developmentClient": true,
+            "distribution": "internal"
+        },
+        "preview": {
+            "distribution": "internal"
+        },
+        "production": {
+            "node": "14.18.3",
+            "android": {
+                "buildType": "apk"
+            }
+        }
+    },
+    "submit": {
+        "production": {
+            "ios": {
+                "ascAppId": "1613528427"
+            }
+        }
+    }
+}
