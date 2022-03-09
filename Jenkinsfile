@@ -33,6 +33,7 @@ pipeline {
                         withCredentials([
                             string(credentialsId: 'peersyst-expo-token', variable: 'EXPO_TOKEN'),
                         ]) {
+                            sh 'rm .npmrc'
                             sh 'npx eas-cli build --platform=android --profile=production --non-interactive'
                         }
                     }
@@ -42,6 +43,7 @@ pipeline {
                         withCredentials([
                             string(credentialsId: 'peersyst-expo-token', variable: 'EXPO_TOKEN'),
                         ]) {
+                            sh 'rm .npmrc'
                             sh 'npx eas-cli build --platform=ios --auto-submit --profile=production --non-interactive'
                         }
                     }
