@@ -25,7 +25,7 @@ const Balance = ({
                     {action === "add" ? "+" : "-"}
                 </BalanceItem>
             )}
-            <Row alignItems="flex-end">
+            <Row alignItems="flex-end" testID="hola">
                 <BalanceItem action={action} style={textStyles} variant={variant} bold={unitsBold}>{`${balance[0]}.`}</BalanceItem>
                 <BalanceItem
                     variant={variant}

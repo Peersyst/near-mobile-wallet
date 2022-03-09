@@ -7,7 +7,7 @@ export interface BalanceProps extends Pick<TypographyProps, "variant"> {
     unitsBold?: boolean;
     smallBalance?: boolean;
     action?: "display" | "add" | "substract";
-    units?: string;
+    units: string;
     style?: ViewStyle & TextStyle;
 }
 

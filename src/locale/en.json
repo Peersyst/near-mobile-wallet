@@ -34,5 +34,7 @@
     "my_account": "My Account",
     "keep_this_safe": "Keep This Safe",
     "select_in_order": "Select In Order",
-    "token": "ckb"
+    "token": "ckb",
+    "send": "send",
+    "receive": "receive"
 }

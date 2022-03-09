@@ -18,7 +18,7 @@ export const CardButton = styled(Button, { size: "md", variant: "outlined" })<Ca
     outlined: {
         borderWidth:0,
         color: theme.palette.white,
-        textTransform: "none",
+        textTransform: "capitalize",
         paddingHorizontal:0,
     },
     sm : {

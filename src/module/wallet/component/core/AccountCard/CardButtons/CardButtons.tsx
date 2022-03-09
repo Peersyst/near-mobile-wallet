@@ -1,4 +1,5 @@
 import { SendIcon, ReceiveIcon } from "icons";
+import { translate } from "locale";
 import useNavigation from "module/common/hook/useNavigation";
 import { MainScreens } from "module/main/MainNavigatorGroup";
 import { Row } from "react-native-components";
@@ -16,7 +17,7 @@ const CardButtons = (): JSX.Element => {
     return (
         <Row justifyContent="center">
             <CardButton onPress={() => navigation.navigate(MainScreens.SEND)} position="left" leftIcon={<ActionButton action="send" />}>
-                Send
+                {translate("send")}
             </CardButton>
             <Separator />
             <CardButton
@@ -24,7 +25,7 @@ const CardButtons = (): JSX.Element => {
                 position="right"
                 rightIcon={<ActionButton action="receive" />}
             >
-                Receive
+                {translate("receive")}
             </CardButton>
         </Row>
     );
