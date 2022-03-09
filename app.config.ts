@@ -21,8 +21,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     assetBundlePatterns: ["**/*"],
     ios: {
-        supportsTablet: true,
+        supportsTablet: false,
         bundleIdentifier: "com.peersyst.ckbull",
+        buildNumber: process.env.BUILD_NUMBER || "0",
     },
     android: {
         package: "com.peersyst.ckbull",
@@ -30,6 +31,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
             foregroundImage: "./assets/images/adaptive-icon.png",
             backgroundColor: "#ffffff",
         },
+        versionCode: Number(process.env.BUILD_NUMBER) || 0,
     },
     web: {
         favicon: "./assets/images/favicon.png",

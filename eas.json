@@ -12,12 +12,8 @@
         },
         "production": {
             "node": "14.18.3",
-            "ios": {
-                "autoIncrement": true
-            },
             "android": {
-                "buildType": "apk",
-                "autoIncrement": true
+                "buildType": "apk"
             }
         }
     },
