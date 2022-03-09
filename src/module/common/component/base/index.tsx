@@ -5,6 +5,8 @@ export * from "./feedback/Backdrop";
 export * from "./feedback/Modal";
 export * from "./feedback/ModalProvider";
 export * from "./feedback/Skeleton";
+export * from "./feedback/Toast";
+export * from "./feedback/ToastProvider";
 export * from "./input/Button";
 export * from "./input/Form";
 export * from "./input/IconButton";
