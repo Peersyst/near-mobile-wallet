@@ -13,13 +13,13 @@ export const ButtonLoader = styled(Row, { alignItems: "center", justifyContent: 
  */
 export const ButtonRoot = styled(View)<ButtonRootProps>(({ theme, fullWidth }) => ({
     alignItems: "center",
-    justifyContent: "center",
     alignSelf: fullWidth ? undefined : "flex-start",
     borderRadius: theme.borderRadius,
 }));
 
-export const ButtonContent = styled(Row, { gap: 16, alignItems: "center", justifyContent: "center" })<ButtonContainerProps>(
+export const ButtonContent = styled(Row, { gap: 16, alignItems: "center" })<ButtonContainerProps>(
     ({ isLoading }) => ({
         opacity: isLoading ? 0 : 1,
+        width: "100%",
     }),
 );
