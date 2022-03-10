@@ -1,7 +1,7 @@
 import { translate } from "locale"
 import AccountCard from "module/wallet/component/core/AccountCard/AccountCard"
-import { cells } from "module/wallet/mock/cells"
 import { render } from "test-utils"
+import { cells } from "../../../mock/cells"
 
 describe("Test for the account card", () => {
     test("Renders correctly", () => {

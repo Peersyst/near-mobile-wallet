@@ -3,8 +3,6 @@ import * as Recoil from "recoil";
 import { render } from "test-utils";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
-import { MainScreens } from "module/main/MainNavigatorGroup";
-import { cells } from "module/wallet/mock/cells";
 
 describe("CreateWalletSuccessScreen tests", () => {
     afterAll(() => {

@@ -11,7 +11,7 @@ const AccountCardHeader = ({ address }: AccountCardHeaderProps): JSX.Element => 
         <Row justifyContent="space-between" alignItems="center">
             <FavouriteIcon />
             <AccountCardTitle variant="h3">{translate("my_account")}</AccountCardTitle>
-            <CopyIcon text={address} scaleStart={0.9} withAnimation={true} duration={400} color1="transparent" />
+            <CopyIcon text={address} />
         </Row>
     );
 };

@@ -3,8 +3,8 @@ import { fireEvent, render } from "test-utils";
 import { translate } from "locale";
 import { Alert } from "react-native";
 import * as Recoil from "recoil";
-import walletState from "module/wallet/state/WalletState";
-import { cells } from "module/wallet/mock/cells";
+import { cells } from "../../../wallet/mock/cells";
+
 
 describe("Test for the Main Slider", () => {
     test("Renders correctly without accounts", () => {

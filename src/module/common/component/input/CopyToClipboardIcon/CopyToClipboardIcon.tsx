@@ -7,13 +7,13 @@ interface CopyToClipboardIconProps extends Omit<IconButtonProps, "children"> {
     style?: IconButtonStyles;
 }
 
-const CopyToClipboardIcon = ({ text, style, withAnimation, ...rest }: CopyToClipboardIconProps): JSX.Element => {
+const CopyToClipboardIcon = ({ text, style, ...rest }: CopyToClipboardIconProps): JSX.Element => {
     const copyToClipboard = () => {
         Clipboard.setString(text);
     };
 
     return (
-        <IconButton {...rest} style={style} onPress={() => copyToClipboard()} withAnimation={withAnimation}>
+        <IconButton {...rest} style={style} onPress={() => copyToClipboard()}>
             <CopyIcon />
         </IconButton>
     );
