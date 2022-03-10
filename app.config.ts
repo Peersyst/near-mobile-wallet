@@ -24,6 +24,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         supportsTablet: false,
         bundleIdentifier: "com.peersyst.ckbull",
         buildNumber: process.env.BUILD_NUMBER || "0",
+        config: {
+            usesNonExemptEncryption: false,
+        },
     },
     android: {
         package: "com.peersyst.ckbull",
