@@ -5,9 +5,10 @@ import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicL
 export interface MnemonicPickerProps {
     mnemonic: string[];
     onSuccess: () => unknown;
+    onError?: () => unknown;
 }
 
-const MnemonicPicker = ({ mnemonic: mnemonicProp, onSuccess }: MnemonicPickerProps): JSX.Element => {
+const MnemonicPicker = ({ mnemonic: mnemonicProp, onSuccess, onError }: MnemonicPickerProps): JSX.Element => {
     const randomizedMnemonic = useMemo(() => {
         const mnemonicPropCopy = [...mnemonicProp];
         mnemonicPropCopy.sort((a, b) => (a > b ? 1 : -1));
@@ -16,7 +17,14 @@ const MnemonicPicker = ({ mnemonic: mnemonicProp, onSuccess }: MnemonicPickerPro
     const [mnemonic, setMnemonic] = useState<string[]>([]);
 
     useEffect(() => {
-        if (mnemonic.length === mnemonicProp.length && mnemonic.every((word, i) => word === mnemonicProp[i])) onSuccess();
+        if (mnemonic.length === mnemonicProp.length) {
+            if (mnemonic.every((word, i) => word === mnemonicProp[i])) {
+                onSuccess();
+            } else {
+                onError?.();
+                setMnemonic([]);
+            }
+        }
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mnemonic, mnemonicProp]);
 
