@@ -1,48 +1,52 @@
-import { ComponentType, useRef, useState } from "react";
-import { Animated, LayoutChangeEvent, LayoutRectangle } from "react-native";
-import { SlideConfig, SlideProps } from "./Slide.types";
+import { ComponentType, useRef } from "react";
+import { Animated } from "react-native";
 import { classify } from "@peersyst/react-utils";
-import getExitedPosition from "module/common/component/base/util/Animated/Slide/utils/getExitedPosition";
 import useAnimatedTiming from "module/common/component/base/util/Animated/hooks/useAnimatedTiming";
+import { SlideConfig, SlideProps } from "module/common/component/base/util/Animated/Slide";
+import getExitedPosition from "./utils/getExitedPosition";
 
-export default function slide<P extends { style?: any; onLayout?: ((event: LayoutChangeEvent) => void) | undefined }>(
+export default function fadingSlide<P extends { style?: any }>(
     Component: ComponentType<P>,
     {
         duration: configDuration = 500,
         delay: configDelay = 0,
         easing: configEasing,
-        direction: directionConfig,
+        unmountOnExit: configUnmountOnExit = false,
+        onEnter: configOnEnter,
+        onEntered: configOnEntered,
+        onExit: configOnExit,
+        onExited: configOnExited,
         appear: configAppear = false,
+        direction: configDirection,
     }: SlideConfig = {},
 ): ComponentType<P & SlideProps> {
     const AnimatedComponent = Animated.createAnimatedComponent(classify(Component));
 
-    const Slide = ({
+    const FadingSlide = ({
         duration = configDuration,
         delay = configDelay,
         easing = configEasing,
+        unmountOnExit = configUnmountOnExit,
         in: inProp,
         appear = configAppear,
-        direction = directionConfig,
+        onEnter = configOnEnter,
+        onEntered = configOnEntered,
+        onExit = configOnExit,
+        onExited = configOnExited,
         style: { opacity = 1, ...style } = {},
-        unmountOnExit = false,
-        onEnter,
-        onEntered,
-        onExit,
-        onExited,
+        direction = configDirection,
         ...rest
     }: P & SlideProps): JSX.Element => {
-        const [layout, setLayout] = useState<LayoutRectangle>();
-        const handleLayout = ({ nativeEvent: { layout: eventLayout } }: LayoutChangeEvent): void => {
-            if (!layout) setLayout(eventLayout);
-        };
+        const [startPos, endPos] = appear ? [0, opacity] : [opacity, 0];
+        const fadeAnim = useRef(new Animated.Value(inProp ? startPos : endPos)).current;
+        const exitPos = getExitedPosition(direction || "left");
+        const slideAnim = fadeAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [exitPos, 0],
+        });
 
-        const exitPos = getExitedPosition(layout, direction || "left");
-        const [startPos, endPos] = appear ? [0, exitPos] : [exitPos, 0];
-        const slideAnim = useRef(new Animated.Value(inProp ? endPos : startPos)).current;
-
-        const { mounted } = useAnimatedTiming(inProp, slideAnim, {
-            toValue: { enter: 0, exit: getExitedPosition(layout, direction || "left") },
+        const { mounted } = useAnimatedTiming(inProp, fadeAnim, {
+            toValue: { enter: opacity, exit: 0 },
             duration,
             delay,
             easing,
@@ -59,10 +63,9 @@ export default function slide<P extends { style?: any; onLayout?: ((event: Layou
             <AnimatedComponent
                 style={{
                     ...style,
+                    opacity: fadeAnim,
                     transform: [{ [direction === "left" || direction === "right" ? "translateX" : "translateY"]: slideAnim }],
-                    opacity: layout ? opacity : 0,
                 }}
-                onLayout={handleLayout}
                 {...rest}
             />
         ) : (
@@ -70,5 +73,5 @@ export default function slide<P extends { style?: any; onLayout?: ((event: Layou
         );
     };
 
-    return Slide;
+    return FadingSlide;
 }

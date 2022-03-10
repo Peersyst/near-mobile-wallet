@@ -12,6 +12,8 @@
     "invalid_number_eq": "The number must be equal to {n}",
     "invalid_number_lt": "The number must be lower than {n}",
     "invalid_number_lte": "The number must be lower or equal than {n}",
+    "somethingWentWrong": "Something went wrong",
+    "sessionExpired": "Your session has expired",
     "enter_your_pin": "Enter your PIN",
     "create_wallet": "Create Wallet",
     "already_have_wallet": "Already have a CKBull Wallet?",
@@ -36,5 +38,6 @@
     "enter_mnemonic": "Enter Mnemonic",
     "mnemonic_input_text": "Type a word and press enter to add it or tap one to remove it.",
     "mnemonic": "Mnemonic",
-    "add_a_word": "Add a word"
+    "add_a_word": "Add a word",
+    "incorrect_mnemonic": "Mnemonic is not correct"
 }

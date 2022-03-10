@@ -7,4 +7,5 @@ export interface RowProps extends ViewProps {
     gap?: number | string;
     justifyContent?: FlexStyle["justifyContent"];
     alignItems?: FlexStyle["alignItems"];
+    wrap?: boolean;
 }
