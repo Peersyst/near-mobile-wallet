@@ -38,7 +38,9 @@ const Balance = ({
             )}
             <Row alignItems="flex-end">
                 <BalanceItem action={action} style={textStyles} variant={variant} {...rest}>{`${balance[0]}.`}</BalanceItem>
-                <BalanceItem variant={variant} style={textStyles} smallBalance={smallBalance} {...rest}>{`${balance[1]}`}</BalanceItem>
+                <BalanceItem variant={variant} style={textStyles} smallBalance={smallBalance} {...rest}>{`${
+                    balance[1] || "00"
+                }`}</BalanceItem>
             </Row>
             {units && (
                 <BalanceItem action={action} style={textStyles} variant={variant} {...rest} fontWeight={boldUnits ? "bold" : "normal"}>

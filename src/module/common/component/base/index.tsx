@@ -1,3 +1,4 @@
+export * from "./display/Divider";
 export * from "./display/SvgIcon";
 export * from "./display/Icon";
 export * from "./display/Typography";

@@ -17,5 +17,4 @@ export const MainTabsContent = styled(Paper)<MainTabsContentProps>(({ activeInde
     borderBottomRightRadius: 0,
     borderTopLeftRadius: activeIndex === 0 ? 0 : undefined,
     borderTopRightRadius: activeIndex === 2 ? 0 : undefined,
-    paddingHorizontal: 16,
 }));

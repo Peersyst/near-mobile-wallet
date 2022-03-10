@@ -3,6 +3,7 @@ import { TabGroup, TabPanel, Tabs, Typography } from "react-native-components";
 import MainTab from "module/main/component/navigation/MainTabs/MainTab/MainTab";
 import { useState } from "react";
 import { translate } from "locale";
+import TransactionsList from "module/transaction/component/core/TransactionsList/TransactionsList";
 
 const MainTabs = (): JSX.Element => {
     const [index, setIndex] = useState(0);
@@ -16,7 +17,7 @@ const MainTabs = (): JSX.Element => {
             </TabGroup>
             <MainTabsContent activeIndex={index}>
                 <TabPanel index={0}>
-                    <Typography variant="body1">{translate("transactions")}</Typography>
+                    <TransactionsList />
                 </TabPanel>
                 <TabPanel index={1}>
                     <Typography variant="body1">{translate("currencies")}</Typography>
