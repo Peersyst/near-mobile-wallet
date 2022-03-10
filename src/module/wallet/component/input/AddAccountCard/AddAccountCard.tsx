@@ -1,6 +1,6 @@
+import { translate } from "locale";
 import { Alert, TouchableWithoutFeedback } from "react-native";
 import { AddAccountCardRoot, AddIcon, AddText, ContentRoot } from "./AddAccountCard.style";
-import { translate } from "locale";
 
 const AddAccountCard = (): JSX.Element => {
     const handleOnPress = () => {

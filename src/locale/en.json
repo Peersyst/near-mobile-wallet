@@ -33,16 +33,21 @@
     "news": "News",
     "dao": "DAO",
     "add_an_account": "Add an account",
+    "my_account": "My Account",
     "keep_this_safe": "Keep This Safe",
     "select_in_order": "Select In Order",
+    "token": "ckb",
+    "send": "send",
+    "receive": "receive",
     "import_wallet": "Import Wallet",
     "enter_mnemonic": "Enter Mnemonic",
     "mnemonic_input_text": "Type a word and press enter to add it or tap one to remove it.",
     "mnemonic": "Mnemonic",
     "add_a_word": "Add a word",
+    "incorrect_mnemonic": "Mnemonic is not correct",
+    "address_copied": "Address copied",
     "settings": "Settings",
     "transactions": "Transactions",
     "currencies": "Currencies",
-    "nfts": "NFTs",
-    "incorrect_mnemonic": "Mnemonic is not correct"
+    "nfts": "NFTs"
 }
