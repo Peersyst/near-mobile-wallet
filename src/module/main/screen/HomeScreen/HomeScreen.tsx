@@ -46,13 +46,13 @@ const HomeScreen = (): JSX.Element => {
     return (
         <BaseMainScreen>
             <Col flex={1} gap={20}>
+                <CardBackground />
                 <PagerView showPageIndicator height={200}>
                     {DATA.map((item, i) => (
                         <Item item={item} key={i} />
                     ))}
                 </PagerView>
                 <MainTabs />
-                <CardBackground />
             </Col>
         </BaseMainScreen>
     );
