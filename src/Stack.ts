@@ -9,6 +9,8 @@ export type MainStackParamsList = {
     Notifications: undefined;
     Dao: undefined;
     News: undefined;
+    Send: undefined;
+    Receive: undefined;
 };
 export type RootStackParamsList = {
     //Auth

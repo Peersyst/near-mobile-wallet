@@ -15,6 +15,10 @@ export interface TabsProps {
      */
     initialIndex?: number;
     /**
+     * Space between TabGroup and TabPanels
+     */
+    gap?: string | number;
+    /**
      * Tabs styles
      */
     style?: ViewStyle;

@@ -16,12 +16,10 @@ const BasePage = ({ children, appearance: appearanceProp, header = true, showIco
     return (
         <ThemeProvider theme={appearance === "light" ? theme : darkTheme}>
             <BasePageRoot>
-                <StatusBar />
-                <BasePageContent>
-                    {header && <Header showIcons={showIcons} />}
-                    {children}
-                </BasePageContent>
+                {header && <Header showIcons={showIcons} />}
+                <BasePageContent header={header}>{children}</BasePageContent>
             </BasePageRoot>
+            <StatusBar />
         </ThemeProvider>
     );
 };

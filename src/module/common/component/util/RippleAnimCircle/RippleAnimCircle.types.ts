@@ -10,6 +10,8 @@ export interface RippleAnimCircleProps {
     color2?: string;
     duration?: number;
     onPress?: RippleFunctionType;
+    onPressIn?: RippleFunctionType;
+    onPressOut?: RippleFunctionType;
 }
 
 export interface RippleColor extends Pick<RippleAnimCircleProps, "size"> {

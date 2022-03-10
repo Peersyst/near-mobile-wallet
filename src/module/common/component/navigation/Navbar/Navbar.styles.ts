@@ -11,7 +11,7 @@ export const NavbarRoot = styled(Row)(() => ({
 export const BackIconRoot = styled(IconButton)(({ theme }) => ({
     position: "absolute",
     left: 0,
-    color: theme.palette.darkLightGray2,
+    color: theme.palette.darkGray2,
     fontSize: 30,
 }));
 

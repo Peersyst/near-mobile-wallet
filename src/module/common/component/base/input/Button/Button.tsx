@@ -27,9 +27,7 @@ const Button = ({
     const disabled = disabledProp || !valid;
 
     const { textStyle, rootStyle } = useButtonStyles(style, variant, size, disabled, pressed);
-
     const pressable = !disabled && !loading;
-
     return (
         <TouchableWithoutFeedback
             onPress={(e) => pressable && onPress?.(e)}
@@ -38,7 +36,7 @@ const Button = ({
             onPressOut={() => pressable && setPressed(false)}
             {...rest}
         >
-            <ButtonRoot style={rootStyle} fullWidth={fullWidth}>
+            <ButtonRoot style={{ ...rootStyle, justifyContent: "center" }} fullWidth={fullWidth}>
                 {loading && (
                     <ButtonLoader>
                         {loadingElement ? (
@@ -51,7 +49,7 @@ const Button = ({
                         )}
                     </ButtonLoader>
                 )}
-                <ButtonContent isLoading={loading}>
+                <ButtonContent isLoading={loading} style={{ justifyContent: rootStyle["justifyContent"] || "center" }}>
                     {leftIcon && <Icon style={textStyle}>{leftIcon}</Icon>}
                     <Text style={textStyle}>{children}</Text>
                     {rightIcon && <Icon style={textStyle}>{rightIcon}</Icon>}

@@ -7,3 +7,7 @@ export interface BasePageProps {
     children?: ReactNode;
     showIcons?: boolean;
 }
+
+export interface BasePageContentProps {
+    header: boolean;
+}

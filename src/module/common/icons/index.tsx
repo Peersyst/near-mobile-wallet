@@ -10,5 +10,7 @@ export * from "./LogoColIcon";
 export * from "./NewsIcon";
 export * from "./NotificationIcon";
 export * from "./PlusIcon";
+export * from "./ReceiveIcon";
+export * from "./SendIcon";
 export * from "./SettingsIcon";
 export * from "./StarIcon";
