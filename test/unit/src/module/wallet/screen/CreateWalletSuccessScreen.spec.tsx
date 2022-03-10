@@ -1,4 +1,3 @@
-import * as UseNavigation from "module/common/hook/useNavigation";
 import * as WalletStorage from "module/wallet/WalletStorage";
 import * as Recoil from "recoil";
 import { render } from "test-utils";
@@ -14,8 +13,6 @@ describe("CreateWalletSuccessScreen tests", () => {
 
     test("Sets wallet and navigates to main screen", () => {
         jest.useFakeTimers();
-        const navigate = jest.fn();
-        jest.spyOn(UseNavigation, "default").mockReturnValue({ navigate } as any);
         jest.spyOn(UseCreateWallet, "default").mockReturnValue({
             state: { name: "wallet", pin: "1234", mnemonic: ["pizza", "watermelon", "lemon"] },
             setPin: jest.fn(),
@@ -37,7 +34,6 @@ describe("CreateWalletSuccessScreen tests", () => {
         });
         jest.runAllTimers();
         expect(setWalletState).toHaveBeenCalledWith({ hasWallet: true, isAuthenticated: true, name: "wallet", cells: []});
-        expect(navigate).toHaveBeenCalledWith(MainScreens.MAIN);
         jest.useRealTimers();
     });
 });

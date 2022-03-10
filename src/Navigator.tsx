@@ -6,18 +6,18 @@ import { useRecoilValue } from "recoil";
 import walletState from "module/wallet/state/WalletState";
 
 const Navigator = (): JSX.Element => {
-    const { hasWallet, isAuthenticated } = useRecoilValue(walletState);
+    const { isAuthenticated } = useRecoilValue(walletState);
     return (
         <NavigationContainer>
-            {!isAuthenticated ? (
+            {isAuthenticated ? (
                 <Stack.Navigator
-                    initialRouteName={MainScreens.WELCOME_BACK}
-                    screenOptions={{ headerShown: false, animation: "slide_from_right" }}
+                    initialRouteName={MainScreens.MAIN}
+                    screenOptions={{ headerShown: false, animation: "slide_from_right", gestureEnabled: false }}
                 >
                     {MainNavigatorGroup}
                 </Stack.Navigator>
             ) : (
-                AuthNavigatorGroup
+                <AuthNavigatorGroup />
             )}
         </NavigationContainer>
     );

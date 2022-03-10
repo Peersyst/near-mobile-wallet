@@ -2,7 +2,7 @@ import { Col, useTabs } from "react-native-components";
 import { translate } from "locale";
 import AdviseCardGroup from "module/common/component/display/AdviseCardGroup/AdviseCardGroup";
 import { useState } from "react";
-import { CreateWalletScreens } from "module/wallet/CreateWalletNavigatorGroup";
+import { CreateWalletScreens } from "module/wallet/navigator/CreateWalletNavigatorGroup";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
 import Button from "module/common/component/input/Button/Button";
 

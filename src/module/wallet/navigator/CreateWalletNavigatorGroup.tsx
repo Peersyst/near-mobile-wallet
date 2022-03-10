@@ -10,6 +10,7 @@ import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
+import { useBackHandler } from "@react-native-community/hooks";
 
 export enum CreateWalletScreens {
     SET_WALLET_NAME,
@@ -34,6 +35,10 @@ const CreateWalletNavigatorGroup = () => {
     const [showPin, setShowPin] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     useLogoPageFlex(showPin ? 0.1 : showSuccess ? 1 : 0.4);
+    useBackHandler(() => {
+        handleBack();
+        return true;
+    });
 
     const handleBack = () => {
         if (activeTab === CreateWalletScreens.SET_WALLET_NAME) {
@@ -45,7 +50,7 @@ const CreateWalletNavigatorGroup = () => {
         } else if (activeTab === CreateWalletScreens.WALLET_ADVISES) {
             setShowPin(true);
             setShowGlass(false);
-        } else setActiveTab((t) => t - 1);
+        } else if (activeTab >= 0) setActiveTab((t) => t - 1);
     };
 
     const handleTabChange = (t: number) => {
@@ -79,7 +84,10 @@ const CreateWalletNavigatorGroup = () => {
                 breadcrumbs={{ index: activeTab, length: 4 }}
             >
                 <TabPanel index={CreateWalletScreens.SET_WALLET_NAME}>
-                    <SetWalletNameScreen />
+                    <SetWalletNameScreen
+                        onSubmit={() => handleTabChange(CreateWalletScreens.SET_WALLET_PIN)}
+                        submitText={translate("set_pin")}
+                    />
                 </TabPanel>
                 <TabPanel index={CreateWalletScreens.WALLET_ADVISES}>
                     <WalletAdvisesScreen />
@@ -92,7 +100,10 @@ const CreateWalletNavigatorGroup = () => {
                 </TabPanel>
             </AnimatedGlassNavigator>
             <TabPanel index={CreateWalletScreens.SET_WALLET_PIN}>
-                <SetWalletPinScreen />
+                <SetWalletPinScreen
+                    onSuccess={() => handleTabChange(CreateWalletScreens.WALLET_ADVISES)}
+                    onCancel={() => handleTabChange(CreateWalletScreens.SET_WALLET_NAME)}
+                />
             </TabPanel>
             <TabPanel index={CreateWalletScreens.CREATE_WALLET_SUCCESS}>
                 <CreateWalletSuccessScreen />

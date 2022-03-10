@@ -11,11 +11,12 @@ export interface WalletState {
     isAuthenticated: boolean;
     name?: string;
     cells: Cell[];
+    isFirstTime: boolean;
 }
 
 const walletState = atom<WalletState>({
     key: "wallet",
-    default: { hasWallet: false, isAuthenticated: false, cells: cells },
+    default: { hasWallet: false, isAuthenticated: false, isFirstTime: false, cells: cells },
 });
 
 export default walletState;

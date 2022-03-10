@@ -4,7 +4,7 @@ import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import * as UseTabs from "module/common/component/base/navigation/Tabs/hook/useTabs";
 import * as UseToast from "module/common/component/base/feedback/ToastProvider/hooks/useToast";
 import { fireEvent } from "@testing-library/react-native";
-import { CreateWalletScreens } from "module/wallet/CreateWalletNavigatorGroup";
+import { CreateWalletScreens } from "module/wallet/navigator/CreateWalletNavigatorGroup";
 import { translate } from "locale";
 
 describe("PickWalletMnemonicScreen tests", () => {

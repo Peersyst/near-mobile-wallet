@@ -4,7 +4,7 @@ import Card from "module/common/component/surface/Card/Card";
 import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import { CreateWalletScreens } from "module/wallet/CreateWalletNavigatorGroup";
+import { CreateWalletScreens } from "module/wallet/navigator/CreateWalletNavigatorGroup";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
 
 const WalletMnemonicScreen = (): JSX.Element => {
