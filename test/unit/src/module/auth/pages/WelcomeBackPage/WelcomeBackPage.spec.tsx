@@ -7,7 +7,7 @@ describe("Welcome back page", () => {
     test("Renders correctly", async () => {
         jest.useFakeTimers();
         const mockedNavigation = jest.fn();
-        jest.spyOn(Navigation, "useNavigation").mockReturnValue({ navigate: mockedNavigation });
+        jest.spyOn(Navigation, "useNavigation").mockReturnValue({ replace: mockedNavigation });
         const screen = render(<WelcomeBackPage />);
         expect(screen.getByTestId("LogoColIcon")).toBeDefined();
         expect(screen.getByText(translate("welcome_back")));

@@ -6,10 +6,11 @@ import useNavigation from "module/common/hook/useNavigation";
 import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
 
 const WelcomeBackPage = (): JSX.Element => {
-    const navigation = useNavigation();
+    const { replace } = useNavigation();
     useEffect(() => {
-        new Promise((resolve) => setTimeout(resolve, 3000)).then(() => navigation.navigate("Main"));
-    }, [navigation]);
+        new Promise((resolve) => setTimeout(resolve, 3000)).then(() => replace("Main"));
+    }, []);
+
     return (
         <LogoPage>
             <WelcomeBackPageRoot>

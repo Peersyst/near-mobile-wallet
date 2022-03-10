@@ -10,4 +10,5 @@ export const BasePageRoot = styled(View)(({ theme }) => ({
 
 export const BasePageContent = styled(View)(() => ({
     flex: 1,
+    overflow: "hidden",
 }));

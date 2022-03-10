@@ -6,13 +6,14 @@ import { useRecoilValue } from "recoil";
 import walletState from "module/wallet/state/WalletState";
 
 const Navigator = (): JSX.Element => {
-    const { hasWallet, isAuthenticated } = useRecoilValue(walletState);
+    const { hasWallet, isAuthenticated, isFirstTime } = useRecoilValue(walletState);
+
     return (
         <NavigationContainer>
             {hasWallet && isAuthenticated ? (
                 <Stack.Navigator
-                    initialRouteName={MainScreens.WELCOME_BACK}
-                    screenOptions={{ headerShown: false, animation: "slide_from_right" }}
+                    initialRouteName={isFirstTime ? MainScreens.MAIN : MainScreens.WELCOME_BACK}
+                    screenOptions={{ headerShown: false, animation: "slide_from_right", gestureEnabled: false }}
                 >
                     {MainNavigatorGroup}
                 </Stack.Navigator>
