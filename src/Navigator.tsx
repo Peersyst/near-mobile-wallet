@@ -7,7 +7,6 @@ import walletState from "module/wallet/state/WalletState";
 
 const Navigator = (): JSX.Element => {
     const { hasWallet, isAuthenticated } = useRecoilValue(walletState);
-
     return (
         <NavigationContainer>
             {hasWallet && isAuthenticated ? (
