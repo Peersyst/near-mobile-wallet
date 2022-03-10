@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import isHeading from "module/common/component/base/display/Typography/utils/isHeading";
+import isHeading from "utils/isHeading";
 import { Typography } from "react-native-components";
 import { BalanceItemProps } from "./Balance.types";
 

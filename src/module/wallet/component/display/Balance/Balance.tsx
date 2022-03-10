@@ -1,4 +1,4 @@
-import isHeading from "module/common/component/base/display/Typography/utils/isHeading";
+import isHeading from "utils/isHeading";
 import { useMemo } from "react";
 import { Row } from "react-native-components";
 import { BalanceItem } from "./Balance.styles";

@@ -44,5 +44,6 @@
     "mnemonic_input_text": "Type a word and press enter to add it or tap one to remove it.",
     "mnemonic": "Mnemonic",
     "add_a_word": "Add a word",
-    "incorrect_mnemonic": "Mnemonic is not correct"
+    "incorrect_mnemonic": "Mnemonic is not correct",
+    "address_copied": "Address copied"
 }
