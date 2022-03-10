@@ -39,6 +39,8 @@ module.exports = {
         "!./src/Stack.ts",
         "!./src/utils/(isWeb|extractTextStyles).ts",
         "!./src/module/common/component/layout/PagerView/*",
+        "!./src/module/common/component/layout/BasePage/*",
+        "!./src/module/common/component/layout/LogoPage/*",
     ],
     coverageDirectory: "./coverage",
     coverageThreshold: {

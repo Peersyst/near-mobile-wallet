@@ -10,6 +10,8 @@ export const darkTheme = deepmerge(
             primary: "#FFFFFF",
             text: "#FFFFFF",
             background: "#141414",
+            appbar: "#141414",
+            paper: "#141414",
         },
     }),
 );

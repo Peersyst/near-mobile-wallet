@@ -27,6 +27,8 @@ declare module "react-native-components" {
         blue: string;
         purple: string;
         red: string;
+        appbar: string;
+        paper: string;
     }
     export interface TypographyVariantsOverrides {
         h4: false;

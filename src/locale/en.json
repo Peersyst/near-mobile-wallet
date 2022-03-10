@@ -36,5 +36,9 @@
     "enter_mnemonic": "Enter Mnemonic",
     "mnemonic_input_text": "Type a word and press enter to add it or tap one to remove it.",
     "mnemonic": "Mnemonic",
-    "add_a_word": "Add a word"
+    "add_a_word": "Add a word",
+    "settings": "Settings",
+    "transactions": "Transactions",
+    "currencies": "Currencies",
+    "nfts": "NFTs"
 }

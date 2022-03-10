@@ -1,10 +1,9 @@
-import Button from "module/common/component/input/Button/Button";
-import BasePage from "module/common/component/layout/BasePage/BasePage";
 import { View, StyleSheet } from "react-native";
 import PagerView from "module/common/component/layout/PagerView/PagerView";
-import { useSetRecoilState } from "recoil";
-import walletState from "module/wallet/state/WalletState";
-import { WalletStorage } from "module/wallet/WalletStorage";
+import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
+import { Col } from "react-native-components";
+import MainTabs from "module/main/component/navigation/MainTabs/MainTabs";
+import { CardBackground } from "./HomeScreen.styles";
 
 const DATA = [
     {
@@ -43,25 +42,19 @@ const Item = ({ item }: ItemProps): JSX.Element => {
     return <View style={flattenStyle} />;
 };
 
-const HomePage = (): JSX.Element => {
-    const setWalletState = useSetRecoilState(walletState);
+const HomeScreen = (): JSX.Element => {
     return (
-        <BasePage appearance="light" showIcons>
-            <Button onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>Log out</Button>
-            <Button
-                onPress={async () => {
-                    await WalletStorage.clear();
-                    setWalletState({ isAuthenticated: false, hasWallet: false, name: undefined });
-                }}
-            >
-                Erase
-            </Button>
-            <PagerView showPageIndicator height={200}>
-                {DATA.map((item, i) => (
-                    <Item item={item} key={i} />
-                ))}
-            </PagerView>
-        </BasePage>
+        <BaseMainScreen>
+            <Col flex={1} gap={20}>
+                <PagerView showPageIndicator height={200}>
+                    {DATA.map((item, i) => (
+                        <Item item={item} key={i} />
+                    ))}
+                </PagerView>
+                <MainTabs />
+                <CardBackground />
+            </Col>
+        </BaseMainScreen>
     );
 };
 const styles = StyleSheet.create({
@@ -79,4 +72,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomePage;
+export default HomeScreen;

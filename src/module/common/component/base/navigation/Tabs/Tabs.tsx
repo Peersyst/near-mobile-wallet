@@ -5,12 +5,12 @@ import { useControlled } from "@peersyst/react-hooks";
 import { Col } from "react-native-components";
 import { LayoutRectangle } from "react-native";
 
-export default function Tabs({ index, onIndexChange, initialIndex = 0, style, children }: TabsProps): JSX.Element {
+export default function Tabs({ index, onIndexChange, initialIndex = 0, style, gap = 20, children }: TabsProps): JSX.Element {
     const [activeIndex, setActiveIndex] = useControlled(initialIndex, index, onIndexChange);
     const [activeLayout, setActiveLayout] = useState<LayoutRectangle>();
 
     return (
-        <Col style={style} gap={20} flex={1}>
+        <Col style={style} gap={gap} flex={1}>
             <TabsProvider
                 value={{
                     activeIndex,

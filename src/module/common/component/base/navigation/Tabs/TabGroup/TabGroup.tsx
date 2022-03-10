@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TabGroupContainer, TabGroupRoot } from "./TabGroup.styles";
+import { TabGroupRoot } from "./TabGroup.styles";
 import { TabIndicator } from "./TabIndicator";
 import { TabGroupProps } from "./TabGroup.types";
 import { LayoutChangeEvent, LayoutRectangle } from "react-native";
@@ -12,11 +12,9 @@ export default function TabGroup({ renderIndicator = true, indicatorStyle, child
     };
 
     return (
-        <TabGroupRoot style={style}>
-            <TabGroupContainer onLayout={handleLayout}>
-                {children}
-                {renderIndicator && <TabIndicator tabGroupLayout={layout} style={indicatorStyle} />}
-            </TabGroupContainer>
+        <TabGroupRoot style={style} onLayout={handleLayout}>
+            {children}
+            {renderIndicator && <TabIndicator tabGroupLayout={layout} style={indicatorStyle} />}
         </TabGroupRoot>
     );
 }
