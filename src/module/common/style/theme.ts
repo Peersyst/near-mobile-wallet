@@ -1,4 +1,4 @@
-import { createTheme } from "react-native-components";
+import { createTheme, defaultTheme } from "react-native-components";
 import { translate } from "locale";
 
 export const theme = createTheme({
@@ -26,6 +26,10 @@ export const theme = createTheme({
         red: "#FF0E0E",
         appbar: "#F4F4F4",
         paper: "#F4F4F4",
+        status: {
+            ...defaultTheme.palette.status,
+            success: "#36b930",
+        },
     },
     typography: {
         h1: {

@@ -13,7 +13,13 @@ const SettingsScreen = (): JSX.Element => {
             <Button
                 onPress={async () => {
                     await WalletStorage.clear();
-                    setWalletState({ isAuthenticated: false, hasWallet: false, name: undefined });
+                    setWalletState((state) => ({
+                        ...state,
+                        isAuthenticated: false,
+                        hasWallet: false,
+                        name: undefined,
+                        selectedAccount: undefined,
+                    }));
                 }}
             >
                 Erase

@@ -6,6 +6,6 @@ describe("HomeScreen tests", () => {
     test("Renders correctly", () => {
         const screen = render(<HomeScreen />);
 
-        expect(screen.getAllByText(translate("transactions"))).toHaveLength(2);
+        expect(screen.getAllByText(translate("transactions"))).toHaveLength(1);
     });
 });
