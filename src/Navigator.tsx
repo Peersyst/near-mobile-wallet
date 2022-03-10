@@ -9,7 +9,7 @@ const Navigator = (): JSX.Element => {
     const { hasWallet, isAuthenticated } = useRecoilValue(walletState);
     return (
         <NavigationContainer>
-            {!hasWallet && !isAuthenticated ? (
+            {hasWallet && isAuthenticated ? (
                 <Stack.Navigator
                     initialRouteName={MainScreens.WELCOME_BACK}
                     screenOptions={{ headerShown: false, animation: "slide_from_right" }}

@@ -15,12 +15,23 @@ describe("MnemonicPicker tests", () => {
 
     test("onSuccess is called correctly", () => {
         const handleSuccess = jest.fn();
-        const screen = render(<MnemonicPicker mnemonic={mnemonic} onSuccess={jest.fn(handleSuccess)} />);
+        const screen = render(<MnemonicPicker mnemonic={mnemonic} onSuccess={handleSuccess} />);
 
         fireEvent.press(screen.getByText(mnemonic[0]));
         fireEvent.press(screen.getByText(mnemonic[1]));
         fireEvent.press(screen.getByText(mnemonic[2]));
 
         expect(handleSuccess).toHaveBeenCalled();
+    });
+
+    test("onError is called correctly", () => {
+        const handleError = jest.fn();
+        const screen = render(<MnemonicPicker mnemonic={mnemonic} onSuccess={jest.fn()} onError={handleError} />);
+
+        fireEvent.press(screen.getByText(mnemonic[0]));
+        fireEvent.press(screen.getByText(mnemonic[2]));
+        fireEvent.press(screen.getByText(mnemonic[1]));
+
+        expect(handleError).toHaveBeenCalled();
     });
 });

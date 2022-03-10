@@ -33,9 +33,9 @@ export const defaultTheme: DefaultTheme = {
     shadows,
     borderRadius: 5,
     toolbarHeight: 56,
-    /*skeletonAnimations: "wave",
+    /*skeletonAnimations: "wave",*/
     toastAnimation: "fadingSlide",
-    toastPosition: "top-right",*/
+    toastPosition: "top",
     zIndex: {
         header: 10,
         popover: 10,
