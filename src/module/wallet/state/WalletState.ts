@@ -2,7 +2,7 @@ import { atom } from "recoil";
 
 export interface Account {
     address: string;
-    balance: string
+    balance: string;
 }
 
 export interface WalletState {
@@ -14,7 +14,7 @@ export interface WalletState {
 
 const walletState = atom<WalletState>({
     key: "wallet",
-    default: { hasWallet: false, isAuthenticated: false, accounts:[] },
+    default: { hasWallet: false, isAuthenticated: false, accounts: [] },
 });
 
 export default walletState;
