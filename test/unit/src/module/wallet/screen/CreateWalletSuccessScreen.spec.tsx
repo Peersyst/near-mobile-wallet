@@ -31,7 +31,7 @@ describe("CreateWalletSuccessScreen tests", () => {
             mnemonic: ["pizza", "watermelon", "lemon"],
         });
         jest.runAllTimers();
-        expect(setWalletState).toHaveBeenCalledWith({ hasWallet: true, isAuthenticated: true, name: "wallet", cells: []});
+        expect(setWalletState).toHaveBeenCalledWith({ hasWallet: false, isAuthenticated: false, isFirstTime: false, cells: []});
         jest.useRealTimers();
     });
 });

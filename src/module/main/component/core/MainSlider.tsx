@@ -6,9 +6,9 @@ import { useRecoilValue } from "recoil";
 import AccountCard from "module/wallet/component/core/AccountCard/AccountCard";
 
 const MainSlider = (): JSX.Element => {
-    const { hasWallet, cells } = useRecoilValue(walletState);
+    const { cells } = useRecoilValue(walletState);
     return (
-        <PagerView showPageIndicator height="33%" gap={0} pagePadding={{ horizontal: MAIN_SCREEN_PADDING }}>
+        <PagerView showPageIndicator height="33%" gap={0} pagePadding={{ horizontal: MAIN_SCREEN_PADDING }} style={{minHeight:203}}>
             {cells.map((cell, i) => (
                 <AccountCard key={i} colorIndex={i} cell={cell} />
             ))}
