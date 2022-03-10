@@ -2,6 +2,7 @@
 import { StyleProp, TextStyle } from "react-native";
 import { Shadow, ThemeFonts, ThemeIcons, ThemePalette, ThemeZIndex } from "./theme.types";
 import { TranslateFn } from "../input/TextInput/utils";
+import { ToastAnimation, ToastPosition } from "../feedback/Toast";
 
 export interface CreateDefaultThemeTypography {
     h1?: StyleProp<TextStyle>;
@@ -29,9 +30,9 @@ export interface CreateDefaultTheme {
     shadows?: Shadow[];
     borderRadius?: number;
     toolbarHeight?: number;
-    /*skeletonAnimations?: SkeletonAnimation;
+    /*skeletonAnimations?: SkeletonAnimation;*/
     toastAnimation?: ToastAnimation;
-    toastPosition?: ToastPosition;*/
+    toastPosition?: ToastPosition;
     zIndex?: Partial<ThemeZIndex>;
     translate?: TranslateFn;
 }

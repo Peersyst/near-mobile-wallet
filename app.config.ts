@@ -5,6 +5,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     ...config,
     name: "CKBull",
     slug: "CKBull",
+    owner: "peersyst",
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/images/ckbull-icon.png",
@@ -20,13 +21,20 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     assetBundlePatterns: ["**/*"],
     ios: {
-        supportsTablet: true,
+        supportsTablet: false,
+        bundleIdentifier: "com.peersyst.ckbull",
+        buildNumber: process.env.BUILD_NUMBER || "0",
+        config: {
+            usesNonExemptEncryption: false,
+        },
     },
     android: {
+        package: "com.peersyst.ckbull",
         adaptiveIcon: {
             foregroundImage: "./assets/images/adaptive-icon.png",
             backgroundColor: "#ffffff",
         },
+        versionCode: Number(process.env.BUILD_NUMBER) || 0,
     },
     web: {
         favicon: "./assets/images/favicon.png",

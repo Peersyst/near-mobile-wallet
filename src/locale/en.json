@@ -12,6 +12,8 @@
     "invalid_number_eq": "The number must be equal to {n}",
     "invalid_number_lt": "The number must be lower than {n}",
     "invalid_number_lte": "The number must be lower or equal than {n}",
+    "somethingWentWrong": "Something went wrong",
+    "sessionExpired": "Your session has expired",
     "enter_your_pin": "Enter your PIN",
     "create_wallet": "Create Wallet",
     "already_have_wallet": "Already have a CKBull Wallet?",
@@ -30,6 +32,8 @@
     "advise3_text": "Sed aliquam lorem gravida ipsum feugiat, a maximus ligula feugiat. Phasellus a vestibulum leo, semper sagittis dui. Quisque lacinia, mi sit amet gravida feugiat, enim eros scelerisque elit. Sed aliquam lorem gravida ipsum feugiat, a maximus ligula feugiat. Phasellus a vestibulum leo, semper sagittis dui. Quisque lacinia, mi sit amet gravida feugiat, enim eros scelerisque elit.",
     "news": "News",
     "dao": "DAO",
+    "add_an_account": "Add an account",
     "keep_this_safe": "Keep This Safe",
-    "select_in_order": "Select In Order"
+    "select_in_order": "Select In Order",
+    "incorrect_mnemonic": "Mnemonic is not correct"
 }

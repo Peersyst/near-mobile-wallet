@@ -37,12 +37,12 @@ export default function slide<P extends { style?: any; onLayout?: ((event: Layou
             if (!layout) setLayout(eventLayout);
         };
 
-        const exitPos = getExitedPosition(layout || { width: 0, height: 0, x: 0, y: 0 }, direction || "left");
+        const exitPos = getExitedPosition(layout, direction || "left");
         const [startPos, endPos] = appear ? [0, exitPos] : [exitPos, 0];
         const slideAnim = useRef(new Animated.Value(inProp ? endPos : startPos)).current;
 
         const { mounted } = useAnimatedTiming(inProp, slideAnim, {
-            toValue: { enter: 0, exit: getExitedPosition(layout || { width: 0, height: 0, x: 0, y: 0 }, direction || "left") },
+            toValue: { enter: 0, exit: getExitedPosition(layout, direction || "left") },
             duration,
             delay,
             easing,
