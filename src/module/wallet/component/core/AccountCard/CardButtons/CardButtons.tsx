@@ -3,27 +3,26 @@ import { translate } from "locale";
 import useNavigation from "module/common/hook/useNavigation";
 import { MainScreens } from "module/main/MainNavigatorGroup";
 import { Row } from "react-native-components";
-import { CardButton, IconButton, Separator } from "./CardButtons.style";
+import { CardButton, Separator } from "./CardButtons.styles";
 
-interface ActionButtonProps {
-    action: "send" | "receive";
-}
-const ActionButton = ({ action }: ActionButtonProps): JSX.Element => {
-    return <IconButton>{action === "send" ? <SendIcon /> : <ReceiveIcon />}</IconButton>;
-};
+const CARD_BUTTON_ICON_SIZE = 20;
 
 const CardButtons = (): JSX.Element => {
     const navigation = useNavigation();
     return (
         <Row justifyContent="center">
-            <CardButton onPress={() => navigation.navigate(MainScreens.SEND)} position="left" leftIcon={<ActionButton action="send" />}>
+            <CardButton
+                onPress={() => navigation.navigate(MainScreens.SEND)}
+                position="left"
+                leftIcon={<SendIcon style={{ fontSize: CARD_BUTTON_ICON_SIZE }} />}
+            >
                 {translate("send")}
             </CardButton>
             <Separator />
             <CardButton
                 onPress={() => navigation.navigate(MainScreens.RECEIVE)}
                 position="right"
-                rightIcon={<ActionButton action="receive" />}
+                rightIcon={<ReceiveIcon style={{ fontSize: CARD_BUTTON_ICON_SIZE }} />}
             >
                 {translate("receive")}
             </CardButton>

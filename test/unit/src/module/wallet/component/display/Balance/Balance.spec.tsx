@@ -9,14 +9,9 @@ describe("Text for the Balance component", () => {
         expect(screen.getByText("100.")).toBeDefined();
         expect(screen.getByText("00")).toBeDefined();
     });
-    test("Renders correctly bold", () => {
-        const screen = render(<Balance units={translate("token")} balance={"10,00.00"} variant={"h1"} tokenBold unitsBold />);
-        expect(screen.getByText(translate("token")).props.style.fontWeight).toEqual("bold");
-        expect(screen.getByText("10,00.").props.style.fontWeight).toEqual("bold");
-    });
     test("Renders smallBalance", () => {
         const screen = render(<Balance smallBalance units={"X"} balance={"10,00.00"} variant={"h1"} />);
         const normalFontSize = screen.getByText("10,00.").props.style.fontSize;
-        expect(screen.getByText("00").props.style.fontSize).toEqual(normalFontSize*0.7);
-    })
+        expect(screen.getByText("00").props.style.fontSize).toEqual(normalFontSize * 0.7);
+    });
 });

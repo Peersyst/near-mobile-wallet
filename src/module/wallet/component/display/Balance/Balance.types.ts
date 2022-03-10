@@ -1,16 +1,13 @@
 import { TextStyle, ViewStyle } from "react-native";
 import { TypographyProps } from "react-native-components";
 
-export interface BalanceProps extends Pick<TypographyProps, "variant"> {
+export interface BalanceProps extends Omit<TypographyProps, "children" | "numberOfLines" | "textAlign" | "style"> {
     balance: string;
-    tokenBold?: boolean;
-    unitsBold?: boolean;
+    boldUnits?: boolean;
     smallBalance?: boolean;
-    action?: "display" | "add" | "substract";
+    action?: "display" | "add" | "subtract";
     units: string;
     style?: ViewStyle & TextStyle;
 }
 
-export interface BalanceItemProps extends Pick<BalanceProps, "smallBalance" | "variant" | "action"> {
-    bold?: boolean;
-}
+export type BalanceItemProps = Pick<BalanceProps, "smallBalance" | "variant" | "action">;

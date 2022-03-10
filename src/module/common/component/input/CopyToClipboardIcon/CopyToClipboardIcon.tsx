@@ -1,5 +1,5 @@
 import { CopyIcon } from "icons";
-import { Clipboard } from "react-native";
+import * as Clipboard from "expo-clipboard";
 import { IconButton, IconButtonProps, IconButtonStyles } from "react-native-components";
 
 interface CopyToClipboardIconProps extends Omit<IconButtonProps, "children"> {

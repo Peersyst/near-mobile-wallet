@@ -13,30 +13,29 @@ export const CardButton = styled(Button, { size: "md", variant: "outlined" })<Ca
     borderTopLeftRadius: position === "right" ? 0 : undefined,
     borderBottomLeftRadius: position === "right" ? 0 : undefined,
     fontWeight: "bold",
-    justifyContent: "space-between", 
+    justifyContent: "space-between",
     width: 120,
     outlined: {
-        borderWidth:0,
+        borderWidth: 0,
         color: theme.palette.white,
         textTransform: "capitalize",
-        paddingHorizontal:0,
+        paddingHorizontal: 0,
     },
-    sm : {
-        paddingHorizontal:0,
+    sm: {
+        paddingHorizontal: 0,
     },
-    paddingHorizontal:0,
+    paddingHorizontal: 0,
     backgroundColor: alpha(theme.palette.white, 0.3),
-    opacity: 0.9
+    opacity: 0.9,
 }));
 
-export const IconButton = styled(Icon)(({ theme })=> ({ 
-    color: theme.palette.white,
-    fontSize: 27
-}))
-
-export const Separator = styled(View)(({theme})=>({
-    height:"100%",
-    width:2,
+export const Separator = styled(View)(({ theme }) => ({
+    height: "100%",
+    width: 2,
     backgroundColor: theme.palette.white,
     opacity: 0.5,
-}))
+}));
+
+export const CardButtonIcon = styled(Icon)(() => ({
+    fontSize: 24,
+}));

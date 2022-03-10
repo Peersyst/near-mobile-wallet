@@ -1,6 +1,6 @@
 import AccountCardHeader from "module/wallet/component/core/AccountCard/AccountCardHeader/AccountCardHeader";
 import { fireEvent, render } from "test-utils";
-import { Clipboard } from "react-native";
+import * as Clipboard from "expo-clipboard";
 import { translate } from "locale";
 
 describe("Test for the AccountCardHeader component", () => {

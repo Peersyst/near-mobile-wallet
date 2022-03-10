@@ -5,13 +5,13 @@ import BaseAccountCard from "module/common/component/surface/BaseAccountCard/Bas
 import { Col, Typography } from "react-native-components";
 import Balance from "../../display/Balance/Balance";
 import { AccountCardProps } from "./AccountCard";
-import { getCardColor } from "./utils/getCardColors";
+import { getCardColor } from "./utils/getCardColor";
 
 export const AccountCardRoot = styled(BaseAccountCard)<Pick<AccountCardProps, "colorIndex">>(({ theme, colorIndex }) => {
     const color = getCardColor(colorIndex, theme);
     return {
         backgroundColor: color,
-        paddingBottom:30,
+        paddingBottom: 30,
     };
 });
 
@@ -30,7 +30,7 @@ export const AccountCardTitle = styled(Typography, { textTransform: "uppercase" 
     fontWeight: "bold",
 }));
 
-export const AccountCardBalance = styled(Balance, { tokenBold: true, smallBalance: true })(({ theme }) => ({
+export const AccountCardBalance = styled(Balance, { boldUnits: true, smallBalance: true })(({ theme }) => ({
     color: theme.palette.white,
 }));
 

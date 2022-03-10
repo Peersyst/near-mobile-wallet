@@ -1,6 +1,6 @@
 import CopyToClipboardIcon from "module/common/component/input/CopyToClipboardIcon/CopyToClipboardIcon";
 import { fireEvent, render } from "test-utils";
-import { Clipboard } from "react-native";
+import * as Clipboard from "expo-clipboard";
 
 describe("Test for the copy to clipboard", () => {
     test("Renders correctly", () => {

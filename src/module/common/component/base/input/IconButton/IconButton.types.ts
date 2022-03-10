@@ -1,5 +1,4 @@
 import { TextStyle, ViewStyle } from "react-native";
-import { SX } from "@peersyst/react-native-styled";
 import { ReactElement } from "react";
 import { RippleAnimCircleProps } from "module/common/component/util/RippleAnimCircle/RippleAnimCircle.types";
 
@@ -23,10 +22,6 @@ export interface IconButtonProps extends RippleAnimCircleProps {
      * Button's style
      */
     style?: IconButtonStyles;
-    /**
-     * Button sx
-     */
-    sx?: SX<IconButtonSxProps, IconButtonStyles>;
     /**
      * Button's text content
      */
