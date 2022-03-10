@@ -27,7 +27,7 @@ describe("CreateWalletSuccessScreen tests", () => {
 
         expect(setWalletStorage).toHaveBeenCalledWith({ name: "wallet", pin: "1234", mnemonic: ["pizza", "watermelon", "lemon"] });
         jest.runAllTimers();
-        expect(setWalletState).toHaveBeenCalledWith({ hasWallet: true, isAuthenticated: true, name: "wallet", isFirstTime: true });
+        expect(setWalletState).toHaveBeenCalledWith({ hasWallet: true, isAuthenticated: true, name: "wallet" });
         jest.useRealTimers();
     });
 });
