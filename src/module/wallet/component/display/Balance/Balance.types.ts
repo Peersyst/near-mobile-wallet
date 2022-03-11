@@ -3,6 +3,7 @@ import { TypographyProps } from "react-native-components";
 
 export interface BalanceProps extends Omit<TypographyProps, "children" | "numberOfLines" | "textAlign" | "style"> {
     balance: string;
+    decimals?: number;
     boldUnits?: boolean;
     smallBalance?: boolean;
     action?: "display" | "add" | "subtract";
@@ -10,4 +11,4 @@ export interface BalanceProps extends Omit<TypographyProps, "children" | "number
     style?: ViewStyle & TextStyle;
 }
 
-export type BalanceItemProps = Pick<BalanceProps, "smallBalance" | "variant" | "action">;
+export type BalanceItemProps = Pick<BalanceProps, "smallBalance" | "variant">;

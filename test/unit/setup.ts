@@ -39,3 +39,9 @@ jest.mock("@react-navigation/native", () => ({
     __esModule: true,
     ...jest.requireActual("@react-navigation/native"),
 }));
+
+jest.mock("expo-localization", () => ({
+    ...jest.requireActual("expo-localization"),
+    digitGroupingSeparator: ",",
+    decimalSeparator: ".",
+}));

@@ -30,7 +30,7 @@ export const AccountCardTitle = styled(Typography, { textTransform: "uppercase" 
     fontWeight: "bold",
 }));
 
-export const AccountCardBalance = styled(Balance, { boldUnits: true, smallBalance: true })(({ theme }) => ({
+export const AccountCardBalance = styled(Balance, { decimals: 6, boldUnits: true, smallBalance: true })(({ theme }) => ({
     color: theme.palette.white,
 }));
 

@@ -3,6 +3,7 @@ import { Col, Row, Typography } from "react-native-components";
 import { TransactionCardRoot, TransactionIcon } from "module/transaction/component/display/TransactionCard/TransactionCard.styles";
 import formatDate from "utils/formatDate";
 import Balance from "module/wallet/component/display/Balance/Balance";
+import formatNumber from "utils/formatNumber";
 
 export type TransactionCardProps = Transaction;
 
@@ -20,7 +21,7 @@ const TransactionCard = ({ timestamp }: TransactionCardProps): JSX.Element => (
                 <Typography variant="body2" style={{ marginLeft: 10 }}>
                     {formatDate(timestamp)}
                 </Typography>
-                <Typography variant="body2">12,635.30 CKB</Typography>
+                <Typography variant="body2">{formatNumber(12635.3, { minDecimals: 2 })} USD</Typography>
             </Row>
         </Col>
     </TransactionCardRoot>
