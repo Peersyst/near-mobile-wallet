@@ -4,7 +4,7 @@ import { Text } from "react-native";
 const ReceiveScreen = (): JSX.Element => {
     return (
         <BasePage appearance="dark" showIcons={false}>
-            <Text style={{color: "white"}}>Send page</Text>
+            <Text style={{ color: "white" }}>Send page</Text>
         </BasePage>
     );
 };
