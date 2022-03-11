@@ -10,5 +10,5 @@ export const TokenIcon = styled(Image)(() => ({
 }))
 
 export const TokenRoot = styled(Row, { alignItems: "center", justifyContent: "space-between" })(() => ({
-    height: 74,
+    paddingVertical:15,
 }))
