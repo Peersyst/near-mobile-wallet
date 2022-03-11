@@ -5,6 +5,6 @@ import { transaction } from "mocks/transaction";
 describe("TransactionCard tests", () => {
     test("Renders correctly", () => {
         const screen = render(<TransactionCard {...transaction} />);
-        expect(screen.getByText("29/01/2022"));
+        expect(screen.getByText("29/01/2022 - 00:00"));
     });
 });

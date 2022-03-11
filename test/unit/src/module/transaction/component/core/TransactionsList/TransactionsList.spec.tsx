@@ -28,8 +28,8 @@ describe("TransactionsList tests", () => {
         jest.spyOn(GetTransactions, "default").mockReturnValue(SuccessApiCall(transactions));
 
         const screen = render(<TransactionsList />);
-        await waitFor(() => expect(screen.getByText("01/01/2022")));
-        expect(screen.getByText("02/01/2022"));
-        expect(screen.getByText("03/01/2022"));
+        await waitFor(() => expect(screen.getByText("01/01/2022 - 00:00")));
+        expect(screen.getByText("02/01/2022 - 00:00"));
+        expect(screen.getByText("03/01/2022 - 00:00"));
     });
 });
