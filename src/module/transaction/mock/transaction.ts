@@ -10,7 +10,7 @@ export const transaction: Transaction = {
     timestamp: new Date(2022, 0, 29),
 };
 
-export const transactions = [...Array(3)].map((_, i) => ({
+export const transactions = [...Array(10)].map((_, i) => ({
     status: "confirmed",
     transactionHash: "0x1234567890abcde" + i,
     inputs: [],
