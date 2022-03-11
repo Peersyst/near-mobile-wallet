@@ -46,6 +46,7 @@ export const ToastContent = styled(Paper)<ToastContentStylesProps>(({ theme, typ
         padding: 14,
         borderRadius: theme.borderRadius,
         backgroundColor: statusColor || theme.palette.background,
+        elevation: 0,
     };
 });
 
