@@ -1,4 +1,4 @@
-import { Transaction } from "../types";
+import { Transaction } from "module/transaction/types";
 
 export const transaction: Transaction = {
     status: "confirmed",

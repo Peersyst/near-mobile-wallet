@@ -6,7 +6,10 @@ import styled from "@peersyst/react-native-styled";
 /**
  * Container for the loader
  */
-export const ButtonLoader = styled(Row, { alignItems: "center", justifyContent: "center" })(() => ({ position: "absolute", alignSelf: "center" }));
+export const ButtonLoader = styled(Row, { alignItems: "center", justifyContent: "center" })(() => ({
+    position: "absolute",
+    alignSelf: "center",
+}));
 
 /**
  * Main button styles
@@ -16,8 +19,6 @@ export const ButtonRoot = styled(View)<ButtonRootProps>(({ theme, fullWidth }) =
     borderRadius: theme.borderRadius,
 }));
 
-export const ButtonContent = styled(Row, { gap: 16, alignItems: "center" })<ButtonContainerProps>(
-    ({ isLoading }) => ({
-        opacity: isLoading ? 0 : 1,
-    }),
-);
+export const ButtonContent = styled(Row, { gap: 16, alignItems: "center" })<ButtonContainerProps>(({ isLoading }) => ({
+    opacity: isLoading ? 0 : 1,
+}));

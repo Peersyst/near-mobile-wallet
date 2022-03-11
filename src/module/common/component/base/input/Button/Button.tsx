@@ -36,7 +36,7 @@ const Button = ({
             onPressOut={() => pressable && setPressed(false)}
             {...rest}
         >
-            <ButtonRoot style={{...rootStyle, justifyContent: "center"}} fullWidth={fullWidth}>
+            <ButtonRoot style={{ ...rootStyle, justifyContent: "center" }} fullWidth={fullWidth}>
                 {loading && (
                     <ButtonLoader>
                         {loadingElement ? (
