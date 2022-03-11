@@ -21,8 +21,11 @@ export const PaperRoot = styled(View)<PaperRootProps>(({ theme, elevation, squar
 
 export const PaperOverlay = styled(View)<PaperOverlayProps>(({ elevation, theme }) => ({
     position: "absolute",
+    top: 0,
+    left: 0,
     width: "100%",
     height: "100%",
     zIndex: -1,
+    elevation: -1,
     backgroundColor: theme.palette.mode === "dark" ? alpha("#fff", getOverlayAlpha(elevation)) : "transparent",
 }));
