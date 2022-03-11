@@ -4,6 +4,8 @@ import MainTab from "module/main/component/navigation/MainTabs/MainTab/MainTab";
 import { useState } from "react";
 import { translate } from "locale";
 import TransactionsList from "module/transaction/component/core/TransactionsList/TransactionsList";
+import TokensList from "module/token/component/core/TokensList/TokensList";
+
 
 const MainTabs = (): JSX.Element => {
     const [index, setIndex] = useState(0);
@@ -20,7 +22,7 @@ const MainTabs = (): JSX.Element => {
                     <TransactionsList />
                 </TabPanel>
                 <TabPanel index={1}>
-                    <Typography variant="body1">{translate("currencies")}</Typography>
+                    <TokensList />
                 </TabPanel>
                 <TabPanel index={2}>
                     <Typography variant="body1">{translate("nfts")}</Typography>
