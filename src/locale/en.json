@@ -49,5 +49,6 @@
     "settings": "Settings",
     "transactions": "Transactions",
     "currencies": "Currencies",
-    "nfts": "NFTs"
+    "nfts": "NFTs",
+    "bought_for": "Bought for"
 }
