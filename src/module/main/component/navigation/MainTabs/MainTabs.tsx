@@ -10,7 +10,7 @@ const MainTabs = (): JSX.Element => {
 
     return (
         <Tabs gap={0} index={index} onIndexChange={setIndex}>
-            <TabGroup renderIndicator={false} style={{ justifyContent: "space-between" }}>
+            <TabGroup renderIndicator={false} style={{ justifyContent: "space-between", zIndex: 1 }}>
                 <MainTab index={0}>{translate("transactions")}</MainTab>
                 <MainTab index={1}>{translate("currencies")}</MainTab>
                 <MainTab index={2}>{translate("nfts")}</MainTab>
