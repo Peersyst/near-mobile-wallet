@@ -1,6 +1,6 @@
 import { TouchableWithoutFeedback } from "react-native";
 import { Col, Row, Typography } from "react-native-components";
-import { TokenIcon, TokenRoot } from "./Token.styles";
+import { TokenIcon, TokenRoot } from "./TokenCard.styles";
 import { TokenAmount } from "../../../types";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { translate } from "locale";
@@ -10,7 +10,7 @@ interface TokenProps {
     token: TokenAmount;
 }
 
-const Token = ({ token }: TokenProps): JSX.Element => {
+const TokenCard = ({ token }: TokenProps): JSX.Element => {
     const { value } = useCkbConversion("usd", token.amount);
     return (
         <TouchableWithoutFeedback>
@@ -21,7 +21,7 @@ const Token = ({ token }: TokenProps): JSX.Element => {
                         {token.type.tokenName}
                     </Typography>
                 </Row>
-                <Col justifyContent="flex-end" alignItems="flex-end">
+                <Col alignItems="flex-end">
                     <Balance balance={token.amount.toString()} smallBalance units={translate("token")} boldUnits variant={"body1"} />
                     <Balance balance={(value).toString()} units={translate("usd")} variant={"button"} />
                 </Col>
@@ -30,4 +30,4 @@ const Token = ({ token }: TokenProps): JSX.Element => {
     );
 };
 
-export default Token;
+export default TokenCard;
