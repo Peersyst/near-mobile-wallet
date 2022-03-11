@@ -15,8 +15,8 @@ describe("Test for the account card", () => {
 
         /**Account Balance */
         expect(screen.getByText(translate("token"))).toBeDefined();
-        expect(screen.getByText(`${mockedCell.balance.split(".")[0]}.`)).toBeDefined();
-        expect(screen.getByText(mockedCell.balance.split(".")[1])).toBeDefined();
+        expect(screen.getByText("10,400")).toBeDefined();
+        expect(screen.getByText("000000")).toBeDefined();
 
         /**Account Buttons */
         expect(screen.getByText(translate("send"))).toBeDefined();

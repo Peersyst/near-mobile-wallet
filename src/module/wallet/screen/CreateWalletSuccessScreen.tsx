@@ -13,7 +13,7 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
     useEffect(() => {
         WalletStorage.set({ name: name!, pin: pin!, mnemonic: mnemonic! }).then(async () => {
             await new Promise((resolve) => setTimeout(() => resolve(null), 2000));
-            setWalletState((state) => ({ ...state, hasWallet: false, isAuthenticated: false, isFirstTime: false, cells: [] }));
+            setWalletState((state) => ({ ...state, hasWallet: true, isAuthenticated: true }));
         });
     }, []);
 
