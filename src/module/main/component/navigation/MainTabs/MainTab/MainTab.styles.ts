@@ -19,6 +19,7 @@ export const MainTabContent = styled(Paper)<MainTabContentProps>(({ active }) =>
               },
               shadowRadius: 2,
               shadowOpacity: 0.15,
+              elevation: 18,
           }
         : {
               backgroundColor: "transparent",
@@ -26,6 +27,7 @@ export const MainTabContent = styled(Paper)<MainTabContentProps>(({ active }) =>
                   height: 0,
                   width: 0,
               },
+              elevation: 0,
           };
 
     return {
