@@ -11,11 +11,10 @@ const NoTransactionsComponent = (): JSX.Element => {
 };
 
 const TransactionsList = (): JSX.Element => {
-
     const {
         state: { selectedAccount, cells },
     } = useWallet();
-    
+
     const {
         data = [],
         refetch,
