@@ -5,6 +5,7 @@ export * from "./CopyIcon";
 export * from "./CrossIcon";
 export * from "./DAOIcon";
 export * from "./FilledCircleIcon";
+export * from "./FilledCopyIcon";
 export * from "./LogoIcon";
 export * from "./LogoColIcon";
 export * from "./NewsIcon";

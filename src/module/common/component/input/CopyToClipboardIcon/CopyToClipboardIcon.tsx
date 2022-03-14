@@ -1,24 +1,25 @@
-import { CopyIcon } from "icons";
+import { CopyIcon, FilledCopyIcon } from "icons";
 import * as Clipboard from "expo-clipboard";
 import { IconButton, IconButtonProps, IconButtonStyles, useToast } from "react-native-components";
 
 interface CopyToClipboardIconProps extends Omit<IconButtonProps, "children"> {
     text: string;
     style?: IconButtonStyles;
-    message?: string;
+    toastMessage?: string;
+    filled?: boolean;
 }
 
-const CopyToClipboardIcon = ({ text, style, message, ...rest }: CopyToClipboardIconProps): JSX.Element => {
+const CopyToClipboardIcon = ({ text, style, toastMessage, filled, ...rest }: CopyToClipboardIconProps): JSX.Element => {
     const { showToast } = useToast();
 
     const copyToClipboard = () => {
         Clipboard.setString(text);
-        if (message) showToast(message, { type: "success" });
+        if (toastMessage) showToast(toastMessage, { type: "success" });
     };
 
     return (
         <IconButton {...rest} style={style} onPress={() => copyToClipboard()}>
-            <CopyIcon />
+            {filled ? <FilledCopyIcon /> : <CopyIcon />}
         </IconButton>
     );
 };
