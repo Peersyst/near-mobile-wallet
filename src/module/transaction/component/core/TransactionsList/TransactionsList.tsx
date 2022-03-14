@@ -10,11 +10,12 @@ const NoTransactionsComponent = (): JSX.Element => {
     return <Typography variant="body1">{translate("no_transactions")}</Typography>;
 };
 
-
 const TransactionsList = (): JSX.Element => {
+
     const {
         state: { selectedAccount, cells },
     } = useWallet();
+    
     const {
         data = [],
         refetch,
