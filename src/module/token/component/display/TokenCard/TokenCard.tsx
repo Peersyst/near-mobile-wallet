@@ -1,4 +1,3 @@
-import { TouchableWithoutFeedback } from "react-native";
 import { Col, Row, Typography } from "react-native-components";
 import { TokenIcon, TokenRoot } from "./TokenCard.styles";
 import { TokenAmount } from "../../../types";
@@ -13,20 +12,18 @@ interface TokenProps {
 const TokenCard = ({ token }: TokenProps): JSX.Element => {
     const { value } = useCkbConversion("usd", token.amount);
     return (
-        <TouchableWithoutFeedback>
-            <TokenRoot>
-                <Row alignItems="center" gap={10}>
-                    <TokenIcon source={{ uri: token.type.tokenUri }} />
-                    <Typography variant="body1" fontWeight="bold">
-                        {token.type.tokenName}
-                    </Typography>
-                </Row>
-                <Col alignItems="flex-end">
-                    <Balance balance={token.amount.toString()} smallBalance units={translate("token")} boldUnits variant={"body1"} />
-                    <Balance balance={value.toString()} units={translate("usd")} variant={"button"} />
-                </Col>
-            </TokenRoot>
-        </TouchableWithoutFeedback>
+        <TokenRoot>
+            <Row alignItems="center" gap={10}>
+                <TokenIcon source={{ uri: token.type.tokenUri }} />
+                <Typography variant="body1" fontWeight="bold">
+                    {token.type.tokenName}
+                </Typography>
+            </Row>
+            <Col alignItems="flex-end">
+                <Balance balance={token.amount.toString()} smallBalance units={translate("token")} boldUnits variant={"body1"} />
+                <Balance balance={value.toString()} units={translate("usd")} variant={"button"} />
+            </Col>
+        </TokenRoot>
     );
 };
 
