@@ -50,5 +50,6 @@
     "settings": "Settings",
     "transactions": "Transactions",
     "currencies": "Currencies",
+    "no_currencies": "You don't have currencies yet",
     "nfts": "NFTs"
 }

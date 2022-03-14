@@ -6,7 +6,6 @@ import { translate } from "locale";
 import TransactionsList from "module/transaction/component/core/TransactionsList/TransactionsList";
 import TokensList from "module/token/component/core/TokensList/TokensList";
 
-
 const MainTabs = (): JSX.Element => {
     const [index, setIndex] = useState(0);
 

@@ -6,9 +6,9 @@ export const TokenIcon = styled(Image)(() => ({
     width: 51,
     height: 51,
     borderRadius: 10,
-    backgroundColor: "gray"
-}))
+    backgroundColor: "gray",
+}));
 
 export const TokenRoot = styled(Row, { alignItems: "center", justifyContent: "space-between" })(() => ({
-    paddingVertical:15,
-}))
+    paddingVertical: 15,
+}));

@@ -23,7 +23,7 @@ const TokenCard = ({ token }: TokenProps): JSX.Element => {
                 </Row>
                 <Col alignItems="flex-end">
                     <Balance balance={token.amount.toString()} smallBalance units={translate("token")} boldUnits variant={"body1"} />
-                    <Balance balance={(value).toString()} units={translate("usd")} variant={"button"} />
+                    <Balance balance={value.toString()} units={translate("usd")} variant={"button"} />
                 </Col>
             </TokenRoot>
         </TouchableWithoutFeedback>

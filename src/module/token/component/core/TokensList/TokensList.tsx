@@ -1,20 +1,26 @@
-import { FlatList } from "react-native";
 import Divider from "module/common/component/display/Divider/Divider";
 import TokenCard from "../../display/TokenCard/TokenCard";
-import useGetTokens from "../../query/useGetTokens";
+import useGetTokens from "../../../query/useGetTokens";
 import { useGetCkbPrice } from "module/common/query/useCkbPriceConverter";
+import { List } from "react-native-components";
+import useWallet from "module/wallet/hook/useWallet";
+import NoTokensComponent from "./NoTokensComponent";
 
 const TokensList = (): JSX.Element => {
-    const { isLoading, data = [], refetch } = useGetTokens("A");
+    const {
+        state: { selectedAccount, cells },
+    } = useWallet();
+    const { isLoading, data = [], refetch } = useGetTokens(selectedAccount !== undefined ? cells[selectedAccount].address : undefined);
     const { isLoading: loadingPrice, refetch: refetchPrice } = useGetCkbPrice("usd");
     const handleRefetch = () => {
         refetch();
         refetchPrice();
     };
     return (
-        <FlatList
+        <List
             onRefresh={handleRefetch}
-            refreshing={isLoading && loadingPrice}
+            refreshing={isLoading || loadingPrice}
+            ListEmptyComponent={isLoading ? undefined : NoTokensComponent}
             data={data}
             renderItem={({ item: token }) => <TokenCard token={token} />}
             keyExtractor={(tx) => tx.type.codeHash}

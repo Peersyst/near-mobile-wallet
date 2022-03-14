@@ -9,4 +9,3 @@ export default function useCkbConversion(currency: CurrencyType, balance: number
     }
     return { value: convertBalance(balance), convertBalance };
 }
-

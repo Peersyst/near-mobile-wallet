@@ -6,10 +6,10 @@ export const token: TokenAmount = {
         codeHash: "a356wegsdgsdfgdsfgdsfgdf",
         hashType: "sha256",
         tokenUri: "https://www.nervos.org/wp-content/uploads/2020/12/Group-22.jpg",
-        tokenName: "SUDT"
+        tokenName: "SUDT",
     },
-    amount: 234540.02
-}
+    amount: 20,
+};
 
 export const tokens: TokenAmount[] = [...Array(21)].map((_, i) => ({
     type: {
@@ -17,7 +17,7 @@ export const tokens: TokenAmount[] = [...Array(21)].map((_, i) => ({
         codeHash: "cs" + i + "asad",
         hashType: "sha256",
         tokenUri: "https://www.nervos.org/wp-content/uploads/2020/12/Group-22.jpg",
-        tokenName: "SUDT"
+        tokenName: "SUDT",
     },
     amount: i * 10.5,
 }));
