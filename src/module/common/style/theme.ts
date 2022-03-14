@@ -48,6 +48,6 @@ export const theme = createTheme({
         subtitle2: undefined,
     },
     borderRadius: 24,
-    toolbarHeight: 70,
+    toolbarHeight: 55,
     translate,
 });

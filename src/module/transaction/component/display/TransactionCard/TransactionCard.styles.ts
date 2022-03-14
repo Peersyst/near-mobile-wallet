@@ -9,6 +9,6 @@ export const TransactionIcon = styled(View)(({ theme }) => ({
     borderRadius: 25,
 }));
 
-export const TransactionCardRoot = styled(Row, { gap: 20, alignItems: "center" })(() => ({
+export const TransactionCardRoot = styled(Row, { gap: "4%", alignItems: "center" })(() => ({
     paddingVertical: 20,
 }));

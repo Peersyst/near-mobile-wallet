@@ -33,7 +33,7 @@ const NftsList = (): JSX.Element => {
             ListEmptyComponent={isLoading ? undefined : NoNftsComponent}
             keyExtractor={(tx) => tx.transactionHash}
             ItemSeparatorComponent={() => <Divider width="full-width" />}
-            style={{ paddingHorizontal: 30 }}
+            style={{ paddingHorizontal: "5%" }}
         />
     );
 };
