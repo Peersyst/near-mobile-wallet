@@ -18,7 +18,7 @@ const NftsList = (): JSX.Element => {
             renderItem={({ item: nft }) => <NftCard {...nft} />}
             keyExtractor={(tx) => tx.transactionHash}
             ItemSeparatorComponent={() => <Divider width="full-width" />}
-            style={{ paddingHorizontal: 30 }}
+            style={{ paddingHorizontal: "5%" }}
         />
     );
 };
