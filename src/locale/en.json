@@ -49,7 +49,10 @@
     "address_copied": "Address copied",
     "settings": "Settings",
     "transactions": "Transactions",
+    "no_transactions": "You don't have transactions yet",
     "currencies": "Currencies",
     "no_currencies": "You don't have currencies yet",
-    "nfts": "NFTs"
+    "nfts": "NFTs",
+    "no_nfts": "You don't have nfts yet",
+    "bought_for": "Bought for"
 }

@@ -1,38 +1,36 @@
-import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
-import useGetTransactions from "module/transaction/query/useGetTransactions";
 import Divider from "module/common/component/display/Divider/Divider";
 import useWallet from "module/wallet/hook/useWallet";
-import { Typography } from "react-native-components";
+import { List, Typography } from "react-native-components";
+import useGetNfts from "module/nft/query/useGetNfts";
+import NftCard from "module/nft/component/display/NftCard/NftCard";
 import { translate } from "locale";
-import { List } from "react-native-components";
 
-const NoTransactionsComponent = (): JSX.Element => {
+const NoNftsComponent = (): JSX.Element => {
     return (
         <Typography variant="body1" textAlign="center" style={{ marginTop: "10%" }}>
-            {translate("no_transactions")}
+            {translate("no_nfts")}
         </Typography>
     );
 };
 
-const TransactionsList = (): JSX.Element => {
+const NftsList = (): JSX.Element => {
     const {
         state: { selectedAccount, cells },
     } = useWallet();
-
     const {
         data = [],
         refetch,
         isFetching,
         isLoading,
-    } = useGetTransactions(selectedAccount !== undefined ? cells[selectedAccount].address : undefined);
+    } = useGetNfts(selectedAccount !== undefined ? cells[selectedAccount].address : undefined);
 
     return (
         <List
             onRefresh={refetch}
             refreshing={isFetching || isLoading}
             data={data}
-            ListEmptyComponent={isLoading ? undefined : NoTransactionsComponent}
-            renderItem={({ item: tx }) => <TransactionCard {...tx} />}
+            renderItem={({ item: nft }) => <NftCard {...nft} />}
+            ListEmptyComponent={isLoading ? undefined : NoNftsComponent}
             keyExtractor={(tx) => tx.transactionHash}
             ItemSeparatorComponent={() => <Divider width="full-width" />}
             style={{ paddingHorizontal: 30 }}
@@ -40,4 +38,4 @@ const TransactionsList = (): JSX.Element => {
     );
 };
 
-export default TransactionsList;
+export default NftsList;
