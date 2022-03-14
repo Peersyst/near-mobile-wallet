@@ -1,6 +1,6 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { DAOIcon, NewsIcon } from "icons";
-import { MainScreens } from "module/main/MainNavigatorGroup";
+import { MainBottomScreens } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup";
 import { MainStackParamsList } from "stack-navigator";
 import { BottomBarRoot } from "./BottomBar.styles";
 import BottomBarItem from "./BottomBarItem/BottomBarItem";
@@ -19,15 +19,15 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
     return (
         <BottomBarRoot>
             <BottomBarItem
-                onPress={() => handleNavigation(MainScreens.DAO)}
-                isActive={activeTab === MainScreens.DAO}
+                onPress={() => handleNavigation(MainBottomScreens.DAO)}
+                isActive={activeTab === MainBottomScreens.DAO}
                 label={translate("dao")}
                 Icon={<DAOIcon />}
             />
-            <BottomBarLogoItem onPress={() => handleNavigation(MainScreens.HOME)} />
+            <BottomBarLogoItem onPress={() => handleNavigation(MainBottomScreens.HOME)} />
             <BottomBarItem
-                onPress={() => handleNavigation(MainScreens.NEWS)}
-                isActive={activeTab === MainScreens.NEWS}
+                onPress={() => handleNavigation(MainBottomScreens.NEWS)}
+                isActive={activeTab === MainBottomScreens.NEWS}
                 label={translate("news")}
                 Icon={<NewsIcon />}
             />
