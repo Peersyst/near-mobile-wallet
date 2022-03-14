@@ -20,7 +20,7 @@ describe("TransactionsList tests", () => {
         expect(screen.getByText("02/01/2022 - 00:00"));
         expect(screen.getByText("03/01/2022 - 00:00"));
     });
-    test("Renders correctly with an account", async () => {
+    test("Renders correctly without transactions", async () => {
         jest.spyOn(UseWallet, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(GetTransactions, "default").mockReturnValue(SuccessApiCall([]));
         const screen = render(<TransactionsList />);

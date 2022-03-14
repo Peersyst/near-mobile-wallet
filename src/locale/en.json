@@ -51,5 +51,6 @@
     "no_transactions": "You don't have transactions yet",
     "currencies": "Currencies",
     "nfts": "NFTs",
+    "no_nfts": "You don't have nfts yet",
     "bought_for": "Bought for"
 }

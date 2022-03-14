@@ -7,7 +7,11 @@ import { translate } from "locale";
 import { List } from "react-native-components";
 
 const NoTransactionsComponent = (): JSX.Element => {
-    return <Typography variant="body1">{translate("no_transactions")}</Typography>;
+    return (
+        <Typography variant="body1" textAlign="center" style={{ marginTop: "10%" }}>
+            {translate("no_transactions")}
+        </Typography>
+    );
 };
 
 const TransactionsList = (): JSX.Element => {
