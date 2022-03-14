@@ -2,12 +2,13 @@ import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMain
 import { Col } from "react-native-components";
 import MainTabs from "module/main/component/navigation/MainTabs/MainTabs";
 import MainSlider from "module/main/component/core/MainSlider";
+import { CardBackground } from "./HomeScreen.styles";
 
 const HomeScreen = (): JSX.Element => {
     return (
         <BaseMainScreen>
+            <CardBackground />
             <Col flex={1} gap={20}>
-                {/*<CardBackground />*/}
                 <MainSlider />
                 <MainTabs />
             </Col>

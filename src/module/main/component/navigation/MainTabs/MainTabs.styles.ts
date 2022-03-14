@@ -13,6 +13,7 @@ export const MainTabsContent = styled(Paper)<MainTabsContentProps>(({ activeInde
     },
     shadowRadius: 2,
     shadowOpacity: 0.15,
+    elevation: 1,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
     borderTopLeftRadius: activeIndex === 0 ? 0 : undefined,
