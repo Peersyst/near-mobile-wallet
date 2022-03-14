@@ -3,7 +3,7 @@ import getTransactions from "module/transaction/mock/getTransactions";
 
 const useGetTransactions = (address?: string) =>
     useQuery(["transactions", address], (): any =>
-        address ? getTransactions(address) : new Promise((resolve) => setTimeout(() => resolve([]), 400)),
+        address ? getTransactions(address) : new Promise((resolve) => setTimeout(() => resolve([]), 600)),
     );
 
 export default useGetTransactions;

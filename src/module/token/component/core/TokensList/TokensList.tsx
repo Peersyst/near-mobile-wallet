@@ -2,9 +2,13 @@ import Divider from "module/common/component/display/Divider/Divider";
 import TokenCard from "../../display/TokenCard/TokenCard";
 import useGetTokens from "../../../query/useGetTokens";
 import { useGetCkbPrice } from "module/common/query/useCkbPriceConverter";
-import { List } from "react-native-components";
+import { List, Typography } from "react-native-components";
 import useWallet from "module/wallet/hook/useWallet";
-import NoTokensComponent from "./NoTokensComponent";
+import { translate } from "locale";
+
+const NoTokensComponent = (): JSX.Element => {
+    return <Typography variant="body1">{translate("no_currencies")}</Typography>;
+};
 
 const TokensList = (): JSX.Element => {
     const {
