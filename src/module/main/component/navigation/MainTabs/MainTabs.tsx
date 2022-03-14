@@ -4,6 +4,7 @@ import MainTab from "module/main/component/navigation/MainTabs/MainTab/MainTab";
 import { useState } from "react";
 import { translate } from "locale";
 import TransactionsList from "module/transaction/component/core/TransactionsList/TransactionsList";
+import NftsList from "module/nft/component/core/NftsList/NftsList";
 
 const MainTabs = (): JSX.Element => {
     const [index, setIndex] = useState(0);
@@ -23,7 +24,7 @@ const MainTabs = (): JSX.Element => {
                     <Typography variant="body1">{translate("currencies")}</Typography>
                 </TabPanel>
                 <TabPanel index={2}>
-                    <Typography variant="body1">{translate("nfts")}</Typography>
+                    <NftsList />
                 </TabPanel>
             </MainTabsContent>
         </Tabs>
