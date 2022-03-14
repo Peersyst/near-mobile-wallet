@@ -29,7 +29,7 @@ const TokensList = (): JSX.Element => {
             renderItem={({ item: token }) => <TokenCard token={token} />}
             keyExtractor={(tx) => tx.type.codeHash}
             ItemSeparatorComponent={() => <Divider width="full-width" />}
-            style={{ paddingHorizontal: 30 }}
+            style={{ paddingHorizontal: "5%" }}
         />
     );
 };
