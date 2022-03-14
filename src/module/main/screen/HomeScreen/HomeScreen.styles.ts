@@ -15,4 +15,6 @@ export const CardBackground = styled(Paper, { elevation: 2 })(({ theme }) => ({
         width: 0,
     },
     shadowRadius: 6,
+    elevation: -1,
+    zIndex: -1,
 }));

@@ -5,6 +5,7 @@ import { BalanceItem } from "./Balance.styles";
 import { BalanceProps } from "./Balance.types";
 import { extractTextStyles } from "utils/extractTextStyles";
 import { useTheme } from "@peersyst/react-native-styled";
+import formatNumber from "utils/formatNumber";
 
 const Balance = ({
     balance: balanceProps,
@@ -14,9 +15,10 @@ const Balance = ({
     variant,
     units,
     style,
+    decimals = 2,
     ...rest
 }: BalanceProps): JSX.Element => {
-    const balance = balanceProps.split(".");
+    const balance = formatNumber(balanceProps, { split: true, minDecimals: decimals, maxDecimals: decimals });
     const heading = isHeading(variant);
     const { palette } = useTheme();
     const [textStyles, rootStyles] = useMemo(
@@ -32,16 +34,26 @@ const Balance = ({
     return (
         <Row gap={heading ? 8 : 4} justifyContent="center" alignItems="flex-end" style={rootStyles}>
             {action !== "display" && (
-                <BalanceItem action={action} variant={variant} style={textStyles} {...rest}>
+                <BalanceItem variant={variant} style={textStyles} {...rest}>
                     {action === "add" ? "+" : "-"}
                 </BalanceItem>
             )}
             <Row alignItems="flex-end">
-                <BalanceItem action={action} style={textStyles} variant={variant} {...rest}>{`${balance[0]}.`}</BalanceItem>
-                <BalanceItem variant={variant} style={textStyles} smallBalance={smallBalance} {...rest}>{`${balance[1]}`}</BalanceItem>
+                <BalanceItem style={textStyles} variant={variant} {...rest}>{`${balance[0]}`}</BalanceItem>
+                {balance[2] && (
+                    <>
+                        <BalanceItem style={textStyles} variant={variant} {...rest}>{`${balance[1]}`}</BalanceItem>
+                        <BalanceItem
+                            variant={variant}
+                            style={textStyles}
+                            smallBalance={smallBalance}
+                            {...rest}
+                        >{`${balance[2]}`}</BalanceItem>
+                    </>
+                )}
             </Row>
             {units && (
-                <BalanceItem action={action} style={textStyles} variant={variant} {...rest} fontWeight={boldUnits ? "bold" : "normal"}>
+                <BalanceItem style={textStyles} variant={variant} {...rest} fontWeight={boldUnits ? "bold" : "normal"}>
                     {units}
                 </BalanceItem>
             )}

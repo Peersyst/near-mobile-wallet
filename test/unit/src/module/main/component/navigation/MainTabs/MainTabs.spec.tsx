@@ -7,7 +7,7 @@ describe("MainTabs tests", () => {
     test("Renders correctly", () => {
         const screen = render(<MainTabs />);
 
-        expect(screen.getAllByText(translate("transactions"))).toHaveLength(2);
+        expect(screen.getAllByText(translate("transactions"))).toHaveLength(1);
         fireEvent.press(screen.getByText(translate("currencies")));
         expect(screen.getAllByText(translate("currencies"))).toHaveLength(2);
         fireEvent.press(screen.getByText(translate("nfts")));

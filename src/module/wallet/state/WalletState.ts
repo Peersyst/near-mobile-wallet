@@ -12,6 +12,7 @@ export interface WalletState {
     name?: string;
     cells: Cell[];
     isFirstTime: boolean;
+    selectedAccount?: number;
 }
 
 const walletState = atom<WalletState>({

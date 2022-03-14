@@ -35,6 +35,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
             backgroundColor: "#ffffff",
         },
         versionCode: Number(process.env.BUILD_NUMBER) || 0,
+        softwareKeyboardLayoutMode: "pan",
     },
     web: {
         favicon: "./assets/images/favicon.png",

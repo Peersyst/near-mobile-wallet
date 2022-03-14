@@ -1642,10 +1642,10 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-types" "^1.0.0"
 
-"@peersyst/react-utils@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-utils/-/react-utils-1.1.2.tgz#dab49fa8817810d32913868e95535887aee1d827"
-  integrity sha512-n7fV9nrcs04OReWfL+EpaAPVc/mJ/I0jFOMrDB9mwQFmWQFjf75nxFEeOmyaSns6LX4uGCwFt2WryyGGukObvg==
+"@peersyst/react-utils@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-utils/-/react-utils-1.2.1.tgz#612f05064f64975d383baa3553dbc03807804fff"
+  integrity sha512-rUDRrTAogrqbhTOb8VnQpvLYnrpdhWD/OZ2mUgRPDVqhKVC+6rj6XSXoq6sTnOTqw9q0OXqKq71AYReZ02k6nQ==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-types" "^1.0.0"
@@ -3912,6 +3912,13 @@ expo-linking@~3.0.0:
     invariant "^2.2.4"
     qs "^6.9.1"
     url-parse "^1.4.4"
+
+expo-localization@~12.0.0:
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/expo-localization/-/expo-localization-12.0.1.tgz#81799920abe4f8de790da01a0d4a1c9ca63854bf"
+  integrity sha512-nfTalbofqXrT8kgoFZDUxgIvs+YDmZx99IWLiKrd9jFacGn/B7KoO1f0hSAu89kmuo8DCxt53WHaqKqlytQQPg==
+  dependencies:
+    rtl-detect "^1.0.2"
 
 expo-modules-autolinking@0.5.5, expo-modules-autolinking@~0.5.1:
   version "0.5.5"
@@ -7525,6 +7532,11 @@ rsvp@^4.8.4:
   version "4.8.5"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
   integrity sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==
+
+rtl-detect@^1.0.2:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/rtl-detect/-/rtl-detect-1.0.4.tgz#40ae0ea7302a150b96bc75af7d749607392ecac6"
+  integrity sha512-EBR4I2VDSSYr7PkBmFy04uhycIpDKp+21p/jARYXlCSjQksTBQcJ0HFUPOO79EPPH5JS6VAhiIQbycf0O3JAxQ==
 
 run-parallel@^1.1.9:
   version "1.2.0"
