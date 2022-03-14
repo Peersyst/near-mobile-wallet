@@ -7,7 +7,7 @@ const CONVERSION_PRICE_INTERVAL = 1000 * 60 * 3;
 
 export const useGetCkbPrice = (currency: CurrencyType): QueryResult<number> =>
     useQuery(
-        ["ckPrice", currency],
+        ["ckbPrice", currency],
         async () => {
             const res: any = await fetch("https://api.coingecko.com/api/v3/coins/nervos-network");
             const data = await res.json();
