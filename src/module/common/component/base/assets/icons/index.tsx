@@ -1,4 +1,5 @@
 export * from "./CheckIcon";
+export * from "./ChevronDownIcon";
 export * from "./CrossIcon";
 export * from "./ErrorIcon";
 export * from "./HideIcon";

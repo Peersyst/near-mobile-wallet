@@ -46,7 +46,7 @@ export default function Modal({
                 appear
                 duration={transitionsDuration}
                 style={style}
-                onTouchStart={(e) => e.stopPropagation()}
+                onTouchEnd={(e) => e.stopPropagation()}
                 elevation={elevation}
             >
                 {children}
