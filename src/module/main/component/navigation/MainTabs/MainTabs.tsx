@@ -1,9 +1,10 @@
 import { MainTabsContent } from "./MainTabs.styles";
-import { TabGroup, TabPanel, Tabs, Typography } from "react-native-components";
+import { TabGroup, TabPanel, Tabs } from "react-native-components";
 import MainTab from "module/main/component/navigation/MainTabs/MainTab/MainTab";
 import { useState } from "react";
 import { translate } from "locale";
 import TransactionsList from "module/transaction/component/core/TransactionsList/TransactionsList";
+import TokensList from "module/token/component/core/TokensList/TokensList";
 import NftsList from "module/nft/component/core/NftsList/NftsList";
 
 const MainTabs = (): JSX.Element => {
@@ -21,7 +22,7 @@ const MainTabs = (): JSX.Element => {
                     <TransactionsList />
                 </TabPanel>
                 <TabPanel index={1}>
-                    <Typography variant="body1">{translate("currencies")}</Typography>
+                    <TokensList />
                 </TabPanel>
                 <TabPanel index={2}>
                     <NftsList />

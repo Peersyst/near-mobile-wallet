@@ -37,6 +37,7 @@
     "keep_this_safe": "Keep This Safe",
     "select_in_order": "Select In Order",
     "token": "ckb",
+    "usd": "usd",
     "send": "send",
     "receive": "receive",
     "import_wallet": "Import Wallet",
@@ -50,6 +51,7 @@
     "transactions": "Transactions",
     "no_transactions": "You don't have transactions yet",
     "currencies": "Currencies",
+    "no_currencies": "You don't have currencies yet",
     "nfts": "NFTs",
     "no_nfts": "You don't have nfts yet",
     "bought_for": "Bought for"
