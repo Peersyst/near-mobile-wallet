@@ -7,11 +7,11 @@ export const SelectRoot = styled(Select)(({ theme }) => ({
         height: 45,
         backgroundColor: theme.palette.lighterGray,
         borderColor: "transparent",
-        placeholderColor: theme.palette.darkGray,
+        placeholderColor: theme.palette.black,
         ...theme.shadows[7],
     },
 }));
 
-export const SelectHeader = styled(Typography)(() => ({
+export const SelectHeader = styled(Typography)(({theme}) => ({
     padding: 20,
 }));
