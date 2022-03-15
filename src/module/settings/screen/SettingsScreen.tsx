@@ -6,6 +6,7 @@ import { translate } from "locale";
 import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
 import { CardBackgroundWrapper } from "module/common/component/surface/CardBackgroundWrapper/CardBackgroundWrapper";
 import SelectGroup from "module/common/component/input/SelectGroup/SelectGroup";
+import { Alert } from "react-native";
 
 const SettingsScreen = (): JSX.Element => {
     const setWalletState = useSetRecoilState(walletState);
@@ -14,7 +15,11 @@ const SettingsScreen = (): JSX.Element => {
     return (
         <BaseMainScreen title={translate("settings")} back={false}>
             <CardBackgroundWrapper>
-                <SelectGroup options={options} title="Select your network" onChange={(value) => console.log(value)} />
+                <SelectGroup
+                    options={options}
+                    title="Select your network"
+                    onChange={(value) => Alert.alert(`Switched to ${value} network`)}
+                />
                 <Button onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>Log out</Button>
                 <Button
                     onPress={async () => {

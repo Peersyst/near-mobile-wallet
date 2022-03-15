@@ -23,7 +23,7 @@ export default function SelectItem({ children, value, style = {} }: SelectItemPr
 
     return (
         <TouchableWithoutFeedback onPress={handlePress}>
-            <SelectItemRoot style={rootStyle}>
+            <SelectItemRoot style={rootStyle} accessibilityRole="button">
                 <SelectItemText
                     style={[
                         textStyle,
