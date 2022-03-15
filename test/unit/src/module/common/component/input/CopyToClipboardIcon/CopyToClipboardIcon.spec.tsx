@@ -12,11 +12,15 @@ describe("Test for the copy to clipboard", () => {
         const showToast = jest.fn();
         jest.spyOn(UseToast, "useToast").mockReturnValue({ showToast, hideToast: jest.fn() });
         jest.spyOn(Clipboard, "setString");
-        const screen = render(<CopyToClipboardIcon text={"Peersyst4thewin"} message="Copied" />);
+        const screen = render(<CopyToClipboardIcon text={"Peersyst4thewin"} toastMessage="Copied" />);
         const icon = screen.getByTestId("CopyIcon");
         expect(icon).toBeDefined();
         fireEvent.press(icon);
         expect(Clipboard.setString).toHaveBeenCalledWith("Peersyst4thewin");
         expect(showToast).toHaveBeenCalledWith("Copied", { type: "success" });
+    });
+    test("Renders correctly filled mode", () => {
+        const screen = render(<CopyToClipboardIcon filled text={"A"} toastMessage="A" />);
+        expect(screen.getByTestId("FilledCopyIcon")).toBeDefined();
     });
 });

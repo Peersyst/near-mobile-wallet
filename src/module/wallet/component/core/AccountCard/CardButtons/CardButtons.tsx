@@ -7,7 +7,11 @@ import { CardButton, Separator } from "./CardButtons.styles";
 
 const CARD_BUTTON_ICON_SIZE = 20;
 
-const CardButtons = (): JSX.Element => {
+interface CardButtonsProps {
+    address: string;
+}
+
+const CardButtons = ({ address }: CardButtonsProps): JSX.Element => {
     const navigation = useNavigation();
     return (
         <Row justifyContent="center">
@@ -20,7 +24,7 @@ const CardButtons = (): JSX.Element => {
             </CardButton>
             <Separator />
             <CardButton
-                onPress={() => navigation.navigate(MainScreens.RECEIVE)}
+                onPress={() => navigation.navigate(MainScreens.RECEIVE, { address })}
                 position="right"
                 rightIcon={<ReceiveIcon style={{ fontSize: CARD_BUTTON_ICON_SIZE }} />}
             >

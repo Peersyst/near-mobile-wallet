@@ -1,5 +1,5 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { DAOIcon, NewsIcon } from "icons";
+import { DAOIcon, FilledDAOIcon, FilledNewsIcon, NewsIcon } from "icons";
 import { MainBottomScreens } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup";
 import { MainStackParamsList } from "stack-navigator";
 import { BottomBarRoot } from "./BottomBar.styles";
@@ -22,14 +22,14 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
                 onPress={() => handleNavigation(MainBottomScreens.DAO)}
                 isActive={activeTab === MainBottomScreens.DAO}
                 label={translate("dao")}
-                Icon={<DAOIcon />}
+                Icon={activeTab === MainBottomScreens.DAO ? <FilledDAOIcon /> : <DAOIcon />}
             />
             <BottomBarLogoItem onPress={() => handleNavigation(MainBottomScreens.HOME)} />
             <BottomBarItem
                 onPress={() => handleNavigation(MainBottomScreens.NEWS)}
                 isActive={activeTab === MainBottomScreens.NEWS}
                 label={translate("news")}
-                Icon={<NewsIcon />}
+                Icon={activeTab === MainBottomScreens.NEWS ? <FilledNewsIcon /> : <NewsIcon />}
             />
         </BottomBarRoot>
     );
