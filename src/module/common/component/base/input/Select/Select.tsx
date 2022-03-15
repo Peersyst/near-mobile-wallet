@@ -28,7 +28,7 @@ export default function Select({
     disabled = false,
     readonly = false,
     style: styleProp,
-    renderValue,
+    renderValue = renderDefaultValue,
     header,
     footer,
     children,
@@ -45,7 +45,7 @@ export default function Select({
 
     const {
         style,
-        display: [displayTextStyle, displayRootStyle],
+        display: [displayTextStyle, { placeholderColor, ...displayRootStyle }],
         menu: menuStyle,
         item: itemStyle,
     } = useSelectStyles(styleProp || {}, disabled, readonly);
@@ -56,13 +56,13 @@ export default function Select({
                 <View>
                     <Row style={displayRootStyle} alignItems="center" justifyContent="space-between">
                         <View>
-                            {renderValue ? (
-                                renderValue(displayContent)
-                            ) : (
-                                <Text style={displayTextStyle} numberOfLines={1}>
-                                    {renderDefaultValue(displayContent) || placeholder}
-                                </Text>
-                            )}
+                            <Text style={displayTextStyle} numberOfLines={1}>
+                                {renderValue(displayContent) || (
+                                    <Text style={[displayTextStyle, { color: placeholderColor }]} numberOfLines={1}>
+                                        {placeholder}
+                                    </Text>
+                                )}
+                            </Text>
                         </View>
                         <Icon style={{ fontSize: 14, transform: [{ rotate: "45deg" }] }}>{icon}</Icon>
                     </Row>
