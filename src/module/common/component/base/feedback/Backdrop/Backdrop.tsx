@@ -44,7 +44,7 @@ export default function Backdrop({
     });
 
     return mounted ? (
-        <AnimatedBackdropRoot onTouchStart={handleClose} style={{ ...style, backgroundColor: backdropColor }}>
+        <AnimatedBackdropRoot onTouchEnd={handleClose} style={{ ...style, backgroundColor: backdropColor }}>
             {children}
         </AnimatedBackdropRoot>
     ) : (
