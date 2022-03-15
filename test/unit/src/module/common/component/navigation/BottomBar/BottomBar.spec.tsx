@@ -6,14 +6,14 @@ import mockedState from "./utils/mockedState";
 
 describe("BottomBar test", () => {
     test("Renders correctly", () => {
-        const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: jest.fn() } as any} />);
+        const screen = render(<BottomBar state={{ ...mockedState, index: 0 } as any} navigation={{ navigate: jest.fn() } as any} />);
         expect(screen.getByText(translate("dao"))).toBeDefined();
         expect(screen.getByText(translate("news"))).toBeDefined();
         expect(screen.getByTestId("NewsIcon")).toBeDefined();
         expect(screen.getByTestId("DAOIcon")).toBeDefined();
         expect(screen.getByRole("imagebutton")).toBeDefined();
     });
-    test("Navigate to Dao Screen", () => {
+    test("Navigate to Dao Screen", async () => {
         const mockedNavigate = jest.fn();
         const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: mockedNavigate } as any} />);
         const newsButton = screen.getByTestId("DAOIcon");
@@ -23,7 +23,7 @@ describe("BottomBar test", () => {
     test("Dont't navigate to news because it is in the news screen. index 2 in the routes -> see mockedState", () => {
         const mockedNavigate = jest.fn();
         const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: mockedNavigate } as any} />);
-        const newsButton = screen.getByTestId("NewsIcon");
+        const newsButton = screen.getByTestId("FilledNewsIcon");
         fireEvent.press(newsButton);
         expect(mockedNavigate).not.toHaveBeenCalled();
     });
