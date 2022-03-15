@@ -10,7 +10,7 @@ export type MainStackParamsList = {
     Dao: undefined;
     News: undefined;
     Send: undefined;
-    Receive: undefined;
+    Receive: { address: string };
 };
 export type RootStackParamsList = {
     //Auth
