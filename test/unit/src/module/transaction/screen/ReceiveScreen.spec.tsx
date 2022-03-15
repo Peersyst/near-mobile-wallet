@@ -6,7 +6,7 @@ import { getMockedRouter } from "mocks/router";
 import { MainScreens } from "module/main/MainNavigatorGroup";
 
 describe("Test fot the receive screen", () => {
-    const mockedRouter = getMockedRouter(MainScreens.RECEIVE, { address: cells[0].address })
+    const mockedRouter = getMockedRouter(MainScreens.RECEIVE, { address: cells[0].address });
     test("Renders correctly", () => {
         jest.spyOn(Router, "default").mockReturnValue(mockedRouter);
         const screen = render(<ReceiveScreen />);

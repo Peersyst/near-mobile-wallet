@@ -11,7 +11,7 @@ const GoBackRoot = styled(Pressable)(() => ({
     alignItems: "center",
 }));
 
-export const BackIconRoot = styled(IconButton)(({ theme }) => ({
+export const BackIconRoot = styled(IconButton)(() => ({
     fontSize: 15,
     marginRight: 10,
 }));

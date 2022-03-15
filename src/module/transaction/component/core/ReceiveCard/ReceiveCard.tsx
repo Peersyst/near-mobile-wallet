@@ -16,7 +16,6 @@ const TextAdress = styled(Typography, { textTransform: "uppercase" })(() => ({
 }));
 
 const ReceiveCard = (): JSX.Element => {
-    
     const { params } = useRoute();
 
     return (

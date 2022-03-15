@@ -2,8 +2,6 @@ import ReceiveCard from "module/transaction/component/core/ReceiveCard/ReceiveCa
 import { fireEvent, render } from "test-utils";
 import * as Router from "module/common/hook/useRoute";
 import { cells } from "mocks/cells";
-import { RouteProp } from "@react-navigation/native";
-import { RootStackParamsList, MainStackParamsList } from "stack-navigator";
 import * as Clipboard from "expo-clipboard";
 import * as UseToast from "module/common/component/base/feedback/ToastProvider/hooks/useToast";
 import { translate } from "locale";
@@ -12,7 +10,7 @@ import { getMockedRouter } from "mocks/router";
 import { MainScreens } from "module/main/MainNavigatorGroup";
 
 describe("Test for the receive Card", () => {
-    const mockedRouter = getMockedRouter(MainScreens.RECEIVE, { address: cells[0].address })
+    const mockedRouter = getMockedRouter(MainScreens.RECEIVE, { address: cells[0].address });
     test("Renders correctly", () => {
         jest.spyOn(Router, "default").mockReturnValue(mockedRouter);
         const screen = render(<ReceiveCard />);

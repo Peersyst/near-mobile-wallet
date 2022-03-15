@@ -1,5 +1,5 @@
-import GoBack from "module/transaction/component/navigation/GoBack"
-import { fireEvent, render } from "test-utils"
+import GoBack from "module/transaction/component/navigation/GoBack";
+import { fireEvent, render } from "test-utils";
 import * as Navigation from "@react-navigation/native";
 import { translate } from "locale";
 
@@ -13,5 +13,5 @@ describe("Go back component", () => {
         expect(screen.getByTestId("BackIcon")).toBeDefined();
         fireEvent.press(text);
         expect(mockedNavigation).toHaveBeenCalled();
-    })
-})
+    });
+});
