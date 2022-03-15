@@ -12,6 +12,6 @@ export const SelectRoot = styled(Select)(({ theme }) => ({
     },
 }));
 
-export const SelectHeader = styled(Typography)(({theme}) => ({
+export const SelectHeader = styled(Typography)(() => ({
     padding: 20,
 }));
