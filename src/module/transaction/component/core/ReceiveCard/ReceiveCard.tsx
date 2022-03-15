@@ -6,9 +6,9 @@ import useRoute from "module/common/hook/useRoute";
 import { Col, Row, Typography } from "react-native-components";
 import GoBack from "../../navigation/GoBack";
 
-const ReceiveCardContent = styled(Col, { gap: 40 })(() => ({
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+const ReceiveCardContent = styled(Col, { gap: "12%" })(() => ({
+    paddingHorizontal: "4%",
+    paddingBottom: "5%",
 }));
 
 const TextAdress = styled(Typography, { textTransform: "uppercase" })(() => ({
@@ -20,7 +20,7 @@ const ReceiveCard = (): JSX.Element => {
     const { params } = useRoute();
 
     return (
-        <Card style={{ margin: 10, marginBottom: 20 }}>
+        <Card>
             <ReceiveCardContent>
                 <Row justifyContent="space-between" alignItems="center">
                     <TextAdress variant="h3">{params?.address}</TextAdress>

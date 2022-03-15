@@ -8,21 +8,11 @@ import * as Clipboard from "expo-clipboard";
 import * as UseToast from "module/common/component/base/feedback/ToastProvider/hooks/useToast";
 import { translate } from "locale";
 import * as Navigation from "@react-navigation/native";
-
-type mockedRouterType = RouteProp<
-    RootStackParamsList,
-    "Login" | "AuthSwitch" | "CreateWallet" | "ImportWallet" | keyof MainStackParamsList
->;
+import { getMockedRouter } from "mocks/router";
+import { MainScreens } from "module/main/MainNavigatorGroup";
 
 describe("Test for the receive Card", () => {
-    const mockedRouter: mockedRouterType = {
-        key: "Receive-sY9fYDeMufbBe6M_Gt2or",
-        name: "Receive",
-        params: {
-            address: cells[0].address,
-        },
-        path: undefined,
-    };
+    const mockedRouter = getMockedRouter(MainScreens.RECEIVE, { address: cells[0].address })
     test("Renders correctly", () => {
         jest.spyOn(Router, "default").mockReturnValue(mockedRouter);
         const screen = render(<ReceiveCard />);
