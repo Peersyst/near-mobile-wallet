@@ -8,8 +8,8 @@ import QRCode from "../component/display/QRCode/QRCode";
 const ReceiveScreen = (): JSX.Element => {
     return (
         <LogoPage>
-            <GlassNavigator navbar={{ back: true, title: translate("receive") }}>
-                <Col gap={30}>
+            <GlassNavigator navbar={{ back: true, title: translate("receive") }} style={{ height: "98%" }}>
+                <Col justifyContent="space-between" flex={1}>
                     <QRCode />
                     <ReceiveCard />
                 </Col>

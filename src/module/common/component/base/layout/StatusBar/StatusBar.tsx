@@ -4,12 +4,12 @@ import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 
 const StatusBar = ({ appearance: appearanceProp, ...rest }: StatusBarProps): JSX.Element => {
     const {
-        palette: { mode, background },
+        palette: { mode },
     } = useTheme();
 
     const appearance = appearanceProp || mode;
 
-    return <ExpoStatusBar style={appearance === "dark" ? "light" : "dark"} backgroundColor={background} {...rest} />;
+    return <ExpoStatusBar style={appearance === "dark" ? "light" : "dark"} {...rest} />;
 };
 
 export default StatusBar;

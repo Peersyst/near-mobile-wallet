@@ -6,12 +6,12 @@ import useRoute from "module/common/hook/useRoute";
 import { Col, Row, Typography } from "react-native-components";
 import GoBack from "../../navigation/GoBack";
 
-const ReceiveCardContent = styled(Col, { gap: "12%" })(() => ({
+const ReceiveCardContent = styled(Col, { gap: "10%" })(() => ({
     paddingHorizontal: "4%",
-    paddingBottom: "5%",
+    paddingBottom: "2%",
 }));
 
-const TextAdress = styled(Typography, { textTransform: "uppercase" })(() => ({
+const TextAddress = styled(Typography, { textTransform: "uppercase" })(() => ({
     width: "75%",
 }));
 
@@ -22,7 +22,7 @@ const ReceiveCard = (): JSX.Element => {
         <Card>
             <ReceiveCardContent>
                 <Row justifyContent="space-between" alignItems="center">
-                    <TextAdress variant="h3">{params?.address}</TextAdress>
+                    <TextAddress variant="h3">{params?.address}</TextAddress>
                     <CopyToClipboardIcon filled text={params?.address || ""} toastMessage={translate("address_copied")} />
                 </Row>
                 <Typography variant={"caption"}>{translate("receive_info")}</Typography>
