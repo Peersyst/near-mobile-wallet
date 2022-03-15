@@ -13,7 +13,7 @@ describe("BottomBar test", () => {
         expect(screen.getByTestId("DAOIcon")).toBeDefined();
         expect(screen.getByRole("imagebutton")).toBeDefined();
     });
-    test("Navigate to Dao Screen", async () => {
+    test("Navigate to Dao Screen", () => {
         const mockedNavigate = jest.fn();
         const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: mockedNavigate } as any} />);
         const newsButton = screen.getByTestId("DAOIcon");
