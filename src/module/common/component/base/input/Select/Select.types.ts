@@ -11,6 +11,7 @@ export type DisplayStyle = ViewStyle &
     TextStyle & {
         disabled?: ViewStyle & TextStyle;
         readonly?: ViewStyle & TextStyle;
+        placeholderColor?: string;
     };
 
 export type SelectStyle = Omit<ViewStyle, "display"> & {

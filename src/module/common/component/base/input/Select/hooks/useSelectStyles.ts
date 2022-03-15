@@ -6,7 +6,7 @@ import { SelectItemStyles } from "react-native-components";
 
 export interface UseSelectStyles {
     style: ViewStyle;
-    display: [TextStyle, ViewStyle];
+    display: [TextStyle, ViewStyle & { placeholderColor?: string }];
     menu: ViewStyle;
     item: SelectItemStyles;
 }
