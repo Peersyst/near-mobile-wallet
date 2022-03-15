@@ -15,7 +15,7 @@ const AccountCard = ({ colorIndex, cell }: AccountCardProps): JSX.Element => {
             <AccountContent>
                 <AccountCardHeader address={cell.address} />
                 <AccountCardBalance variant="h1" balance={cell.balance} units={translate("token")} />
-                <CardButtons />
+                <CardButtons address={cell.address} />
             </AccountContent>
         </AccountCardRoot>
     );
