@@ -1,4 +1,5 @@
-import { Paper, Select, SelectItem, Typography } from "react-native-components";
+import Select from "module/common/component/input/Select/Select";
+import { Paper, SelectItem, Typography } from "react-native-components";
 
 const SendToAddressScreen = () => {
     return (

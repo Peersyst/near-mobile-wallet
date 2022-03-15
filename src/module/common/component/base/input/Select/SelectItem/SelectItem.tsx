@@ -27,9 +27,9 @@ export default function SelectItem({ children, value, style = {} }: SelectItemPr
                 <SelectItemText
                     style={[
                         textStyle,
-                        textStyle.backgroundColor && textStyle.backgroundColor !== "transparent"
+                        rootStyle.backgroundColor && rootStyle.backgroundColor !== "transparent"
                             ? {
-                                  color: getLuminance(textStyle.backgroundColor as string) > 0.5 ? "#000000" : "#FFFFFF",
+                                  color: getLuminance(rootStyle.backgroundColor as string) > 0.5 ? "#000000" : "#FFFFFF",
                               }
                             : undefined,
                     ]}
