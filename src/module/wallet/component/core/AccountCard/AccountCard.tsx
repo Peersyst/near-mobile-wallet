@@ -9,11 +9,14 @@ export interface AccountCardProps {
     cell: Cell;
 }
 
+export interface AccountCardRootProps {
+    color: string;
+}
+
 const AccountCard = ({ cell }: AccountCardProps): JSX.Element => {
     const addressColor = useAddressColor(cell.address);
-
     return (
-        <AccountCardRoot style={{ backgroundColor: addressColor }}>
+        <AccountCardRoot color={addressColor}>
             <AccountContent>
                 <AccountCardHeader address={cell.address} name={cell.name} />
                 <AccountCardBalance variant="h1" balance={cell.balance} units={translate("token")} />
