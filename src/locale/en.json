@@ -56,5 +56,6 @@
     "nfts": "NFTs",
     "no_nfts": "You don't have nfts yet",
     "bought_for": "Bought for",
-    "go_back": "Go back"
+    "go_back": "Go back",
+    "select_your_network": "Select your network"
 }

@@ -1609,10 +1609,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@peersyst/react-hooks@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.npmjs.org/@peersyst/react-hooks/-/react-hooks-1.1.2.tgz"
-  integrity sha512-jld38UjInqDz0aeAevUY76Qe24zdeP8XtPC5TKvzlGIyouhPZqBDi06QCczOGr5Gncizt4t+9NztL72PhXTXZw==
+"@peersyst/react-hooks@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-1.1.5.tgz#ad45916b2420594b9f4a0b4298fc1308043aacd9"
+  integrity sha512-oJMOkjvYsI2VxZ49bvSdzsRtdZIMy+7JfiF3Mg6V/RL5URJqQHnzaX/5+JMcj6zqIfuqzIKkx1/0BSBszp7orQ==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^1.0.0"

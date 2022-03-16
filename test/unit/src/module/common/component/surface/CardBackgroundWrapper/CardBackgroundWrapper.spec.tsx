@@ -1,4 +1,4 @@
-import { CardBackgroundWrapper } from "module/common/component/surface/CardBackgroundWrapper/CardBackgroundWrapper";
+import CardBackgroundWrapper from "module/common/component/surface/CardBackgroundWrapper/CardBackgroundWrapper";
 import { Typography } from "react-native-components";
 import { render } from "test-utils";
 

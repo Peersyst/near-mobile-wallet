@@ -4,7 +4,7 @@ import Button from "module/common/component/input/Button/Button";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { translate } from "locale";
 import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
-import { CardBackgroundWrapper } from "module/common/component/surface/CardBackgroundWrapper/CardBackgroundWrapper";
+import CardBackgroundWrapper from "module/common/component/surface/CardBackgroundWrapper/CardBackgroundWrapper";
 import SelectGroup from "module/common/component/input/SelectGroup/SelectGroup";
 import { Alert } from "react-native";
 
@@ -17,7 +17,7 @@ const SettingsScreen = (): JSX.Element => {
             <CardBackgroundWrapper>
                 <SelectGroup
                     options={options}
-                    title="Select your network"
+                    label={translate("select_your_network")}
                     onChange={(value) => Alert.alert(`Switched to ${value} network`)}
                 />
                 <Button onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>Log out</Button>

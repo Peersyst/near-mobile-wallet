@@ -16,7 +16,7 @@
         "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0"
     },
     "dependencies": {
-        "@peersyst/react-hooks": "^1.1.2",
+        "@peersyst/react-hooks": "^1.1.5",
         "@peersyst/react-native-styled": "^1.0.0",
         "@peersyst/react-types": "^1.2.0",
         "@peersyst/react-utils": "^1.2.1",
