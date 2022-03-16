@@ -4,14 +4,12 @@ import CopyToClipboardIcon from "module/common/component/input/CopyToClipboardIc
 import BaseAccountCard from "module/common/component/surface/BaseAccountCard/BaseAccountCard";
 import { Col, Typography } from "react-native-components";
 import Balance from "../../display/Balance/Balance";
-import { AccountCardProps } from "./AccountCard";
-import { getCardColor } from "./utils/getCardColor";
+import { AccountCardRootProps } from "./AccountCard";
 
-export const AccountCardRoot = styled(BaseAccountCard)<Pick<AccountCardProps, "colorIndex">>(({ theme, colorIndex }) => {
-    const color = getCardColor(colorIndex, theme);
+export const AccountCardRoot = styled(BaseAccountCard)<AccountCardRootProps>(({ color }) => {
     return {
-        backgroundColor: color,
         paddingBottom: 30,
+        backgroundColor: color,
     };
 });
 

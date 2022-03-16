@@ -17,6 +17,8 @@ describe("Test for the Main Slider", () => {
     test("Renders correctly with cells", () => {
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ hasWallet: true, isAuthenticated: true, name: "wallet", cells: cells });
         const screen = render(<MainSlider />);
-        expect(screen.getAllByText(translate("my_account"))).toHaveLength(3);
+        expect(screen.getAllByText(cells[0].name)).toBeDefined();
+        expect(screen.getAllByText(cells[1].name)).toBeDefined();
+        expect(screen.getAllByText(cells[2].name)).toBeDefined();
     });
 });

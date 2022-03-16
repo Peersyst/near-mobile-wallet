@@ -55,7 +55,7 @@ export default function Select({
             <TouchableWithoutFeedback onPress={handlePress}>
                 <View>
                     <Row style={displayRootStyle} alignItems="center" justifyContent="space-between">
-                        <View>
+                        <View style={{ maxWidth: "92%" }}>
                             <Text style={displayTextStyle} numberOfLines={1}>
                                 {renderValue(displayContent) || (
                                     <Text style={[displayTextStyle, { color: placeholderColor }]} numberOfLines={1}>
@@ -64,7 +64,7 @@ export default function Select({
                                 )}
                             </Text>
                         </View>
-                        <Icon style={{ fontSize: 14, transform: [{ rotate: "45deg" }] }}>{icon}</Icon>
+                        <Icon style={{ ...displayTextStyle, fontSize: 14 }}>{icon}</Icon>
                     </Row>
                 </View>
             </TouchableWithoutFeedback>

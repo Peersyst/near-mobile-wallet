@@ -10,5 +10,5 @@ export const SelectMenuRoot = styled(Modal)(() => ({
 }));
 
 export const SelectItemsView = styled(View)<SelectItemsViewProps>(({ itemCount }) => ({
-    height: Math.min(220, itemCount * 50),
+    height: Math.min(220, itemCount * 60),
 }));
