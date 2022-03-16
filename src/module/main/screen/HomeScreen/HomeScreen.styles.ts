@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { CardBackground } from "module/common/component/surface/CardBackground/CardBackground";
+import { CardBackground } from "module/common/component/surface/CardBackground/CardBackground.styles";
 
 export const CardBackgroundHome = styled(CardBackground, { elevation: 2 })(() => ({
     position: "absolute",
