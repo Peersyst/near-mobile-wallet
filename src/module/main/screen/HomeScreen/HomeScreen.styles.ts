@@ -1,20 +1,12 @@
 import styled from "@peersyst/react-native-styled";
-import { Paper } from "react-native-components";
+import CardBackground from "module/common/component/surface/CardBackground/CardBackground";
 
-export const CardBackground = styled(Paper, { elevation: 2 })(({ theme }) => ({
+export const CardBackgroundHome = styled(CardBackground, { elevation: 2 })(() => ({
     position: "absolute",
     bottom: 0,
     left: 0,
     width: "100%",
     height: "90%",
-    backgroundColor: theme.palette.lighterGray,
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
-    shadowOffset: {
-        height: -2,
-        width: 0,
-    },
-    shadowRadius: 6,
     elevation: -1,
     zIndex: -1,
 }));
