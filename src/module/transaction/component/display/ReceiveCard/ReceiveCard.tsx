@@ -7,13 +7,14 @@ import GoBack from "../../navigation/GoBack";
 import useWallet from "module/wallet/hook/useWallet";
 import ReceiveModal from "../../core/ReceiveModal/ReceiveModal";
 
-const ReceiveCardContent = styled(Col, { gap: "10%" })(() => ({
-    paddingHorizontal: "4%",
-    paddingBottom: "2%",
+const ReceiveCardContent = styled(Col, { justifyContent: "space-between" })(({ dimensions }) => ({
+    height: dimensions.height * 0.25,
+    paddingHorizontal: "2%",
+    paddingBottom: dimensions.height * 0.005
 }));
 
 const TextAddress = styled(Typography, { textTransform: "uppercase" })(() => ({
-    width: "75%",
+    width: "87%",
 }));
 
 const ReceiveCard = (): JSX.Element => {
@@ -27,7 +28,7 @@ const ReceiveCard = (): JSX.Element => {
         <Card>
             <ReceiveCardContent>
                 <Row justifyContent="space-between" alignItems="center">
-                    <TextAddress variant="h3">{address}</TextAddress>
+                    <TextAddress variant="body1">{address}</TextAddress>
                     <CopyToClipboardIcon filled text={address || ""} toastMessage={translate("address_copied")} />
                 </Row>
                 <Typography variant={"caption"}>{translate("receive_info")}</Typography>
