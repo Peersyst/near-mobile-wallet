@@ -30,6 +30,7 @@ export const theme = createTheme({
             ...defaultTheme.palette.status,
             success: "#36b930",
         },
+        address: ["#924AD9", "#47B5D6", "#E4AF4C", "#15C8BD", "#FF66B0", "#623EDF"],
     },
     typography: {
         h1: {

@@ -4,13 +4,14 @@ import { FavouriteIcon, AccountCardTitle, CopyIcon } from "../AccountCard.styles
 
 interface AccountCardHeaderProps {
     address: string;
+    name: string;
 }
 
-const AccountCardHeader = ({ address }: AccountCardHeaderProps): JSX.Element => {
+const AccountCardHeader = ({ address, name }: AccountCardHeaderProps): JSX.Element => {
     return (
         <Row justifyContent="space-between" alignItems="center">
             <FavouriteIcon />
-            <AccountCardTitle variant="h3">{translate("my_account")}</AccountCardTitle>
+            <AccountCardTitle variant="h3">{name}</AccountCardTitle>
             <CopyIcon text={address} toastMessage={translate("address_copied")} />
         </Row>
     );

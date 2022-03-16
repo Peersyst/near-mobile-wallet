@@ -3,17 +3,22 @@ import { AccountCardBalance, AccountCardRoot, AccountContent } from "./AccountCa
 import AccountCardHeader from "./AccountCardHeader/AccountCardHeader";
 import { translate } from "locale";
 import CardButtons from "./CardButtons/CardButtons";
+import useAddressColor from "module/wallet/hook/useAddressColor";
 
 export interface AccountCardProps {
-    colorIndex: number;
     cell: Cell;
 }
 
-const AccountCard = ({ colorIndex, cell }: AccountCardProps): JSX.Element => {
+export interface AccountCardRootProps {
+    color: string;
+}
+
+const AccountCard = ({ cell }: AccountCardProps): JSX.Element => {
+    const addressColor = useAddressColor(cell.address);
     return (
-        <AccountCardRoot colorIndex={colorIndex}>
+        <AccountCardRoot color={addressColor}>
             <AccountContent>
-                <AccountCardHeader address={cell.address} />
+                <AccountCardHeader address={cell.address} name={cell.name} />
                 <AccountCardBalance variant="h1" balance={cell.balance} units={translate("token")} />
                 <CardButtons address={cell.address} />
             </AccountContent>
