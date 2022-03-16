@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { CardBackground } from "../CardBackground/CardBackground";
+import { CardBackground } from "../CardBackground/CardBackground.styles";
 
 export const CardBackgroundWrapper = styled(CardBackground)(() => ({
     width: "90%",
