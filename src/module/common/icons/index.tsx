@@ -14,6 +14,7 @@ export * from "./NewsIcon";
 export * from "./NotificationIcon";
 export * from "./PlusIcon";
 export * from "./ReceiveIcon";
+export * from "./ScanIcon";
 export * from "./SendIcon";
 export * from "./SettingsIcon";
 export * from "./StarIcon";

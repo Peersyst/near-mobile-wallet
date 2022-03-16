@@ -1,5 +1,5 @@
 import { BackdropProps, createBackdrop, TabPanel, Tabs } from "react-native-components";
-import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen";
+import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
 import { translate } from "locale";
 import { useState } from "react";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";

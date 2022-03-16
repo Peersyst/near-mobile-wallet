@@ -14,7 +14,7 @@ export const TextInputRoot = styled(Row, { alignItems: "center", gap: 10 })(({ t
     borderWidth: 1,
     borderColor: theme.palette.text,
     borderRadius: theme.borderRadius,
-    paddingHorizontal: 8,
+    paddingHorizontal: 15,
 }));
 
 export const InvalidIcon = styled(Icon)(({ theme }) => ({ color: theme.palette.status.error }));
