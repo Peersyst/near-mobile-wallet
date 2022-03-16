@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
 import { QueryResult } from "query-utils";
-import { CurrencyType } from "../hook/useCkbConversion";
+import { FiatCurrencyType } from "module/settings/state/SettingsState";
 
 // Refetch the data every 3 minutes
 const CONVERSION_PRICE_INTERVAL = 1000 * 60 * 3;
 
-export const useGetCkbPrice = (currency: CurrencyType): QueryResult<number> =>
+export const useGetCkbPrice = (currency: FiatCurrencyType): QueryResult<number> =>
     useQuery(
         ["ckbPrice", currency],
         async () => {
