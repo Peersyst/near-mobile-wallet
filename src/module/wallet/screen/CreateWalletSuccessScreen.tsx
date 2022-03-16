@@ -4,7 +4,7 @@ import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useSetRecoilState } from "recoil";
 import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
-import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
+import { defaultSettingsState } from "module/settings/state/SettingsState";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {

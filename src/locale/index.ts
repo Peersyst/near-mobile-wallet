@@ -1,4 +1,3 @@
-import * as Localization from "expo-localization";
 import i18n from "i18n-js";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import en from "./en.json";

@@ -12,23 +12,21 @@ export function useLoad(): boolean {
     useEffect(() => {
         const getStorage = async () => {
             //Check if there is a previous wallet
-            await WalletStorage.getName()
-                .then(async (name) => {
-                    //Has wallet
-                    if (name) {
-                        //Create wallet state
-                        setWalletState((state) => ({ ...state, hasWallet: true, name }));
-                        //Create settings state based on previous settings
-                        await SettingsStorage.getAllSettings()
-                            .then((settings) => {
-                                setSettingsState((state) => ({ ...state, settings }));
-                                setLoading(false);
-                            })
-                    } else {
-                        setLoading(false)
-                    }
-                });
-        }
+            await WalletStorage.getName().then(async (name) => {
+                //Has wallet
+                if (name) {
+                    //Create wallet state
+                    setWalletState((state) => ({ ...state, hasWallet: true, name }));
+                    //Create settings state based on previous settings
+                    await SettingsStorage.getAllSettings().then((settings) => {
+                        setSettingsState((state) => ({ ...state, settings }));
+                        setLoading(false);
+                    });
+                } else {
+                    setLoading(false);
+                }
+            });
+        };
         getStorage();
     }, [setWalletState]);
     return loading;

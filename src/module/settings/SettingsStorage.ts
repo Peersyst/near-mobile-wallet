@@ -30,5 +30,4 @@ export const SettingsStorage = new (class extends BaseStorageService<SettingsSta
         const settings = await this.get();
         return { locale: settings?.locale, fiat: settings?.fiat, network: settings?.network, fee: settings?.fee };
     }
-
 })();

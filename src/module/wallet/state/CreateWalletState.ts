@@ -3,7 +3,7 @@ import { atom } from "recoil";
 /**
  * This state is only used in the createWallet process
  * to access the general wallet info use WalletState
-*/
+ */
 
 export interface CreateWalletState {
     name: string | undefined;

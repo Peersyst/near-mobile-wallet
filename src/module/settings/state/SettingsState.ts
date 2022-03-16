@@ -14,7 +14,7 @@ export interface SettingsState {
     fee: PrefferedFee;
 }
 
-export const defaultSettingsState: SettingsState = { locale: getDefaultLocale(), fiat: "usd", network: "mainnet", fee: "average" }
+export const defaultSettingsState: SettingsState = { locale: getDefaultLocale(), fiat: "usd", network: "mainnet", fee: "average" };
 
 const settingsState = atom<SettingsState>({
     key: "settings",
