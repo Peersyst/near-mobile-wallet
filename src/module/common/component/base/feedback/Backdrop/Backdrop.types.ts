@@ -38,7 +38,7 @@ export interface BackdropProps {
     /**
      * Backdrop content
      */
-    children?: ReactElement;
+    children?: ReactElement | ((state: [boolean, (value: boolean) => unknown]) => ReactElement);
 }
 
 export type ForwardedBackdropProps = Pick<BackdropProps, "defaultOpen" | "open" | "onClose" | "onExited" | "closable">;

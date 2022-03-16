@@ -9,9 +9,9 @@ import Balance from "module/wallet/component/display/Balance/Balance";
 
 const AccountSelector = (): JSX.Element => {
     const {
-        state: { cells },
+        state: { cells, selectedAccount: defaultAccount = 0 },
     } = useWallet();
-    const [selectedIndex, setSelectedIndex] = useState<number>();
+    const [selectedIndex, setSelectedIndex] = useState<number>(defaultAccount);
     const selectedAccount = selectedIndex !== undefined ? cells[selectedIndex] : undefined;
     const addressColor = useAddressColor(selectedAccount?.address || "");
     const backgroundColor = selectedAccount ? addressColor : undefined;
