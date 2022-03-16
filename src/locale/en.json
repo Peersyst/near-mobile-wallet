@@ -50,5 +50,7 @@
     "transactions": "Transactions",
     "currencies": "Currencies",
     "nfts": "NFTs",
-    "bought_for": "Bought for"
+    "bought_for": "Bought for",
+    "select_an_account": "Select an account",
+    "no_account_selected": "No account selected"
 }

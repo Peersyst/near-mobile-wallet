@@ -4,6 +4,7 @@ import { cells } from "../mock/cells";
 export interface Cell {
     address: string;
     balance: string;
+    name: string;
 }
 
 export interface WalletState {

@@ -18,7 +18,7 @@ const MainSlider = (): JSX.Element => {
             style={{ minHeight: 203 }}
         >
             {cells.map((cell, i) => (
-                <AccountCard key={i} colorIndex={i} cell={cell} />
+                <AccountCard key={i} cell={cell} />
             ))}
             <AddAccountCard />
         </PagerView>

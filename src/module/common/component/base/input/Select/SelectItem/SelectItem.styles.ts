@@ -4,6 +4,7 @@ import styled from "@peersyst/react-native-styled";
 export const SelectItemRoot = styled(View)(() => ({
     paddingVertical: 15,
     paddingHorizontal: 20,
+    justifyContent: "center",
 }));
 
 export const SelectItemText = styled(Text)(({ theme }) => ({
