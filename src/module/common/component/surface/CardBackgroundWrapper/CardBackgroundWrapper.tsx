@@ -6,6 +6,7 @@ const CardBackgroundWrapper = styled(CardBackground)(() => ({
     height: "100%",
     marginLeft: "5%",
     padding: "5%",
+    paddingTop: "7%",
 }));
 
 export default CardBackgroundWrapper;

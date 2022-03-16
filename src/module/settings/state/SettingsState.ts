@@ -1,6 +1,5 @@
+import getDefaultLocale, { LocaleType } from "locale/utils/getDefaultLocale";
 import { atom } from "recoil";
-
-export type LangType = "en" | "es";
 
 export type FiatCurrencyType = "btc" | "usd" | "eur";
 
@@ -9,15 +8,17 @@ export type NetworkType = "testnet" | "mainnet";
 export type PrefferedFee = "slow" | "average" | "fast";
 
 export interface SettingsState {
-    locale?: LangType;
+    locale?: LocaleType;
     fiat: FiatCurrencyType;
     network: NetworkType;
     fee: PrefferedFee;
 }
 
+export const defaultSettingsState: SettingsState = { locale: getDefaultLocale(), fiat: "usd", network: "mainnet", fee: "average" }
+
 const settingsState = atom<SettingsState>({
     key: "settings",
-    default: { locale: "en", fiat: "usd", network: "mainnet", fee: "average" },
+    default: defaultSettingsState,
 });
 
 export default settingsState;
