@@ -1,27 +1,28 @@
+import { LocaleType } from "locale/utils/getDefaultLocale";
 import { BaseStorageService } from "module/common/service/BaseStorageService";
-import { SettingsState } from "./state/SettingsState";
+import { FeeType, FiatCurrencyType, NetworkType, SettingsState } from "./state/SettingsState";
 
 export const SettingsStorage = new (class extends BaseStorageService<SettingsState> {
     constructor() {
         super("settings");
     }
 
-    async getLocale(): Promise<string | undefined> {
+    async getLocale(): Promise<LocaleType | undefined> {
         const settings = await this.get();
         return settings?.locale;
     }
 
-    async getFiat(): Promise<string | undefined> {
+    async getFiat(): Promise<FiatCurrencyType | undefined> {
         const settings = await this.get();
         return settings?.fiat;
     }
 
-    async getNetwork(): Promise<string | undefined> {
+    async getNetwork(): Promise<NetworkType | undefined> {
         const settings = await this.get();
         return settings?.network;
     }
 
-    async getFee(): Promise<string | undefined> {
+    async getFee(): Promise<FeeType | undefined> {
         const settings = await this.get();
         return settings?.fee;
     }

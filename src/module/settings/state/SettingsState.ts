@@ -5,13 +5,13 @@ export type FiatCurrencyType = "btc" | "usd" | "eur";
 
 export type NetworkType = "testnet" | "mainnet";
 
-export type PrefferedFee = "slow" | "average" | "fast";
+export type FeeType = "slow" | "average" | "fast";
 
 export interface SettingsState {
     locale?: LocaleType;
     fiat: FiatCurrencyType;
     network: NetworkType;
-    fee: PrefferedFee;
+    fee: FeeType;
 }
 
 export const defaultSettingsState: SettingsState = { locale: getDefaultLocale(), fiat: "usd", network: "mainnet", fee: "average" };
