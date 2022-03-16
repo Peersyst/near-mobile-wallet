@@ -16,10 +16,15 @@ export const BackIconRoot = styled(IconButton)(() => ({
     marginRight: 10,
 }));
 
-const GoBack = (): JSX.Element => {
+export interface GoBackProps {
+    onBack?: () => unknown;
+}
+
+const GoBack = ({ onBack }: GoBackProps): JSX.Element => {
     const navigation = useNavigation();
     const goBack = () => {
-        if (navigation.canGoBack()) {
+        if (onBack) onBack();
+        else if (navigation.canGoBack()) {
             navigation.goBack();
         }
     };
@@ -28,7 +33,7 @@ const GoBack = (): JSX.Element => {
             <BackIconRoot>
                 <BackIcon />
             </BackIconRoot>
-            <Typography variant={"h3"} textTransform="uppercase">
+            <Typography variant={"body1"} textTransform="uppercase">
                 {translate("go_back")}
             </Typography>
         </GoBackRoot>

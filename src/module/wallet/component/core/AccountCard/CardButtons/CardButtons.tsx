@@ -1,22 +1,18 @@
 import { SendIcon, ReceiveIcon } from "icons";
 import { translate } from "locale";
-import useNavigation from "module/common/hook/useNavigation";
-import { MainScreens } from "module/main/MainNavigatorGroup";
-import { Row } from "react-native-components";
+import SendModal from "module/transaction/component/core/SendModal/SendModal";
+import { Row, useModal } from "react-native-components";
 import { CardButton, Separator } from "./CardButtons.styles";
+import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
 
 const CARD_BUTTON_ICON_SIZE = 20;
 
-interface CardButtonsProps {
-    address: string;
-}
-
-const CardButtons = ({ address }: CardButtonsProps): JSX.Element => {
-    const navigation = useNavigation();
+const CardButtons = (): JSX.Element => {
+    const { showModal } = useModal();
     return (
         <Row justifyContent="center">
             <CardButton
-                onPress={() => navigation.navigate(MainScreens.SEND)}
+                onPress={() => showModal(SendModal)}
                 position="left"
                 leftIcon={<SendIcon style={{ fontSize: CARD_BUTTON_ICON_SIZE }} />}
             >
@@ -24,7 +20,7 @@ const CardButtons = ({ address }: CardButtonsProps): JSX.Element => {
             </CardButton>
             <Separator />
             <CardButton
-                onPress={() => navigation.navigate(MainScreens.RECEIVE, { address })}
+                onPress={() => showModal(ReceiveModal)}
                 position="right"
                 rightIcon={<ReceiveIcon style={{ fontSize: CARD_BUTTON_ICON_SIZE }} />}
             >

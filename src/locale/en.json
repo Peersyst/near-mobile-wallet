@@ -54,8 +54,9 @@
     "no_currencies": "You don't have currencies yet",
     "nfts": "NFTs",
     "bought_for": "Bought for",
+    "go_back": "Go back",
+    "select_your_network": "Select your network",
     "select_an_account": "Select an account",
     "no_account_selected": "No account selected",
-    "no_nfts": "You don't have nfts yet",
-    "go_back": "Go back"
+    "no_nfts": "You don't have nfts yet"
 }

@@ -41,14 +41,7 @@ export default function Modal({
 
     return (
         <Backdrop {...BackdropProps} {...forwardedBackdropProps}>
-            <AnimatedModalRoot
-                in={open}
-                appear
-                duration={transitionsDuration}
-                style={style}
-                onTouchEnd={(e) => e.stopPropagation()}
-                elevation={elevation}
-            >
+            <AnimatedModalRoot in={open} appear duration={transitionsDuration} style={style} elevation={elevation}>
                 {children}
             </AnimatedModalRoot>
         </Backdrop>

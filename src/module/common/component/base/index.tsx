@@ -11,6 +11,7 @@ export * from "./feedback/Toast";
 export * from "./feedback/ToastProvider";
 export * from "./input/Button";
 export * from "./input/Form";
+export * from "./input/FormGroup";
 export * from "./input/IconButton";
 export * from "./input/Select";
 export * from "./input/TextInput";

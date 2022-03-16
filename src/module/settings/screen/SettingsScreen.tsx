@@ -4,8 +4,8 @@ import Button from "module/common/component/input/Button/Button";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { translate } from "locale";
 import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
-import { CardBackgroundWrapper } from "module/common/component/surface/CardBackgroundWrapper/CardBackgroundWrapper";
 import SelectNetwork from "../components/core/SelectNetwork/SelectNetwork";
+import CardBackgroundWrapper from "module/common/component/surface/CardBackgroundWrapper/CardBackgroundWrapper";
 
 const SettingsScreen = (): JSX.Element => {
     const setWalletState = useSetRecoilState(walletState);

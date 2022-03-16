@@ -1,15 +1,17 @@
-import useRoute from "module/common/hook/useRoute";
 import { useWindowDimensions } from "react-native";
 import { Row } from "react-native-components";
 import QRCodeBase from "react-native-qrcode-svg";
+import useWallet from "module/wallet/hook/useWallet";
 
 const QRCode = (): JSX.Element => {
-    const { params } = useRoute();
-    const { width: screenWidth } = useWindowDimensions();
-    const width = screenWidth * 0.7;
+    const {
+        state: { cells, selectedAccount },
+    } = useWallet();
+    const { height: screenHeight } = useWindowDimensions();
+    const height = screenHeight * 0.35;
     return (
-        <Row justifyContent="center">
-            <QRCodeBase value={params?.address} size={width} />
+        <Row justifyContent="center" testID="QRCode">
+            {selectedAccount !== undefined && <QRCodeBase value={cells[selectedAccount].address} size={height} />}
         </Row>
     );
 };
