@@ -8,7 +8,7 @@ export const SelectRoot = styled(Select)(({ theme }) => ({
         backgroundColor: theme.palette.lighterGray,
         borderWidth: 0,
         borderColor: "transparent",
-        placeholderColor: theme.palette.darkGray,
+        placeholderColor: theme.palette.black,
         ...theme.shadows[7],
     },
 }));

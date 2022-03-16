@@ -15,7 +15,7 @@ export interface GlassNavigatorProps extends GlassProps {
 
 const GlassNavigator = ({ navbar: navbarProps, breadcrumbs: breadcrumbsProps, children, ...rest }: GlassNavigatorProps): JSX.Element => (
     <Glass {...rest}>
-        <Col gap={30} flex={1}>
+        <Col gap={"8%"} flex={1}>
             <Col gap={15}>
                 {navbarProps && <Navbar {...navbarProps} />}
                 {breadcrumbsProps && (

@@ -12,7 +12,7 @@ const AccountCardHeader = ({ address, name }: AccountCardHeaderProps): JSX.Eleme
         <Row justifyContent="space-between" alignItems="center">
             <FavouriteIcon />
             <AccountCardTitle variant="h3">{name}</AccountCardTitle>
-            <CopyIcon text={address} message={translate("address_copied")} />
+            <CopyIcon text={address} toastMessage={translate("address_copied")} />
         </Row>
     );
 };

@@ -37,8 +37,10 @@
     "keep_this_safe": "Keep This Safe",
     "select_in_order": "Select In Order",
     "token": "ckb",
+    "usd": "usd",
     "send": "send",
     "receive": "receive",
+    "receive_info": "Neuron picks a new receiving address for better privacy. Please go to the Address Book if you want to use a previously used receiving address.",
     "import_wallet": "Import Wallet",
     "enter_mnemonic": "Enter Mnemonic",
     "mnemonic_input_text": "Type a word and press enter to add it or tap one to remove it.",
@@ -48,9 +50,14 @@
     "address_copied": "Address copied",
     "settings": "Settings",
     "transactions": "Transactions",
+    "no_transactions": "You don't have transactions yet",
     "currencies": "Currencies",
+    "no_currencies": "You don't have currencies yet",
     "nfts": "NFTs",
     "bought_for": "Bought for",
     "select_an_account": "Select an account",
-    "no_account_selected": "No account selected"
+    "no_account_selected": "No account selected",
+    "no_nfts": "You don't have nfts yet",
+    "bought_for": "Bought for",
+    "go_back": "Go back"
 }
