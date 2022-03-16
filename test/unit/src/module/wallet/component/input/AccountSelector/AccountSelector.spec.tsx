@@ -3,23 +3,11 @@ import { render } from "test-utils";
 import AccountSelector from "module/wallet/component/input/AccountSelector/AccountSelector";
 import { translate } from "locale";
 import { fireEvent } from "@testing-library/react-native";
+import { mockedUseWallet } from "mocks/useWallet";
 
 describe("AccountSelector tests", () => {
     test("Renders correctly", () => {
-        jest.spyOn(UseWallet, "default").mockReturnValue({
-            state: {
-                hasWallet: true,
-                isAuthenticated: true,
-                isFirstTime: false,
-                cells: [{ address: "address", balance: "1", name: "Name" }],
-                selectedAccount: 0,
-            },
-            setAuthenticated: jest.fn(),
-            setCells: jest.fn(),
-            setSelectedAccount: jest.fn(),
-            setState: jest.fn(),
-            reset: jest.fn(),
-        });
+        jest.spyOn(UseWallet, "default").mockReturnValue(mockedUseWallet);
 
         const screen = render(<AccountSelector />);
         const select = screen.getByText(translate("no_account_selected"));
