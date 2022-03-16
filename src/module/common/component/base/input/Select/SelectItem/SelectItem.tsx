@@ -24,18 +24,23 @@ export default function SelectItem({ children, value, style = {} }: SelectItemPr
     return (
         <TouchableWithoutFeedback onPress={handlePress}>
             <SelectItemRoot style={rootStyle}>
-                <SelectItemText
-                    style={[
-                        textStyle,
-                        rootStyle.backgroundColor && rootStyle.backgroundColor !== "transparent"
-                            ? {
-                                  color: getLuminance(rootStyle.backgroundColor as string) > 0.5 ? "#000000" : "#FFFFFF",
-                              }
-                            : undefined,
-                    ]}
-                >
-                    {children}
-                </SelectItemText>
+                {typeof children === "string" ? (
+                    <SelectItemText
+                        style={[
+                            textStyle,
+                            rootStyle.backgroundColor && rootStyle.backgroundColor !== "transparent"
+                                ? {
+                                      color: getLuminance(rootStyle.backgroundColor as string) > 0.5 ? "#000000" : "#FFFFFF",
+                                  }
+                                : undefined,
+                        ]}
+                        numberOfLines={1}
+                    >
+                        {children}
+                    </SelectItemText>
+                ) : (
+                    children
+                )}
             </SelectItemRoot>
         </TouchableWithoutFeedback>
     );

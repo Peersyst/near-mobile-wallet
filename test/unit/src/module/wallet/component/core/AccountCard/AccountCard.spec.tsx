@@ -6,7 +6,7 @@ import { cells } from "mocks/cells";
 describe("Test for the account card", () => {
     test("Renders correctly", () => {
         const mockedCell = cells[0];
-        const screen = render(<AccountCard colorIndex={0} cell={mockedCell} />);
+        const screen = render(<AccountCard cell={mockedCell} />);
 
         /**Account header */
         expect(screen.getByText(translate("my_account"))).toBeDefined();

@@ -11,6 +11,7 @@ describe("TransactionsList tests", () => {
     afterEach(() => {
         jest.restoreAllMocks();
     });
+
     test("Renders correctly with an account", async () => {
         jest.spyOn(UseWallet, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(GetTransactions, "default").mockReturnValue(SuccessApiCall(transactions));
