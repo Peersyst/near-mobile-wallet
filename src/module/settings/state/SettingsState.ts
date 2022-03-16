@@ -9,7 +9,7 @@ export type NetworkType = "testnet" | "mainnet";
 export type PrefferedFee = "slow" | "average" | "fast";
 
 export interface SettingsState {
-    lang: LangType;
+    locale?: LangType;
     fiat: FiatCurrencyType;
     network: NetworkType;
     fee: PrefferedFee;
@@ -17,7 +17,7 @@ export interface SettingsState {
 
 const settingsState = atom<SettingsState>({
     key: "settings",
-    default: { lang: "en", fiat: "usd", network: "mainnet", fee: "average" },
+    default: { locale: "en", fiat: "usd", network: "mainnet", fee: "average" },
 });
 
 export default settingsState;

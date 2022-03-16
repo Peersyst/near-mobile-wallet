@@ -1,6 +1,6 @@
 {
-    "welcome": "Hello",
-    "welcome_back": "Welcome back",
+    "welcome": "Hola",
+    "welcome_back": "Bienvenido de nuevo",
     "name": "Charlie",
     "invalid_not_null": "This field is required",
     "invalid_number": "Value must be a number",
