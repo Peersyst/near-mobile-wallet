@@ -14,4 +14,11 @@ describe("Go back component", () => {
         fireEvent.press(text);
         expect(mockedNavigation).toHaveBeenCalled();
     });
+
+    test("Calls onBack", () => {
+        const handleBack = jest.fn();
+        const screen = render(<GoBack onBack={handleBack} />);
+        fireEvent.press(screen.getByText(translate("go_back")));
+        expect(handleBack).toHaveBeenCalled();
+    });
 });

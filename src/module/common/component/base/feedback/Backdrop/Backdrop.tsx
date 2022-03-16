@@ -6,6 +6,7 @@ import { Animated } from "../../util/Animated";
 import useAnimatedTiming from "module/common/component/base/util/Animated/hooks/useAnimatedTiming";
 import { useTheme } from "@peersyst/react-native-styled";
 import { classify } from "@peersyst/react-utils";
+import { TouchableWithoutFeedback } from "react-native";
 
 const AnimatedBackdropRoot = Animated.createAnimatedComponent(classify(BackdropRoot));
 
@@ -44,9 +45,13 @@ export default function Backdrop({
     });
 
     return mounted ? (
-        <AnimatedBackdropRoot onTouchEnd={handleClose} style={{ ...style, backgroundColor: backdropColor }}>
-            {children}
-        </AnimatedBackdropRoot>
+        <TouchableWithoutFeedback onPressOut={handleClose}>
+            <AnimatedBackdropRoot style={{ ...style, backgroundColor: backdropColor }}>
+                <TouchableWithoutFeedback onPressOut={(e) => e.stopPropagation()}>
+                    {typeof children === "function" ? children([open, setOpen]) : children}
+                </TouchableWithoutFeedback>
+            </AnimatedBackdropRoot>
+        </TouchableWithoutFeedback>
     ) : (
         <></>
     );

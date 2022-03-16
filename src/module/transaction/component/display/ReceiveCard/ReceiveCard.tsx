@@ -2,9 +2,10 @@ import styled from "@peersyst/react-native-styled";
 import { translate } from "locale";
 import CopyToClipboardIcon from "module/common/component/input/CopyToClipboardIcon/CopyToClipboardIcon";
 import Card from "module/common/component/surface/Card/Card";
-import useRoute from "module/common/hook/useRoute";
-import { Col, Row, Typography } from "react-native-components";
+import { Col, Row, Typography, useModal } from "react-native-components";
 import GoBack from "../../navigation/GoBack";
+import useWallet from "module/wallet/hook/useWallet";
+import ReceiveModal from "../../core/ReceiveModal/ReceiveModal";
 
 const ReceiveCardContent = styled(Col, { gap: "10%" })(() => ({
     paddingHorizontal: "4%",
@@ -16,17 +17,21 @@ const TextAddress = styled(Typography, { textTransform: "uppercase" })(() => ({
 }));
 
 const ReceiveCard = (): JSX.Element => {
-    const { params } = useRoute();
+    const {
+        state: { cells, selectedAccount },
+    } = useWallet();
+    const address = selectedAccount !== undefined && cells[selectedAccount].address;
+    const { hideModal } = useModal();
 
     return (
         <Card>
             <ReceiveCardContent>
                 <Row justifyContent="space-between" alignItems="center">
-                    <TextAddress variant="h3">{params?.address}</TextAddress>
-                    <CopyToClipboardIcon filled text={params?.address || ""} toastMessage={translate("address_copied")} />
+                    <TextAddress variant="h3">{address}</TextAddress>
+                    <CopyToClipboardIcon filled text={address || ""} toastMessage={translate("address_copied")} />
                 </Row>
                 <Typography variant={"caption"}>{translate("receive_info")}</Typography>
-                <GoBack />
+                <GoBack onBack={() => hideModal(ReceiveModal.id)} />
             </ReceiveCardContent>
         </Card>
     );

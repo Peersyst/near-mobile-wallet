@@ -16,10 +16,15 @@ export const BackIconRoot = styled(IconButton)(() => ({
     marginRight: 10,
 }));
 
-const GoBack = (): JSX.Element => {
+export interface GoBackProps {
+    onBack?: () => unknown;
+}
+
+const GoBack = ({ onBack }: GoBackProps): JSX.Element => {
     const navigation = useNavigation();
     const goBack = () => {
-        if (navigation.canGoBack()) {
+        if (onBack) onBack();
+        else if (navigation.canGoBack()) {
             navigation.goBack();
         }
     };
