@@ -9,14 +9,15 @@ export const IdleQrScanner = styled(View)(() => ({
     backgroundColor: "black",
 }));
 
-export const QrScannerRoot = styled(View)(() => ({
+export const QrScannerRoot = styled(View)(({ theme }) => ({
     width: "100%",
     height: "100%",
+    backgroundColor: "#000",
 }));
 
 export const BackButton = styled(IconButton)(() => ({
     position: "absolute",
     left: 20,
-    top: 20 + Constants.statusBarHeight,
+    top: 30 + Constants.statusBarHeight,
     zIndex: 1,
 }));
