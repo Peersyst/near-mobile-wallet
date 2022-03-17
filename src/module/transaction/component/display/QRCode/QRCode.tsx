@@ -7,11 +7,11 @@ const QRCode = (): JSX.Element => {
     const {
         state: { cells, selectedAccount },
     } = useWallet();
-    const { width: screenWidth } = useWindowDimensions();
-    const width = screenWidth * 0.7;
+    const { height: screenHeight } = useWindowDimensions();
+    const height = screenHeight * 0.35;
     return (
         <Row justifyContent="center" testID="QRCode">
-            {selectedAccount !== undefined && <QRCodeBase value={cells[selectedAccount].address} size={width} />}
+            {selectedAccount !== undefined && <QRCodeBase value={cells[selectedAccount].address} size={height} />}
         </Row>
     );
 };
