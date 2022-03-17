@@ -61,5 +61,6 @@
     "no_account_selected": "No account selected",
     "no_nfts": "You don't have nfts yet",
     "send_to": "Send to",
-    "address": "Address"
+    "address": "Address",
+    "scanned_address": "Scanned address: %address%"
 }

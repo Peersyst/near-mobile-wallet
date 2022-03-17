@@ -1,10 +1,9 @@
 import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
 import useGetTransactions from "module/transaction/query/useGetTransactions";
-import Divider from "module/common/component/display/Divider/Divider";
 import useWallet from "module/wallet/hook/useWallet";
 import { Typography } from "react-native-components";
 import { translate } from "locale";
-import { List } from "react-native-components";
+import MainList from "module/main/component/display/MainList/MainList";
 
 const NoTransactionsComponent = (): JSX.Element => {
     return (
@@ -27,15 +26,13 @@ const TransactionsList = (): JSX.Element => {
     } = useGetTransactions(selectedAccount !== undefined ? cells[selectedAccount].address : undefined);
 
     return (
-        <List
+        <MainList
             onRefresh={refetch}
             refreshing={isFetching || isLoading}
             data={data}
             ListEmptyComponent={isLoading ? undefined : NoTransactionsComponent}
             renderItem={({ item: tx }) => <TransactionCard {...tx} />}
             keyExtractor={(tx) => tx.transactionHash}
-            ItemSeparatorComponent={() => <Divider width="full-width" />}
-            style={{ paddingHorizontal: "5%" }}
         />
     );
 };
