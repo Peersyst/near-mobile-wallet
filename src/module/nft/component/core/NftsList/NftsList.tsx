@@ -1,9 +1,9 @@
-import Divider from "module/common/component/display/Divider/Divider";
 import useWallet from "module/wallet/hook/useWallet";
-import { List, Typography } from "react-native-components";
+import { Typography } from "react-native-components";
 import useGetNfts from "module/nft/query/useGetNfts";
 import NftCard from "module/nft/component/display/NftCard/NftCard";
 import { translate } from "locale";
+import MainList from "module/main/component/display/MainList/MainList";
 
 const NoNftsComponent = (): JSX.Element => {
     return (
@@ -25,15 +25,13 @@ const NftsList = (): JSX.Element => {
     } = useGetNfts(selectedAccount !== undefined ? cells[selectedAccount].address : undefined);
 
     return (
-        <List
+        <MainList
             onRefresh={refetch}
             refreshing={isFetching || isLoading}
             data={data}
             renderItem={({ item: nft }) => <NftCard {...nft} />}
             ListEmptyComponent={isLoading ? undefined : NoNftsComponent}
             keyExtractor={(tx) => tx.transactionHash}
-            ItemSeparatorComponent={() => <Divider width="full-width" />}
-            style={{ paddingHorizontal: "5%" }}
         />
     );
 };
