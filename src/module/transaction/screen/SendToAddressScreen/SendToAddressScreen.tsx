@@ -19,6 +19,7 @@ export interface SendForm {
 }
 
 const SendToAddressScreen = () => {
+
     const [receiverAddress, setReceiverAddress] = useState("");
     const { palette } = useTheme();
     const {
@@ -65,6 +66,7 @@ const SendToAddressScreen = () => {
                                             style={{ color: palette.darkGray, fontSize: 24 }}
                                             onPress={() => showModal(QrScanner, { onScan: ({ data }) => handleAddressScan(data) })}
                                         >
+
                                             <ScanIcon />
                                         </IconButton>
                                     }
