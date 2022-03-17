@@ -1,4 +1,4 @@
-import { LocaleType } from "locale/utils/getDefaultLocale";
+import { LocaleType } from "locale";
 import { BaseStorageService } from "module/common/service/BaseStorageService";
 import { FeeType, FiatCurrencyType, NetworkType, SettingsState } from "./state/SettingsState";
 

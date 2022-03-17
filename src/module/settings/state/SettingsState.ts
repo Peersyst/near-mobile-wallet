@@ -1,4 +1,5 @@
-import getDefaultLocale, { LocaleType } from "locale/utils/getDefaultLocale";
+import { LocaleType } from "locale";
+import getDefaultLocale from "locale/utils/getDefaultLocale";
 import { atom } from "recoil";
 
 export type FiatCurrencyType = "btc" | "usd" | "eur";
