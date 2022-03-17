@@ -55,8 +55,11 @@
     "nfts": "NFTs",
     "bought_for": "Bought for",
     "go_back": "Go back",
-    "select_your_network": "Selecciona una red",
+    "select_your_network": "Select your network",
     "select_an_account": "Select an account",
     "no_account_selected": "No account selected",
-    "no_nfts": "You don't have nfts yet"
+    "no_nfts": "You don't have nfts yet",
+    "send_to": "Send to",
+    "address": "Address",
+    "scanned_address": "Scanned address: %address%"
 }
