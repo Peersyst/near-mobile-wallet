@@ -63,8 +63,10 @@ export default function Toast({
                                 <Icon style={textStyle}>{icon}</Icon>
                             </Row>
                         )}
-                        <Row>
-                            <Text style={textStyle}>{message}</Text>
+                        <Row flex={1}>
+                            <Text style={textStyle} lineBreakMode="head">
+                                {message}
+                            </Text>
                         </Row>
                     </Row>
                     {action && <ToastAction style={textStyle}>{action}</ToastAction>}

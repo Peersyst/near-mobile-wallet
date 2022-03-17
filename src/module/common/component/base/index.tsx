@@ -13,6 +13,8 @@ export * from "./input/Button";
 export * from "./input/Form";
 export * from "./input/FormGroup";
 export * from "./input/IconButton";
+export * from "./input/PressableText";
+export * from "./input/QrScanner";
 export * from "./input/Select";
 export * from "./input/TextInput";
 export * from "./layout/Col";

@@ -12,7 +12,6 @@ export const TextFieldRoot = styled(TextField)(({ theme }) => {
         },
         input: {
             placeholderColor: theme.palette.darkGray,
-            paddingHorizontal: 15,
             highlightColor: theme.palette.text,
         },
         ...theme.shadows[7],

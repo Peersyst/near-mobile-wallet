@@ -4,5 +4,5 @@ export interface Option {
 }
 
 export function selectIsValid(value: unknown, multiple?: boolean, required?: boolean): boolean {
-    return !required || (required && (multiple ? !!(value as Array<Option>).length : !!value));
+    return !required || (required && (multiple ? !!(value as Array<Option>).length : value !== undefined));
 }

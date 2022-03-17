@@ -14,6 +14,10 @@ export const loadLocalization = async () => {
     i18n.fallbacks = true;
 };
 
-export const translate = (key: keyof typeof en): string => {
-    return i18n.t(key);
+export const translate = (key: keyof typeof en, params: Record<string, string> = {}): string => {
+    let translation = i18n.t(key);
+    for (const param in params) {
+        translation = translation.replace(`%${param}%`, params[param]);
+    }
+    return translation;
 };
