@@ -4,13 +4,13 @@ import { BackButton, IdleQrScanner, QrScannerRoot } from "./QrScanner.styles";
 import { Backdrop, createModal, StatusBar } from "module/common/component/base";
 import { StyleSheet } from "react-native";
 import { CrossIcon } from "../../assets/icons";
-import { Camera } from "expo-camera";
+import { BarCodeScanner } from "expo-barcode-scanner";
 
 const QrScanner = createModal(({ back, onScan, ...backdropProps }: QrScannerProps): JSX.Element => {
     const [hasPermission, setHasPermission] = useState<boolean>();
 
     useEffect(() => {
-        Camera.requestCameraPermissionsAsync().then(({ status }) => setHasPermission(status === "granted"));
+        BarCodeScanner.requestPermissionsAsync().then(({ status }) => setHasPermission(status === "granted"));
     }, []);
 
     return (
@@ -23,7 +23,7 @@ const QrScanner = createModal(({ back, onScan, ...backdropProps }: QrScannerProp
                         <BackButton style={{ color: "white", fontSize: 30 }} onPress={() => setOpen(false)}>
                             {back || <CrossIcon />}
                         </BackButton>
-                        <Camera
+                        <BarCodeScanner
                             onBarCodeScanned={(data) => {
                                 onScan(data);
                                 setOpen(false);
