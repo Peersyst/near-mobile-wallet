@@ -27,8 +27,8 @@ export const SettingsStorage = new (class extends BaseStorageService<SettingsSta
         return settings?.fee;
     }
 
-    async getAllSettings(): Promise<Partial<SettingsState> | undefined> {
-        const settings = await this.get();
-        return { locale: settings?.locale, fiat: settings?.fiat, network: settings?.network, fee: settings?.fee };
+    async getAllSettings(): Promise<SettingsState | null> {
+        return await this.get();;
     }
+    
 })();
