@@ -10,7 +10,7 @@ import ReceiveModal from "../../core/ReceiveModal/ReceiveModal";
 const ReceiveCardContent = styled(Col, { justifyContent: "space-between" })(({ dimensions }) => ({
     height: dimensions.height * 0.25,
     paddingHorizontal: "2%",
-    paddingBottom: dimensions.height * 0.005
+    paddingBottom: dimensions.height * 0.005,
 }));
 
 const TextAddress = styled(Typography, { textTransform: "uppercase" })(() => ({
