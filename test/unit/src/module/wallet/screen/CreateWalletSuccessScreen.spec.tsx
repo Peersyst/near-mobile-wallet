@@ -1,7 +1,7 @@
 import * as WalletStorage from "module/wallet/WalletStorage";
 import * as SettingsStorage from "module/settings/SettingsStorage";
 import * as Recoil from "recoil";
-import { render } from "test-utils";
+import { render, waitFor } from "test-utils";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
@@ -11,7 +11,7 @@ describe("CreateWalletSuccessScreen tests", () => {
         jest.restoreAllMocks();
     });
 
-    test("Sets wallet and navigates to main screen", () => {
+    test("Sets wallet and navigates to main screen", async () => {
         jest.useFakeTimers();
         const walletState = { name: "wallet", pin: "1234", mnemonic: ["pizza", "watermelon", "lemon"] };
         jest.spyOn(UseCreateWallet, "default").mockReturnValue({
@@ -40,9 +40,8 @@ describe("CreateWalletSuccessScreen tests", () => {
             name: "wallet",
             pin: "1234",
             mnemonic: ["pizza", "watermelon", "lemon"],
-        });
-        expect(setSettingsStorage).toHaveBeenCalledWith(defaultSettingsState);
-
+        }),
+        expect(setSettingsStorage).toHaveBeenCalledWith(defaultSettingsState)
         jest.runAllTimers();
         expect(setWalletState).toHaveBeenCalled();
         expect(setSettingsState).toHaveBeenCalled();
