@@ -9,7 +9,7 @@ export const IdleQrScanner = styled(View)(() => ({
     backgroundColor: "black",
 }));
 
-export const QrScannerRoot = styled(View)(({ theme }) => ({
+export const QrScannerRoot = styled(View)(() => ({
     width: "100%",
     height: "100%",
     backgroundColor: "#000",

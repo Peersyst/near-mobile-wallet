@@ -35,7 +35,7 @@ describe("SendToAddressScreen tests", () => {
         fireEvent.press(screen.getByText(translate("next")));
         await waitFor(() => expect(setSendState).toHaveBeenCalled());
     });
-  
+
     test("Shows scan qr code modal", () => {
         const showModal = jest.fn();
         jest.spyOn(UseModal, "useModal").mockReturnValue({ showModal } as any);
@@ -43,5 +43,4 @@ describe("SendToAddressScreen tests", () => {
         fireEvent.press(screen.getByTestId("ScanIcon"));
         expect(showModal).toHaveBeenCalledWith(QrScanner, expect.any(Object));
     });
-
 });
