@@ -33,7 +33,7 @@ const GoBack = ({ onBack }: GoBackProps): JSX.Element => {
             <BackIconRoot>
                 <BackIcon />
             </BackIconRoot>
-            <Typography variant={"h3"} textTransform="uppercase">
+            <Typography variant={"body1"} textTransform="uppercase">
                 {translate("go_back")}
             </Typography>
         </GoBackRoot>
