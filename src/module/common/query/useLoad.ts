@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
-import settingsState from "module/settings/state/SettingsState";
+import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
@@ -17,8 +17,8 @@ export function useLoad(): boolean {
             if (name) {
                 setWalletState((state) => ({ ...state, hasWallet: true, name }));
                 //Get the settings from storage and set it to the state
-                const settings = await SettingsStorage.getAllSettings();
-                setSettingsState((state) => ({ ...state, settings }));
+                const settings = await SettingsStorage.getAllSettings() || defaultSettingsState;
+                setSettingsState(settings);
             }
             setLoading(false);
         };

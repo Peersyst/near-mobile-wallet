@@ -28,7 +28,6 @@ export const SettingsStorage = new (class extends BaseStorageService<SettingsSta
     }
 
     async getAllSettings(): Promise<SettingsState | null> {
-        return await this.get();;
+        return await this.get();
     }
-    
 })();
