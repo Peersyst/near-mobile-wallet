@@ -14,8 +14,8 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
     const setSettingsState = useSetRecoilState(settingsState);
     useEffect(() => {
         const setStorage = async () => {
-            await WalletStorage.set({ name: name!, pin: pin!, mnemonic: mnemonic! });
-            await SettingsStorage.set(defaultSettingsState);
+            WalletStorage.set({ name: name!, pin: pin!, mnemonic: mnemonic! });
+            SettingsStorage.set(defaultSettingsState);
             setSettingsState(defaultSettingsState);
             setWalletState((state) => ({ ...state, hasWallet: true, isAuthenticated: true }));
         };

@@ -5,7 +5,6 @@ import { render } from "test-utils";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
-import * as getDefaultLocale from "locale/utils/getDefaultLocale";
 
 describe("CreateWalletSuccessScreen tests", () => {
     afterAll(() => {
@@ -26,7 +25,7 @@ describe("CreateWalletSuccessScreen tests", () => {
         jest.spyOn(Recoil, "useSetRecoilState").mockImplementation((state: any) => {
             return state.key === "wallet" ? setWalletState : setSettingsState;
         });
-        
+
         const setSettingsStorage = jest
             .spyOn(SettingsStorage.SettingsStorage, "set")
             .mockImplementation(() => new Promise((resolve) => resolve(undefined)));
@@ -41,7 +40,7 @@ describe("CreateWalletSuccessScreen tests", () => {
             name: "wallet",
             pin: "1234",
             mnemonic: ["pizza", "watermelon", "lemon"],
-        }),
+        });
         expect(setSettingsStorage).toHaveBeenCalledWith(defaultSettingsState);
 
         jest.runAllTimers();
