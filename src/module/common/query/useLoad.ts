@@ -17,9 +17,8 @@ export function useLoad(): boolean {
             if (name) {
                 setWalletState((state) => ({ ...state, hasWallet: true, name }));
                 //Get the settings from storage and set it to the state
-                await SettingsStorage.getAllSettings().then((settings) => {
-                    setSettingsState((state) => ({ ...state, settings }));
-                });
+                const settings = await SettingsStorage.getAllSettings();
+                setSettingsState((state) => ({ ...state, settings }));
             }
             setLoading(false);
         };
