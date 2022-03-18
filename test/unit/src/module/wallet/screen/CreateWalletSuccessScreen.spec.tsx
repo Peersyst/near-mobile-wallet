@@ -36,12 +36,8 @@ describe("CreateWalletSuccessScreen tests", () => {
 
         render(<CreateWalletSuccessScreen />);
 
-        expect(setWalletStorage).toHaveBeenCalledWith({
-            name: "wallet",
-            pin: "1234",
-            mnemonic: ["pizza", "watermelon", "lemon"],
-        }),
-        expect(setSettingsStorage).toHaveBeenCalledWith(defaultSettingsState)
+        await waitFor(() => expect(setWalletStorage).toHaveBeenCalledWith(walletState));
+        await waitFor(() => expect(setSettingsStorage).toHaveBeenCalledWith(defaultSettingsState));
         jest.runAllTimers();
         expect(setWalletState).toHaveBeenCalled();
         expect(setSettingsState).toHaveBeenCalled();
