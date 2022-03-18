@@ -10,7 +10,7 @@ describe("SettingsScreen tests", () => {
         expect(screen.getByText(translate("settings"))).toBeDefined();
         expect(screen.getByText(translate("general_settings"))).toBeDefined();
         expect(screen.getByText(translate("security_settings"))).toBeDefined();
-        expect(screen.getAllByTestId("ArrowRightIcon")).toHaveLength(2);
+        expect(screen.getAllByTestId("ChevronRightIcon")).toHaveLength(2);
     });
     test("Navigates to the general settings", () => {
         const mockedNavigation = jest.fn();
