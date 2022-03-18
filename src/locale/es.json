@@ -62,5 +62,6 @@
     "send_to": "Send to",
     "address": "Address",
     "scanned_address": "Scanned address: %address%",
-    "modify_default_fee": "Modifica la fee por defecto"
+    "modify_default_fee": "Modifica la fee por defecto",
+    "general_settings": "Ajustes generales"
 }
