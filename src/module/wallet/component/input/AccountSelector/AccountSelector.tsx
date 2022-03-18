@@ -1,22 +1,22 @@
 import useWallet from "module/wallet/hook/useWallet";
 import { useState } from "react";
 import Select, { SelectProps } from "module/common/component/input/Select/Select";
-import { Row, SelectItem, Typography } from "react-native-components";
 import { getLuminance } from "@peersyst/react-utils";
 import useAddressColor from "module/wallet/hook/useAddressColor";
 import { translate } from "locale";
-import Balance from "module/wallet/component/display/Balance/Balance";
+import AccountSelectorItem from "module/wallet/component/input/AccountSelector/AccountSelectorItem";
+import AccountItem from "module/wallet/component/input/AccountSelector/AccountItem";
 
 export type AccountSelectorProps = Omit<
     SelectProps,
-    "onChange" | "value" | "title" | "placeholder" | "multiple" | "renderValue" | "children"
->;
+    "onChange" | "value" | "title" | "placeholder" | "multiple" | "renderValue" | "children" | "defaultValue"
+> & { defaultValue?: number };
 
-const AccountSelector = ({ style, ...rest }: AccountSelectorProps): JSX.Element => {
+const AccountSelector = ({ style, defaultValue, ...rest }: AccountSelectorProps): JSX.Element => {
     const {
         state: { cells, selectedAccount: defaultAccount = 0 },
     } = useWallet();
-    const [selectedIndex, setSelectedIndex] = useState<number>(defaultAccount);
+    const [selectedIndex, setSelectedIndex] = useState<number>(defaultValue || defaultAccount);
     const selectedAccount = selectedIndex !== undefined ? cells[selectedIndex] : undefined;
     const addressColor = useAddressColor(selectedAccount?.address || "");
     const backgroundColor = selectedAccount ? addressColor : undefined;
@@ -31,37 +31,14 @@ const AccountSelector = ({ style, ...rest }: AccountSelectorProps): JSX.Element 
             placeholder={translate("no_account_selected")}
             renderValue={() =>
                 selectedAccount !== undefined ? (
-                    <Row alignItems="center" flex={1} style={{ overflow: "hidden" }}>
-                        <Typography variant="body1" fontWeight="bold" style={{ color: textColor }}>
-                            {selectedAccount.name}
-                        </Typography>
-                        <Typography variant="body1" style={{ color: textColor }}>
-                            {" "}
-                            -{" "}
-                        </Typography>
-                        <Balance balance={selectedAccount.balance} units={"CKB"} variant="body1" boldUnits style={{ color: textColor }} />
-                    </Row>
+                    <AccountItem address={selectedAccount.address} name={selectedAccount.name} color={textColor} />
                 ) : undefined
             }
             {...rest}
         >
-            {cells.map(({ address, name, balance }, index) => {
-                const itemColor = selectedAccount?.address === address ? "#FFFFFF" : "#000000";
-                return (
-                    <SelectItem value={index} key={address}>
-                        <Row alignItems="center">
-                            <Typography variant="body1" fontWeight="bold" style={{ color: itemColor }}>
-                                {name}
-                            </Typography>
-                            <Typography variant="body1" style={{ color: itemColor }}>
-                                {" "}
-                                -{" "}
-                            </Typography>
-                            <Balance balance={balance} units={"CKB"} variant="body1" boldUnits style={{ color: itemColor }} />
-                        </Row>
-                    </SelectItem>
-                );
-            })}
+            {cells.map(({ address, name }, index) => (
+                <AccountSelectorItem address={address} name={name} index={index} key={address} />
+            ))}
         </Select>
     );
 };

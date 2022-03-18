@@ -1,6 +1,6 @@
 import { TextInputProps } from "./TextInput.types";
 import { Input, InvalidIcon, TextInputRoot, ValidIcon } from "./TextInput.styles";
-import { NativeSyntheticEvent, TextInputFocusEventData, Text } from "react-native";
+import { NativeSyntheticEvent, TextInputFocusEventData, Text, TextStyle } from "react-native";
 import { useControlled } from "@peersyst/react-hooks";
 import { useEffect, useState } from "react";
 import { useTextInputValidation } from "./hooks/useTextInputValidation";
@@ -35,6 +35,7 @@ const TextInput = ({
     onFocus,
     onBlur,
     secureTextEntry = false,
+    input,
     ...rest
 }: TextInputProps): JSX.Element => {
     const [value, setValue] = useControlled(defaultValue, valueProp, onChange);
@@ -73,7 +74,7 @@ const TextInput = ({
         hintStyle,
         rootStyle,
     } = useTextInputStyles(style, invalid, showValid, disabled, focused);
-    const iconStyle = { ...inputStyles, fontSize: (inputStyles.fontSize || 0) + 4 };
+    const iconStyle: TextStyle = { ...inputStyles, lineHeight: undefined, height: undefined, fontSize: (inputStyles.fontSize || 0) + 4 };
 
     const {
         icons: { invalid: Invalid, valid: Valid, show: Show, hide: Hide, cross: Cross },
@@ -85,7 +86,7 @@ const TextInput = ({
     const clearElement = clearElementProp || <Cross />;
 
     return (
-        <Col gap={5}>
+        <Col gap={5} flex={1}>
             <TextInputRoot style={rootStyle}>
                 {prefix && <Icon style={iconStyle}>{prefix}</Icon>}
                 <Input
@@ -93,11 +94,12 @@ const TextInput = ({
                     selectionColor={highlightColor}
                     style={inputStyles}
                     value={value}
-                    onChangeText={(t) => setValue(t)}
+                    onChangeText={setValue}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     editable={editable}
                     secureTextEntry={showText}
+                    as={input}
                     {...rest}
                 />
                 {clearable && !!value && editable && (
@@ -117,7 +119,8 @@ const TextInput = ({
                 )}
                 {suffix && <Icon style={iconStyle}>{suffix}</Icon>}
             </TextInputRoot>
-            {invalid ? <Text style={errorStyle}>{errors.join(", ")}</Text> : hint && <Text style={hintStyle}>{hint}</Text>}
+            {invalid && <Text style={errorStyle}>{errors.join(", ")}</Text>}
+            {hint && <Text style={hintStyle}>{hint}</Text>}
         </Col>
     );
 };

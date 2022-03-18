@@ -62,5 +62,10 @@
     "no_nfts": "You don't have nfts yet",
     "send_to": "Send to",
     "address": "Address",
-    "scanned_address": "Scanned address: %address%"
+    "scanned_address": "Scanned address: %address%",
+    "transaction_fee": "Transaction fee: %fee% CKB",
+    "write_a_message": "Write a message",
+    "enter_amount": "Enter amount",
+    "minimum_transaction_amount_text": "Minimum amount required is 61 CKB",
+    "insufficient_balance": "Insufficient balance"
 }
