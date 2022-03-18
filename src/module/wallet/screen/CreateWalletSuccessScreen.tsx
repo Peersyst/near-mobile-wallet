@@ -16,11 +16,10 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
         const setStorage = async () => {
             await WalletStorage.set({ name: name!, pin: pin!, mnemonic: mnemonic! });
             await SettingsStorage.set(defaultSettingsState);
-            await new Promise((resolve) => setTimeout(() => resolve(null), 2000));
             setSettingsState(defaultSettingsState);
             setWalletState((state) => ({ ...state, hasWallet: true, isAuthenticated: true }));
         };
-        setStorage();
+        setTimeout(setStorage, 2000);
     }, []);
 
     return <></>;

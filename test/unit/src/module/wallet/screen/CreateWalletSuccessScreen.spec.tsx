@@ -1,7 +1,7 @@
-import * as WalletStorage from "module/wallet/WalletStorage";
-import * as SettingsStorage from "module/settings/SettingsStorage";
+import { WalletStorage } from "module/wallet/WalletStorage";
+import { SettingsStorage } from "module/settings/SettingsStorage";
 import * as Recoil from "recoil";
-import { render, waitFor } from "test-utils";
+import { render } from "test-utils";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
@@ -26,19 +26,15 @@ describe("CreateWalletSuccessScreen tests", () => {
             return state.key === "wallet" ? setWalletState : setSettingsState;
         });
 
-        const setSettingsStorage = jest
-            .spyOn(SettingsStorage.SettingsStorage, "set")
-            .mockImplementation(() => new Promise((resolve) => resolve(undefined)));
+        const setSettingsStorage = jest.spyOn(SettingsStorage, "set").mockImplementation(() => new Promise((resolve) => resolve()));
 
-        const setWalletStorage = jest
-            .spyOn(WalletStorage.WalletStorage, "set")
-            .mockImplementation(() => new Promise((resolve) => resolve(undefined)));
+        const setWalletStorage = jest.spyOn(WalletStorage, "set").mockImplementation(() => new Promise((resolve) => resolve()));
 
         render(<CreateWalletSuccessScreen />);
 
-        await waitFor(() => expect(setWalletStorage).toHaveBeenCalledWith(walletState));
-        await waitFor(() => expect(setSettingsStorage).toHaveBeenCalledWith(defaultSettingsState));
         jest.runAllTimers();
+        expect(setWalletStorage).toHaveBeenCalledWith(expect.objectContaining(walletState));
+        expect(setSettingsStorage).toHaveBeenCalledWith(expect.objectContaining(defaultSettingsState));
         expect(setWalletState).toHaveBeenCalled();
         expect(setSettingsState).toHaveBeenCalled();
         jest.useRealTimers();
