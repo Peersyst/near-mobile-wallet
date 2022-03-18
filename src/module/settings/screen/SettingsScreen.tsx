@@ -7,16 +7,19 @@ import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMain
 import SelectNetwork from "../components/core/SelectNetwork/SelectNetwork";
 import CardBackgroundWrapper from "module/common/component/surface/CardBackgroundWrapper/CardBackgroundWrapper";
 import settingsState from "../state/SettingsState";
-import { Typography } from "react-native-components";
+import { Col, Typography } from "react-native-components";
+import SelectFee from "../components/core/SelectFee/SelectFee";
 
 const SettingsScreen = (): JSX.Element => {
     const setWalletState = useSetRecoilState(walletState);
-    const { network } = useRecoilValue(settingsState);
+    const { network, fee } = useRecoilValue(settingsState);
     return (
         <BaseMainScreen title={translate("settings")} back={false}>
             <CardBackgroundWrapper>
-                <SelectNetwork />
-                <Typography variant="body1">{network}</Typography>
+                <Col gap={20}>
+                    <SelectNetwork />
+                    <SelectFee />
+                </Col>
                 <Button onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>Log out</Button>
                 <Button
                     onPress={async () => {
