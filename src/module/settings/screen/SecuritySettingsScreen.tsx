@@ -1,6 +1,6 @@
 import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
-import BaseSecondaryScreen from "module/common/component/layout/BaseSecondaryScreen/SecondaryPage";
+import BaseSecondaryScreen from "module/common/component/layout/BaseSecondaryScreen/BaseSecondaryScreen";
 import { BottomTabScreenNavigatonProps } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup.types";
 import walletState from "module/wallet/state/WalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
