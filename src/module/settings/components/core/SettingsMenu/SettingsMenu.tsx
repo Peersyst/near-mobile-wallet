@@ -1,6 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { ArrowIcon, BackIcon } from "icons";
-import { ChevronDownIcon } from "module/common/component/base/assets/icons";
+import { ChevronRightIcon } from "icons";
 import useNavigation from "module/common/hook/useNavigation";
 import { TouchableHighlight } from "react-native";
 import { Row, Typography } from "react-native-components";
@@ -11,21 +10,26 @@ interface SettingsMenuProps {
     location: keyof RootStackParamsList;
 }
 
-const ArrowRightIcon = styled(ChevronDownIcon)(({ theme }) => ({
-    fontSize: 14,
-    transform: [{ rotate: "45deg" }],
+const ArrowRightIcon = styled(ChevronRightIcon)(({ theme }) => ({
+    fontSize: 11,
+    color: theme.palette.black,
+}));
+
+const SettingsMenuRoot = styled(Row, { justifyContent: "space-between", alignItems: "center" })(({ theme }) => ({
+    backgroundColor: theme.palette.lighterGray,
+    height: 60,
 }));
 
 const SettingsMenu = ({ label, location }: SettingsMenuProps): JSX.Element => {
     const navigation = useNavigation();
     return (
-        <TouchableHighlight onPress={() => navigation.navigate(location)}>
-            <Row justifyContent="space-between" alignItems="center">
+        <TouchableHighlight activeOpacity={0.94} onPress={() => navigation.navigate(location)}>
+            <SettingsMenuRoot>
                 <Typography variant="body1">{label}</Typography>
                 <ArrowRightIcon />
-            </Row>
+            </SettingsMenuRoot>
         </TouchableHighlight>
     );
 };
 
-export default SettingsMenu; 
+export default SettingsMenu;

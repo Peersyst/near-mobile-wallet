@@ -63,5 +63,6 @@
     "address": "Address",
     "scanned_address": "Scanned address: %address%",
     "modify_default_fee": "Modify default fee",
-    "general_settings": "General settings"
+    "general_settings": "General settings",
+    "security_settings": "Security settings"
 }

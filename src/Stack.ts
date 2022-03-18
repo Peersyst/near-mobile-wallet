@@ -7,6 +7,7 @@ export type MainStackParamsList = {
     Home: undefined;
     Settings: undefined;
     GeneralSettings: undefined;
+    SecuritySettings: undefined;
     Notifications: undefined;
     Dao: undefined;
     News: undefined;
