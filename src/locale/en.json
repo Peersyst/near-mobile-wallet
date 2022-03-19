@@ -68,5 +68,9 @@
     "slow": "Slow",
     "fast": "Fast",
     "average": "Average",
-    "network_name": "{n} network"
+    "network_name": "{n} network",
+    "currency_conversion": "Currency conversion",
+    "select_locale": "Select your language",
+    "en": "English",
+    "es": "Spanish"
 }

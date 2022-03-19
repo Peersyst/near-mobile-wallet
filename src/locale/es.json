@@ -68,5 +68,9 @@
     "slow": "Lenta",
     "fast": "Rápida",
     "average": "Normal",
-    "network_name": "Red {n}"
+    "network_name": "Red {n}",
+    "currency_conversion": "Conversión de moneda",
+    "select_locale": "Selecciona tu idioma",
+    "en": "Inglés",
+    "es": "Español"
 }

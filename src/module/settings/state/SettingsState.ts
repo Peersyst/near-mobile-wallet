@@ -2,7 +2,7 @@ import { LocaleType } from "locale";
 import getDefaultLocale from "locale/utils/getDefaultLocale";
 import { atom } from "recoil";
 
-export type FiatCurrencyType = "btc" | "usd" | "eur";
+export type FiatCurrencyType = "cny" | "usd" | "eur" | "jpy" | "gbp";
 
 export type NetworkType = "testnet" | "mainnet";
 
