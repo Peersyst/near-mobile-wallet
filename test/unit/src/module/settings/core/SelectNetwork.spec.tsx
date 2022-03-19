@@ -17,7 +17,7 @@ describe("Test for the select network", () => {
         expect(screen.getAllByText(translate("select_your_network"))).toHaveLength(2);
         expect(screen.getByText(translate("network_name").replace("{n}", "Testnet"))).toBeDefined();
         expect(screen.getAllByText(translate("network_name").replace("{n}", "Mainnet"))).toHaveLength(2);
-    })
+    });
     test("Change the network correctly", () => {
         jest.useFakeTimers();
         const setSendState = jest.fn();
@@ -28,7 +28,7 @@ describe("Test for the select network", () => {
         const item = screen.getByText(translate("network_name").replace("{n}", "Testnet"));
         fireEvent.press(item);
         jest.runAllTimers();
-        const resultSettings:SettingsState = {...defaultSettingsState, network: "testnet"};
+        const resultSettings: SettingsState = { ...defaultSettingsState, network: "testnet" };
         expect(setSettingsStorage).toHaveBeenCalledWith(expect.objectContaining(resultSettings));
         expect(setSendState).toHaveBeenCalledWith(resultSettings);
         jest.useRealTimers();

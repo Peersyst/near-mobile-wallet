@@ -26,9 +26,9 @@ describe("Test for the SelectFee component", () => {
         const item = screen.getByText(translate("fast"));
         fireEvent.press(item);
         jest.runAllTimers();
-        const resultSettings:SettingsState = {...defaultSettingsState, fee: "fast"};
+        const resultSettings: SettingsState = { ...defaultSettingsState, fee: "fast" };
         expect(setSettingsStorage).toHaveBeenCalledWith(expect.objectContaining(resultSettings));
         expect(setSendState).toHaveBeenCalledWith(resultSettings);
         jest.useRealTimers();
-    })
+    });
 });

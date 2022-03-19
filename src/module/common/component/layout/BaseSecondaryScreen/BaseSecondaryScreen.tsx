@@ -7,10 +7,10 @@ import CardBackgroundWrapper from "../../surface/CardBackgroundWrapper/CardBackg
 
 export type BaseSecondaryScreenProps = Partial<BottomTabScreenNavigatonProps> & Omit<BaseMainScreenProps, "onBack">;
 
-const ContentRoot = styled(Col)(()=>({
+const ContentRoot = styled(Col)(() => ({
     paddingHorizontal: "5%",
-    paddingBottom: 40
-}))
+    paddingBottom: 40,
+}));
 
 const BaseSecondaryScreen = ({ children, title, back, navigation }: BaseSecondaryScreenProps): JSX.Element => {
     const handleBack = () => {

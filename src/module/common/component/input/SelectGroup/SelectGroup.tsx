@@ -5,7 +5,7 @@ import FormGroup from "../FormGroup/FormGroup";
 export type optionType = {
     label: string | number;
     value: string | number;
-}
+};
 
 interface SelectGroupProps extends Pick<SelectProps, "onChange" | "value"> {
     options: optionType[];

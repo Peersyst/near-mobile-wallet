@@ -14,7 +14,7 @@ export enum MainBottomScreens {
     NEWS = "News",
     SETTINGS = "Settings",
     GENERAL_SETTINGS = "GeneralSettings",
-    SECURITY_SETTINGS = "SecuritySettings"
+    SECURITY_SETTINGS = "SecuritySettings",
 }
 
 const MainBottomNavigatorGroup = () => (

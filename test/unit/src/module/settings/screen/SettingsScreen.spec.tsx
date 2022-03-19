@@ -20,7 +20,7 @@ describe("SettingsScreen tests", () => {
         const generalMenu = screen.getByText(translate("general_settings"));
         fireEvent.press(generalMenu);
         expect(mockedNavigation).toHaveBeenCalledWith(MainBottomScreens.GENERAL_SETTINGS);
-    })
+    });
     test("Navigates to the security settings", () => {
         const mockedNavigation = jest.fn();
         jest.spyOn(Navigation, "useNavigation").mockReturnValue({ navigate: mockedNavigation });
@@ -29,5 +29,5 @@ describe("SettingsScreen tests", () => {
         const securityMenu = screen.getByText(translate("security_settings"));
         fireEvent.press(securityMenu);
         expect(mockedNavigation).toHaveBeenCalledWith(MainBottomScreens.SECURITY_SETTINGS);
-    })
+    });
 });

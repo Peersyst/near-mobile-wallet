@@ -26,7 +26,7 @@ const SelectFiat = (): JSX.Element => {
         {
             label: "CNY",
             value: "cny",
-        }
+        },
     ];
     const [settings, setSettings] = useRecoilState(settingsState);
     const handleSelect = async (value: unknown) => {

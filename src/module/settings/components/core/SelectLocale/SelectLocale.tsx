@@ -1,7 +1,7 @@
 import { LocaleType, translate } from "locale";
 import SelectGroup, { optionType } from "module/common/component/input/SelectGroup/SelectGroup";
 import { SettingsStorage } from "module/settings/SettingsStorage";
-import settingsState, { NetworkType, SettingsState } from "module/settings/state/SettingsState";
+import settingsState, { SettingsState } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 
 const SelectLocale = (): JSX.Element => {

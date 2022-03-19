@@ -21,7 +21,9 @@ const SelectNetwork = (): JSX.Element => {
         await SettingsStorage.set(newSettings);
         setSettings(newSettings);
     };
-    return <SelectGroup options={networkOtions} value={settings.network} label={translate("select_your_network")} onChange={handleSelect} />;
+    return (
+        <SelectGroup options={networkOtions} value={settings.network} label={translate("select_your_network")} onChange={handleSelect} />
+    );
 };
 
 export default SelectNetwork;

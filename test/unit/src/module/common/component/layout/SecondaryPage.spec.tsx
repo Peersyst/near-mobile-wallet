@@ -18,7 +18,7 @@ describe("Test for the secondary page", () => {
         const mockedNavigation = {
             canGoBack: mockedCanGoBack,
             goBack: mockedGoBack,
-        }
+        };
         const screen = render(
             <SecondaryPage title={"Settings"} back navigation={mockedNavigation as any}>
                 <Typography variant={"h1"}>hola</Typography>

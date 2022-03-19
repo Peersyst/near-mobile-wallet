@@ -12,10 +12,7 @@ const GeneralSettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): J
     return (
         <BaseSecondaryScreen navigation={navigation} title={translate("security_settings")} back={true}>
             <Col gap={20}>
-                <Button
-                    fullWidth
-                    onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}
-                >
+                <Button fullWidth onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>
                     Log out
                 </Button>
                 <Button
