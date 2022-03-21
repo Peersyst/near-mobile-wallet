@@ -6,7 +6,6 @@ import { defaultSettingsState } from "module/settings/state/SettingsState";
 
 describe("Test of the General Settings screen", () => {
     test("Renders correctly", () => {
-
         const setSendState = jest.fn();
         const mockedRecoilState = [defaultSettingsState, setSendState];
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue(mockedRecoilState as any);
@@ -34,6 +33,5 @@ describe("Test of the General Settings screen", () => {
         expect(screen.getAllByText(translate("select_locale"))).toHaveLength(2);
         expect(screen.getAllByText(translate("en"))).toHaveLength(2);
         expect(screen.getByText(translate("es"))).toBeDefined();
-
     });
 });
