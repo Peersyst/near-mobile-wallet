@@ -6,7 +6,7 @@ import useCreateWallet from "../hook/useCreateWallet";
 
 export interface SetWalletPinScreen {
     onCancel?: () => void;
-    onSuccess: () => void;
+    onSuccess: () => unknown;
     updating?: boolean;
 }
 

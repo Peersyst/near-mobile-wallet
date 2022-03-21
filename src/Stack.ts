@@ -9,6 +9,7 @@ export type MainStackParamsList = {
     GeneralSettings: undefined;
     SecuritySettings: undefined;
     ConfirmPin: undefined;
+    UpdatePin: undefined;
     Notifications: undefined;
     Dao: undefined;
     News: undefined;
