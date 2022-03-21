@@ -13,13 +13,13 @@ describe("Test of the General Settings screen", () => {
 
         //Selector of the network
         expect(screen.getAllByText(translate("select_your_network"))).toHaveLength(2);
-        expect(screen.getByText(translate("network_name").replace("{n}", "Testnet"))).toBeDefined();
-        expect(screen.getAllByText(translate("network_name").replace("{n}", "Mainnet"))).toHaveLength(2);
+        expect(screen.getByText(translate("network_name", { name: "Testnet" }))).toBeDefined();
+        expect(screen.getAllByText(translate("network_name", { name: "Mainnet" }))).toHaveLength(2);
 
         //Selector of the fee
         expect(screen.getAllByText(translate("select_your_network"))).toHaveLength(2);
-        expect(screen.getByText(translate("network_name").replace("{n}", "Testnet"))).toBeDefined();
-        expect(screen.getAllByText(translate("network_name").replace("{n}", "Mainnet"))).toHaveLength(2);
+        expect(screen.getByText(translate("network_name", { name: "Testnet" }))).toBeDefined();
+        expect(screen.getAllByText(translate("network_name", { name: "Mainnet" }))).toHaveLength(2);
 
         //Selector of the currency
         expect(screen.getAllByText(translate("currency_conversion"))).toHaveLength(2);
