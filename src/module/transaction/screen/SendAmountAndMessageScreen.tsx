@@ -3,13 +3,14 @@ import { Col, Form, NumericInput, Row, Typography } from "react-native-component
 import { translate } from "locale";
 import TextArea from "module/common/component/input/TextArea/TextArea";
 import Button from "module/common/component/input/Button/Button";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import sendRecoilState from "module/transaction/state/SendState";
 import { useState } from "react";
 import useGetFee from "module/transaction/query/useGetFee";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { ActivityIndicator } from "react-native";
 import { MINIMUM_TRANSACTION_AMOUNT } from "@env";
+import settingsState from "module/settings/state/SettingsState";
 
 export interface SendAmountAndMessageResult {
     amount: string;
@@ -19,7 +20,8 @@ export interface SendAmountAndMessageResult {
 const SendAmountAndMessageScreen = (): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const [amount, setAmount] = useState(sendState.amount || "");
-    const { data: fee, isLoading: feeIsLoading } = useGetFee("average");
+    const { fee: selectedFee } = useRecoilValue(settingsState);
+    const { data: fee, isLoading: feeIsLoading } = useGetFee(selectedFee);
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderAddress!);
 
     if (feeIsLoading || balanceIsLoading) {

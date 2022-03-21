@@ -5,17 +5,27 @@ import { useState } from "react";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 import SendAmountAndMessageScreen from "module/transaction/screen/SendAmountAndMessageScreen";
 import useGetFee from "module/transaction/query/useGetFee";
+import { useRecoilValue, useResetRecoilState } from "recoil";
+import settingsState from "module/settings/state/SettingsState";
+import sendState from "module/transaction/state/SendState";
 
 export enum SendScreens {
     SEND_TO_ADDRESS,
     AMOUNT_AND_MESSAGE,
 }
 
-const SendModal = createBackdrop((props: BackdropProps) => {
+const SendModal = createBackdrop(({ onClose, ...rest }: BackdropProps) => {
     const [activeIndex, setActiveIndex] = useState(SendScreens.SEND_TO_ADDRESS);
+    const { fee } = useRecoilValue(settingsState);
+    const resetSendState = useResetRecoilState(sendState);
 
     // Prefetch fee
-    useGetFee("average");
+    useGetFee(fee);
+
+    const handleClose = () => {
+        resetSendState();
+        onClose?.();
+    };
 
     return (
         <GlassNavigatorModal
@@ -25,7 +35,8 @@ const SendModal = createBackdrop((props: BackdropProps) => {
                 title: translate("send"),
                 onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,
             }}
-            {...props}
+            onClose={handleClose}
+            {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
                 <TabPanel index={SendScreens.SEND_TO_ADDRESS}>
