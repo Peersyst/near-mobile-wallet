@@ -3,12 +3,14 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import { useRecoilValue } from "recoil";
 import { renderHook, waitFor } from "test-utils";
 import walletState from "module/wallet/state/WalletState";
+import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 
 const renderUseLoad = () =>
     renderHook(() => {
         const loading = useLoad();
         const { hasWallet, name, isAuthenticated } = useRecoilValue(walletState);
-        return { loading, hasWallet, name, isAuthenticated };
+        const settings = useRecoilValue(settingsState);
+        return { loading, hasWallet, name, isAuthenticated, settings };
     });
 
 describe("useLoad tests", () => {
@@ -18,7 +20,6 @@ describe("useLoad tests", () => {
 
     test("Loads without wallet", async () => {
         const getAuthToken = jest.spyOn(WalletStorage, "getName").mockImplementation(() => new Promise((resolve) => resolve(undefined)));
-
         const { result } = renderUseLoad();
         expect(result.current.loading).toBe(true);
         expect(getAuthToken).toHaveBeenCalled();
@@ -29,12 +30,12 @@ describe("useLoad tests", () => {
 
     test("Loads with wallet", async () => {
         const getAuthToken = jest.spyOn(WalletStorage, "getName").mockImplementation(() => new Promise((resolve) => resolve("wallet")));
-
         const { result } = renderUseLoad();
         expect(result.current.loading).toBe(true);
         expect(getAuthToken).toHaveBeenCalled();
         await waitFor(() => expect(result.current.loading).toBe(false));
         expect(result.current.hasWallet).toBe(true);
         expect(result.current.name).toEqual("wallet");
+        expect(result.current.settings).toEqual(defaultSettingsState);
     });
 });

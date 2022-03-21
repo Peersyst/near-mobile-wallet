@@ -67,5 +67,16 @@
     "write_a_message": "Write a message",
     "enter_amount": "Enter amount",
     "minimum_transaction_amount_text": "Minimum amount required is %amount% CKB",
-    "insufficient_balance": "Insufficient balance"
+    "insufficient_balance": "Insufficient balance",
+    "modify_default_fee": "Modify default fee",
+    "general_settings": "General settings",
+    "security_settings": "Security settings",
+    "slow": "Slow",
+    "fast": "Fast",
+    "average": "Average",
+    "network_name": "%name% network",
+    "currency_conversion": "Currency conversion",
+    "select_locale": "Select your language",
+    "en": "English",
+    "es": "Spanish"
 }

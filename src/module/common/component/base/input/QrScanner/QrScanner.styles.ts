@@ -12,11 +12,12 @@ export const IdleQrScanner = styled(View)(() => ({
 export const QrScannerRoot = styled(View)(() => ({
     width: "100%",
     height: "100%",
+    backgroundColor: "#000",
 }));
 
 export const BackButton = styled(IconButton)(() => ({
     position: "absolute",
     left: 20,
-    top: 20 + Constants.statusBarHeight,
+    top: 30 + Constants.statusBarHeight,
     zIndex: 1,
 }));
