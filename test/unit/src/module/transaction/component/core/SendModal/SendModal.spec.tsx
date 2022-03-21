@@ -5,7 +5,7 @@ import { cells } from "mocks/cells";
 import { translate } from "locale";
 import * as GetFee from "module/transaction/mock/getFee";
 import * as Recoil from "recoil";
-import { fireEvent } from "@testing-library/react-native";
+import { fireEvent, waitFor } from "@testing-library/react-native";
 
 describe("SendModal tests", () => {
     beforeAll(() => {
@@ -18,13 +18,13 @@ describe("SendModal tests", () => {
         expect(screen.getByText(translate("send"))).toBeDefined();
     });
 
-    test("Resets send state on close", () => {
-        const handleClose = jest.fn();
+    test("Resets send state on close", async () => {
+        const handleExited = jest.fn();
         const resetSendState = jest.fn();
         jest.spyOn(Recoil, "useResetRecoilState").mockReturnValue(resetSendState);
-        const screen = render(<SendModal onClose={handleClose} />);
+        const screen = render(<SendModal onExited={handleExited} />);
         fireEvent.press(screen.getByTestId("BackIcon"));
-        expect(resetSendState).toHaveBeenCalled();
-        expect(handleClose).toHaveBeenCalled();
+        await waitFor(() => expect(resetSendState).toHaveBeenCalled());
+        expect(handleExited).toHaveBeenCalled();
     });
 });

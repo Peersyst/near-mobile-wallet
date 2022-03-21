@@ -5,6 +5,8 @@ import { fireEvent, waitFor } from "@testing-library/react-native";
 import { translate } from "locale";
 import SendAmountAndMessageScreen from "module/transaction/screen/SendAmountAndMessageScreen";
 import * as Recoil from "recoil";
+import * as UseSetTab from "module/common/component/base/navigation/Tabs/hook/useSetTab";
+import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 
 describe("SendAmountAndMessageScreen tests", () => {
     beforeAll(() => {
@@ -25,9 +27,11 @@ describe("SendAmountAndMessageScreen tests", () => {
         expect(screen.getByText(translate("next"))).toBeDefined();
     });
 
-    test("Sets send state", async () => {
+    test("Sets send state and advances to next screen", async () => {
         const setSendState = jest.fn();
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{}, setSendState]);
+        const setTab = jest.fn();
+        jest.spyOn(UseSetTab, "default").mockReturnValue(setTab);
         const screen = render(<SendAmountAndMessageScreen />);
         const amountInput = await waitFor(() => screen.getByPlaceholderText(translate("enter_amount")));
         fireEvent.changeText(amountInput, "100");
@@ -35,5 +39,6 @@ describe("SendAmountAndMessageScreen tests", () => {
         fireEvent.changeText(messageTextArea, "Message");
         fireEvent.press(screen.getByText(translate("next")));
         await waitFor(() => expect(setSendState).toHaveBeenCalled());
+        expect(setTab).toHaveBeenCalledWith(SendScreens.CONFIRMATION);
     });
 });
