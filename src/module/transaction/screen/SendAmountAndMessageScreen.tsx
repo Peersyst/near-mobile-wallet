@@ -9,6 +9,7 @@ import { useState } from "react";
 import useGetFee from "module/transaction/query/useGetFee";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { ActivityIndicator } from "react-native";
+import { MINIMUM_TRANSACTION_AMOUNT } from "@env";
 
 export interface SendAmountAndMessageResult {
     amount: string;
@@ -44,9 +45,9 @@ const SendAmountAndMessageScreen = (): JSX.Element => {
                         value={amount}
                         onChange={setAmount}
                         name="amount"
-                        validators={`not-null|gte61:${translate("minimum_transaction_amount_text")}|lte${
-                            Number(balance) - Number(fee)
-                        }:${translate("insufficient_balance")}`}
+                        validators={`not-null|gte${MINIMUM_TRANSACTION_AMOUNT}:${translate("minimum_transaction_amount_text", {
+                            amount: MINIMUM_TRANSACTION_AMOUNT,
+                        })}|lte${Number(balance) - Number(fee)}:${translate("insufficient_balance")}`}
                         suffix={
                             <Typography variant="h1" fontWeight="bold">
                                 CKB
