@@ -1,7 +1,6 @@
 import { Cell } from "module/wallet/state/WalletState";
 import { AccountCardBalance, AccountCardRoot, AccountContent } from "./AccountCard.styles";
 import AccountCardHeader from "./AccountCardHeader/AccountCardHeader";
-import { translate } from "locale";
 import CardButtons from "./CardButtons/CardButtons";
 import useAddressColor from "module/wallet/hook/useAddressColor";
 import useGetBalance from "module/wallet/query/useGetBalance";
@@ -23,7 +22,7 @@ const AccountCard = ({ cell: { address, name } }: AccountCardProps): JSX.Element
             <AccountContent>
                 <AccountCardHeader address={address} name={name} />
                 {balance !== undefined ? (
-                    <AccountCardBalance variant="h1" balance={balance} units={translate("token")} />
+                    <AccountCardBalance variant="h1" balance={balance} units="ckb" />
                 ) : (
                     <ActivityIndicator color="white" />
                 )}
