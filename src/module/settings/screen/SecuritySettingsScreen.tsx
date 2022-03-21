@@ -10,7 +10,7 @@ import { Col, useToast } from "react-native-components";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import pinConfirmedState from "../state/PinConfirmedState";
 
-const GeneralSettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): JSX.Element => {
+const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): JSX.Element => {
     const setWalletState = useSetRecoilState(walletState);
     const {
         state: { pin },
@@ -54,4 +54,4 @@ const GeneralSettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): J
     );
 };
 
-export default GeneralSettingsScreen;
+export default SecuritySettingsScreen;

@@ -6,7 +6,7 @@ export interface PinConfirmedState {
 }
 
 const pinConfirmedState = atom<PinConfirmedState>({
-    key: "settings",
+    key: "pinConfirmedState",
     default: { pinConfirmed: false, hasNewPin: false },
 });
 
