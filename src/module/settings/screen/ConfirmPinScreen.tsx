@@ -15,15 +15,15 @@ const ConfirmPinScreen = (): JSX.Element => {
     const handleSubmit = async (pin: string) => {
         const storedPin = await WalletStorage.getPin();
         if (pin === storedPin) {
-            setPinConfirmedState({ pinConfirmed: true, hasNewPin: false});
+            setPinConfirmedState({ pinConfirmed: true, hasNewPin: false });
         } else {
             setError(true);
         }
     };
     return (
         <BaseSettingsModalScreen title="Confirm your PIN" back>
-            <Row style={{ flex: 1, alignItems: "center" }}>
-                <Col style={{ flex: 1, maxHeight: 525 }}>
+            <Row flex={1} alignItems="center">
+                <Col flex={1} style={{ maxHeight: 525 }}>
                     <AnimatedNumericPad
                         placeholder={error ? translate("pins_did_not_match") : translate("enter_your_pin")}
                         onSubmit={handleSubmit}

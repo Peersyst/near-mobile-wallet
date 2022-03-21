@@ -34,10 +34,8 @@ const GeneralSettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): J
                 <Button onPress={() => navigation.navigate("UpdatePin")} fullWidth variant="outlined">
                     Change passcode
                 </Button>
-                <Button fullWidth onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>
-                    Log out
-                </Button>
                 <Button
+                    fullWidth
                     onPress={async () => {
                         await WalletStorage.clear();
                         setWalletState((state) => ({
