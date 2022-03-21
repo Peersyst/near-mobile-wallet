@@ -15,9 +15,7 @@ const UpdatePinScreen = (): JSX.Element => {
     };
     return (
         <BaseSettingsModalScreen title="Update your PIN" back>
-            <Col style={{ maxHeight: 500 }}>
-                <SetWalletPinScreen updating onSuccess={handleSubmit} />
-            </Col>
+            <SetWalletPinScreen updating onSuccess={handleSubmit} />
         </BaseSettingsModalScreen>
     );
 };

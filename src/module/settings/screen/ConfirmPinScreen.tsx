@@ -22,14 +22,7 @@ const ConfirmPinScreen = (): JSX.Element => {
     };
     return (
         <BaseSettingsModalScreen title="Confirm your PIN" back>
-                <Col flex={1} style={{ maxHeight: 500 }}>
-                    <AnimatedNumericPad
-                        error={error}
-                        placeholder={translate("enter_your_pin")} 
-                        onSubmit={handleSubmit}
-                        in={true}
-                    />
-                </Col>
+            <AnimatedNumericPad error={error} placeholder={translate("enter_your_pin")} onSubmit={handleSubmit} in={true} />
         </BaseSettingsModalScreen>
     );
 };

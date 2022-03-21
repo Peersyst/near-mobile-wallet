@@ -2,12 +2,11 @@ import styled from "@peersyst/react-native-styled";
 import { IconButton, Row, Typography } from "react-native-components";
 
 export const NavbarRoot = styled(Row)(() => ({
-    flex: 1,
+    width: "100%",
     alignItems: "center",
     justifyContent: "center",
     position: "relative",
     height: 40,
-    width: "100%",
 }));
 
 export const BackIconRoot = styled(IconButton)(({ theme }) => ({
