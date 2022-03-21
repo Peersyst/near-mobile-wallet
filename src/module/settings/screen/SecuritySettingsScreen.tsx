@@ -9,9 +9,13 @@ import { useSetRecoilState } from "recoil";
 
 const GeneralSettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): JSX.Element => {
     const setWalletState = useSetRecoilState(walletState);
+
     return (
         <BaseSecondaryScreen navigation={navigation} title={translate("security_settings")} back={true}>
             <Col gap={20}>
+                <Button onPress={() => navigation.navigate("ConfirmPin")} fullWidth variant="outlined">
+                    Change passcode
+                </Button>
                 <Button fullWidth onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>
                     Log out
                 </Button>

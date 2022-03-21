@@ -5,13 +5,14 @@ import { useState } from "react";
 import useCreateWallet from "../hook/useCreateWallet";
 
 export interface SetWalletPinScreen {
-    onCancel: () => void;
+    onCancel?: () => void;
     onSuccess: () => void;
+    updating?: boolean;
 }
 
 const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { duration: 200 });
 
-const SetWalletPinScreen = ({ onCancel, onSuccess }: SetWalletPinScreen): JSX.Element => {
+const SetWalletPinScreen = ({ onCancel, onSuccess, updating }: SetWalletPinScreen): JSX.Element => {
     const [pin, setPin] = useState<string>();
     const [error, setError] = useState(false);
     const { setPin: setWalletPin } = useCreateWallet();
@@ -45,7 +46,7 @@ const SetWalletPinScreen = ({ onCancel, onSuccess }: SetWalletPinScreen): JSX.El
             appear
             onSubmit={handlePinSubmit}
             onCancel={onCancel}
-            placeholder={error ? translate("pins_did_not_match") : translate("enter_your_pin")}
+            placeholder={error ? translate("pins_did_not_match") : updating ? translate("enter_new_pin") : translate("enter_your_pin")}
         />
     );
 };

@@ -15,6 +15,7 @@
     "somethingWentWrong": "Something went wrong",
     "sessionExpired": "Your session has expired",
     "enter_your_pin": "Enter your PIN",
+    "enter_new_pin": "Enter your new PIN",
     "create_wallet": "Create Wallet",
     "already_have_wallet": "Already have a CKBull Wallet?",
     "import_it": "Import it",
