@@ -4,6 +4,7 @@ import * as UseWallet from "module/wallet/hook/useWallet";
 import * as Recoil from "recoil";
 import { mockedUseWallet } from "mocks/useWallet";
 import { translate } from "locale";
+import { formatAddress } from "@peersyst/react-utils";
 
 describe("SendConfirmationScreen tests", () => {
     test("Renders correctly", () => {
@@ -20,13 +21,15 @@ describe("SendConfirmationScreen tests", () => {
         expect(screen.getByText("1,000")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
         expect(screen.getByText("10")).toBeDefined();
-        expect(screen.getByText(translate("total") + ":")).toBeDefined();
-        expect(screen.getByText("1,010")).toBeDefined();
 
         expect(screen.getByText(translate("from") + ":")).toBeDefined();
-        expect(screen.getByText(mockedUseWallet.state.cells[0].name + " - " + mockedUseWallet.state.cells[0].address)).toBeDefined();
+        expect(
+            screen.getByText(
+                mockedUseWallet.state.cells[0].name + " - " + formatAddress(mockedUseWallet.state.cells[0].address, "middle", 3),
+            ),
+        ).toBeDefined();
         expect(screen.getByText(translate("to") + ":")).toBeDefined();
-        expect(screen.getByText("receiver_address")).toBeDefined();
+        expect(screen.getByText("recei...ess")).toBeDefined();
         expect(screen.getByText(translate("message") + ":")).toBeDefined();
         expect(screen.getByText("Send message")).toBeDefined();
     });

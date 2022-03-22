@@ -13,7 +13,7 @@ export const BackIconRoot = styled(IconButton)(({ theme }) => ({
     position: "absolute",
     left: 0,
     color: theme.palette.mode === "light" ? theme.palette.darkGray2 : theme.palette.text,
-    fontSize: 30,
+    fontSize: 22,
 }));
 
 export const Title = styled(Typography, { fontWeight: "bold", textTransform: "uppercase" })(({ theme }) => ({

@@ -86,7 +86,7 @@ const TextInput = ({
     const clearElement = clearElementProp || <Cross />;
 
     return (
-        <Col gap={5} flex={1}>
+        <Col gap={5} style={{ width: "100%" }}>
             <TextInputRoot style={rootStyle}>
                 {prefix && <Icon style={iconStyle}>{prefix}</Icon>}
                 <Input
