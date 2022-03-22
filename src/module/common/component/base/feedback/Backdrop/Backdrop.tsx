@@ -33,7 +33,7 @@ export default function Backdrop({
     const backdropAnim = useRef(new Animated.Value(open ? 0 : 1)).current;
     const backdropColor = backdropAnim.interpolate({
         inputRange: [0, 1],
-        outputRange: ["transparent", transparent ? "transparent" : palette.backdrop],
+        outputRange: ["transparent", transparent ? "transparent" : (style?.backgroundColor as string) || palette.backdrop],
     });
     const { mounted } = useAnimatedTiming(open, backdropAnim, {
         toValue: { enter: 1, exit: 0 },

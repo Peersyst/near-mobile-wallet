@@ -83,6 +83,8 @@ const SendToAddressScreen = () => {
                                     validators="not-null"
                                     value={receiverAddress}
                                     onChange={setReceiverAddress}
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
                                 />
                             </FormGroup>
                         </Col>
