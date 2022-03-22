@@ -11,13 +11,13 @@ interface SettingsMenuProps {
 }
 
 const ArrowRightIcon = styled(ChevronRightIcon)(({ theme }) => ({
-    fontSize: 11,
+    fontSize: 12,
     color: theme.palette.black,
 }));
 
 const SettingsMenuRoot = styled(Row, { justifyContent: "space-between", alignItems: "center" })(({ theme }) => ({
     backgroundColor: theme.palette.lighterGray,
-    height: 60,
+    height: 40,
 }));
 
 const SettingsMenu = ({ label, location }: SettingsMenuProps): JSX.Element => {

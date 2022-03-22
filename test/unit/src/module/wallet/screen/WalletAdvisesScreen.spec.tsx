@@ -17,7 +17,7 @@ describe("WalletAdvisesScreen tests", () => {
 
         const screen = render(<WalletAdvisesScreen />);
 
-        expect(screen.getByText(translate("advise") + " 1")).toBeDefined();
+        expect(screen.getByText(translate("advise1_title"))).toBeDefined();
 
         let generateMnemonicButton = screen.getByText(translate("generate_mnemonic"));
         fireEvent.press(generateMnemonicButton);
@@ -25,11 +25,11 @@ describe("WalletAdvisesScreen tests", () => {
 
         act(() => jest.runAllTimers());
         fireEvent.press(screen.getByText(translate("next")));
-        expect(screen.getByText(translate("advise") + " 2")).toBeDefined();
+        expect(screen.getByText(translate("advise2_title"))).toBeDefined();
 
         act(() => jest.runAllTimers());
         fireEvent.press(screen.getByText(translate("next")));
-        expect(screen.getByText(translate("advise") + " 3")).toBeDefined();
+        expect(screen.getByText(translate("advise3_title"))).toBeDefined();
 
         act(() => jest.runAllTimers());
         generateMnemonicButton = screen.getByText(translate("generate_mnemonic"));

@@ -6,15 +6,22 @@ import Navbar from "module/common/component/navigation/Navbar/Navbar";
 import Breadcrumbs from "module/common/component/display/Breadcrumbs/Breadcrumbs";
 import { Col, Row } from "react-native-components";
 import { GlassNavigatorContent } from "module/common/component/navigation/GlassNavigator/GlassNavigator.styles";
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 
 export interface GlassNavigatorProps extends GlassProps {
     navbar?: NavbarProps;
     breadcrumbs?: BreadcrumbsProps;
     children?: ReactNode;
+    scrollable?: boolean;
 }
 
-const GlassNavigator = ({ navbar: navbarProps, breadcrumbs: breadcrumbsProps, children, ...rest }: GlassNavigatorProps): JSX.Element => (
+const GlassNavigator = ({
+    navbar: navbarProps,
+    breadcrumbs: breadcrumbsProps,
+    children,
+    scrollable,
+    ...rest
+}: GlassNavigatorProps): JSX.Element => (
     <Glass {...rest}>
         <Col gap={"8%"} flex={1}>
             <Col gap={15}>
@@ -25,12 +32,14 @@ const GlassNavigator = ({ navbar: navbarProps, breadcrumbs: breadcrumbsProps, ch
                     </Row>
                 )}
             </Col>
-            <ScrollView style={{ marginHorizontal: -20 }} alwaysBounceVertical={false}>
-                <View onStartShouldSetResponder={() => true}>
-                    <GlassNavigatorContent flex={1} justifyContent="flex-end">
-                        {children}
-                    </GlassNavigatorContent>
-                </View>
+            <ScrollView
+                style={{ marginHorizontal: -20 }}
+                contentContainerStyle={scrollable && { flex: 1, justifyContent: "flex-end" }}
+                alwaysBounceVertical={false}
+            >
+                <GlassNavigatorContent onStartShouldSetResponder={() => true} flex={1} justifyContent="flex-end">
+                    {children}
+                </GlassNavigatorContent>
             </ScrollView>
         </Col>
     </Glass>

@@ -15,12 +15,12 @@ export const AccountCardRoot = styled(BaseAccountCard)<AccountCardRootProps>(({ 
 
 export const FavouriteIcon = styled(StarIcon)(({ theme }) => ({
     color: theme.palette.white,
-    fontSize: 23,
+    fontSize: 20,
 }));
 
 export const CopyIcon = styled(CopyToClipboardIcon)(({ theme }) => ({
     color: theme.palette.white,
-    fontSize: 23,
+    fontSize: 20,
 }));
 
 export const AccountCardTitle = styled(Typography, { textTransform: "uppercase" })(({ theme }) => ({

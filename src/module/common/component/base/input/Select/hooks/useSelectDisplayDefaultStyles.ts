@@ -1,4 +1,4 @@
-import { Platform, TextStyle, ViewStyle } from "react-native";
+import { TextStyle, ViewStyle } from "react-native";
 import { useTheme } from "@peersyst/react-native-styled";
 
 interface UseSelectDisplayDefaultStyles {
@@ -11,7 +11,7 @@ const useSelectDisplayDefaultStyles = (): UseSelectDisplayDefaultStyles => {
 
     return {
         defaultStyle: [
-            { color: theme.palette.text, marginTop: Platform.OS === "ios" ? 5 : 0 },
+            { color: theme.palette.text },
             {
                 height: 40,
                 paddingHorizontal: 15,
