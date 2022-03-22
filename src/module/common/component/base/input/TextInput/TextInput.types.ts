@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ComponentType, ReactElement } from "react";
 import { ColorValue, TextInputProps as NativeTextInputProps, TextStyle, ViewStyle } from "react-native";
 import { BaseValidator } from "./utils";
 import { SX } from "@peersyst/react-native-styled";
@@ -104,6 +104,10 @@ export interface TextInputProps
      * Clear input element
      */
     clearElement?: ReactElement;
+    /**
+     * input element
+     */
+    input?: ComponentType<NativeTextInputProps>;
     /**
      * TextInput style
      */
