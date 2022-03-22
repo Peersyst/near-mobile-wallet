@@ -4,6 +4,7 @@ export interface SendState {
     senderAddress?: string;
     receiverAddress?: string;
     amount?: string;
+    fee?: string;
     message?: string;
 }
 

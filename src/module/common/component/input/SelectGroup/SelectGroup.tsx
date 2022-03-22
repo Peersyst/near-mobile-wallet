@@ -19,7 +19,7 @@ const SelectGroup = ({ label, options, ...rest }: SelectGroupProps): JSX.Element
                 {options.map((option, index) => {
                     return (
                         <SelectItem key={index} value={option.value}>
-                            {option.label}
+                            {option.label.toString()}
                         </SelectItem>
                     );
                 })}

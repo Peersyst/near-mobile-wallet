@@ -19,3 +19,4 @@ export * from "./ScanIcon";
 export * from "./SendIcon";
 export * from "./SettingsIcon";
 export * from "./StarIcon";
+export * from "./SuccessIcon";

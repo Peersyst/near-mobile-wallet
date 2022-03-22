@@ -2,11 +2,13 @@ import { TextInput } from "react-native";
 import { Row } from "../../layout/Row";
 import { Icon } from "../../display/Icon";
 import { InputProps } from "./TextInput.types";
-import styled from "@peersyst/react-native-styled";
+import styled, { styledWithAs } from "@peersyst/react-native-styled";
 
-export const Input = styled(TextInput)<InputProps>(({ multiline = false, numberOfLines = 1 }) => ({
+export const Input = styledWithAs(TextInput)<InputProps>(({ multiline = false, numberOfLines = 1 }) => ({
     flex: 1,
     height: multiline ? numberOfLines * 20 : 40,
+    textAlignVertical: multiline ? "top" : "center",
+    paddingTop: multiline ? 10 : 0,
 }));
 
 export const TextInputRoot = styled(Row, { alignItems: "center", gap: 10 })(({ theme }) => ({

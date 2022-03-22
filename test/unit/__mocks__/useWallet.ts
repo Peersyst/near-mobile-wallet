@@ -5,7 +5,7 @@ export const mockedUseWallet: UseWalletResult = {
         hasWallet: true,
         isAuthenticated: true,
         isFirstTime: false,
-        cells: [{ address: "address", balance: "1", name: "Name" }],
+        cells: [{ address: "address", name: "Name" }],
         selectedAccount: 0,
     },
     setAuthenticated: jest.fn(),
