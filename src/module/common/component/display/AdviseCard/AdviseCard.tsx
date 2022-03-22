@@ -20,7 +20,7 @@ const AdviseCard = ({ number, totalAdvises, title, text, style, onBack, onNext }
                         </Typography>
                     )}
                 </Col>
-                <Typography variant="body2" style={{ marginTop: 5 }}>
+                <Typography variant="body2" style={{ marginTop: 5, textAlign: "justify" }}>
                     {text}
                 </Typography>
                 <Row justifyContent={onBack ? "space-between" : "flex-end"} alignItems="center" style={{ height: 60 }}>
