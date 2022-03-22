@@ -18,7 +18,7 @@ describe("Select group tests", () => {
         expect(screen.getAllByText("Select your network")).toHaveLength(2);
         const items = screen.getAllByText("test1");
         expect(screen.getByText("test2")).toBeDefined();
-        fireEvent.press(items[1]);
+        fireEvent.press(items[0]);
         expect(mockedFunction).toHaveBeenCalled();
     });
 });

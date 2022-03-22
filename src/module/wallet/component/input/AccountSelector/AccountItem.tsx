@@ -13,13 +13,12 @@ const AccountItem = ({ address, name, color = "#000000" }: AccountItemProps): JS
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(address);
 
     return (
-        <Row alignItems="center">
+        <Row alignItems="center" style={{ overflow: "hidden" }}>
             <Typography variant="body1" fontWeight="bold" style={{ color }}>
                 {name}
             </Typography>
             <Typography variant="body1" style={{ color }}>
-                {" "}
-                -{" "}
+                {" - "}
             </Typography>
             {balanceIsLoading ? (
                 <ActivityIndicator color={color} />

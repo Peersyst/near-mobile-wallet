@@ -2,7 +2,7 @@ import styled from "@peersyst/react-native-styled";
 import { BackIcon } from "icons";
 import { translate } from "locale";
 import useNavigation from "module/common/hook/useNavigation";
-import { Pressable } from "react-native";
+import { Pressable, ViewStyle } from "react-native";
 import { IconButton, Typography } from "react-native-components";
 
 const GoBackRoot = styled(Pressable)(() => ({
@@ -18,9 +18,10 @@ export const BackIconRoot = styled(IconButton)(() => ({
 
 export interface GoBackProps {
     onBack?: () => unknown;
+    style?: ViewStyle;
 }
 
-const GoBack = ({ onBack }: GoBackProps): JSX.Element => {
+const GoBack = ({ onBack, style }: GoBackProps): JSX.Element => {
     const navigation = useNavigation();
     const goBack = () => {
         if (onBack) onBack();
@@ -29,7 +30,7 @@ const GoBack = ({ onBack }: GoBackProps): JSX.Element => {
         }
     };
     return (
-        <GoBackRoot onPress={goBack}>
+        <GoBackRoot onPress={goBack} style={style}>
             <BackIconRoot>
                 <BackIcon />
             </BackIconRoot>

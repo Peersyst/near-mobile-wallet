@@ -28,7 +28,7 @@ export default function Select({
     disabled = false,
     readonly = false,
     style: styleProp,
-    renderValue = renderDefaultValue,
+    renderValue,
     header,
     footer,
     children,
@@ -50,19 +50,25 @@ export default function Select({
         item: itemStyle,
     } = useSelectStyles(styleProp || {}, disabled, readonly);
 
+    const renderedValue = renderValue ? (
+        renderValue(displayContent)
+    ) : (
+        <Text style={displayTextStyle} numberOfLines={1}>
+            {renderDefaultValue(displayContent)}
+        </Text>
+    );
+
     return (
         <View style={style}>
             <TouchableWithoutFeedback onPress={handlePress}>
                 <View>
                     <Row style={displayRootStyle} alignItems="center" justifyContent="space-between">
                         <View style={{ maxWidth: "92%" }}>
-                            <Text style={displayTextStyle} numberOfLines={1}>
-                                {renderValue(displayContent) || (
-                                    <Text style={[displayTextStyle, { color: placeholderColor }]} numberOfLines={1}>
-                                        {placeholder}
-                                    </Text>
-                                )}
-                            </Text>
+                            {renderedValue || (
+                                <Text style={[displayTextStyle, { color: placeholderColor }]} numberOfLines={1}>
+                                    {placeholder}
+                                </Text>
+                            )}
                         </View>
                         <Icon style={{ ...displayTextStyle, fontSize: 14 }}>{icon}</Icon>
                     </Row>
