@@ -6,7 +6,7 @@ import { Dimensions } from "react-native";
 const NFT_CARD_WIDTH = Dimensions.get("window").width / 3;
 
 export const NftCardRoot = styled(Row, { gap: "5%" })(() => ({
-    paddingVertical: 20,
+    paddingVertical: 14,
 }));
 
 export const NftCardImage = styled(View)(({ theme }) => ({

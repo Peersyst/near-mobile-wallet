@@ -10,5 +10,5 @@ export const TransactionIcon = styled(View)(({ theme }) => ({
 }));
 
 export const TransactionCardRoot = styled(Row, { gap: "4%", alignItems: "center" })(() => ({
-    paddingVertical: 20,
+    paddingVertical: 14,
 }));

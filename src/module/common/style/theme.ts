@@ -34,13 +34,13 @@ export const theme = createTheme({
     },
     typography: {
         h1: {
-            fontSize: 24,
+            fontSize: 22,
         },
         h2: {
-            fontSize: 20,
+            fontSize: 18,
         },
         h3: {
-            fontSize: 18,
+            fontSize: 16,
         },
         h4: undefined,
         h5: undefined,

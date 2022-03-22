@@ -34,20 +34,20 @@ export const typography: DefaultThemeTypography = {
         lineHeight: 20,
     },
     body1: {
-        fontSize: 16,
+        fontSize: 14,
         lineHeight: 22,
     },
     body2: {
-        fontSize: 14,
+        fontSize: 12,
         lineHeight: 20,
     },
     button: {
-        fontSize: 14,
+        fontSize: 12,
         textTransform: "uppercase",
         lineHeight: 20,
     },
     caption: {
-        fontSize: 12,
+        fontSize: 10,
         lineHeight: 18,
     },
 };

@@ -5,7 +5,7 @@ import { Row, useModal } from "react-native-components";
 import { CardButton, Separator } from "./CardButtons.styles";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
 
-const CARD_BUTTON_ICON_SIZE = 20;
+const CARD_BUTTON_ICON_SIZE = 18;
 
 const CardButtons = (): JSX.Element => {
     const { showModal } = useModal();

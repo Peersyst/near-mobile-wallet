@@ -12,7 +12,7 @@ const GoBackRoot = styled(Pressable)(() => ({
 }));
 
 export const BackIconRoot = styled(IconButton)(() => ({
-    fontSize: 15,
+    fontSize: 12,
     marginRight: 10,
 }));
 
