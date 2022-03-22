@@ -78,5 +78,12 @@
     "currency_conversion": "Currency conversion",
     "select_locale": "Select your language",
     "en": "English",
-    "es": "Spanish"
+    "es": "Spanish",
+    "confirm": "Confirm",
+    "transaction_fee_label": "Transaction fee",
+    "total": "Total",
+    "from": "From",
+    "to": "To",
+    "message": "Message",
+    "send_confirmation_text": "Carefull, transactions cannot be undone. This is the last step, take your time to verify the information."
 }

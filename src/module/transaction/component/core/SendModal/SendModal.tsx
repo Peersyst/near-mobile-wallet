@@ -8,13 +8,15 @@ import useGetFee from "module/transaction/query/useGetFee";
 import { useRecoilValue, useResetRecoilState } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import sendState from "module/transaction/state/SendState";
+import SendConfirmationScreen from "module/transaction/screen/SendConfirmationScreen/SendConfirmationScreen";
 
 export enum SendScreens {
     SEND_TO_ADDRESS,
     AMOUNT_AND_MESSAGE,
+    CONFIRMATION,
 }
 
-const SendModal = createBackdrop(({ onClose, ...rest }: BackdropProps) => {
+const SendModal = createBackdrop(({ onExited, ...rest }: BackdropProps) => {
     const [activeIndex, setActiveIndex] = useState(SendScreens.SEND_TO_ADDRESS);
     const { fee } = useRecoilValue(settingsState);
     const resetSendState = useResetRecoilState(sendState);
@@ -22,9 +24,9 @@ const SendModal = createBackdrop(({ onClose, ...rest }: BackdropProps) => {
     // Prefetch fee
     useGetFee(fee);
 
-    const handleClose = () => {
+    const handleExited = () => {
+        onExited?.();
         resetSendState();
-        onClose?.();
     };
 
     return (
@@ -35,7 +37,7 @@ const SendModal = createBackdrop(({ onClose, ...rest }: BackdropProps) => {
                 title: translate("send"),
                 onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,
             }}
-            onClose={handleClose}
+            onExited={handleExited}
             {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
@@ -44,6 +46,9 @@ const SendModal = createBackdrop(({ onClose, ...rest }: BackdropProps) => {
                 </TabPanel>
                 <TabPanel index={SendScreens.AMOUNT_AND_MESSAGE}>
                     <SendAmountAndMessageScreen />
+                </TabPanel>
+                <TabPanel index={SendScreens.CONFIRMATION}>
+                    <SendConfirmationScreen />
                 </TabPanel>
             </Tabs>
         </GlassNavigatorModal>

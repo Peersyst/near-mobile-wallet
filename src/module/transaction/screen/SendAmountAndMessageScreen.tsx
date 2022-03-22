@@ -1,5 +1,5 @@
 import TextField from "module/common/component/input/TextField/TextField";
-import { Col, Form, NumericInput, Row, Typography } from "react-native-components";
+import { Col, Form, NumericInput, Row, Typography, useSetTab } from "react-native-components";
 import { translate } from "locale";
 import TextArea from "module/common/component/input/TextArea/TextArea";
 import Button from "module/common/component/input/Button/Button";
@@ -11,6 +11,7 @@ import useGetBalance from "module/wallet/query/useGetBalance";
 import { ActivityIndicator } from "react-native";
 import { MINIMUM_TRANSACTION_AMOUNT } from "@env";
 import settingsState from "module/settings/state/SettingsState";
+import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 
 export interface SendAmountAndMessageResult {
     amount: string;
@@ -23,6 +24,7 @@ const SendAmountAndMessageScreen = (): JSX.Element => {
     const { fee: selectedFee } = useRecoilValue(settingsState);
     const { data: fee, isLoading: feeIsLoading } = useGetFee(selectedFee);
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderAddress!);
+    const setTab = useSetTab();
 
     if (feeIsLoading || balanceIsLoading) {
         return (
@@ -33,7 +35,8 @@ const SendAmountAndMessageScreen = (): JSX.Element => {
     }
 
     const handleSubmit = ({ amount, message }: SendAmountAndMessageResult): void => {
-        setSendState((oldState) => ({ ...oldState, amount, message }));
+        setSendState((oldState) => ({ ...oldState, amount, message, fee }));
+        setTab(SendScreens.CONFIRMATION);
     };
 
     return (
