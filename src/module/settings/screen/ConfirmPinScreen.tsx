@@ -2,7 +2,7 @@ import { translate } from "locale";
 import NumericPad from "module/common/component/input/NumericPad/NumericPad";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useState } from "react";
-import { Animated, Col, Row } from "react-native-components";
+import { Animated } from "react-native-components";
 import { useSetRecoilState } from "recoil";
 import BaseSettingsModalScreen from "../components/layout/BaseSettingsModalScreen/BaseSettingsModalScreen";
 import pinConfirmedState from "../state/PinConfirmedState";
@@ -21,7 +21,7 @@ const ConfirmPinScreen = (): JSX.Element => {
         }
     };
     return (
-        <BaseSettingsModalScreen title="Confirm your PIN" back>
+        <BaseSettingsModalScreen title={translate("confirm_your_pin")} back>
             <AnimatedNumericPad error={error} placeholder={translate("enter_your_pin")} onSubmit={handleSubmit} in={true} />
         </BaseSettingsModalScreen>
     );

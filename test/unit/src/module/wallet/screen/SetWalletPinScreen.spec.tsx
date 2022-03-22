@@ -52,7 +52,6 @@ describe("SetWalletPin tests", () => {
 
     test("Cancel navigates back", async () => {
         const handleCancel = jest.fn();
-
         const screen = render(<SetWalletPinScreen onSuccess={() => undefined} onCancel={handleCancel} />);
         const cancelButton = screen.getByText(translate("cancel"));
         fireEvent.press(cancelButton);

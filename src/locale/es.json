@@ -14,8 +14,11 @@
     "invalid_number_lte": "The number must be lower or equal than {n}",
     "somethingWentWrong": "Something went wrong",
     "sessionExpired": "Your session has expired",
-    "enter_your_pin": "Enter your PIN",
+    "confirm_your_pin": "Confirma tu PIN",
+    "update_your_pin": "Actualiza tu PIN",
+    "enter_your_pin": "Introduce tu PIN",
     "enter_new_pin": "Introduce tu nuevo PIN",
+    "pin_updated_successfully": "PIN actualizado correctamente",
     "create_wallet": "Create Wallet",
     "already_have_wallet": "Already have a CKBull Wallet?",
     "import_it": "Import it",
@@ -87,5 +90,6 @@
     "to": "To",
     "message": "Message",
     "send_confirmation_text": "Carefull, transactions cannot be undone. This is the last step, take your time to verify the information.",
-    "transaction_completed": "Transaction\ncompleted!"
+    "transaction_completed": "Transaction\ncompleted!",
+    "change_passcode": "Cambiar contraseña"
 }
