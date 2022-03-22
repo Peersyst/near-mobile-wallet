@@ -6,13 +6,13 @@ import CountdownButton from "../../input/CountdownButton/CountdownButton";
 import { BackIconButton } from "./AdviseCard.styles";
 import { BackIcon } from "icons";
 
-const AdviseCard = ({ number, totalAdvises, text, style, onBack, onNext }: AdviseCardProps): JSX.Element => {
+const AdviseCard = ({ number, totalAdvises, title, text, style, onBack, onNext }: AdviseCardProps): JSX.Element => {
     return (
         <Card style={{ flex: 1, ...style }}>
             <Col flex={1} justifyContent="space-between">
-                <Col gap={15}>
+                <Col gap="2%">
                     <Typography variant="h3" textTransform="uppercase" textAlign="center" fontWeight="700">
-                        {translate("advise") + " " + number}
+                        {title || translate("advise") + " " + number}
                     </Typography>
                     {totalAdvises && (
                         <Typography variant="body2" textAlign="center">
@@ -20,7 +20,9 @@ const AdviseCard = ({ number, totalAdvises, text, style, onBack, onNext }: Advis
                         </Typography>
                     )}
                 </Col>
-                <Typography variant="body2">{text}</Typography>
+                <Typography variant="body2" style={{ marginTop: 5, textAlign: "justify" }}>
+                    {text}
+                </Typography>
                 <Row justifyContent={onBack ? "space-between" : "flex-end"} alignItems="center" style={{ height: 60 }}>
                     {onBack && (
                         <BackIconButton onPress={onBack}>
@@ -28,7 +30,7 @@ const AdviseCard = ({ number, totalAdvises, text, style, onBack, onNext }: Advis
                         </BackIconButton>
                     )}
                     {onNext && (
-                        <CountdownButton style={{ width: 150 }} seconds={5} onPress={onNext}>
+                        <CountdownButton style={{ width: 150, marginTop: 5 }} seconds={5} onPress={onNext}>
                             {translate("next")}
                         </CountdownButton>
                     )}

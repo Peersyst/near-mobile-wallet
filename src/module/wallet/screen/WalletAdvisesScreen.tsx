@@ -9,13 +9,20 @@ import Button from "module/common/component/input/Button/Button";
 const WalletAdvisesScreen = (): JSX.Element => {
     const [index, setIndex] = useState(0);
     const setTab = useTabs()[1];
-    const advises = [translate("advise1_text"), translate("advise2_text"), translate("advise3_text")];
+    const advises = [
+        { title: translate("advise1_title"), text: translate("advise1_text") },
+        { title: translate("advise2_title"), text: translate("advise2_text") },
+        {
+            title: translate("advise3_title"),
+            text: translate("advise3_text"),
+        },
+    ];
 
     const handleNext = () => setTab(CreateWalletScreens.WALLET_MNEMONIC);
 
     return (
         <Col flex={1} gap={30}>
-            <AdviseCardGroup index={index} onIndexChange={setIndex} advises={advises.map((advise) => ({ text: advise }))} />
+            <AdviseCardGroup index={index} onIndexChange={setIndex} advises={advises} />
             {index === 2 ? (
                 <CountdownButton seconds={5} fullWidth variant="outlined" style={{ marginHorizontal: 20 }} onPress={handleNext}>
                     {translate("generate_mnemonic")}

@@ -55,17 +55,17 @@ export default function (): UseDefaultStylesResult {
         sm: {
             paddingHorizontal: 10,
             height: 32,
-            fontSize: 13,
+            fontSize: 11,
         },
         md: {
             paddingHorizontal: 12,
             height: 40,
-            fontSize: 14,
+            fontSize: 12,
         },
         lg: {
             paddingHorizontal: 14,
             height: 48,
-            fontSize: 15,
+            fontSize: 13,
         },
     };
 

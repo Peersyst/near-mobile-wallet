@@ -11,8 +11,8 @@ export const ButtonRoot = styled(Button)<ButtonAppearanceProps>(({ theme, appear
         textTransform: "uppercase",
         lg: {
             borderWidth: 5,
-            height: 58,
-            fontSize: 20,
+            height: 50,
+            fontSize: 16,
             paddingHorizontal: 20,
         },
         sm: {
