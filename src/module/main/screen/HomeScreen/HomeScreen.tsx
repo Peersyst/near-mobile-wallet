@@ -8,7 +8,7 @@ const HomeScreen = (): JSX.Element => {
     return (
         <BaseMainScreen>
             <CardBackgroundHome />
-            <Col flex={1} gap={20}>
+            <Col flex={1} gap={20} style={{ paddingTop: 10}}>
                 <MainSlider />
                 <MainTabs />
             </Col>
