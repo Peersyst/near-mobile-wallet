@@ -10,6 +10,7 @@ import useSendTransaction from "../../query/useSendTransaction";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import LoadingModal from "module/transaction/component/feedback/LoadingModal/LoadingModal";
 import { useRefetchQuery } from "../../../../query/useRefetchQuery";
+import { formatAddress } from "@peersyst/react-utils";
 
 const SendConfirmationScreen = (): JSX.Element => {
     const { amount, fee, senderAddress, receiverAddress, message } = useRecoilValue(sendState);
@@ -30,9 +31,9 @@ const SendConfirmationScreen = (): JSX.Element => {
 
     return (
         <>
-            <Col gap={"10%"}>
-                <Paper style={{ paddingTop: "10%", paddingHorizontal: "7%", paddingBottom: "7%" }}>
-                    <Col gap={20} alignItems="center">
+            <Col gap={"6%"}>
+                <Paper style={{ padding: "7%" }}>
+                    <Col gap="4%" alignItems="center">
                         <Col gap={5} alignItems="center">
                             <Balance balance={amount!} units="CKB" variant="h1" boldUnits />
                             <Row>
@@ -40,19 +41,11 @@ const SendConfirmationScreen = (): JSX.Element => {
                                 <Balance balance={fee!} units="CKB" variant="body1" fontWeight="bold" boldUnits />
                             </Row>
                         </Col>
-                        <Row>
-                            <Typography variant="h2">{translate("total")}: </Typography>
-                            <Balance
-                                balance={(Number(amount) + Number(fee)).toString()}
-                                units="CKB"
-                                variant="h2"
-                                fontWeight="bold"
-                                boldUnits
-                            />
-                        </Row>
-                        <Col gap={20}>
-                            <SummaryField label={translate("from")}>{senderName + " - " + senderAddress}</SummaryField>
-                            <SummaryField label={translate("to")}>{receiverAddress!}</SummaryField>
+                        <Col gap="3%" style={{ alignSelf: "flex-start" }}>
+                            <SummaryField label={translate("from")}>
+                                {senderName + " - " + formatAddress(senderAddress!, "middle", 3)}
+                            </SummaryField>
+                            <SummaryField label={translate("to")}>{formatAddress(receiverAddress!, "middle", 3)}</SummaryField>
                             <SummaryField label={translate("message")}>{message || "-"}</SummaryField>
                         </Col>
                     </Col>

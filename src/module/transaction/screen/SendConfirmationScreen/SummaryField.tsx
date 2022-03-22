@@ -9,7 +9,7 @@ export interface SummaryFieldProps {
 const SummaryField = ({ label, children }: SummaryFieldProps): JSX.Element => (
     <Col gap={2}>
         <SummaryText variant="body2">{label}:</SummaryText>
-        <SummaryText variant="body1" style={{ paddingLeft: "5%" }}>
+        <SummaryText variant="body1" style={{ paddingLeft: "5%" }} numberOfLines={2}>
             {children}
         </SummaryText>
     </Col>

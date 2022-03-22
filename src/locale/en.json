@@ -85,6 +85,6 @@
     "from": "From",
     "to": "To",
     "message": "Message",
-    "send_confirmation_text": "Carefull, transactions cannot be undone.\nThis is the last step, take your time to verify the information.",
+    "send_confirmation_text": "Carefull, transactions cannot be undone.\nTake your time to verify the information.",
     "transaction_completed": "Transaction\ncompleted!"
 }
