@@ -5,7 +5,7 @@ import useGetNews from "module/news/query/useGetNews";
 import { useState } from "react";
 import { RefreshControl, ScrollView } from "react-native";
 import { Animated, List } from "react-native-components";
-import SimpleNewsCard from "../../component/display/SimpleNewsCard/SimpleNewsCard";
+import SimpleNewsCard from "../component/display/SimpleNewsCard/SimpleNewsCard";
 import { NewsScreenRoot, NewsSpacer } from "./NewsScreen.styles";
 
 const AnimatedSimpleNewsCard = Animated.createAnimatedComponent.fade(SimpleNewsCard, { duration: 300, appear: true });
