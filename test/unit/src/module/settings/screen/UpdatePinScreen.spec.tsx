@@ -5,6 +5,7 @@ import * as Recoil from "recoil";
 import * as Navigation from "@react-navigation/native";
 import { MainBottomScreens } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup";
 import * as UseCreateWalletState from "module/wallet/hook/useCreateWallet";
+import { createMockedUseCreateWallet } from "mocks/useCreateWallet";
 
 describe("Test for the UpdatePinScreen", () => {
     test("Renders correctly", () => {
@@ -15,12 +16,8 @@ describe("Test for the UpdatePinScreen", () => {
     });
     test("Updates pin correctly", () => {
         const setPin = jest.fn();
-        jest.spyOn(UseCreateWalletState, "default").mockReturnValue({
-            state: { name: undefined, pin: undefined, mnemonic: undefined },
-            setName: jest.fn(),
-            setPin,
-            setMnemonic: jest.fn(),
-        });
+        const mockedCreateWallet = createMockedUseCreateWallet(setPin);
+        jest.spyOn(UseCreateWalletState, "default").mockReturnValue(mockedCreateWallet);
         const setMockedState = jest.fn();
         jest.spyOn(Recoil, "useSetRecoilState").mockReturnValue(setMockedState);
         const mockedNavigate = jest.fn();
@@ -43,12 +40,8 @@ describe("Test for the UpdatePinScreen", () => {
     });
     test("If pin is not correct no update state", () => {
         const setPin = jest.fn();
-        jest.spyOn(UseCreateWalletState, "default").mockReturnValue({
-            state: { name: undefined, pin: undefined, mnemonic: undefined },
-            setName: jest.fn(),
-            setPin,
-            setMnemonic: jest.fn(),
-        });
+        const mockedCreateWallet = createMockedUseCreateWallet(setPin);
+        jest.spyOn(UseCreateWalletState, "default").mockReturnValue(mockedCreateWallet);
         const setMockedState = jest.fn();
         jest.spyOn(Recoil, "useSetRecoilState").mockReturnValue(setMockedState);
         const mockedNavigate = jest.fn();
@@ -61,10 +54,10 @@ describe("Test for the UpdatePinScreen", () => {
         fireEvent.press(screen.getByText("3"));
         fireEvent.press(screen.getByText("4"));
         expect(screen.getByText(translate("repeat_pin"))).toBeDefined();
-        fireEvent.press(screen.getByText("2"));
-        fireEvent.press(screen.getByText("2"));
-        fireEvent.press(screen.getByText("3"));
-        fireEvent.press(screen.getByText("4"));
+        fireEvent.press(screen.getByText("5"));
+        fireEvent.press(screen.getByText("6"));
+        fireEvent.press(screen.getByText("7"));
+        fireEvent.press(screen.getByText("8"));
 
         expect(setMockedState).not.toHaveBeenCalled();
         expect(mockedNavigate).not.toHaveBeenCalledWith(MainBottomScreens.SECURITY_SETTINGS);
