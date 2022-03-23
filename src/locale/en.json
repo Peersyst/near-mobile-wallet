@@ -89,5 +89,6 @@
     "to": "To",
     "message": "Message",
     "send_confirmation_text": "Carefull, transactions cannot be undone.\nTake your time to verify the information.",
-    "transaction_completed": "Transaction\ncompleted!"
+    "transaction_completed": "Transaction\ncompleted!",
+    "no_news": "There aren't any news right now"
 }

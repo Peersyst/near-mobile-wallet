@@ -20,4 +20,4 @@ const SimpleNewsCard = ({ uri, title, date, imageUri }: NewsType): JSX.Element =
     );
 };
 
-export default SimpleNewsCard;
+export default withSkeleton(SimpleNewsCard);
