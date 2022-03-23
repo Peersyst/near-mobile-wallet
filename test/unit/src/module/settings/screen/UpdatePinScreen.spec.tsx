@@ -46,7 +46,7 @@ describe("Test for the UpdatePinScreen", () => {
         const mockedCreateWallet = createMockedUseCreateWallet(noSetPin);
         jest.spyOn(UseCreateWalletState, "default").mockReturnValue(mockedCreateWallet);
         jest.spyOn(Recoil, "useSetRecoilState").mockReturnValue(setMockedState);
-        
+
         const screen = render(<UpdatePinScreen />);
 
         fireEvent.press(screen.getByText("9"));
