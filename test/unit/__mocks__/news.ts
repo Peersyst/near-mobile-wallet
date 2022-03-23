@@ -1,15 +1,13 @@
-import { NewsType } from "module/news/types";
-
-export const ArrayNews: NewsType[] = [...Array(5)].map((_, i) => ({
-    imageUri: "https://pbs.twimg.com/media/FOa1vmzUcAApUYM.jpg",
+export const ArrayNews: any[] = [...Array(5)].map((_, i) => ({
+    content: { __url: "imageUri" },
     title: "Title" + i,
-    date: "Mon, 21 Mar 2022 23:16:55 +0000",
-    uri: "https://twitter.com/NervosNetwork/status/1505710783719567362",
+    pubDate: "Mon, 21 Mar 2022 23:16:55 +0000",
+    link: "link" + i,
 }));
 
-export const News: NewsType = {
-    imageUri: "imageUrk",
+export const News: any = {
+    content: { __url: "imageUri" },
     title: "Title",
-    date: "Wed, 23 Mar 2022 03:32:05 +0000",
-    uri: "link",
+    pubDate: "Mon, 21 Mar 2022 23:16:55 +0000",
+    link: "link",
 };

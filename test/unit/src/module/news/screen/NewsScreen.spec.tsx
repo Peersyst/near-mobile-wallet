@@ -1,10 +1,45 @@
 import { translate } from "locale";
-import NewsScreen from "module/news/screen/NewsScreen/NewsScreen";
-import { render } from "test-utils";
+import NewsScreen from "module/news/screen/NewsScreen";
+import { fireEvent, render } from "test-utils";
+import * as GetNews from "module/news/query/useGetNews";
+import { ArrayNews } from "mocks/news";
+import { Linking } from "react-native";
 
 describe("Test for the NewsScreen", () => {
-    test("Renders correctly", () => {
+    test("Renders correctly with empty list component", () => {
+        jest.spyOn<any, any>(GetNews, "default").mockReturnValue({
+            isLoading: false,
+            data: [],
+        });
         const screen = render(<NewsScreen />);
         expect(screen.getByText(translate("news"))).toBeDefined();
+        expect(screen.getByText(translate("no_news"))).toBeDefined();
+    });
+    test("Renders correctly with news", () => {
+        jest.spyOn<any, any>(GetNews, "default").mockReturnValue({
+            isLoading: false,
+            data: ArrayNews,
+        });
+        const screen = render(<NewsScreen />);
+        expect(screen.getByText(translate("news"))).toBeDefined();
+        expect(screen.getByText("Title0")).toBeDefined();
+        expect(screen.getByText("Title1")).toBeDefined();
+        expect(screen.getByText("Title2")).toBeDefined();
+        expect(screen.getByText("Title3")).toBeDefined();
+        expect(screen.getByText("Title4")).toBeDefined();
+        expect(screen.getAllByText("22/03/2022 - 00:16")).toHaveLength(5);
+    });
+    test("Goes to the clicked news item", () => {
+        jest.spyOn<any, any>(GetNews, "default").mockReturnValue({
+            isLoading: false,
+            data: ArrayNews,
+        });
+        const mockedLinking = jest.fn();
+        jest.spyOn(Linking, "openURL").mockImplementation(mockedLinking);
+        const screen = render(<NewsScreen />);
+        expect(screen.getByText(translate("news"))).toBeDefined();
+        const card = screen.getByText("Title0");
+        fireEvent.press(card);
+        expect(mockedLinking).toHaveBeenCalledWith("link0");
     });
 });
