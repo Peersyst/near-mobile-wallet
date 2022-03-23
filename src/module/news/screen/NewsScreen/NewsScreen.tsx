@@ -1,6 +1,8 @@
 import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
 import BigNewsCard from "module/news/component/display/BigNewsCard/BigNewsCard";
 import useGetNews from "module/news/query/useGetNews";
+import { NewsType } from "module/news/types";
+import { useFormatNews } from "module/news/utils/useFormatNew";
 import { useState } from "react";
 import { RefreshControl, ScrollView } from "react-native";
 import SimpleNewsCard from "../../component/display/SimpleNewsCard/SimpleNewsCard";
@@ -20,11 +22,8 @@ const NewsScreen = (): JSX.Element => {
             <BaseMainScreen title={"News"}>
                 <NewsScreenRoot>
                     {data.map((New, index) => {
-                        return index % 3 === 0 ? (
-                            <BigNewsCard loading={isLoading || refreshing} {...New} key={index} />
-                        ) : (
-                            <SimpleNewsCard {...New} loading={isLoading || refreshing} key={index} />
-                        );
+                        let formatedNew = useFormatNews(New);
+                        return  <SimpleNewsCard {...formatedNew} loading={isLoading || refreshing} key={index} />
                     })}
                 </NewsScreenRoot>
             </BaseMainScreen>

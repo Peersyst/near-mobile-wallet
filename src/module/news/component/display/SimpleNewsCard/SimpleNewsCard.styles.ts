@@ -8,17 +8,17 @@ export const SimpleNewsCardRoot = styled(Paper)(({ dimensions }) => ({
 }))
 
 export const NewsImage = styled(Image)(({ theme, dimensions }) => ({
-    width: dimensions.width * 0.3,
-    height: dimensions.width * 0.3,
+    width: dimensions.width * 0.25,
+    height: dimensions.width * 0.25,
     backgroundColor: theme.palette.lightGray,
     borderRadius: 15,
 }))
 
 export const TextCont = styled(View)(({ dimensions }) => ({
-    width: dimensions.width * 0.46
+    width: dimensions.width * 0.5
 }))
 
-export const NewTitle = styled(Typography, { numberOfLines: 5 })(({ theme }) => ({
+export const NewTitle = styled(Typography, { numberOfLines: 4 })(({ theme }) => ({
     fontWeight: "bold",
     color: theme.palette.darkGray,
 }))
