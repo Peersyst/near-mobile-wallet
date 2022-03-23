@@ -1,9 +1,7 @@
 import { translate } from "locale";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
-import NoNewsComponent from "module/news/component/display/NoNewsComponent/NoNewsComponent";
 import useGetNews from "module/news/query/useGetNews";
-import { useFormatNews } from "module/news/utils/useFormatNews";
 import { useState } from "react";
 import { RefreshControl, ScrollView } from "react-native";
 import { Animated, List } from "react-native-components";
@@ -26,11 +24,11 @@ const NewsScreen = (): JSX.Element => {
             <BaseMainScreen title={translate("news")}>
                 <NewsScreenRoot>
                     <List
-                        renderItem={({ item, index }) => (
-                            <AnimatedSimpleNewsCard loading={isLoading} in {...useFormatNews(item)} key={index} />
-                        )}
+                        renderItem={({ item, index }) => {
+                            return <AnimatedSimpleNewsCard loading={isLoading} in {...item} key={index} />;
+                        }}
                         keyExtractor={(item) => item.title}
-                        data={[]}
+                        data={data}
                         ItemSeparatorComponent={() => <NewsSpacer />}
                         ListFooterComponent={() => <NewsSpacer style={{ paddingTop: "30%" }} />}
                         ListEmptyComponent={<EmptyListComponent message={translate("no_news")} />}

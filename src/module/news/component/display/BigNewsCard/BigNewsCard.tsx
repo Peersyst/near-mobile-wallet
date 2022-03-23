@@ -1,11 +1,11 @@
-import { NewDate, NewsImage, NewTitle, SimpleNewsCardRoot, TextCont } from "../SimpleNewsCard/SimpleNewsCard.styles";
+import { NewTitle, SimpleNewsCardRoot } from "../SimpleNewsCard/SimpleNewsCard.styles";
 import { Linking, TouchableWithoutFeedback } from "react-native";
-import { NewType } from "module/news/types";
+import { NewsType } from "module/news/types";
 import formatDate from "utils/formatDate";
-import { Col, Row, withSkeleton } from "react-native-components";
+import { Col, withSkeleton } from "react-native-components";
 import { BigNewsDate, BigNewsImage } from "./BigNewsCard.styles";
 
-const BigNewsCard = ({ uri, title, date, imageUri }: NewType): JSX.Element => {
+const BigNewsCard = ({ uri, title, date, imageUri }: NewsType): JSX.Element => {
     return (
         <TouchableWithoutFeedback onPress={() => Linking.openURL(uri)}>
             <SimpleNewsCardRoot>

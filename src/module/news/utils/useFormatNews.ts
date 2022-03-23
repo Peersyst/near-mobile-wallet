@@ -1,5 +1,5 @@
 import { formatHtmlEntities } from "utils/formatHtmlEntities";
-import { NewsType } from "../types"
+import { NewsType } from "../types";
 
 const defaultImageUri = "https://www.nervos.org/wp-content/uploads/2020/12/Group-22.jpg";
 const defaultUri = "https://twitter.com/NervosNetwork/";
@@ -9,12 +9,12 @@ const formatTitle = (title: string): string => {
     let result = formatHtmlEntities(title.replace(/\r?\n|\r/, " "));
     //Remove empty breakline
     const array = result.split("\n");
-    result = ""
-    for(let i = 0; i < array.length; i++) {
-        if(array[i] !== "" ) result += array[i].trim() + "\n";
+    result = "";
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] !== "") result += array[i].trim() + "\n";
     }
-    return result
-}
+    return result;
+};
 
 /**
  * We have to be carefull because sometimes one of the parameters
@@ -27,5 +27,5 @@ export const useFormatNews = (News: any): NewsType => {
     const date = News.pubDate || new Date();
     const imageUri = News["content"]?.__url || defaultImageUri;
     const uri = News.link || defaultUri;
-    return { title, date, imageUri, uri }
-}
+    return { title, date, imageUri, uri };
+};
