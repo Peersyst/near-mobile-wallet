@@ -11,7 +11,7 @@ const News: NewsType[] = [...Array(5)].map((_, i) => ({
     uri: "https://twitter.com/NervosNetwork/status/1505710783719567362",
 }));
 
-const useGetNews = (): QueryResult<[]> =>
+const useGetNews = (): QueryResult<any[]> =>
     useQuery(
         ["news"],
         async () => {

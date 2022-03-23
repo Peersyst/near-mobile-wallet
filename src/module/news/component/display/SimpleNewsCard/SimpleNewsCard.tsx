@@ -9,7 +9,7 @@ const SimpleNewsCard = ({ uri, title, date, imageUri }: NewsType): JSX.Element =
         <TouchableWithoutFeedback onPress={()=> Linking.openURL(uri)}>
             <SimpleNewsCardRoot>
                 <Row gap={"5%"} alignItems="flex-start" justifyContent="flex-start">
-                    <NewsImage fadeDuration={300} source={{ uri: imageUri }} />
+                    <NewsImage source={{ uri: imageUri }} />
                     <TextCont>
                         <NewTitle variant="body2">{title}</NewTitle>
                     </TextCont>
@@ -20,4 +20,4 @@ const SimpleNewsCard = ({ uri, title, date, imageUri }: NewsType): JSX.Element =
     );
 };
 
-export default withSkeleton(SimpleNewsCard);
+export default SimpleNewsCard;

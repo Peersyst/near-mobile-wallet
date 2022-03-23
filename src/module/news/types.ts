@@ -1,4 +1,4 @@
-export interface NewType {
+export interface NewsType {
     uri: string;
     title: string;
     date: string;

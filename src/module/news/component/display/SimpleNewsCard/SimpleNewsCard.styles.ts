@@ -15,7 +15,7 @@ export const NewsImage = styled(Image)(({ theme, dimensions }) => ({
 }))
 
 export const TextCont = styled(View)(({ dimensions }) => ({
-    width: dimensions.width * 0.5
+    width: dimensions.width * 0.51
 }))
 
 export const NewTitle = styled(Typography, { numberOfLines: 4 })(({ theme }) => ({
@@ -27,5 +27,5 @@ export const NewDate = styled(Typography)(({ theme }) => ({
     color: theme.palette.darkGray,
     position: "absolute",
     right: "7%",
-    bottom: "12%"
+    bottom: "10%"
 }))
