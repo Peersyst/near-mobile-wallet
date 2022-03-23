@@ -1,17 +1,9 @@
 import useWallet from "module/wallet/hook/useWallet";
-import { Typography } from "react-native-components";
 import useGetNfts from "module/nft/query/useGetNfts";
 import NftCard from "module/nft/component/display/NftCard/NftCard";
 import { translate } from "locale";
 import MainList from "module/main/component/display/MainList/MainList";
-
-const NoNftsComponent = (): JSX.Element => {
-    return (
-        <Typography variant="body1" textAlign="center" style={{ marginTop: "10%" }}>
-            {translate("no_nfts")}
-        </Typography>
-    );
-};
+import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 
 const NftsList = (): JSX.Element => {
     const {
@@ -30,8 +22,8 @@ const NftsList = (): JSX.Element => {
             refreshing={isFetching || isLoading}
             data={data}
             renderItem={({ item: nft }) => <NftCard {...nft} />}
-            ListEmptyComponent={isLoading ? undefined : NoNftsComponent}
-            keyExtractor={(tx) => tx.transactionHash}
+            ListEmptyComponent={isLoading ? undefined : <EmptyListComponent message={translate("no_nfts")} />}
+            keyExtractor={(nft) => nft.tokenId}
         />
     );
 };

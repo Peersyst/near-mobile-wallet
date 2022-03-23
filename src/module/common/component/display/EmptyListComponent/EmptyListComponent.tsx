@@ -6,7 +6,7 @@ interface EmptyListComponentProps {
 
 const EmptyListComponent = ({ message }: EmptyListComponentProps): JSX.Element => {
     return (
-        <Col alignItems="center">
+        <Col alignItems="center" style={{ marginTop: "10%" }}>
             <Typography variant="body1">{message}</Typography>
         </Col>
     );
