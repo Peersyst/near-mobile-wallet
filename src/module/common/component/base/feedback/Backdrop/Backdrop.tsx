@@ -99,7 +99,7 @@ export default function Backdrop({
                         marginTop: Platform.OS === "android" ? -24 : 0,
                         position: "absolute",
                         top: 0,
-                        left: Platform.OS === "ios" ? "-50%" : 0,
+                        left: 0,
                     }}
                 >
                     <Toaster />
