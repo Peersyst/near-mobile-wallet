@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { View } from "react-native";
+import { Image } from "react-native";
 import { Row } from "react-native-components";
 import { Dimensions } from "react-native";
 
@@ -9,7 +9,7 @@ export const NftCardRoot = styled(Row, { gap: "5%" })(() => ({
     paddingVertical: 14,
 }));
 
-export const NftCardImage = styled(View)(({ theme }) => ({
+export const NftCardImage = styled(Image)(({ theme }) => ({
     borderRadius: theme.borderRadius,
     backgroundColor: theme.palette.gray,
     width: NFT_CARD_WIDTH,
