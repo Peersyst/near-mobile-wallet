@@ -24,8 +24,8 @@ export default function ToastProvider({ children }: ToastProviderProps): JSX.Ele
                 toasts: state,
             }}
         >
-            <Toaster />
             {children}
+            <Toaster />
         </ToastContext.Provider>
     );
 }

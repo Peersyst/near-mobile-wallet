@@ -1,7 +1,6 @@
-import { Animated, Backdrop, BackdropProps } from "react-native-components";
+import { Backdrop, ExposedBackdropProps } from "react-native-components";
 import GlassNavigator, { GlassNavigatorProps } from "module/common/component/navigation/GlassNavigator/GlassNavigator";
-
-const SlidingGlassNavigator = Animated.createAnimatedComponent.slide(GlassNavigator, { direction: "up", appear: true });
+import { useWindowDimensions } from "react-native";
 
 const GlassNavigatorModal = ({
     breadcrumbs,
@@ -9,20 +8,30 @@ const GlassNavigatorModal = ({
     children,
     style,
     closable = true,
+    scrollable,
     ...backdropProps
-}: Omit<BackdropProps, "children" | "style"> & GlassNavigatorProps): JSX.Element => (
-    <Backdrop closable={closable} {...backdropProps}>
-        {([open, setOpen]) => (
-            <SlidingGlassNavigator
-                in={open}
-                breadcrumbs={breadcrumbs}
-                navbar={{ back: back && closable, title, logo, onBack: onBack || (() => setOpen(false)) }}
-                style={{ height: "90%", ...style }}
-            >
-                {children}
-            </SlidingGlassNavigator>
-        )}
-    </Backdrop>
-);
+}: ExposedBackdropProps & GlassNavigatorProps): JSX.Element => {
+    const { height } = useWindowDimensions();
+
+    return (
+        <Backdrop closable={closable} {...backdropProps}>
+            {([_open, setOpen]) => (
+                <GlassNavigator
+                    breadcrumbs={breadcrumbs}
+                    navbar={{
+                        back: back && closable,
+                        title,
+                        logo,
+                        onBack: onBack || (() => setOpen(false)),
+                    }}
+                    style={{ height: height * 0.9, ...style }}
+                    scrollable={scrollable}
+                >
+                    {children}
+                </GlassNavigator>
+            )}
+        </Backdrop>
+    );
+};
 
 export default GlassNavigatorModal;

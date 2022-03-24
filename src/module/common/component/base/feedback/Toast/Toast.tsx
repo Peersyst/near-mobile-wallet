@@ -31,7 +31,7 @@ export default function Toast({
 
     const [open, setOpen] = useControlled(true, propOpen, propOpen ? onClose : undefined);
 
-    const { text: textStyle, container: containerContainer } = useToastStyles(style || {}, type);
+    const { text: textStyle, container: containerStyle } = useToastStyles(style || {}, type);
     const icon = useGetIcon(type);
 
     useEffect(() => {
@@ -55,8 +55,8 @@ export default function Toast({
 
     return (
         <AnimatedComponent {...animatedProps} position={position} safeAreaInsets={safeAreaInsets}>
-            <ToastContent type={type} style={containerContainer} elevation={5}>
-                <Col flex={1}>
+            <ToastContent type={type} style={containerStyle} elevation={5}>
+                <Col flex={1} style={{ padding: 14 }}>
                     <Row flex={1} alignItems="center" gap={10}>
                         {icon && (
                             <Row>
