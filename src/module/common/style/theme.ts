@@ -49,6 +49,6 @@ export const theme = createTheme({
         subtitle2: undefined,
     },
     borderRadius: 24,
-    toolbarHeight: 55,
+    toolbarHeight: 47,
     translate,
 });
