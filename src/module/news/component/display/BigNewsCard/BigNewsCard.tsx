@@ -3,10 +3,10 @@ import { Linking, TouchableWithoutFeedback } from "react-native";
 import formatDate from "utils/formatDate";
 import { Col, withSkeleton } from "react-native-components";
 import { BigNewsDate, BigNewsImage } from "./BigNewsCard.styles";
-import { useFormatNews } from "module/news/utils/useFormatNews";
+import { formatNews } from "module/news/utils/formatNews";
 
 const BigNewsCard = (news: any): JSX.Element => {
-    const { uri, title, imageUri, date } = useFormatNews(news);
+    const { uri, title, imageUri, date } = formatNews(news);
     return (
         <TouchableWithoutFeedback onPress={() => Linking.openURL(uri)}>
             <SimpleNewsCardRoot>

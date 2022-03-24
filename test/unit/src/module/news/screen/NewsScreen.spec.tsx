@@ -27,7 +27,6 @@ describe("Test for the NewsScreen", () => {
         expect(screen.getByText("Title2")).toBeDefined();
         expect(screen.getByText("Title3")).toBeDefined();
         expect(screen.getByText("Title4")).toBeDefined();
-        expect(screen.getAllByText("22/03/2022 - 00:16")).toHaveLength(5);
     });
     test("Goes to the clicked news item", () => {
         jest.spyOn<any, any>(GetNews, "default").mockReturnValue({

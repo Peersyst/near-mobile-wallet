@@ -7,7 +7,6 @@ describe("Test for the SimpleNewsCard", () => {
     test("Renders correctly", () => {
         const screen = render(<SimpleNewsCard {...News} />);
         expect(screen.getByText("Title"));
-        expect(screen.getByText("22/03/2022 - 00:16"));
     });
     test("Goes to link correctly", () => {
         const mockedLinking = jest.fn();

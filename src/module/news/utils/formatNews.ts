@@ -22,7 +22,7 @@ const formatTitle = (title: string): string => {
  * @param News
  * @returns A useful and clean NewsType
  */
-export const useFormatNews = (News: any): NewsType => {
+export const formatNews = (News: any): NewsType => {
     const title = News.title ? formatTitle(News.title) : "New News from Nervos";
     const date = News.pubDate || new Date().toString();
     const imageUri = News["content"]?.__url || defaultImageUri;

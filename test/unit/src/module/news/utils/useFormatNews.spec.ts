@@ -1,4 +1,4 @@
-import { useFormatNews } from "module/news/utils/useFormatNews";
+import { formatNews } from "module/news/utils/formatNews";
 
 describe("useFormatNews tests", () => {
     const mockedNews = {
@@ -12,7 +12,7 @@ describe("useFormatNews tests", () => {
     const resultTitle = `There are <
 `;
     test("Returns formatted News", () => {
-        expect(useFormatNews(mockedNews)).toEqual(
+        expect(formatNews(mockedNews)).toEqual(
             expect.objectContaining({ title: resultTitle, date: "date", imageUri: "imageUri", uri: "link" }),
         );
     });
