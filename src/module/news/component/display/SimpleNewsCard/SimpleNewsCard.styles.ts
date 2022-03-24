@@ -3,7 +3,7 @@ import { Paper, Typography } from "react-native-components";
 import { Image, View } from "react-native";
 
 export const SimpleNewsCardRoot = styled(Paper)(({ dimensions }) => ({
-    padding: dimensions.width * 0.05,
+    padding: dimensions.width * 0.04,
     minHeight: 120,
 }));
 
