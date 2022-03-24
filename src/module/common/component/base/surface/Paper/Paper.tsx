@@ -3,7 +3,7 @@ import { PaperOverlay, PaperRoot } from "./Paper.styles";
 
 const Paper = ({ elevation = 1, square = false, style, children, ...rest }: PaperProps): JSX.Element => (
     <PaperRoot elevation={elevation} square={square} style={style} {...rest}>
-        <PaperOverlay elevation={elevation} />
+        <PaperOverlay elevation={elevation} square={square} />
         {children}
     </PaperRoot>
 );

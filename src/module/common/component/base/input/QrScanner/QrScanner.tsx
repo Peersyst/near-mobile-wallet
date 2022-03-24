@@ -14,8 +14,8 @@ const QrScanner = createModal(({ back, onScan, ...backdropProps }: QrScannerProp
     }, []);
 
     return (
-        <Backdrop transitionsDuration={0} {...backdropProps}>
-            {([open, setOpen]) => {
+        <Backdrop animationInTiming={1} animationOutTiming={1} animationIn="fadeIn" animationOut="fadeOut" {...backdropProps}>
+            {(open, setOpen) => {
                 if (hasPermission === false) open && setOpen(false);
                 return hasPermission ? (
                     <QrScannerRoot>

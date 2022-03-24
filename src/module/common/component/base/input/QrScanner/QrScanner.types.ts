@@ -1,9 +1,12 @@
 import { CameraProps } from "expo-camera";
 import { ReactElement } from "react";
-import { BackdropProps } from "module/common/component/base";
+import { ExposedBackdropProps } from "module/common/component/base";
 
 export interface QrScannerProps
-    extends Omit<BackdropProps, "children" | "transitionsDuration" | "transparent" | "closable" | "defaultOpen"> {
+    extends Omit<
+        ExposedBackdropProps,
+        "animationIn" | "animationOut" | "animationInTiming" | "animationOutTiming" | "renderBackdrop" | "closable" | "defaultOpen"
+    > {
     back?: ReactElement;
     onScan: NonNullable<CameraProps["onBarCodeScanned"]>;
 }

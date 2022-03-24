@@ -1,10 +1,8 @@
 import { ToastContainerStylesProps, ToastContentStylesProps, ToastPosition } from "./Toast.types";
-import { Dimensions, View } from "react-native";
+import { View } from "react-native";
 import styled from "@peersyst/react-native-styled";
 import { Paper } from "../../surface/Paper";
 import { Icon } from "react-native-components";
-
-const width = Dimensions.get("window").width;
 
 function getPosition(position: ToastPosition): { bottom: number | undefined; left: number; top: number | undefined } {
     switch (position) {
@@ -36,14 +34,13 @@ export const ToastContainer = styled(View)<ToastContainerStylesProps>(
     },
 );
 
-export const ToastContent = styled(Paper)<ToastContentStylesProps>(({ theme, type }) => {
+export const ToastContent = styled(Paper)<ToastContentStylesProps>(({ theme, type, dimensions: { width } }) => {
     const statusColor = type && type !== "loading" ? theme.palette.status[type] : undefined;
     return {
         flex: 1,
         justifyContent: "center",
         minHeight: 56,
         width: width - 48,
-        padding: 14,
         borderRadius: theme.borderRadius,
         backgroundColor: statusColor || theme.palette.background,
         elevation: 0,

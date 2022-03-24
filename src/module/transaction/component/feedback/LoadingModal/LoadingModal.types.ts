@@ -1,6 +1,6 @@
-import { BackdropProps } from "react-native-components";
+import { ExposedBackdropProps } from "react-native-components";
 
-export interface LoadingModalProps extends Omit<BackdropProps, "children" | "closable" | "transparent"> {
+export interface LoadingModalProps extends Omit<ExposedBackdropProps, "closable" | "animationIn" | "animationOut"> {
     loading: boolean;
     success: boolean;
     successMessage?: string;
