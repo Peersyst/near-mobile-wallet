@@ -15,7 +15,7 @@ const GlassNavigatorModal = ({
 
     return (
         <Backdrop closable={closable} {...backdropProps}>
-            {([_open, setOpen]) => (
+            {(_open, setOpen) => (
                 <GlassNavigator
                     breadcrumbs={breadcrumbs}
                     navbar={{

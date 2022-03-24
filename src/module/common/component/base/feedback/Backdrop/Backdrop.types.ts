@@ -108,7 +108,7 @@ export interface BackdropProps {
     /**
      * Backdrop content
      */
-    children?: ReactElement | ((state: [boolean, (value: boolean) => unknown]) => ReactElement);
+    children?: ReactElement | ((open: boolean, setOpen: (value: boolean) => unknown) => ReactElement);
 }
 
 export type ExposedBackdropProps = Omit<BackdropProps, "children" | "style">;

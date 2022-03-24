@@ -92,7 +92,7 @@ export default function Backdrop({
             style={[{ margin: 0, justifyContent: "center", alignItems: "center" }, style]}
             onResponderStart={() => toastActive && hideToast()}
         >
-            {typeof children === "function" ? children([open, setOpen]) : children}
+            {typeof children === "function" ? children(open, setOpen) : children}
             {entered && !toastWasActive && toastActive && open && (
                 <View
                     style={{
