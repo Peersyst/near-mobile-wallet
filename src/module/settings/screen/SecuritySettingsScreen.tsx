@@ -2,15 +2,15 @@ import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
 import BaseSecondaryScreen from "module/common/component/layout/BaseSecondaryScreen/BaseSecondaryScreen";
 import { BottomTabScreenNavigatonProps } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup.types";
-import { MainScreens } from "module/main/MainNavigatorGroup";
+import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import walletState from "module/wallet/state/WalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useEffect } from "react";
-import { Col, useToast } from "react-native-components";
+import { Col, useModal, useToast } from "react-native-components";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { MainStackParamsList } from "stack-navigator";
 import pinConfirmedState from "../state/PinConfirmedState";
+import UpdatePinScreen from "./UpdatePinScreen";
 
 const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): JSX.Element => {
     const setWalletState = useSetRecoilState(walletState);
@@ -30,14 +30,12 @@ const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): 
         if (pinConfirmed.pinConfirmed && pinConfirmed.hasNewPin) updatePin();
     }, [pinConfirmed]);
 
-    const navigate = (link: keyof MainStackParamsList) => {
-        navigation.navigate(link);
-    };
-
+    const { showModal } = useModal();
+    
     return (
         <BaseSecondaryScreen navigation={navigation} title={translate("security_settings")} back={true}>
             <Col gap={20}>
-                <Button onPress={() => navigate(MainScreens.UPDATE_PIN)} fullWidth variant="outlined">
+                <Button onPress={() => showModal(UpdatePinScreen)} fullWidth variant="outlined">
                     {translate("change_passcode")}
                 </Button>
                 <Button

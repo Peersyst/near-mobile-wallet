@@ -6,7 +6,7 @@ import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
 import { useSetRecoilState } from "recoil";
 import BaseSettingsModalScreen from "../components/layout/BaseSettingsModalScreen/BaseSettingsModalScreen";
 
-const UpdatePinScreen = (): JSX.Element => {
+const UpdatePinScreen = () => {
     const setPinConfirmedState = useSetRecoilState(pinConfirmedState);
     const navigation = useNavigation();
     const handleSubmit = () => {
@@ -14,7 +14,7 @@ const UpdatePinScreen = (): JSX.Element => {
         navigation.navigate(MainBottomScreens.SECURITY_SETTINGS);
     };
     return (
-        <BaseSettingsModalScreen title={translate("update_your_pin")} back>
+        <BaseSettingsModalScreen title={translate("update_your_pin")} >
             <SetWalletPinScreen updating onSuccess={handleSubmit} />
         </BaseSettingsModalScreen>
     );

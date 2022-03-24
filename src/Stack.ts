@@ -8,13 +8,11 @@ export type MainStackParamsList = {
     Settings: undefined;
     GeneralSettings: undefined;
     SecuritySettings: undefined;
-    ConfirmPin: undefined;
+    ConfirmPin: { redirect: "UpdatePin" };
     UpdatePin: undefined;
     Notifications: undefined;
     Dao: undefined;
     News: undefined;
-    Send: undefined;
-    Receive: { address: string };
 };
 export type RootStackParamsList = {
     //Auth

@@ -3,6 +3,7 @@ import { Col, Row, Toolbar } from "react-native-components";
 import Navbar from "module/common/component/navigation/Navbar/Navbar";
 import { NavbarProps } from "module/common/component/navigation/Navbar/Navbar.types";
 import { ReactNode } from "react";
+import FullScreenModal from "module/common/component/layout/FullScreenModal/FullScreenModal";
 
 export interface BaseSettingsModalScreenProps extends NavbarProps {
     children: ReactNode;
@@ -10,14 +11,13 @@ export interface BaseSettingsModalScreenProps extends NavbarProps {
 
 const BaseSettingsModalScreen = ({ children, ...navbarProps }: BaseSettingsModalScreenProps): JSX.Element => {
     return (
-        <BasePage appearance="dark" header={false} showIcons={false}>
-            <Toolbar>{Object.entries(navbarProps).length > 0 && <Navbar {...navbarProps} />}</Toolbar>
+        <FullScreenModal {...navbarProps} appearance={"dark"} back>
             <Col flex={1} justifyContent="center">
                 <Row flex={1} style={{ maxHeight: 500 }}>
                     {children}
                 </Row>
             </Col>
-        </BasePage>
+        </FullScreenModal>
     );
 };
 
