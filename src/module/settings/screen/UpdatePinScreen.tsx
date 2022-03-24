@@ -1,23 +1,17 @@
 import { translate } from "locale";
-import useNavigation from "module/common/hook/useNavigation";
-import { MainBottomScreens } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup";
-import pinConfirmedState from "module/settings/state/PinConfirmedState";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
-import { useSetRecoilState } from "recoil";
-import BaseSettingsModalScreen from "../components/layout/BaseSettingsModalScreen/BaseSettingsModalScreen";
+import { createBackdrop, ExposedBackdropProps } from "react-native-components";
+import BaseSettingsModal from "../components/layout/BaseSettingsModal/BaseSettingsModal";
 
-const UpdatePinScreen = () => {
-    const setPinConfirmedState = useSetRecoilState(pinConfirmedState);
-    const navigation = useNavigation();
+const UpdatePinScreen = createBackdrop((props: ExposedBackdropProps) => {
     const handleSubmit = () => {
-        setPinConfirmedState((state) => ({ ...state, hasNewPin: true }));
-        navigation.navigate(MainBottomScreens.SECURITY_SETTINGS);
+        //Pin sucessfully updated
     };
     return (
-        <BaseSettingsModalScreen title={translate("update_your_pin")} >
+        <BaseSettingsModal title={translate("update_your_pin")} {...props}>
             <SetWalletPinScreen updating onSuccess={handleSubmit} />
-        </BaseSettingsModalScreen>
+        </BaseSettingsModal>
     );
-};
+});
 
 export default UpdatePinScreen;

@@ -1,6 +1,4 @@
-import BasePage from "module/common/component/layout/BasePage/BasePage";
-import { Col, Row, Toolbar } from "react-native-components";
-import Navbar from "module/common/component/navigation/Navbar/Navbar";
+import { Col, Row } from "react-native-components";
 import { NavbarProps } from "module/common/component/navigation/Navbar/Navbar.types";
 import { ReactNode } from "react";
 import FullScreenModal from "module/common/component/layout/FullScreenModal/FullScreenModal";

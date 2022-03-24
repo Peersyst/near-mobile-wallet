@@ -12,7 +12,7 @@ const GlassNavigatorModal = ({
     ...backdropProps
 }: ExposedBackdropProps & GlassNavigatorProps): JSX.Element => {
     const { height } = useWindowDimensions();
-
+    
     return (
         <Backdrop closable={closable} {...backdropProps}>
             {(_open, setOpen) => (
