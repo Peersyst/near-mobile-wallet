@@ -8,7 +8,7 @@ export type NftCardProps = Nft;
 
 const NftCard = ({ nftName, data }: NftCardProps): JSX.Element => (
     <NftCardRoot>
-        <NftCardImage source={{ uri: data.imageUri as string }} />
+        <NftCardImage source={{ uri: data.imageUri }} />
         <Col flex={1} justifyContent="space-between" style={{ paddingVertical: 12 }}>
             <Col gap={6}>
                 <Typography variant="body1" fontWeight="bold" numberOfLines={1}>
