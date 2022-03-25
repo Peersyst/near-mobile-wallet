@@ -5,9 +5,14 @@ export interface TokenSDKType {
 }
 
 export interface TokenType extends TokenSDKType {
-    tokenUri: string;
+    imageUri: string;
     tokenName: string;
+    name: string;
+    description: string;
 }
+
+export type TokenListType = Pick<TokenType, "name" | "description" | "tokenName" | "imageUri" | "args">;
+
 export interface TokenAmount {
     type: TokenType;
     amount: number;

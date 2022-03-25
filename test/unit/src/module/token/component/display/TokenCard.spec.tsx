@@ -7,7 +7,8 @@ describe("Test for the Token Card", () => {
     test("Renders correctly", () => {
         jest.spyOn(useCkbConversion, "default").mockReturnValue({ value: 10, convertBalance: jest.fn() });
         const screen = render(<TokenCard token={token} />);
-        expect(screen.getByText("SUDT")).toBeDefined();
+        expect(screen.getByText("Wrapped BTC")).toBeDefined();
+        expect(screen.getByText("ForceBridge from BSC")).toBeDefined();
         //Balance in CKB
         expect(screen.getByText("20")).toBeDefined();
         //Balance in USD
