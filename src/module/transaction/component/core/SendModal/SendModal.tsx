@@ -1,4 +1,4 @@
-import { BackdropProps, createBackdrop, TabPanel, Tabs } from "react-native-components";
+import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "react-native-components";
 import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
 import { translate } from "locale";
 import { useState } from "react";
@@ -16,7 +16,7 @@ export enum SendScreens {
     CONFIRMATION,
 }
 
-const SendModal = createBackdrop(({ onExited, ...rest }: BackdropProps) => {
+const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
     const [activeIndex, setActiveIndex] = useState(SendScreens.SEND_TO_ADDRESS);
     const { fee } = useRecoilValue(settingsState);
     const resetSendState = useResetRecoilState(sendState);

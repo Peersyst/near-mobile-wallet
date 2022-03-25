@@ -33,15 +33,8 @@ const ErrorLoadingModal = (): JSX.Element => {
 };
 
 describe("LoadingModal tests", () => {
-    beforeAll(() => {
-        jest.useFakeTimers();
-    });
-
-    afterEach(() => {
-        jest.useRealTimers();
-    });
-
     test("Renders correctly on success", () => {
+        jest.useFakeTimers();
         const screen = render(<SuccessLoadingModal />);
 
         expect(screen.getByTestId("LogoIcon")).toBeDefined();
@@ -49,9 +42,11 @@ describe("LoadingModal tests", () => {
         expect(screen.getByTestId("SuccessIcon")).toBeDefined();
         fireEvent.press(screen.getByText(translate("go_back")));
         act(() => jest.runAllTimers());
+        jest.useRealTimers();
     });
 
     test("Renders correctly on error", () => {
+        jest.useFakeTimers();
         const screen = render(<ErrorLoadingModal />);
 
         expect(screen.getByTestId("LogoIcon")).toBeDefined();
@@ -59,5 +54,6 @@ describe("LoadingModal tests", () => {
         expect(screen.queryByTestId("SuccessIcon")).toBeNull();
         expect(screen.getByTestId("LogoIcon")).toBeDefined();
         act(() => jest.runAllTimers());
+        jest.useRealTimers();
     });
 });

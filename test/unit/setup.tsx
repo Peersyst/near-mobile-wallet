@@ -21,7 +21,6 @@ setLogger({
 /* eslint-enable no-console */
 
 /*
-import "react-native-gesture-handler/jestSetup";
 jest.mock("react-native-reanimated", () => {
     const Reanimated = require("react-native-reanimated/mock");
 
@@ -30,10 +29,12 @@ jest.mock("react-native-reanimated", () => {
     Reanimated.default.call = () => undefined;
 
     return Reanimated;
-});
+});*/
+
+import "react-native-gesture-handler/jestSetup";
 
 // Silence the warning: Animated: `useNativeDriver` is not supported because the native animated module is missing
-jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");*/
+jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
 
 jest.mock("@react-navigation/native", () => ({
     __esModule: true,
@@ -45,3 +46,17 @@ jest.mock("expo-localization", () => ({
     digitGroupingSeparator: ",",
     decimalSeparator: ".",
 }));
+
+import { BackdropProps } from "react-native-components";
+jest.mock("../../src/module/common/component/base/feedback/Backdrop/Backdrop", () => {
+    const MockBackdrop = ({ children, onOpen, onClose, onExited, onEntered }: BackdropProps) => {
+        const handleClose = () => {
+            onClose?.();
+            onExited?.();
+        };
+        onOpen?.();
+        onEntered?.();
+        return <>{typeof children === "function" ? children(true, jest.fn(handleClose)) : children}</>;
+    };
+    return MockBackdrop;
+});

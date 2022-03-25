@@ -9,7 +9,7 @@ const { compilerOptions } = require("./tsconfig.path");
 module.exports = {
     testEnvironment: "jest-environment-jsdom",
     preset: "jest-expo",
-    setupFilesAfterEnv: ["<rootDir>/test/unit/setup.ts", "@testing-library/jest-native"],
+    setupFilesAfterEnv: ["<rootDir>/test/unit/setup.tsx", "@testing-library/jest-native"],
     moduleDirectories: [
         "node_modules",
         "utils", // a utility folder

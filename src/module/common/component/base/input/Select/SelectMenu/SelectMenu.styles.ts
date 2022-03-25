@@ -3,8 +3,8 @@ import { Modal } from "../../../feedback/Modal";
 import { SelectItemsViewProps } from "./SelectMenu.types";
 import { View } from "react-native";
 
-export const SelectMenuRoot = styled(Modal)(() => ({
-    width: "100%",
+export const SelectMenuRoot = styled(Modal)(({ dimensions: { width } }) => ({
+    width: width - 60,
     padding: 0,
     overflow: "hidden",
 }));
