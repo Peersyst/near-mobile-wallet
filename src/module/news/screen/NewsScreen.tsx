@@ -20,13 +20,14 @@ const NewsScreen = (): JSX.Element => {
     };
 
     return (
-        <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+        <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="black" />}>
             <BaseMainScreen title={translate("news")}>
                 <NewsScreenRoot>
                     <List
                         renderItem={({ item, index }) => {
                             return <AnimatedSimpleNewsCard loading={isLoading} in {...item} key={index} />;
                         }}
+                        scrollEnabled={false}
                         keyExtractor={(item) => item.title}
                         data={data}
                         ItemSeparatorComponent={() => <NewsSpacer />}
