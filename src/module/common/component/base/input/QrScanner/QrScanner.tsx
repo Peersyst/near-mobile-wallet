@@ -19,7 +19,6 @@ const QrScanner = createModal(({ back, onScan, ...backdropProps }: QrScannerProp
                 if (hasPermission === false) open && setOpen(false);
                 return hasPermission ? (
                     <QrScannerRoot>
-                        <StatusBar style={"light"} />
                         <BackButton style={{ color: "white", fontSize: 30 }} onPress={() => setOpen(false)}>
                             {back || <CrossIcon />}
                         </BackButton>
