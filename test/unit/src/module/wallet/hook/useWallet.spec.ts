@@ -14,13 +14,13 @@ describe("useWallet tests", () => {
         const { result } = renderHook(() => useWallet());
         act(() =>
             result.current.setCells([
-                { address: "address1", balance: "1" },
-                { address: "address2", balance: "2" },
+                { address: "address1", name: "cell1" },
+                { address: "address2", name: "cell2" },
             ]),
         );
         expect(result.current.state.cells).toEqual([
-            { address: "address1", balance: "1" },
-            { address: "address2", balance: "2" },
+            { address: "address1", name: "cell1" },
+            { address: "address2", name: "cell2" },
         ]);
     });
 
@@ -40,8 +40,8 @@ describe("useWallet tests", () => {
                 selectedAccount: 2,
                 name: "Name",
                 cells: [
-                    { address: "address1", balance: "1" },
-                    { address: "address2", balance: "2" },
+                    { address: "address1", name: "cell1" },
+                    { address: "address2", name: "cell2" },
                 ],
             }),
         );
@@ -52,8 +52,8 @@ describe("useWallet tests", () => {
             selectedAccount: 2,
             name: "Name",
             cells: [
-                { address: "address1", balance: "1" },
-                { address: "address2", balance: "2" },
+                { address: "address1", name: "cell1" },
+                { address: "address2", name: "cell2" },
             ],
         });
         act(() => result.current.reset());

@@ -3,7 +3,7 @@ import { loadLocalization } from "locale";
 
 describe("LocaleTest", () => {
     test("All keys are set in both languages", async () => {
-        loadLocalization();
+        await loadLocalization();
         const languages = i18n.translations;
         for (const language of Object.keys(languages)) {
             const languageTranslations = languages[language];

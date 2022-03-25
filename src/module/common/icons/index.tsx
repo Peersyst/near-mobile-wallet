@@ -20,3 +20,5 @@ export * from "./SendIcon";
 export * from "./SettingsIcon";
 export * from "./StarIcon";
 export * from "./SuccessIcon";
+export * from "./TransactionReceivedIcon";
+export * from "./TransactionSentIcon";

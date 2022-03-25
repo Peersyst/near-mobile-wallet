@@ -40,6 +40,7 @@ describe("PickWalletMnemonicScreen tests", () => {
         jest.spyOn(UseToast, "useToast").mockReturnValue({
             showToast,
             hideToast: jest.fn(),
+            toastActive: false,
         });
         const screen = render(<PickWalletMnemonicScreen />);
 

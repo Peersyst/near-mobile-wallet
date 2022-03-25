@@ -11,7 +11,7 @@ describe("Renders the token list properly", () => {
         jest.spyOn(UseWallet, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(GetTokens, "default").mockReturnValue(SuccessApiCall(tokens));
         const screen = render(<TokensList />);
-        await waitFor(() => expect(screen.getAllByText("SUDT")));
+        await waitFor(() => expect(screen.getAllByText("USDC|eth")));
         expect(screen.getByText("10")).toBeDefined();
         expect(screen.getByText("21")).toBeDefined();
     });
