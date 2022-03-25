@@ -21,7 +21,7 @@ describe("Test for the receive Card", () => {
     test("Copies address correctly", () => {
         jest.spyOn(UseWallet, "default").mockReturnValue({ state: { cells, selectedAccount: 0 } } as any);
         const showToast = jest.fn();
-        jest.spyOn(UseToast, "useToast").mockReturnValue({ showToast, hideToast: jest.fn() });
+        jest.spyOn(UseToast, "useToast").mockReturnValue({ showToast, hideToast: jest.fn(), toastActive: false });
         jest.spyOn(Clipboard, "setString");
         const screen = render(<ReceiveCard />);
         const icon = screen.getByTestId("FilledCopyIcon");
