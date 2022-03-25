@@ -23,7 +23,7 @@ const TokensList = (): JSX.Element => {
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent message={translate("no_currencies")} />}
             data={data}
             renderItem={({ item: token }) => <TokenCard token={token} />}
-            keyExtractor={(tx) => tx.type.codeHash}
+            keyExtractor={(tx) => tx.type.args}
         />
     );
 };

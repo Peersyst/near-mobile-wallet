@@ -16,13 +16,13 @@ export const token: TokenAmount = {
 
 export const tokens: TokenAmount[] = [...Array(5)].map((_, i) => ({
     type: {
-        args: "0x" + (i + 1),
-        codeHash: i.toString(),
-        hashType: i.toString(),
+        args: tokensList[i].args,
+        codeHash: tokensList[i].codeHash,
+        hashType: tokensList[i].hashType,
         imageUri: tokensList[i].imageUri,
         tokenName: tokensList[i].tokenName,
         name: tokensList[i].name,
-        description: tokensList[i].description
+        description: tokensList[i].description,
     },
-    amount: Number((Math.random() * 1234.56).toFixed(2)),
+    amount: 1 * 20,
 }));
