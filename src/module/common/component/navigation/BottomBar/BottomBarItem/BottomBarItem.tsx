@@ -5,7 +5,7 @@ const BottomBarItem = ({ label, Icon, isActive, onPress }: BottomBarItemProps): 
     return (
         <BottomBarItemRoot accessibilityRole="button" onPress={onPress}>
             <LinkItemIcon isActive={isActive}>{Icon}</LinkItemIcon>
-            <LinkItemText variant="caption" isActive={isActive}>
+            <LinkItemText variant="body2" isActive={isActive}>
                 {label}
             </LinkItemText>
         </BottomBarItemRoot>

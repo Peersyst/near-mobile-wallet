@@ -2,7 +2,7 @@ import styled from "@peersyst/react-native-styled";
 import { Paper } from "react-native-components";
 import Constants from "expo-constants";
 
-export const HEADER_PADDING_BOTTOM = 16;
+export const HEADER_PADDING_BOTTOM = 12;
 
 export const HeaderRoot = styled(Paper)(({ theme }) => {
     return {
