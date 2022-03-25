@@ -27,6 +27,4 @@ export interface PaperRootProps {
     square: boolean;
 }
 
-export interface PaperOverlayProps {
-    elevation: Elevation;
-}
+export type PaperOverlayProps = PaperRootProps;

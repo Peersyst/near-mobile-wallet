@@ -1,12 +1,8 @@
 import { useCallback } from "react";
 import { ModalProps } from "./Modal.types";
 import { useControlled } from "@peersyst/react-hooks";
-import { Backdrop, ForwardedBackdropProps } from "../Backdrop";
+import { Backdrop } from "../Backdrop";
 import { ModalRoot } from "./Modal.styles";
-import { Animated } from "../../util/Animated";
-
-const FadingModal = Animated.createAnimatedComponent.fade(ModalRoot);
-const SlidingModal = Animated.createAnimatedComponent.slide(ModalRoot, { direction: "up" });
 
 export default function Modal({
     closable = true,
@@ -14,12 +10,9 @@ export default function Modal({
     open: propOpen,
     children,
     onClose,
-    onExited,
-    transitionsDuration = 300,
-    animation = "fade",
     elevation = 16,
-    BackdropProps,
     style,
+    ...rest
 }: ModalProps): JSX.Element {
     const [open, setOpen] = useControlled(defaultOpen, propOpen, propOpen ? onClose : undefined);
 
@@ -29,21 +22,11 @@ export default function Modal({
         }
     }, [closable, open, setOpen]);
 
-    const AnimatedModalRoot = animation === "fade" ? FadingModal : SlidingModal;
-
-    const forwardedBackdropProps: ForwardedBackdropProps = {
-        defaultOpen,
-        open,
-        onClose: handleClose,
-        onExited,
-        closable,
-    };
-
     return (
-        <Backdrop {...BackdropProps} {...forwardedBackdropProps}>
-            <AnimatedModalRoot in={open} appear duration={transitionsDuration} style={style} elevation={elevation}>
+        <Backdrop defaultOpen={defaultOpen} open={open} onClose={handleClose} closable={closable} {...rest}>
+            <ModalRoot style={style} elevation={elevation}>
                 {children}
-            </AnimatedModalRoot>
+            </ModalRoot>
         </Backdrop>
     );
 }

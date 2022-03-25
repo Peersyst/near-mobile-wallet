@@ -10,7 +10,7 @@ describe("Test for the copy to clipboard", () => {
 
     test("Renders correctly", () => {
         const showToast = jest.fn();
-        jest.spyOn(UseToast, "useToast").mockReturnValue({ showToast, hideToast: jest.fn() });
+        jest.spyOn(UseToast, "useToast").mockReturnValue({ showToast, hideToast: jest.fn(), toastActive: false });
         jest.spyOn(Clipboard, "setString");
         const screen = render(<CopyToClipboardIcon text={"Peersyst4thewin"} toastMessage="Copied" />);
         const icon = screen.getByTestId("CopyIcon");

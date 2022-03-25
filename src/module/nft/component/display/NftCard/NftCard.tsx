@@ -23,7 +23,7 @@ const NftCard = ({ nftName, data }: NftCardProps): JSX.Element => (
                     {translate("bought_for")}:
                 </Typography>
                 <Typography variant="body1" fontWeight="bold">
-                    {formatNumber(data.price)} CKB
+                    {formatNumber(data.price || 0)} CKB
                 </Typography>
             </Col>
         </Col>

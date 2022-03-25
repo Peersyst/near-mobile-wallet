@@ -1,16 +1,18 @@
 import { useLogoPageFlex } from "module/common/component/layout/LogoPage/LogoPageContext";
-import { Animated, TabPanel, Tabs, useTabs } from "react-native-components";
+import { TabPanel, Tabs, useTabs } from "react-native-components";
 import { useState } from "react";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
 import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
 import { translate } from "locale";
-import GlassNavigator from "module/common/component/navigation/GlassNavigator/GlassNavigator";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
 import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import { useBackHandler } from "@react-native-community/hooks";
+import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
+import { useResetRecoilState } from "recoil";
+import createWalletState from "module/wallet/state/CreateWalletState";
 
 export enum CreateWalletScreens {
     SET_WALLET_NAME,
@@ -20,13 +22,6 @@ export enum CreateWalletScreens {
     SET_WALLET_PIN,
     CREATE_WALLET_SUCCESS,
 }
-
-const AnimatedGlassNavigator = Animated.createAnimatedComponent.slide(GlassNavigator, {
-    duration: 400,
-    appear: true,
-    direction: "up",
-    unmountOnExit: true,
-});
 
 const CreateWalletNavigatorGroup = () => {
     const [activeTab, setActiveTab] = useState(0);
@@ -39,6 +34,7 @@ const CreateWalletNavigatorGroup = () => {
         handleBack();
         return true;
     });
+    const resetCreateWalletState = useResetRecoilState(createWalletState);
 
     const handleBack = () => {
         if (activeTab === CreateWalletScreens.SET_WALLET_NAME) {
@@ -70,19 +66,22 @@ const CreateWalletNavigatorGroup = () => {
     const handleGlassExit = () => {
         if (showPin) setActiveTab(CreateWalletScreens.SET_WALLET_PIN);
         else if (showSuccess) setActiveTab(CreateWalletScreens.CREATE_WALLET_SUCCESS);
-        else setTab(AuthScreens.AUTH_SWITCH);
+        else {
+            resetCreateWalletState();
+            setTab(AuthScreens.AUTH_SWITCH);
+        }
     };
 
     return (
         <Tabs index={activeTab} onIndexChange={handleTabChange}>
-            <AnimatedGlassNavigator
-                in={showGlass}
-                appear
-                style={{ height: "170%", flex: 1 }}
+            <GlassNavigatorModal
+                onClose={() => setShowGlass(false)}
+                open={showGlass}
                 onExited={handleGlassExit}
                 navbar={{ back: true, title: translate("create_wallet"), onBack: handleBack }}
                 breadcrumbs={{ index: activeTab, length: 4 }}
                 scrollable
+                renderBackdrop={false}
             >
                 <TabPanel index={CreateWalletScreens.SET_WALLET_NAME}>
                     <SetWalletNameScreen
@@ -99,7 +98,7 @@ const CreateWalletNavigatorGroup = () => {
                 <TabPanel index={CreateWalletScreens.PICK_WALLET_MNEMONIC}>
                     <PickWalletMnemonicScreen />
                 </TabPanel>
-            </AnimatedGlassNavigator>
+            </GlassNavigatorModal>
             <TabPanel index={CreateWalletScreens.SET_WALLET_PIN}>
                 <SetWalletPinScreen
                     onSuccess={() => handleTabChange(CreateWalletScreens.WALLET_ADVISES)}

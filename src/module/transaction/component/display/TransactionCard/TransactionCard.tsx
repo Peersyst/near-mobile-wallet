@@ -7,7 +7,7 @@ import formatNumber from "utils/formatNumber";
 import { TransactionReceivedIcon, TransactionSentIcon } from "icons";
 
 export type TransactionCardProps = Transaction;
-const tokens = ["CKB", "CKB", "CKB", "ETH", "USDC", "TAI", "CKB", "CKB", "COOP"];
+const tokens = ["CKB", "CKB", "CKB", "ETH", "USDC", "TAI", "CKB", "CKB", "COOP", "CKB"];
 
 const TransactionCard = ({ timestamp }: TransactionCardProps): JSX.Element => {
     const seed = Math.random();

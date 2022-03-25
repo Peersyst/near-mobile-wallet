@@ -12,9 +12,9 @@ interface TokenProps {
 }
 
 const TokenCard = ({ token }: TokenProps): JSX.Element => {
-    const { name, tokenName, imageUri, description } = tokensList.find((t) => t.args === token.type.args)!;
+    const { name, tokenName, imageUri, description, args } = tokensList.find((t) => t.args === token.type.args) || {};
     const { fiat } = useRecoilValue(settingsState);
-    const { value } = useCkbConversion(fiat, token.amount);
+    const { value } = useCkbConversion(fiat, token.amount * (args === "0x3" ? 3000 : 100));
     return (
         <TokenRoot>
             <Row alignItems="center" gap="6%">
@@ -27,7 +27,7 @@ const TokenCard = ({ token }: TokenProps): JSX.Element => {
                 </Col>
             </Row>
             <Col alignItems="flex-end">
-                <Balance balance={token.amount.toString()} smallBalance units={tokenName} boldUnits variant="body2" />
+                <Balance balance={token.amount.toString()} smallBalance units={tokenName || ""} boldUnits variant="body2" />
                 <Balance balance={value.toString()} units={fiat} variant={"button"} />
             </Col>
         </TokenRoot>
