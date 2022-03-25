@@ -31,7 +31,7 @@ const NftsList = (): JSX.Element => {
             data={data}
             renderItem={({ item: nft }) => <NftCard {...nft} />}
             ListEmptyComponent={isLoading ? undefined : NoNftsComponent}
-            keyExtractor={(tx) => tx.transactionHash}
+            keyExtractor={(nft) => nft.tokenId}
         />
     );
 };
