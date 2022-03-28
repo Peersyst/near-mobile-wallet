@@ -1,6 +1,6 @@
 import { formatNews } from "module/news/utils/formatNews";
 
-describe("useFormatNews tests", () => {
+describe("formatNews tests", () => {
     const mockedNews = {
         content: {
             __url: "imageUri",

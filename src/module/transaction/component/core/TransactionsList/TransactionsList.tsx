@@ -13,14 +13,13 @@ const TransactionsList = (): JSX.Element => {
     const {
         data = [],
         refetch,
-        isFetching,
         isLoading,
     } = useGetTransactions(selectedAccount !== undefined ? cells[selectedAccount].address : undefined);
 
     return (
         <MainList
             onRefresh={refetch}
-            refreshing={isFetching || isLoading}
+            loading={isLoading}
             data={data}
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent message={translate("no_transactions")} />}
             renderItem={({ item: tx }) => <TransactionCard {...tx} />}

@@ -9,17 +9,12 @@ const NftsList = (): JSX.Element => {
     const {
         state: { selectedAccount, cells },
     } = useWallet();
-    const {
-        data = [],
-        refetch,
-        isFetching,
-        isLoading,
-    } = useGetNfts(selectedAccount !== undefined ? cells[selectedAccount].address : undefined);
+    const { data = [], refetch, isLoading } = useGetNfts(selectedAccount !== undefined ? cells[selectedAccount].address : undefined);
 
     return (
         <MainList
             onRefresh={refetch}
-            refreshing={isFetching || isLoading}
+            loading={isLoading}
             data={data}
             renderItem={({ item: nft }) => <NftCard {...nft} />}
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent message={translate("no_nfts")} />}

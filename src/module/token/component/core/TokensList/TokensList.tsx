@@ -12,14 +12,13 @@ const TokensList = (): JSX.Element => {
     } = useWallet();
     const { isLoading, data = [], refetch } = useGetTokens(selectedAccount !== undefined ? cells[selectedAccount].address : undefined);
     const { isLoading: loadingPrice, refetch: refetchPrice } = useGetCkbPrice("usd");
-    const handleRefetch = () => {
-        refetch();
-        refetchPrice();
+    const handleRefetch = async () => {
+        await Promise.all([refetch(), refetchPrice()]);
     };
     return (
         <MainList
             onRefresh={handleRefetch}
-            refreshing={isLoading || loadingPrice}
+            loading={isLoading || loadingPrice}
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent message={translate("no_currencies")} />}
             data={data}
             renderItem={({ item: token }) => <TokenCard token={token} />}
