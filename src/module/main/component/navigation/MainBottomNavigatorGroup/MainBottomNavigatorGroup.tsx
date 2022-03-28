@@ -2,7 +2,7 @@ import BottomBar from "module/common/component/navigation/BottomBar/BottomBar";
 import { BottomTab } from "stack-navigator";
 import HomeScreen from "module/main/screen/HomeScreen/HomeScreen";
 import DaoScreen from "module/dao/page/DaoScreen";
-import NewsScreen from "module/news/page/NewsScreen";
+import NewsScreen from "module/news/screen/NewsScreen";
 import SettingsScreen from "module/settings/screen/SettingsScreen";
 import BasePage from "module/common/component/layout/BasePage/BasePage";
 import GeneralSettingsScreen from "module/settings/screen/GeneralSettingsScreen";

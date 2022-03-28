@@ -1,17 +1,9 @@
 import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
 import useGetTransactions from "module/transaction/query/useGetTransactions";
 import useWallet from "module/wallet/hook/useWallet";
-import { Typography } from "react-native-components";
 import { translate } from "locale";
 import MainList from "module/main/component/display/MainList/MainList";
-
-const NoTransactionsComponent = (): JSX.Element => {
-    return (
-        <Typography variant="body1" textAlign="center" style={{ marginTop: "10%" }}>
-            {translate("no_transactions")}
-        </Typography>
-    );
-};
+import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 
 const TransactionsList = (): JSX.Element => {
     const {
@@ -21,16 +13,15 @@ const TransactionsList = (): JSX.Element => {
     const {
         data = [],
         refetch,
-        isFetching,
         isLoading,
     } = useGetTransactions(selectedAccount !== undefined ? cells[selectedAccount].address : undefined);
 
     return (
         <MainList
             onRefresh={refetch}
-            refreshing={isFetching || isLoading}
+            loading={isLoading}
             data={data}
-            ListEmptyComponent={isLoading ? undefined : NoTransactionsComponent}
+            ListEmptyComponent={isLoading ? undefined : <EmptyListComponent message={translate("no_transactions")} />}
             renderItem={({ item: tx }) => <TransactionCard {...tx} />}
             keyExtractor={(tx) => tx.transactionHash}
         />

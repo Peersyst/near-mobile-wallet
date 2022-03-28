@@ -11,9 +11,9 @@ export interface BaseMainScreenProps extends NavbarProps {
 
 const BaseMainScreen = ({ children, ...navbarProps }: BaseMainScreenProps): JSX.Element => {
     return (
-        <Col flex={1} gap={20} style={{ paddingTop: 20 }}>
+        <Col flex={1} gap={20}>
             {Object.entries(navbarProps).length > 0 && (
-                <Toolbar>
+                <Toolbar style={{ marginTop: "4%" }}>
                     <Navbar {...navbarProps} />
                 </Toolbar>
             )}

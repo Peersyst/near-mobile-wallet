@@ -1,15 +1,14 @@
-import { FlatListProps, RefreshControl } from "react-native";
 import Divider from "module/common/component/display/Divider/Divider";
 import { List } from "react-native-components";
+import { ListProps } from "module/common/component/base/display/List/List";
 
-export type MainListProps = Omit<FlatListProps<any>, "ItemSeparatorComponent" | "style" | "refreshControl">;
+export type MainListProps = Omit<ListProps, "ItemSeparatorComponent" | "style">;
 
-const MainList = ({ data, onRefresh, refreshing, indicatorStyle, ...rest }: MainListProps): JSX.Element => (
+const MainList = ({ indicatorStyle, ...rest }: MainListProps): JSX.Element => (
     <List
-        data={data}
         ItemSeparatorComponent={() => <Divider width="full-width" />}
         style={{ paddingHorizontal: "5%" }}
-        refreshControl={<RefreshControl onRefresh={onRefresh || undefined} refreshing={!!refreshing} tintColor="black" />}
+        refreshControlProps={{ tintColor: "black" }}
         indicatorStyle={indicatorStyle || "black"}
         {...rest}
     />
