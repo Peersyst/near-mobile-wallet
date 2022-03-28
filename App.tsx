@@ -7,7 +7,6 @@ import { LogBox } from "react-native";
 const App = (): JSX.Element | null => {
     const isLoadingComplete = useCachedResources();
     LogBox.ignoreLogs(["Setting a timer"]);
-    LogBox.ignoreLogs(["Require cycle"]);
     return isLoadingComplete ? <Root /> : null;
 };
 

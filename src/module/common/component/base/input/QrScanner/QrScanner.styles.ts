@@ -18,6 +18,6 @@ export const QrScannerRoot = styled(View)(() => ({
 export const BackButton = styled(IconButton)(() => ({
     position: "absolute",
     left: 20,
-    top: 30 + Constants.StatusBar,
+    top: 30 + Constants.statusBarHeight,
     zIndex: 1,
 }));
