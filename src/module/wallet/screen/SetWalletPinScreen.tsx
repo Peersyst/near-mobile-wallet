@@ -5,7 +5,6 @@ import RepeatNumericPad from "module/common/component/input/RepeatNumericPad/Rep
 export interface SetWalletPinScreen {
     onCancel?: () => void;
     onSuccess: () => unknown;
-    updating?: boolean;
 }
 
 const SetWalletPinScreen = ({ onCancel, onSuccess }: SetWalletPinScreen): JSX.Element => {
