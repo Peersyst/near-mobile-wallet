@@ -94,5 +94,6 @@
     "message": "Message",
     "send_confirmation_text": "Carefull, transactions cannot be undone.\nTake your time to verify the information.",
     "transaction_completed": "Transaction\ncompleted!",
-    "change_passcode": "Change passcode"
+    "change_passcode": "Change passcode",
+    "no_news": "There aren't any news right now"
 }

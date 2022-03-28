@@ -1,4 +1,10 @@
-import { FlatList, FlatListProps, ScrollView } from "react-native";
+import { FlatList, FlatListProps, RefreshControl, RefreshControlPropsAndroid, RefreshControlPropsIOS, ScrollView } from "react-native";
+import { useState } from "react";
+
+export interface ListProps extends Omit<FlatListProps<any>, "refreshControl" | "refreshing"> {
+    refreshControlProps?: RefreshControlPropsIOS & RefreshControlPropsAndroid;
+    loading?: boolean;
+}
 
 /**
  * Component used to render a nested FlatList.
@@ -7,10 +13,23 @@ import { FlatList, FlatListProps, ScrollView } from "react-native";
  * More info here https://nyxo.app/fixing-virtualizedlists-should-never-be-nested-inside-plain-scrollviews
  */
 
-const List = (props: FlatListProps<any>): JSX.Element => (
-    <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flex: 1 }} horizontal scrollEnabled={false}>
-        <FlatList {...props} />
-    </ScrollView>
-);
+const List = ({ onRefresh, loading = false, refreshControlProps, ...rest }: ListProps): JSX.Element => {
+    const [refreshing, setRefreshing] = useState(false);
+
+    const handleRefresh = async () => {
+        setRefreshing(true);
+        await onRefresh?.();
+        setRefreshing(false);
+    };
+
+    return (
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flex: 1 }} horizontal scrollEnabled={false}>
+            <FlatList
+                refreshControl={<RefreshControl refreshing={loading || refreshing} onRefresh={handleRefresh} {...refreshControlProps} />}
+                {...rest}
+            />
+        </ScrollView>
+    );
+};
 
 export default List;

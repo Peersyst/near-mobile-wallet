@@ -94,5 +94,6 @@
     "message": "Mensaje",
     "send_confirmation_text": "Cuidado, las transacciones no se pueden deshacer. Este es el último paso, tómate tu tiempo para verificar la información.",
     "transaction_completed": "¡Transacción\ncompletada!",
-    "change_passcode": "Cambiar contraseña"
+    "change_passcode": "Cambiar contraseña",
+    "no_news": "Por ahora no hay noticias"
 }
