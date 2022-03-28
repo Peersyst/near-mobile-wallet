@@ -1,4 +1,4 @@
-import DaoScreen from "module/dao/page/DaoScreen";
+import DaoScreen from "module/dao/screen/DaoScreen";
 import { render } from "test-utils";
 
 describe("Test for the DaoScreen", () => {
