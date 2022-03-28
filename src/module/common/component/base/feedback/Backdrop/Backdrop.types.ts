@@ -5,7 +5,7 @@ export interface BackdropProps {
     /**
      * Content in animation
      */
-    animationIn?: ModalProps["animationIn"];
+    animationIn?: ModalProps["animationIn"] | "none";
     /**
      * Animation in timing
      */
@@ -13,7 +13,7 @@ export interface BackdropProps {
     /**
      * Content out animation
      */
-    animationOut?: ModalProps["animationOut"];
+    animationOut?: ModalProps["animationOut"] | "none";
     /**
      * Animation out timing
      */

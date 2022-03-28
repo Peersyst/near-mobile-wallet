@@ -23,7 +23,6 @@ const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): 
                 </Button>
                 <Button
                     fullWidth
-                    style={{ backgroundColor: "red" }}
                     onPress={async () => {
                         await WalletStorage.clear();
                         setWalletState((state) => ({

@@ -7,7 +7,8 @@ import BaseSettingsModalScreen from "../../layout/BaseSettingsModal/BaseSettings
 
 const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { duration: 200, appear: true });
 
-interface ConfirmPinScreenProps extends ExposedBackdropProps {
+interface ConfirmPinScreenProps
+    extends Omit<ExposedBackdropProps, "animationIn" | "animationOut" | "animationInTiming" | "animationOutTiming"> {
     onPinConfirmed: any;
 }
 
@@ -19,8 +20,8 @@ const ConfirmPinModal = createBackdrop(({ onPinConfirmed, ...rest }: ConfirmPinS
         try {
             const storedPin = await WalletStorage.getPin();
             if (pin === storedPin) {
-                setOpen(false);
                 onPinConfirmed();
+                setOpen(false);
             } else {
                 setError(true);
             }
