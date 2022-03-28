@@ -1,7 +1,4 @@
-import { Animated } from "react-native-components";
-import NumericPad from "module/common/component/input/NumericPad/NumericPad";
 import { translate } from "locale";
-import { useState } from "react";
 import useCreateWallet from "../hook/useCreateWallet";
 import RepeatNumericPad from "module/common/component/input/RepeatNumericPad/RepeatNumericPad";
 
@@ -11,7 +8,7 @@ export interface SetWalletPinScreen {
     updating?: boolean;
 }
 
-const SetWalletPinScreen = ({ onCancel, onSuccess, updating }: SetWalletPinScreen): JSX.Element => {
+const SetWalletPinScreen = ({ onCancel, onSuccess }: SetWalletPinScreen): JSX.Element => {
     const { setPin: setWalletPin } = useCreateWallet();
     const handleRepeatPinSubmit = (p: string) => {
         setWalletPin(p);

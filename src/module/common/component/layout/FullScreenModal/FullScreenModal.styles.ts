@@ -4,5 +4,5 @@ import { FullScreenModalRootProps } from "./FullScreenModal.types";
 
 export const FullScreenModalRoot = styled(View)<FullScreenModalRootProps>(({ theme }) => ({
     flex: 1,
-    backgroundColor: theme.palette.mode === "light" ? theme.palette.background : theme.palette.fullBlack
-}))
+    backgroundColor: theme.palette.mode === "light" ? theme.palette.background : theme.palette.fullBlack,
+}));

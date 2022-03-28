@@ -7,8 +7,6 @@ import SettingsScreen from "module/settings/screen/SettingsScreen";
 import BasePage from "module/common/component/layout/BasePage/BasePage";
 import GeneralSettingsScreen from "module/settings/screen/GeneralSettingsScreen";
 import SecuritySettingsScreen from "module/settings/screen/SecuritySettingsScreen";
-import { useSetRecoilState } from "recoil";
-import { useEffect } from "react";
 
 export enum MainBottomScreens {
     HOME = "Home",
