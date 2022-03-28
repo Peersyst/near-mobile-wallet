@@ -12,7 +12,7 @@ const NewsScreen = (): JSX.Element => {
     const { data = [], refetch, isLoading } = useGetNews();
 
     return (
-        <ScrollView refreshControlProps={{ tintColor: "black" }} onRefresh={refetch} loading={isLoading}>
+        <ScrollView refreshControlProps={{ tintColor: "black" }} onRefresh={refetch}>
             <BaseMainScreen title={translate("news")}>
                 <NewsScreenRoot>
                     <List
@@ -21,7 +21,7 @@ const NewsScreen = (): JSX.Element => {
                         }}
                         scrollEnabled={false}
                         keyExtractor={(item) => item.title}
-                        data={data}
+                        data={isLoading ? new Array(5).fill({}) : data}
                         ItemSeparatorComponent={() => <NewsSpacer />}
                         ListFooterComponent={() => <NewsSpacer style={{ paddingTop: "30%" }} />}
                         ListEmptyComponent={isLoading ? undefined : <EmptyListComponent message={translate("no_news")} />}
