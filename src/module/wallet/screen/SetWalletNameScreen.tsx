@@ -4,7 +4,6 @@ import Card from "module/common/component/surface/Card/Card";
 import TextField from "module/common/component/input/TextField/TextField";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import { SendImage } from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen.styles";
 import { image } from "asset/image";
 import { WalletImage } from "../component/display/WalletImage/WalletImage.styles";
 
