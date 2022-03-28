@@ -20,7 +20,7 @@ const NewsScreen = (): JSX.Element => {
                             return <AnimatedSimpleNewsCard loading={isLoading} in {...item} key={index} />;
                         }}
                         scrollEnabled={false}
-                        keyExtractor={(item) => item.title}
+                        keyExtractor={(_, index) => index.toString()}
                         data={isLoading ? new Array(5).fill({}) : data}
                         ItemSeparatorComponent={() => <NewsSpacer />}
                         ListFooterComponent={() => <NewsSpacer style={{ paddingTop: "30%" }} />}

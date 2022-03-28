@@ -2,6 +2,7 @@ import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
 import BaseSecondaryScreen from "module/common/component/layout/BaseSecondaryScreen/BaseSecondaryScreen";
 import { BottomTabScreenNavigatonProps } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup.types";
+import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import walletState from "module/wallet/state/WalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { Col, useModal } from "react-native-components";
@@ -13,7 +14,7 @@ const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): 
     const setWalletState = useSetRecoilState(walletState);
     const { showModal } = useModal();
     const handlePinConfirmed = () => {
-        console.log("hola Mundo")
+        showModal(UpdatePinScreen);
     };
     return (
         <BaseSecondaryScreen navigation={navigation} title={translate("security_settings")} back={true}>

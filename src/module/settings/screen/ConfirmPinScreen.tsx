@@ -12,17 +12,19 @@ interface ConfirmPinScreenProps extends ExposedBackdropProps {
 }
 
 const ConfirmPinScreen = createBackdrop(({ onPinConfirmed, ...rest }: ConfirmPinScreenProps) => {
-    const [error, setError] = useState(false);
+    const [error, setError] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>();
     const handleSubmit = async (pin: string) => {
         const storedPin = await WalletStorage.getPin();
         if (pin === storedPin) {
+            setOpen(false);
             onPinConfirmed();
         } else {
             setError(true);
         }
     };
     return (
-        <BaseSettingsModalScreen title={translate("confirm_your_pin")} {...rest}>
+        <BaseSettingsModalScreen open={open} title={translate("confirm_your_pin")} {...rest}>
             <AnimatedNumericPad error={error} placeholder={translate("enter_your_pin")} onSubmit={handleSubmit} in={true} />
         </BaseSettingsModalScreen>
     );

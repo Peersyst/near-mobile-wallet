@@ -11,8 +11,6 @@ const FullScreenModal = ({
     logo,
     title,
     back,
-    onOpen,
-    onExited,
     closable = true,
     ...rest
 }: FullScreenModalProps): JSX.Element => {
