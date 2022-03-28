@@ -13,12 +13,12 @@ const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): 
     const setWalletState = useSetRecoilState(walletState);
     const { showModal } = useModal();
     const updatePin = () => {
-        showModal(ConfirmPinModal, { onPinConfirmed: showModal(UpdatePinModal) });
+        showModal(UpdatePinModal);
     };
     return (
         <BaseSecondaryScreen navigation={navigation} title={translate("security_settings")} back={true}>
             <Col gap={20}>
-                <Button onPress={updatePin} fullWidth variant="outlined">
+                <Button onPress={() => showModal(ConfirmPinModal, { onPinConfirmed: updatePin })} fullWidth variant="outlined">
                     {translate("change_passcode")}
                 </Button>
                 <Button

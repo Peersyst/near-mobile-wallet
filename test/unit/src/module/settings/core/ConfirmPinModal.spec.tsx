@@ -21,7 +21,7 @@ describe("Test for the Confirm Pin Modal", () => {
         }
         await waitFor(() => expect(onPinConfirmed).toHaveBeenCalled());
     });
-    test("Updates pin correctly", async () => {
+    test("Do not update pin if is not typed correctly", async () => {
         const onPinConfirmed = jest.fn();
         jest.spyOn(WalletStorage, "getPin").mockReturnValue(SuccessApiCall("9876"));
         const screen = render(<ConfirmPinModal onPinConfirmed={onPinConfirmed} />);

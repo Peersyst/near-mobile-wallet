@@ -14,6 +14,6 @@ describe("Test for the SecuritySettingsScreen", () => {
         const screen = render(<SecuritySettingsScreen navigation={jest.fn() as any} />);
         const button = screen.getByText(translate("change_passcode"));
         fireEvent.press(button);
-        expect(showModal).toHaveBeenCalledTimes(2);
+        expect(showModal).toHaveBeenCalled();
     });
 });

@@ -13,7 +13,7 @@ const SetWalletPinScreen = ({ onCancel, onSuccess }: SetWalletPinScreen): JSX.El
         setWalletPin(p);
         onSuccess();
     };
-    return <RepeatNumericPad onCancel={onCancel} placeholder={translate("enter_new_pin")} onSuccess={handleRepeatPinSubmit} />;
+    return <RepeatNumericPad onCancel={onCancel} placeholder={translate("enter_your_pin")} onSuccess={handleRepeatPinSubmit} />;
 };
 
 export default SetWalletPinScreen;
