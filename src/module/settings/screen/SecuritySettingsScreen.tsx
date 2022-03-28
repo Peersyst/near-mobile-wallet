@@ -6,19 +6,19 @@ import walletState from "module/wallet/state/WalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { Col, useModal } from "react-native-components";
 import { useSetRecoilState } from "recoil";
-import ConfirmPinScreen from "./ConfirmPinScreen";
-import UpdatePinScreen from "./UpdatePinScreen";
+import ConfirmPinModal from "../components/core/ConfirmPinModal/ConfirmPinModal";
+import UpdatePinModal from "../components/core/UpdatePinModal/UpdatePinModal";
 
 const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): JSX.Element => {
     const setWalletState = useSetRecoilState(walletState);
     const { showModal } = useModal();
-    const handlePinConfirmed = () => {
-        showModal(UpdatePinScreen);
+    const updatePin = () => {
+        showModal(ConfirmPinModal, { onPinConfirmed: showModal(UpdatePinModal) });
     };
     return (
         <BaseSecondaryScreen navigation={navigation} title={translate("security_settings")} back={true}>
             <Col gap={20}>
-                <Button onPress={() => showModal(ConfirmPinScreen, { onPinConfirmed: handlePinConfirmed })} fullWidth variant="outlined">
+                <Button onPress={updatePin} fullWidth variant="outlined">
                     {translate("change_passcode")}
                 </Button>
                 <Button

@@ -2,8 +2,8 @@ import { translate } from "locale";
 import NumericPad from "module/common/component/input/NumericPad/NumericPad";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useState } from "react";
-import { Animated, createBackdrop, ExposedBackdropProps } from "react-native-components";
-import BaseSettingsModalScreen from "../components/layout/BaseSettingsModal/BaseSettingsModal";
+import { Animated, createBackdrop, ExposedBackdropProps, useToast } from "react-native-components";
+import BaseSettingsModalScreen from "../../layout/BaseSettingsModal/BaseSettingsModal";
 
 const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { duration: 200, appear: true });
 
@@ -11,16 +11,21 @@ interface ConfirmPinScreenProps extends ExposedBackdropProps {
     onPinConfirmed: any;
 }
 
-const ConfirmPinScreen = createBackdrop(({ onPinConfirmed, ...rest }: ConfirmPinScreenProps) => {
+const ConfirmPinModal = createBackdrop(({ onPinConfirmed, ...rest }: ConfirmPinScreenProps) => {
     const [error, setError] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>();
+    const { showToast } = useToast();
     const handleSubmit = async (pin: string) => {
-        const storedPin = await WalletStorage.getPin();
-        if (pin === storedPin) {
-            setOpen(false);
-            onPinConfirmed();
-        } else {
-            setError(true);
+        try {
+            const storedPin = await WalletStorage.getPin();
+            if (pin === storedPin) {
+                setOpen(false);
+                onPinConfirmed();
+            } else {
+                setError(true);
+            }
+        } catch (e) {
+            showToast(translate("somethingWentWrong"));
         }
     };
     return (
@@ -30,4 +35,4 @@ const ConfirmPinScreen = createBackdrop(({ onPinConfirmed, ...rest }: ConfirmPin
     );
 });
 
-export default ConfirmPinScreen;
+export default ConfirmPinModal;

@@ -3,9 +3,9 @@ import RepeatNumericPad from "module/common/component/input/RepeatNumericPad/Rep
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useState } from "react";
 import { createBackdrop, ExposedBackdropProps, useToast } from "react-native-components";
-import BaseSettingsModal from "../components/layout/BaseSettingsModal/BaseSettingsModal";
+import BaseSettingsModal from "../../layout/BaseSettingsModal/BaseSettingsModal";
 
-const UpdatePinScreen = createBackdrop(({ ...rest }: ExposedBackdropProps) => {
+const UpdatePinModal = createBackdrop(({ ...rest }: ExposedBackdropProps) => {
     const [open, setOpen] = useState<boolean>();
     const { showToast } = useToast();
 
@@ -23,4 +23,4 @@ const UpdatePinScreen = createBackdrop(({ ...rest }: ExposedBackdropProps) => {
     );
 });
 
-export default UpdatePinScreen;
+export default UpdatePinModal;
