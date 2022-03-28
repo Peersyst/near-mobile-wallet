@@ -7,8 +7,6 @@ import SettingsScreen from "module/settings/screen/SettingsScreen";
 import BasePage from "module/common/component/layout/BasePage/BasePage";
 import GeneralSettingsScreen from "module/settings/screen/GeneralSettingsScreen";
 import SecuritySettingsScreen from "module/settings/screen/SecuritySettingsScreen";
-import { StatusBar } from "react-native";
-import statusBarState from "module/common/component/base/layout/StatusBar/state/StatusBarState";
 import { useSetRecoilState } from "recoil";
 import { useEffect } from "react";
 
@@ -22,10 +20,6 @@ export enum MainBottomScreens {
 }
 
 const MainBottomNavigatorGroup = () => {
-    const setStatusBarState = useSetRecoilState(statusBarState);
-    useEffect(() => {
-        setStatusBarState({ style: "dark-content" });
-    }, []);
     return (
         <BasePage>
             <BottomTab.Navigator
