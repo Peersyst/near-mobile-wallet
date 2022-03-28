@@ -3,13 +3,13 @@ import { NavbarProps } from "module/common/component/navigation/Navbar/Navbar.ty
 import { ReactNode } from "react";
 import FullScreenModal from "module/common/component/layout/FullScreenModal/FullScreenModal";
 
-export interface BaseSettingsModalScreenProps extends NavbarProps {
+export interface BaseSettingsModalScreenProps extends Pick<NavbarProps, "title" | "logo"> {
     children: ReactNode;
 }
 
-const BaseSettingsModalScreen = ({ children, ...navbarProps }: BaseSettingsModalScreenProps): JSX.Element => {
+const BaseSettingsModalScreen = ({ children, ...rest }: BaseSettingsModalScreenProps): JSX.Element => {
     return (
-        <FullScreenModal {...navbarProps} appearance={"dark"} back>
+        <FullScreenModal {...rest} appearance={"dark"} back>
             <Col flex={1} justifyContent="center">
                 <Row flex={1} style={{ maxHeight: 500 }}>
                     {children}
