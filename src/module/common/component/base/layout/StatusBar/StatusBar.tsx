@@ -9,7 +9,7 @@ const StatusBar = ({ appearance: appearanceProp, ...rest }: StatusBarProps): JSX
 
     const appearance = appearanceProp || mode;
 
-    return <ExpoStatusBar style={appearance === "dark" ? "light" : "dark"} {...rest} />;
+    return <ExpoStatusBar style={appearance === "dark" ? "light" : "auto"} {...rest} />;
 };
 
 export default StatusBar;
