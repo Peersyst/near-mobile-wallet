@@ -1,9 +1,9 @@
 import { ThemeProvider } from "@peersyst/react-native-styled";
 import { image } from "asset/image";
 import { darkTheme } from "module/common/style/darkTheme";
-import CardButtons from "module/wallet/component/core/AccountCard/CardButtons/CardButtons";
 import { DaoCardRoot, DaoCardContent } from "./DaoAccountCard.styles";
 import DaoCardBalance from "./DaoCardBalance/DaoCardBalance";
+import DaoCardButtons from "./DaoCardButtons/DaoCardButtons";
 import DaoCardHeader from "./DaoCardHeader/DaoCardHeader";
 
 export interface DaoCardProps {
@@ -19,7 +19,7 @@ const DaoCard = (props:DaoCardProps): JSX.Element => {
                 <DaoCardContent>
                     <DaoCardHeader />
                     <DaoCardBalance {...props} />
-                    <CardButtons />
+                    <DaoCardButtons />
                 </DaoCardContent>
             </DaoCardRoot>
         </ThemeProvider>

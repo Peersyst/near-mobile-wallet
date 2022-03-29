@@ -93,5 +93,7 @@
     "no_news": "There aren't any news right now",
     "available": "Available",
     "locked": "Locked",
-    "current_apc": "Current APC"
+    "current_apc": "Current APC",
+    "deposit": "Deposit",
+    "withdrawl": "Withdrawl"
 }

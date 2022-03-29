@@ -1,7 +1,7 @@
 import { Cell } from "module/wallet/state/WalletState";
 import { AccountCardBalance, AccountCardRoot, AccountContent } from "./AccountCard.styles";
 import AccountCardHeader from "./AccountCardHeader/AccountCardHeader";
-import CardButtons from "./CardButtons/CardButtons";
+import AccountCardButtons from "./AccountCardButtons/AccountCardButtons";
 import useAddressColor from "module/wallet/hook/useAddressColor";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { ActivityIndicator } from "react-native";
@@ -26,7 +26,7 @@ const AccountCard = ({ cell: { address, name } }: AccountCardProps): JSX.Element
                 ) : (
                     <ActivityIndicator color="white" />
                 )}
-                <CardButtons />
+                <AccountCardButtons />
             </AccountContent>
         </AccountCardRoot>
     );

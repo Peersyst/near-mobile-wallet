@@ -93,5 +93,7 @@
     "no_news": "Por ahora no hay noticias",
     "available": "Disponible",
     "locked": "Bloqueado",
-    "current_apc": "APC actual"
+    "current_apc": "APC actual",
+    "deposit": "Depositar",
+    "withdrawl": "Retirar"
 }
