@@ -1,18 +1,19 @@
-import { DAOIcon } from "icons";
+import { DAOIcon, FilledDAOIcon } from "icons";
 import { Row, Typography } from "react-native-components";
 import { DaoCardIcon } from "../DaoAccountCard.styles";
+import { Linking } from "react-native";
 
 const DaoCardHeader = (): JSX.Element => {
     return (
         <Row justifyContent="space-between">
-            <DaoCardIcon>
+            <DaoCardIcon onPress={()=> Linking.openURL("https://www.nervos.org/")}>
                 <DAOIcon />
             </DaoCardIcon>
             <Typography fontWeight="bold" variant="h2">
                 Nervos DAO
             </Typography>
             <DaoCardIcon>
-                <DAOIcon />
+                <FilledDAOIcon />
             </DaoCardIcon>
         </Row>
     );

@@ -6,13 +6,19 @@ import { DaoCardRoot, DaoCardContent } from "./DaoAccountCard.styles";
 import DaoCardBalance from "./DaoCardBalance/DaoCardBalance";
 import DaoCardHeader from "./DaoCardHeader/DaoCardHeader";
 
-const DaoCard = (): JSX.Element => {
+export interface DaoCardProps {
+    availableBalance: string,
+    lockedBalance: string, 
+    currentApc: string
+}
+
+const DaoCard = (props:DaoCardProps): JSX.Element => {
     return (
         <ThemeProvider theme={darkTheme}>
             <DaoCardRoot source={image.coloredBackground}>
                 <DaoCardContent>
                     <DaoCardHeader />
-                    <DaoCardBalance />
+                    <DaoCardBalance {...props} />
                     <CardButtons />
                 </DaoCardContent>
             </DaoCardRoot>

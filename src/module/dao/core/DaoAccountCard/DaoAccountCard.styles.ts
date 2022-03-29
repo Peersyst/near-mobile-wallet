@@ -1,11 +1,12 @@
 import styled from "@peersyst/react-native-styled";
 import { ImageBackground } from "react-native";
-import { Col, IconButton, Typography } from "react-native-components";
+import { Col, IconButton } from "react-native-components";
 
-export const DaoCardRoot = styled(ImageBackground, { imageStyle: { borderRadius: 20 } })(({theme}) => ({
-    padding: 20,
+export const DaoCardRoot = styled(ImageBackground, { imageStyle: { borderRadius: 20, minHeight:220 } })(({theme, dimensions}) => ({
+    padding: "5%",
     overflow: "hidden",
-    height: 230,
+    height: dimensions.height * 0.3,
+    minHeight: 220,
     backgroundColor: theme.palette.gray,
     borderRadius:20,
 }))
