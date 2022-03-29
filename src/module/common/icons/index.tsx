@@ -5,6 +5,8 @@ export * from "./CircleIcon";
 export * from "./CopyIcon";
 export * from "./CrossIcon";
 export * from "./DAOIcon";
+export * from "./DAODepositIcon";
+export * from "./DAOWithdrawIcon";
 export * from "./FilledCircleIcon";
 export * from "./FilledCopyIcon";
 export * from "./FilledDAOIcon";

@@ -98,7 +98,7 @@
     "locked": "Bloqueado",
     "current_apc": "APC actual",
     "deposit": "Depositar",
-    "withdrawl": "Retirar",
+    "withdraw": "Retirar",
     "change_passcode": "Cambiar contraseña",
     "no_news": "Por ahora no hay noticias"
 }

@@ -98,7 +98,7 @@
     "locked": "Locked",
     "current_apc": "Current APC",
     "deposit": "Deposit",
-    "withdrawl": "Withdrawl",
+    "withdraw": "Withdraw",
     "change_passcode": "Change passcode",
     "no_news": "There aren't any news right now"
 }

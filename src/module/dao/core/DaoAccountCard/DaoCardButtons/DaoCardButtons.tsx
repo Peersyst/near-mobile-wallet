@@ -1,11 +1,11 @@
-import { SendIcon, ReceiveIcon } from "icons";
+import { DAOWithdrawIcon, DAODepositIcon } from "icons";
 import { translate } from "locale";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import { useModal } from "react-native-components";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
 import CardButtons from "module/common/component/input/CardButtons/CardButtons";
 
-const CARD_BUTTON_ICON_SIZE = 18;
+const CARD_BUTTON_ICON_SIZE = 24;
 
 const DaoCardButtons = (): JSX.Element => {
     const { showModal } = useModal();
@@ -13,11 +13,11 @@ const DaoCardButtons = (): JSX.Element => {
         <CardButtons
             //Left props
             leftLabel={translate("deposit")}
-            leftIcon={<SendIcon style={{ fontSize: CARD_BUTTON_ICON_SIZE }} />}
+            leftIcon={<DAODepositIcon style={{ fontSize: CARD_BUTTON_ICON_SIZE }} />}
             leftButtonOnPress={() => showModal(SendModal)}
             //Right props
-            rightLabel={translate("withdrawl")}
-            rightIcon={<ReceiveIcon style={{ fontSize: CARD_BUTTON_ICON_SIZE }} />}
+            rightLabel={translate("withdraw")}
+            rightIcon={<DAOWithdrawIcon style={{ fontSize: CARD_BUTTON_ICON_SIZE }} />}
             rightButtonOnPress={() => showModal(ReceiveModal)} 
         />
     );

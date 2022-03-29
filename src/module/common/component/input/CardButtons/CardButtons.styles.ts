@@ -1,7 +1,8 @@
 import styled from "@peersyst/react-native-styled";
 import { alpha } from "@peersyst/react-utils";
 import { View } from "react-native";
-import { Button, Icon } from "react-native-components";
+import { Icon } from "react-native-components";
+import Button from "../Button/Button";
 
 interface CardButtonProps {
     position: "left" | "right";
@@ -21,8 +22,8 @@ export const CardButton = styled(Button, { size: "md", variant: "outlined" })<Ca
         textTransform: "capitalize",
         paddingHorizontal: 0,
     },
-    sm: {
-        paddingHorizontal: 0,
+    md: {
+        fontSize: 14,
     },
     paddingHorizontal: 0,
     backgroundColor: alpha(theme.palette.white, 0.3),
