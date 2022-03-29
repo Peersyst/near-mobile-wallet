@@ -1,4 +1,4 @@
-import { Col, Form, Row, Typography } from "react-native-components";
+import { Col, Form, Typography } from "react-native-components";
 import { translate } from "locale";
 import Card from "module/common/component/surface/Card/Card";
 import TextField from "module/common/component/input/TextField/TextField";
