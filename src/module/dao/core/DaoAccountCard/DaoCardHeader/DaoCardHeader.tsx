@@ -1,6 +1,6 @@
 import { DAOIcon } from "icons";
-import { Row } from "react-native-components";
-import { DaoCardIcon, HeaderTitle } from "../DaoAccountCard.styles";
+import { Row, Typography } from "react-native-components";
+import { DaoCardIcon } from "../DaoAccountCard.styles";
 
 const DaoCardHeader = (): JSX.Element => {
     return (
@@ -8,7 +8,9 @@ const DaoCardHeader = (): JSX.Element => {
             <DaoCardIcon>
                 <DAOIcon />
             </DaoCardIcon>
-            <HeaderTitle variant="h2">Nervos DAO</HeaderTitle>
+            <Typography fontWeight="bold" variant="h2">
+                Nervos DAO
+            </Typography>
             <DaoCardIcon>
                 <DAOIcon />
             </DaoCardIcon>

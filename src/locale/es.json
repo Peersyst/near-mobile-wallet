@@ -90,5 +90,8 @@
     "message": "mensaje",
     "send_confirmation_text": "Cuidado, las transacciones no se pueden deshacer. Este es el último paso, tómate tu tiempo para verificar la información.",
     "transaction_completed": "¡Transacción\ncompletada!",
-    "no_news": "Por ahora no hay noticias"
+    "no_news": "Por ahora no hay noticias",
+    "available": "Disponible",
+    "locked": "Bloqueado",
+    "current_apc": "APC actual"
 }
