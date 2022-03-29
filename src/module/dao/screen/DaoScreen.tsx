@@ -1,20 +1,14 @@
 import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
 import { CardBackgroundHome } from "module/main/screen/HomeScreen/HomeScreen.styles";
 import { Col } from "react-native-components";
-import DaoCard, { DaoCardProps } from "../core/DaoAccountCard/DaoCard";
-
-const DaoData:DaoCardProps = {
-    availableBalance: "12635.304223",
-    lockedBalance: "594.323",
-    currentAPC: "2.4"
-}
+import DaoCard from "../core/DaoAccountCard/DaoCard";
 
 const DaoScreen = (): JSX.Element => {
     return (
         <BaseMainScreen>
             <CardBackgroundHome />
             <Col flex={1} gap={20} style={{ padding: 20 }}>
-                <DaoCard {...DaoData} />
+                <DaoCard />
             </Col>
         </BaseMainScreen>
     );

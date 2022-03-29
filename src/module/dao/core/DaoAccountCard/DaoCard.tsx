@@ -12,13 +12,18 @@ export interface DaoCardProps {
     currentAPC: string
 }
 
-const DaoCard = (props:DaoCardProps): JSX.Element => {
+const DaoCard = (): JSX.Element => {
+    const DaoData:DaoCardProps = {
+        availableBalance: "12635.304223",
+        lockedBalance: "594.323",
+        currentAPC: "2.4"
+    }
     return (
         <ThemeProvider theme={darkTheme}>
             <DaoCardRoot source={image.coloredBackground}>
                 <DaoCardContent>
                     <DaoCardHeader />
-                    <DaoCardBalance {...props} />
+                    <DaoCardBalance {...DaoData} />
                     <DaoCardButtons />
                 </DaoCardContent>
             </DaoCardRoot>
