@@ -3,6 +3,7 @@ import { translate } from "locale";
 import * as UseCreateWalletState from "module/wallet/hook/useCreateWallet";
 import { fireEvent } from "@testing-library/react-native";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
+import { createMockedUseCreateWallet } from "mocks/useCreateWallet";
 
 describe("SetWalletPin tests", () => {
     test("Renders correctly", () => {
@@ -14,12 +15,8 @@ describe("SetWalletPin tests", () => {
 
     test("Sets pin correctly", async () => {
         const setPin = jest.fn();
-        jest.spyOn(UseCreateWalletState, "default").mockReturnValue({
-            state: { name: undefined, pin: undefined, mnemonic: undefined },
-            setName: jest.fn(),
-            setPin,
-            setMnemonic: jest.fn(),
-        });
+        const mockedCreateWallet = createMockedUseCreateWallet(setPin);
+        jest.spyOn(UseCreateWalletState, "default").mockReturnValue(mockedCreateWallet);
         const handleSuccess = jest.fn();
 
         const screen = render(<SetWalletPinScreen onCancel={() => undefined} onSuccess={handleSuccess} />);
@@ -52,7 +49,6 @@ describe("SetWalletPin tests", () => {
 
     test("Cancel navigates back", async () => {
         const handleCancel = jest.fn();
-
         const screen = render(<SetWalletPinScreen onSuccess={() => undefined} onCancel={handleCancel} />);
         const cancelButton = screen.getByText(translate("cancel"));
         fireEvent.press(cancelButton);

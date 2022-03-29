@@ -1,53 +1,19 @@
-import { Animated } from "react-native-components";
-import NumericPad from "module/common/component/input/NumericPad/NumericPad";
 import { translate } from "locale";
-import { useState } from "react";
 import useCreateWallet from "../hook/useCreateWallet";
+import RepeatNumericPad from "module/common/component/input/RepeatNumericPad/RepeatNumericPad";
 
 export interface SetWalletPinScreen {
-    onCancel: () => void;
-    onSuccess: () => void;
+    onCancel?: () => void;
+    onSuccess: () => unknown;
 }
 
-const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { duration: 200 });
-
 const SetWalletPinScreen = ({ onCancel, onSuccess }: SetWalletPinScreen): JSX.Element => {
-    const [pin, setPin] = useState<string>();
-    const [error, setError] = useState(false);
     const { setPin: setWalletPin } = useCreateWallet();
-
-    const handlePinSubmit = (p: string) => {
-        setPin(p);
-    };
-
     const handleRepeatPinSubmit = (p: string) => {
-        if (p === pin) {
-            setWalletPin(p);
-            onSuccess();
-        } else {
-            setError(true);
-            setPin(undefined);
-        }
+        setWalletPin(p);
+        onSuccess();
     };
-
-    return pin ? (
-        <AnimatedNumericPad
-            key="repeat_pin"
-            in
-            onSubmit={handleRepeatPinSubmit}
-            onCancel={onCancel}
-            placeholder={translate("repeat_pin")}
-        />
-    ) : (
-        <AnimatedNumericPad
-            key="set_pin"
-            in
-            appear
-            onSubmit={handlePinSubmit}
-            onCancel={onCancel}
-            placeholder={error ? translate("pins_did_not_match") : translate("enter_your_pin")}
-        />
-    );
+    return <RepeatNumericPad onCancel={onCancel} placeholder={translate("enter_your_pin")} onSuccess={handleRepeatPinSubmit} />;
 };
 
 export default SetWalletPinScreen;

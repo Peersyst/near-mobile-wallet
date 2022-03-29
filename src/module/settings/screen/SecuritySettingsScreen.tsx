@@ -4,18 +4,25 @@ import BaseSecondaryScreen from "module/common/component/layout/BaseSecondaryScr
 import { BottomTabScreenNavigatonProps } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup.types";
 import walletState from "module/wallet/state/WalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import { Col } from "react-native-components";
+import { Col, useModal } from "react-native-components";
 import { useSetRecoilState } from "recoil";
+import ConfirmPinModal from "../components/core/ConfirmPinModal/ConfirmPinModal";
+import UpdatePinModal from "../components/core/UpdatePinModal/UpdatePinModal";
 
-const GeneralSettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): JSX.Element => {
+const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): JSX.Element => {
     const setWalletState = useSetRecoilState(walletState);
+    const { showModal } = useModal();
+    const updatePin = () => {
+        showModal(UpdatePinModal);
+    };
     return (
         <BaseSecondaryScreen navigation={navigation} title={translate("security_settings")} back={true}>
             <Col gap={20}>
-                <Button fullWidth onPress={() => setWalletState((state) => ({ ...state, isAuthenticated: false }))}>
-                    Log out
+                <Button onPress={() => showModal(ConfirmPinModal, { onPinConfirmed: updatePin })} fullWidth variant="outlined">
+                    {translate("change_passcode")}
                 </Button>
                 <Button
+                    fullWidth
                     onPress={async () => {
                         await WalletStorage.clear();
                         setWalletState((state) => ({
@@ -27,11 +34,11 @@ const GeneralSettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): J
                         }));
                     }}
                 >
-                    Erase
+                    DELETE ACCOUNT
                 </Button>
             </Col>
         </BaseSecondaryScreen>
     );
 };
 
-export default GeneralSettingsScreen;
+export default SecuritySettingsScreen;

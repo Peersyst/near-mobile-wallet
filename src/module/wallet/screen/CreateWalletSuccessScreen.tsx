@@ -12,6 +12,7 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
     } = useCreateWallet();
     const setWalletState = useSetRecoilState(walletState);
     const setSettingsState = useSetRecoilState(settingsState);
+
     useEffect(() => {
         const setStorage = async () => {
             await WalletStorage.set({ name: name!, pin: pin!, mnemonic: mnemonic! });

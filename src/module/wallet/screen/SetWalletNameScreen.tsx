@@ -5,7 +5,7 @@ import TextField from "module/common/component/input/TextField/TextField";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { image } from "asset/image";
-import { WalletImage } from "../component/display/WalletImage/WalletImage.styles";
+import WalletImage from "../component/display/WalletImage/WalletImage";
 
 interface SetWalletNameForm {
     walletName: string;
@@ -27,7 +27,7 @@ const SetWalletNameScreen = ({ onSubmit, submitText }: SetWalletNameScreenProps)
         onSubmit();
     };
     return (
-        <Col flex={1} gap={20} justifyContent="flex-end">
+        <Col flex={1} gap={30} justifyContent="flex-end">
             <Col alignItems="center" justifyContent="center" flex={1}>
                 <WalletImage source={image.wallet} />
             </Col>

@@ -9,12 +9,12 @@ export const PadItemRoot = styled(View)(() => ({
 }));
 
 export const Item = styled(Text)(({ theme }) => ({
-    color: theme.palette.white,
+    color: theme.palette.text,
     fontWeight: "bold",
     fontSize: 34,
 }));
 
 export const ItemIcon = styled(Icon)(({ theme }) => ({
-    color: theme.palette.white,
+    color: theme.palette.text,
     fontSize: 20,
 }));

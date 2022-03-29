@@ -3,6 +3,7 @@ import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
 import { translate } from "locale";
 import * as UseCreateWalletState from "module/wallet/hook/useCreateWallet";
 import { fireEvent, waitFor } from "@testing-library/react-native";
+import { createMockedUseCreateWallet } from "mocks/useCreateWallet";
 
 describe("SetWalletNameScreen tests", () => {
     test("Renders correctly", () => {
@@ -15,12 +16,8 @@ describe("SetWalletNameScreen tests", () => {
     test("Sets name and navigates to set pin", async () => {
         const setName = jest.fn();
         const handleSubmit = jest.fn();
-        jest.spyOn(UseCreateWalletState, "default").mockReturnValue({
-            state: { name: undefined, pin: undefined, mnemonic: undefined },
-            setName,
-            setPin: jest.fn(),
-            setMnemonic: jest.fn(),
-        });
+        const mockedCreateWallet = createMockedUseCreateWallet(jest.fn(), setName);
+        jest.spyOn(UseCreateWalletState, "default").mockReturnValue(mockedCreateWallet);
 
         const screen = render(<SetWalletNameScreen onSubmit={handleSubmit} submitText="Submit" />);
         const nameInput = screen.getByPlaceholderText(translate("wallet_name"));

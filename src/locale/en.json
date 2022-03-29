@@ -14,7 +14,11 @@
     "invalid_number_lte": "The number must be lower or equal than {n}",
     "somethingWentWrong": "Something went wrong",
     "sessionExpired": "Your session has expired",
+    "confirm_your_pin": "Confirm your PIN",
+    "update_your_pin": "Update your PIN",
     "enter_your_pin": "Enter your PIN",
+    "enter_new_pin": "Enter your new PIN",
+    "pin_updated_successfully": "Updated your PIN successfully",
     "create_wallet": "Create Wallet",
     "already_have_wallet": "Already have a CKBull Wallet?",
     "import_it": "Import it",
@@ -90,10 +94,11 @@
     "message": "Message",
     "send_confirmation_text": "Carefull, transactions cannot be undone.\nTake your time to verify the information.",
     "transaction_completed": "Transaction\ncompleted!",
-    "no_news": "There aren't any news right now",
     "available": "Available",
     "locked": "Locked",
     "current_apc": "Current APC",
     "deposit": "Deposit",
-    "withdrawl": "Withdrawl"
+    "withdrawl": "Withdrawl",
+    "change_passcode": "Change passcode",
+    "no_news": "There aren't any news right now"
 }
