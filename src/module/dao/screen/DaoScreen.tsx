@@ -6,7 +6,7 @@ import DaoCard, { DaoCardProps } from "../core/DaoAccountCard/DaoCard";
 const DaoData:DaoCardProps = {
     availableBalance: "12635.304223",
     lockedBalance: "594.323",
-    currentApc: "2.4"
+    currentAPC: "2.4"
 }
 
 const DaoScreen = (): JSX.Element => {

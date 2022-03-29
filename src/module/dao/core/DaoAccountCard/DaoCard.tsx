@@ -9,7 +9,7 @@ import DaoCardHeader from "./DaoCardHeader/DaoCardHeader";
 export interface DaoCardProps {
     availableBalance: string,
     lockedBalance: string, 
-    currentApc: string
+    currentAPC: string
 }
 
 const DaoCard = (props:DaoCardProps): JSX.Element => {

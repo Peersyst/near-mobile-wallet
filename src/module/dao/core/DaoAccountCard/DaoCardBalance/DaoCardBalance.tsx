@@ -3,7 +3,7 @@ import Balance from "module/wallet/component/display/Balance/Balance";
 import { Col, Row, Typography } from "react-native-components";
 import { DaoCardProps } from "../DaoCard";
 
-const DaoCardBalance = ({availableBalance, lockedBalance, currentApc}: DaoCardProps): JSX.Element => {
+const DaoCardBalance = ({availableBalance, lockedBalance, currentAPC}: DaoCardProps): JSX.Element => {
     return (
         <Col gap={"3%"} style={{ paddingHorizontal: "4%" }}>
             <Row justifyContent="space-between">
@@ -16,7 +16,7 @@ const DaoCardBalance = ({availableBalance, lockedBalance, currentApc}: DaoCardPr
             </Row>
             <Row justifyContent="space-between">
                 <Typography variant="body2">{translate("current_apc")}</Typography>
-                <Typography variant="body1" fontWeight="bold">{`${currentApc}%`}</Typography>
+                <Typography variant="body1" fontWeight="bold">{`${currentAPC}%`}</Typography>
             </Row>
         </Col>
     );
