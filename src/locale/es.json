@@ -101,5 +101,7 @@
     "deposit": "Depositar",
     "withdraw": "Retirar",
     "change_passcode": "Cambiar contraseña",
-    "no_news": "Por ahora no hay noticias"
+    "no_news": "Por ahora no hay noticias",
+    "deposits": "Depositos",
+    "completed": "Completados"
 }

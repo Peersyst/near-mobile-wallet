@@ -1,7 +1,7 @@
 import { Col } from "react-native-components";
 import HomeSlider from "module/home/component/core/HomeSlider";
 import BaseWithBackgroundMainScreen from "module/main/component/layout/BaseWithBackgroundMainScreen/BaseWithBackgroundMainScreen";
-import HomeTabs from "module/home/component/navigation/HomeTabs/HomeTabs";
+import HomeTabs from "../component/navigation/HomeTabs";
 
 const HomeScreen = (): JSX.Element => {
     return (

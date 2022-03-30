@@ -101,5 +101,7 @@
     "deposit": "Deposit",
     "withdraw": "Withdraw",
     "change_passcode": "Change passcode",
-    "no_news": "There aren't any news right now"
+    "no_news": "There aren't any news right now",
+    "deposits": "Deposits",
+    "completed": "Completed"
 }
