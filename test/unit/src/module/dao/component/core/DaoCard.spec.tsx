@@ -1,5 +1,5 @@
 import { translate } from "locale";
-import DaoCard from "module/dao/core/DaoAccountCard/DaoCard";
+import DaoCard from "module/dao/component/core/DaoAccountCard/DaoCard";
 import { render, SuccessApiCall } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
 import * as GetDaoBalance from "module/dao/mock/getDaoBalance";
