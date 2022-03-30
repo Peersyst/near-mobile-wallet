@@ -95,6 +95,11 @@
     "message": "Message",
     "send_confirmation_text": "Carefull, transactions cannot be undone.\nTake your time to verify the information.",
     "transaction_completed": "Transaction\ncompleted!",
+    "available": "Available",
+    "locked": "Locked",
+    "current_apc": "Current APC",
+    "deposit": "Deposit",
+    "withdraw": "Withdraw",
     "change_passcode": "Change passcode",
     "no_news": "There aren't any news right now"
 }
