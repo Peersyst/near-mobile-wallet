@@ -28,5 +28,5 @@ describe("Test for the DoaCardBalance", () => {
         const button = screen.getByText(translate("withdraw"));
         fireEvent.press(button);
         expect(showModal).toHaveBeenCalledWith(ReceiveModal);
-    })
+    });
 });

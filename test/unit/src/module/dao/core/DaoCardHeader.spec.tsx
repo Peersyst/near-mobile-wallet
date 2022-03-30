@@ -16,5 +16,5 @@ describe("Test for the header of the dao card", () => {
         const infoButton = screen.getByTestId("InfoIcon");
         fireEvent.press(infoButton);
         expect(mockedLinking).toHaveBeenCalledWith(DAO_INFO_URL);
-    })
+    });
 });

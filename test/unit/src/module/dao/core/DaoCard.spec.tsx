@@ -1,13 +1,18 @@
 import { translate } from "locale";
 import DaoCard from "module/dao/core/DaoAccountCard/DaoCard";
-import { render } from "test-utils";
+import { render, SuccessApiCall } from "test-utils";
+import { waitFor } from "@testing-library/react-native";
+import * as GetDaoBalance from "module/dao/mock/getDaoBalance";
+import { MockedDaoBalance } from "mocks/dao";
 
 describe("Test for the Dao Card", () => {
-    test("Renders correctly", () => {
+    test("Renders correctly", async () => {
+        jest.spyOn(GetDaoBalance, "default").mockReturnValue(SuccessApiCall(MockedDaoBalance));
         const screen = render(<DaoCard />);
         //Balance
         expect(screen.getByText(translate("available"))).toBeDefined();
-        expect(screen.getByText("12,635")).toBeDefined();
+        /**Account Balance */
+        await waitFor(() => expect(screen.getByText("12,635")).toBeDefined());
         expect(screen.getByText("304223")).toBeDefined();
         expect(screen.getByText(translate("locked"))).toBeDefined();
         expect(screen.getByText("594")).toBeDefined();
@@ -24,6 +29,6 @@ describe("Test for the Dao Card", () => {
         //Header
         expect(screen.getByText("Nervos DAO"));
         expect(screen.getByTestId("FilledDAOIcon"));
-        expect(screen.getByTestId("DAOIcon"));
+        expect(screen.getByTestId("InfoIcon"));
     });
 });
