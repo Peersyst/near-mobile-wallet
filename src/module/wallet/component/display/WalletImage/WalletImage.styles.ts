@@ -8,6 +8,6 @@ export const StyledWalletImage = styled(Image)(({ dimensions: { height } }) => {
     return {
         width: height * finalSize,
         height: height * finalSize,
-        display: height < 650 ? "none" : undefined,
+        display: height < 680 ? "none" : undefined,
     };
 });
