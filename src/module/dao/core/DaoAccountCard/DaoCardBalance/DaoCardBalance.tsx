@@ -9,7 +9,7 @@ type DaoCardProps = Partial<DaoBalanceType>;
 const DaoCardBalance = ({ availableBalance, lockedBalance, currentAPC }: DaoCardProps): JSX.Element => {
     return (
         <Col gap={"3%"} style={{ paddingHorizontal: "4%" }}>
-            <Row justifyContent="space-between">
+            <Row justifyContent="space-between" alignItems="center">
                 <Typography variant="body2">{translate("available")}</Typography>
                 {availableBalance !== undefined ? (
                     <Balance boldUnits smallBalance balance={availableBalance} decimals={6} units="ckb" variant="h1" />
@@ -17,7 +17,7 @@ const DaoCardBalance = ({ availableBalance, lockedBalance, currentAPC }: DaoCard
                     <ActivityIndicator testID="actIndicator" color="white" />
                 )}
             </Row>
-            <Row justifyContent="space-between">
+            <Row justifyContent="space-between" alignItems="center">
                 <Typography variant="body2">{translate("locked")}</Typography>
                 {lockedBalance !== undefined ? (
                     <Balance boldUnits smallBalance balance={lockedBalance} decimals={3} units="ckb" variant="h3" />
@@ -25,7 +25,7 @@ const DaoCardBalance = ({ availableBalance, lockedBalance, currentAPC }: DaoCard
                     <ActivityIndicator testID="actIndicator" color="white" />
                 )}
             </Row>
-            <Row justifyContent="space-between">
+            <Row justifyContent="space-between" alignItems="center">
                 <Typography variant="body2">{translate("current_apc")}</Typography>
                 {currentAPC !== undefined ? (
                     <Typography variant="body1" fontWeight="bold">{`${currentAPC}%`}</Typography>
