@@ -1,22 +1,21 @@
-import { DAOIcon, FilledDAOIcon } from "icons";
-import { Row, Typography } from "react-native-components";
-import { DaoCardIcon } from "../DaoAccountCard.styles";
+import { FilledDAOIcon, InfoIcon } from "icons";
+import { IconButton, Row, Typography } from "react-native-components";
 import { Linking } from "react-native";
 
-export const DAO_INFO_URL = "https://www.nervos.org/"
+export const DAO_INFO_URL = "https://www.nervos.org/";
 
 const DaoCardHeader = (): JSX.Element => {
     return (
         <Row justifyContent="space-between">
-            <DaoCardIcon onPress={()=> Linking.openURL(DAO_INFO_URL)}>
-                <DAOIcon />
-            </DaoCardIcon>
+            <IconButton style={{ fontSize: 22 }} onPress={() => Linking.openURL(DAO_INFO_URL)}>
+                <InfoIcon />
+            </IconButton>
             <Typography fontWeight="bold" variant="h2">
                 Nervos DAO
             </Typography>
-            <DaoCardIcon>
+            <IconButton style={{ fontSize: 26 }}>
                 <FilledDAOIcon />
-            </DaoCardIcon>
+            </IconButton>
         </Row>
     );
 };

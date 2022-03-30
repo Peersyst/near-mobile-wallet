@@ -7,13 +7,13 @@ describe("Test for the header of the dao card", () => {
         const screen = render(<DaoCardHeader />);
         expect(screen.getByText("Nervos DAO"));
         expect(screen.getByTestId("FilledDAOIcon"));
-        expect(screen.getByTestId("DAOIcon"));
+        expect(screen.getByTestId("InfoIcon"));
     });
     test("Goes to dao info page", () => {
         const mockedLinking = jest.fn();
         jest.spyOn(Linking, "openURL").mockImplementation(mockedLinking);
         const screen = render(<DaoCardHeader />);
-        const infoButton = screen.getByTestId("DAOIcon");
+        const infoButton = screen.getByTestId("InfoIcon");
         fireEvent.press(infoButton);
         expect(mockedLinking).toHaveBeenCalledWith(DAO_INFO_URL);
     })
