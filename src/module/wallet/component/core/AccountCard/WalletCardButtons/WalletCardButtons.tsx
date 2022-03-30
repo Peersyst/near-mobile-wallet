@@ -7,7 +7,7 @@ import CardButtons from "module/common/component/input/CardButtons/CardButtons";
 
 const CARD_BUTTON_ICON_SIZE = 18;
 
-const AccountCardButtons = (): JSX.Element => {
+const WalletCardButtons = (): JSX.Element => {
     const { showModal } = useModal();
     return (
         <CardButtons
@@ -23,4 +23,4 @@ const AccountCardButtons = (): JSX.Element => {
     );
 };
 
-export default AccountCardButtons;
+export default WalletCardButtons;

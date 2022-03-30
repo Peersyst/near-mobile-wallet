@@ -19,12 +19,11 @@ export const CardButton = styled(Button, { size: "md", variant: "outlined" })<Ca
         borderWidth: 0,
         color: theme.palette.white,
         textTransform: "capitalize",
-        paddingHorizontal: 0,
     },
     md: {
-        fontSize: 14,
+        fontSize: 13,
+        paddingHorizontal: 10,
     },
-    paddingHorizontal: 0,
     backgroundColor: alpha(theme.palette.white, 0.3),
     opacity: 0.9,
 }));
