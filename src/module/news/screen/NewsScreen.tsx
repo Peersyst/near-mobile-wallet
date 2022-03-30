@@ -13,7 +13,7 @@ const NewsScreen = (): JSX.Element => {
 
     return (
         <ScrollView refreshControlProps={{ tintColor: "black" }} onRefresh={refetch}>
-            <BaseMainScreen title={translate("news")}>
+            <BaseMainScreen>
                 <NewsScreenRoot>
                     <List
                         renderItem={({ item, index }) => {

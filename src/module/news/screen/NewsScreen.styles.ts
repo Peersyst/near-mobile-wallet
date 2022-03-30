@@ -4,6 +4,7 @@ import { Col } from "react-native-components";
 
 export const NewsScreenRoot = styled(Col, { gap: "5%" })(() => ({
     paddingHorizontal: "4%",
+    paddingTop: "10%",
 }));
 
 export const NewsSpacer = styled(View)(() => ({
