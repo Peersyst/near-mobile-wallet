@@ -10,7 +10,6 @@ const AnimatedSimpleNewsCard = Animated.createAnimatedComponent.fade(SimpleNewsC
 
 const NewsScreen = (): JSX.Element => {
     const { data = [], refetch, isLoading } = useGetNews();
-
     return (
         <BaseMainScreen>
             <NewsList
