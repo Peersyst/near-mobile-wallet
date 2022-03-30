@@ -1,9 +1,9 @@
-import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
 import useGetTransactions from "module/transaction/query/useGetTransactions";
 import useWallet from "module/wallet/hook/useWallet";
 import { translate } from "locale";
 import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
+import MainTransactionCard from "../../display/MainTransactionCard/MainTransactionCard";
 
 const TransactionsList = (): JSX.Element => {
     const {
@@ -22,7 +22,7 @@ const TransactionsList = (): JSX.Element => {
             loading={isLoading}
             data={data}
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent message={translate("no_transactions")} />}
-            renderItem={({ item: tx }) => <TransactionCard {...tx} />}
+            renderItem={({ item: tx }) => <MainTransactionCard {...tx} />}
             keyExtractor={(tx) => tx.transactionHash}
         />
     );

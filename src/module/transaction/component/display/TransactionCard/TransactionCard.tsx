@@ -9,6 +9,7 @@ import { TransactionCardRoot, TransactionIcon } from "./TransactionCard.styles";
 
 export type TransactionCardProps = Transaction & {
     TxIcon: ReactElement;
+    label: string;
 } & Pick<BalanceProps, "units" | "action">;
 
 const TransactionCard = ({ timestamp, TxIcon, label, units, action }: TransactionCardProps): JSX.Element => {
