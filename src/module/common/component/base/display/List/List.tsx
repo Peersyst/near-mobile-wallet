@@ -25,7 +25,11 @@ const List = ({ onRefresh, loading = false, refreshControlProps, ...rest }: List
     return (
         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flex: 1 }} horizontal scrollEnabled={false}>
             <FlatList
-                refreshControl={<RefreshControl refreshing={loading || refreshing} onRefresh={handleRefresh} {...refreshControlProps} />}
+                refreshControl={
+                    onRefresh || loading ? (
+                        <RefreshControl refreshing={loading || refreshing} onRefresh={handleRefresh} {...refreshControlProps} />
+                    ) : undefined
+                }
                 {...rest}
             />
         </ScrollView>

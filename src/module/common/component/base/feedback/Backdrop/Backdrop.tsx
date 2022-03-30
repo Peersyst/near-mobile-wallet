@@ -78,10 +78,10 @@ export default function Backdrop({
             hasBackdrop={renderBackdrop}
             backdropColor={backdropColor ?? palette.backdrop}
             backdropOpacity={backdropOpacity ?? 1}
-            animationIn={animationIn}
-            animationInTiming={animationInTiming}
-            animationOut={animationOut}
-            animationOutTiming={animationOutTiming}
+            animationIn={animationIn === "none" ? "fadeIn" : animationIn}
+            animationInTiming={animationIn === "none" ? 0.01 : animationInTiming}
+            animationOut={animationOut === "none" ? "fadeOut" : animationOut}
+            animationOutTiming={animationOut === "none" ? 0.01 : animationOutTiming}
             backdropTransitionInTiming={backdropTransitionInTiming}
             backdropTransitionOutTiming={backdropTransitionOutTiming}
             onSwipeStart={onSwipeStart}

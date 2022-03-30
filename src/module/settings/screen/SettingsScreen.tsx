@@ -8,7 +8,7 @@ import SettingsMenu from "module/settings/components/input/SettingsMenu/Settings
 const SettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): JSX.Element => {
     return (
         <BaseSecondaryScreen title={translate("settings")} back={false} navigation={navigation}>
-            <Col gap={5}>
+            <Col gap={"4%"}>
                 <SettingsMenu label={translate("general_settings")} location={MainBottomScreens.GENERAL_SETTINGS} />
                 <SettingsMenu label={translate("security_settings")} location={MainBottomScreens.SECURITY_SETTINGS} />
             </Col>

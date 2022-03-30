@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { loadLocalization } from "locale";
 import Providers from "./Providers";
 import Navigator from "./Navigator";
@@ -12,22 +11,18 @@ loadLocalization();
 
 const App = (): JSX.Element => {
     const loading = useLoad();
-    return (
-        <>
-            {loading ? (
-                <LogoPage />
-            ) : (
-                <KeyboardAwareScrollView
-                    keyboardShouldPersistTaps="handled"
-                    contentContainerStyle={{ flex: 1 }}
-                    style={{ overflow: "visible" }}
-                    bounces={false}
-                >
-                    <Navigator />
-                </KeyboardAwareScrollView>
-            )}
-            <StatusBar />
-        </>
+
+    return loading ? (
+        <LogoPage />
+    ) : (
+        <KeyboardAwareScrollView
+            keyboardShouldPersistTaps="handled"
+            contentContainerStyle={{ flex: 1 }}
+            style={{ overflow: "visible" }}
+            bounces={false}
+        >
+            <Navigator />
+        </KeyboardAwareScrollView>
     );
 };
 
