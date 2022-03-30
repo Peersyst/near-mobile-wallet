@@ -27,8 +27,8 @@ const TokenCard = ({ token }: TokenProps): JSX.Element => {
                 </Col>
             </Row>
             <Col alignItems="flex-end">
-                <Balance balance={token.amount.toString()} smallBalance units={tokenName || ""} boldUnits variant="body2" />
-                <Balance balance={value.toString()} units={fiat} variant={"button"} />
+                <Balance balance={token.amount} smallBalance units={tokenName || ""} boldUnits variant="body2" />
+                <Balance balance={value} units={fiat} variant={"button"} />
             </Col>
         </TokenRoot>
     );

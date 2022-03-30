@@ -15,10 +15,11 @@ describe("SetWalletPin tests", () => {
     test("Sets pin correctly", async () => {
         const setPin = jest.fn();
         jest.spyOn(UseCreateWalletState, "default").mockReturnValue({
-            state: { name: undefined, pin: undefined, mnemonic: undefined },
+            state: { name: undefined, pin: undefined, mnemonic: undefined, colorIndex: undefined },
             setName: jest.fn(),
             setPin,
             setMnemonic: jest.fn(),
+            setColorIndex: jest.fn(),
         });
         const handleSuccess = jest.fn();
 

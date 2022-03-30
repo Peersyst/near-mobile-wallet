@@ -1,16 +1,14 @@
 import TokenCard from "../../display/TokenCard/TokenCard";
 import useGetTokens from "../../../query/useGetTokens";
 import { useGetCkbPrice } from "module/common/query/useCkbPriceConverter";
-import useWallet from "module/wallet/hook/useWallet";
 import { translate } from "locale";
 import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
+import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 
 const TokensList = (): JSX.Element => {
-    const {
-        state: { selectedAccount, cells },
-    } = useWallet();
-    const { isLoading, data = [], refetch } = useGetTokens(selectedAccount !== undefined ? cells[selectedAccount].address : undefined);
+    const { index } = useSelectedWallet();
+    const { isLoading, data = [], refetch } = useGetTokens(index);
     const { isLoading: loadingPrice, refetch: refetchPrice } = useGetCkbPrice("usd");
     const handleRefetch = async () => {
         await Promise.all([refetch(), refetchPrice()]);

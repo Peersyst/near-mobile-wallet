@@ -29,7 +29,7 @@ declare module "react-native-components" {
         red: string;
         appbar: string;
         paper: string;
-        address: string[];
+        wallet: string[];
     }
     export interface TypographyVariantsOverrides {
         h4: false;

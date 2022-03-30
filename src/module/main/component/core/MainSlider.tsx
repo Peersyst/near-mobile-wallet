@@ -1,26 +1,26 @@
 import PagerView from "module/common/component/layout/PagerView/PagerView";
-import AddAccountCard from "module/wallet/component/input/AddAccountCard/AddAccountCard";
-import AccountCard from "module/wallet/component/core/AccountCard/AccountCard";
-import useWallet from "module/wallet/hook/useWallet";
+import WalletCard from "module/wallet/component/core/WalletCard/WalletCard";
+import AddWalletCard from "module/wallet/component/display/AddWalletCard/AddWalletCard";
+import useWalletState from "module/wallet/hook/useWalletState";
 
 const MainSlider = (): JSX.Element => {
     const {
-        state: { cells },
-        setSelectedAccount,
-    } = useWallet();
+        state: { wallets },
+        setSelectedWallet,
+    } = useWalletState();
     return (
         <PagerView
             showPageIndicator
-            onPageSelected={({ nativeEvent: { position } }) => position < cells.length && setSelectedAccount(position)}
+            onPageSelected={({ nativeEvent: { position } }) => setSelectedWallet(position)}
             height="33%"
             gap={0}
             pagePadding={{ horizontal: 20 }}
             style={{ minHeight: 203 }}
         >
-            {cells.map((cell, i) => (
-                <AccountCard key={i} cell={cell} />
+            {wallets.map((wallet, i) => (
+                <WalletCard key={i} wallet={wallet} />
             ))}
-            <AddAccountCard />
+            <AddWalletCard />
         </PagerView>
     );
 };

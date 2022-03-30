@@ -26,10 +26,11 @@ describe("WalletMnemonicScreen tests", () => {
     test("Sets wallet mnemonic state and navigates to enter wallet mnemonic", () => {
         const setMnemonic = jest.fn();
         jest.spyOn(UseCreateWalletState, "default").mockReturnValue({
-            state: { name: undefined, pin: undefined, mnemonic: undefined },
+            state: { name: undefined, pin: undefined, mnemonic: undefined, colorIndex: undefined },
             setName: jest.fn(),
             setPin: jest.fn(),
             setMnemonic,
+            setColorIndex: jest.fn(),
         });
         const setTab = jest.fn();
         jest.spyOn(UseTabs, "default").mockReturnValue([0, setTab]);

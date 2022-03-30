@@ -1,6 +1,12 @@
-import { useQuery } from "react-query";
-import getNfts from "module/nft/mock/getNfts";
+import { useQuery, UseQueryResult } from "react-query";
+import useWalletState from "module/wallet/hook/useWalletState";
+import { Nft } from "module/nft/types";
 
-export default function (address?: string): any {
-    return useQuery(["nfts", address], () => (address ? getNfts(address) : new Promise((resolve) => setTimeout(() => resolve([]), 500))));
+export default function (index?: number): UseQueryResult<Nft[]> {
+    const {
+        state: { wallets, selectedWallet },
+    } = useWalletState();
+    const usedIndex = index ?? selectedWallet ?? 0;
+    const serviceInstance = wallets[usedIndex].serviceInstance;
+    return useQuery(["nfts", usedIndex], () => serviceInstance?.getNfts());
 }

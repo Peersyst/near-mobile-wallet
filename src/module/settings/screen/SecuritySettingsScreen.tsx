@@ -23,7 +23,7 @@ const GeneralSettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): J
                             isAuthenticated: false,
                             hasWallet: false,
                             name: undefined,
-                            selectedAccount: undefined,
+                            selectedWallet: undefined,
                         }));
                     }}
                 >

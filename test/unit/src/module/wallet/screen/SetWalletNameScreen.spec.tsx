@@ -16,10 +16,11 @@ describe("SetWalletNameScreen tests", () => {
         const setName = jest.fn();
         const handleSubmit = jest.fn();
         jest.spyOn(UseCreateWalletState, "default").mockReturnValue({
-            state: { name: undefined, pin: undefined, mnemonic: undefined },
+            state: { name: undefined, pin: undefined, mnemonic: undefined, colorIndex: undefined },
             setName,
             setPin: jest.fn(),
             setMnemonic: jest.fn(),
+            setColorIndex: jest.fn(),
         });
 
         const screen = render(<SetWalletNameScreen onSubmit={handleSubmit} submitText="Submit" />);

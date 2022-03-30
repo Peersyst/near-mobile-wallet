@@ -1,9 +1,13 @@
 import { useQuery } from "react-query";
-import getTransactions from "module/transaction/mock/getTransactions";
+import useWalletState from "module/wallet/hook/useWalletState";
 
-const useGetTransactions = (address?: string) =>
-    useQuery(["transactions", address], (): any =>
-        address ? getTransactions(address) : new Promise((resolve) => setTimeout(() => resolve([]), 600)),
-    );
+const useGetTransactions = (index?: number) => {
+    const {
+        state: { wallets, selectedWallet },
+    } = useWalletState();
+    const usedIndex = index ?? selectedWallet ?? 0;
+    const serviceInstance = wallets[usedIndex].serviceInstance;
+    return useQuery(["transactions", usedIndex], (): any => serviceInstance?.getTransactions());
+};
 
 export default useGetTransactions;

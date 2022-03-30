@@ -5,6 +5,7 @@ import { render } from "test-utils";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
+import { CreateWalletState } from "module/wallet/state/CreateWalletState";
 
 describe("CreateWalletSuccessScreen tests", () => {
     afterAll(() => {
@@ -13,12 +14,13 @@ describe("CreateWalletSuccessScreen tests", () => {
 
     test("Sets wallet and navigates to main screen", async () => {
         jest.useFakeTimers();
-        const walletState = { name: "wallet", pin: "1234", mnemonic: ["pizza", "watermelon", "lemon"] };
+        const walletState: CreateWalletState = { name: "wallet", pin: "1234", mnemonic: ["pizza", "watermelon", "lemon"], colorIndex: 0 };
         jest.spyOn(UseCreateWallet, "default").mockReturnValue({
             state: walletState,
             setPin: jest.fn(),
             setName: jest.fn(),
             setMnemonic: jest.fn(),
+            setColorIndex: jest.fn(),
         });
         const setWalletState = jest.fn();
         const setSettingsState = jest.fn();
@@ -33,7 +35,12 @@ describe("CreateWalletSuccessScreen tests", () => {
         render(<CreateWalletSuccessScreen />);
 
         jest.runAllTimers();
-        expect(setWalletStorage).toHaveBeenCalledWith(expect.objectContaining(walletState));
+        expect(setWalletStorage).toHaveBeenCalledWith(
+            expect.objectContaining({
+                pin: "1234",
+                wallets: [{ name: "wallet", colorIndex: 0, mnemonic: ["pizza", "watermelon", "lemon"], index: 0 }],
+            }),
+        );
         expect(setSettingsStorage).toHaveBeenCalledWith(expect.objectContaining(defaultSettingsState));
         expect(setWalletState).toHaveBeenCalled();
         expect(setSettingsState).toHaveBeenCalled();
