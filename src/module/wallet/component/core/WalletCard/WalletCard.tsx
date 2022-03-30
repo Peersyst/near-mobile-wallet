@@ -1,10 +1,10 @@
-import CardButtons from "./CardButtons/CardButtons";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { ActivityIndicator } from "react-native";
 import { Wallet } from "module/wallet/state/WalletState";
 import useWalletColorIndex from "module/wallet/hook/useWalletColorIndex";
 import { WalletCardBalance, WalletCardRoot, WalletContent } from "./WalletCard.styles";
 import WalletCardHeader from "./WalletCardHeader/WalletCardHeader";
+import WalletCardButtons from "./WalletCardButtons/WalletCardButtons";
 
 export interface WalletCardProps {
     wallet: Wallet;
@@ -26,7 +26,7 @@ const WalletCard = ({ wallet: { name, index, colorIndex } }: WalletCardProps): J
                 ) : (
                     <ActivityIndicator color="white" />
                 )}
-                <CardButtons />
+                <WalletCardButtons />
             </WalletContent>
         </WalletCardRoot>
     );

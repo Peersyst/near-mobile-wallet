@@ -1,14 +1,10 @@
 import { translate } from "locale";
-<<<<<<< HEAD:test/unit/src/module/wallet/component/core/WalletCard/CardButtons.spec.tsx
-import CardButtons from "module/wallet/component/core/WalletCard/CardButtons/CardButtons";
-=======
->>>>>>> dev:test/unit/src/module/wallet/component/core/WalletCard/WalletCardButtons.spec.tsx
 import { render } from "test-utils";
 import { fireEvent } from "@testing-library/react-native";
 import * as UseModal from "module/common/component/base/feedback/ModalProvider/hooks/useModal";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
-import WalletCardButtons from "module/wallet/component/core/AccountCard/WalletCardButtons/WalletCardButtons";
+import WalletCardButtons from "module/wallet/component/core/WalletCard/WalletCardButtons/WalletCardButtons";
 
 describe("WalletCardButtons tests", () => {
     test("Renders correctly", () => {
