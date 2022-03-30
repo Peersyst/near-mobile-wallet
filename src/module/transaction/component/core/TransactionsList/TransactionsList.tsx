@@ -1,4 +1,4 @@
-import TransactionCard from "module/transaction/component/display/MainTransactionCard/TransactionCard";
+import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
 import useGetTransactions from "module/transaction/query/useGetTransactions";
 import useWallet from "module/wallet/hook/useWallet";
 import { translate } from "locale";
