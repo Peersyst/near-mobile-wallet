@@ -14,7 +14,7 @@ describe("Dao Card balance test", () => {
         expect(screen.getByText(translate("current_apc"))).toBeDefined();
         expect(screen.getByText("3%")).toBeDefined();
     });
-    test("Renders correctly", () => {
+    test("Renders correctly while loading", () => {
         const screen = render(<DaoCardBalance />);
         expect(screen.getByText(translate("available"))).toBeDefined();
         expect(screen.getByText(translate("locked"))).toBeDefined();
