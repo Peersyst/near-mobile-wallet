@@ -7,15 +7,14 @@ const DaoTabs = (): JSX.Element => {
     const DaoTabs: MainTabItemType[] = [
         {
             title: translate("deposits"),
-            item: <Typography variant="body1">Deposits</Typography>,
+            item: <Typography variant="body1">DaoTab1</Typography>,
         },
         {
             title: translate("completed"),
-            item: <Typography variant="body1">Completed</Typography>,
-        }
+            item: <Typography variant="body1">DaoTab2</Typography>,
+        },
     ];
     return <MainTabs tabs={DaoTabs} />;
 };
 
 export default DaoTabs;
-
