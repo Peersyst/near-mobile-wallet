@@ -5,7 +5,7 @@ import { Alert } from "react-native";
 import * as Recoil from "recoil";
 import { cells } from "mocks/cells";
 
-describe("Test for the Main Slider", () => {
+describe("Test for the Home Slider", () => {
     test("Renders correctly without accounts", () => {
         jest.spyOn(Alert, "alert");
         const screen = render(<HomeSlider />);
