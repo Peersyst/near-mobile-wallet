@@ -2,8 +2,8 @@ import TransactionCard from "module/transaction/component/display/TransactionCar
 import useGetTransactions from "module/transaction/query/useGetTransactions";
 import { translate } from "locale";
 import MainList from "module/main/component/display/MainList/MainList";
-import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
+import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 
 const TransactionsList = (): JSX.Element => {
     const { index } = useSelectedWallet();
