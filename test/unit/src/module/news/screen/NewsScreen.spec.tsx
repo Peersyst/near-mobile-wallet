@@ -12,7 +12,6 @@ describe("Test for the NewsScreen", () => {
             data: [],
         });
         const screen = render(<NewsScreen />);
-        expect(screen.getByText(translate("news"))).toBeDefined();
         expect(screen.getByText(translate("no_news"))).toBeDefined();
     });
     test("Renders correctly with news", () => {
@@ -21,7 +20,6 @@ describe("Test for the NewsScreen", () => {
             data: ArrayNews,
         });
         const screen = render(<NewsScreen />);
-        expect(screen.getByText(translate("news"))).toBeDefined();
         expect(screen.getByText("Title0")).toBeDefined();
         expect(screen.getByText("Title1")).toBeDefined();
         expect(screen.getByText("Title2")).toBeDefined();
@@ -36,7 +34,6 @@ describe("Test for the NewsScreen", () => {
         const mockedLinking = jest.fn();
         jest.spyOn(Linking, "openURL").mockImplementation(mockedLinking);
         const screen = render(<NewsScreen />);
-        expect(screen.getByText(translate("news"))).toBeDefined();
         const card = screen.getByText("Title0");
         fireEvent.press(card);
         expect(mockedLinking).toHaveBeenCalledWith("link0");
