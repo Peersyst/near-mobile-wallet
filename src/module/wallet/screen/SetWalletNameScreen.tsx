@@ -1,4 +1,4 @@
-import { Col, Form, Row, Typography } from "react-native-components";
+import { Col, Form, Typography } from "react-native-components";
 import { translate } from "locale";
 import Card from "module/common/component/surface/Card/Card";
 import TextField from "module/common/component/input/TextField/TextField";
@@ -32,7 +32,12 @@ const SetWalletNameScreen = ({ onSubmit, submitText }: SetWalletNameScreenProps)
                 <WalletImage source={image.wallet} />
             </Col>
             <Card>
-                <Typography variant="body1">{translate("set_wallet_name_text")}</Typography>
+                <Typography variant="body1">
+                    <Typography fontWeight="bold" variant="body1">
+                        {translate("security_first")}
+                    </Typography>
+                    {translate("set_wallet_name_text")}
+                </Typography>
             </Card>
             <Form onSubmit={handleSubmit}>
                 <Col gap={30} style={{ paddingHorizontal: 20 }}>

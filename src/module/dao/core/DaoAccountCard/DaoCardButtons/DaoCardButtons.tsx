@@ -18,7 +18,7 @@ const DaoCardButtons = (): JSX.Element => {
             //Right props
             rightLabel={translate("withdraw")}
             rightIcon={<DAOWithdrawIcon style={{ fontSize: CARD_BUTTON_ICON_SIZE }} />}
-            rightButtonOnPress={() => showModal(ReceiveModal)} 
+            rightButtonOnPress={() => showModal(ReceiveModal)}
         />
     );
 };

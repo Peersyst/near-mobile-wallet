@@ -11,6 +11,7 @@ export * from "./FilledCircleIcon";
 export * from "./FilledCopyIcon";
 export * from "./FilledDAOIcon";
 export * from "./FilledNewsIcon";
+export * from "./InfoIcon";
 export * from "./LogoIcon";
 export * from "./LogoColIcon";
 export * from "./NewsIcon";

@@ -7,7 +7,6 @@ describe("Header tests", () => {
     test("Renders correctly - withIcons", () => {
         const screen = render(<Header showIcons />);
         expect(screen.getByTestId("SettingsIcon"));
-        expect(screen.getByTestId("activeCircle"));
     });
     test("Goes to settings", () => {
         const mockedNavigation = jest.fn();

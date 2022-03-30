@@ -1,8 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import { alpha } from "@peersyst/react-utils";
 import { View } from "react-native";
-import { Icon } from "react-native-components";
-import Button from "../Button/Button";
+import { Button, Icon } from "react-native-components";
 
 interface CardButtonProps {
     position: "left" | "right";

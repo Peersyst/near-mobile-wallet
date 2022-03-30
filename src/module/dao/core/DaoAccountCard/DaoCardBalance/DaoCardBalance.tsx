@@ -1,22 +1,37 @@
 import { translate } from "locale";
+import { DaoBalanceType } from "module/dao/types";
 import Balance from "module/wallet/component/display/Balance/Balance";
+import { ActivityIndicator } from "react-native";
 import { Col, Row, Typography } from "react-native-components";
-import { DaoCardProps } from "../DaoCard";
 
-const DaoCardBalance = ({availableBalance, lockedBalance, currentAPC}: DaoCardProps): JSX.Element => {
+type DaoCardProps = Partial<DaoBalanceType>;
+
+const DaoCardBalance = ({ availableBalance, lockedBalance, currentAPC }: DaoCardProps): JSX.Element => {
     return (
         <Col gap={"3%"} style={{ paddingHorizontal: "4%" }}>
             <Row justifyContent="space-between">
                 <Typography variant="body2">{translate("available")}</Typography>
-                <Balance boldUnits smallBalance balance={availableBalance} decimals={6} units="ckb" variant="h1" />
+                {availableBalance !== undefined ? (
+                    <Balance boldUnits smallBalance balance={availableBalance} decimals={6} units="ckb" variant="h1" />
+                ) : (
+                    <ActivityIndicator testID="actIndicator" color="white" />
+                )}
             </Row>
             <Row justifyContent="space-between">
                 <Typography variant="body2">{translate("locked")}</Typography>
-                <Balance boldUnits smallBalance balance={lockedBalance} decimals={3} units="ckb" variant="h3" />
+                {lockedBalance !== undefined ? (
+                    <Balance boldUnits smallBalance balance={lockedBalance} decimals={3} units="ckb" variant="h3" />
+                ) : (
+                    <ActivityIndicator testID="actIndicator" color="white" />
+                )}
             </Row>
             <Row justifyContent="space-between">
                 <Typography variant="body2">{translate("current_apc")}</Typography>
-                <Typography variant="body1" fontWeight="bold">{`${currentAPC}%`}</Typography>
+                {currentAPC !== undefined ? (
+                    <Typography variant="body1" fontWeight="bold">{`${currentAPC}%`}</Typography>
+                ) : (
+                    <ActivityIndicator testID="actIndicator" color="white" />
+                )}
             </Row>
         </Col>
     );
