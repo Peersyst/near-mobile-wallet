@@ -9,7 +9,7 @@ import { TransactionReceivedIcon, TransactionSentIcon } from "icons";
 export type TransactionCardProps = Transaction;
 const tokens = ["CKB", "CKB", "CKB", "ETH", "USDC", "TAI", "CKB", "CKB", "COOP", "CKB"];
 
-const MainTransactionCard = ({ timestamp }: TransactionCardProps): JSX.Element => {
+const TransactionCard = ({ timestamp }: TransactionCardProps): JSX.Element => {
     const seed = Math.random();
     const received = seed > 0.5;
     const token = tokens[Math.trunc(seed * 10)];
@@ -44,4 +44,4 @@ const MainTransactionCard = ({ timestamp }: TransactionCardProps): JSX.Element =
     );
 };
 
-export default MainTransactionCard;
+export default TransactionCard;
