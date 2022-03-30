@@ -1,4 +1,4 @@
-import MainSlider from "module/main/component/core/MainSlider";
+import HomeSlider from "module/home/core/HomeSlider";
 import { fireEvent, render } from "test-utils";
 import { translate } from "locale";
 import { Alert } from "react-native";
@@ -8,7 +8,7 @@ import { cells } from "mocks/cells";
 describe("Test for the Main Slider", () => {
     test("Renders correctly without accounts", () => {
         jest.spyOn(Alert, "alert");
-        const screen = render(<MainSlider />);
+        const screen = render(<HomeSlider />);
         const button = screen.getByText(translate("add_an_account"));
         expect(button).toBeDefined();
         fireEvent.press(button);
@@ -16,7 +16,7 @@ describe("Test for the Main Slider", () => {
     });
     test("Renders correctly with cells", () => {
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ hasWallet: true, isAuthenticated: true, name: "wallet", cells: cells });
-        const screen = render(<MainSlider />);
+        const screen = render(<HomeSlider />);
         expect(screen.getAllByText(cells[0].name)).toBeDefined();
         expect(screen.getAllByText(cells[1].name)).toBeDefined();
         expect(screen.getAllByText(cells[2].name)).toBeDefined();

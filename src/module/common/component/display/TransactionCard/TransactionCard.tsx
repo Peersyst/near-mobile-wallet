@@ -13,7 +13,6 @@ export type TransactionCardProps = Transaction & {
 } & Pick<BalanceProps, "units" | "action">;
 
 const TransactionCard = ({ timestamp, TxIcon, label, units, action }: TransactionCardProps): JSX.Element => {
-
     return (
         <TransactionCardRoot>
             <TransactionIcon>{TxIcon}</TransactionIcon>

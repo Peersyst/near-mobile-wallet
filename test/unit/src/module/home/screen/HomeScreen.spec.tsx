@@ -1,6 +1,6 @@
 import { render } from "test-utils";
 import { translate } from "locale";
-import HomeScreen from "module/main/screen/HomeScreen/HomeScreen";
+import HomeScreen from "module/home/screen/HomeScreen/HomeScreen";
 
 describe("HomeScreen tests", () => {
     test("Renders correctly", () => {
