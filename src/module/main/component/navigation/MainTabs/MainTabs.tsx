@@ -7,7 +7,7 @@ import { MainTabsType as MainTabsProps } from "./MainTabs.types";
 const MainTabs = ({ tabs }: MainTabsProps): JSX.Element => {
     const [index, setIndex] = useState(0);
     return (
-        <Tabs gap={0} index={index} onIndexChange={setIndex} >
+        <Tabs gap={0} index={index} onIndexChange={setIndex}>
             <TabGroup renderIndicator={false} style={{ justifyContent: "space-between", zIndex: 1 }}>
                 {tabs.map(({ title }, index) => {
                     return (

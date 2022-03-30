@@ -5,13 +5,7 @@ import DaoTransactionCard from "../../display/DaoTransactionCard";
 import useGetDaoTransactions from "module/dao/query/useGetDaoTransactions";
 
 const DaoTransactionsList = (): JSX.Element => {
-
-    const {
-        data = [],
-        refetch,
-        isLoading,
-    } = useGetDaoTransactions();
-
+    const { data = [], refetch, isLoading } = useGetDaoTransactions();
     return (
         <MainList
             onRefresh={refetch}

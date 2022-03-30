@@ -11,7 +11,15 @@ const MainTransactionCard = (transaction: TransactionCardProps): JSX.Element => 
     const received = seed > 0.5;
     const token = tokens[Math.trunc(seed * 10)];
     const TxIcon = received ? <ReceiveIcon /> : <SendIcon />;
-    return <TransactionCard action={received ? "add" : "subtract"} label={received ? "received" : "send"} TxIcon={TxIcon} units={token} {...transaction} />;
+    return (
+        <TransactionCard
+            action={received ? "add" : "subtract"}
+            label={received ? "received" : "send"}
+            TxIcon={TxIcon}
+            units={token}
+            {...transaction}
+        />
+    );
 };
 
 export default MainTransactionCard;
