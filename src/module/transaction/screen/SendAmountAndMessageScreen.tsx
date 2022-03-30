@@ -23,7 +23,7 @@ const SendAmountAndMessageScreen = (): JSX.Element => {
     const [amount, setAmount] = useState(sendState.amount || "");
     const { fee: selectedFee } = useRecoilValue(settingsState);
     const { data: fee, isLoading: feeIsLoading } = useGetFee(selectedFee);
-    const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderAddress!);
+    const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex);
     const setTab = useSetTab();
 
     if (feeIsLoading || balanceIsLoading) {
@@ -52,7 +52,7 @@ const SendAmountAndMessageScreen = (): JSX.Element => {
                         name="amount"
                         validators={`not-null|gte${MINIMUM_TRANSACTION_AMOUNT}:${translate("minimum_transaction_amount_text", {
                             amount: MINIMUM_TRANSACTION_AMOUNT,
-                        })}|lte${Number(balance) - Number(fee)}:${translate("insufficient_balance")}`}
+                        })}|lte${Number(balance?.freeBalance) - Number(fee)}:${translate("insufficient_balance")}`}
                         suffix={
                             <Typography variant="h1" fontWeight="bold">
                                 CKB

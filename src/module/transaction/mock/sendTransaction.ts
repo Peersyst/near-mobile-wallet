@@ -1,5 +1,5 @@
 export interface SendTransactionParams {
-    senderAddress: string;
+    mnemonic: string[];
     receiverAddress: string;
     amount: string;
     message?: string;

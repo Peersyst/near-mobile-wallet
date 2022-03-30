@@ -34,8 +34,8 @@ const GlassNavigator = ({
             </Col>
             <ScrollView
                 style={{ marginHorizontal: -20 }}
-                contentContainerStyle={scrollable && { flex: 1, justifyContent: "flex-end" }}
-                alwaysBounceVertical={false}
+                contentContainerStyle={!scrollable && { flex: 1, justifyContent: "flex-end" }}
+                scrollEnabled={!!scrollable}
             >
                 <GlassNavigatorContent onStartShouldSetResponder={() => true} flex={1} justifyContent="flex-end">
                     {children}

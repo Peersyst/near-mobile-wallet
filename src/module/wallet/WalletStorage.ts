@@ -1,9 +1,17 @@
 import { BaseStorageService } from "module/common/service/BaseStorageService";
+import { SdkWalletState } from "module/common/service/mock/CkbServiceMock.types";
+
+export interface StorageWallet {
+    index: number;
+    name: string;
+    colorIndex: number;
+    mnemonic: string[];
+    initialState?: SdkWalletState;
+}
 
 export interface WalletStorageType {
-    name: string;
+    wallets: StorageWallet[];
     pin: string;
-    mnemonic: string[];
 }
 
 export const WalletStorage = new (class extends BaseStorageService<WalletStorageType> {
@@ -11,18 +19,61 @@ export const WalletStorage = new (class extends BaseStorageService<WalletStorage
         super("wallet");
     }
 
-    async getName(): Promise<string | undefined> {
-        const wallet = await this.get();
-        return wallet?.name;
+    async getWallets(): Promise<StorageWallet[] | undefined> {
+        const storage = await this.get();
+        return storage?.wallets;
+    }
+
+    async getWallet(index: number): Promise<StorageWallet | undefined> {
+        const storage = await this.get();
+        return storage?.wallets[index];
+    }
+
+    async getName(index: number): Promise<string | undefined> {
+        const storage = await this.get();
+        return storage?.wallets[index]?.name;
+    }
+
+    async getColorIndex(index: number): Promise<number | undefined> {
+        const storage = await this.get();
+        return storage?.wallets[index]?.colorIndex;
+    }
+
+    async getMnemonic(index: number): Promise<string[] | undefined> {
+        const storage = await this.get();
+        return storage?.wallets[index]?.mnemonic;
+    }
+
+    async getInitialState(index: number): Promise<SdkWalletState | undefined> {
+        const storage = await this.get();
+        return storage?.wallets[index]?.initialState;
     }
 
     async getPin(): Promise<string | undefined> {
-        const wallet = await this.get();
-        return wallet?.pin;
+        const storage = await this.get();
+        return storage?.pin;
     }
 
-    async getMnemonic(): Promise<string[] | undefined> {
-        const wallet = await this.get();
-        return wallet?.mnemonic;
+    async setWallets(wallets: StorageWallet[]): Promise<void> {
+        const storage = await this.get();
+        if (storage) await this.set({ ...storage, wallets });
+    }
+
+    async addWallet(wallet: StorageWallet): Promise<void> {
+        const wallets = await this.getWallets();
+        if (wallets) {
+            wallets?.push(wallet);
+            await this.setWallets(wallets);
+        }
+    }
+
+    async removeWallet(index: number): Promise<void> {
+        const wallets = await this.getWallets();
+        if (wallets) await this.setWallets(wallets.filter((_, i) => i !== index));
+    }
+
+    async setPin(pin: string): Promise<void> {
+        const storage = await this.get();
+        if (storage) await this.set({ ...storage, pin });
     }
 })();

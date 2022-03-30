@@ -1,9 +1,15 @@
 import { QueryResult } from "query-utils";
 import { useQuery } from "react-query";
-import getTokens from "../mock/getTokens";
 import { TokenAmount } from "../types";
+import useWalletState from "module/wallet/hook/useWalletState";
 
-const useGetTokens = (address?: string): QueryResult<TokenAmount[]> =>
-    useQuery(["tokens", address], () => (address ? getTokens(address) : new Promise((resolve) => setTimeout(() => resolve([]), 600))));
+const useGetTokens = (index?: number): QueryResult<TokenAmount[]> => {
+    const {
+        state: { wallets, selectedWallet },
+    } = useWalletState();
+    const usedIndex = index ?? selectedWallet ?? 0;
+    const serviceInstance = wallets[usedIndex].serviceInstance;
+    return useQuery(["tokens", usedIndex], () => serviceInstance?.getTokensBalance());
+};
 
 export default useGetTokens;

@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import { useSetRecoilState } from "recoil";
+import { useResetRecoilState, useSetRecoilState } from "recoil";
 import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
+import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
+import createWalletState from "module/wallet/state/CreateWalletState";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {
@@ -12,13 +14,20 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
     } = useCreateWallet();
     const setWalletState = useSetRecoilState(walletState);
     const setSettingsState = useSetRecoilState(settingsState);
-
+    const resetCreateWalletState = useResetRecoilState(createWalletState);
     useEffect(() => {
         const setStorage = async () => {
-            await WalletStorage.set({ name: name!, pin: pin!, mnemonic: mnemonic! });
+            await WalletStorage.set({ pin: pin!, wallets: [{ name: name!, colorIndex: 0, mnemonic: mnemonic!, index: 0 }] });
             await SettingsStorage.set(defaultSettingsState);
             setSettingsState(defaultSettingsState);
-            setWalletState((state) => ({ ...state, hasWallet: true, isAuthenticated: true }));
+            setWalletState((state) => ({
+                ...state,
+                wallets: [{ name: name!, colorIndex: 0, index: 0, serviceInstance: new CkbServiceMock(mnemonic!) }],
+                hasWallet: true,
+                isAuthenticated: true,
+                selectedWallet: 0,
+            }));
+            resetCreateWalletState();
         };
         setTimeout(setStorage, 2000);
     }, []);

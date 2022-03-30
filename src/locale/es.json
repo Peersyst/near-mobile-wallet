@@ -40,7 +40,7 @@
     "advise3_text": "Cuando cambies tu teléfono tendrás que reimportar tus mnemonics para acceder a tus cuentas. Nadie de CKBull ni Nervos te preguntará por tus claves privadas o mnemonics. Si alguien te pregunta por ello o te pide introducirlo en algún otro lugar, estás siendo estafado.",
     "news": "Noticias",
     "dao": "DAO",
-    "add_an_account": "Añade una cuenta",
+    "add_a_wallet": "Añade un wallet",
     "my_account": "Mi cuenta",
     "keep_this_safe": "Guárdalo en un lugar seguro",
     "select_in_order": "Selecciona en orden",
@@ -65,7 +65,7 @@
     "bought_for": "Compado por",
     "go_back": "Volver",
     "select_your_network": "Selecciona tu red",
-    "select_an_account": "Selecciona una cuenta",
+    "select_a_wallet": "Selecciona un wallet",
     "no_account_selected": "Cuenta no seleccionada",
     "no_nfts": "Todavía no tienes ningún NFT",
     "send_to": "Enviar a",
@@ -101,5 +101,8 @@
     "deposit": "Depositar",
     "withdraw": "Retirar",
     "change_passcode": "Cambiar contraseña",
-    "no_news": "Por ahora no hay noticias"
+    "no_news": "Por ahora no hay noticias",
+    "or": "o",
+    "create_a_wallet": "Crea un Wallet",
+    "import_a_wallet": "Importa un Wallet"
 }
