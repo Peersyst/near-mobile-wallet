@@ -1,7 +1,7 @@
 import { render } from "test-utils";
 import { translate } from "locale";
 import { fireEvent } from "@testing-library/react-native";
-import HomeTabs from "module/home/navigation/HomeTabs/HomeTabs";
+import HomeTabs from "module/home/component/navigation/HomeTabs/HomeTabs";
 
 describe("MainTabs tests", () => {
     test("Renders correctly", () => {

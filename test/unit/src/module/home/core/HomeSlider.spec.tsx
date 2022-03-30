@@ -1,4 +1,4 @@
-import HomeSlider from "module/home/core/HomeSlider";
+import HomeSlider from "module/home/component/core/HomeSlider";
 import { fireEvent, render } from "test-utils";
 import { translate } from "locale";
 import { Alert } from "react-native";
