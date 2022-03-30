@@ -14,7 +14,7 @@ const DaoCardBalance = ({ availableBalance, lockedBalance, currentAPC }: DaoCard
                 {availableBalance !== undefined ? (
                     <Balance boldUnits smallBalance balance={availableBalance} decimals={6} units="ckb" variant="h1" />
                 ) : (
-                    <ActivityIndicator color="white" />
+                    <ActivityIndicator testID="actIndicator" color="white" />
                 )}
             </Row>
             <Row justifyContent="space-between">
@@ -22,7 +22,7 @@ const DaoCardBalance = ({ availableBalance, lockedBalance, currentAPC }: DaoCard
                 {lockedBalance !== undefined ? (
                     <Balance boldUnits smallBalance balance={lockedBalance} decimals={3} units="ckb" variant="h3" />
                 ) : (
-                    <ActivityIndicator color="white" />
+                    <ActivityIndicator testID="actIndicator" color="white" />
                 )}
             </Row>
             <Row justifyContent="space-between">
@@ -30,7 +30,7 @@ const DaoCardBalance = ({ availableBalance, lockedBalance, currentAPC }: DaoCard
                 {currentAPC !== undefined ? (
                     <Typography variant="body1" fontWeight="bold">{`${currentAPC}%`}</Typography>
                 ) : (
-                    <ActivityIndicator color="white" />
+                    <ActivityIndicator testID="actIndicator" color="white" />
                 )}
             </Row>
         </Col>

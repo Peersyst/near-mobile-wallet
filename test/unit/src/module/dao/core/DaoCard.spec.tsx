@@ -5,7 +5,6 @@ import { render } from "test-utils";
 describe("Test for the Dao Card", () => {
     test("Renders correctly", () => {
         const screen = render(<DaoCard />);
-        
         //Balance
         expect(screen.getByText(translate("available"))).toBeDefined();
         expect(screen.getByText("12,635")).toBeDefined();
