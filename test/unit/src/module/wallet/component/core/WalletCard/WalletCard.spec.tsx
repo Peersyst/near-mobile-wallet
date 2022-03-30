@@ -2,10 +2,10 @@ import { translate } from "locale";
 import { render, SuccessApiCall } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
 import WalletCard from "module/wallet/component/core/WalletCard/WalletCard";
-import { wallet } from "mocks/wallet";
 import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
+import { wallet } from "mocks/wallet";
 
 describe("WalletCard tests", () => {
     test("Renders correctly", async () => {
