@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import CardBackground from "module/common/component/surface/CardBackground/CardBackground";
 
-export const CardBackgroundHome = styled(CardBackground, { elevation: 2 })(() => ({
+export const MainScreenBackground = styled(CardBackground, { elevation: 2 })(() => ({
     position: "absolute",
     bottom: 0,
     left: 0,
