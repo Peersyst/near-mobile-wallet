@@ -59,11 +59,13 @@ export const WalletStorage = new (class extends BaseStorageService<WalletStorage
         if (storage) await this.set({ ...storage, wallets });
     }
 
-    async addWallet(wallet: StorageWallet): Promise<void> {
+    async addWallet(wallet: Omit<StorageWallet, "index">): Promise<StorageWallet | undefined> {
         const wallets = await this.getWallets();
         if (wallets) {
-            wallets?.push(wallet);
+            const newWallet = { ...wallet, index: wallets.length };
+            wallets?.push(newWallet);
             await this.setWallets(wallets);
+            return newWallet;
         }
     }
 

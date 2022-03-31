@@ -5,10 +5,9 @@ import CreateWalletModal from "module/wallet/component/core/CreateWalletModal/Cr
 import ColorPicker from "../../input/ColorPicker/ColorPicker";
 import { useTheme } from "@peersyst/react-native-styled";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import { useResetRecoilState } from "recoil";
-import createWalletState from "module/wallet/state/CreateWalletState";
 import Divider from "module/common/component/display/Divider/Divider";
 import { translate } from "locale";
+import ImportWalletModal from "../ImportWalletModal/ImportWalletModal";
 
 const AddWallet = (): JSX.Element => {
     const { palette } = useTheme();
@@ -16,13 +15,12 @@ const AddWallet = (): JSX.Element => {
         setColorIndex,
         state: { colorIndex },
     } = useCreateWallet();
-    const resetCreateWallet = useResetRecoilState(createWalletState);
     const { showModal } = useModal();
 
     useEffect(() => {
         setColorIndex(Math.floor(Math.random() * -6 + 6));
         return () => {
-            resetCreateWallet();
+            setColorIndex(undefined);
         };
     }, []);
 
@@ -42,7 +40,7 @@ const AddWallet = (): JSX.Element => {
                         {translate("or")}
                     </Typography>
                 </Divider>
-                <Button fullWidth variant="outlined" disabled={colorIndex === undefined}>
+                <Button fullWidth variant="outlined" disabled={colorIndex === undefined} onPress={() => showModal(ImportWalletModal)}>
                     {translate("import_a_wallet")}
                 </Button>
             </Col>

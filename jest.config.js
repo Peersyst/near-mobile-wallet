@@ -42,6 +42,8 @@ module.exports = {
         "!./src/module/common/component/layout/PagerView/*",
         "!./src/module/common/component/layout/BasePage/*",
         "!./src/module/common/component/layout/LogoPage/*",
+        "!./src/module/wallet/component/core/CreateWalletModal/*",
+        "!./src/module/wallet/component/core/ImportWalletModal/*",
     ],
     coverageDirectory: "./coverage",
     coverageThreshold: {

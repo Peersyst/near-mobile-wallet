@@ -1,14 +1,17 @@
-import { Col, useTabs } from "react-native-components";
+import { Col } from "react-native-components";
 import { translate } from "locale";
 import AdviseCardGroup from "module/common/component/display/AdviseCardGroup/AdviseCardGroup";
 import { useState } from "react";
-import { CreateWalletScreens } from "module/wallet/navigator/CreateWalletNavigatorGroup";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
 import Button from "module/common/component/input/Button/Button";
 
-const WalletAdvisesScreen = (): JSX.Element => {
+export interface WalletAdvisesScreenProps {
+    onNextScreen: () => void;
+}
+
+const WalletAdvisesScreen = ({ onNextScreen }: WalletAdvisesScreenProps): JSX.Element => {
     const [index, setIndex] = useState(0);
-    const setTab = useTabs()[1];
+
     const advises = [
         { title: translate("advise1_title"), text: translate("advise1_text") },
         { title: translate("advise2_title"), text: translate("advise2_text") },
@@ -18,13 +21,11 @@ const WalletAdvisesScreen = (): JSX.Element => {
         },
     ];
 
-    const handleNext = () => setTab(CreateWalletScreens.WALLET_MNEMONIC);
-
     return (
         <Col flex={1} gap={30}>
             <AdviseCardGroup index={index} onIndexChange={setIndex} advises={advises} />
             {index === 2 ? (
-                <CountdownButton seconds={5} fullWidth variant="outlined" style={{ marginHorizontal: 20 }} onPress={handleNext}>
+                <CountdownButton seconds={5} fullWidth variant="outlined" style={{ marginHorizontal: 20 }} onPress={onNextScreen}>
                     {translate("generate_mnemonic")}
                 </CountdownButton>
             ) : (
