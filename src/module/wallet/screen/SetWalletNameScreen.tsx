@@ -26,7 +26,6 @@ const SetWalletNameScreen = ({ onSubmit, submitText }: SetWalletNameScreenProps)
         setName(walletName);
         onSubmit();
     };
-
     return (
         <Col flex={1} gap={30} justifyContent="flex-end">
             <Col alignItems="center" justifyContent="center" flex={1}>

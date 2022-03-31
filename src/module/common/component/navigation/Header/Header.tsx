@@ -2,7 +2,6 @@ import { HeaderRoot } from "./Header.styles";
 import Toolbar from "../../layout/Toolbar/Toolbar";
 import LogoRow from "module/common/component/display/Logos/LogoRow/LogoRow";
 import { IconButton, Row } from "react-native-components";
-import Notification from "module/common/component/display/Notification/Notification";
 import { SettingsIcon } from "icons";
 import useNavigation from "../../../hook/useNavigation";
 
@@ -19,9 +18,6 @@ const Header = ({ showIcons = true }: HeaderProps): JSX.Element => {
                     <LogoRow />
                     {showIcons && (
                         <Row gap={16}>
-                            <IconButton onPress={() => navigation.navigate("Notifications")}>
-                                <Notification />
-                            </IconButton>
                             <IconButton onPress={() => navigation.navigate("Settings")}>
                                 <SettingsIcon />
                             </IconButton>
