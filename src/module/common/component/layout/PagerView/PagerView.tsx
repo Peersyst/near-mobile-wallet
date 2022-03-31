@@ -45,7 +45,7 @@ const PagerView = ({
     const pagerViewRef = useRef<BasePagerView | null>(null);
 
     useEffect(() => {
-        if (currentPageProp) pagerViewRef.current?.setPageWithoutAnimation(currentPageProp);
+        if (currentPageProp !== undefined) pagerViewRef.current?.setPageWithoutAnimation(currentPageProp);
     }, [currentPageProp]);
 
     const handlePageSelected = (e: NativeSyntheticEvent<PagerViewOnPageSelectedEventData>) => {

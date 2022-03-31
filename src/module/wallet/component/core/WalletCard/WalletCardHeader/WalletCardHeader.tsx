@@ -1,6 +1,6 @@
 import { translate } from "locale";
 import { Row } from "react-native-components";
-import { FavouriteIcon, WalletCardTitle, CopyIcon } from "../WalletCard.styles";
+import { WalletCardTitle, CopyIcon, EditIcon } from "../WalletCard.styles";
 import useWallet from "module/wallet/hook/useWallet";
 
 interface AccountCardHeaderProps {
@@ -13,7 +13,7 @@ const WalletCardHeader = ({ index, name }: AccountCardHeaderProps): JSX.Element 
 
     return (
         <Row justifyContent="space-between" alignItems="center">
-            <FavouriteIcon />
+            <EditIcon index={index} />
             <WalletCardTitle variant="h3">{name}</WalletCardTitle>
             <CopyIcon text={serviceInstance?.getAddress() || ""} toastMessage={translate("address_copied")} />
         </Row>
