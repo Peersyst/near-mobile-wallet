@@ -23,6 +23,7 @@ const QueryClientProvider: FC = ({ children }): JSX.Element => {
         queryCache: new QueryCache({
             onError: (error) => {
                 const { message, type } = handleErrorMessage(error);
+                console.error(error);
                 showToast(message, { type });
             },
         }),

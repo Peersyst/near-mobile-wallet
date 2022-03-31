@@ -1,7 +1,9 @@
-import { Transaction } from "../types";
+import { Transaction, TransactionStatus, TransactionType } from "../types";
 
 export const transaction: Transaction = {
-    status: "confirmed",
+    status: TransactionStatus.COMMITTED,
+    type: TransactionType.SEND_CKB,
+    amount: 100,
     transactionHash: "0x1234567890abcdef",
     inputs: [],
     outputs: [],
@@ -11,7 +13,9 @@ export const transaction: Transaction = {
 };
 
 export const transactions = [...Array(10)].map((_, i) => ({
-    status: "confirmed",
+    status: TransactionStatus.COMMITTED,
+    type: TransactionType.SEND_CKB,
+    amount: 100,
     transactionHash: "0x1234567890abcde" + i,
     inputs: [],
     outputs: [],

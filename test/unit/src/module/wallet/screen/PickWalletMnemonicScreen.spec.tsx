@@ -13,10 +13,11 @@ describe("PickWalletMnemonicScreen tests", () => {
     });
     test("Navigates to CreateWalletSuccess if correct", () => {
         jest.spyOn(UseCreateWallet, "default").mockReturnValue({
-            state: { name: "wallet", pin: "1234", mnemonic: ["pizza", "watermelon", "lemon"] },
+            state: { name: "wallet", pin: "1234", mnemonic: ["pizza", "watermelon", "lemon"], colorIndex: undefined },
             setPin: jest.fn(),
             setName: jest.fn(),
             setMnemonic: jest.fn(),
+            setColorIndex: jest.fn(),
         });
         const setTab = jest.fn();
         jest.spyOn(UseTabs, "default").mockReturnValue([0, setTab]);
@@ -31,10 +32,11 @@ describe("PickWalletMnemonicScreen tests", () => {
 
     test("Shows toast if not correct", () => {
         jest.spyOn(UseCreateWallet, "default").mockReturnValue({
-            state: { name: "wallet", pin: "1234", mnemonic: ["pizza", "watermelon", "lemon"] },
+            state: { name: "wallet", pin: "1234", mnemonic: ["pizza", "watermelon", "lemon"], colorIndex: undefined },
             setPin: jest.fn(),
             setName: jest.fn(),
             setMnemonic: jest.fn(),
+            setColorIndex: jest.fn(),
         });
         const showToast = jest.fn();
         jest.spyOn(UseToast, "useToast").mockReturnValue({

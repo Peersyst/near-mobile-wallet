@@ -5,6 +5,8 @@ import { useLoad } from "module/common/query/useLoad";
 import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
+if (typeof BigInt === "undefined") global.BigInt = require("big-integer");
+
 loadLocalization();
 
 const App = (): JSX.Element => {

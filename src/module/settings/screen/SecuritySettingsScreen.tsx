@@ -30,7 +30,7 @@ const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): 
                             isAuthenticated: false,
                             hasWallet: false,
                             name: undefined,
-                            selectedAccount: undefined,
+                            selectedWallet: undefined,
                         }));
                     }}
                 >

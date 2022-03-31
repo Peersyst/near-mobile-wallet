@@ -5,27 +5,30 @@ import Balance from "module/wallet/component/display/Balance/Balance";
 import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import SummaryField from "module/transaction/screen/SendConfirmationScreen/SummaryField";
-import useWallet from "module/wallet/hook/useWallet";
 import useSendTransaction from "../../query/useSendTransaction";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import LoadingModal from "module/transaction/component/feedback/LoadingModal/LoadingModal";
 import { useRefetchQuery } from "../../../../query/useRefetchQuery";
 import { formatAddress } from "@peersyst/react-utils";
+import useWalletState from "module/wallet/hook/useWalletState";
+import { WalletStorage } from "module/wallet/WalletStorage";
 
 const SendConfirmationScreen = (): JSX.Element => {
-    const { amount, fee, senderAddress, receiverAddress, message } = useRecoilValue(sendState);
+    const { amount, fee, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
     const {
-        state: { cells },
-    } = useWallet();
-    const { name: senderName } = cells.find((cell) => cell.address === senderAddress)!;
+        state: { wallets },
+    } = useWalletState();
+    const senderWallet = wallets[senderWalletIndex!];
+    const { name: senderName, serviceInstance } = senderWallet;
     const { mutate: sendTransaction, isLoading, isSuccess, isError } = useSendTransaction();
     const { hideModal } = useModal();
     const refetch = useRefetchQuery();
 
-    const handleConfirmation = () => {
+    const handleConfirmation = async () => {
+        const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
         sendTransaction(
-            { amount: amount!, message, receiverAddress: receiverAddress!, senderAddress: senderAddress! },
-            { onSuccess: () => refetch(["balance", senderAddress]) },
+            { amount: amount!, message, receiverAddress: receiverAddress!, mnemonic: mnemonic! },
+            { onSuccess: () => refetch(["balance", senderWalletIndex]) },
         );
     };
 
@@ -43,7 +46,7 @@ const SendConfirmationScreen = (): JSX.Element => {
                         </Col>
                         <Col gap="3%" style={{ alignSelf: "flex-start" }}>
                             <SummaryField label={translate("from")}>
-                                {senderName + " - " + formatAddress(senderAddress!, "middle", 3)}
+                                {senderName + " - " + formatAddress(serviceInstance?.getAddress() || "", "middle", 3)}
                             </SummaryField>
                             <SummaryField label={translate("to")}>{formatAddress(receiverAddress!, "middle", 3)}</SummaryField>
                             <SummaryField label={translate("message")}>{message || "-"}</SummaryField>
@@ -57,7 +60,7 @@ const SendConfirmationScreen = (): JSX.Element => {
                     loading={isLoading}
                     disabled={isSuccess}
                     variant="outlined"
-                    seconds={10}
+                    seconds={5}
                     fullWidth
                     onPress={handleConfirmation}
                 >

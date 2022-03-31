@@ -17,9 +17,10 @@ export const DividerRoot = styled(View)<DividerRootProps>(({ height, width, colo
 }));
 
 export const DividerWithChildren = styled(Row, {
-    gap: 20,
-    justifyContent: "space-between",
+    gap: "6%",
+    justifyContent: "center",
     alignItems: "center",
 })<DividerWithChildrenProps>(({ width }) => ({
     width: dividerWidths[width],
+    overflow: "hidden",
 }));

@@ -30,7 +30,7 @@ export const theme = createTheme({
             ...defaultTheme.palette.status,
             success: "#36b930",
         },
-        address: ["#47B5D6", "#924AD9", "#E4AF4C", "#15C8BD", "#623EDF", "#FF66B0"],
+        wallet: ["#15C8BD", "#47B5D6", "#623EDF", "#924AD9", "#FF66B0", "#E4AF4C"],
     },
     typography: {
         h1: {

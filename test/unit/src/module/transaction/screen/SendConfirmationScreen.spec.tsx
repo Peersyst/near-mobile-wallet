@@ -1,18 +1,20 @@
 import { render } from "test-utils";
 import SendConfirmationScreen from "module/transaction/screen/SendConfirmationScreen/SendConfirmationScreen";
-import * as UseWallet from "module/wallet/hook/useWallet";
+import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
-import { mockedUseWallet } from "mocks/useWallet";
 import { translate } from "locale";
 import { formatAddress } from "@peersyst/react-utils";
+import { mockedUseWallet } from "mocks/useWalletState";
+import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 
 describe("SendConfirmationScreen tests", () => {
     test("Renders correctly", () => {
-        jest.spyOn(UseWallet, "default").mockReturnValue(mockedUseWallet);
+        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
+        jest.spyOn(CkbServiceMock.prototype, "getAddress").mockReturnValue("0xMockedAddress");
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({
             amount: "1000",
             fee: "10",
-            senderAddress: mockedUseWallet.state.cells[0].address,
+            senderWalletIndex: mockedUseWallet.state.wallets[0].index,
             receiverAddress: "receiver_address",
             message: "Send message",
         });
@@ -24,9 +26,7 @@ describe("SendConfirmationScreen tests", () => {
 
         expect(screen.getByText(translate("from") + ":")).toBeDefined();
         expect(
-            screen.getByText(
-                mockedUseWallet.state.cells[0].name + " - " + formatAddress(mockedUseWallet.state.cells[0].address, "middle", 3),
-            ),
+            screen.getByText(mockedUseWallet.state.wallets[0].name + " - " + formatAddress("0xMockedAddress", "middle", 3)),
         ).toBeDefined();
         expect(screen.getByText(translate("to") + ":")).toBeDefined();
         expect(screen.getByText("recei...ess")).toBeDefined();

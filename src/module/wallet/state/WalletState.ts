@@ -1,23 +1,22 @@
 import { atom } from "recoil";
-import { cells } from "../mock/cells";
+import { StorageWallet } from "module/wallet/WalletStorage";
+import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 
-export interface Cell {
-    address: string;
-    name: string;
+export interface Wallet extends Omit<StorageWallet, "mnemonic"> {
+    serviceInstance?: CkbServiceMock;
 }
 
 export interface WalletState {
     hasWallet: boolean;
     isAuthenticated: boolean;
-    name?: string;
-    cells: Cell[];
+    wallets: Wallet[];
     isFirstTime: boolean;
-    selectedAccount?: number;
+    selectedWallet?: number;
 }
 
 const walletState = atom<WalletState>({
     key: "wallet",
-    default: { hasWallet: false, isAuthenticated: false, isFirstTime: false, cells: cells },
+    default: { hasWallet: false, isAuthenticated: false, isFirstTime: false, wallets: [] },
 });
 
 export default walletState;

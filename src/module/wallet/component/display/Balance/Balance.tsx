@@ -18,7 +18,7 @@ const Balance = ({
     decimals = 2,
     ...rest
 }: BalanceProps): JSX.Element => {
-    const balance = formatNumber(balanceProps, { split: true, minDecimals: decimals, maxDecimals: decimals });
+    const balance = formatNumber(balanceProps.toString(), { split: true, minDecimals: decimals, maxDecimals: decimals });
     const heading = isHeading(variant);
     const { palette } = useTheme();
     const [textStyles, rootStyles] = useMemo(

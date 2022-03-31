@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 
 export interface SendState {
-    senderAddress?: string;
+    senderWalletIndex?: number;
     receiverAddress?: string;
     amount?: string;
     fee?: string;

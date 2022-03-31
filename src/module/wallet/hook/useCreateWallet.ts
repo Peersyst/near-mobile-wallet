@@ -6,6 +6,7 @@ export interface UseCreateWalletResult {
     setName: (name: string) => void;
     setPin: (pin: string) => void;
     setMnemonic: (mnemonic: string[]) => void;
+    setColorIndex: (colorIndex: number) => void;
 }
 
 const useCreateWallet = (): UseCreateWalletResult => {
@@ -16,6 +17,7 @@ const useCreateWallet = (): UseCreateWalletResult => {
         setName: (name: string) => setState((s) => ({ ...s, name })),
         setPin: (pin: string) => setState((s) => ({ ...s, pin })),
         setMnemonic: (mnemonic: string[]) => setState((s) => ({ ...s, mnemonic })),
+        setColorIndex: (colorIndex: number) => setState((s) => ({ ...s, colorIndex })),
     };
 };
 
