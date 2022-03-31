@@ -5,7 +5,7 @@ import DaoTransactionIcon from "./DaoTransactionIcon";
 export type TransactionCardProps = Transaction;
 
 const DaoTransactionCard = (transaction: TransactionCardProps): JSX.Element => {
-    const seed = Math.random();
+    const seed = new Date().getSeconds() / 30;;
     const deposit = seed > 0.5;
     return (
         <TransactionCard

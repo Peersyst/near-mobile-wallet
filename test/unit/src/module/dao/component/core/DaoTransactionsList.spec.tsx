@@ -5,12 +5,12 @@ import { translate } from "locale";
 import DaoTransactionsList from "module/dao/component/core/DaoTransactionsList/DaoTransactionList";
 import { mockedDaoTransactions } from "mocks/daoTransaction";
 
-describe("TransactionsList tests", () => {
+describe("DAOTransactionsList tests", () => {
     afterEach(() => {
         jest.restoreAllMocks();
     });
 
-    test("Renders correctly with an account", async () => {
+    test("Renders correctly with tx", async () => {
         jest.spyOn(GetDaoTransactions, "default").mockReturnValue(SuccessApiCall(mockedDaoTransactions));
         const screen = render(<DaoTransactionsList />);
         await waitFor(() => expect(screen.getByText("01/01/2022 - 00:00")));
