@@ -102,6 +102,8 @@
     "withdraw": "Retirar",
     "change_passcode": "Cambiar contraseña",
     "no_news": "Por ahora no hay noticias",
+    "deposits": "Depósitos",
+    "completed": "Completados",
     "or": "o",
     "create_a_wallet": "Crea un Wallet",
     "import_a_wallet": "Importa un Wallet"

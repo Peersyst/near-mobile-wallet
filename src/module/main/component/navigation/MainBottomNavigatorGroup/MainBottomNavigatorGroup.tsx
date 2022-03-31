@@ -1,6 +1,6 @@
 import BottomBar from "module/common/component/navigation/BottomBar/BottomBar";
 import { BottomTab } from "stack-navigator";
-import HomeScreen from "module/main/screen/HomeScreen/HomeScreen";
+import HomeScreen from "module/home/screen/HomeScreen";
 import DaoScreen from "module/dao/screen/DaoScreen";
 import NewsScreen from "module/news/screen/NewsScreen";
 import SettingsScreen from "module/settings/screen/SettingsScreen";

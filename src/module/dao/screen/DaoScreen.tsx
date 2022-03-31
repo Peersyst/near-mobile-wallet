@@ -1,16 +1,16 @@
-import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
-import { CardBackgroundHome } from "module/main/screen/HomeScreen/HomeScreen.styles";
+import BaseWithBackgroundMainScreen from "module/main/component/layout/BaseWithBackgroundMainScreen/BaseWithBackgroundMainScreen";
 import { Col } from "react-native-components";
 import DaoCard from "../core/DaoAccountCard/DaoCard";
+import DaoTabs from "../navigation/DaoTabs/DaoTabs";
 
 const DaoScreen = (): JSX.Element => {
     return (
-        <BaseMainScreen>
-            <CardBackgroundHome />
-            <Col flex={1} gap={20} style={{ padding: 20 }}>
+        <BaseWithBackgroundMainScreen>
+            <Col style={{ padding: 20, paddingBottom: 40 }}>
                 <DaoCard />
             </Col>
-        </BaseMainScreen>
+            <DaoTabs />
+        </BaseWithBackgroundMainScreen>
     );
 };
 
