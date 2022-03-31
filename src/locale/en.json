@@ -106,5 +106,6 @@
     "completed": "Completed",
     "or": "or",
     "create_a_wallet": "Create a Wallet",
-    "import_a_wallet": "Import a Wallet"
+    "import_a_wallet": "Import a Wallet",
+    "skip": "Skip"
 }

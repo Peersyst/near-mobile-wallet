@@ -15,11 +15,15 @@ const CountdownButton = ({
     ...buttonProps
 }: CountdownButtonProps): JSX.Element => {
     const [seconds, setSeconds] = useState(secondsProp);
+    let timeout: NodeJS.Timeout;
 
     useEffect(() => {
         if (seconds > 0) {
-            setTimeout(() => setSeconds((s) => s - 1), 1000);
+            timeout = setTimeout(() => setSeconds((s) => s - 1), 1000);
         }
+        return () => {
+            clearTimeout(timeout);
+        };
     }, [seconds]);
 
     const countdown = seconds > 0;

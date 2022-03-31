@@ -6,7 +6,7 @@ import CountdownButton from "../../input/CountdownButton/CountdownButton";
 import { BackIconButton } from "./AdviseCard.styles";
 import { BackIcon } from "icons";
 
-const AdviseCard = ({ number, totalAdvises, title, text, style, onBack, onNext }: AdviseCardProps): JSX.Element => {
+const AdviseCard = ({ number, totalAdvises, title, text, style, onBack, onNext, timer = 5 }: AdviseCardProps): JSX.Element => {
     return (
         <Card style={{ flex: 1, ...style, marginTop: 4 }}>
             <Col flex={1} justifyContent="space-between">
@@ -30,7 +30,7 @@ const AdviseCard = ({ number, totalAdvises, title, text, style, onBack, onNext }
                         </BackIconButton>
                     )}
                     {onNext && (
-                        <CountdownButton style={{ width: 150, marginTop: 5 }} seconds={5} onPress={onNext}>
+                        <CountdownButton style={{ width: 150, marginTop: 5 }} seconds={timer} onPress={onNext}>
                             {translate("next")}
                         </CountdownButton>
                     )}

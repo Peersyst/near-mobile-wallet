@@ -1,7 +1,7 @@
 import { createModal, ExposedBackdropProps, TabPanel, Tabs } from "react-native-components";
 import { translate } from "locale";
 import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
-import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
+import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen/WalletAdvisesScreen";
 import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen";
 import { useState } from "react";
@@ -18,7 +18,7 @@ const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
                         <SetWalletNameScreen onSubmit={() => setIndex(1)} submitText={translate("next")} />
                     </TabPanel>
                     <TabPanel index={1}>
-                        <WalletAdvisesScreen onNextScreen={() => setIndex(2)} />
+                        <WalletAdvisesScreen onNextScreen={() => setIndex(2)} nextScreenText={translate("generate_mnemonic")} />
                     </TabPanel>
                     <TabPanel index={2}>
                         <WalletMnemonicScreen onNextScreen={() => setIndex(3)} />
