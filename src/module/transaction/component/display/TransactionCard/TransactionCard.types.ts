@@ -5,4 +5,4 @@ import { ReactElement } from "react";
 export type TransactionCardProps = Transaction & {
     TxIcon: ReactElement;
     label: string;
-} & Pick<BaseBalanceProps, "units" | "action" >;
+} & Pick<BaseBalanceProps, "units" | "action">;

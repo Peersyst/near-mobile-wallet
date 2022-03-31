@@ -9,5 +9,6 @@ describe("TransactionCard tests", () => {
         expect(screen.getByText("29/01/2022 - 00:00")).toBeDefined();
         expect(screen.getByText("Info")).toBeDefined();
         expect(screen.getByText("ckb")).toBeDefined();
+        expect(screen.getByTestId("ReceiveIcon")).toBeDefined();
     });
 });

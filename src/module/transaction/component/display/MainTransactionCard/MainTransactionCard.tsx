@@ -9,9 +9,9 @@ export type TransactionCardProps = Transaction;
 const MainTransactionCard = (transaction: TransactionCardProps): JSX.Element => {
     const seed = Math.random();
     const received = seed > 0.5;
-    const token = getTokenName(seed > 0.6 ? tokensList[Math.trunc(seed * 6)].args : "0x0")
+    const token = getTokenName(seed > 0.6 ? tokensList[Math.trunc(seed * 6)].args : "0x0");
     const TxIcon = received ? <ReceiveIcon /> : <SendIcon />;
-    
+
     return (
         <TransactionCard
             action={received ? "add" : "subtract"}
