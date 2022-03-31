@@ -1,14 +1,16 @@
 import BasePagerView, { PagerViewProps as BasePagerViewProps } from "react-native-pager-view";
 import { Col, ColProps } from "react-native-components";
-import { Children, useEffect, useRef, useState } from "react";
+import { Children, useEffect, useRef } from "react";
 import { NativeSyntheticEvent, View, ViewStyle } from "react-native";
 import { PagerViewOnPageSelectedEventData } from "react-native-pager-view/src/types";
 import DottedPagination from "module/common/component/display/DottedPagination/DottedPagination";
+import { useControlled } from "@peersyst/react-hooks";
 
-interface PagerViewProps extends BasePagerViewProps {
+interface PagerViewProps extends Omit<BasePagerViewProps, "onPageSelected"> {
     currentPage?: number;
     height: ViewStyle["height"];
     gap?: ColProps["gap"];
+    onPageSelected?: (page: number) => void;
     pagePadding?: {
         all?: ViewStyle["padding"];
         top?: ViewStyle["paddingTop"];
@@ -41,16 +43,15 @@ const PagerView = ({
     } = {},
     ...rest
 }: PagerViewProps): JSX.Element => {
-    const [currentPage, setCurrentPage] = useState(initialPage);
+    const [currentPage, setCurrentPage] = useControlled(initialPage, currentPageProp, onPageSelected);
     const pagerViewRef = useRef<BasePagerView | null>(null);
 
     useEffect(() => {
-        if (currentPageProp) pagerViewRef.current?.setPageWithoutAnimation(currentPageProp);
+        if (currentPageProp !== undefined) pagerViewRef.current?.setPageWithoutAnimation(currentPage);
     }, [currentPageProp]);
 
     const handlePageSelected = (e: NativeSyntheticEvent<PagerViewOnPageSelectedEventData>) => {
-        setCurrentPage(e.nativeEvent.position);
-        onPageSelected?.(e);
+        setCurrentPage?.(e.nativeEvent.position);
     };
 
     return (
