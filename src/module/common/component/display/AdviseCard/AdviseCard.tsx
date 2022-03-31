@@ -8,7 +8,7 @@ import { BackIcon } from "icons";
 
 const AdviseCard = ({ number, totalAdvises, title, text, style, onBack, onNext }: AdviseCardProps): JSX.Element => {
     return (
-        <Card style={{ flex: 1, ...style, marginTop: 4 }}>
+        <Card style={{ flex: 1, ...style, marginTop: 4, minHeight: 300 }}>
             <Col flex={1} justifyContent="space-between">
                 <Col gap="2%">
                     <Typography variant="h3" textTransform="uppercase" textAlign="center" fontWeight="700">
