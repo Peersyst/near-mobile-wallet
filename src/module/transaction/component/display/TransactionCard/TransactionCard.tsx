@@ -2,17 +2,10 @@ import { Transaction } from "module/transaction/types";
 import { Col, Row, Typography } from "react-native-components";
 import formatDate from "utils/formatDate";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import formatNumber from "utils/formatNumber";
-import { ReactElement } from "react";
-import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
 import { TransactionCardRoot, TransactionIcon } from "./TransactionCard.styles";
+import { TransactionCardProps } from "./TransactionCard.types";
 
-export type TransactionCardProps = Transaction & {
-    TxIcon: ReactElement;
-    label: string;
-} & Pick<BalanceProps, "units" | "action">;
-
-const TransactionCard = ({ timestamp, TxIcon, label, units, action }: TransactionCardProps): JSX.Element => {
+const TransactionCard = ({ timestamp, TxIcon, label, topBalance, bottomBalance }: TransactionCardProps): JSX.Element => {
     return (
         <TransactionCardRoot>
             <TransactionIcon>{TxIcon}</TransactionIcon>
@@ -21,22 +14,13 @@ const TransactionCard = ({ timestamp, TxIcon, label, units, action }: Transactio
                     <Typography variant="body1" fontWeight="bold">
                         {label}
                     </Typography>
-                    <Balance
-                        balance={((timestamp.getTime() * (1 + Math.random())) / Math.pow(12, 9)).toFixed(2)}
-                        units={units}
-                        variant="body1"
-                        action={action}
-                        fontWeight="bold"
-                        boldUnits
-                    />
+                    <Balance {...topBalance} variant="body1" fontWeight="bold" />
                 </Row>
                 <Row justifyContent="space-between">
                     <Typography variant="body2" style={{ marginLeft: 10 }}>
                         {formatDate(timestamp)}
                     </Typography>
-                    <Typography variant="body2">
-                        {formatNumber(((timestamp.getTime() * (1 + Math.random())) / Math.pow(10, 9)).toFixed(2), { minDecimals: 2 })} USD
-                    </Typography>
+                    <Balance {...bottomBalance} variant="body1" />
                 </Row>
             </Col>
         </TransactionCardRoot>
