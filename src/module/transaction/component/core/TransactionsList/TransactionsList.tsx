@@ -7,7 +7,6 @@ import MainTransactionCard from "../../display/MainTransactionCard/MainTransacti
 
 const TransactionsList = (): JSX.Element => {
     const { index } = useSelectedWallet();
-
     const { data = [], refetch, isLoading } = useGetTransactions(index);
 
     return (

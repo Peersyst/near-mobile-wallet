@@ -1,33 +1,21 @@
 import { ReceiveIcon, SendIcon } from "icons";
+import { tokensList } from "module/token/mock/token";
 import { Transaction } from "module/transaction/types";
-import useGetBalance from "module/wallet/query/useGetBalance";
+import { getTokenName } from "../../utils/getToken";
 import TransactionCard from "../TransactionCard/TransactionCard";
-import { TransactionCardBalanceProps } from "../TransactionCard/TransactionCard.types";
-
-const tokens = ["CKB", "CKB", "CKB", "ETH", "USDC", "TAI", "CKB", "CKB", "COOP", "CKB"];
 
 export type TransactionCardProps = Transaction;
 
 const MainTransactionCard = (transaction: TransactionCardProps): JSX.Element => {
     const seed = Math.random();
     const received = seed > 0.5;
-    const token = tokens[Math.trunc(seed * 10)];
+    const token = getTokenName(seed > 0.6 ? tokensList[Math.trunc(seed * 6)].args : "0x0")
     const TxIcon = received ? <ReceiveIcon /> : <SendIcon />;
-    const { data: mainBalance } = useGetBalance();
     
-    const topBalance:TransactionCardBalanceProps = {
-        balance: transaction.amount,
-        units: token,
-        boldUnits: true
-    }
-    const bottomBalance:TransactionCardBalanceProps = {
-        balance: mainBalance?.freeBalance || 0,
-        units: token,
-    }
     return (
         <TransactionCard
-            topBalance={topBalance}
-            bottomBalance={bottomBalance}
+            action={received ? "add" : "subtract"}
+            units={token}
             label={received ? "Received" : "Send"}
             TxIcon={TxIcon}
             {...transaction}

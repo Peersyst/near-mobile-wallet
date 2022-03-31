@@ -15,7 +15,7 @@ export const transaction: Transaction = {
 export const transactions = [...Array(10)].map((_, i) => ({
     status: TransactionStatus.COMMITTED,
     type: TransactionType.SEND_CKB,
-    amount: 100,
+    amount: 145.2*i+2,
     transactionHash: "0x1234567890abcde" + i,
     inputs: [],
     outputs: [],

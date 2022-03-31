@@ -1,7 +1,9 @@
-import { Transaction } from "module/transaction/types";
+import { TransactionStatus, TransactionType } from "module/transaction/types";
 
-export const daoTransactions: Transaction[] = [...Array(10)].map((_, i) => ({
-    status: "confirmed",
+export const daoTransactions = [...Array(10)].map((_, i) => ({
+    status: TransactionStatus.COMMITTED,
+    type: TransactionType.DEPOSIT_DAO,
+    amount: 10 * i + 2,
     transactionHash: "0x1234567890abcde" + i,
     inputs: [],
     outputs: [],

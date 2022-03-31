@@ -1,11 +1,10 @@
-import { Transaction } from "module/transaction/types";
 import { Col, Row, Typography } from "react-native-components";
 import formatDate from "utils/formatDate";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { TransactionCardRoot, TransactionIcon } from "./TransactionCard.styles";
 import { TransactionCardProps } from "./TransactionCard.types";
 
-const TransactionCard = ({ timestamp, TxIcon, label, topBalance, bottomBalance }: TransactionCardProps): JSX.Element => {
+const TransactionCard = ({ timestamp, TxIcon, label, amount, action, units }: TransactionCardProps): JSX.Element => {
     return (
         <TransactionCardRoot>
             <TransactionIcon>{TxIcon}</TransactionIcon>
@@ -14,13 +13,12 @@ const TransactionCard = ({ timestamp, TxIcon, label, topBalance, bottomBalance }
                     <Typography variant="body1" fontWeight="bold">
                         {label}
                     </Typography>
-                    <Balance {...topBalance} variant="body1" fontWeight="bold" />
+                    <Balance boldUnits action={action} variant="body1" fontWeight="bold" balance={amount} units={units} />
                 </Row>
                 <Row justifyContent="space-between">
                     <Typography variant="body2" style={{ marginLeft: 10 }}>
                         {formatDate(timestamp)}
                     </Typography>
-                    <Balance {...bottomBalance} variant="body1" />
                 </Row>
             </Col>
         </TransactionCardRoot>
