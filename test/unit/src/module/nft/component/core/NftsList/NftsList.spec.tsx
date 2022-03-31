@@ -1,11 +1,11 @@
-import * as UseWallet from "module/wallet/hook/useWallet";
-import * as GetNfts from "module/nft/mock/getNfts";
+import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { render, SuccessApiCall } from "test-utils";
 import { nfts } from "mocks/nft";
 import NftsList from "module/nft/component/core/NftsList/NftsList";
 import { waitFor } from "@testing-library/react-native";
-import { mockedUseWallet } from "mocks/useWallet";
 import { translate } from "locale";
+import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
+import { mockedUseWallet } from "mocks/useWalletState";
 
 describe("NftsList tests", () => {
     afterAll(() => {
@@ -13,8 +13,8 @@ describe("NftsList tests", () => {
     });
 
     test("Renders correctly", async () => {
-        jest.spyOn(UseWallet, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(GetNfts, "default").mockReturnValue(SuccessApiCall(nfts));
+        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
+        jest.spyOn(CkbServiceMock.prototype, "getNfts").mockReturnValue(SuccessApiCall(nfts));
 
         const screen = render(<NftsList />);
 
@@ -24,8 +24,8 @@ describe("NftsList tests", () => {
     });
 
     test("Renders correctly without transactions", async () => {
-        jest.spyOn(UseWallet, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(GetNfts, "default").mockReturnValue(SuccessApiCall([]));
+        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
+        jest.spyOn(CkbServiceMock.prototype, "getNfts").mockReturnValue(SuccessApiCall([]));
         const screen = render(<NftsList />);
         await waitFor(() => expect(screen.getAllByText(translate("no_nfts"))));
     });

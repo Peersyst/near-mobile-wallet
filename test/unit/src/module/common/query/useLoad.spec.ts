@@ -8,9 +8,9 @@ import settingsState, { defaultSettingsState } from "module/settings/state/Setti
 const renderUseLoad = () =>
     renderHook(() => {
         const loading = useLoad();
-        const { hasWallet, name, isAuthenticated } = useRecoilValue(walletState);
+        const { hasWallet, wallets, isAuthenticated } = useRecoilValue(walletState);
         const settings = useRecoilValue(settingsState);
-        return { loading, hasWallet, name, isAuthenticated, settings };
+        return { loading, hasWallet, wallets, isAuthenticated, settings };
     });
 
 describe("useLoad tests", () => {
@@ -18,24 +18,26 @@ describe("useLoad tests", () => {
         jest.restoreAllMocks();
     });
 
-    test("Loads without wallet", async () => {
-        const getAuthToken = jest.spyOn(WalletStorage, "getName").mockImplementation(() => new Promise((resolve) => resolve(undefined)));
+    test("Loads without wallets", async () => {
+        const getWallets = jest.spyOn(WalletStorage, "getWallets").mockImplementation(() => new Promise((resolve) => resolve(undefined)));
         const { result } = renderUseLoad();
         expect(result.current.loading).toBe(true);
-        expect(getAuthToken).toHaveBeenCalled();
+        expect(getWallets).toHaveBeenCalled();
         await waitFor(() => expect(result.current.loading).toBe(false));
-        expect(result.current.name).toBeUndefined();
+        expect(result.current.wallets).toHaveLength(0);
         expect(result.current.hasWallet).toBe(false);
     });
 
-    test("Loads with wallet", async () => {
-        const getAuthToken = jest.spyOn(WalletStorage, "getName").mockImplementation(() => new Promise((resolve) => resolve("wallet")));
+    test("Loads with a wallet", async () => {
+        const getWallets = jest
+            .spyOn(WalletStorage, "getWallets")
+            .mockImplementation(() => new Promise((resolve) => resolve([{ name: "wallet", mnemonic: ["a"], index: 0, colorIndex: 0 }])));
         const { result } = renderUseLoad();
         expect(result.current.loading).toBe(true);
-        expect(getAuthToken).toHaveBeenCalled();
+        expect(getWallets).toHaveBeenCalled();
         await waitFor(() => expect(result.current.loading).toBe(false));
         expect(result.current.hasWallet).toBe(true);
-        expect(result.current.name).toEqual("wallet");
+        expect(result.current.wallets[0].name).toEqual("wallet");
         expect(result.current.settings).toEqual(defaultSettingsState);
     });
 });

@@ -40,7 +40,7 @@
     "advise3_text": "When you change your phone you will have to re-import your mnemonics to access your accounts. No one from CKBull or Nervos will ever ask you for your private keys or mnemonics. If someone asks you or tells you to enter these keys somewhere else, you are being scammed.",
     "news": "News",
     "dao": "DAO",
-    "add_an_account": "Add an account",
+    "add_a_wallet": "Add a wallet",
     "my_account": "My Account",
     "keep_this_safe": "Keep This Safe",
     "select_in_order": "Select In Order",
@@ -65,7 +65,7 @@
     "bought_for": "Bought for",
     "go_back": "Go back",
     "select_your_network": "Select your network",
-    "select_an_account": "Select an account",
+    "select_a_wallet": "Select a wallet",
     "no_account_selected": "No account selected",
     "no_nfts": "You don't have nfts yet",
     "send_to": "Send to",
@@ -103,5 +103,8 @@
     "change_passcode": "Change passcode",
     "no_news": "There aren't any news right now",
     "deposits": "Deposits",
-    "completed": "Completed"
+    "completed": "Completed",
+    "or": "or",
+    "create_a_wallet": "Create a Wallet",
+    "import_a_wallet": "Import a Wallet"
 }

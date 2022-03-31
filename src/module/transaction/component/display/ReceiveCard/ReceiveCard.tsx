@@ -4,8 +4,8 @@ import CopyToClipboardIcon from "module/common/component/input/CopyToClipboardIc
 import Card from "module/common/component/surface/Card/Card";
 import { Col, Row, Typography, useModal } from "react-native-components";
 import GoBack from "../../navigation/GoBack";
-import useWallet from "module/wallet/hook/useWallet";
 import ReceiveModal from "../../core/ReceiveModal/ReceiveModal";
+import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 
 const ReceiveCardContent = styled(Col, { justifyContent: "space-between" })(({ dimensions }) => ({
     height: dimensions.height * 0.25,
@@ -18,10 +18,8 @@ const TextAddress = styled(Typography, { textTransform: "uppercase" })(() => ({
 }));
 
 const ReceiveCard = (): JSX.Element => {
-    const {
-        state: { cells, selectedAccount },
-    } = useWallet();
-    const address = selectedAccount !== undefined && cells[selectedAccount].address;
+    const { serviceInstance } = useSelectedWallet();
+    const address = serviceInstance?.getAddress();
     const { hideModal } = useModal();
 
     return (

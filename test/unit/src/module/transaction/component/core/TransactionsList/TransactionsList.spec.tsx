@@ -1,11 +1,11 @@
-import * as UseWallet from "module/wallet/hook/useWallet";
-import * as GetTransactions from "module/transaction/mock/getTransactions";
+import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { transactions } from "mocks/transaction";
 import { render, SuccessApiCall } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
 import TransactionsList from "module/transaction/component/core/TransactionsList/TransactionsList";
 import { translate } from "locale";
-import { mockedUseWallet } from "mocks/useWallet";
+import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
+import { mockedUseWallet } from "mocks/useWalletState";
 
 describe("TransactionsList tests", () => {
     afterEach(() => {
@@ -13,8 +13,8 @@ describe("TransactionsList tests", () => {
     });
 
     test("Renders correctly with an account", async () => {
-        jest.spyOn(UseWallet, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(GetTransactions, "default").mockReturnValue(SuccessApiCall(transactions));
+        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
+        jest.spyOn(CkbServiceMock.prototype, "getTransactions").mockReturnValue(SuccessApiCall(transactions));
 
         const screen = render(<TransactionsList />);
         await waitFor(() => expect(screen.getByText("01/01/2022 - 00:00")));
@@ -22,8 +22,8 @@ describe("TransactionsList tests", () => {
         expect(screen.getByText("03/01/2022 - 00:00"));
     });
     test("Renders correctly without transactions", async () => {
-        jest.spyOn(UseWallet, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(GetTransactions, "default").mockReturnValue(SuccessApiCall([]));
+        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
+        jest.spyOn(CkbServiceMock.prototype, "getTransactions").mockReturnValue(SuccessApiCall([]));
         const screen = render(<TransactionsList />);
         await waitFor(() => expect(screen.getAllByText(translate("no_transactions"))));
     });

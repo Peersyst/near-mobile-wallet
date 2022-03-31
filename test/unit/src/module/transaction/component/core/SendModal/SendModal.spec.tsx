@@ -1,18 +1,20 @@
 import { render, SuccessApiCall } from "test-utils";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
-import * as UseWallet from "module/wallet/hook/useWallet";
-import { cells } from "mocks/cells";
+import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { translate } from "locale";
 import * as GetFee from "module/transaction/mock/getFee";
-import * as GetBalance from "module/wallet/mock/getBalance";
 import * as Recoil from "recoil";
 import { fireEvent, waitFor } from "@testing-library/react-native";
+import { mockedUseWallet } from "mocks/useWalletState";
+import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 
 describe("SendModal tests", () => {
     beforeAll(() => {
-        jest.spyOn(UseWallet, "default").mockReturnValue({ state: { cells, selectedAccount: 0 } } as any);
+        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(GetFee, "default").mockReturnValue(SuccessApiCall("10"));
-        jest.spyOn(GetBalance, "default").mockReturnValue(SuccessApiCall("10000"));
+        jest.spyOn(CkbServiceMock.prototype, "getCKBBalance").mockReturnValue(
+            SuccessApiCall({ totalBalance: BigInt(12000), occupiedBalance: BigInt(2000), freeBalance: BigInt(10000) }),
+        );
     });
 
     test("Renders correctly", () => {

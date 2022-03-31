@@ -5,7 +5,6 @@ import { fireEvent } from "@testing-library/react-native";
 import * as UseCreateWalletState from "module/wallet/hook/useCreateWallet";
 import * as UseTabs from "module/common/component/base/navigation/Tabs/hook/useTabs";
 import { CreateWalletScreens } from "module/wallet/navigator/CreateWalletNavigatorGroup";
-import { createMockedUseCreateWallet } from "mocks/useCreateWallet";
 
 describe("WalletMnemonicScreen tests", () => {
     afterAll(() => {
@@ -26,8 +25,13 @@ describe("WalletMnemonicScreen tests", () => {
 
     test("Sets wallet mnemonic state and navigates to enter wallet mnemonic", () => {
         const setMnemonic = jest.fn();
-        const mockedCreateWallet = createMockedUseCreateWallet(jest.fn(), jest.fn(), setMnemonic);
-        jest.spyOn(UseCreateWalletState, "default").mockReturnValue(mockedCreateWallet);
+        jest.spyOn(UseCreateWalletState, "default").mockReturnValue({
+            state: { name: undefined, pin: undefined, mnemonic: undefined, colorIndex: undefined },
+            setName: jest.fn(),
+            setPin: jest.fn(),
+            setMnemonic,
+            setColorIndex: jest.fn(),
+        });
         const setTab = jest.fn();
         jest.spyOn(UseTabs, "default").mockReturnValue([0, setTab]);
 
