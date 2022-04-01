@@ -38,7 +38,7 @@ const SendConfirmationScreen = ({ isDaoDeposit }: SendConfirmationScreenProps): 
 
     return (
         <>
-            <Col gap={"6%"}>
+            <Col gap={"5%"}>
                 {isDaoDeposit ? (
                     <DepositSummary balance={amount!} fee={fee!} senderName={senderName} serviceInstance={serviceInstance} />
                 ) : (

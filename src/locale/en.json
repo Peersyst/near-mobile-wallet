@@ -108,5 +108,8 @@
     "create_a_wallet": "Create a Wallet",
     "import_a_wallet": "Import a Wallet",
     "deposit_warning": "Nervos Dao needs 102 CKBytes for deposit cell storage, which is not compensation-bearing. Please visit the Nervos DAO RFC for more information about Nervos DAO.",
-    "estimated_apc": "estimated_apc"
+    "estimated_apc": "Estimated APC",
+    "loading_apc":"Loading APC",
+    "attention": "Attention!",
+    "deposit_summary_warning": "Deposit may take a while to be locked and completly functional. You'll be able to follow the process in the Deposit list"
 }
