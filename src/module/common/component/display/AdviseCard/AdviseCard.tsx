@@ -1,14 +1,13 @@
 import { AdviseCardProps } from "module/common/component/display/AdviseCard/AdviseCard.types";
-import Card from "module/common/component/surface/Card/Card";
 import { Col, Row, Typography } from "react-native-components";
 import { translate } from "locale";
 import CountdownButton from "../../input/CountdownButton/CountdownButton";
-import { BackIconButton } from "./AdviseCard.styles";
+import { AdviseCardRoot, BackIconButton } from "./AdviseCard.styles";
 import { BackIcon } from "icons";
 
 const AdviseCard = ({ number, totalAdvises, title, text, style, onBack, onNext, timer = 5 }: AdviseCardProps): JSX.Element => {
     return (
-        <Card style={{ flex: 1, ...style, marginTop: 4, minHeight: 300 }}>
+        <AdviseCardRoot style={{ ...style }}>
             <Col flex={1} justifyContent="space-between">
                 <Col gap="2%">
                     <Typography variant="h3" textTransform="uppercase" textAlign="center" fontWeight="700">
@@ -36,7 +35,7 @@ const AdviseCard = ({ number, totalAdvises, title, text, style, onBack, onNext, 
                     )}
                 </Row>
             </Col>
-        </Card>
+        </AdviseCardRoot>
     );
 };
 
