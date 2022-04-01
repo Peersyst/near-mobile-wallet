@@ -9,9 +9,15 @@ import LoadingModal from "module/transaction/component/feedback/LoadingModal/Loa
 import { useRefetchQuery } from "../../../../query/useRefetchQuery";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import SendSummary from "./SendSummary";
 
-const SendConfirmationScreen = (): JSX.Element => {
+import DepositModal from "module/transaction/component/core/DepositModal/DepositModal";
+import DepositSummary from "./DepositSummary";
+
+interface SendConfirmationScreenProps {
+    isDaoDeposit?: boolean;
+}
+
+const SendConfirmationScreen = ({ isDaoDeposit }: SendConfirmationScreenProps): JSX.Element => {
     const { amount, fee, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
     const {
         state: { wallets },
@@ -34,14 +40,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     return (
         <>
             <Col gap={"5%"}>
-                <SendSummary
-                    balance={amount!}
-                    receiverAddress={receiverAddress!}
-                    fee={fee!}
-                    message={message!}
-                    senderName={senderName}
-                    serviceInstance={serviceInstance}
-                />
+                <DepositSummary balance={amount!} fee={fee!} senderName={senderName} serviceInstance={serviceInstance} />
                 <Typography variant="caption" textAlign="center">
                     {translate("send_confirmation_text")}
                 </Typography>
@@ -60,7 +59,7 @@ const SendConfirmationScreen = (): JSX.Element => {
                 loading={isLoading}
                 success={isSuccess}
                 error={isError}
-                onExited={() => hideModal(SendModal.id)}
+                onExited={() => hideModal(DepositModal.id)}
                 successMessage={translate("transaction_completed")}
             />
         </>
