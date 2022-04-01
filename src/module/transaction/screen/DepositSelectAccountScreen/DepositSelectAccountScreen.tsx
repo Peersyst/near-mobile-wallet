@@ -4,16 +4,16 @@ import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
 import sendRecoilState from "module/transaction/state/SendState";
 import { image } from "../../../../asset/image";
-import { SendImage } from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen.styles";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import { useRecoilState } from "recoil";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
+import { DepositImage } from "./DepositImage.styles";
 
 export interface DepositForm {
     sender: number;
 }
 
-const SendToAddressScreen = () => {
+const DepositSelectAccountScreen = () => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const setTab = useSetTab();
     const handleSubmit = ({ sender }: DepositForm) => {
@@ -25,15 +25,13 @@ const SendToAddressScreen = () => {
         <Form onSubmit={handleSubmit}>
             <Col>
                 <Row justifyContent="center">
-                    <SendImage source={image.send} />
+                    <DepositImage source={image.deposit} />
                 </Row>
                 <Col gap={40}>
                     <Paper style={{ padding: 20 }} elevation={8}>
-                        <Col gap={20}>
-                            <FormGroup label={translate("select_a_wallet") + ":"}>
-                                <WalletSelector required name="sender" defaultValue={sendState.senderWalletIndex} />
-                            </FormGroup>
-                        </Col>
+                        <FormGroup label={translate("select_a_wallet") + ":"}>
+                            <WalletSelector required name="sender" defaultValue={sendState.senderWalletIndex} />
+                        </FormGroup>
                     </Paper>
                     <Button variant="outlined" fullWidth>
                         {translate("next")}
@@ -44,4 +42,4 @@ const SendToAddressScreen = () => {
     );
 };
 
-export default SendToAddressScreen;
+export default DepositSelectAccountScreen;
