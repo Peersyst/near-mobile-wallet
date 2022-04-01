@@ -17,22 +17,16 @@ export enum SendScreens {
 }
 
 const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
+    
     const [activeIndex, setActiveIndex] = useState(SendScreens.SELECT_ACCOUNT);
     const { fee } = useRecoilValue(settingsState);
     const resetSendState = useResetRecoilState(sendState);
-    const setSendState = useSetRecoilState(sendState);
 
     const handleExited = () => {
         onExited?.();
         resetSendState();
     };
-
-    const startDeposit = () => {
-        // Prefetch fee
-        useGetFee(fee);
-        //Set DAO address as a receiver address
-        setSendState((oldState) => ({ ...oldState, receiverAddress: "0x0" }));
-    };
+    useGetFee(fee);
 
     return (
         <GlassNavigatorModal
@@ -42,7 +36,6 @@ const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps
                 title: translate("deposit"),
                 onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,
             }}
-            onEntered={startDeposit}
             onExited={handleExited}
             {...rest}
         >
