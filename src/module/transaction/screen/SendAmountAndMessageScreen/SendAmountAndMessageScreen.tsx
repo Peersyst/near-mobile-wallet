@@ -1,4 +1,4 @@
-import { Col, Form, Row, useSetTab } from "react-native-components";
+import { Col, Form, Typography, useSetTab } from "react-native-components";
 import { translate } from "locale";
 import TextArea from "module/common/component/input/TextArea/TextArea";
 import Button from "module/common/component/input/Button/Button";
@@ -10,14 +10,20 @@ import useGetBalance from "module/wallet/query/useGetBalance";
 import { ActivityIndicator } from "react-native";
 import settingsState from "module/settings/state/SettingsState";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
-import CKBAmountInput from "../component/input/CKBAmountInput/CKBAmountInput";
+import CKBAmountInput from "../../component/input/CKBAmountInput/CKBAmountInput";
+import { CKBAmountInputContainer } from "./SendAmountAndMessageScreen.styles";
+import Card from "module/common/component/surface/Card/Card";
 
 export interface SendAmountAndMessageResult {
     amount: string;
     message: string;
 }
 
-const SendAmountAndMessageScreen = (): JSX.Element => {
+interface SendAmountAndMessageScreenProps {
+    isDaoDeposit?: boolean;
+}
+
+const SendAmountAndMessageScreen = ({ isDaoDeposit }: SendAmountAndMessageScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const [amount, setAmount] = useState(sendState.amount || "");
     const { fee: selectedFee } = useRecoilValue(settingsState);
@@ -25,26 +31,30 @@ const SendAmountAndMessageScreen = (): JSX.Element => {
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex);
     const setTab = useSetTab();
 
-    if (feeIsLoading || balanceIsLoading) {
-        return (
-            <Col justifyContent="center" style={{ height: 250 }}>
-                <ActivityIndicator color="black" size="large" />
-            </Col>
-        );
-    }
-
     const handleSubmit = ({ amount, message }: SendAmountAndMessageResult): void => {
         setSendState((oldState) => ({ ...oldState, amount, message, fee }));
         setTab(SendScreens.CONFIRMATION);
     };
 
-    return (
+    return feeIsLoading || balanceIsLoading ? (
+        <Col justifyContent="center" style={{ height: 250 }}>
+            <ActivityIndicator color="black" size="large" />
+        </Col>
+    ) : (
         <Form onSubmit={handleSubmit}>
             <Col gap="15%">
-                <Row alignItems="center" style={{ marginHorizontal: 20, marginTop: "15%" }}>
+                <CKBAmountInputContainer>
                     <CKBAmountInput fee={fee} amount={amount} setAmount={setAmount} balance={balance} />
-                </Row>
-                <TextArea name="message" placeholder={translate("write_a_message")} numberOfLines={7} />
+                </CKBAmountInputContainer>
+                {isDaoDeposit ? (
+                    <Card>
+                        <Typography variant="body1" textAlign="center">
+                            {translate("deposit_warning")}
+                        </Typography>
+                    </Card>
+                ) : (
+                    <TextArea name="message" placeholder={translate("write_a_message")} numberOfLines={7} />
+                )}
                 <Button variant="outlined" fullWidth>
                     {translate("next")}
                 </Button>

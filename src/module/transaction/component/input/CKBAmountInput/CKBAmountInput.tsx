@@ -26,7 +26,7 @@ const CKBAmountInput = ({ amount, setAmount, balance, fee }: CKBAmountInputProps
                 amount: MINIMUM_TRANSACTION_AMOUNT,
             })}|lte${Number(balance?.freeBalance) - Number(fee)}:${translate("insufficient_balance")}`}
             suffix={
-                <Typography variant="h1" fontWeight="bold">
+                <Typography variant="h2" fontWeight="bold">
                     CKB
                 </Typography>
             }

@@ -6,7 +6,6 @@ export const DepositImage = styled(Image)(({ dimensions: { height } }) => {
     return {
         height: height * ASPECT_RATIO,
         width: height * ASPECT_RATIO,
-        display: height < 60 ? "none" : undefined,
         marginTop: -height * ASPECT_RATIO * 0.1,
     };
 });

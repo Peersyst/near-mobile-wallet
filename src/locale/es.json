@@ -73,7 +73,7 @@
     "scanned_address": "Dirección escaneada: %address%",
     "transaction_fee": "Tarifa de la transacción: %fee% CKB",
     "write_a_message": "Escribe un mensaje",
-    "enter_amount": "Introduce una cantidad",
+    "enter_amount": "Añade cantidad",
     "minimum_transaction_amount_text": "La cantidad mínima requerida es de %amount% CKB",
     "insufficient_balance": "Balance insuficiente",
     "modify_default_fee": "Modifica la tarifa por defecto",
@@ -106,5 +106,6 @@
     "completed": "Completados",
     "or": "o",
     "create_a_wallet": "Crea un Wallet",
-    "import_a_wallet": "Importa un Wallet"
+    "import_a_wallet": "Importa un Wallet",
+    "deposit_warning": "Nervos DAO necesita 102 CKBytes para depositar el almacenamiento de las celdas, que no genera compensación. Visite el RFC de Nervos DAO para obtener más información sobre Nervos DAO."
 }

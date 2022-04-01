@@ -1,15 +1,14 @@
 import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "react-native-components";
-import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
 import { translate } from "locale";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
-import SendAmountAndMessageScreen from "module/transaction/screen/SendAmountAndMessageScreen";
 import useGetFee from "module/transaction/query/useGetFee";
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import sendState from "module/transaction/state/SendState";
 import SendConfirmationScreen from "module/transaction/screen/SendConfirmationScreen/SendConfirmationScreen";
 import DepositSelectAccountScreen from "module/transaction/screen/DepositSelectAccountScreen/DepositSelectAccountScreen";
+import SendAmountAndMessageScreen from "module/transaction/screen/SendAmountAndMessageScreen/SendAmountAndMessageScreen";
 
 export enum SendScreens {
     SELECT_ACCOUNT,
@@ -52,7 +51,7 @@ const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps
                     <DepositSelectAccountScreen />
                 </TabPanel>
                 <TabPanel index={SendScreens.AMOUNT_AND_MESSAGE}>
-                    <SendAmountAndMessageScreen />
+                    <SendAmountAndMessageScreen isDaoDeposit />
                 </TabPanel>
                 <TabPanel index={SendScreens.CONFIRMATION}>
                     <SendConfirmationScreen />
