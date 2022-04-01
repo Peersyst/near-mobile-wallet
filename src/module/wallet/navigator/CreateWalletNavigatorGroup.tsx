@@ -89,13 +89,13 @@ const CreateWalletNavigatorGroup = () => {
                     />
                 </TabPanel>
                 <TabPanel index={CreateWalletScreens.WALLET_ADVISES}>
-                    <WalletAdvisesScreen />
+                    <WalletAdvisesScreen onNextScreen={() => handleTabChange(CreateWalletScreens.WALLET_MNEMONIC)} />
                 </TabPanel>
                 <TabPanel index={CreateWalletScreens.WALLET_MNEMONIC}>
-                    <WalletMnemonicScreen />
+                    <WalletMnemonicScreen onNextScreen={() => handleTabChange(CreateWalletScreens.PICK_WALLET_MNEMONIC)} />
                 </TabPanel>
                 <TabPanel index={CreateWalletScreens.PICK_WALLET_MNEMONIC}>
-                    <PickWalletMnemonicScreen />
+                    <PickWalletMnemonicScreen onSubmit={() => handleTabChange(CreateWalletScreens.CREATE_WALLET_SUCCESS)} />
                 </TabPanel>
             </GlassNavigatorModal>
             <TabPanel index={CreateWalletScreens.SET_WALLET_PIN}>

@@ -8,10 +8,11 @@ const MainSlider = (): JSX.Element => {
         state: { wallets },
         setSelectedWallet,
     } = useWalletState();
+
     return (
         <PagerView
             showPageIndicator
-            onPageSelected={({ nativeEvent: { position } }) => setSelectedWallet(position)}
+            onPageSelected={(page) => setSelectedWallet(page)}
             height="33%"
             gap={0}
             pagePadding={{ horizontal: 20 }}

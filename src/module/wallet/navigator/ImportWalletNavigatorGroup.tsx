@@ -1,14 +1,14 @@
 import { useLogoPageFlex } from "module/common/component/layout/LogoPage/LogoPageContext";
-import { Animated, TabPanel, Tabs, useTabs } from "react-native-components";
+import { TabPanel, Tabs, useTabs } from "react-native-components";
 import { useState } from "react";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
 import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
 import { translate } from "locale";
-import GlassNavigator from "module/common/component/navigation/GlassNavigator/GlassNavigator";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
 import ImportWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import { useBackHandler } from "@react-native-community/hooks";
 import EnterWalletMnemonicScreen from "module/wallet/screen/EnterWalletMnemonicScreen";
+import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 
 export enum ImportWalletScreens {
     SET_WALLET_NAME,
@@ -16,13 +16,6 @@ export enum ImportWalletScreens {
     SET_WALLET_PIN,
     IMPORT_WALLET_SUCCESS,
 }
-
-const AnimatedGlassNavigator = Animated.createAnimatedComponent.slide(GlassNavigator, {
-    duration: 400,
-    appear: true,
-    direction: "up",
-    unmountOnExit: true,
-});
 
 const ImportWalletNavigatorGroup = () => {
     const [activeTab, setActiveTab] = useState(0);
@@ -65,10 +58,8 @@ const ImportWalletNavigatorGroup = () => {
 
     return (
         <Tabs index={activeTab} onIndexChange={handleTabChange}>
-            <AnimatedGlassNavigator
-                in={showGlass}
-                appear
-                style={{ height: "170%", flex: 1 }}
+            <GlassNavigatorModal
+                open={showGlass}
                 onExited={handleGlassExit}
                 navbar={{ back: true, title: translate("import_wallet"), onBack: handleBack }}
                 breadcrumbs={{ index: activeTab, length: 2 }}
@@ -80,9 +71,12 @@ const ImportWalletNavigatorGroup = () => {
                     />
                 </TabPanel>
                 <TabPanel index={ImportWalletScreens.ENTER_WALLET_MNEMONIC}>
-                    <EnterWalletMnemonicScreen />
+                    <EnterWalletMnemonicScreen
+                        onSubmit={() => handleTabChange(ImportWalletScreens.SET_WALLET_PIN)}
+                        submitText={translate("set_pin")}
+                    />
                 </TabPanel>
-            </AnimatedGlassNavigator>
+            </GlassNavigatorModal>
             <TabPanel index={ImportWalletScreens.SET_WALLET_PIN}>
                 <SetWalletPinScreen onSuccess={() => handleTabChange(ImportWalletScreens.IMPORT_WALLET_SUCCESS)} onCancel={handleBack} />
             </TabPanel>

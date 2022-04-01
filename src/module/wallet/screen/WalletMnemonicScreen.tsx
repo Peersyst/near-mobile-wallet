@@ -1,19 +1,21 @@
 import generateMnemonic from "module/wallet/mock/generateMnemonic";
-import { Col, Typography, useTabs } from "react-native-components";
+import { Col, Typography } from "react-native-components";
 import Card from "module/common/component/surface/Card/Card";
 import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import { CreateWalletScreens } from "module/wallet/navigator/CreateWalletNavigatorGroup";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
 
-const WalletMnemonicScreen = (): JSX.Element => {
-    const setTab = useTabs()[1];
+export interface WalletMnemonicScreenProps {
+    onNextScreen: () => void;
+}
+
+const WalletMnemonicScreen = ({ onNextScreen }: WalletMnemonicScreenProps): JSX.Element => {
     const { setMnemonic } = useCreateWallet();
 
     const handleNext = () => {
         setMnemonic(mnemonic);
-        setTab(CreateWalletScreens.PICK_WALLET_MNEMONIC);
+        onNextScreen();
     };
 
     const mnemonic = generateMnemonic();

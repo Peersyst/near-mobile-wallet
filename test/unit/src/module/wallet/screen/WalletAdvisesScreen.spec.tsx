@@ -1,7 +1,6 @@
 import { render } from "test-utils";
 import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 import { translate } from "locale";
-import * as UseTabs from "module/common/component/base/navigation/Tabs/hook/useTabs";
 import { act, fireEvent } from "@testing-library/react-native";
 
 describe("WalletAdvisesScreen tests", () => {
@@ -12,16 +11,15 @@ describe("WalletAdvisesScreen tests", () => {
     test("Renders correctly", () => {
         jest.useFakeTimers();
 
-        const setTab = jest.fn();
-        jest.spyOn(UseTabs, "default").mockReturnValue([0, setTab]);
+        const handleNextScreen = jest.fn();
 
-        const screen = render(<WalletAdvisesScreen />);
+        const screen = render(<WalletAdvisesScreen onNextScreen={handleNextScreen} />);
 
         expect(screen.getByText(translate("advise1_title"))).toBeDefined();
 
         let generateMnemonicButton = screen.getByText(translate("generate_mnemonic"));
         fireEvent.press(generateMnemonicButton);
-        expect(setTab).not.toHaveBeenCalled();
+        expect(handleNextScreen).not.toHaveBeenCalled();
 
         act(() => jest.runAllTimers());
         fireEvent.press(screen.getByText(translate("next")));
@@ -35,7 +33,7 @@ describe("WalletAdvisesScreen tests", () => {
         generateMnemonicButton = screen.getByText(translate("generate_mnemonic"));
         fireEvent.press(generateMnemonicButton);
         fireEvent.press(generateMnemonicButton);
-        expect(setTab).toHaveBeenCalled();
+        expect(handleNextScreen).toHaveBeenCalled();
 
         jest.useRealTimers();
     });

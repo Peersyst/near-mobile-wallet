@@ -1,7 +1,7 @@
 import { SetterOrUpdater, useRecoilState, useResetRecoilState } from "recoil";
 import walletState, { Wallet, WalletState } from "module/wallet/state/WalletState";
 
-export interface UseWalletResult {
+export interface UseWalletStateResult {
     state: WalletState;
     setState: SetterOrUpdater<WalletState>;
     setAuthenticated: (isAuthenticated: boolean) => void;
@@ -10,7 +10,7 @@ export interface UseWalletResult {
     reset: () => void;
 }
 
-const useWalletState = (): UseWalletResult => {
+const useWalletState = (): UseWalletStateResult => {
     const [state, setState] = useRecoilState(walletState);
     const reset = useResetRecoilState(walletState);
 
