@@ -31,6 +31,6 @@ export function useLoad(): boolean {
             setLoading(false);
         };
         getStorage();
-    }, [setWalletState]);
+    }, []);
     return loading;
 }

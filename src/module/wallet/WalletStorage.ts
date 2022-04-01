@@ -11,7 +11,7 @@ export interface StorageWallet {
 
 export interface WalletStorageType {
     wallets: StorageWallet[];
-    pin: string;
+    pin: string | undefined;
 }
 
 export const WalletStorage = new (class extends BaseStorageService<WalletStorageType> {
@@ -55,18 +55,16 @@ export const WalletStorage = new (class extends BaseStorageService<WalletStorage
     }
 
     async setWallets(wallets: StorageWallet[]): Promise<void> {
-        const storage = await this.get();
-        if (storage) await this.set({ ...storage, wallets });
+        const storage = (await this.get()) || { pin: undefined };
+        await this.set({ ...storage, wallets });
     }
 
     async addWallet(wallet: Omit<StorageWallet, "index">): Promise<StorageWallet | undefined> {
-        const wallets = await this.getWallets();
-        if (wallets) {
-            const newWallet = { ...wallet, index: wallets.length };
-            wallets?.push(newWallet);
-            await this.setWallets(wallets);
-            return newWallet;
-        }
+        const wallets = (await this.getWallets()) || [];
+        const newWallet = { ...wallet, index: wallets.length };
+        wallets?.push(newWallet);
+        await this.setWallets(wallets);
+        return newWallet;
     }
 
     async removeWallet(index: number): Promise<void> {
@@ -75,7 +73,7 @@ export const WalletStorage = new (class extends BaseStorageService<WalletStorage
     }
 
     async setPin(pin: string): Promise<void> {
-        const storage = await this.get();
-        if (storage) await this.set({ ...storage, pin });
+        const storage = (await this.get()) || { wallets: [] };
+        await this.set({ ...storage, pin });
     }
 })();

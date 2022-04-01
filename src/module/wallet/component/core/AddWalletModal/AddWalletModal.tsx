@@ -44,7 +44,6 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
                         serviceInstance: new CkbServiceMock(newWallet.mnemonic),
                     },
                 ],
-                selectedWallet: newWallet.index,
             }));
         }
         handleClose();

@@ -25,8 +25,10 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonic
     }, [submitted]);
 
     const handleSubmit = ({ mnemonic }: MnemonicForm) => {
-        setMnemonic(mnemonic);
-        setSubmitted(true);
+        if (!submitted) {
+            setMnemonic(mnemonic);
+            setSubmitted(true);
+        }
     };
 
     return (
