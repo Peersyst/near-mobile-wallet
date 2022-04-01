@@ -5,14 +5,14 @@ import useWalletState from "module/wallet/hook/useWalletState";
 
 const MainSlider = (): JSX.Element => {
     const {
-        state: { wallets, selectedWallet },
+        state: { wallets },
         setSelectedWallet,
     } = useWalletState();
+
     return (
         <PagerView
-            currentPage={selectedWallet}
             showPageIndicator
-            onPageSelected={({ nativeEvent: { position } }) => setSelectedWallet(position)}
+            onPageSelected={(page) => setSelectedWallet(page)}
             height="33%"
             gap={0}
             pagePadding={{ horizontal: 20 }}

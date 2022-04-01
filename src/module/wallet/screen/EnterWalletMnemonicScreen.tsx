@@ -2,6 +2,7 @@ import { Col, Form } from "react-native-components";
 import MnemonicInput from "module/wallet/component/input/MnemonicInput/MnemonicInput";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
+import { useEffect, useState } from "react";
 
 export interface MnemonicForm {
     mnemonic: string[];
@@ -14,10 +15,20 @@ export interface EnterWalletMnemonicScreenProps {
 
 const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonicScreenProps): JSX.Element => {
     const { setMnemonic } = useCreateWallet();
+    const [submitted, setSubmitted] = useState(false);
+
+    useEffect(() => {
+        if (submitted) {
+            setSubmitted(false);
+            onSubmit();
+        }
+    }, [submitted]);
 
     const handleSubmit = ({ mnemonic }: MnemonicForm) => {
-        setMnemonic(mnemonic);
-        onSubmit();
+        if (!submitted) {
+            setMnemonic(mnemonic);
+            setSubmitted(true);
+        }
     };
 
     return (
