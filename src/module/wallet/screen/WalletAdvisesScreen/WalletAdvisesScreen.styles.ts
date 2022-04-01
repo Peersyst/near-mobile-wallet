@@ -4,7 +4,7 @@ import { Row } from "react-native-components";
 
 const ADVISE_IMAGE_RATIO = 0.35;
 
-export const AdviseImage = styled(Image, { fadeDuration: 500 })(({ dimensions: { width } }) => ({
+export const AdviseImage = styled(Image, { fadeDuration: 400 })(({ dimensions: { width } }) => ({
     width: width * ADVISE_IMAGE_RATIO,
     height: width * ADVISE_IMAGE_RATIO,
 }));

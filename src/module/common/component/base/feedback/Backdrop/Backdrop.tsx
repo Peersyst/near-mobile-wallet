@@ -15,6 +15,7 @@ export default function Backdrop({
     onOpen,
     onEntered,
     renderBackdrop,
+    closeOnBackdropTap = true,
     swipeable = true,
     swipeDirection = "down",
     swipeThreshold = 100,
@@ -67,10 +68,10 @@ export default function Backdrop({
             isVisible={open}
             onModalWillHide={handleClose}
             onModalHide={onExited}
-            onBackdropPress={handleClose}
+            onBackdropPress={closeOnBackdropTap ? handleClose : undefined}
             onBackButtonPress={handleClose}
             swipeDirection={toastActive && !toastWasActive ? undefined : swipeDirection}
-            swipeThreshold={swipeable ? swipeThreshold : 9999}
+            swipeThreshold={swipeable && closable ? swipeThreshold : 9999}
             onSwipeComplete={() => swipeable && handleClose()}
             onModalWillShow={handleOpen}
             onModalShow={handleEntered}

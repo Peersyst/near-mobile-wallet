@@ -1,10 +1,10 @@
 import styled from "@peersyst/react-native-styled";
-import { StarIcon } from "icons";
 import CopyToClipboardIcon from "module/common/component/input/CopyToClipboardIcon/CopyToClipboardIcon";
 import { Col, Typography } from "react-native-components";
 import Balance from "../../display/Balance/Balance";
 import BaseWalletCard from "module/common/component/surface/BaseWalletCard/BaseWalletCard";
 import { WalletCardRootProps } from "module/wallet/component/core/WalletCard/WalletCard";
+import { EditWalletIcon } from "./WalletCardHeader/EditWalletIcon/EditWalletIcon";
 
 export const WalletCardRoot = styled(BaseWalletCard)<WalletCardRootProps>(({ color }) => {
     return {
@@ -13,7 +13,7 @@ export const WalletCardRoot = styled(BaseWalletCard)<WalletCardRootProps>(({ col
     };
 });
 
-export const FavouriteIcon = styled(StarIcon)(({ theme }) => ({
+export const EditIcon = styled(EditWalletIcon)(({ theme }) => ({
     color: theme.palette.white,
     fontSize: 20,
 }));

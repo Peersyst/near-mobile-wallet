@@ -18,7 +18,7 @@ describe("WalletCardHeader tests", () => {
     test("Renders correctly", () => {
         const screen = render(<WalletCardHeader name="my_account" index={0} />);
         expect(screen.getByText("my_account")).toBeDefined();
-        expect(screen.getByTestId("StarIcon")).toBeDefined();
+        expect(screen.getByTestId("EditIcon")).toBeDefined();
         expect(screen.getByTestId("CopyIcon")).toBeDefined();
     });
 

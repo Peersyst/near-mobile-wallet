@@ -2,6 +2,9 @@ import { createTheme, defaultTheme } from "react-native-components";
 import { translate } from "locale";
 
 export const theme = createTheme({
+    icons: {
+        invalid: () => <></>,
+    },
     palette: {
         background: "#dedede",
         primary: "#0B0D1E",

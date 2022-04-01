@@ -13,6 +13,7 @@
         "openapi:generate": "openapi -i openapi-spec.json -o src/module/api/service --exportSchemas=true --useUnionTypes",
         "eject": "expo eject",
         "test": "jest --coverage",
+        "test:only": "jest --coverage --",
         "test:unit": "jest --coverage ./test/unit",
         "test:integration": "jest --coverage ./test/integration",
         "test:debug": "jest --coverage --no-cache --runInBand || true",
