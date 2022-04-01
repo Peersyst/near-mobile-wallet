@@ -54,7 +54,7 @@ const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps
                     <SendAmountAndMessageScreen isDaoDeposit />
                 </TabPanel>
                 <TabPanel index={SendScreens.CONFIRMATION}>
-                    <SendConfirmationScreen />
+                    <SendConfirmationScreen isDaoDeposit />
                 </TabPanel>
             </Tabs>
         </GlassNavigatorModal>
