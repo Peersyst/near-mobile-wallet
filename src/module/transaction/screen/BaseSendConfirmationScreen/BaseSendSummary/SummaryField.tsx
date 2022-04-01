@@ -1,5 +1,5 @@
 import { Col } from "react-native-components";
-import { SummaryText } from "../SendConfirmationScreen.styles";
+import { SummaryText } from "./SummaryFiels.styles";
 
 export interface SummaryFieldProps {
     label: string;

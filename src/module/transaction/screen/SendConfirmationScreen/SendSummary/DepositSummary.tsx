@@ -4,10 +4,11 @@ import useGetDaoBalance from "module/dao/query/useGetDaoBalance";
 import { SendState } from "module/transaction/state/SendState";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
 import { Wallet } from "module/wallet/state/WalletState";
-import { Col, Typography } from "react-native-components";
-import { SummaryText } from "../SendConfirmationScreen.styles";
-import BaseSendSummary from "./BaseSendSummary";
-import SummaryField from "./SummaryField";
+import { Col } from "react-native-components";
+
+import BaseSendSummary from "../../BaseSendConfirmationScreen/BaseSendSummary/BaseSendSummary";
+import SummaryField from "../../BaseSendConfirmationScreen/BaseSendSummary/SummaryField";
+import { SummaryText } from "../../BaseSendConfirmationScreen/BaseSendSummary/SummaryFiels.styles";
 
 type SendSummaryProps = Required<
     Pick<BalanceProps, "balance"> &
