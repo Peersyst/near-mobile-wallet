@@ -24,5 +24,5 @@ export const tokens: TokenAmount[] = [...Array(5)].map((_, i) => ({
         name: tokensList[i].name,
         description: tokensList[i].description,
     },
-    amount: 1 * 20,
+    amount: 20,
 }));

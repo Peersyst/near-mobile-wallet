@@ -1,33 +1,34 @@
 import { createModal, ExposedBackdropProps, TabPanel, Tabs } from "react-native-components";
 import { translate } from "locale";
-import { CreateWalletScreens } from "module/wallet/navigator/CreateWalletNavigatorGroup";
 import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
-import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
+import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen/WalletAdvisesScreen";
 import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen";
-import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 import { useState } from "react";
+import AddWalletModal from "module/wallet/component/core/AddWalletModal/AddWalletModal";
 
 const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
     const [index, setIndex] = useState(0);
 
     return (
-        <GlassNavigatorModal navbar={{ back: true, title: translate("create_wallet") }} scrollable {...props}>
-            <Tabs index={index} onIndexChange={setIndex}>
-                <TabPanel index={CreateWalletScreens.SET_WALLET_NAME}>
-                    <SetWalletNameScreen onSubmit={() => undefined} submitText={translate("set_pin")} />
-                </TabPanel>
-                <TabPanel index={CreateWalletScreens.WALLET_ADVISES}>
-                    <WalletAdvisesScreen />
-                </TabPanel>
-                <TabPanel index={CreateWalletScreens.WALLET_MNEMONIC}>
-                    <WalletMnemonicScreen />
-                </TabPanel>
-                <TabPanel index={CreateWalletScreens.PICK_WALLET_MNEMONIC}>
-                    <PickWalletMnemonicScreen />
-                </TabPanel>
-            </Tabs>
-        </GlassNavigatorModal>
+        <AddWalletModal title={translate("create_wallet")} onBack={index ? () => setIndex((i) => i - 1) : undefined} {...props}>
+            {(handleWalletCreation) => (
+                <Tabs index={index} onIndexChange={setIndex}>
+                    <TabPanel index={0}>
+                        <SetWalletNameScreen onSubmit={() => setIndex(1)} submitText={translate("next")} />
+                    </TabPanel>
+                    <TabPanel index={1}>
+                        <WalletAdvisesScreen onNextScreen={() => setIndex(2)} nextScreenText={translate("generate_mnemonic")} />
+                    </TabPanel>
+                    <TabPanel index={2}>
+                        <WalletMnemonicScreen onNextScreen={() => setIndex(3)} />
+                    </TabPanel>
+                    <TabPanel index={3}>
+                        <PickWalletMnemonicScreen onSubmit={handleWalletCreation} />
+                    </TabPanel>
+                </Tabs>
+            )}
+        </AddWalletModal>
     );
 });
 

@@ -1,10 +1,8 @@
 import { render } from "test-utils";
 import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
-import * as UseTabs from "module/common/component/base/navigation/Tabs/hook/useTabs";
 import * as UseToast from "module/common/component/base/feedback/ToastProvider/hooks/useToast";
 import { fireEvent } from "@testing-library/react-native";
-import { CreateWalletScreens } from "module/wallet/navigator/CreateWalletNavigatorGroup";
 import { translate } from "locale";
 
 describe("PickWalletMnemonicScreen tests", () => {
@@ -18,16 +16,16 @@ describe("PickWalletMnemonicScreen tests", () => {
             setName: jest.fn(),
             setMnemonic: jest.fn(),
             setColorIndex: jest.fn(),
+            reset: jest.fn(),
         });
-        const setTab = jest.fn();
-        jest.spyOn(UseTabs, "default").mockReturnValue([0, setTab]);
-        const screen = render(<PickWalletMnemonicScreen />);
+        const handleSubmit = jest.fn();
+        const screen = render(<PickWalletMnemonicScreen onSubmit={handleSubmit} />);
 
         fireEvent.press(screen.getByText("pizza"));
         fireEvent.press(screen.getByText("watermelon"));
         fireEvent.press(screen.getByText("lemon"));
 
-        expect(setTab).toHaveBeenCalledWith(CreateWalletScreens.CREATE_WALLET_SUCCESS);
+        expect(handleSubmit).toHaveBeenCalled();
     });
 
     test("Shows toast if not correct", () => {
@@ -37,6 +35,7 @@ describe("PickWalletMnemonicScreen tests", () => {
             setName: jest.fn(),
             setMnemonic: jest.fn(),
             setColorIndex: jest.fn(),
+            reset: jest.fn(),
         });
         const showToast = jest.fn();
         jest.spyOn(UseToast, "useToast").mockReturnValue({
@@ -44,7 +43,7 @@ describe("PickWalletMnemonicScreen tests", () => {
             hideToast: jest.fn(),
             toastActive: false,
         });
-        const screen = render(<PickWalletMnemonicScreen />);
+        const screen = render(<PickWalletMnemonicScreen onSubmit={jest.fn()} />);
 
         fireEvent.press(screen.getByText("pizza"));
         fireEvent.press(screen.getByText("lemon"));

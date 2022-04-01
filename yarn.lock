@@ -1623,13 +1623,13 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@peersyst/react-hooks@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.npmjs.org/@peersyst/react-hooks/-/react-hooks-1.1.5.tgz"
-  integrity sha512-oJMOkjvYsI2VxZ49bvSdzsRtdZIMy+7JfiF3Mg6V/RL5URJqQHnzaX/5+JMcj6zqIfuqzIKkx1/0BSBszp7orQ==
+"@peersyst/react-hooks@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-1.1.6.tgz#ccb167015a7cd9c990d18c8e13acee72b7c0810c"
+  integrity sha512-FSRBgA/Xr653XKiGKvoexFWGWK0cBrp95cHsbnLNzrOhnlaFojTxkXX30NZUGAtfxAtwpM4ubyIKz+SZ38ikng==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-utils" "^1.0.0"
+    "@peersyst/react-utils" "^1.2.0"
 
 "@peersyst/react-native-styled@^1.1.1":
   version "1.1.1"
@@ -1648,10 +1648,10 @@
   resolved "https://registry.npmjs.org/@peersyst/react-types/-/react-types-1.2.0.tgz"
   integrity sha512-p6zapXl2iikJUcy3LWJdAt5Hu5HBkCmlNKB3FIvQOtcebDGEF7VSxmTk6MdfU97vLm5gdP1SrwzuNVFw6aJJ8A==
 
-"@peersyst/react-utils@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@peersyst/react-utils/-/react-utils-1.0.0.tgz"
-  integrity sha512-tpNrhjaFk2QbuRFPnlPN1sFLvNsFFvg/S2c4obWCSj1tzPl2fbq7G3qngy3J9kFSDTCVIaFhC06Lq32yyghsmw==
+"@peersyst/react-utils@^1.2.0":
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-utils/-/react-utils-1.3.2.tgz#abc8263b8d0fff016dcefb4a990131b7d0386f8d"
+  integrity sha512-p/XM+oZhCRtNahbZ5IjSuG1fhXyAMtD39YJkH0plfEdsPnFCsnbfdTZbfy5nnPzuuGQch0u0j+wg5AD1t75laA==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-types" "^1.0.0"
@@ -7259,10 +7259,10 @@ react-native-keyboard-aware-scroll-view@^0.9.5:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
 
-react-native-pager-view@^5.4.9:
-  version "5.4.11"
-  resolved "https://registry.npmjs.org/react-native-pager-view/-/react-native-pager-view-5.4.11.tgz"
-  integrity sha512-4QlBL5W8yVjeYwrw89oCdABI7sDxIGapFQvIbukfB5mAj1Zn1IQPkBqROLblNFtQ8PbAeexXRgDT1ENWygiJ7A==
+react-native-pager-view@^5.4.15:
+  version "5.4.15"
+  resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.15.tgz#075fef5ae4ba6ecc37e49b6c4a24770131a2a3cc"
+  integrity sha512-5NssD840wFCuOL4B1ZRiRADvt+Vx2Dgify4SmAUqHXCx03yiGPnRWmFjYXyQeK6gq/8VY+gPGE4bTy9ahzBbDw==
 
 react-native-qrcode-svg@^6.1.2:
   version "6.1.2"

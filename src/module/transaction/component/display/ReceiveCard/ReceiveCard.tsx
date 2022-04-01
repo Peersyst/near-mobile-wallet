@@ -26,10 +26,10 @@ const ReceiveCard = (): JSX.Element => {
         <Card>
             <ReceiveCardContent>
                 <Row justifyContent="space-between" alignItems="center">
-                    <TextAddress variant="body1">{address}</TextAddress>
+                    <TextAddress variant="h3">{address}</TextAddress>
                     <CopyToClipboardIcon filled text={address || ""} toastMessage={translate("address_copied")} />
                 </Row>
-                <Typography variant={"caption"}>{translate("receive_info")}</Typography>
+                <Typography variant="body2">{translate("receive_info")}</Typography>
                 <GoBack onBack={() => hideModal(ReceiveModal.id)} />
             </ReceiveCardContent>
         </Card>

@@ -21,6 +21,7 @@ describe("CreateWalletSuccessScreen tests", () => {
             setName: jest.fn(),
             setMnemonic: jest.fn(),
             setColorIndex: jest.fn(),
+            reset: jest.fn(),
         });
         const setWalletState = jest.fn();
         const setSettingsState = jest.fn();
