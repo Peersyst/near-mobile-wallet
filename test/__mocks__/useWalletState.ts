@@ -22,7 +22,7 @@ export const mockedUseWallet: UseWalletStateResult = {
     reset: jest.fn(),
 };
 
-const createUseWalletStateMock = ({ state, ...setters }: UseWalletStateMockResult): UseWalletStateResult => ({
+const createUseWalletStateMock = ({ state, ...setters }: UseWalletStateMockResult = {}): UseWalletStateResult => ({
     ...mockedUseWallet,
     ...setters,
     state: deepmerge(mockedUseWallet.state, state),

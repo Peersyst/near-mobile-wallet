@@ -67,6 +67,13 @@ export const WalletStorage = new (class extends BaseStorageService<WalletStorage
         return newWallet;
     }
 
+    async editWallet(index: number, { name, colorIndex }: Pick<StorageWallet, "name" | "colorIndex">): Promise<void> {
+        const wallets = await this.getWallets();
+        if (wallets) {
+            await this.setWallets(wallets.map((wallet) => (wallet.index === index ? { ...wallet, name, colorIndex } : wallet)));
+        }
+    }
+
     async removeWallet(index: number): Promise<void> {
         const wallets = await this.getWallets();
         if (wallets) await this.setWallets(wallets.filter((_, i) => i !== index));
