@@ -1,5 +1,5 @@
 import { UseWalletStateResult } from "module/wallet/hook/useWalletState";
-import { wallet } from "mocks/wallet";
+import { wallet } from "./wallet";
 import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 import { deepmerge } from "@peersyst/react-utils";
 
