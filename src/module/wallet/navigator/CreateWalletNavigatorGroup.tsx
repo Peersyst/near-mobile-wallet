@@ -5,7 +5,7 @@ import { AuthScreens } from "module/auth/AuthNavigatorGroup";
 import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
 import { translate } from "locale";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
-import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
+import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen/WalletAdvisesScreen";
 import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
@@ -89,7 +89,10 @@ const CreateWalletNavigatorGroup = () => {
                     />
                 </TabPanel>
                 <TabPanel index={CreateWalletScreens.WALLET_ADVISES}>
-                    <WalletAdvisesScreen onNextScreen={() => handleTabChange(CreateWalletScreens.WALLET_MNEMONIC)} />
+                    <WalletAdvisesScreen
+                        onNextScreen={() => handleTabChange(CreateWalletScreens.WALLET_MNEMONIC)}
+                        nextScreenText={translate("generate_mnemonic")}
+                    />
                 </TabPanel>
                 <TabPanel index={CreateWalletScreens.WALLET_MNEMONIC}>
                     <WalletMnemonicScreen onNextScreen={() => handleTabChange(CreateWalletScreens.PICK_WALLET_MNEMONIC)} />

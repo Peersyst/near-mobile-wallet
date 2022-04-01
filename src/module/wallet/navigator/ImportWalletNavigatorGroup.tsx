@@ -9,9 +9,11 @@ import ImportWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessS
 import { useBackHandler } from "@react-native-community/hooks";
 import EnterWalletMnemonicScreen from "module/wallet/screen/EnterWalletMnemonicScreen";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
+import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen/WalletAdvisesScreen";
 
 export enum ImportWalletScreens {
     SET_WALLET_NAME,
+    WALLET_ADVISES,
     ENTER_WALLET_MNEMONIC,
     SET_WALLET_PIN,
     IMPORT_WALLET_SUCCESS,
@@ -62,12 +64,19 @@ const ImportWalletNavigatorGroup = () => {
                 open={showGlass}
                 onExited={handleGlassExit}
                 navbar={{ back: true, title: translate("import_wallet"), onBack: handleBack }}
-                breadcrumbs={{ index: activeTab, length: 2 }}
+                breadcrumbs={{ index: activeTab, length: 3 }}
             >
                 <TabPanel index={ImportWalletScreens.SET_WALLET_NAME}>
                     <SetWalletNameScreen
-                        onSubmit={() => handleTabChange(ImportWalletScreens.ENTER_WALLET_MNEMONIC)}
+                        onSubmit={() => handleTabChange(ImportWalletScreens.WALLET_ADVISES)}
                         submitText={translate("enter_mnemonic")}
+                    />
+                </TabPanel>
+                <TabPanel index={ImportWalletScreens.WALLET_ADVISES}>
+                    <WalletAdvisesScreen
+                        onNextScreen={() => handleTabChange(ImportWalletScreens.ENTER_WALLET_MNEMONIC)}
+                        useTimer={false}
+                        nextScreenText={translate("enter_mnemonic")}
                     />
                 </TabPanel>
                 <TabPanel index={ImportWalletScreens.ENTER_WALLET_MNEMONIC}>
