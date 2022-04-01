@@ -1,4 +1,4 @@
-import { Col, Row } from "react-native-components";
+import { Col } from "react-native-components";
 import { translate } from "locale";
 import AdviseCardGroup from "module/common/component/display/AdviseCardGroup/AdviseCardGroup";
 import { useState } from "react";
@@ -6,7 +6,7 @@ import CountdownButton from "module/common/component/input/CountdownButton/Count
 import Button from "module/common/component/input/Button/Button";
 import { AdviseCardProps } from "module/common/component/display/AdviseCard/AdviseCard.types";
 import { image } from "asset/image";
-import { AdviseImage } from "./WalletAdvisesScreen.styles";
+import { AdviseImage, AdviseImageCont } from "./WalletAdvisesScreen.styles";
 
 export interface WalletAdvisesScreenProps {
     useTimer?: boolean;
@@ -31,8 +31,10 @@ const WalletAdvisesScreen = ({ onNextScreen, useTimer = true, nextScreenText }: 
     ];
 
     return (
-        <Col flex={1} gap={30}>
-            <Row justifyContent="center">{<AdviseImage source={advisesImages[index]} />}</Row>
+        <Col flex={1} gap={20}>
+            <AdviseImageCont>
+                <AdviseImage source={advisesImages[index]} />
+            </AdviseImageCont>
             <AdviseCardGroup index={index} onIndexChange={setIndex} advises={advises} />
             {!useTimer || index === 2 ? (
                 <CountdownButton
