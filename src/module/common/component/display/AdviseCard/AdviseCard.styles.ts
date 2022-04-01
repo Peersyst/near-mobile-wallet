@@ -7,10 +7,10 @@ export const BackIconButton = styled(IconButton)(({ theme }) => ({
     fontSize: 26,
 }));
 
-export const AdviseCardRoot = styled(Card)(({ dimensions: { height } }) => {
+export const AdviseCardRoot = styled(Card)(() => {
     return {
         flex: 1,
         marginTop: 4,
         minHeight: 300,
-    }
-})
+    };
+});

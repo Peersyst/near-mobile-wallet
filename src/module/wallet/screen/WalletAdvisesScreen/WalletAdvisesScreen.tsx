@@ -1,4 +1,4 @@
-import { Col, Row } from "react-native-components";
+import { Col } from "react-native-components";
 import { translate } from "locale";
 import AdviseCardGroup from "module/common/component/display/AdviseCardGroup/AdviseCardGroup";
 import { useState } from "react";
@@ -7,7 +7,6 @@ import Button from "module/common/component/input/Button/Button";
 import { AdviseCardProps } from "module/common/component/display/AdviseCard/AdviseCard.types";
 import { image } from "asset/image";
 import { AdviseImage, AdviseImageCont } from "./WalletAdvisesScreen.styles";
-import { useWindowDimensions } from "react-native";
 
 export interface WalletAdvisesScreenProps {
     useTimer?: boolean;
@@ -30,7 +29,7 @@ const WalletAdvisesScreen = ({ onNextScreen, useTimer = true, nextScreenText }: 
             timer: advisesTimer,
         },
     ];
-    
+
     return (
         <Col flex={1} gap={20}>
             <AdviseImageCont>

@@ -9,7 +9,6 @@ export const AdviseImage = styled(Image, { fadeDuration: 500 })(({ dimensions: {
     height: width * ADVISE_IMAGE_RATIO,
 }));
 
-export const AdviseImageCont = styled(Row, { justifyContent: "center" })
-    (({ dimensions: { height } }) => ({
-        display: height < 680 ? "none" : undefined,
-    }))
+export const AdviseImageCont = styled(Row, { justifyContent: "center" })(({ dimensions: { height } }) => ({
+    display: height < 680 ? "none" : undefined,
+}));
