@@ -5,15 +5,38 @@ import useEditWallet from "module/wallet/hook/useEditWallet";
 import { act } from "@testing-library/react-hooks";
 
 describe("useEditWallet tests", () => {
-    const setName = jest.fn();
-    const setColorIndex = jest.fn();
+    const setWallets = jest.fn();
+    const useWalletStateResultMock = createUseWalletStateMock({ setWallets });
+
+    beforeEach(() => {
+        jest.spyOn(UseWalletState, "default").mockReturnValue(useWalletStateResultMock);
+    });
 
     afterEach(() => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(createUseWalletStateMock());
+        jest.restoreAllMocks();
     });
 
     test("Sets name", () => {
         const { result } = renderHook(() => useEditWallet(0));
-        act(() => result.current.setName(""));
+        act(() => result.current.setName("Modified name"));
+        expect(setWallets).toHaveBeenCalledWith([
+            { ...useWalletStateResultMock.state.wallets[0], name: "Modified name" },
+            useWalletStateResultMock.state.wallets[1],
+        ]);
+    });
+
+    test("Sets colorIndex", () => {
+        const { result } = renderHook(() => useEditWallet(0));
+        act(() => result.current.setColorIndex(2));
+        expect(setWallets).toHaveBeenCalledWith([
+            { ...useWalletStateResultMock.state.wallets[0], colorIndex: 2 },
+            useWalletStateResultMock.state.wallets[1],
+        ]);
+    });
+
+    test("Resets wallet", () => {
+        const { result } = renderHook(() => useEditWallet(0));
+        act(() => result.current.reset());
+        expect(setWallets).toHaveBeenCalledWith(useWalletStateResultMock.state.wallets);
     });
 });

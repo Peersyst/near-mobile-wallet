@@ -10,6 +10,7 @@ const PressableText = ({ children, onPress, disabled = false, ...res }: Pressabl
             onPress={disabled ? undefined : onPress}
             onPressIn={() => !disabled && setPressed(true)}
             onPressOut={() => setPressed(false)}
+            accessibilityRole="button"
         >
             <TouchableText {...res} pressed={pressed} disabled={disabled}>
                 {children}

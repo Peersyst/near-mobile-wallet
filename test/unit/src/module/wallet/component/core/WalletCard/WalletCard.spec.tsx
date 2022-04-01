@@ -17,7 +17,7 @@ describe("WalletCard tests", () => {
 
         /**Account header */
         expect(screen.getByText(mockedUseWallet.state.wallets[0].name)).toBeDefined();
-        expect(screen.getByTestId("StarIcon")).toBeDefined();
+        expect(screen.getByTestId("EditIcon")).toBeDefined();
         expect(screen.getByTestId("CopyIcon")).toBeDefined();
 
         /**Account Balance */

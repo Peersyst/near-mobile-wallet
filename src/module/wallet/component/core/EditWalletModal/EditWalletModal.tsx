@@ -20,7 +20,7 @@ const EditWalletModal = createModal(({ index, closable = true, onClose, ...backd
         setName,
         setColorIndex,
         reset,
-        initialState: { name: initialname, colorIndex: initialColorIndex },
+        initialState: { name: initialName, colorIndex: initialColorIndex },
     } = useEditWallet(index);
     const { showToast } = useToast();
     const {
@@ -35,7 +35,7 @@ const EditWalletModal = createModal(({ index, closable = true, onClose, ...backd
         setOpen(false);
 
         if (saved) {
-            if (name !== initialname || colorIndex !== initialColorIndex) {
+            if (name !== initialName || colorIndex !== initialColorIndex) {
                 await WalletStorage.editWallet(index, { name, colorIndex });
                 showToast(translate("wallet_edited"), { type: "success" });
             }
