@@ -1,5 +1,5 @@
 import { translate } from "locale";
-import DaoCardButtons from "module/dao/core/DaoAccountCard/DaoCardButtons/DaoCardButtons";
+import DaoCardButtons from "module/dao/component/core/DaoAccountCard/DaoCardButtons/DaoCardButtons";
 import { fireEvent, render } from "test-utils";
 import * as UseModal from "module/common/component/base/feedback/ModalProvider/hooks/useModal";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";

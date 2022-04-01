@@ -56,4 +56,5 @@ export * from "@testing-library/jest-native";
 export { customRender as render };
 export * from "./fail-api-call";
 export * from "./success-api-call";
+export * from "./wait";
 export { customRenderHook as renderHook };

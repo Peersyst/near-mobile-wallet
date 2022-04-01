@@ -3,8 +3,6 @@ import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import { translate } from "locale";
 import { fireEvent } from "@testing-library/react-native";
 import * as UseCreateWalletState from "module/wallet/hook/useCreateWallet";
-import * as UseTabs from "module/common/component/base/navigation/Tabs/hook/useTabs";
-import { CreateWalletScreens } from "module/wallet/navigator/CreateWalletNavigatorGroup";
 
 describe("WalletMnemonicScreen tests", () => {
     afterAll(() => {
@@ -12,7 +10,7 @@ describe("WalletMnemonicScreen tests", () => {
     });
 
     test("Renders correctly", () => {
-        const screen = render(<WalletMnemonicScreen />);
+        const screen = render(<WalletMnemonicScreen onNextScreen={jest.fn()} />);
 
         screen.getByText(translate("keep_this_safe"));
 
@@ -31,11 +29,11 @@ describe("WalletMnemonicScreen tests", () => {
             setPin: jest.fn(),
             setMnemonic,
             setColorIndex: jest.fn(),
+            reset: jest.fn(),
         });
-        const setTab = jest.fn();
-        jest.spyOn(UseTabs, "default").mockReturnValue([0, setTab]);
+        const handleNextScreen = jest.fn();
 
-        const screen = render(<WalletMnemonicScreen />);
+        const screen = render(<WalletMnemonicScreen onNextScreen={handleNextScreen} />);
 
         const nextButton = screen.getByText(translate("next"));
         fireEvent.press(nextButton);
@@ -54,6 +52,6 @@ describe("WalletMnemonicScreen tests", () => {
             "ice",
             "least",
         ]);
-        expect(setTab).toHaveBeenCalledWith(CreateWalletScreens.PICK_WALLET_MNEMONIC);
+        expect(handleNextScreen).toHaveBeenCalled();
     });
 });

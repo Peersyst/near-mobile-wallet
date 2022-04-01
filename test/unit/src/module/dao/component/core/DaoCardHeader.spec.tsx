@@ -1,4 +1,4 @@
-import DaoCardHeader, { DAO_INFO_URL } from "module/dao/core/DaoAccountCard/DaoCardHeader/DaoCardHeader";
+import DaoCardHeader, { DAO_INFO_URL } from "module/dao/component/core/DaoAccountCard/DaoCardHeader/DaoCardHeader";
 import { fireEvent, render } from "test-utils";
 import { Linking } from "react-native";
 

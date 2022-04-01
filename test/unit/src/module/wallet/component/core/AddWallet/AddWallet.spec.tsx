@@ -4,6 +4,10 @@ import { render } from "test-utils";
 import AddWallet from "module/wallet/component/core/AddWallet/AddWallet";
 import { translate } from "locale";
 import { fireEvent } from "@testing-library/react-native";
+import * as UseModal from "module/common/component/base/feedback/ModalProvider/hooks/useModal";
+import CreateWalletModal from "module/wallet/component/core/CreateWalletModal/CreateWalletModal";
+import ImportWalletModal from "module/wallet/component/core/ImportWalletModal/ImportWalletModal";
+import createUseCreateWalletMock from "mocks/useCreateWalletMock";
 
 describe("AddWallet tests", () => {
     test("Renders correctly", () => {
@@ -14,6 +18,7 @@ describe("AddWallet tests", () => {
             setPin: jest.fn(),
             setMnemonic: jest.fn(),
             setColorIndex,
+            reset: jest.fn(),
         });
         const resetCreateWalletState = jest.fn();
         jest.spyOn(Recoil, "useResetRecoilState").mockReturnValue(resetCreateWalletState);
@@ -28,5 +33,25 @@ describe("AddWallet tests", () => {
 
         fireEvent.press(buttons[1]);
         expect(setColorIndex).toHaveBeenCalledWith(1);
+    });
+
+    test("Shows create wallet", () => {
+        const showModal = jest.fn();
+        jest.spyOn(UseModal, "useModal").mockReturnValue({ showModal, hideModal: jest.fn(), isModalActive: jest.fn() });
+        jest.spyOn(UseCreateWallet, "default").mockReturnValue(createUseCreateWalletMock({ state: { colorIndex: 0 } }));
+
+        const screen = render(<AddWallet />);
+        fireEvent.press(screen.getByText(translate("create_a_wallet")));
+        expect(showModal).toHaveBeenCalledWith(CreateWalletModal);
+    });
+
+    test("Shows import wallet", () => {
+        const showModal = jest.fn();
+        jest.spyOn(UseModal, "useModal").mockReturnValue({ showModal, hideModal: jest.fn(), isModalActive: jest.fn() });
+        jest.spyOn(UseCreateWallet, "default").mockReturnValue(createUseCreateWalletMock({ state: { colorIndex: 0 } }));
+
+        const screen = render(<AddWallet />);
+        fireEvent.press(screen.getByText(translate("import_a_wallet")));
+        expect(showModal).toHaveBeenCalledWith(ImportWalletModal);
     });
 });

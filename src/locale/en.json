@@ -111,5 +111,9 @@
     "estimated_apc": "Estimated APC",
     "loading_apc":"Loading APC",
     "attention": "Attention!",
-    "deposit_summary_warning": "Deposit may take a while to be locked and completly functional. You'll be able to follow the process in the Deposit list"
+    "deposit_summary_warning": "Deposit may take a while to be locked and completly functional. You'll be able to follow the process in the Deposit list",
+    "skip": "Skip",
+    "edit_wallet": "Edit Wallet",
+    "save": "Save",
+    "wallet_edited": "Wallet edited"
 }

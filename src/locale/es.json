@@ -110,5 +110,9 @@
     "deposit_warning": "Nervos DAO necesita 102 CKBytes para depositar el almacenamiento de las celdas, que no genera compensación. Visite el RFC de Nervos DAO para obtener más información sobre Nervos DAO.",
     "estimated_apc": "APC estimado",
     "loading_apc":"Cargando APC",
-    "attention": "Atención!"
+    "attention": "Atención!",
+    "skip": "Saltar",
+    "edit_wallet": "Editar Wallet",
+    "save": "Guardar",
+    "wallet_edited": "Wallet editado"
 }

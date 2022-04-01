@@ -51,6 +51,10 @@ export interface BackdropProps {
      */
     closable?: boolean;
     /**
+     * Close on Backdrop tap
+     */
+    closeOnBackdropTap?: boolean;
+    /**
      * onClose handler
      */
     onClose?: ModalProps["onModalWillHide"];
