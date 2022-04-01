@@ -1,6 +1,6 @@
 import "core-js";
 // Load localization for translated assertions
-import { loadTestLocalization } from "mocks/loadTestLocalization";
+import { loadTestLocalization } from "./__mocks__/loadTestLocalization";
 loadTestLocalization();
 
 // Mock AsynStorage
@@ -48,7 +48,7 @@ jest.mock("expo-localization", () => ({
 }));
 
 import { BackdropProps } from "react-native-components";
-jest.mock("../../src/module/common/component/base/feedback/Backdrop/Backdrop", () => {
+jest.mock("../src/module/common/component/base/feedback/Backdrop/Backdrop", () => {
     const MockBackdrop = ({ children, onOpen, onClose, onExited, onEntered }: BackdropProps) => {
         const handleClose = () => {
             onClose?.();

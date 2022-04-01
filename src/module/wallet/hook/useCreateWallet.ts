@@ -3,10 +3,11 @@ import createWalletState, { CreateWalletState } from "module/wallet/state/Create
 
 export interface UseCreateWalletResult {
     state: CreateWalletState;
-    setName: (name: string) => void;
-    setPin: (pin: string) => void;
-    setMnemonic: (mnemonic: string[]) => void;
-    setColorIndex: (colorIndex: number) => void;
+    setName: (name: string | undefined) => void;
+    setPin: (pin: string | undefined) => void;
+    setMnemonic: (mnemonic: string[] | undefined) => void;
+    setColorIndex: (colorIndex: number | undefined) => void;
+    reset: () => void;
 }
 
 const useCreateWallet = (): UseCreateWalletResult => {
@@ -14,10 +15,11 @@ const useCreateWallet = (): UseCreateWalletResult => {
 
     return {
         state,
-        setName: (name: string) => setState((s) => ({ ...s, name })),
-        setPin: (pin: string) => setState((s) => ({ ...s, pin })),
-        setMnemonic: (mnemonic: string[]) => setState((s) => ({ ...s, mnemonic })),
-        setColorIndex: (colorIndex: number) => setState((s) => ({ ...s, colorIndex })),
+        setName: (name) => setState((s) => ({ ...s, name })),
+        setPin: (pin) => setState((s) => ({ ...s, pin })),
+        setMnemonic: (mnemonic) => setState((s) => ({ ...s, mnemonic })),
+        setColorIndex: (colorIndex) => setState((s) => ({ ...s, colorIndex })),
+        reset: () => setState((s) => ({ ...s, name: undefined, pin: undefined, mnemonic: undefined })),
     };
 };
 

@@ -9,7 +9,7 @@ const { compilerOptions } = require("./tsconfig.path");
 module.exports = {
     testEnvironment: "jest-environment-jsdom",
     preset: "jest-expo",
-    setupFilesAfterEnv: ["<rootDir>/test/unit/setup.tsx", "@testing-library/jest-native"],
+    setupFilesAfterEnv: ["<rootDir>/test/setup.tsx", "@testing-library/jest-native"],
     moduleDirectories: [
         "node_modules",
         "utils", // a utility folder
@@ -52,6 +52,6 @@ module.exports = {
     },
     moduleNameMapper: {
         ...pathsToModuleNameMapper(compilerOptions.paths || {}, { prefix: resolve(compilerOptions.baseUrl) }),
-        "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/unit/__mocks__/fileMock.js",
+        "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/fileMock.js",
     },
 };
