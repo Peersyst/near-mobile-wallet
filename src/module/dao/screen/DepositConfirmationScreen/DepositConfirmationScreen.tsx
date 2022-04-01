@@ -3,32 +3,28 @@ import CountdownButton from "module/common/component/input/CountdownButton/Count
 import { translate } from "locale";
 import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
-import useSendTransaction from "../../../transaction/query/useSendTransaction";
 import LoadingModal from "module/transaction/component/feedback/LoadingModal/LoadingModal";
 import { useRefetchQuery } from "../../../../query/useRefetchQuery";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import DepositModal from "module/dao/component/core/DepositModal/DepositModal";
 import DepositSummary from "./DepositSummary";
-
+import useSendDepositToDao from "module/dao/query/useSendDepositToDao";
 
 const DepositConfirmationScreen = (): JSX.Element => {
-    const { amount, fee, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
+    const { amount, fee, senderWalletIndex } = useRecoilValue(sendState);
     const {
         state: { wallets },
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
     const { name: senderName, serviceInstance } = senderWallet;
-    const { mutate: sendTransaction, isLoading, isSuccess, isError } = useSendTransaction();
+    const { mutate: sendDeposit, isLoading, isSuccess, isError } = useSendDepositToDao();
     const { hideModal } = useModal();
     const refetch = useRefetchQuery();
 
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
-        sendTransaction(
-            { amount: amount!, message, receiverAddress: receiverAddress!, mnemonic: mnemonic! },
-            { onSuccess: () => refetch(["balance", senderWalletIndex]) },
-        );
+        sendDeposit({ amount: amount!, mnemonic: mnemonic! }, { onSuccess: () => refetch(["balance", senderWalletIndex]) });
         //The SendState is cleaned in the "onExited" method of SendModal || DepositModal
     };
 
