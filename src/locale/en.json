@@ -115,5 +115,6 @@
     "skip": "Skip",
     "edit_wallet": "Edit Wallet",
     "save": "Save",
-    "wallet_edited": "Wallet edited"
+    "wallet_edited": "Wallet edited",
+    "deposit_completed": "Deposit completed\nsuccessfully"
 }

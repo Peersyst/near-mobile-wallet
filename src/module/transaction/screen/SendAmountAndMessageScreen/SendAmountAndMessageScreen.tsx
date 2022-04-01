@@ -23,6 +23,14 @@ interface SendAmountAndMessageScreenProps {
     isDaoDeposit?: boolean;
 }
 
+export const Loader = (): JSX.Element => {
+    return (
+        <Col justifyContent="center" style={{ height: 250 }}>
+            <ActivityIndicator color="black" size="large" />
+        </Col>
+    );
+};
+
 const SendAmountAndMessageScreen = ({ isDaoDeposit }: SendAmountAndMessageScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const [amount, setAmount] = useState(sendState.amount || "");
@@ -36,11 +44,9 @@ const SendAmountAndMessageScreen = ({ isDaoDeposit }: SendAmountAndMessageScreen
         setTab(SendScreens.CONFIRMATION);
     };
 
-    return feeIsLoading || balanceIsLoading ? (
-        <Col justifyContent="center" style={{ height: 250 }}>
-            <ActivityIndicator color="black" size="large" />
-        </Col>
-    ) : (
+    if (feeIsLoading || balanceIsLoading) return <Loader />;
+
+    return (
         <Form onSubmit={handleSubmit}>
             <Col gap="15%">
                 <CKBAmountInputContainer>

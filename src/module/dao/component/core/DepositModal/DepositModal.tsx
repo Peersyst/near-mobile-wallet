@@ -7,8 +7,9 @@ import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import sendState from "module/transaction/state/SendState";
 import SendConfirmationScreen from "module/transaction/screen/SendConfirmationScreen/SendConfirmationScreen";
-import DepositSelectAccountScreen from "module/transaction/screen/DepositSelectAccountScreen/DepositSelectAccountScreen";
+import DepositSelectAccountScreen from "module/dao/screen/DepositSelectAccountScreen/DepositSelectAccountScreen";
 import SendAmountAndMessageScreen from "module/transaction/screen/SendAmountAndMessageScreen/SendAmountAndMessageScreen";
+import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScreen/DepositConfirmationScreen";
 
 export enum SendScreens {
     SELECT_ACCOUNT,
@@ -54,7 +55,7 @@ const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps
                     <SendAmountAndMessageScreen isDaoDeposit />
                 </TabPanel>
                 <TabPanel index={SendScreens.CONFIRMATION}>
-                    <SendConfirmationScreen isDaoDeposit />
+                    <DepositConfirmationScreen />
                 </TabPanel>
             </Tabs>
         </GlassNavigatorModal>

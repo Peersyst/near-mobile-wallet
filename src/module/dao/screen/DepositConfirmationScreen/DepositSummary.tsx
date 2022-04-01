@@ -6,9 +6,9 @@ import { BalanceProps } from "module/wallet/component/display/Balance/Balance.ty
 import { Wallet } from "module/wallet/state/WalletState";
 import { Col } from "react-native-components";
 
-import BaseSendSummary from "../../component/display/BaseSendSummary/BaseSendSummary";
-import SummaryField from "../../component/display/BaseSendSummary/SummaryField";
-import { SummaryText } from "../../component/display/BaseSendSummary/SummaryFiels.styles";
+import BaseSendSummary from "../../../transaction/component/display/BaseSendSummary/BaseSendSummary";
+import SummaryField from "../../../transaction/component/display/BaseSendSummary/SummaryField";
+import { SummaryText } from "../../../transaction/component/display/BaseSendSummary/SummaryFiels.styles";
 
 type SendSummaryProps = Required<
     Pick<BalanceProps, "balance"> &

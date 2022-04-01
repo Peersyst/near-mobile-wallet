@@ -114,5 +114,6 @@
     "skip": "Saltar",
     "edit_wallet": "Editar Wallet",
     "save": "Guardar",
-    "wallet_edited": "Wallet editado"
+    "wallet_edited": "Wallet editado",
+    "deposit_completed": "Deposit completed\ncorrectament"
 }

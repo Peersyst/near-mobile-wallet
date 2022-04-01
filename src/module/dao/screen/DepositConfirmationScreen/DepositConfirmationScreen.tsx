@@ -3,21 +3,16 @@ import CountdownButton from "module/common/component/input/CountdownButton/Count
 import { translate } from "locale";
 import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
-import useSendTransaction from "../../query/useSendTransaction";
-import SendModal from "module/transaction/component/core/SendModal/SendModal";
+import useSendTransaction from "../../../transaction/query/useSendTransaction";
 import LoadingModal from "module/transaction/component/feedback/LoadingModal/LoadingModal";
 import { useRefetchQuery } from "../../../../query/useRefetchQuery";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
-
-import DepositModal from "module/transaction/component/core/DepositModal/DepositModal";
+import DepositModal from "module/dao/component/core/DepositModal/DepositModal";
 import DepositSummary from "./DepositSummary";
 
-interface SendConfirmationScreenProps {
-    isDaoDeposit?: boolean;
-}
 
-const SendConfirmationScreen = ({ isDaoDeposit }: SendConfirmationScreenProps): JSX.Element => {
+const DepositConfirmationScreen = (): JSX.Element => {
     const { amount, fee, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
     const {
         state: { wallets },
@@ -60,10 +55,10 @@ const SendConfirmationScreen = ({ isDaoDeposit }: SendConfirmationScreenProps): 
                 success={isSuccess}
                 error={isError}
                 onExited={() => hideModal(DepositModal.id)}
-                successMessage={translate("transaction_completed")}
+                successMessage={translate("deposit_completed")}
             />
         </>
     );
 };
 
-export default SendConfirmationScreen;
+export default DepositConfirmationScreen;
