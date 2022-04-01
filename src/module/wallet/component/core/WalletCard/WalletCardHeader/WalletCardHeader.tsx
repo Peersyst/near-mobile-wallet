@@ -10,7 +10,6 @@ interface AccountCardHeaderProps {
 
 const WalletCardHeader = ({ index, name }: AccountCardHeaderProps): JSX.Element => {
     const { serviceInstance } = useWallet(index);
-
     return (
         <Row justifyContent="space-between" alignItems="center">
             <FavouriteIcon />

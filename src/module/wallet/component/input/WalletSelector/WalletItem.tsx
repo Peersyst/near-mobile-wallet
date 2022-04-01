@@ -15,7 +15,7 @@ const WalletItem = ({ index, color = "#000000" }: WalletItemProps): JSX.Element 
 
     return (
         <Row alignItems="center" style={{ overflow: "hidden" }}>
-            <Typography variant="body1" fontWeight="bold" style={{ color }}>
+            <Typography numberOfLines={1} variant="body1" fontWeight="bold" style={{ color, width: "60%"}}>
                 {name}
             </Typography>
             <Typography variant="body1" style={{ color }}>

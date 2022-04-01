@@ -30,6 +30,7 @@ const SendConfirmationScreen = (): JSX.Element => {
             { amount: amount!, message, receiverAddress: receiverAddress!, mnemonic: mnemonic! },
             { onSuccess: () => refetch(["balance", senderWalletIndex]) },
         );
+        //The SendState is cleaned in the onExited method of SendModal || DepositModal
     };
 
     return (

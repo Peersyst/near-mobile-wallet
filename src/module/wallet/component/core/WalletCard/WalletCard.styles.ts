@@ -23,9 +23,10 @@ export const CopyIcon = styled(CopyToClipboardIcon)(({ theme }) => ({
     fontSize: 20,
 }));
 
-export const WalletCardTitle = styled(Typography, { textTransform: "uppercase" })(({ theme }) => ({
+export const WalletCardTitle = styled(Typography, { textTransform: "uppercase", numberOfLines: 1 })(({ theme }) => ({
     color: theme.palette.white,
     fontWeight: "bold",
+    width: "70%"
 }));
 
 export const WalletCardBalance = styled(Balance, { decimals: 6, boldUnits: true, smallBalance: true })(({ theme }) => ({
