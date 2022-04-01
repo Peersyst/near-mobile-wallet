@@ -7,7 +7,7 @@ import MainTransactionIcon from "./MainTransactionIcon";
 export type TransactionCardProps = Transaction;
 
 const MainTransactionCard = (transaction: TransactionCardProps): JSX.Element => {
-    const seed = new Date().getSeconds() / 30;
+    const seed = new Date().getSeconds() / 60;
     const received = seed > 0.5;
     const token = getTokenName(seed > 0.6 ? tokensList[Math.trunc(seed * 6)].args : "0x0");
 
