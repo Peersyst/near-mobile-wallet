@@ -106,5 +106,13 @@
     "completed": "Completados",
     "or": "o",
     "create_a_wallet": "Crea un Wallet",
-    "import_a_wallet": "Importa un Wallet"
+    "import_a_wallet": "Importa un Wallet",
+    "sent": "Enviado",
+    "received": "Recibido",
+    "sent_nft": "NFT Enviado",
+    "received_nft": "NFT Recibido",
+    "dao_deposit": "Depósito DAO",
+    "dao_withdrawal": "Retiro DAO",
+    "smart_contract": "Smart Contract",
+    "unlock_dao": "Desbloqueo DAO"
 }

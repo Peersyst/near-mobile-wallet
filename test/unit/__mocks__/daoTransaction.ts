@@ -14,8 +14,8 @@ export const mockedDaoTransaction: Transaction = {
 
 export const mockedDaoTransactions: Transaction[] = [...Array(3)].map((_, i) => ({
     status: TransactionStatus.COMMITTED,
-    type: TransactionType.SEND_CKB,
-    amount: 100,
+    type: TransactionType.WITHDRAW_DAO,
+    amount: 145.2 * i + 2,
     transactionHash: "0x1234567890abcde" + i,
     inputs: [],
     outputs: [],
