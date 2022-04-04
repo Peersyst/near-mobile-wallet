@@ -23,8 +23,7 @@ const WalletItem = ({ index, color = "#000000" }: WalletItemProps): JSX.Element 
                     {" - "}
                 </Typography>
                 <ControlledSuspense isLoading={balanceIsLoading} color={color}>
-                    {/*eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain*/}
-                    <Balance balance={balance?.freeBalance!} units={"CKB"} variant="body1" boldUnits style={{ color }} />
+                    <Balance balance={balance?.freeBalance || 0} units={"CKB"} variant="body1" boldUnits style={{ color }} />
                 </ControlledSuspense>
             </Row>
         </Row>
