@@ -14,10 +14,11 @@ describe("DepositConfirmationScreen tests", () => {
         jest.spyOn(CkbServiceMock.prototype, "getCKBBalance").mockReturnValue(
             SuccessApiCall({ totalBalance: BigInt(20000), occupiedBalance: BigInt(9600), freeBalance: BigInt(10400) }),
         );
+        const mockedWallet = mockedUseWallet.state.wallets[0];
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({
             amount: "1000",
             fee: "10",
-            senderWalletIndex: mockedUseWallet.state.wallets[0].index,
+            senderWalletIndex: mockedWallet.index,
         });
 
         const screen = render(<DepositConfirmationScreen />);
@@ -26,7 +27,7 @@ describe("DepositConfirmationScreen tests", () => {
         expect(screen.getByText("10")).toBeDefined();
         expect(screen.getByText(translate("from") + ":")).toBeDefined();
         expect(
-            screen.getByText(mockedUseWallet.state.wallets[0].name + " - " + formatAddress("0xMockedAddress", "middle", 3)),
+            screen.getByText(mockedWallet.name + " - " + formatAddress("0xMockedAddress", "middle", 3)),
         ).toBeDefined();
     });
 });

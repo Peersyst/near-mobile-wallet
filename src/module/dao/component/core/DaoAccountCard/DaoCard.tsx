@@ -12,10 +12,10 @@ import { DaoBalanceType } from "module/dao/types";
 const DaoCard = (): JSX.Element => {
     const { data: daoBalance } = useGetDaoBalance();
     const { data: generalBalance } = useGetBalance();
-    const daoCardBalance: DaoBalanceType = {
-        availableBalance: generalBalance?.freeBalance.toString() || "0",
-        lockedBalance: daoBalance?.daoDeposit.toString() || "0",
-        currentAPC: daoBalance?.daoCompensation.toString() || "0",
+    const daoCardBalance: Partial<DaoBalanceType> = {
+        availableBalance: generalBalance?.freeBalance.toString(),
+        lockedBalance: daoBalance?.daoDeposit.toString(),
+        currentAPC: daoBalance?.daoCompensation.toString(),
     };
     return (
         <ThemeProvider theme={darkTheme}>

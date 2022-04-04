@@ -20,8 +20,14 @@ describe("Test for the DepositSummary", () => {
         expect(screen.getByText("1,000")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
         expect(screen.getByText("10")).toBeDefined();
-        //TODO: mock tet
+        //Sender
+        expect(screen.getByText(translate("from") + ":"));
         expect(screen.getByText("Peersyst" + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();
-        //TODO: spyON getDaoBalance
+        //APC
+        expect(screen.getByText(translate("estimated_apc") + ":"));
+        expect(screen.getByText("2.4%")).toBeDefined();
+        //Warning text
+        expect(screen.getByText(translate("deposit_summary_warning")));
     });
+
 });
