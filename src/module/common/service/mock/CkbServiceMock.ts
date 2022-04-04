@@ -1,4 +1,4 @@
-import { CKBBalance, Nft, SdkWalletState, Transaction } from "module/common/service/mock/CkbServiceMock.types";
+import { CKBBalance, DepositInDAOParams, Nft, SdkWalletState, Transaction } from "module/common/service/mock/CkbServiceMock.types";
 import { WalletServiceMock } from "module/common/service/mock/WalletServiceMock";
 import { TokenAmount } from "module/token/types";
 
@@ -39,6 +39,10 @@ export class CkbServiceMock {
 
     async getTokensBalance(): Promise<TokenAmount[]> {
         return this.wallet.getTokensBalance();
+    }
+
+    async depositInDAO(params: DepositInDAOParams): Promise<string> {
+        return this.wallet.depositInDAO(params);
     }
 
     getAddress(): string {

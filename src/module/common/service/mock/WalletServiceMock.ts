@@ -1,4 +1,4 @@
-import { CKBBalance, Transaction, Nft } from "module/common/service/mock/CkbServiceMock.types";
+import { CKBBalance, Transaction, Nft, DepositInDAOParams } from "module/common/service/mock/CkbServiceMock.types";
 import { transactions } from "module/transaction/mock/transaction";
 import { nfts } from "module/nft/mock/nft";
 import { TokenAmount } from "module/token/types";
@@ -26,5 +26,9 @@ export class WalletServiceMock {
 
     async getTokensBalance(): Promise<TokenAmount[]> {
         return new Promise((resolve) => setTimeout(() => resolve(tokens), 2000));
+    }
+
+    async depositInDAO(params: DepositInDAOParams): Promise<string> {
+        return new Promise((resolve) => setTimeout(() => resolve("txHash"), 2000));
     }
 }

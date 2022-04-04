@@ -1,3 +1,5 @@
+import { FeeType } from "module/settings/state/SettingsState";
+
 export interface SdkWalletState {
     addressMap: Map<string, string>;
     firstIndexWithoutTxs: 0;
@@ -64,4 +66,10 @@ export interface Nft {
     nftName: string;
     nftSymbol: string;
     nftExtraData: string;
+}
+
+export interface DepositInDAOParams {
+    amount: string;
+    mnemonic: string[];
+    feeRate?: FeeType;
 }

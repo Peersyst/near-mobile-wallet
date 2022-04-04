@@ -9,7 +9,7 @@ import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import DepositModal from "module/dao/component/core/DepositModal/DepositModal";
 import DepositSummary from "./DepositSummary";
-import useSendDepositToDao from "module/dao/query/useSendDepositToDao";
+import useDepositInDAO from "module/dao/query/useDepositInDAO";
 
 const DepositConfirmationScreen = (): JSX.Element => {
     const { amount, fee, senderWalletIndex } = useRecoilValue(sendState);
@@ -18,13 +18,13 @@ const DepositConfirmationScreen = (): JSX.Element => {
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
     const { name: senderName, serviceInstance } = senderWallet;
-    const { mutate: sendDepositToDao, isLoading, isSuccess, isError } = useSendDepositToDao();
+    const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO();
     const { hideModal } = useModal();
     const refetch = useRefetchQuery();
 
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
-        sendDepositToDao({ amount: amount!, mnemonic: mnemonic! }, { onSuccess: () => refetch(["balance", senderWalletIndex]) });
+        depositInDAO({ amount: amount!, mnemonic: mnemonic!, feeRate: fee! }, { onSuccess: () => refetch(["balance", senderWalletIndex]) });
         //The SendState is cleaned in the "onExited" method of SendModal || DepositModal
     };
 
