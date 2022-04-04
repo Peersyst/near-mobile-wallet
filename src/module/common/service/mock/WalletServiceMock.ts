@@ -1,4 +1,4 @@
-import { CKBBalance, Transaction, Nft, DepositInDAOParams } from "module/common/service/mock/CkbServiceMock.types";
+import { CKBBalance, Transaction, Nft, DepositInDAOParams, SendTransactionParams } from "module/common/service/mock/CkbServiceMock.types";
 import { transactions } from "module/transaction/mock/transaction";
 import { nfts } from "module/nft/mock/nft";
 import { TokenAmount } from "module/token/types";
@@ -28,7 +28,13 @@ export class WalletServiceMock {
         return new Promise((resolve) => setTimeout(() => resolve(tokens), 2000));
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async depositInDAO(params: DepositInDAOParams): Promise<string> {
         return new Promise((resolve) => setTimeout(() => resolve("txHash"), 2000));
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async sendTransaction(params: SendTransactionParams): Promise<string> {
+        return new Promise((resolve) => setTimeout(() => resolve("txsign"), 2000));
     }
 }

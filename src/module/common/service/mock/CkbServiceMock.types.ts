@@ -69,7 +69,15 @@ export interface Nft {
 }
 
 export interface DepositInDAOParams {
-    amount: string;
+    amount: bigint;
     mnemonic: string[];
+    feeRate?: FeeType;
+}
+
+export interface SendTransactionParams {
+    amount: bigint;
+    mnemonic: string[];
+    message: string;
+    to: string;
     feeRate?: FeeType;
 }
