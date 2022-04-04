@@ -25,7 +25,7 @@ const DepositConfirmationScreen = (): JSX.Element => {
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
         depositInDAO({ amount: BigInt(amount!), mnemonic: mnemonic!, feeRate: fee! }, { onSuccess: () => refetch(["balance", senderWalletIndex]) });
-        //The SendState is cleaned in the "onExited" method of SendModal || DepositModal
+        //The SendState is cleaned in the "onExited" method of DepositModal
     };
 
     return (

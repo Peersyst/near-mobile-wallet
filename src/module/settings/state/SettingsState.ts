@@ -7,12 +7,12 @@ export type FiatCurrencyType = "cny" | "usd" | "eur" | "jpy" | "gbp";
 export type NetworkType = "testnet" | "mainnet";
 
 export enum FeeRate {
-    SLOW = 1000,
-    NORMAL = 100000,
-    FAST = 10000000,
+    SLOW = "SLOW",
+    AVERAGE = "AVERAGE",
+    FAST = "FAST",
 }
 
-export type FeeType = FeeRate.SLOW | FeeRate.NORMAL | FeeRate.FAST; 
+export type FeeType = FeeRate.SLOW | FeeRate.AVERAGE | FeeRate.FAST; 
 
 export interface SettingsState {
     locale?: LocaleType;
@@ -21,7 +21,7 @@ export interface SettingsState {
     fee: FeeType;
 }
 
-export const defaultSettingsState: SettingsState = { locale: getDefaultLocale(), fiat: "usd", network: "mainnet", fee: FeeRate.NORMAL };
+export const defaultSettingsState: SettingsState = { locale: getDefaultLocale(), fiat: "usd", network: "mainnet", fee: FeeRate.AVERAGE };
 
 const settingsState = atom<SettingsState>({
     key: "settings",

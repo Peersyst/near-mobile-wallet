@@ -12,7 +12,7 @@ const SelectFee = (): JSX.Element => {
         },
         {
             label: translate("average"),
-            value: FeeRate.NORMAL,
+            value: FeeRate.AVERAGE,
         },
         {
             label: translate("fast"),
