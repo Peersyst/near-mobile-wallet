@@ -2,7 +2,7 @@ import { render, SuccessApiCall } from "test-utils";
 import * as GetFee from "module/transaction/mock/getFee";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { translate } from "locale";
-import SendAmountAndMessageScreen from "module/transaction/screen/SendAmountAndMessageScreen";
+import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 import * as Recoil from "recoil";
 import * as UseSetTab from "module/common/component/base/navigation/Tabs/hook/useSetTab";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
@@ -24,7 +24,7 @@ describe("SendAmountAndMessageScreen tests", () => {
     });
 
     test("Renders correctly", async () => {
-        const screen = render(<SendAmountAndMessageScreen />);
+        const screen = render(<SendSetAmountScreen />);
         await waitFor(() => expect(screen.getByPlaceholderText(translate("enter_amount"))).toBeDefined());
         expect(screen.getByText("CKB")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee", { fee: "10" }))).toBeDefined();
@@ -32,12 +32,18 @@ describe("SendAmountAndMessageScreen tests", () => {
         expect(screen.getByText(translate("next"))).toBeDefined();
     });
 
+    test("Renders correctly with type dao deposit", async () => {
+        const screen = render(<SendSetAmountScreen type="dao" />);
+        await waitFor(() => expect(screen.getByPlaceholderText(translate("enter_amount"))).toBeDefined());
+        expect(screen.getByText(translate("deposit_warning"))).toBeDefined();
+    });
+
     test("Sets send state and advances to next screen", async () => {
         const setSendState = jest.fn();
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{}, setSendState]);
         const setTab = jest.fn();
         jest.spyOn(UseSetTab, "default").mockReturnValue(setTab);
-        const screen = render(<SendAmountAndMessageScreen />);
+        const screen = render(<SendSetAmountScreen />);
         const amountInput = await waitFor(() => screen.getByPlaceholderText(translate("enter_amount")));
         fireEvent.changeText(amountInput, "100");
         const messageTextArea = screen.getByPlaceholderText(translate("write_a_message"));

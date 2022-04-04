@@ -111,6 +111,7 @@
     "estimated_apc": "APC estimado",
     "loading_apc":"Cargando APC",
     "attention": "Atención!",
+    "deposit_summary_warning": "El depósito puede tardar un poco en bloquearse y ser completamente funcional. Puedes seguir el procesos desde la Lista de Depósitos",
     "skip": "Saltar",
     "edit_wallet": "Editar Wallet",
     "save": "Guardar",
