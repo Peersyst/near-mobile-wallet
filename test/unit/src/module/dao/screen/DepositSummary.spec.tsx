@@ -29,5 +29,4 @@ describe("Test for the DepositSummary", () => {
         //Warning text
         expect(screen.getByText(translate("deposit_summary_warning")));
     });
-
 });

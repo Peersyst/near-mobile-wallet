@@ -1,4 +1,3 @@
-
 export interface SdkWalletState {
     addressMap: Map<string, string>;
     firstIndexWithoutTxs: 0;

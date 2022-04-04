@@ -1,6 +1,6 @@
 import { MockedDaoBalance } from "mocks/dao";
 import DaoScreen from "module/dao/screen/DaoScreen";
-import { render, SuccessApiCall, waitFor } from "test-utils";
+import { render, SuccessApiCall } from "test-utils";
 import * as GetDaoBalance from "module/dao/mock/getDaoBalance";
 import { translate } from "locale";
 import * as UseWalletState from "module/wallet/hook/useWalletState";

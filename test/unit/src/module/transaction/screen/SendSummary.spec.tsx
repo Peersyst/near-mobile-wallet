@@ -24,7 +24,7 @@ describe("Test for the SendSummary component", () => {
         //From
         expect(screen.getByText(translate("from") + ":"));
         expect("Antonia" + " - " + formatAddress("0xMockedAddress", "middle", 3)).toBeDefined();
-        //Message 
+        //Message
         expect(screen.getByText(translate("message") + ":")).toBeDefined();
         expect(screen.getByText("hola")).toBeDefined();
     });
