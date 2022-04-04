@@ -8,7 +8,7 @@ import { useRecoilValue, useResetRecoilState } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import sendState from "module/transaction/state/SendState";
 import SendConfirmationScreen from "module/transaction/screen/SendConfirmationScreen/SendConfirmationScreen";
-import SendAmountAndMessageScreen from "module/transaction/screen/SendAmountAndMessageScreen/SendAmountAndMessageScreen";
+import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 
 export enum SendScreens {
     SEND_TO_ADDRESS,
@@ -45,7 +45,7 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
                     <SendToAddressScreen />
                 </TabPanel>
                 <TabPanel index={SendScreens.AMOUNT_AND_MESSAGE}>
-                    <SendAmountAndMessageScreen  withMessageInput/>
+                    <SendSetAmountScreen />
                 </TabPanel>
                 <TabPanel index={SendScreens.CONFIRMATION}>
                     <SendConfirmationScreen />

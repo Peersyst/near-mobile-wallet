@@ -11,19 +11,20 @@ import { ActivityIndicator } from "react-native";
 import settingsState from "module/settings/state/SettingsState";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import CKBAmountInput from "../../component/input/CKBAmountInput/CKBAmountInput";
-import { CKBAmountInputContainer } from "./SendAmountAndMessageScreen.styles";
+import { CKBAmountInputContainer } from "./SendSetAmountScreen.styles";
 import Card from "module/common/component/surface/Card/Card";
+import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 
 export interface SendAmountAndMessageResult {
     amount: string;
     message: string;
 }
 
-interface SendAmountAndMessageScreenProps {
-    isDaoDeposit?: boolean;
+interface SendSetAmountScreenProps {
+    type?: "dao" | "send";
 }
 
-export const Loader = (): JSX.Element => {
+const Loader = (): JSX.Element => {
     return (
         <Col justifyContent="center" style={{ height: 250 }}>
             <ActivityIndicator color="black" size="large" />
@@ -31,7 +32,8 @@ export const Loader = (): JSX.Element => {
     );
 };
 
-const SendAmountAndMessageScreen = ({ isDaoDeposit }: SendAmountAndMessageScreenProps): JSX.Element => {
+//TODO: canviar nom
+const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const [amount, setAmount] = useState(sendState.amount || "");
     const { fee: selectedFee } = useRecoilValue(settingsState);
@@ -44,29 +46,29 @@ const SendAmountAndMessageScreen = ({ isDaoDeposit }: SendAmountAndMessageScreen
         setTab(SendScreens.CONFIRMATION);
     };
 
-    if (feeIsLoading || balanceIsLoading) return <Loader />;
-
     return (
-        <Form onSubmit={handleSubmit}>
-            <Col gap="15%">
-                <CKBAmountInputContainer>
-                    <CKBAmountInput fee={fee} amount={amount} setAmount={setAmount} balance={balance} />
-                </CKBAmountInputContainer>
-                {isDaoDeposit ? (
-                    <Card>
-                        <Typography variant="body1" textAlign="center">
-                            {translate("deposit_warning")}
-                        </Typography>
-                    </Card>
-                ) : (
-                    <TextArea name="message" placeholder={translate("write_a_message")} numberOfLines={7} />
-                )}
-                <Button variant="outlined" fullWidth>
-                    {translate("next")}
-                </Button>
-            </Col>
-        </Form>
+        <ControlledSuspense isLoading={feeIsLoading || balanceIsLoading} fallback={<Loader />}>
+            <Form onSubmit={handleSubmit}>
+                <Col gap="15%">
+                    <CKBAmountInputContainer>
+                        <CKBAmountInput fee={fee} amount={amount} setAmount={setAmount} balance={balance} />
+                    </CKBAmountInputContainer>
+                    {type === "dao" ? (
+                        <Card>
+                            <Typography variant="body1" textAlign="center">
+                                {translate("deposit_warning")}
+                            </Typography>
+                        </Card>
+                    ) : (
+                        <TextArea name="message" placeholder={translate("write_a_message")} numberOfLines={7} />
+                    )}
+                    <Button variant="outlined" fullWidth>
+                        {translate("next")}
+                    </Button>
+                </Col>
+            </Form>
+        </ControlledSuspense>
     );
 };
 
-export default SendAmountAndMessageScreen;
+export default SendSetAmountScreen;
