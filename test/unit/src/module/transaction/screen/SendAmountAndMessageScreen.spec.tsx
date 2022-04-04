@@ -1,4 +1,4 @@
-import { render, SuccessApiCall, wait } from "test-utils";
+import { render, SuccessApiCall } from "test-utils";
 import * as GetFee from "module/transaction/mock/getFee";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { translate } from "locale";
@@ -42,7 +42,6 @@ describe("SendAmountAndMessageScreen tests", () => {
         fireEvent.changeText(amountInput, "100");
         const messageTextArea = screen.getByPlaceholderText(translate("write_a_message"));
         fireEvent.changeText(messageTextArea, "Message");
-        await wait(500);
         fireEvent.press(screen.getByText(translate("next")));
         await waitFor(() => expect(setSendState).toHaveBeenCalled());
         expect(setTab).toHaveBeenCalledWith(SendScreens.CONFIRMATION);

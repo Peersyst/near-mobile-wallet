@@ -1,4 +1,4 @@
-import { render, SuccessApiCall, wait } from "test-utils";
+import { render, SuccessApiCall } from "test-utils";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { translate } from "locale";
@@ -42,7 +42,6 @@ describe("SendModal tests", () => {
         // Enter amount and message
         await waitFor(() => fireEvent.changeText(screen.getByPlaceholderText(translate("enter_amount")), "1000"));
         fireEvent.changeText(screen.getByPlaceholderText(translate("write_a_message")), "This is a message");
-        await wait(500);
         fireEvent.press(screen.getByText(translate("next")));
 
         // Confirmation
