@@ -80,3 +80,8 @@ export interface SendTransactionParams {
     to: string;
     feeRate?: string;
 }
+
+export interface DAOBalance {
+    daoDeposit: bigint;
+    daoCompensation: bigint;
+}
