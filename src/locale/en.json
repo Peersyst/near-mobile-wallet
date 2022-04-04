@@ -110,5 +110,13 @@
     "skip": "Skip",
     "edit_wallet": "Edit Wallet",
     "save": "Save",
-    "wallet_edited": "Wallet edited"
+    "wallet_edited": "Wallet edited",
+    "sent": "Sent",
+    "received": "Received",
+    "sent_nft": "Sent NFT",
+    "received_nft": "Received NFT",
+    "dao_deposit": "DAO Deposit",
+    "dao_withdrawal": "DAO Withdrawal",
+    "smart_contract": "Smart Contract",
+    "unlock_dao": "DAO Unlock"
 }
