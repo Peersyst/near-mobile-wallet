@@ -1,8 +1,8 @@
 import { translate } from "locale";
 import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
-import DaoTransactionCard from "../../display/DaoTransactionCard";
 import useGetDaoTransactions from "module/dao/query/useGetDaoTransactions";
+import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
 
 const DaoTransactionsList = (): JSX.Element => {
     const { data = [], refetch, isLoading } = useGetDaoTransactions();
@@ -12,7 +12,7 @@ const DaoTransactionsList = (): JSX.Element => {
             loading={isLoading}
             data={data}
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent message={translate("no_transactions")} />}
-            renderItem={({ item: tx }) => <DaoTransactionCard {...tx} />}
+            renderItem={({ item: tx }) => <TransactionCard transaction={tx} />}
             keyExtractor={(tx) => tx.transactionHash}
         />
     );

@@ -115,5 +115,13 @@
     "edit_wallet": "Editar Wallet",
     "save": "Guardar",
     "wallet_edited": "Wallet editado",
-    "deposit_completed": "Deposit completed\ncorrectament"
+    "deposit_completed": "Depósito completado\ncorrectamente",
+    "sent": "Enviado",
+    "received": "Recibido",
+    "sent_nft": "NFT Enviado",
+    "received_nft": "NFT Recibido",
+    "dao_deposit": "Depósito DAO",
+    "dao_withdrawal": "Retiro DAO",
+    "smart_contract": "Smart Contract",
+    "unlock_dao": "Desbloqueo DAO"
 }
