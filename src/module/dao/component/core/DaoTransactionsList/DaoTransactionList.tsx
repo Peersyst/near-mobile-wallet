@@ -1,14 +1,11 @@
-import useGetTransactions from "module/transaction/query/useGetTransactions";
 import { translate } from "locale";
 import MainList from "module/main/component/display/MainList/MainList";
-import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
+import useGetDaoTransactions from "module/dao/query/useGetDaoTransactions";
 import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
 
-const TransactionsList = (): JSX.Element => {
-    const { index } = useSelectedWallet();
-    const { data = [], refetch, isLoading } = useGetTransactions(index);
-
+const DaoTransactionsList = (): JSX.Element => {
+    const { data = [], refetch, isLoading } = useGetDaoTransactions();
     return (
         <MainList
             onRefresh={refetch}
@@ -21,4 +18,4 @@ const TransactionsList = (): JSX.Element => {
     );
 };
 
-export default TransactionsList;
+export default DaoTransactionsList;

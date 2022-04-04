@@ -18,7 +18,7 @@ const AddWallet = (): JSX.Element => {
     const { showModal } = useModal();
 
     useEffect(() => {
-        setColorIndex(Math.floor(Math.random() * -6 + 6));
+        setColorIndex(Math.floor(Math.random() * -6 + 7));
         return () => {
             setColorIndex(undefined);
         };
