@@ -5,7 +5,6 @@ const useGetBalance = (index?: number) => {
     const {
         state: { wallets, selectedWallet },
     } = useWalletState();
-    console.log(wallets, selectedWallet)
     const usedIndex = index ?? selectedWallet ?? 0;
     const serviceInstance = wallets[usedIndex].serviceInstance;
     return useQuery(["balance", usedIndex], () => serviceInstance?.getCKBBalance());
