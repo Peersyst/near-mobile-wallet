@@ -1,4 +1,4 @@
-import { render } from "test-utils";
+import { render, SuccessApiCall } from "test-utils";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
 import { translate } from "locale";
@@ -11,6 +11,9 @@ describe("DepositConfirmationScreen tests", () => {
     test("Renders correctly", () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(CkbServiceMock.prototype, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(CkbServiceMock.prototype, "getCKBBalance").mockReturnValue(
+            SuccessApiCall({ totalBalance: BigInt(20000), occupiedBalance: BigInt(9600), freeBalance: BigInt(10400) }),
+        );
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({
             amount: "1000",
             fee: "10",
@@ -21,7 +24,6 @@ describe("DepositConfirmationScreen tests", () => {
         expect(screen.getByText("1,000")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
         expect(screen.getByText("10")).toBeDefined();
-
         expect(screen.getByText(translate("from") + ":")).toBeDefined();
         expect(
             screen.getByText(mockedUseWallet.state.wallets[0].name + " - " + formatAddress("0xMockedAddress", "middle", 3)),

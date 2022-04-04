@@ -3,6 +3,8 @@ import { transactions } from "module/transaction/mock/transaction";
 import { nfts } from "module/nft/mock/nft";
 import { TokenAmount } from "module/token/types";
 import { tokens } from "module/token/mock/token";
+import { DaoBalance } from "module/dao/mock/daoBalance";
+import { DaoBalanceType } from "module/dao/types";
 
 export class WalletServiceMock {
     async getCKBBalance(): Promise<CKBBalance> {
@@ -31,6 +33,10 @@ export class WalletServiceMock {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async depositInDAO(params: DepositInDAOParams): Promise<string> {
         return new Promise((resolve) => setTimeout(() => resolve("txHash"), 2000));
+    }
+
+    async getDaoBalance(): Promise<DaoBalanceType>{
+        return new Promise((resolve) => setTimeout(() => resolve(DaoBalance), 2000));
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -8,7 +8,7 @@ import { useRefetchQuery } from "../../../../query/useRefetchQuery";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import DepositModal from "module/dao/component/core/DepositModal/DepositModal";
-import DepositSummary from "../../component/display/DepositSummary/DepositSummary";
+import DepositSummary from "./DepositSummary";
 import useDepositInDAO from "module/dao/query/useDepositInDAO";
 
 const DepositConfirmationScreen = (): JSX.Element => {

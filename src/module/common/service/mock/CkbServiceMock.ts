@@ -7,6 +7,7 @@ import {
     Transaction,
 } from "module/common/service/mock/CkbServiceMock.types";
 import { WalletServiceMock } from "module/common/service/mock/WalletServiceMock";
+import { DaoBalanceType } from "module/dao/types";
 import { TokenAmount } from "module/token/types";
 
 export class CkbServiceMock {
@@ -79,5 +80,9 @@ export class CkbServiceMock {
     // ---------------------------
     async depositInDAO(params: DepositInDAOParams): Promise<string> {
         return this.wallet.depositInDAO(params);
+    }
+
+    async getDaoBalance(): Promise<DaoBalanceType> {
+        return this.wallet.getDaoBalance();
     }
 }
