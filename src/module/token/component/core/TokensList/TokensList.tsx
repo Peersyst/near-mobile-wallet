@@ -5,11 +5,14 @@ import { translate } from "locale";
 import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
+import settingsState from "module/settings/state/SettingsState";
+import { useRecoilValue } from "recoil";
 
 const TokensList = (): JSX.Element => {
+    const { fiat } = useRecoilValue(settingsState);
     const { index } = useSelectedWallet();
     const { isLoading, data = [], refetch } = useGetTokens(index);
-    const { isLoading: loadingPrice, refetch: refetchPrice } = useGetCkbPrice("usd");
+    const { isLoading: loadingPrice, refetch: refetchPrice } = useGetCkbPrice(fiat);
     const handleRefetch = async () => {
         await Promise.all([refetch(), refetchPrice()]);
     };

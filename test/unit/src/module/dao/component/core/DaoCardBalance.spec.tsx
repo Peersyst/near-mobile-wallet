@@ -1,5 +1,5 @@
 import { translate } from "locale";
-import DaoCardBalance from "module/dao/core/DaoAccountCard/DaoCardBalance/DaoCardBalance";
+import DaoCardBalance from "module/dao/component/core/DaoAccountCard/DaoCardBalance/DaoCardBalance";
 import { render } from "test-utils";
 
 describe("Dao Card balance test", () => {

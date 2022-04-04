@@ -34,6 +34,7 @@ export interface Transaction {
     blockHash: string;
     blockNumber: number;
     timestamp: Date;
+    token?: string;
 }
 
 export enum TransactionStatus {
