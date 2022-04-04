@@ -1,14 +1,14 @@
 import { ReactElement } from "react";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, ActivityIndicatorProps } from "react-native";
 
-interface ControlledSuspenseProps {
+interface ControlledSuspenseProps extends Pick<ActivityIndicatorProps, "color" | "size"> {
     isLoading: boolean;
     children: ReactElement;
     fallback?: ReactElement;
 }
 
-const ControlledSuspense = ({ isLoading, children, fallback }: ControlledSuspenseProps) => {
-    const loaderComponent = fallback || <ActivityIndicator color="black" size="large" />;
+const ControlledSuspense = ({ isLoading, children, fallback, color, size }: ControlledSuspenseProps) => {
+    const loaderComponent = fallback || <ActivityIndicator testID="actIndicator" color={color || "black"} size={size || "large"} />;
     return isLoading ? loaderComponent : children;
 };
 

@@ -1,8 +1,8 @@
 import { Row, Typography } from "react-native-components";
-import { ActivityIndicator } from "react-native";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import useWallet from "module/wallet/hook/useWallet";
+import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 
 export interface WalletItemProps {
     index: number;
@@ -22,11 +22,10 @@ const WalletItem = ({ index, color = "#000000" }: WalletItemProps): JSX.Element 
                 <Typography variant="body1" style={{ color }}>
                     {" - "}
                 </Typography>
-                {balanceIsLoading ? (
-                    <ActivityIndicator color={color} />
-                ) : (
-                    <Balance balance={balance!.freeBalance} units={"CKB"} variant="body1" boldUnits style={{ color }} />
-                )}
+                <ControlledSuspense isLoading={balanceIsLoading} color={color}>
+                    {/*eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain*/}
+                    <Balance balance={balance?.freeBalance!} units={"CKB"} variant="body1" boldUnits style={{ color }} />
+                </ControlledSuspense>
             </Row>
         </Row>
     );

@@ -1,7 +1,7 @@
 import { translate } from "locale";
+import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 import { DaoBalanceType } from "module/dao/types";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { ActivityIndicator } from "react-native";
 import { Col, Row, Typography } from "react-native-components";
 
 type DaoCardProps = Partial<DaoBalanceType>;
@@ -11,27 +11,21 @@ const DaoCardBalance = ({ availableBalance, lockedBalance, currentAPC }: DaoCard
         <Col gap={"3%"} style={{ paddingHorizontal: "4%" }}>
             <Row justifyContent="space-between" alignItems="center">
                 <Typography variant="body2">{translate("available")}</Typography>
-                {availableBalance !== undefined ? (
-                    <Balance boldUnits smallBalance balance={availableBalance} decimals={6} units="ckb" variant="h1" />
-                ) : (
-                    <ActivityIndicator testID="actIndicator" color="white" />
-                )}
+                <ControlledSuspense isLoading={availableBalance === undefined} color="white" size="small">
+                    <Balance boldUnits smallBalance balance={availableBalance!} decimals={6} units="ckb" variant="h1" />
+                </ControlledSuspense>
             </Row>
             <Row justifyContent="space-between" alignItems="center">
                 <Typography variant="body2">{translate("locked")}</Typography>
-                {lockedBalance !== undefined ? (
-                    <Balance boldUnits smallBalance balance={lockedBalance} decimals={3} units="ckb" variant="h3" />
-                ) : (
-                    <ActivityIndicator testID="actIndicator" color="white" />
-                )}
+                <ControlledSuspense isLoading={lockedBalance === undefined} color="white" size="small">
+                    <Balance boldUnits smallBalance balance={lockedBalance!} decimals={3} units="ckb" variant="h3" />
+                </ControlledSuspense>
             </Row>
             <Row justifyContent="space-between" alignItems="center">
                 <Typography variant="body2">{translate("current_apc")}</Typography>
-                {currentAPC !== undefined ? (
+                <ControlledSuspense isLoading={currentAPC === undefined} color="white" size="small">
                     <Typography variant="body1" fontWeight="bold">{`${currentAPC}%`}</Typography>
-                ) : (
-                    <ActivityIndicator testID="actIndicator" color="white" />
-                )}
+                </ControlledSuspense>
             </Row>
         </Col>
     );

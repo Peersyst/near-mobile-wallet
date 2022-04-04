@@ -6,13 +6,15 @@ export interface SummaryFieldProps {
     children: string;
 }
 
-const SummaryField = ({ label, children }: SummaryFieldProps): JSX.Element => (
-    <Col gap={2}>
-        <SummaryText variant="body2">{label}:</SummaryText>
-        <SummaryText variant="body1" style={{ paddingLeft: "5%" }} numberOfLines={2}>
-            {children}
-        </SummaryText>
-    </Col>
-);
+const SummaryField = ({ label, children }: SummaryFieldProps): JSX.Element => {
+    return (
+        <Col gap={2}>
+            <SummaryText variant="body2">{label}:</SummaryText>
+            <SummaryText testID="infoText" variant="body1" style={{ paddingLeft: "5%" }} numberOfLines={2}>
+                {children}
+            </SummaryText>
+        </Col>
+    );
+};
 
 export default SummaryField;
