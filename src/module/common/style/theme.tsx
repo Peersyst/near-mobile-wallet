@@ -1,6 +1,6 @@
 import { createTheme, defaultTheme } from "react-native-components";
 import { translate } from "locale";
-import { RippleAddressValidator } from "module/common/validator/RippleAddressValidator";
+import { CkbAddressValidator } from "module/common/validator/CkbAddressValidator";
 
 export const theme = createTheme({
     icons: {
@@ -56,6 +56,6 @@ export const theme = createTheme({
     toolbarHeight: 44,
     translate,
     validators: {
-        address: ({ message }) => new RippleAddressValidator(message),
+        address: ({ message }) => new CkbAddressValidator(message),
     },
 });

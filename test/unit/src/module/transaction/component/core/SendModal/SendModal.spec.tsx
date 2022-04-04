@@ -36,7 +36,7 @@ describe("SendModal tests", () => {
         const screen = render(<SendModal />);
 
         // Enter receiver address, sender address equals the selected account (0)
-        fireEvent.changeText(screen.getByPlaceholderText(translate("address")), "rf1BiGeXwwQoi8Z2ueFYTEXSwuJYfV2Jpn");
+        fireEvent.changeText(screen.getByPlaceholderText(translate("address")), "ckb1qyqt5m9v5rr73ylyztt8yexzav4plsfugm7s9xj2fc");
         fireEvent.press(screen.getByText(translate("next")));
 
         // Enter amount and message
