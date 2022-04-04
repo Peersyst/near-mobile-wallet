@@ -17,7 +17,7 @@ const DepositSelectAccountScreen = () => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const setTab = useSetTab();
     const handleSubmit = ({ sender }: DepositForm) => {
-        setSendState((oldState) => ({ ...oldState, senderWalletIndex: sender, receiverAddress: "0x0" }));
+        setSendState((oldState) => ({ ...oldState, senderWalletIndex: sender }));
         setTab(SendScreens.AMOUNT_AND_MESSAGE);
     };
 

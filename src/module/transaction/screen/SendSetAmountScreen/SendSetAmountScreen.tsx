@@ -32,7 +32,6 @@ const Loader = (): JSX.Element => {
     );
 };
 
-
 const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const [amount, setAmount] = useState(sendState.amount || "");

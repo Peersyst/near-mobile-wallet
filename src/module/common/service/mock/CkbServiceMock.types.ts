@@ -1,4 +1,3 @@
-import { FeeType } from "module/settings/state/SettingsState";
 
 export interface SdkWalletState {
     addressMap: Map<string, string>;

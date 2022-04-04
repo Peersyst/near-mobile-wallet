@@ -12,7 +12,7 @@ export enum FeeRate {
     FAST = "FAST",
 }
 
-export type FeeType = FeeRate.SLOW | FeeRate.AVERAGE | FeeRate.FAST; 
+export type FeeType = FeeRate.SLOW | FeeRate.AVERAGE | FeeRate.FAST;
 
 export interface SettingsState {
     locale?: LocaleType;

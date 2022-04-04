@@ -1,5 +1,5 @@
 import { Col } from "react-native-components";
-import { SummaryText } from "./SummaryFiels.styles";
+import { SummaryText } from "./SummaryField.styles";
 
 export interface SummaryFieldProps {
     label: string;

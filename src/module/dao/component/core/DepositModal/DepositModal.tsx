@@ -3,22 +3,21 @@ import { translate } from "locale";
 import { useState } from "react";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 import useGetFee from "module/transaction/query/useGetFee";
-import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import sendState from "module/transaction/state/SendState";
 import DepositSelectAccountScreen from "module/dao/screen/DepositSelectAccountScreen/DepositSelectAccountScreen";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScreen/DepositConfirmationScreen";
 
-export enum SendScreens {
+export enum DepositScreens {
     SELECT_ACCOUNT,
     AMOUNT_AND_MESSAGE,
     CONFIRMATION,
 }
 
 const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
-    
-    const [activeIndex, setActiveIndex] = useState(SendScreens.SELECT_ACCOUNT);
+    const [activeIndex, setActiveIndex] = useState(DepositScreens.SELECT_ACCOUNT);
     const { fee } = useRecoilValue(settingsState);
     const resetSendState = useResetRecoilState(sendState);
 
@@ -40,13 +39,13 @@ const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps
             {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
-                <TabPanel index={SendScreens.SELECT_ACCOUNT}>
+                <TabPanel index={DepositScreens.SELECT_ACCOUNT}>
                     <DepositSelectAccountScreen />
                 </TabPanel>
-                <TabPanel index={SendScreens.AMOUNT_AND_MESSAGE}>
+                <TabPanel index={DepositScreens.AMOUNT_AND_MESSAGE}>
                     <SendSetAmountScreen type="dao" />
                 </TabPanel>
-                <TabPanel index={SendScreens.CONFIRMATION}>
+                <TabPanel index={DepositScreens.CONFIRMATION}>
                     <DepositConfirmationScreen />
                 </TabPanel>
             </Tabs>

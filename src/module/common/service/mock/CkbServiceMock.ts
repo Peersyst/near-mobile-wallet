@@ -1,4 +1,11 @@
-import { CKBBalance, DepositInDAOParams, Nft, SdkWalletState, SendTransactionParams, Transaction } from "module/common/service/mock/CkbServiceMock.types";
+import {
+    CKBBalance,
+    DepositInDAOParams,
+    Nft,
+    SdkWalletState,
+    SendTransactionParams,
+    Transaction,
+} from "module/common/service/mock/CkbServiceMock.types";
 import { WalletServiceMock } from "module/common/service/mock/WalletServiceMock";
 import { TokenAmount } from "module/token/types";
 

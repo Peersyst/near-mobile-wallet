@@ -5,10 +5,9 @@ import { SendState } from "module/transaction/state/SendState";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
 import { Wallet } from "module/wallet/state/WalletState";
 import { Col } from "react-native-components";
-
-import BaseSendSummary from "../../../transaction/component/display/BaseSendSummary/BaseSendSummary";
-import SummaryField from "../../../transaction/component/display/BaseSendSummary/SummaryField";
-import { SummaryText } from "../../../transaction/component/display/BaseSendSummary/SummaryFiels.styles";
+import BaseSendSummary from "../../../../transaction/component/display/BaseSendSummary/BaseSendSummary";
+import SummaryField from "../../../../transaction/component/display/SummaryField/SummaryField";
+import { SummaryText } from "../../../../transaction/component/display/SummaryField/SummaryField.styles";
 
 type SendSummaryProps = Required<
     Pick<BalanceProps, "balance"> &
