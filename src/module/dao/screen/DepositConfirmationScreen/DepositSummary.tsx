@@ -19,7 +19,7 @@ type SendSummaryProps = Required<
 
 const DepositSummary = ({ balance, fee, senderName, serviceInstance }: SendSummaryProps): JSX.Element => {
     const { data: daoBalance } = useGetDaoBalance();
-    const currentAPC = daoBalance?.currentAPC;
+    const currentAPC = daoBalance?.daoCompensation;
     return (
         <BaseSendSummary balance={balance} fee={fee}>
             <Col gap="3%" style={{ alignSelf: "flex-start" }}>

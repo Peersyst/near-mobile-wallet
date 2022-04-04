@@ -1,5 +1,6 @@
 import {
     CKBBalance,
+    DAOBalance,
     DepositInDAOParams,
     Nft,
     SdkWalletState,
@@ -82,7 +83,7 @@ export class CkbServiceMock {
         return this.wallet.depositInDAO(params);
     }
 
-    async getDaoBalance(): Promise<DaoBalanceType> {
+    async getDaoBalance(): Promise<DAOBalance> {
         return this.wallet.getDaoBalance();
     }
 }

@@ -1,6 +1,6 @@
 import { DAOBalance } from "module/common/service/mock/CkbServiceMock.types";
 
-export const DaoBalance: DAOBalance = {
-    daoDeposit: BigInt(594.323),
-    daoCompensation: BigInt(2.4),
+export const daoBalance: DAOBalance = {
+    daoDeposit: 594.323,
+    daoCompensation: 2.4,
 };

@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
 import { QueryResult } from "query-utils";
-import { DaoBalanceType } from "../types";
 import useWalletState from "module/wallet/hook/useWalletState";
+import { DAOBalance } from "module/common/service/mock/CkbServiceMock.types";
 
-const useGetDaoBalance = (index?: number):QueryResult<DaoBalanceType> => {
+const useGetDaoBalance = (index?: number):QueryResult<DAOBalance> => {
     const {
         state: { wallets, selectedWallet },
     } = useWalletState();

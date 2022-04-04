@@ -1,13 +1,19 @@
 import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
 import DepositSummary from "module/dao/screen/DepositConfirmationScreen/DepositSummary";
-import { render } from "test-utils";
+import { render, SuccessApiCall } from "test-utils";
+import * as UseWalletState from "module/wallet/hook/useWalletState";
+import { mockedUseWallet } from "mocks/useWalletState";
+import { MockedDaoBalance } from "mocks/dao";
+import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 
 describe("Test for the DepositSummary", () => {
     test("Renders correctly", () => {
         const mockedServiceInstance = {
             getAddress: jest.fn().mockReturnValue("0xMockedAddress"),
         };
+        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
+        jest.spyOn(CkbServiceMock.prototype, "getDaoBalance").mockReturnValue(SuccessApiCall(MockedDaoBalance));
         const screen = render(
             <DepositSummary serviceInstance={mockedServiceInstance as any} balance={"1000"} fee={"10"} senderName={"Peersyst"} />,
         );

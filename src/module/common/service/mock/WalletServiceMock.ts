@@ -3,8 +3,8 @@ import { transactions } from "module/transaction/mock/transaction";
 import { nfts } from "module/nft/mock/nft";
 import { TokenAmount } from "module/token/types";
 import { tokens } from "module/token/mock/token";
-import { DaoBalance } from "module/dao/mock/daoBalance";
-import { DaoBalanceType } from "module/dao/types";
+import { daoBalance } from "module/dao/mock/daoBalance";
+
 
 export class WalletServiceMock {
     async getCKBBalance(): Promise<CKBBalance> {
@@ -36,7 +36,7 @@ export class WalletServiceMock {
     }
 
     async getDaoBalance(): Promise<DAOBalance>{
-        return new Promise((resolve) => setTimeout(() => resolve(DaoBalance), 2000));
+        return new Promise((resolve) => setTimeout(() => resolve(daoBalance), 2000));
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

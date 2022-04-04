@@ -1,7 +1,7 @@
-import { DaoBalanceType } from "../types";
-import { DaoBalance } from "./daoBalance";
+import { DAOBalance } from "module/common/service/mock/CkbServiceMock.types";
+import { daoBalance } from "./daoBalance";
 
 //eslint-disable-next-line
-export default function (): Promise<DaoBalanceType> {
-    return new Promise((resolve) => setTimeout(() => resolve(DaoBalance), 2000));
+export default function (): Promise<DAOBalance> {
+    return new Promise((resolve) => setTimeout(() => resolve(daoBalance), 2000));
 }
