@@ -41,7 +41,12 @@ const SetWalletNameScreen = ({ onSubmit, submitText }: SetWalletNameScreenProps)
             </Card>
             <Form onSubmit={handleSubmit}>
                 <Col gap={30} style={{ paddingHorizontal: 20 }}>
-                    <TextField name="walletName" defaultValue={name} placeholder={translate("wallet_name")} validators="not-null" />
+                    <TextField
+                        name="walletName"
+                        defaultValue={name}
+                        placeholder={translate("wallet_name")}
+                        validators={{ required: true }}
+                    />
                     <Button fullWidth variant="outlined">
                         {submitText}
                     </Button>

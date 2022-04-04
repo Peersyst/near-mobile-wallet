@@ -1,5 +1,5 @@
 import { BaseValidator } from "./BaseValidator";
-import { TranslateFn } from "../Validators.types";
+import { TranslateFn } from "./Validators.types";
 
 export interface NumberValidatorOptions {
     greaterThan?: number;
@@ -19,19 +19,19 @@ export class NumberValidator extends BaseValidator {
 
         if (!message) {
             if (options.greaterThan !== undefined) {
-                this.message = translate("invalid_number_gt").replace("{n}", options.greaterThan.toString());
+                this.message = translate("invalid_number_gt", { n: options.greaterThan.toString() });
             }
             if (options.greaterEqualThan !== undefined) {
-                this.message = translate("invalid_number_gte").replace("{n}", options.greaterEqualThan.toString());
+                this.message = translate("invalid_number_gte", { n: options.greaterEqualThan.toString() });
             }
             if (options.equalThan !== undefined) {
-                this.message = translate("invalid_number_eq").replace("{n}", options.equalThan.toString());
+                this.message = translate("invalid_number_eq", { n: options.equalThan.toString() });
             }
             if (options.lowerThan !== undefined) {
-                this.message = translate("invalid_number_lt").replace("{n}", options.lowerThan.toString());
+                this.message = translate("invalid_number_lt", { n: options.lowerThan.toString() });
             }
             if (options.lowerEqualThan !== undefined) {
-                this.message = translate("invalid_number_lte").replace("{n}", options.lowerEqualThan.toString());
+                this.message = translate("invalid_number_lte", { n: options.lowerEqualThan.toString() });
             }
         }
     }

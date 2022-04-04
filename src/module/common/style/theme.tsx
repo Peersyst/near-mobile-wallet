@@ -1,5 +1,6 @@
 import { createTheme, defaultTheme } from "react-native-components";
 import { translate } from "locale";
+import { RippleAddressValidator } from "module/common/validator/RippleAddressValidator";
 
 export const theme = createTheme({
     icons: {
@@ -54,4 +55,7 @@ export const theme = createTheme({
     borderRadius: 24,
     toolbarHeight: 44,
     translate,
+    validators: {
+        address: ({ message }) => new RippleAddressValidator(message),
+    },
 });

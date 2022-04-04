@@ -42,7 +42,7 @@ describe("SendToAddressScreen tests", () => {
         jest.spyOn(UseSetTab, "default").mockReturnValue(setTab);
         const screen = render(<SendToAddressScreen />);
         const input = screen.getByPlaceholderText(translate("address"));
-        fireEvent.changeText(input, "receiverAddress");
+        fireEvent.changeText(input, "rf1BiGeXwwQoi8Z2ueFYTEXSwuJYfV2Jpn");
         fireEvent.press(screen.getByText(translate("next")));
         await waitFor(() => expect(setSendState).toHaveBeenCalled());
         expect(setTab).toHaveBeenCalledWith(SendScreens.AMOUNT_AND_MESSAGE);

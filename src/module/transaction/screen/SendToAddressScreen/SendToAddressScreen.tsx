@@ -68,7 +68,7 @@ const SendToAddressScreen = () => {
                                         </IconButton>
                                     }
                                     name="receiver"
-                                    validators="not-null"
+                                    validators={{ address: true }}
                                     value={receiverAddress}
                                     onChange={setReceiverAddress}
                                     autoCapitalize="none"
