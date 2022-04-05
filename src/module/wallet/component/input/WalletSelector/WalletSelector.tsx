@@ -12,14 +12,14 @@ export interface WalletSelectorProps {
     required?: SelectProps["required"];
     style?: SelectProps["style"];
     DisplayComponent?: SelectProps["DisplayComponent"];
-    updateSelectedWalletOnClose?: boolean;
+    updateSelectedWalletState?: boolean;
     defaultValue?: number;
 }
 
 const WalletSelector = ({
     style,
     DisplayComponent,
-    updateSelectedWalletOnClose = false,
+    updateSelectedWalletState = false,
     defaultValue,
     ...rest
 }: WalletSelectorProps): JSX.Element => {
@@ -35,7 +35,7 @@ const WalletSelector = ({
 
     const handleItemChange = (i: unknown) => {
         setSelectedIndex(i as number);
-        if (updateSelectedWalletOnClose) {
+        if (updateSelectedWalletState) {
             setSelectedWallet(i as number);
         }
     };

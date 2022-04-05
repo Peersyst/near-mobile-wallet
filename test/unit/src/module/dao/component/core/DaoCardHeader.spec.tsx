@@ -3,10 +3,10 @@ import { fireEvent, render } from "test-utils";
 import { Linking } from "react-native";
 
 describe("Test for the header of the dao card", () => {
-    test("Renders correctly", () => {
+    test("Renders correctly", async () => {
         const screen = render(<DaoCardHeader />);
         expect(screen.getByText("Nervos DAO"));
-        expect(screen.getByTestId("FilledDAOIcon"));
+        expect(screen.getByTestId("FilledWalletIcon"));
         expect(screen.getByTestId("InfoIcon"));
     });
     test("Goes to dao info page", () => {

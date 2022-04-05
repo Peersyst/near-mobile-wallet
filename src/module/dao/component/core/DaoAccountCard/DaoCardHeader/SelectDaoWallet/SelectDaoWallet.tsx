@@ -6,7 +6,7 @@ import { SelectDaoWalletIcon } from "./SelectDaoWallet.styles";
 const SelectDaoWallet = (): JSX.Element => {
     return (
         <ThemeProvider theme={theme}>
-            <WalletSelector updateSelectedWalletOnClose DisplayComponent={<SelectDaoWalletIcon />} />
+            <WalletSelector updateSelectedWalletState DisplayComponent={<SelectDaoWalletIcon />} />
         </ThemeProvider>
     );
 };
