@@ -41,7 +41,7 @@ export class WalletServiceMock {
     }
 
     async getDaoBalance(): Promise<DAOBalance> {
-        const locked = await new Promise<bigint>((resolve) => setTimeout(() => resolve(BigInt(Math.trunc(Math.random() * 576))), 2000));
+        const locked = await new Promise<bigint>((resolve) => setTimeout(() => resolve(BigInt(Math.trunc(new Date().getSeconds()* 15))), 2000));
         return {
             daoDeposit: locked,
             daoCompensation: 2.4,
