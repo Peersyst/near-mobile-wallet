@@ -6,7 +6,7 @@ import { render } from "test-utils";
 describe("Test for the BaseSendSummary", () => {
     test("Renders correctly", () => {
         const screen = render(
-            <BaseSendSummary balance={"1000"} fee={"10"}>
+            <BaseSendSummary amount={"1000"} fee={"10"}>
                 <Typography variant="body1">Children</Typography>
             </BaseSendSummary>,
         );

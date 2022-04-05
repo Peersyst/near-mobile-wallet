@@ -35,12 +35,12 @@ const SendConfirmationScreen = (): JSX.Element => {
         <>
             <Col gap={"5%"}>
                 <SendSummary
-                    balance={amount!}
+                    amount={amount!}
                     receiverAddress={receiverAddress!}
                     fee={fee!}
                     message={message!}
                     senderName={senderName}
-                    serviceInstance={serviceInstance}
+                    senderAddress={serviceInstance?.getAddress() || ""}
                 />
                 <Typography variant="caption" textAlign="center">
                     {translate("send_confirmation_text")}

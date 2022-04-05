@@ -14,6 +14,7 @@ import CKBAmountInput from "../../component/input/CKBAmountInput/CKBAmountInput"
 import { CKBAmountInputContainer } from "./SendSetAmountScreen.styles";
 import Card from "module/common/component/surface/Card/Card";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
+import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
 
 export interface SendAmountAndMessageResult {
     amount: string;
@@ -42,7 +43,7 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
 
     const handleSubmit = ({ amount, message }: SendAmountAndMessageResult): void => {
         setSendState((oldState) => ({ ...oldState, amount, message, fee }));
-        setTab(SendScreens.CONFIRMATION);
+        setTab(type === "send" ? SendScreens.CONFIRMATION : DepositScreens.CONFIRMATION);
     };
 
     return (
@@ -50,7 +51,7 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
             <Form onSubmit={handleSubmit}>
                 <Col gap="15%">
                     <CKBAmountInputContainer>
-                        <CKBAmountInput fee={fee} amount={amount} setAmount={setAmount} balance={balance} />
+                        <CKBAmountInput fee={fee!} amount={amount} setAmount={setAmount} balance={balance?.freeBalance || BigInt(0)} />
                     </CKBAmountInputContainer>
                     {type === "dao" ? (
                         <Card>

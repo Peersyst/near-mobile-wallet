@@ -12,9 +12,7 @@ describe("Test for the DepositSummary", () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(CkbServiceMock.prototype, "getDaoBalance").mockReturnValue(SuccessApiCall(MockedDaoBalance));
         jest.spyOn(CkbServiceMock.prototype, "getAddress").mockReturnValue("0xMockedAddress");
-        const screen = render(
-            <DepositSummary serviceInstance={new CkbServiceMock([])} balance={"1000"} fee={"10"} senderName={"Peersyst"} />,
-        );
+        const screen = render(<DepositSummary senderAddress={"0xMockedAddress"} amount={"1000"} fee={"10"} senderName={"Peersyst"} />);
         expect(screen.getByText("1,000")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
         expect(screen.getByText("10")).toBeDefined();
