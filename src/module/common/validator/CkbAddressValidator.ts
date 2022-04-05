@@ -1,7 +1,7 @@
 import { BaseValidator } from "react-native-components";
 import { translate } from "locale";
 
-const CkbAddressRegex = new RegExp("^ckb[13][a-hj-np-zA-HJ-NP-Z2-9]{42}$");
+const CkbAddressRegex = new RegExp("^ckb[13][a-zA-Z0-9]{42}$");
 
 export class CkbAddressValidator extends BaseValidator {
     constructor(message?: string) {

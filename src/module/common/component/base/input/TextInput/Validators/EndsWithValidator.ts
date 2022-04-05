@@ -5,11 +5,11 @@ export class EndsWithValidator extends BaseValidator {
     end: string;
 
     constructor(end: string, message: string | undefined, translate: TranslateFn) {
-        super(message || translate("too_many_chars", { end }));
+        super(message || translate("invalid_end", { end }));
         this.end = end;
     }
 
     validate(value: string): boolean {
-        return value.startsWith(this.end);
+        return value.endsWith(this.end);
     }
 }
