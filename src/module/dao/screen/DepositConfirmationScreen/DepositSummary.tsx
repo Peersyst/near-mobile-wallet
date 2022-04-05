@@ -1,31 +1,23 @@
 import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
 import useGetDaoBalance from "module/dao/query/useGetDaoBalance";
-import { SendState } from "module/transaction/state/SendState";
-import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
-import { Wallet } from "module/wallet/state/WalletState";
 import { Col } from "react-native-components";
-import BaseSendSummary from "../../../transaction/component/display/BaseSendSummary/BaseSendSummary";
+import BaseSendSummary, { BaseSendSummaryProps } from "../../../transaction/component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../../transaction/component/display/SummaryField/SummaryField";
-import { SummaryText } from "../../../transaction/component/display/SummaryField/SummaryField.styles";
+import { SummaryText } from "module/transaction/component/display/SummaryField/SummaryField.styles";
 
-type SendSummaryProps = Required<
-    Pick<BalanceProps, "balance"> &
-        Pick<SendState, "fee"> & {
-            senderName: string;
-        }
-> &
-    Pick<Wallet, "serviceInstance">;
+export interface DepositSummaryProps extends BaseSendSummaryProps {
+    senderName: string;
+    senderAddress: string;
+}
 
-const DepositSummary = ({ balance, fee, senderName, serviceInstance }: SendSummaryProps): JSX.Element => {
+const DepositSummary = ({ amount, fee, senderName, senderAddress }: DepositSummaryProps): JSX.Element => {
     const { data: daoBalance } = useGetDaoBalance();
     const currentAPC = daoBalance?.daoCompensation;
     return (
-        <BaseSendSummary balance={balance} fee={fee}>
+        <BaseSendSummary amount={amount} fee={fee}>
             <Col gap="3%" style={{ alignSelf: "flex-start" }}>
-                <SummaryField label={translate("from")}>
-                    {senderName + " - " + formatAddress(serviceInstance?.getAddress() || "", "middle", 3)}
-                </SummaryField>
+                <SummaryField label={translate("from")}>{senderName + " - " + formatAddress(senderAddress, "middle", 3)}</SummaryField>
                 <SummaryField label={translate("estimated_apc")}>
                     {currentAPC !== undefined ? `${currentAPC}%` : `${translate("loading_apc")}...`}
                 </SummaryField>

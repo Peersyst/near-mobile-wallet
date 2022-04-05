@@ -5,16 +5,19 @@ import { BalanceProps } from "module/wallet/component/display/Balance/Balance.ty
 import { ReactElement } from "react";
 import { Paper, Col, Row, Typography } from "react-native-components";
 
-type SendSummaryProps = Required<Pick<BalanceProps, "balance"> & Pick<SendState, "fee">> & {
+export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee">> {
+    amount: BalanceProps["balance"];
     children: ReactElement;
-};
+}
 
-const BaseSendSummary = ({ balance, fee, children }: SendSummaryProps): JSX.Element => {
+export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
+
+const BaseSendSummary = ({ amount, fee, children }: BaseSendSummaryFullProps): JSX.Element => {
     return (
         <Paper style={{ padding: "7%" }}>
             <Col gap="3%" alignItems="center">
                 <Col gap={5} alignItems="center">
-                    <Balance balance={balance} units="CKB" variant="h1" boldUnits />
+                    <Balance balance={amount} units="CKB" variant="h1" boldUnits />
                     <Row>
                         <Typography variant="body1">{translate("transaction_fee_label")}: </Typography>
                         <Balance balance={fee!} units="CKB" variant="body1" fontWeight="bold" boldUnits />

@@ -1,27 +1,22 @@
 import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
 import { SendState } from "module/transaction/state/SendState";
-import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
-import { Wallet } from "module/wallet/state/WalletState";
 import { Col } from "react-native-components";
-import BaseSendSummary from "../../component/display/BaseSendSummary/BaseSendSummary";
+import BaseSendSummary, { BaseSendSummaryProps } from "../../component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../component/display/SummaryField/SummaryField";
 
-type SendSummaryProps = Required<
-    Pick<BalanceProps, "balance"> &
-        Pick<SendState, "fee" | "receiverAddress" | "message"> & {
-            senderName: string;
-        }
-> &
-    Pick<Wallet, "serviceInstance">;
+export interface SendSummaryProps extends BaseSendSummaryProps {
+    senderName: string;
+    senderAddress: string;
+    receiverAddress: SendState["receiverAddress"];
+    message: SendState["message"];
+}
 
-const SendSummary = ({ balance, fee, receiverAddress, message, senderName, serviceInstance }: SendSummaryProps): JSX.Element => {
+const SendSummary = ({ amount, fee, receiverAddress, message, senderName, senderAddress }: SendSummaryProps): JSX.Element => {
     return (
-        <BaseSendSummary balance={balance} fee={fee}>
+        <BaseSendSummary amount={amount} fee={fee}>
             <Col gap="3%" style={{ alignSelf: "flex-start" }}>
-                <SummaryField label={translate("from")}>
-                    {senderName + " - " + formatAddress(serviceInstance?.getAddress() || "", "middle", 3)}
-                </SummaryField>
+                <SummaryField label={translate("from")}>{senderName + " - " + formatAddress(senderAddress, "middle", 3)}</SummaryField>
                 <SummaryField label={translate("to")}>{formatAddress(receiverAddress!, "middle", 3)}</SummaryField>
                 <SummaryField label={translate("message")}>{message || "-"}</SummaryField>
             </Col>

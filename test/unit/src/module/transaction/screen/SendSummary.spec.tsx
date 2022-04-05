@@ -9,8 +9,8 @@ describe("Test for the SendSummary component", () => {
         jest.spyOn(CkbServiceMock.prototype, "getAddress").mockReturnValue("0xMockedAddress");
         const screen = render(
             <SendSummary
-                serviceInstance={new CkbServiceMock([])}
-                balance={"2400"}
+                senderAddress="0xMockedAddress"
+                amount={"2400"}
                 fee={"2"}
                 receiverAddress={"0xRx"}
                 message={"hola"}

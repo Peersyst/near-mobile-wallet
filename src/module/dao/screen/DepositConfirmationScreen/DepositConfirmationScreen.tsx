@@ -34,7 +34,7 @@ const DepositConfirmationScreen = (): JSX.Element => {
     return (
         <>
             <Col gap={"5%"}>
-                <DepositSummary balance={amount!} fee={fee!} senderName={senderName} serviceInstance={serviceInstance} />
+                <DepositSummary amount={amount!} fee={fee!} senderName={senderName} senderAddress={serviceInstance?.getAddress() || ""} />
                 <Typography variant="caption" textAlign="center">
                     {translate("send_confirmation_text")}
                 </Typography>
