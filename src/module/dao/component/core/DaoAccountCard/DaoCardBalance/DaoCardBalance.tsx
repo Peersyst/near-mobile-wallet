@@ -14,7 +14,7 @@ const DaoCardBalance = (): JSX.Element => {
                 <Balance boldUnits smallBalance balance={freeBalance} decimals={6} units="ckb" variant="h1" />
             </DaoBalanceRow>
             <DaoBalanceRow label={translate("locked")} isLoading={daoBalanceLoading}>
-                <Balance boldUnits smallBalance balance={daoDeposit} decimals={3} units="ckb" variant="h1" />
+                <Balance boldUnits smallBalance balance={daoDeposit} decimals={3} units="ckb" variant="h2" />
             </DaoBalanceRow>
             <DaoBalanceRow label={translate("current_apc")} isLoading={daoBalanceLoading}>
                 <Typography variant="body1" fontWeight="bold">{`${daoCompensation}%`}</Typography>
