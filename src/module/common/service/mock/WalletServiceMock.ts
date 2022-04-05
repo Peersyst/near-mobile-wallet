@@ -41,17 +41,15 @@ export class WalletServiceMock {
     }
 
     async getDaoBalance(): Promise<DAOBalance> {
-        const locked = await new Promise<bigint>((resolve) =>
-            setTimeout(() => resolve(BigInt(Math.trunc(Math.random() * 576))), 2000),
-        );
+        const locked = await new Promise<bigint>((resolve) => setTimeout(() => resolve(BigInt(Math.trunc(Math.random() * 576))), 2000));
         return {
             daoDeposit: locked,
-            daoCompensation: 2.4
-        }
+            daoCompensation: 2.4,
+        };
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async sendTransaction(params: SendTransactionParams): Promise < string > {
-            return new Promise((resolve) => setTimeout(() => resolve("txsign"), 2000));
-        }
+    async sendTransaction(params: SendTransactionParams): Promise<string> {
+        return new Promise((resolve) => setTimeout(() => resolve("txsign"), 2000));
     }
+}

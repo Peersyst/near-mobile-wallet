@@ -39,7 +39,7 @@ const WalletSelector = ({
             setSelectedWallet(i as number);
         }
     };
-    
+
     return (
         <Select
             value={selectedIndex}
