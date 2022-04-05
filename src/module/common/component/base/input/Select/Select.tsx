@@ -78,7 +78,7 @@ export default function Select({
                 )}
             </TouchableWithoutFeedback>
             <SelectProvider value={{ value, setValue, setOpen, multiple, readonly }}>
-                <SelectMenu open={open} style={{ ...menuStyle }} header={header} footer={footer}>
+                <SelectMenu open={open} style={menuStyle} header={header} footer={footer}>
                     {Children.map(children, (child) => {
                         const { style: childStyle, ...rest } = child!.props || {};
                         return cloneElement(child!, { ...rest, style: { ...itemStyle, ...childStyle } }) as ReactElement;
