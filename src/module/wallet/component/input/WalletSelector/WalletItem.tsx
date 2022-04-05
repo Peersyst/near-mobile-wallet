@@ -22,7 +22,7 @@ const WalletItem = ({ index, color = "#000000" }: WalletItemProps): JSX.Element 
                 <Typography variant="body1" style={{ color }}>
                     {" - "}
                 </Typography>
-                <ControlledSuspense isLoading={balanceIsLoading} color={color}>
+                <ControlledSuspense isLoading={balanceIsLoading} activityIndicatorColor={color} activityIndicatorSize="small">
                     <Balance balance={balance?.freeBalance || 0} units={"CKB"} variant="body1" boldUnits style={{ color }} />
                 </ControlledSuspense>
             </Row>

@@ -1,6 +1,9 @@
-import { FilledDAOIcon, InfoIcon } from "icons";
+import { FilledWalletIcon, InfoIcon } from "icons";
 import { IconButton, Row, Typography } from "react-native-components";
 import { Linking } from "react-native";
+import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
+import { ThemeProvider } from "@peersyst/react-native-styled";
+import { theme } from "module/common/style/theme";
 
 export const DAO_INFO_URL = "https://www.nervos.org/";
 
@@ -13,9 +16,9 @@ const DaoCardHeader = (): JSX.Element => {
             <Typography fontWeight="bold" variant="h2">
                 Nervos DAO
             </Typography>
-            <IconButton style={{ fontSize: 26 }}>
-                <FilledDAOIcon />
-            </IconButton>
+            <ThemeProvider theme={theme}>
+                <WalletSelector updateSelectedWalletOnClose DisplayComponent={<FilledWalletIcon style={{ fontSize: 26, color: "#fff" }} />} />
+            </ThemeProvider>
         </Row>
     );
 };
