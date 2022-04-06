@@ -1,17 +1,15 @@
-import { Col, Paper, Row, Typography, useModal } from "react-native-components";
+import { Col, Typography, useModal } from "react-native-components";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
 import { translate } from "locale";
-import Balance from "module/wallet/component/display/Balance/Balance";
 import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
-import SummaryField from "module/transaction/screen/SendConfirmationScreen/SummaryField";
 import useSendTransaction from "../../query/useSendTransaction";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import LoadingModal from "module/transaction/component/feedback/LoadingModal/LoadingModal";
 import { useRefetchQuery } from "../../../../query/useRefetchQuery";
-import { formatAddress } from "@peersyst/react-utils";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
+import SendSummary from "./SendSummary";
 
 const SendConfirmationScreen = (): JSX.Element => {
     const { amount, fee, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
@@ -27,32 +25,23 @@ const SendConfirmationScreen = (): JSX.Element => {
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
         sendTransaction(
-            { amount: amount!, message, receiverAddress: receiverAddress!, mnemonic: mnemonic! },
+            { amount: BigInt(amount!), message: message!, to: receiverAddress!, mnemonic: mnemonic!, feeRate: fee! },
             { onSuccess: () => refetch(["balance", senderWalletIndex]) },
         );
+        //The SendState is cleaned in the "onExited" method of SendModal
     };
 
     return (
         <>
-            <Col gap={"6%"}>
-                <Paper style={{ padding: "7%" }}>
-                    <Col gap="4%" alignItems="center">
-                        <Col gap={5} alignItems="center">
-                            <Balance balance={amount!} units="CKB" variant="h1" boldUnits />
-                            <Row>
-                                <Typography variant="body1">{translate("transaction_fee_label")}: </Typography>
-                                <Balance balance={fee!} units="CKB" variant="body1" fontWeight="bold" boldUnits />
-                            </Row>
-                        </Col>
-                        <Col gap="3%" style={{ alignSelf: "flex-start" }}>
-                            <SummaryField label={translate("from")}>
-                                {senderName + " - " + formatAddress(serviceInstance?.getAddress() || "", "middle", 3)}
-                            </SummaryField>
-                            <SummaryField label={translate("to")}>{formatAddress(receiverAddress!, "middle", 3)}</SummaryField>
-                            <SummaryField label={translate("message")}>{message || "-"}</SummaryField>
-                        </Col>
-                    </Col>
-                </Paper>
+            <Col gap={"5%"}>
+                <SendSummary
+                    amount={amount!}
+                    receiverAddress={receiverAddress!}
+                    fee={fee!}
+                    message={message!}
+                    senderName={senderName}
+                    senderAddress={serviceInstance?.getAddress() || ""}
+                />
                 <Typography variant="caption" textAlign="center">
                     {translate("send_confirmation_text")}
                 </Typography>

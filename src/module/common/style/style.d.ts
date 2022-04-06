@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import "@peersyst/react-native-styled";
-import { Theme as ExtendedTheme } from "react-native-components";
+import { Theme as ExtendedTheme, Validator } from "react-native-components";
 
 declare module "@peersyst/react-native-styled" {
     export interface Theme extends ExtendedTheme {}
@@ -37,5 +37,9 @@ declare module "react-native-components" {
         h6: false;
         subtitle1: false;
         subtitle2: false;
+    }
+
+    export interface ExtraValidators {
+        address: Validator;
     }
 }

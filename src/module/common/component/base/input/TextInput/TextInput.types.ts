@@ -1,12 +1,8 @@
 import { ComponentType, ReactElement } from "react";
 import { ColorValue, TextInputProps as NativeTextInputProps, TextStyle, ViewStyle } from "react-native";
-import { BaseValidator } from "./utils";
+import { BaseValidator, FunctionalValidator, Validators } from "./Validators";
 import { SX } from "@peersyst/react-native-styled";
-
-export interface FunctionalValidator {
-    validate: (value: string) => boolean;
-    message: string;
-}
+import { ExtraValidators } from "module/common/component/base";
 
 export interface InputStyle extends TextStyle {
     placeholderColor?: ColorValue;
@@ -46,7 +42,7 @@ export interface TextInputProps
     /**
      * Input's validators
      */
-    validators?: string;
+    validators?: Validators & Partial<ExtraValidators>;
     /**
      * Custom validator
      */

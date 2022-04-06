@@ -1,7 +1,6 @@
-import { DaoBalanceType } from "../types";
+import { DAOBalance as DAOBalanceType } from "module/common/service/mock/CkbServiceMock.types";
 
-export const DAOBalance: DaoBalanceType = {
-    availableBalance: "12635.304223",
-    lockedBalance: "594.323",
-    currentAPC: "2.4",
+export const DAOBalance: DAOBalanceType = {
+    daoDeposit: 594.323,
+    daoCompensation: 2.4,
 };
