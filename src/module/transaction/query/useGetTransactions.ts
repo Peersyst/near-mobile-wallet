@@ -1,14 +1,19 @@
 import { useQuery } from "react-query";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { Transaction } from "module/common/service/mock/CkbServiceMock.types";
+import { QueryResult } from "query-utils";
 
-const useGetTransactions = (index?: number) => {
+const useGetTransactions = (index?: number):QueryResult<Transaction[]> => {
     const {
         state: { wallets, selectedWallet },
     } = useWalletState();
-    const usedIndex = index ?? selectedWallet ?? 0;
+    let usedIndex = 0;
+    if (index !== undefined) usedIndex = index;
+    else if (selectedWallet !== undefined) {
+        usedIndex = selectedWallet < wallets.length ? selectedWallet : wallets.length - 1;
+    }
     const serviceInstance = wallets[usedIndex].serviceInstance;
-    return useQuery(["transactions", usedIndex], (): Promise<Transaction[]> | undefined => serviceInstance?.getTransactions());
+    return useQuery(["transactions", usedIndex], () => serviceInstance?.getTransactions());
 };
 
 export default useGetTransactions;
