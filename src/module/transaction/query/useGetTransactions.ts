@@ -3,7 +3,7 @@ import useWalletState from "module/wallet/hook/useWalletState";
 import { Transaction } from "module/common/service/mock/CkbServiceMock.types";
 import { QueryResult } from "query-utils";
 
-const useGetTransactions = (index?: number):QueryResult<Transaction[]> => {
+const useGetTransactions = (index?: number): QueryResult<Transaction[]> => {
     const {
         state: { wallets, selectedWallet },
     } = useWalletState();

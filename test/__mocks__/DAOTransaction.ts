@@ -32,6 +32,6 @@ export const mockedDAOUnlocks: Transaction[] = [...Array(3)].map((_, i) => ({
     inputs: [],
     outputs: [],
     blockHash: "0x1234567890deabcde" + i,
-    blockNumber: i+34,
+    blockNumber: i + 34,
     timestamp: new Date(2022, 0, i + 10),
 }));

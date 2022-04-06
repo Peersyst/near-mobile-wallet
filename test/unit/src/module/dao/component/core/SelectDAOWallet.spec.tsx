@@ -1,4 +1,3 @@
-
 import { fireEvent, render, SuccessApiCall, waitFor } from "test-utils";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import createUseWalletStateMock, { mockedUseWallet } from "mocks/useWalletState";

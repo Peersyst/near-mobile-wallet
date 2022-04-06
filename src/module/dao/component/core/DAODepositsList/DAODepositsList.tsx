@@ -8,7 +8,7 @@ import { isDAODeposit } from "../../utils/isDAODeposit";
 const DAODepositsList = (): JSX.Element => {
     const { data = [], refetch, isLoading } = useGetTransactions();
     //Get the tx that corresponds to the deposits
-    //Then order them by the latest date 
+    //Then order them by the latest date
     const filteredDAODepositsTxs = data.filter((tx) => isDAODeposit(tx.type)).reverse();
     return (
         <MainList

@@ -29,4 +29,3 @@ describe("DAOCompletedWithdrawalsList tests", () => {
         await waitFor(() => expect(screen.getAllByText(translate("no_withdrawals"))));
     });
 });
-

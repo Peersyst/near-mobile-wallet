@@ -8,7 +8,7 @@ import { isDAOTransaction } from "../../utils/isDAOTransaction";
 const TransactionsList = (): JSX.Element => {
     const { data = [], refetch, isLoading } = useGetTransactions();
     //Get the tx that corresponds to ckbs, nfts, and tokens -> not DAO txs
-    //Then order them by the latest date 
+    //Then order them by the latest date
     const txs = data.filter((tx) => !isDAOTransaction(tx.type)).reverse();
     return (
         <MainList

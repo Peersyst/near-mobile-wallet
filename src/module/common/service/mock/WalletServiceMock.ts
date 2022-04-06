@@ -10,7 +10,6 @@ import { transactions } from "module/transaction/mock/transaction";
 import { nfts } from "module/nft/mock/nft";
 import { TokenAmount } from "module/token/types";
 import { tokens } from "module/token/mock/token";
-import { DAOBalance as MockedDAOBalance } from "module/dao/mock/DAOBalance";
 
 export class WalletServiceMock {
     async getCKBBalance(): Promise<CKBBalance> {
