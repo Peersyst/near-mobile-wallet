@@ -9,7 +9,7 @@ const SelectDAOWallet = (): JSX.Element => {
     const {
         state: { selectedWallet },
     } = useWalletState();
-    
+
     const [rerender, setRerender] = useState<boolean>(false);
     useEffect(() => {
         setRerender(true);
@@ -20,9 +20,13 @@ const SelectDAOWallet = (): JSX.Element => {
 
     return (
         <ThemeProvider theme={theme}>
-            {!rerender &&
-                <WalletSelector defaultValue={selectedWallet || undefined} updateSelectedWalletState DisplayComponent={<SelectDAOWalletIcon />} />
-            }
+            {!rerender && (
+                <WalletSelector
+                    defaultValue={selectedWallet || undefined}
+                    updateSelectedWalletState
+                    DisplayComponent={<SelectDAOWalletIcon />}
+                />
+            )}
         </ThemeProvider>
     );
 };
