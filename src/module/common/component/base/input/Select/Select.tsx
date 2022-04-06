@@ -32,6 +32,7 @@ export default function Select({
     header,
     footer,
     children,
+    DisplayComponent,
 }: SelectProps): JSX.Element {
     const [value, setValue] = useControlled<unknown | unknown[]>(defaultValue || (multiple ? [] : undefined), valueProp, onChange);
     useFormNotification(name, value, selectIsValid(value, multiple, required));
@@ -61,18 +62,20 @@ export default function Select({
     return (
         <View style={style}>
             <TouchableWithoutFeedback onPress={handlePress}>
-                <View>
-                    <Row style={displayRootStyle} alignItems="center" justifyContent="space-between">
-                        <View style={{ maxWidth: "92%" }}>
-                            {renderedValue || (
-                                <Text style={[displayTextStyle, { color: placeholderColor }]} numberOfLines={1}>
-                                    {placeholder}
-                                </Text>
-                            )}
-                        </View>
-                        <Icon style={{ ...displayTextStyle, fontSize: 14 }}>{icon}</Icon>
-                    </Row>
-                </View>
+                {DisplayComponent || (
+                    <View>
+                        <Row style={displayRootStyle} alignItems="center" justifyContent="space-between">
+                            <View style={{ maxWidth: "92%" }}>
+                                {renderedValue || (
+                                    <Text style={[displayTextStyle, { color: placeholderColor }]} numberOfLines={1}>
+                                        {placeholder}
+                                    </Text>
+                                )}
+                            </View>
+                            <Icon style={{ ...displayTextStyle, fontSize: 14 }}>{icon}</Icon>
+                        </Row>
+                    </View>
+                )}
             </TouchableWithoutFeedback>
             <SelectProvider value={{ value, setValue, setOpen, multiple, readonly }}>
                 <SelectMenu open={open} style={menuStyle} header={header} footer={footer}>

@@ -6,7 +6,7 @@ describe("Test for the header of the DAO card", () => {
     test("Renders correctly", () => {
         const screen = render(<DAOCardHeader />);
         expect(screen.getByText("Nervos DAO"));
-        expect(screen.getByTestId("FilledDAOIcon"));
+        expect(screen.getByTestId("FilledWalletIcon"));
         expect(screen.getByTestId("InfoIcon"));
     });
     test("Goes to DAO info page", () => {

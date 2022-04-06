@@ -18,7 +18,8 @@ describe("Test for the DAO Card", () => {
         //Balance
         expect(screen.getByText(translate("available"))).toBeDefined();
         /**Account Balance */
-        await waitFor(() => expect(screen.getByText("12,635")).toBeDefined());
+        //This is 3 because of card + 2 of the modal
+        await waitFor(() => expect(screen.getAllByText("12,635")).toHaveLength(3));
         expect(screen.getByText(translate("locked"))).toBeDefined();
         expect(screen.getByText("594")).toBeDefined();
         expect(screen.getByText("323")).toBeDefined();
@@ -33,7 +34,7 @@ describe("Test for the DAO Card", () => {
 
         //Header
         expect(screen.getByText("Nervos DAO"));
-        expect(screen.getByTestId("FilledDAOIcon"));
+        expect(screen.getByTestId("FilledWalletIcon"));
         expect(screen.getByTestId("InfoIcon"));
     });
 });

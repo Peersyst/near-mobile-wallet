@@ -1,6 +1,7 @@
-import { FilledDAOIcon, InfoIcon } from "icons";
+import { InfoIcon } from "icons";
 import { IconButton, Row, Typography } from "react-native-components";
 import { Linking } from "react-native";
+import SelectDaoWallet from "./SelectDaoWallet/SelectDaoWallet";
 
 export const DAO_INFO_URL = "https://www.nervos.org/";
 
@@ -13,9 +14,7 @@ const DAOCardHeader = (): JSX.Element => {
             <Typography fontWeight="bold" variant="h2">
                 Nervos DAO
             </Typography>
-            <IconButton style={{ fontSize: 26 }}>
-                <FilledDAOIcon />
-            </IconButton>
+            <SelectDaoWallet />
         </Row>
     );
 };

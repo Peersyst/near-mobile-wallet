@@ -42,7 +42,13 @@ export class WalletServiceMock {
     }
 
     async getDAOBalance(): Promise<DAOBalance> {
-        return new Promise((resolve) => setTimeout(() => resolve(MockedDAOBalance), 2000));
+        const locked = await new Promise<bigint>((resolve) =>
+            setTimeout(() => resolve(BigInt(Math.trunc(new Date().getSeconds() * 15))), 2000),
+        );
+        return {
+            daoDeposit: locked,
+            daoCompensation: 2.4,
+        };
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
