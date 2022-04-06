@@ -4,7 +4,7 @@ import DepositSummary from "module/dao/screen/DepositConfirmationScreen/DepositS
 import { render, SuccessApiCall, waitFor } from "test-utils";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
-import { MockedDAOBalance } from "mocks/dao";
+import { MockedDAOBalance } from "mocks/DAO";
 import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 
 describe("Test for the DepositSummary", () => {

@@ -4,7 +4,7 @@ import { render, SuccessApiCall } from "test-utils";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
-import { MockedDAOBalance } from "mocks/dao";
+import { MockedDAOBalance } from "mocks/DAO";
 import { waitFor } from "@testing-library/react-native";
 
 describe("DAO Card balance test", () => {
