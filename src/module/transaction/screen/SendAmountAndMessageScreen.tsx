@@ -50,9 +50,16 @@ const SendAmountAndMessageScreen = (): JSX.Element => {
                         value={amount}
                         onChange={setAmount}
                         name="amount"
-                        validators={`not-null|gte${MINIMUM_TRANSACTION_AMOUNT}:${translate("minimum_transaction_amount_text", {
-                            amount: MINIMUM_TRANSACTION_AMOUNT,
-                        })}|lte${Number(balance?.freeBalance) - Number(fee)}:${translate("insufficient_balance")}`}
+                        validators={{
+                            required: true,
+                            gte: [
+                                Number(MINIMUM_TRANSACTION_AMOUNT),
+                                translate("minimum_transaction_amount_text", {
+                                    amount: MINIMUM_TRANSACTION_AMOUNT,
+                                }),
+                            ],
+                            lte: [Number(balance?.freeBalance) - Number(fee), translate("insufficient_balance")],
+                        }}
                         suffix={
                             <Typography variant="h1" fontWeight="bold">
                                 CKB

@@ -14,6 +14,7 @@ export function createTheme({
     /*skeletonAnimations,*/
     translate,
     toolbarHeight,
+    validators,
     ...rest
 }: CreateTheme): Theme {
     return {
@@ -28,6 +29,7 @@ export function createTheme({
         /*skeletonAnimations: skeletonAnimations || defaultTheme.skeletonAnimations,*/
         translate: translate || defaultTheme.translate,
         toolbarHeight: toolbarHeight || defaultTheme.toolbarHeight,
+        validators: validators || {},
         ...rest,
     };
 }

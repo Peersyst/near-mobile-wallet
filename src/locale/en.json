@@ -7,11 +7,15 @@
     "invalid_email": "Invalid email",
     "invalid_password": "Password must contain 8 characters, a lowercase, an uppsercase and a special character",
     "invalid_equal": "Fields have to be equal",
-    "invalid_number_gt": "The number must be greater than {n}",
-    "invalid_number_gte": "The number must be greater or equal than {n}",
-    "invalid_number_eq": "The number must be equal to {n}",
-    "invalid_number_lt": "The number must be lower than {n}",
-    "invalid_number_lte": "The number must be lower or equal than {n}",
+    "invalid_number_gt": "The number must be greater than %n%",
+    "invalid_number_gte": "The number must be greater or equal than %n%",
+    "invalid_number_eq": "The number must be equal to %n%",
+    "invalid_number_lt": "The number must be lower than %n%",
+    "invalid_number_lte": "The number must be lower or equal than %n%",
+    "insufficient_chars": "Must contain at least %chars% chars",
+    "too_many_chars": "Must contain less than %chars% chars",
+    "invalid_start": "Must start with %start%",
+    "invalid_end": "Must end with %end%",
     "somethingWentWrong": "Something went wrong",
     "sessionExpired": "Your session has expired",
     "confirm_your_pin": "Confirm your PIN",
@@ -118,5 +122,6 @@
     "dao_deposit": "DAO Deposit",
     "dao_withdrawal": "DAO Withdrawal",
     "smart_contract": "Smart Contract",
-    "unlock_dao": "DAO Unlock"
+    "unlock_dao": "DAO Unlock",
+    "invalid_address": "Invalid address"
 }

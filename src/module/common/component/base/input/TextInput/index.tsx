@@ -1,5 +1,5 @@
-export { BaseValidator } from "./utils/Validators/BaseValidator";
-export * from "./utils/Validators.types";
+export { BaseValidator } from "./Validators/BaseValidator";
+export * from "./Validators/Validators.types";
 export { default as TextInput } from "./TextInput";
 export { default as TextField } from "./TextField";
 export { default as TextArea } from "./TextArea";
