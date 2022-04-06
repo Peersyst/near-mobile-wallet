@@ -1,4 +1,4 @@
-import { MockedDaoBalance } from "mocks/DAO";
+import { MockedDAOBalance } from "mocks/DAO";
 import DaoScreen from "module/dao/screen/DaoScreen";
 import { render, SuccessApiCall, waitFor } from "test-utils";
 import * as GetDaoBalance from "module/dao/mock/getDaoBalance";
@@ -11,7 +11,7 @@ describe("Test for the DaoScreen", () => {
     test("Renders correctly", async () => {
         jest.spyOn(CkbServiceMock.prototype, "getTransactions").mockReturnValue(SuccessApiCall([]));
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(GetDaoBalance, "default").mockReturnValue(SuccessApiCall(MockedDaoBalance));
+        jest.spyOn(GetDaoBalance, "default").mockReturnValue(SuccessApiCall(MockedDAOBalance));
         const screen = render(<DaoScreen />);
         //Dao Card
         //Balance

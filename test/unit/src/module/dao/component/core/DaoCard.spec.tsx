@@ -3,11 +3,11 @@ import DaoCard from "module/dao/component/core/DaoAccountCard/DaoCard";
 import { render, SuccessApiCall } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
 import * as GetDaoBalance from "module/dao/mock/getDaoBalance";
-import { MockedDaoBalance } from "mocks/DAO";
+import { MockedDAOBalance } from "mocks/DAO";
 
 describe("Test for the Dao Card", () => {
     test("Renders correctly", async () => {
-        jest.spyOn(GetDaoBalance, "default").mockReturnValue(SuccessApiCall(MockedDaoBalance));
+        jest.spyOn(GetDaoBalance, "default").mockReturnValue(SuccessApiCall(MockedDAOBalance));
         const screen = render(<DaoCard />);
         //Balance
         expect(screen.getByText(translate("available"))).toBeDefined();
