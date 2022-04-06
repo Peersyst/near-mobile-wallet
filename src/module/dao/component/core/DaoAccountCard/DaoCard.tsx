@@ -8,13 +8,13 @@ import DaoCardButtons from "./DaoCardButtons/DaoCardButtons";
 import DaoCardHeader from "./DaoCardHeader/DaoCardHeader";
 
 const DaoCard = (): JSX.Element => {
-    const { data: daoBalance } = useGetDaoBalance();
+    const { data: DAOBalance } = useGetDaoBalance();
     return (
         <ThemeProvider theme={darkTheme}>
             <DaoCardRoot source={image.coloredBackground}>
                 <DaoCardContent>
                     <DaoCardHeader />
-                    <DaoCardBalance {...daoBalance} />
+                    <DaoCardBalance {...DAOBalance} />
                     <DaoCardButtons />
                 </DaoCardContent>
             </DaoCardRoot>

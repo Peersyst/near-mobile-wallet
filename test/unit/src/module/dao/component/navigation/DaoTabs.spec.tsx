@@ -2,7 +2,7 @@ import { render, SuccessApiCall } from "test-utils";
 import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import DaoTabs from "module/dao/navigation/DaoTabs/DaoTabs";
-import { mockedDaoTransactions } from "mocks/daoTransaction";
+import { mockedDaoTransactions } from "mocks/DAOTransaction";
 import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";

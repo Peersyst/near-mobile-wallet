@@ -1,5 +1,5 @@
 import { DaoBalanceType } from "../types";
-import { DaoBalance } from "./daoBalance";
+import { DaoBalance } from "./DAOBalance";
 
 //eslint-disable-next-line
 export default function (): Promise<DaoBalanceType> {

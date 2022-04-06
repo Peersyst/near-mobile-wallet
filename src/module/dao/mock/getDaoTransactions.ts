@@ -1,7 +1,7 @@
 import { Transaction } from "module/transaction/types";
-import { daoTransactions } from "./daoTransactions";
+import { DAOTransactions } from "./DAOTransactions";
 
 //eslint-disable-next-line
 export default function (): Promise<Transaction[]> {
-    return new Promise((resolve) => setTimeout(() => resolve(daoTransactions), 2000));
+    return new Promise((resolve) => setTimeout(() => resolve(DAOTransactions), 2000));
 }

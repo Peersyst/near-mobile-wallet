@@ -21,7 +21,7 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
             <BottomBarItem
                 onPress={() => handleNavigation(MainBottomScreens.DAO)}
                 isActive={activeTab === MainBottomScreens.DAO}
-                label={translate("dao")}
+                label={translate("DAO")}
                 Icon={activeTab === MainBottomScreens.DAO ? <FilledDAOIcon /> : <DAOIcon />}
             />
             <BottomBarLogoItem onPress={() => handleNavigation(MainBottomScreens.HOME)} />

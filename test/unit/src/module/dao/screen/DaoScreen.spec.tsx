@@ -1,4 +1,4 @@
-import { MockedDaoBalance } from "mocks/dao";
+import { MockedDaoBalance } from "mocks/DAO";
 import DaoScreen from "module/dao/screen/DaoScreen";
 import { render, SuccessApiCall, waitFor } from "test-utils";
 import * as GetDaoBalance from "module/dao/mock/getDaoBalance";

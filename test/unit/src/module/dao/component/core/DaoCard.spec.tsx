@@ -3,7 +3,7 @@ import DaoCard from "module/dao/component/core/DaoAccountCard/DaoCard";
 import { render, SuccessApiCall } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
 import * as GetDaoBalance from "module/dao/mock/getDaoBalance";
-import { MockedDaoBalance } from "mocks/dao";
+import { MockedDaoBalance } from "mocks/DAO";
 
 describe("Test for the Dao Card", () => {
     test("Renders correctly", async () => {

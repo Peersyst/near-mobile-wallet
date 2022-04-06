@@ -39,7 +39,7 @@
     "advise3_title": "NEVER share your mnemonic",
     "advise3_text": "When you change your phone you will have to re-import your mnemonics to access your accounts. No one from CKBull or Nervos will ever ask you for your private keys or mnemonics. If someone asks you or tells you to enter these keys somewhere else, you are being scammed.",
     "news": "News",
-    "dao": "DAO",
+    "DAO": "DAO",
     "add_a_wallet": "Add a wallet",
     "my_account": "My Account",
     "keep_this_safe": "Keep This Safe",
@@ -115,10 +115,10 @@
     "received": "Received",
     "sent_nft": "Sent NFT",
     "received_nft": "Received NFT",
-    "dao_deposit": "DAO Deposit",
-    "dao_withdrawal": "DAO Withdrawal",
+    "DAO_deposit": "DAO Deposit",
+    "DAO_withdrawal": "DAO Withdrawal",
     "smart_contract": "Smart Contract",
-    "unlock_dao": "Withdrawal in progress",
+    "unlock_DAO": "Withdrawal in progress",
     "no_deposits": "You do not have any deposits in progress",
     "no_withdrawals": "You don't have any withdrawals yet"
 }
