@@ -1,18 +1,18 @@
 import { translate } from "locale";
 import { MainTabItemType } from "../../../main/component/navigation/MainTabs/MainTabs.types";
 import MainTabs from "../../../main/component/navigation/MainTabs/MainTabs";
-import DaoTransactionsList from "module/dao/component/core/DaoTransactionsList/DaoTransactionList";
-import DaoWithdrawalTransactionsList from "module/dao/component/core/DaoWithdrawalsList/DaoWithdrawalsList";
+import DaoCompletedWithdrawalsList from "module/dao/component/core/DaoCompletedWithdrawalsList/DaoCompletedWithdrawalsList";
+import DaoDepositsList from "module/dao/component/core/DaoDepositsList/DaoDepositsList";
 
 const DaoTabs = (): JSX.Element => {
     const DaoTabs: MainTabItemType[] = [
         {
             title: translate("deposits"),
-            item: <DaoTransactionsList />,
+            item: <DaoDepositsList />,
         },
         {
             title: translate("completed"),
-            item: <DaoWithdrawalTransactionsList />,
+            item: <DaoCompletedWithdrawalsList />,
         },
     ];
     return <MainTabs tabs={DaoTabs} />;
