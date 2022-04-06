@@ -5,7 +5,7 @@ import TransactionCard from "module/transaction/component/display/TransactionCar
 import useGetTransactions from "module/transaction/query/useGetTransactions";
 import { isUnlockDAO } from "../../utils/isUnlockDAO";
 
-const DaoCompletedWithdrawalsList = (): JSX.Element => {
+const DAOCompletedWithdrawalsList = (): JSX.Element => {
     const { data = [], refetch, isLoading } = useGetTransactions();
     const filteredDAOWithdrawalTxs = data.filter((tx) => isUnlockDAO(tx.type));
     return (
@@ -20,4 +20,4 @@ const DaoCompletedWithdrawalsList = (): JSX.Element => {
     );
 };
 
-export default DaoCompletedWithdrawalsList;
+export default DAOCompletedWithdrawalsList;

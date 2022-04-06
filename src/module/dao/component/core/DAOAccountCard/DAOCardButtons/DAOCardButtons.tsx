@@ -7,7 +7,7 @@ import DepositModal from "../../DepositModal/DepositModal";
 
 const CARD_BUTTON_ICON_SIZE = 24;
 
-const DaoCardButtons = (): JSX.Element => {
+const DAOCardButtons = (): JSX.Element => {
     const { showModal } = useModal();
     return (
         <CardButtons
@@ -23,4 +23,4 @@ const DaoCardButtons = (): JSX.Element => {
     );
 };
 
-export default DaoCardButtons;
+export default DAOCardButtons;

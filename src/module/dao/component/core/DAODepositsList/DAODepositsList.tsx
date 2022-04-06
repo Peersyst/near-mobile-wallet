@@ -5,7 +5,7 @@ import TransactionCard from "module/transaction/component/display/TransactionCar
 import useGetTransactions from "module/transaction/query/useGetTransactions";
 import { isDAODeposit } from "../../utils/isDAODeposit";
 
-const DaoDepositsList = (): JSX.Element => {
+const DAODepositsList = (): JSX.Element => {
     const { data = [], refetch, isLoading } = useGetTransactions();
     //Get the tx that corresponds to the deposits
     //Then order them by the latest date 
@@ -22,4 +22,4 @@ const DaoDepositsList = (): JSX.Element => {
     );
 };
 
-export default DaoDepositsList;
+export default DAODepositsList;

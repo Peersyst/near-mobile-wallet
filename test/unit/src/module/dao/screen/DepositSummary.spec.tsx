@@ -4,13 +4,13 @@ import DepositSummary from "module/dao/screen/DepositConfirmationScreen/DepositS
 import { render, SuccessApiCall, waitFor } from "test-utils";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
-import { MockedDaoBalance } from "mocks/dao";
+import { MockedDAOBalance } from "mocks/dao";
 import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 
 describe("Test for the DepositSummary", () => {
     test("Renders correctly", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CkbServiceMock.prototype, "getDaoBalance").mockReturnValue(SuccessApiCall(MockedDaoBalance));
+        jest.spyOn(CkbServiceMock.prototype, "getDAOBalance").mockReturnValue(SuccessApiCall(MockedDAOBalance));
         jest.spyOn(CkbServiceMock.prototype, "getAddress").mockReturnValue("0xMockedAddress");
         const screen = render(<DepositSummary senderAddress={"0xMockedAddress"} amount={"1000"} fee={"10"} senderName={"Peersyst"} />);
         expect(screen.getByText("1,000")).toBeDefined();

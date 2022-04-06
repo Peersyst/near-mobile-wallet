@@ -4,7 +4,7 @@ import { Linking } from "react-native";
 
 export const DAO_INFO_URL = "https://www.nervos.org/";
 
-const DaoCardHeader = (): JSX.Element => {
+const DAOCardHeader = (): JSX.Element => {
     return (
         <Row justifyContent="space-between">
             <IconButton style={{ fontSize: 22 }} onPress={() => Linking.openURL(DAO_INFO_URL)}>
@@ -19,4 +19,4 @@ const DaoCardHeader = (): JSX.Element => {
         </Row>
     );
 };
-export default DaoCardHeader;
+export default DAOCardHeader;

@@ -1,6 +1,6 @@
 import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
-import useGetDaoBalance from "module/dao/query/useGetDaoBalance";
+import useGetDAOBalance from "module/dao/query/useGetDAOBalance";
 import { Col } from "react-native-components";
 import BaseSendSummary, { BaseSendSummaryProps } from "../../../transaction/component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../../transaction/component/display/SummaryField/SummaryField";
@@ -12,7 +12,7 @@ export interface DepositSummaryProps extends BaseSendSummaryProps {
 }
 
 const DepositSummary = ({ amount, fee, senderName, senderAddress }: DepositSummaryProps): JSX.Element => {
-    const { data: daoBalance } = useGetDaoBalance();
+    const { data: daoBalance } = useGetDAOBalance();
     const currentAPC = daoBalance?.daoCompensation;
     return (
         <BaseSendSummary amount={amount} fee={fee}>

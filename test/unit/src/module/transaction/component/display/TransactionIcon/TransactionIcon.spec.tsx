@@ -36,8 +36,8 @@ describe("TransactionIcon tests", () => {
         expect(screen.getByTestId("SmartContractIcon")).toBeDefined();
     });
 
-    test("Renders UnlockDaoIcon", () => {
+    test("Renders UnlockDAOIcon", () => {
         const screen = render(<TransactionIcon type={TransactionType.UNLOCK_DAO} />);
-        expect(screen.getByTestId("UnlockDaoIcon")).toBeDefined();
+        expect(screen.getByTestId("UnlockDAOIcon")).toBeDefined();
     });
 });

@@ -1,16 +1,16 @@
 import { translate } from "locale";
-import DaoCardBalance from "module/dao/component/core/DaoAccountCard/DaoCardBalance/DaoCardBalance";
+import DAOCardBalance from "module/dao/component/core/DAOAccountCard/DAOCardBalance/DAOCardBalance";
 import { render, SuccessApiCall } from "test-utils";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
-import { MockedDaoBalance } from "mocks/dao";
+import { MockedDAOBalance } from "mocks/dao";
 import { waitFor } from "@testing-library/react-native";
 
-describe("Dao Card balance test", () => {
+describe("DAO Card balance test", () => {
     test("Renders correctly", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CkbServiceMock.prototype, "getDaoBalance").mockReturnValue(SuccessApiCall(MockedDaoBalance));
+        jest.spyOn(CkbServiceMock.prototype, "getDAOBalance").mockReturnValue(SuccessApiCall(MockedDAOBalance));
         jest.spyOn(CkbServiceMock.prototype, "getCKBBalance").mockReturnValue(
             SuccessApiCall({
                 totalBalance: BigInt(20000),
@@ -19,7 +19,7 @@ describe("Dao Card balance test", () => {
             }),
         );
 
-        const screen = render(<DaoCardBalance />);
+        const screen = render(<DAOCardBalance />);
         expect(screen.getByText(translate("available"))).toBeDefined();
         expect(screen.getByText(translate("locked"))).toBeDefined();
         expect(screen.getByText(translate("current_apc"))).toBeDefined();

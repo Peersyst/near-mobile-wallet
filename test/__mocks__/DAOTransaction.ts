@@ -1,6 +1,6 @@
 import { Transaction, TransactionStatus, TransactionType } from "module/transaction/types";
 
-export const mockedDaoTransaction: Transaction = {
+export const mockedDAOTransaction: Transaction = {
     status: TransactionStatus.COMMITTED,
     type: TransactionType.DEPOSIT_DAO,
     amount: 100,
@@ -12,7 +12,7 @@ export const mockedDaoTransaction: Transaction = {
     timestamp: new Date(2022, 0, 29),
 };
 
-export const mockedDaoTransactions: Transaction[] = [...Array(3)].map((_, i) => ({
+export const mockedDAOTransactions: Transaction[] = [...Array(3)].map((_, i) => ({
     status: TransactionStatus.COMMITTED,
     type: TransactionType.WITHDRAW_DAO,
     amount: 145.2 * i + 2,

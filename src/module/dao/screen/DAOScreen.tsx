@@ -1,17 +1,17 @@
 import BaseWithBackgroundMainScreen from "module/main/component/layout/BaseWithBackgroundMainScreen/BaseWithBackgroundMainScreen";
 import { Col } from "react-native-components";
-import DaoCard from "../component/core/DaoAccountCard/DaoCard";
-import DaoTabs from "../navigation/DaoTabs/DaoTabs";
+import DAOCard from "../component/core/DAOAccountCard/DAOCard";
+import DAOTabs from "../navigation/DAOTabs/DAOTabs";
 
-const DaoScreen = (): JSX.Element => {
+const DAOScreen = (): JSX.Element => {
     return (
         <BaseWithBackgroundMainScreen>
             <Col style={{ padding: 20, paddingBottom: 40 }}>
-                <DaoCard />
+                <DAOCard />
             </Col>
-            <DaoTabs />
+            <DAOTabs />
         </BaseWithBackgroundMainScreen>
     );
 };
 
-export default DaoScreen;
+export default DAOScreen;

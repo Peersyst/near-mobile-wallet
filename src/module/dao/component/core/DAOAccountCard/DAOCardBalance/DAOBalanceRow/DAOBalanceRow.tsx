@@ -1,21 +1,21 @@
 import { ReactElement } from "react";
 import { Typography } from "react-native-components";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
-import { DaoBalanceRowRoot } from "module/dao/component/core/DaoAccountCard/DaoCardBalance/DaoBalanceRow/DaoBalanceRow.styles";
+import { DAOBalanceRowRoot } from "module/dao/component/core/DAOAccountCard/DAOCardBalance/DAOBalanceRow/DAOBalanceRow.styles";
 
-export interface DaoBalanceRowProps {
+export interface DAOBalanceRowProps {
     label: string;
     isLoading?: boolean;
     children: ReactElement;
 }
 
-const DaoBalanceRow = ({ label, isLoading = false, children: child }: DaoBalanceRowProps): JSX.Element => (
-    <DaoBalanceRowRoot>
+const DAOBalanceRow = ({ label, isLoading = false, children: child }: DAOBalanceRowProps): JSX.Element => (
+    <DAOBalanceRowRoot>
         <Typography variant="body2">{label}</Typography>
         <ControlledSuspense isLoading={isLoading} activityIndicatorColor="white" activityIndicatorSize="small">
             {child}
         </ControlledSuspense>
-    </DaoBalanceRowRoot>
+    </DAOBalanceRowRoot>
 );
 
-export default DaoBalanceRow;
+export default DAOBalanceRow;
