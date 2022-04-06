@@ -8,11 +8,11 @@ import { NumericInput, Typography } from "react-native-components";
 interface CKBAmountInputProps {
     amount: string;
     setAmount: Dispatch<SetStateAction<string>>;
-    balance: CKBBalance["freeBalance"];
+    freeBalance: CKBBalance["freeBalance"];
     fee: string;
 }
 
-const CKBAmountInput = ({ amount, setAmount, balance, fee }: CKBAmountInputProps): JSX.Element => {
+const CKBAmountInput = ({ amount, setAmount, freeBalance, fee }: CKBAmountInputProps): JSX.Element => {
     return (
         <TextField
             variant="underlined"
@@ -21,9 +21,16 @@ const CKBAmountInput = ({ amount, setAmount, balance, fee }: CKBAmountInputProps
             value={amount}
             onChange={setAmount}
             name="amount"
-            validators={`not-null|gte${MINIMUM_TRANSACTION_AMOUNT}:${translate("minimum_transaction_amount_text", {
-                amount: MINIMUM_TRANSACTION_AMOUNT,
-            })}|lte${Number(balance) - Number(fee)}:${translate("insufficient_balance")}`}
+            validators={{
+                required: true,
+                gte: [
+                    Number(MINIMUM_TRANSACTION_AMOUNT),
+                    translate("minimum_transaction_amount_text", {
+                        amount: MINIMUM_TRANSACTION_AMOUNT,
+                    }),
+                ],
+                lte: [Number(freeBalance) - Number(fee), translate("insufficient_balance")],
+            }}
             suffix={
                 <Typography variant="h2" fontWeight="bold">
                     CKB

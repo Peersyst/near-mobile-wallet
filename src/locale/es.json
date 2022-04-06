@@ -12,6 +12,10 @@
     "invalid_number_eq": "El valor debe ser igual a {n}",
     "invalid_number_lt": "El valor debe ser menor que {n}",
     "invalid_number_lte": "El valor debe ser menor o igual a {n}",
+    "insufficient_chars": "El valor debe contener como mínimo %chars% caracteres",
+    "too_many_chars": "El valor no puede contener más de %chars% caracteres",
+    "invalid_start": "El valor debe comenzar por %start%",
+    "invalid_end": "El valor debe acabar en %end%",
     "somethingWentWrong": "Ha ocurrido un error",
     "sessionExpired": "Tu sesión ha expirado",
     "confirm_your_pin": "Confirma tu PIN",
@@ -124,5 +128,6 @@
     "dao_deposit": "Depósito DAO",
     "dao_withdrawal": "Retiro DAO",
     "smart_contract": "Smart Contract",
-    "unlock_dao": "Desbloqueo DAO"
+    "unlock_dao": "Desbloqueo DAO",
+    "invalid_address": "Invalid address"
 }

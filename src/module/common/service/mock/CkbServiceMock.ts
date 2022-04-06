@@ -38,7 +38,7 @@ export class CkbServiceMock {
     }
 
     getAddress(): string {
-        return "0xMockedAddress12345678";
+        return "ckb1qyqt5m9v5rr73ylyztt8yexzav4plsfugm7s9xj2fc";
     }
 
     // ---------------------------

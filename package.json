@@ -4,9 +4,13 @@
     "main": "node_modules/expo/AppEntry.js",
     "scripts": {
         "start": "yarn generate-icons && yarn generate-images && expo start",
+        "start:fresh": "yarn start -c",
         "android": "yarn start --android",
+        "android:fresh": "yarn start:fresh --android",
         "ios": "yarn start --ios",
+        "ios:fresh": "yarn start:fresh --ios",
         "web": "yarn start --web",
+        "web:fresh": "yarn start:fresh --web",
         "generate-icons": "node ./src/script/iconGeneratorNative.js ./src/asset/icon/ ./src/module/common/icons/ && prettier --write ./src/module/common/icons/",
         "generate-images": "node ./src/script/imagesGenerator.js ./src/asset/image/ && prettier --write ./src/asset/image/",
         "generate-react-native-components-icons": "node ./src/script/iconGeneratorNative.js ./src/module/common/component/base/assets/svgs/ ./src/module/common/component/base/assets/icons/ && prettier --write ./src/module/common/component/base/assets/icons/",

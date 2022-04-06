@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { ShadowPropTypesIOSStatic, TextStyle } from "react-native";
-import { TranslateFn } from "../input/TextInput/utils";
+import { TranslateFn, ValidatorFactory } from "../input/TextInput/Validators";
 import { JSXElementConstructor } from "react";
 import { ToastAnimation, ToastPosition } from "../feedback/Toast";
 
@@ -75,7 +75,10 @@ export interface DefaultThemeZIndex {
     selectMenu: number;
     toast: number;
 }
+
 export interface ThemeZIndex extends DefaultThemeZIndex {}
+
+export interface ExtraValidators {}
 
 export interface DefaultTheme {
     icons: ThemeIcons;
@@ -90,5 +93,6 @@ export interface DefaultTheme {
     toastPosition: ToastPosition;
     zIndex: ThemeZIndex;
     translate: TranslateFn;
+    validators: Record<keyof ExtraValidators, ValidatorFactory<unknown>>;
 }
 export interface Theme extends DefaultTheme {}

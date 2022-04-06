@@ -8,7 +8,6 @@ import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import Divider from "module/common/component/display/Divider/Divider";
 import { translate } from "locale";
 import ImportWalletModal from "../ImportWalletModal/ImportWalletModal";
-import { ScrollView } from "react-native";
 
 const AddWallet = (): JSX.Element => {
     const { palette } = useTheme();
@@ -30,24 +29,22 @@ const AddWallet = (): JSX.Element => {
     };
 
     return (
-        <ScrollView>
-            <Col flex={1} gap="14%" style={{ paddingHorizontal: "5%" }}>
-                <ColorPicker value={colorIndex !== undefined ? palette.wallet[colorIndex] : undefined} onColorPicked={handleColorPick} />
-                <Col gap="4%">
-                    <Button fullWidth variant="outlined" disabled={colorIndex === undefined} onPress={() => showModal(CreateWalletModal)}>
-                        {translate("create_a_wallet")}
-                    </Button>
-                    <Divider width="full-width">
-                        <Typography variant="body1" light textTransform="uppercase">
-                            {translate("or")}
-                        </Typography>
-                    </Divider>
-                    <Button fullWidth variant="outlined" disabled={colorIndex === undefined} onPress={() => showModal(ImportWalletModal)}>
-                        {translate("import_a_wallet")}
-                    </Button>
-                </Col>
+        <Col flex={1} gap="14%" style={{ paddingHorizontal: "5%" }}>
+            <ColorPicker value={colorIndex !== undefined ? palette.wallet[colorIndex] : undefined} onColorPicked={handleColorPick} />
+            <Col gap="4%">
+                <Button fullWidth variant="outlined" disabled={colorIndex === undefined} onPress={() => showModal(CreateWalletModal)}>
+                    {translate("create_a_wallet")}
+                </Button>
+                <Divider width="full-width">
+                    <Typography variant="body1" light textTransform="uppercase">
+                        {translate("or")}
+                    </Typography>
+                </Divider>
+                <Button fullWidth variant="outlined" disabled={colorIndex === undefined} onPress={() => showModal(ImportWalletModal)}>
+                    {translate("import_a_wallet")}
+                </Button>
             </Col>
-        </ScrollView>
+        </Col>
     );
 };
 

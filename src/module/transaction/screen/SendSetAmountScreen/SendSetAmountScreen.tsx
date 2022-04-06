@@ -51,7 +51,7 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
             <Form onSubmit={handleSubmit}>
                 <Col gap="15%">
                     <CKBAmountInputContainer>
-                        <CKBAmountInput fee={fee!} amount={amount} setAmount={setAmount} balance={balance?.freeBalance || BigInt(0)} />
+                        <CKBAmountInput fee={fee!} amount={amount} setAmount={setAmount} freeBalance={balance?.freeBalance || BigInt(0)} />
                     </CKBAmountInputContainer>
                     {type === "dao" ? (
                         <Card>
