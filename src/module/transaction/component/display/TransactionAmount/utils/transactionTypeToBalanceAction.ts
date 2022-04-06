@@ -1,4 +1,4 @@
-import { Transaction, TransactionType } from "module/transaction/types";
+import { Transaction, TransactionType } from "@peersyst/ckb-peersyst-sdk";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
 
 export default function (type: Transaction["type"]): BalanceProps["action"] {

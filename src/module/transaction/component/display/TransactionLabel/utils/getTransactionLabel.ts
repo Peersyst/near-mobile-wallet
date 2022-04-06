@@ -1,4 +1,4 @@
-import { Transaction, TransactionType } from "module/transaction/types";
+import { Transaction, TransactionType } from "@peersyst/ckb-peersyst-sdk";
 import { translate } from "locale";
 
 export default function (type: Transaction["type"]): string {

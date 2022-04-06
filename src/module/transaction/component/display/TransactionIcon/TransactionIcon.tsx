@@ -1,4 +1,4 @@
-import { Transaction, TransactionType } from "module/transaction/types";
+import { Transaction, TransactionType } from "@peersyst/ckb-peersyst-sdk";
 import { DAODepositIcon, DAOWithdrawIcon, ReceiveIcon, SendIcon, SmartContractIcon, UnlockDaoIcon } from "icons";
 
 export interface TransactionIconProps {

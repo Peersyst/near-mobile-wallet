@@ -1,4 +1,4 @@
-import { CKBBalance, ConnectionService, Environments, Transaction, WalletService, Nft } from "@peersyst/ckb-peersyst-sdk";
+import { CKBBalance, ConnectionService, Environments, Transaction, WalletService, Nft, WalletState } from "@peersyst/ckb-peersyst-sdk";
 
 export class CKBSDKService {
     private readonly ckbUrl = "http://78.46.174.87:8114/rpc"; // Podem posar-ho com a env var?
@@ -10,8 +10,8 @@ export class CKBSDKService {
         this.connectionService = new ConnectionService(this.ckbUrl, this.indexerUrl, Environments.Testnet);
     }
 
-    initialize(mnemonic: string): void {
-        this.wallet = new WalletService(this.connectionService, mnemonic);
+    initialize(mnemonic: string, walletState?: WalletState): void {
+        this.wallet = new WalletService(this.connectionService, mnemonic, walletState);
     }
 
     isInitialized(): void {

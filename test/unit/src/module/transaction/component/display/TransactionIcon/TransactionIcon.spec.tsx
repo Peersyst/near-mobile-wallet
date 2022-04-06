@@ -1,6 +1,6 @@
 import { render } from "test-utils";
 import TransactionIcon from "module/transaction/component/display/TransactionIcon/TransactionIcon";
-import { TransactionType } from "module/transaction/types";
+import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
 
 describe("TransactionIcon tests", () => {
     test("Renders SendIcon", () => {

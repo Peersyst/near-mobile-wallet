@@ -1,4 +1,4 @@
-import { Transaction, TransactionStatus, TransactionType } from "module/transaction/types";
+import { Transaction, TransactionStatus, TransactionType } from "@peersyst/ckb-peersyst-sdk";
 
 export const transaction: Transaction = {
     status: TransactionStatus.COMMITTED,
