@@ -1,5 +1,5 @@
 import { BaseValidator } from "./BaseValidator";
-import { TranslateFn } from "../Validators.types";
+import { TranslateFn } from "./Validators.types";
 
 export class EqualValidator extends BaseValidator {
     constructor(message: string | undefined, translate: TranslateFn, private readonly compare: string) {
