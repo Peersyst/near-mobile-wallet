@@ -118,5 +118,6 @@
     "dao_deposit": "Depósito DAO",
     "dao_withdrawal": "Retiro DAO",
     "smart_contract": "Smart Contract",
-    "unlock_dao": "Desbloqueo DAO"
+    "unlock_dao": "Retiro en curso",
+    "no_deposits": "Actualmente no tienes ningún depósito en curso"
 }

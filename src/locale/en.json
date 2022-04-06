@@ -118,5 +118,6 @@
     "dao_deposit": "DAO Deposit",
     "dao_withdrawal": "DAO Withdrawal",
     "smart_contract": "Smart Contract",
-    "unlock_dao": "DAO Unlock"
+    "unlock_dao": "Withdrawal in progress",
+    "no_deposits": "You do not have any deposit in progress"
 }

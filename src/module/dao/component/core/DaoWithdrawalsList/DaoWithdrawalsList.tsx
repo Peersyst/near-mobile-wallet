@@ -1,20 +1,19 @@
-import useGetTransactions from "module/transaction/query/useGetTransactions";
 import { translate } from "locale";
 import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
-import { isDAOTransaction } from "../../utils/isDAOTransaction";
+import useGetTransactions from "module/transaction/query/useGetTransactions";
+import { isDAOTransaction } from "module/transaction/component/utils/isDAOTransaction";
+import { isDAOWithdraw } from "../../utils/isDAOWithdraw";
 
-const TransactionsList = (): JSX.Element => {
+const DaoWithdrawalTransactionsList = (): JSX.Element => {
     const { data = [], refetch, isLoading } = useGetTransactions();
-    //Get the tx that corresponds to ckbs, nfts, and tokens -> not DAO txs
-    //Then order them by the latest date 
-    const txs = data.filter((tx) => !isDAOTransaction(tx.type)).reverse();
+    const filteredDAOTx = data.filter((tx) => isDAOTransaction(tx.type));
     return (
         <MainList
             onRefresh={refetch}
             loading={isLoading}
-            data={txs}
+            data={filteredDAOTx.filter((tx)=> isDAOWithdraw(tx.type))}
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent message={translate("no_transactions")} />}
             renderItem={({ item: tx }) => <TransactionCard transaction={tx} />}
             keyExtractor={(_, index) => index.toString()}
@@ -22,4 +21,4 @@ const TransactionsList = (): JSX.Element => {
     );
 };
 
-export default TransactionsList;
+export default DaoWithdrawalTransactionsList;

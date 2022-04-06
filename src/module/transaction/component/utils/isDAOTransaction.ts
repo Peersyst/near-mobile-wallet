@@ -1,6 +1,6 @@
 import { TransactionType } from "module/transaction/types";
 
-export function isDaoTx(type: TransactionType): boolean {
+export function isDAOTransaction(type: TransactionType): boolean {
     switch (type) {
         case TransactionType.DEPOSIT_DAO:
         case TransactionType.WITHDRAW_DAO:

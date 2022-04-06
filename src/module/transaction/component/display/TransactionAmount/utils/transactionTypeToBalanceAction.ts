@@ -7,7 +7,6 @@ export default function (type: Transaction["type"]): BalanceProps["action"] {
         case TransactionType.SEND_NFT:
         case TransactionType.SEND_TOKEN:
         case TransactionType.DEPOSIT_DAO:
-        case TransactionType.UNLOCK_DAO:
             return "subtract";
         case TransactionType.RECEIVE_CKB:
         case TransactionType.RECEIVE_NFT:
@@ -15,5 +14,7 @@ export default function (type: Transaction["type"]): BalanceProps["action"] {
         case TransactionType.WITHDRAW_DAO:
         case TransactionType.SMART_CONTRACT:
             return "add";
+        case TransactionType.UNLOCK_DAO:
+            return "subtract";
     }
 }
