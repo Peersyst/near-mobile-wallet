@@ -1,4 +1,4 @@
-export interface DaoBalanceType {
+export interface DAOBalanceType {
     availableBalance: string;
     lockedBalance: string;
     currentAPC: string;

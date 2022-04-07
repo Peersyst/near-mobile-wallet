@@ -1,7 +1,7 @@
 import BottomBar from "module/common/component/navigation/BottomBar/BottomBar";
 import { BottomTab } from "stack-navigator";
 import HomeScreen from "module/home/screen/HomeScreen";
-import DaoScreen from "module/dao/screen/DaoScreen";
+import DAOScreen from "module/dao/screen/DAOScreen";
 import NewsScreen from "module/news/screen/NewsScreen";
 import SettingsScreen from "module/settings/screen/SettingsScreen";
 import BasePage from "module/common/component/layout/BasePage/BasePage";
@@ -10,7 +10,7 @@ import SecuritySettingsScreen from "module/settings/screen/SecuritySettingsScree
 
 export enum MainBottomScreens {
     HOME = "Home",
-    DAO = "Dao",
+    DAO = "DAO",
     NEWS = "News",
     SETTINGS = "Settings",
     GENERAL_SETTINGS = "GeneralSettings",
@@ -27,7 +27,7 @@ const MainBottomNavigatorGroup = () => (
             backBehavior="history"
         >
             <BottomTab.Screen name={MainBottomScreens.HOME} component={HomeScreen} />
-            <BottomTab.Screen name={MainBottomScreens.DAO} component={DaoScreen} />
+            <BottomTab.Screen name={MainBottomScreens.DAO} component={DAOScreen} />
             <BottomTab.Screen name={MainBottomScreens.NEWS} component={NewsScreen} />
             <BottomTab.Screen name={MainBottomScreens.SETTINGS} component={SettingsScreen} />
             <BottomTab.Screen name={MainBottomScreens.GENERAL_SETTINGS} component={GeneralSettingsScreen} />

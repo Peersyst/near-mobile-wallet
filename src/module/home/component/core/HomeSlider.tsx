@@ -3,16 +3,17 @@ import WalletCard from "module/wallet/component/core/WalletCard/WalletCard";
 import AddWalletCard from "module/wallet/component/display/AddWalletCard/AddWalletCard";
 import useWalletState from "module/wallet/hook/useWalletState";
 
-const MainSlider = (): JSX.Element => {
+const HomeSlider = (): JSX.Element => {
     const {
-        state: { wallets },
+        state: { wallets, selectedWallet },
         setSelectedWallet,
     } = useWalletState();
 
     return (
         <PagerView
-            showPageIndicator
+            page={selectedWallet}
             onPageSelected={(page) => setSelectedWallet(page)}
+            showPageIndicator
             height="33%"
             gap={0}
             pagePadding={{ horizontal: 20 }}
@@ -26,4 +27,4 @@ const MainSlider = (): JSX.Element => {
     );
 };
 
-export default MainSlider;
+export default HomeSlider;

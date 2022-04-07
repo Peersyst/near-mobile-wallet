@@ -2,7 +2,7 @@ const mockedState = {
     history: [],
     index: 2,
     key: "",
-    routeNames: ["Home", "Dao", "News"],
+    routeNames: ["Home", "DAO", "News"],
     routes: [],
     stale: false,
     type: "tab",

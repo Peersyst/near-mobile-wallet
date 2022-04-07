@@ -51,9 +51,9 @@ export enum TransactionType {
     RECEIVE_TOKEN = "receive_token",
     SEND_NFT = "send_nft",
     RECEIVE_NFT = "receive_nft",
-    DEPOSIT_DAO = "deposit_dao",
-    WITHDRAW_DAO = "withdraw_dao",
-    UNLOCK_DAO = "unlock_dao",
+    DEPOSIT_DAO = "deposit_DAO",
+    WITHDRAW_DAO = "withdraw_DAO",
+    UNLOCK_DAO = "unlock_DAO",
     SMART_CONTRACT = "smart_contract",
 }
 
@@ -64,4 +64,23 @@ export interface Nft {
     nftName: string;
     nftSymbol: string;
     nftExtraData: string;
+}
+
+export interface DepositInDAOParams {
+    amount: bigint;
+    mnemonic: string[];
+    feeRate?: string;
+}
+
+export interface SendTransactionParams {
+    amount: bigint;
+    mnemonic: string[];
+    message: string;
+    to: string;
+    feeRate?: string;
+}
+
+export interface DAOBalance {
+    daoDeposit: bigint | number;
+    daoCompensation: bigint | number;
 }

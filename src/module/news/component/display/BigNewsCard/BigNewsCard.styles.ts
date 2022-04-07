@@ -1,6 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { Image } from "react-native";
-import { Typography } from "react-native-components";
+import { Typography, Image } from "react-native-components";
 
 export const BigNewsImage = styled(Image)(({ theme, dimensions }) => ({
     width: "100%",

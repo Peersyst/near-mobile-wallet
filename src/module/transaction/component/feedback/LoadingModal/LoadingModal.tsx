@@ -30,7 +30,9 @@ const LoadingModal = ({ loading, successMessage, error, success, ...backdropProp
                 {success ? (
                     <>
                         <SuccessIcon />
-                        <SuccessMessage variant="body1">{successMessage}</SuccessMessage>
+                        <SuccessMessage textAlign="center" variant="body1">
+                            {successMessage}
+                        </SuccessMessage>
                         <GoBack onBack={() => setOpen(false)} />
                     </>
                 ) : (

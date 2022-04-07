@@ -1,6 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { Image } from "react-native";
-import { Row } from "react-native-components";
+import { Row, Image } from "react-native-components";
 import { Dimensions } from "react-native";
 
 const NFT_CARD_WIDTH = Dimensions.get("window").width / 3;
