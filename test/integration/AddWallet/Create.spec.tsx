@@ -45,7 +45,6 @@ describe("AddWallet - Create", () => {
         await waitFor(() => expect(screen.getByText(translate("advise1_title"))).toBeDefined());
         await act(() => wait(5400));
         fireEvent.press(screen.getByText(translate("next")));
-        console.log(screen);
         expect(screen.getByText(translate("advise2_title"))).toBeDefined();
         await act(() => wait(5400));
         fireEvent.press(screen.getByText(translate("next")));
