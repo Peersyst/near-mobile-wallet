@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled";
-import { Paper, Typography } from "react-native-components";
-import { Image, View } from "react-native";
+import { Paper, Typography, Image } from "react-native-components";
+import { View } from "react-native";
 
 export const SimpleNewsCardRoot = styled(Paper)(({ dimensions }) => ({
     padding: dimensions.width * 0.04,
