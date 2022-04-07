@@ -6,6 +6,7 @@ import WalletSelector from "module/wallet/component/input/WalletSelector/WalletS
 import { WithdrawScreens } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import SelectDeposit from "./SelectDeposit";
 import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
+import { WithdrawSelectorCard } from "./WithdrawSelectAccountScreen.styles";
 
 export interface WithdrawForm {
     sender: number;
@@ -23,14 +24,14 @@ const WithdrawSelectAccountScreen = () => {
         <Form onSubmit={handleSubmit}>
             <Col>
                 <Col gap={20}>
-                    <Paper style={{ padding: 20 }} elevation={8}>
+                    <WithdrawSelectorCard style={{ marginTop: 5 }}>
                         <FormGroup label={translate("select_a_wallet") + ":"}>
-                            <WalletSelector required name="withdraw" />
+                            <WalletSelector required name="sender" />
                         </FormGroup>
-                    </Paper>
-                    <Paper style={{ padding: 20 }} elevation={8}>
+                    </WithdrawSelectorCard>
+                    <WithdrawSelectorCard>
                         <SelectDeposit />
-                    </Paper>
+                    </WithdrawSelectorCard>
                     <Button variant="outlined" fullWidth disabled={isLoading || data.length === 0}>
                         {translate("next")}
                     </Button>

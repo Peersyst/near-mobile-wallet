@@ -4,16 +4,16 @@ import { DAOUnlockableAmount } from "module/common/service/mock/CkbServiceMock.t
 import { useSelected } from "module/common/component/base/input/Select/hooks/useSelected";
 
 export interface DepositItemProps {
-    value: DAOUnlockableAmount["amount"];
+    amount: DAOUnlockableAmount["amount"];
+    value: number;
     selectedIndex: number;
-    index: number;
 }
 
-const DepositItem = ({ value: amount, index, selectedIndex }: DepositItemProps): JSX.Element => {
-    const isSelected = useSelected(index, selectedIndex, false);
+const DepositItem = ({ value, selectedIndex, amount }: DepositItemProps): JSX.Element => {
+    const isSelected = useSelected(value, selectedIndex, false);
     const itemColor = isSelected ? "#FFFFFF" : "#000000";
     return (
-        <SelectItem value={amount}>
+        <SelectItem value={value} key={value}>
             <Row justifyContent="flex-start">
                 <Balance style={{ color: itemColor }} balance={amount} units={"CKB"} variant="body1" boldUnits />
             </Row>

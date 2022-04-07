@@ -11,19 +11,23 @@ interface DepositsSelectorProps extends Omit<SelectProps, "children" | "renderVa
     deposits: DAOUnlockableAmount[];
 }
 
-const DepositsSelector = ({ deposits, value, onChange }: DepositsSelectorProps): JSX.Element => {
-    const renderValue = (): JSX.Element => {
-        return <Balance balance={deposits[0].amount} units={"CKB"} variant="body1" boldUnits />;
-    };
+const DepositsSelector = ({ deposits, value, onChange, ...rest }: DepositsSelectorProps): JSX.Element => {
     const [selectedIndex, setSelectedIndex] = useControlled(0, value as number, onChange);
     const handleItemChange = (i: unknown) => {
         setSelectedIndex(i as number);
     };
+
     return (
         <ControlledSuspense isLoading={deposits.length === 0} fallback={<EmptyDepositsComponent />}>
-            <Select value={selectedIndex} onChange={handleItemChange} renderValue={renderValue} title={translate("select_deposit")}>
+            <Select
+                value={selectedIndex}
+                onChange={handleItemChange}
+                renderValue={() => <Balance balance={deposits[selectedIndex].amount} units={"CKB"} variant="body1" boldUnits />}
+                title={translate("select_deposit")}
+                {...rest}
+            >
                 {deposits.map((deposit, index) => {
-                    return <DepositItem selectedIndex={selectedIndex} index={index} key={index} value={deposit.amount} />;
+                    return <DepositItem amount={deposit.amount} key={index} selectedIndex={selectedIndex} value={index} />;
                 })}
             </Select>
         </ControlledSuspense>

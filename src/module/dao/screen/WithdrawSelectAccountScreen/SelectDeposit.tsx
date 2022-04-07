@@ -7,9 +7,9 @@ import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmou
 const SelectDeposit = (): JSX.Element => {
     const { data = [], isLoading } = useGetDAOUnlockableAmounts();
     return (
-        <FormGroup label={`${translate("select_deposit")} :`}>
+        <FormGroup label={`${translate("select_deposit")} :`} style={{ height: 80 }}>
             <ControlledSuspense isLoading={isLoading} activityIndicatorSize={30}>
-                <DepositsSelector deposits={data} />
+                <DepositsSelector name="amount" deposits={data} required defaultValue={0} />
             </ControlledSuspense>
         </FormGroup>
     );
