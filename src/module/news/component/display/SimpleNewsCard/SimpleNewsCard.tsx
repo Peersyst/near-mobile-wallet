@@ -5,7 +5,7 @@ import { Row, WithSkeleton, withSkeleton } from "react-native-components";
 import { formatNews } from "module/news/utils/formatNews";
 import { NewsDto } from "module/news/types";
 
-const SimpleNewsCard = ({ loading, ...news }: WithSkeleton<NewsDto>): JSX.Element => {
+const SimpleNewsCard = ({ ...news }: WithSkeleton<NewsDto>): JSX.Element => {
     const { uri, title, imageUri, date } = formatNews(news);
     return (
         <TouchableWithoutFeedback onPress={() => Linking.openURL(uri)}>
