@@ -3,7 +3,7 @@ import WalletCard from "module/wallet/component/core/WalletCard/WalletCard";
 import AddWalletCard from "module/wallet/component/display/AddWalletCard/AddWalletCard";
 import useWalletState from "module/wallet/hook/useWalletState";
 
-const MainSlider = (): JSX.Element => {
+const HomeSlider = (): JSX.Element => {
     const {
         state: { wallets },
         setSelectedWallet,
@@ -26,4 +26,4 @@ const MainSlider = (): JSX.Element => {
     );
 };
 
-export default MainSlider;
+export default HomeSlider;

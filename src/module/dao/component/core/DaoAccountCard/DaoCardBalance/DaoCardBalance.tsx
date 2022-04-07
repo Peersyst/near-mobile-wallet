@@ -1,38 +1,24 @@
 import { translate } from "locale";
-import { DaoBalanceType } from "module/dao/types";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { ActivityIndicator } from "react-native";
-import { Col, Row, Typography } from "react-native-components";
+import { Col, Typography } from "react-native-components";
+import useGetDaoBalance from "module/dao/query/useGetDaoBalance";
+import useGetBalance from "module/wallet/query/useGetBalance";
+import DaoBalanceRow from "module/dao/component/core/DaoAccountCard/DaoCardBalance/DaoBalanceRow/DaoBalanceRow";
 
-type DaoCardProps = Partial<DaoBalanceType>;
-
-const DaoCardBalance = ({ availableBalance, lockedBalance, currentAPC }: DaoCardProps): JSX.Element => {
+const DaoCardBalance = (): JSX.Element => {
+    const { data: { daoDeposit = 0, daoCompensation = 0 } = {}, isLoading: daoBalanceLoading } = useGetDaoBalance();
+    const { data: { freeBalance = 0 } = {}, isLoading: balanceLoading } = useGetBalance();
     return (
         <Col gap={"3%"} style={{ paddingHorizontal: "4%" }}>
-            <Row justifyContent="space-between" alignItems="center">
-                <Typography variant="body2">{translate("available")}</Typography>
-                {availableBalance !== undefined ? (
-                    <Balance boldUnits smallBalance balance={availableBalance} decimals={6} units="ckb" variant="h1" />
-                ) : (
-                    <ActivityIndicator testID="actIndicator" color="white" />
-                )}
-            </Row>
-            <Row justifyContent="space-between" alignItems="center">
-                <Typography variant="body2">{translate("locked")}</Typography>
-                {lockedBalance !== undefined ? (
-                    <Balance boldUnits smallBalance balance={lockedBalance} decimals={3} units="ckb" variant="h3" />
-                ) : (
-                    <ActivityIndicator testID="actIndicator" color="white" />
-                )}
-            </Row>
-            <Row justifyContent="space-between" alignItems="center">
-                <Typography variant="body2">{translate("current_apc")}</Typography>
-                {currentAPC !== undefined ? (
-                    <Typography variant="body1" fontWeight="bold">{`${currentAPC}%`}</Typography>
-                ) : (
-                    <ActivityIndicator testID="actIndicator" color="white" />
-                )}
-            </Row>
+            <DaoBalanceRow label={translate("available")} isLoading={balanceLoading}>
+                <Balance boldUnits smallBalance balance={freeBalance} decimals={6} units="ckb" variant="h1" />
+            </DaoBalanceRow>
+            <DaoBalanceRow label={translate("locked")} isLoading={daoBalanceLoading}>
+                <Balance boldUnits smallBalance balance={daoDeposit} decimals={3} units="ckb" variant="h2" />
+            </DaoBalanceRow>
+            <DaoBalanceRow label={translate("current_apc")} isLoading={daoBalanceLoading}>
+                <Typography variant="body1" fontWeight="bold">{`${daoCompensation}%`}</Typography>
+            </DaoBalanceRow>
         </Col>
     );
 };

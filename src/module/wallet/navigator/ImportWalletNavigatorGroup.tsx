@@ -10,6 +10,8 @@ import { useBackHandler } from "@react-native-community/hooks";
 import EnterWalletMnemonicScreen from "module/wallet/screen/EnterWalletMnemonicScreen";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen/WalletAdvisesScreen";
+import { useResetRecoilState } from "recoil";
+import createWalletState from "../state/CreateWalletState";
 
 export enum ImportWalletScreens {
     SET_WALLET_NAME,
@@ -26,6 +28,7 @@ const ImportWalletNavigatorGroup = () => {
     const [showPin, setShowPin] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     useLogoPageFlex(showPin ? 0.1 : showSuccess ? 1 : 0.4);
+    const resetCreateWalletState = useResetRecoilState(createWalletState);
     useBackHandler(() => {
         handleBack();
         return true;
@@ -55,12 +58,16 @@ const ImportWalletNavigatorGroup = () => {
     const handleGlassExit = () => {
         if (showPin) setActiveTab(ImportWalletScreens.SET_WALLET_PIN);
         else if (showSuccess) setActiveTab(ImportWalletScreens.IMPORT_WALLET_SUCCESS);
-        else setTab(AuthScreens.AUTH_SWITCH);
+        else {
+            resetCreateWalletState();
+            setTab(AuthScreens.AUTH_SWITCH);
+        }
     };
 
     return (
         <Tabs index={activeTab} onIndexChange={handleTabChange}>
             <GlassNavigatorModal
+                onClose={() => setShowGlass(false)}
                 open={showGlass}
                 onExited={handleGlassExit}
                 navbar={{ back: true, title: translate("import_wallet"), onBack: handleBack }}
