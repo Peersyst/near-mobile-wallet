@@ -75,10 +75,10 @@ export class CKBSDKService {
     }
 
     async sendTransaction(params: SendTransactionParams): Promise<string> {
-        return this.wallet.sendTransaction(params.amount, params.mnemonic.join(" "), params.to);
+        return this.wallet.sendTransaction(params.amount, params.mnemonic.join(" "), params.to, params.feeRate);
     }
 
     async depositInDAO(params: DepositInDAOParams): Promise<string> {
-        return this.wallet.depositInDAO(params.amount, params.mnemonic.join(" "));
+        return this.wallet.depositInDAO(params.amount, params.mnemonic.join(" "), params.feeRate);
     }
 }

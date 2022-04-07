@@ -1,9 +1,9 @@
-import { Transaction } from "@peersyst/ckb-peersyst-sdk";
+import { FeeRate, Transaction } from "@peersyst/ckb-peersyst-sdk";
 
 export interface DepositInDAOParams {
     amount: bigint;
     mnemonic: string[];
-    feeRate?: string;
+    feeRate?: FeeRate;
 }
 
 export interface SendTransactionParams {
@@ -11,7 +11,7 @@ export interface SendTransactionParams {
     mnemonic: string[];
     message: string;
     to: string;
-    feeRate?: string;
+    feeRate?: FeeRate;
 }
 
 export interface FullTransaction extends Transaction {
