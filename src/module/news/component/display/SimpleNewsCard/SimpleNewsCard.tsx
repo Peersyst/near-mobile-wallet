@@ -11,7 +11,7 @@ const SimpleNewsCard = ({ loading, ...news }: WithSkeleton<NewsDto>): JSX.Elemen
         <TouchableWithoutFeedback onPress={() => Linking.openURL(uri)}>
             <SimpleNewsCardRoot>
                 <Row gap={"5%"} alignItems="flex-start" justifyContent="flex-start">
-                    {!loading && <NewsImage source={{ uri: imageUri }} />}
+                    <NewsImage source={{ uri: imageUri }} />
                     <TextCont>
                         <NewTitle variant="body2">{title}</NewTitle>
                     </TextCont>
