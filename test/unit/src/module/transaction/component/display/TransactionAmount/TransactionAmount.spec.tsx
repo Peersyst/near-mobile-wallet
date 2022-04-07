@@ -14,6 +14,8 @@ describe("TransactionAmount tests", () => {
         expect(screen.getByText("-")).toBeDefined();
         screen.rerender(<TransactionAmount amount={100} currency="CKB" type={TransactionType.UNLOCK_DAO} variant="body1" />);
         expect(screen.getByText("-")).toBeDefined();
+        screen.rerender(<TransactionAmount amount={100} currency="CKB" type={TransactionType.SMART_CONTRACT_SEND} variant="body1" />);
+        expect(screen.getByText("-")).toBeDefined();
     });
 
     test("Renders add", () => {
@@ -25,7 +27,7 @@ describe("TransactionAmount tests", () => {
         expect(screen.getByText("+")).toBeDefined();
         screen.rerender(<TransactionAmount amount={100} currency="CKB" type={TransactionType.WITHDRAW_DAO} variant="body1" />);
         expect(screen.getByText("+")).toBeDefined();
-        screen.rerender(<TransactionAmount amount={100} currency="CKB" type={TransactionType.SMART_CONTRACT} variant="body1" />);
+        screen.rerender(<TransactionAmount amount={100} currency="CKB" type={TransactionType.SMART_CONTRACT_RECEIVE} variant="body1" />);
         expect(screen.getByText("+")).toBeDefined();
     });
 });

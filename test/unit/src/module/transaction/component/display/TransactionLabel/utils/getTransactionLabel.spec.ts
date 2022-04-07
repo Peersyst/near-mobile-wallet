@@ -30,7 +30,8 @@ describe("getTransactionLabel tests", () => {
     });
 
     test("Returns smart contract", () => {
-        expect(getTransactionLabel(TransactionType.SMART_CONTRACT)).toEqual(translate("smart_contract"));
+        expect(getTransactionLabel(TransactionType.SMART_CONTRACT_SEND)).toEqual(translate("smart_contract"));
+        expect(getTransactionLabel(TransactionType.SMART_CONTRACT_RECEIVE)).toEqual(translate("smart_contract"));
     });
 
     test("Returns unlock dao", () => {

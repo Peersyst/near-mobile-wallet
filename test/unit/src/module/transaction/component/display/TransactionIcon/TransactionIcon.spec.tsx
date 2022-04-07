@@ -32,7 +32,9 @@ describe("TransactionIcon tests", () => {
     });
 
     test("Renders SmartContractIcon", () => {
-        const screen = render(<TransactionIcon type={TransactionType.SMART_CONTRACT} />);
+        const screen = render(<TransactionIcon type={TransactionType.SMART_CONTRACT_SEND} />);
+        expect(screen.getByTestId("SmartContractIcon")).toBeDefined();
+        screen.rerender(<TransactionIcon type={TransactionType.SMART_CONTRACT_RECEIVE} />);
         expect(screen.getByTestId("SmartContractIcon")).toBeDefined();
     });
 

@@ -19,7 +19,8 @@ const TransactionIcon = ({ type }: TransactionIconProps): JSX.Element => {
             return <DAODepositIcon />;
         case TransactionType.WITHDRAW_DAO:
             return <DAOWithdrawIcon />;
-        case TransactionType.SMART_CONTRACT:
+        case TransactionType.SMART_CONTRACT_SEND:
+        case TransactionType.SMART_CONTRACT_RECEIVE:
             return <SmartContractIcon />;
         case TransactionType.UNLOCK_DAO:
             return <UnlockDaoIcon />;
