@@ -4,14 +4,16 @@ import BaseSecondaryScreen from "module/common/component/layout/BaseSecondaryScr
 import { BottomTabScreenNavigatonProps } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup.types";
 import walletState from "module/wallet/state/WalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import { Col, useModal } from "react-native-components";
-import { useSetRecoilState } from "recoil";
+import { Col, useDialog, useModal } from "react-native-components";
+import { useResetRecoilState } from "recoil";
 import ConfirmPinModal from "../components/core/ConfirmPinModal/ConfirmPinModal";
 import UpdatePinModal from "../components/core/UpdatePinModal/UpdatePinModal";
+import { SettingsStorage } from "module/settings/SettingsStorage";
 
 const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): JSX.Element => {
-    const setWalletState = useSetRecoilState(walletState);
+    const resetWalletState = useResetRecoilState(walletState);
     const { showModal } = useModal();
+    const { showDialog } = useDialog();
     const updatePin = () => {
         showModal(UpdatePinModal);
     };
@@ -23,18 +25,29 @@ const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): 
                 </Button>
                 <Button
                     fullWidth
-                    onPress={async () => {
-                        await WalletStorage.clear();
-                        setWalletState((state) => ({
-                            ...state,
-                            isAuthenticated: false,
-                            hasWallet: false,
-                            name: undefined,
-                            selectedWallet: undefined,
-                        }));
-                    }}
+                    onPress={() =>
+                        showDialog({
+                            title: translate("delete_data"),
+                            message: translate("delete_data_text"),
+                            buttons: [
+                                { text: translate("cancel") },
+                                {
+                                    text: translate("delete"),
+                                    type: "destructive",
+                                    onPress: () =>
+                                        showModal(ConfirmPinModal, {
+                                            onPinConfirmed: async () => {
+                                                await WalletStorage.clear();
+                                                await SettingsStorage.clear();
+                                                resetWalletState();
+                                            },
+                                        }),
+                                },
+                            ],
+                        })
+                    }
                 >
-                    DELETE ACCOUNT
+                    {translate("delete_data")}
                 </Button>
             </Col>
         </BaseSecondaryScreen>
