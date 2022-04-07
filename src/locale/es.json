@@ -132,5 +132,6 @@
     "no_deposits": "Actualmente no tienes ningún depósito en curso",
     "no_withdrawals": "Todavía no tienes ningún retiro",
     "invalid_address": "Invalid address",
-    "select_deposit": "Selecciona un depósito"
+    "select_deposit": "Selecciona un depósito",
+    "wallet": "Wallet"
 }

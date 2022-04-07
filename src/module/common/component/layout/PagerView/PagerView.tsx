@@ -6,6 +6,7 @@ import { PagerViewOnPageSelectedEventData } from "react-native-pager-view/src/ty
 import DottedPagination from "module/common/component/display/DottedPagination/DottedPagination";
 
 interface PagerViewProps extends Omit<BasePagerViewProps, "onPageSelected"> {
+    page?: number;
     height: ViewStyle["height"];
     gap?: ColProps["gap"];
     onPageSelected?: (page: number) => void;
@@ -25,6 +26,7 @@ const PagerView = ({
     showPageIndicator,
     style,
     onPageSelected,
+    page,
     initialPage = 0,
     height,
     pageMargin,
@@ -40,13 +42,20 @@ const PagerView = ({
     } = {},
     ...rest
 }: PagerViewProps): JSX.Element => {
-    const [currentPage, setCurrentPage] = useState(initialPage);
+    const [currentPage, setCurrentPage] = useState(page ?? initialPage);
     const [rerender, setRerender] = useState(false);
     const childrenLength = useMemo(() => Children.count(children), [children]);
 
     useEffect(() => {
         setRerender(true);
     }, [childrenLength]);
+
+    useEffect(() => {
+        if (page !== undefined && page !== currentPage) {
+            setCurrentPage(page);
+            setRerender(true);
+        }
+    }, [page]);
 
     useEffect(() => {
         if (rerender) setRerender(false);

@@ -32,7 +32,7 @@ export default function Select({
     header,
     footer,
     children,
-    DisplayComponent,
+    display,
 }: SelectProps): JSX.Element {
     const [value, setValue] = useControlled<unknown | unknown[]>(defaultValue || (multiple ? [] : undefined), valueProp, onChange);
     useFormNotification(name, value, selectIsValid(value, multiple, required));
@@ -62,7 +62,7 @@ export default function Select({
     return (
         <View style={style}>
             <TouchableWithoutFeedback onPress={handlePress}>
-                {DisplayComponent || (
+                {display || (
                     <View>
                         <Row style={displayRootStyle} alignItems="center" justifyContent="space-between">
                             <View style={{ maxWidth: "92%" }}>
