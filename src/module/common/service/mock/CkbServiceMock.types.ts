@@ -65,3 +65,22 @@ export interface Nft {
     nftSymbol: string;
     nftExtraData: string;
 }
+
+export interface DepositInDAOParams {
+    amount: bigint;
+    mnemonic: string[];
+    feeRate?: string;
+}
+
+export interface SendTransactionParams {
+    amount: bigint;
+    mnemonic: string[];
+    message: string;
+    to: string;
+    feeRate?: string;
+}
+
+export interface DAOBalance {
+    daoDeposit: bigint | number;
+    daoCompensation: bigint | number;
+}

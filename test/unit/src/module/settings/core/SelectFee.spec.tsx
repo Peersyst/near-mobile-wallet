@@ -1,5 +1,5 @@
 import SelectFee from "module/settings/components/core/SelectFee/SelectFee";
-import { defaultSettingsState } from "module/settings/state/SettingsState";
+import { defaultSettingsState, FeeRate } from "module/settings/state/SettingsState";
 import { fireEvent, render } from "test-utils";
 import * as Recoil from "recoil";
 import { translate } from "locale";
@@ -26,7 +26,7 @@ describe("Test for the SelectFee component", () => {
         const item = screen.getByText(translate("fast"));
         fireEvent.press(item);
         jest.runAllTimers();
-        expect(setSettingsStorage).toHaveBeenCalledWith({ fee: "fast" });
+        expect(setSettingsStorage).toHaveBeenCalledWith({ fee: FeeRate.FAST });
         expect(setSettingsState).toHaveBeenCalled();
         jest.useRealTimers();
     });
