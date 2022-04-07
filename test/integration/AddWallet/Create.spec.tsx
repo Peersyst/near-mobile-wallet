@@ -3,15 +3,24 @@ import CreateWalletModal from "module/wallet/component/core/CreateWalletModal/Cr
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { translate } from "locale";
 import { act } from "react-dom/test-utils";
-import * as GenerateMnemonic from "module/wallet/mock/generateMnemonic";
 import { StorageWallet, WalletStorage } from "module/wallet/WalletStorage";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import createUseWalletStateMock from "mocks/useWalletState";
+import { WalletService } from "@peersyst/ckb-peersyst-sdk";
 
 describe("AddWallet - Create", () => {
+    const mnemonicArr = ["Pizza", "Taco", "Fries"];
     jest.setTimeout(20000);
+
+    beforeAll(() => {
+        jest.spyOn(WalletService, "createNewMnemonic").mockReturnValue(mnemonicArr.join(" "));
+    });
+
+    afterAll(() => {
+        jest.restoreAllMocks();
+    });
+
     test("Adds a created wallet successfully", async () => {
-        jest.spyOn(GenerateMnemonic, "default").mockReturnValue(["Pizza", "Taco", "Fries"]);
         const addWalletToStorage = jest
             .spyOn(WalletStorage, "addWallet")
             .mockImplementation((wallet: Omit<StorageWallet, "index">) => SuccessApiCall({ ...wallet, index: 1 }));
@@ -26,6 +35,7 @@ describe("AddWallet - Create", () => {
         await waitFor(() => expect(screen.getByText(translate("advise1_title"))).toBeDefined());
         await act(() => wait(5400));
         fireEvent.press(screen.getByText(translate("next")));
+        console.log(screen);
         expect(screen.getByText(translate("advise2_title"))).toBeDefined();
         await act(() => wait(5400));
         fireEvent.press(screen.getByText(translate("next")));
