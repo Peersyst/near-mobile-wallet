@@ -1,22 +1,23 @@
-import { Col, Form, Paper, Row, useSetTab } from "react-native-components";
+import { Col, Form, Paper, useSetTab } from "react-native-components";
 import FormGroup from "module/common/component/input/FormGroup/FormGroup";
 import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
-import sendRecoilState from "module/transaction/state/SendState";
-import { useRecoilState } from "recoil";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { WithdrawScreens } from "module/dao/component/core/WithdrawModal/WithdrawModal";
-import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
+import SelectDeposit from "./SelectDeposit";
+import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
 
 export interface WithdrawForm {
     sender: number;
+    amount: number;
 }
 
 const WithdrawSelectAccountScreen = () => {
     const setTab = useSetTab();
-    const handleSubmit = ({ sender }: WithdrawForm) => {
+    const handleSubmit = ({ sender, amount }: WithdrawForm) => {
         setTab(WithdrawScreens.CONFIRMATION);
     };
+    const { data = [], isLoading } = useGetDAOUnlockableAmounts();
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -28,13 +29,9 @@ const WithdrawSelectAccountScreen = () => {
                         </FormGroup>
                     </Paper>
                     <Paper style={{ padding: 20 }} elevation={8}>
-                        <FormGroup label={translate("select_deposit") + ":"}>
-                            <ControlledSuspense isLoading={false} activityIndicatorSize={30}>
-                                <WalletSelector required name="withdraw" />
-                            </ControlledSuspense>
-                        </FormGroup>
+                        <SelectDeposit />
                     </Paper>
-                    <Button variant="outlined" fullWidth>
+                    <Button variant="outlined" fullWidth disabled={isLoading || data.length === 0}>
                         {translate("next")}
                     </Button>
                 </Col>

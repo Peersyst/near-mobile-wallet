@@ -84,3 +84,12 @@ export interface DAOBalance {
     daoDeposit: bigint | number;
     daoCompensation: bigint | number;
 }
+
+export interface DAOUnlockableAmount {
+    type: "total" | "single";
+    amount: bigint;
+    compensation: bigint;
+    unlockable: boolean;
+    unlockableDate: Date;
+    txHash: string;
+}
