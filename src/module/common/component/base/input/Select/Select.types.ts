@@ -98,7 +98,7 @@ export interface SelectProps {
      */
     children?: ReactElement<SelectItemProps> | ReactElement<SelectItemProps>[];
     /**
-     * Custom display component
+     * Custom display element
      */
-    DisplayComponent?: ReactElement;
+    display?: ReactElement;
 }

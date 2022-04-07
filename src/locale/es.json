@@ -131,5 +131,6 @@
     "unlock_DAO": "Retiro en curso",
     "no_deposits": "Actualmente no tienes ningún depósito en curso",
     "no_withdrawals": "Todavía no tienes ningún retiro",
-    "invalid_address": "Invalid address"
+    "invalid_address": "Invalid address",
+    "wallet": "Wallet"
 }
