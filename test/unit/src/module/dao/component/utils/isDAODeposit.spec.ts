@@ -1,5 +1,5 @@
 import { isDAODeposit } from "module/dao/component/utils/isDAODeposit";
-import { TransactionType } from "module/transaction/types";
+import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
 
 describe("isDAODeposit tests", () => {
     test("Returns true if the type is from a DAO deposit tx", () => {

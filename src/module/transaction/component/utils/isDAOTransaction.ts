@@ -1,4 +1,4 @@
-import { TransactionType } from "module/transaction/types";
+import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
 
 export function isDAOTransaction(type: TransactionType): boolean {
     switch (type) {
