@@ -6,7 +6,7 @@ import {
     SdkWalletState,
     SendTransactionParams,
     Transaction,
-} from "@peersyst/ckb-peersyst-sdk";
+} from "./CkbServiceMock.types";
 import { WalletServiceMock } from "module/common/service/mock/WalletServiceMock";
 import { TokenAmount } from "module/token/types";
 

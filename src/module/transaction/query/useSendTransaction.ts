@@ -1,6 +1,6 @@
 import { useMutation } from "react-query";
 import useWalletState from "module/wallet/hook/useWalletState";
-import { SendTransactionParams } from "@peersyst/ckb-peersyst-sdk";
+import { SendTransactionParams } from "module/common/service/CkbSdkService.types";
 
 const useSendTransaction = () => {
     const {

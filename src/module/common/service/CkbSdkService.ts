@@ -1,6 +1,16 @@
-import { CKBBalance, ConnectionService, Environments, Transaction, WalletService, Nft, WalletState, DAOBalance } from "@peersyst/ckb-peersyst-sdk";
+import {
+    CKBBalance,
+    ConnectionService,
+    Environments,
+    Transaction,
+    WalletService,
+    Nft,
+    WalletState,
+    DAOBalance,
+} from "@peersyst/ckb-peersyst-sdk";
 import { tokensList, UknownToken } from "module/token/mock/token";
 import { TokenAmount } from "module/token/types";
+import { DepositInDAOParams, SendTransactionParams } from "./CkbSdkService.types";
 
 export class CKBSDKService {
     private readonly ckbUrl = "http://78.46.174.87:8114/rpc"; // Podem posar-ho com a env var?
@@ -52,5 +62,13 @@ export class CKBSDKService {
 
     getAddress(): string {
         return this.wallet.getNextAddress();
+    }
+
+    async sendTransaction(params: SendTransactionParams): Promise<string> {
+        return this.wallet.sendTransaction(params.amount, params.mnemonic.join(" "), params.to);
+    }
+
+    async depositInDAO(params: DepositInDAOParams): Promise<string> {
+        return this.wallet.depositInDAO(params.amount, params.mnemonic.join(" "));
     }
 }

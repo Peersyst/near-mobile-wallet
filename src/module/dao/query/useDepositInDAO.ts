@@ -1,4 +1,4 @@
-import { DepositInDAOParams } from "@peersyst/ckb-peersyst-sdk";
+import { DepositInDAOParams } from "module/common/service/CkbSdkService.types";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { useMutation } from "react-query";
 

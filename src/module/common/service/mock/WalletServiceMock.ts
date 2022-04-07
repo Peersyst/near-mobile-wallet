@@ -1,11 +1,4 @@
-import {
-    CKBBalance,
-    Transaction,
-    Nft,
-    DepositInDAOParams,
-    SendTransactionParams,
-    DAOBalance,
-} from "@peersyst/ckb-peersyst-sdk";
+import { CKBBalance, Transaction, Nft, DepositInDAOParams, SendTransactionParams, DAOBalance } from "./CkbServiceMock.types";
 import { transactions } from "module/transaction/mock/transaction";
 import { nfts } from "module/nft/mock/nft";
 import { TokenAmount } from "module/token/types";
