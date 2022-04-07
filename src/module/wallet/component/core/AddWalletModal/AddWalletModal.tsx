@@ -3,8 +3,8 @@ import { ReactNode, useState } from "react";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
@@ -33,6 +33,9 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
     const handleWalletCreation = async () => {
         const newWallet = await WalletStorage.addWallet({ name: name!, mnemonic: mnemonic!, colorIndex: colorIndex! });
         if (newWallet) {
+            const serviceInstance = new CKBSDKService(newWallet.mnemonic.join(" "));
+            const walletState = await serviceInstance.synchronize();
+
             setWalletState((state) => ({
                 ...state,
                 wallets: [
@@ -41,7 +44,8 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
                         name: newWallet.name,
                         colorIndex: newWallet.colorIndex,
                         index: newWallet.index,
-                        serviceInstance: new CkbServiceMock(newWallet.mnemonic),
+                        serviceInstance,
+                        initialState: walletState,
                     },
                 ],
             }));

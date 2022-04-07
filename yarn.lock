@@ -1763,9 +1763,9 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@peersyst/ckb-peersyst-sdk@git+https://github.com/Peersyst/ckb-peersyst-sdk#v1.1.1":
-  version "1.1.1"
-  resolved "git+https://github.com/Peersyst/ckb-peersyst-sdk#88eb19718b416a683ddd28ff3d0a9ba40280faaa"
+"@peersyst/ckb-peersyst-sdk@git+https://github.com/Peersyst/ckb-peersyst-sdk#v1.1.2":
+  version "1.1.2"
+  resolved "git+https://github.com/Peersyst/ckb-peersyst-sdk#fe753f9829791653b259bd10c7651affb49b28fe"
   dependencies:
     "@ckb-lumos/lumos" "^0.18.0-rc6"
     "@rather-labs/nrc-721-sdk" "0.0.15"

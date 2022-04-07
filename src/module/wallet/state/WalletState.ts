@@ -1,9 +1,9 @@
 import { atom } from "recoil";
 import { StorageWallet } from "module/wallet/WalletStorage";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 
 export interface Wallet extends Omit<StorageWallet, "mnemonic"> {
-    serviceInstance?: CkbServiceMock;
+    serviceInstance?: CKBSDKService;
 }
 
 export interface WalletState {

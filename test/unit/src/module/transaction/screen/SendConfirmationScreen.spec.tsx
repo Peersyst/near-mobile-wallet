@@ -5,12 +5,12 @@ import * as Recoil from "recoil";
 import { translate } from "locale";
 import { formatAddress } from "@peersyst/react-utils";
 import { mockedUseWallet } from "mocks/useWalletState";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 
 describe("SendConfirmationScreen tests", () => {
     test("Renders correctly", () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CkbServiceMock.prototype, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(CKBSDKService.prototype, "getAddress").mockReturnValue("0xMockedAddress");
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({
             amount: "1000",
             fee: "10",

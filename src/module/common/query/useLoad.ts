@@ -1,10 +1,10 @@
 import { useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import walletState from "module/wallet/state/WalletState";
+import walletState, { Wallet } from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
+import { CKBSDKService } from "../service/CkbSdkService";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
@@ -16,14 +16,28 @@ export function useLoad(): boolean {
             const wallets = await WalletStorage.getWallets();
             //Has already a wallet if not will go to CreateWallet
             if (wallets) {
+                const walletsWithServInstance = wallets.map(({ mnemonic, initialState, ...rest }) => ({
+                    serviceInstance: new CKBSDKService(mnemonic.join(" "), initialState),
+                    ...rest,
+                }));
                 setWalletState((state) => ({
                     ...state,
                     hasWallet: true,
-                    wallets: wallets.map(({ mnemonic, initialState, ...rest }) => ({
-                        serviceInstance: new CkbServiceMock(mnemonic, initialState),
-                        ...rest,
-                    })),
+                    wallets: walletsWithServInstance,
                 }));
+
+                // Synchronize after importing to be able to do basic operations
+                const synchronizedWallets: Wallet[] = [];
+                for (const wallet of walletsWithServInstance) {
+                    const walletState = await wallet.serviceInstance.synchronize();
+                    synchronizedWallets.push({ ...wallet, initialState: walletState });
+                }
+                setWalletState((state) => ({
+                    ...state,
+                    hasWallet: true,
+                    wallets: synchronizedWallets,
+                }));
+
                 //Get the settings from storage and set it to the state
                 const settings = (await SettingsStorage.getAllSettings()) || defaultSettingsState;
                 setSettingsState(settings);

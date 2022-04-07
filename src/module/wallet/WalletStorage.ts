@@ -1,12 +1,12 @@
+import { WalletState } from "@peersyst/ckb-peersyst-sdk";
 import { BaseStorageService } from "module/common/service/BaseStorageService";
-import { SdkWalletState } from "module/common/service/mock/CkbServiceMock.types";
 
 export interface StorageWallet {
     index: number;
     name: string;
     colorIndex: number;
     mnemonic: string[];
-    initialState?: SdkWalletState;
+    initialState?: WalletState;
 }
 
 export interface WalletStorageType {
@@ -44,7 +44,7 @@ export const WalletStorage = new (class extends BaseStorageService<WalletStorage
         return storage?.wallets[index]?.mnemonic;
     }
 
-    async getInitialState(index: number): Promise<SdkWalletState | undefined> {
+    async getInitialState(index: number): Promise<WalletState | undefined> {
         const storage = await this.get();
         return storage?.wallets[index]?.initialState;
     }

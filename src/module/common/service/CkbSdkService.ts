@@ -1,39 +1,52 @@
 import { CKBBalance, ConnectionService, Environments, Transaction, WalletService, Nft, WalletState } from "@peersyst/ckb-peersyst-sdk";
+import { tokensList, UknownToken } from "module/token/mock/token";
+import { TokenAmount } from "module/token/types";
 
 export class CKBSDKService {
     private readonly ckbUrl = "http://78.46.174.87:8114/rpc"; // Podem posar-ho com a env var?
     private readonly indexerUrl = "http://78.46.174.87:8114/indexer"; // Podem posar-ho com a env var?
     private connectionService: ConnectionService;
-    private wallet!: WalletService;
+    private wallet: WalletService;
 
-    constructor() {
+    constructor(mnemonic: string, walletState?: WalletState) {
         this.connectionService = new ConnectionService(this.ckbUrl, this.indexerUrl, Environments.Testnet);
-    }
-
-    initialize(mnemonic: string, walletState?: WalletState): void {
         this.wallet = new WalletService(this.connectionService, mnemonic, walletState);
     }
 
-    isInitialized(): void {
-        if (!this.wallet) {
-            throw new Error("WalletNotInitializedError");
-        }
+    async synchronize(): Promise<WalletState> {
+        return this.wallet.synchronize();
     }
 
-    async getCKBBalance(): Promise<CKBBalance> {
-        this.isInitialized();
+    getCKBBalance(): CKBBalance {
         return this.wallet.getCKBBalance();
     }
 
     async getTransactions(): Promise<Transaction[]> {
-        this.isInitialized();
         return this.wallet.getTransactions();
     }
 
+    getTokensBalance(): TokenAmount[] {
+        const tokens = this.wallet.getTokensBalance();
+        const tokenAmounts: TokenAmount[] = [];
+        for (const token of tokens) {
+            const tokenFound = tokensList.filter((tkn) => tkn.args === token.type.args);
+            if (tokenFound.length > 0) {
+                tokenAmounts.push({ amount: token.amount, type: tokenFound[0] });
+            } else {
+                tokenAmounts.push({
+                    amount: token.amount,
+                    type: { ...UknownToken, ...token.type },
+                });
+            }
+        }
+        return tokenAmounts;
+    }
+
     async getNfts(): Promise<Nft[]> {
-        this.isInitialized();
         return this.wallet.getNftsBalance();
     }
-}
 
-export const ckbSdkInstance = new CKBSDKService();
+    getAddress(): string {
+        return this.wallet.getNextAddress();
+    }
+}

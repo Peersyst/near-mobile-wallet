@@ -6,15 +6,17 @@ import * as GetFee from "module/transaction/mock/getFee";
 import * as Recoil from "recoil";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { mockedUseWallet } from "mocks/useWalletState";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 
 describe("SendModal tests", () => {
     beforeAll(() => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(GetFee, "default").mockReturnValue(SuccessApiCall("10"));
-        jest.spyOn(CkbServiceMock.prototype, "getCKBBalance").mockReturnValue(
-            SuccessApiCall({ totalBalance: BigInt(12000), occupiedBalance: BigInt(2000), freeBalance: BigInt(10000) }),
-        );
+        jest.spyOn(CKBSDKService.prototype, "getCKBBalance").mockReturnValue({
+            totalBalance: BigInt(12000),
+            occupiedBalance: BigInt(2000),
+            freeBalance: BigInt(10000),
+        });
     });
 
     test("Renders correctly", () => {
