@@ -11,7 +11,7 @@ const useGetBalance = (index?: number) => {
         usedIndex = selectedWallet < wallets.length ? selectedWallet : wallets.length - 1;
     }
     const serviceInstance = wallets[usedIndex].serviceInstance;
-    return useQuery(["balance", usedIndex], () => serviceInstance?.getCKBBalance());
+    return useQuery(["balance", usedIndex, wallets.length], () => serviceInstance?.getCKBBalance());
 };
 
 export default useGetBalance;

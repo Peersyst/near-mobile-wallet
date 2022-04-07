@@ -1,5 +1,5 @@
 import { Transaction, TransactionType } from "module/transaction/types";
-import { DAODepositIcon, DAOWithdrawIcon, ReceiveIcon, SendIcon, SmartContractIcon, UnlockDaoIcon } from "icons";
+import { DAODepositIcon, DAOWithdrawIcon, ReceiveIcon, SendIcon, SmartContractIcon, UnlockDAOIcon } from "icons";
 
 export interface TransactionIconProps {
     type: Transaction["type"];
@@ -25,7 +25,7 @@ const TransactionIcon = ({ type }: TransactionIconProps): JSX.Element => {
         case TransactionType.SMART_CONTRACT:
             return <SmartContractIcon />;
         case TransactionType.UNLOCK_DAO:
-            return <UnlockDaoIcon />;
+            return <UnlockDAOIcon />;
     }
 };
 

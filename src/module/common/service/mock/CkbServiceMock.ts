@@ -82,7 +82,7 @@ export class CkbServiceMock {
         return this.wallet.depositInDAO(params);
     }
 
-    async getDaoBalance(): Promise<DAOBalance> {
-        return this.wallet.getDaoBalance();
+    async getDAOBalance(): Promise<DAOBalance> {
+        return this.wallet.getDAOBalance();
     }
 }

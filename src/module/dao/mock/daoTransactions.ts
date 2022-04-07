@@ -2,7 +2,7 @@ import { TransactionStatus, TransactionType } from "module/transaction/types";
 
 const transactionTypes = [TransactionType.DEPOSIT_DAO, TransactionType.WITHDRAW_DAO];
 
-export const daoTransactions = [...Array(10)].map((_, i) => {
+export const DAOTransactions = [...Array(10)].map((_, i) => {
     const seed = Math.random() > 0.5 ? 1 : 0;
     return {
         status: TransactionStatus.COMMITTED,

@@ -12,8 +12,8 @@ describe("getTransactionLabel tests", () => {
         expect(getTransactionLabel(TransactionType.SEND_NFT)).toEqual(translate("sent_nft"));
     });
 
-    test("Returns dao deposit", () => {
-        expect(getTransactionLabel(TransactionType.DEPOSIT_DAO)).toEqual(translate("dao_deposit"));
+    test("Returns DAO deposit", () => {
+        expect(getTransactionLabel(TransactionType.DEPOSIT_DAO)).toEqual(translate("DAO_deposit"));
     });
 
     test("Returns received", () => {
@@ -25,15 +25,15 @@ describe("getTransactionLabel tests", () => {
         expect(getTransactionLabel(TransactionType.RECEIVE_NFT)).toEqual(translate("received_nft"));
     });
 
-    test("Returns dao withdrawal", () => {
-        expect(getTransactionLabel(TransactionType.WITHDRAW_DAO)).toEqual(translate("dao_withdrawal"));
+    test("Returns DAO withdrawal", () => {
+        expect(getTransactionLabel(TransactionType.WITHDRAW_DAO)).toEqual(translate("DAO_withdrawal"));
     });
 
     test("Returns smart contract", () => {
         expect(getTransactionLabel(TransactionType.SMART_CONTRACT)).toEqual(translate("smart_contract"));
     });
 
-    test("Returns unlock dao", () => {
-        expect(getTransactionLabel(TransactionType.UNLOCK_DAO)).toEqual(translate("unlock_dao"));
+    test("Returns unlock DAO", () => {
+        expect(getTransactionLabel(TransactionType.UNLOCK_DAO)).toEqual(translate("unlock_DAO"));
     });
 });

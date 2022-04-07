@@ -40,7 +40,7 @@ export class WalletServiceMock {
         return new Promise((resolve) => setTimeout(() => resolve("txHash"), 2000));
     }
 
-    async getDaoBalance(): Promise<DAOBalance> {
+    async getDAOBalance(): Promise<DAOBalance> {
         const locked = await new Promise<bigint>((resolve) =>
             setTimeout(() => resolve(BigInt(Math.trunc(new Date().getSeconds() * 15))), 2000),
         );
