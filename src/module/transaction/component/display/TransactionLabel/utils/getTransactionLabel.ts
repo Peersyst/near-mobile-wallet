@@ -1,7 +1,8 @@
-import { Transaction, TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
 import { translate } from "locale";
+import { FullTransaction } from "module/common/service/CkbSdkService.types";
 
-export default function (type: Transaction["type"]): string {
+export default function (type: FullTransaction["type"]): string {
     switch (type) {
         case TransactionType.SEND_CKB:
         case TransactionType.SEND_TOKEN:

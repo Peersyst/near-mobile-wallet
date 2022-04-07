@@ -1,9 +1,9 @@
-import { Transaction } from "module/transaction/types";
 import { Typography, TypographyProps } from "react-native-components";
 import getTransactionLabel from "module/transaction/component/display/TransactionLabel/utils/getTransactionLabel";
+import { FullTransaction } from "module/common/service/CkbSdkService.types";
 
 export interface TransactionLabelProps extends Omit<TypographyProps, "children"> {
-    type: Transaction["type"];
+    type: FullTransaction["type"];
 }
 
 const TransactionLabel = ({ type, ...typographyProps }: TransactionLabelProps): JSX.Element => (

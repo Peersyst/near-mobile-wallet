@@ -1,7 +1,8 @@
-import { Transaction, TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { FullTransaction } from "module/common/service/CkbSdkService.types";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
 
-export default function (type: Transaction["type"]): BalanceProps["action"] {
+export default function (type: FullTransaction["type"]): BalanceProps["action"] {
     switch (type) {
         case TransactionType.SEND_CKB:
         case TransactionType.SEND_NFT:

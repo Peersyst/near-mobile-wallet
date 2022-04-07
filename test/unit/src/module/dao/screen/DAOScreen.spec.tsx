@@ -9,7 +9,7 @@ import { CKBSDKService } from "module/common/service/CkbSdkService";
 describe("Test for the DAOScreen", () => {
     test("Renders correctly", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CKBSDKService.prototype, "getTransactions").mockReturnValue(SuccessApiCall([]));
+        jest.spyOn(CKBSDKService.prototype, "getTransactions").mockReturnValue([]);
         jest.spyOn(CKBSDKService.prototype, "getDAOBalance").mockReturnValue(SuccessApiCall(MockedDAOBalance));
         const screen = render(<DAOScreen />);
         //DAO Card

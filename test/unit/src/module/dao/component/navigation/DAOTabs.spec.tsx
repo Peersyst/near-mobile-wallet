@@ -1,4 +1,4 @@
-import { render, SuccessApiCall } from "test-utils";
+import { render } from "test-utils";
 import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import DAOTabs from "module/dao/navigation/DAOTabs/DAOTabs";
@@ -13,7 +13,7 @@ describe("DAOTabs tests", () => {
     });
     test("Renders correctly with deposits", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CKBSDKService.prototype, "getTransactions").mockReturnValue(SuccessApiCall(mockedDAODeposits));
+        jest.spyOn(CKBSDKService.prototype, "getTransactions").mockReturnValue(mockedDAODeposits);
         const screen = render(<DAOTabs />);
         await waitFor(() => expect(screen.getByText("01/01/2022 - 00:00")));
         expect(screen.getByText(translate("deposits"))).toBeDefined();
@@ -22,7 +22,7 @@ describe("DAOTabs tests", () => {
     });
     test("Renders correctly with completed withdrawals", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CKBSDKService.prototype, "getTransactions").mockReturnValue(SuccessApiCall(mockedDAOUnlocks));
+        jest.spyOn(CKBSDKService.prototype, "getTransactions").mockReturnValue(mockedDAOUnlocks);
         const screen = render(<DAOTabs />);
         await waitFor(() => expect(screen.getAllByText(translate("no_deposits"))));
         expect(screen.getByText(translate("deposits"))).toBeDefined();

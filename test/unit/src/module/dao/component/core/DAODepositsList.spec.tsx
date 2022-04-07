@@ -1,4 +1,4 @@
-import { render, SuccessApiCall } from "test-utils";
+import { render } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
 import { translate } from "locale";
 import { mockedDAODeposits } from "mocks/DAOTransaction";
@@ -17,14 +17,14 @@ describe("DAODepositsList tests", () => {
     });
 
     test("Renders correctly with tx", async () => {
-        jest.spyOn(CKBSDKService.prototype, "getTransactions").mockReturnValue(SuccessApiCall(mockedDAODeposits));
+        jest.spyOn(CKBSDKService.prototype, "getTransactions").mockReturnValue(mockedDAODeposits);
         const screen = render(<DAODepositsList />);
         await waitFor(() => expect(screen.getByText("01/01/2022 - 00:00")));
         expect(screen.getByText("02/01/2022 - 00:00"));
         expect(screen.getByText("03/01/2022 - 00:00"));
     });
     test("Renders correctly without transactions", async () => {
-        jest.spyOn(CKBSDKService.prototype, "getTransactions").mockReturnValue(SuccessApiCall([]));
+        jest.spyOn(CKBSDKService.prototype, "getTransactions").mockReturnValue([]);
         const screen = render(<DAODepositsList />);
         await waitFor(() => expect(screen.getAllByText(translate("no_deposits"))));
     });

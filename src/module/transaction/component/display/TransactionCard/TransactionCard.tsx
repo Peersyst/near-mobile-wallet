@@ -1,13 +1,13 @@
 import { Col, Row, Typography } from "react-native-components";
 import formatDate from "utils/formatDate";
 import { TransactionCardRoot } from "./TransactionCard.styles";
-import { Transaction } from "module/transaction/types";
 import TransactionIcon from "module/transaction/component/display/TransactionIcon/TransactionIcon";
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
 import TransactionLabel from "module/transaction/component/display/TransactionLabel/TransactionLabel";
+import { FullTransaction } from "module/common/service/CkbSdkService.types";
 
 export interface TransactionCardProps {
-    transaction: Transaction;
+    transaction: FullTransaction;
 }
 
 const TransactionCard = ({ transaction: { timestamp, amount, type, token = "CKB" } }: TransactionCardProps): JSX.Element => {

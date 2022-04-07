@@ -1,8 +1,9 @@
-import { Transaction, TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
 import { DAODepositIcon, DAOWithdrawIcon, ReceiveIcon, SendIcon, SmartContractIcon, UnlockDAOIcon } from "icons";
+import { FullTransaction } from "module/common/service/CkbSdkService.types";
 
 export interface TransactionIconProps {
-    type: Transaction["type"];
+    type: FullTransaction["type"];
 }
 
 const DAO_TX_ICON_SIZE = 31;

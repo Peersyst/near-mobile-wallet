@@ -2,15 +2,24 @@ import {
     CKBBalance,
     ConnectionService,
     Environments,
-    Transaction,
     WalletService,
     Nft,
     WalletState,
     DAOBalance,
+    TransactionType,
+    ScriptType,
 } from "@peersyst/ckb-peersyst-sdk";
 import { tokensList, UknownToken } from "module/token/mock/token";
-import { TokenAmount } from "module/token/types";
-import { DepositInDAOParams, SendTransactionParams } from "./CkbSdkService.types";
+import { TokenAmount, TokenType } from "module/token/types";
+import { DepositInDAOParams, FullTransaction, SendTransactionParams } from "./CkbSdkService.types";
+
+export function getTokenTypeFromScript(scriptType: ScriptType): TokenType {
+    const tokenFound = tokensList.filter((tkn) => tkn.args === scriptType.args && tkn.codeHash === scriptType.codeHash);
+    if (tokenFound.length > 0) {
+        return tokenFound[0];
+    }
+    return { ...UknownToken, ...scriptType };
+}
 
 export class CKBSDKService {
     private readonly ckbUrl = "http://78.46.174.87:8114/rpc"; // Podem posar-ho com a env var?
@@ -35,23 +44,24 @@ export class CKBSDKService {
         return this.wallet.getDAOBalance();
     }
 
-    async getTransactions(): Promise<Transaction[]> {
-        return this.wallet.getTransactions();
+    getTransactions(): FullTransaction[] {
+        const fullTxs: FullTransaction[] = [];
+        const transactions = this.wallet.getTransactions();
+        for (const tx of transactions) {
+            if ([TransactionType.RECEIVE_TOKEN, TransactionType.SEND_TOKEN].includes(tx.type) && tx.scriptType) {
+                fullTxs.push({ ...tx, token: getTokenTypeFromScript(tx.scriptType).tokenName });
+            } else {
+                fullTxs.push(tx);
+            }
+        }
+        return fullTxs;
     }
 
     getTokensBalance(): TokenAmount[] {
         const tokens = this.wallet.getTokensBalance();
         const tokenAmounts: TokenAmount[] = [];
         for (const token of tokens) {
-            const tokenFound = tokensList.filter((tkn) => tkn.args === token.type.args);
-            if (tokenFound.length > 0) {
-                tokenAmounts.push({ amount: token.amount, type: tokenFound[0] });
-            } else {
-                tokenAmounts.push({
-                    amount: token.amount,
-                    type: { ...UknownToken, ...token.type },
-                });
-            }
+            tokenAmounts.push({ amount: token.amount, type: getTokenTypeFromScript(token.type) });
         }
         return tokenAmounts;
     }
