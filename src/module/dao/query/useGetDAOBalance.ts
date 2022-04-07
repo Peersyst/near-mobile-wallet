@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { QueryResult } from "query-utils";
 import useWalletState from "module/wallet/hook/useWalletState";
-import { DAOBalance } from "module/common/service/mock/CkbServiceMock.types";
+import { DAOBalance } from "@peersyst/ckb-peersyst-sdk";
 
 const useGetDAOBalance = (index?: number): QueryResult<DAOBalance> => {
     const {

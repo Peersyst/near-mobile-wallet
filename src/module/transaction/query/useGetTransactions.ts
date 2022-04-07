@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import useWalletState from "module/wallet/hook/useWalletState";
-import { Transaction } from "module/common/service/mock/CkbServiceMock.types";
+import { Transaction } from "@peersyst/ckb-peersyst-sdk";
 import { QueryResult } from "query-utils";
 
 const useGetTransactions = (index?: number): QueryResult<Transaction[]> => {

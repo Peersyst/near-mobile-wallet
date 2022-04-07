@@ -1,4 +1,4 @@
-import { CKBBalance, ConnectionService, Environments, Transaction, WalletService, Nft, WalletState } from "@peersyst/ckb-peersyst-sdk";
+import { CKBBalance, ConnectionService, Environments, Transaction, WalletService, Nft, WalletState, DAOBalance } from "@peersyst/ckb-peersyst-sdk";
 import { tokensList, UknownToken } from "module/token/mock/token";
 import { TokenAmount } from "module/token/types";
 
@@ -19,6 +19,10 @@ export class CKBSDKService {
 
     getCKBBalance(): CKBBalance {
         return this.wallet.getCKBBalance();
+    }
+
+    async getDAOBalance(): Promise<DAOBalance> {
+        return this.wallet.getDAOBalance();
     }
 
     async getTransactions(): Promise<Transaction[]> {

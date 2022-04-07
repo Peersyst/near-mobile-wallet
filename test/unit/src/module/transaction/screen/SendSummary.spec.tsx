@@ -1,12 +1,12 @@
 import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 import SendSummary from "module/transaction/screen/SendConfirmationScreen/SendSummary";
 import { render } from "test-utils";
 
 describe("Test for the SendSummary component", () => {
     test("Renders correctly", () => {
-        jest.spyOn(CkbServiceMock.prototype, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(CKBSDKService.prototype, "getAddress").mockReturnValue("0xMockedAddress");
         const screen = render(
             <SendSummary
                 senderAddress="0xMockedAddress"

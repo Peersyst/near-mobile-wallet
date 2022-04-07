@@ -1,7 +1,7 @@
 import { MINIMUM_TRANSACTION_AMOUNT } from "@env";
 import { translate } from "locale";
 import TextField from "module/common/component/input/TextField/TextField";
-import { CKBBalance } from "module/common/service/mock/CkbServiceMock.types";
+import { CKBBalance } from "@peersyst/ckb-peersyst-sdk";
 import { Dispatch, SetStateAction } from "react";
 import { NumericInput, Typography } from "react-native-components";
 

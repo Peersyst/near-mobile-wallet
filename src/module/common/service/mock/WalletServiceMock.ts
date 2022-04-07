@@ -5,7 +5,7 @@ import {
     DepositInDAOParams,
     SendTransactionParams,
     DAOBalance,
-} from "module/common/service/mock/CkbServiceMock.types";
+} from "@peersyst/ckb-peersyst-sdk";
 import { transactions } from "module/transaction/mock/transaction";
 import { nfts } from "module/nft/mock/nft";
 import { TokenAmount } from "module/token/types";
