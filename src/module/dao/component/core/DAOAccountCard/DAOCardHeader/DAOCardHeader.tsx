@@ -1,9 +1,9 @@
 import { InfoIcon } from "icons";
 import { IconButton, Row, Typography } from "react-native-components";
 import { Linking } from "react-native";
-import SelectDAOWallet from "./SelectDAOWallet/SelectDAOWallet";
 import { theme } from "module/common/style/theme";
 import { ThemeProvider } from "@peersyst/react-native-styled";
+import SelectDAOWallet from "./SelectDAOWallet/SelectDAOWallet";
 
 export const DAO_INFO_URL = "https://www.nervos.org/";
 
