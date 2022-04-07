@@ -7,17 +7,28 @@ import { useRecoilValue, useResetRecoilState } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import sendState from "module/transaction/state/SendState";
 import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScreen/DepositConfirmationScreen";
-import WithdrawSelectAccountScreen from "module/dao/screen/WithdrawSelectAccountScreen/WithdrawSelectAccountScreen";
+import SelectAccountAndDepositScreen from "module/dao/screen/SelectAccountAndDepositScreen/SelectAccountAndDepositScreen";
+import WithdrawConfirmationScreen from "module/dao/screen/WithdrawConfirmationScreen/WithdrawConfirmationScreen";
 
 export enum WithdrawScreens {
     SELECT_ACCOUNT,
     CONFIRMATION,
-    __LENGTH
+    __LENGTH,
+}
+
+export interface WithdrawForm {
+    sender: number;
+    amount: number;
+}
+
+export interface WithdrawSummary extends WithdrawForm {
+    feeRate: string;
 }
 
 const WithdrawModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
     const [activeIndex, setActiveIndex] = useState(WithdrawScreens.SELECT_ACCOUNT);
     const { fee } = useRecoilValue(settingsState);
+    const [depositInfo, setDepositInfo] = useState<WithdrawForm>();
     const resetSendState = useResetRecoilState(sendState);
 
     const handleExited = () => {
@@ -39,14 +50,14 @@ const WithdrawModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProp
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
                 <TabPanel index={WithdrawScreens.SELECT_ACCOUNT}>
-                    <WithdrawSelectAccountScreen />
+                    <SelectAccountAndDepositScreen setDepositInfo={setDepositInfo} />
                 </TabPanel>
                 <TabPanel index={WithdrawScreens.CONFIRMATION}>
-                    <DepositConfirmationScreen />
+                    <WithdrawConfirmationScreen depositInfo={depositInfo} />
                 </TabPanel>
             </Tabs>
         </GlassNavigatorModal>
     );
 });
 
-export default WithdrawModal
+export default WithdrawModal;

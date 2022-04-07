@@ -8,7 +8,7 @@ const SelectDeposit = (): JSX.Element => {
     const { data = [], isLoading } = useGetDAOUnlockableAmounts();
     return (
         <FormGroup label={`${translate("select_deposit")} :`} style={{ height: 80 }}>
-            <ControlledSuspense isLoading={isLoading} activityIndicatorSize={30}>
+            <ControlledSuspense isLoading={isLoading} activityIndicatorSize={"large"}>
                 <DepositsSelector name="amount" deposits={data} required defaultValue={0} />
             </ControlledSuspense>
         </FormGroup>
