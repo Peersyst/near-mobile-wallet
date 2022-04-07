@@ -129,5 +129,6 @@
     "dao_withdrawal": "DAO Withdrawal",
     "smart_contract": "Smart Contract",
     "unlock_dao": "DAO Unlock",
-    "invalid_address": "Invalid address"
+    "invalid_address": "Invalid address",
+    "wallet": "Wallet"
 }

@@ -7,7 +7,11 @@ const useGetDaoBalance = (index?: number): QueryResult<DAOBalance> => {
     const {
         state: { wallets, selectedWallet },
     } = useWalletState();
-    const usedIndex = index ?? selectedWallet ?? 0;
+    let usedIndex = 0;
+    if (index !== undefined) usedIndex = index;
+    else if (selectedWallet !== undefined) {
+        usedIndex = selectedWallet < wallets.length ? selectedWallet : wallets.length - 1;
+    }
     const serviceInstance = wallets[usedIndex].serviceInstance;
     return useQuery(["daoBalance", usedIndex], () => serviceInstance?.getDaoBalance());
 };
