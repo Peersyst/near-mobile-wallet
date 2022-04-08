@@ -72,6 +72,12 @@ export interface DepositInDAOParams {
     feeRate?: string;
 }
 
+export interface WithdrawAndUnlockParams {
+    unlockableAmount: DAOUnlockableAmount;
+    mnemonic: string[];
+    feeRate?: string;
+}
+
 export interface SendTransactionParams {
     amount: bigint;
     mnemonic: string[];

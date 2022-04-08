@@ -2,12 +2,11 @@ import { DepositInDAOParams } from "module/common/service/mock/CkbServiceMock.ty
 import useWalletState from "module/wallet/hook/useWalletState";
 import { useMutation } from "react-query";
 
-const useDepositInDAO = () => {
+const useDepositInDAO = (index: number) => {
     const {
-        state: { wallets, selectedWallet },
+        state: { wallets },
     } = useWalletState();
-    const usedIndex = selectedWallet ?? 0;
-    const serviceInstance = wallets[usedIndex].serviceInstance!;
+    const serviceInstance = wallets[index].serviceInstance!;
     return useMutation((params: DepositInDAOParams) => serviceInstance.depositInDAO(params));
 };
 

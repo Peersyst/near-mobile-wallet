@@ -7,6 +7,7 @@ import {
     SendTransactionParams,
     DAOBalance,
     DAOUnlockableAmount,
+    WithdrawAndUnlockParams,
 } from "module/common/service/mock/CkbServiceMock.types";
 import { transactions } from "module/transaction/mock/transaction";
 import { nfts } from "module/nft/mock/nft";
@@ -39,6 +40,11 @@ export class WalletServiceMock {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async depositInDAO(params: DepositInDAOParams): Promise<string> {
+        return new Promise((resolve) => setTimeout(() => resolve("txHash"), 2000));
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async withdrawAndUnlock(params: WithdrawAndUnlockParams): Promise<string> {
         return new Promise((resolve) => setTimeout(() => resolve("txHash"), 2000));
     }
 

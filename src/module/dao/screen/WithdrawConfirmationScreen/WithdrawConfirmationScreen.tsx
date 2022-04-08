@@ -5,17 +5,16 @@ import LoadingModal from "module/transaction/component/feedback/LoadingModal/Loa
 import { useRefetchQuery } from "../../../../query/useRefetchQuery";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import DepositModal from "module/dao/component/core/DepositModal/DepositModal";
-import useDepositInDAO from "module/dao/query/useDepositInDAO";
-import { WithdrawSummary as WithdrawSummaryType } from "module/dao/component/core/WithdrawModal/WithdrawModal";
+import WithdrawModal, { WithdrawSummary as WithdrawSummaryType } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import WithdrawSummary from "./WithdrawSummary";
 import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
+import useWithdrawAndUnlock from "module/dao/query/useWithdrawAndUnlock";
 
 interface WithdrawConfirmationScreenProps {
     withdrawInfo: WithdrawSummaryType;
 }
 
-const WithdrawConfirmationScreen = ({ withdrawInfo }: WithdrawConfirmationScreenProps): JSX.Element => {
+const WithdrawConfirmationScreen = ({ withdrawInfo: { receiver, deposit, feeRate } }: WithdrawConfirmationScreenProps): JSX.Element => {
     //Hooks
     const { hideModal } = useModal();
     const refetch = useRefetchQuery();
@@ -23,21 +22,21 @@ const WithdrawConfirmationScreen = ({ withdrawInfo }: WithdrawConfirmationScreen
         state: { wallets },
     } = useWalletState();
     const { data: deposits = [] } = useGetDAOUnlockableAmounts();
-    const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO();
+    const { mutate: withdrawFromDAO, isLoading, isSuccess, isError } = useWithdrawAndUnlock(receiver);
 
     //Variables
-    const { receiver, deposit, feeRate } = withdrawInfo; //Data from the form
     const { name: receiverName, serviceInstance } = wallets[receiver]; //Receiver info
     const { compensation, amount } = deposits[deposit]; //Deposit info
 
     //Functions
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(receiver);
-        /*  depositInDAO(
-            { amount: BigInt(amount!), mnemonic: mnemonic!, feeRate: fee! },
-            { onSuccess: () => refetch(["balance", senderWalletIndex]) },
-        ); */
-        //The SendState is cleaned in the "onExited" method of WithdrawModal
+        withdrawFromDAO({ unlockableAmount: deposits[deposit], mnemonic: mnemonic!, feeRate: feeRate! }, { onSuccess: handleOnSuccess });
+    };
+
+    const handleOnSuccess = () => {
+        refetch(["daoBalance", receiver]);
+        refetch(["balance", receiver]);
     };
 
     return (
@@ -68,7 +67,7 @@ const WithdrawConfirmationScreen = ({ withdrawInfo }: WithdrawConfirmationScreen
                 loading={isLoading}
                 success={isSuccess}
                 error={isError}
-                onExited={() => hideModal(DepositModal.id)}
+                onExited={() => hideModal(WithdrawModal.id)}
                 successMessage={translate("withdraw_completed")}
             />
         </>
