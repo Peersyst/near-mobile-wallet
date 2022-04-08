@@ -54,7 +54,7 @@ export class WalletServiceMock {
         );
         return {
             daoDeposit: locked,
-            daoCompensation: 2.4,
+            daoCompensation: BigInt(200),
         };
     }
 

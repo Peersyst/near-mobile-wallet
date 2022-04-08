@@ -1,8 +1,8 @@
 import { DAOBalance, DAOUnlockableAmount } from "module/common/service/mock/CkbServiceMock.types";
 
 export const MockedDAOBalance: DAOBalance = {
-    daoDeposit: 594.323,
-    daoCompensation: 2.4,
+    daoDeposit: BigInt(500),
+    daoCompensation: BigInt(500),
 };
 
 export const MockedUnlockableAmounts: DAOUnlockableAmount[] = [

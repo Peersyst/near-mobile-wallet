@@ -7,7 +7,7 @@ import SummaryField from "../../../transaction/component/display/SummaryField/Su
 export interface WithdrawSummaryProps extends BaseSendSummaryProps {
     receiverName: string;
     receiverAddress: string;
-    depositAPC: bigint;
+    depositAPC: number;
 }
 
 const WithdrawSummary = ({ amount, fee, receiverName, receiverAddress, depositAPC }: WithdrawSummaryProps): JSX.Element => {
@@ -17,7 +17,7 @@ const WithdrawSummary = ({ amount, fee, receiverName, receiverAddress, depositAP
                 <SummaryField label={translate("destination_wallet")}>
                     {receiverName + " - " + formatAddress(receiverAddress, "middle", 3)}
                 </SummaryField>
-                <SummaryField label={translate("deposit_apc")}>{`${depositAPC.toString()}%`}</SummaryField>
+                <SummaryField label={translate("deposit_apc")}>{`${depositAPC}%`}</SummaryField>
             </Col>
         </BaseSendSummary>
     );

@@ -87,8 +87,8 @@ export interface SendTransactionParams {
 }
 
 export interface DAOBalance {
-    daoDeposit: bigint | number;
-    daoCompensation: bigint | number;
+    daoDeposit: bigint;
+    daoCompensation: bigint;
 }
 
 export interface DAOUnlockableAmount {

@@ -6,7 +6,7 @@ import WalletSelector from "module/wallet/component/input/WalletSelector/WalletS
 import { WithdrawForm, WithdrawScreens, WithdrawSummary } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
 import { WithdrawSelectorCard } from "./SelectAccountAndDepositScreen.styles";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 import { Loader } from "module/transaction/component/feedback/Loader/Loader";
@@ -28,6 +28,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
         state: { selectedWallet: defaultSelectedWallet },
     } = useWalletState();
     const [selectedWallet, setSelectedWallet] = useState<number>(defaultSelectedWallet || 0);
+    const [isFirstTime, setIsFirstTime] = useState<boolean>(true);
     const { data = [], isLoading: depositsIsLoading, refetch } = useGetDAOUnlockableAmounts(selectedWallet);
 
     //Functions
@@ -41,8 +42,14 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
         setSelectedWallet(index);
     };
 
+    useEffect(() => {
+        if (isFirstTime && !depositsIsLoading) {
+            setIsFirstTime(false);
+        }
+    }, [depositsIsLoading]);
+
     return (
-        <ControlledSuspense isLoading={feeIsLoading} fallback={<Loader />}>
+        <ControlledSuspense isLoading={feeIsLoading || (isFirstTime && depositsIsLoading)} fallback={<Loader />}>
             <Form onSubmit={handleSubmit}>
                 <Col>
                     <Col gap={20}>

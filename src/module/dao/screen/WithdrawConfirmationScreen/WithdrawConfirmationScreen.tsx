@@ -9,6 +9,7 @@ import WithdrawModal, { WithdrawSummary as WithdrawSummaryType } from "module/da
 import WithdrawSummary from "./WithdrawSummary";
 import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
 import useWithdrawAndUnlock from "module/dao/query/useWithdrawAndUnlock";
+import { getAPC } from "module/dao/component/utils/getAPC";
 
 interface WithdrawConfirmationScreenProps {
     withdrawInfo: WithdrawSummaryType;
@@ -45,7 +46,7 @@ const WithdrawConfirmationScreen = ({ withdrawInfo: { receiver, deposit, feeRate
                 <WithdrawSummary
                     receiverName={receiverName}
                     receiverAddress={serviceInstance?.getAddress() || ""}
-                    depositAPC={compensation}
+                    depositAPC={getAPC({ daoCompensation: compensation, daoDeposit: amount })}
                     amount={amount}
                     fee={feeRate!}
                 />

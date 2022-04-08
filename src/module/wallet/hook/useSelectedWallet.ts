@@ -5,5 +5,7 @@ export default function (): Wallet {
     const {
         state: { wallets, selectedWallet },
     } = useWalletState();
-    return wallets[selectedWallet || 0];
+    let index = 0;
+    if (selectedWallet) index = selectedWallet > wallets.length ? wallets.length - 1 : selectedWallet;
+    return wallets[index];
 }
