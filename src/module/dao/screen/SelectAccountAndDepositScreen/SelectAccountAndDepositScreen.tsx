@@ -32,8 +32,8 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     const { data = [], isLoading: depositsIsLoading, refetch } = useGetDAOUnlockableAmounts(selectedWallet);
 
     //Functions
-    const handleSubmit = (depositInfo: WithdrawForm) => {
-        setWithdrawInfo({ ...depositInfo, feeRate: fee });
+    const handleSubmit = (withdrawInfo: WithdrawForm) => {
+        setWithdrawInfo({ ...withdrawInfo, feeRate: fee });
         setTab(WithdrawScreens.CONFIRMATION);
     };
 
@@ -58,7 +58,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
                                 <WalletSelector
                                     onChange={(index) => onWalletChange(index as number)}
                                     required
-                                    name="receiver"
+                                    name="receiverIndex"
                                     value={selectedWallet}
                                 />
                             </FormGroup>
@@ -66,7 +66,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
                         <WithdrawSelectorCard>
                             <FormGroup label={`${translate("select_deposit")}:`} style={{ height: 80 }}>
                                 <ControlledSuspense isLoading={depositsIsLoading} activityIndicatorSize={"large"}>
-                                    <DepositsSelector name="deposit" deposits={data} required defaultValue={0} />
+                                    <DepositsSelector name="depositIndex" deposits={data} required defaultValue={0} />
                                 </ControlledSuspense>
                             </FormGroup>
                         </WithdrawSelectorCard>

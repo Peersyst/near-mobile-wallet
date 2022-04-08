@@ -1,13 +1,9 @@
 import { render, SuccessApiCall } from "test-utils";
 import { translate } from "locale";
-import { fireEvent, waitFor } from "@testing-library/react-native";
-import SelectAccountAndDepositScreen from "module/dao/screen/SelectAccountAndDepositScreen/SelectAccountAndDepositScreen";
-import * as UseSetTab from "module/common/component/base/navigation/Tabs/hook/useSetTab";
+import { waitFor } from "@testing-library/react-native";
 import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
-import * as GetFee from "module/transaction/mock/getFee";
-import { WithdrawScreens } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import { MockedUnlockableAmounts } from "mocks/DAO";
 import WithdrawConfirmationScreen from "module/dao/screen/WithdrawConfirmationScreen/WithdrawConfirmationScreen";
 import { formatAddress } from "@peersyst/react-utils";
@@ -23,10 +19,9 @@ describe("SelectAccountAndDepositScreen tests", () => {
         jest.restoreAllMocks();
     });
 
-    test("Renders correctly without deposits", async () => {
-        const screen = render(<WithdrawConfirmationScreen withdrawInfo={{ receiver: 0, deposit: 0, feeRate: "10" }} />);
+    test("Renders correctly with deposits", async () => {
+        const screen = render(<WithdrawConfirmationScreen withdrawInfo={{ receiverIndex: 0, depositIndex: 0, feeRate: "10" }} />);
         await waitFor(() => expect(screen.getByText("500")).toBeDefined());
-        screen.debug();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
         expect(screen.getByText("10")).toBeDefined();
         //Withdraw summary

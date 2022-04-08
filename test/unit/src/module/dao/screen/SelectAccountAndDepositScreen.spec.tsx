@@ -41,7 +41,7 @@ describe("SelectAccountAndDepositScreen tests", () => {
         fireEvent.press(screen.getByText(translate("next")));
         //The deposit is zero because it corresponds to the 0 pos of the MockedUnlockableAmounts
         //The receiver is zero because is the first wallet
-        await waitFor(() => expect(setWithdrawInfo).toHaveBeenCalledWith({ receiver: 0, deposit: 0, feeRate: "10" }));
+        await waitFor(() => expect(setWithdrawInfo).toHaveBeenCalledWith({ receiverIndex: 0, depositIndex: 0, feeRate: "10" }));
         expect(setTab).toHaveBeenCalledWith(WithdrawScreens.CONFIRMATION);
     });
 });

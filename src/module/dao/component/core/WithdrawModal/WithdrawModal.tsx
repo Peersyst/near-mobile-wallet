@@ -3,9 +3,8 @@ import { translate } from "locale";
 import { useState } from "react";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 import useGetFee from "module/transaction/query/useGetFee";
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
-import sendState from "module/transaction/state/SendState";
 import SelectAccountAndDepositScreen from "module/dao/screen/SelectAccountAndDepositScreen/SelectAccountAndDepositScreen";
 import WithdrawConfirmationScreen from "module/dao/screen/WithdrawConfirmationScreen/WithdrawConfirmationScreen";
 
@@ -16,24 +15,18 @@ export enum WithdrawScreens {
 }
 
 export interface WithdrawForm {
-    receiver: number;
-    deposit: number;
+    receiverIndex: number;
+    depositIndex: number;
 }
 
 export interface WithdrawSummary extends WithdrawForm {
     feeRate?: string;
 }
 
-const WithdrawModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
+const WithdrawModal = createBackdrop((props: ExposedBackdropProps) => {
     const [activeIndex, setActiveIndex] = useState(WithdrawScreens.SELECT_ACCOUNT);
     const { fee } = useRecoilValue(settingsState);
-    const [withdrawInfo, setWithdrawInfo] = useState<WithdrawSummary>({ receiver: 0, deposit: 0 });
-    const resetSendState = useResetRecoilState(sendState);
-
-    const handleExited = () => {
-        onExited?.();
-        resetSendState();
-    };
+    const [withdrawInfo, setWithdrawInfo] = useState<WithdrawSummary>({ receiverIndex: 0, depositIndex: 0 });
     useGetFee(fee);
 
     return (
@@ -44,8 +37,7 @@ const WithdrawModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProp
                 title: translate("withdraw"),
                 onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,
             }}
-            onExited={handleExited}
-            {...rest}
+            {...props}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
                 <TabPanel index={WithdrawScreens.SELECT_ACCOUNT}>

@@ -15,7 +15,9 @@ interface WithdrawConfirmationScreenProps {
     withdrawInfo: WithdrawSummaryType;
 }
 
-const WithdrawConfirmationScreen = ({ withdrawInfo: { receiver, deposit, feeRate } }: WithdrawConfirmationScreenProps): JSX.Element => {
+const WithdrawConfirmationScreen = ({
+    withdrawInfo: { receiverIndex, depositIndex, feeRate },
+}: WithdrawConfirmationScreenProps): JSX.Element => {
     //Hooks
     const { hideModal } = useModal();
     const refetch = useRefetchQuery();
@@ -23,26 +25,26 @@ const WithdrawConfirmationScreen = ({ withdrawInfo: { receiver, deposit, feeRate
         state: { wallets },
     } = useWalletState();
     const { data: deposits = [] } = useGetDAOUnlockableAmounts();
-    const { mutate: withdrawFromDAO, isLoading, isSuccess, isError } = useWithdrawAndUnlock(receiver);
+    const { mutate: withdrawFromDAO, isLoading, isSuccess, isError } = useWithdrawAndUnlock(receiverIndex);
 
     //Variables
-    const { name: receiverName, serviceInstance } = wallets[receiver]; //Receiver info
-    const { compensation = BigInt(0), amount = BigInt(0) } = deposits[deposit] || {}; //Deposit info
+    const { name: receiverName, serviceInstance } = wallets[receiverIndex]; //Receiver info
+    const { compensation = BigInt(0), amount = BigInt(0) } = deposits[depositIndex] || {}; //Deposit info
 
     //Functions
     const handleConfirmation = async () => {
-        const mnemonic = await WalletStorage.getMnemonic(receiver);
-        if (deposits.length > deposit) {
+        const mnemonic = await WalletStorage.getMnemonic(receiverIndex);
+        if (deposits.length > depositIndex) {
             withdrawFromDAO(
-                { unlockableAmount: deposits[deposit], mnemonic: mnemonic!, feeRate: feeRate! },
+                { unlockableAmount: deposits[depositIndex], mnemonic: mnemonic!, feeRate: feeRate! },
                 { onSuccess: handleOnSuccess },
             );
         }
     };
 
     const handleOnSuccess = () => {
-        refetch(["daoBalance", receiver]);
-        refetch(["balance", receiver]);
+        refetch(["daoBalance", receiverIndex]);
+        refetch(["balance", receiverIndex]);
     };
 
     return (
