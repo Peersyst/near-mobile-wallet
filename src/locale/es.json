@@ -134,5 +134,7 @@
     "invalid_address": "Invalid address",
     "select_deposit": "Selecciona un depósito",
     "wallet": "Wallet",
-    "deposit_apc": "APC del depósito"
+    "deposit_apc": "APC del depósito",
+    "destination_wallet": "Wallet de destino",
+    "withdraw_completed": "Retiro completado\ncorrectamente"
 }

@@ -17,7 +17,7 @@ export enum WithdrawScreens {
 
 export interface WithdrawForm {
     receiver: number;
-    amount: number;
+    deposit: number;
 }
 
 export interface WithdrawSummary extends WithdrawForm {
@@ -27,7 +27,7 @@ export interface WithdrawSummary extends WithdrawForm {
 const WithdrawModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
     const [activeIndex, setActiveIndex] = useState(WithdrawScreens.SELECT_ACCOUNT);
     const { fee } = useRecoilValue(settingsState);
-    const [depositInfo, setDepositInfo] = useState<WithdrawSummary>();
+    const [withdrawInfo, setWithdrawInfo] = useState<WithdrawSummary>({ receiver: 0, deposit: 0 });
     const resetSendState = useResetRecoilState(sendState);
 
     const handleExited = () => {
@@ -49,10 +49,10 @@ const WithdrawModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProp
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
                 <TabPanel index={WithdrawScreens.SELECT_ACCOUNT}>
-                    <SelectAccountAndDepositScreen setDepositInfo={setDepositInfo} />
+                    <SelectAccountAndDepositScreen setWithdrawInfo={setWithdrawInfo} />
                 </TabPanel>
                 <TabPanel index={WithdrawScreens.CONFIRMATION}>
-                    <WithdrawConfirmationScreen depositInfo={depositInfo} />
+                    <WithdrawConfirmationScreen withdrawInfo={withdrawInfo} />
                 </TabPanel>
             </Tabs>
         </GlassNavigatorModal>

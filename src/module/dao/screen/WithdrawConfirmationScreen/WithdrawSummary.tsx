@@ -14,7 +14,9 @@ const WithdrawSummary = ({ amount, fee, receiverName, receiverAddress, depositAP
     return (
         <BaseSendSummary amount={amount} fee={fee}>
             <Col gap="3%" style={{ alignSelf: "flex-start" }}>
-                <SummaryField label={translate("to")}>{receiverName + " - " + formatAddress(receiverAddress, "middle", 3)}</SummaryField>
+                <SummaryField label={translate("destination_wallet")}>
+                    {receiverName + " - " + formatAddress(receiverAddress, "middle", 3)}
+                </SummaryField>
                 <SummaryField label={translate("deposit_apc")}>{`${depositAPC.toString()}%`}</SummaryField>
             </Col>
         </BaseSendSummary>

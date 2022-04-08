@@ -9,23 +9,30 @@ import DepositModal from "module/dao/component/core/DepositModal/DepositModal";
 import useDepositInDAO from "module/dao/query/useDepositInDAO";
 import { WithdrawSummary as WithdrawSummaryType } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import WithdrawSummary from "./WithdrawSummary";
+import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
 
 interface WithdrawConfirmationScreenProps {
-    depositInfo?: WithdrawSummaryType;
+    withdrawInfo: WithdrawSummaryType;
 }
 
-const WithdrawConfirmationScreen = ({ depositInfo }: WithdrawConfirmationScreenProps): JSX.Element => {
+const WithdrawConfirmationScreen = ({ withdrawInfo }: WithdrawConfirmationScreenProps): JSX.Element => {
+    //Hooks
+    const { hideModal } = useModal();
+    const refetch = useRefetchQuery();
     const {
         state: { wallets },
     } = useWalletState();
-    const senderWallet = wallets[depositInfo?.receiver!];
-    const { name: receiverName, serviceInstance } = senderWallet;
+    const { data: deposits = [] } = useGetDAOUnlockableAmounts();
     const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO();
-    const { hideModal } = useModal();
-    const refetch = useRefetchQuery();
 
+    //Variables
+    const { receiver, deposit, feeRate } = withdrawInfo; //Data from the form
+    const { name: receiverName, serviceInstance } = wallets[receiver]; //Receiver info
+    const { compensation, amount } = deposits[deposit]; //Deposit info
+
+    //Functions
     const handleConfirmation = async () => {
-        const mnemonic = await WalletStorage.getMnemonic(depositInfo?.receiver!);
+        const mnemonic = await WalletStorage.getMnemonic(receiver);
         /*  depositInDAO(
             { amount: BigInt(amount!), mnemonic: mnemonic!, feeRate: fee! },
             { onSuccess: () => refetch(["balance", senderWalletIndex]) },
@@ -33,21 +40,19 @@ const WithdrawConfirmationScreen = ({ depositInfo }: WithdrawConfirmationScreenP
         //The SendState is cleaned in the "onExited" method of WithdrawModal
     };
 
-    console.log(depositInfo);
-
     return (
         <>
-            <Col gap={"5%"}>
-                <Typography variant="caption" textAlign="center">
-                    {translate("send_confirmation_text")}
-                </Typography>
+            <Col gap={"7%"}>
                 <WithdrawSummary
                     receiverName={receiverName}
                     receiverAddress={serviceInstance?.getAddress() || ""}
-                    depositAPC={BigInt(2.4)}
-                    amount={20}
-                    fee={depositInfo?.feeRate!}
+                    depositAPC={compensation}
+                    amount={amount}
+                    fee={feeRate!}
                 />
+                <Typography variant="caption" textAlign="center">
+                    {translate("send_confirmation_text")}
+                </Typography>
                 <CountdownButton
                     loading={isLoading}
                     disabled={isSuccess}
@@ -64,7 +69,7 @@ const WithdrawConfirmationScreen = ({ depositInfo }: WithdrawConfirmationScreenP
                 success={isSuccess}
                 error={isError}
                 onExited={() => hideModal(DepositModal.id)}
-                successMessage={translate("deposit_completed")}
+                successMessage={translate("withdraw_completed")}
             />
         </>
     );
