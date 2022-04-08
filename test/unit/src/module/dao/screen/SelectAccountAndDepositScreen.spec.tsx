@@ -37,7 +37,7 @@ describe("SelectAccountAndDepositScreen tests", () => {
         jest.spyOn(UseSetTab, "default").mockReturnValue(setTab);
         const screen = render(<SelectAccountAndDepositScreen setWithdrawInfo={setWithdrawInfo} />);
         await waitFor(() => expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined());
-        expect(screen.getAllByText("12,345")).toHaveLength(2);
+        expect(screen.getAllByText("500")).toHaveLength(2);
         fireEvent.press(screen.getByText(translate("next")));
         //The deposit is zero because it corresponds to the 0 pos of the MockedUnlockableAmounts
         //The receiver is zero because is the first wallet

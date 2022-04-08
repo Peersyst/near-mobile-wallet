@@ -6,13 +6,7 @@ import { render } from "test-utils";
 describe("Test for the withdraw summary", () => {
     test("Renders correctly", () => {
         const screen = render(
-            <WithdrawSummary
-                receiverName={"Peersyst"}
-                receiverAddress={"0xMockedAddress"}
-                depositAPC={BigInt(2)}
-                amount={100}
-                fee={"10"}
-            />,
+            <WithdrawSummary receiverName={"Peersyst"} receiverAddress={"0xMockedAddress"} depositAPC={2} amount={100} fee={"10"} />,
         );
         expect(screen.getByText(translate("destination_wallet") + ":")).toBeDefined();
         expect(screen.getByText("Peersyst" + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();

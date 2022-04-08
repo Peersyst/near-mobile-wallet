@@ -27,12 +27,17 @@ const WithdrawConfirmationScreen = ({ withdrawInfo: { receiver, deposit, feeRate
 
     //Variables
     const { name: receiverName, serviceInstance } = wallets[receiver]; //Receiver info
-    const { compensation, amount } = deposits[deposit]; //Deposit info
+    const { compensation = BigInt(0), amount = BigInt(0) } = deposits[deposit] || {}; //Deposit info
 
     //Functions
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(receiver);
-        withdrawFromDAO({ unlockableAmount: deposits[deposit], mnemonic: mnemonic!, feeRate: feeRate! }, { onSuccess: handleOnSuccess });
+        if (deposits.length > deposit) {
+            withdrawFromDAO(
+                { unlockableAmount: deposits[deposit], mnemonic: mnemonic!, feeRate: feeRate! },
+                { onSuccess: handleOnSuccess },
+            );
+        }
     };
 
     const handleOnSuccess = () => {

@@ -7,8 +7,8 @@ export const MockedDAOBalance: DAOBalance = {
 
 export const MockedUnlockableAmounts: DAOUnlockableAmount[] = [
     {
-        amount: 12345 as any,
-        compensation: 13654624 as any,
+        amount: 500 as any,
+        compensation: 500 as any,
         unlockable: true,
         unlockableDate: new Date("2022-03-23T18:48:21.881Z"),
         type: "single",
