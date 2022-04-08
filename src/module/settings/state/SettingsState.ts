@@ -16,7 +16,7 @@ export interface SettingsState {
     fee: FeeType;
 }
 
-export const defaultSettingsState: SettingsState = { locale: getDefaultLocale(), fiat: "usd", network: "mainnet", fee: FeeRate.AVERAGE };
+export const defaultSettingsState: SettingsState = { locale: getDefaultLocale(), fiat: "usd", network: "mainnet", fee: FeeRate.NORMAL };
 
 const settingsState = atom<SettingsState>({
     key: "settings",
