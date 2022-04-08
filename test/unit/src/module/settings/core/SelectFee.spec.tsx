@@ -12,10 +12,11 @@ describe("Test for the SelectFee component", () => {
         const mockedRecoilState = [defaultSettingsState, setSettingsState];
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue(mockedRecoilState as any);
         const screen = render(<SelectFee />);
+        screen.debug();
         expect(screen.getAllByText(translate("modify_default_fee"))).toHaveLength(2);
         expect(screen.getByText(translate("slow"))).toBeDefined();
         expect(screen.getByText(translate("fast"))).toBeDefined();
-        expect(screen.getAllByText(translate("average"))).toHaveLength(2);
+        expect(screen.getByText(translate("average"))).toBeDefined();
     });
     test("Change the fee correctly", () => {
         jest.useFakeTimers();
