@@ -7,10 +7,11 @@ import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import DepositModal from "module/dao/component/core/DepositModal/DepositModal";
 import useDepositInDAO from "module/dao/query/useDepositInDAO";
-import { WithdrawForm } from "module/dao/component/core/WithdrawModal/WithdrawModal";
+import { WithdrawSummary as WithdrawSummaryType } from "module/dao/component/core/WithdrawModal/WithdrawModal";
+import WithdrawSummary from "./WithdrawSummary";
 
 interface WithdrawConfirmationScreenProps {
-    depositInfo?: WithdrawForm;
+    depositInfo?: WithdrawSummaryType;
 }
 
 const WithdrawConfirmationScreen = ({ depositInfo }: WithdrawConfirmationScreenProps): JSX.Element => {
@@ -18,7 +19,7 @@ const WithdrawConfirmationScreen = ({ depositInfo }: WithdrawConfirmationScreenP
         state: { wallets },
     } = useWalletState();
     const senderWallet = wallets[depositInfo?.receiver!];
-    const { name: senderName, serviceInstance } = senderWallet;
+    const { name: receiverName, serviceInstance } = senderWallet;
     const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO();
     const { hideModal } = useModal();
     const refetch = useRefetchQuery();
@@ -40,6 +41,13 @@ const WithdrawConfirmationScreen = ({ depositInfo }: WithdrawConfirmationScreenP
                 <Typography variant="caption" textAlign="center">
                     {translate("send_confirmation_text")}
                 </Typography>
+                <WithdrawSummary
+                    receiverName={receiverName}
+                    receiverAddress={serviceInstance?.getAddress() || ""}
+                    depositAPC={BigInt(2.4)}
+                    amount={20}
+                    fee={depositInfo?.feeRate!}
+                />
                 <CountdownButton
                     loading={isLoading}
                     disabled={isSuccess}

@@ -21,13 +21,13 @@ export interface WithdrawForm {
 }
 
 export interface WithdrawSummary extends WithdrawForm {
-    feeRate: string;
+    feeRate?: string;
 }
 
 const WithdrawModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
     const [activeIndex, setActiveIndex] = useState(WithdrawScreens.SELECT_ACCOUNT);
     const { fee } = useRecoilValue(settingsState);
-    const [depositInfo, setDepositInfo] = useState<WithdrawForm>();
+    const [depositInfo, setDepositInfo] = useState<WithdrawSummary>();
     const resetSendState = useResetRecoilState(sendState);
 
     const handleExited = () => {
