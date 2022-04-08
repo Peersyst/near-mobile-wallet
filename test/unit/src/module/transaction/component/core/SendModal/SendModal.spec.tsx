@@ -7,7 +7,7 @@ import * as Recoil from "recoil";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("SendModal tests", () => {
     const sdkInstance = new CKBSDKService("");

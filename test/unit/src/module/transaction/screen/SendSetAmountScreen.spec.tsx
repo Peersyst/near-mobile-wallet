@@ -9,7 +9,7 @@ import { SendScreens } from "module/transaction/component/core/SendModal/SendMod
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("SendAmountAndMessageScreen tests", () => {
     const sdkInstance = new CKBSDKService("");

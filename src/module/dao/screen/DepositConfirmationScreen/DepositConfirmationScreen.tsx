@@ -10,7 +10,7 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import DepositModal from "module/dao/component/core/DepositModal/DepositModal";
 import DepositSummary from "./DepositSummary";
 import useDepositInDAO from "module/dao/query/useDepositInDAO";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 const DepositConfirmationScreen = (): JSX.Element => {
     const { amount, fee, senderWalletIndex } = useRecoilValue(sendState);

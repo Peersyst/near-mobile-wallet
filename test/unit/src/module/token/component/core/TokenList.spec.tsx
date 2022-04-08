@@ -5,7 +5,7 @@ import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { translate } from "locale";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("Renders the token list properly", () => {
     const sdkInstance = new CKBSDKService("");

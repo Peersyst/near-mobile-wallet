@@ -6,7 +6,7 @@ import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { wallet } from "mocks/wallet";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("WalletCard tests", () => {
     const sdkInstance = new CKBSDKService("");

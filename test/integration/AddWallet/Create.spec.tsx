@@ -6,9 +6,10 @@ import { act } from "react-dom/test-utils";
 import { StorageWallet, WalletStorage } from "module/wallet/WalletStorage";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import createUseWalletStateMock from "mocks/useWalletState";
-import { WalletService, Transaction } from "@peersyst/ckb-peersyst-sdk";
+import { WalletService } from "@peersyst/ckb-peersyst-sdk";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import synchronizeMock from "mocks/synchronize";
 
 describe("AddWallet - Create", () => {
     const mnemonicArr = ["Pizza", "Taco", "Fries"];
@@ -18,15 +19,7 @@ describe("AddWallet - Create", () => {
     beforeAll(() => {
         jest.spyOn(WalletService, "createNewMnemonic").mockReturnValue(mnemonicArr.join(" "));
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
-        jest.spyOn(sdkInstance, "synchronize").mockReturnValue(
-            SuccessApiCall({
-                addressMap: new Map<string, string>(),
-                firstIndexWithoutTxs: 0,
-                lastHashBlock: "0x123",
-                accountCellsMap: new Map<number, any[]>(),
-                accountTransactionMap: new Map<number, Transaction[]>(),
-            }),
-        );
+        jest.spyOn(sdkInstance, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock));
     });
 
     afterAll(() => {

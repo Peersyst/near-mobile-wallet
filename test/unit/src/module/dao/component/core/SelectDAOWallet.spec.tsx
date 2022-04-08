@@ -3,7 +3,7 @@ import * as UseWalletState from "module/wallet/hook/useWalletState";
 import createUseWalletStateMock, { mockedUseWallet } from "mocks/useWalletState";
 import SelectDAOWallet from "module/dao/component/core/DAOAccountCard/DAOCardHeader/SelectDAOWallet/SelectDAOWallet";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("Test for the SelectDAOWallet", () => {
     const sdkInstance = new CKBSDKService("");

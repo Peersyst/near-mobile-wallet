@@ -6,7 +6,7 @@ import { waitFor } from "@testing-library/react-native";
 import { translate } from "locale";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("NftsList tests", () => {
     const sdkInstance = new CKBSDKService("");

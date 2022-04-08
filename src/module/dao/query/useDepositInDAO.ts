@@ -1,14 +1,11 @@
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { DepositInDAOParams } from "module/common/service/CkbSdkService.types";
-import useWalletState from "module/wallet/hook/useWalletState";
 import { useMutation } from "react-query";
+import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 
 const useDepositInDAO = () => {
-    const {
-        state: { selectedWallet },
-    } = useWalletState();
-    const usedIndex = selectedWallet ?? 0;
-    const serviceInstance = serviceInstancesMap.get(usedIndex)!;
+    const selectedWallet = useSelectedWalletIndex();
+    const serviceInstance = serviceInstancesMap.get(selectedWallet)!;
     return useMutation((params: DepositInDAOParams) => serviceInstance.depositInDAO(params));
 };
 

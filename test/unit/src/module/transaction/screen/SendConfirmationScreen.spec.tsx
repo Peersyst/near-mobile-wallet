@@ -6,7 +6,7 @@ import { translate } from "locale";
 import { formatAddress } from "@peersyst/react-utils";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("SendConfirmationScreen tests", () => {
     const sdkInstance = new CKBSDKService("");

@@ -6,9 +6,9 @@ import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessS
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
 import { CreateWalletState } from "module/wallet/state/CreateWalletState";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { Transaction } from "@peersyst/ckb-peersyst-sdk";
+import synchronizeMock from "mocks/synchronize";
 
 describe("CreateWalletSuccessScreen tests", () => {
     const sdkInstance = new CKBSDKService("");
@@ -30,15 +30,7 @@ describe("CreateWalletSuccessScreen tests", () => {
         });
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(serviceInstancesMap, "has").mockReturnValue(true);
-        jest.spyOn(sdkInstance, "synchronize").mockReturnValue(
-            SuccessApiCall({
-                addressMap: new Map<string, string>(),
-                firstIndexWithoutTxs: 0,
-                lastHashBlock: "0x123",
-                accountCellsMap: new Map<number, any[]>(),
-                accountTransactionMap: new Map<number, Transaction[]>(),
-            }),
-        );
+        jest.spyOn(sdkInstance, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock));
         const setWalletState = jest.fn();
         const setSettingsState = jest.fn();
         jest.spyOn(Recoil, "useSetRecoilState").mockImplementation((state: any) => {

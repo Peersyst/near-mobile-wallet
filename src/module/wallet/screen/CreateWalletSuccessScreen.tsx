@@ -7,8 +7,8 @@ import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import createWalletState from "module/wallet/state/CreateWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
-import { WalletState } from "@peersyst/ckb-peersyst-sdk";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import useWalletSync from "module/wallet/hook/useWalletSync";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {
@@ -17,31 +17,28 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
     const setWalletState = useSetRecoilState(walletState);
     const setSettingsState = useSetRecoilState(settingsState);
     const resetCreateWalletState = useResetRecoilState(createWalletState);
+    const syncWallet = useWalletSync();
+
     useEffect(() => {
         const setStorage = async () => {
             await WalletStorage.set({ pin: pin!, wallets: [{ name: name!, colorIndex: 0, mnemonic: mnemonic!, index: 0 }] });
             await SettingsStorage.set(defaultSettingsState);
 
-            console.log("createwalletsuccessscreen, useEffect, setStorage");
-            console.log(mnemonic);
-
-            let walletState: WalletState;
             if (mnemonic) {
                 if (!serviceInstancesMap.has(0)) {
                     serviceInstancesMap.set(0, new CKBSDKService(mnemonic.join(" ")));
                 }
-                const walletState = await serviceInstancesMap.get(0)?.synchronize();
-                console.log("walletState", walletState);
             }
 
             setSettingsState(defaultSettingsState);
             setWalletState((state) => ({
                 ...state,
-                wallets: [{ name: name!, colorIndex: 0, index: 0, initialState: walletState }],
+                wallets: [{ name: name!, colorIndex: 0, index: 0 }],
                 hasWallet: true,
                 isAuthenticated: true,
                 selectedWallet: 0,
             }));
+            syncWallet(0);
             resetCreateWalletState();
         };
         setTimeout(setStorage, 2000);

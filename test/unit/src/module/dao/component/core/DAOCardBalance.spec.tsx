@@ -6,7 +6,7 @@ import { mockedUseWallet } from "mocks/useWalletState";
 import { MockedDAOBalance } from "mocks/DAO";
 import { waitFor } from "@testing-library/react-native";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("DAO Card balance test", () => {
     const sdkInstance = new CKBSDKService("");

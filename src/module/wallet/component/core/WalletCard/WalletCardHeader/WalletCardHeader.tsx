@@ -1,7 +1,7 @@
 import { translate } from "locale";
 import { Row } from "react-native-components";
 import { WalletCardTitle, CopyIcon, EditIcon } from "../WalletCard.styles";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 interface AccountCardHeaderProps {
     index: number;

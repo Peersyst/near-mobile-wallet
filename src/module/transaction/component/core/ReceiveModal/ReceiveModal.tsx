@@ -6,7 +6,7 @@ import ReceiveCard from "module/transaction/component/display/ReceiveCard/Receiv
 
 const ReceiveModal = createBackdrop((props: ExposedBackdropProps) => (
     <GlassNavigatorModal navbar={{ back: true, title: translate("receive") }} {...props}>
-        <Col gap={"10%"} flex={1}>
+        <Col gap={"5%"} flex={1}>
             <QRCode />
             <ReceiveCard />
         </Col>

@@ -6,7 +6,7 @@ import { MockedDAOBalance } from "mocks/DAO";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("Test for the DAO Card", () => {
     const sdkInstance = new CKBSDKService("");

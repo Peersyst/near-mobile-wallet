@@ -4,7 +4,7 @@ import WalletCardHeader from "module/wallet/component/core/WalletCard/WalletCard
 import * as UseWallet from "module/wallet/hook/useWallet";
 import { wallet } from "mocks/wallet";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("WalletCardHeader tests", () => {
     const sdkInstance = new CKBSDKService("");
