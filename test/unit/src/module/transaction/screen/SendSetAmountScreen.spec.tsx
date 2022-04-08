@@ -6,17 +6,19 @@ import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/S
 import * as Recoil from "recoil";
 import * as UseSetTab from "module/common/component/base/navigation/Tabs/hook/useSetTab";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 
 describe("SendAmountAndMessageScreen tests", () => {
     beforeAll(() => {
         jest.spyOn(GetFee, "default").mockReturnValue(SuccessApiCall("10"));
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CkbServiceMock.prototype, "getCKBBalance").mockReturnValue(
-            SuccessApiCall({ totalBalance: BigInt(1200), occupiedBalance: BigInt(200), freeBalance: BigInt(1000) }),
-        );
+        jest.spyOn(CKBSDKService.prototype, "getCKBBalance").mockReturnValue({
+            totalBalance: BigInt(1200),
+            occupiedBalance: BigInt(200),
+            freeBalance: BigInt(1000),
+        });
     });
 
     afterAll(() => {

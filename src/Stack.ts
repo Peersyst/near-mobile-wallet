@@ -8,7 +8,7 @@ export type MainStackParamsList = {
     Settings: undefined;
     GeneralSettings: undefined;
     SecuritySettings: undefined;
-    Dao: undefined;
+    DAO: undefined;
     News: undefined;
 };
 export type RootStackParamsList = {

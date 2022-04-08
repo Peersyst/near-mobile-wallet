@@ -1,10 +1,11 @@
+import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
 import { atom } from "recoil";
 
 export interface SendState {
     senderWalletIndex?: number;
     receiverAddress?: string;
     amount?: string;
-    fee?: string;
+    fee?: FeeRate;
     message?: string;
 }
 

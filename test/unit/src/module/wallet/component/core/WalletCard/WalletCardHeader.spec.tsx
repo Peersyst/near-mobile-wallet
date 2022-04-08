@@ -3,12 +3,12 @@ import * as Clipboard from "expo-clipboard";
 import WalletCardHeader from "module/wallet/component/core/WalletCard/WalletCardHeader/WalletCardHeader";
 import * as UseWallet from "module/wallet/hook/useWallet";
 import { wallet } from "mocks/wallet";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 
 describe("WalletCardHeader tests", () => {
     beforeAll(() => {
         jest.spyOn(UseWallet, "default").mockReturnValue(wallet);
-        jest.spyOn(CkbServiceMock.prototype, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(CKBSDKService.prototype, "getAddress").mockReturnValue("0xMockedAddress");
     });
 
     afterAll(() => {

@@ -1,4 +1,4 @@
-import { DepositInDAOParams } from "module/common/service/mock/CkbServiceMock.types";
+import { DepositInDAOParams } from "module/common/service/CkbSdkService.types";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { useMutation } from "react-query";
 

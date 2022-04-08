@@ -7,13 +7,13 @@ import mockedState from "./utils/mockedState";
 describe("BottomBar test", () => {
     test("Renders correctly", () => {
         const screen = render(<BottomBar state={{ ...mockedState, index: 0 } as any} navigation={{ navigate: jest.fn() } as any} />);
-        expect(screen.getByText(translate("dao"))).toBeDefined();
+        expect(screen.getByText(translate("DAO"))).toBeDefined();
         expect(screen.getByText(translate("news"))).toBeDefined();
         expect(screen.getByTestId("NewsIcon")).toBeDefined();
         expect(screen.getByTestId("DAOIcon")).toBeDefined();
         expect(screen.getByRole("imagebutton")).toBeDefined();
     });
-    test("Navigate to Dao Screen", () => {
+    test("Navigate to DAO Screen", () => {
         const mockedNavigate = jest.fn();
         const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: mockedNavigate } as any} />);
         const newsButton = screen.getByTestId("DAOIcon");

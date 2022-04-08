@@ -1,6 +1,6 @@
 import { useMutation } from "react-query";
 import useWalletState from "module/wallet/hook/useWalletState";
-import { SendTransactionParams } from "module/common/service/mock/CkbServiceMock.types";
+import { SendTransactionParams } from "module/common/service/CkbSdkService.types";
 
 const useSendTransaction = () => {
     const {

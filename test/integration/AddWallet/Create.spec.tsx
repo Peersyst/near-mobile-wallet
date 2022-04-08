@@ -6,7 +6,8 @@ import { act } from "react-dom/test-utils";
 import { StorageWallet, WalletStorage } from "module/wallet/WalletStorage";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import createUseWalletStateMock from "mocks/useWalletState";
-import { WalletService } from "@peersyst/ckb-peersyst-sdk";
+import { WalletService, Transaction } from "@peersyst/ckb-peersyst-sdk";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 
 describe("AddWallet - Create", () => {
     const mnemonicArr = ["Pizza", "Taco", "Fries"];
@@ -14,6 +15,15 @@ describe("AddWallet - Create", () => {
 
     beforeAll(() => {
         jest.spyOn(WalletService, "createNewMnemonic").mockReturnValue(mnemonicArr.join(" "));
+        jest.spyOn(CKBSDKService.prototype, "synchronize").mockReturnValue(
+            SuccessApiCall({
+                addressMap: new Map<string, string>(),
+                firstIndexWithoutTxs: 0,
+                lastHashBlock: "0x123",
+                accountCellsMap: new Map<number, any[]>(),
+                accountTransactionMap: new Map<number, Transaction[]>(),
+            }),
+        );
     });
 
     afterAll(() => {
@@ -35,7 +45,6 @@ describe("AddWallet - Create", () => {
         await waitFor(() => expect(screen.getByText(translate("advise1_title"))).toBeDefined());
         await act(() => wait(5400));
         fireEvent.press(screen.getByText(translate("next")));
-        console.log(screen);
         expect(screen.getByText(translate("advise2_title"))).toBeDefined();
         await act(() => wait(5400));
         fireEvent.press(screen.getByText(translate("next")));

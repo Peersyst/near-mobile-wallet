@@ -1,16 +1,8 @@
-import {
-    CKBBalance,
-    Transaction,
-    Nft,
-    DepositInDAOParams,
-    SendTransactionParams,
-    DAOBalance,
-} from "module/common/service/mock/CkbServiceMock.types";
+import { CKBBalance, Transaction, Nft, DepositInDAOParams, SendTransactionParams, DAOBalance } from "./CkbServiceMock.types";
 import { transactions } from "module/transaction/mock/transaction";
 import { nfts } from "module/nft/mock/nft";
 import { TokenAmount } from "module/token/types";
 import { tokens } from "module/token/mock/token";
-import { daoBalance } from "module/dao/mock/daoBalance";
 
 export class WalletServiceMock {
     async getCKBBalance(): Promise<CKBBalance> {
@@ -41,8 +33,14 @@ export class WalletServiceMock {
         return new Promise((resolve) => setTimeout(() => resolve("txHash"), 2000));
     }
 
-    async getDaoBalance(): Promise<DAOBalance> {
-        return new Promise((resolve) => setTimeout(() => resolve(daoBalance), 2000));
+    async getDAOBalance(): Promise<DAOBalance> {
+        const locked = await new Promise<bigint>((resolve) =>
+            setTimeout(() => resolve(BigInt(Math.trunc(new Date().getSeconds() * 15))), 2000),
+        );
+        return {
+            daoDeposit: locked,
+            daoCompensation: 2.4,
+        };
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -1,18 +1,20 @@
 import { translate } from "locale";
-import { render, SuccessApiCall } from "test-utils";
+import { render } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
 import WalletCard from "module/wallet/component/core/WalletCard/WalletCard";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { wallet } from "mocks/wallet";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 
 describe("WalletCard tests", () => {
     test("Renders correctly", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CkbServiceMock.prototype, "getCKBBalance").mockReturnValue(
-            SuccessApiCall({ totalBalance: BigInt(20000), occupiedBalance: BigInt(9600), freeBalance: BigInt(10400) }),
-        );
+        jest.spyOn(CKBSDKService.prototype, "getCKBBalance").mockReturnValue({
+            totalBalance: BigInt(20000),
+            occupiedBalance: BigInt(9600),
+            freeBalance: BigInt(10400),
+        });
         const screen = render(<WalletCard wallet={wallet} />);
 
         /**Account header */

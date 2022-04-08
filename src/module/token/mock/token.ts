@@ -59,6 +59,16 @@ export const tokensList: TokenType[] = [
     },
 ];
 
+export const UknownToken: TokenType = {
+    name: "Unknown Token",
+    tokenName: "Unknown Token",
+    description: "Unknown Token",
+    imageUri: "",
+    args: "",
+    codeHash: "0x5e7a36a77e68eecc013dfa2fe6a23f3b6c344b04005808694ae6dd45eea4cfd5",
+    hashType: "type",
+};
+
 export const Token: TokenAmount = {
     type: {
         name: "Wrapped BTC",

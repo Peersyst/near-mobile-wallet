@@ -5,7 +5,6 @@ import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
-import { ckbSdkInstance } from "module/common/service/CkbSdkService";
 
 export interface WalletMnemonicScreenProps {
     onNextScreen: () => void;
@@ -20,7 +19,6 @@ const WalletMnemonicScreen = ({ onNextScreen }: WalletMnemonicScreenProps): JSX.
     };
 
     const mnemonicStr = WalletService.createNewMnemonic();
-    ckbSdkInstance.initialize(mnemonicStr);
     const mnemonic = mnemonicStr.split(" ");
 
     return (

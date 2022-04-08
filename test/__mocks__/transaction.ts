@@ -1,6 +1,7 @@
-import { Transaction, TransactionStatus, TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { TransactionStatus, TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { FullTransaction } from "module/common/service/CkbSdkService.types";
 
-export const transaction: Transaction = {
+export const transaction: FullTransaction = {
     status: TransactionStatus.COMMITTED,
     type: TransactionType.SEND_CKB,
     amount: 100,
@@ -12,7 +13,7 @@ export const transaction: Transaction = {
     timestamp: new Date(2022, 0, 29),
 };
 
-export const transactions: Transaction[] = [...Array(3)].map((_, i) => ({
+export const transactions: FullTransaction[] = [...Array(3)].map((_, i) => ({
     status: TransactionStatus.COMMITTED,
     type: TransactionType.SEND_CKB,
     amount: 100,

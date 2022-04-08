@@ -5,8 +5,8 @@ import { useResetRecoilState, useSetRecoilState } from "recoil";
 import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 import createWalletState from "module/wallet/state/CreateWalletState";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {
@@ -22,7 +22,7 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
             setSettingsState(defaultSettingsState);
             setWalletState((state) => ({
                 ...state,
-                wallets: [{ name: name!, colorIndex: 0, index: 0, serviceInstance: new CkbServiceMock(mnemonic!) }],
+                wallets: [{ name: name!, colorIndex: 0, index: 0, serviceInstance: new CKBSDKService(mnemonic?.join(" ") || "") }],
                 hasWallet: true,
                 isAuthenticated: true,
                 selectedWallet: 0,

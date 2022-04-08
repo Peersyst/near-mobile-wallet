@@ -6,7 +6,7 @@ import {
     SdkWalletState,
     SendTransactionParams,
     Transaction,
-} from "module/common/service/mock/CkbServiceMock.types";
+} from "./CkbServiceMock.types";
 import { WalletServiceMock } from "module/common/service/mock/WalletServiceMock";
 import { TokenAmount } from "module/token/types";
 
@@ -82,7 +82,7 @@ export class CkbServiceMock {
         return this.wallet.depositInDAO(params);
     }
 
-    async getDaoBalance(): Promise<DAOBalance> {
-        return this.wallet.getDaoBalance();
+    async getDAOBalance(): Promise<DAOBalance> {
+        return this.wallet.getDAOBalance();
     }
 }
