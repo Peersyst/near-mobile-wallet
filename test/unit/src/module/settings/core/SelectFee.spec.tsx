@@ -16,7 +16,7 @@ describe("Test for the SelectFee component", () => {
         expect(screen.getAllByText(translate("modify_default_fee"))).toHaveLength(2);
         expect(screen.getByText(translate("slow"))).toBeDefined();
         expect(screen.getByText(translate("fast"))).toBeDefined();
-        expect(screen.getByText(translate("average"))).toHaveLength(2);
+        expect(screen.getAllByText(translate("average"))).toHaveLength(2);
     });
     test("Change the fee correctly", () => {
         jest.useFakeTimers();
