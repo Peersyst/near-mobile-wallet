@@ -8,13 +8,17 @@ import { translate } from "locale";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
 import { wallet } from "mocks/wallet";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/common/query/useLoad";
 
 const ADDRESS_MOCK = "0xMockedAddress";
 
 describe("Test for the receive Card", () => {
+    const sdkInstance = new CKBSDKService("");
+
     beforeEach(() => {
         jest.spyOn(UseSelectedWallet, "default").mockReturnValue(wallet);
-        jest.spyOn(CKBSDKService.prototype, "getAddress").mockReturnValue(ADDRESS_MOCK);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(sdkInstance, "getAddress").mockReturnValue(ADDRESS_MOCK);
     });
 
     afterEach(() => {

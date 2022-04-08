@@ -1,7 +1,8 @@
+import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
 import { translate } from "locale";
 import SelectGroup, { optionType } from "module/common/component/input/SelectGroup/SelectGroup";
 import { SettingsStorage } from "module/settings/SettingsStorage";
-import settingsState, { FeeRate, FeeType } from "module/settings/state/SettingsState";
+import settingsState, { FeeType } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 
 const SelectFee = (): JSX.Element => {
@@ -12,7 +13,7 @@ const SelectFee = (): JSX.Element => {
         },
         {
             label: translate("average"),
-            value: FeeRate.AVERAGE,
+            value: FeeRate.NORMAL,
         },
         {
             label: translate("fast"),

@@ -8,14 +8,17 @@ import * as UseWalletState from "module/wallet/hook/useWalletState";
 import createUseWalletStateMock from "mocks/useWalletState";
 import { WalletService, Transaction } from "@peersyst/ckb-peersyst-sdk";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/common/query/useLoad";
 
 describe("AddWallet - Create", () => {
     const mnemonicArr = ["Pizza", "Taco", "Fries"];
     jest.setTimeout(20000);
+    const sdkInstance = new CKBSDKService("");
 
     beforeAll(() => {
         jest.spyOn(WalletService, "createNewMnemonic").mockReturnValue(mnemonicArr.join(" "));
-        jest.spyOn(CKBSDKService.prototype, "synchronize").mockReturnValue(
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(sdkInstance, "synchronize").mockReturnValue(
             SuccessApiCall({
                 addressMap: new Map<string, string>(),
                 firstIndexWithoutTxs: 0,

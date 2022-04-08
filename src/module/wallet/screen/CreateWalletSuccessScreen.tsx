@@ -7,6 +7,8 @@ import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import createWalletState from "module/wallet/state/CreateWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/common/query/useLoad";
+import { WalletState } from "@peersyst/ckb-peersyst-sdk";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {
@@ -19,10 +21,23 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
         const setStorage = async () => {
             await WalletStorage.set({ pin: pin!, wallets: [{ name: name!, colorIndex: 0, mnemonic: mnemonic!, index: 0 }] });
             await SettingsStorage.set(defaultSettingsState);
+
+            console.log("createwalletsuccessscreen, useEffect, setStorage");
+            console.log(mnemonic);
+
+            let walletState: WalletState;
+            if (mnemonic) {
+                if (!serviceInstancesMap.has(0)) {
+                    serviceInstancesMap.set(0, new CKBSDKService(mnemonic.join(" ")));
+                }
+                const walletState = await serviceInstancesMap.get(0)?.synchronize();
+                console.log("walletState", walletState);
+            }
+
             setSettingsState(defaultSettingsState);
             setWalletState((state) => ({
                 ...state,
-                wallets: [{ name: name!, colorIndex: 0, index: 0, serviceInstance: new CKBSDKService(mnemonic?.join(" ") || "") }],
+                wallets: [{ name: name!, colorIndex: 0, index: 0, initialState: walletState }],
                 hasWallet: true,
                 isAuthenticated: true,
                 selectedWallet: 0,

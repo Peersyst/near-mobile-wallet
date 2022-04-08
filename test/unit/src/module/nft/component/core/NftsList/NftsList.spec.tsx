@@ -6,15 +6,19 @@ import { waitFor } from "@testing-library/react-native";
 import { translate } from "locale";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/common/query/useLoad";
 
 describe("NftsList tests", () => {
-    afterAll(() => {
+    const sdkInstance = new CKBSDKService("");
+
+    afterEach(() => {
         jest.restoreAllMocks();
     });
 
     test("Renders correctly", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CKBSDKService.prototype, "getNfts").mockReturnValue(SuccessApiCall(nfts));
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(sdkInstance, "getNfts").mockReturnValue(SuccessApiCall(nfts));
 
         const screen = render(<NftsList />);
 
@@ -25,7 +29,8 @@ describe("NftsList tests", () => {
 
     test("Renders correctly without transactions", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CKBSDKService.prototype, "getNfts").mockReturnValue(SuccessApiCall([]));
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(sdkInstance, "getNfts").mockReturnValue(SuccessApiCall([]));
         const screen = render(<NftsList />);
         await waitFor(() => expect(screen.getAllByText(translate("no_nfts"))));
     });

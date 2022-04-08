@@ -10,6 +10,7 @@ import { useRefetchQuery } from "../../../../query/useRefetchQuery";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import SendSummary from "./SendSummary";
+import { serviceInstancesMap } from "module/common/query/useLoad";
 
 const SendConfirmationScreen = (): JSX.Element => {
     const { amount, fee, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
@@ -17,7 +18,8 @@ const SendConfirmationScreen = (): JSX.Element => {
         state: { wallets },
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
-    const { name: senderName, serviceInstance } = senderWallet;
+    const { name: senderName, index } = senderWallet;
+    const serviceInstance = serviceInstancesMap.get(index);
     const { mutate: sendTransaction, isLoading, isSuccess, isError } = useSendTransaction();
     const { hideModal } = useModal();
     const refetch = useRefetchQuery();

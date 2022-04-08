@@ -3,14 +3,19 @@ import * as UseWalletState from "module/wallet/hook/useWalletState";
 import createUseWalletStateMock, { mockedUseWallet } from "mocks/useWalletState";
 import SelectDAOWallet from "module/dao/component/core/DAOAccountCard/DAOCardHeader/SelectDAOWallet/SelectDAOWallet";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/common/query/useLoad";
 
 describe("Test for the SelectDAOWallet", () => {
+    const sdkInstance = new CKBSDKService("");
+
     afterAll(() => {
         jest.restoreAllMocks();
     });
+
     test("Renders correctly", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CKBSDKService.prototype, "getCKBBalance").mockReturnValue({
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
             totalBalance: BigInt(20000),
             occupiedBalance: BigInt(9600),
             freeBalance: BigInt(14567),
@@ -23,7 +28,8 @@ describe("Test for the SelectDAOWallet", () => {
     test("Updates global selectedWallet correctly", async () => {
         const setSelectedWallet = jest.fn();
         jest.spyOn(UseWalletState, "default").mockReturnValue(createUseWalletStateMock({ setSelectedWallet }));
-        jest.spyOn(CKBSDKService.prototype, "getCKBBalance").mockReturnValue({
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
             totalBalance: BigInt(20000),
             occupiedBalance: BigInt(9600),
             freeBalance: BigInt(14567),

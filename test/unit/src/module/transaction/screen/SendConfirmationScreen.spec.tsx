@@ -6,11 +6,19 @@ import { translate } from "locale";
 import { formatAddress } from "@peersyst/react-utils";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/common/query/useLoad";
 
 describe("SendConfirmationScreen tests", () => {
+    const sdkInstance = new CKBSDKService("");
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
     test("Renders correctly", () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CKBSDKService.prototype, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({
             amount: "1000",
             fee: "10",

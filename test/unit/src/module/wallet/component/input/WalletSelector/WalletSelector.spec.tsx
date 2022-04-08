@@ -4,11 +4,19 @@ import { waitFor } from "@testing-library/react-native";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/common/query/useLoad";
 
 describe("WalletSelector tests", () => {
+    const sdkInstance = new CKBSDKService("");
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
     test("Renders correctly", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CKBSDKService.prototype, "getCKBBalance").mockReturnValue({
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
             totalBalance: BigInt(1),
             occupiedBalance: BigInt(0),
             freeBalance: BigInt(1),

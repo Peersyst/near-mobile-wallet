@@ -6,12 +6,20 @@ import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { MockedDAOBalance } from "mocks/DAO";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/common/query/useLoad";
 
 describe("Test for the DepositSummary", () => {
+    const sdkInstance = new CKBSDKService("");
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
     test("Renders correctly", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CKBSDKService.prototype, "getDAOBalance").mockReturnValue(SuccessApiCall(MockedDAOBalance));
-        jest.spyOn(CKBSDKService.prototype, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(sdkInstance, "getDAOBalance").mockReturnValue(SuccessApiCall(MockedDAOBalance));
+        jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
         const screen = render(<DepositSummary senderAddress={"0xMockedAddress"} amount={"1000"} fee={"10"} senderName={"Peersyst"} />);
         expect(screen.getByText("1,000")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();

@@ -2,9 +2,11 @@ import { useWindowDimensions } from "react-native";
 import { Row } from "react-native-components";
 import QRCodeBase from "react-native-qrcode-svg";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
+import { serviceInstancesMap } from "module/common/query/useLoad";
 
 const QRCode = (): JSX.Element => {
-    const { serviceInstance } = useSelectedWallet();
+    const { index } = useSelectedWallet();
+    const serviceInstance = serviceInstancesMap.get(index);
     const { height: screenHeight } = useWindowDimensions();
     const height = screenHeight * 0.35;
     return (
