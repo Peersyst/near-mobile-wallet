@@ -57,7 +57,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
                             </FormGroup>
                         </WithdrawSelectorCard>
                         <WithdrawSelectorCard>
-                            <FormGroup label={`${translate("select_deposit")} :`} style={{ height: 80 }}>
+                            <FormGroup label={`${translate("select_deposit")}:`} style={{ height: 80 }}>
                                 <ControlledSuspense isLoading={depositsIsLoading} activityIndicatorSize={"large"}>
                                     <DepositsSelector name="deposit" deposits={data} required defaultValue={0} />
                                 </ControlledSuspense>

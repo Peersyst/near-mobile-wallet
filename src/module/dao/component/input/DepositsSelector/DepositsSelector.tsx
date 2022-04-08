@@ -4,12 +4,20 @@ import ControlledSuspense from "module/common/component/base/feedback/Controlled
 import Select, { SelectProps } from "module/common/component/input/Select/Select";
 import { DAOUnlockableAmount } from "module/common/service/mock/CkbServiceMock.types";
 import Balance from "module/wallet/component/display/Balance/Balance";
+import { Typography } from "react-native-components";
 import DepositItem from "./DepositItem";
-import { EmptyDepositsComponent } from "./EmptyDepositsComponent";
 
 interface DepositsSelectorProps extends Omit<SelectProps, "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple"> {
     deposits: DAOUnlockableAmount[];
 }
+
+const EmptyDepositsComponent = () => {
+    return (
+        <Typography variant="body1" textAlign="center" fontWeight="bold" style={{ marginVertical: 4 }}>
+            {translate("no_deposits")}
+        </Typography>
+    );
+};
 
 const DepositsSelector = ({ deposits, value, onChange, ...rest }: DepositsSelectorProps): JSX.Element => {
     const [selectedIndex, setSelectedIndex] = useControlled(0, value as number, onChange);
