@@ -17,14 +17,14 @@ const WithdrawConfirmationScreen = ({ depositInfo }: WithdrawConfirmationScreenP
     const {
         state: { wallets },
     } = useWalletState();
-    const senderWallet = wallets[depositInfo?.sender!];
+    const senderWallet = wallets[depositInfo?.receiver!];
     const { name: senderName, serviceInstance } = senderWallet;
     const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO();
     const { hideModal } = useModal();
     const refetch = useRefetchQuery();
 
     const handleConfirmation = async () => {
-        const mnemonic = await WalletStorage.getMnemonic(depositInfo?.sender!);
+        const mnemonic = await WalletStorage.getMnemonic(depositInfo?.receiver!);
         /*  depositInDAO(
             { amount: BigInt(amount!), mnemonic: mnemonic!, feeRate: fee! },
             { onSuccess: () => refetch(["balance", senderWalletIndex]) },

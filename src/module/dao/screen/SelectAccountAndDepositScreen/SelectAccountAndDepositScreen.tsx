@@ -34,7 +34,7 @@ const SelectAccountAndDepositScreen = ({ setDepositInfo }: WithdrawSelectAccount
                         <FormGroup label={translate("select_a_wallet") + ":"}>
                             <WalletSelector
                                 required
-                                name="sender"
+                                name="receiver"
                                 value={selectedWallet}
                                 onChange={(index) => setSelectedWallet(index as number)}
                             />

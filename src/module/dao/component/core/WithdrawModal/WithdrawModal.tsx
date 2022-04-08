@@ -6,7 +6,6 @@ import useGetFee from "module/transaction/query/useGetFee";
 import { useRecoilValue, useResetRecoilState } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import sendState from "module/transaction/state/SendState";
-import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScreen/DepositConfirmationScreen";
 import SelectAccountAndDepositScreen from "module/dao/screen/SelectAccountAndDepositScreen/SelectAccountAndDepositScreen";
 import WithdrawConfirmationScreen from "module/dao/screen/WithdrawConfirmationScreen/WithdrawConfirmationScreen";
 
@@ -17,7 +16,7 @@ export enum WithdrawScreens {
 }
 
 export interface WithdrawForm {
-    sender: number;
+    receiver: number;
     amount: number;
 }
 

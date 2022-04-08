@@ -133,5 +133,6 @@
     "no_withdrawals": "You don't have any withdrawals yet",
     "invalid_address": "Invalid address",
     "select_deposit": "Select a deposit",
-    "wallet": "Wallet"
+    "wallet": "Wallet",
+    "deposit_apc": "Deposit APC"
 }

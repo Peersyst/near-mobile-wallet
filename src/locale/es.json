@@ -133,5 +133,6 @@
     "no_withdrawals": "Todavía no tienes ningún retiro",
     "invalid_address": "Invalid address",
     "select_deposit": "Selecciona un depósito",
-    "wallet": "Wallet"
+    "wallet": "Wallet",
+    "deposit_apc": "APC del depósito"
 }
