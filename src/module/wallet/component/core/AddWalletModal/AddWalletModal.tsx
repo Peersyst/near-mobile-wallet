@@ -5,6 +5,7 @@ import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/common/query/useLoad";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
@@ -33,8 +34,12 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
     const handleWalletCreation = async () => {
         const newWallet = await WalletStorage.addWallet({ name: name!, mnemonic: mnemonic!, colorIndex: colorIndex! });
         if (newWallet) {
-            const serviceInstance = new CKBSDKService(newWallet.mnemonic.join(" "));
-            const walletState = await serviceInstance.synchronize();
+            console.log("handlewalletcreation newwallet");
+            if (!serviceInstancesMap.has(newWallet.index)) {
+                serviceInstancesMap.set(newWallet.index, new CKBSDKService(newWallet.mnemonic.join(" "), newWallet.initialState));
+            }
+            const walletState = await serviceInstancesMap.get(newWallet.index)?.synchronize();
+            console.log("walletState", walletState);
 
             setWalletState((state) => ({
                 ...state,
@@ -44,7 +49,6 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
                         name: newWallet.name,
                         colorIndex: newWallet.colorIndex,
                         index: newWallet.index,
-                        serviceInstance,
                         initialState: walletState,
                     },
                 ],

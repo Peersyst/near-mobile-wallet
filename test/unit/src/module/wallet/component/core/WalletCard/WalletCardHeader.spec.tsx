@@ -4,11 +4,15 @@ import WalletCardHeader from "module/wallet/component/core/WalletCard/WalletCard
 import * as UseWallet from "module/wallet/hook/useWallet";
 import { wallet } from "mocks/wallet";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/common/query/useLoad";
 
 describe("WalletCardHeader tests", () => {
+    const sdkInstance = new CKBSDKService("");
+
     beforeAll(() => {
         jest.spyOn(UseWallet, "default").mockReturnValue(wallet);
-        jest.spyOn(CKBSDKService.prototype, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
     });
 
     afterAll(() => {

@@ -6,6 +6,7 @@ import { Col, Row, Typography, useModal } from "react-native-components";
 import GoBack from "../../navigation/GoBack";
 import ReceiveModal from "../../core/ReceiveModal/ReceiveModal";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
+import { serviceInstancesMap } from "module/common/query/useLoad";
 
 const ReceiveCardContent = styled(Col, { justifyContent: "space-between" })(({ dimensions }) => ({
     height: dimensions.height * 0.25,
@@ -18,7 +19,8 @@ const TextAddress = styled(Typography, { textTransform: "uppercase" })(() => ({
 }));
 
 const ReceiveCard = (): JSX.Element => {
-    const { serviceInstance } = useSelectedWallet();
+    const { index } = useSelectedWallet();
+    const serviceInstance = serviceInstancesMap.get(index);
     const address = serviceInstance?.getAddress();
     const { hideModal } = useModal();
 
