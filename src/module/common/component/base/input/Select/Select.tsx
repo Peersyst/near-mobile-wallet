@@ -62,8 +62,8 @@ export default function Select({
     return (
         <View style={style}>
             <TouchableWithoutFeedback onPress={handlePress}>
-                {display || (
-                    <View>
+                <View onStartShouldSetResponderCapture={() => true}>
+                    {display || (
                         <Row style={displayRootStyle} alignItems="center" justifyContent="space-between">
                             <View style={{ maxWidth: "92%" }}>
                                 {renderedValue || (
@@ -74,8 +74,8 @@ export default function Select({
                             </View>
                             <Icon style={{ ...displayTextStyle, fontSize: 14 }}>{icon}</Icon>
                         </Row>
-                    </View>
-                )}
+                    )}
+                </View>
             </TouchableWithoutFeedback>
             <SelectProvider value={{ value, setValue, setOpen, multiple, readonly }}>
                 <SelectMenu open={open} style={menuStyle} header={header} footer={footer}>

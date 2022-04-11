@@ -12,6 +12,7 @@ const CountdownButton = ({
     variant = "contained",
     size = "lg",
     loading,
+    onCountdownEnd,
     ...buttonProps
 }: CountdownButtonProps): JSX.Element => {
     const [seconds, setSeconds] = useState(secondsProp);
@@ -20,6 +21,8 @@ const CountdownButton = ({
     useEffect(() => {
         if (seconds > 0) {
             timeout = setTimeout(() => setSeconds((s) => s - 1), 1000);
+        } else {
+            onCountdownEnd?.();
         }
         return () => {
             clearTimeout(timeout);
