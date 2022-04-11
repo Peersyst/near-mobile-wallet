@@ -42,5 +42,3 @@ export type ValidatorKey =
     | "too_many_chars"
     | "invalid_start"
     | "invalid_end";
-
-export type TranslateFn<T extends ValidatorKey = ValidatorKey> = (w: T, opts?: Record<string, string>) => string;

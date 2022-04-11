@@ -44,4 +44,8 @@ export const defaultTheme: DefaultTheme = {
         toast: 9999,
     },
     translate: (w: string) => w,
+    blockchainLinks: {
+        address: "https://explorer.harmony.one/address/",
+        tx: "https://explorer.harmony.one/tx/",
+    },
 };

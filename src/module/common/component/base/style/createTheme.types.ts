@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { StyleProp, TextStyle } from "react-native";
-import { ExtraValidators, Shadow, ThemeFonts, ThemeIcons, ThemePalette, ThemeZIndex } from "./theme.types";
-import { TranslateFn, ValidatorFactory } from "../input/TextInput/Validators";
+import { BlockchainLinks, ExtraValidators, Shadow, ThemeFonts, ThemeIcons, ThemePalette, ThemeZIndex, TranslateFn } from "./theme.types";
+import { ValidatorFactory } from "../input/TextInput/Validators";
 import { ToastAnimation, ToastPosition } from "../feedback/Toast";
 
 export interface CreateDefaultThemeTypography {
@@ -36,5 +36,6 @@ export interface CreateDefaultTheme {
     zIndex?: Partial<ThemeZIndex>;
     translate?: TranslateFn;
     validators?: Record<keyof ExtraValidators, ValidatorFactory>;
+    blockchainLinks?: Partial<BlockchainLinks>;
 }
 export interface CreateTheme extends CreateDefaultTheme {}

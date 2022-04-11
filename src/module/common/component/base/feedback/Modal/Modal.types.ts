@@ -9,6 +9,10 @@ export interface ModalProps extends ExposedBackdropProps {
      */
     elevation?: Elevation;
     /**
+     * Show the close button
+     */
+    showCloseButton?: boolean;
+    /**
      * Modal style
      */
     style?: ViewStyle;

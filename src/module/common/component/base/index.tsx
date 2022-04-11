@@ -29,4 +29,6 @@ export * from "./layout/Toolbar";
 export * from "./navigation/Tabs";
 export * from "./surface/Paper";
 export * from "./util/Animated";
+export * from "./util/BlockchainAddress";
+export * from "./util/CopyButton";
 export * from "./style";

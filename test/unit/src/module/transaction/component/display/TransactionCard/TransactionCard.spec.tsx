@@ -14,10 +14,10 @@ describe("TransactionCard tests", () => {
     });
 
     test("Renders correctly without amount", () => {
-        const screen = render(<TransactionCard transaction={createTransaction({ type: TransactionType.SMART_CONTRACT })} />);
+        const screen = render(<TransactionCard transaction={createTransaction({ type: TransactionType.SEND_NFT })} />);
         expect(screen.getByText("29/01/2022 - 00:00")).toBeDefined();
-        expect(screen.getByText(translate("smart_contract"))).toBeDefined();
+        expect(screen.getByText(translate("sent_nft"))).toBeDefined();
         expect(screen.queryByText("CKB")).toBeNull();
-        expect(screen.getByTestId("SmartContractIcon")).toBeDefined();
+        expect(screen.getByTestId("SendIcon")).toBeDefined();
     });
 });
