@@ -5,7 +5,7 @@ import { Col } from "react-native-components";
 import BaseSendSummary, { BaseSendSummaryProps } from "../../../transaction/component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../../transaction/component/display/SummaryField/SummaryField";
 import { SummaryText } from "module/transaction/component/display/SummaryField/SummaryField.styles";
-import { getAPC } from "module/dao/component/utils/getAPC";
+import { getAPC } from "module/dao/utils/getAPC";
 
 export interface DepositSummaryProps extends BaseSendSummaryProps {
     senderName: string;

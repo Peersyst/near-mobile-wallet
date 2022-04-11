@@ -1,5 +1,5 @@
 import { DAOBalance } from "module/common/service/mock/CkbServiceMock.types";
-import { getAPC } from "module/dao/component/utils/getAPC";
+import { getAPC } from "module/dao/utils/getAPC";
 
 describe("getAPC tests", () => {
     test("No apc", () => {

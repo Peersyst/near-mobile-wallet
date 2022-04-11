@@ -14,7 +14,7 @@ import { CKBAmountInputContainer } from "./SendSetAmountScreen.styles";
 import Card from "module/common/component/surface/Card/Card";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
-import { Loader } from "module/transaction/component/feedback/Loader/Loader";
+import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 
 export interface SendAmountAndMessageResult {
     amount: string;
@@ -39,7 +39,7 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
     };
 
     return (
-        <ControlledSuspense isLoading={feeIsLoading || balanceIsLoading} fallback={<Loader />}>
+        <ControlledSuspense isLoading={feeIsLoading || balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col gap="15%">
                     <CKBAmountInputContainer>
