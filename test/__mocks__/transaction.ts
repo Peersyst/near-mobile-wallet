@@ -23,3 +23,5 @@ export const transactions: Transaction[] = [...Array(3)].map((_, i) => ({
     blockNumber: i,
     timestamp: new Date(2022, 0, i + 1),
 }));
+
+export const createTransaction = (values: Partial<Transaction>): Transaction => ({ ...transaction, ...values });
