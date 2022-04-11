@@ -25,12 +25,20 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     const { fee: selectedFee } = useRecoilValue(settingsState);
     const { data: fee, isLoading: feeIsLoading } = useGetFee(selectedFee);
     const {
-        state: { selectedWallet: defaultSelectedWallet },
+        state: { selectedWallet: defaultSelectedWallet, wallets },
     } = useWalletState();
-    const [selectedWallet, setSelectedWallet] = useState<number>(defaultSelectedWallet || 0);
+    const finalSelectedWallet =
+        //Check if the user has a previous selectedWallet
+        defaultSelectedWallet !== undefined
+            ? //Revise that the selected wallet is not the CreateWallet
+              defaultSelectedWallet === wallets.length
+                ? defaultSelectedWallet - 1
+                : defaultSelectedWallet
+            : 0;
+    const [selectedWallet, setSelectedWallet] = useState<number>(finalSelectedWallet);
     const [isFirstTime, setIsFirstTime] = useState<boolean>(true);
-    const { data = [], isLoading: depositsIsLoading, refetch } = useGetDAOUnlockableAmounts(selectedWallet);
-
+    const { data = [], isLoading: depositsIsLoading, refetch } = useGetDAOUnlockableAmounts(finalSelectedWallet);
+    const unlockableDeposits = data.filter((deposit) => deposit.unlockable);
     //Functions
     const handleSubmit = (withdrawInfo: WithdrawForm) => {
         setWithdrawInfo({ ...withdrawInfo, feeRate: fee });
@@ -66,11 +74,11 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
                         <WithdrawSelectorCard>
                             <FormGroup label={`${translate("select_deposit")}:`} style={{ height: 80 }}>
                                 <ControlledSuspense isLoading={depositsIsLoading} activityIndicatorSize={"large"}>
-                                    <DepositsSelector name="depositIndex" deposits={data} required defaultValue={0} />
+                                    <DepositsSelector name="depositIndex" deposits={unlockableDeposits} required defaultValue={0} />
                                 </ControlledSuspense>
                             </FormGroup>
                         </WithdrawSelectorCard>
-                        <Button variant="outlined" fullWidth disabled={depositsIsLoading || data.length === 0}>
+                        <Button variant="outlined" fullWidth disabled={depositsIsLoading || unlockableDeposits.length === 0}>
                             {translate("next")}
                         </Button>
                     </Col>

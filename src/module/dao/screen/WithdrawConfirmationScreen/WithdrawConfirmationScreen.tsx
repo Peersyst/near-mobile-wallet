@@ -25,18 +25,19 @@ const WithdrawConfirmationScreen = ({
         state: { wallets },
     } = useWalletState();
     const { data: deposits = [] } = useGetDAOUnlockableAmounts();
+    const unlockableDeposits = deposits.filter((deposit) => deposit.unlockable);
     const { mutate: withdrawFromDAO, isLoading, isSuccess, isError } = useWithdrawAndUnlock(receiverIndex);
 
     //Variables
     const { name: receiverName, serviceInstance } = wallets[receiverIndex]; //Receiver info
-    const { compensation = BigInt(0), amount = BigInt(0) } = deposits[depositIndex] || {}; //Deposit info
+    const { compensation = BigInt(0), amount = BigInt(0) } = unlockableDeposits[depositIndex] || {}; //Deposit info
 
     //Functions
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(receiverIndex);
-        if (deposits.length > depositIndex) {
+        if (unlockableDeposits.length > depositIndex) {
             withdrawFromDAO(
-                { unlockableAmount: deposits[depositIndex], mnemonic: mnemonic!, feeRate: feeRate! },
+                { unlockableAmount: unlockableDeposits[depositIndex], mnemonic: mnemonic!, feeRate: feeRate! },
                 { onSuccess: handleOnSuccess },
             );
         }

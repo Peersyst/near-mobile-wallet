@@ -7,7 +7,6 @@ const useWithdrawAndUnlock = (index: number) => {
         state: { wallets },
     } = useWalletState();
     const serviceInstance = wallets[index].serviceInstance!;
-
     return useMutation((params: WithdrawAndUnlockParams) => serviceInstance.withdrawAndUnlock(params));
 };
 

@@ -12,7 +12,7 @@ const useGetDAOUnlockableAmounts = (index?: number): QueryResult<DAOUnlockableAm
     else if (selectedWallet !== undefined) {
         usedIndex = selectedWallet < wallets.length ? selectedWallet : wallets.length - 1;
     }
-    const serviceInstance = wallets[usedIndex].serviceInstance;
+    const serviceInstance = wallets[0].serviceInstance;
     return useQuery(["daoUnlockableAmounts", usedIndex], () => serviceInstance?.getDAOUnlockableAmounts());
 };
 

@@ -30,7 +30,7 @@ const DepositSelectAccountScreen = () => {
                 <Col gap={40}>
                     <Paper style={{ padding: 20 }} elevation={8}>
                         <FormGroup label={translate("select_a_wallet") + ":"}>
-                            <WalletSelector required name="sender" defaultValue={sendState.senderWalletIndex} />
+                            <WalletSelector required name="sender" defaultValue={sendState.senderWalletIndex || 0} />
                         </FormGroup>
                     </Paper>
                     <Button variant="outlined" fullWidth>
