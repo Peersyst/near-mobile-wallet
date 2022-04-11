@@ -5,6 +5,7 @@ import { Col } from "react-native-components";
 import BaseSendSummary, { BaseSendSummaryProps } from "../../../transaction/component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../../transaction/component/display/SummaryField/SummaryField";
 import { SummaryText } from "module/transaction/component/display/SummaryField/SummaryField.styles";
+import { getAPC } from "module/dao/utils/getAPC";
 
 export interface DepositSummaryProps extends BaseSendSummaryProps {
     senderName: string;
@@ -13,13 +14,13 @@ export interface DepositSummaryProps extends BaseSendSummaryProps {
 
 const DepositSummary = ({ amount, fee, senderName, senderAddress }: DepositSummaryProps): JSX.Element => {
     const { data: daoBalance } = useGetDAOBalance();
-    const currentAPC = daoBalance?.daoCompensation;
+
     return (
         <BaseSendSummary amount={amount} fee={fee}>
             <Col gap="3%" style={{ alignSelf: "flex-start" }}>
                 <SummaryField label={translate("from")}>{senderName + " - " + formatAddress(senderAddress, "middle", 3)}</SummaryField>
                 <SummaryField label={translate("estimated_apc")}>
-                    {currentAPC !== undefined ? `${currentAPC}%` : `${translate("loading_apc")}...`}
+                    {daoBalance !== undefined ? `${getAPC(daoBalance)}%` : `${translate("loading_apc")}...`}
                 </SummaryField>
                 <SummaryText variant="body1" textAlign="center">
                     <SummaryText variant="body1" fontWeight="bold">

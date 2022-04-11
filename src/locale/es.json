@@ -132,5 +132,22 @@
     "no_deposits": "Actualmente no tienes ningún depósito en curso",
     "no_withdrawals": "Todavía no tienes ningún retiro",
     "invalid_address": "Invalid address",
-    "wallet": "Wallet"
+    "copied_to_clipboard": "Copiado al portapapeles",
+    "receiver": "Receptor",
+    "senders": "Remitentes",
+    "hash": "Hash",
+    "unknown": "Desconocido",
+    "select_deposit": "Selecciona un depósito",
+    "wallet": "Wallet",
+    "deposit_apc": "APC del depósito",
+    "destination_wallet": "Wallet de destino",
+    "withdraw_completed": "Retiro completado\ncorrectamente",
+    "delete_data": "Borrar datos",
+    "delete_data_text": "Estás seguro de que quieres borrar todos los datos de este dispositivo? Deberás introducir tu PIN para realizar esta acción.",
+    "delete": "Borrar",
+    "back_up_your_wallets": "Respalda tus wallets",
+    "backup_wallet_advise_text": "Si continuas verás tu frase de recuperación para uno de tus wallets. Esta es tu única clave para ese wallet. Si roban o pierdes tu dispositivo, solo podrás recuperar tus fondos con esta frase de recuperación.",
+    "back_up_now": "Respaldar",
+    "close": "Cerrrar",
+    "mnemonic_for": "Mnemonic para %name%"
 }

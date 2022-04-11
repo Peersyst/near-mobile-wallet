@@ -7,7 +7,6 @@ import sendRecoilState from "module/transaction/state/SendState";
 import { useState } from "react";
 import useGetFee from "module/transaction/query/useGetFee";
 import useGetBalance from "module/wallet/query/useGetBalance";
-import { ActivityIndicator } from "react-native";
 import settingsState from "module/settings/state/SettingsState";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import CKBAmountInput from "../../component/input/CKBAmountInput/CKBAmountInput";
@@ -15,6 +14,7 @@ import { CKBAmountInputContainer } from "./SendSetAmountScreen.styles";
 import Card from "module/common/component/surface/Card/Card";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
+import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 
 export interface SendAmountAndMessageResult {
     amount: string;
@@ -24,14 +24,6 @@ export interface SendAmountAndMessageResult {
 interface SendSetAmountScreenProps {
     type?: "dao" | "send";
 }
-
-const Loader = (): JSX.Element => {
-    return (
-        <Col justifyContent="center" style={{ height: 250 }}>
-            <ActivityIndicator color="black" size="large" />
-        </Col>
-    );
-};
 
 const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
@@ -47,7 +39,7 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
     };
 
     return (
-        <ControlledSuspense isLoading={feeIsLoading || balanceIsLoading} fallback={<Loader />}>
+        <ControlledSuspense isLoading={feeIsLoading || balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col gap="15%">
                     <CKBAmountInputContainer>

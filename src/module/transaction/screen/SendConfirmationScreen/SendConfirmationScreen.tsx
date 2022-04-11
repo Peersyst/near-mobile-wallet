@@ -5,7 +5,7 @@ import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import useSendTransaction from "../../query/useSendTransaction";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
-import LoadingModal from "module/transaction/component/feedback/LoadingModal/LoadingModal";
+import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import SendSummary from "./SendSummary";

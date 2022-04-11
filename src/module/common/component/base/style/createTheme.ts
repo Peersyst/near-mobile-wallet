@@ -15,6 +15,7 @@ export function createTheme({
     translate,
     toolbarHeight,
     validators,
+    blockchainLinks,
     ...rest
 }: CreateTheme): Theme {
     return {
@@ -30,6 +31,7 @@ export function createTheme({
         translate: translate || defaultTheme.translate,
         toolbarHeight: toolbarHeight || defaultTheme.toolbarHeight,
         validators: validators || {},
+        blockchainLinks: { ...defaultTheme.blockchainLinks, ...blockchainLinks },
         ...rest,
     };
 }

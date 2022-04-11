@@ -1,9 +1,9 @@
 import { Children, ReactElement, ReactNode } from "react";
 import { Col } from "react-native-components";
-import { ViewProps } from "react-native";
+import { ViewStyle } from "react-native";
 
 export interface FormGroupProps {
-    style?: ViewProps & { gap?: number };
+    style?: ViewStyle & { gap?: number };
     children: ReactNode;
     label: ReactElement;
 }
