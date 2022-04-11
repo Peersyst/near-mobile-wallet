@@ -72,6 +72,12 @@ export interface DepositInDAOParams {
     feeRate?: string;
 }
 
+export interface WithdrawAndUnlockParams {
+    unlockableAmount: DAOUnlockableAmount;
+    mnemonic: string[];
+    feeRate?: string;
+}
+
 export interface SendTransactionParams {
     amount: bigint;
     mnemonic: string[];
@@ -81,6 +87,15 @@ export interface SendTransactionParams {
 }
 
 export interface DAOBalance {
-    daoDeposit: bigint | number;
-    daoCompensation: bigint | number;
+    daoDeposit: bigint;
+    daoCompensation: bigint;
+}
+
+export interface DAOUnlockableAmount {
+    type: "total" | "single";
+    amount: bigint;
+    compensation: bigint;
+    unlockable: boolean;
+    unlockableDate: Date;
+    txHash: string;
 }

@@ -7,6 +7,7 @@ import { RecoilRoot } from "recoil";
 import { renderHook, RenderHookOptions, RenderHookResult } from "@testing-library/react-hooks";
 import { deepmerge } from "@peersyst/react-utils";
 import { NavigationContainer } from "@react-navigation/native";
+import { ModalProvider } from "react-native-components";
 
 export interface CreateWrapperConfig {
     queryClientConfig?: QueryClientConfig;
@@ -32,7 +33,9 @@ export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): 
                 <QueryClientProvider client={queryClient}>
                     <SafeAreaProvider initialSafeAreaInsets={{ top: 0, left: 0, right: 0, bottom: 0 }}>
                         <StylesProvider>
-                            <NavigationContainer>{children}</NavigationContainer>
+                            <NavigationContainer>
+                                <ModalProvider>{children}</ModalProvider>
+                            </NavigationContainer>
                         </StylesProvider>
                     </SafeAreaProvider>
                 </QueryClientProvider>

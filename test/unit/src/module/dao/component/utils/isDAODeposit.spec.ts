@@ -1,4 +1,4 @@
-import { isDAODeposit } from "module/dao/component/utils/isDAODeposit";
+import { isDAODeposit } from "module/dao/utils/isDAODeposit";
 import { TransactionType } from "module/transaction/types";
 
 describe("isDAODeposit tests", () => {

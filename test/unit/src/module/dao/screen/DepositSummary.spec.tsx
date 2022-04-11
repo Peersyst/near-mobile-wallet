@@ -21,7 +21,7 @@ describe("Test for the DepositSummary", () => {
         expect(screen.getByText("Peersyst" + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();
         //APC
         expect(screen.getByText(translate("estimated_apc") + ":"));
-        await waitFor(() => expect(screen.getByText("2.4%")).toBeDefined());
+        await waitFor(() => expect(screen.getByText("100%")).toBeDefined());
         //Warning text
         expect(screen.getByText(translate("deposit_summary_warning")));
     });

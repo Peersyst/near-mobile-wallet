@@ -7,7 +7,7 @@ export type optionType = {
     value: string | number;
 };
 
-interface SelectGroupProps extends Pick<SelectProps, "onChange" | "value"> {
+interface SelectGroupProps extends SelectProps {
     options: optionType[];
     label: string;
 }

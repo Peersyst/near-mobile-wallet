@@ -8,6 +8,7 @@ export const ModalRoot = styled(Paper)(({ theme, dimensions: { width, height } }
     padding: 20,
     backgroundColor: theme.palette.background,
     borderRadius: theme.borderRadius,
+    elevation: 0,
 }));
 
 export const CloseButton = styled(IconButton)(({ theme }) => ({

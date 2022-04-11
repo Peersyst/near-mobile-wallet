@@ -3,7 +3,7 @@ import CountdownButton from "module/common/component/input/CountdownButton/Count
 import { translate } from "locale";
 import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
-import LoadingModal from "module/transaction/component/feedback/LoadingModal/LoadingModal";
+import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useRefetchQuery } from "../../../../query/useRefetchQuery";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
@@ -18,7 +18,7 @@ const DepositConfirmationScreen = (): JSX.Element => {
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
     const { name: senderName, serviceInstance } = senderWallet;
-    const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO();
+    const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO(senderWalletIndex!);
     const { hideModal } = useModal();
     const refetch = useRefetchQuery();
 

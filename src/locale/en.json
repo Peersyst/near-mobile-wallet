@@ -137,5 +137,17 @@
     "receiver": "Receiver",
     "senders": "Senders",
     "hash": "Hash",
-    "unknown": "Unknown"
+    "unknown": "Unknown",
+    "select_deposit": "Select a deposit",
+    "deposit_apc": "Deposit APC",
+    "destination_wallet": "Destination wallet",
+    "withdraw_completed": "Withdraw completed\nsuccessfully",
+    "delete_data": "Delete data",
+    "delete_data_text": "Are you sure you want to delete all the data from this device? You'll be asked for your PIN in order to do so.",
+    "delete": "Delete",
+    "back_up_your_wallets": "Back up your wallets",
+    "backup_wallet_advise_text": "If you continue you will see your recovery phrase for one of your wallets. This is your only key to that wallet. If your device gets stolen or lost, you will only be able to recover your funds with this recovery phrase.",
+    "back_up_now": "Back up now",
+    "close": "Close",
+    "mnemonic_for": "Mnemonic for %name%"
 }

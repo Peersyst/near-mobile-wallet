@@ -18,7 +18,6 @@ describe("DAO Card balance test", () => {
                 freeBalance: BigInt(12635),
             }),
         );
-
         const screen = render(<DAOCardBalance />);
         expect(screen.getByText(translate("wallet"))).toBeDefined();
         expect(screen.getByText(translate("available"))).toBeDefined();
@@ -27,8 +26,7 @@ describe("DAO Card balance test", () => {
         expect(screen.getByText(mockedUseWallet.state.wallets[mockedUseWallet.state.selectedWallet!].name)).toBeDefined();
         expect(screen.getAllByTestId("actIndicator")).toHaveLength(3);
         await waitFor(() => expect(screen.getByText("12,635")).toBeDefined()); // Available
-        await waitFor(() => expect(screen.getByText("594")).toBeDefined()); // Locked
-        expect(screen.getByText("323")).toBeDefined(); // Locked decimals
-        expect(screen.getByText("2.4%")).toBeDefined(); // apc
+        await waitFor(() => expect(screen.getByText("500")).toBeDefined()); // Locked
+        expect(screen.getByText("100%")).toBeDefined(); // apc
     });
 });

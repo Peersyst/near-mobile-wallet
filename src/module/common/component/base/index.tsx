@@ -6,6 +6,8 @@ export * from "./display/List";
 export * from "./display/ScrollView";
 export * from "./display/Typography";
 export * from "./feedback/Backdrop";
+export * from "./feedback/ControlledSuspense";
+export * from "./feedback/Dialog";
 export * from "./feedback/Modal";
 export * from "./feedback/ModalProvider";
 export * from "./feedback/Skeleton";
