@@ -5,7 +5,7 @@ import useGetBalance from "module/wallet/query/useGetBalance";
 import DAOBalanceRow from "./DAOBalanceRow/DAOBalanceRow";
 import useGetDAOBalance from "module/dao/query/useGetDAOBalance";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
-import { getAPC } from "module/dao/component/utils/getAPC";
+import { getAPC } from "module/dao/utils/getAPC";
 
 const DAOCardBalance = (): JSX.Element => {
     const { data: daoBalance, isLoading: daoBalanceLoading } = useGetDAOBalance();

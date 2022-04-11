@@ -1,15 +1,16 @@
 import { Col, Typography, useModal } from "react-native-components";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
 import { translate } from "locale";
-import LoadingModal from "module/transaction/component/feedback/LoadingModal/LoadingModal";
-import { useRefetchQuery } from "../../../../query/useRefetchQuery";
+import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import WithdrawModal, { WithdrawSummary as WithdrawSummaryType } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import WithdrawSummary from "./WithdrawSummary";
 import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
 import useWithdrawAndUnlock from "module/dao/query/useWithdrawAndUnlock";
-import { getAPC } from "module/dao/component/utils/getAPC";
+import { getAPC } from "module/dao/utils/getAPC";
+import { useRefetchQueries } from "../../../../query/useRefetchQueries";
+import { useMemo } from "react";
 
 interface WithdrawConfirmationScreenProps {
     withdrawInfo: WithdrawSummaryType;
@@ -20,12 +21,12 @@ const WithdrawConfirmationScreen = ({
 }: WithdrawConfirmationScreenProps): JSX.Element => {
     //Hooks
     const { hideModal } = useModal();
-    const refetch = useRefetchQuery();
+    const refetch = useRefetchQueries();
     const {
         state: { wallets },
     } = useWalletState();
     const { data: deposits = [] } = useGetDAOUnlockableAmounts();
-    const unlockableDeposits = deposits.filter((deposit) => deposit.unlockable);
+    const unlockableDeposits = useMemo(() => deposits.filter((deposit) => deposit.unlockable), [deposits]);
     const { mutate: withdrawFromDAO, isLoading, isSuccess, isError } = useWithdrawAndUnlock(receiverIndex);
 
     //Variables
@@ -44,8 +45,10 @@ const WithdrawConfirmationScreen = ({
     };
 
     const handleOnSuccess = () => {
-        refetch(["daoBalance", receiverIndex]);
-        refetch(["balance", receiverIndex]);
+        refetch([
+            ["daoBalance", receiverIndex],
+            ["balance", receiverIndex],
+        ]);
     };
 
     return (

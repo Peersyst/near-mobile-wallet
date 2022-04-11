@@ -6,14 +6,14 @@ import WalletSelector from "module/wallet/component/input/WalletSelector/WalletS
 import { WithdrawForm, WithdrawScreens, WithdrawSummary } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
 import { WithdrawSelectorCard } from "./SelectAccountAndDepositScreen.styles";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
-import { Loader } from "module/transaction/component/feedback/Loader/Loader";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import useGetFee from "module/transaction/query/useGetFee";
 import DepositsSelector from "module/dao/component/input/DepositsSelector/DepositsSelector";
+import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 
 interface WithdrawSelectAccountScreenProps {
     setWithdrawInfo: Dispatch<SetStateAction<WithdrawSummary>>;
@@ -30,41 +30,35 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     const finalSelectedWallet =
         //Check if the user has a previous selectedWallet
         defaultSelectedWallet !== undefined
-            ? //Revise that the selected wallet is not the CreateWallet
+            ? //Check that the selected wallet is not the CreateWallet
               defaultSelectedWallet === wallets.length
                 ? defaultSelectedWallet - 1
                 : defaultSelectedWallet
             : 0;
     const [selectedWallet, setSelectedWallet] = useState<number>(finalSelectedWallet);
     const [isFirstTime, setIsFirstTime] = useState<boolean>(true);
-    const { data = [], isLoading: depositsIsLoading, refetch } = useGetDAOUnlockableAmounts(finalSelectedWallet);
-    const unlockableDeposits = data.filter((deposit) => deposit.unlockable);
+    const { data = [], isLoading: depositsIsLoading } = useGetDAOUnlockableAmounts(selectedWallet);
+    const unlockableDeposits = useMemo(() => data.filter((deposit) => deposit.unlockable), [data]);
+
+    useEffect(() => {
+        setIsFirstTime(false);
+    }, []);
+
     //Functions
     const handleSubmit = (withdrawInfo: WithdrawForm) => {
         setWithdrawInfo({ ...withdrawInfo, feeRate: fee });
         setTab(WithdrawScreens.CONFIRMATION);
     };
 
-    const onWalletChange = (index: number) => {
-        refetch();
-        setSelectedWallet(index);
-    };
-
-    useEffect(() => {
-        if (isFirstTime && !depositsIsLoading) {
-            setIsFirstTime(false);
-        }
-    }, [depositsIsLoading]);
-
     return (
-        <ControlledSuspense isLoading={feeIsLoading || (isFirstTime && depositsIsLoading)} fallback={<Loader />}>
+        <ControlledSuspense isLoading={feeIsLoading || (isFirstTime && depositsIsLoading)} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col>
                     <Col gap={20}>
                         <WithdrawSelectorCard style={{ marginTop: 5 }}>
                             <FormGroup label={translate("select_a_wallet") + ":"}>
                                 <WalletSelector
-                                    onChange={(index) => onWalletChange(index as number)}
+                                    onChange={(index) => setSelectedWallet(index as number)}
                                     required
                                     name="receiverIndex"
                                     value={selectedWallet}

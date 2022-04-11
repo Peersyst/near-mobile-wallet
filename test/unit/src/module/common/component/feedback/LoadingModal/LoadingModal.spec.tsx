@@ -1,6 +1,6 @@
 import { act, render } from "test-utils";
 import { useEffect, useState } from "react";
-import LoadingModal from "module/transaction/component/feedback/LoadingModal/LoadingModal";
+import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { fireEvent } from "@testing-library/react-native";
 import { translate } from "locale";
 
