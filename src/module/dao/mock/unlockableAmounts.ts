@@ -1,4 +1,4 @@
-import { DAOUnlockableAmount } from "module/common/service/mock/CkbServiceMock.types";
+import { DAOUnlockableAmount } from "@peersyst/ckb-peersyst-sdk";
 
 export const unlockableAmounts: DAOUnlockableAmount[] = [
     {

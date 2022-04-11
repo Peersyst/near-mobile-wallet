@@ -1,8 +1,8 @@
+import { DAOUnlockableAmount } from "@peersyst/ckb-peersyst-sdk";
 import { useControlled } from "@peersyst/react-hooks";
 import { translate } from "locale";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 import Select, { SelectProps } from "module/common/component/input/Select/Select";
-import { DAOUnlockableAmount } from "module/common/service/mock/CkbServiceMock.types";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { Typography } from "react-native-components";
 import DepositItem from "./DepositItem";

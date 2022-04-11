@@ -3,7 +3,7 @@ import TransactionDetailsModal from "module/transaction/component/core/Transacti
 import { createTransaction, receivedTransaction, sentTransaction } from "mocks/transaction";
 import { translate } from "locale";
 import { formatAddress } from "@peersyst/react-utils";
-import { TransactionType } from "module/transaction/types";
+import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
 
 describe("TransactionDetailsModal test", () => {
     test("Renders SEND_CKB correctly", () => {

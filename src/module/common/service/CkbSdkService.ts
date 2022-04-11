@@ -11,9 +11,9 @@ import {
     DAOUnlockableAmount,
 } from "@peersyst/ckb-peersyst-sdk";
 import { tokensList, UknownToken } from "module/token/mock/token";
-import { TokenAmount, TokenType } from "module/token/types";
 import { DepositInDAOParams, FullTransaction, SendTransactionParams, WithdrawAndUnlockParams } from "./CkbSdkService.types";
 import { CKB_URL, INDEXER_URL } from "@env";
+import { TokenAmount, TokenType } from "module/token/types";
 
 export function getTokenTypeFromScript(scriptType: ScriptType): TokenType {
     const tokenFound = tokensList.filter((tkn) => tkn.args === scriptType.args && tkn.codeHash === scriptType.codeHash);

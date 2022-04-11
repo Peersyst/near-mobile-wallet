@@ -7,12 +7,17 @@ import { MockedUnlockableAmounts } from "mocks/DAO";
 import WithdrawConfirmationScreen from "module/dao/screen/WithdrawConfirmationScreen/WithdrawConfirmationScreen";
 import { formatAddress } from "@peersyst/react-utils";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("SelectAccountAndDepositScreen tests", () => {
+    const sdkInstance = new CKBSDKService("");
+
     beforeAll(() => {
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CKBSDKService.prototype, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
-        jest.spyOn(CKBSDKService.prototype, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(sdkInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
+        jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
     });
 
     afterAll(() => {
@@ -20,10 +25,10 @@ describe("SelectAccountAndDepositScreen tests", () => {
     });
 
     test("Renders correctly with deposits", async () => {
-        const screen = render(<WithdrawConfirmationScreen withdrawInfo={{ receiverIndex: 0, depositIndex: 0, feeRate: "10" }} />);
+        const screen = render(<WithdrawConfirmationScreen withdrawInfo={{ receiverIndex: 0, depositIndex: 0, feeRate: FeeRate.NORMAL }} />);
         await waitFor(() => expect(screen.getByText("500")).toBeDefined());
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
-        expect(screen.getByText("10")).toBeDefined();
+        expect(screen.getByText("100,000")).toBeDefined();
         //Withdraw summary
         expect(screen.getByText(translate("destination_wallet") + ":")).toBeDefined();
         expect(screen.getByText("firstWallet" + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();

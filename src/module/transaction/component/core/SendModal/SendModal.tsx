@@ -3,9 +3,7 @@ import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/S
 import { translate } from "locale";
 import { useState } from "react";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
-import useGetFee from "module/transaction/query/useGetFee";
-import { useRecoilValue, useResetRecoilState } from "recoil";
-import settingsState from "module/settings/state/SettingsState";
+import { useResetRecoilState } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import SendConfirmationScreen from "module/transaction/screen/SendConfirmationScreen/SendConfirmationScreen";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
@@ -18,11 +16,7 @@ export enum SendScreens {
 
 const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
     const [activeIndex, setActiveIndex] = useState(SendScreens.SEND_TO_ADDRESS);
-    const { fee } = useRecoilValue(settingsState);
     const resetSendState = useResetRecoilState(sendState);
-
-    // Prefetch fee
-    useGetFee(fee);
 
     const handleExited = () => {
         onExited?.();

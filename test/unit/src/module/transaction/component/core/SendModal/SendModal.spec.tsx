@@ -1,8 +1,7 @@
-import { render, SuccessApiCall } from "test-utils";
+import { render } from "test-utils";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { translate } from "locale";
-import * as GetFee from "module/transaction/mock/getFee";
 import * as Recoil from "recoil";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { mockedUseWallet } from "mocks/useWalletState";
@@ -18,12 +17,11 @@ describe("SendModal tests", () => {
 
     beforeAll(() => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(GetFee, "default").mockReturnValue(SuccessApiCall("10"));
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: BigInt(12000),
-            occupiedBalance: BigInt(2000),
-            freeBalance: BigInt(10000),
+            totalBalance: BigInt(120000000),
+            occupiedBalance: BigInt(20000000),
+            freeBalance: BigInt(100000000),
         });
     });
 
@@ -50,11 +48,11 @@ describe("SendModal tests", () => {
         fireEvent.press(screen.getByText(translate("next")));
 
         // Enter amount and message
-        await waitFor(() => fireEvent.changeText(screen.getByPlaceholderText(translate("enter_amount")), "1000"));
+        await waitFor(() => fireEvent.changeText(screen.getByPlaceholderText(translate("enter_amount")), "1000000"));
         fireEvent.changeText(screen.getByPlaceholderText(translate("write_a_message")), "This is a message");
         fireEvent.press(screen.getByText(translate("next")));
 
         // Confirmation
-        await waitFor(() => expect(screen.getByText("1,000")).toBeDefined());
+        await waitFor(() => expect(screen.getByText("1,000,000")).toBeDefined());
     });
 });

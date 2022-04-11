@@ -12,6 +12,10 @@ import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
 describe("Test for the DepositSummary", () => {
     const sdkInstance = new CKBSDKService("");
 
+    beforeAll(() => {
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+    });
+
     afterEach(() => {
         jest.restoreAllMocks();
     });
@@ -26,7 +30,7 @@ describe("Test for the DepositSummary", () => {
         );
         expect(screen.getByText("1,000")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
-        expect(screen.getByText("10")).toBeDefined();
+        expect(screen.getByText("100,000")).toBeDefined();
         //Sender
         expect(screen.getByText(translate("from") + ":"));
         expect(screen.getByText("Peersyst" + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();

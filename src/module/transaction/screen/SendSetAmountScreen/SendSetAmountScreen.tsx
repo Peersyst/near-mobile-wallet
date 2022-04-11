@@ -5,7 +5,6 @@ import Button from "module/common/component/input/Button/Button";
 import { useRecoilState, useRecoilValue } from "recoil";
 import sendRecoilState from "module/transaction/state/SendState";
 import { useState } from "react";
-import useGetFee from "module/transaction/query/useGetFee";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import settingsState from "module/settings/state/SettingsState";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
@@ -28,22 +27,21 @@ interface SendSetAmountScreenProps {
 const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const [amount, setAmount] = useState(sendState.amount || "");
-    const { fee: selectedFee } = useRecoilValue(settingsState);
-    const { data: fee, isLoading: feeIsLoading } = useGetFee(selectedFee);
+    const { fee } = useRecoilValue(settingsState);
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex);
     const setTab = useSetTab();
 
     const handleSubmit = ({ amount, message }: SendAmountAndMessageResult): void => {
-        setSendState((oldState) => ({ ...oldState, amount, message }));
+        setSendState((oldState) => ({ ...oldState, amount, message, fee }));
         setTab(type === "send" ? SendScreens.CONFIRMATION : DepositScreens.CONFIRMATION);
     };
 
     return (
-        <ControlledSuspense isLoading={feeIsLoading || balanceIsLoading} fallback={<CenteredLoader color="black" />}>
+        <ControlledSuspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col gap="15%">
                     <CKBAmountInputContainer>
-                        <CKBAmountInput fee={fee!} amount={amount} setAmount={setAmount} freeBalance={balance?.freeBalance || BigInt(0)} />
+                        <CKBAmountInput fee={fee} amount={amount} setAmount={setAmount} freeBalance={balance?.freeBalance ?? BigInt(0)} />
                     </CKBAmountInputContainer>
                     {type === "dao" ? (
                         <Card>

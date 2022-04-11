@@ -11,7 +11,6 @@ import useWalletState from "module/wallet/hook/useWalletState";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
-import useGetFee from "module/transaction/query/useGetFee";
 import DepositsSelector from "module/dao/component/input/DepositsSelector/DepositsSelector";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 
@@ -22,8 +21,7 @@ interface WithdrawSelectAccountScreenProps {
 const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccountScreenProps) => {
     //Hooks
     const setTab = useSetTab();
-    const { fee: selectedFee } = useRecoilValue(settingsState);
-    const { data: fee, isLoading: feeIsLoading } = useGetFee(selectedFee);
+    const { fee } = useRecoilValue(settingsState);
     const {
         state: { selectedWallet: defaultSelectedWallet, wallets },
     } = useWalletState();
@@ -53,7 +51,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     };
 
     return (
-        <ControlledSuspense isLoading={feeIsLoading || (isFirstTime && depositsIsLoading)} fallback={<CenteredLoader color="black" />}>
+        <ControlledSuspense isLoading={isFirstTime && depositsIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col>
                     <Col gap={20}>

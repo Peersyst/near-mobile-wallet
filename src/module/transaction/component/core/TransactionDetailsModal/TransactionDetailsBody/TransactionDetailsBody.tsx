@@ -1,11 +1,12 @@
-import { Transaction, TransactionType } from "module/transaction/types";
 import { BlockchainAddress, Col, ScrollView, Typography } from "react-native-components";
 import TransactionDetail from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionDetail";
 import { translate } from "locale";
 import TransactionTypeDetails from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionTypeDetails";
+import { FullTransaction } from "module/common/service/CkbSdkService.types";
+import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
 
 export interface TransactionDetailsBodyProps {
-    transaction: Transaction;
+    transaction: FullTransaction;
 }
 
 const TransactionDetailsBody = ({ transaction }: TransactionDetailsBodyProps): JSX.Element => {

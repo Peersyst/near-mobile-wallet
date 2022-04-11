@@ -1,7 +1,7 @@
 import { Row, SelectItem } from "react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { DAOUnlockableAmount } from "module/common/service/mock/CkbServiceMock.types";
 import { useSelected } from "module/common/component/base/input/Select/hooks/useSelected";
+import { DAOUnlockableAmount } from "@peersyst/ckb-peersyst-sdk";
 
 export interface DepositItemProps {
     amount: DAOUnlockableAmount["amount"];

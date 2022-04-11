@@ -1,5 +1,4 @@
-import { render, SuccessApiCall } from "test-utils";
-import * as GetFee from "module/transaction/mock/getFee";
+import { render } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { translate } from "locale";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
@@ -15,13 +14,12 @@ describe("SendAmountAndMessageScreen tests", () => {
     const sdkInstance = new CKBSDKService("");
 
     beforeAll(() => {
-        jest.spyOn(GetFee, "default").mockReturnValue(SuccessApiCall("10"));
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: BigInt(1200),
-            occupiedBalance: BigInt(200),
-            freeBalance: BigInt(1000),
+            totalBalance: BigInt(1200000000),
+            occupiedBalance: BigInt(200000000),
+            freeBalance: BigInt(1000000000),
         });
     });
 
@@ -33,7 +31,7 @@ describe("SendAmountAndMessageScreen tests", () => {
         const screen = render(<SendSetAmountScreen />);
         await waitFor(() => expect(screen.getByPlaceholderText(translate("enter_amount"))).toBeDefined());
         expect(screen.getByText("CKB")).toBeDefined();
-        expect(screen.getByText(translate("transaction_fee", { fee: "10" }))).toBeDefined();
+        expect(screen.getByText(translate("transaction_fee", { fee: "100,000" }))).toBeDefined();
         expect(screen.getByPlaceholderText(translate("write_a_message"))).toBeDefined();
         expect(screen.getByText(translate("next"))).toBeDefined();
     });
