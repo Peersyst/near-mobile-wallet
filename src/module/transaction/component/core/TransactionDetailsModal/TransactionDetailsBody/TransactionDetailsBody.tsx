@@ -3,13 +3,14 @@ import { BlockchainAddress, Col, ScrollView, Typography } from "react-native-com
 import TransactionDetail from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionDetail";
 import { translate } from "locale";
 import TransactionTypeDetails from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionTypeDetails";
+import TransactionStatus from "module/transaction/component/display/TransactionStatus/TransactionStatus";
 
 export interface TransactionDetailsBodyProps {
     transaction: Transaction;
 }
 
 const TransactionDetailsBody = ({ transaction }: TransactionDetailsBodyProps): JSX.Element => {
-    const { type, transactionHash } = transaction;
+    const { type, transactionHash, status } = transaction;
     return (
         <ScrollView alwaysBounceVertical={false} style={{ maxHeight: 300 }}>
             <Col gap={10} flex={1}>
@@ -19,6 +20,9 @@ const TransactionDetailsBody = ({ transaction }: TransactionDetailsBodyProps): J
                         <Typography variant="body1">Transaction message</Typography>
                     </TransactionDetail>
                 )}
+                <TransactionDetail title={translate("status")}>
+                    <TransactionStatus status={status} variant="body1" fontWeight="500" />
+                </TransactionDetail>
                 <TransactionDetail title={translate("hash")}>
                     <BlockchainAddress address={transactionHash} type="address" variant="body1" length={8} />
                 </TransactionDetail>
