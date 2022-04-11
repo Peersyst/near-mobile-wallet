@@ -138,7 +138,20 @@ export const transactions: FullTransaction[] = [
     {
         status: TransactionStatus.COMMITTED,
         transactionHash: "0x81bbc439433bc380f6910752bb2ed1ed3bc520d0d7678376a1baf3dd571649b2",
-        inputs: [],
+        inputs: [
+            {
+                quantity: 39842,
+                address: "ckb1qqypm0l63rdt2jayymfrrjnyadmqe630a8skwcdpmfqqmgdje0sjsqfyxx8e4nfdhtjf2eynl0wnx5zprz6s77gmudv2e",
+            },
+            {
+                quantity: 9485,
+                address: "ckb1qyqy5vmywpty6p72wpvm0xqys8pdtxqf6cmsr8p2l0",
+            },
+            {
+                quantity: 49532,
+                address: "ckb1qyqdmeuqrsrnm7e5vnrmruzmsp4m9wacf6vsxasryq",
+            },
+        ],
         outputs: [],
         blockHash: "0x89ff1fad43de1ea3e42961215224755478a9fc08033bc1f17bfed0207ad989ef",
         blockNumber: 4724117,
@@ -194,7 +207,12 @@ export const transactions: FullTransaction[] = [
         status: TransactionStatus.COMMITTED,
         transactionHash: "0xa43e1c45350cdcf16bfd0e5dda832302cf34300054f1ddeb571cf6ce178bb700",
         inputs: [],
-        outputs: [],
+        outputs: [
+            {
+                quantity: 10250,
+                address: "ckb1qqypm0l63rdt2jayymfrrjnyadmqe630a8skwcdpmfqqmgdje0sjsqfyxx8e4nfdhtjf2eynl0wnx5zprz6s77gmudv2e",
+            },
+        ],
         blockHash: "0x36d810d978e50426f52b29d36e3a1e7a9a1eb14a9ece2f30da16e9c81c61398b",
         blockNumber: 4821477,
         type: TransactionType.SEND_CKB,

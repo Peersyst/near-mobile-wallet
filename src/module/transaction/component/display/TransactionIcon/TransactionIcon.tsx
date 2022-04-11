@@ -25,7 +25,7 @@ const TransactionIcon = ({ type }: TransactionIconProps): JSX.Element => {
             return <DAOWithdrawIcon style={{ fontSize: DAO_TX_ICON_SIZE }} />;
         case TransactionType.SMART_CONTRACT_SEND:
         case TransactionType.SMART_CONTRACT_RECEIVE:
-            return <SmartContractIcon />;
+            return <SmartContractIcon style={{ fontSize: MAIN_TX_ICON_SIZE }} />;
         case TransactionType.UNLOCK_DAO:
             return <UnlockDAOIcon />;
     }

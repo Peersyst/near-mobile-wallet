@@ -1,6 +1,7 @@
 import { createTheme, defaultTheme } from "react-native-components";
 import { translate } from "locale";
 import { CkbAddressValidator } from "module/common/validator/CkbAddressValidator";
+import { EXPLORER_LINK } from "@env";
 
 export const theme = createTheme({
     icons: {
@@ -57,5 +58,9 @@ export const theme = createTheme({
     translate,
     validators: {
         address: ({ message }) => new CkbAddressValidator(message),
+    },
+    blockchainLinks: {
+        address: EXPLORER_LINK + "address/",
+        tx: EXPLORER_LINK + "transaction/",
     },
 });

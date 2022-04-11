@@ -13,7 +13,7 @@ export const MnemonicInput = (): JSX.Element => {
 
     const handleSubmit = ({ nativeEvent: { text } }: NativeSyntheticEvent<TextInputSubmitEditingEventData>): void => {
         if (text.length > 0) {
-            if (!mnemonic.find((w) => w === text)) mnemonic.push(text);
+            if (!mnemonic.find((w) => w === text)) mnemonic.push(text.trim());
             setWord("");
         }
     };

@@ -46,13 +46,13 @@ describe("AddWallet - Create", () => {
         fireEvent.press(screen.getByText(translate("next")));
 
         await waitFor(() => expect(screen.getByText(translate("advise1_title"))).toBeDefined());
-        await act(() => wait(5400));
+        await act(() => wait(5500));
         fireEvent.press(screen.getByText(translate("next")));
         expect(screen.getByText(translate("advise2_title"))).toBeDefined();
-        await act(() => wait(5400));
+        await act(() => wait(5500));
         fireEvent.press(screen.getByText(translate("next")));
         expect(screen.getByText(translate("advise3_title"))).toBeDefined();
-        await act(() => wait(5400));
+        await act(() => wait(5500));
         fireEvent.press(screen.getByText(translate("generate_mnemonic")));
 
         expect(screen.getByText(translate("keep_this_safe"))).toBeDefined();
