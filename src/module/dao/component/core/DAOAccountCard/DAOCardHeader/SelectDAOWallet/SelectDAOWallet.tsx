@@ -1,6 +1,7 @@
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
-import { SelectDAOWalletIcon } from "./SelectDAOWallet.styles";
+import { SelectDAOWalletButton } from "./SelectDAOWallet.styles";
 import useWalletState from "module/wallet/hook/useWalletState";
+import { FilledWalletIcon } from "icons";
 
 const SelectDaoWallet = (): JSX.Element => {
     const {
@@ -8,7 +9,15 @@ const SelectDaoWallet = (): JSX.Element => {
         setSelectedWallet,
     } = useWalletState();
     return (
-        <WalletSelector value={selectedWallet} onChange={(index) => setSelectedWallet(index as number)} display={<SelectDAOWalletIcon />} />
+        <WalletSelector
+            value={selectedWallet}
+            onChange={(index) => setSelectedWallet(index as number)}
+            display={
+                <SelectDAOWalletButton>
+                    <FilledWalletIcon />
+                </SelectDAOWalletButton>
+            }
+        />
     );
 };
 export default SelectDaoWallet;

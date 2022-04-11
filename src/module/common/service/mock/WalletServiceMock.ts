@@ -1,3 +1,4 @@
+import { unlockableAmounts } from "./../../../dao/mock/unlockableAmounts";
 import {
     CKBBalance,
     Transaction,
@@ -5,6 +6,8 @@ import {
     DepositInDAOParams,
     SendTransactionParams,
     DAOBalance,
+    DAOUnlockableAmount,
+    WithdrawAndUnlockParams,
 } from "module/common/service/mock/CkbServiceMock.types";
 import { transactions } from "module/transaction/mock/transaction";
 import { nfts } from "module/nft/mock/nft";
@@ -40,14 +43,23 @@ export class WalletServiceMock {
         return new Promise((resolve) => setTimeout(() => resolve("txHash"), 2000));
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async withdrawAndUnlock(params: WithdrawAndUnlockParams): Promise<string> {
+        return new Promise((resolve) => setTimeout(() => resolve("txHash"), 2000));
+    }
+
     async getDAOBalance(): Promise<DAOBalance> {
         const locked = await new Promise<bigint>((resolve) =>
             setTimeout(() => resolve(BigInt(Math.trunc(new Date().getSeconds() * 15))), 2000),
         );
         return {
             daoDeposit: locked,
-            daoCompensation: 2.4,
+            daoCompensation: BigInt(200),
         };
+    }
+
+    async getDAOUnlockableAmounts(): Promise<DAOUnlockableAmount[]> {
+        return new Promise<DAOUnlockableAmount[]>((resolve) => setTimeout(() => resolve(unlockableAmounts), 2000));
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
