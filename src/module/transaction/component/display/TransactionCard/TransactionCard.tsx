@@ -15,7 +15,7 @@ export interface TransactionCardProps {
 const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => {
     const { showModal } = useModal();
     const { timestamp, amount, type, token = "CKB" } = transaction;
-    const showAmount = type !== TransactionType.SMART_CONTRACT && type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
+    const showAmount = type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
 
     return (
         <TouchableWithoutFeedback onPress={() => showModal(TransactionDetailsModal, { transaction })}>

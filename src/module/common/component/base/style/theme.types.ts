@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { ShadowPropTypesIOSStatic, TextStyle } from "react-native";
-import { TranslateFn, ValidatorFactory } from "../input/TextInput/Validators";
+import { ValidatorFactory, ValidatorKey } from "../input/TextInput/Validators";
 import { JSXElementConstructor } from "react";
 import { ToastAnimation, ToastPosition } from "../feedback/Toast";
 
@@ -80,6 +80,17 @@ export interface ThemeZIndex extends DefaultThemeZIndex {}
 
 export interface ExtraValidators {}
 
+export type BlockchainLinksTypes = "address" | "tx";
+export interface BlockchainLinksTypesOverrides {}
+export interface DefaultBlockchainLinks {
+    address: string;
+    tx: string;
+}
+export interface BlockchainLinks extends DefaultBlockchainLinks {}
+
+export type TranslateKeys = ValidatorKey | "copied_to_clipboard";
+export type TranslateFn<T extends TranslateKeys = TranslateKeys> = (w: T, opts?: Record<string, string>) => string;
+
 export interface DefaultTheme {
     icons: ThemeIcons;
     typography: ThemeTypography;
@@ -94,5 +105,6 @@ export interface DefaultTheme {
     zIndex: ThemeZIndex;
     translate: TranslateFn;
     validators: Record<keyof ExtraValidators, ValidatorFactory<unknown>>;
+    blockchainLinks: BlockchainLinks;
 }
 export interface Theme extends DefaultTheme {}

@@ -10,7 +10,7 @@ export interface TransactionDetailsHeaderProps {
 }
 
 const TransactionDetailsHeader = ({ transaction: { type, amount, token, timestamp } }: TransactionDetailsHeaderProps): JSX.Element => {
-    const showAmount = type !== TransactionType.SMART_CONTRACT && type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
+    const showAmount = type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
 
     return (
         <Col alignItems="center" gap={10}>

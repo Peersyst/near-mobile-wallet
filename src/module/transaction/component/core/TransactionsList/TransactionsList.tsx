@@ -4,12 +4,13 @@ import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
 import { isDAOTransaction } from "../../utils/isDAOTransaction";
+import { useMemo } from "react";
 
 const TransactionsList = (): JSX.Element => {
     const { data = [], refetch, isLoading } = useGetTransactions();
     //Get the tx that corresponds to ckbs, nfts, and tokens -> not DAO txs
     //Then order them by the latest date
-    const txs = data.filter((tx) => !isDAOTransaction(tx.type)).reverse();
+    const txs = useMemo(() => data.filter((tx) => !isDAOTransaction(tx.type)).reverse(), [data]);
     return (
         <MainList
             onRefresh={refetch}

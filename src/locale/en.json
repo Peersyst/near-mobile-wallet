@@ -132,5 +132,10 @@
     "no_deposits": "You do not have any deposits in progress",
     "no_withdrawals": "You don't have any withdrawals yet",
     "invalid_address": "Invalid address",
-    "wallet": "Wallet"
+    "wallet": "Wallet",
+    "copied_to_clipboard": "Copied to clipboard",
+    "receiver": "Receiver",
+    "senders": "Senders",
+    "hash": "Hash",
+    "unknown": "Unknown"
 }
