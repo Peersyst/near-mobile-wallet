@@ -2,18 +2,18 @@ import WithdrawModal from "module/dao/component/core/WithdrawModal/WithdrawModal
 import { render, SuccessApiCall } from "test-utils";
 import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import * as GetFee from "module/transaction/mock/getFee";
 import { MockedUnlockableAmounts } from "mocks/DAO";
 import { formatAddress } from "@peersyst/react-utils";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 
 describe("Withdraw modal test", () => {
     beforeEach(() => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CkbServiceMock.prototype, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
-        jest.spyOn(CkbServiceMock.prototype, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(CKBSDKService.prototype, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
+        jest.spyOn(CKBSDKService.prototype, "getAddress").mockReturnValue("0xMockedAddress");
         jest.spyOn(GetFee, "default").mockReturnValue(SuccessApiCall("10"));
     });
     afterAll(() => {

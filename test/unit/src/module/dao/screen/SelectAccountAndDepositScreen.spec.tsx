@@ -3,12 +3,12 @@ import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import SelectAccountAndDepositScreen from "module/dao/screen/SelectAccountAndDepositScreen/SelectAccountAndDepositScreen";
 import * as UseSetTab from "module/common/component/base/navigation/Tabs/hook/useSetTab";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import * as GetFee from "module/transaction/mock/getFee";
 import { WithdrawScreens } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import { MockedUnlockableAmounts } from "mocks/DAO";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 
 describe("SelectAccountAndDepositScreen tests", () => {
     beforeAll(() => {
@@ -21,7 +21,7 @@ describe("SelectAccountAndDepositScreen tests", () => {
     });
 
     test("Renders correctly without deposits", async () => {
-        jest.spyOn(CkbServiceMock.prototype, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall([]));
+        jest.spyOn(CKBSDKService.prototype, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall([]));
         const screen = render(<SelectAccountAndDepositScreen setWithdrawInfo={jest.fn()} />);
         await waitFor(() => expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined());
         expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2);
@@ -31,7 +31,7 @@ describe("SelectAccountAndDepositScreen tests", () => {
     });
 
     test("Updates withdraw state and moves forward to the next screen", async () => {
-        jest.spyOn(CkbServiceMock.prototype, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
+        jest.spyOn(CKBSDKService.prototype, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
         const setWithdrawInfo = jest.fn();
         const setTab = jest.fn();
         jest.spyOn(UseSetTab, "default").mockReturnValue(setTab);

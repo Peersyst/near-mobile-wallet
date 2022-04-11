@@ -1,13 +1,9 @@
-import { WithdrawAndUnlockParams } from "module/common/service/mock/CkbServiceMock.types";
-import useWalletState from "module/wallet/hook/useWalletState";
 import { useMutation } from "react-query";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { WithdrawAndUnlockParams } from "module/common/service/CkbSdkService.types";
 
 const useWithdrawAndUnlock = (index: number) => {
-    const {
-        state: { wallets },
-    } = useWalletState();
-    const serviceInstance = wallets[index].serviceInstance!;
+    const serviceInstance = serviceInstancesMap.get(index)!;
     return useMutation((params: WithdrawAndUnlockParams) => serviceInstance.withdrawAndUnlock(params));
 };
-
 export default useWithdrawAndUnlock;

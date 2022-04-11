@@ -11,6 +11,7 @@ import useWithdrawAndUnlock from "module/dao/query/useWithdrawAndUnlock";
 import { getAPC } from "module/dao/utils/getAPC";
 import { useRefetchQueries } from "../../../../query/useRefetchQueries";
 import { useMemo } from "react";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 interface WithdrawConfirmationScreenProps {
     withdrawInfo: WithdrawSummaryType;
@@ -30,17 +31,15 @@ const WithdrawConfirmationScreen = ({
     const { mutate: withdrawFromDAO, isLoading, isSuccess, isError } = useWithdrawAndUnlock(receiverIndex);
 
     //Variables
-    const { name: receiverName, serviceInstance } = wallets[receiverIndex]; //Receiver info
+    const { name: receiverName } = wallets[receiverIndex]; //Receiver info
+    const serviceInstance = useMemo(() => serviceInstancesMap.get(receiverIndex), [receiverIndex]);
     const { compensation = BigInt(0), amount = BigInt(0) } = unlockableDeposits[depositIndex] || {}; //Deposit info
 
     //Functions
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(receiverIndex);
         if (unlockableDeposits.length > depositIndex) {
-            withdrawFromDAO(
-                { unlockableAmount: unlockableDeposits[depositIndex], mnemonic: mnemonic!, feeRate: feeRate! },
-                { onSuccess: handleOnSuccess },
-            );
+            withdrawFromDAO({ unlockableAmount: unlockableDeposits[depositIndex], mnemonic: mnemonic! }, { onSuccess: handleOnSuccess });
         }
     };
 

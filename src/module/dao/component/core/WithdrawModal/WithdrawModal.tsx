@@ -7,6 +7,7 @@ import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import SelectAccountAndDepositScreen from "module/dao/screen/SelectAccountAndDepositScreen/SelectAccountAndDepositScreen";
 import WithdrawConfirmationScreen from "module/dao/screen/WithdrawConfirmationScreen/WithdrawConfirmationScreen";
+import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
 
 export enum WithdrawScreens {
     SELECT_ACCOUNT,
@@ -20,7 +21,7 @@ export interface WithdrawForm {
 }
 
 export interface WithdrawSummary extends WithdrawForm {
-    feeRate?: string;
+    feeRate?: FeeRate;
 }
 
 const WithdrawModal = createBackdrop((props: ExposedBackdropProps) => {

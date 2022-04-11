@@ -1,4 +1,4 @@
-import { DAOBalance } from "module/common/service/mock/CkbServiceMock.types";
+import { DAOBalance } from "@peersyst/ckb-peersyst-sdk";
 import { getAPC } from "module/dao/utils/getAPC";
 
 describe("getAPC tests", () => {
