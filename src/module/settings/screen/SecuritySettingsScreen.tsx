@@ -1,5 +1,4 @@
 import { translate } from "locale";
-import Button from "module/common/component/input/Button/Button";
 import BaseSecondaryScreen from "module/common/component/layout/BaseSecondaryScreen/BaseSecondaryScreen";
 import { BottomTabScreenNavigatonProps } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup.types";
 import walletState from "module/wallet/state/WalletState";
@@ -9,6 +8,8 @@ import { useResetRecoilState } from "recoil";
 import ConfirmPinModal from "../components/core/ConfirmPinModal/ConfirmPinModal";
 import UpdatePinModal from "../components/core/UpdatePinModal/UpdatePinModal";
 import { SettingsStorage } from "module/settings/SettingsStorage";
+import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
+import WalletsBackupModal from "module/wallet/component/core/WalletsBackupModal/WalletsBackupModal";
 
 const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): JSX.Element => {
     const resetWalletState = useResetRecoilState(walletState);
@@ -20,11 +21,14 @@ const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): 
     return (
         <BaseSecondaryScreen navigation={navigation} title={translate("security_settings")} back={true}>
             <Col gap={20}>
-                <Button onPress={() => showModal(ConfirmPinModal, { onPinConfirmed: updatePin })} fullWidth variant="outlined">
-                    {translate("change_passcode")}
-                </Button>
-                <Button
-                    fullWidth
+                <SettingsMenuItem
+                    text={translate("change_passcode")}
+                    onPress={() => showModal(ConfirmPinModal, { onPinConfirmed: updatePin })}
+                />
+                <SettingsMenuItem text={translate("back_up_your_wallets")} onPress={() => showModal(WalletsBackupModal)} />
+                <SettingsMenuItem
+                    destructive
+                    text={translate("delete_data")}
                     onPress={() =>
                         showDialog({
                             title: translate("delete_data"),
@@ -46,9 +50,7 @@ const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): 
                             ],
                         })
                     }
-                >
-                    {translate("delete_data")}
-                </Button>
+                />
             </Col>
         </BaseSecondaryScreen>
     );
