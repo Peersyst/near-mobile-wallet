@@ -8,7 +8,7 @@ const reducer = (state: ModalState, action: ModalAction): ModalState => {
         case ModalActionType.SHOW_MODAL:
             return modalIsActive(state, (action as ShowModalAction).payload.Modal.id as string)
                 ? state
-                : state.concat((action as ShowModalAction).payload);
+                : (state = [(action as ShowModalAction).payload]);
         case ModalActionType.HIDE_MODAL:
             return state.map((modalState) => {
                 if (modalState.Modal.id === (action as HideModalAction).payload) modalState.props.open = false;
