@@ -41,8 +41,10 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     const unlockableDeposits = useMemo(() => data.filter((deposit) => deposit.unlockable), [data]);
 
     useEffect(() => {
-        setIsFirstTime(false);
-    }, []);
+        if (isFirstTime && !depositsIsLoading) {
+            setIsFirstTime(false);
+        }
+    }, [depositsIsLoading]);
 
     //Functions
     const handleSubmit = (withdrawInfo: WithdrawForm) => {
