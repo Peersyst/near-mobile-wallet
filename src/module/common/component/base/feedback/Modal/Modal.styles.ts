@@ -7,4 +7,5 @@ export const ModalRoot = styled(Paper)(({ theme }) => ({
     padding: 20,
     backgroundColor: theme.palette.background,
     borderRadius: theme.borderRadius,
+    elevation: 0,
 }));
