@@ -2,11 +2,9 @@ import { render } from "test-utils";
 import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
-import * as UseModal from "module/common/component/base/feedback/ModalProvider/hooks/useModal";
 import * as UseSetTab from "module/common/component/base/navigation/Tabs/hook/useSetTab";
 import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
-import { QrScanner } from "react-native-components";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import { mockedUseWallet } from "mocks/useWalletState";
 
@@ -46,13 +44,5 @@ describe("SendToAddressScreen tests", () => {
         fireEvent.press(screen.getByText(translate("next")));
         await waitFor(() => expect(setSendState).toHaveBeenCalled());
         expect(setTab).toHaveBeenCalledWith(SendScreens.AMOUNT_AND_MESSAGE);
-    });
-
-    test("Shows scan qr code modal", () => {
-        const showModal = jest.fn();
-        jest.spyOn(UseModal, "useModal").mockReturnValue({ showModal } as any);
-        const screen = render(<SendToAddressScreen />);
-        fireEvent.press(screen.getByTestId("ScanIcon"));
-        expect(showModal).toHaveBeenCalledWith(QrScanner, expect.any(Object));
     });
 });
