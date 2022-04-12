@@ -5,7 +5,7 @@ import Button from "module/common/component/input/Button/Button";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { WithdrawForm, WithdrawScreens, WithdrawSummary } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
-import { WithdrawSelectorCard } from "./SelectAccountAndDepositScreen.styles";
+import { ErrorMessageText, WithdrawSelectorCard } from "./SelectAccountAndDepositScreen.styles";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
@@ -14,6 +14,7 @@ import settingsState from "module/settings/state/SettingsState";
 import useGetFee from "module/transaction/query/useGetFee";
 import DepositsSelector from "module/dao/component/input/DepositsSelector/DepositsSelector";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
+import useGetBalance from "module/wallet/query/useGetBalance";
 
 interface WithdrawSelectAccountScreenProps {
     setWithdrawInfo: Dispatch<SetStateAction<WithdrawSummary>>;
@@ -38,13 +39,21 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     const [selectedWallet, setSelectedWallet] = useState<number>(finalSelectedWallet);
     const [isFirstTime, setIsFirstTime] = useState<boolean>(true);
     const { data = [], isLoading: depositsIsLoading } = useGetDAOUnlockableAmounts(selectedWallet);
+    const { data: { freeBalance = 0 } = {}, isLoading: balanceLoading } = useGetBalance(selectedWallet);
     const unlockableDeposits = useMemo(() => data.filter((deposit) => deposit.unlockable), [data]);
+    const [errMsg, setErrMsg] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         if (isFirstTime && !depositsIsLoading) {
             setIsFirstTime(false);
         }
     }, [depositsIsLoading]);
+
+    useEffect(() => {
+        if (freeBalance < Number(fee)) {
+            setErrMsg(translate("not_enough_balance_for_fees") + ".\n" + translate("transaction_fee", { fee: fee || "-" }));
+        } else setErrMsg(undefined);
+    }, [selectedWallet, feeIsLoading]);
 
     //Functions
     const handleSubmit = (withdrawInfo: WithdrawForm) => {
@@ -53,7 +62,10 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     };
 
     return (
-        <ControlledSuspense isLoading={feeIsLoading || (isFirstTime && depositsIsLoading)} fallback={<CenteredLoader color="black" />}>
+        <ControlledSuspense
+            isLoading={feeIsLoading || (isFirstTime && (depositsIsLoading || balanceLoading))}
+            fallback={<CenteredLoader color="black" />}
+        >
             <Form onSubmit={handleSubmit}>
                 <Col>
                     <Col gap={20}>
@@ -74,9 +86,18 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
                                 </ControlledSuspense>
                             </FormGroup>
                         </WithdrawSelectorCard>
-                        <Button variant="outlined" fullWidth disabled={depositsIsLoading || unlockableDeposits.length === 0}>
+                        <Button
+                            variant="outlined"
+                            fullWidth
+                            disabled={errMsg !== undefined || balanceLoading || depositsIsLoading || unlockableDeposits.length === 0}
+                        >
                             {translate("next")}
                         </Button>
+                        {errMsg && (
+                            <ErrorMessageText variant="body2" fontWeight="bold" textAlign="center">
+                                {errMsg}
+                            </ErrorMessageText>
+                        )}
                     </Col>
                 </Col>
             </Form>
