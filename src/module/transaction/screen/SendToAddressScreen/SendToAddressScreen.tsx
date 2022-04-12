@@ -1,4 +1,4 @@
-import { Col, Form, IconButton, Paper, PressableText, QrScanner, Row, useModal, useSetTab, useToast } from "react-native-components";
+import { Col, Form, IconButton, Paper, PressableText, QrScanner, Row, useSetTab, useToast } from "react-native-components";
 import FormGroup from "module/common/component/input/FormGroup/FormGroup";
 import { translate } from "locale";
 import TextField from "module/common/component/input/TextField/TextField";
@@ -21,8 +21,8 @@ export interface SendForm {
 const SendToAddressScreen = () => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const [receiverAddress, setReceiverAddress] = useState(sendState.receiverAddress || "");
+    const [scanQr, setScanQr] = useState(false);
     const { palette } = useTheme();
-    const { showModal } = useModal();
     const { showToast, hideToast } = useToast();
     const setTab = useSetTab();
 
@@ -45,44 +45,44 @@ const SendToAddressScreen = () => {
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <Col>
-                <Row justifyContent="center">
-                    <SendImage source={image.send} />
-                </Row>
-                <Col gap={40}>
-                    <Paper style={{ padding: 20 }} elevation={8}>
-                        <Col gap={20}>
-                            <FormGroup label={translate("select_a_wallet") + ":"}>
-                                <WalletSelector required name="sender" defaultValue={sendState.senderWalletIndex} />
-                            </FormGroup>
-                            <FormGroup label={translate("send_to") + ":"}>
-                                <TextField
-                                    placeholder={translate("address")}
-                                    suffix={
-                                        <IconButton
-                                            style={{ color: palette.darkGray, fontSize: 24 }}
-                                            onPress={() => showModal(QrScanner, { onScan: ({ data }) => handleAddressScan(data) })}
-                                        >
-                                            <ScanIcon />
-                                        </IconButton>
-                                    }
-                                    name="receiver"
-                                    validators={{ address: true }}
-                                    value={receiverAddress}
-                                    onChange={setReceiverAddress}
-                                    autoCapitalize="none"
-                                    autoCorrect={false}
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Paper>
-                    <Button variant="outlined" fullWidth>
-                        {translate("next")}
-                    </Button>
+        <>
+            <Form onSubmit={handleSubmit}>
+                <Col>
+                    <Row justifyContent="center">
+                        <SendImage source={image.send} />
+                    </Row>
+                    <Col gap={40}>
+                        <Paper style={{ padding: 20 }} elevation={8}>
+                            <Col gap={20}>
+                                <FormGroup label={translate("select_a_wallet") + ":"}>
+                                    <WalletSelector required name="sender" defaultValue={sendState.senderWalletIndex} />
+                                </FormGroup>
+                                <FormGroup label={translate("send_to") + ":"}>
+                                    <TextField
+                                        placeholder={translate("address")}
+                                        suffix={
+                                            <IconButton style={{ color: palette.darkGray, fontSize: 24 }} onPress={() => setScanQr(true)}>
+                                                <ScanIcon />
+                                            </IconButton>
+                                        }
+                                        name="receiver"
+                                        validators={{ address: true }}
+                                        value={receiverAddress}
+                                        onChange={setReceiverAddress}
+                                        autoCapitalize="none"
+                                        autoCorrect={false}
+                                    />
+                                </FormGroup>
+                            </Col>
+                        </Paper>
+                        <Button variant="outlined" fullWidth>
+                            {translate("next")}
+                        </Button>
+                    </Col>
                 </Col>
-            </Col>
-        </Form>
+            </Form>
+            {scanQr && <QrScanner open={scanQr} onClose={() => setScanQr(false)} onScan={({ data }) => handleAddressScan(data)} />}
+        </>
     );
 };
 
