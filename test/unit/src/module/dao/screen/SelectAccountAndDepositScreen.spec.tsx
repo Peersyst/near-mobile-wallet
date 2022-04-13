@@ -12,8 +12,10 @@ import { MockedUnlockableAmounts } from "mocks/DAO";
 
 describe("SelectAccountAndDepositScreen tests", () => {
     beforeAll(() => {
-        jest.spyOn(GetFee, "default").mockReturnValue(SuccessApiCall("10"));
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
+        jest.spyOn(CkbServiceMock.prototype, "getCKBBalance").mockReturnValue(
+            SuccessApiCall({ totalBalance: BigInt(20000), occupiedBalance: BigInt(9600), freeBalance: BigInt(125) }),
+        );
     });
 
     afterAll(() => {
@@ -21,6 +23,7 @@ describe("SelectAccountAndDepositScreen tests", () => {
     });
 
     test("Renders correctly without deposits", async () => {
+        jest.spyOn(GetFee, "default").mockReturnValue(SuccessApiCall("10"));
         jest.spyOn(CkbServiceMock.prototype, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall([]));
         const screen = render(<SelectAccountAndDepositScreen setWithdrawInfo={jest.fn()} />);
         await waitFor(() => expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined());
@@ -31,6 +34,7 @@ describe("SelectAccountAndDepositScreen tests", () => {
     });
 
     test("Updates withdraw state and moves forward to the next screen", async () => {
+        jest.spyOn(GetFee, "default").mockReturnValue(SuccessApiCall("10"));
         jest.spyOn(CkbServiceMock.prototype, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
         const setWithdrawInfo = jest.fn();
         const setTab = jest.fn();

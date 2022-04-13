@@ -14,6 +14,9 @@ describe("Withdraw modal test", () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(CkbServiceMock.prototype, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
         jest.spyOn(CkbServiceMock.prototype, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(CkbServiceMock.prototype, "getCKBBalance").mockReturnValue(
+            SuccessApiCall({ totalBalance: BigInt(20000), occupiedBalance: BigInt(9600), freeBalance: BigInt(125) }),
+        );
         jest.spyOn(GetFee, "default").mockReturnValue(SuccessApiCall("10"));
     });
     afterAll(() => {
