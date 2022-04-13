@@ -41,7 +41,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     const { data = [], isLoading: depositsIsLoading } = useGetDAOUnlockableAmounts(selectedWallet);
     const { data: { freeBalance = 0 } = {}, isLoading: balanceLoading } = useGetBalance(selectedWallet);
     const unlockableDeposits = useMemo(() => data.filter((deposit) => deposit.unlockable), [data]);
-    const [errMsg, setErrMsg] = useState<string | undefined>(undefined);
+    const [errMsg, setErrMsg] = useState<string>();
 
     useEffect(() => {
         if (isFirstTime && !depositsIsLoading) {
@@ -89,7 +89,8 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
                         <Button
                             variant="outlined"
                             fullWidth
-                            disabled={errMsg !== undefined || balanceLoading || depositsIsLoading || unlockableDeposits.length === 0}
+                            loading={balanceLoading || depositsIsLoading}
+                            disabled={errMsg !== undefined || unlockableDeposits.length === 0}
                         >
                             {translate("next")}
                         </Button>
