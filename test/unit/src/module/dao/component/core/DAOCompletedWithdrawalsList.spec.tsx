@@ -6,7 +6,7 @@ import { mockedUseWallet } from "mocks/useWalletState";
 import DAOCompletedWithdrawalsList from "module/dao/component/core/DAOCompletedWithdrawalsList/DAOCompletedWithdrawalsList";
 import { mockedDAOUnlocks } from "mocks/DAOTransaction";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("DAOCompletedWithdrawalsList tests", () => {
     const sdkInstance = new CKBSDKService("");

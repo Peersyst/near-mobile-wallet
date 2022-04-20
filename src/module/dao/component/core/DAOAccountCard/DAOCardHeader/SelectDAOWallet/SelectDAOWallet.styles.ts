@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
-import { FilledWalletIcon } from "icons";
+import { IconButton } from "react-native-components";
 
-export const SelectDAOWalletIcon = styled(FilledWalletIcon)(({ theme }) => ({
+export const SelectDAOWalletButton = styled(IconButton)(({ theme }) => ({
     color: theme.palette.white,
     fontSize: 26,
 }));

@@ -5,6 +5,7 @@ import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
+import { useMemo } from "react";
 
 export interface WalletMnemonicScreenProps {
     onNextScreen: () => void;
@@ -18,8 +19,10 @@ const WalletMnemonicScreen = ({ onNextScreen }: WalletMnemonicScreenProps): JSX.
         onNextScreen();
     };
 
-    const mnemonicStr = WalletService.createNewMnemonic();
-    const mnemonic = mnemonicStr.split(" ");
+    const mnemonic = useMemo(() => {
+        const mnemonicStr = WalletService.createNewMnemonic();
+        return mnemonicStr.split(" ");
+    }, []);
 
     return (
         <Col flex={1} gap={30} justifyContent="flex-end">

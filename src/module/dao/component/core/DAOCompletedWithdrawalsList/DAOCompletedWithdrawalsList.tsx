@@ -3,11 +3,12 @@ import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
 import useGetTransactions from "module/transaction/query/useGetTransactions";
-import { isUnlockDAO } from "../../utils/isUnlockDAO";
+import { useMemo } from "react";
+import { isUnlockDAO } from "../../../utils/isUnlockDAO";
 
 const DAOCompletedWithdrawalsList = (): JSX.Element => {
     const { data = [], refetch, isLoading } = useGetTransactions();
-    const filteredDAOWithdrawalTxs = data.filter((tx) => isUnlockDAO(tx.type));
+    const filteredDAOWithdrawalTxs = useMemo(() => data.filter((tx) => isUnlockDAO(tx.type)), [data]);
     return (
         <MainList
             onRefresh={refetch}

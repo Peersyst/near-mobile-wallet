@@ -6,7 +6,7 @@ import TransactionsList from "module/transaction/component/core/TransactionsList
 import { translate } from "locale";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("TransactionsList tests", () => {
     const sdkInstance = new CKBSDKService("");

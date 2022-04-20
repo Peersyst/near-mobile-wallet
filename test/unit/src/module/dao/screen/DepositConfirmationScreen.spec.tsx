@@ -6,7 +6,7 @@ import { formatAddress } from "@peersyst/react-utils";
 import { mockedUseWallet } from "mocks/useWalletState";
 import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScreen/DepositConfirmationScreen";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("DepositConfirmationScreen tests", () => {
     const sdkInstance = new CKBSDKService("");

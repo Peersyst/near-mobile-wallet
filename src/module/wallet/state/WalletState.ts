@@ -2,9 +2,9 @@ import { atom } from "recoil";
 import { StorageWallet } from "module/wallet/WalletStorage";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 
-export interface Wallet extends Omit<StorageWallet, "mnemonic"> {
-    serviceInstance?: CKBSDKService;
-}
+export const serviceInstancesMap = new Map<number, CKBSDKService>();
+
+export type Wallet = Omit<StorageWallet, "mnemonic">;
 
 export interface WalletState {
     hasWallet: boolean;

@@ -1,4 +1,3 @@
-import { Transaction } from "@peersyst/ckb-peersyst-sdk";
 import { render, SuccessApiCall } from "test-utils";
 import AddWalletModal from "module/wallet/component/core/AddWalletModal/AddWalletModal";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
@@ -9,6 +8,7 @@ import createUseWalletStateMock from "mocks/useWalletState";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import Button from "module/common/component/input/Button/Button";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
+import synchronizeMock from "mocks/synchronize";
 
 describe("AddWalletModal tests", () => {
     afterEach(() => {
@@ -21,15 +21,7 @@ describe("AddWalletModal tests", () => {
     });
 
     test("Wallet creation is completed successfully", async () => {
-        jest.spyOn(CKBSDKService.prototype, "synchronize").mockReturnValue(
-            SuccessApiCall({
-                addressMap: new Map<string, string>(),
-                firstIndexWithoutTxs: 0,
-                lastHashBlock: "0x123",
-                accountCellsMap: new Map<number, any[]>(),
-                accountTransactionMap: new Map<number, Transaction[]>(),
-            }),
-        );
+        jest.spyOn(CKBSDKService.prototype, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock));
         const newWallet: StorageWallet = {
             name: "Wallet Name",
             colorIndex: 2,

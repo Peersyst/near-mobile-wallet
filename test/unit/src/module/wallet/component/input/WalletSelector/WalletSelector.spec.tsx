@@ -4,7 +4,7 @@ import { waitFor } from "@testing-library/react-native";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("WalletSelector tests", () => {
     const sdkInstance = new CKBSDKService("");

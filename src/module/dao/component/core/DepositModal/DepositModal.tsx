@@ -2,9 +2,7 @@ import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "react-nati
 import { translate } from "locale";
 import { useState } from "react";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
-import useGetFee from "module/transaction/query/useGetFee";
-import { useRecoilValue, useResetRecoilState } from "recoil";
-import settingsState from "module/settings/state/SettingsState";
+import { useResetRecoilState } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import DepositSelectAccountScreen from "module/dao/screen/DepositSelectAccountScreen/DepositSelectAccountScreen";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
@@ -18,14 +16,12 @@ export enum DepositScreens {
 
 const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
     const [activeIndex, setActiveIndex] = useState(DepositScreens.SELECT_ACCOUNT);
-    const { fee } = useRecoilValue(settingsState);
     const resetSendState = useResetRecoilState(sendState);
 
     const handleExited = () => {
         onExited?.();
         resetSendState();
     };
-    useGetFee(fee);
 
     return (
         <GlassNavigatorModal

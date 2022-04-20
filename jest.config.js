@@ -42,6 +42,7 @@ module.exports = {
         "!./src/module/common/component/layout/PagerView/*",
         "!./src/module/common/component/layout/BasePage/*",
         "!./src/module/common/component/layout/LogoPage/*",
+        "!./src/module/common/service/CkbSdkService.ts",
     ],
     coverageDirectory: "./coverage",
     coverageThreshold: {

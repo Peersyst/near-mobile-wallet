@@ -8,10 +8,12 @@ import {
     DAOBalance,
     TransactionType,
     ScriptType,
+    DAOUnlockableAmount,
 } from "@peersyst/ckb-peersyst-sdk";
 import { tokensList, UknownToken } from "module/token/mock/token";
+import { DepositInDAOParams, FullTransaction, SendTransactionParams, WithdrawAndUnlockParams } from "./CkbSdkService.types";
+import { CKB_URL, INDEXER_URL } from "@env";
 import { TokenAmount, TokenType } from "module/token/types";
-import { DepositInDAOParams, FullTransaction, SendTransactionParams } from "./CkbSdkService.types";
 
 export function getTokenTypeFromScript(scriptType: ScriptType): TokenType {
     const tokenFound = tokensList.filter((tkn) => tkn.args === scriptType.args && tkn.codeHash === scriptType.codeHash);
@@ -22,8 +24,8 @@ export function getTokenTypeFromScript(scriptType: ScriptType): TokenType {
 }
 
 export class CKBSDKService {
-    private readonly ckbUrl = "http://78.46.174.87:8114/rpc"; // Podem posar-ho com a env var?
-    private readonly indexerUrl = "http://78.46.174.87:8114/indexer"; // Podem posar-ho com a env var?
+    private readonly ckbUrl = CKB_URL;
+    private readonly indexerUrl = INDEXER_URL;
     private connectionService: ConnectionService;
     private wallet: WalletService;
 
@@ -80,5 +82,13 @@ export class CKBSDKService {
 
     async depositInDAO(params: DepositInDAOParams): Promise<string> {
         return this.wallet.depositInDAO(params.amount, params.mnemonic.join(" "), params.feeRate);
+    }
+
+    async getDAOUnlockableAmounts(): Promise<DAOUnlockableAmount[]> {
+        return this.wallet.getDAOUnlockableAmounts();
+    }
+
+    async withdrawAndUnlock({ unlockableAmount, mnemonic }: WithdrawAndUnlockParams): Promise<string> {
+        return this.wallet.withdrawAndUnlock(unlockableAmount, mnemonic.join(" "));
     }
 }

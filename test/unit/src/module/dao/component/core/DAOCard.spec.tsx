@@ -6,7 +6,7 @@ import { MockedDAOBalance } from "mocks/DAO";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("Test for the DAO Card", () => {
     const sdkInstance = new CKBSDKService("");
@@ -31,10 +31,9 @@ describe("Test for the DAO Card", () => {
         //This is 3 because of card + 2 of the modal
         await waitFor(() => expect(screen.getAllByText("12,635")).toHaveLength(3));
         expect(screen.getByText(translate("locked"))).toBeDefined();
-        expect(screen.getByText("594")).toBeDefined();
-        expect(screen.getByText("323")).toBeDefined();
+        expect(screen.getByText("500")).toBeDefined();
         expect(screen.getByText(translate("current_apc"))).toBeDefined();
-        expect(screen.getByText("2.4%")).toBeDefined();
+        expect(screen.getByText("100%")).toBeDefined();
 
         //Buttons
         expect(screen.getByText(translate("deposit"))).toBeDefined();

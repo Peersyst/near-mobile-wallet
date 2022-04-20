@@ -3,14 +3,14 @@ import CountdownButton from "module/common/component/input/CountdownButton/Count
 import { translate } from "locale";
 import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
-import LoadingModal from "module/transaction/component/feedback/LoadingModal/LoadingModal";
+import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useRefetchQuery } from "../../../../query/useRefetchQuery";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import DepositModal from "module/dao/component/core/DepositModal/DepositModal";
 import DepositSummary from "./DepositSummary";
 import useDepositInDAO from "module/dao/query/useDepositInDAO";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 const DepositConfirmationScreen = (): JSX.Element => {
     const { amount, fee, senderWalletIndex } = useRecoilValue(sendState);
@@ -19,8 +19,8 @@ const DepositConfirmationScreen = (): JSX.Element => {
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
     const { name: senderName } = senderWallet;
-    const serviceInstance = serviceInstancesMap.get(senderWallet.index);
-    const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO();
+    const serviceInstance = serviceInstancesMap.get(senderWalletIndex!);
+    const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO(senderWalletIndex!);
     const { hideModal } = useModal();
     const refetch = useRefetchQuery();
 

@@ -1,4 +1,4 @@
-import { FeeRate, Transaction } from "@peersyst/ckb-peersyst-sdk";
+import { DAOUnlockableAmount, FeeRate, Transaction } from "@peersyst/ckb-peersyst-sdk";
 
 export interface DepositInDAOParams {
     amount: bigint;
@@ -12,6 +12,11 @@ export interface SendTransactionParams {
     message: string;
     to: string;
     feeRate?: FeeRate;
+}
+
+export interface WithdrawAndUnlockParams {
+    unlockableAmount: DAOUnlockableAmount;
+    mnemonic: string[];
 }
 
 export interface FullTransaction extends Transaction {

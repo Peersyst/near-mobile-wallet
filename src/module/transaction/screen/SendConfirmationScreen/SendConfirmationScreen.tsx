@@ -5,12 +5,12 @@ import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import useSendTransaction from "../../query/useSendTransaction";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
-import LoadingModal from "module/transaction/component/feedback/LoadingModal/LoadingModal";
-import { useRefetchQuery } from "../../../../query/useRefetchQuery";
+import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import SendSummary from "./SendSummary";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { useRefetchQueries } from "../../../../query/useRefetchQueries";
 
 const SendConfirmationScreen = (): JSX.Element => {
     const { amount, fee, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
@@ -22,13 +22,19 @@ const SendConfirmationScreen = (): JSX.Element => {
     const serviceInstance = serviceInstancesMap.get(index);
     const { mutate: sendTransaction, isLoading, isSuccess, isError } = useSendTransaction();
     const { hideModal } = useModal();
-    const refetch = useRefetchQuery();
+    const refetch = useRefetchQueries();
 
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
         sendTransaction(
             { amount: BigInt(amount!), message: message!, to: receiverAddress!, mnemonic: mnemonic!, feeRate: fee! },
-            { onSuccess: () => refetch(["balance", senderWalletIndex]) },
+            {
+                onSuccess: () =>
+                    refetch([
+                        ["balance", senderWalletIndex],
+                        ["transactions", senderWalletIndex],
+                    ]),
+            },
         );
         //The SendState is cleaned in the "onExited" method of SendModal
     };

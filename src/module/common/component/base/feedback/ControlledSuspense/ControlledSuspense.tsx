@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { ActivityIndicator, ActivityIndicatorProps } from "react-native";
 
-interface ControlledSuspenseProps {
+export interface ControlledSuspenseProps {
     isLoading: boolean;
     activityIndicatorColor?: ActivityIndicatorProps["color"];
     activityIndicatorSize?: ActivityIndicatorProps["size"];

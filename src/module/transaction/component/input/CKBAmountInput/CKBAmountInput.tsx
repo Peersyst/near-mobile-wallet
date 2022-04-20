@@ -4,12 +4,13 @@ import TextField from "module/common/component/input/TextField/TextField";
 import { CKBBalance } from "@peersyst/ckb-peersyst-sdk";
 import { Dispatch, SetStateAction } from "react";
 import { NumericInput, Typography } from "react-native-components";
+import formatNumber from "utils/formatNumber";
 
 interface CKBAmountInputProps {
     amount: string;
     setAmount: Dispatch<SetStateAction<string>>;
     freeBalance: CKBBalance["freeBalance"];
-    fee: string;
+    fee: number;
 }
 
 const CKBAmountInput = ({ amount, setAmount, freeBalance, fee }: CKBAmountInputProps): JSX.Element => {
@@ -17,7 +18,7 @@ const CKBAmountInput = ({ amount, setAmount, freeBalance, fee }: CKBAmountInputP
         <TextField
             variant="underlined"
             size="lg"
-            hint={translate("transaction_fee", { fee: fee || "-" })}
+            hint={translate("transaction_fee", { fee: formatNumber(fee) as string })}
             value={amount}
             onChange={setAmount}
             name="amount"
@@ -26,7 +27,7 @@ const CKBAmountInput = ({ amount, setAmount, freeBalance, fee }: CKBAmountInputP
                 gte: [
                     Number(MINIMUM_TRANSACTION_AMOUNT),
                     translate("minimum_transaction_amount_text", {
-                        amount: MINIMUM_TRANSACTION_AMOUNT,
+                        amount: formatNumber(MINIMUM_TRANSACTION_AMOUNT) as string,
                     }),
                 ],
                 lte: [Number(freeBalance) - Number(fee), translate("insufficient_balance")],

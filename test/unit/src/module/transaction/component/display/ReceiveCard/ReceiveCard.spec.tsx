@@ -8,7 +8,7 @@ import { translate } from "locale";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
 import { wallet } from "mocks/wallet";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 const ADDRESS_MOCK = "0xMockedAddress";
 

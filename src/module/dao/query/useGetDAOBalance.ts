@@ -1,18 +1,12 @@
 import { useQuery } from "react-query";
 import { QueryResult } from "query-utils";
-import useWalletState from "module/wallet/hook/useWalletState";
 import { DAOBalance } from "@peersyst/ckb-peersyst-sdk";
-import { serviceInstancesMap } from "module/common/query/useLoad";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 
 const useGetDAOBalance = (index?: number): QueryResult<DAOBalance> => {
-    const {
-        state: { wallets, selectedWallet },
-    } = useWalletState();
-    let usedIndex = 0;
-    if (index !== undefined) usedIndex = index;
-    else if (selectedWallet !== undefined) {
-        usedIndex = selectedWallet < wallets.length ? selectedWallet : wallets.length - 1;
-    }
+    const selectedWallet = useSelectedWalletIndex();
+    const usedIndex = index ?? selectedWallet;
     const serviceInstance = serviceInstancesMap.get(usedIndex);
     return useQuery(["daoBalance", usedIndex], () => serviceInstance?.getDAOBalance());
 };
