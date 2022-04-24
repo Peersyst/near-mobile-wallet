@@ -3,6 +3,7 @@ import MnemonicInput from "module/wallet/component/input/MnemonicInput/MnemonicI
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useEffect, useState } from "react";
+import { WalletService } from "@peersyst/ckb-peersyst-sdk";
 
 export interface MnemonicForm {
     mnemonic: string[];
@@ -26,8 +27,13 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonic
 
     const handleSubmit = ({ mnemonic }: MnemonicForm) => {
         if (!submitted) {
-            setMnemonic(mnemonic);
-            setSubmitted(true);
+            const valid = WalletService.validateMnemonic(mnemonic.join(" "));
+            if (valid) {
+                setMnemonic(mnemonic);
+                setSubmitted(true);
+            } else {
+                // TODO: Show invalid mnemonic error
+            }
         }
     };
 

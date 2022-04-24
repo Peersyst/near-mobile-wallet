@@ -7,6 +7,7 @@ import GlassNavigatorModal from "module/common/component/navigation/GlassNavigat
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import useWalletSync from "module/wallet/hook/useWalletSync";
+import { WalletState } from "@peersyst/ckb-peersyst-sdk";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
@@ -35,9 +36,25 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
 
     const handleWalletCreation = async () => {
         const newWallet = await WalletStorage.addWallet({ name: name!, mnemonic: mnemonic!, colorIndex: colorIndex! });
+        // console.log("handle wallet creation");
+        // console.log("newWallet", newWallet);
+        // console.log("newWallet");
         if (newWallet) {
             if (!serviceInstancesMap.has(newWallet.index)) {
-                serviceInstancesMap.set(newWallet.index, new CKBSDKService(newWallet.mnemonic.join(" "), newWallet.initialState));
+                // console.log("not in wallet");
+                serviceInstancesMap.set(
+                    newWallet.index,
+                    new CKBSDKService(newWallet.mnemonic.join(" "), newWallet.initialState, async (walletState: WalletState) => {
+                        console.log("received on sync call!!");
+                        console.log(!!walletState);
+                        console.log(walletState.addressMap);
+                        setWalletState((state) => ({
+                            ...state,
+                            wallets: state.wallets.map((w, idx) => (idx === newWallet.index ? { ...w, initialState: walletState } : w)),
+                        }));
+                        await WalletStorage.setInitialState(newWallet.index, walletState);
+                    }),
+                );
             }
             setWalletState((state) => ({
                 ...state,

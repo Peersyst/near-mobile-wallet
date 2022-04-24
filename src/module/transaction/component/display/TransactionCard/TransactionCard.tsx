@@ -31,7 +31,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
                     </Row>
                     <Row justifyContent="space-between">
                         <Typography variant="body2" style={{ marginLeft: 10 }}>
-                            {formatDate(timestamp)}
+                            {formatDate(new Date(timestamp))}
                         </Typography>
                     </Row>
                 </Col>

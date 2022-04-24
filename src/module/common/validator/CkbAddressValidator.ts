@@ -1,7 +1,6 @@
 import { BaseValidator } from "react-native-components";
 import { translate } from "locale";
-
-const CkbAddressRegex = new RegExp("^ckb[13][a-zA-Z0-9]{42}$");
+import { connectionService } from "../service/CkbSdkService";
 
 export class CkbAddressValidator extends BaseValidator {
     constructor(message?: string) {
@@ -9,6 +8,6 @@ export class CkbAddressValidator extends BaseValidator {
     }
 
     validate(value: string): boolean {
-        return CkbAddressRegex.test(value);
+        return connectionService.isAddress(value);
     }
 }

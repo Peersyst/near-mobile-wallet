@@ -83,4 +83,11 @@ export const WalletStorage = new (class extends BaseStorageService<WalletStorage
         const storage = (await this.get()) || { wallets: [] };
         await this.set({ ...storage, pin });
     }
+
+    async setInitialState(index: number, walletState: WalletState): Promise<void> {
+        const wallets = await this.getWallets();
+        if (wallets) {
+            await this.setWallets(wallets.map((wallet) => (wallet.index === index ? { ...wallet, initialState: walletState } : wallet)));
+        }
+    }
 })();

@@ -23,15 +23,19 @@ export function getTokenTypeFromScript(scriptType: ScriptType): TokenType {
     return { ...UknownToken, ...scriptType };
 }
 
+export const connectionService = new ConnectionService(CKB_URL, INDEXER_URL, Environments.Testnet);
+
 export class CKBSDKService {
-    private readonly ckbUrl = CKB_URL;
-    private readonly indexerUrl = INDEXER_URL;
+    // private readonly ckbUrl = CKB_URL;
+    // private readonly indexerUrl = INDEXER_URL;
     private connectionService: ConnectionService;
     private wallet: WalletService;
 
-    constructor(mnemonic: string, walletState?: WalletState) {
-        this.connectionService = new ConnectionService(this.ckbUrl, this.indexerUrl, Environments.Testnet);
-        this.wallet = new WalletService(this.connectionService, mnemonic, walletState);
+    constructor(mnemonic: string, walletState?: WalletState, onSync?: (walletState: WalletState) => Promise<void>) {
+        // console.log("this.ckbUrl", this.ckbUrl);
+        // console.log("this.indexerUrl", this.indexerUrl);
+        this.connectionService = connectionService;
+        this.wallet = new WalletService(this.connectionService, mnemonic, walletState, onSync);
     }
 
     async synchronize(): Promise<WalletState> {
