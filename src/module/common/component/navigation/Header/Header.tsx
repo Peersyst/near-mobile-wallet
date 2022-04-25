@@ -1,19 +1,16 @@
-import { HeaderRoot } from "./Header.styles";
-import Toolbar from "../../layout/Toolbar/Toolbar";
+import { HeaderRoot, HeaderToolbar } from "./Header.styles";
 import LogoRow from "module/common/component/display/Logos/LogoRow/LogoRow";
 import { IconButton, Row } from "react-native-components";
 import { SettingsIcon } from "icons";
 import useNavigation from "../../../hook/useNavigation";
-
 export interface HeaderProps {
     showIcons?: boolean;
 }
-
 const Header = ({ showIcons = true }: HeaderProps): JSX.Element => {
     const navigation = useNavigation();
     return (
         <HeaderRoot elevation={6} square>
-            <Toolbar>
+            <HeaderToolbar>
                 <Row alignItems="center" justifyContent="space-between" flex={1}>
                     <LogoRow />
                     {showIcons && (
@@ -24,9 +21,8 @@ const Header = ({ showIcons = true }: HeaderProps): JSX.Element => {
                         </Row>
                     )}
                 </Row>
-            </Toolbar>
+            </HeaderToolbar>
         </HeaderRoot>
     );
 };
-
 export default Header;
