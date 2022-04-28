@@ -14,6 +14,7 @@ export const loadLocalization = async () => {
     i18n.translations = {
         en: require("./en.json"),
         es: require("./es.json"),
+        zh: require("./zh.json"),
     };
     // Set the locale once at the beginning of your app.
     i18n.locale = await initLang();

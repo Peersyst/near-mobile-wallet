@@ -155,5 +155,6 @@
     "proposed": "Propuesta",
     "committed": "Cometida",
     "rejected": "Rechazada",
-    "not_enough_balance_for_fees": "No tienes suficiente saldo para pagar las comisiones"
+    "not_enough_balance_for_fees": "No tienes suficiente saldo para pagar las comisiones",
+    "zh": "Chino"
 }
