@@ -1,7 +1,7 @@
 import { translate } from "locale";
 import BaseSecondaryScreen from "module/common/component/layout/BaseSecondaryScreen/BaseSecondaryScreen";
 import { BottomTabScreenNavigatonProps } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup.types";
-import walletState from "module/wallet/state/WalletState";
+import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { Col, useDialog, useModal } from "react-native-components";
 import { useResetRecoilState } from "recoil";
@@ -42,6 +42,7 @@ const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): 
                                         showModal(ConfirmPinModal, {
                                             onPinConfirmed: async () => {
                                                 await WalletStorage.clear();
+                                                serviceInstancesMap.clear();
                                                 await SettingsStorage.clear();
                                                 resetWalletState();
                                             },
