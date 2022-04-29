@@ -36,7 +36,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     const [selectedWallet, setSelectedWallet] = useState<number>(finalSelectedWallet);
     const [isFirstTime, setIsFirstTime] = useState<boolean>(true);
     const { data = [], isLoading: depositsIsLoading } = useGetDAOUnlockableAmounts(selectedWallet);
-    const unlockableDeposits = useMemo(() => data.filter((deposit) => deposit.unlockable), [data]);
+    const unlockableDeposits = useMemo(() => data, [data]);
 
     useEffect(() => {
         if (isFirstTime && !depositsIsLoading) {
