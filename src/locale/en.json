@@ -157,5 +157,12 @@
     "rejected": "Rejected",
     "not_enough_balance_for_fees": "Not enough balance to pay the fees",
     "zh": "Chinese",
-    "unknown_token": "Unknown Token"
+    "unknown_token": "Unknown Token",
+    "day": "day",
+    "days": "days",
+    "hour": "hour",
+    "hours": "hours",
+    "minute": "minute",
+    "minutes": "minutes",
+    "remaining_time": "Remaining time"
 }

@@ -7,7 +7,7 @@ export const BalanceItem = styled(Typography, { textTransform: "uppercase" })<Ba
     const { fontSize, lineHeight } = theme.typography[variant];
     const heading = isHeading(variant);
     return {
-        marginBottom: smallBalance ? (heading ? 2 : 1) : undefined,
+        marginBottom: smallBalance ? (heading ? 1.5 : 0) : undefined,
         fontSize: smallBalance && fontSize ? fontSize * 0.7 : fontSize,
         lineHeight: smallBalance && lineHeight ? lineHeight * 0.7 : lineHeight,
     };

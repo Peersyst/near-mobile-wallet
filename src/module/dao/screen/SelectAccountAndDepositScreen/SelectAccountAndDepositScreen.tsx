@@ -22,7 +22,8 @@ interface WithdrawSelectAccountScreenProps {
 const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccountScreenProps) => {
     //Hooks
     const setTab = useSetTab();
-    const { fee } = useRecoilValue(settingsState);
+    const { fee: feeRate } = useRecoilValue(settingsState);
+    const fee = feeRate / 10 ** 8;
     const {
         state: { selectedWallet: defaultSelectedWallet, wallets },
     } = useWalletState();
@@ -55,7 +56,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
 
     //Functions
     const handleSubmit = (withdrawInfo: WithdrawForm) => {
-        setWithdrawInfo({ ...withdrawInfo, feeRate: fee });
+        setWithdrawInfo({ ...withdrawInfo, feeRate: feeRate });
         setTab(WithdrawScreens.CONFIRMATION);
     };
 

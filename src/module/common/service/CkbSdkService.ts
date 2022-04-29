@@ -39,11 +39,17 @@ export class CKBSDKService {
     }
 
     getCKBBalance(): CKBBalance {
-        return this.wallet.getCKBBalance();
+        const { totalBalance, occupiedBalance, freeBalance } = this.wallet.getCKBBalance();
+        return {
+            totalBalance: totalBalance / BigInt(10 ** 8),
+            occupiedBalance: occupiedBalance / BigInt(10 ** 8),
+            freeBalance: freeBalance / BigInt(10 ** 8),
+        };
     }
 
     async getDAOBalance(): Promise<DAOBalance> {
-        return this.wallet.getDAOBalance();
+        const { daoDeposit, daoCompensation } = await this.wallet.getDAOBalance();
+        return { daoDeposit: daoDeposit / BigInt(10 ** 8), daoCompensation: daoCompensation / BigInt(10 ** 8) };
     }
 
     getTransactions(): FullTransaction[] {
@@ -92,8 +98,7 @@ export class CKBSDKService {
     async withdrawOrUnlock({ unlockableAmount, mnemonic }: WithdrawOrUnlockParams): Promise<string> {
         try {
             const txHash = await this.wallet.withdrawOrUnlock(unlockableAmount, mnemonic.join(" "));
-            console.log("txHash", txHash);
-            return "hola";
+            return txHash;
         } catch (err) {
             console.log("error");
             console.log(err.name);

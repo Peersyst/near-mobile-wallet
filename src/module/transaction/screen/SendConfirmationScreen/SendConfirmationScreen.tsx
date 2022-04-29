@@ -13,7 +13,8 @@ import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { useRefetchQueries } from "../../../../query/useRefetchQueries";
 
 const SendConfirmationScreen = (): JSX.Element => {
-    const { amount, fee, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
+    const { amount, fee: feeRate, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
+    const fee = feeRate! / 10 ** 8;
     const {
         state: { wallets },
     } = useWalletState();
@@ -27,7 +28,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
         sendTransaction(
-            { amount: BigInt(amount!), message: message!, to: receiverAddress!, mnemonic: mnemonic!, feeRate: fee! },
+            { amount: BigInt(amount!) * BigInt(10 ** 8), message: message!, to: receiverAddress!, mnemonic: mnemonic!, feeRate: feeRate! },
             {
                 onSuccess: () =>
                     refetch([
@@ -45,7 +46,7 @@ const SendConfirmationScreen = (): JSX.Element => {
                 <SendSummary
                     amount={amount!}
                     receiverAddress={receiverAddress!}
-                    fee={fee!}
+                    fee={fee}
                     message={message!}
                     senderName={senderName}
                     senderAddress={serviceInstance?.getAddress() || ""}

@@ -4,6 +4,6 @@ import { TypographyVariants, TypographyVariantsOverrides } from "module/common/c
 type TypographyVariantType = OverridableStringUnion<TypographyVariants, TypographyVariantsOverrides>;
 
 const isHeading = (variant: TypographyVariantType) => {
-    return variant[0] === "h";
+    return variant === "h1";
 };
 export default isHeading;

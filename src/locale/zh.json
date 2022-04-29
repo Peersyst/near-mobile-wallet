@@ -156,5 +156,6 @@
     "committed": "已确认",
     "rejected": "已拒绝",
     "not_enough_balance_for_fees": "没有足够的余额来支付手续费",
-    "zh": "中文"
+    "zh": "中文",
+    "unknown_token": "未知令牌"
 }

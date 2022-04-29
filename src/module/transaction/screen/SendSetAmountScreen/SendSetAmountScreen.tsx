@@ -27,12 +27,13 @@ interface SendSetAmountScreenProps {
 const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const [amount, setAmount] = useState(sendState.amount || "");
-    const { fee } = useRecoilValue(settingsState);
+    const { fee: feeRate } = useRecoilValue(settingsState);
+    const fee = feeRate / 10 ** 8;
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex);
     const setTab = useSetTab();
 
     const handleSubmit = ({ amount, message }: SendAmountAndMessageResult): void => {
-        setSendState((oldState) => ({ ...oldState, amount, message, fee }));
+        setSendState((oldState) => ({ ...oldState, amount, message, fee: feeRate }));
         setTab(type === "send" ? SendScreens.CONFIRMATION : DepositScreens.CONFIRMATION);
     };
 

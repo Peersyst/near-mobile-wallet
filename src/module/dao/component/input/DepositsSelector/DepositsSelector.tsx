@@ -35,7 +35,15 @@ const DepositsSelector = ({ deposits, value, onChange, ...rest }: DepositsSelect
                 {...rest}
             >
                 {deposits.map((deposit, index) => {
-                    return <DepositItem amount={deposit.amount} key={index} selectedIndex={selectedIndex} value={index} />;
+                    return (
+                        <DepositItem
+                            remainingCycleMinutes={deposit.remainingCycleMinutes}
+                            amount={deposit.amount}
+                            key={index}
+                            selectedIndex={selectedIndex}
+                            value={index}
+                        />
+                    );
                 })}
             </Select>
         </ControlledSuspense>

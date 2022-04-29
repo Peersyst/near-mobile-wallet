@@ -64,7 +64,14 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
     };
 
     return (
-        <GlassNavigatorModal open={open} onClose={handleClose} navbar={{ back: true, title, onBack }} onExited={handleExited} {...rest}>
+        <GlassNavigatorModal
+            scrollable={true}
+            open={open}
+            onClose={handleClose}
+            navbar={{ back: true, title, onBack }}
+            onExited={handleExited}
+            {...rest}
+        >
             {renderProps(handleWalletCreation)}
         </GlassNavigatorModal>
     );
