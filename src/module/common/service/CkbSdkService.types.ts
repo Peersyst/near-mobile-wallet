@@ -1,13 +1,13 @@
 import { DAOUnlockableAmount, FeeRate, Transaction } from "@peersyst/ckb-peersyst-sdk";
 
 export interface DepositInDAOParams {
-    amount: bigint;
+    amount: bigint | number;
     mnemonic: string[];
     feeRate?: FeeRate;
 }
 
 export interface SendTransactionParams {
-    amount: bigint;
+    amount: bigint | number;
     mnemonic: string[];
     message: string;
     to: string;

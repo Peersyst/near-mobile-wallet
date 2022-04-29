@@ -78,11 +78,11 @@ export class CKBSDKService {
     }
 
     async sendTransaction(params: SendTransactionParams): Promise<string> {
-        return this.wallet.sendTransaction(params.amount, params.mnemonic.join(" "), params.to, params.feeRate);
+        return this.wallet.sendTransaction(BigInt(params.amount), params.mnemonic.join(" "), params.to, params.feeRate);
     }
 
     async depositInDAO(params: DepositInDAOParams): Promise<string> {
-        return await this.wallet.depositInDAO(params.amount, params.mnemonic.join(" "), params.feeRate);
+        return await this.wallet.depositInDAO(BigInt(params.amount), params.mnemonic.join(" "), params.feeRate);
     }
 
     async getDAOUnlockableAmounts(): Promise<DAOUnlockableAmount[]> {
@@ -90,6 +90,16 @@ export class CKBSDKService {
     }
 
     async withdrawOrUnlock({ unlockableAmount, mnemonic }: WithdrawOrUnlockParams): Promise<string> {
-        return this.wallet.withdrawOrUnlock(unlockableAmount, mnemonic.join(" "));
+        try {
+            const txHash = await this.wallet.withdrawOrUnlock(unlockableAmount, mnemonic.join(" "));
+            console.log("txHash", txHash);
+            return "hola";
+        } catch (err) {
+            console.log("error");
+            console.log(err.name);
+            console.log(err.message);
+            // console.log(err.stack);
+        }
+        return "";
     }
 }
