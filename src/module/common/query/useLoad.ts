@@ -4,8 +4,8 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
-import { CKBSDKService } from "../service/CkbSdkService";
 import { WalletState } from "@peersyst/ckb-peersyst-sdk";
+import { CKBSDKService } from "../service/CkbSdkService";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
