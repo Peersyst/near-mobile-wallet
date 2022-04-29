@@ -3,11 +3,11 @@ import { View } from "react-native";
 import { List } from "react-native-components";
 
 export const NewsList = styled(List)(() => ({
-    paddingHorizontal: "4%",
+    paddingHorizontal: 16,
     paddingTop: "5%",
 }));
 
 export const NewsSpacer = styled(View)(() => ({
-    height: "2.5%",
+    height: 16,
     width: "100%",
 }));

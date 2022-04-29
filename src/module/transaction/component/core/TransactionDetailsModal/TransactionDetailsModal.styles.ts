@@ -8,4 +8,5 @@ export const TransactionDetailsModalRoot = styled(Modal)(() => ({
     width: "100%",
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
+    paddingBottom: 40,
 }));

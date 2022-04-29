@@ -10,13 +10,20 @@ import { MockedUnlockableAmounts } from "mocks/DAO";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
+import * as UseSelectedWallet from "module/wallet/hook/useSelectedWallet";
+import { wallet } from "mocks/wallet";
 
 describe("SelectAccountAndDepositScreen tests", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     beforeAll(() => {
+        jest.spyOn(UseSelectedWallet, "default").mockReturnValue(wallet);
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
+        /*  jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
+        jest.spyOn(CkbServiceMock.prototype, "getCKBBalance").mockReturnValue(
+            SuccessApiCall({ totalBalance: BigInt(20000), occupiedBalance: BigInt(9600), freeBalance: BigInt(125) }),
+        ); */
     });
 
     afterAll(() => {
@@ -26,6 +33,7 @@ describe("SelectAccountAndDepositScreen tests", () => {
     test("Renders correctly without deposits", async () => {
         jest.spyOn(sdkInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall([]));
         const screen = render(<SelectAccountAndDepositScreen setWithdrawInfo={jest.fn()} />);
+        screen.debug();
         await waitFor(() => expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined());
         expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2);
         expect(screen.getByText(translate("select_deposit") + ":")).toBeDefined();

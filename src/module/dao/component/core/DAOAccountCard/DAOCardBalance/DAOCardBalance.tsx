@@ -14,7 +14,7 @@ const DAOCardBalance = (): JSX.Element => {
     return (
         <Col gap={"2%"} style={{ paddingHorizontal: "4%" }}>
             <DAOBalanceRow label={translate("wallet")}>
-                <Typography variant="body1" fontWeight="bold">
+                <Typography variant="body1" fontWeight="bold" numberOfLines={1} style={{ maxWidth: "50%" }}>
                     {name}
                 </Typography>
             </DAOBalanceRow>
