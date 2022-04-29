@@ -25,7 +25,7 @@
         "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0"
     },
     "dependencies": {
-        "@peersyst/ckb-peersyst-sdk": "git+https://github.com/Peersyst/ckb-peersyst-sdk#v1.4.0",
+        "@peersyst/ckb-peersyst-sdk": "git+https://github.com/Peersyst/ckb-peersyst-sdk#v1.4.1",
         "@peersyst/react-hooks": "^1.1.6",
         "@peersyst/react-native-styled": "^1.1.1",
         "@peersyst/react-types": "^1.2.0",
@@ -74,7 +74,8 @@
         "react-native-web": "0.17.5",
         "react-query": "^3.34.14",
         "recoil": "^0.6.1",
-        "stream-browserify": "^3.0.0"
+        "stream-browserify": "^3.0.0",
+        "whatwg-fetch": "^3.6.2"
     },
     "devDependencies": {
         "@babel/core": "^7.17.2",

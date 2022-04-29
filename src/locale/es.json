@@ -156,5 +156,6 @@
     "committed": "Cometida",
     "rejected": "Rechazada",
     "not_enough_balance_for_fees": "No tienes suficiente saldo para pagar las comisiones",
-    "zh": "Chino"
+    "zh": "Chino",
+    "unknown_token": "Token desconocido"
 }

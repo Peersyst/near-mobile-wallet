@@ -41,9 +41,12 @@ export function useLoad(): boolean {
                     wallets: wallets.map(({ mnemonic, ...wallet }) => wallet),
                 }));
 
-                for (let i = 0; i < wallets.length; i += 1) {
-                    await serviceInstancesMap.get(i)?.synchronize();
-                }
+                //Use another thread
+                setTimeout(async () => {
+                    for (let i = 0; i < serviceInstancesMap.size; i += 1) {
+                        await serviceInstancesMap.get(i)?.synchronize();
+                    }
+                });
 
                 //Get the settings from storage and set it to the state
                 const settings = (await SettingsStorage.getAllSettings()) || defaultSettingsState;

@@ -1,33 +1,43 @@
 import { Col, Row, Typography } from "react-native-components";
-import { TokenIcon, TokenRoot } from "./TokenCard.styles";
+import { TokenIcon, TokenPlaceholder, TokenRoot } from "./TokenCard.styles";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import useCkbConversion from "module/common/hook/useCkbConversion";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
-import { tokensList } from "module/token/mock/token";
-import { TokenAmount } from "@peersyst/ckb-peersyst-sdk";
+import { TokenAmount } from "module/token/types";
+import { translate } from "locale";
 
 interface TokenProps {
     token: TokenAmount;
 }
 
-const TokenCard = ({ token }: TokenProps): JSX.Element => {
-    const { name, tokenName, imageUri, description, args } = tokensList.find((t) => t.args === token.type.args) || {};
+const TokenCard = ({
+    token: {
+        type: { name, tokenName, imageUri, description, args },
+        amount,
+    },
+}: TokenProps): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
-    const { value } = useCkbConversion(fiat, token.amount * (args === "0x3" ? 3000 : 100));
+    const { value } = useCkbConversion(fiat, amount * (args === "0x3" ? 3000 : 100));
     return (
         <TokenRoot>
             <Row alignItems="center" gap="6%">
-                <TokenIcon source={{ uri: imageUri }} />
+                {imageUri ? <TokenIcon source={{ uri: imageUri }} /> : <TokenPlaceholder />}
                 <Col>
                     <Typography variant="body1" fontWeight="bold">
-                        {name}
+                        {name === "Unknown Token" ? translate("unknown_token") : name}
                     </Typography>
                     <Typography variant="body2">{description}</Typography>
                 </Col>
             </Row>
             <Col alignItems="flex-end">
-                <Balance balance={token.amount} smallBalance units={tokenName || ""} boldUnits variant="body2" />
+                <Balance
+                    balance={amount}
+                    smallBalance
+                    units={tokenName ? (tokenName === "Unknown Token" ? "?" : tokenName) : ""}
+                    boldUnits
+                    variant="body2"
+                />
                 <Balance balance={value} units={fiat} variant={"button"} />
             </Col>
         </TokenRoot>
