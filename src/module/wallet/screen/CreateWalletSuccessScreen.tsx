@@ -8,7 +8,6 @@ import settingsState, { defaultSettingsState } from "module/settings/state/Setti
 import createWalletState from "module/wallet/state/CreateWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import useWalletSync from "module/wallet/hook/useWalletSync";
 import { WalletState } from "@peersyst/ckb-peersyst-sdk";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
@@ -18,24 +17,17 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
     const setWalletState = useSetRecoilState(walletState);
     const setSettingsState = useSetRecoilState(settingsState);
     const resetCreateWalletState = useResetRecoilState(createWalletState);
-    const syncWallet = useWalletSync();
 
     useEffect(() => {
         const setStorage = async () => {
             await WalletStorage.set({ pin: pin!, wallets: [{ name: name!, colorIndex: 0, mnemonic: mnemonic!, index: 0 }] });
             await SettingsStorage.set(defaultSettingsState);
-            // console.log("setStorage");
-            // console.log("mnemonic", mnemonic);
 
             if (mnemonic) {
                 if (!serviceInstancesMap.has(0)) {
-                    // console.log("not in map");
                     serviceInstancesMap.set(
                         0,
                         new CKBSDKService(mnemonic.join(" "), undefined, async (walletState: WalletState) => {
-                            console.log("received on sync call!!");
-                            console.log(!!walletState);
-                            console.log(walletState.addressMap);
                             setWalletState((state) => ({
                                 ...state,
                                 wallets: state.wallets.map((w, idx) => (idx === 0 ? { ...w, initialState: walletState } : w)),
@@ -55,8 +47,7 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
                 selectedWallet: 0,
             }));
 
-            console.log("syncing wallet 0....");
-            await syncWallet(0);
+            await serviceInstancesMap.get(0)?.synchronize();
             resetCreateWalletState();
         };
         setTimeout(setStorage, 2000);

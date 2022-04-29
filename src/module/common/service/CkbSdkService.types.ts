@@ -14,7 +14,7 @@ export interface SendTransactionParams {
     feeRate?: FeeRate;
 }
 
-export interface WithdrawAndUnlockParams {
+export interface WithdrawOrUnlockParams {
     unlockableAmount: DAOUnlockableAmount;
     mnemonic: string[];
 }

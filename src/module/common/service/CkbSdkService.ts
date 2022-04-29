@@ -11,7 +11,7 @@ import {
     DAOUnlockableAmount,
 } from "@peersyst/ckb-peersyst-sdk";
 import { tokensList, UknownToken } from "module/token/mock/token";
-import { DepositInDAOParams, FullTransaction, SendTransactionParams, WithdrawAndUnlockParams } from "./CkbSdkService.types";
+import { DepositInDAOParams, FullTransaction, SendTransactionParams, WithdrawOrUnlockParams } from "./CkbSdkService.types";
 import { CKB_URL, INDEXER_URL } from "@env";
 import { TokenAmount, TokenType } from "module/token/types";
 
@@ -26,14 +26,10 @@ export function getTokenTypeFromScript(scriptType: ScriptType): TokenType {
 export const connectionService = new ConnectionService(CKB_URL, INDEXER_URL, Environments.Testnet);
 
 export class CKBSDKService {
-    // private readonly ckbUrl = CKB_URL;
-    // private readonly indexerUrl = INDEXER_URL;
     private connectionService: ConnectionService;
     private wallet: WalletService;
 
     constructor(mnemonic: string, walletState?: WalletState, onSync?: (walletState: WalletState) => Promise<void>) {
-        // console.log("this.ckbUrl", this.ckbUrl);
-        // console.log("this.indexerUrl", this.indexerUrl);
         this.connectionService = connectionService;
         this.wallet = new WalletService(this.connectionService, mnemonic, walletState, onSync);
     }
@@ -73,6 +69,7 @@ export class CKBSDKService {
     }
 
     async getNfts(): Promise<Nft[]> {
+        await this.synchronize();
         return this.wallet.getNftsBalance();
     }
 
@@ -85,14 +82,14 @@ export class CKBSDKService {
     }
 
     async depositInDAO(params: DepositInDAOParams): Promise<string> {
-        return this.wallet.depositInDAO(params.amount, params.mnemonic.join(" "), params.feeRate);
+        return await this.wallet.depositInDAO(params.amount, params.mnemonic.join(" "), params.feeRate);
     }
 
     async getDAOUnlockableAmounts(): Promise<DAOUnlockableAmount[]> {
         return this.wallet.getDAOUnlockableAmounts();
     }
 
-    async withdrawAndUnlock({ unlockableAmount, mnemonic }: WithdrawAndUnlockParams): Promise<string> {
-        return this.wallet.withdrawAndUnlock(unlockableAmount, mnemonic.join(" "));
+    async withdrawOrUnlock({ unlockableAmount, mnemonic }: WithdrawOrUnlockParams): Promise<string> {
+        return this.wallet.withdrawOrUnlock(unlockableAmount, mnemonic.join(" "));
     }
 }

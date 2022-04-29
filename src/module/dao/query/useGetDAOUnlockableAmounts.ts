@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { QueryResult } from "query-utils";
-import { DAOUnlockableAmount } from "module/common/service/mock/CkbServiceMock.types";
+import { DAOUnlockableAmount } from "@peersyst/ckb-peersyst-sdk";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 
