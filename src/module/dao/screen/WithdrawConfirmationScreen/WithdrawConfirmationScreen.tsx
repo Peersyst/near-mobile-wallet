@@ -27,7 +27,7 @@ const WithdrawConfirmationScreen = ({
         state: { wallets },
     } = useWalletState();
     const { data: deposits = [] } = useGetDAOUnlockableAmounts();
-    const unlockableDeposits = useMemo(() => deposits.filter((deposit) => deposit.unlockable), [deposits]);
+    const unlockableDeposits = useMemo(() => deposits, [deposits]);
     const { mutate: withdrawFromDAO, isLoading, isSuccess, isError } = useWithdrawOrUnlock(receiverIndex);
 
     //Variables
@@ -56,7 +56,7 @@ const WithdrawConfirmationScreen = ({
                 <WithdrawSummary
                     receiverName={receiverName}
                     receiverAddress={serviceInstance?.getAddress() || ""}
-                    depositAPC={getAPC({ daoCompensation: compensation, daoDeposit: amount })}
+                    depositAPC={getAPC({ daoCompensation: Number(compensation), daoDeposit: Number(amount) })}
                     amount={amount}
                     fee={feeRate!}
                 />
