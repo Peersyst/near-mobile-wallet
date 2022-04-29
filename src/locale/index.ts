@@ -2,7 +2,7 @@ import i18n from "i18n-js";
 import en from "./en.json";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import getDefaultLocale from "./utils/getDefaultLocale";
-export type LocaleType = "en" | "es";
+export type LocaleType = "en" | "es" | "zh";
 
 export async function initLang(): Promise<LocaleType> {
     const storedLocale = await SettingsStorage.getLocale();

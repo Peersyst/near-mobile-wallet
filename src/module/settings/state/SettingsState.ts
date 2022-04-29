@@ -19,6 +19,7 @@ export interface SettingsState {
     fiat: FiatCurrencyType;
     network: NetworkType;
     fee: FeeType;
+    loading?: boolean;
 }
 
 export const defaultSettingsState: SettingsState = { locale: getDefaultLocale(), fiat: "usd", network: "mainnet", fee: FeeRate.AVERAGE };
