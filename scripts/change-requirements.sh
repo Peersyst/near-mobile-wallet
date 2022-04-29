@@ -17,4 +17,8 @@ sed -i'.bak' '14s/.*/var _crypto = _interopRequireDefault(require("react-native-
 sed -i'.bak' '8s/.*/var _crypto = _interopRequireDefault(require("react-native-expo-crypto"));/' ./node_modules/@ckb-lumos/hd/lib/keychain.js
 sed -i'.bak' '15s/.*/var Buffer = require("buffer").Buffer;/' ./node_modules/@ckb-lumos/hd/lib/keychain.js
 
+sed -i'.bak' "12s/.*/var fetch = require('whatwg-fetch').fetch;/" ./node_modules/@ckb-lumos/ckb-indexer/lib/services.js
+sed -i'.bak' "95s/.*/const res = await (0, fetch)(rpcUrl, {/" ./node_modules/@ckb-lumos/ckb-indexer/lib/services.js
+sed -i'.bak' "119s/.*/const res = await (0, fetch)(ckbIndexerUrl, {/" ./node_modules/@ckb-lumos/ckb-indexer/lib/services.js
+
 echo "Package requirements changed successfully!"
