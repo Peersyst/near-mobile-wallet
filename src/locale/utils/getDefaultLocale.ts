@@ -1,7 +1,7 @@
 import * as Localization from "expo-localization";
 import { LocaleType } from "locale";
 
-const locales: string[] = ["en", "es"];
+const locales: string[] = ["en", "es", "zh"];
 
 export default function getDefaultLocale(): LocaleType {
     const systemLocale = Localization.locale.slice(0, 2);

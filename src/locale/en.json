@@ -155,5 +155,6 @@
     "proposed": "Proposed",
     "committed": "Committed",
     "rejected": "Rejected",
-    "not_enough_balance_for_fees": "Not enough balance to pay the fees"
+    "not_enough_balance_for_fees": "Not enough balance to pay the fees",
+    "zh": "Chinese"
 }
