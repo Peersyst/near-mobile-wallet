@@ -149,5 +149,6 @@
     "backup_wallet_advise_text": "If you continue you will see your recovery phrase for one of your wallets. This is your only key to that wallet. If your device gets stolen or lost, you will only be able to recover your funds with this recovery phrase.",
     "back_up_now": "Back up now",
     "close": "Close",
-    "mnemonic_for": "Mnemonic for %name%"
+    "mnemonic_for": "Mnemonic for %name%",
+    "unknown_token": "Unknown Token"
 }
