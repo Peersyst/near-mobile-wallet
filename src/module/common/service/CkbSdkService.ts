@@ -39,17 +39,11 @@ export class CKBSDKService {
     }
 
     getCKBBalance(): CKBBalance {
-        const { totalBalance, occupiedBalance, freeBalance } = this.wallet.getCKBBalance();
-        return {
-            totalBalance: totalBalance / BigInt(10 ** 8),
-            occupiedBalance: occupiedBalance / BigInt(10 ** 8),
-            freeBalance: freeBalance / BigInt(10 ** 8),
-        };
+        return this.wallet.getCKBBalance();
     }
 
     async getDAOBalance(): Promise<DAOBalance> {
-        const { daoDeposit, daoCompensation } = await this.wallet.getDAOBalance();
-        return { daoDeposit: daoDeposit / BigInt(10 ** 8), daoCompensation: daoCompensation / BigInt(10 ** 8) };
+        return this.wallet.getDAOBalance();
     }
 
     getTransactions(): FullTransaction[] {

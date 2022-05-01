@@ -13,8 +13,7 @@ import useDepositInDAO from "module/dao/query/useDepositInDAO";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 const DepositConfirmationScreen = (): JSX.Element => {
-    const { amount, fee: feeRate, senderWalletIndex } = useRecoilValue(sendState);
-    const fee = feeRate! / 10 ** 8;
+    const { amount, fee, senderWalletIndex } = useRecoilValue(sendState);
     const {
         state: { wallets },
     } = useWalletState();
@@ -27,7 +26,7 @@ const DepositConfirmationScreen = (): JSX.Element => {
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
         depositInDAO(
-            { amount: BigInt(amount!) * BigInt(10 ** 8), mnemonic: mnemonic!, feeRate: feeRate! },
+            { amount: BigInt(amount!), mnemonic: mnemonic!, feeRate: fee! },
             { onSuccess: () => refetch(["balance", senderWalletIndex]) },
         );
         //The SendState is cleaned in the "onExited" method of DepositModal

@@ -5,6 +5,7 @@ import useWalletColorIndex from "module/wallet/hook/useWalletColorIndex";
 import { WalletCardBalance, WalletCardRoot, WalletContent } from "./WalletCard.styles";
 import WalletCardHeader from "./WalletCardHeader/WalletCardHeader";
 import WalletCardButtons from "./WalletCardButtons/WalletCardButtons";
+import { convertoToCKB } from "module/wallet/utils/convertToCKB";
 
 export interface WalletCardProps {
     wallet: Wallet;
@@ -22,7 +23,7 @@ const WalletCard = ({ wallet: { name, index, colorIndex } }: WalletCardProps): J
             <WalletContent>
                 <WalletCardHeader index={index} name={name} />
                 {balance !== undefined ? (
-                    <WalletCardBalance variant="h1" balance={balance.freeBalance} units="ckb" />
+                    <WalletCardBalance variant="h1" balance={convertoToCKB(balance.freeBalance)} units="ckb" />
                 ) : (
                     <ActivityIndicator color="white" />
                 )}

@@ -24,7 +24,6 @@ const DepositsSelector = ({ deposits, value, onChange, ...rest }: DepositsSelect
     const handleItemChange = (i: unknown) => {
         setSelectedIndex(i as number);
     };
-
     return (
         <ControlledSuspense isLoading={deposits.length === 0} fallback={<EmptyDepositsComponent />}>
             <Select
@@ -34,11 +33,12 @@ const DepositsSelector = ({ deposits, value, onChange, ...rest }: DepositsSelect
                 title={translate("select_deposit")}
                 {...rest}
             >
-                {deposits.map((deposit, index) => {
+                {deposits.map(({ remainingCycleMinutes, amount, unlockable }, index) => {
                     return (
                         <DepositItem
-                            remainingCycleMinutes={deposit.remainingCycleMinutes}
-                            amount={deposit.amount}
+                            remainingCycleMinutes={remainingCycleMinutes}
+                            amount={amount}
+                            unlockable={unlockable}
                             key={index}
                             selectedIndex={selectedIndex}
                             value={index}

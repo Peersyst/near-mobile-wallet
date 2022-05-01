@@ -6,6 +6,7 @@ import DAOBalanceRow from "./DAOBalanceRow/DAOBalanceRow";
 import useGetDAOBalance from "module/dao/query/useGetDAOBalance";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import { getAPC } from "module/dao/utils/getAPC";
+import { convertoToCKB } from "module/wallet/utils/convertToCKB";
 
 const DAOCardBalance = (): JSX.Element => {
     const { data: daoBalance, isLoading: daoBalanceLoading } = useGetDAOBalance();
@@ -19,10 +20,17 @@ const DAOCardBalance = (): JSX.Element => {
                 </Typography>
             </DAOBalanceRow>
             <DAOBalanceRow label={translate("available")} isLoading={balanceLoading}>
-                <Balance boldUnits smallBalance balance={freeBalance} decimals={6} units="ckb" variant="h2" />
+                <Balance boldUnits smallBalance balance={convertoToCKB(freeBalance)} decimals={6} units="ckb" variant="h2" />
             </DAOBalanceRow>
             <DAOBalanceRow label={translate("locked")} isLoading={daoBalanceLoading}>
-                <Balance boldUnits smallBalance balance={daoBalance?.daoDeposit || 0} decimals={3} units="ckb" variant="h3" />
+                <Balance
+                    boldUnits
+                    smallBalance
+                    balance={convertoToCKB(daoBalance?.daoDeposit || 0)}
+                    decimals={3}
+                    units="ckb"
+                    variant="h3"
+                />
             </DAOBalanceRow>
             <DAOBalanceRow label={translate("current_apc")} isLoading={daoBalanceLoading}>
                 <Typography variant="body1" fontWeight="bold">{`${getAPC(daoBalance)}%`}</Typography>

@@ -14,26 +14,26 @@ import Card from "module/common/component/surface/Card/Card";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
+import { MINIMUM_DAO_DEPOSIT } from "@env";
 
 export interface SendAmountAndMessageResult {
     amount: string;
     message: string;
 }
 
-interface SendSetAmountScreenProps {
+export interface SendSetAmountScreenProps {
     type?: "dao" | "send";
 }
 
 const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const [amount, setAmount] = useState(sendState.amount || "");
-    const { fee: feeRate } = useRecoilValue(settingsState);
-    const fee = feeRate / 10 ** 8;
+    const { fee } = useRecoilValue(settingsState);
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex);
     const setTab = useSetTab();
 
     const handleSubmit = ({ amount, message }: SendAmountAndMessageResult): void => {
-        setSendState((oldState) => ({ ...oldState, amount, message, fee: feeRate }));
+        setSendState((oldState) => ({ ...oldState, amount, message, fee }));
         setTab(type === "send" ? SendScreens.CONFIRMATION : DepositScreens.CONFIRMATION);
     };
 
@@ -42,12 +42,18 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
             <Form onSubmit={handleSubmit}>
                 <Col gap="15%">
                     <CKBAmountInputContainer>
-                        <CKBAmountInput fee={fee} amount={amount} setAmount={setAmount} freeBalance={balance?.freeBalance ?? BigInt(0)} />
+                        <CKBAmountInput
+                            type={type}
+                            fee={fee}
+                            amount={amount}
+                            setAmount={setAmount}
+                            freeBalance={balance?.freeBalance ?? BigInt(0)}
+                        />
                     </CKBAmountInputContainer>
                     {type === "dao" ? (
                         <Card>
                             <Typography variant="body1" textAlign="center">
-                                {translate("deposit_warning")}
+                                {translate("deposit_warning", { dao_min_deposit: MINIMUM_DAO_DEPOSIT })}
                             </Typography>
                         </Card>
                     ) : (

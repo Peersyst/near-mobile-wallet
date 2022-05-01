@@ -111,7 +111,7 @@
     "or": "o",
     "create_a_wallet": "Crea un Wallet",
     "import_a_wallet": "Importa un Wallet",
-    "deposit_warning": "Nervos DAO necesita 102 CKBytes para depositar el almacenamiento de las celdas, que no genera compensación. Visite el RFC de Nervos DAO para obtener más información sobre Nervos DAO.",
+    "deposit_warning": "Nervos DAO necesita %dao_min_deposit% CKBytes para depositar el almacenamiento de las celdas, que no genera compensación. Visite el RFC de Nervos DAO para obtener más información sobre Nervos DAO.",
     "estimated_apc": "APC estimado",
     "loading_apc": "Cargando APC",
     "attention": "Atención!",

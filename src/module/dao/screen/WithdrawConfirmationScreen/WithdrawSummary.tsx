@@ -1,3 +1,4 @@
+import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
 import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
 import { Col } from "react-native-components";

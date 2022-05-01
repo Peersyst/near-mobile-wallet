@@ -12,12 +12,13 @@ function formatTimeDAORemainingCycle(numOfHours: number): string {
     if (hours < 10) {
         hours = "0" + hours;
     }
-    hours = `${hours} ${hours !== 1 ? translate("hours") : translate("hour")}, `;
+    res += `${hours} ${hours !== 1 ? translate("hours") : translate("hour")}${days > 0 ? "" : ", "}`;
+    if (days > 0) return res;
     if (minutes < 10) {
         minutes = "0" + minutes;
     }
-    minutes = `${minutes} ${minutes !== 1 ? translate("minutes") : translate("minute")}.`;
-    return res + hours + minutes;
+    res += `${minutes} ${minutes !== 1 ? translate("minutes") : translate("minute")}.`;
+    return res;
 }
 
 export default formatTimeDAORemainingCycle;
