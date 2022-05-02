@@ -10,7 +10,6 @@ import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
-import { MINIMUM_DAO_DEPOSIT } from "@env";
 
 describe("SendAmountAndMessageScreen tests", () => {
     const sdkInstance = new CKBSDKService(MnemonicMocked);
@@ -41,7 +40,7 @@ describe("SendAmountAndMessageScreen tests", () => {
     test("Renders correctly with type dao deposit", async () => {
         const screen = render(<SendSetAmountScreen type="dao" />);
         await waitFor(() => expect(screen.getByPlaceholderText(translate("enter_amount"))).toBeDefined());
-        expect(screen.getByText(translate("deposit_warning", { dao_min_deposit: MINIMUM_DAO_DEPOSIT }))).toBeDefined();
+        expect(screen.getByText(translate("deposit_warning", { dao_min_deposit: "102" }))).toBeDefined();
     });
 
     test("Sets send state and advances to next screen", async () => {
