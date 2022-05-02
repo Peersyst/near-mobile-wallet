@@ -8,7 +8,7 @@ import { isUnlockOrWithdrawDAO } from "../../../utils/isUnlockOrWithdrawDAO";
 
 const DAOCompletedWithdrawalsList = (): JSX.Element => {
     const { data = [], refetch, isLoading } = useGetTransactions();
-    const filteredDAOWithdrawalTxs = useMemo(() => data.filter((tx) => isUnlockOrWithdrawDAO(tx.type)), [data]);
+    const filteredDAOWithdrawalTxs = useMemo(() => data.filter((tx) => isUnlockOrWithdrawDAO(tx.type)).reverse(), [data]);
     return (
         <MainList
             onRefresh={refetch}
