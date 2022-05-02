@@ -49,7 +49,7 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
                             fee={fee}
                             amount={amount}
                             setAmount={setAmount}
-                            freeBalance={balance?.freeBalance ?? BigInt(0)}
+                            freeBalance={balance?.freeBalance ?? 0}
                         />
                     </CKBAmountInputContainer>
                     {type === "dao" ? (

@@ -7,6 +7,7 @@ import Balance from "module/wallet/component/display/Balance/Balance";
 import { convertMiniToCKB } from "module/wallet/utils/convertMiniToCKB";
 import { Typography } from "react-native-components";
 import DepositItem from "./DepositItem";
+import { DepositItemText } from "./DepositItem.styles";
 
 interface DepositsSelectorProps extends Omit<SelectProps, "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple"> {
     deposits: DAOUnlockableAmount[];
@@ -31,7 +32,16 @@ const DepositsSelector = ({ deposits, value, onChange, ...rest }: DepositsSelect
                 value={selectedIndex}
                 onChange={handleItemChange}
                 renderValue={() => (
-                    <Balance balance={convertMiniToCKB(deposits[selectedIndex].amount)} units={"CKB"} variant="body1" boldUnits />
+                    <DepositItemText
+                        as={Balance}
+                        balance={convertMiniToCKB(deposits[selectedIndex].amount)}
+                        units={"CKB"}
+                        variant="body1"
+                        boldUnits
+                        unlockable={deposits[selectedIndex].unlockable}
+                        selected={false}
+                        type={deposits[selectedIndex].type}
+                    />
                 )}
                 title={translate("select_deposit")}
                 {...rest}

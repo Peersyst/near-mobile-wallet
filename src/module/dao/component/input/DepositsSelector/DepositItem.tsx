@@ -24,11 +24,8 @@ export interface DepositItemTextProps {
     type: DAOUnlockableAmount["type"];
 }
 
-export interface getDepositItemTextColorParams {
+export interface getDepositItemTextColorParams extends DepositItemTextProps {
     theme: Theme;
-    selected: boolean;
-    type: DAOUnlockableAmount["type"];
-    unlockable: DAOUnlockableAmount["unlockable"];
 }
 
 const DepositItem = ({

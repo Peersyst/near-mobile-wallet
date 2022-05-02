@@ -165,5 +165,6 @@
     "minute": "minute",
     "minutes": "minutes",
     "remaining_time": "Remaining time",
-    "compensation": "Compensation"
+    "compensation": "Compensation",
+    "unlock": "Unlock"
 }
