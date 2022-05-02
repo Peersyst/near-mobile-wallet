@@ -30,7 +30,7 @@ const CKBAmountInput = ({ amount, setAmount, freeBalance, fee: feeRate, type = "
             validators={{
                 required: true,
                 gte: [
-                    Number(isDAO ? MINIMUM_DAO_DEPOSIT || 0 : MINIMUM_TRANSACTION_AMOUNT || 0),
+                    Number(isDAO ? MINIMUM_DAO_DEPOSIT : MINIMUM_TRANSACTION_AMOUNT),
                     translate("minimum_transaction_amount_text", {
                         amount: formatNumber(isDAO ? MINIMUM_DAO_DEPOSIT : MINIMUM_TRANSACTION_AMOUNT) as string,
                     }),
