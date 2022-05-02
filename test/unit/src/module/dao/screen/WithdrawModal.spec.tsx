@@ -5,10 +5,10 @@ import { fireEvent, waitFor } from "@testing-library/react-native";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { MockedUnlockableAmounts } from "mocks/DAO";
-import { formatAddress } from "@peersyst/react-utils";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
+import { formatAddress } from "@peersyst/react-utils";
 
 describe("Withdraw modal test", () => {
     const sdkInstance = new CKBSDKService(MnemonicMocked);
@@ -21,6 +21,11 @@ describe("Withdraw modal test", () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(sdkInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
         jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
+            totalBalance: 20000,
+            occupiedBalance: 9600,
+            freeBalance: 10400,
+        });
     });
 
     afterAll(() => {
@@ -31,7 +36,6 @@ describe("Withdraw modal test", () => {
         const screen = render(<WithdrawModal />);
         expect(screen.getByText(translate("withdraw"))).toBeDefined();
     });
-
     test("Withdraw is completed successfully", async () => {
         const screen = render(<WithdrawModal />);
         // 1 - Select second account and second deposit
@@ -41,15 +45,16 @@ describe("Withdraw modal test", () => {
         //Click on the second wallet
         fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[1].name));
         //Load new deposits
-        await waitFor(() => expect(screen.getAllByText("500")).toHaveLength(2));
-        //Click on the second deposit
-        fireEvent.press(screen.getByText("50"));
+        await waitFor(() => expect(screen.getAllByText("500")).toHaveLength(4));
+        //Click on the second deposit -> check in unlockable type withdraw and unlockable true
+        const button = screen.getByText(translate("available"));
+        fireEvent.press(button);
         //Moves to the following screen -> currentState: receiverIndex:1, depositIndex:1, feeRate: "10"
-        fireEvent.press(screen.getByText(translate("next")));
+        fireEvent.press(screen.getByText(translate("unlock")));
 
         // 2 - Withdraw page with correct info
         await waitFor(() => expect(translate("destination_wallet") + ":").toBeDefined());
         expect(screen.getByText("secondWallet" + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();
-        expect(screen.getByText("50")).toBeDefined();
+        expect(screen.getByText("500")).toBeDefined();
     });
 });

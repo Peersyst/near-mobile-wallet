@@ -1,7 +1,9 @@
+import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
 import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import SendSummary from "module/transaction/screen/SendConfirmationScreen/SendSummary";
+import { convertCKBToMini } from "module/wallet/utils/convertCKBToMini";
 import { render } from "test-utils";
 
 describe("Test for the SendSummary component", () => {
@@ -10,8 +12,8 @@ describe("Test for the SendSummary component", () => {
         const screen = render(
             <SendSummary
                 senderAddress="0xMockedAddress"
-                amount={"2400"}
-                fee={"2"}
+                amount={convertCKBToMini(2400)}
+                fee={FeeRate.NORMAL}
                 receiverAddress={"0xRx"}
                 message={"hola"}
                 senderName={"Antonia"}
@@ -20,7 +22,8 @@ describe("Test for the SendSummary component", () => {
         //Base summary
         expect(screen.getByText("2,400")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
-        expect(screen.getByText("2")).toBeDefined();
+        expect(screen.getByText("0")).toBeDefined();
+        expect(screen.getByText("001")).toBeDefined();
         //From
         expect(screen.getByText(translate("from") + ":"));
         expect("Antonia" + " - " + formatAddress("0xMockedAddress", "middle", 3)).toBeDefined();

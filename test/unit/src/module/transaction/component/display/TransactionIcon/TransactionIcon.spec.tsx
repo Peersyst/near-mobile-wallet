@@ -27,7 +27,7 @@ describe("TransactionIcon tests", () => {
     });
 
     test("Renders DAOWithdrawIcon", () => {
-        const screen = render(<TransactionIcon type={TransactionType.WITHDRAW_DAO} />);
+        const screen = render(<TransactionIcon type={TransactionType.UNLOCK_DAO} />);
         expect(screen.getByTestId("DAOWithdrawIcon")).toBeDefined();
     });
 
@@ -39,7 +39,7 @@ describe("TransactionIcon tests", () => {
     });
 
     test("Renders UnlockDAOIcon", () => {
-        const screen = render(<TransactionIcon type={TransactionType.UNLOCK_DAO} />);
+        const screen = render(<TransactionIcon type={TransactionType.WITHDRAW_DAO} />);
         expect(screen.getByTestId("UnlockDAOIcon")).toBeDefined();
     });
 });

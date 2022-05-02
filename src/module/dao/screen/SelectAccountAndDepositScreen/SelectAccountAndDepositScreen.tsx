@@ -39,7 +39,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     const [selectedDeposit, setSelectedDeposit] = useState<number>(0);
     const [isFirstTime, setIsFirstTime] = useState<boolean>(true);
     const { data: unlockableDeposits = [], isLoading: depositsIsLoading } = useGetDAOUnlockableAmounts(selectedWallet);
-    const { data: { freeBalance = 0 } = {}, isLoading: balanceLoading } = useGetBalance(selectedWallet);
+    const { data: { freeBalance } = {}, isLoading: balanceLoading } = useGetBalance(selectedWallet);
     const [errMsg, setErrMsg] = useState<string>();
 
     useEffect(() => {
@@ -49,6 +49,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     }, [depositsIsLoading]);
 
     useEffect(() => {
+        if (freeBalance === undefined) return;
         if (freeBalance < convertMiniToCKB(fee)) {
             setErrMsg(
                 translate("not_enough_balance_for_fees") + ".\n" + translate("transaction_fee", { fee: convertMiniToCKB(fee) || "-" }),
@@ -63,7 +64,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     };
 
     return (
-        <ControlledSuspense isLoading={isFirstTime && depositsIsLoading} fallback={<CenteredLoader color="black" />}>
+        <ControlledSuspense isLoading={isFirstTime && depositsIsLoading && balanceLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col>
                     <Col gap={20}>

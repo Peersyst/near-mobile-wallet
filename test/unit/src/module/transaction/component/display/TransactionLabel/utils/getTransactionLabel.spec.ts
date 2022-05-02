@@ -26,7 +26,7 @@ describe("getTransactionLabel tests", () => {
     });
 
     test("Returns DAO withdrawal", () => {
-        expect(getTransactionLabel(TransactionType.WITHDRAW_DAO)).toEqual(translate("DAO_withdrawal"));
+        expect(getTransactionLabel(TransactionType.UNLOCK_DAO)).toEqual(translate("DAO_withdrawal"));
     });
 
     test("Returns smart contract", () => {
@@ -35,6 +35,6 @@ describe("getTransactionLabel tests", () => {
     });
 
     test("Returns unlock DAO", () => {
-        expect(getTransactionLabel(TransactionType.UNLOCK_DAO)).toEqual(translate("unlock_DAO"));
+        expect(getTransactionLabel(TransactionType.WITHDRAW_DAO)).toEqual(translate("unlock_DAO"));
     });
 });

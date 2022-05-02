@@ -20,9 +20,9 @@ describe("WalletCard tests", () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: BigInt(20000),
-            occupiedBalance: BigInt(9600),
-            freeBalance: BigInt(10400),
+            totalBalance: 20000,
+            occupiedBalance: 9600,
+            freeBalance: 10400,
         });
         const screen = render(<WalletCard wallet={wallet} />);
 

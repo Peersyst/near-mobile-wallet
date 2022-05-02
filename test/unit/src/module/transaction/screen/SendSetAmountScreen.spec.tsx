@@ -10,6 +10,7 @@ import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
+import { MINIMUM_DAO_DEPOSIT } from "@env";
 
 describe("SendAmountAndMessageScreen tests", () => {
     const sdkInstance = new CKBSDKService(MnemonicMocked);
@@ -18,9 +19,9 @@ describe("SendAmountAndMessageScreen tests", () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: BigInt(1200000000),
-            occupiedBalance: BigInt(200000000),
-            freeBalance: BigInt(1000000000),
+            totalBalance: 12000,
+            occupiedBalance: 2000,
+            freeBalance: 10000,
         });
     });
 
@@ -32,7 +33,7 @@ describe("SendAmountAndMessageScreen tests", () => {
         const screen = render(<SendSetAmountScreen />);
         await waitFor(() => expect(screen.getByPlaceholderText(translate("enter_amount"))).toBeDefined());
         expect(screen.getByText("CKB")).toBeDefined();
-        expect(screen.getByText(translate("transaction_fee", { fee: "100,000" }))).toBeDefined();
+        expect(screen.getByText(translate("transaction_fee", { fee: "0.001" }))).toBeDefined();
         expect(screen.getByPlaceholderText(translate("write_a_message"))).toBeDefined();
         expect(screen.getByText(translate("next"))).toBeDefined();
     });
@@ -40,7 +41,7 @@ describe("SendAmountAndMessageScreen tests", () => {
     test("Renders correctly with type dao deposit", async () => {
         const screen = render(<SendSetAmountScreen type="dao" />);
         await waitFor(() => expect(screen.getByPlaceholderText(translate("enter_amount"))).toBeDefined());
-        expect(screen.getByText(translate("deposit_warning"))).toBeDefined();
+        expect(screen.getByText(translate("deposit_warning", { dao_min_deposit: MINIMUM_DAO_DEPOSIT }))).toBeDefined();
     });
 
     test("Sets send state and advances to next screen", async () => {

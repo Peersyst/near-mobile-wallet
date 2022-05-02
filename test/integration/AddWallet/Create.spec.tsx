@@ -10,11 +10,12 @@ import { WalletService } from "@peersyst/ckb-peersyst-sdk";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import synchronizeMock from "mocks/synchronize";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("AddWallet - Create", () => {
     const mnemonicArr = ["Pizza", "Taco", "Fries"];
     jest.setTimeout(20000);
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     beforeAll(() => {
         jest.spyOn(WalletService, "createNewMnemonic").mockReturnValue(mnemonicArr.join(" "));
