@@ -1,3 +1,3 @@
-export function convertCKBToMini(num: bigint | string | number) {
+export function convertCKBToMini(num: string | number) {
     return BigInt(Number(num) * 10 ** 8);
 }

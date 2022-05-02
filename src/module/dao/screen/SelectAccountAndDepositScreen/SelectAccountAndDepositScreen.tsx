@@ -1,7 +1,6 @@
-import { Col, Form, Typography, useSetTab } from "react-native-components";
+import { Col, Form, useSetTab } from "react-native-components";
 import FormGroup from "module/common/component/input/FormGroup/FormGroup";
 import { translate } from "locale";
-import Button from "module/common/component/input/Button/Button";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { WithdrawForm, WithdrawScreens, WithdrawSummary } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
@@ -15,7 +14,6 @@ import DepositsSelector from "module/dao/component/input/DepositsSelector/Deposi
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { convertMiniToCKB } from "module/wallet/utils/convertMiniToCKB";
-import formatTimeDAORemainingCycle from "module/transaction/component/utils/formatTimeDAORemainingCycle";
 import WithdrawButton from "./WithdrawButton";
 
 interface WithdrawSelectAccountScreenProps {
