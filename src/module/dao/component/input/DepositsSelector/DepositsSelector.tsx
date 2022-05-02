@@ -36,9 +36,10 @@ const DepositsSelector = ({ deposits, value, onChange, ...rest }: DepositsSelect
                 title={translate("select_deposit")}
                 {...rest}
             >
-                {deposits.map(({ remainingCycleMinutes, amount, unlockable, compensation }, index) => {
+                {deposits.map(({ remainingCycleMinutes, amount, unlockable, compensation, type }, index) => {
                     return (
                         <DepositItem
+                            type={type}
                             compensation={compensation}
                             remainingCycleMinutes={remainingCycleMinutes}
                             amount={amount}

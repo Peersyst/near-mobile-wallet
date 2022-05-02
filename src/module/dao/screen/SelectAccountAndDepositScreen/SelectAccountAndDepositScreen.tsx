@@ -105,7 +105,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
                             <Typography variant="body1" textAlign="center">
                                 {translate("remaining_time") +
                                     ": " +
-                                    formatTimeDAORemainingCycle(unlockableDeposits[selectedDepoist].remainingCycleMinutes)}
+                                    formatTimeDAORemainingCycle(unlockableDeposits[selectedDepoist]?.remainingCycleMinutes || 0)}
                             </Typography>
                         )}
                         {errMsg && (

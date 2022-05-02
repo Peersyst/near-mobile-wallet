@@ -16,8 +16,7 @@ export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
 const BaseSendSummary = ({ amount, fee, children }: BaseSendSummaryFullProps): JSX.Element => {
     const finalAmount = convertMiniToCKB(amount);
     const finalFee = convertMiniToCKB(fee);
-    const decimals = finalFee.toString().split("." || ",");
-    const numberOfDecimals = decimals[decimals.length - 1].length;
+
     return (
         <Paper style={{ padding: "7%" }}>
             <Col gap="3%" alignItems="center">
@@ -25,7 +24,7 @@ const BaseSendSummary = ({ amount, fee, children }: BaseSendSummaryFullProps): J
                     <Balance balance={finalAmount} units="CKB" variant="h1" boldUnits />
                     <Row>
                         <Typography variant="body1">{translate("transaction_fee_label")}: </Typography>
-                        <Balance balance={finalFee} units="CKB" variant="body1" fontWeight="bold" boldUnits decimals={numberOfDecimals} />
+                        <Balance balance={finalFee} units="CKB" variant="body1" fontWeight="bold" boldUnits decimals={3} />
                     </Row>
                 </Col>
                 {children}

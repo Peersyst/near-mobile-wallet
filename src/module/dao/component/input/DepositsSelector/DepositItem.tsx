@@ -1,4 +1,4 @@
-import { Row, SelectItem } from "react-native-components";
+import { Row, SelectItem, Theme } from "react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { useSelected } from "module/common/component/base/input/Select/hooks/useSelected";
 import { DAOUnlockableAmount } from "@peersyst/ckb-peersyst-sdk";
@@ -15,19 +15,37 @@ export interface DepositItemProps {
     selectedIndex: number;
     remainingCycleMinutes: DAOUnlockableAmount["remainingCycleMinutes"];
     unlockable: DAOUnlockableAmount["unlockable"];
+    type: DAOUnlockableAmount["type"];
 }
 
 export interface DepositItemTextProps {
     unlockable: DAOUnlockableAmount["unlockable"];
     selected: boolean;
+    type: DAOUnlockableAmount["type"];
 }
 
-const DepositItem = ({ value, selectedIndex, amount, remainingCycleMinutes, unlockable, compensation }: DepositItemProps): JSX.Element => {
+export interface getDepositItemTextColorParams {
+    theme: Theme;
+    selected: boolean;
+    type: DAOUnlockableAmount["type"];
+    unlockable: DAOUnlockableAmount["unlockable"];
+}
+
+const DepositItem = ({
+    value,
+    selectedIndex,
+    amount,
+    remainingCycleMinutes,
+    unlockable,
+    compensation,
+    type,
+}: DepositItemProps): JSX.Element => {
     const isSelected = useSelected(value, selectedIndex, false);
     return (
         <SelectItem value={value} key={value}>
             <Row justifyContent="flex-start">
                 <DepositItemText
+                    type={type}
                     as={Balance}
                     unlockable={unlockable}
                     selected={isSelected}
@@ -36,15 +54,16 @@ const DepositItem = ({ value, selectedIndex, amount, remainingCycleMinutes, unlo
                     variant="body1"
                     boldUnits
                 />
-                <DepositItemText unlockable={unlockable} selected={isSelected} variant="body1">
+                <DepositItemText type={type} unlockable={unlockable} selected={isSelected} variant="body1">
                     {" (APC: " + getAPC({ daoCompensation: Number(compensation), daoDeposit: Number(amount) }) + "%)"}
                 </DepositItemText>
             </Row>
             <Row justifyContent="flex-start">
-                <DepositItemText unlockable={unlockable} selected={isSelected} variant="body2">
+                <DepositItemText type={type} unlockable={unlockable} selected={isSelected} variant="body2">
                     {translate("compensation") + ": "}
                 </DepositItemText>
                 <DepositItemText
+                    type={type}
                     as={Balance}
                     unlockable={unlockable}
                     selected={isSelected}
@@ -55,7 +74,7 @@ const DepositItem = ({ value, selectedIndex, amount, remainingCycleMinutes, unlo
                 />
             </Row>
             <Row justifyContent="flex-start">
-                <DepositItemText unlockable={unlockable} selected={isSelected} variant="body2">
+                <DepositItemText type={type} unlockable={unlockable} selected={isSelected} variant="body2">
                     {unlockable
                         ? translate("available")
                         : translate("remaining_time") + ": " + formatTimeDAORemainingCycle(remainingCycleMinutes)}
