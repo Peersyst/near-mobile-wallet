@@ -64,7 +64,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     };
 
     return (
-        <ControlledSuspense isLoading={isFirstTime && depositsIsLoading && balanceLoading} fallback={<CenteredLoader color="black" />}>
+        <ControlledSuspense isLoading={(isFirstTime && depositsIsLoading) || balanceLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col>
                     <Col gap={20}>
