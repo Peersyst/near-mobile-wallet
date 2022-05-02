@@ -6,7 +6,7 @@ import WalletSelector from "module/wallet/component/input/WalletSelector/WalletS
 import { WithdrawForm, WithdrawScreens, WithdrawSummary } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
 import { ErrorMessageText, WithdrawSelectorCard } from "./SelectAccountAndDepositScreen.styles";
-import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 import { useRecoilValue } from "recoil";

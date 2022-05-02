@@ -1,4 +1,3 @@
-import { convertCKBToMini } from "module/wallet/utils/convertCKBToMini";
 import {
     CKBBalance,
     ConnectionService,
@@ -15,7 +14,6 @@ import { tokensList, UknownToken } from "module/token/mock/token";
 import { DepositInDAOParams, FullTransaction, SendTransactionParams, WithdrawOrUnlockParams } from "./CkbSdkService.types";
 import { CKB_URL, INDEXER_URL } from "@env";
 import { TokenAmount, TokenType } from "module/token/types";
-import { convertMiniToCKB } from "module/wallet/utils/convertMiniToCKB";
 
 export function getTokenTypeFromScript(scriptType: ScriptType): TokenType {
     const tokenFound = tokensList.filter((tkn) => tkn.args === scriptType.args && tkn.codeHash === scriptType.codeHash);

@@ -3,7 +3,6 @@ import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import SelectAccountAndDepositScreen from "module/dao/screen/SelectAccountAndDepositScreen/SelectAccountAndDepositScreen";
 import * as UseSetTab from "module/common/component/base/navigation/Tabs/hook/useSetTab";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { WithdrawScreens } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import { MockedUnlockableAmounts } from "mocks/DAO";

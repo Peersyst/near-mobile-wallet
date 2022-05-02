@@ -1,11 +1,11 @@
 import { translate } from "locale";
 
 function formatTimeDAORemainingCycle(numOfHours: number): string {
-    var res = "";
+    let res = "";
     const totalHours = numOfHours / 60;
     const days = Math.floor(totalHours / 24);
-    var hours: number | string = Math.floor(totalHours - days * 24);
-    var minutes: number | string = Math.floor(numOfHours - days * 60 * 24 - hours * 60);
+    let hours: number | string = Math.floor(totalHours - days * 24);
+    let minutes: number | string = Math.floor(numOfHours - days * 60 * 24 - hours * 60);
     if (days > 0) {
         res += `${days} ${days > 1 ? translate("days") : translate("day")}, `;
     }
