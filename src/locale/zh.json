@@ -157,5 +157,13 @@
     "rejected": "已拒绝",
     "not_enough_balance_for_fees": "没有足够的余额来支付手续费",
     "zh": "中文",
-    "unknown_token": "未知令牌"
+    "unknown_token": "未知令牌",
+    "day": "日",
+    "days": "天",
+    "hour": "小时",
+    "hours": "小时",
+    "minute": "分钟",
+    "minutes": "分钟",
+    "remaining_time": "剩余时间",
+    "compensation": "补偿"
 }

@@ -157,5 +157,13 @@
     "rejected": "Rechazada",
     "not_enough_balance_for_fees": "No tienes suficiente saldo para pagar las comisiones",
     "zh": "Chino",
-    "unknown_token": "Token desconocido"
+    "unknown_token": "Token desconocido",
+    "day": "día",
+    "days": "días",
+    "hour": "hora",
+    "hours": "horas",
+    "minute": "minuto",
+    "minutes": "minutos",
+    "remaining_time": "Tiempo restante",
+    "compensation": "Ganancias"
 }

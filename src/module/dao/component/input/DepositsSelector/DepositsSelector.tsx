@@ -4,6 +4,7 @@ import { translate } from "locale";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 import Select, { SelectProps } from "module/common/component/input/Select/Select";
 import Balance from "module/wallet/component/display/Balance/Balance";
+import { convertMiniToCKB } from "module/wallet/utils/convertMiniToCKB";
 import { Typography } from "react-native-components";
 import DepositItem from "./DepositItem";
 
@@ -29,13 +30,16 @@ const DepositsSelector = ({ deposits, value, onChange, ...rest }: DepositsSelect
             <Select
                 value={selectedIndex}
                 onChange={handleItemChange}
-                renderValue={() => <Balance balance={deposits[selectedIndex].amount} units={"CKB"} variant="body1" boldUnits />}
+                renderValue={() => (
+                    <Balance balance={convertMiniToCKB(deposits[selectedIndex].amount)} units={"CKB"} variant="body1" boldUnits />
+                )}
                 title={translate("select_deposit")}
                 {...rest}
             >
-                {deposits.map(({ remainingCycleMinutes, amount, unlockable }, index) => {
+                {deposits.map(({ remainingCycleMinutes, amount, unlockable, compensation }, index) => {
                     return (
                         <DepositItem
+                            compensation={compensation}
                             remainingCycleMinutes={remainingCycleMinutes}
                             amount={amount}
                             unlockable={unlockable}

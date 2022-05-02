@@ -164,5 +164,6 @@
     "hours": "hours",
     "minute": "minute",
     "minutes": "minutes",
-    "remaining_time": "Remaining time"
+    "remaining_time": "Remaining time",
+    "compensation": "Compensation"
 }

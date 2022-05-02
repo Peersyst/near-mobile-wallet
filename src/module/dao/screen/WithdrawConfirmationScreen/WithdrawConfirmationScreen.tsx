@@ -54,6 +54,7 @@ const WithdrawConfirmationScreen = ({
         <>
             <Col gap={"7%"}>
                 <WithdrawSummary
+                    compensation={Number(compensation)}
                     receiverName={receiverName}
                     receiverAddress={serviceInstance?.getAddress() || ""}
                     depositAPC={getAPC({ daoCompensation: Number(compensation), daoDeposit: Number(amount) })}
