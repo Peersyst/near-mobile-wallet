@@ -9,9 +9,10 @@ import { CreateWalletState } from "module/wallet/state/CreateWalletState";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import synchronizeMock from "mocks/synchronize";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("CreateWalletSuccessScreen tests", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     afterAll(() => {
         jest.restoreAllMocks();

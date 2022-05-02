@@ -9,9 +9,10 @@ import { formatAddress } from "@peersyst/react-utils";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("SelectAccountAndDepositScreen tests", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     beforeAll(() => {
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);

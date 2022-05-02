@@ -8,9 +8,10 @@ import { MockedUnlockableAmounts } from "mocks/DAO";
 import { formatAddress } from "@peersyst/react-utils";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("Withdraw modal test", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     beforeAll(() => {
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);

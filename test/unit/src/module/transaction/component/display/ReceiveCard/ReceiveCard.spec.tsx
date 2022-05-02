@@ -9,11 +9,12 @@ import ReceiveModal from "module/transaction/component/core/ReceiveModal/Receive
 import { wallet } from "mocks/wallet";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 const ADDRESS_MOCK = "0xMockedAddress";
 
 describe("Test for the receive Card", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     beforeEach(() => {
         jest.spyOn(UseSelectedWallet, "default").mockReturnValue(wallet);

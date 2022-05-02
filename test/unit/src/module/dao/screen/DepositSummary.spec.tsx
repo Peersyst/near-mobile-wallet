@@ -8,9 +8,10 @@ import { MockedDAOBalance } from "mocks/DAO";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("Test for the DepositSummary", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     beforeAll(() => {
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
