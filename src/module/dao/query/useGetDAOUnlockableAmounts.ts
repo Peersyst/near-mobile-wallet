@@ -7,7 +7,9 @@ import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 const useGetDAOUnlockableAmounts = (index?: number): QueryResult<DAOUnlockableAmount[]> => {
     const selectedWalletIndex = useSelectedWalletIndex();
     const usedIndex = index ?? selectedWalletIndex;
-    return useQuery(["daoUnlockableAmounts", usedIndex], () => serviceInstancesMap.get(usedIndex)!.getDAOUnlockableAmounts() ?? []);
+    return useQuery(["daoUnlockableAmounts", usedIndex], () => serviceInstancesMap.get(usedIndex)!.getDAOUnlockableAmounts() ?? [], {
+        refetchInterval: 15000,
+    });
 };
 
 export default useGetDAOUnlockableAmounts;

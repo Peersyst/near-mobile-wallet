@@ -90,15 +90,6 @@ export class CKBSDKService {
     }
 
     async withdrawOrUnlock({ unlockableAmount, mnemonic }: WithdrawOrUnlockParams): Promise<string> {
-        try {
-            const txHash = await this.wallet.withdrawOrUnlock(unlockableAmount, mnemonic.join(" "));
-            return txHash;
-        } catch (err) {
-            console.log("error");
-            console.log(err.name);
-            console.log(err.message);
-            // console.log(err.stack);
-        }
-        return "";
+        return this.wallet.withdrawOrUnlock(unlockableAmount, mnemonic.join(" "));
     }
 }
