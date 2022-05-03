@@ -1,12 +1,12 @@
+import { WalletState } from "@peersyst/ckb-peersyst-sdk";
 import { BaseStorageService } from "module/common/service/BaseStorageService";
-import { SdkWalletState } from "module/common/service/mock/CkbServiceMock.types";
 
 export interface StorageWallet {
     index: number;
     name: string;
     colorIndex: number;
     mnemonic: string[];
-    initialState?: SdkWalletState;
+    initialState?: WalletState;
 }
 
 export interface WalletStorageType {
@@ -44,7 +44,7 @@ export const WalletStorage = new (class extends BaseStorageService<WalletStorage
         return storage?.wallets[index]?.mnemonic;
     }
 
-    async getInitialState(index: number): Promise<SdkWalletState | undefined> {
+    async getInitialState(index: number): Promise<WalletState | undefined> {
         const storage = await this.get();
         return storage?.wallets[index]?.initialState;
     }
@@ -82,5 +82,12 @@ export const WalletStorage = new (class extends BaseStorageService<WalletStorage
     async setPin(pin: string): Promise<void> {
         const storage = (await this.get()) || { wallets: [] };
         await this.set({ ...storage, pin });
+    }
+
+    async setInitialState(index: number, walletState: WalletState): Promise<void> {
+        const wallets = await this.getWallets();
+        if (wallets) {
+            await this.setWallets(wallets.map((wallet) => (wallet.index === index ? { ...wallet, initialState: walletState } : wallet)));
+        }
     }
 })();

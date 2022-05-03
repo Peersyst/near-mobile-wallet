@@ -111,7 +111,7 @@
     "or": "或者",
     "create_a_wallet": "创建钱包",
     "import_a_wallet": "导入钱包",
-    "deposit_warning": "Nervos DAO需要102个CKB作为锁定记录的存储，这部分CKB是无法产生锁定补贴的。请查看Nervos DAO RFC 以了解 Nervos DAO 的更多信息。",
+    "deposit_warning": "Nervos DAO需要%dao_min_deposit%个CKB作为锁定记录的存储，这部分CKB是无法产生锁定补贴的。请查看Nervos DAO RFC 以了解 Nervos DAO 的更多信息。",
     "estimated_apc": "预计的APC",
     "loading_apc": "正在加载APC",
     "attention": "注意！",
@@ -156,5 +156,15 @@
     "committed": "已确认",
     "rejected": "已拒绝",
     "not_enough_balance_for_fees": "没有足够的余额来支付手续费",
-    "zh": "中文"
+    "zh": "中文",
+    "unknown_token": "未知令牌",
+    "day": "日",
+    "days": "天",
+    "hour": "小时",
+    "hours": "小时",
+    "minute": "分钟",
+    "minutes": "分钟",
+    "remaining_time": "剩余时间",
+    "compensation": "补偿",
+    "unlock": "开锁"
 }

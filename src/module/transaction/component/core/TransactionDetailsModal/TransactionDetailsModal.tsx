@@ -1,11 +1,11 @@
 import { Col, createModal, ExposedBackdropProps } from "react-native-components";
-import { Transaction } from "module/transaction/types";
 import { TransactionDetailsModalRoot } from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsModal.styles";
 import TransactionDetailsHeader from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsHeader";
 import TransactionDetailsBody from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionDetailsBody";
+import { FullTransaction } from "module/common/service/CkbSdkService.types";
 
 export interface TransactionDetailsModalProps extends ExposedBackdropProps {
-    transaction: Transaction;
+    transaction: FullTransaction;
 }
 
 const TransactionDetailsModal = createModal(({ transaction, ...rest }: TransactionDetailsModalProps) => {

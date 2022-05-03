@@ -111,7 +111,7 @@
     "or": "or",
     "create_a_wallet": "Create a Wallet",
     "import_a_wallet": "Import a Wallet",
-    "deposit_warning": "Nervos DAO needs 102 CKBytes for deposit cell storage, which is not compensation-bearing. Please visit the Nervos DAO RFC for more information about Nervos DAO.",
+    "deposit_warning": "Nervos DAO needs %dao_min_deposit% CKBytes for deposit cell storage, which is not compensation-bearing. Please visit the Nervos DAO RFC for more information about Nervos DAO.",
     "estimated_apc": "Estimated APC",
     "loading_apc": "Loading APC",
     "attention": "Attention!",
@@ -156,5 +156,15 @@
     "committed": "Committed",
     "rejected": "Rejected",
     "not_enough_balance_for_fees": "Not enough balance to pay the fees",
-    "zh": "Chinese"
+    "zh": "Chinese",
+    "unknown_token": "Unknown Token",
+    "day": "day",
+    "days": "days",
+    "hour": "hour",
+    "hours": "hours",
+    "minute": "minute",
+    "minutes": "minutes",
+    "remaining_time": "Remaining time",
+    "compensation": "Compensation",
+    "unlock": "Unlock"
 }

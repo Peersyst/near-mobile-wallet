@@ -1,7 +1,7 @@
 import { translate } from "locale";
 import { Row } from "react-native-components";
 import { WalletCardTitle, CopyIcon, EditIcon } from "../WalletCard.styles";
-import useWallet from "module/wallet/hook/useWallet";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 interface AccountCardHeaderProps {
     index: number;
@@ -9,7 +9,7 @@ interface AccountCardHeaderProps {
 }
 
 const WalletCardHeader = ({ index, name }: AccountCardHeaderProps): JSX.Element => {
-    const { serviceInstance } = useWallet(index);
+    const serviceInstance = serviceInstancesMap.get(index);
     return (
         <Row justifyContent="space-between" alignItems="center">
             <EditIcon index={index} />

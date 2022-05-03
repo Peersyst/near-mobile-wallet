@@ -1,5 +1,5 @@
 import getTransactionLabel from "module/transaction/component/display/TransactionLabel/utils/getTransactionLabel";
-import { TransactionType } from "module/transaction/types";
+import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
 import { translate } from "locale";
 
 describe("getTransactionLabel tests", () => {
@@ -26,14 +26,15 @@ describe("getTransactionLabel tests", () => {
     });
 
     test("Returns DAO withdrawal", () => {
-        expect(getTransactionLabel(TransactionType.WITHDRAW_DAO)).toEqual(translate("DAO_withdrawal"));
+        expect(getTransactionLabel(TransactionType.UNLOCK_DAO)).toEqual(translate("DAO_withdrawal"));
     });
 
     test("Returns smart contract", () => {
-        expect(getTransactionLabel(TransactionType.SMART_CONTRACT)).toEqual(translate("smart_contract"));
+        expect(getTransactionLabel(TransactionType.SMART_CONTRACT_SEND)).toEqual(translate("smart_contract"));
+        expect(getTransactionLabel(TransactionType.SMART_CONTRACT_RECEIVE)).toEqual(translate("smart_contract"));
     });
 
     test("Returns unlock DAO", () => {
-        expect(getTransactionLabel(TransactionType.UNLOCK_DAO)).toEqual(translate("unlock_DAO"));
+        expect(getTransactionLabel(TransactionType.WITHDRAW_DAO)).toEqual(translate("unlock_DAO"));
     });
 });

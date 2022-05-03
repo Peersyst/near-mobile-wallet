@@ -1,6 +1,5 @@
 import { UseWalletStateResult } from "module/wallet/hook/useWalletState";
 import { wallet } from "./wallet";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 import { deepmerge } from "@peersyst/react-utils";
 
 export interface UseWalletStateMockResult extends Omit<Partial<UseWalletStateResult>, "state"> {
@@ -12,7 +11,7 @@ export const mockedUseWallet: UseWalletStateResult = {
         hasWallet: true,
         isAuthenticated: true,
         isFirstTime: false,
-        wallets: [wallet, { name: "secondWallet", index: 1, colorIndex: 1, serviceInstance: new CkbServiceMock([]) }],
+        wallets: [wallet, { name: "secondWallet", index: 1, colorIndex: 1 }],
         selectedWallet: 0,
     },
     setAuthenticated: jest.fn(),

@@ -1,13 +1,11 @@
 import { useMutation } from "react-query";
-import useWalletState from "module/wallet/hook/useWalletState";
-import { SendTransactionParams } from "module/common/service/mock/CkbServiceMock.types";
+import { SendTransactionParams } from "module/common/service/CkbSdkService.types";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 
 const useSendTransaction = () => {
-    const {
-        state: { wallets, selectedWallet },
-    } = useWalletState();
-    const usedIndex = selectedWallet ?? 0;
-    const serviceInstance = wallets[usedIndex].serviceInstance!;
+    const selectedWallet = useSelectedWalletIndex();
+    const serviceInstance = serviceInstancesMap.get(selectedWallet)!;
     return useMutation((params: SendTransactionParams) => serviceInstance.sendTransaction(params));
 };
 

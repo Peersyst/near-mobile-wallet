@@ -1,9 +1,9 @@
-import { DAOBalance } from "module/common/service/mock/CkbServiceMock.types";
+import { DAOBalance } from "@peersyst/ckb-peersyst-sdk";
 
 const NUMBER_OF_APC_DECIMALS = 3;
 
 export function getAPC(params?: DAOBalance): number {
-    if (params === undefined || params.daoDeposit === BigInt(0)) return 0;
+    if (params === undefined || params.daoDeposit === 0) return 0;
     else {
         const { daoDeposit, daoCompensation } = params;
         const result = (Number(daoCompensation) / Number(daoDeposit)) * 100;

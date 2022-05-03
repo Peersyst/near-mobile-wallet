@@ -42,6 +42,7 @@ module.exports = {
         "!./src/module/common/component/layout/PagerView/*",
         "!./src/module/common/component/layout/BasePage/*",
         "!./src/module/common/component/layout/LogoPage/*",
+        "!./src/module/common/service/CkbSdkService.ts",
     ],
     coverageDirectory: "./coverage",
     coverageThreshold: {
@@ -58,3 +59,4 @@ module.exports = {
 
 //Set env
 process.env.MINIMUM_TRANSACTION_AMOUNT = "61";
+process.env.MINIMUM_DAO_DEPOSIT = "102";

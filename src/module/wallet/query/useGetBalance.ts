@@ -1,17 +1,12 @@
 import { useQuery } from "react-query";
-import useWalletState from "module/wallet/hook/useWalletState";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 
 const useGetBalance = (index?: number) => {
-    const {
-        state: { wallets, selectedWallet },
-    } = useWalletState();
-    let usedIndex = 0;
-    if (index !== undefined) usedIndex = index;
-    else if (selectedWallet !== undefined) {
-        usedIndex = selectedWallet < wallets.length ? selectedWallet : wallets.length - 1;
-    }
-    const serviceInstance = wallets[usedIndex].serviceInstance;
-    return useQuery(["balance", usedIndex, wallets.length], () => serviceInstance?.getCKBBalance());
+    const selectedWallet = useSelectedWalletIndex();
+    const usedIndex = index ?? selectedWallet;
+    const serviceInstance = serviceInstancesMap.get(usedIndex);
+    return useQuery(["balance", usedIndex], () => serviceInstance?.getCKBBalance(), { refetchInterval: 1500 });
 };
 
 export default useGetBalance;

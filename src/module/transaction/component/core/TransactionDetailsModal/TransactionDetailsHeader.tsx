@@ -1,12 +1,13 @@
-import { Transaction, TransactionType } from "module/transaction/types";
 import TransactionIcon from "module/transaction/component/display/TransactionIcon/TransactionIcon";
 import { Col, Typography } from "react-native-components";
 import TransactionLabel from "module/transaction/component/display/TransactionLabel/TransactionLabel";
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
 import formatDate from "utils/formatDate";
+import { FullTransaction } from "module/common/service/CkbSdkService.types";
+import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
 
 export interface TransactionDetailsHeaderProps {
-    transaction: Transaction;
+    transaction: FullTransaction;
 }
 
 const TransactionDetailsHeader = ({ transaction: { type, amount, token, timestamp } }: TransactionDetailsHeaderProps): JSX.Element => {
@@ -18,7 +19,7 @@ const TransactionDetailsHeader = ({ transaction: { type, amount, token, timestam
             <Col gap={5} alignItems="center">
                 <TransactionLabel variant="h2" fontWeight="bold" type={type} />
                 {showAmount && <TransactionAmount variant="h2" boldUnits type={type} fontWeight="bold" amount={amount} currency={token} />}
-                <Typography variant="body2">{formatDate(timestamp)}</Typography>
+                <Typography variant="body2">{formatDate(new Date(timestamp))}</Typography>
             </Col>
         </Col>
     );

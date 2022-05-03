@@ -7,10 +7,11 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import WithdrawModal, { WithdrawSummary as WithdrawSummaryType } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import WithdrawSummary from "./WithdrawSummary";
 import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
-import useWithdrawAndUnlock from "module/dao/query/useWithdrawAndUnlock";
+import useWithdrawOrUnlock from "module/dao/query/useWithdrawOrUnlock";
 import { getAPC } from "module/dao/utils/getAPC";
 import { useRefetchQueries } from "../../../../query/useRefetchQueries";
 import { useMemo } from "react";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 interface WithdrawConfirmationScreenProps {
     withdrawInfo: WithdrawSummaryType;
@@ -26,21 +27,19 @@ const WithdrawConfirmationScreen = ({
         state: { wallets },
     } = useWalletState();
     const { data: deposits = [] } = useGetDAOUnlockableAmounts();
-    const unlockableDeposits = useMemo(() => deposits.filter((deposit) => deposit.unlockable), [deposits]);
-    const { mutate: withdrawFromDAO, isLoading, isSuccess, isError } = useWithdrawAndUnlock(receiverIndex);
+    const unlockableDeposits = useMemo(() => deposits, [deposits]);
+    const { mutate: withdrawFromDAO, isLoading, isSuccess, isError } = useWithdrawOrUnlock(receiverIndex);
 
     //Variables
-    const { name: receiverName, serviceInstance } = wallets[receiverIndex]; //Receiver info
+    const { name: receiverName } = wallets[receiverIndex]; //Receiver info
+    const serviceInstance = useMemo(() => serviceInstancesMap.get(receiverIndex), [receiverIndex]);
     const { compensation = BigInt(0), amount = BigInt(0) } = unlockableDeposits[depositIndex] || {}; //Deposit info
 
     //Functions
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(receiverIndex);
         if (unlockableDeposits.length > depositIndex) {
-            withdrawFromDAO(
-                { unlockableAmount: unlockableDeposits[depositIndex], mnemonic: mnemonic!, feeRate: feeRate! },
-                { onSuccess: handleOnSuccess },
-            );
+            withdrawFromDAO({ unlockableAmount: unlockableDeposits[depositIndex], mnemonic: mnemonic! }, { onSuccess: handleOnSuccess });
         }
     };
 
@@ -55,9 +54,10 @@ const WithdrawConfirmationScreen = ({
         <>
             <Col gap={"7%"}>
                 <WithdrawSummary
+                    compensation={Number(compensation)}
                     receiverName={receiverName}
                     receiverAddress={serviceInstance?.getAddress() || ""}
-                    depositAPC={getAPC({ daoCompensation: compensation, daoDeposit: amount })}
+                    depositAPC={getAPC({ daoCompensation: Number(compensation), daoDeposit: Number(amount) })}
                     amount={amount}
                     fee={feeRate!}
                 />

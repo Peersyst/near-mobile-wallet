@@ -1,12 +1,12 @@
-import { Transaction } from "module/transaction/types";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
 import transactionTypeToBalanceAction from "module/transaction/component/display/TransactionAmount/utils/transactionTypeToBalanceAction";
+import { FullTransaction } from "module/common/service/CkbSdkService.types";
 
 export interface TransactionAmountProps extends Omit<BalanceProps, "balance" | "units" | "action"> {
-    amount: Transaction["amount"];
-    currency: Transaction["token"];
-    type: Transaction["type"];
+    amount: FullTransaction["amount"];
+    currency: FullTransaction["token"];
+    type: FullTransaction["type"];
 }
 
 const TransactionAmount = ({ amount, currency = "CKB", type, ...rest }: TransactionAmountProps): JSX.Element => {

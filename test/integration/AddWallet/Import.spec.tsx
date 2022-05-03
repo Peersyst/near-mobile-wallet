@@ -1,16 +1,19 @@
 import { render, SuccessApiCall } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { translate } from "locale";
-import * as GenerateMnemonic from "module/wallet/mock/generateMnemonic";
 import { StorageWallet, WalletStorage } from "module/wallet/WalletStorage";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import createUseWalletStateMock from "mocks/useWalletState";
 import ImportWalletModal from "module/wallet/component/core/ImportWalletModal/ImportWalletModal";
+import { WalletService } from "@peersyst/ckb-peersyst-sdk";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
+import synchronizeMock from "mocks/synchronize";
 
 describe("AddWallet - Import", () => {
     jest.setTimeout(20000);
     test("Adds a created wallet successfully", async () => {
-        jest.spyOn(GenerateMnemonic, "default").mockReturnValue(["Pizza", "Taco", "Fries"]);
+        jest.spyOn(CKBSDKService.prototype, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock));
+        jest.spyOn(WalletService, "createNewMnemonic").mockReturnValue("Pizza Taco Fries");
         const addWalletToStorage = jest
             .spyOn(WalletStorage, "addWallet")
             .mockImplementation((wallet: Omit<StorageWallet, "index">) => SuccessApiCall({ ...wallet, index: 1 }));

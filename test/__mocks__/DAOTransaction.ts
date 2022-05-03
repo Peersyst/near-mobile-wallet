@@ -1,6 +1,7 @@
-import { Transaction, TransactionStatus, TransactionType } from "module/transaction/types";
+import { TransactionStatus, TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { FullTransaction } from "module/common/service/CkbSdkService.types";
 
-export const mockedDAOTransaction: Transaction = {
+export const mockedDAOTransaction: FullTransaction = {
     status: TransactionStatus.COMMITTED,
     type: TransactionType.DEPOSIT_DAO,
     amount: 100,
@@ -12,7 +13,7 @@ export const mockedDAOTransaction: Transaction = {
     timestamp: new Date(2022, 0, 29),
 };
 
-export const mockedDAODeposits: Transaction[] = [...Array(3)].map((_, i) => ({
+export const mockedDAODeposits: FullTransaction[] = [...Array(3)].map((_, i) => ({
     status: TransactionStatus.COMMITTED,
     type: TransactionType.DEPOSIT_DAO,
     amount: 145.2 * i + 2,
@@ -24,7 +25,7 @@ export const mockedDAODeposits: Transaction[] = [...Array(3)].map((_, i) => ({
     timestamp: new Date(2022, 0, i + 1),
 }));
 
-export const mockedDAOUnlocks: Transaction[] = [...Array(3)].map((_, i) => ({
+export const mockedDAOUnlocks: FullTransaction[] = [...Array(3)].map((_, i) => ({
     status: TransactionStatus.COMMITTED,
     type: TransactionType.UNLOCK_DAO,
     amount: 233 * i + 2,

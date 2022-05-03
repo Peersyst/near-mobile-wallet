@@ -1,8 +1,9 @@
-import { Transaction, TransactionType } from "module/transaction/types";
+import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
 import { DAODepositIcon, DAOWithdrawIcon, ReceiveIcon, SendIcon, SmartContractIcon, UnlockDAOIcon } from "icons";
+import { FullTransaction } from "module/common/service/CkbSdkService.types";
 
 export interface TransactionIconProps {
-    type: Transaction["type"];
+    type: FullTransaction["type"];
 }
 
 const DAO_TX_ICON_SIZE = 31;
@@ -22,10 +23,11 @@ const TransactionIcon = ({ type }: TransactionIconProps): JSX.Element => {
             return <DAODepositIcon style={{ fontSize: DAO_TX_ICON_SIZE }} />;
         case TransactionType.WITHDRAW_DAO:
             return <DAOWithdrawIcon style={{ fontSize: DAO_TX_ICON_SIZE }} />;
-        case TransactionType.SMART_CONTRACT:
+        case TransactionType.SMART_CONTRACT_SEND:
+        case TransactionType.SMART_CONTRACT_RECEIVE:
             return <SmartContractIcon style={{ fontSize: MAIN_TX_ICON_SIZE }} />;
         case TransactionType.UNLOCK_DAO:
-            return <UnlockDAOIcon />;
+            return <UnlockDAOIcon style={{ fontSize: DAO_TX_ICON_SIZE }} />;
     }
 };
 

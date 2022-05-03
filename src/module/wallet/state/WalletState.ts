@@ -1,10 +1,10 @@
 import { atom } from "recoil";
 import { StorageWallet } from "module/wallet/WalletStorage";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 
-export interface Wallet extends Omit<StorageWallet, "mnemonic"> {
-    serviceInstance?: CkbServiceMock;
-}
+export const serviceInstancesMap = new Map<number, CKBSDKService>();
+
+export type Wallet = Omit<StorageWallet, "mnemonic">;
 
 export interface WalletState {
     hasWallet: boolean;

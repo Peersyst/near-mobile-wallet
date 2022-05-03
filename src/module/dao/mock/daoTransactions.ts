@@ -1,4 +1,4 @@
-import { TransactionStatus, TransactionType } from "module/transaction/types";
+import { TransactionStatus, TransactionType } from "@peersyst/ckb-peersyst-sdk";
 
 const transactionTypes = [TransactionType.DEPOSIT_DAO, TransactionType.WITHDRAW_DAO];
 

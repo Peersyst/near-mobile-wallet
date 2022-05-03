@@ -3,17 +3,28 @@ import DAOCard from "module/dao/component/core/DAOAccountCard/DAOCard";
 import { render, SuccessApiCall } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
 import { MockedDAOBalance } from "mocks/DAO";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("Test for the DAO Card", () => {
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
+
+    afterAll(() => {
+        jest.restoreAllMocks();
+    });
+
     test("Renders correctly", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(CkbServiceMock.prototype, "getDAOBalance").mockReturnValue(SuccessApiCall(MockedDAOBalance));
-        jest.spyOn(CkbServiceMock.prototype, "getCKBBalance").mockReturnValue(
-            SuccessApiCall({ totalBalance: BigInt(20000), occupiedBalance: BigInt(9600), freeBalance: BigInt(12635) }),
-        );
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(sdkInstance, "getDAOBalance").mockReturnValue(SuccessApiCall(MockedDAOBalance));
+        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
+            totalBalance: 20000,
+            occupiedBalance: 9600,
+            freeBalance: 12635,
+        });
         const screen = render(<DAOCard />);
         //Balance
         expect(screen.getByText(translate("available"))).toBeDefined();

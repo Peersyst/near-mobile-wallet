@@ -1,7 +1,7 @@
-import { Transaction } from "module/transaction/types";
-import { DAOTransactions } from "./DAOTransactions";
+import { FullTransaction } from "module/common/service/CkbSdkService.types";
+import { DAOTransactions } from "./daoTransactions";
 
 //eslint-disable-next-line
-export default function (): Promise<Transaction[]> {
+export default function (): Promise<FullTransaction[]> {
     return new Promise((resolve) => setTimeout(() => resolve(DAOTransactions), 2000));
 }

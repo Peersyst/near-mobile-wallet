@@ -3,15 +3,31 @@ import CreateWalletModal from "module/wallet/component/core/CreateWalletModal/Cr
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { translate } from "locale";
 import { act } from "react-dom/test-utils";
-import * as GenerateMnemonic from "module/wallet/mock/generateMnemonic";
 import { StorageWallet, WalletStorage } from "module/wallet/WalletStorage";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import createUseWalletStateMock from "mocks/useWalletState";
+import { WalletService } from "@peersyst/ckb-peersyst-sdk";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import synchronizeMock from "mocks/synchronize";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("AddWallet - Create", () => {
+    const mnemonicArr = ["Pizza", "Taco", "Fries"];
     jest.setTimeout(20000);
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
+
+    beforeAll(() => {
+        jest.spyOn(WalletService, "createNewMnemonic").mockReturnValue(mnemonicArr.join(" "));
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(sdkInstance, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock));
+    });
+
+    afterAll(() => {
+        jest.restoreAllMocks();
+    });
+
     test("Adds a created wallet successfully", async () => {
-        jest.spyOn(GenerateMnemonic, "default").mockReturnValue(["Pizza", "Taco", "Fries"]);
         const addWalletToStorage = jest
             .spyOn(WalletStorage, "addWallet")
             .mockImplementation((wallet: Omit<StorageWallet, "index">) => SuccessApiCall({ ...wallet, index: 1 }));

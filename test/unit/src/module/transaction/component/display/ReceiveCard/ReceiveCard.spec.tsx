@@ -7,24 +7,30 @@ import * as UseSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import { translate } from "locale";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
 import { wallet } from "mocks/wallet";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 const ADDRESS_MOCK = "0xMockedAddress";
 
 describe("Test for the receive Card", () => {
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
+
+    beforeEach(() => {
+        jest.spyOn(UseSelectedWallet, "default").mockReturnValue(wallet);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(sdkInstance, "getAddress").mockReturnValue(ADDRESS_MOCK);
+    });
+
     afterEach(() => {
         jest.restoreAllMocks();
     });
 
     test("Renders correctly", () => {
-        jest.spyOn(UseSelectedWallet, "default").mockReturnValue(wallet);
-        jest.spyOn(CkbServiceMock.prototype, "getAddress").mockReturnValue(ADDRESS_MOCK);
         const screen = render(<ReceiveCard />);
         expect(screen.getByText(ADDRESS_MOCK)).toBeDefined();
     });
     test("Copies address correctly", () => {
-        jest.spyOn(UseSelectedWallet, "default").mockReturnValue(wallet);
-        jest.spyOn(CkbServiceMock.prototype, "getAddress").mockReturnValue(ADDRESS_MOCK);
         const showToast = jest.fn();
         jest.spyOn(UseToast, "useToast").mockReturnValue({ showToast, hideToast: jest.fn(), toastActive: false });
         jest.spyOn(Clipboard, "setString");
@@ -37,9 +43,7 @@ describe("Test for the receive Card", () => {
     });
     test("Hides modal correctly", () => {
         const hideModal = jest.fn();
-        jest.spyOn(UseSelectedWallet, "default").mockReturnValue(wallet);
         jest.spyOn(UseModal, "useModal").mockReturnValue({ hideModal } as any);
-        jest.spyOn(CkbServiceMock.prototype, "getAddress").mockReturnValue(ADDRESS_MOCK);
         const screen = render(<ReceiveCard />);
         expect(screen.getByText(ADDRESS_MOCK)).toBeDefined();
         const text = screen.getByText(translate("go_back"));

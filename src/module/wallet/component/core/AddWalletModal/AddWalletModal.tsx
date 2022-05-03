@@ -3,8 +3,10 @@ import { ReactNode, useState } from "react";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import { CkbServiceMock } from "module/common/service/mock/CkbServiceMock";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { WalletState } from "@peersyst/ckb-peersyst-sdk";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
@@ -33,6 +35,18 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
     const handleWalletCreation = async () => {
         const newWallet = await WalletStorage.addWallet({ name: name!, mnemonic: mnemonic!, colorIndex: colorIndex! });
         if (newWallet) {
+            if (!serviceInstancesMap.has(newWallet.index)) {
+                serviceInstancesMap.set(
+                    newWallet.index,
+                    new CKBSDKService(newWallet.mnemonic.join(" "), newWallet.initialState, async (walletState: WalletState) => {
+                        setWalletState((state) => ({
+                            ...state,
+                            wallets: state.wallets.map((w, idx) => (idx === newWallet.index ? { ...w, initialState: walletState } : w)),
+                        }));
+                        await WalletStorage.setInitialState(newWallet.index, walletState);
+                    }),
+                );
+            }
             setWalletState((state) => ({
                 ...state,
                 wallets: [
@@ -41,16 +55,23 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
                         name: newWallet.name,
                         colorIndex: newWallet.colorIndex,
                         index: newWallet.index,
-                        serviceInstance: new CkbServiceMock(newWallet.mnemonic),
                     },
                 ],
             }));
+            await serviceInstancesMap.get(newWallet.index)?.synchronize();
         }
         handleClose();
     };
 
     return (
-        <GlassNavigatorModal open={open} onClose={handleClose} navbar={{ back: true, title, onBack }} onExited={handleExited} {...rest}>
+        <GlassNavigatorModal
+            scrollable={true}
+            open={open}
+            onClose={handleClose}
+            navbar={{ back: true, title, onBack }}
+            onExited={handleExited}
+            {...rest}
+        >
             {renderProps(handleWalletCreation)}
         </GlassNavigatorModal>
     );

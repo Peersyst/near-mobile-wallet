@@ -1,12 +1,11 @@
 import { useQuery, UseQueryResult } from "react-query";
-import useWalletState from "module/wallet/hook/useWalletState";
 import { Nft } from "module/nft/types";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 
 export default function (index?: number): UseQueryResult<Nft[]> {
-    const {
-        state: { wallets, selectedWallet },
-    } = useWalletState();
-    const usedIndex = index ?? selectedWallet ?? 0;
-    const serviceInstance = wallets[usedIndex].serviceInstance;
+    const selectedWallet = useSelectedWalletIndex();
+    const usedIndex = index ?? selectedWallet;
+    const serviceInstance = serviceInstancesMap.get(usedIndex);
     return useQuery(["nfts", usedIndex], () => serviceInstance?.getNfts());
 }
