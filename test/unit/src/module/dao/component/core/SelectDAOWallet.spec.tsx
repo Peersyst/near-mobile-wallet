@@ -4,9 +4,10 @@ import createUseWalletStateMock, { mockedUseWallet } from "mocks/useWalletState"
 import SelectDAOWallet from "module/dao/component/core/DAOAccountCard/DAOCardHeader/SelectDAOWallet/SelectDAOWallet";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("Test for the SelectDAOWallet", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     afterAll(() => {
         jest.restoreAllMocks();

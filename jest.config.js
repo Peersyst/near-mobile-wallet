@@ -59,3 +59,4 @@ module.exports = {
 
 //Set env
 process.env.MINIMUM_TRANSACTION_AMOUNT = "61";
+process.env.MINIMUM_DAO_DEPOSIT = "102";

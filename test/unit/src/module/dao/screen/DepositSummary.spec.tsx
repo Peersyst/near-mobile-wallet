@@ -8,9 +8,11 @@ import { MockedDAOBalance } from "mocks/DAO";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
+import { convertCKBToMini } from "module/wallet/utils/convertCKBToMini";
 
 describe("Test for the DepositSummary", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     beforeAll(() => {
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
@@ -26,11 +28,17 @@ describe("Test for the DepositSummary", () => {
         jest.spyOn(sdkInstance, "getDAOBalance").mockReturnValue(SuccessApiCall(MockedDAOBalance));
         jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
         const screen = render(
-            <DepositSummary senderAddress={"0xMockedAddress"} amount={"1000"} fee={FeeRate.NORMAL} senderName={"Peersyst"} />,
+            <DepositSummary
+                senderAddress={"0xMockedAddress"}
+                amount={convertCKBToMini(1000)}
+                fee={FeeRate.NORMAL}
+                senderName={"Peersyst"}
+            />,
         );
         expect(screen.getByText("1,000")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
-        expect(screen.getByText("100,000")).toBeDefined();
+        expect(screen.getByText("001")).toBeDefined();
+        expect(screen.getByText("0")).toBeDefined();
         //Sender
         expect(screen.getByText(translate("from") + ":"));
         expect(screen.getByText("Peersyst" + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();

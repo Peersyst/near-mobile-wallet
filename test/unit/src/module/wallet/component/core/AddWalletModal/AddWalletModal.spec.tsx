@@ -9,6 +9,7 @@ import { fireEvent, waitFor } from "@testing-library/react-native";
 import Button from "module/common/component/input/Button/Button";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import synchronizeMock from "mocks/synchronize";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("AddWalletModal tests", () => {
     afterEach(() => {
@@ -21,11 +22,11 @@ describe("AddWalletModal tests", () => {
     });
 
     test("Wallet creation is completed successfully", async () => {
-        jest.spyOn(CKBSDKService.prototype, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock));
+        jest.spyOn(CKBSDKService.prototype, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock) as any);
         const newWallet: StorageWallet = {
             name: "Wallet Name",
             colorIndex: 2,
-            mnemonic: ["despair", "creek", "road"],
+            mnemonic: MnemonicMocked.split(" "),
             index: 2,
         };
         const resetCreateWallet = jest.fn();
@@ -34,7 +35,7 @@ describe("AddWalletModal tests", () => {
                 state: {
                     name: "Wallet Name",
                     colorIndex: 2,
-                    mnemonic: ["despair", "creek", "road"],
+                    mnemonic: MnemonicMocked.split(" "),
                 },
                 reset: resetCreateWallet,
             }),

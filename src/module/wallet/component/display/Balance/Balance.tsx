@@ -25,8 +25,8 @@ const Balance = ({
         () =>
             extractTextStyles({
                 ...style,
-                ...(action !== "display" && {
-                    color: (action === "add" && palette.status.success) || ((action === "subtract" && palette.status.error) as string),
+                ...(action === "add" && {
+                    color: palette.status.success,
                 }),
             }),
         [action, palette.status.error, palette.status.success, style],

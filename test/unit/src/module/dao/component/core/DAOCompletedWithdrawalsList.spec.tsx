@@ -7,9 +7,10 @@ import DAOCompletedWithdrawalsList from "module/dao/component/core/DAOCompletedW
 import { mockedDAOUnlocks } from "mocks/DAOTransaction";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("DAOCompletedWithdrawalsList tests", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     afterEach(() => {
         jest.restoreAllMocks();

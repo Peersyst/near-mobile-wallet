@@ -7,7 +7,7 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import WithdrawModal, { WithdrawSummary as WithdrawSummaryType } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import WithdrawSummary from "./WithdrawSummary";
 import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
-import useWithdrawAndUnlock from "module/dao/query/useWithdrawAndUnlock";
+import useWithdrawOrUnlock from "module/dao/query/useWithdrawOrUnlock";
 import { getAPC } from "module/dao/utils/getAPC";
 import { useRefetchQueries } from "../../../../query/useRefetchQueries";
 import { useMemo } from "react";
@@ -27,8 +27,8 @@ const WithdrawConfirmationScreen = ({
         state: { wallets },
     } = useWalletState();
     const { data: deposits = [] } = useGetDAOUnlockableAmounts();
-    const unlockableDeposits = useMemo(() => deposits.filter((deposit) => deposit.unlockable), [deposits]);
-    const { mutate: withdrawFromDAO, isLoading, isSuccess, isError } = useWithdrawAndUnlock(receiverIndex);
+    const unlockableDeposits = useMemo(() => deposits, [deposits]);
+    const { mutate: withdrawFromDAO, isLoading, isSuccess, isError } = useWithdrawOrUnlock(receiverIndex);
 
     //Variables
     const { name: receiverName } = wallets[receiverIndex]; //Receiver info
@@ -54,9 +54,10 @@ const WithdrawConfirmationScreen = ({
         <>
             <Col gap={"7%"}>
                 <WithdrawSummary
+                    compensation={Number(compensation)}
                     receiverName={receiverName}
                     receiverAddress={serviceInstance?.getAddress() || ""}
-                    depositAPC={getAPC({ daoCompensation: compensation, daoDeposit: amount })}
+                    depositAPC={getAPC({ daoCompensation: Number(compensation), daoDeposit: Number(amount) })}
                     amount={amount}
                     fee={feeRate!}
                 />

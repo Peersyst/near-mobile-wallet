@@ -33,6 +33,7 @@ export const theme = createTheme({
         paper: "#F4F4F4",
         status: {
             ...defaultTheme.palette.status,
+            warning: "#ff9800",
             success: "#36b930",
         },
         wallet: ["#15C8BD", "#47B5D6", "#623EDF", "#924AD9", "#FF66B0", "#E4AF4C"],

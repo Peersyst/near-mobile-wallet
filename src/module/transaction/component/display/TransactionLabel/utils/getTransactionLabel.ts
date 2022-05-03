@@ -17,11 +17,11 @@ export default function (type: FullTransaction["type"]): string {
         case TransactionType.RECEIVE_NFT:
             return translate("received_nft");
         case TransactionType.WITHDRAW_DAO:
-            return translate("DAO_withdrawal");
+            return translate("unlock_DAO");
         case TransactionType.SMART_CONTRACT_SEND:
         case TransactionType.SMART_CONTRACT_RECEIVE:
             return translate("smart_contract");
         case TransactionType.UNLOCK_DAO:
-            return translate("unlock_DAO");
+            return translate("DAO_withdrawal");
     }
 }

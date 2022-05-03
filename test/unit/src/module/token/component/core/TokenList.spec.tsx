@@ -6,9 +6,10 @@ import { translate } from "locale";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("Renders the token list properly", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     afterEach(() => {
         jest.restoreAllMocks();

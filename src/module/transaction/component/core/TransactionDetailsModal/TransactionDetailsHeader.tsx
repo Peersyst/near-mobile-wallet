@@ -19,7 +19,7 @@ const TransactionDetailsHeader = ({ transaction: { type, amount, token, timestam
             <Col gap={5} alignItems="center">
                 <TransactionLabel variant="h2" fontWeight="bold" type={type} />
                 {showAmount && <TransactionAmount variant="h2" boldUnits type={type} fontWeight="bold" amount={amount} currency={token} />}
-                <Typography variant="body2">{formatDate(timestamp)}</Typography>
+                <Typography variant="body2">{formatDate(new Date(timestamp))}</Typography>
             </Col>
         </Col>
     );

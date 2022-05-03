@@ -1,6 +1,6 @@
-import styled from "@peersyst/react-native-styled";
+import { styledWithAs } from "@peersyst/react-native-styled";
 import { Typography } from "react-native-components";
 
-export const SummaryText = styled(Typography)(({ theme }) => ({
+export const SummaryText = styledWithAs(Typography)(({ theme }) => ({
     color: theme.palette.darkGray,
 }));

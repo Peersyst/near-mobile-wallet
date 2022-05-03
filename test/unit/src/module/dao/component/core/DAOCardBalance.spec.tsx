@@ -7,9 +7,10 @@ import { MockedDAOBalance } from "mocks/DAO";
 import { waitFor } from "@testing-library/react-native";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("DAO Card balance test", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     afterAll(() => {
         jest.restoreAllMocks();

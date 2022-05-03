@@ -4,6 +4,7 @@ import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import i18n from "i18n-js";
+import { LayoutAnimation } from "react-native";
 
 const SelectLocale = (): JSX.Element => {
     const localeOptions: optionType[] = [
@@ -15,12 +16,20 @@ const SelectLocale = (): JSX.Element => {
             label: translate("en"),
             value: "en",
         },
+        {
+            label: translate("zh"),
+            value: "zh",
+        },
     ];
     const [settings, setSettings] = useRecoilState(settingsState);
+
     const handleSelect = async (value: LocaleType) => {
-        setSettings((s) => ({ ...s, locale: value }));
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        setSettings((s) => ({ ...s, loading: true }));
         i18n.locale = value;
-        SettingsStorage.set({ locale: value });
+        await SettingsStorage.set({ locale: value });
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        setTimeout(() => setSettings((s) => ({ ...s, locale: value, loading: false })), 1000);
     };
     return (
         <SelectGroup

@@ -24,7 +24,7 @@ export const MnemonicInput = (): JSX.Element => {
 
     return (
         <Col gap={20}>
-            <Card style={{ height: 290 }}>
+            <Card style={{ minHeight: 290 }}>
                 <Col gap={10}>
                     <Col gap={5}>
                         <Typography variant="h3" fontWeight="bold" textTransform="uppercase" textAlign="center">

@@ -7,9 +7,10 @@ import { mockedUseWallet } from "mocks/useWalletState";
 import DAODepositsList from "module/dao/component/core/DAODepositsList/DAODepositsList";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("DAODepositsList tests", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     afterEach(() => {
         jest.restoreAllMocks();

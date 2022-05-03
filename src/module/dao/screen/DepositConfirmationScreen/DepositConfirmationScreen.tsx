@@ -23,7 +23,6 @@ const DepositConfirmationScreen = (): JSX.Element => {
     const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO(senderWalletIndex!);
     const { hideModal } = useModal();
     const refetch = useRefetchQuery();
-
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
         depositInDAO(

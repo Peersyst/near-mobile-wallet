@@ -5,9 +5,10 @@ import * as UseWallet from "module/wallet/hook/useWallet";
 import { wallet } from "mocks/wallet";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("WalletCardHeader tests", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     beforeAll(() => {
         jest.spyOn(UseWallet, "default").mockReturnValue(wallet);

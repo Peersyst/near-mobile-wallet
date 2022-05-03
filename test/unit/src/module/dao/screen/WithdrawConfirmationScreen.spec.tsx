@@ -9,9 +9,10 @@ import { formatAddress } from "@peersyst/react-utils";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("SelectAccountAndDepositScreen tests", () => {
-    const sdkInstance = new CKBSDKService("");
+    const sdkInstance = new CKBSDKService(MnemonicMocked);
 
     beforeAll(() => {
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
@@ -26,9 +27,9 @@ describe("SelectAccountAndDepositScreen tests", () => {
 
     test("Renders correctly with deposits", async () => {
         const screen = render(<WithdrawConfirmationScreen withdrawInfo={{ receiverIndex: 0, depositIndex: 0, feeRate: FeeRate.NORMAL }} />);
-        await waitFor(() => expect(screen.getByText("500")).toBeDefined());
+        await waitFor(() => expect(screen.getAllByText("500")).toHaveLength(2));
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
-        expect(screen.getByText("100,000")).toBeDefined();
+        expect(screen.getByText("001")).toBeDefined();
         //Withdraw summary
         expect(screen.getByText(translate("destination_wallet") + ":")).toBeDefined();
         expect(screen.getByText("firstWallet" + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();

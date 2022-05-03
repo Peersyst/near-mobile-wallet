@@ -8,7 +8,7 @@ import settingsState, { defaultSettingsState } from "module/settings/state/Setti
 import createWalletState from "module/wallet/state/CreateWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import useWalletSync from "module/wallet/hook/useWalletSync";
+import { WalletState } from "@peersyst/ckb-peersyst-sdk";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {
@@ -17,7 +17,6 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
     const setWalletState = useSetRecoilState(walletState);
     const setSettingsState = useSetRecoilState(settingsState);
     const resetCreateWalletState = useResetRecoilState(createWalletState);
-    const syncWallet = useWalletSync();
 
     useEffect(() => {
         const setStorage = async () => {
@@ -26,7 +25,16 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
 
             if (mnemonic) {
                 if (!serviceInstancesMap.has(0)) {
-                    serviceInstancesMap.set(0, new CKBSDKService(mnemonic.join(" ")));
+                    serviceInstancesMap.set(
+                        0,
+                        new CKBSDKService(mnemonic.join(" "), undefined, async (walletState: WalletState) => {
+                            setWalletState((state) => ({
+                                ...state,
+                                wallets: state.wallets.map((w, idx) => (idx === 0 ? { ...w, initialState: walletState } : w)),
+                            }));
+                            await WalletStorage.setInitialState(0, walletState);
+                        }),
+                    );
                 }
             }
 
@@ -38,7 +46,12 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
                 isAuthenticated: true,
                 selectedWallet: 0,
             }));
-            syncWallet(0);
+
+            //Use another thread
+            setTimeout(async () => {
+                await serviceInstancesMap.get(0)?.synchronize();
+            });
+
             resetCreateWalletState();
         };
         setTimeout(setStorage, 2000);

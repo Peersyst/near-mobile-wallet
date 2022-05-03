@@ -12,14 +12,15 @@ describe("Test of the General Settings screen", () => {
         const screen = render(<GeneralSettingsScreen navigation={jest.fn() as any} />);
 
         //Selector of the network
-        expect(screen.getAllByText(translate("select_your_network"))).toHaveLength(2);
+        /* expect(screen.getAllByText(translate("select_your_network"))).toHaveLength(2);
         expect(screen.getByText(translate("network_name", { name: "Testnet" }))).toBeDefined();
-        expect(screen.getAllByText(translate("network_name", { name: "Mainnet" }))).toHaveLength(2);
+        expect(screen.getAllByText(translate("network_name", { name: "Mainnet" }))).toHaveLength(2); */
 
         //Selector of the fee
-        expect(screen.getAllByText(translate("select_your_network"))).toHaveLength(2);
-        expect(screen.getByText(translate("network_name", { name: "Testnet" }))).toBeDefined();
-        expect(screen.getAllByText(translate("network_name", { name: "Mainnet" }))).toHaveLength(2);
+        expect(screen.getAllByText(translate("modify_default_fee"))).toHaveLength(2);
+        expect(screen.getByText(translate("slow"))).toBeDefined();
+        expect(screen.getByText(translate("fast"))).toBeDefined();
+        expect(screen.getAllByText(translate("average"))).toHaveLength(2);
 
         //Selector of the currency
         expect(screen.getAllByText(translate("currency_conversion"))).toHaveLength(2);

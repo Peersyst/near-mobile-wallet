@@ -12,7 +12,6 @@ describe("TransactionDetailsModal test", () => {
         expect(screen.getByText(translate("sent"))).toBeDefined();
         expect(screen.getByText(translate("receiver"))).toBeDefined();
         expect(screen.getByText(formatAddress(sentTransaction.outputs[0].address, "middle", 8))).toBeDefined();
-        expect(screen.getByText(translate("message"))).toBeDefined();
         expect(screen.getByText(translate("hash"))).toBeDefined();
         expect(screen.getByText(sentTransaction.transactionHash)).toBeDefined();
     });
@@ -25,7 +24,6 @@ describe("TransactionDetailsModal test", () => {
         expect(screen.getByText(formatAddress(receivedTransaction.inputs[0].address, "middle", 6))).toBeDefined();
         expect(screen.getByText(formatAddress(receivedTransaction.inputs[1].address, "middle", 6))).toBeDefined();
         expect(screen.getByText(formatAddress(receivedTransaction.inputs[2].address, "middle", 6))).toBeDefined();
-        expect(screen.getByText(translate("message"))).toBeDefined();
         expect(screen.getByText(translate("hash"))).toBeDefined();
         expect(screen.getByText(receivedTransaction.transactionHash)).toBeDefined();
     });
