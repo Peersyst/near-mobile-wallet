@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Install') {
             steps {
-                sh 'rm yarn.lock && yarn'
+                sh 'yarn install'
             }
         }
         stage('Lint') {
