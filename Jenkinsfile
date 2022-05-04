@@ -35,6 +35,7 @@ pipeline {
                         ]) {
                             sh 'rm .npmrc || true'
                             sh "sed -i -e 's/__BUILD_NUMBER__/${BUILD_NUMBER}/' eas.json"
+                            sh "cp .env.dev .env"
                             sh 'npx eas-cli build --platform=android --profile=production --non-interactive --no-wait'
                         }
                     }
@@ -46,6 +47,7 @@ pipeline {
                         ]) {
                             sh 'rm .npmrc || true'
                             sh "sed -i -e 's/__BUILD_NUMBER__/${BUILD_NUMBER}/' eas.json"
+                            sh "cp .env.dev .env"
                             sh 'npx eas-cli build --platform=ios --auto-submit --profile=production --non-interactive --no-wait'
                         }
                     }
