@@ -1776,9 +1776,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@peersyst/ckb-peersyst-sdk@git+https://github.com/Peersyst/ckb-peersyst-sdk#v1.4.2":
+"@peersyst/ckb-peersyst-sdk@^1.4.2":
   version "1.4.2"
-  resolved "git+https://github.com/Peersyst/ckb-peersyst-sdk#6f800fda1d11bc3f2883ff957747b4999e9d98a0"
+  resolved "https://registry.yarnpkg.com/@peersyst/ckb-peersyst-sdk/-/ckb-peersyst-sdk-1.4.2.tgz#c87278bcced7120319e403add1d9105de9824d5a"
+  integrity sha512-KyOGzvGruOLZBJlzhL6j9ZG6UO2a7Tv+45QPEwhcHNLUhdpmP2b2fxM3u7OPYGYya7jGDMF/DV2HhwfZU45Qdw==
   dependencies:
     "@ckb-lumos/lumos" "^0.18.0-rc6"
     "@rather-labs/nrc-721-sdk" "0.0.15"
@@ -4745,9 +4746,9 @@ flow-parser@^0.121.0:
   integrity sha512-1gIBiWJNR0tKUNv8gZuk7l9rVX06OuLzY9AoGio7y/JT4V1IZErEMEq2TJS+PFcw/y0RshZ1J/27VfK1UQzYVg==
 
 follow-redirects@^1.14.0, follow-redirects@^1.14.4:
-  version "1.14.9"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.9.tgz#dd4ea157de7bfaf9ea9b3fbd85aa16951f78d8d7"
-  integrity sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.0.tgz#06441868281c86d0dda4ad8bdaead2d02dca89d4"
+  integrity sha512-aExlJShTV4qOUOL7yF1U5tvLCB0xQuudbf6toyYA0E/acBNw71mvjFTnLaRp50aQaYocMR0a/RMMBIHeZnGyjQ==
 
 fontfaceobserver@^2.1.0:
   version "2.1.0"
