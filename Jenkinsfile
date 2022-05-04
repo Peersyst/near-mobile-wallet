@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Install') {
             steps {
-                sh 'yarn install --network-concurrency 1'
+                sh 'yarn install'
             }
         }
         stage('Lint') {
