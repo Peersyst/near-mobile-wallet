@@ -20,7 +20,7 @@ describe("AddWallet - Create", () => {
     beforeAll(() => {
         jest.spyOn(WalletService, "createNewMnemonic").mockReturnValue(mnemonicArr.join(" "));
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
-        jest.spyOn(sdkInstance, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock));
+        jest.spyOn(sdkInstance, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock as any));
     });
 
     afterAll(() => {

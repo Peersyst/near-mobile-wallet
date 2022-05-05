@@ -20,7 +20,7 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
 
     useEffect(() => {
         const setStorage = async () => {
-            await WalletStorage.set({ pin: pin!, wallets: [{ name: name!, colorIndex: 0, mnemonic: mnemonic!, index: 0 }] });
+            await WalletStorage.setSecure({ pin: pin!, wallets: [{ name: name!, colorIndex: 0, mnemonic: mnemonic!, index: 0 }] });
             await SettingsStorage.set(defaultSettingsState);
 
             if (mnemonic) {
