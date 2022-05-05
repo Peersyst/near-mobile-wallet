@@ -18,12 +18,11 @@ pipeline {
                 sh 'yarn lint'
             }
         }
-        /*
         stage('Test') {
             steps {
                 sh 'yarn test:unit'
             }
-        }*/
+        }
         stage('Build and publish') {
             when {
                 anyOf { branch 'dev'; branch 'main'; branch 'feature*'; }
