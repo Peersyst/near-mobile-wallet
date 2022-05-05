@@ -31,7 +31,7 @@ describe("CreateWalletSuccessScreen tests", () => {
         });
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(serviceInstancesMap, "has").mockReturnValue(true);
-        jest.spyOn(sdkInstance, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock));
+        jest.spyOn(sdkInstance, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock as any));
         const setWalletState = jest.fn();
         const setSettingsState = jest.fn();
         jest.spyOn(Recoil, "useSetRecoilState").mockImplementation((state: any) => {
@@ -40,7 +40,7 @@ describe("CreateWalletSuccessScreen tests", () => {
 
         const setSettingsStorage = jest.spyOn(SettingsStorage, "set").mockImplementation(() => new Promise((resolve) => resolve()));
 
-        const setWalletStorage = jest.spyOn(WalletStorage, "set").mockImplementation(() => new Promise((resolve) => resolve()));
+        const setWalletStorage = jest.spyOn(WalletStorage, "setSecure").mockImplementation(() => new Promise((resolve) => resolve()));
 
         render(<CreateWalletSuccessScreen />);
 

@@ -20,9 +20,9 @@ describe("SendModal tests", () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: BigInt(120000000),
-            occupiedBalance: BigInt(20000000),
-            freeBalance: BigInt(100000000),
+            totalBalance: 120000000,
+            occupiedBalance: 20000000,
+            freeBalance: 100000000,
         });
     });
 
