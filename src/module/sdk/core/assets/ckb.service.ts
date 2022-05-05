@@ -27,8 +27,8 @@ export class CKBService {
         }
 
         let txSkeleton = TransactionSkeleton({ cellProvider: this.connection.getEmptyCellProvider() });
-        txSkeleton = await common.transfer(txSkeleton, [from], to, amount, null, null, this.connection.getConfigAsObject());
-        txSkeleton = await common.payFeeByFeeRate(txSkeleton, [from], feeRate, null, this.connection.getConfigAsObject());
+        txSkeleton = await common.transfer(txSkeleton, [from], to, amount, undefined, undefined, this.connection.getConfigAsObject());
+        txSkeleton = await common.payFeeByFeeRate(txSkeleton, [from], feeRate, undefined, this.connection.getConfigAsObject());
 
         return this.transactionService.signTransaction(txSkeleton, [privateKey]);
     }
@@ -64,7 +64,7 @@ export class CKBService {
         txSkeleton = this.transactionService.injectCapacity(txSkeleton, amount, cells);
 
         // Pay fee
-        txSkeleton = await common.payFeeByFeeRate(txSkeleton, fromAddresses, feeRate, null, this.connection.getConfigAsObject());
+        txSkeleton = await common.payFeeByFeeRate(txSkeleton, fromAddresses, feeRate, undefined, this.connection.getConfigAsObject());
 
         // Get signing private keys
         const signingPrivKeys = this.transactionService.extractPrivateKeys(txSkeleton, fromAddresses, privateKeys);

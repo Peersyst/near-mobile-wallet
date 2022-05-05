@@ -97,11 +97,11 @@ export class TransactionService {
     }
 
     addSecp256CellDep(txSkeleton: TransactionSkeletonType): TransactionSkeletonType {
-        return TransactionService.addCellDep(txSkeleton, this.connection.getConfig().SCRIPTS.SECP256K1_BLAKE160);
+        return TransactionService.addCellDep(txSkeleton, this.connection.getConfig().SCRIPTS.SECP256K1_BLAKE160!);
     }
 
     injectCapacity(txSkeleton: TransactionSkeletonType, capacity: bigint, cells: Cell[]): TransactionSkeletonType {
-        let lastScript: Script;
+        let lastScript: Script | undefined;
         let changeCell: Cell;
         let changeCapacity = BigInt(0);
         let currentAmount = BigInt(capacity);
@@ -172,7 +172,7 @@ export class TransactionService {
                 txSkeleton = txSkeleton.update("witnesses", (witnesses) => witnesses.push("0x"));
             }
 
-            let witness: string = txSkeleton.get("witnesses").get(firstIndex);
+            let witness: string = txSkeleton.get("witnesses").get(firstIndex)!;
             const newWitnessArgs: WitnessArgs = { lock: this.secpSignaturePlaceholder };
             if (witness !== "0x") {
                 const witnessArgs = new core.WitnessArgs(new Reader(witness));
@@ -241,8 +241,8 @@ export class TransactionService {
         const transactions: Transaction[] = [];
         let cell: TransactionWithStatus;
         for await (cell of transactionCollector.collect()) {
-            if (!this.transactionMap.has(cell.transaction.hash)) {
-                const header = await this.connection.getBlockHeaderFromHash(cell.tx_status.block_hash);
+            if (!this.transactionMap.has(cell.transaction.hash!)) {
+                const header = await this.connection.getBlockHeaderFromHash(cell.tx_status.block_hash!);
                 let hasDAOInput = false;
 
                 const inputs: DataRow[] = [];
@@ -260,7 +260,7 @@ export class TransactionService {
                             hashType: output.type.hash_type,
                             args: output.type.args,
                         };
-                        if (TransactionService.isScriptTypeScript(script, this.connection.getConfig().SCRIPTS.DAO)) {
+                        if (TransactionService.isScriptTypeScript(script, this.connection.getConfig().SCRIPTS.DAO!)) {
                             hasDAOInput = true;
                         }
                     }
@@ -298,9 +298,9 @@ export class TransactionService {
                         }
                     } else {
                         scriptType = outputs[0].type;
-                        if (TransactionService.isScriptTypeScript(outputs[0].type, this.connection.getConfig().SCRIPTS.SUDT)) {
+                        if (TransactionService.isScriptTypeScript(outputs[0].type, this.connection.getConfig().SCRIPTS.SUDT!)) {
                             type = !isReceive ? TransactionType.SEND_TOKEN : TransactionType.RECEIVE_TOKEN;
-                        } else if (TransactionService.isScriptTypeScript(outputs[0].type, this.connection.getConfig().SCRIPTS.DAO)) {
+                        } else if (TransactionService.isScriptTypeScript(outputs[0].type, this.connection.getConfig().SCRIPTS.DAO!)) {
                             type = outputs[0].data === 0 ? TransactionType.DEPOSIT_DAO : TransactionType.WITHDRAW_DAO;
                         } else if (await this.nftService.isScriptNftScript(outputs[0].type)) {
                             type = !isReceive ? TransactionType.SEND_NFT : TransactionType.RECEIVE_NFT;
@@ -310,23 +310,23 @@ export class TransactionService {
                     }
                 }
 
-                this.transactionMap.set(cell.transaction.hash, {
+                this.transactionMap.set(cell.transaction.hash!, {
                     status: cell.tx_status.status as TransactionStatus,
-                    transactionHash: cell.transaction.hash,
+                    transactionHash: cell.transaction.hash!,
                     inputs,
                     outputs,
-                    blockHash: cell.tx_status.block_hash,
+                    blockHash: cell.tx_status.block_hash!,
                     blockNumber: parseInt(header.number, 16),
-                    type,
-                    scriptType,
+                    type: type!,
+                    scriptType: scriptType!,
                     amount,
                     timestamp: new Date(parseInt(header.timestamp, 16)),
                 });
             }
 
-            const transaction = this.transactionMap.get(cell.transaction.hash);
-            if (!transactions.includes(transaction)) {
-                transactions.push(transaction);
+            const transaction = this.transactionMap.get(cell.transaction.hash!);
+            if (!transactions.includes(transaction!)) {
+                transactions.push(transaction!);
             }
         }
 
@@ -343,7 +343,7 @@ export class TransactionService {
         const signatures = [];
         for (let i = 0; i < privateKeys.length; i += 1) {
             const entry = txSkeletonWEntries.get("signingEntries").get(i);
-            signatures.push(hd.key.signRecoverable(entry.message, privateKeys[i]));
+            signatures.push(hd.key.signRecoverable(entry!.message, privateKeys[i]));
         }
         const tx = sealTransaction(txSkeletonWEntries, signatures);
         const hash = await this.connection.getRPC().send_transaction(tx, "passthrough");
