@@ -1348,6 +1348,20 @@
     json5 "^1.0.1"
     write-file-atomic "^2.3.0"
 
+"@expo/metro-config@^0.3.16":
+  version "0.3.16"
+  resolved "https://registry.yarnpkg.com/@expo/metro-config/-/metro-config-0.3.16.tgz#af3fe62219e3640b51ca85137dfc718daeecbc6f"
+  integrity sha512-rMYYpJibi1M8p9jGyU9f4lSNKZC6NSWzfEJsX8yd8gFbMBZV41DqyNzkrl1bx90DzYoLKB8kEPhkDdCJ8bGd/A==
+  dependencies:
+    "@expo/config" "6.0.23"
+    "@expo/json-file" "8.2.36"
+    chalk "^4.1.0"
+    debug "^4.3.2"
+    find-yarn-workspace-root "~2.0.0"
+    getenv "^1.0.0"
+    resolve-from "^5.0.0"
+    sucrase "^3.20.0"
+
 "@expo/metro-config@~0.2.6":
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/@expo/metro-config/-/metro-config-0.2.8.tgz#c0fd56723e2fb9bb352e788e8f8fe0e218aaf663"
@@ -4721,6 +4735,13 @@ find-up@^5.0.0, find-up@~5.0.0:
   dependencies:
     locate-path "^6.0.0"
     path-exists "^4.0.0"
+
+find-yarn-workspace-root@~2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/find-yarn-workspace-root/-/find-yarn-workspace-root-2.0.0.tgz#f47fb8d239c900eb78179aa81b66673eac88f7bd"
+  integrity sha512-1IMnbjt4KzsQfnhnzNd8wUEgXZ44IzZaZmnLYx7D5FZlaHt2gW20Cri8Q+E/t5tIj4+epTBub+2Zxu/vNILzqQ==
+  dependencies:
+    micromatch "^4.0.2"
 
 flat-cache@^3.0.4:
   version "3.0.4"

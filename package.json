@@ -25,6 +25,7 @@
         "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0"
     },
     "dependencies": {
+        "@expo/metro-config": "^0.3.16",
         "@peersyst/ckb-peersyst-sdk": "^1.4.2",
         "@peersyst/react-hooks": "^1.1.6",
         "@peersyst/react-native-styled": "^1.1.1",
