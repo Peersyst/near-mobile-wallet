@@ -24,7 +24,7 @@ const TransactionDetailsBody = ({ transaction }: TransactionDetailsBodyProps): J
                     <TransactionStatus status={status} variant="body1" fontWeight="500" />
                 </TransactionDetail>
                 <TransactionDetail title={translate("hash")}>
-                    <BlockchainAddress address={transactionHash} type="address" variant="body1" length={8} />
+                    <BlockchainAddress address={transactionHash} type="tx" variant="body1" length={8} />
                 </TransactionDetail>
             </Col>
         </ScrollView>
