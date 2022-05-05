@@ -1,68 +1,106 @@
 import { WalletState } from "ckb-peersyst-sdk";
 import { BaseStorageService } from "module/common/service/BaseStorageService";
 
-export interface StorageWallet {
+export interface UnencryptedWalletInfo {
+    index: number;
+    initialState?: WalletState;
+}
+
+export interface SecureWalletInfo {
     index: number;
     name: string;
     colorIndex: number;
     mnemonic: string[];
-    initialState?: WalletState;
 }
 
-export interface WalletStorageType {
-    wallets: StorageWallet[];
+export type StorageWallet = SecureWalletInfo & UnencryptedWalletInfo;
+
+export interface SecureWalletStorageType {
+    wallets: SecureWalletInfo[];
     pin: string | undefined;
 }
 
-export const WalletStorage = new (class extends BaseStorageService<WalletStorageType> {
+export interface UnsecureWalletStorageType {
+    wallets: UnencryptedWalletInfo[];
+}
+
+export const WalletStorage = new (class extends BaseStorageService<SecureWalletStorageType, UnsecureWalletStorageType> {
     constructor() {
         super("wallet");
     }
 
     async getWallets(): Promise<StorageWallet[] | undefined> {
+        const secureStorage = await this.getSecure();
+        if (!secureStorage) return undefined;
         const storage = await this.get();
-        return storage?.wallets;
+        const wallets: StorageWallet[] = [];
+        for (let i = 0; i < secureStorage.wallets.length; i++) {
+            const walletSecureInfo = secureStorage.wallets.find((w) => w.index === i);
+            if (walletSecureInfo) {
+                const walletUnencryptedInfo = storage?.wallets.find((w) => w.index === i) || { index: i };
+                wallets.push({ ...walletSecureInfo, ...walletUnencryptedInfo });
+            }
+        }
+
+        return wallets;
     }
 
     async getWallet(index: number): Promise<StorageWallet | undefined> {
+        const secureStorage = await this.getSecure();
+        const walletSecureInfo = secureStorage?.wallets.find((w) => w.index === index);
+        if (!walletSecureInfo) return undefined;
         const storage = await this.get();
-        return storage?.wallets[index];
+        const walletUnencryptedInfo = storage?.wallets.find((w) => w.index === index) || { index: index };
+        return { ...walletSecureInfo, ...walletUnencryptedInfo };
     }
 
     async getName(index: number): Promise<string | undefined> {
-        const storage = await this.get();
-        return storage?.wallets[index]?.name;
+        const secureStorage = await this.getSecure();
+        const walletSecureInfo = secureStorage?.wallets.find((w) => w.index === index);
+        return walletSecureInfo?.name;
     }
 
     async getColorIndex(index: number): Promise<number | undefined> {
-        const storage = await this.get();
-        return storage?.wallets[index]?.colorIndex;
+        const secureStorage = await this.getSecure();
+        const walletSecureInfo = secureStorage?.wallets.find((w) => w.index === index);
+        return walletSecureInfo?.colorIndex;
     }
 
     async getMnemonic(index: number): Promise<string[] | undefined> {
-        const storage = await this.get();
-        return storage?.wallets[index]?.mnemonic;
+        const secureStorage = await this.getSecure();
+        const walletSecureInfo = secureStorage?.wallets.find((w) => w.index === index);
+        return walletSecureInfo?.mnemonic;
     }
 
     async getInitialState(index: number): Promise<WalletState | undefined> {
         const storage = await this.get();
-        return storage?.wallets[index]?.initialState;
+        const walletUnencryptedInfo = storage?.wallets.find((w) => w.index === index) || { index: index };
+        return walletUnencryptedInfo?.initialState;
     }
 
     async getPin(): Promise<string | undefined> {
-        const storage = await this.get();
-        return storage?.pin;
+        const secureStorage = await this.getSecure();
+        return secureStorage?.pin;
     }
 
     async setWallets(wallets: StorageWallet[]): Promise<void> {
-        const storage = (await this.get()) || { pin: undefined };
-        await this.set({ ...storage, wallets });
+        const walletsSecureInfo: SecureWalletInfo[] = [];
+        const walletsUnencryptedInfo: UnencryptedWalletInfo[] = [];
+        wallets.forEach(({ index, initialState, ...secureData }) => {
+            walletsSecureInfo.push({ index, ...secureData });
+            walletsUnencryptedInfo.push({ index, initialState });
+        });
+        const secureStorage = (await this.getSecure()) || { pin: undefined };
+        const storage = await this.get();
+        await this.setSecure({ ...secureStorage, wallets: walletsSecureInfo });
+        await this.set({ ...storage, wallets: walletsUnencryptedInfo });
     }
 
     async addWallet(wallet: Omit<StorageWallet, "index">): Promise<StorageWallet | undefined> {
-        const wallets = (await this.getWallets()) || [];
+        const wallets = await this.getWallets();
+        if (!wallets) return undefined;
         const newWallet = { ...wallet, index: wallets.length };
-        wallets?.push(newWallet);
+        wallets.push(newWallet);
         await this.setWallets(wallets);
         return newWallet;
     }
@@ -80,8 +118,8 @@ export const WalletStorage = new (class extends BaseStorageService<WalletStorage
     }
 
     async setPin(pin: string): Promise<void> {
-        const storage = (await this.get()) || { wallets: [] };
-        await this.set({ ...storage, pin });
+        const secureStorage = (await this.getSecure()) || { wallets: [] };
+        await this.setSecure({ ...secureStorage, pin });
     }
 
     async setInitialState(index: number, walletState: WalletState): Promise<void> {

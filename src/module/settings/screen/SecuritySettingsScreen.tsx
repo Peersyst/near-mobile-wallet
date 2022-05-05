@@ -41,7 +41,7 @@ const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): 
                                     onPress: () =>
                                         showModal(ConfirmPinModal, {
                                             onPinConfirmed: async () => {
-                                                await WalletStorage.clear();
+                                                await WalletStorage.clearAll();
                                                 serviceInstancesMap.clear();
                                                 await SettingsStorage.clear();
                                                 resetWalletState();
