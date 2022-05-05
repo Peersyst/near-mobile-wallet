@@ -6,7 +6,7 @@ import { act } from "react-dom/test-utils";
 import { StorageWallet, WalletStorage } from "module/wallet/WalletStorage";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import createUseWalletStateMock from "mocks/useWalletState";
-import { WalletService } from "@peersyst/ckb-peersyst-sdk";
+import { WalletService } from "ckb-peersyst-sdk";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import synchronizeMock from "mocks/synchronize";

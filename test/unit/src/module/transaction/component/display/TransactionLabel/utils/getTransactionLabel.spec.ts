@@ -1,5 +1,5 @@
 import getTransactionLabel from "module/transaction/component/display/TransactionLabel/utils/getTransactionLabel";
-import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { TransactionType } from "ckb-peersyst-sdk";
 import { translate } from "locale";
 
 describe("getTransactionLabel tests", () => {

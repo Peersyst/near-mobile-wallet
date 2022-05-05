@@ -1,7 +1,7 @@
 import { MINIMUM_DAO_DEPOSIT, MINIMUM_TRANSACTION_AMOUNT } from "@env";
 import { translate } from "locale";
 import TextField from "module/common/component/input/TextField/TextField";
-import { CKBBalance } from "@peersyst/ckb-peersyst-sdk";
+import { CKBBalance } from "ckb-peersyst-sdk";
 import { Dispatch, SetStateAction } from "react";
 import { NumericInput, Typography } from "react-native-components";
 import formatNumber from "utils/formatNumber";

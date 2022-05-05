@@ -1,4 +1,4 @@
-import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
+import { FeeRate } from "ckb-peersyst-sdk";
 import { translate } from "locale";
 import SelectGroup, { optionType } from "module/common/component/input/SelectGroup/SelectGroup";
 import { SettingsStorage } from "module/settings/SettingsStorage";

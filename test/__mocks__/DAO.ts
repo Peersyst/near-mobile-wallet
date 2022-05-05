@@ -1,4 +1,4 @@
-import { DAOBalance, DAOUnlockableAmount } from "@peersyst/ckb-peersyst-sdk";
+import { DAOBalance, DAOUnlockableAmount } from "ckb-peersyst-sdk";
 
 export const MockedDAOBalance: DAOBalance = {
     daoDeposit: 500,

@@ -1,4 +1,4 @@
-import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
+import { FeeRate } from "ckb-peersyst-sdk";
 import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
 import { CKBSDKService } from "module/common/service/CkbSdkService";

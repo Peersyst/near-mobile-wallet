@@ -1,4 +1,4 @@
-import { DAOBalance } from "@peersyst/ckb-peersyst-sdk";
+import { DAOBalance } from "ckb-peersyst-sdk";
 
 const NUMBER_OF_APC_DECIMALS = 3;
 

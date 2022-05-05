@@ -8,7 +8,7 @@ import { WithdrawScreens } from "module/dao/component/core/WithdrawModal/Withdra
 import { MockedUnlockableAmounts } from "mocks/DAO";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
+import { FeeRate } from "ckb-peersyst-sdk";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 import * as UseSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import { wallet } from "mocks/wallet";

@@ -25,7 +25,6 @@
         "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0"
     },
     "dependencies": {
-        "@peersyst/ckb-peersyst-sdk": "1.4.4",
         "@peersyst/react-hooks": "^1.1.6",
         "@peersyst/react-native-styled": "^1.1.1",
         "@peersyst/react-types": "^1.2.0",
@@ -75,7 +74,10 @@
         "react-query": "^3.34.14",
         "recoil": "^0.6.1",
         "stream-browserify": "^3.0.0",
-        "whatwg-fetch": "^3.6.2"
+        "whatwg-fetch": "^3.6.2",
+        "@ckb-lumos/lumos": "^0.18.0-rc6",
+        "@rather-labs/nrc-721-sdk": "0.0.15",
+        "cross-fetch": "^3.1.5"
     },
     "devDependencies": {
         "@babel/core": "^7.17.2",

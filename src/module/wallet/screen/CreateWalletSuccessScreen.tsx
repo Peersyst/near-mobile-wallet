@@ -8,7 +8,7 @@ import settingsState, { defaultSettingsState } from "module/settings/state/Setti
 import createWalletState from "module/wallet/state/CreateWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { WalletState } from "@peersyst/ckb-peersyst-sdk";
+import { WalletState } from "ckb-peersyst-sdk";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {

@@ -3,7 +3,7 @@ import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import { translate } from "locale";
 import { fireEvent } from "@testing-library/react-native";
 import * as UseCreateWalletState from "module/wallet/hook/useCreateWallet";
-import { WalletService } from "@peersyst/ckb-peersyst-sdk";
+import { WalletService } from "ckb-peersyst-sdk";
 
 describe("WalletMnemonicScreen tests", () => {
     const mnemonicArr = ["witch", "collapse", "practice", "feed", "shame", "open", "despair", "creek", "road", "again", "ice", "least"];

@@ -1,4 +1,4 @@
-import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
+import { FeeRate } from "ckb-peersyst-sdk";
 import { LocaleType } from "locale";
 import getDefaultLocale from "locale/utils/getDefaultLocale";
 import { atom } from "recoil";

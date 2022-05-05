@@ -3,7 +3,7 @@ import { translate } from "locale";
 import { BlockchainAddress, Row, Typography } from "react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
-import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { TransactionType } from "ckb-peersyst-sdk";
 
 export interface TransactionTypeDetailsProps {
     transaction: FullTransaction;

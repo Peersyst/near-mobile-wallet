@@ -7,7 +7,7 @@ import TransactionLabel from "module/transaction/component/display/TransactionLa
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
 import { TouchableWithoutFeedback } from "react-native";
 import TransactionDetailsModal from "../../core/TransactionDetailsModal/TransactionDetailsModal";
-import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { TransactionType } from "ckb-peersyst-sdk";
 
 export interface TransactionCardProps {
     transaction: FullTransaction;

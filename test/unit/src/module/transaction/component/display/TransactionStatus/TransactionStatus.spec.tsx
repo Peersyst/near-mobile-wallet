@@ -1,6 +1,6 @@
 import { render } from "test-utils";
 import TransactionStatus from "module/transaction/component/display/TransactionStatus/TransactionStatus";
-import { TransactionStatus as TransactionStatusType } from "@peersyst/ckb-peersyst-sdk";
+import { TransactionStatus as TransactionStatusType } from "ckb-peersyst-sdk";
 import { translate } from "locale";
 
 describe("TransactionStatus tests", () => {

@@ -7,7 +7,7 @@ import { mockedUseWallet } from "mocks/useWalletState";
 import { MockedDAOBalance } from "mocks/DAO";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
+import { FeeRate } from "ckb-peersyst-sdk";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 import { convertCKBToMini } from "module/wallet/utils/convertCKBToMini";
 

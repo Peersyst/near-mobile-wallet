@@ -1,5 +1,5 @@
 import { isUnlockOrWithdrawDAO } from "module/dao/utils/isUnlockOrWithdrawDAO";
-import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { TransactionType } from "ckb-peersyst-sdk";
 
 describe("isUnlockOrWithdrawDAO tests", () => {
     test("Returns true if the type is from a DAO unlock or withdraw tx", () => {

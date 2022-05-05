@@ -1,4 +1,4 @@
-import { DAOUnlockableAmount } from "@peersyst/ckb-peersyst-sdk";
+import { DAOUnlockableAmount } from "ckb-peersyst-sdk";
 import { translate } from "locale";
 import { Typography } from "module/common/component/base/display/Typography";
 import Button from "module/common/component/input/Button/Button";

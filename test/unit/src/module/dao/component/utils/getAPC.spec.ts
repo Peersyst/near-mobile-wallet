@@ -1,4 +1,4 @@
-import { DAOBalance } from "@peersyst/ckb-peersyst-sdk";
+import { DAOBalance } from "ckb-peersyst-sdk";
 import { getAPC } from "module/dao/utils/getAPC";
 
 describe("getAPC tests", () => {

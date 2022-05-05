@@ -1,4 +1,4 @@
-import { DAOUnlockableAmount, FeeRate, Transaction } from "@peersyst/ckb-peersyst-sdk";
+import { DAOUnlockableAmount, FeeRate, Transaction } from "ckb-peersyst-sdk";
 
 export interface DepositInDAOParams {
     amount: bigint | number;

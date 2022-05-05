@@ -1,4 +1,4 @@
-import { WalletState } from "@peersyst/ckb-peersyst-sdk";
+import { WalletState } from "ckb-peersyst-sdk";
 import { BaseStorageService } from "module/common/service/BaseStorageService";
 
 export interface StorageWallet {

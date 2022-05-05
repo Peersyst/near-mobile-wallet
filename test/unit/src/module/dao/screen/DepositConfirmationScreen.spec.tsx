@@ -8,7 +8,7 @@ import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScre
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
-import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
+import { FeeRate } from "ckb-peersyst-sdk";
 import { convertCKBToMini } from "module/wallet/utils/convertCKBToMini";
 
 describe("DepositConfirmationScreen tests", () => {
