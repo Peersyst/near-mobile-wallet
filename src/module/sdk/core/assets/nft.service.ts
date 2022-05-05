@@ -19,7 +19,7 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 export class NftService {
     private readonly connection: ConnectionService;
     private readonly logger = new Logger(NftService.name);
-    private nftSdk: NftSdk = null;
+    private nftSdk: NftSdk = null!;
     private initializing = false;
 
     constructor(connectionService: ConnectionService) {
@@ -46,7 +46,7 @@ export class NftService {
 
         let isNftCell: boolean;
         try {
-            isNftCell = await this.nftSdk.nftCell.isCellNRC721(scriptType);
+            isNftCell = await this.nftSdk!.nftCell.isCellNRC721(scriptType);
         } catch (error) {
             isNftCell = false;
         }
@@ -54,7 +54,7 @@ export class NftService {
         return isNftCell;
     }
 
-    private cellToNftScript(cell: Cell): NftScript {
+    private cellToNftScript(cell: Cell): NftScript | null {
         if (!cell.cell_output.type) {
             return null;
         }
@@ -71,13 +71,13 @@ export class NftService {
 
         let isNftCell: boolean;
         try {
-            isNftCell = await this.nftSdk.nftCell.isCellNRC721(cellTypeScript);
+            isNftCell = await this.nftSdk!.nftCell.isCellNRC721(cellTypeScript!);
         } catch (error) {
             isNftCell = false;
         }
 
         if (cellTypeScript && isNftCell) {
-            const nft = await this.nftSdk.nftCell.read(cellTypeScript);
+            const nft = await this.nftSdk!.nftCell.read(cellTypeScript);
 
             return {
                 tokenId: nft.tokenId,

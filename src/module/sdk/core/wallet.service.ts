@@ -54,10 +54,10 @@ export class WalletService {
     private readonly logger = new Logger(WalletService.name);
     private addressMap: addressMapI = {};
     private firstIndexWithoutTxs = 0;
-    private lastHashBlock: string;
+    private lastHashBlock!: string;
     private accountCellsMap: cellMapI = {};
     private accountTransactionMap: transactionMapI = {};
-    private onSync: (walletState: WalletState) => Promise<void>;
+    private onSync!: (walletState: WalletState) => Promise<void>;
 
     constructor(
         connectionService: ConnectionService,
@@ -80,7 +80,7 @@ export class WalletService {
         if (walletState) {
             this.addressMap = walletState.addressMap ? { ...walletState.addressMap } : this.addressMap;
             this.firstIndexWithoutTxs = walletState.firstIndexWithoutTxs || 0;
-            this.lastHashBlock = walletState.lastHashBlock || null;
+            this.lastHashBlock = walletState.lastHashBlock || null!;
             this.accountCellsMap = walletState.accountCellsMap ? { ...walletState.accountCellsMap } : this.accountCellsMap;
             this.accountTransactionMap = walletState.accountTransactionMap
                 ? { ...walletState.accountTransactionMap }
@@ -137,7 +137,7 @@ export class WalletService {
 
         while (currentIndex <= this.firstIndexWithoutTxs) {
             const address = this.getAddress(currentIndex);
-            const transactions = await this.transactionService.getTransactions(address, toBlock, fromBlock);
+            const transactions = await this.transactionService.getTransactions(address, toBlock, fromBlock!);
 
             if (transactions.length > 0) {
                 // Update transactions
@@ -186,8 +186,8 @@ export class WalletService {
     getLock(accountId = 0, script: AddressScriptType = AddressScriptType.SECP256K1_BLAKE160): Script {
         const template = this.connection.getConfig().SCRIPTS[script];
         const lockScript = {
-            code_hash: template.CODE_HASH,
-            hash_type: template.HASH_TYPE,
+            code_hash: template!.CODE_HASH,
+            hash_type: template!.HASH_TYPE,
             args: this.accountPublicKey.publicKeyInfo(this.addressType, accountId).blake160,
         };
 

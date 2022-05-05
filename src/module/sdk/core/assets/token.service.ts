@@ -30,13 +30,13 @@ export class TokenService {
         }
 
         const sudtScript = this.connection.getConfig().SCRIPTS.SUDT;
-        return script.code_hash === sudtScript.CODE_HASH && script.hash_type === sudtScript.HASH_TYPE;
+        return script.code_hash === sudtScript!.CODE_HASH && script.hash_type === sudtScript!.HASH_TYPE;
     }
 
     async issue(address: string, amount: number, privateKey: string, feeRate: FeeRate = FeeRate.NORMAL): Promise<string> {
         let txSkeleton = TransactionSkeleton({ cellProvider: this.connection.getEmptyCellProvider() });
         txSkeleton = await sudt.issueToken(txSkeleton, address, amount, undefined, undefined, this.connection.getConfigAsObject());
-        txSkeleton = await common.payFeeByFeeRate(txSkeleton, [address], feeRate, null, this.connection.getConfigAsObject());
+        txSkeleton = await common.payFeeByFeeRate(txSkeleton, [address], feeRate, undefined, this.connection.getConfigAsObject());
 
         return this.transactionService.signTransaction(txSkeleton, [privateKey]);
     }
@@ -53,7 +53,7 @@ export class TokenService {
         txSkeleton = await sudt.transfer(txSkeleton, [from], token, to, amount, undefined, undefined, undefined, {
             config: this.connection.getConfig(),
         });
-        txSkeleton = await common.payFeeByFeeRate(txSkeleton, [from], feeRate, null, this.connection.getConfigAsObject());
+        txSkeleton = await common.payFeeByFeeRate(txSkeleton, [from], feeRate, undefined, this.connection.getConfigAsObject());
 
         return this.transactionService.signTransaction(txSkeleton, [privateKey]);
     }
@@ -74,19 +74,19 @@ export class TokenService {
     getBalanceFromCells(cells: Cell[]): TokenAmount[] {
         const tokenMap = new Map<string, number>();
         for (const cell of cells) {
-            if (this.isTokenScriptType(cell.cell_output.type)) {
-                const key = cell.cell_output.type.args;
+            if (this.isTokenScriptType(cell.cell_output.type!)) {
+                const key = cell.cell_output.type!.args;
 
                 if (!tokenMap.has(key)) {
                     tokenMap.set(key, Number(utils.readBigUInt128LE(cell.data)));
                 } else {
-                    tokenMap.set(key, Number(utils.readBigUInt128LE(cell.data)) + tokenMap.get(key));
+                    tokenMap.set(key, Number(utils.readBigUInt128LE(cell.data)) + tokenMap.get(key)!);
                 }
             }
         }
 
         const tokens: TokenAmount[] = [];
-        const { CODE_HASH: codeHash, HASH_TYPE: hashType } = this.connection.getConfig().SCRIPTS.SUDT;
+        const { CODE_HASH: codeHash, HASH_TYPE: hashType } = this.connection.getConfig().SCRIPTS.SUDT!;
         tokenMap.forEach((value, key) =>
             tokens.push({
                 type: { args: key, codeHash, hashType },

@@ -71,17 +71,17 @@ export class ConnectionService {
     async getBlockHeaderFromHash(blockHash: string): Promise<Header> {
         if (!this.blockHeaderHashMap.has(blockHash)) {
             const header = await this.rpc.get_header(blockHash);
-            this.setBlockHeaderMaps(header);
+            this.setBlockHeaderMaps(header!);
         }
-        return this.blockHeaderHashMap.get(blockHash);
+        return this.blockHeaderHashMap.get(blockHash)!;
     }
 
     async getBlockHeaderFromNumber(blockNumber: string): Promise<Header> {
         if (!this.blockHeaderNumberMap.has(blockNumber)) {
             const header = await this.rpc.get_header_by_number(blockNumber);
-            this.setBlockHeaderMaps(header);
+            this.setBlockHeaderMaps(header!);
         }
-        return this.blockHeaderNumberMap.get(blockNumber);
+        return this.blockHeaderNumberMap.get(blockNumber)!;
     }
 
     async getCell(outPoint: OutPoint): Promise<CellWithStatus> {
@@ -91,9 +91,9 @@ export class ConnectionService {
     async getTransactionFromHash(transactionHash: string, useMap = true): Promise<TransactionWithStatus> {
         if (!useMap || !this.transactionMap.has(transactionHash)) {
             const transaction = await this.rpc.get_transaction(transactionHash);
-            this.transactionMap.set(transactionHash, transaction);
+            this.transactionMap.set(transactionHash, transaction!);
         }
-        return this.transactionMap.get(transactionHash);
+        return this.transactionMap.get(transactionHash)!;
     }
 
     getConfig(): Config {
