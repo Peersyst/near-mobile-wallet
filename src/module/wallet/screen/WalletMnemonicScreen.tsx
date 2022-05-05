@@ -1,4 +1,4 @@
-import { WalletService } from "@peersyst/ckb-peersyst-sdk";
+import { WalletService } from "ckb-peersyst-sdk";
 import { Col, Typography } from "react-native-components";
 import Card from "module/common/component/surface/Card/Card";
 import { translate } from "locale";

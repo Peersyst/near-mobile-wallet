@@ -1,4 +1,4 @@
-import { Transaction } from "@peersyst/ckb-peersyst-sdk";
+import { Transaction } from "ckb-peersyst-sdk";
 
 const synchronizeMock = {
     addressMap: new Map<string, string>(),

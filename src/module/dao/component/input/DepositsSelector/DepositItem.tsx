@@ -1,7 +1,7 @@
 import { Row, SelectItem, Theme } from "react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { useSelected } from "module/common/component/base/input/Select/hooks/useSelected";
-import { DAOUnlockableAmount } from "@peersyst/ckb-peersyst-sdk";
+import { DAOUnlockableAmount } from "ckb-peersyst-sdk";
 import formatTimeDAORemainingCycle from "module/transaction/component/utils/formatTimeDAORemainingCycle";
 import { DepositItemText } from "./DepositItem.styles";
 import { translate } from "locale";

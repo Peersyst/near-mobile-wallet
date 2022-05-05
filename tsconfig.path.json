@@ -5,6 +5,7 @@
             "locale": ["locale"],
             "asset": ["asset"],
             "icons": ["module/common/icons"],
+            "ckb-peersyst-sdk": ["module/sdk"],
             "module/*": ["module/*"],
             "utils/*": ["utils/*"],
             "stack-navigator": ["Stack.ts"],

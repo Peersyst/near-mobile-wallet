@@ -3,7 +3,7 @@ import MnemonicInput from "module/wallet/component/input/MnemonicInput/MnemonicI
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useEffect, useState } from "react";
-import { WalletService } from "@peersyst/ckb-peersyst-sdk";
+import { WalletService } from "ckb-peersyst-sdk";
 import { translate } from "locale";
 
 export interface MnemonicForm {

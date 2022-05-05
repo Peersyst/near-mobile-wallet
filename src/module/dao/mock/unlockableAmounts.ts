@@ -1,4 +1,4 @@
-import { DAOUnlockableAmount } from "@peersyst/ckb-peersyst-sdk";
+import { DAOUnlockableAmount } from "ckb-peersyst-sdk";
 
 export const unlockableAmounts: DAOUnlockableAmount[] = [
     {

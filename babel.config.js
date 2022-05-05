@@ -22,6 +22,7 @@ module.exports = function (api) {
                         locale: "./src/locale",
                         asset: "./src/asset",
                         icons: "./src/module/common/icons",
+                        "ckb-peersyst-sdk": "./src/module/sdk",
                         module: "./src/module",
                         utils: "./src/utils",
                         "stack-navigator": "./src/Stack.ts",

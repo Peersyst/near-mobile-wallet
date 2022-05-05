@@ -9,7 +9,7 @@ import {
     TransactionType,
     ScriptType,
     DAOUnlockableAmount,
-} from "@peersyst/ckb-peersyst-sdk";
+} from "ckb-peersyst-sdk";
 import { tokensList, UknownToken } from "module/token/mock/token";
 import { DepositInDAOParams, FullTransaction, SendTransactionParams, WithdrawOrUnlockParams } from "./CkbSdkService.types";
 import { CKB_URL, INDEXER_URL } from "@env";

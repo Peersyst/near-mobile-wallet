@@ -2,7 +2,7 @@ import { render } from "test-utils";
 import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
 import { createTransaction, transaction } from "mocks/transaction";
 import { translate } from "locale";
-import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { TransactionType } from "ckb-peersyst-sdk";
 
 describe("TransactionCard tests", () => {
     test("Renders correctly with amount", () => {

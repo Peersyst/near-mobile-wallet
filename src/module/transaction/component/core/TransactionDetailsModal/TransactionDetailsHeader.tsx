@@ -4,7 +4,7 @@ import TransactionLabel from "module/transaction/component/display/TransactionLa
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
 import formatDate from "utils/formatDate";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
-import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { TransactionType } from "ckb-peersyst-sdk";
 
 export interface TransactionDetailsHeaderProps {
     transaction: FullTransaction;

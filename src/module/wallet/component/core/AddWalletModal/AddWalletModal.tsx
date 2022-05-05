@@ -6,7 +6,7 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { WalletState } from "@peersyst/ckb-peersyst-sdk";
+import { WalletState } from "ckb-peersyst-sdk";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;

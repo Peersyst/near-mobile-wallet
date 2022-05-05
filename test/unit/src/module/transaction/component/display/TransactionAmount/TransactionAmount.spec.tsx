@@ -1,6 +1,6 @@
 import { render } from "test-utils";
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
-import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { TransactionType } from "ckb-peersyst-sdk";
 
 describe("TransactionAmount tests", () => {
     test("Renders subtract", () => {

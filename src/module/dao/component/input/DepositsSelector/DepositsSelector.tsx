@@ -1,4 +1,4 @@
-import { DAOUnlockableAmount } from "@peersyst/ckb-peersyst-sdk";
+import { DAOUnlockableAmount } from "ckb-peersyst-sdk";
 import { useControlled } from "@peersyst/react-hooks";
 import { translate } from "locale";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";

@@ -2,7 +2,7 @@ import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
 import WithdrawSummary from "module/dao/screen/WithdrawConfirmationScreen/WithdrawSummary";
 import { render } from "test-utils";
-import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
+import { FeeRate } from "ckb-peersyst-sdk";
 
 describe("Test for the withdraw summary", () => {
     test("Renders correctly", () => {

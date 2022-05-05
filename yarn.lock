@@ -1776,16 +1776,6 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@peersyst/ckb-peersyst-sdk@1.4.4":
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/@peersyst/ckb-peersyst-sdk/-/ckb-peersyst-sdk-1.4.4.tgz#1856dba06464d51c1330482084e9570ba01b283a"
-  integrity sha512-6lvkt+mefNuBmU4h4B1Eddb/AhrPkPJjwqY1MPpSSKioeQpscsJAhxwQ08nQqwjzkVgo/tkBQ6THGQHHgheRyA==
-  dependencies:
-    "@ckb-lumos/lumos" "^0.18.0-rc6"
-    "@rather-labs/nrc-721-sdk" "0.0.15"
-    cross-fetch "^3.1.5"
-    rimraf "^3.0.2"
-
 "@peersyst/react-hooks@^1.1.6":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-1.2.0.tgz#39d8bf051fdd55c9cc4ad993dc84a7ac72a0ec76"

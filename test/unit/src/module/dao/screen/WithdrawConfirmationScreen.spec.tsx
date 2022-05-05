@@ -7,7 +7,7 @@ import { MockedUnlockableAmounts } from "mocks/DAO";
 import WithdrawConfirmationScreen from "module/dao/screen/WithdrawConfirmationScreen/WithdrawConfirmationScreen";
 import { formatAddress } from "@peersyst/react-utils";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
+import { FeeRate } from "ckb-peersyst-sdk";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 

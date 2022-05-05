@@ -1,4 +1,4 @@
-import { TokenType as TokenSDKType } from "@peersyst/ckb-peersyst-sdk";
+import { TokenType as TokenSDKType } from "ckb-peersyst-sdk";
 
 export interface TokenType extends TokenSDKType {
     imageUri: string;

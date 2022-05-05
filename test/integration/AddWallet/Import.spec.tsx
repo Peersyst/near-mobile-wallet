@@ -5,7 +5,7 @@ import { StorageWallet, WalletStorage } from "module/wallet/WalletStorage";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import createUseWalletStateMock from "mocks/useWalletState";
 import ImportWalletModal from "module/wallet/component/core/ImportWalletModal/ImportWalletModal";
-import { WalletService } from "@peersyst/ckb-peersyst-sdk";
+import { WalletService } from "ckb-peersyst-sdk";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import synchronizeMock from "mocks/synchronize";
 

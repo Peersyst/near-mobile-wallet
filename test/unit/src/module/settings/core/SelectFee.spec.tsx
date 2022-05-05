@@ -4,7 +4,7 @@ import { fireEvent, render } from "test-utils";
 import * as Recoil from "recoil";
 import { translate } from "locale";
 import { SettingsStorage } from "module/settings/SettingsStorage";
-import { FeeRate } from "@peersyst/ckb-peersyst-sdk";
+import { FeeRate } from "ckb-peersyst-sdk";
 
 describe("Test for the SelectFee component", () => {
     test("Renders correctly", () => {

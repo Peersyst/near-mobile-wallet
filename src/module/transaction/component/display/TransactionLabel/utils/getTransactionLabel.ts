@@ -1,4 +1,4 @@
-import { TransactionType } from "@peersyst/ckb-peersyst-sdk";
+import { TransactionType } from "ckb-peersyst-sdk";
 import { translate } from "locale";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
 

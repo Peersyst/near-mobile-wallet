@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { QueryResult } from "query-utils";
-import { DAOBalance } from "@peersyst/ckb-peersyst-sdk";
+import { DAOBalance } from "ckb-peersyst-sdk";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 
