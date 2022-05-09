@@ -4,8 +4,15 @@
     },
     "build": {
         "development": {
-            "developmentClient": true,
-            "distribution": "internal",
+            "node": "14.18.3",
+            "env": {
+                "BUILD_NUMBER": "__BUILD_NUMBER__",
+                "MINIMUM_TRANSACTION_AMOUNT": "61",
+                "EXPLORER_LINK": "https://explorer.nervos.org/aggron/",
+                "CKB_URL": "https://ckb-node-test-1.peersyst.com/rpc",
+                "INDEXER_URL": "https://ckb-node-test-1.peersyst.com/indexer",
+                "MINIMUM_DAO_DEPOSIT": "102"
+            },
             "android": {
                 "buildType": "apk"
             }
