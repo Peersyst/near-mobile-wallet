@@ -22,8 +22,9 @@ sed -i'.bak' "12s/.*/\/\/var fetch = require('whatwg-fetch').fetch;/" ./node_mod
 sed -i'.bak' "95s/.*/const res = await (0, fetch)(rpcUrl, {/" ./node_modules/@ckb-lumos/ckb-indexer/lib/services.js
 sed -i'.bak' "119s/.*/const res = await (0, fetch)(ckbIndexerUrl, {/" ./node_modules/@ckb-lumos/ckb-indexer/lib/services.js
 #RPC
-sed -i'.bak' "10s/.*/\/\/var fetch = require('whatwg-fetch').fetch;/" ./node_modules/@ckb-lumos/ckb-indexer/lib/rpc.js
+#sed -i'.bak' "10s/.*/\/\/var fetch = require('whatwg-fetch').fetch;/" ./node_modules/@ckb-lumos/ckb-indexer/lib/rpc.js
 #Collector
-sed -i'.bak' "16s/.*/\/\/var fetch = require('whatwg-fetch').fetch;/" ./node_modules/@ckb-lumos/ckb-indexer/lib/collector.js
+sed -i'.bak' "16s/.*/\/\/var _crossFetch = require('whatwg-fetch').fetch;/" ./node_modules/@ckb-lumos/ckb-indexer/lib/collector.js
+sed -i'.bak' "211s/.*/const res = await (0, fetch)(_crossFetch.default, {/" ./node_modules/@ckb-lumos/ckb-indexer/lib/services.js
 
 echo "Package requirements changed successfully!"
