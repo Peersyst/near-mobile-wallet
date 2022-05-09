@@ -25,7 +25,7 @@ const QueryClientProvider: FC = ({ children }): JSX.Element => {
                 onError: (error) => {
                     const { message, type } = handleErrorMessage(error);
                     console.error(error);
-                    showToast((error as any).toString(), { type });
+                    showToast(message, { type });
                 },
             }),
         }),

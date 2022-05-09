@@ -6,17 +6,13 @@ import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import { WalletState } from "ckb-peersyst-sdk";
 import { CKBSDKService } from "../service/CkbSdkService";
-import { useToast } from "react-native-components";
-import { MINIMUM_TRANSACTION_AMOUNT } from "@env";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
     const setWalletState = useSetRecoilState(walletState);
     const setSettingsState = useSetRecoilState(settingsState);
-    const { showToast } = useToast();
 
     useEffect(() => {
-        showToast(MINIMUM_TRANSACTION_AMOUNT, { duration: 20000 });
         const getStorage = async () => {
             //Check if there is a previous wallet
             const wallets = await WalletStorage.getWallets();
