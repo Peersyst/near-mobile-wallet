@@ -13,16 +13,16 @@ pipeline {
                 sh 'yarn install'
             }
         }
-        stage('Lint') {
+        /* stage('Lint') {
             steps {
                 sh 'yarn lint'
             }
-        }
-        stage('Test') {
+        } */
+        /* stage('Test') {
             steps {
                 sh 'yarn test:unit'
             }
-        }
+        } */
         stage('Build and publish') {
             when {
                 anyOf { branch 'dev'; branch 'main'; branch 'build'; branch 'feature*'; }
