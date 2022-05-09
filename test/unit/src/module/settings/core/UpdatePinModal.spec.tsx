@@ -16,9 +16,7 @@ describe("Test for the UpdatePinScreen", () => {
     });
     test("Updates pin correctly", () => {
         jest.useFakeTimers();
-        const mockedWalletStorage = { name: "", pin: "", mnemonic: [] };
-        jest.spyOn(WalletStorage, "get").mockImplementation(() => new Promise((resolve) => resolve(mockedWalletStorage)));
-        const setWalletStorage = jest.spyOn(WalletStorage, "set").mockImplementation(() => new Promise((resolve) => resolve()));
+        const setPin = jest.spyOn(WalletStorage, "setPin").mockImplementation(() => new Promise((resolve) => resolve()));
         const screen = render(<UpdatePinModal />);
         for (let i = 1; i < 5; i++) {
             fireEvent.press(screen.getByText(i.toString()));
@@ -28,14 +26,12 @@ describe("Test for the UpdatePinScreen", () => {
             fireEvent.press(screen.getByText(i.toString()));
         }
         jest.runAllTimers();
-        expect(setWalletStorage).toHaveBeenCalledWith(expect.objectContaining({ ...mockedWalletStorage, pin: "1234" }));
+        expect(setPin).toHaveBeenCalledWith("1234");
         jest.useRealTimers();
     });
     test("Not updating pin correctly", () => {
         jest.useFakeTimers();
-        const mockedWalletStorage = { name: "", pin: "", mnemonic: [] };
-        jest.spyOn(WalletStorage, "get").mockImplementation(() => new Promise((resolve) => resolve(mockedWalletStorage)));
-        const setWalletStorage = jest.spyOn(WalletStorage, "set").mockImplementation(() => new Promise((resolve) => resolve()));
+        const setPin = jest.spyOn(WalletStorage, "setPin").mockImplementation(() => new Promise((resolve) => resolve()));
         const screen = render(<UpdatePinModal />);
         for (let i = 9; i > 5; i--) {
             fireEvent.press(screen.getByText(i.toString()));
@@ -45,7 +41,7 @@ describe("Test for the UpdatePinScreen", () => {
             fireEvent.press(screen.getByText(i.toString()));
         }
         jest.runAllTimers();
-        expect(setWalletStorage).not.toHaveBeenCalledWith(expect.objectContaining({ ...mockedWalletStorage, pin: "1234" }));
+        expect(setPin).not.toHaveBeenCalledWith("1234");
         jest.useRealTimers();
     });
 });
