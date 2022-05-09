@@ -4,15 +4,18 @@ import { BottomTabScreenNavigatonProps } from "module/main/component/navigation/
 import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { Col, useDialog, useModal } from "react-native-components";
-import { useResetRecoilState } from "recoil";
+import { useResetRecoilState, useSetRecoilState } from "recoil";
 import ConfirmPinModal from "../components/core/ConfirmPinModal/ConfirmPinModal";
 import UpdatePinModal from "../components/core/UpdatePinModal/UpdatePinModal";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
 import WalletsBackupModal from "module/wallet/component/core/WalletsBackupModal/WalletsBackupModal";
+import { useQueryClient } from "react-query";
 
 const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): JSX.Element => {
     const resetWalletState = useResetRecoilState(walletState);
+    const setWalletState = useSetRecoilState(walletState);
+    const queryClient = useQueryClient();
     const { showModal } = useModal();
     const { showDialog } = useDialog();
     const updatePin = () => {
@@ -42,8 +45,10 @@ const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): 
                                         showModal(ConfirmPinModal, {
                                             onPinConfirmed: async () => {
                                                 await WalletStorage.clearAll();
+                                                setWalletState((state) => ({ ...state, isAuthenticated: false, hasWallet: false }));
                                                 serviceInstancesMap.clear();
                                                 await SettingsStorage.clear();
+                                                await queryClient.invalidateQueries();
                                                 resetWalletState();
                                             },
                                         }),

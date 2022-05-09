@@ -58,12 +58,14 @@ export class WalletService {
     private accountCellsMap: cellMapI = {};
     private accountTransactionMap: transactionMapI = {};
     private onSync!: (walletState: WalletState) => Promise<void>;
+    private onSyncStart!: () => void;
 
     constructor(
         connectionService: ConnectionService,
         mnemo: string,
         walletState?: WalletState,
         onSync?: (walletState: WalletState) => Promise<void>,
+        onSyncStart?: () => void,
     ) {
         if (!WalletService.validateMnemonic(mnemo)) {
             this.logger.error("Invalid Mnemonic");
@@ -89,6 +91,9 @@ export class WalletService {
 
         if (onSync) {
             this.onSync = onSync;
+        }
+        if (onSyncStart) {
+            this.onSyncStart = onSyncStart;
         }
 
         this.accountPublicKey = WalletService.getPrivateKeyFromMnemonic(mnemo).toAccountExtendedPublicKey();
@@ -121,6 +126,7 @@ export class WalletService {
     }
 
     async synchronize(): Promise<WalletState> {
+        if (this.onSyncStart) this.onSyncStart();
         let currentIndex = 0;
         let toBlock: string;
         let fromBlock: string;

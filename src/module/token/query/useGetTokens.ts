@@ -7,8 +7,10 @@ import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 const useGetTokens = (index?: number): QueryResult<TokenAmount[]> => {
     const selectedWallet = useSelectedWalletIndex();
     const usedIndex = index ?? selectedWallet;
-    const serviceInstance = serviceInstancesMap.get(usedIndex);
-    return useQuery(["tokens", usedIndex], () => serviceInstance?.getTokensBalance());
+    return useQuery(["tokens", usedIndex], () => {
+        const serviceInstance = serviceInstancesMap.get(usedIndex);
+        return serviceInstance?.getTokensBalance();
+    });
 };
 
 export default useGetTokens;
