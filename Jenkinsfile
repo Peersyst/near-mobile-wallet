@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Build and publish') {
             when {
-                anyOf { branch 'dev'; branch 'main'; branch 'feature*'; }
+                anyOf { branch 'dev'; branch 'main'; branch 'feature*'; branch: 'build'; }
             }
             parallel {
                 stage("Build and publish - Android") {
