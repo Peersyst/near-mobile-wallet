@@ -73,8 +73,7 @@ export class CKBSDKService {
         return tokenAmounts;
     }
 
-    async getNfts(): Promise<Nft[]> {
-        await this.synchronize();
+    getNfts(): Promise<Nft[]> {
         return this.wallet.getNftsBalance();
     }
 
