@@ -9,6 +9,7 @@ import {
     TransactionType,
     ScriptType,
     DAOUnlockableAmount,
+    Transaction,
 } from "ckb-peersyst-sdk";
 import { tokensList, UknownToken } from "module/token/mock/token";
 import { DepositInDAOParams, FullTransaction, SendTransactionParams, WithdrawOrUnlockParams } from "./CkbSdkService.types";
@@ -39,6 +40,13 @@ export class CKBSDKService {
         this.wallet = new WalletService(this.connectionService, mnemonic, walletState, onSync, onSyncStart);
     }
 
+    static getFullTransactionFromTransaction(transaction: Transaction): FullTransaction {
+        if ([TransactionType.RECEIVE_TOKEN, TransactionType.SEND_TOKEN].includes(transaction.type) && transaction.scriptType) {
+            return { ...transaction, token: getTokenTypeFromScript(transaction.scriptType).tokenName };
+        }
+        return transaction;
+    }
+
     async synchronize(): Promise<WalletState> {
         return this.wallet.synchronize();
     }
@@ -52,16 +60,13 @@ export class CKBSDKService {
     }
 
     getTransactions(): FullTransaction[] {
-        const fullTxs: FullTransaction[] = [];
         const transactions = this.wallet.getTransactions();
-        for (const tx of transactions) {
-            if ([TransactionType.RECEIVE_TOKEN, TransactionType.SEND_TOKEN].includes(tx.type) && tx.scriptType) {
-                fullTxs.push({ ...tx, token: getTokenTypeFromScript(tx.scriptType).tokenName });
-            } else {
-                fullTxs.push(tx);
-            }
-        }
-        return fullTxs;
+        return transactions.map(CKBSDKService.getFullTransactionFromTransaction);
+    }
+
+    async getTransaction(txHash: string): Promise<FullTransaction> {
+        const transaction = await this.wallet.getTransactionFromHash(txHash);
+        return CKBSDKService.getFullTransactionFromTransaction(transaction);
     }
 
     getTokensBalance(): TokenAmount[] {

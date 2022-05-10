@@ -96,6 +96,87 @@ export class TransactionService {
         return scriptConfig.CODE_HASH === scriptType.codeHash && scriptConfig.HASH_TYPE === scriptType.hashType;
     }
 
+    private async getTransactionFromLumosTx(lumosTx: TransactionWithStatus, addresses: string[]): Promise<Transaction> {
+        const header = await this.connection.getBlockHeaderFromHash(lumosTx.tx_status.block_hash!);
+        let hasDAOInput = false;
+
+        const inputs: DataRow[] = [];
+        for (let i = 0; i < lumosTx.transaction.inputs.length; i += 1) {
+            const input = lumosTx.transaction.inputs[i];
+            const transaction = await this.connection.getTransactionFromHash(input.previous_output.tx_hash);
+            const output = transaction.transaction.outputs[parseInt(input.previous_output.index, 16)];
+            inputs.push({
+                quantity: parseInt(output.capacity, 16) / 100000000,
+                address: this.connection.getAddressFromLock(output.lock),
+            });
+            if (output.type) {
+                const script: ScriptType = {
+                    codeHash: output.type.code_hash,
+                    hashType: output.type.hash_type,
+                    args: output.type.args,
+                };
+                if (TransactionService.isScriptTypeScript(script, this.connection.getConfig().SCRIPTS.DAO!)) {
+                    hasDAOInput = true;
+                }
+            }
+        }
+
+        const outputs: DataRow[] = lumosTx.transaction.outputs.map((output) => ({
+            quantity: parseInt(output.capacity, 16) / 100000000,
+            address: this.connection.getAddressFromLock(output.lock),
+            type: output.type ? { args: output.type.args, codeHash: output.type.code_hash, hashType: output.type.hash_type } : undefined,
+        }));
+        lumosTx.transaction.outputs_data.map((data, index) => {
+            if (data !== "0x") {
+                if (data.length === 34) {
+                    outputs[index].data = Number(utils.readBigUInt128LE(data));
+                } else if (data.length === 18) {
+                    outputs[index].data = Number(utils.readBigUInt64LE(data));
+                }
+            }
+        });
+
+        let amount = 0;
+        let type: TransactionType;
+        let scriptType: ScriptType;
+        if (outputs[0] && lumosTx.transaction.outputs[0]) {
+            amount = outputs[0].quantity;
+            const isReceive = addresses.includes(outputs[0].address);
+
+            if (!outputs[0].type) {
+                if (hasDAOInput) {
+                    type = TransactionType.UNLOCK_DAO;
+                } else {
+                    type = !isReceive ? TransactionType.SEND_CKB : TransactionType.RECEIVE_CKB;
+                }
+            } else {
+                scriptType = outputs[0].type;
+                if (TransactionService.isScriptTypeScript(outputs[0].type, this.connection.getConfig().SCRIPTS.SUDT!)) {
+                    type = !isReceive ? TransactionType.SEND_TOKEN : TransactionType.RECEIVE_TOKEN;
+                } else if (TransactionService.isScriptTypeScript(outputs[0].type, this.connection.getConfig().SCRIPTS.DAO!)) {
+                    type = outputs[0].data === 0 ? TransactionType.DEPOSIT_DAO : TransactionType.WITHDRAW_DAO;
+                } else if (await this.nftService.isScriptNftScript(outputs[0].type)) {
+                    type = !isReceive ? TransactionType.SEND_NFT : TransactionType.RECEIVE_NFT;
+                } else {
+                    type = !isReceive ? TransactionType.SMART_CONTRACT_SEND : TransactionType.SMART_CONTRACT_RECEIVE;
+                }
+            }
+        }
+
+        return {
+            status: lumosTx.tx_status.status as TransactionStatus,
+            transactionHash: lumosTx.transaction.hash!,
+            inputs,
+            outputs,
+            blockHash: lumosTx.tx_status.block_hash!,
+            blockNumber: parseInt(header.number, 16),
+            type: type!,
+            scriptType: scriptType!,
+            amount,
+            timestamp: new Date(parseInt(header.timestamp, 16)),
+        };
+    }
+
     addSecp256CellDep(txSkeleton: TransactionSkeletonType): TransactionSkeletonType {
         return TransactionService.addCellDep(txSkeleton, this.connection.getConfig().SCRIPTS.SECP256K1_BLAKE160!);
     }
@@ -242,86 +323,8 @@ export class TransactionService {
         let cell: TransactionWithStatus;
         for await (cell of transactionCollector.collect()) {
             if (!this.transactionMap.has(cell.transaction.hash!)) {
-                const header = await this.connection.getBlockHeaderFromHash(cell.tx_status.block_hash!);
-                let hasDAOInput = false;
-
-                const inputs: DataRow[] = [];
-                for (let i = 0; i < cell.transaction.inputs.length; i += 1) {
-                    const input = cell.transaction.inputs[i];
-                    const transaction = await this.connection.getTransactionFromHash(input.previous_output.tx_hash);
-                    const output = transaction.transaction.outputs[parseInt(input.previous_output.index, 16)];
-                    inputs.push({
-                        quantity: parseInt(output.capacity, 16) / 100000000,
-                        address: this.connection.getAddressFromLock(output.lock),
-                    });
-                    if (output.type) {
-                        const script: ScriptType = {
-                            codeHash: output.type.code_hash,
-                            hashType: output.type.hash_type,
-                            args: output.type.args,
-                        };
-                        if (TransactionService.isScriptTypeScript(script, this.connection.getConfig().SCRIPTS.DAO!)) {
-                            hasDAOInput = true;
-                        }
-                    }
-                }
-
-                const outputs: DataRow[] = cell.transaction.outputs.map((output) => ({
-                    quantity: parseInt(output.capacity, 16) / 100000000,
-                    address: this.connection.getAddressFromLock(output.lock),
-                    type: output.type
-                        ? { args: output.type.args, codeHash: output.type.code_hash, hashType: output.type.hash_type }
-                        : undefined,
-                }));
-                cell.transaction.outputs_data.map((data, index) => {
-                    if (data !== "0x") {
-                        if (data.length === 34) {
-                            outputs[index].data = Number(utils.readBigUInt128LE(data));
-                        } else if (data.length === 18) {
-                            outputs[index].data = Number(utils.readBigUInt64LE(data));
-                        }
-                    }
-                });
-
-                let amount = 0;
-                let type: TransactionType;
-                let scriptType: ScriptType;
-                if (outputs[0] && cell.transaction.outputs[0]) {
-                    amount = outputs[0].quantity;
-                    const isReceive = outputs[0].address === address;
-
-                    if (!outputs[0].type) {
-                        if (hasDAOInput) {
-                            type = TransactionType.UNLOCK_DAO;
-                        } else {
-                            type = !isReceive ? TransactionType.SEND_CKB : TransactionType.RECEIVE_CKB;
-                        }
-                    } else {
-                        scriptType = outputs[0].type;
-                        if (TransactionService.isScriptTypeScript(outputs[0].type, this.connection.getConfig().SCRIPTS.SUDT!)) {
-                            type = !isReceive ? TransactionType.SEND_TOKEN : TransactionType.RECEIVE_TOKEN;
-                        } else if (TransactionService.isScriptTypeScript(outputs[0].type, this.connection.getConfig().SCRIPTS.DAO!)) {
-                            type = outputs[0].data === 0 ? TransactionType.DEPOSIT_DAO : TransactionType.WITHDRAW_DAO;
-                        } else if (await this.nftService.isScriptNftScript(outputs[0].type)) {
-                            type = !isReceive ? TransactionType.SEND_NFT : TransactionType.RECEIVE_NFT;
-                        } else {
-                            type = !isReceive ? TransactionType.SMART_CONTRACT_SEND : TransactionType.SMART_CONTRACT_RECEIVE;
-                        }
-                    }
-                }
-
-                this.transactionMap.set(cell.transaction.hash!, {
-                    status: cell.tx_status.status as TransactionStatus,
-                    transactionHash: cell.transaction.hash!,
-                    inputs,
-                    outputs,
-                    blockHash: cell.tx_status.block_hash!,
-                    blockNumber: parseInt(header.number, 16),
-                    type: type!,
-                    scriptType: scriptType!,
-                    amount,
-                    timestamp: new Date(parseInt(header.timestamp, 16)),
-                });
+                const transaction = await this.getTransactionFromLumosTx(cell, [address]);
+                this.transactionMap.set(transaction.transactionHash, transaction);
             }
 
             const transaction = this.transactionMap.get(cell.transaction.hash!);
@@ -331,6 +334,11 @@ export class TransactionService {
         }
 
         return transactions;
+    }
+
+    async getTransactionFromHash(txHash: string, addresses: string[]): Promise<Transaction> {
+        const transaction = await this.connection.getTransactionFromHash(txHash, false);
+        return this.getTransactionFromLumosTx(transaction, addresses);
     }
 
     async signTransaction(txSkeleton: TransactionSkeletonType, privateKeys: string[]): Promise<string> {
