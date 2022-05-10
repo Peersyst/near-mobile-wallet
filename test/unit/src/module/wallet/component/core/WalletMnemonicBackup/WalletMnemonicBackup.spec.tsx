@@ -9,14 +9,13 @@ const mnemonic = ["Pizza", "Fries", "Ball", "Car"];
 describe("WalletMnemonicBackup tests", () => {
     test("Renders correctly", async () => {
         jest.spyOn(WalletStorage, "getMnemonic").mockReturnValue(SuccessApiCall(mnemonic));
-        const handleSuccess = jest.fn();
+        const handleClose = jest.fn();
 
-        const screen = render(<WalletMnemonicBackup walletIndex={0} onSuccess={handleSuccess} />);
+        const screen = render(<WalletMnemonicBackup walletIndex={0} onClose={handleClose} />);
 
         await waitFor(() => expect(screen.getByText(translate("keep_this_safe"))).toBeDefined());
         mnemonic.forEach((word) => expect(screen.getByText(word)).toBeDefined());
-        fireEvent.press(screen.getByText(translate("next")));
-        mnemonic.forEach((word) => fireEvent.press(screen.getByText(word)));
-        expect(handleSuccess).toHaveBeenCalled();
+        fireEvent.press(screen.getByText(translate("close")));
+        expect(handleClose).toHaveBeenCalled();
     });
 });
