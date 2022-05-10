@@ -25,7 +25,7 @@ export const loadLocalization = async () => {
 export const translate = (key: keyof typeof en, params: Record<string, string> = {}): string => {
     let translation = i18n.t(key);
     for (const param in params) {
-        translation = translation.replace(`%${param}%`, params[param]);
+        translation = translation.replaceAll(`%${param}%`, params[param]);
     }
     return translation;
 };

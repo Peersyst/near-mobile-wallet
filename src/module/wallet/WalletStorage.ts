@@ -114,7 +114,13 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
 
     async removeWallet(index: number): Promise<void> {
         const wallets = await this.getWallets();
-        if (wallets) await this.setWallets(wallets.filter((_, i) => i !== index));
+        if (wallets) {
+            await this.setWallets(
+                wallets
+                    .filter((wallet) => wallet.index !== index)
+                    .map((wallet) => (wallet.index > index ? { ...wallet, index: wallet.index - 1 } : wallet)),
+            );
+        }
     }
 
     async setPin(pin: string): Promise<void> {

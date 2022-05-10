@@ -4,9 +4,7 @@ import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { WalletState } from "ckb-peersyst-sdk";
+import useServiceInstanceCreation from "module/wallet/hook/useServiceInstanceCreation";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
@@ -21,6 +19,7 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
         reset: resetCreateWalletState,
     } = useCreateWallet();
     const { setState: setWalletState } = useWalletState();
+    const createServiceInstance = useServiceInstanceCreation();
 
     const handleClose = () => {
         setOpen(false);
@@ -35,18 +34,6 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
     const handleWalletCreation = async () => {
         const newWallet = await WalletStorage.addWallet({ name: name!, mnemonic: mnemonic!, colorIndex: colorIndex! });
         if (newWallet) {
-            if (!serviceInstancesMap.has(newWallet.index)) {
-                serviceInstancesMap.set(
-                    newWallet.index,
-                    new CKBSDKService(newWallet.mnemonic.join(" "), newWallet.initialState, async (walletState: WalletState) => {
-                        setWalletState((state) => ({
-                            ...state,
-                            wallets: state.wallets.map((w, idx) => (idx === newWallet.index ? { ...w, initialState: walletState } : w)),
-                        }));
-                        await WalletStorage.setInitialState(newWallet.index, walletState);
-                    }),
-                );
-            }
             setWalletState((state) => ({
                 ...state,
                 wallets: [
@@ -58,7 +45,8 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
                     },
                 ],
             }));
-            await serviceInstancesMap.get(newWallet.index)?.synchronize();
+
+            await createServiceInstance(newWallet.index, mnemonic!);
         }
         handleClose();
     };

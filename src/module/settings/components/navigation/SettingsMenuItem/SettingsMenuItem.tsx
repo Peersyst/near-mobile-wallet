@@ -3,7 +3,7 @@ import { TouchableOpacity } from "react-native";
 
 export interface SettingsMenuItemProps {
     text: string;
-    onPress: () => void;
+    onPress?: () => void;
     destructive?: boolean;
 }
 
