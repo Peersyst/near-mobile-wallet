@@ -87,7 +87,7 @@
     "fast": "Rápida",
     "average": "Media",
     "network_name": "Red %name%",
-    "currency_conversion": "Conversión de divisas",
+    "default_currency": "Divisa por defecto",
     "select_locale": "Selecciona tu idioma",
     "en": "Inglés",
     "es": "Español",

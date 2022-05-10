@@ -87,7 +87,7 @@
     "fast": "快",
     "average": "中等",
     "network_name": "%name%网络",
-    "currency_conversion": "货币单位",
+    "default_currency": "默认货币",
     "select_locale": "语言",
     "en": "English",
     "es": "Spanish",

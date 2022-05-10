@@ -23,7 +23,7 @@ describe("Test of the General Settings screen", () => {
         expect(screen.getAllByText(translate("average"))).toHaveLength(2);
 
         //Selector of the currency
-        expect(screen.getAllByText(translate("currency_conversion"))).toHaveLength(2);
+        expect(screen.getAllByText(translate("default_currency"))).toHaveLength(2);
         expect(screen.getAllByText("USD")).toHaveLength(2);
         expect(screen.getByText("EUR")).toBeDefined();
         expect(screen.getByText("GBP")).toBeDefined();

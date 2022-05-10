@@ -87,7 +87,7 @@
     "fast": "Fast",
     "average": "Average",
     "network_name": "%name% network",
-    "currency_conversion": "Currency conversion",
+    "default_currency": "Default currency",
     "select_locale": "Select your language",
     "en": "English",
     "es": "Spanish",
