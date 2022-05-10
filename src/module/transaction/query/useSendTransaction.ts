@@ -5,8 +5,17 @@ import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 
 const useSendTransaction = () => {
     const selectedWallet = useSelectedWalletIndex();
-    const serviceInstance = serviceInstancesMap.get(selectedWallet)!;
-    return useMutation((params: SendTransactionParams) => serviceInstance.sendTransaction(params));
+    return useMutation(
+        (params: SendTransactionParams) => {
+            const serviceInstance = serviceInstancesMap.get(selectedWallet)!;
+            return serviceInstance.sendTransaction(params);
+        },
+        {
+            onSuccess: async () => {
+                await serviceInstancesMap.get(selectedWallet)!.synchronize();
+            },
+        },
+    );
 };
 
 export default useSendTransaction;

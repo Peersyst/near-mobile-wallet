@@ -4,6 +4,7 @@ import LogoRow from "module/common/component/display/Logos/LogoRow/LogoRow";
 import { IconButton, Row } from "react-native-components";
 import { SettingsIcon } from "icons";
 import useNavigation from "../../../hook/useNavigation";
+import RefreshButton from "module/wallet/component/input/RefreshButton/RefreshButton";
 
 export interface HeaderProps {
     showIcons?: boolean;
@@ -18,6 +19,7 @@ const Header = ({ showIcons = true }: HeaderProps): JSX.Element => {
                     <LogoRow />
                     {showIcons && (
                         <Row gap={16}>
+                            <RefreshButton />
                             <IconButton onPress={() => navigation.navigate("Settings")}>
                                 <SettingsIcon />
                             </IconButton>

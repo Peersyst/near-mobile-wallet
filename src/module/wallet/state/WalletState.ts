@@ -4,7 +4,7 @@ import { CKBSDKService } from "module/common/service/CkbSdkService";
 
 export const serviceInstancesMap = new Map<number, CKBSDKService>();
 
-export type Wallet = Omit<StorageWallet, "mnemonic">;
+export type Wallet = Omit<StorageWallet, "mnemonic"> & { synchronizing?: boolean };
 
 export interface WalletState {
     hasWallet: boolean;

@@ -29,9 +29,14 @@ export class CKBSDKService {
     private connectionService: ConnectionService;
     private wallet: WalletService;
 
-    constructor(mnemonic: string, walletState?: WalletState, onSync?: (walletState: WalletState) => Promise<void>) {
+    constructor(
+        mnemonic: string,
+        walletState?: WalletState,
+        onSync?: (walletState: WalletState) => Promise<void>,
+        onSyncStart?: () => void,
+    ) {
         this.connectionService = connectionService;
-        this.wallet = new WalletService(this.connectionService, mnemonic, walletState, onSync);
+        this.wallet = new WalletService(this.connectionService, mnemonic, walletState, onSync, onSyncStart);
     }
 
     async synchronize(): Promise<WalletState> {
@@ -68,8 +73,7 @@ export class CKBSDKService {
         return tokenAmounts;
     }
 
-    async getNfts(): Promise<Nft[]> {
-        await this.synchronize();
+    getNfts(): Promise<Nft[]> {
         return this.wallet.getNftsBalance();
     }
 
