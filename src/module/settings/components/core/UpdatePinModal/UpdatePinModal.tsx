@@ -12,8 +12,7 @@ const UpdatePinModal = createBackdrop(
 
         const handleSubmit = async (pin: string) => {
             setOpen(false);
-            const storedWallet = await WalletStorage.get();
-            await WalletStorage.set({ ...storedWallet!, pin: pin });
+            await WalletStorage.setPin(pin);
             showToast(translate("pin_updated_successfully"), { type: "success" });
         };
 
