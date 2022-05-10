@@ -1,8 +1,6 @@
 import { act, render } from "test-utils";
 import { useEffect, useState } from "react";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
-import { fireEvent } from "@testing-library/react-native";
-import { translate } from "locale";
 
 const SuccessLoadingModal = (): JSX.Element => {
     const [success, setSuccess] = useState(false);
@@ -40,7 +38,6 @@ describe("LoadingModal tests", () => {
         expect(screen.getByTestId("LogoIcon")).toBeDefined();
         act(() => jest.runAllTimers());
         expect(screen.getByTestId("SuccessIcon")).toBeDefined();
-        fireEvent.press(screen.getByText(translate("go_back")));
         act(() => jest.runAllTimers());
         jest.useRealTimers();
     });
