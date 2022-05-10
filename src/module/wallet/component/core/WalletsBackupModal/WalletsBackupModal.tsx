@@ -32,7 +32,6 @@ const WalletsBackupModal = createModal((props): JSX.Element => {
             navbar={{ title: translate("back_up_your_wallets"), back: index === 0 }}
             open={open}
             onClose={() => setOpen(false)}
-            closable={index === 0}
             {...props}
         >
             <Tabs index={index} onIndexChange={setIndex}>
@@ -40,7 +39,7 @@ const WalletsBackupModal = createModal((props): JSX.Element => {
                     <WalletsBackupAdvise onWalletSelected={handleWalletSelection} />
                 </TabPanel>
                 <TabPanel index={1}>
-                    <WalletMnemonicBackup walletIndex={selectedWalletIndex!} onSuccess={() => setOpen(false)} />
+                    <WalletMnemonicBackup walletIndex={selectedWalletIndex!} onClose={() => setOpen(false)} />
                 </TabPanel>
                 <ConfirmPinModal open={showPin} onPinConfirmed={handlePinConfirmed} onClose={handlePinClose} />
             </Tabs>
