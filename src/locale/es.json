@@ -166,5 +166,9 @@
     "minutes": "minutos",
     "remaining_time": "Tiempo restante",
     "compensation": "Ganancias",
-    "unlock": "Desbloquear"
+    "unlock": "Desbloquear",
+    "delete_a_wallet": "Borrar un wallet",
+    "delete_wallet": "Borrar %walletName%",
+    "delete_wallet_text": "Estás seguro de que quieres borrar %walletName% de este dispositivo? Deberás introducir tu PIN para realizar esta acción.",
+    "delete_only_wallet_text": "Estás seguro de que quieres borrar %walletName% de este dispositivo? Esto también borrará tus otros datos, ya que %walletName% es tu unico wallet. Deberás introducir tu PIN para realizar esta acción."
 }

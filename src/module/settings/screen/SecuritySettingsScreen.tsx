@@ -5,6 +5,7 @@ import { Col } from "react-native-components";
 import ChangePasscode from "module/settings/components/core/ChangePassCode/ChangePasscode";
 import WalletsBackup from "module/settings/components/core/WalletsBackup/WalletsBackup";
 import DeleteData from "module/settings/components/core/DeleteData/DeleteData";
+import DeleteOneWallet from "module/settings/components/core/DeleteOneWallet/DeleteOneWallet";
 
 const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): JSX.Element => {
     return (
@@ -12,6 +13,7 @@ const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): 
             <Col gap={20}>
                 <ChangePasscode />
                 <WalletsBackup />
+                <DeleteOneWallet />
                 <DeleteData />
             </Col>
         </BaseSecondaryScreen>

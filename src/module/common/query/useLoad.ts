@@ -23,7 +23,7 @@ export function useLoad(): boolean {
                     ...state,
                     hasWallet: true,
                     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                    wallets: wallets.map(({ mnemonic, ...wallet }) => wallet),
+                    wallets: wallets.map(({ mnemonic, ...wallet }) => wallet).sort((w1, w2) => w1.index - w2.index),
                 }));
 
                 //Get the settings from storage and set it to the state
@@ -31,8 +31,8 @@ export function useLoad(): boolean {
                 setSettingsState(settings);
 
                 for (let i = 0; i < wallets.length; i += 1) {
-                    const { index, initialState, mnemonic } = wallets[i];
-                    await createServiceInstance(index, mnemonic, initialState);
+                    const { initialState, mnemonic } = wallets.find((w) => w.index === i)!;
+                    await createServiceInstance(i, mnemonic, initialState);
                 }
 
                 //Use another thread
