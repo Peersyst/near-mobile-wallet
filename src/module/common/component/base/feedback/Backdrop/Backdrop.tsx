@@ -92,6 +92,7 @@ export default function Backdrop({
             propagateSwipe={propagateSwipe}
             style={[{ margin: 0, justifyContent: "center", alignItems: "center" }, style]}
             onResponderStart={() => toastActive && hideToast()}
+            statusBarTranslucent
         >
             {typeof children === "function" ? children(open, setOpen) : children}
             {entered && !toastWasActive && toastActive && open && (
