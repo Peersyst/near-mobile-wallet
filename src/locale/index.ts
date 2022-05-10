@@ -25,7 +25,9 @@ export const loadLocalization = async () => {
 export const translate = (key: keyof typeof en, params: Record<string, string> = {}): string => {
     let translation = i18n.t(key);
     for (const param in params) {
-        translation = translation.replaceAll(`%${param}%`, params[param]);
+        //Do not add replaceAll because it will make crash the app
+        //because it throws that the method is not defined
+        translation = translation.replace(new RegExp(`%${param}%`, "g"), params[param]);
     }
     return translation;
 };
