@@ -5,12 +5,26 @@ import EmptyListComponent from "module/common/component/display/EmptyListCompone
 import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
 import { useMemo } from "react";
 import isCKBTransaction from "module/transaction/component/utils/isCKBTransaction";
+import useUncommittedTransactions from "module/transaction/query/useUncommittedTransactions";
 
 const TransactionsList = (): JSX.Element => {
-    const { data = [], refetch, isLoading } = useGetTransactions();
+    const { data: transactions = [], refetch: refetchTransactions, isLoading: transactionsLoading } = useGetTransactions();
+    const {
+        data: uncommitedTransactions = [],
+        refetch: refetchUncommitedTransactions,
+        isLoading: uncommitedTransactionsLoading,
+    } = useUncommittedTransactions();
     //Get the tx that corresponds to ckbs, nfts, and tokens -> not DAO txs
     //Then order them by the latest date
-    const txs = useMemo(() => data.filter((tx) => isCKBTransaction(tx.type)).reverse(), [data]);
+    const txs = useMemo(
+        () => [...uncommitedTransactions, ...transactions].filter((tx) => isCKBTransaction(tx.type)).reverse(),
+        [uncommitedTransactions, transactions],
+    );
+
+    const refetch = async () => Promise.all([refetchUncommitedTransactions(), refetchTransactions()]);
+
+    const isLoading = uncommitedTransactionsLoading || transactionsLoading;
+
     return (
         <MainList
             onRefresh={refetch}

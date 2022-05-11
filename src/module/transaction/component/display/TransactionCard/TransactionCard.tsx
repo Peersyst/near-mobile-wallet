@@ -5,9 +5,9 @@ import TransactionIcon from "module/transaction/component/display/TransactionIco
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
 import TransactionLabel from "module/transaction/component/display/TransactionLabel/TransactionLabel";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
-import { TouchableWithoutFeedback } from "react-native";
+import { TouchableWithoutFeedback, View } from "react-native";
 import TransactionDetailsModal from "../../core/TransactionDetailsModal/TransactionDetailsModal";
-import { TransactionType } from "ckb-peersyst-sdk";
+import { TransactionStatus, TransactionType } from "ckb-peersyst-sdk";
 
 export interface TransactionCardProps {
     transaction: FullTransaction;
@@ -15,7 +15,7 @@ export interface TransactionCardProps {
 
 const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => {
     const { showModal } = useModal();
-    const { timestamp, amount, type, token = "CKB" } = transaction;
+    const { timestamp, amount, type, token = "CKB", status } = transaction;
     const showAmount = type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
 
     return (
@@ -29,10 +29,15 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
                             <TransactionAmount variant="body1" boldUnits type={type} fontWeight="bold" amount={amount} currency={token} />
                         )}
                     </Row>
-                    <Row justifyContent="space-between">
+                    <Row justifyContent="space-between" alignItems="center">
                         <Typography variant="body2" style={{ marginLeft: 10 }}>
                             {formatDate(new Date(timestamp))}
                         </Typography>
+                        {status !== TransactionStatus.COMMITTED && (
+                            <View
+                                style={{ height: 15, width: 15, backgroundColor: status === TransactionStatus.REJECTED ? "red" : "yellow" }}
+                            />
+                        )}
                     </Row>
                 </Col>
             </TransactionCardRoot>
