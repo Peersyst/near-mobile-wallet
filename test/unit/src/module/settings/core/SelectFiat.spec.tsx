@@ -11,7 +11,7 @@ describe("Test for the SelectFiat component", () => {
         const mockedRecoilState = [defaultSettingsState, setSettingsState];
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue(mockedRecoilState as any);
         const screen = render(<SelectFiat />);
-        expect(screen.getAllByText(translate("currency_conversion"))).toHaveLength(2);
+        expect(screen.getAllByText(translate("default_currency"))).toHaveLength(2);
         expect(screen.getAllByText("USD")).toHaveLength(2);
         expect(screen.getByText("EUR")).toBeDefined();
         expect(screen.getByText("GBP")).toBeDefined();

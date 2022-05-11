@@ -37,7 +37,7 @@ const SelectFiat = (): JSX.Element => {
             value={settings.fiat}
             onChange={(value) => handleSelect(value as FiatCurrencyType)}
             options={fiatOptions}
-            label={translate("currency_conversion")}
+            label={translate("default_currency")}
         />
     );
 };
