@@ -16,9 +16,10 @@ const Balance = ({
     units,
     style,
     decimals = 2,
+    showAllDecimals = false,
     ...rest
 }: BalanceProps): JSX.Element => {
-    const balance = formatNumber(balanceProps.toString(), { split: true, minDecimals: decimals, maxDecimals: decimals });
+    const balance = formatNumber(balanceProps.toString(), { split: true, minDecimals: decimals, maxDecimals: decimals, showAllDecimals });
     const heading = isHeading(variant);
     const { palette } = useTheme();
     const [textStyles, rootStyles] = useMemo(

@@ -9,6 +9,7 @@ export interface BalanceProps extends Omit<TypographyProps, "children" | "number
     action?: "display" | "add" | "subtract";
     units: string;
     style?: ViewStyle & TextStyle;
+    showAllDecimals?: boolean;
 }
 
 export type BalanceItemProps = Pick<BalanceProps, "smallBalance" | "variant">;

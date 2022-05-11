@@ -5,7 +5,7 @@ export interface SendState {
     senderWalletIndex?: number;
     receiverAddress?: string;
     amount?: string;
-    fee?: FeeRate;
+    fee?: string;
     message?: string;
 }
 

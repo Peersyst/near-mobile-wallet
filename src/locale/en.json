@@ -165,5 +165,6 @@
     "delete_wallet": "Delete %walletName%",
     "delete_wallet_text": "Are you sure you want to delete %walletName% from this device? You'll be asked for your PIN in order to do so.",
     "delete_only_wallet_text": "Are you sure you want to delete %walletName% from this device? This will also erase your other data, as %walletName% is your only wallet. You'll be asked for your PIN in order to do so.",
-    "nothing_to_show": "Nothing to show"
+    "nothing_to_show": "Nothing to show",
+    "too_many_decimals": "Must contain %decimals% or less decimals"
 }

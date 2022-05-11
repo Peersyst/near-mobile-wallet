@@ -11,7 +11,7 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import SendSummary from "./SendSummary";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { useRefetchQueries } from "../../../../query/useRefetchQueries";
-import { convertCKBToMini } from "module/wallet/utils/convertCKBToMini";
+import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import settingsState from "module/settings/state/SettingsState";
 
 const SendConfirmationScreen = (): JSX.Element => {
@@ -30,7 +30,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
         sendTransaction(
-            { amount: convertCKBToMini(amount!), message: message!, to: receiverAddress!, mnemonic: mnemonic!, feeRate },
+            { amount: convertCKBToShannons(amount!), message: message!, to: receiverAddress!, mnemonic: mnemonic!, feeRate },
             {
                 onSuccess: () =>
                     refetch([
