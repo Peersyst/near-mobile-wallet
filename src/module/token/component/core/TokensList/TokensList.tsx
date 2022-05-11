@@ -10,7 +10,7 @@ import { useRecoilValue } from "recoil";
 const TokensList = (): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
     const { index } = useSelectedWallet();
-    const { isLoading, data = [], refetch } = useGetTokens(index);
+    const { isLoading, data: tokens = [], refetch } = useGetTokens(index);
     const { isLoading: loadingPrice, refetch: refetchPrice } = useGetCkbPrice(fiat);
     const handleRefetch = async () => {
         await Promise.all([refetch(), refetchPrice()]);
@@ -20,7 +20,7 @@ const TokensList = (): JSX.Element => {
             onRefresh={handleRefetch}
             loading={isLoading || loadingPrice}
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
-            data={data}
+            data={tokens}
             renderItem={({ item: token }) => <TokenCard token={token} />}
             keyExtractor={(tx) => tx.type.args}
         />
