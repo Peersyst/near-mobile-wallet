@@ -11,9 +11,12 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import SendSummary from "./SendSummary";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { useRefetchQueries } from "../../../../query/useRefetchQueries";
+import { convertCKBToMini } from "module/wallet/utils/convertCKBToMini";
+import settingsState from "module/settings/state/SettingsState";
 
 const SendConfirmationScreen = (): JSX.Element => {
-    const { amount, fee, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
+    const { amount, fee: feeInCKB, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
+    const { fee: feeRate } = useRecoilValue(settingsState);
     const {
         state: { wallets },
     } = useWalletState();
@@ -27,7 +30,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
         sendTransaction(
-            { amount: BigInt(amount!), message: message!, to: receiverAddress!, mnemonic: mnemonic!, feeRate: fee! },
+            { amount: convertCKBToMini(amount!), message: message!, to: receiverAddress!, mnemonic: mnemonic!, feeRate },
             {
                 onSuccess: () =>
                     refetch([
@@ -45,7 +48,7 @@ const SendConfirmationScreen = (): JSX.Element => {
                 <SendSummary
                     amount={amount!}
                     receiverAddress={receiverAddress!}
-                    fee={fee!}
+                    fee={feeInCKB!}
                     message={message!}
                     senderName={senderName}
                     senderAddress={serviceInstance?.getAddress() || ""}

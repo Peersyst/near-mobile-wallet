@@ -6,7 +6,6 @@ import { Dispatch, SetStateAction } from "react";
 import { NumericInput, Typography } from "react-native-components";
 import formatNumber from "utils/formatNumber";
 import { SendSetAmountScreenProps } from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
-import { convertMiniToCKB } from "module/wallet/utils/convertMiniToCKB";
 
 interface CKBAmountInputProps {
     amount: string;
@@ -16,9 +15,8 @@ interface CKBAmountInputProps {
     type?: SendSetAmountScreenProps["type"];
 }
 
-const CKBAmountInput = ({ amount, setAmount, freeBalance, fee: feeRate, type = "send" }: CKBAmountInputProps): JSX.Element => {
+const CKBAmountInput = ({ amount, setAmount, freeBalance, fee, type = "send" }: CKBAmountInputProps): JSX.Element => {
     const isDAO = type === "dao";
-    const fee = Number(convertMiniToCKB(feeRate));
     return (
         <TextField
             variant="underlined"

@@ -1,3 +1,3 @@
 export function convertCKBToMini(num: string | number) {
-    return BigInt(Number(num) * 10 ** 8);
+    return BigInt(Math.round(Number(num) * 10 ** 8));
 }

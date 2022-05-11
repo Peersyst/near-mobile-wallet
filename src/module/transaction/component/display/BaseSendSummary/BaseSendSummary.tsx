@@ -14,17 +14,14 @@ export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee"
 export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
 
 const BaseSendSummary = ({ amount, fee, children }: BaseSendSummaryFullProps): JSX.Element => {
-    const finalAmount = convertMiniToCKB(amount);
-    const finalFee = convertMiniToCKB(fee);
-
     return (
         <Paper style={{ padding: "7%" }}>
             <Col gap="3%" alignItems="center">
                 <Col gap={5} alignItems="center">
-                    <Balance balance={finalAmount} units="CKB" variant="h1" boldUnits />
+                    <Balance balance={amount} units="CKB" variant="h1" boldUnits />
                     <Row>
                         <Typography variant="body1">{translate("transaction_fee_label")}: </Typography>
-                        <Balance balance={finalFee} units="CKB" variant="body1" fontWeight="bold" boldUnits decimals={3} />
+                        <Balance balance={fee} units="CKB" variant="body1" fontWeight="bold" boldUnits decimals={3} />
                     </Row>
                 </Col>
                 {children}
