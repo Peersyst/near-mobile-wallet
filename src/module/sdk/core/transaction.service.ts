@@ -32,9 +32,9 @@ export interface Transaction {
     type: TransactionType;
     scriptType?: ScriptType;
     amount: number;
-    blockHash: string;
-    blockNumber: number;
-    timestamp: Date;
+    blockHash?: string;
+    blockNumber?: number;
+    timestamp?: Date;
 }
 
 export enum TransactionStatus {
@@ -97,7 +97,6 @@ export class TransactionService {
     }
 
     private async getTransactionFromLumosTx(lumosTx: TransactionWithStatus, addresses: string[]): Promise<Transaction> {
-        const header = await this.connection.getBlockHeaderFromHash(lumosTx.tx_status.block_hash!);
         let hasDAOInput = false;
 
         const inputs: DataRow[] = [];
@@ -163,18 +162,23 @@ export class TransactionService {
             }
         }
 
-        return {
+        const transaction: Transaction = {
             status: lumosTx.tx_status.status as TransactionStatus,
             transactionHash: lumosTx.transaction.hash!,
             inputs,
             outputs,
-            blockHash: lumosTx.tx_status.block_hash!,
-            blockNumber: parseInt(header.number, 16),
             type: type!,
             scriptType: scriptType!,
             amount,
-            timestamp: new Date(parseInt(header.timestamp, 16)),
         };
+        if (lumosTx.tx_status.block_hash) {
+            const header = await this.connection.getBlockHeaderFromHash(lumosTx.tx_status.block_hash);
+            transaction.blockHash = lumosTx.tx_status.block_hash;
+            transaction.blockNumber = parseInt(header.number, 16);
+            transaction.timestamp = new Date(parseInt(header.timestamp, 16));
+        }
+
+        return transaction;
     }
 
     addSecp256CellDep(txSkeleton: TransactionSkeletonType): TransactionSkeletonType {
