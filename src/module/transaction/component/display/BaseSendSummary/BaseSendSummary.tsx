@@ -2,7 +2,7 @@ import { translate } from "locale";
 import { SendState } from "module/transaction/state/SendState";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
-import { convertMiniToCKB } from "module/wallet/utils/convertMiniToCKB";
+import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 import { ReactElement } from "react";
 import { Paper, Col, Row, Typography } from "react-native-components";
 
@@ -14,8 +14,8 @@ export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee"
 export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
 
 const BaseSendSummary = ({ amount, fee, children }: BaseSendSummaryFullProps): JSX.Element => {
-    const finalAmount = convertMiniToCKB(amount);
-    const finalFee = convertMiniToCKB(fee);
+    const finalAmount = convertShannonsToCKB(amount);
+    const finalFee = convertShannonsToCKB(fee);
 
     return (
         <Paper style={{ padding: "7%" }}>

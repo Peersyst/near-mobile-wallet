@@ -15,7 +15,7 @@ import ControlledSuspense from "module/common/component/base/feedback/Controlled
 import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import { MINIMUM_DAO_DEPOSIT } from "@env";
-import { convertCKBToMini } from "module/wallet/utils/convertCKBToMini";
+import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 
 export interface SendAmountAndMessageResult {
     amount: string;
@@ -34,7 +34,7 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
     const setTab = useSetTab();
 
     const handleSubmit = ({ amount, message }: SendAmountAndMessageResult): void => {
-        const finalAmount = convertCKBToMini(amount).toString();
+        const finalAmount = convertCKBToShannons(amount).toString();
         setSendState((oldState) => ({ ...oldState, amount: finalAmount, message, fee }));
         setTab(type === "send" ? SendScreens.CONFIRMATION : DepositScreens.CONFIRMATION);
     };

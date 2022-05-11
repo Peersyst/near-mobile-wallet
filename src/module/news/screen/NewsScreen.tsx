@@ -1,4 +1,3 @@
-import { translate } from "locale";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
 import useGetNews from "module/news/query/useGetNews";
@@ -22,7 +21,7 @@ const NewsScreen = (): JSX.Element => {
                 data={isLoading ? new Array(5).fill({}) : data}
                 ItemSeparatorComponent={() => <NewsSpacer />}
                 ListFooterComponent={() => <NewsSpacer style={{ paddingTop: 40 }} />}
-                ListEmptyComponent={isLoading ? undefined : <EmptyListComponent message={translate("no_news")} />}
+                ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
             />
         </BaseMainScreen>
     );
