@@ -23,7 +23,7 @@ describe("DAOTabs tests", () => {
         const screen = render(<DAOTabs />);
         await waitFor(() => expect(screen.getByText("01/01/2022 - 00:00")));
         expect(screen.getByText(translate("deposits"))).toBeDefined();
-        fireEvent.press(screen.getByText(translate("completed")));
+        fireEvent.press(screen.getByText(translate("withdrawals")));
         await waitFor(() => expect(screen.getAllByText(translate("no_withdrawals"))));
     });
     test("Renders correctly with completed withdrawals", async () => {
@@ -33,7 +33,7 @@ describe("DAOTabs tests", () => {
         const screen = render(<DAOTabs />);
         await waitFor(() => expect(screen.getAllByText(translate("no_deposits"))));
         expect(screen.getByText(translate("deposits"))).toBeDefined();
-        fireEvent.press(screen.getByText(translate("completed")));
+        fireEvent.press(screen.getByText(translate("withdrawals")));
         await waitFor(() => expect(screen.getByText("10/01/2022 - 00:00")));
     });
 });

@@ -3,11 +3,11 @@ import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { WalletState } from "module/sdk";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useSetRecoilState } from "recoil";
-import { useQueryClient } from "react-query";
+import useWalletQueriesInvalidation from "module/wallet/hook/useWalletQueriesInvalidation";
 
 const useServiceInstanceCreation = (): ((walletIndex: number, mnemonic: string[], initialState?: WalletState) => Promise<void>) => {
     const setWalletState = useSetRecoilState(walletState);
-    const queryClient = useQueryClient();
+    const invalidateWalletQueries = useWalletQueriesInvalidation();
 
     return async (index, mnemonic, initialState) => {
         if (!serviceInstancesMap.has(index)) {
@@ -17,9 +17,6 @@ const useServiceInstanceCreation = (): ((walletIndex: number, mnemonic: string[]
                     mnemonic.join(" "),
                     initialState,
                     async (walletState: WalletState) => {
-                        queryClient.invalidateQueries(["transactions", index], { refetchInactive: true, exact: true });
-                        queryClient.invalidateQueries(["tokens", index], { refetchInactive: true, exact: true });
-                        queryClient.invalidateQueries(["nfts", index], { refetchInactive: true, exact: true });
                         await WalletStorage.setInitialState(index, walletState);
                         setWalletState((state) => ({
                             ...state,
@@ -27,6 +24,7 @@ const useServiceInstanceCreation = (): ((walletIndex: number, mnemonic: string[]
                                 w.index === index ? { ...w, initialState: walletState, synchronizing: false } : w,
                             ),
                         }));
+                        await invalidateWalletQueries(index);
                     },
                     () => {
                         setWalletState((state) => ({

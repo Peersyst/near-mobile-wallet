@@ -27,6 +27,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         config: {
             usesNonExemptEncryption: false,
         },
+        icon: "./assets/images/adaptive-icon.png",
     },
     android: {
         package: "com.peersyst.ckbull",

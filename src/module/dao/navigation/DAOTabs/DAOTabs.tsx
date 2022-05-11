@@ -1,5 +1,5 @@
 import { translate } from "locale";
-import { MainTabItemType } from "../../../main/component/navigation/MainTabs/MainTabs.types";
+import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
 import MainTabs from "../../../main/component/navigation/MainTabs/MainTabs";
 import DAOCompletedWithdrawalsList from "module/dao/component/core/DAOCompletedWithdrawalsList/DAOCompletedWithdrawalsList";
 import DAODepositsList from "module/dao/component/core/DAODepositsList/DAODepositsList";
@@ -11,7 +11,7 @@ const DAOTabs = (): JSX.Element => {
             item: <DAODepositsList />,
         },
         {
-            title: translate("completed"),
+            title: translate("withdrawals"),
             item: <DAOCompletedWithdrawalsList />,
         },
     ];

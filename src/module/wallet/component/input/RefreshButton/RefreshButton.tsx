@@ -1,10 +1,10 @@
 import { Easing } from "react-native";
 import { RefreshIcon } from "icons";
 import { Animated, IconButton } from "react-native-components";
-import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { classify } from "@peersyst/react-utils";
+import useWalletState from "module/wallet/hook/useWalletState";
 
 const AnimatedRefreshIcon = Animated.createAnimatedComponent(classify(RefreshIcon));
 
@@ -15,11 +15,18 @@ const RefreshButton = (): JSX.Element => {
         outputRange: ["0deg", "-360deg"],
     });
 
-    const { synchronizing = false } = useSelectedWallet() || {};
+    const {
+        state: { wallets },
+    } = useWalletState();
+    const [ownSynchronizing, setOwnSynchronizing] = useState(false);
+    const synchronizing = ownSynchronizing || wallets.some((w) => w.synchronizing);
+
     const handleRefresh = async () => {
+        setOwnSynchronizing(true);
         for (let i = 0; i < serviceInstancesMap.size; i += 1) {
             await serviceInstancesMap.get(i)?.synchronize();
         }
+        setOwnSynchronizing(false);
     };
 
     const animation = useRef(

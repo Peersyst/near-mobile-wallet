@@ -7,7 +7,9 @@ import TransactionLabel from "module/transaction/component/display/TransactionLa
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
 import { TouchableWithoutFeedback } from "react-native";
 import TransactionDetailsModal from "../../core/TransactionDetailsModal/TransactionDetailsModal";
-import { TransactionType } from "ckb-peersyst-sdk";
+import { TransactionStatus as TransactionStatusEnum, TransactionType } from "ckb-peersyst-sdk";
+import TransactionStatusIndicator from "module/transaction/component/display/TransactionStatusIndicator/TransactionStatusIndicator";
+import TransactionStatus from "../TransactionStatus/TransactionStatus";
 
 export interface TransactionCardProps {
     transaction: FullTransaction;
@@ -15,7 +17,7 @@ export interface TransactionCardProps {
 
 const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => {
     const { showModal } = useModal();
-    const { timestamp, amount, type, token = "CKB" } = transaction;
+    const { timestamp, amount, type, token = "CKB", status } = transaction;
     const showAmount = type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
 
     return (
@@ -29,10 +31,15 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
                             <TransactionAmount variant="body1" boldUnits type={type} fontWeight="bold" amount={amount} currency={token} />
                         )}
                     </Row>
-                    <Row justifyContent="space-between">
-                        <Typography variant="body2" style={{ marginLeft: 10 }}>
-                            {formatDate(new Date(timestamp))}
-                        </Typography>
+                    <Row justifyContent="space-between" alignItems="center">
+                        {timestamp ? (
+                            <Typography variant="body2" style={{ marginLeft: 10 }}>
+                                {formatDate(new Date(timestamp))}
+                            </Typography>
+                        ) : (
+                            <TransactionStatus variant="body2" status={status} style={{ marginLeft: 10 }} />
+                        )}
+                        {status !== TransactionStatusEnum.COMMITTED && <TransactionStatusIndicator status={status} />}
                     </Row>
                 </Col>
             </TransactionCardRoot>

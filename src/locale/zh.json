@@ -170,5 +170,6 @@
     "delete_a_wallet": "删除钱包",
     "delete_wallet": "删除 %walletName%",
     "delete_wallet_text": "确定要从此设备中删除 %walletName% 吗？为此，系统会要求您提供 PIN 码。",
-    "delete_only_wallet_text": "确定要从此设备中删除 %walletName% 吗？这也会删除您的其他数据，因为 %walletName% 是您唯一的钱包。为此，系统会要求您提供 PIN 码。"
+    "delete_only_wallet_text": "确定要从此设备中删除 %walletName% 吗？这也会删除您的其他数据，因为 %walletName% 是您唯一的钱包。为此，系统会要求您提供 PIN 码。",
+    "withdrawals": "提款"
 }
