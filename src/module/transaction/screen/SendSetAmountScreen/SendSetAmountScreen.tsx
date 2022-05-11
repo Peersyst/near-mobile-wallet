@@ -15,7 +15,7 @@ import ControlledSuspense from "module/common/component/base/feedback/Controlled
 import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import { MINIMUM_DAO_DEPOSIT } from "@env";
-import { convertMiniToCKB } from "module/wallet/utils/convertMiniToCKB";
+import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 
 export interface SendAmountAndMessageResult {
     amount: string;
@@ -30,12 +30,12 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const [amount, setAmount] = useState(sendState.amount || "");
     const { fee: feeRate } = useRecoilValue(settingsState);
-    const fee = convertMiniToCKB(feeRate);
+    const fee = convertCKBToShannons(feeRate);
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex);
     const setTab = useSetTab();
 
     const handleSubmit = ({ amount, message }: SendAmountAndMessageResult): void => {
-        setSendState((oldState) => ({ ...oldState, amount, message, fee }));
+        setSendState((oldState) => ({ ...oldState, amount, message, fee: fee.toString() }));
         setTab(type === "send" ? SendScreens.CONFIRMATION : DepositScreens.CONFIRMATION);
     };
 

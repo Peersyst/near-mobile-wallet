@@ -10,17 +10,25 @@ import {
     ScriptType,
     DAOUnlockableAmount,
 } from "ckb-peersyst-sdk";
-import { tokensList, UknownToken } from "module/token/mock/token";
+import { tokenAmountZeroBalanceList, tokensList, UknownToken } from "module/token/mock/token";
 import { DepositInDAOParams, FullTransaction, SendTransactionParams, WithdrawOrUnlockParams } from "./CkbSdkService.types";
 import { CKB_URL, INDEXER_URL } from "@env";
 import { TokenAmount, TokenType } from "module/token/types";
 
-export function getTokenTypeFromScript(scriptType: ScriptType): TokenType {
-    const tokenFound = tokensList.filter((tkn) => tkn.args === scriptType.args && tkn.codeHash === scriptType.codeHash);
-    if (tokenFound.length > 0) {
-        return tokenFound[0];
+export function getTokenIndexTypeFromScript(scriptType: ScriptType): number {
+    return tokensList.findIndex((tkn) => tkn.args === scriptType.args && tkn.codeHash === scriptType.codeHash);
+}
+
+export function getTokenTypeFromIndex(tokenFound: number, scriptType: ScriptType): TokenType {
+    if (tokenFound !== -1) {
+        return tokensList[tokenFound];
     }
     return { ...UknownToken, ...scriptType };
+}
+
+export function getTokenTypeFromScript(scriptType: ScriptType): TokenType {
+    const tokenFound = getTokenIndexTypeFromScript(scriptType);
+    return getTokenTypeFromIndex(tokenFound, scriptType);
 }
 
 export const connectionService = new ConnectionService(CKB_URL, INDEXER_URL, Environments.Testnet);
@@ -66,9 +74,16 @@ export class CKBSDKService {
 
     getTokensBalance(): TokenAmount[] {
         const tokens = this.wallet.getTokensBalance();
-        const tokenAmounts: TokenAmount[] = [];
+        let tokenAmounts: TokenAmount[] = [...tokenAmountZeroBalanceList];
         for (const token of tokens) {
-            tokenAmounts.push({ amount: token.amount, type: getTokenTypeFromScript(token.type) });
+            const tokenIndex = getTokenIndexTypeFromScript(token.type);
+            //Supported Token
+            if (tokenIndex !== -1) {
+                tokenAmounts[tokenIndex].amount = token.amount;
+            } else {
+                //Not Supported Token
+                tokenAmounts.push({ amount: token.amount, type: getTokenTypeFromIndex(-1, token.type) });
+            }
         }
         return tokenAmounts;
     }

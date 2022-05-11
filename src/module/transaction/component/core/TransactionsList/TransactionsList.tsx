@@ -1,5 +1,4 @@
 import useGetTransactions from "module/transaction/query/useGetTransactions";
-import { translate } from "locale";
 import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
@@ -16,7 +15,7 @@ const TransactionsList = (): JSX.Element => {
             onRefresh={refetch}
             loading={isLoading}
             data={txs}
-            ListEmptyComponent={isLoading ? undefined : <EmptyListComponent message={translate("no_transactions")} />}
+            ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
             renderItem={({ item: tx }) => <TransactionCard transaction={tx} />}
             keyExtractor={(_, index) => index.toString()}
         />

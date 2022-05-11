@@ -2,7 +2,6 @@ import { translate } from "locale";
 import { SendState } from "module/transaction/state/SendState";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
-import { convertMiniToCKB } from "module/wallet/utils/convertMiniToCKB";
 import { ReactElement } from "react";
 import { Paper, Col, Row, Typography } from "react-native-components";
 

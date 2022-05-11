@@ -33,6 +33,6 @@ describe("NftsList tests", () => {
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(sdkInstance, "getNfts").mockReturnValue(SuccessApiCall([]));
         const screen = render(<NftsList />);
-        await waitFor(() => expect(screen.getAllByText(translate("no_nfts"))));
+        await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show"))));
     });
 });

@@ -3,7 +3,7 @@ import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import SendSummary from "module/transaction/screen/SendConfirmationScreen/SendSummary";
-import { convertCKBToMini } from "module/wallet/utils/convertCKBToMini";
+import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import { render } from "test-utils";
 
 describe("Test for the SendSummary component", () => {
@@ -12,7 +12,7 @@ describe("Test for the SendSummary component", () => {
         const screen = render(
             <SendSummary
                 senderAddress="0xMockedAddress"
-                amount={convertCKBToMini(2400)}
+                amount={convertCKBToShannons(2400)}
                 fee={FeeRate.NORMAL}
                 receiverAddress={"0xRx"}
                 message={"hola"}

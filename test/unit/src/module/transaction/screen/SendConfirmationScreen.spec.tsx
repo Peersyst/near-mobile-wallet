@@ -8,7 +8,7 @@ import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
-import { convertCKBToMini } from "module/wallet/utils/convertCKBToMini";
+import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 
 describe("SendConfirmationScreen tests", () => {
     const sdkInstance = new CKBSDKService(MnemonicMocked);
@@ -22,8 +22,8 @@ describe("SendConfirmationScreen tests", () => {
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({
-            amount: convertCKBToMini(1000).toString(),
-            fee: convertCKBToMini(10).toString(),
+            amount: convertCKBToShannons(1000).toString(),
+            fee: convertCKBToShannons(10).toString(),
             senderWalletIndex: mockedUseWallet.state.wallets[0].index,
             receiverAddress: "receiver_address",
             message: "Send message",
