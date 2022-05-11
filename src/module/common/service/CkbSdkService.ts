@@ -10,15 +10,18 @@ import {
     ScriptType,
     DAOUnlockableAmount,
 } from "ckb-peersyst-sdk";
-import { tokensList, UknownToken } from "module/token/mock/token";
+import { tokenAmountZeroBalanceList, tokensList, UknownToken } from "module/token/mock/token";
 import { DepositInDAOParams, FullTransaction, SendTransactionParams, WithdrawOrUnlockParams } from "./CkbSdkService.types";
 import { CKB_URL, INDEXER_URL } from "@env";
 import { TokenAmount, TokenType } from "module/token/types";
 
-export function getTokenTypeFromScript(scriptType: ScriptType): TokenType {
-    const tokenFound = tokensList.filter((tkn) => tkn.args === scriptType.args && tkn.codeHash === scriptType.codeHash);
-    if (tokenFound.length > 0) {
-        return tokenFound[0];
+export function getTokenIndexTypeFromScript(scriptType: ScriptType): number {
+    return tokensList.findIndex((tkn) => tkn.args === scriptType.args && tkn.codeHash === scriptType.codeHash);
+}
+
+export function getTokenTypeFromIndex(tokenIndex: number, scriptType?: ScriptType): TokenType {
+    if (tokenIndex !== -1) {
+        return tokensList[tokenIndex];
     }
     return { ...UknownToken, ...scriptType };
 }
@@ -56,7 +59,10 @@ export class CKBSDKService {
         const transactions = this.wallet.getTransactions();
         for (const tx of transactions) {
             if ([TransactionType.RECEIVE_TOKEN, TransactionType.SEND_TOKEN].includes(tx.type) && tx.scriptType) {
-                fullTxs.push({ ...tx, token: getTokenTypeFromScript(tx.scriptType).tokenName });
+                const tokenIndex = getTokenIndexTypeFromScript(tx.scriptType);
+                if (tokenIndex !== -1) {
+                    fullTxs.push({ ...tx, token: getTokenTypeFromIndex(tokenIndex).tokenName });
+                }
             } else {
                 fullTxs.push(tx);
             }
@@ -66,9 +72,13 @@ export class CKBSDKService {
 
     getTokensBalance(): TokenAmount[] {
         const tokens = this.wallet.getTokensBalance();
-        const tokenAmounts: TokenAmount[] = [];
+        let tokenAmounts: TokenAmount[] = [...tokenAmountZeroBalanceList];
         for (const token of tokens) {
-            tokenAmounts.push({ amount: token.amount, type: getTokenTypeFromScript(token.type) });
+            const tokenIndex = getTokenIndexTypeFromScript(token.type);
+            //Supported Token
+            if (tokenIndex !== -1) {
+                tokenAmounts[tokenIndex].amount = token.amount;
+            }
         }
         return tokenAmounts;
     }

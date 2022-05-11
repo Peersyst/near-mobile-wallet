@@ -59,6 +59,19 @@ export const tokensList: TokenType[] = [
     },
 ];
 
+export const tokenAmountZeroBalanceList: TokenAmount[] = tokensList.map((_, i) => ({
+    type: {
+        args: tokensList[i].args,
+        codeHash: tokensList[i].codeHash,
+        hashType: tokensList[i].hashType,
+        imageUri: tokensList[i].imageUri,
+        tokenName: tokensList[i].tokenName,
+        name: tokensList[i].name,
+        description: tokensList[i].description,
+    },
+    amount: 0,
+}));
+
 export const UknownToken: TokenType = {
     name: "Unknown Token",
     tokenName: "Unknown Token",

@@ -1,7 +1,6 @@
 import TokenCard from "../../display/TokenCard/TokenCard";
 import useGetTokens from "../../../query/useGetTokens";
 import { useGetCkbPrice } from "module/common/query/useCkbPriceConverter";
-import { translate } from "locale";
 import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
@@ -11,7 +10,7 @@ import { useRecoilValue } from "recoil";
 const TokensList = (): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
     const { index } = useSelectedWallet();
-    const { isLoading, data = [], refetch } = useGetTokens(index);
+    const { isLoading, data: tokens = [], refetch } = useGetTokens(index);
     const { isLoading: loadingPrice, refetch: refetchPrice } = useGetCkbPrice(fiat);
     const handleRefetch = async () => {
         await Promise.all([refetch(), refetchPrice()]);
@@ -20,8 +19,8 @@ const TokensList = (): JSX.Element => {
         <MainList
             onRefresh={handleRefetch}
             loading={isLoading || loadingPrice}
-            ListEmptyComponent={isLoading ? undefined : <EmptyListComponent message={translate("no_currencies")} />}
-            data={data}
+            ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
+            data={tokens}
             renderItem={({ item: token }) => <TokenCard token={token} />}
             keyExtractor={(tx) => tx.type.args}
         />

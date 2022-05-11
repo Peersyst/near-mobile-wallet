@@ -1,4 +1,5 @@
 const image = {
+    emptyFolder: require("./EmptyFolder.png"),
     coloredBackground: require("./coloredBackground.png"),
     coloredLogo: require("./coloredLogo.png"),
     deposit: require("./deposit.png"),
