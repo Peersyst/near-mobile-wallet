@@ -132,8 +132,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         const wallets = await this.getWallets();
         if (!wallets) return undefined;
         const newWallet = { ...wallet, index: wallets.length };
-        wallets.push(newWallet);
-        await this.setWallets(wallets);
+        await this.setWallets([...wallets, newWallet]);
         return newWallet;
     }
 

@@ -454,7 +454,6 @@ export class WalletService {
     }
 
     async getDAOUnlockableAmounts(): Promise<DAOUnlockableAmount[]> {
-        await this.synchronize();
         return this.daoService.getUnlockableAmountsFromCells(this.getCells());
     }
 }

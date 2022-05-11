@@ -1,36 +1,18 @@
 import { useMutation } from "react-query";
 import { SendTransactionParams } from "module/common/service/CkbSdkService.types";
-import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
-import { useSetRecoilState } from "recoil";
-import { WalletStorage } from "module/wallet/WalletStorage";
-import { useRefetchQuery } from "../../../query/useRefetchQuery";
+import useAddUncommittedTransaction from "module/transaction/query/useAddUncommitedTransaction";
 
 const useSendTransaction = () => {
     const selectedWallet = useSelectedWalletIndex();
-    const setWalletState = useSetRecoilState(walletState);
-    const refetchQuery = useRefetchQuery();
+    const addUncommittedTransaction = useAddUncommittedTransaction();
 
-    return useMutation(
-        (params: SendTransactionParams) => {
-            const serviceInstance = serviceInstancesMap.get(selectedWallet)!;
-            return serviceInstance.sendTransaction(params);
-        },
-        {
-            onSuccess: async (hash: string) => {
-                setWalletState((state) => ({
-                    ...state,
-                    wallets: state.wallets.map((w) =>
-                        w.index === selectedWallet
-                            ? { ...w, uncommittedTransactionHashes: [...(w.uncommittedTransactionHashes || []), hash] }
-                            : w,
-                    ),
-                }));
-                await WalletStorage.addUncommittedTransactionHash(selectedWallet, hash);
-                await refetchQuery(["uncommittedTransactions", selectedWallet]);
-            },
-        },
-    );
+    return useMutation(async (params: SendTransactionParams) => {
+        const serviceInstance = serviceInstancesMap.get(selectedWallet)!;
+        const hash = await serviceInstance.sendTransaction(params);
+        if (hash) await addUncommittedTransaction(selectedWallet, hash);
+    });
 };
 
 export default useSendTransaction;

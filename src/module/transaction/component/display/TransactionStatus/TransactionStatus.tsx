@@ -1,7 +1,7 @@
-import { TransactionStatus as TransactionStatusType } from "module/transaction/types";
 import { TypographyProps } from "react-native-components";
 import { TransactionStatusRoot } from "module/transaction/component/display/TransactionStatus/TransactionStatus.styles";
 import { translate } from "locale";
+import { TransactionStatus as TransactionStatusType } from "ckb-peersyst-sdk";
 
 export interface TransactionStatusProps extends Omit<TypographyProps, "children"> {
     status: TransactionStatusType;

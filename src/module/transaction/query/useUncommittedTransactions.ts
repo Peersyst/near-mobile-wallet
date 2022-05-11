@@ -17,17 +17,20 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
     const rejectedHashes: string[] = useRef([]).current;
 
     return useQuery(
-        ["uncommittedTransactions", index],
+        ["uncommittedTransactions", usedIndex, uncommittedTransactionHashes],
         async () => {
             if (!uncommittedTransactionHashes) return [];
 
             const serviceInstance = serviceInstancesMap.get(usedIndex)!;
 
+            const updatedUncommittedTransactionHashes: string[] = [];
+            let shouldSync = false;
             const uncommittedTransactions: FullTransaction[] = [];
             for (const hash of uncommittedTransactionHashes) {
                 const tx = await serviceInstance.getTransaction(hash);
                 if (tx.status !== TransactionStatus.COMMITTED) {
-                    uncommittedTransactions.push(await serviceInstance.getTransaction(hash));
+                    uncommittedTransactions.push(tx);
+                    updatedUncommittedTransactionHashes.push(hash);
                     // If rejected keep it in the list but remove it from storage in order to show it just in the current session
                     if (tx.status === TransactionStatus.REJECTED && !rejectedHashes.find((h) => h === hash)) {
                         await WalletStorage.removeUncommittedTransactionHash(usedIndex, hash);
@@ -35,17 +38,18 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
                     }
                     // If committed remove it and sync in order to refresh data and refetch useGetTransactiions
                 } else {
-                    setWalletState((state) => ({
-                        ...state,
-                        wallets: state.wallets.map((w) =>
-                            w.index === usedIndex
-                                ? { ...w, uncommittedTransactionHashes: w.uncommittedTransactionHashes!.filter((uTxH) => uTxH !== hash) }
-                                : w,
-                        ),
-                    }));
                     await WalletStorage.removeUncommittedTransactionHash(usedIndex, hash);
-                    await serviceInstance.synchronize();
+                    shouldSync = true;
                 }
+            }
+            if (shouldSync) {
+                await serviceInstance.synchronize();
+                setWalletState((state) => ({
+                    ...state,
+                    wallets: state.wallets.map((w) =>
+                        w.index === usedIndex ? { ...w, uncommittedTransactionHashes: updatedUncommittedTransactionHashes } : w,
+                    ),
+                }));
             }
             return uncommittedTransactions;
         },
