@@ -151,7 +151,5 @@ export class ConnectionService {
         } catch (err) {
             return false;
         }
-
-        return false;
     }
 }
