@@ -11,6 +11,7 @@ import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 import { MINIMUM_DAO_DEPOSIT } from "@env";
+import { FeeRate } from "ckb-peersyst-sdk";
 describe("SendAmountAndMessageScreen tests", () => {
     const sdkInstance = new CKBSDKService(MnemonicMocked);
 
@@ -46,6 +47,7 @@ describe("SendAmountAndMessageScreen tests", () => {
     test("Sets send state and advances to next screen", async () => {
         const setSendState = jest.fn();
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{}, setSendState]);
+        jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fee: FeeRate.NORMAL });
         const setTab = jest.fn();
         jest.spyOn(UseSetTab, "default").mockReturnValue(setTab);
         const screen = render(<SendSetAmountScreen />);
