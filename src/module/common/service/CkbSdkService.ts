@@ -19,16 +19,11 @@ export function getTokenIndexTypeFromScript(scriptType: ScriptType): number {
     return tokensList.findIndex((tkn) => tkn.args === scriptType.args && tkn.codeHash === scriptType.codeHash);
 }
 
-export function getTokenTypeFromIndex(tokenFound: number, scriptType: ScriptType): TokenType {
-    if (tokenFound !== -1) {
-        return tokensList[tokenFound];
+export function getTokenTypeFromIndex(tokenIndex: number, scriptType?: ScriptType): TokenType {
+    if (tokenIndex !== -1) {
+        return tokensList[tokenIndex];
     }
     return { ...UknownToken, ...scriptType };
-}
-
-export function getTokenTypeFromScript(scriptType: ScriptType): TokenType {
-    const tokenFound = getTokenIndexTypeFromScript(scriptType);
-    return getTokenTypeFromIndex(tokenFound, scriptType);
 }
 
 export const connectionService = new ConnectionService(CKB_URL, INDEXER_URL, Environments.Testnet);
@@ -64,7 +59,10 @@ export class CKBSDKService {
         const transactions = this.wallet.getTransactions();
         for (const tx of transactions) {
             if ([TransactionType.RECEIVE_TOKEN, TransactionType.SEND_TOKEN].includes(tx.type) && tx.scriptType) {
-                fullTxs.push({ ...tx, token: getTokenTypeFromScript(tx.scriptType).tokenName });
+                const tokenIndex = getTokenIndexTypeFromScript(tx.scriptType);
+                if (tokenIndex !== -1) {
+                    fullTxs.push({ ...tx, token: getTokenTypeFromIndex(tokenIndex).tokenName });
+                }
             } else {
                 fullTxs.push(tx);
             }
@@ -80,9 +78,6 @@ export class CKBSDKService {
             //Supported Token
             if (tokenIndex !== -1) {
                 tokenAmounts[tokenIndex].amount = token.amount;
-            } else {
-                //Not Supported Token
-                tokenAmounts.push({ amount: token.amount, type: getTokenTypeFromIndex(-1, token.type) });
             }
         }
         return tokenAmounts;

@@ -9,7 +9,7 @@ import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { FeeRate } from "ckb-peersyst-sdk";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
-import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
+import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 
 describe("Test for the DepositSummary", () => {
     const sdkInstance = new CKBSDKService(MnemonicMocked);
@@ -30,7 +30,7 @@ describe("Test for the DepositSummary", () => {
         const screen = render(
             <DepositSummary
                 senderAddress={"0xMockedAddress"}
-                amount={convertCKBToShannons(1000)}
+                amount={convertShannonsToCKB(1000)}
                 fee={FeeRate.NORMAL}
                 senderName={"Peersyst"}
             />,
