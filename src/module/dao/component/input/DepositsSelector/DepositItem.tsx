@@ -7,6 +7,7 @@ import { DepositItemText } from "./DepositItem.styles";
 import { translate } from "locale";
 import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import { getAPC } from "module/dao/utils/getAPC";
+import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 
 export interface DepositItemProps {
     amount: DAOUnlockableAmount["amount"];
@@ -46,7 +47,7 @@ const DepositItem = ({
                     as={Balance}
                     unlockable={unlockable}
                     selected={isSelected}
-                    balance={convertCKBToShannons(amount)}
+                    balance={convertShannonsToCKB(amount)}
                     units={"CKB"}
                     variant="body1"
                     boldUnits
@@ -64,7 +65,7 @@ const DepositItem = ({
                     as={Balance}
                     unlockable={unlockable}
                     selected={isSelected}
-                    balance={convertCKBToShannons(compensation)}
+                    balance={convertShannonsToCKB(compensation)}
                     units={"CKB"}
                     variant="body2"
                     boldUnits

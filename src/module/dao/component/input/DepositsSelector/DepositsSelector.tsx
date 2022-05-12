@@ -4,10 +4,10 @@ import { translate } from "locale";
 import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 import Select, { SelectProps } from "module/common/component/input/Select/Select";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import { Typography } from "react-native-components";
 import DepositItem from "./DepositItem";
 import { DepositItemText } from "./DepositItem.styles";
+import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 
 interface DepositsSelectorProps extends Omit<SelectProps, "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple"> {
     deposits: DAOUnlockableAmount[];
@@ -34,7 +34,7 @@ const DepositsSelector = ({ deposits, value, onChange, ...rest }: DepositsSelect
                 renderValue={() => (
                     <DepositItemText
                         as={Balance}
-                        balance={convertCKBToShannons(deposits[selectedIndex].amount)}
+                        balance={convertShannonsToCKB(deposits[selectedIndex].amount)}
                         units={"CKB"}
                         variant="body1"
                         boldUnits

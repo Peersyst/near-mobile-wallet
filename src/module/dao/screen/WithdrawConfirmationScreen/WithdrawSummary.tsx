@@ -26,7 +26,7 @@ const WithdrawSummary = ({ amount, fee, receiverName, receiverAddress, depositAP
                     <SummaryText
                         as={Balance}
                         style={{ paddingLeft: "5%" }}
-                        balance={convertCKBToShannons(compensation)}
+                        balance={compensation}
                         units={"CKB"}
                         variant="body1"
                         boldUnits

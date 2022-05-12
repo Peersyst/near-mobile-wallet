@@ -3,6 +3,7 @@ import { translate } from "locale";
 import WithdrawSummary from "module/dao/screen/WithdrawConfirmationScreen/WithdrawSummary";
 import { render } from "test-utils";
 import { FeeRate } from "ckb-peersyst-sdk";
+import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 
 describe("Test for the withdraw summary", () => {
     test("Renders correctly", () => {
@@ -12,7 +13,8 @@ describe("Test for the withdraw summary", () => {
                 receiverAddress={"0xMockedAddress"}
                 depositAPC={2}
                 amount={100}
-                fee={FeeRate.NORMAL}
+                fee={convertShannonsToCKB(FeeRate.NORMAL).toString()}
+                compensation={120}
             />,
         );
         expect(screen.getByText(translate("destination_wallet") + ":")).toBeDefined();

@@ -12,10 +12,10 @@ import DepositSummary from "./DepositSummary";
 import useDepositInDAO from "module/dao/query/useDepositInDAO";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import settingsState from "module/settings/state/SettingsState";
-import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
+import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 
 const DepositConfirmationScreen = (): JSX.Element => {
-    const { amount, fee, senderWalletIndex } = useRecoilValue(sendState);
+    const { amount, fee: feeInCKB, senderWalletIndex } = useRecoilValue(sendState);
     const {
         state: { wallets },
     } = useWalletState();
@@ -28,18 +28,22 @@ const DepositConfirmationScreen = (): JSX.Element => {
     const refetch = useRefetchQuery();
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
-        console.log(convertShannonsToCKB(amount!));
-        /*  depositInDAO(
-            { amount: convertShannonsToCKB(amount!), mnemonic: mnemonic!, feeRate: feeRate },
+        depositInDAO(
+            { amount: convertCKBToShannons(amount!), mnemonic: mnemonic!, feeRate: feeRate },
             { onSuccess: () => refetch(["balance", senderWalletIndex]) },
-        ); */
+        );
         //The SendState is cleaned in the "onExited" method of DepositModal
     };
 
     return (
         <>
             <Col gap={"5%"}>
-                <DepositSummary amount={amount!} fee={fee!} senderName={senderName} senderAddress={serviceInstance?.getAddress() || ""} />
+                <DepositSummary
+                    amount={amount!}
+                    fee={feeInCKB!}
+                    senderName={senderName}
+                    senderAddress={serviceInstance?.getAddress() || ""}
+                />
                 <Typography variant="caption" textAlign="center">
                     {translate("send_confirmation_text")}
                 </Typography>
