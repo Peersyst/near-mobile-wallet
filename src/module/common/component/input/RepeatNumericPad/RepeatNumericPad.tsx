@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Animated } from "react-native-components";
 import NumericPad from "../NumericPad/NumericPad";
 import { NumericPadProps } from "../NumericPad/NumericPad.types";
+import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 
 export interface RepeatingPinProps extends Omit<NumericPadProps, "onSubmit" | "error" | "style"> {
     onSuccess: NumericPadProps["onSubmit"];
@@ -24,6 +25,7 @@ const RepeatNumericPad = ({ onSuccess, onCancel, placeholder }: RepeatingPinProp
         } else {
             setError(true);
             setPin(undefined);
+            notificationAsync(NotificationFeedbackType.Error);
         }
     };
 

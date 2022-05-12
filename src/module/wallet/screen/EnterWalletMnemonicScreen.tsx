@@ -5,6 +5,7 @@ import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useEffect, useState } from "react";
 import { WalletService } from "ckb-peersyst-sdk";
 import { translate } from "locale";
+import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 
 export interface MnemonicForm {
     mnemonic: string[];
@@ -34,6 +35,7 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonic
                 setMnemonic(mnemonic);
                 setSubmitted(true);
             } else {
+                notificationAsync(NotificationFeedbackType.Error);
                 showToast(translate("incorrect_mnemonic"), { type: "error" });
             }
         }

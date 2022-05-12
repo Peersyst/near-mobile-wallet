@@ -4,6 +4,7 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import { useState } from "react";
 import { Animated, createBackdrop, ExposedBackdropProps, useToast } from "react-native-components";
 import BaseSettingsModalScreen from "../../layout/BaseSettingsModal/BaseSettingsModal";
+import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 
 const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { duration: 200, appear: true });
 
@@ -24,6 +25,7 @@ const ConfirmPinModal = createBackdrop(({ onPinConfirmed, ...rest }: ConfirmPinS
                 setOpen(false);
             } else {
                 setError(true);
+                notificationAsync(NotificationFeedbackType.Error);
             }
         } catch (e) {
             showToast(translate("somethingWentWrong"));

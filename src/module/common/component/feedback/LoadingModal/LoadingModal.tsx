@@ -4,6 +4,7 @@ import { ThemeProvider } from "@peersyst/react-native-styled";
 import { darkTheme } from "module/common/style/darkTheme";
 import Isotip from "module/common/component/display/Logos/Isotip/Isotip";
 import { useEffect, useState } from "react";
+import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 
 const LoadingModal = ({ loading, successMessage, error, success, ...backdropProps }: LoadingModalProps): JSX.Element => {
     const [open, setOpen] = useState(false);
@@ -17,6 +18,7 @@ const LoadingModal = ({ loading, successMessage, error, success, ...backdropProp
     useEffect(() => {
         let closeTimeout: NodeJS.Timeout;
         if (success) {
+            setTimeout(() => notificationAsync(NotificationFeedbackType.Success), 100);
             closeTimeout = setTimeout(() => setOpen(false), 3000);
         }
         return () => {
