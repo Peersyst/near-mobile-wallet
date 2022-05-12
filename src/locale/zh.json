@@ -84,7 +84,7 @@
     "fast": "快",
     "average": "中等",
     "network_name": "%name%网络",
-    "currency_conversion": "货币单位",
+    "default_currency": "默认货币",
     "select_locale": "语言",
     "en": "English",
     "es": "Spanish",
@@ -167,5 +167,6 @@
     "delete_only_wallet_text": "确定要从此设备中删除 %walletName% 吗？这也会删除您的其他数据，因为 %walletName% 是您唯一的钱包。为此，系统会要求您提供 PIN 码。",
     "nothing_to_show": "没什么可显示的",
     "too_many_decimals": "必须包含 %decimals% 或更少的小数",
-    "no_deposits": "你没有任何正在进行的存款记录"
+    "no_deposits": "你没有任何正在进行的存款记录",
+    "withdrawals": "提款"
 }

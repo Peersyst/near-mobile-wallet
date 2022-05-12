@@ -43,6 +43,8 @@ module.exports = {
         "!./src/module/common/component/layout/BasePage/*",
         "!./src/module/common/component/layout/LogoPage/*",
         "!./src/module/common/service/CkbSdkService.ts",
+        "!./src/module/sdk/**/*",
+        "!./src/**/query/**/*",
     ],
     coverageDirectory: "./coverage",
     coverageThreshold: {

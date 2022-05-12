@@ -84,7 +84,7 @@
     "fast": "Rápida",
     "average": "Media",
     "network_name": "Red %name%",
-    "currency_conversion": "Conversión de divisas",
+    "default_currency": "Divisa por defecto",
     "select_locale": "Selecciona tu idioma",
     "en": "Inglés",
     "es": "Español",
@@ -167,5 +167,6 @@
     "delete_only_wallet_text": "Estás seguro de que quieres borrar %walletName% de este dispositivo? Esto también borrará tus otros datos, ya que %walletName% es tu unico wallet. Deberás introducir tu PIN para realizar esta acción.",
     "nothing_to_show": "Nada que mostrar",
     "too_many_decimals": "Debe contener %decimals% o menos decimales",
-    "no_deposits": "Actualmente no tienes ningún depósito en curso"
+    "no_deposits": "Actualmente no tienes ningún depósito en curso",
+    "withdrawals": "Retiros"
 }

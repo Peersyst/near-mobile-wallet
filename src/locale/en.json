@@ -84,7 +84,7 @@
     "fast": "Fast",
     "average": "Average",
     "network_name": "%name% network",
-    "currency_conversion": "Currency conversion",
+    "default_currency": "Default currency",
     "select_locale": "Select your language",
     "en": "English",
     "es": "Spanish",
@@ -167,5 +167,6 @@
     "delete_only_wallet_text": "Are you sure you want to delete %walletName% from this device? This will also erase your other data, as %walletName% is your only wallet. You'll be asked for your PIN in order to do so.",
     "nothing_to_show": "Nothing to show",
     "too_many_decimals": "Must contain %decimals% or less decimals",
-    "no_deposits": "You do not have any deposits in progress"
+    "no_deposits": "You do not have any deposits in progress",
+    "withdrawals": "Withdrawals"
 }

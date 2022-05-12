@@ -1,11 +1,15 @@
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { DepositInDAOParams } from "module/common/service/CkbSdkService.types";
 import { useMutation } from "react-query";
+import useAddUncommittedTransaction from "module/transaction/query/useAddUncommitedTransaction";
 
 const useDepositInDAO = (index: number) => {
-    return useMutation((params: DepositInDAOParams) => {
+    const addUncommittedTransaction = useAddUncommittedTransaction();
+
+    return useMutation(async (params: DepositInDAOParams) => {
         const serviceInstance = serviceInstancesMap.get(index)!;
-        return serviceInstance.depositInDAO(params);
+        const hash = await serviceInstance.depositInDAO(params);
+        if (hash) await addUncommittedTransaction(index, hash);
     });
 };
 

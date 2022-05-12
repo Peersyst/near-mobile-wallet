@@ -299,6 +299,10 @@ export class WalletService {
         return sortedTxs;
     }
 
+    async getTransactionFromHash(txHash: string): Promise<Transaction> {
+        return this.transactionService.getTransactionFromHash(txHash, [...this.getAllAddresses(), this.getNextAddress()]);
+    }
+
     // ---------------------------
     // -- CKB service functions --
     // ---------------------------
@@ -450,7 +454,6 @@ export class WalletService {
     }
 
     async getDAOUnlockableAmounts(): Promise<DAOUnlockableAmount[]> {
-        await this.synchronize();
         return this.daoService.getUnlockableAmountsFromCells(this.getCells());
     }
 }

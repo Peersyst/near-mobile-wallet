@@ -4,6 +4,7 @@ import { BaseStorageService } from "module/common/service/BaseStorageService";
 export interface UnencryptedWalletInfo {
     index: number;
     initialState?: WalletState;
+    uncommittedTransactionHashes?: string[];
 }
 
 export interface SecureWalletInfo {
@@ -78,6 +79,37 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         return walletUnencryptedInfo?.initialState;
     }
 
+    async getUncommittedTransactionHashes(index: number): Promise<string[] | undefined> {
+        const storage = await this.get();
+        const walletUnencryptedInfo = storage?.wallets.find((w) => w.index === index) || { index: index };
+        return walletUnencryptedInfo?.uncommittedTransactionHashes;
+    }
+
+    async addUncommittedTransactionHash(index: number, hash: string): Promise<void> {
+        const storage = await this.get();
+        if (!storage) return;
+        const updatedWallets = storage?.wallets.map((w) =>
+            w.index === index ? { ...w, uncommittedTransactionHashes: [...(w.uncommittedTransactionHashes || []), hash] } : w,
+        );
+        return this.set({ ...storage, wallets: updatedWallets });
+    }
+
+    async removeUncommittedTransactionHash(index: number, hash: string): Promise<void> {
+        const storage = await this.get();
+        if (!storage) return;
+        const updatedWallets = storage?.wallets.map((w) =>
+            w.index === index
+                ? {
+                      ...w,
+                      uncommittedTransactionHashes: w.uncommittedTransactionHashes
+                          ? w.uncommittedTransactionHashes.filter((h) => h !== hash)
+                          : [],
+                  }
+                : w,
+        );
+        return this.set({ ...storage, wallets: updatedWallets });
+    }
+
     async getPin(): Promise<string | undefined> {
         const secureStorage = await this.getSecure();
         return secureStorage?.pin;
@@ -100,8 +132,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         const wallets = await this.getWallets();
         if (!wallets) return undefined;
         const newWallet = { ...wallet, index: wallets.length };
-        wallets.push(newWallet);
-        await this.setWallets(wallets);
+        await this.setWallets([...wallets, newWallet]);
         return newWallet;
     }
 
