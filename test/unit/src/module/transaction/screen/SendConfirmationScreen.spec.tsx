@@ -22,8 +22,8 @@ describe("SendConfirmationScreen tests", () => {
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({
-            amount: convertShannonsToCKB(1000).toString(),
-            fee: convertShannonsToCKB(10).toString(),
+            amount: 1000,
+            fee: 10,
             senderWalletIndex: mockedUseWallet.state.wallets[0].index,
             receiverAddress: "receiver_address",
             message: "Send message",

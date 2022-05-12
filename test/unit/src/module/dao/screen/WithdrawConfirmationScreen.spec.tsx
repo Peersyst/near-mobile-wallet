@@ -27,7 +27,7 @@ describe("SelectAccountAndDepositScreen tests", () => {
 
     test("Renders correctly with deposits", async () => {
         const screen = render(<WithdrawConfirmationScreen withdrawInfo={{ receiverIndex: 0, depositIndex: 0, feeRate: FeeRate.NORMAL }} />);
-        await waitFor(() => expect(screen.getAllByText("500")).toHaveLength(1));
+        await waitFor(() => expect(screen.getAllByText("500")).toHaveLength(2));
         screen.debug();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
         expect(screen.getByText("001")).toBeDefined();

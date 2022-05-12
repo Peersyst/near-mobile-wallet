@@ -24,8 +24,8 @@ describe("DepositConfirmationScreen tests", () => {
         jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
         const mockedWallet = mockedUseWallet.state.wallets[0];
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({
-            amount: convertShannonsToCKB(1000),
-            fee: FeeRate.NORMAL,
+            amount: 1000,
+            fee: 0.001,
             senderWalletIndex: mockedWallet.index,
         });
 
