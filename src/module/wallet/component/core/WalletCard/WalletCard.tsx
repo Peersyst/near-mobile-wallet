@@ -1,5 +1,5 @@
 import useGetBalance from "module/wallet/query/useGetBalance";
-import { TouchableWithoutFeedback, Vibration } from "react-native";
+import { TouchableWithoutFeedback } from "react-native";
 import { Wallet } from "module/wallet/state/WalletState";
 import useWalletColorIndex from "module/wallet/hook/useWalletColorIndex";
 import { WalletCardBalance, WalletCardRoot, WalletContent } from "./WalletCard.styles";
@@ -11,6 +11,7 @@ import { useGetCkbPrice } from "module/common/query/useCkbPriceConverter";
 import useCkbConversion from "module/common/hook/useCkbConversion";
 import { useState } from "react";
 import { ControlledSuspense } from "react-native-components";
+import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 
 export interface WalletCardProps {
     wallet: Wallet;
@@ -28,7 +29,7 @@ const WalletCard = ({ wallet: { name, index, colorIndex } }: WalletCardProps): J
     const { value: fiatValue } = useCkbConversion(fiat, balance?.freeBalance || 0);
     const [showFiat, setCurrencyMode] = useState<boolean>(false);
     const changeCurrencyMode = () => {
-        Vibration.vibrate();
+        notificationAsync(NotificationFeedbackType.Success);
         setCurrencyMode((value) => !value);
     };
     return (
