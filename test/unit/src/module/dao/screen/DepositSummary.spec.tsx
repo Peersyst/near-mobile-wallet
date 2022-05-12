@@ -7,9 +7,7 @@ import { mockedUseWallet } from "mocks/useWalletState";
 import { MockedDAOBalance } from "mocks/DAO";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { FeeRate } from "ckb-peersyst-sdk";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
-import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 
 describe("Test for the DepositSummary", () => {
     const sdkInstance = new CKBSDKService(MnemonicMocked);

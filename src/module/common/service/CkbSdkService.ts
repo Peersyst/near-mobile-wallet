@@ -90,7 +90,7 @@ export class CKBSDKService {
 
     getTokensBalance(): TokenAmount[] {
         const tokens = this.wallet.getTokensBalance();
-        let tokenAmounts: TokenAmount[] = [...tokenAmountZeroBalanceList];
+        const tokenAmounts: TokenAmount[] = [...tokenAmountZeroBalanceList];
         for (const token of tokens) {
             const tokenIndex = getTokenIndexTypeFromScript(token.type);
             //Supported Token

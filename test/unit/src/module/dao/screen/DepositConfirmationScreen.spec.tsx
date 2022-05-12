@@ -8,8 +8,6 @@ import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScre
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
-import { FeeRate } from "ckb-peersyst-sdk";
-import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 
 describe("DepositConfirmationScreen tests", () => {
     const sdkInstance = new CKBSDKService(MnemonicMocked);

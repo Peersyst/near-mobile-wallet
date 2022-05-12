@@ -8,7 +8,6 @@ import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
-import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 
 describe("SendConfirmationScreen tests", () => {
     const sdkInstance = new CKBSDKService(MnemonicMocked);

@@ -1,9 +1,7 @@
-import { FeeRate } from "ckb-peersyst-sdk";
 import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import SendSummary from "module/transaction/screen/SendConfirmationScreen/SendSummary";
-import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 import { render } from "test-utils";
 
 describe("Test for the SendSummary component", () => {
