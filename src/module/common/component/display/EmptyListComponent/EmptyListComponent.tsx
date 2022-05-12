@@ -1,4 +1,4 @@
-import { Col, Typography } from "react-native-components";
+import { Col } from "react-native-components";
 import { image } from "asset/image";
 import { EmptyListComponentImage, EmptyListComponentText } from "./EmptyListComponent.styles";
 import { translate } from "locale";

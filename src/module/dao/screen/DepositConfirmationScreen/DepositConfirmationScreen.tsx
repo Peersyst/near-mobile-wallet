@@ -11,22 +11,25 @@ import DepositModal from "module/dao/component/core/DepositModal/DepositModal";
 import DepositSummary from "./DepositSummary";
 import useDepositInDAO from "module/dao/query/useDepositInDAO";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import settingsState from "module/settings/state/SettingsState";
+import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 
 const DepositConfirmationScreen = (): JSX.Element => {
-    const { amount, fee, senderWalletIndex } = useRecoilValue(sendState);
+    const { amount, fee: feeInCKB, senderWalletIndex } = useRecoilValue(sendState);
     const {
         state: { wallets },
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
     const { name: senderName } = senderWallet;
     const serviceInstance = serviceInstancesMap.get(senderWalletIndex!);
+    const { fee: feeInShannons } = useRecoilValue(settingsState);
     const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO(senderWalletIndex!);
     const { hideModal } = useModal();
     const refetch = useRefetchQuery();
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
         depositInDAO(
-            { amount: BigInt(amount!), mnemonic: mnemonic!, feeRate: fee! },
+            { amount: convertCKBToShannons(amount!), mnemonic: mnemonic!, feeRate: feeInShannons },
             { onSuccess: () => refetch(["balance", senderWalletIndex]) },
         );
         //The SendState is cleaned in the "onExited" method of DepositModal
@@ -35,7 +38,12 @@ const DepositConfirmationScreen = (): JSX.Element => {
     return (
         <>
             <Col gap={"5%"}>
-                <DepositSummary amount={amount!} fee={fee!} senderName={senderName} senderAddress={serviceInstance?.getAddress() || ""} />
+                <DepositSummary
+                    amount={amount!}
+                    fee={feeInCKB!}
+                    senderName={senderName}
+                    senderAddress={serviceInstance?.getAddress() || ""}
+                />
                 <Typography variant="caption" textAlign="center">
                     {translate("send_confirmation_text")}
                 </Typography>

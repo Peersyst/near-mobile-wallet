@@ -13,7 +13,7 @@ import settingsState from "module/settings/state/SettingsState";
 import DepositsSelector from "module/dao/component/input/DepositsSelector/DepositsSelector";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import useGetBalance from "module/wallet/query/useGetBalance";
-import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
+import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 import WithdrawButton from "./WithdrawButton";
 
 interface WithdrawSelectAccountScreenProps {
@@ -23,7 +23,7 @@ interface WithdrawSelectAccountScreenProps {
 const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccountScreenProps) => {
     //Hooks
     const setTab = useSetTab();
-    const { fee } = useRecoilValue(settingsState);
+    const { fee: feeInShannons } = useRecoilValue(settingsState);
     const {
         state: { selectedWallet: defaultSelectedWallet, wallets },
     } = useWalletState();
@@ -50,18 +50,18 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
 
     useEffect(() => {
         if (freeBalance === undefined) return;
-        if (freeBalance < convertCKBToShannons(fee)) {
+        if (freeBalance < convertShannonsToCKB(feeInShannons)) {
             setErrMsg(
                 translate("not_enough_balance_for_fees") +
                     ".\n" +
-                    translate("transaction_fee", { fee: convertCKBToShannons(fee).toString() || "-" }),
+                    translate("transaction_fee", { fee: convertShannonsToCKB(feeInShannons).toString() || "-" }),
             );
         } else setErrMsg(undefined);
     }, [selectedWallet]);
 
     //Functions
     const handleSubmit = (withdrawInfo: WithdrawForm) => {
-        setWithdrawInfo({ ...withdrawInfo, feeRate: fee });
+        setWithdrawInfo({ ...withdrawInfo, feeRate: feeInShannons });
         setTab(WithdrawScreens.CONFIRMATION);
     };
 

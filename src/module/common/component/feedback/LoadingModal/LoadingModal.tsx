@@ -4,6 +4,7 @@ import { ThemeProvider } from "@peersyst/react-native-styled";
 import { darkTheme } from "module/common/style/darkTheme";
 import Isotip from "module/common/component/display/Logos/Isotip/Isotip";
 import { useEffect, useState } from "react";
+import { translate } from "locale";
 
 const LoadingModal = ({ loading, successMessage, error, success, ...backdropProps }: LoadingModalProps): JSX.Element => {
     const [open, setOpen] = useState(false);
@@ -47,7 +48,12 @@ const LoadingModal = ({ loading, successMessage, error, success, ...backdropProp
                         </SuccessMessage>
                     </>
                 ) : (
-                    <Isotip size="md" />
+                    <>
+                        <Isotip size="md" />
+                        <SuccessMessage textAlign="center" variant="body1">
+                            {translate("processing")}
+                        </SuccessMessage>
+                    </>
                 )}
             </LoadingModalBackdrop>
         </ThemeProvider>

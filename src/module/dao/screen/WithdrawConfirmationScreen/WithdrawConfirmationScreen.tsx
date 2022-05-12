@@ -12,6 +12,7 @@ import { getAPC } from "module/dao/utils/getAPC";
 import { useRefetchQueries } from "../../../../query/useRefetchQueries";
 import { useMemo } from "react";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 
 interface WithdrawConfirmationScreenProps {
     withdrawInfo: WithdrawSummaryType;
@@ -26,8 +27,7 @@ const WithdrawConfirmationScreen = ({
     const {
         state: { wallets },
     } = useWalletState();
-    const { data: deposits = [] } = useGetDAOUnlockableAmounts();
-    const unlockableDeposits = useMemo(() => deposits, [deposits]);
+    const { data: unlockableDeposits = [] } = useGetDAOUnlockableAmounts();
     const { mutate: withdrawFromDAO, isLoading, isSuccess, isError } = useWithdrawOrUnlock(receiverIndex);
 
     //Variables
@@ -54,12 +54,12 @@ const WithdrawConfirmationScreen = ({
         <>
             <Col gap={"7%"}>
                 <WithdrawSummary
-                    compensation={Number(compensation)}
+                    compensation={convertShannonsToCKB(compensation)}
                     receiverName={receiverName}
                     receiverAddress={serviceInstance?.getAddress() || ""}
-                    depositAPC={getAPC({ daoCompensation: Number(compensation), daoDeposit: Number(amount) })}
-                    amount={amount}
-                    fee={feeRate!}
+                    depositAPC={getAPC({ daoCompensation: convertShannonsToCKB(compensation), daoDeposit: convertShannonsToCKB(amount) })}
+                    amount={convertShannonsToCKB(amount)}
+                    fee={convertShannonsToCKB(feeRate!).toString()}
                 />
                 <Typography variant="caption" textAlign="center">
                     {translate("send_confirmation_text")}

@@ -5,4 +5,5 @@ declare module "@env" {
     export const EXPLORER_LINK: string;
     export const CKB_URL: string;
     export const INDEXER_URL: string;
+    export const MAX_NUMBER_OF_DECIMALS: string;
 }
