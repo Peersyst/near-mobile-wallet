@@ -42,6 +42,7 @@ const WalletCard = ({ wallet: { name, index, colorIndex } }: WalletCardProps): J
                 >
                     <TouchableWithoutFeedback onPress={changeCurrencyMode}>
                         <WalletCardBalance
+                            smallBalanceStyle={{ marginBottom: 1.75 }}
                             variant="h1"
                             balance={showFiat ? fiatValue : balance?.freeBalance || 0}
                             decimals={showFiat ? 2 : 6}
