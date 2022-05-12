@@ -4,6 +4,7 @@ import { Children, useEffect, useMemo, useState } from "react";
 import { NativeSyntheticEvent, View, ViewStyle } from "react-native";
 import { PagerViewOnPageSelectedEventData } from "react-native-pager-view/src/types";
 import DottedPagination from "module/common/component/display/DottedPagination/DottedPagination";
+import { impactAsync, ImpactFeedbackStyle } from "expo-haptics";
 
 interface PagerViewProps extends Omit<BasePagerViewProps, "onPageSelected"> {
     page?: number;
@@ -64,6 +65,7 @@ const PagerView = ({
     const handlePageSelected = (e: NativeSyntheticEvent<PagerViewOnPageSelectedEventData>) => {
         setCurrentPage(e.nativeEvent.position);
         onPageSelected?.(e.nativeEvent.position);
+        impactAsync(ImpactFeedbackStyle.Medium);
     };
 
     return (

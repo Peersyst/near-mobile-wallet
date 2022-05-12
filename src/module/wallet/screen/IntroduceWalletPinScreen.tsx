@@ -6,6 +6,7 @@ import { useLogoPageFlex } from "module/common/component/layout/LogoPage/LogoPag
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import walletState from "module/wallet/state/WalletState";
+import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 
 const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { duration: 200, appear: true });
 
@@ -18,8 +19,10 @@ const SetWalletPinScreen = (): JSX.Element => {
         const storedPin = await WalletStorage.getPin();
         if (storedPin === pin) {
             setWalletState((state) => ({ ...state, isAuthenticated: true }));
+        } else {
+            setError(true);
+            notificationAsync(NotificationFeedbackType.Error);
         }
-        setError(true);
     };
 
     return <AnimatedNumericPad in={true} error={error} onSubmit={handlePinSubmit} placeholder={translate("enter_your_pin")} />;

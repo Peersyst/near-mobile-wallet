@@ -10,6 +10,7 @@ import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 import * as useCkbConversion from "module/common/hook/useCkbConversion";
 import * as Recoil from "recoil";
+import * as ExpoHapits from "expo-haptics";
 
 describe("WalletCard tests", () => {
     const sdkInstance = new CKBSDKService(MnemonicMocked);
@@ -51,9 +52,7 @@ describe("WalletCard tests", () => {
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fiat: "eur" });
         jest.spyOn(useCkbConversion, "default").mockReturnValue({ value: 10, convertBalance: jest.fn() });
         const mockedVibrate = jest.fn();
-        jest.mock("react-native/Libraries/Vibration/Vibration", () => ({
-            vibrate: mockedVibrate,
-        }));
+        jest.spyOn(ExpoHapits, "notificationAsync").mockImplementation(mockedVibrate);
         const screen = render(<WalletCard wallet={wallet} />);
         /**Account Balance */
         await waitFor(() => expect(screen.getByText("10,400")).toBeDefined());
