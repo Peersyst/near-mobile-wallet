@@ -169,5 +169,5 @@
     "too_many_decimals": "必须包含 %decimals% 或更少的小数",
     "no_deposits": "你没有任何正在进行的存款记录",
     "withdrawals": "提款",
-    "processig": "洗印"
+    "processing": "洗印"
 }
