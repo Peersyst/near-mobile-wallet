@@ -27,14 +27,7 @@ describe("Test for the DepositSummary", () => {
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(sdkInstance, "getDAOBalance").mockReturnValue(SuccessApiCall(MockedDAOBalance));
         jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
-        const screen = render(
-            <DepositSummary
-                senderAddress={"0xMockedAddress"}
-                amount={convertShannonsToCKB(1000)}
-                fee={FeeRate.NORMAL}
-                senderName={"Peersyst"}
-            />,
-        );
+        const screen = render(<DepositSummary senderAddress={"0xMockedAddress"} amount={1000} fee={"0.001"} senderName={"Peersyst"} />);
         expect(screen.getByText("1,000")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
         expect(screen.getByText("001")).toBeDefined();

@@ -15,6 +15,7 @@ import ControlledSuspense from "module/common/component/base/feedback/Controlled
 import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import { MINIMUM_DAO_DEPOSIT } from "@env";
+import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 
 export interface SendAmountAndMessageResult {
@@ -46,7 +47,7 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
                     <CKBAmountInputContainer>
                         <CKBAmountInput
                             type={type}
-                            fee={fee}
+                            fee={Number(fee)}
                             amount={amount}
                             setAmount={setAmount}
                             freeBalance={balance?.freeBalance ?? 0}

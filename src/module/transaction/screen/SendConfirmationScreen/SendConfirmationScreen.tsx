@@ -11,8 +11,8 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import SendSummary from "./SendSummary";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { useRefetchQueries } from "../../../../query/useRefetchQueries";
-import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import settingsState from "module/settings/state/SettingsState";
+import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 
 const SendConfirmationScreen = (): JSX.Element => {
     const { amount, fee: feeInCKB, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
@@ -30,7 +30,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
         sendTransaction(
-            { amount: convertCKBToShannons(amount!), message: message!, to: receiverAddress!, mnemonic: mnemonic!, feeRate },
+            { amount: convertShannonsToCKB(amount!), message: message!, to: receiverAddress!, mnemonic: mnemonic!, feeRate },
             {
                 onSuccess: () =>
                     refetch([

@@ -31,6 +31,7 @@ describe("SendAmountAndMessageScreen tests", () => {
 
     test("Renders correctly", async () => {
         const screen = render(<SendSetAmountScreen />);
+        jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fee: FeeRate.NORMAL });
         await waitFor(() => expect(screen.getByPlaceholderText(translate("enter_amount"))).toBeDefined());
         expect(screen.getByText("CKB")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee", { fee: "0.001" }))).toBeDefined();

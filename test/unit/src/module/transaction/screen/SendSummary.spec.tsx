@@ -12,8 +12,8 @@ describe("Test for the SendSummary component", () => {
         const screen = render(
             <SendSummary
                 senderAddress="0xMockedAddress"
-                amount={convertShannonsToCKB(2400)}
-                fee={FeeRate.NORMAL}
+                amount={2400}
+                fee={"0.001"}
                 receiverAddress={"0xRx"}
                 message={"hola"}
                 senderName={"Antonia"}
