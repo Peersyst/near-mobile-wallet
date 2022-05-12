@@ -12,7 +12,7 @@
                 "CKB_URL": "https://ckb-node-test-1.peersyst.com/rpc",
                 "INDEXER_URL": "https://ckb-node-test-1.peersyst.com/indexer",
                 "MINIMUM_DAO_DEPOSIT": "102",
-                "MAX_NUMBER_OF_DECIMALS": "8"
+                "MAX_NUMBER_OF_DECIMALS": "6"
             },
             "android": {
                 "buildType": "apk"
