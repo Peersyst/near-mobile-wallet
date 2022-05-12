@@ -168,5 +168,6 @@
     "nothing_to_show": "Nothing to show",
     "too_many_decimals": "Must contain %decimals% or less decimals",
     "no_deposits": "You do not have any deposits in progress",
-    "withdrawals": "Withdrawals"
+    "withdrawals": "Withdrawals",
+    "processing": "Processing..."
 }

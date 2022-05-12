@@ -168,5 +168,6 @@
     "nothing_to_show": "Nada que mostrar",
     "too_many_decimals": "Debe contener %decimals% o menos decimales",
     "no_deposits": "Actualmente no tienes ningún depósito en curso",
-    "withdrawals": "Retiros"
+    "withdrawals": "Retiros",
+    "processing": "Procesando..."
 }

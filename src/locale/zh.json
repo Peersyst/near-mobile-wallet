@@ -168,5 +168,6 @@
     "nothing_to_show": "没什么可显示的",
     "too_many_decimals": "必须包含 %decimals% 或更少的小数",
     "no_deposits": "你没有任何正在进行的存款记录",
-    "withdrawals": "提款"
+    "withdrawals": "提款",
+    "processig": "洗印"
 }
