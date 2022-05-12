@@ -7,7 +7,7 @@ import WalletCardHeader from "./WalletCardHeader/WalletCardHeader";
 import WalletCardButtons from "./WalletCardButtons/WalletCardButtons";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
-import { useGetCkbPrice } from "module/common/query/useCkbPriceConverter";
+import { useGetCkbPrice } from "module/common/query/useGetCkbPrice";
 import useCkbConversion from "module/common/hook/useCkbConversion";
 import { useState } from "react";
 import { ControlledSuspense } from "react-native-components";

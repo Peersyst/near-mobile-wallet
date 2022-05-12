@@ -1,5 +1,5 @@
 import { FiatCurrencyType } from "module/settings/state/SettingsState";
-import { useGetCkbPrice } from "../query/useCkbPriceConverter";
+import { useGetCkbPrice } from "../query/useGetCkbPrice";
 
 export default function useCkbConversion(currency: FiatCurrencyType, balance: number) {
     const { data = [] } = useGetCkbPrice(currency);

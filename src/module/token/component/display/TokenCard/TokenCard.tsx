@@ -3,17 +3,18 @@ import { TokenIcon, TokenPlaceholder, TokenRoot } from "./TokenCard.styles";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { TokenAmount } from "module/token/types";
 import { translate } from "locale";
+import settingsState from "module/settings/state/SettingsState";
+import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
+import { useRecoilValue } from "recoil";
 
 interface TokenProps {
     token: TokenAmount;
 }
 
-const TokenCard = ({
-    token: {
-        type: { name, tokenName, imageUri, description },
-        amount,
-    },
-}: TokenProps): JSX.Element => {
+const TokenCard = ({ token: { type, amount } }: TokenProps): JSX.Element => {
+    const { name, tokenName, imageUri, description } = type;
+    const { fiat } = useRecoilValue(settingsState);
+    const { data: tokenValue } = useGetTokenPrice(fiat, type);
     return (
         <TokenRoot>
             <Row alignItems="center" gap="6%">
@@ -33,6 +34,12 @@ const TokenCard = ({
                     boldUnits
                     variant="body2"
                 />
+                {tokenValue && (
+                    <Row>
+                        <Typography variant="body2">{"~ "}</Typography>
+                        <Balance balance={tokenValue * amount} units={fiat} variant={"button"} />
+                    </Row>
+                )}
             </Col>
         </TokenRoot>
     );
