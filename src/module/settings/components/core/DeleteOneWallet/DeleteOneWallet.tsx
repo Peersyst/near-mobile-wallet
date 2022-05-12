@@ -8,6 +8,8 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { useQueryClient } from "react-query";
+import useWalletQueriesInvalidation from "module/wallet/hook/useWalletQueriesInvalidation";
+import useWalletQueriesRemoval from "module/wallet/hook/useWalletQueriesRemoval";
 
 const DeleteOneWallet = () => {
     const { showDialog } = useDialog();
@@ -15,6 +17,8 @@ const DeleteOneWallet = () => {
     const [{ wallets, selectedWallet }, setWalletState] = useRecoilState(walletState);
     const resetWalletState = useResetRecoilState(walletState);
     const queryClient = useQueryClient();
+    const invalidateWalletQueries = useWalletQueriesInvalidation();
+    const removeWalletQueries = useWalletQueriesRemoval();
 
     const handleDelete = (index: number) => {
         const walletToDelete = wallets.find((w) => w.index === index);
@@ -49,18 +53,12 @@ const DeleteOneWallet = () => {
                         for (let i = 0; i < serviceInstancesSize; i++) {
                             if (i > index) {
                                 serviceInstancesMap.set(i - 1, serviceInstancesMap.get(i)!);
-                                queryClient.invalidateQueries(["transactions", i - 1], { refetchInactive: true, exact: true });
-                                queryClient.invalidateQueries(["tokens", i - 1], { refetchInactive: true, exact: true });
-                                queryClient.invalidateQueries(["nfts", i - 1], { refetchInactive: true, exact: true });
-                                queryClient.invalidateQueries(["balance", i - 1], { refetchInactive: true, exact: true });
+                                await invalidateWalletQueries(i - 1);
                             }
                         }
                         //Delete last service instance and queries from last position
                         serviceInstancesMap.delete(serviceInstancesSize);
-                        queryClient.removeQueries(["transactions", lastServiceInstanceIndex], { exact: true });
-                        queryClient.removeQueries(["tokens", lastServiceInstanceIndex], { exact: true });
-                        queryClient.removeQueries(["nfts", lastServiceInstanceIndex], { exact: true });
-                        queryClient.removeQueries(["balance", lastServiceInstanceIndex], { exact: true });
+                        removeWalletQueries(lastServiceInstanceIndex);
                     }
                 },
             });

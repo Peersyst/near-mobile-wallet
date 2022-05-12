@@ -52,7 +52,9 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
         if (freeBalance === undefined) return;
         if (freeBalance < convertCKBToShannons(fee)) {
             setErrMsg(
-                translate("not_enough_balance_for_fees") + ".\n" + translate("transaction_fee", { fee: convertCKBToShannons(fee) || "-" }),
+                translate("not_enough_balance_for_fees") +
+                    ".\n" +
+                    translate("transaction_fee", { fee: convertCKBToShannons(fee).toString() || "-" }),
             );
         } else setErrMsg(undefined);
     }, [selectedWallet]);

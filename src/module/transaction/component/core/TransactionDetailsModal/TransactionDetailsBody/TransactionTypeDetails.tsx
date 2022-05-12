@@ -27,7 +27,14 @@ const TransactionTypeDetails = ({ transaction: { type, outputs, inputs } }: Tran
                     inputs.map((input, key) => (
                         <Row key={key} flex={1} justifyContent="space-between" alignItems="center">
                             <BlockchainAddress address={input.address} type="address" variant="body1" length={6} />
-                            <Balance balance={input.quantity} units="CKB" variant="body1" />
+                            <Balance
+                                balance={
+                                    outputs.reduce((prev, curr) => (curr.address === input.address ? prev + curr.quantity : prev), 0) -
+                                    input.quantity
+                                }
+                                units="CKB"
+                                variant="body1"
+                            />
                         </Row>
                     ))
                 ) : (
