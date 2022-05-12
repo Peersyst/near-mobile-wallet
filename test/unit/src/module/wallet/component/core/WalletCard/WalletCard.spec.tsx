@@ -10,7 +10,6 @@ import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 import * as useCkbConversion from "module/common/hook/useCkbConversion";
 import * as Recoil from "recoil";
-import { Vibration } from "react-native";
 
 describe("WalletCard tests", () => {
     const sdkInstance = new CKBSDKService(MnemonicMocked);
