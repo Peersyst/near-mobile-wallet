@@ -59,7 +59,6 @@ describe("WalletCard tests", () => {
         await waitFor(() => expect(screen.getByText("10,400")).toBeDefined());
         const text = screen.getByText("ckb");
         fireEvent.press(text);
-        screen.debug();
         await waitFor(() => expect(screen.getByText("10")).toBeDefined());
         expect(screen.getByText("eur")).toBeDefined();
         expect(mockedVibrate).toHaveBeenCalled();
