@@ -1,4 +1,3 @@
-import { FeeRate } from "ckb-peersyst-sdk";
 import { atom } from "recoil";
 
 export interface SendState {

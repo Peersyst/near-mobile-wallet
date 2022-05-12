@@ -15,7 +15,6 @@ import ControlledSuspense from "module/common/component/base/feedback/Controlled
 import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import { MINIMUM_DAO_DEPOSIT } from "@env";
-import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 
 export interface SendAmountAndMessageResult {
@@ -30,13 +29,13 @@ export interface SendSetAmountScreenProps {
 const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const [amount, setAmount] = useState(sendState.amount || "");
-    const { fee: feeRate } = useRecoilValue(settingsState);
-    const fee = convertShannonsToCKB(feeRate);
-    const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex);
+    const { fee: feeInShannons } = useRecoilValue(settingsState);
+    const feeInCKB = convertShannonsToCKB(feeInShannons);
+    const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex || 0);
     const setTab = useSetTab();
 
     const handleSubmit = ({ amount, message }: SendAmountAndMessageResult): void => {
-        setSendState((oldState) => ({ ...oldState, amount, message, fee: fee.toString() }));
+        setSendState((oldState) => ({ ...oldState, amount, message, fee: feeInCKB.toString() }));
         setTab(type === "send" ? SendScreens.CONFIRMATION : DepositScreens.CONFIRMATION);
     };
 
@@ -47,7 +46,7 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
                     <CKBAmountInputContainer>
                         <CKBAmountInput
                             type={type}
-                            fee={Number(fee)}
+                            fee={feeInCKB}
                             amount={amount}
                             setAmount={setAmount}
                             freeBalance={balance?.freeBalance ?? 0}

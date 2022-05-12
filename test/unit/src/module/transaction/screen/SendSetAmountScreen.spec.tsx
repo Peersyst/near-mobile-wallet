@@ -14,8 +14,10 @@ import { MINIMUM_DAO_DEPOSIT } from "@env";
 import { FeeRate } from "ckb-peersyst-sdk";
 describe("SendAmountAndMessageScreen tests", () => {
     const sdkInstance = new CKBSDKService(MnemonicMocked);
-
+    const setSendState = jest.fn();
     beforeAll(() => {
+        jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{}, setSendState]);
+        jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fee: FeeRate.NORMAL });
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
@@ -31,7 +33,6 @@ describe("SendAmountAndMessageScreen tests", () => {
 
     test("Renders correctly", async () => {
         const screen = render(<SendSetAmountScreen />);
-        jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fee: FeeRate.NORMAL });
         await waitFor(() => expect(screen.getByPlaceholderText(translate("enter_amount"))).toBeDefined());
         expect(screen.getByText("CKB")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee", { fee: "0.001" }))).toBeDefined();
@@ -46,9 +47,6 @@ describe("SendAmountAndMessageScreen tests", () => {
     });
 
     test("Sets send state and advances to next screen", async () => {
-        const setSendState = jest.fn();
-        jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{}, setSendState]);
-        jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fee: FeeRate.NORMAL });
         const setTab = jest.fn();
         jest.spyOn(UseSetTab, "default").mockReturnValue(setTab);
         const screen = render(<SendSetAmountScreen />);
