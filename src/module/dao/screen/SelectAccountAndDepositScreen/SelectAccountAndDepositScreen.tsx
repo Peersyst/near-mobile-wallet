@@ -13,7 +13,7 @@ import settingsState from "module/settings/state/SettingsState";
 import DepositsSelector from "module/dao/component/input/DepositsSelector/DepositsSelector";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import useGetBalance from "module/wallet/query/useGetBalance";
-import { convertMiniToCKB } from "module/wallet/utils/convertMiniToCKB";
+import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import WithdrawButton from "./WithdrawButton";
 
 interface WithdrawSelectAccountScreenProps {
@@ -50,11 +50,11 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
 
     useEffect(() => {
         if (freeBalance === undefined) return;
-        if (freeBalance < convertMiniToCKB(fee)) {
+        if (freeBalance < convertCKBToShannons(fee)) {
             setErrMsg(
                 translate("not_enough_balance_for_fees") +
                     ".\n" +
-                    translate("transaction_fee", { fee: convertMiniToCKB(fee).toString() || "-" }),
+                    translate("transaction_fee", { fee: convertCKBToShannons(fee).toString() || "-" }),
             );
         } else setErrMsg(undefined);
     }, [selectedWallet]);

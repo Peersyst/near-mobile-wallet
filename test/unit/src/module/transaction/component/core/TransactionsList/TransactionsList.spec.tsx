@@ -31,6 +31,6 @@ describe("TransactionsList tests", () => {
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(sdkInstance, "getTransactions").mockReturnValue([]);
         const screen = render(<TransactionsList />);
-        await waitFor(() => expect(screen.getAllByText(translate("no_transactions"))));
+        await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show"))));
     });
 });

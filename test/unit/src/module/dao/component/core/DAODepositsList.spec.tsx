@@ -31,6 +31,6 @@ describe("DAODepositsList tests", () => {
     test("Renders correctly without transactions", async () => {
         jest.spyOn(sdkInstance, "getTransactions").mockReturnValue([]);
         const screen = render(<DAODepositsList />);
-        await waitFor(() => expect(screen.getAllByText(translate("no_deposits"))));
+        await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show"))));
     });
 });

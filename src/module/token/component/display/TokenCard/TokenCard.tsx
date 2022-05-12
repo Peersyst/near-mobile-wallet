@@ -1,9 +1,6 @@
 import { Col, Row, Typography } from "react-native-components";
 import { TokenIcon, TokenPlaceholder, TokenRoot } from "./TokenCard.styles";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import useCkbConversion from "module/common/hook/useCkbConversion";
-import settingsState from "module/settings/state/SettingsState";
-import { useRecoilValue } from "recoil";
 import { TokenAmount } from "module/token/types";
 import { translate } from "locale";
 
@@ -13,12 +10,10 @@ interface TokenProps {
 
 const TokenCard = ({
     token: {
-        type: { name, tokenName, imageUri, description, args },
+        type: { name, tokenName, imageUri, description },
         amount,
     },
 }: TokenProps): JSX.Element => {
-    const { fiat } = useRecoilValue(settingsState);
-    const { value } = useCkbConversion(fiat, amount * (args === "0x3" ? 3000 : 100));
     return (
         <TokenRoot>
             <Row alignItems="center" gap="6%">
@@ -38,7 +33,6 @@ const TokenCard = ({
                     boldUnits
                     variant="body2"
                 />
-                <Balance balance={value} units={fiat} variant={"button"} />
             </Col>
         </TokenRoot>
     );

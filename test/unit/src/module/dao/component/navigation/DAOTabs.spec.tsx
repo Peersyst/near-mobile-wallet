@@ -24,14 +24,14 @@ describe("DAOTabs tests", () => {
         await waitFor(() => expect(screen.getByText("01/01/2022 - 00:00")));
         expect(screen.getByText(translate("deposits"))).toBeDefined();
         fireEvent.press(screen.getByText(translate("withdrawals")));
-        await waitFor(() => expect(screen.getAllByText(translate("no_withdrawals"))));
+        await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show"))));
     });
     test("Renders correctly with completed withdrawals", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(sdkInstance, "getTransactions").mockReturnValue(mockedDAOUnlocks);
         const screen = render(<DAOTabs />);
-        await waitFor(() => expect(screen.getAllByText(translate("no_deposits"))));
+        await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show"))));
         expect(screen.getByText(translate("deposits"))).toBeDefined();
         fireEvent.press(screen.getByText(translate("withdrawals")));
         await waitFor(() => expect(screen.getByText("10/01/2022 - 00:00")));

@@ -5,7 +5,7 @@ import { DAOUnlockableAmount } from "ckb-peersyst-sdk";
 import formatTimeDAORemainingCycle from "module/transaction/component/utils/formatTimeDAORemainingCycle";
 import { DepositItemText } from "./DepositItem.styles";
 import { translate } from "locale";
-import { convertMiniToCKB } from "module/wallet/utils/convertMiniToCKB";
+import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import { getAPC } from "module/dao/utils/getAPC";
 
 export interface DepositItemProps {
@@ -46,7 +46,7 @@ const DepositItem = ({
                     as={Balance}
                     unlockable={unlockable}
                     selected={isSelected}
-                    balance={convertMiniToCKB(amount)}
+                    balance={convertCKBToShannons(amount)}
                     units={"CKB"}
                     variant="body1"
                     boldUnits
@@ -64,7 +64,7 @@ const DepositItem = ({
                     as={Balance}
                     unlockable={unlockable}
                     selected={isSelected}
-                    balance={convertMiniToCKB(compensation)}
+                    balance={convertCKBToShannons(compensation)}
                     units={"CKB"}
                     variant="body2"
                     boldUnits
