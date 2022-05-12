@@ -29,13 +29,13 @@ export interface SendSetAmountScreenProps {
 const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const [amount, setAmount] = useState(sendState.amount || "");
-    const { fee } = useRecoilValue(settingsState);
-    const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex);
+    const { fee: feeInShannons } = useRecoilValue(settingsState);
+    const feeInCKB = convertShannonsToCKB(feeInShannons);
+    const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex || 0);
     const setTab = useSetTab();
 
     const handleSubmit = ({ amount, message }: SendAmountAndMessageResult): void => {
-        const finalAmount = convertShannonsToCKB(amount).toString();
-        setSendState((oldState) => ({ ...oldState, amount: finalAmount, message, fee }));
+        setSendState((oldState) => ({ ...oldState, amount, message, fee: feeInCKB.toString() }));
         setTab(type === "send" ? SendScreens.CONFIRMATION : DepositScreens.CONFIRMATION);
     };
 
@@ -46,7 +46,7 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
                     <CKBAmountInputContainer>
                         <CKBAmountInput
                             type={type}
-                            fee={fee}
+                            fee={feeInCKB}
                             amount={amount}
                             setAmount={setAmount}
                             freeBalance={balance?.freeBalance ?? 0}

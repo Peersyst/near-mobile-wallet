@@ -11,6 +11,7 @@ import { MnemonicMocked } from "mocks/MnemonicMocked";
 import * as useCkbConversion from "module/common/hook/useCkbConversion";
 import * as Recoil from "recoil";
 import * as ExpoHapits from "expo-haptics";
+
 describe("WalletCard tests", () => {
     const sdkInstance = new CKBSDKService(MnemonicMocked);
 

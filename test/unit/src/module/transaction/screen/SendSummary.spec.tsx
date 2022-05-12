@@ -1,9 +1,7 @@
-import { FeeRate } from "ckb-peersyst-sdk";
 import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import SendSummary from "module/transaction/screen/SendConfirmationScreen/SendSummary";
-import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 import { render } from "test-utils";
 
 describe("Test for the SendSummary component", () => {
@@ -12,8 +10,8 @@ describe("Test for the SendSummary component", () => {
         const screen = render(
             <SendSummary
                 senderAddress="0xMockedAddress"
-                amount={convertShannonsToCKB(2400)}
-                fee={FeeRate.NORMAL}
+                amount={2400}
+                fee={"0.001"}
                 receiverAddress={"0xRx"}
                 message={"hola"}
                 senderName={"Antonia"}

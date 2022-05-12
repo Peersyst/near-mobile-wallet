@@ -2,7 +2,6 @@ import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
 import { SummaryText } from "module/transaction/component/display/SummaryField/SummaryField.styles";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import { Col } from "react-native-components";
 import BaseSendSummary, { BaseSendSummaryProps } from "../../../transaction/component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../../transaction/component/display/SummaryField/SummaryField";
@@ -26,7 +25,7 @@ const WithdrawSummary = ({ amount, fee, receiverName, receiverAddress, depositAP
                     <SummaryText
                         as={Balance}
                         style={{ paddingLeft: "5%" }}
-                        balance={convertCKBToShannons(compensation)}
+                        balance={compensation}
                         units={"CKB"}
                         variant="body1"
                         boldUnits

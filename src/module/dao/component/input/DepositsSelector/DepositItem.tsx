@@ -5,8 +5,8 @@ import { DAOUnlockableAmount } from "ckb-peersyst-sdk";
 import formatTimeDAORemainingCycle from "module/transaction/component/utils/formatTimeDAORemainingCycle";
 import { DepositItemText } from "./DepositItem.styles";
 import { translate } from "locale";
-import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import { getAPC } from "module/dao/utils/getAPC";
+import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 
 export interface DepositItemProps {
     amount: DAOUnlockableAmount["amount"];
@@ -46,13 +46,15 @@ const DepositItem = ({
                     as={Balance}
                     unlockable={unlockable}
                     selected={isSelected}
-                    balance={convertCKBToShannons(amount)}
-                    units={"CKB"}
+                    balance={convertShannonsToCKB(amount)}
+                    units="CKB"
                     variant="body1"
                     boldUnits
                 />
                 <DepositItemText type={type} unlockable={unlockable} selected={isSelected} variant="body1">
-                    {" (APC: " + getAPC({ daoCompensation: Number(compensation), daoDeposit: Number(amount) }) + "%)"}
+                    {" (APC: " +
+                        getAPC({ daoCompensation: convertShannonsToCKB(compensation), daoDeposit: convertShannonsToCKB(amount) }) +
+                        "%)"}
                 </DepositItemText>
             </Row>
             <Row justifyContent="flex-start">
@@ -64,7 +66,7 @@ const DepositItem = ({
                     as={Balance}
                     unlockable={unlockable}
                     selected={isSelected}
-                    balance={convertCKBToShannons(compensation)}
+                    balance={convertShannonsToCKB(compensation)}
                     units={"CKB"}
                     variant="body2"
                     boldUnits

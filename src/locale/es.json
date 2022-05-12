@@ -166,5 +166,8 @@
     "delete_wallet_text": "Estás seguro de que quieres borrar %walletName% de este dispositivo? Deberás introducir tu PIN para realizar esta acción.",
     "delete_only_wallet_text": "Estás seguro de que quieres borrar %walletName% de este dispositivo? Esto también borrará tus otros datos, ya que %walletName% es tu unico wallet. Deberás introducir tu PIN para realizar esta acción.",
     "nothing_to_show": "Nada que mostrar",
-    "withdrawals": "Retiros"
+    "too_many_decimals": "Debe contener %decimals% o menos decimales",
+    "no_deposits": "Actualmente no tienes ningún depósito en curso",
+    "withdrawals": "Retiros",
+    "processing": "Procesando..."
 }

@@ -11,14 +11,16 @@ const Balance = ({
     balance: balanceProps,
     boldUnits,
     smallBalance,
+    smallBalanceStyle,
     action = "display",
     variant,
     units,
     style,
     decimals = 2,
+    showAllDecimals = false,
     ...rest
 }: BalanceProps): JSX.Element => {
-    const balance = formatNumber(balanceProps.toString(), { split: true, minDecimals: decimals, maxDecimals: decimals });
+    const balance = formatNumber(balanceProps.toString(), { split: true, minDecimals: decimals, maxDecimals: decimals, showAllDecimals });
     const heading = isHeading(variant);
     const { palette } = useTheme();
     const [textStyles, rootStyles] = useMemo(
@@ -45,7 +47,7 @@ const Balance = ({
                         <BalanceItem style={textStyles} variant={variant} {...rest}>{`${balance[1]}`}</BalanceItem>
                         <BalanceItem
                             variant={variant}
-                            style={textStyles}
+                            style={{ ...textStyles, ...smallBalanceStyle }}
                             smallBalance={smallBalance}
                             {...rest}
                         >{`${balance[2]}`}</BalanceItem>

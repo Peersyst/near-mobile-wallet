@@ -1,3 +1,3 @@
-export function convertShannonsToCKB(num: string | number) {
-    return BigInt(Number(num) * 10 ** 8);
+export function convertShannonsToCKB(num: string | number | bigint) {
+    return Number(num) / 10 ** 8;
 }
