@@ -11,6 +11,7 @@ const Balance = ({
     balance: balanceProps,
     boldUnits,
     smallBalance,
+    smallBalanceStyle,
     action = "display",
     variant,
     units,
@@ -46,7 +47,7 @@ const Balance = ({
                         <BalanceItem style={textStyles} variant={variant} {...rest}>{`${balance[1]}`}</BalanceItem>
                         <BalanceItem
                             variant={variant}
-                            style={textStyles}
+                            style={{ ...textStyles, ...smallBalanceStyle }}
                             smallBalance={smallBalance}
                             {...rest}
                         >{`${balance[2]}`}</BalanceItem>
