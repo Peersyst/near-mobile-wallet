@@ -25,7 +25,6 @@ describe("WalletBackupAdvise", () => {
             freeBalance: 1,
         });
         const screen = render(<WalletsBackupAdvise onWalletSelected={handleSelection} />);
-        screen.debug();
         expect(screen.getByText(translate("backup_wallet_advise_text"))).toBeDefined();
         expect(screen.getByText("... 5s")).toBeDefined();
         for (let i = 0; i < 5; i++) act(() => jest.runOnlyPendingTimers());
