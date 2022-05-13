@@ -28,6 +28,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
             usesNonExemptEncryption: false,
         },
         icon: "./assets/images/adaptive-icon.png",
+        splash: { image: "./assets/images/splash.png", resizeMode: "cover", backgroundColor: "#141414" },
     },
     android: {
         package: "com.peersyst.ckbull",
@@ -37,6 +38,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         },
         versionCode: Number(process.env.BUILD_NUMBER) || 0,
         softwareKeyboardLayoutMode: "pan",
+        splash: { image: "./assets/images/splash.png", resizeMode: "cover", backgroundColor: "#141414" },
     },
     web: {
         favicon: "./assets/images/favicon.png",
