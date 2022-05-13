@@ -11,7 +11,7 @@ import { useGetCkbPrice } from "module/common/query/useGetCkbPrice";
 import useCkbConversion from "module/common/hook/useCkbConversion";
 import { useState } from "react";
 import { ControlledSuspense } from "react-native-components";
-import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
+import { impactAsync, ImpactFeedbackStyle } from "expo-haptics";
 
 export interface WalletCardProps {
     wallet: Wallet;
@@ -29,7 +29,7 @@ const WalletCard = ({ wallet: { name, index, colorIndex } }: WalletCardProps): J
     const { value: fiatValue } = useCkbConversion(fiat, balance?.freeBalance || 0);
     const [showFiat, setCurrencyMode] = useState<boolean>(false);
     const changeCurrencyMode = () => {
-        notificationAsync(NotificationFeedbackType.Success);
+        impactAsync(ImpactFeedbackStyle.Medium);
         setCurrencyMode((value) => !value);
     };
     return (

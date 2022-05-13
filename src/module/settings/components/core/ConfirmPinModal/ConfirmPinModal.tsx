@@ -2,7 +2,7 @@ import { translate } from "locale";
 import NumericPad from "module/common/component/input/NumericPad/NumericPad";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useState } from "react";
-import { Animated, createBackdrop, ExposedBackdropProps, useToast } from "react-native-components";
+import { Animated, createBackdrop, ExposedBackdropProps } from "react-native-components";
 import BaseSettingsModalScreen from "../../layout/BaseSettingsModal/BaseSettingsModal";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 
@@ -10,29 +10,40 @@ const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { d
 
 interface ConfirmPinScreenProps
     extends Omit<ExposedBackdropProps, "animationIn" | "animationOut" | "animationInTiming" | "animationOutTiming"> {
-    onPinConfirmed: any;
+    onPinConfirmed: () => any;
+    onConfirmedExited?: () => any;
 }
 
-const ConfirmPinModal = createBackdrop(({ onPinConfirmed, ...rest }: ConfirmPinScreenProps) => {
+const ConfirmPinModal = createBackdrop(({ onPinConfirmed, onConfirmedExited, onExited, ...rest }: ConfirmPinScreenProps) => {
     const [error, setError] = useState<boolean>(false);
-    const [open, setOpen] = useState<boolean>();
-    const { showToast } = useToast();
+    const [open, setOpen] = useState(true);
+    const [success, setSuccess] = useState(false);
+
     const handleSubmit = async (pin: string) => {
-        try {
-            const storedPin = await WalletStorage.getPin();
-            if (pin === storedPin) {
-                onPinConfirmed();
-                setOpen(false);
-            } else {
-                setError(true);
-                notificationAsync(NotificationFeedbackType.Error);
-            }
-        } catch (e) {
-            showToast(translate("somethingWentWrong"));
+        const storedPin = await WalletStorage.getPin();
+        if (pin === storedPin) {
+            onPinConfirmed();
+            setSuccess(true);
+            setOpen(false);
+        } else {
+            setError(true);
+            notificationAsync(NotificationFeedbackType.Error);
         }
     };
+
+    const handleExited = () => {
+        if (success && onConfirmedExited) onConfirmedExited();
+        onExited?.();
+    };
+
     return (
-        <BaseSettingsModalScreen open={open} title={translate("confirm_your_pin")} {...rest}>
+        <BaseSettingsModalScreen
+            open={open}
+            onClose={() => setOpen(false)}
+            title={translate("confirm_your_pin")}
+            onExited={handleExited}
+            {...rest}
+        >
             <AnimatedNumericPad error={error} placeholder={translate("enter_your_pin")} onSubmit={handleSubmit} in={true} />
         </BaseSettingsModalScreen>
     );
