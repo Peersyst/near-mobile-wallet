@@ -31,7 +31,6 @@ describe("DepositConfirmationScreen tests", () => {
         expect(screen.getByText("1,000")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
         expect(screen.getByText("001")).toBeDefined();
-        expect(screen.getByText("0")).toBeDefined();
         expect(screen.getByText(translate("from") + ":")).toBeDefined();
         expect(screen.getByText(mockedWallet.name + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();
     });

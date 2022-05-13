@@ -52,7 +52,7 @@ describe("WalletCard tests", () => {
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fiat: "eur" });
         jest.spyOn(useCkbConversion, "default").mockReturnValue({ value: 10, convertBalance: jest.fn() });
         const mockedVibrate = jest.fn();
-        jest.spyOn(ExpoHapits, "notificationAsync").mockImplementation(mockedVibrate);
+        jest.spyOn(ExpoHapits, "impactAsync").mockImplementation(mockedVibrate);
         const screen = render(<WalletCard wallet={wallet} />);
         /**Account Balance */
         await waitFor(() => expect(screen.getByText("10,400")).toBeDefined());
