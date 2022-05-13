@@ -5,6 +5,9 @@ import { IconButton, Row } from "react-native-components";
 import { SettingsIcon } from "icons";
 import useNavigation from "../../../hook/useNavigation";
 import RefreshButton from "module/wallet/component/input/RefreshButton/RefreshButton";
+import FaucetButton from "module/wallet/component/input/FaucetButton/FaucetButton";
+import { useRecoilValue } from "recoil";
+import settingsState from "module/settings/state/SettingsState";
 
 export interface HeaderProps {
     showIcons?: boolean;
@@ -12,6 +15,7 @@ export interface HeaderProps {
 
 const Header = ({ showIcons = true }: HeaderProps): JSX.Element => {
     const navigation = useNavigation();
+    const { network } = useRecoilValue(settingsState);
     return (
         <HeaderRoot elevation={6} square>
             <Toolbar>
@@ -19,6 +23,7 @@ const Header = ({ showIcons = true }: HeaderProps): JSX.Element => {
                     <LogoRow />
                     {showIcons && (
                         <Row gap={16}>
+                            {network === "testnet" && <FaucetButton />}
                             <RefreshButton />
                             <IconButton onPress={() => navigation.navigate("Settings")}>
                                 <SettingsIcon />

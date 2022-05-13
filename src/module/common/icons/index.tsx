@@ -9,6 +9,7 @@ export * from "./DAOIcon";
 export * from "./DAODepositIcon";
 export * from "./DAOWithdrawIcon";
 export * from "./EditIcon";
+export * from "./FaucetIcon";
 export * from "./FilledCircleIcon";
 export * from "./FilledCopyIcon";
 export * from "./FilledDAOIcon";
