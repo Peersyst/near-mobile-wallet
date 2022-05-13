@@ -19,7 +19,7 @@ const LoadingModal = ({ loading, successMessage, error, success, ...backdropProp
     useEffect(() => {
         let closeTimeout: NodeJS.Timeout;
         if (success) {
-            setTimeout(() => notificationAsync(NotificationFeedbackType.Success), 100);
+            notificationAsync(NotificationFeedbackType.Success);
             closeTimeout = setTimeout(() => setOpen(false), 3000);
         }
         return () => {

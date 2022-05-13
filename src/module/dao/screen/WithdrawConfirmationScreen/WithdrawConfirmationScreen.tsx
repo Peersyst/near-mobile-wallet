@@ -9,10 +9,10 @@ import WithdrawSummary from "./WithdrawSummary";
 import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
 import useWithdrawOrUnlock from "module/dao/query/useWithdrawOrUnlock";
 import { getAPC } from "module/dao/utils/getAPC";
-import { useRefetchQueries } from "../../../../query/useRefetchQueries";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
+import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 
 interface WithdrawConfirmationScreenProps {
     withdrawInfo: WithdrawSummaryType;
@@ -22,8 +22,9 @@ const WithdrawConfirmationScreen = ({
     withdrawInfo: { receiverIndex, depositIndex, feeRate },
 }: WithdrawConfirmationScreenProps): JSX.Element => {
     //Hooks
+    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [loading, setLoading] = useState(false);
     const { hideModal } = useModal();
-    const refetch = useRefetchQueries();
     const {
         state: { wallets },
     } = useWalletState();
@@ -39,15 +40,13 @@ const WithdrawConfirmationScreen = ({
     const handleConfirmation = async () => {
         const mnemonic = await WalletStorage.getMnemonic(receiverIndex);
         if (unlockableDeposits.length > depositIndex) {
-            withdrawFromDAO({ unlockableAmount: unlockableDeposits[depositIndex], mnemonic: mnemonic! }, { onSuccess: handleOnSuccess });
+            withdrawFromDAO(
+                { unlockableAmount: unlockableDeposits[depositIndex], mnemonic: mnemonic! },
+                {
+                    onSettled: () => setLoading(false),
+                },
+            );
         }
-    };
-
-    const handleOnSuccess = () => {
-        refetch([
-            ["daoBalance", receiverIndex],
-            ["balance", receiverIndex],
-        ]);
     };
 
     return (
@@ -65,16 +64,22 @@ const WithdrawConfirmationScreen = ({
                     {translate("send_confirmation_text")}
                 </Typography>
                 <CountdownButton
-                    loading={isLoading}
+                    loading={loading}
                     disabled={isSuccess}
                     variant="outlined"
                     seconds={5}
                     fullWidth
-                    onPress={handleConfirmation}
+                    onPress={() => setShowConfirmation(true)}
                 >
                     {translate("confirm")}
                 </CountdownButton>
             </Col>
+            <ConfirmPinModal
+                open={showConfirmation}
+                onClose={() => setShowConfirmation(false)}
+                onPinConfirmed={() => setLoading(true)}
+                onConfirmedExited={handleConfirmation}
+            />
             <LoadingModal
                 loading={isLoading}
                 success={isSuccess}

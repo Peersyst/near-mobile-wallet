@@ -4,7 +4,6 @@ import { WalletState } from "module/sdk";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useSetRecoilState } from "recoil";
 import useWalletQueriesInvalidation from "module/wallet/hook/useWalletQueriesInvalidation";
-import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 
 const useServiceInstanceCreation = (): ((walletIndex: number, mnemonic: string[], initialState?: WalletState) => Promise<void>) => {
     const setWalletState = useSetRecoilState(walletState);
@@ -26,7 +25,6 @@ const useServiceInstanceCreation = (): ((walletIndex: number, mnemonic: string[]
                             ),
                         }));
                         await invalidateWalletQueries(index);
-                        if (index === serviceInstancesMap.size - 1) notificationAsync(NotificationFeedbackType.Warning);
                     },
                     () => {
                         setWalletState((state) => ({

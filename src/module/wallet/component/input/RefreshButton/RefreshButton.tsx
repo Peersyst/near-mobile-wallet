@@ -5,6 +5,7 @@ import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { useEffect, useRef, useState } from "react";
 import { classify } from "@peersyst/react-utils";
 import useWalletState from "module/wallet/hook/useWalletState";
+import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 
 const AnimatedRefreshIcon = Animated.createAnimatedComponent(classify(RefreshIcon));
 
@@ -26,6 +27,7 @@ const RefreshButton = (): JSX.Element => {
         for (let i = 0; i < serviceInstancesMap.size; i += 1) {
             await serviceInstancesMap.get(i)?.synchronize();
         }
+        notificationAsync(NotificationFeedbackType.Warning);
         setOwnSynchronizing(false);
     };
 
