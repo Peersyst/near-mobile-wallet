@@ -14,39 +14,41 @@ interface ConfirmPinScreenProps
     onConfirmedExited?: () => any;
 }
 
-const ConfirmPinModal = createBackdrop(({ onPinConfirmed, onConfirmedExited, onExited, ...rest }: ConfirmPinScreenProps) => {
-    const [error, setError] = useState<boolean>(false);
-    const [open, setOpen] = useState(true);
-    const [success, setSuccess] = useState(false);
+const ConfirmPinModal = createBackdrop(
+    ({ open: openProp, onPinConfirmed, onConfirmedExited, onExited, ...rest }: ConfirmPinScreenProps) => {
+        const [error, setError] = useState<boolean>(false);
+        const [open, setOpen] = useState(true);
+        const [success, setSuccess] = useState(false);
 
-    const handleSubmit = async (pin: string) => {
-        const storedPin = await WalletStorage.getPin();
-        if (pin === storedPin) {
-            onPinConfirmed();
-            setSuccess(true);
-            setOpen(false);
-        } else {
-            setError(true);
-            notificationAsync(NotificationFeedbackType.Error);
-        }
-    };
+        const handleSubmit = async (pin: string) => {
+            const storedPin = await WalletStorage.getPin();
+            if (pin === storedPin) {
+                onPinConfirmed();
+                setSuccess(true);
+                setOpen(false);
+            } else {
+                setError(true);
+                notificationAsync(NotificationFeedbackType.Error);
+            }
+        };
 
-    const handleExited = () => {
-        if (success && onConfirmedExited) onConfirmedExited();
-        onExited?.();
-    };
+        const handleExited = () => {
+            if (success && onConfirmedExited) onConfirmedExited();
+            onExited?.();
+        };
 
-    return (
-        <BaseSettingsModalScreen
-            open={open}
-            onClose={() => setOpen(false)}
-            title={translate("confirm_your_pin")}
-            onExited={handleExited}
-            {...rest}
-        >
-            <AnimatedNumericPad error={error} placeholder={translate("enter_your_pin")} onSubmit={handleSubmit} in={true} />
-        </BaseSettingsModalScreen>
-    );
-});
+        return (
+            <BaseSettingsModalScreen
+                open={open && openProp}
+                onClose={() => setOpen(false)}
+                title={translate("confirm_your_pin")}
+                onExited={handleExited}
+                {...rest}
+            >
+                <AnimatedNumericPad error={error} placeholder={translate("enter_your_pin")} onSubmit={handleSubmit} in={true} />
+            </BaseSettingsModalScreen>
+        );
+    },
+);
 
 export default ConfirmPinModal;
