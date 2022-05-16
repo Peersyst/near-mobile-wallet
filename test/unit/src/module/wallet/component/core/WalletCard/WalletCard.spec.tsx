@@ -39,7 +39,6 @@ describe("WalletCard tests", () => {
         /**Account Balance */
         await waitFor(() => expect(screen.getByText("10,400")).toBeDefined());
         expect(screen.getByText("000000")).toBeDefined();
-        expect(screen.getByText("ckb")).toBeDefined();
 
         /**Account Buttons */
         expect(screen.getByText(translate("send"))).toBeDefined();
@@ -56,10 +55,9 @@ describe("WalletCard tests", () => {
         const screen = render(<WalletCard wallet={wallet} />);
         /**Account Balance */
         await waitFor(() => expect(screen.getByText("10,400")).toBeDefined());
-        const text = screen.getByText("ckb");
+        const text = screen.getByText("10,400");
         fireEvent.press(text);
         await waitFor(() => expect(screen.getByText("10")).toBeDefined());
-        expect(screen.getByText("eur")).toBeDefined();
         expect(mockedVibrate).toHaveBeenCalled();
     });
 });
