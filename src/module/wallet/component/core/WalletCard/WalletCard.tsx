@@ -26,7 +26,7 @@ const coinsMap: Record<FiatCurrencyType, string> = {
     usd: image.dollarCoin,
     eur: image.euroCoin,
     gbp: image.poundCoin,
-    jpy: image.yuanCoin,
+    jpy: image.yenCoin,
     cny: image.yuanCoin,
 };
 

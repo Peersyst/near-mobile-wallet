@@ -13,6 +13,7 @@ const image = {
     dollarCoin: require("./dollar-coin.png"),
     euroCoin: require("./euro-coin.png"),
     poundCoin: require("./pound-coin.png"),
+    yenCoin: require("./yen-coin.png"),
     yuanCoin: require("./yuan-coin.png"),
 };
 export { image };
