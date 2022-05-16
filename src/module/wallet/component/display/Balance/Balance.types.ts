@@ -8,7 +8,7 @@ export interface BalanceProps extends Omit<TypographyProps, "children" | "number
     smallBalance?: boolean;
     smallBalanceStyle?: ViewStyle & TextStyle;
     action?: "display" | "add" | "subtract";
-    units: string;
+    units: string | false;
     style?: ViewStyle & TextStyle;
     showAllDecimals?: boolean;
 }

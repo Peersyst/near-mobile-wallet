@@ -9,5 +9,10 @@ const image = {
     notes: require("./notes.png"),
     send: require("./send.png"),
     wallet: require("./wallet.png"),
+    nervosCoin: require("./nervos-coin.png"),
+    dollarCoin: require("./dollar-coin.png"),
+    euroCoin: require("./euro-coin.png"),
+    poundCoin: require("./pound-coin.png"),
+    yuanCoin: require("./yuan-coin.png"),
 };
 export { image };
