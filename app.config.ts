@@ -34,7 +34,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         package: "com.peersyst.ckbull",
         adaptiveIcon: {
             foregroundImage: "./assets/images/adaptive-icon.png",
-            backgroundColor: "#ffffff",
+            backgroundColor: "#141414",
         },
         versionCode: Number(process.env.BUILD_NUMBER) || 0,
         softwareKeyboardLayoutMode: "pan",
