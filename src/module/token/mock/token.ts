@@ -80,13 +80,3 @@ export const UknownToken: TokenType = {
     hashType: "type",
     apiId: "usd-coin",
 };
-
-export const Token: TokenAmount = {
-    type: tokensList[tokensList.length - 1],
-    amount: 20000.02,
-};
-
-export const tokens: TokenAmount[] = [...Array(5)].map((_, i) => ({
-    type: tokensList[i],
-    amount: Number((Math.random() * 1234.56).toFixed(2)),
-}));
