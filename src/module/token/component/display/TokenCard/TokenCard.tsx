@@ -34,12 +34,7 @@ const TokenCard = ({ token: { type, amount } }: TokenProps): JSX.Element => {
                     boldUnits
                     variant="body2"
                 />
-                {tokenValue && (
-                    <Row>
-                        <Typography variant="body2">{"~ "}</Typography>
-                        <Balance balance={tokenValue * amount} units={fiat} variant={"button"} />
-                    </Row>
-                )}
+                {tokenValue && <Balance balance={tokenValue * amount} units={fiat} variant="body2" />}
             </Col>
         </TokenRoot>
     );

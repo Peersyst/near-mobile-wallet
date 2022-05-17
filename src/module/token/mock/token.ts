@@ -9,6 +9,7 @@ export const tokensList: TokenType[] = [
         args: "0x5c4ac961a2428137f27271cf2af205e5c55156d26d9ac285ed3170e8c4cc1501",
         codeHash: "0x5e7a36a77e68eecc013dfa2fe6a23f3b6c344b04005808694ae6dd45eea4cfd5",
         hashType: "type",
+        apiId: "usd-coin",
     },
     {
         name: "Wrapped BNB",
@@ -18,6 +19,7 @@ export const tokensList: TokenType[] = [
         args: "0x578cd6ab8c0800e6fbc17b58633857dac5626883af89f842e79cb8f7af24de75",
         codeHash: "0x5e7a36a77e68eecc013dfa2fe6a23f3b6c344b04005808694ae6dd45eea4cfd5",
         hashType: "type",
+        apiId: "binancecoin",
     },
     {
         name: "Wrapped ETH",
@@ -28,6 +30,7 @@ export const tokensList: TokenType[] = [
         args: "0x9657b32fcdc463e13ec9205914fd91c443822a949937ae94add9869e7f2e1de8",
         codeHash: "0x5e7a36a77e68eecc013dfa2fe6a23f3b6c344b04005808694ae6dd45eea4cfd5",
         hashType: "type",
+        apiId: "ethereum",
     },
     {
         name: "Wrapped USDC",
@@ -37,6 +40,7 @@ export const tokensList: TokenType[] = [
         args: "0xcedd0f67f2d218ab992284ab343c2e729d2a124a1612592deaa9f8b8f8a581dd",
         codeHash: "0x5e7a36a77e68eecc013dfa2fe6a23f3b6c344b04005808694ae6dd45eea4cfd5",
         hashType: "type",
+        apiId: "usd-coin",
     },
     {
         name: "USDT",
@@ -47,6 +51,7 @@ export const tokensList: TokenType[] = [
         args: "0xf951c4f35aabb9b23dff18b1c7e433801ff6d94430d180335082cc65373d1220",
         codeHash: "0x5e7a36a77e68eecc013dfa2fe6a23f3b6c344b04005808694ae6dd45eea4cfd5",
         hashType: "type",
+        apiId: "tether",
     },
     {
         name: "Wrapped BTC",
@@ -56,19 +61,12 @@ export const tokensList: TokenType[] = [
         args: "0x9ea7beb4a36469e00bb30dbac75e93672441b483d519556ba9d1424b9294eae5",
         codeHash: "0x5e7a36a77e68eecc013dfa2fe6a23f3b6c344b04005808694ae6dd45eea4cfd5",
         hashType: "type",
+        apiId: "wrapped-bitcoin",
     },
 ];
 
 export const tokenAmountZeroBalanceList: TokenAmount[] = tokensList.map((_, i) => ({
-    type: {
-        args: tokensList[i].args,
-        codeHash: tokensList[i].codeHash,
-        hashType: tokensList[i].hashType,
-        imageUri: tokensList[i].imageUri,
-        tokenName: tokensList[i].tokenName,
-        name: tokensList[i].name,
-        description: tokensList[i].description,
-    },
+    type: tokensList[i],
     amount: 0,
 }));
 
@@ -80,30 +78,5 @@ export const UknownToken: TokenType = {
     args: "",
     codeHash: "0x5e7a36a77e68eecc013dfa2fe6a23f3b6c344b04005808694ae6dd45eea4cfd5",
     hashType: "type",
+    apiId: "usd-coin",
 };
-
-export const Token: TokenAmount = {
-    type: {
-        name: "Wrapped BTC",
-        description: "ForceBridge from BSC",
-        tokenName: "BTC|bsc",
-        imageUri: "https://bitcoin.org/img/icons/opengraph.png?1644775669",
-        args: "0x9ea7beb4a36469e00bb30dbac75e93672441b483d519556ba9d1424b9294eae5",
-        codeHash: "0x5e7a36a77e68eecc013dfa2fe6a23f3b6c344b04005808694ae6dd45eea4cfd5",
-        hashType: "type",
-    },
-    amount: 20000.02,
-};
-
-export const tokens: TokenAmount[] = [...Array(5)].map((_, i) => ({
-    type: {
-        args: tokensList[i].args,
-        codeHash: tokensList[i].codeHash,
-        hashType: tokensList[i].hashType,
-        imageUri: tokensList[i].imageUri,
-        tokenName: tokensList[i].tokenName,
-        name: tokensList[i].name,
-        description: tokensList[i].description,
-    },
-    amount: Number((Math.random() * 1234.56).toFixed(2)),
-}));

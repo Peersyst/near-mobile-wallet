@@ -1,5 +1,5 @@
 import useGetBalance from "module/wallet/query/useGetBalance";
-import { Image, TouchableWithoutFeedback } from "react-native";
+import { Image, ImageSourcePropType, TouchableWithoutFeedback } from "react-native";
 import { Wallet } from "module/wallet/state/WalletState";
 import useWalletColorIndex from "module/wallet/hook/useWalletColorIndex";
 import { WalletCardBalance, WalletCardRoot, WalletContent } from "./WalletCard.styles";
@@ -22,7 +22,7 @@ export interface WalletCardRootProps {
     color: string;
 }
 
-const coinsMap: Record<FiatCurrencyType, string> = {
+const coinsMap: Record<FiatCurrencyType, ImageSourcePropType> = {
     usd: image.dollarCoin,
     eur: image.euroCoin,
     gbp: image.poundCoin,
@@ -52,18 +52,14 @@ const WalletCard = ({ wallet: { name, index, colorIndex } }: WalletCardProps): J
                 >
                     <TouchableWithoutFeedback onPress={changeCurrencyMode}>
                         <Row gap={5} alignItems="center" justifyContent="center">
-                            <Image
-                                source={coinsMap[fiat] as any}
-                                style={{ height: 30, width: 30, display: showFiat ? undefined : "none" }}
-                            />
-                            <Image source={image.nervosCoin} style={{ height: 30, width: 30, display: showFiat ? "none" : undefined }} />
                             <WalletCardBalance
-                                smallBalanceStyle={{ marginBottom: 1.75 }}
                                 variant="h1"
                                 balance={showFiat ? fiatValue : balance?.freeBalance || 0}
                                 decimals={showFiat ? 2 : 6}
                                 units={false}
                             />
+                            <Image source={coinsMap[fiat]} style={{ height: 30, width: 30, display: showFiat ? undefined : "none" }} />
+                            <Image source={image.nervosCoin} style={{ height: 30, width: 30, display: showFiat ? "none" : undefined }} />
                         </Row>
                     </TouchableWithoutFeedback>
                 </ControlledSuspense>
