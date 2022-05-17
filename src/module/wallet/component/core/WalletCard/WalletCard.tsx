@@ -58,7 +58,6 @@ const WalletCard = ({ wallet: { name, index, colorIndex } }: WalletCardProps): J
                             />
                             <Image source={image.nervosCoin} style={{ height: 30, width: 30, display: showFiat ? "none" : undefined }} />
                             <WalletCardBalance
-                                smallBalanceStyle={{ marginBottom: 1.75 }}
                                 variant="h1"
                                 balance={showFiat ? fiatValue : balance?.freeBalance || 0}
                                 decimals={showFiat ? 2 : 6}

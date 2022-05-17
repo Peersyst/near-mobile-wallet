@@ -6,6 +6,6 @@ export const BalanceItem = styled(Typography, { textTransform: "uppercase" })<Ba
     const { fontSize, lineHeight } = theme.typography[variant];
     return {
         fontSize: smallBalance && fontSize ? fontSize * 0.7 : fontSize,
-        lineHeight: smallBalance && lineHeight ? lineHeight * 0.7 : lineHeight,
+        height: smallBalance && lineHeight ? lineHeight * 0.85 : lineHeight,
     };
 });

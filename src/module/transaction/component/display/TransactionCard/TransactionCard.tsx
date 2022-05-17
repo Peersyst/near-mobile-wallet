@@ -1,6 +1,6 @@
 import { Col, Row, Typography, useModal } from "react-native-components";
 import formatDate from "utils/formatDate";
-import { TransactionCardRoot } from "./TransactionCard.styles";
+import { TransactionAmountConversion, TransactionCardRoot } from "./TransactionCard.styles";
 import TransactionIcon from "module/transaction/component/display/TransactionIcon/TransactionIcon";
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
 import TransactionLabel from "module/transaction/component/display/TransactionLabel/TransactionLabel";
@@ -10,6 +10,9 @@ import TransactionDetailsModal from "../../core/TransactionDetailsModal/Transact
 import { TransactionStatus as TransactionStatusEnum, TransactionType } from "ckb-peersyst-sdk";
 import TransactionStatusIndicator from "module/transaction/component/display/TransactionStatusIndicator/TransactionStatusIndicator";
 import TransactionStatus from "../TransactionStatus/TransactionStatus";
+import { useRecoilValue } from "recoil";
+import settingsState from "module/settings/state/SettingsState";
+import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
 
 export interface TransactionCardProps {
     transaction: FullTransaction;
@@ -17,6 +20,8 @@ export interface TransactionCardProps {
 
 const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => {
     const { showModal } = useModal();
+    const { fiat } = useRecoilValue(settingsState);
+    const { data: tokenValue } = useGetTokenPrice(fiat, "nervos-network");
     const { timestamp, amount, type, token = "CKB", status } = transaction;
     const showAmount = type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
 
@@ -39,7 +44,14 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
                         ) : (
                             <TransactionStatus variant="body2" status={status} style={{ marginLeft: 10 }} />
                         )}
-                        {status !== TransactionStatusEnum.COMMITTED && <TransactionStatusIndicator status={status} />}
+                        {status !== TransactionStatusEnum.COMMITTED ? (
+                            <TransactionStatusIndicator status={status} />
+                        ) : (
+                            showAmount &&
+                            tokenValue && (
+                                <TransactionAmountConversion type={type} amount={tokenValue * amount} currency={fiat} variant="body2" />
+                            )
+                        )}
                     </Row>
                 </Col>
             </TransactionCardRoot>

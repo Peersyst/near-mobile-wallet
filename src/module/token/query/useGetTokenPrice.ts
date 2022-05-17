@@ -1,29 +1,19 @@
-import { ScriptType } from "./../../sdk/core/transaction.service";
+import { ScriptType } from "ckb-peersyst-sdk";
 import { useQuery } from "react-query";
 import { QueryResult } from "query-utils";
 import { FiatCurrencyType } from "module/settings/state/SettingsState";
-import { getTokenIndexTypeFromScript } from "module/common/service/CkbSdkService";
+import { tokensList } from "module/token/mock/token";
+import { ApiIdType } from "../types";
 
 // Refetch the data every 3 minutes
 const CONVERSION_PRICE_INTERVAL = 1000 * 60 * 3;
 
-type ApiIdType = "usd-coin" | "binancecoin" | "ethereum" | "tether" | "wrapped-bitcoin";
-
-//It have to be in same order than tokensList
-const apiIdList: ApiIdType[] = ["usd-coin", "binancecoin", "ethereum", "usd-coin", "tether", "wrapped-bitcoin"];
-
-function getApiIdFromCodeHashAndArgs(scriptType: ScriptType): ApiIdType | undefined {
-    const tokenIndex = getTokenIndexTypeFromScript(scriptType);
-    if (tokenIndex !== -1) {
-        return apiIdList[tokenIndex];
-    }
-}
-
-export const useGetTokenPrice = (currency: FiatCurrencyType, scriptType: ScriptType): QueryResult<number | undefined> =>
+export const useGetTokenPrice = (currency: FiatCurrencyType, type: ScriptType | ApiIdType): QueryResult<number | undefined> =>
     useQuery(
-        ["tokenPrice", currency, scriptType],
+        ["tokenPrice", currency, type],
         async () => {
-            const apiId: ApiIdType | undefined = getApiIdFromCodeHashAndArgs(scriptType);
+            const apiId: ApiIdType | undefined =
+                typeof type === "string" ? type : tokensList.find((tkn) => tkn.args === type.args && tkn.codeHash === type.codeHash)?.apiId;
             if (apiId) {
                 const res: any = await fetch(`https://api.coingecko.com/api/v3/coins/${apiId}`);
                 const data = await res.json();

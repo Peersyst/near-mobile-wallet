@@ -3,9 +3,20 @@ import TransactionCard from "module/transaction/component/display/TransactionCar
 import { createTransaction, transaction } from "mocks/transaction";
 import { translate } from "locale";
 import { TransactionType } from "ckb-peersyst-sdk";
+import * as Recoil from "recoil";
+import * as useGetTokenPrice from "module/token/query/useGetTokenPrice";
 
 describe("TransactionCard tests", () => {
-    test("Renders correctly with amount", () => {
+    beforeAll(() => {
+        jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fiat: "eur" });
+        jest.spyOn(useGetTokenPrice, "useGetTokenPrice").mockReturnValue({ data: 10 } as any);
+    });
+
+    afterAll(() => {
+        jest.restoreAllMocks();
+    });
+
+    test("Renders correctly with amount", async () => {
         const screen = render(<TransactionCard transaction={transaction} />);
         expect(screen.getByText("29/01/2022 - 00:00")).toBeDefined();
         expect(screen.getByText(translate("sent"))).toBeDefined();

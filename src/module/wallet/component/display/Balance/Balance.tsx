@@ -11,7 +11,6 @@ const Balance = ({
     balance: balanceProps,
     boldUnits,
     smallBalance,
-    smallBalanceStyle,
     action = "display",
     variant,
     units,
@@ -26,10 +25,10 @@ const Balance = ({
     const [textStyles, rootStyles] = useMemo(
         () =>
             extractTextStyles({
-                ...style,
                 ...(action === "add" && {
                     color: palette.status.success,
                 }),
+                ...style,
             }),
         [action, palette.status.error, palette.status.success, style],
     );
@@ -40,14 +39,14 @@ const Balance = ({
                     {action === "add" ? "+" : "-"}
                 </BalanceItem>
             )}
-            <Row alignItems="flex-end">
+            <Row alignItems="center">
                 <BalanceItem style={textStyles} variant={variant} {...rest}>{`${balance[0]}`}</BalanceItem>
                 {balance[2] && (
                     <>
                         <BalanceItem style={textStyles} variant={variant} {...rest}>{`${balance[1]}`}</BalanceItem>
                         <BalanceItem
                             variant={variant}
-                            style={{ ...textStyles, ...smallBalanceStyle }}
+                            style={textStyles}
                             smallBalance={smallBalance}
                             {...rest}
                         >{`${balance[2]}`}</BalanceItem>
