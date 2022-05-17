@@ -6,6 +6,7 @@ import Isotip from "module/common/component/display/Logos/Isotip/Isotip";
 import { useEffect, useState } from "react";
 import { translate } from "locale";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
+import AnimationContainer from "module/common/component/display/AnimationContainer/AnimationContainer";
 
 const LoadingModal = ({ loading, successMessage, error, success, ...backdropProps }: LoadingModalProps): JSX.Element => {
     const [open, setOpen] = useState(false);
@@ -44,7 +45,9 @@ const LoadingModal = ({ loading, successMessage, error, success, ...backdropProp
             >
                 {success ? (
                     <>
-                        <SuccessIcon />
+                        <AnimationContainer style={{ height: 75, width: 75 }}>
+                            <SuccessIcon />
+                        </AnimationContainer>
                         <SuccessMessage textAlign="center" variant="body1">
                             {successMessage}
                         </SuccessMessage>

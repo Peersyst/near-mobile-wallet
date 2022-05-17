@@ -5,7 +5,7 @@ import Isotip from "../Isotip/Isotip";
 const LogoRow = (): JSX.Element => {
     return (
         <Row alignItems={"center"} justifyContent={"center"} gap={8}>
-            <Isotip size={"sm"} />
+            <Isotip size={"xs"} animation={false} />
             <Logotip size={"md"} />
         </Row>
     );

@@ -59,6 +59,7 @@ export class WalletService {
     private accountTransactionMap: transactionMapI = {};
     private onSync!: (walletState: WalletState) => Promise<void>;
     private onSyncStart!: () => void;
+    private synchronizing = false;
 
     constructor(
         connectionService: ConnectionService,
@@ -126,6 +127,8 @@ export class WalletService {
     }
 
     async synchronize(): Promise<WalletState> {
+        if (this.synchronizing) return this.getWalletState();
+        this.synchronizing = true;
         if (this.onSyncStart) this.onSyncStart();
         let currentIndex = 0;
         let toBlock: string;
@@ -173,6 +176,7 @@ export class WalletService {
         if (this.onSync) {
             await this.onSync(walletState);
         }
+        this.synchronizing = false;
 
         return walletState;
     }

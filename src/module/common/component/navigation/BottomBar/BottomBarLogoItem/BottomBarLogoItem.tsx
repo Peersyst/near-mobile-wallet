@@ -1,5 +1,7 @@
-import { image } from "asset/image/index";
-import { LogoImage, BottomBarLogoItemRoot, PressableImageRoot } from "./BottomBarLogoItem.styles";
+import { BottomBarLogoItemRoot, PressableImageRoot, BomotBarLogoItemWrapper } from "./BottomBarLogoItem.styles";
+import Isotip from "module/common/component/display/Logos/Isotip/Isotip";
+import { ThemeProvider } from "@peersyst/react-native-styled";
+import { darkTheme } from "module/common/style/darkTheme";
 
 interface BottomBarLogoItemProps {
     onPress: () => void;
@@ -7,11 +9,15 @@ interface BottomBarLogoItemProps {
 
 const BottomBarLogoItem = ({ onPress }: BottomBarLogoItemProps): JSX.Element => {
     return (
-        <BottomBarLogoItemRoot>
-            <PressableImageRoot accessibilityRole="imagebutton" onPress={onPress}>
-                <LogoImage accessibilityRole="image" source={image.coloredLogo} />
-            </PressableImageRoot>
-        </BottomBarLogoItemRoot>
+        <ThemeProvider theme={darkTheme}>
+            <BottomBarLogoItemRoot>
+                <BomotBarLogoItemWrapper>
+                    <PressableImageRoot accessibilityRole="imagebutton" onPress={onPress}>
+                        <Isotip size="sm" />
+                    </PressableImageRoot>
+                </BomotBarLogoItemWrapper>
+            </BottomBarLogoItemRoot>
+        </ThemeProvider>
     );
 };
 

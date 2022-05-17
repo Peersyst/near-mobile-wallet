@@ -15,5 +15,6 @@ const image = {
     poundCoin: require("./pound-coin.png"),
     yenCoin: require("./yen-coin.png"),
     yuanCoin: require("./yuan-coin.png"),
+    animation: require("./animation.webp"),
 };
 export { image };
