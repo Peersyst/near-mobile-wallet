@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { BackdropProps } from "./Backdrop.types";
 import { useControlled } from "@peersyst/react-hooks";
 import { useTheme } from "@peersyst/react-native-styled";
-import Modal from "react-native-modal";
+import Modal from "@peersyst/react-native-modal";
 import { Platform, View } from "react-native";
 import { Toaster, useToast } from "module/common/component/base";
 
