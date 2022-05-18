@@ -18,13 +18,13 @@ const useServiceInstanceCreation = (): ((walletIndex: number, mnemonic: string[]
                     initialState,
                     async (walletState: WalletState) => {
                         await WalletStorage.setInitialState(index, walletState);
+                        await invalidateWalletQueries(index);
                         setWalletState((state) => ({
                             ...state,
                             wallets: state.wallets.map((w) =>
                                 w.index === index ? { ...w, initialState: walletState, synchronizing: false } : w,
                             ),
                         }));
-                        await invalidateWalletQueries(index);
                     },
                     () => {
                         setWalletState((state) => ({

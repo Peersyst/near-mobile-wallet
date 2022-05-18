@@ -1,5 +1,5 @@
 import useGetBalance from "module/wallet/query/useGetBalance";
-import { Image, ImageSourcePropType, TouchableWithoutFeedback } from "react-native";
+import { ActivityIndicator, Image, ImageSourcePropType, TouchableWithoutFeedback } from "react-native";
 import { Wallet } from "module/wallet/state/WalletState";
 import useWalletColorIndex from "module/wallet/hook/useWalletColorIndex";
 import { WalletCardBalance, WalletCardRoot, WalletContent } from "./WalletCard.styles";
@@ -30,7 +30,7 @@ const coinsMap: Record<FiatCurrencyType, ImageSourcePropType> = {
     cny: image.yuanCoin,
 };
 
-const WalletCard = ({ wallet: { name, index, colorIndex } }: WalletCardProps): JSX.Element => {
+const WalletCard = ({ wallet: { name, index, colorIndex, synchronizing } }: WalletCardProps): JSX.Element => {
     const color = useWalletColorIndex(colorIndex);
     const { fiat } = useRecoilValue(settingsState);
     const { data: balance } = useGetBalance(index);
@@ -45,13 +45,10 @@ const WalletCard = ({ wallet: { name, index, colorIndex } }: WalletCardProps): J
         <WalletCardRoot color={color}>
             <WalletContent>
                 <WalletCardHeader index={index} name={name} />
-                <ControlledSuspense
-                    isLoading={balance === undefined || (loadingPrice && showFiat)}
-                    activityIndicatorColor="white"
-                    activityIndicatorSize={25}
-                >
+                <ControlledSuspense isLoading={balance === undefined} activityIndicatorColor="white" activityIndicatorSize={25}>
                     <TouchableWithoutFeedback onPress={changeCurrencyMode}>
                         <Row gap={5} alignItems="center" justifyContent="center">
+                            {(synchronizing || (loadingPrice && showFiat)) && <ActivityIndicator color="white" />}
                             <WalletCardBalance
                                 variant="h1"
                                 balance={showFiat ? fiatValue : balance?.freeBalance || 0}
