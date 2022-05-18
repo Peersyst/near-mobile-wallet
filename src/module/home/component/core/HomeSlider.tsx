@@ -7,10 +7,10 @@ import { useEffect } from "react";
 
 const HomeSlider = (): JSX.Element => {
     const {
-        state: { wallets, selectedWallet },
+        state: { wallets, selectedWallet = 0 },
         setSelectedWallet,
     } = useWalletState();
-    const { synchronizing, synchronize } = useCkbSync(selectedWallet);
+    const { synchronizing, synchronize } = useCkbSync(selectedWallet < wallets.length ? selectedWallet : 0);
 
     useEffect(() => {
         if (!synchronizing) synchronize();
