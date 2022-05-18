@@ -10,7 +10,7 @@ const HomeSlider = (): JSX.Element => {
         state: { wallets, selectedWallet = 0 },
         setSelectedWallet,
     } = useWalletState();
-    const { synchronizing, synchronize } = useCkbSync(selectedWallet < wallets.length ? selectedWallet : 0);
+    const { synchronizing, synchronize } = useCkbSync(selectedWallet);
 
     useEffect(() => {
         if (!synchronizing) synchronize();
