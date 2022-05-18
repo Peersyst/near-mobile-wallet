@@ -70,7 +70,7 @@
         "react-native-gesture-handler": "~2.1.0",
         "react-native-keyboard-aware-scroll-view": "^0.9.5",
         "react-native-modal": "https://github.com/Peersyst/react-native-modal.git",
-        "react-native-pager-view": "^5.4.15",
+        "react-native-pager-view": "^5.4.9",
         "react-native-qrcode-svg": "^6.1.2",
         "react-native-safe-area-context": "3.3.2",
         "react-native-screens": "~3.10.1",
