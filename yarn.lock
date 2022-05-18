@@ -1805,6 +1805,15 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^1.2.0"
 
+"@peersyst/react-native-modal@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-modal/-/react-native-modal-1.0.0.tgz#cd58d90f1a3fa2fc15c2e9e5f9a80f327ed37b88"
+  integrity sha512-uP3rHaq5kBaPSPI+Icd7sOPV8WPsv/hcjd6WRwyDmFgBdO/kBdT8gHa6WdXtNJOHaoQ1oTmWB3drfvj4NG8SGA==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-animatable "1.3.3"
+    react-native-keyboard-aware-scroll-view "^0.9.5"
+
 "@peersyst/react-native-styled@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@peersyst/react-native-styled/-/react-native-styled-1.1.1.tgz#c89aa55f2d8dc7dd03381f89fedf9eeaf544c975"
@@ -7967,13 +7976,6 @@ react-native-keyboard-aware-scroll-view@^0.9.5:
   dependencies:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
-
-"react-native-modal@https://github.com/Peersyst/react-native-modal.git":
-  version "13.0.1"
-  resolved "https://github.com/Peersyst/react-native-modal.git#6b170ab5a0709930ebf7ae9d6c69694d77f17043"
-  dependencies:
-    prop-types "^15.6.2"
-    react-native-animatable "1.3.3"
 
 react-native-pager-view@^5.4.9:
   version "5.4.15"
