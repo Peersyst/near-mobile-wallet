@@ -13,16 +13,8 @@ export interface UseGetTransactionsOptions {
 const useGetTransactions = ({ index, filter }: UseGetTransactionsOptions = {}) => {
     const selectedWallet = useSelectedWalletIndex();
     const usedIndex = index ?? selectedWallet;
-    const {
-        data: uncommitedTransactions = [],
-        refetch: refetchUncommitedTransactions,
-        isLoading: uncommitedTransactionsLoading,
-    } = useUncommittedTransactions(usedIndex);
-    const {
-        data: transactions = [],
-        refetch: refetchTransactions,
-        isLoading: transactionsLoading,
-    } = useQuery(["transactions", usedIndex], () => {
+    const { data: uncommitedTransactions = [], isLoading: uncommitedTransactionsLoading } = useUncommittedTransactions(usedIndex);
+    const { data: transactions = [], isLoading: transactionsLoading } = useQuery(["transactions", usedIndex], () => {
         const serviceInstance = serviceInstancesMap.get(usedIndex);
         return serviceInstance?.getTransactions().reverse();
     });
@@ -38,7 +30,6 @@ const useGetTransactions = ({ index, filter }: UseGetTransactionsOptions = {}) =
 
     return {
         data: txs,
-        refetch: async () => Promise.all([refetchUncommitedTransactions(), refetchTransactions()]),
         isLoading: uncommitedTransactionsLoading || transactionsLoading,
     };
 };

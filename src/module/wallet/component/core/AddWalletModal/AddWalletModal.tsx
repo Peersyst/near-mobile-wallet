@@ -5,6 +5,7 @@ import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 import useServiceInstanceCreation from "module/wallet/hook/useServiceInstanceCreation";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
@@ -47,6 +48,11 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
             }));
 
             await createServiceInstance(newWallet.index, mnemonic!);
+
+            //Use another thread
+            setTimeout(async () => {
+                await serviceInstancesMap.get(newWallet.index)?.synchronize();
+            });
         }
         handleClose();
     };

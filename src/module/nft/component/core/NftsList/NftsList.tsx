@@ -6,11 +6,10 @@ import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 
 const NftsList = (): JSX.Element => {
     const { index } = useSelectedWallet();
-    const { data = [], refetch, isLoading } = useGetNfts(index);
+    const { data = [], isLoading } = useGetNfts(index);
 
     return (
         <MainList
-            onRefresh={refetch}
             loading={isLoading}
             data={data}
             renderItem={({ item: nft }) => <NftCard {...nft} />}

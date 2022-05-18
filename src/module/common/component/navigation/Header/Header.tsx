@@ -4,7 +4,6 @@ import LogoRow from "module/common/component/display/Logos/LogoRow/LogoRow";
 import { IconButton, Row } from "react-native-components";
 import { SettingsIcon } from "icons";
 import useNavigation from "../../../hook/useNavigation";
-import RefreshButton from "module/wallet/component/input/RefreshButton/RefreshButton";
 import FaucetButton from "module/wallet/component/input/FaucetButton/FaucetButton";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
@@ -24,7 +23,6 @@ const Header = ({ showIcons = true }: HeaderProps): JSX.Element => {
                     {showIcons && (
                         <Row gap={16}>
                             {network === "testnet" && <FaucetButton />}
-                            <RefreshButton />
                             <IconButton onPress={() => navigation.navigate("Settings")}>
                                 <SettingsIcon />
                             </IconButton>
