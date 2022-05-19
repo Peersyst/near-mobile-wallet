@@ -34,7 +34,7 @@ export const sizeRelations: SizeIsotipRelationType = {
 export const IsotipAnimatedContainer = styled(AnimationContainer)<IsotipAnimationContainerProps>(({ size }) => {
     const { fontSize } = sizeRelations[size];
     return {
-        height: fontSize,
-        width: fontSize,
+        height: fontSize + 20,
+        width: fontSize + 20,
     };
 });

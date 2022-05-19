@@ -3,7 +3,7 @@ import styled from "@peersyst/react-native-styled";
 import { Image } from "react-native";
 
 export const EmptyListComponentImage = styled(Image)(({ dimensions: { height } }) => {
-    const ASPECT_RATIO = height < 650 ? 0.2 : 0.3;
+    const ASPECT_RATIO = height < 650 ? 0.15 : 0.25;
     return {
         height: height * ASPECT_RATIO,
         width: height * ASPECT_RATIO,

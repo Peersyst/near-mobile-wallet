@@ -28,8 +28,4 @@ describe("TransactionAmount tests", () => {
         screen.rerender(<TransactionAmount amount={100} currency="CKB" type={TransactionType.UNLOCK_DAO} variant="body1" />);
         expect(screen.getByText("+")).toBeDefined();
     });
-    test("Renders display", () => {
-        const screen = render(<TransactionAmount amount={100} currency="CKB" type={TransactionType.WITHDRAW_DAO} variant="body1" />);
-        expect(screen.getByText("100").props.style.color).toEqual("rgb(0, 0, 0)");
-    });
 });

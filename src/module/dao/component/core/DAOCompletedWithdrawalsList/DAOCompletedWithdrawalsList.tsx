@@ -5,11 +5,10 @@ import useGetTransactions from "module/transaction/query/useGetTransactions";
 import { isUnlockOrWithdrawDAO } from "../../../utils/isUnlockOrWithdrawDAO";
 
 const DAOCompletedWithdrawalsList = (): JSX.Element => {
-    const { data = [], refetch, isLoading } = useGetTransactions({ filter: (tx) => isUnlockOrWithdrawDAO(tx.type) });
+    const { data = [], isLoading } = useGetTransactions({ filter: (tx) => isUnlockOrWithdrawDAO(tx.type) });
 
     return (
         <MainList
-            onRefresh={refetch}
             loading={isLoading}
             data={data}
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}

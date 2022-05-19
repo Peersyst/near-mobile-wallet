@@ -15,8 +15,7 @@ export default function (type: FullTransaction["type"]): BalanceProps["action"] 
         case TransactionType.RECEIVE_TOKEN:
         case TransactionType.SMART_CONTRACT_RECEIVE:
         case TransactionType.UNLOCK_DAO:
-            return "add";
         case TransactionType.WITHDRAW_DAO:
-            return "display";
+            return "add";
     }
 }
