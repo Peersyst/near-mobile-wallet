@@ -169,5 +169,7 @@
     "too_many_decimals": "Debe contener %decimals% o menos decimales",
     "no_deposits": "Actualmente no tienes ningún depósito en curso",
     "withdrawals": "Retiros",
-    "processing": "Procesando..."
+    "processing": "Procesando...",
+    "testnet_warning": "Esto es una versión de Testnet. No envíes CKB de Mainnet a esta cuenta.",
+    "dismiss": "Cerrar"
 }

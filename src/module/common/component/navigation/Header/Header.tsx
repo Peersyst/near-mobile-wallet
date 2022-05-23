@@ -7,6 +7,7 @@ import useNavigation from "../../../hook/useNavigation";
 import FaucetButton from "module/wallet/component/input/FaucetButton/FaucetButton";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export interface HeaderProps {
     showIcons?: boolean;
@@ -15,8 +16,9 @@ export interface HeaderProps {
 const Header = ({ showIcons = true }: HeaderProps): JSX.Element => {
     const navigation = useNavigation();
     const { network } = useRecoilValue(settingsState);
+    const { top } = useSafeAreaInsets();
     return (
-        <HeaderRoot elevation={6} square>
+        <HeaderRoot elevation={6} square style={{ paddingTop: top }}>
             <Toolbar>
                 <Row alignItems="center" justifyContent="space-between" flex={1}>
                     <LogoRow />

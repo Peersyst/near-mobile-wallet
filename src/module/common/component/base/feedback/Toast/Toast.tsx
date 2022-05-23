@@ -35,7 +35,7 @@ export default function Toast({
     const icon = useGetIcon(type);
 
     useEffect(() => {
-        if (open && (!type || type !== "loading")) {
+        if (open && duration !== Infinity && (!type || type !== "loading")) {
             const hideTimeout = setTimeout(() => setOpen(false), duration);
             return () => {
                 clearTimeout(hideTimeout);

@@ -6,10 +6,13 @@ import { BottomBarRoot } from "./BottomBar.styles";
 import BottomBarItem from "./BottomBarItem/BottomBarItem";
 import BottomBarLogoItem from "./BottomBarLogoItem/BottomBarLogoItem";
 import { translate } from "locale";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type BottomBarProps = Pick<BottomTabBarProps, "state" | "navigation">;
 
 const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
+    const { bottom } = useSafeAreaInsets();
+
     const activeTab = state.routeNames[state.index];
     const handleNavigation = (link: keyof MainStackParamsList) => {
         if (activeTab !== link) {
@@ -17,7 +20,7 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
         }
     };
     return (
-        <BottomBarRoot>
+        <BottomBarRoot style={{ paddingBottom: bottom || 10 }}>
             <BottomBarItem
                 onPress={() => handleNavigation(MainBottomScreens.DAO)}
                 isActive={activeTab === MainBottomScreens.DAO}

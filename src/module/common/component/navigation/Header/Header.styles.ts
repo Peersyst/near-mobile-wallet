@@ -1,12 +1,10 @@
 import styled from "@peersyst/react-native-styled";
 import { Paper } from "react-native-components";
-import Constants from "expo-constants";
 
-export const HEADER_PADDING_BOTTOM = 12;
+export const HEADER_PADDING_BOTTOM = 4;
 
 export const HeaderRoot = styled(Paper)(({ theme }) => {
     return {
-        paddingTop: Constants.statusBarHeight,
         paddingBottom: HEADER_PADDING_BOTTOM,
         zIndex: theme.zIndex.header,
         backgroundColor: theme.palette.appbar,

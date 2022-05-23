@@ -44,7 +44,7 @@ export interface ToastProps {
      */
     animation?: ToastAnimation;
     /**
-     * Toast duration, infinity for type = loading
+     * Toast duration, Infinity for type = loading
      */
     duration?: number;
     /**

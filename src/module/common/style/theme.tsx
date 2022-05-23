@@ -55,7 +55,6 @@ export const theme = createTheme({
         subtitle2: undefined,
     },
     borderRadius: 24,
-    toolbarHeight: 44,
     translate,
     validators: {
         address: ({ message }) => new CkbAddressValidator(message),
