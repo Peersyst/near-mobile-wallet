@@ -16,7 +16,7 @@
                 "MINIMUM_DAO_DEPOSIT": "102",
                 "MAX_NUMBER_OF_DECIMALS": "6",
                 "FAUCET_URL": "https://faucet.nervos.org/",
-                "ENABLE_MAINNET": false
+                "ENABLE_MAINNET": "false"
             },
             "android": {
                 "buildType": "apk"
