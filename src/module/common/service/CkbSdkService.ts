@@ -12,8 +12,8 @@ import {
     Transaction,
 } from "ckb-peersyst-sdk";
 import { tokenAmountZeroBalanceList, tokensList, UknownToken } from "module/token/mock/token";
-import { DepositInDAOParams, FullTransaction, SendTransactionParams, WithdrawOrUnlockParams } from "./CkbSdkService.types";
-import { CKB_URL, INDEXER_URL } from "@env";
+import { Chain, DepositInDAOParams, FullTransaction, SendTransactionParams, WithdrawOrUnlockParams } from "./CkbSdkService.types";
+import { CKB_TESTNET_URL, INDEXER_TESTNET_URL, CKB_MAINNET_URL, INDEXER_MAINNET_URL } from "@env";
 import { TokenAmount, TokenType } from "module/token/types";
 
 export function getTokenIndexTypeFromScript(scriptType: ScriptType): number {
@@ -32,19 +32,21 @@ export function getTokenTypeFromScript(scriptType: ScriptType) {
     return getTokenTypeFromIndex(tokenIndex, scriptType);
 }
 
-export const connectionService = new ConnectionService(CKB_URL, INDEXER_URL, Environments.Testnet);
+export const testnetConnectionService = new ConnectionService(CKB_TESTNET_URL, INDEXER_TESTNET_URL, Environments.Testnet);
+export const mainnetConnectionService = new ConnectionService(CKB_MAINNET_URL, INDEXER_MAINNET_URL, Environments.Mainnet);
 
 export class CKBSDKService {
     private connectionService: ConnectionService;
     private wallet: WalletService;
 
     constructor(
+        chain: Chain,
         mnemonic: string,
         walletState?: WalletState,
         onSync?: (walletState: WalletState) => Promise<void>,
         onSyncStart?: () => void,
     ) {
-        this.connectionService = connectionService;
+        this.connectionService = chain === "testnet" ? testnetConnectionService : mainnetConnectionService;
         this.wallet = new WalletService(this.connectionService, mnemonic, walletState, onSync, onSyncStart);
     }
 

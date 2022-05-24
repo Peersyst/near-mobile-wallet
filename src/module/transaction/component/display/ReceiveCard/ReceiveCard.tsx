@@ -7,6 +7,7 @@ import GoBack from "../../navigation/GoBack";
 import ReceiveModal from "../../core/ReceiveModal/ReceiveModal";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 
 const ReceiveCardContent = styled(Col, { justifyContent: "space-between" })(({ dimensions }) => ({
     height: dimensions.height * 0.3,
@@ -19,8 +20,9 @@ const TextAddress = styled(Typography, { textTransform: "uppercase" })(() => ({
 }));
 
 const ReceiveCard = (): JSX.Element => {
+    const network = useSelectedNetwork();
     const { index } = useSelectedWallet();
-    const serviceInstance = serviceInstancesMap.get(index);
+    const serviceInstance = serviceInstancesMap.get(index)?.[network];
     const address = serviceInstance?.getAddress();
     const { hideModal } = useModal();
 

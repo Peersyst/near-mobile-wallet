@@ -2,6 +2,7 @@ import { translate } from "locale";
 import { Row } from "react-native-components";
 import { WalletCardTitle, CopyIcon, EditIcon } from "../WalletCard.styles";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 
 interface AccountCardHeaderProps {
     index: number;
@@ -9,7 +10,8 @@ interface AccountCardHeaderProps {
 }
 
 const WalletCardHeader = ({ index, name }: AccountCardHeaderProps): JSX.Element => {
-    const serviceInstance = serviceInstancesMap.get(index);
+    const network = useSelectedNetwork();
+    const serviceInstance = serviceInstancesMap.get(index)?.[network];
     return (
         <Row justifyContent="space-between" alignItems="center">
             <EditIcon index={index} />

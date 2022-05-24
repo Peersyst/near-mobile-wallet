@@ -10,7 +10,7 @@ import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("DAO Card balance test", () => {
-    const sdkInstance = new CKBSDKService(MnemonicMocked);
+    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
 
     afterAll(() => {
         jest.restoreAllMocks();
@@ -18,12 +18,12 @@ describe("DAO Card balance test", () => {
 
     test("Renders correctly", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         jest.spyOn(sdkInstance, "getDAOBalance").mockReturnValue(SuccessApiCall(MockedDAOBalance));
         jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: BigInt(20000),
-            occupiedBalance: BigInt(9600),
-            freeBalance: BigInt(12635),
+            totalBalance: 20000,
+            occupiedBalance: 9600,
+            freeBalance: 12635,
         });
 
         const screen = render(<DAOCardBalance />);

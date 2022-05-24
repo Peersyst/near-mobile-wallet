@@ -4,6 +4,7 @@ import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 import useUncommittedTransactions from "module/transaction/query/useUncommittedTransactions";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
 import { useMemo } from "react";
+import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 
 export interface UseGetTransactionsOptions {
     index?: number;
@@ -11,11 +12,12 @@ export interface UseGetTransactionsOptions {
 }
 
 const useGetTransactions = ({ index, filter }: UseGetTransactionsOptions = {}) => {
+    const network = useSelectedNetwork();
     const selectedWallet = useSelectedWalletIndex();
     const usedIndex = index ?? selectedWallet;
     const { data: uncommitedTransactions = [], isLoading: uncommitedTransactionsLoading } = useUncommittedTransactions(usedIndex);
-    const { data: transactions = [], isLoading: transactionsLoading } = useQuery(["transactions", usedIndex], () => {
-        const serviceInstance = serviceInstancesMap.get(usedIndex);
+    const { data: transactions = [], isLoading: transactionsLoading } = useQuery(["transactions", usedIndex, network], () => {
+        const serviceInstance = serviceInstancesMap.get(usedIndex)?.[network];
         return serviceInstance?.getTransactions().reverse();
     });
 

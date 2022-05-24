@@ -13,6 +13,7 @@ import { useMemo, useState } from "react";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
+import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 
 interface WithdrawConfirmationScreenProps {
     withdrawInfo: WithdrawSummaryType;
@@ -25,6 +26,7 @@ const WithdrawConfirmationScreen = ({
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [loading, setLoading] = useState(false);
     const { hideModal } = useModal();
+    const network = useSelectedNetwork();
     const {
         state: { wallets },
     } = useWalletState();
@@ -33,7 +35,7 @@ const WithdrawConfirmationScreen = ({
 
     //Variables
     const { name: receiverName } = wallets[receiverIndex]; //Receiver info
-    const serviceInstance = useMemo(() => serviceInstancesMap.get(receiverIndex), [receiverIndex]);
+    const serviceInstance = useMemo(() => serviceInstancesMap.get(receiverIndex)?.[network], [receiverIndex]);
     const { compensation = BigInt(0), amount = BigInt(0) } = unlockableDeposits[depositIndex] || {}; //Deposit info
 
     //Functions

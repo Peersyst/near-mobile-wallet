@@ -11,10 +11,10 @@ import { MnemonicMocked } from "mocks/MnemonicMocked";
 import { formatAddress } from "@peersyst/react-utils";
 
 describe("Withdraw modal test", () => {
-    const sdkInstance = new CKBSDKService(MnemonicMocked);
+    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
 
     beforeAll(() => {
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
     });
 
     beforeEach(() => {

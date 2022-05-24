@@ -9,7 +9,7 @@ import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 describe("WalletBackupAdvise", () => {
-    const sdkInstance = new CKBSDKService(MnemonicMocked);
+    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
 
     afterEach(() => {
         jest.restoreAllMocks();
@@ -18,7 +18,7 @@ describe("WalletBackupAdvise", () => {
         jest.useFakeTimers();
         const handleSelection = jest.fn();
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 1,
             occupiedBalance: 0,

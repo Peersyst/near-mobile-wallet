@@ -14,17 +14,19 @@ import settingsState from "module/settings/state/SettingsState";
 import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { useState } from "react";
+import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 
 const DepositConfirmationScreen = (): JSX.Element => {
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [loading, setLoading] = useState(false);
+    const network = useSelectedNetwork();
     const { amount, fee: feeInCKB, senderWalletIndex } = useRecoilValue(sendState);
     const {
         state: { wallets },
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
     const { name: senderName } = senderWallet;
-    const serviceInstance = serviceInstancesMap.get(senderWalletIndex!);
+    const serviceInstance = serviceInstancesMap.get(senderWalletIndex!)?.[network];
     const { fee: feeInShannons } = useRecoilValue(settingsState);
     const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO(senderWalletIndex!);
     const { hideModal } = useModal();

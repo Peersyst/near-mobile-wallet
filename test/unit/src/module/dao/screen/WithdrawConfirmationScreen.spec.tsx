@@ -12,10 +12,10 @@ import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("SelectAccountAndDepositScreen tests", () => {
-    const sdkInstance = new CKBSDKService(MnemonicMocked);
+    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
 
     beforeAll(() => {
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(sdkInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
         jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");

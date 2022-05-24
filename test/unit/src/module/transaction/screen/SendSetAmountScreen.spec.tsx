@@ -13,13 +13,13 @@ import { MnemonicMocked } from "mocks/MnemonicMocked";
 import { MINIMUM_DAO_DEPOSIT } from "@env";
 import { FeeRate } from "ckb-peersyst-sdk";
 describe("SendAmountAndMessageScreen tests", () => {
-    const sdkInstance = new CKBSDKService(MnemonicMocked);
+    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
     const setSendState = jest.fn();
     beforeAll(() => {
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{}, setSendState]);
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fee: FeeRate.NORMAL });
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 12000,
             occupiedBalance: 2000,

@@ -10,7 +10,7 @@ import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("SendModal tests", () => {
-    const sdkInstance = new CKBSDKService(MnemonicMocked);
+    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
 
     afterAll(() => {
         jest.restoreAllMocks();
@@ -18,7 +18,7 @@ describe("SendModal tests", () => {
 
     beforeAll(() => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 120000000,
             occupiedBalance: 20000000,

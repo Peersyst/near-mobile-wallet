@@ -60,3 +60,7 @@ jest.mock("../src/module/common/component/base/feedback/Backdrop/Backdrop", () =
     };
     return MockBackdrop;
 });
+
+jest.mock("module/settings/hook/useSelectedNetwork", () => {
+    return () => "testnet";
+});
