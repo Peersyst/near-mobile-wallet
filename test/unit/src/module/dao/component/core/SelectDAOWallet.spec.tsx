@@ -7,7 +7,7 @@ import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("Test for the SelectDAOWallet", () => {
-    const sdkInstance = new CKBSDKService(MnemonicMocked);
+    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
 
     afterAll(() => {
         jest.restoreAllMocks();
@@ -15,11 +15,11 @@ describe("Test for the SelectDAOWallet", () => {
 
     test("Renders correctly", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: BigInt(20000),
-            occupiedBalance: BigInt(9600),
-            freeBalance: BigInt(14567),
+            totalBalance: 20000,
+            occupiedBalance: 9600,
+            freeBalance: 14567,
         });
         const screen = render(<SelectDAOWallet />);
         await waitFor(() => expect(screen.getAllByText("14,567")).toHaveLength(2));
@@ -29,11 +29,11 @@ describe("Test for the SelectDAOWallet", () => {
     test("Updates global selectedWallet correctly", async () => {
         const setSelectedWallet = jest.fn();
         jest.spyOn(UseWalletState, "default").mockReturnValue(createUseWalletStateMock({ setSelectedWallet }));
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: BigInt(20000),
-            occupiedBalance: BigInt(9600),
-            freeBalance: BigInt(14567),
+            totalBalance: 20000,
+            occupiedBalance: 9600,
+            freeBalance: 14567,
         });
         const screen = render(<SelectDAOWallet />);
         await waitFor(() => expect(screen.getAllByText("14,567")).toHaveLength(2));

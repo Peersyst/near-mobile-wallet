@@ -1,5 +1,7 @@
 import { DAOUnlockableAmount, FeeRate, Transaction } from "ckb-peersyst-sdk";
 
+export type Chain = "mainnet" | "testnet";
+
 export interface DepositInDAOParams {
     amount: bigint | number;
     mnemonic: string[];

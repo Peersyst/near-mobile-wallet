@@ -3,6 +3,8 @@ import SelectGroup, { optionType } from "module/common/component/input/SelectGro
 import settingsState, { NetworkType } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import { SettingsStorage } from "module/settings/SettingsStorage";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { ENABLE_MAINNET } from "@env";
 
 const SelectNetwork = (): JSX.Element => {
     const networkOptions: optionType[] = [
@@ -16,13 +18,21 @@ const SelectNetwork = (): JSX.Element => {
         },
     ];
     const [settings, setSettings] = useRecoilState(settingsState);
+
     const handleNetworkChange = (value: NetworkType) => {
+        //Use another thread
+        setTimeout(async () => {
+            for (let i = 0; i < serviceInstancesMap.size; i += 1) {
+                await serviceInstancesMap.get(i)?.[value]?.synchronize();
+            }
+        });
         setSettings({ ...settings, network: value as NetworkType });
         SettingsStorage.set({ network: value });
     };
 
     return (
         <SelectGroup
+            disabled={ENABLE_MAINNET !== "true"}
             options={networkOptions}
             value={settings.network}
             label={translate("select_your_network")}

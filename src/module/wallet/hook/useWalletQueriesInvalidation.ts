@@ -1,15 +1,16 @@
 import { useQueryClient } from "react-query";
+import { NetworkType } from "module/settings/state/SettingsState";
 
-const useWalletQueriesInvalidation = (): ((index: number) => Promise<void>) => {
+const useWalletQueriesInvalidation = (): ((index: number, chain: NetworkType) => Promise<void>) => {
     const queryClient = useQueryClient();
-    return async (index) => {
+    return async (index, chain) => {
         await Promise.all([
-            queryClient.invalidateQueries(["transactions", index], { refetchInactive: true, exact: true }),
-            queryClient.invalidateQueries(["tokens", index], { refetchInactive: true, exact: true }),
-            queryClient.invalidateQueries(["nfts", index], { refetchInactive: true, exact: true }),
-            queryClient.invalidateQueries(["balance", index], { refetchInactive: true, exact: true }),
-            queryClient.invalidateQueries(["daoBalance", index], { refetchInactive: true, exact: true }),
-            queryClient.invalidateQueries(["daoUnlockableAmounts", index], { refetchInactive: true, exact: true }),
+            queryClient.invalidateQueries(["transactions", index, chain], { refetchInactive: true, exact: true }),
+            queryClient.invalidateQueries(["tokens", index, chain], { refetchInactive: true, exact: true }),
+            queryClient.invalidateQueries(["nfts", index, chain], { refetchInactive: true, exact: true }),
+            queryClient.invalidateQueries(["balance", index, chain], { refetchInactive: true, exact: true }),
+            queryClient.invalidateQueries(["daoBalance", index, chain], { refetchInactive: true, exact: true }),
+            queryClient.invalidateQueries(["daoUnlockableAmounts", index, chain], { refetchInactive: true, exact: true }),
         ]);
     };
 };

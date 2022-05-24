@@ -31,14 +31,14 @@ export function useLoad(): boolean {
                 setSettingsState(settings);
 
                 for (let i = 0; i < wallets.length; i += 1) {
-                    const { initialState, mnemonic } = wallets.find((w) => w.index === i)!;
-                    await createServiceInstance(i, mnemonic, initialState);
+                    const { testnet, mainnet, mnemonic } = wallets.find((w) => w.index === i)!;
+                    await createServiceInstance(i, mnemonic, testnet?.initialState, mainnet?.initialState);
                 }
 
                 //Use another thread
                 setTimeout(async () => {
                     for (let i = 0; i < serviceInstancesMap.size; i += 1) {
-                        await serviceInstancesMap.get(i)?.synchronize();
+                        await serviceInstancesMap.get(i)?.[settings.network]?.synchronize();
                     }
                 });
             }

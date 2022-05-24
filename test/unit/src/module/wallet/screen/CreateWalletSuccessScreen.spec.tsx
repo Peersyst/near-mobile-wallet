@@ -12,7 +12,7 @@ import synchronizeMock from "mocks/synchronize";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("CreateWalletSuccessScreen tests", () => {
-    const sdkInstance = new CKBSDKService(MnemonicMocked);
+    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
 
     afterAll(() => {
         jest.restoreAllMocks();

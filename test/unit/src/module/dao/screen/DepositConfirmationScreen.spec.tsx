@@ -10,7 +10,7 @@ import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("DepositConfirmationScreen tests", () => {
-    const sdkInstance = new CKBSDKService(MnemonicMocked);
+    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
 
     afterEach(() => {
         jest.restoreAllMocks();
@@ -18,8 +18,8 @@ describe("DepositConfirmationScreen tests", () => {
 
     test("Renders correctly", () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
         jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         const mockedWallet = mockedUseWallet.state.wallets[0];
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({
             amount: 1000,

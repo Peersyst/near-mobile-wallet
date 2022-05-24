@@ -13,7 +13,7 @@ import * as Recoil from "recoil";
 import * as ExpoHapits from "expo-haptics";
 
 describe("WalletCard tests", () => {
-    const sdkInstance = new CKBSDKService(MnemonicMocked);
+    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
 
     afterEach(() => {
         jest.restoreAllMocks();
@@ -21,7 +21,7 @@ describe("WalletCard tests", () => {
 
     beforeEach(() => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 20000,
             occupiedBalance: 9600,
@@ -47,7 +47,7 @@ describe("WalletCard tests", () => {
         expect(screen.getByText(translate("receive"))).toBeDefined();
     });
 
-    test("Change the currency when the user clics on the balance", async () => {
+    test("Change the currency when the user clicks on the balance", async () => {
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fiat: "eur" });
         jest.spyOn(useCkbConversion, "default").mockReturnValue({ value: 10, convertBalance: jest.fn() });
         const mockedVibrate = jest.fn();

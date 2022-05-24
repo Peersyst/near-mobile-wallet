@@ -53,7 +53,8 @@ const DeleteOneWallet = () => {
                         for (let i = 0; i < serviceInstancesSize; i++) {
                             if (i > index) {
                                 serviceInstancesMap.set(i - 1, serviceInstancesMap.get(i)!);
-                                await invalidateWalletQueries(i - 1);
+                                await invalidateWalletQueries(i - 1, "testnet");
+                                await invalidateWalletQueries(i - 1, "mainnet");
                             }
                         }
                         //Delete last service instance and queries from last position

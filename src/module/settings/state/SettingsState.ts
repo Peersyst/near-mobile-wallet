@@ -2,10 +2,11 @@ import { FeeRate } from "ckb-peersyst-sdk";
 import { LocaleType } from "locale";
 import getDefaultLocale from "locale/utils/getDefaultLocale";
 import { atom } from "recoil";
+import { Chain } from "module/common/service/CkbSdkService.types";
 
 export type FiatCurrencyType = "cny" | "usd" | "eur" | "jpy" | "gbp";
 
-export type NetworkType = "testnet" | "mainnet";
+export type NetworkType = Chain;
 
 export type FeeType = FeeRate.SLOW | FeeRate.NORMAL | FeeRate.FAST;
 

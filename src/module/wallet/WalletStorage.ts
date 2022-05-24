@@ -1,10 +1,16 @@
 import { WalletState } from "ckb-peersyst-sdk";
 import { BaseStorageService } from "module/common/service/BaseStorageService";
+import { Chain } from "module/common/service/CkbSdkService.types";
+
+export interface UnencryptedWalletChainInfo {
+    initialState?: WalletState;
+    uncommittedTransactionHashes?: string[];
+}
 
 export interface UnencryptedWalletInfo {
     index: number;
-    initialState?: WalletState;
-    uncommittedTransactionHashes?: string[];
+    testnet?: UnencryptedWalletChainInfo;
+    mainnet?: UnencryptedWalletChainInfo;
 }
 
 export interface SecureWalletInfo {
@@ -73,40 +79,57 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         return walletSecureInfo?.mnemonic;
     }
 
-    async getInitialState(index: number): Promise<WalletState | undefined> {
+    async getInitialState(index: number, chain: Chain): Promise<WalletState | undefined> {
         const storage = await this.get();
         const walletUnencryptedInfo = storage?.wallets.find((w) => w.index === index) || { index: index };
-        return walletUnencryptedInfo?.initialState;
+        return walletUnencryptedInfo?.[chain]?.initialState;
     }
 
-    async getUncommittedTransactionHashes(index: number): Promise<string[] | undefined> {
+    async getUncommittedTransactionHashes(index: number, chain: Chain): Promise<string[] | undefined> {
         const storage = await this.get();
         const walletUnencryptedInfo = storage?.wallets.find((w) => w.index === index) || { index: index };
-        return walletUnencryptedInfo?.uncommittedTransactionHashes;
+        return walletUnencryptedInfo?.[chain]?.uncommittedTransactionHashes;
     }
 
-    async addUncommittedTransactionHash(index: number, hash: string): Promise<void> {
+    async addUncommittedTransactionHash(index: number, chain: Chain, hash: string): Promise<void> {
         const storage = await this.get();
         if (!storage) return;
-        const updatedWallets = storage?.wallets.map((w) =>
-            w.index === index ? { ...w, uncommittedTransactionHashes: [...(w.uncommittedTransactionHashes || []), hash] } : w,
-        );
+        const updatedWallets = storage?.wallets.map((w) => {
+            if (w.index !== index) return w;
+            else {
+                const chainInfo = w[chain];
+                const uncommittedTransactionsHashes = chainInfo?.uncommittedTransactionHashes || [];
+                return {
+                    ...w,
+                    [chain]: {
+                        ...chainInfo,
+                        uncommittedTransactionHashes: [...uncommittedTransactionsHashes, hash],
+                    },
+                };
+            }
+        });
         return this.set({ ...storage, wallets: updatedWallets });
     }
 
-    async removeUncommittedTransactionHash(index: number, hash: string): Promise<void> {
+    async removeUncommittedTransactionHash(index: number, chain: Chain, hash: string): Promise<void> {
         const storage = await this.get();
         if (!storage) return;
-        const updatedWallets = storage?.wallets.map((w) =>
-            w.index === index
-                ? {
-                      ...w,
-                      uncommittedTransactionHashes: w.uncommittedTransactionHashes
-                          ? w.uncommittedTransactionHashes.filter((h) => h !== hash)
-                          : [],
-                  }
-                : w,
-        );
+        const updatedWallets = storage?.wallets.map((w) => {
+            if (w.index !== index) return w;
+            else {
+                const chainInfo = w[chain];
+                const uncommittedTransactionsHashes = chainInfo?.uncommittedTransactionHashes;
+                return {
+                    ...w,
+                    [chain]: {
+                        ...chainInfo,
+                        uncommittedTransactionHashes: uncommittedTransactionsHashes
+                            ? uncommittedTransactionsHashes.filter((h) => h !== hash)
+                            : [],
+                    },
+                };
+            }
+        });
         return this.set({ ...storage, wallets: updatedWallets });
     }
 
@@ -118,9 +141,9 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
     async setWallets(wallets: StorageWallet[]): Promise<void> {
         const walletsSecureInfo: SecureWalletInfo[] = [];
         const walletsUnencryptedInfo: UnencryptedWalletInfo[] = [];
-        wallets.forEach(({ index, initialState, ...secureData }) => {
+        wallets.forEach(({ index, mainnet, testnet, ...secureData }) => {
             walletsSecureInfo.push({ index, ...secureData });
-            walletsUnencryptedInfo.push({ index, initialState });
+            walletsUnencryptedInfo.push({ index, mainnet, testnet });
         });
         const secureStorage = (await this.getSecure()) || { pin: undefined };
         const storage = await this.get();
@@ -159,10 +182,24 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         await this.setSecure({ ...secureStorage, pin });
     }
 
-    async setInitialState(index: number, walletState: WalletState): Promise<void> {
+    async setInitialState(index: number, chain: Chain, walletState: WalletState): Promise<void> {
         const wallets = await this.getWallets();
         if (wallets) {
-            await this.setWallets(wallets.map((wallet) => (wallet.index === index ? { ...wallet, initialState: walletState } : wallet)));
+            await this.setWallets(
+                wallets.map((wallet) => {
+                    if (wallet.index !== index) return wallet;
+                    else {
+                        const chainInfo = wallet[chain];
+                        return {
+                            ...wallet,
+                            [chain]: {
+                                ...chainInfo,
+                                initialState: walletState,
+                            },
+                        };
+                    }
+                }),
+            );
         }
     }
 })();

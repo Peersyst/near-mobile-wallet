@@ -15,7 +15,7 @@ import { MnemonicMocked } from "mocks/MnemonicMocked";
 describe("AddWallet - Create", () => {
     const mnemonicArr = ["Pizza", "Taco", "Fries"];
     jest.setTimeout(20000);
-    const sdkInstance = new CKBSDKService(MnemonicMocked);
+    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
 
     beforeAll(() => {
         jest.spyOn(WalletService, "createNewMnemonic").mockReturnValue(mnemonicArr.join(" "));

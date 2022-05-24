@@ -41,6 +41,7 @@ const WalletCard = ({ wallet: { name, index, colorIndex, synchronizing } }: Wall
         impactAsync(ImpactFeedbackStyle.Medium);
         setCurrencyMode((value) => !value);
     };
+
     return (
         <WalletCardRoot color={color}>
             <WalletContent>

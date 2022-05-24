@@ -3,12 +3,13 @@ import { useQueryClient } from "react-query";
 const useWalletQueriesRemoval = (): ((index: number) => void) => {
     const queryClient = useQueryClient();
     return async (index) => {
-        queryClient.removeQueries(["transactions", index], { exact: true });
-        queryClient.removeQueries(["tokens", index], { exact: true });
-        queryClient.removeQueries(["nfts", index], { exact: true });
-        queryClient.removeQueries(["balance", index], { exact: true });
-        queryClient.removeQueries(["daoBalance", index], { exact: true });
-        queryClient.removeQueries(["daoUnlockableAmounts", index], { exact: true });
+        queryClient.removeQueries(["transactions", index]);
+        queryClient.removeQueries(["tokens", index]);
+        queryClient.removeQueries(["nfts", index]);
+        queryClient.removeQueries(["balance", index]);
+        queryClient.removeQueries(["daoBalance", index]);
+        queryClient.removeQueries(["daoUnlockableAmounts", index]);
+        queryClient.removeQueries(["uncommittedTransactions", index]);
     };
 };
 

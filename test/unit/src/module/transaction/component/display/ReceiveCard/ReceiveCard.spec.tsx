@@ -14,11 +14,11 @@ import { MnemonicMocked } from "mocks/MnemonicMocked";
 const ADDRESS_MOCK = "0xMockedAddress";
 
 describe("Test for the receive Card", () => {
-    const sdkInstance = new CKBSDKService(MnemonicMocked);
+    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
 
     beforeEach(() => {
         jest.spyOn(UseSelectedWallet, "default").mockReturnValue(wallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         jest.spyOn(sdkInstance, "getAddress").mockReturnValue(ADDRESS_MOCK);
     });
 
