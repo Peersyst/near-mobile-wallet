@@ -34,9 +34,9 @@ const Balance = ({
     );
     return (
         <Row gap={heading ? 8 : 4} justifyContent="center" alignItems="flex-end" style={rootStyles}>
-            {action !== "display" && (
+            {action === "add" && (
                 <BalanceItem variant={variant} style={textStyles} {...rest}>
-                    {action === "add" ? "+" : "-"}
+                    +
                 </BalanceItem>
             )}
             <Row alignItems="center">
