@@ -40,7 +40,7 @@ const Balance = ({
                 </BalanceItem>
             )}
             <Row alignItems="center">
-                <BalanceItem style={textStyles} variant={variant} {...rest}>{`${balance[0]}`}</BalanceItem>
+                <BalanceItem style={textStyles} variant={variant} {...rest}>{`${balance[0].replace("-", "")}`}</BalanceItem>
                 {balance[2] && (
                     <>
                         <BalanceItem style={textStyles} variant={variant} {...rest}>{`${balance[1]}`}</BalanceItem>
