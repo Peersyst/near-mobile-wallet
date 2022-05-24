@@ -10,7 +10,8 @@ export const AdviseImage = styled(Image, { fadeDuration: 400 })(({ dimensions: {
 }));
 
 export const AdviseImageCont = styled(Row, { justifyContent: "center" })(({ dimensions: { height } }) => {
+    console.log(height);
     return {
-        display: height < 700 ? "none" : undefined,
+        display: height < 800 ? "none" : undefined,
     };
 });
