@@ -119,8 +119,8 @@ export class TransactionService {
         let isRealSender = false;
         for (let i = 0; i < lumosTx.transaction.inputs.length; i += 1) {
             const input = lumosTx.transaction.inputs[i];
-            const transaction = await this.connection.getTransactionFromHash(input.previous_output.tx_hash);
-            const output = transaction.transaction.outputs[parseInt(input.previous_output.index, 16)];
+            const inputTx = await this.connection.getTransactionFromHash(input.previous_output.tx_hash);
+            const output = inputTx.transaction.outputs[parseInt(input.previous_output.index, 16)];
             const inputAddress = this.connection.getAddressFromLock(output.lock);
             inputs.push({
                 quantity: parseInt(output.capacity, 16) / 100000000,
@@ -376,8 +376,8 @@ export class TransactionService {
         for await (lumosTx of transactionCollector.collect()) {
             const key = `${address}-${lumosTx.transaction.hash}`;
             if (!this.transactionMap.has(key)) {
-                const transaction = await this.getTransactionFromLumosTx(lumosTx, address, allAddresses);
-                this.transactionMap.set(key, transaction);
+                const parsedTx = await this.getTransactionFromLumosTx(lumosTx, address, allAddresses);
+                this.transactionMap.set(key, parsedTx);
             }
 
             const transaction = this.transactionMap.get(key);

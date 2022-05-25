@@ -156,11 +156,11 @@ export class WalletService {
             let firstIndex = addressType === AddressType.Receiving ? this.firstRIndexWithoutTxs : this.firstCIndexWithoutTxs;
 
             while (currentIndex <= firstIndex) {
-                const address = this.getAddress(currentIndex, addressType as AddressType);
+                const address = this.getAddress(currentIndex, addressType);
                 const lumosTxs = await this.transactionService.getLumosTransactions(address, toBlock, fromBlock!);
 
                 if (lumosTxs.length > 0) {
-                    const lock = this.getLock(currentIndex, addressType as AddressType);
+                    const lock = this.getLock(currentIndex, addressType);
                     const mapKey = `${addressType}-${currentIndex}`;
                     keysArr.push(mapKey);
                     addressesArr.push(address);
