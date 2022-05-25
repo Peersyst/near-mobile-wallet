@@ -1,4 +1,5 @@
 import { mnemonic, ExtendedPrivateKey, AccountExtendedPublicKey, AddressType } from "@ckb-lumos/hd";
+import { TransactionWithStatus } from "@ckb-lumos/base";
 import { ConnectionService } from "./connection.service";
 import { TransactionService, Transaction, FeeRate } from "./transaction.service";
 import { TokenService, TokenAmount } from "./assets/token.service";
@@ -145,22 +146,29 @@ export class WalletService {
         }
 
         const cellProvider = this.connection.getCellProvider({ toBlock });
-
         const addressTypes: AddressType[] = [AddressType.Receiving, AddressType.Change];
+        const keysArr: string[] = [];
+        const addressesArr: string[] = [];
+        const lumosTxsArr: TransactionWithStatus[][] = [];
+
         for (const addressType of addressTypes) {
             let currentIndex = 0;
             let firstIndex = addressType === AddressType.Receiving ? this.firstRIndexWithoutTxs : this.firstCIndexWithoutTxs;
 
             while (currentIndex <= firstIndex) {
-                const lock = this.getLock(currentIndex, addressType as AddressType);
-                const hasTransactions = await this.transactionService.lockScriptHasTransactions(lock);
+                const address = this.getAddress(currentIndex, addressType as AddressType);
+                const lumosTxs = await this.transactionService.getLumosTransactions(address, toBlock, fromBlock!);
 
-                if (hasTransactions) {
+                if (lumosTxs.length > 0) {
+                    const lock = this.getLock(currentIndex, addressType as AddressType);
                     const mapKey = `${addressType}-${currentIndex}`;
+                    keysArr.push(mapKey);
+                    addressesArr.push(address);
+                    lumosTxsArr.push(lumosTxs);
 
                     // Update cells
                     const newCells: Cell[] = [];
-                    const collectorOptions: QueryOptions = { lock: this.getLock(currentIndex, addressType as AddressType), toBlock };
+                    const collectorOptions: QueryOptions = { lock, toBlock };
                     const cellCollector = cellProvider.collector(collectorOptions);
                     for await (const cell of cellCollector.collect()) {
                         newCells.push(cell);
@@ -182,18 +190,14 @@ export class WalletService {
         }
 
         const allAddresses = this.getAllAddresses();
-        for (const addressType of addressTypes) {
-            const firstIndex = addressType === AddressType.Receiving ? this.firstRIndexWithoutTxs : this.firstCIndexWithoutTxs;
+        for (let i = 0; i < keysArr.length && i < lumosTxsArr.length && i < addressesArr.length; i += 1) {
+            const address = addressesArr[i];
+            const promises = lumosTxsArr[i].map((tx) => this.transactionService.getTransactionFromLumosTx(tx, address, allAddresses));
+            const transactions = await Promise.all(promises);
 
-            for (let i = 0; i < firstIndex; i += 1) {
-                const mapKey = `${addressType}-${i}`;
-                const address = this.getAddress(i, addressType as AddressType);
-                const transactions = await this.transactionService.getTransactions(address, allAddresses, toBlock, fromBlock!);
-
-                // Update transactions
-                const currentTxs: Transaction[] = this.accountTransactionMap[mapKey] || [];
-                this.accountTransactionMap[mapKey] = [...currentTxs, ...transactions];
-            }
+            // Update transactions
+            const currentTxs: Transaction[] = this.accountTransactionMap[keysArr[i]] || [];
+            this.accountTransactionMap[keysArr[i]] = [...currentTxs, ...transactions];
         }
 
         this.lastHashBlock = currentBlock.number;

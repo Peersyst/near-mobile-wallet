@@ -96,7 +96,19 @@ export class TransactionService {
         return scriptConfig.CODE_HASH === scriptType.codeHash && scriptConfig.HASH_TYPE === scriptType.hashType;
     }
 
-    private async getTransactionFromLumosTx(lumosTx: TransactionWithStatus, address: string, allAddresses: string[]): Promise<Transaction> {
+    private getTransactionCollector(address: string, includeStatus = false, toBlock?: string, fromBlock?: string): any {
+        const queryOptions: CKBIndexerQueryOptions = { lock: this.connection.getLockFromAddress(address) };
+        if (toBlock) {
+            queryOptions.toBlock = toBlock;
+        }
+        if (fromBlock) {
+            queryOptions.fromBlock = fromBlock;
+        }
+
+        return new this.TransactionCollector(this.connection.getIndexer(), queryOptions, this.connection.getCKBUrl(), { includeStatus });
+    }
+
+    async getTransactionFromLumosTx(lumosTx: TransactionWithStatus, address: string, allAddresses: string[]): Promise<Transaction> {
         const inputs: DataRow[] = [];
         const inputAddresses: string[] = [];
         let scriptType: ScriptType;
@@ -338,47 +350,33 @@ export class TransactionService {
         return signingPrivKeys;
     }
 
-    async lockScriptHasTransactions(lockScript: Script, toBlock?: string, fromBlock?: string): Promise<boolean> {
-        const queryOptions: CKBIndexerQueryOptions = { lock: lockScript };
-        if (toBlock) {
-            queryOptions.toBlock = toBlock;
-        }
-        if (fromBlock) {
-            queryOptions.fromBlock = fromBlock;
-        }
-        const transactionCollector = new this.TransactionCollector(
-            this.connection.getIndexer(),
-            queryOptions,
-            this.connection.getCKBUrl(),
-            { includeStatus: false },
-        );
+    async addressHasTransactions(address: string, toBlock?: string, fromBlock?: string): Promise<boolean> {
+        const transactionCollector = this.getTransactionCollector(address, false, toBlock, fromBlock);
 
         const txs = await transactionCollector.count();
         return txs > 0;
     }
 
+    async getLumosTransactions(address: string, toBlock?: string, fromBlock?: string): Promise<TransactionWithStatus[]> {
+        const transactionCollector = this.getTransactionCollector(address, true, toBlock, fromBlock);
+        const transactions: TransactionWithStatus[] = [];
+
+        for await (const lumosTx of transactionCollector.collect()) {
+            transactions.push(lumosTx);
+        }
+
+        return transactions;
+    }
+
     async getTransactions(address: string, allAddresses: string[], toBlock?: string, fromBlock?: string): Promise<Transaction[]> {
-        const queryOptions: CKBIndexerQueryOptions = { lock: this.connection.getLockFromAddress(address) };
-        if (toBlock) {
-            queryOptions.toBlock = toBlock;
-        }
-        if (fromBlock) {
-            queryOptions.fromBlock = fromBlock;
-        }
-
-        const transactionCollector = new this.TransactionCollector(
-            this.connection.getIndexer(),
-            queryOptions,
-            this.connection.getCKBUrl(),
-            { includeStatus: true },
-        );
-
+        const transactionCollector = this.getTransactionCollector(address, true, toBlock, fromBlock);
         const transactions: Transaction[] = [];
-        let cell: TransactionWithStatus;
-        for await (cell of transactionCollector.collect()) {
-            const key = `${address}-${cell.transaction.hash}`;
+        let lumosTx: TransactionWithStatus;
+
+        for await (lumosTx of transactionCollector.collect()) {
+            const key = `${address}-${lumosTx.transaction.hash}`;
             if (!this.transactionMap.has(key)) {
-                const transaction = await this.getTransactionFromLumosTx(cell, address, allAddresses);
+                const transaction = await this.getTransactionFromLumosTx(lumosTx, address, allAddresses);
                 this.transactionMap.set(key, transaction);
             }
 
