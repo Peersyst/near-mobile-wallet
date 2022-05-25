@@ -2,8 +2,17 @@ import { translate } from "locale";
 import { MockedUnlockableAmounts } from "mocks/DAO";
 import WithdrawButton from "module/dao/screen/SelectAccountAndDepositScreen/WithdrawButton";
 import { render } from "test-utils";
+import * as UseUncommittedTransaction from "module/transaction/hook/useUncommittedTransaction";
 
 describe("Test for the withdraw button", () => {
+    beforeAll(() => {
+        jest.spyOn(UseUncommittedTransaction, "default").mockReturnValue(false);
+    });
+
+    afterAll(() => {
+        jest.restoreAllMocks();
+    });
+
     test("Renders correctly with a selected deposit", () => {
         const screen = render(
             <WithdrawButton unlockableDeposits={MockedUnlockableAmounts} buttonLoading={false} selectedDeposit={0} errMsg={undefined} />,

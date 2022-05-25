@@ -1,9 +1,10 @@
 import TransactionDetail from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionDetail";
 import { translate } from "locale";
-import { BlockchainAddress, Row, Typography } from "react-native-components";
+import { Row, Typography } from "react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
 import { TransactionType } from "ckb-peersyst-sdk";
+import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
 
 export interface TransactionTypeDetailsProps {
     transaction: FullTransaction;
