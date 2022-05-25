@@ -42,4 +42,21 @@ declare module "react-native-components" {
     export interface ExtraValidators {
         address: Validator;
     }
+
+    export interface BlockchainLinksTypesOverrides {
+        address: false;
+        tx: false;
+        mainnetAddress: true;
+        mainnetTx: true;
+        testnetAddress: true;
+        tesnetTx: true;
+    }
+    export interface BlockchainLinks {
+        address: undefined;
+        tx: undefined;
+        mainnetAddress: string;
+        mainnetTx: string;
+        testnetAddress: string;
+        tesnetTx: string;
+    }
 }

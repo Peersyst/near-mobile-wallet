@@ -1,4 +1,4 @@
-import { Col, Form, IconButton, Paper, PressableText, QrScanner, Row, useSetTab, useToast } from "react-native-components";
+import { Col, Form, IconButton, Paper, PressableText, QrScanner, Row, Typography, useSetTab, useToast } from "react-native-components";
 import FormGroup from "module/common/component/input/FormGroup/FormGroup";
 import { translate } from "locale";
 import TextField from "module/common/component/input/TextField/TextField";
@@ -12,6 +12,7 @@ import { useState } from "react";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import { useRecoilState } from "recoil";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
+import useUncommittedTransaction from "module/transaction/hook/useUncommittedTransaction";
 
 export interface SendForm {
     sender: number;
@@ -25,6 +26,7 @@ const SendToAddressScreen = () => {
     const { palette } = useTheme();
     const { showToast, hideToast } = useToast();
     const setTab = useSetTab();
+    const uncommittedTransaction = useUncommittedTransaction();
 
     const handleAddressScan = (data: string) => {
         setReceiverAddress(data);
@@ -75,9 +77,16 @@ const SendToAddressScreen = () => {
                                 </FormGroup>
                             </Col>
                         </Paper>
-                        <Button variant="outlined" fullWidth>
-                            {translate("next")}
-                        </Button>
+                        <Col gap={8}>
+                            <Button variant="outlined" fullWidth disabled={uncommittedTransaction} loading={uncommittedTransaction}>
+                                {translate("next")}
+                            </Button>
+                            {uncommittedTransaction && (
+                                <Typography variant="body2" textAlign="center">
+                                    {translate("pending_transaction_text")}
+                                </Typography>
+                            )}
+                        </Col>
                     </Col>
                 </Col>
             </Form>

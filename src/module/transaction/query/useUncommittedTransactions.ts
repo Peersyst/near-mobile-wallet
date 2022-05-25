@@ -31,19 +31,24 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
             const uncommittedTransactions: FullTransaction[] = [];
 
             for (const hash of uncommittedTransactionHashes) {
-                const tx = await serviceInstance.getTransaction(hash);
-                if (tx.status !== TransactionStatus.COMMITTED) {
-                    uncommittedTransactions.push(tx);
-                    updatedUncommittedTransactionHashes.push(hash);
-                    // If rejected keep it in the list but remove it from storage in order to show it just in the current session
-                    if (tx.status === TransactionStatus.REJECTED && !rejectedHashes.find((h) => h === hash)) {
+                try {
+                    const tx = await serviceInstance.getTransaction(hash);
+                    if (tx.status !== TransactionStatus.COMMITTED) {
+                        uncommittedTransactions.push(tx);
+                        updatedUncommittedTransactionHashes.push(hash);
+                        // If rejected keep it in the list but remove it from storage in order to show it just in the current session
+                        if (tx.status === TransactionStatus.REJECTED && !rejectedHashes.find((h) => h === hash)) {
+                            await WalletStorage.removeUncommittedTransactionHash(usedIndex, network, hash);
+                            rejectedHashes.push(hash);
+                        }
+                        // If committed remove it and sync in order to refresh data and refetch useGetTransactiions
+                    } else {
                         await WalletStorage.removeUncommittedTransactionHash(usedIndex, network, hash);
-                        rejectedHashes.push(hash);
+                        shouldSync = true;
                     }
-                    // If committed remove it and sync in order to refresh data and refetch useGetTransactiions
-                } else {
+                } catch {
                     await WalletStorage.removeUncommittedTransactionHash(usedIndex, network, hash);
-                    shouldSync = true;
+                    rejectedHashes.push(hash);
                 }
             }
             if (shouldSync) {

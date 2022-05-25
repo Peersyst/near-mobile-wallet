@@ -171,5 +171,6 @@
     "withdrawals": "Withdrawals",
     "processing": "Processing...",
     "testnet_warning": "This is a Testnet version. Do not send Mainnet CKB to this account.",
-    "dismiss": "Dismiss"
+    "dismiss": "Dismiss",
+    "pending_transaction_text": "You have an uncommitted transaction. Please, wait until it is committed to send a new one."
 }
