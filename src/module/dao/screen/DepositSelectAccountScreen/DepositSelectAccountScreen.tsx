@@ -1,4 +1,4 @@
-import { Col, Form, Paper, Row, useSetTab } from "react-native-components";
+import { Col, Form, Paper, Row, Typography, useSetTab } from "react-native-components";
 import FormGroup from "module/common/component/input/FormGroup/FormGroup";
 import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
@@ -8,6 +8,7 @@ import { SendScreens } from "module/transaction/component/core/SendModal/SendMod
 import { useRecoilState } from "recoil";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { DepositImage } from "./DepositImage.styles";
+import useUncommittedTransaction from "module/transaction/hook/useUncommittedTransaction";
 
 export interface DepositForm {
     sender: number;
@@ -20,6 +21,7 @@ const DepositSelectAccountScreen = () => {
         setSendState((oldState) => ({ ...oldState, senderWalletIndex: sender }));
         setTab(SendScreens.AMOUNT_AND_MESSAGE);
     };
+    const uncommittedTransaction = useUncommittedTransaction();
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -33,9 +35,16 @@ const DepositSelectAccountScreen = () => {
                             <WalletSelector required name="sender" defaultValue={sendState.senderWalletIndex ?? 0} />
                         </FormGroup>
                     </Paper>
-                    <Button variant="outlined" fullWidth>
-                        {translate("next")}
-                    </Button>
+                    <Col gap={8}>
+                        <Button variant="outlined" fullWidth disabled={uncommittedTransaction} loading={uncommittedTransaction}>
+                            {translate("next")}
+                        </Button>
+                        {uncommittedTransaction && (
+                            <Typography variant="body2" textAlign="center">
+                                {translate("pending_transaction_text")}
+                            </Typography>
+                        )}
+                    </Col>
                 </Col>
             </Col>
         </Form>
