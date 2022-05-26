@@ -8,6 +8,8 @@ import { waitFor } from "@testing-library/react-native";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
+import * as UseGetDaoInfo from "module/dao/query/useGetDaoInfo";
+import daoInfo from "mocks/daoInfo";
 
 describe("DAO Card balance test", () => {
     const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
@@ -25,16 +27,17 @@ describe("DAO Card balance test", () => {
             occupiedBalance: 9600,
             freeBalance: 12635,
         });
+        jest.spyOn(UseGetDaoInfo, "default").mockReturnValue({ data: daoInfo, isLoading: false } as any);
 
         const screen = render(<DAOCardBalance />);
         expect(screen.getByText(translate("wallet"))).toBeDefined();
         expect(screen.getByText(translate("available"))).toBeDefined();
         expect(screen.getByText(translate("locked"))).toBeDefined();
-        expect(screen.getByText(translate("current_apc"))).toBeDefined();
+        expect(screen.getByText(translate("estimated_apc"))).toBeDefined();
         expect(screen.getByText(mockedUseWallet.state.wallets[mockedUseWallet.state.selectedWallet!].name)).toBeDefined();
-        expect(screen.getAllByTestId("actIndicator")).toHaveLength(3);
+        expect(screen.getAllByTestId("actIndicator")).toHaveLength(2);
         await waitFor(() => expect(screen.getByText("12,635")).toBeDefined()); // Available
         await waitFor(() => expect(screen.getByText("500")).toBeDefined()); // Locked
-        expect(screen.getByText("100%")).toBeDefined(); // apc
+        expect(screen.getByText(`${daoInfo.estimated_apc}%`)).toBeDefined(); // apc
     });
 });

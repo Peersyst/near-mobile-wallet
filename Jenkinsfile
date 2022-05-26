@@ -20,7 +20,7 @@ pipeline {
         } 
         stage('Test') {
             steps {
-                sh 'yarn test:unit'
+                sh 'yarn test:unit:ci'
             }
         } 
         stage('Build and publish') {

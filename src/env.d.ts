@@ -10,5 +10,7 @@ declare module "@env" {
     export const INDEXER_MAINNET_URL: string;
     export const MAX_NUMBER_OF_DECIMALS: string;
     export const FAUCET_URL: string;
+    export const MAINNET_EXPLORER_API: string;
+    export const TESTNET_EXPLORER_API: string;
     export const ENABLE_MAINNET: string;
 }

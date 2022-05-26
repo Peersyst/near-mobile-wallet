@@ -8,6 +8,8 @@ import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
+import * as UseGetDaoInfo from "module/dao/query/useGetDaoInfo";
+import daoInfo from "mocks/daoInfo";
 
 describe("Test for the DAO Card", () => {
     const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
@@ -25,6 +27,8 @@ describe("Test for the DAO Card", () => {
             occupiedBalance: 9600,
             freeBalance: 12635,
         });
+        jest.spyOn(UseGetDaoInfo, "default").mockReturnValue({ data: daoInfo, isLoading: false } as any);
+
         const screen = render(<DAOCard />);
         //Balance
         expect(screen.getByText(translate("available"))).toBeDefined();
@@ -33,8 +37,8 @@ describe("Test for the DAO Card", () => {
         await waitFor(() => expect(screen.getAllByText("12,635")).toHaveLength(3));
         expect(screen.getByText(translate("locked"))).toBeDefined();
         expect(screen.getByText("500")).toBeDefined();
-        expect(screen.getByText(translate("current_apc"))).toBeDefined();
-        expect(screen.getByText("100%")).toBeDefined();
+        expect(screen.getByText(translate("estimated_apc"))).toBeDefined();
+        expect(screen.getByText(`${daoInfo.estimated_apc}%`)).toBeDefined();
 
         //Buttons
         expect(screen.getByText(translate("deposit"))).toBeDefined();

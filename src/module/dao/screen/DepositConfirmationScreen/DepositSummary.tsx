@@ -1,11 +1,10 @@
 import { formatAddress } from "@peersyst/react-utils";
 import { translate } from "locale";
-import useGetDAOBalance from "module/dao/query/useGetDAOBalance";
 import { Col } from "react-native-components";
 import BaseSendSummary, { BaseSendSummaryProps } from "../../../transaction/component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../../transaction/component/display/SummaryField/SummaryField";
 import { SummaryText } from "module/transaction/component/display/SummaryField/SummaryField.styles";
-import { getAPC } from "module/dao/utils/getAPC";
+import useGetDaoInfo from "module/dao/query/useGetDaoInfo";
 
 export interface DepositSummaryProps extends BaseSendSummaryProps {
     senderName: string;
@@ -13,7 +12,7 @@ export interface DepositSummaryProps extends BaseSendSummaryProps {
 }
 
 const DepositSummary = ({ amount, fee, senderName, senderAddress }: DepositSummaryProps): JSX.Element => {
-    const { data: daoBalance } = useGetDAOBalance();
+    const { data: { estimated_apc = "0" } = {}, isLoading: loadingDao } = useGetDaoInfo();
 
     return (
         <BaseSendSummary amount={amount} fee={fee}>
@@ -21,7 +20,7 @@ const DepositSummary = ({ amount, fee, senderName, senderAddress }: DepositSumma
                 <Col gap="3%" style={{ alignSelf: "flex-start" }}>
                     <SummaryField label={translate("from")}>{senderName + " - " + formatAddress(senderAddress, "middle", 3)}</SummaryField>
                     <SummaryField label={translate("estimated_apc")}>
-                        {daoBalance !== undefined ? `${getAPC(daoBalance)}%` : `${translate("loading_apc")}...`}
+                        {loadingDao ? `${translate("loading_apc")}...` : `${estimated_apc}%`}
                     </SummaryField>
                 </Col>
                 <Col>
