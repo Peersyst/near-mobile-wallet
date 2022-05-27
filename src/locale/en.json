@@ -55,7 +55,7 @@
     "receive_info": "CKBull creates a new receiving address for each transaction for greater privacy. However, if you receive a payment to a previously used address, it can also be used normally.",
     "import_wallet": "Import Wallet",
     "enter_mnemonic": "Enter Mnemonic",
-    "mnemonic_input_text": "Type a word and press enter to add it or tap one to remove it.",
+    "mnemonic_input_text": "Type a word and press space or enter to add it or tap one to remove it.",
     "mnemonic": "Mnemonic",
     "add_a_word": "Add a word",
     "incorrect_mnemonic": "Mnemonic is not correct",

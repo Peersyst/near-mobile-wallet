@@ -3,7 +3,6 @@ import { Col, Typography, useFormNotification } from "react-native-components";
 import Card from "module/common/component/surface/Card/Card";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
 import TextField from "module/common/component/input/TextField/TextField";
-import { NativeSyntheticEvent, TextInputSubmitEditingEventData } from "react-native";
 import { translate } from "locale";
 
 export const MnemonicInput = (): JSX.Element => {
@@ -11,10 +10,18 @@ export const MnemonicInput = (): JSX.Element => {
     const [word, setWord] = useState("");
     useFormNotification("mnemonic", mnemonic, mnemonic.length === 12);
 
-    const handleSubmit = ({ nativeEvent: { text } }: NativeSyntheticEvent<TextInputSubmitEditingEventData>): void => {
-        if (text.length > 0) {
-            if (!mnemonic.find((w) => w === text)) mnemonic.push(text.trim());
+    const handleSubmit = (): void => {
+        if (word.length > 0) {
+            if (!mnemonic.find((w) => w === word)) setMnemonic((m) => [...m, word]);
             setWord("");
+        }
+    };
+
+    const handleChange = (value: string) => {
+        if (value.includes(" ")) {
+            handleSubmit();
+        } else {
+            setWord(value);
         }
     };
 
@@ -40,7 +47,7 @@ export const MnemonicInput = (): JSX.Element => {
                 autoCapitalize="none"
                 blurOnSubmit={false}
                 value={word}
-                onChange={setWord}
+                onChange={handleChange}
                 onSubmitEditing={handleSubmit}
                 placeholder={translate("add_a_word")}
                 disabled={mnemonic.length > 11}
