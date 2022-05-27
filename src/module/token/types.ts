@@ -7,6 +7,7 @@ export interface TokenType extends TokenSDKType {
     tokenName: string;
     name: string;
     description: string;
+    decimals: number;
     apiId: ApiIdType;
 }
 

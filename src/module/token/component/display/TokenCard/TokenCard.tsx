@@ -28,13 +28,13 @@ const TokenCard = ({ token: { type, amount } }: TokenProps): JSX.Element => {
             </Row>
             <Col alignItems="flex-end">
                 <Balance
-                    balance={amount}
+                    balance={amount / 10 ** type.decimals}
                     smallBalance
                     units={tokenName ? (tokenName === "Unknown Token" ? "?" : tokenName) : ""}
                     boldUnits
                     variant="body2"
                 />
-                {tokenValue && <Balance balance={tokenValue * amount} units={fiat} variant="body2" />}
+                {tokenValue && <Balance balance={tokenValue * (amount / 10 ** type.decimals)} units={fiat} variant="body2" />}
             </Col>
         </TokenRoot>
     );
