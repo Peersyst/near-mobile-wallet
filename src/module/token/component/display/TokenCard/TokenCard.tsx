@@ -29,6 +29,7 @@ const TokenCard = ({ token: { type, amount } }: TokenProps): JSX.Element => {
             <Col alignItems="flex-end">
                 <Balance
                     balance={amount / 10 ** type.decimals}
+                    decimals={4}
                     smallBalance
                     units={tokenName ? (tokenName === "Unknown Token" ? "?" : tokenName) : ""}
                     boldUnits
