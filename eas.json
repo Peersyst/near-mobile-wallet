@@ -19,7 +19,7 @@
                 "FAUCET_URL": "https://faucet.nervos.org/",
                 "MAINNET_EXPLORER_API": "https://mainnet-api.explorer.nervos.org/api/v1/",
                 "TESTNET_EXPLORER_API": "https://testnet-api.explorer.nervos.org/api/v1/",
-                "ENABLE_MAINNET": "true"
+                "ENABLE_MAINNET": "false"
             },
             "android": {}
         },

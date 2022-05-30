@@ -9,7 +9,7 @@ import {
     CellCollector,
     QueryOptions,
 } from "@ckb-lumos/base";
-import { Config } from "@ckb-lumos/config-manager";
+import { Config, ScriptConfig } from "@ckb-lumos/config-manager";
 import { isSecp256k1Blake160Address, isAcpAddress, isSecp256k1Blake160MultisigAddress } from "@ckb-lumos/common-scripts/lib/helper";
 
 // AGGRON4 for test, LINA for main
@@ -19,6 +19,23 @@ export enum Environments {
     Mainnet = "mainnet",
     Testnet = "testnet",
 }
+
+const OnepassConfig: { [key in Environments]: ScriptConfig } = {
+    [Environments.Mainnet]: {
+        CODE_HASH: "0xd01f5152c267b7f33b9795140c2467742e8424e49ebe2331caec197f7281b60a",
+        HASH_TYPE: "type",
+        TX_HASH: "0x86a5e91ad93475caf30a3d3b0258786dd463984f71e8471abc5574f206f6207a",
+        INDEX: "0x0",
+        DEP_TYPE: "code",
+    },
+    [Environments.Testnet]: {
+        CODE_HASH: "0x3e1eb7ed4809b2d60650be96a40abfbdafb3fb942b7b37ec7709e64e2cd0a783",
+        HASH_TYPE: "type",
+        TX_HASH: "0x8b98ede6bf7b5baba767b1d2d46a13749fc810375b14152abbc259a7fc98e46d",
+        INDEX: "0x0",
+        DEP_TYPE: "code",
+    },
+};
 
 class CustomCellProvider implements CellProvider {
     public readonly uri: string;
@@ -141,15 +158,45 @@ export class ConnectionService {
         return helpers.parseAddress(address, { config: this.config });
     }
 
+    static getLockFromAddress(address: string, config: Config): Script {
+        return helpers.parseAddress(address, { config });
+    }
+
     isAddress(address: string): boolean {
         try {
             return (
                 isSecp256k1Blake160Address(address, this.config) ||
                 isAcpAddress(address, this.config) ||
-                isSecp256k1Blake160MultisigAddress(address, this.config)
+                isSecp256k1Blake160MultisigAddress(address, this.config) ||
+                this.isOnepassAddress(address)
             );
         } catch (err) {
             return false;
         }
+    }
+
+    isOnepassAddress(address: string): boolean {
+        const lock = this.getLockFromAddress(address);
+        return lock.code_hash === OnepassConfig[this.env].CODE_HASH && lock.hash_type === OnepassConfig[this.env].HASH_TYPE;
+    }
+
+    static isAddress(network: Environments, address: string): boolean {
+        const config = network === Environments.Mainnet ? LINA : AGGRON4;
+        try {
+            return (
+                isSecp256k1Blake160Address(address, config) ||
+                isAcpAddress(address, config) ||
+                isSecp256k1Blake160MultisigAddress(address, config) ||
+                ConnectionService.isOnepassAddress(network, address)
+            );
+        } catch (err) {
+            return false;
+        }
+    }
+
+    static isOnepassAddress(network: Environments, address: string): boolean {
+        const config = network === Environments.Mainnet ? LINA : AGGRON4;
+        const lock = ConnectionService.getLockFromAddress(address, config);
+        return lock.code_hash === OnepassConfig[network].CODE_HASH && lock.hash_type === OnepassConfig[network].HASH_TYPE;
     }
 }

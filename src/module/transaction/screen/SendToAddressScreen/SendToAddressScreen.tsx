@@ -13,6 +13,7 @@ import { SendScreens } from "module/transaction/component/core/SendModal/SendMod
 import { useRecoilState } from "recoil";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import useUncommittedTransaction from "module/transaction/hook/useUncommittedTransaction";
+import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 
 export interface SendForm {
     sender: number;
@@ -27,6 +28,7 @@ const SendToAddressScreen = () => {
     const { showToast, hideToast } = useToast();
     const setTab = useSetTab();
     const uncommittedTransaction = useUncommittedTransaction();
+    const network = useSelectedNetwork();
 
     const handleAddressScan = (data: string) => {
         setReceiverAddress(data);
@@ -68,7 +70,7 @@ const SendToAddressScreen = () => {
                                             </IconButton>
                                         }
                                         name="receiver"
-                                        validators={{ address: true }}
+                                        validators={{ address: network }}
                                         value={receiverAddress}
                                         onChange={setReceiverAddress}
                                         autoCapitalize="none"
