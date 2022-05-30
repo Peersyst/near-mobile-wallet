@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import "@peersyst/react-native-styled";
 import { Theme as ExtendedTheme, Validator } from "react-native-components";
+import { NetworkType } from "module/settings/state/SettingsState";
 
 declare module "@peersyst/react-native-styled" {
     export interface Theme extends ExtendedTheme {}
@@ -40,7 +41,7 @@ declare module "react-native-components" {
     }
 
     export interface ExtraValidators {
-        address: Validator;
+        address: Validator<NetworkType>;
     }
 
     export interface BlockchainLinksTypesOverrides {

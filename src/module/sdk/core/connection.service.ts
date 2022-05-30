@@ -152,4 +152,17 @@ export class ConnectionService {
             return false;
         }
     }
+
+    static isAddress(network: Environments, address: string): boolean {
+        const config = network === Environments.Mainnet ? LINA : AGGRON4;
+        try {
+            return (
+                isSecp256k1Blake160Address(address, config) ||
+                isAcpAddress(address, config) ||
+                isSecp256k1Blake160MultisigAddress(address, config)
+            );
+        } catch (err) {
+            return false;
+        }
+    }
 }
