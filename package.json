@@ -33,7 +33,7 @@
         "@peersyst/react-native-styled": "^1.1.1",
         "@peersyst/react-types": "^1.2.0",
         "@peersyst/react-utils": "^1.3.0",
-        "@rather-labs/nrc-721-sdk": "0.0.15",
+        "@rather-labs/nrc-721-sdk": "0.0.16",
         "@react-native-async-storage/async-storage": "~1.15.0",
         "@react-native-community/hooks": "^2.8.1",
         "@react-navigation/bottom-tabs": "^6.2.0",
