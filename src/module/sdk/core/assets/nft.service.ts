@@ -1,4 +1,6 @@
 import { Cell } from "@ckb-lumos/lumos";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import * as NrcSdk from "@rather-labs/nrc-721-sdk";
 import { Logger } from "../../utils/logger";
 import { ConnectionService, Environments } from "../connection.service";
