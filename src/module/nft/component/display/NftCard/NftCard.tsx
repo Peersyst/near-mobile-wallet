@@ -4,13 +4,16 @@ import { NftCardImage, NftCardRoot } from "./NftCard.styles";
 
 export type NftCardProps = Nft;
 
-const NftCard = ({ nftName, tokenUri, tokenId, total }: NftCardProps): JSX.Element => (
+const NftCard = ({ nftName, tokenUri, tokenId, total, data: { description } }: NftCardProps): JSX.Element => (
     <NftCardRoot>
         <NftCardImage source={{ uri: tokenUri }} />
         <Col flex={1} justifyContent="space-between" style={{ paddingVertical: 12 }}>
-            <Col gap={6}>
+            <Col gap={2}>
                 <Typography variant="body1" fontWeight="bold" numberOfLines={1}>
                     {nftName}
+                </Typography>
+                <Typography variant="body1" numberOfLines={3}>
+                    {description}
                 </Typography>
             </Col>
             {tokenId && total && (
