@@ -17,15 +17,15 @@ pipeline {
             steps {
                 sh 'yarn lint'
             }
-        } 
+        }
         stage('Test') {
             steps {
                 sh 'yarn test:unit:ci'
             }
-        } 
-        stage('Build and publish') {
+        }
+        stage('Build and publish - Development') {
             when {
-                anyOf { branch 'dev'; branch 'main'; branch 'build'; branch 'feature*'; }
+                anyOf { branch 'dev';branch 'build'; branch 'feature*'; }
             }
             parallel {
                 stage("Build and publish - Android") {
@@ -49,6 +49,37 @@ pipeline {
                             sh "sed -i -e 's/__BUILD_NUMBER__/${BUILD_NUMBER}/' eas.json"
                             sh "cp .env.dev .env"
                             sh 'npx eas-cli build --platform=ios --auto-submit --profile=development --non-interactive --no-wait'
+                        }
+                    }
+                }
+            }
+        }
+        stage('Build and publish - Production') {
+            when {
+                anyOf { branch 'main'; }
+            }
+            parallel {
+                stage("Build and publish - Android") {
+                    steps {
+                        withCredentials([
+                            string(credentialsId: 'peersyst-expo-token', variable: 'EXPO_TOKEN'),
+                        ]) {
+                            sh 'rm .npmrc || true'
+                            sh "sed -i -e 's/__BUILD_NUMBER__/${BUILD_NUMBER}000/' eas.json"
+                            sh "cp .env.dev .env"
+                            sh 'npx eas-cli build --platform=android --profile=production --non-interactive --no-wait'
+                        }
+                    }
+                }
+                stage("Build and publish - iOS") {
+                    steps {
+                        withCredentials([
+                            string(credentialsId: 'peersyst-expo-token', variable: 'EXPO_TOKEN'),
+                        ]) {
+                            sh 'rm .npmrc || true'
+                            sh "sed -i -e 's/__BUILD_NUMBER__/${BUILD_NUMBER}000/' eas.json"
+                            sh "cp .env.dev .env"
+                            sh 'npx eas-cli build --platform=ios --auto-submit --profile=production --non-interactive --no-wait'
                         }
                     }
                 }

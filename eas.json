@@ -19,9 +19,11 @@
                 "FAUCET_URL": "https://faucet.nervos.org/",
                 "MAINNET_EXPLORER_API": "https://mainnet-api.explorer.nervos.org/api/v1/",
                 "TESTNET_EXPLORER_API": "https://testnet-api.explorer.nervos.org/api/v1/",
-                "ENABLE_MAINNET": "false"
+                "ENABLE_MAINNET": "true"
             },
-            "android": {}
+            "android": {
+                "buildType": "apk"
+            }
         },
         "preview": {
             "distribution": "internal"
@@ -29,11 +31,22 @@
         "production": {
             "node": "14.18.3",
             "env": {
-                "BUILD_NUMBER": "__BUILD_NUMBER__"
+                "BUILD_NUMBER": "__BUILD_NUMBER__",
+                "MINIMUM_TRANSACTION_AMOUNT": "61",
+                "MAINNET_EXPLORER_LINK": "https://explorer.nervos.org/",
+                "TESTNET_EXPLORER_LINK": "https://pudge.explorer.nervos.org/",
+                "CKB_TESTNET_URL": "https://ckb-node-test-1.peersyst.com/rpc",
+                "INDEXER_TESTNET_URL": "https://ckb-node-test-1.peersyst.com/indexer",
+                "CKB_MAINNET_URL": "https://ckb-node-mainnet.peersyst.com/rpc",
+                "INDEXER_MAINNET_URL": "https://ckb-node-mainnet.peersyst.com/indexer",
+                "MINIMUM_DAO_DEPOSIT": "102",
+                "MAX_NUMBER_OF_DECIMALS": "6",
+                "FAUCET_URL": "https://faucet.nervos.org/",
+                "MAINNET_EXPLORER_API": "https://mainnet-api.explorer.nervos.org/api/v1/",
+                "TESTNET_EXPLORER_API": "https://testnet-api.explorer.nervos.org/api/v1/",
+                "ENABLE_MAINNET": "false"
             },
-            "android": {
-                "buildType": "apk"
-            }
+            "android": {}
         }
     },
     "submit": {
