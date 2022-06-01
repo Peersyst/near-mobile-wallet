@@ -1,11 +1,8 @@
+import { ButtonProps } from "./Button.types";
 import { ButtonRoot } from "./Button.styles";
-import { ButtonProps } from "module/common/component/input/Button/Button.types";
-import { TouchableWithoutFeedback } from "react-native";
 
-const Button = ({ onPress, style, children }: ButtonProps): JSX.Element => (
-    <TouchableWithoutFeedback onPress={onPress} accessibilityRole="button">
-        <ButtonRoot style={style}>{children}</ButtonRoot>
-    </TouchableWithoutFeedback>
-);
+const Button = ({ appearance = "dark", size = "lg", ...rest }: ButtonProps): JSX.Element => {
+    return <ButtonRoot size={size} appearance={appearance} {...rest} />;
+};
 
 export default Button;

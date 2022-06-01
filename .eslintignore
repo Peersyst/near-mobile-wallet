@@ -12,5 +12,8 @@ openapi-spec.json
 /.nyc_output/
 /src/module/api
 /src/module/common/icons
+/src/module/common/component/base/assets
 /src/script/iconGeneratorNative.js
 /src/script/imagesGenerator.js
+/ios
+/android

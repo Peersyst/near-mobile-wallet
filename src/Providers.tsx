@@ -1,28 +1,22 @@
 import { PropsWithChildren } from "react";
 import StylesProvider from "module/common/style";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
-
-const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            refetchOnWindowFocus: false,
-            notifyOnChangeProps: "tracked",
-        },
-    },
-});
+import { ToastProvider } from "module/common/component/base/feedback/ToastProvider";
+import QueryClientProvider from "./query/QueryClientProvider";
 
 const Providers = ({ children }: PropsWithChildren<unknown>): JSX.Element => (
     <RecoilRoot>
-        <QueryClientProvider client={queryClient}>
-            <SafeAreaProvider initialSafeAreaInsets={{ top: 0, left: 0, right: 0, bottom: 0 }}>
-                <StylesProvider>
-                    {children}
-                    {/*{process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}*/}
-                </StylesProvider>
-            </SafeAreaProvider>
-        </QueryClientProvider>
+        <SafeAreaProvider initialSafeAreaInsets={{ top: 0, left: 0, right: 0, bottom: 0 }}>
+            <StylesProvider>
+                <ToastProvider>
+                    <QueryClientProvider>
+                        {children}
+                        {/*{process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}*/}
+                    </QueryClientProvider>
+                </ToastProvider>
+            </StylesProvider>
+        </SafeAreaProvider>
     </RecoilRoot>
 );
 

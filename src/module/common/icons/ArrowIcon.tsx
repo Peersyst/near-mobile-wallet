@@ -1,6 +1,4 @@
-import React from "react";
-import SvgIcon from "module/common/component/base/SvgIcon/SvgIcon";
-import { SvgIconProps } from "module/common/component/base/SvgIcon/SvgIcon.types";
+import { SvgIcon, SvgIconProps } from "react-native-components";
 import { Path } from "react-native-svg";
 
 export function ArrowIcon(props: Omit<SvgIconProps, "children">): JSX.Element {

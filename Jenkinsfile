@@ -1,55 +1,87 @@
-def PROJECT_NAME = scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
-def envFileName = UUID.randomUUID().toString()
-def envFileDestination = "/tmp/${envFileName}"
-
 pipeline {
     agent {
         docker {
-            image 'cypress/base:14.18.3'
+            image 'node:14.18.3'
         }
     }
     environment {
-        CI = 'true'
-        CYPRESS_CACHE_FOLDER = '/tmp/cy'
-        NPM_CONFIG_PREFIX = '/tmp/.npm'
-        HOME = '/tmp'
+        HOME = '.'
     }
     stages {
-       stage('Install') {
-           steps {
-               sh 'yarn install --frozen-lockfile'
-           }
-       }
-       stage('Lint') {
-           steps {
-               sh 'yarn lint'
-           }
-       }
-       stage('Test unit') {
-           steps {
-               sh 'yarn test:unit'
-           }
-       }
-       /* stage('Test e2e') {
-           steps {
-               sh 'yarn cy:install'
-               sh 'yarn test:e2e'
-           }
-       } */
-       stage('Build') {
-           steps {
-               sh 'cp .env.test .env'
-               sh 'npx expo-cli build:web'
-           }
-        stage('Deploy test environment') {
-            when {
-                branch 'dev'
-            }
+        stage('Install') {
             steps {
-                sshagent(credentials : ['jenkins-ssh']) {
-                    sh 'scp -rp ./build/* ubuntu@dev.peersyst.com:/home/ubuntu/${PROJECT_NAME}'
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@dev.peersyst.com sudo rm -rf /var/www/${PROJECT_NAME}/*'
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@dev.peersyst.com sudo mv /home/ubuntu/${PROJECT_NAME}/* /var/www/${PROJECT_NAME}/'
+                sh 'yarn install'
+            }
+        }
+        stage('Lint') {
+            steps {
+                sh 'yarn lint'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'yarn test:unit:ci'
+            }
+        }
+        stage('Build and publish - Development') {
+            when {
+                anyOf { branch 'dev';branch 'build'; branch 'feature*'; }
+            }
+            parallel {
+                stage("Build and publish - Android") {
+                    steps {
+                        withCredentials([
+                            string(credentialsId: 'peersyst-expo-token', variable: 'EXPO_TOKEN'),
+                        ]) {
+                            sh 'rm .npmrc || true'
+                            sh "sed -i -e 's/__BUILD_NUMBER__/${BUILD_NUMBER}/' eas.json"
+                            sh "cp .env.dev .env"
+                            sh 'npx eas-cli build --platform=android --profile=development --non-interactive --no-wait'
+                        }
+                    }
+                }
+                stage("Build and publish - iOS") {
+                    steps {
+                        withCredentials([
+                            string(credentialsId: 'peersyst-expo-token', variable: 'EXPO_TOKEN'),
+                        ]) {
+                            sh 'rm .npmrc || true'
+                            sh "sed -i -e 's/__BUILD_NUMBER__/${BUILD_NUMBER}/' eas.json"
+                            sh "cp .env.dev .env"
+                            sh 'npx eas-cli build --platform=ios --auto-submit --profile=development --non-interactive --no-wait'
+                        }
+                    }
+                }
+            }
+        }
+        stage('Build and publish - Production') {
+            when {
+                anyOf { branch 'main'; }
+            }
+            parallel {
+                stage("Build and publish - Android") {
+                    steps {
+                        withCredentials([
+                            string(credentialsId: 'peersyst-expo-token', variable: 'EXPO_TOKEN'),
+                        ]) {
+                            sh 'rm .npmrc || true'
+                            sh "sed -i -e 's/__BUILD_NUMBER__/10000/' eas.json"
+                            sh "cp .env.dev .env"
+                            sh 'npx eas-cli build --platform=android --profile=production --non-interactive --no-wait'
+                        }
+                    }
+                }
+                stage("Build and publish - iOS") {
+                    steps {
+                        withCredentials([
+                            string(credentialsId: 'peersyst-expo-token', variable: 'EXPO_TOKEN'),
+                        ]) {
+                            sh 'rm .npmrc || true'
+                            sh "sed -i -e 's/__BUILD_NUMBER__/10000/' eas.json"
+                            sh "cp .env.dev .env"
+                            sh 'npx eas-cli build --platform=ios --auto-submit --profile=production --non-interactive --no-wait'
+                        }
+                    }
                 }
             }
         }

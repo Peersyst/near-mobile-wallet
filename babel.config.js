@@ -22,14 +22,16 @@ module.exports = function (api) {
                         locale: "./src/locale",
                         asset: "./src/asset",
                         icons: "./src/module/common/icons",
+                        "ckb-peersyst-sdk": "./src/module/sdk",
                         module: "./src/module",
                         utils: "./src/utils",
                         "stack-navigator": "./src/Stack.ts",
-                        "query-utils": "./src/query/react-query-overrides.ts"
+                        "query-utils": "./src/query/react-query-overrides.ts",
+                        "react-native-components": "./src/module/common/component/base"
                     },
                 },
             ],
-            ["babel-plugin-styled-components", { displayName: true }],
+            ["@babel/plugin-proposal-async-generator-functions"],
         ],
     };
 };

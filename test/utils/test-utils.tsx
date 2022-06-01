@@ -6,6 +6,8 @@ import StylesProvider from "module/common/style";
 import { RecoilRoot } from "recoil";
 import { renderHook, RenderHookOptions, RenderHookResult } from "@testing-library/react-hooks";
 import { deepmerge } from "@peersyst/react-utils";
+import { NavigationContainer } from "@react-navigation/native";
+import { ModalProvider } from "react-native-components";
 
 export interface CreateWrapperConfig {
     queryClientConfig?: QueryClientConfig;
@@ -30,7 +32,11 @@ export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): 
             <RecoilRoot>
                 <QueryClientProvider client={queryClient}>
                     <SafeAreaProvider initialSafeAreaInsets={{ top: 0, left: 0, right: 0, bottom: 0 }}>
-                        <StylesProvider>{children}</StylesProvider>
+                        <StylesProvider>
+                            <NavigationContainer>
+                                <ModalProvider>{children}</ModalProvider>
+                            </NavigationContainer>
+                        </StylesProvider>
                     </SafeAreaProvider>
                 </QueryClientProvider>
             </RecoilRoot>
@@ -53,4 +59,5 @@ export * from "@testing-library/jest-native";
 export { customRender as render };
 export * from "./fail-api-call";
 export * from "./success-api-call";
+export * from "./wait";
 export { customRenderHook as renderHook };

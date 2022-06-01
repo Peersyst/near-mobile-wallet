@@ -9,7 +9,7 @@ const { compilerOptions } = require("./tsconfig.path");
 module.exports = {
     testEnvironment: "jest-environment-jsdom",
     preset: "jest-expo",
-    setupFilesAfterEnv: ["<rootDir>/test/unit/setup.ts", "@testing-library/jest-native"],
+    setupFilesAfterEnv: ["<rootDir>/test/setup.tsx", "@testing-library/jest-native"],
     moduleDirectories: [
         "node_modules",
         "utils", // a utility folder
@@ -24,28 +24,41 @@ module.exports = {
         "./src/**/*.(ts|js|tsx|jsx)",
         "!./src/**/index.(ts|js|tsx|jsx)",
         "!./src/**/*.d.ts",
+        "!./src/**/mock/**/*",
         "!./src/module/api/**/*",
         "!./src/script/**/*",
         "!./src/**/*.(styles|types).(ts|js|tsx|jsx)",
+        "!./src/**/*Provider.tsx",
         "!./src/module/common/icons/**/*",
         "!./src/module/common/style/**/*",
         "!./src/module/common/service/BaseStorageService.ts",
         "!./src/module/common/component/base/**/*",
         "!./src/module/common/hook/(useCachedResources.ts|useColorScheme.ts)",
         "!./src/Providers.tsx",
-        "!./src/**/*Navigator.(tsx|ts)",
+        "!./src/Navigator.tsx",
+        "!./src/**/*NavigatorGroup.(tsx|ts)",
         "!./src/Stack.ts",
-        "!./src/utils/isWeb.ts",
+        "!./src/utils/(isWeb|extractTextStyles).ts",
+        "!./src/module/common/component/layout/PagerView/*",
+        "!./src/module/common/component/layout/BasePage/*",
+        "!./src/module/common/component/layout/LogoPage/*",
+        "!./src/module/common/service/CkbSdkService.ts",
+        "!./src/module/sdk/**/*",
+        "!./src/**/query/**/*",
     ],
     coverageDirectory: "./coverage",
     coverageThreshold: {
         global: {
-            branches: 90,
-            statements: 90,
+            branches: 50,
+            statements: 50,
         },
     },
     moduleNameMapper: {
         ...pathsToModuleNameMapper(compilerOptions.paths || {}, { prefix: resolve(compilerOptions.baseUrl) }),
-        "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/unit/__mocks__/fileMock.js",
+        "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/fileMock.js",
     },
 };
+
+//Set env
+process.env.MINIMUM_TRANSACTION_AMOUNT = "61";
+process.env.MINIMUM_DAO_DEPOSIT = "102";
