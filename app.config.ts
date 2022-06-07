@@ -6,7 +6,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     name: "CKBull",
     slug: "CKBull",
     owner: "peersyst",
-    version: "1.0.0",
+    version: "1.1.0",
     orientation: "portrait",
     icon: "./assets/images/ckbull-icon.png",
     scheme: "myapp",
