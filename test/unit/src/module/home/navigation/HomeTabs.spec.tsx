@@ -14,7 +14,7 @@ describe("HomeTabs tests", () => {
         expect(screen.getAllByText(translate("transactions"))).toHaveLength(1);
         fireEvent.press(screen.getByText(translate("currencies")));
         expect(screen.getAllByText(translate("currencies"))).toHaveLength(1);
-        // fireEvent.press(screen.getByText(translate("nfts")));
-        // expect(screen.getAllByText(translate("nfts"))).toHaveLength(1);
+        fireEvent.press(screen.getByText(translate("nfts")));
+        expect(screen.getAllByText(translate("nfts"))).toHaveLength(1);
     });
 });
