@@ -169,7 +169,7 @@
     "too_many_decimals": "必须包含 %decimals% 或更少的小数",
     "no_deposits": "你没有任何正在进行的存款记录",
     "withdrawals": "提款",
-    "processing": "洗印",
+    "processing": "正在处理中",
     "testnet_warning": "这是一个测试网版本。不要将主网 CKB 发送到该账户。",
     "dismiss": "解雇",
     "pending_transaction_text": "\n您有一个未提交的事务。请等到它承诺发送一个新的。"

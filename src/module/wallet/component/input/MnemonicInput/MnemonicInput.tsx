@@ -12,7 +12,7 @@ export const MnemonicInput = (): JSX.Element => {
 
     const handleSubmit = (): void => {
         if (word.length > 0) {
-            if (!mnemonic.find((w) => w === word)) setMnemonic((m) => [...m, word]);
+            setMnemonic((m) => [...m, word]);
             setWord("");
         }
     };
