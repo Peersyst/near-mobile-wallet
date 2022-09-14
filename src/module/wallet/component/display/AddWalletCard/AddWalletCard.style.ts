@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled";
 import { PlusIcon } from "icons";
-import { Row, Typography } from "react-native-components";
+import { Row, Typography } from "@peersyst/react-native-components";
 import { BaseWalletCardRoot } from "module/common/component/surface/BaseWalletCard/BaseWalletCard.styles";
 
 export const AddIcon = styled(PlusIcon)(({ theme }) => ({

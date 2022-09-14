@@ -1,4 +1,13 @@
-import { Backdrop, Col, createModal, ExposedBackdropProps, PressableText, Row, Typography, useToast } from "react-native-components";
+import {
+    Backdrop,
+    Col,
+    createModal,
+    ExposedBackdropProps,
+    PressableText,
+    Row,
+    Typography,
+    useToast,
+} from "@peersyst/react-native-components";
 import useWallet from "module/wallet/hook/useWallet";
 import useEditWallet from "module/wallet/hook/useEditWallet";
 import { EditWalletModalRoot } from "module/wallet/component/core/EditWalletModal/EditWalletModal.styles";

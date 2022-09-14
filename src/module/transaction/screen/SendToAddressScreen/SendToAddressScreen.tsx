@@ -1,4 +1,15 @@
-import { Col, Form, IconButton, Paper, PressableText, QrScanner, Row, Typography, useSetTab, useToast } from "react-native-components";
+import {
+    Col,
+    Form,
+    IconButton,
+    Paper,
+    PressableText,
+    QrScanner,
+    Row,
+    Typography,
+    useSetTab,
+    useToast,
+} from "@peersyst/react-native-components";
 import FormGroup from "module/common/component/input/FormGroup/FormGroup";
 import { translate } from "locale";
 import TextField from "module/common/component/input/TextField/TextField";
@@ -6,7 +17,7 @@ import { ScanIcon } from "module/common/icons/ScanIcon";
 import { useTheme } from "@peersyst/react-native-styled";
 import Button from "module/common/component/input/Button/Button";
 import sendRecoilState from "module/transaction/state/SendState";
-import { image } from "../../../../asset/image";
+import { send } from "../../../../asset/image";
 import { SendImage } from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen.styles";
 import { useState } from "react";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
@@ -53,7 +64,7 @@ const SendToAddressScreen = () => {
             <Form onSubmit={handleSubmit}>
                 <Col>
                     <Row justifyContent="center">
-                        <SendImage source={image.send} />
+                        <SendImage source={send} />
                     </Row>
                     <Col gap={40}>
                         <Paper style={{ padding: 20 }} elevation={8}>
@@ -80,7 +91,13 @@ const SendToAddressScreen = () => {
                             </Col>
                         </Paper>
                         <Col gap={8}>
-                            <Button variant="outlined" fullWidth disabled={uncommittedTransaction} loading={uncommittedTransaction}>
+                            <Button
+                                type="submit"
+                                variant="outlined"
+                                fullWidth
+                                disabled={uncommittedTransaction}
+                                loading={uncommittedTransaction}
+                            >
                                 {translate("next")}
                             </Button>
                             {uncommittedTransaction && (

@@ -1,7 +1,7 @@
 import WelcomeBackScreen from "module/auth/screen/WelcomeBackScreen/WelcomeBackScreen";
 import { render } from "test-utils";
 import { translate } from "locale";
-import * as UseSetTab from "module/common/component/base/navigation/Tabs/hook/useSetTab";
+import * as Genesys from "@peersyst/react-native-components";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
 
 describe("WelcomeBackScreen tests", () => {
@@ -12,7 +12,7 @@ describe("WelcomeBackScreen tests", () => {
     test("Renders correctly", async () => {
         jest.useFakeTimers();
         const setTab = jest.fn();
-        jest.spyOn(UseSetTab, "default").mockReturnValue(setTab);
+        jest.spyOn(Genesys, "useSetTab").mockReturnValue(setTab);
         const screen = render(<WelcomeBackScreen />);
         expect(screen.getByText(translate("welcome_back")));
         jest.runAllTimers();

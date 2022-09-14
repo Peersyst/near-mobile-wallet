@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import "@peersyst/react-native-styled";
-import { Theme as ExtendedTheme, Validator } from "react-native-components";
-import { NetworkType } from "module/settings/state/SettingsState";
+import { Theme as RNCTheme } from "@peersyst/react-native-components";
 
-declare module "@peersyst/react-native-styled" {
-    export interface Theme extends ExtendedTheme {}
-}
-
-declare module "react-native-components" {
+// Custom components theme
+declare module "@peersyst/react-native-components" {
     export interface ThemePalette {
         white: string;
         black: string;
@@ -32,6 +28,7 @@ declare module "react-native-components" {
         paper: string;
         wallet: string[];
     }
+
     export interface TypographyVariantsOverrides {
         h4: false;
         h5: false;
@@ -39,25 +36,9 @@ declare module "react-native-components" {
         subtitle1: false;
         subtitle2: false;
     }
+}
 
-    export interface ExtraValidators {
-        address: Validator<NetworkType>;
-    }
-
-    export interface BlockchainLinksTypesOverrides {
-        address: false;
-        tx: false;
-        mainnetAddress: true;
-        mainnetTx: true;
-        testnetAddress: true;
-        tesnetTx: true;
-    }
-    export interface BlockchainLinks {
-        address: undefined;
-        tx: undefined;
-        mainnetAddress: string;
-        mainnetTx: string;
-        testnetAddress: string;
-        tesnetTx: string;
-    }
+// Type styled components theme with our components theme
+declare module "@peersyst/react-native-styled" {
+    export interface Theme extends RNCTheme {}
 }

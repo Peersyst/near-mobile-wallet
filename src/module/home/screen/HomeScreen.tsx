@@ -1,4 +1,4 @@
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import HomeSlider from "module/home/component/core/HomeSlider";
 import BaseWithBackgroundMainScreen from "module/main/component/layout/BaseWithBackgroundMainScreen/BaseWithBackgroundMainScreen";
 import HomeTabs from "../component/navigation/HomeTabs";

@@ -1,4 +1,4 @@
-import { Backdrop, ExposedBackdropProps } from "react-native-components";
+import { Backdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import GlassNavigator, { GlassNavigatorProps } from "module/common/component/navigation/GlassNavigator/GlassNavigator";
 import { useWindowDimensions } from "react-native";
 

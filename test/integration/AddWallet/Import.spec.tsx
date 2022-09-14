@@ -12,7 +12,7 @@ import synchronizeMock from "mocks/synchronize";
 describe("AddWallet - Import", () => {
     jest.setTimeout(20000);
     test("Adds a created wallet successfully", async () => {
-        jest.spyOn(CKBSDKService.prototype, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock));
+        jest.spyOn(CKBSDKService.prototype, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock) as any);
         jest.spyOn(WalletService, "createNewMnemonic").mockReturnValue("Pizza Taco Fries");
         const addWalletToStorage = jest
             .spyOn(WalletStorage, "addWallet")

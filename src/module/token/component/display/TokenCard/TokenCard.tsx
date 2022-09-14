@@ -1,4 +1,4 @@
-import { Col, Row, Typography } from "react-native-components";
+import { Col, Row, Typography } from "@peersyst/react-native-components";
 import { TokenIcon, TokenPlaceholder, TokenRoot } from "./TokenCard.styles";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { TokenAmount } from "module/token/types";

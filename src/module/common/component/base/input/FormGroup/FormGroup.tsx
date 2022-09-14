@@ -1,5 +1,5 @@
 import { Children, ReactElement, ReactNode } from "react";
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import { ViewStyle } from "react-native";
 
 export interface FormGroupProps {

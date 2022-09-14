@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { Modal } from "react-native-components";
+import { Modal } from "@peersyst/react-native-components";
 
 export const TransactionDetailsModalRoot = styled(Modal)(() => ({
     position: "absolute",

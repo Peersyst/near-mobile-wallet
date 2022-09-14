@@ -29,7 +29,7 @@ describe("CreateWalletSuccessScreen tests", () => {
             setColorIndex: jest.fn(),
             reset: jest.fn(),
         });
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue(sdkInstance);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         jest.spyOn(serviceInstancesMap, "has").mockReturnValue(true);
         jest.spyOn(sdkInstance, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock as any));
         const setWalletState = jest.fn();

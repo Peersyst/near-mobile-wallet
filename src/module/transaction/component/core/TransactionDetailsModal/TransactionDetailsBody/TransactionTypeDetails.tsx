@@ -1,6 +1,6 @@
 import TransactionDetail from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionDetail";
 import { translate } from "locale";
-import { Row, Typography } from "react-native-components";
+import { Row, Typography } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
 import { TransactionType } from "ckb-peersyst-sdk";

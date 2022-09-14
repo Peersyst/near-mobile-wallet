@@ -1,6 +1,6 @@
 import { translate } from "locale";
 import { useState } from "react";
-import { Animated } from "react-native-components";
+import { Animated } from "@peersyst/react-native-components";
 import NumericPad from "../NumericPad/NumericPad";
 import { NumericPadProps } from "../NumericPad/NumericPad.types";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";

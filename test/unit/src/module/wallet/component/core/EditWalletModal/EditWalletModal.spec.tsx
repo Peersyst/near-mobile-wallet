@@ -6,7 +6,7 @@ import EditWalletModal from "module/wallet/component/core/EditWalletModal/EditWa
 import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import createEditWalletMock, { useEditWalletMock } from "mocks/useEditWallet";
-import * as UseToast from "module/common/component/base/feedback/ToastProvider/hooks/useToast";
+import * as Genesys from "@peersyst/react-native-components";
 import { WalletStorage } from "module/wallet/WalletStorage";
 
 describe("EditWallet tests", () => {
@@ -32,7 +32,7 @@ describe("EditWallet tests", () => {
             }),
         );
         const showToast = jest.fn();
-        jest.spyOn(UseToast, "useToast").mockReturnValue({
+        jest.spyOn(Genesys, "useToast").mockReturnValue({
             showToast,
             hideToast: jest.fn(),
             toastActive: false,

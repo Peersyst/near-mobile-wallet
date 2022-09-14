@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Typography, useSetTab } from "react-native-components";
+import { Typography, useSetTab } from "@peersyst/react-native-components";
 import { WelcomeBackScreenRoot } from "./WelcomeBackScreen.styles";
 import { translate } from "locale";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";

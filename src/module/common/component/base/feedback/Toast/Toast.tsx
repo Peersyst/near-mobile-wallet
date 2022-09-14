@@ -5,7 +5,7 @@ import { useControlled } from "@peersyst/react-hooks";
 import { useGetIcon } from "./hooks/useGetIcon";
 import { useTheme } from "@peersyst/react-native-styled";
 import { Row } from "../../layout/Row";
-import { AnimatedProps, Col, Icon } from "react-native-components";
+import { AnimatedProps, Col, Icon } from "@peersyst/react-native-components";
 import { Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useToastStyles from "module/common/component/base/feedback/Toast/hooks/useToastStyles";

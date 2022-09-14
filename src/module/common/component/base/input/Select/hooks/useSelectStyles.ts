@@ -2,7 +2,7 @@ import { SelectStyle } from "../Select.types";
 import useSelectDisplayDefaultStyles from "./useSelectDisplayDefaultStyles";
 import { extractTextStyles } from "utils/extractTextStyles";
 import { TextStyle, ViewStyle } from "react-native";
-import { SelectItemStyles } from "react-native-components";
+import { SelectItemStyles } from "@peersyst/react-native-components";
 
 export interface UseSelectStyles {
     style: ViewStyle;

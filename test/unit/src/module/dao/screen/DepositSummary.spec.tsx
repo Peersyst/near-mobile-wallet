@@ -1,4 +1,4 @@
-import { formatAddress } from "@peersyst/react-utils";
+import { formatHash } from "@peersyst/react-utils";
 import { translate } from "locale";
 import DepositSummary from "module/dao/screen/DepositConfirmationScreen/DepositSummary";
 import { render, SuccessApiCall, waitFor } from "test-utils";
@@ -35,7 +35,7 @@ describe("Test for the DepositSummary", () => {
         expect(screen.getByText("0")).toBeDefined();
         //Sender
         expect(screen.getByText(translate("from") + ":"));
-        expect(screen.getByText("Peersyst" + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();
+        expect(screen.getByText("Peersyst" + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
         //APC
         expect(screen.getByText(translate("estimated_apc") + ":"));
         await waitFor(() => expect(screen.getByText(`${daoInfo.estimated_apc}%`)).toBeDefined());

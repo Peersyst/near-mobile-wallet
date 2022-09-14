@@ -1,4 +1,4 @@
-import { IconButtonProps, IconButtonStyles } from "react-native-components";
+import { IconButtonProps, IconButtonStyles } from "@peersyst/react-native-components";
 
 export interface CopyButtonProps extends Omit<IconButtonProps, "children" | "onPress"> {
     text: string;

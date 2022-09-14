@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled";
 import { View, Text } from "react-native";
-import { Icon } from "react-native-components";
+import { Icon } from "@peersyst/react-native-components";
 
 export const PadItemRoot = styled(View)(() => ({
     width: "30%",

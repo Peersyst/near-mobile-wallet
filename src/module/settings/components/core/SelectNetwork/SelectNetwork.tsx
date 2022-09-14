@@ -4,7 +4,7 @@ import settingsState, { NetworkType } from "module/settings/state/SettingsState"
 import { useRecoilState } from "recoil";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { ENABLE_MAINNET } from "@env";
+import { config } from "config";
 
 const SelectNetwork = (): JSX.Element => {
     const networkOptions: optionType[] = [
@@ -32,7 +32,7 @@ const SelectNetwork = (): JSX.Element => {
 
     return (
         <SelectGroup
-            disabled={ENABLE_MAINNET !== "true"}
+            disabled={!config.enableMainnet}
             options={networkOptions}
             value={settings.network}
             label={translate("select_your_network")}

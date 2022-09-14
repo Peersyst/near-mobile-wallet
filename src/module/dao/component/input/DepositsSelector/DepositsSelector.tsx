@@ -1,15 +1,15 @@
 import { DAOUnlockableAmount } from "ckb-peersyst-sdk";
 import { useControlled } from "@peersyst/react-hooks";
 import { translate } from "locale";
-import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
-import Select, { SelectProps } from "module/common/component/input/Select/Select";
+import { Suspense, Select, SelectProps } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { Typography } from "react-native-components";
+import { Typography } from "@peersyst/react-native-components";
 import DepositItem from "./DepositItem";
 import { DepositItemText } from "./DepositItem.styles";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 
-interface DepositsSelectorProps extends Omit<SelectProps, "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple"> {
+interface DepositsSelectorProps
+    extends Omit<SelectProps<number>, "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple"> {
     deposits: DAOUnlockableAmount[];
 }
 
@@ -27,7 +27,7 @@ const DepositsSelector = ({ deposits, value, onChange, ...rest }: DepositsSelect
         setSelectedIndex(i as number);
     };
     return (
-        <ControlledSuspense isLoading={deposits.length === 0} fallback={<EmptyDepositsComponent />}>
+        <Suspense isLoading={deposits.length === 0} fallback={<EmptyDepositsComponent />}>
             <Select
                 value={selectedIndex}
                 onChange={handleItemChange}
@@ -61,7 +61,7 @@ const DepositsSelector = ({ deposits, value, onChange, ...rest }: DepositsSelect
                     );
                 })}
             </Select>
-        </ControlledSuspense>
+        </Suspense>
     );
 };
 

@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { Paper } from "react-native-components";
+import { Paper } from "@peersyst/react-native-components";
 
 export const HEADER_PADDING_BOTTOM = 4;
 

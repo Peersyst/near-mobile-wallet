@@ -2,7 +2,7 @@ import { render, SuccessApiCall } from "test-utils";
 import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import SelectAccountAndDepositScreen from "module/dao/screen/SelectAccountAndDepositScreen/SelectAccountAndDepositScreen";
-import * as UseSetTab from "module/common/component/base/navigation/Tabs/hook/useSetTab";
+import * as Genesys from "@peersyst/react-native-components";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { WithdrawScreens } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import { MockedUnlockableAmounts } from "mocks/DAO";
@@ -45,7 +45,7 @@ describe("SelectAccountAndDepositScreen tests", () => {
         jest.spyOn(sdkInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
         const setWithdrawInfo = jest.fn();
         const setTab = jest.fn();
-        jest.spyOn(UseSetTab, "default").mockReturnValue(setTab);
+        jest.spyOn(Genesys, "useSetTab").mockReturnValue(setTab);
         const screen = render(<SelectAccountAndDepositScreen setWithdrawInfo={setWithdrawInfo} />);
         await waitFor(() => expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined());
         expect(screen.getAllByText("500")).toHaveLength(4);

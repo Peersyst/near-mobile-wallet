@@ -47,8 +47,8 @@ jest.mock("expo-localization", () => ({
     decimalSeparator: ".",
 }));
 
-import { BackdropProps } from "react-native-components";
-jest.mock("../src/module/common/component/base/feedback/Backdrop/Backdrop", () => {
+import { BackdropProps } from "@peersyst/react-native-components";
+jest.mock("@peersyst/react-native-components", () => {
     const MockBackdrop = ({ children, onOpen, onClose, onExited, onEntered }: BackdropProps) => {
         const handleClose = () => {
             onClose?.();
@@ -58,7 +58,12 @@ jest.mock("../src/module/common/component/base/feedback/Backdrop/Backdrop", () =
         onEntered?.();
         return <>{typeof children === "function" ? children(true, jest.fn(handleClose)) : children}</>;
     };
-    return MockBackdrop;
+
+    return {
+        __esModule: true,
+        Backdrop: MockBackdrop,
+        ...jest.requireActual("@peersyst/react-native-components"),
+    };
 });
 
 jest.mock("module/settings/hook/useSelectedNetwork", () => {

@@ -1,4 +1,4 @@
-import { Shadow } from "react-native-components";
+import { Shadow } from "@peersyst/react-native-components";
 
 function createShadow(x: number, y: number, r: number, o: number, e?: number): Shadow {
     return {

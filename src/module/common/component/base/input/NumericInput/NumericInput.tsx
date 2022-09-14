@@ -3,7 +3,6 @@ import * as Localization from "expo-localization";
 import { NumericInputProps } from "module/common/component/base/input/NumericInput/NumericInput.types";
 import { useControlled } from "@peersyst/react-hooks";
 import formatValue, { decimalRegExp, digitRegExp } from "./utils/formatValue";
-import { MAX_NUMBER_OF_DECIMALS } from "@env";
 
 const NumericInput = ({ value: valueProp, defaultValue, onChangeText, ...rest }: NumericInputProps): JSX.Element => {
     const [value, setValue] = useControlled(defaultValue || "", valueProp, onChangeText);
@@ -19,7 +18,7 @@ const NumericInput = ({ value: valueProp, defaultValue, onChangeText, ...rest }:
             setValue?.("");
         } else {
             const [int, dec] = newValue.split(Localization.decimalSeparator);
-            if (dec && dec.length > Number(MAX_NUMBER_OF_DECIMALS)) return;
+            if (dec && dec.length > Number(6)) return;
             const rawInt = int.replace(digitRegExp, "");
             const rawValue = rawInt + (newValue.includes(Localization.decimalSeparator) ? "." : "") + (dec || "");
             setValue?.(rawValue);

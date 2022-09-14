@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { PaletteMode } from "react-native-components";
+import { PaletteMode } from "@peersyst/react-native-components";
 import { ViewStyle } from "react-native";
 
 /**

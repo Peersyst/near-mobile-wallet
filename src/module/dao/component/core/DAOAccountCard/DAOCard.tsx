@@ -1,15 +1,15 @@
 import { ThemeProvider } from "@peersyst/react-native-styled";
-import { image } from "asset/image";
-import { darkTheme } from "module/common/style/darkTheme";
+import { colored_background } from "asset/image";
 import { DAOCardRoot, DAOCardContent } from "./DAOAccountCard.styles";
 import DAOCardBalance from "./DAOCardBalance/DAOCardBalance";
 import DAOCardButtons from "./DAOCardButtons/DAOCardButtons";
 import DAOCardHeader from "./DAOCardHeader/DAOCardHeader";
+import darkTheme from "config/theme/darkTheme";
 
 const DAOCard = (): JSX.Element => {
     return (
         <ThemeProvider theme={darkTheme}>
-            <DAOCardRoot source={image.coloredBackground}>
+            <DAOCardRoot source={colored_background}>
                 <DAOCardContent>
                     <DAOCardHeader />
                     <DAOCardBalance />

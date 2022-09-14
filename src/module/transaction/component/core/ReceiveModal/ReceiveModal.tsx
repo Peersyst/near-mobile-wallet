@@ -1,4 +1,4 @@
-import { Col, createBackdrop, ExposedBackdropProps } from "react-native-components";
+import { Col, createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import { translate } from "locale";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 import QRCode from "module/transaction/component/display/QRCode/QRCode";

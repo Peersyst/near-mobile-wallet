@@ -1,4 +1,4 @@
-import { BaseValidator } from "react-native-components";
+import { BaseValidator } from "@peersyst/react-native-components";
 
 export type Validator<TVal = true> = TVal | [TVal, string];
 

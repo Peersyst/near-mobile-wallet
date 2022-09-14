@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import { Animated, View } from "react-native";
 import { SkeletonAnimationProps, SkeletonOverlayProps, SkeletonRootProps, SkeletonShape } from "./Skeleton.types";
-import { Theme } from "react-native-components";
+import { Theme } from "@peersyst/react-native-components";
 
 const getSkeletonBorderRadius = (shape: SkeletonShape, { borderRadius }: Theme): number => {
     if (shape === "rectangular") return 0;

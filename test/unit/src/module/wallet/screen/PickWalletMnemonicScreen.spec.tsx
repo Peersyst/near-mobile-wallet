@@ -1,7 +1,7 @@
 import { render } from "test-utils";
 import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
-import * as UseToast from "module/common/component/base/feedback/ToastProvider/hooks/useToast";
+import * as Genesys from "@peersyst/react-native-components";
 import { fireEvent } from "@testing-library/react-native";
 import { translate } from "locale";
 
@@ -38,7 +38,7 @@ describe("PickWalletMnemonicScreen tests", () => {
             reset: jest.fn(),
         });
         const showToast = jest.fn();
-        jest.spyOn(UseToast, "useToast").mockReturnValue({
+        jest.spyOn(Genesys, "useToast").mockReturnValue({
             showToast,
             hideToast: jest.fn(),
             toastActive: false,

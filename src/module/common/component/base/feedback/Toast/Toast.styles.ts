@@ -2,7 +2,7 @@ import { ToastContainerStylesProps, ToastContentStylesProps, ToastPosition } fro
 import { View } from "react-native";
 import styled from "@peersyst/react-native-styled";
 import { Paper } from "../../surface/Paper";
-import { Icon } from "react-native-components";
+import { Icon } from "@peersyst/react-native-components";
 
 function getPosition(position: ToastPosition): { bottom: number | undefined; left: number; top: number | undefined } {
     switch (position) {

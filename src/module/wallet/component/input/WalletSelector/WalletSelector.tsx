@@ -7,7 +7,7 @@ import WalletItem from "./WalletItem";
 import WalletSelectorItem from "./WalletSelectorItem";
 import { useControlled } from "@peersyst/react-hooks";
 
-export type WalletSelectorProps = Omit<SelectProps, "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple">;
+export type WalletSelectorProps = Omit<SelectProps<number>, "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple">;
 
 const WalletSelector = ({ style, value, onChange, defaultValue, ...rest }: WalletSelectorProps): JSX.Element => {
     const {
@@ -27,7 +27,7 @@ const WalletSelector = ({ style, value, onChange, defaultValue, ...rest }: Walle
         <Select
             value={selectedIndex}
             onChange={handleItemChange}
-            style={{ display: { color: textColor, ...(backgroundColor && { backgroundColor }) }, ...style }}
+            style={{ component: { display: { color: textColor, ...(backgroundColor && { backgroundColor }) } }, width: "auto", ...style }}
             title={translate("select_a_wallet")}
             placeholder={translate("no_account_selected")}
             renderValue={() => (selectedWallet !== undefined ? <WalletItem index={selectedWallet.index} color={textColor} /> : undefined)}

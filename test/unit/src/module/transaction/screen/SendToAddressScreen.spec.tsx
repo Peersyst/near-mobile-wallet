@@ -2,7 +2,7 @@ import { render } from "test-utils";
 import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
-import * as UseSetTab from "module/common/component/base/navigation/Tabs/hook/useSetTab";
+import * as Genesys from "@peersyst/react-native-components";
 import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
@@ -37,7 +37,7 @@ describe("SendToAddressScreen tests", () => {
         const setSendState = jest.fn();
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{}, setSendState]);
         const setTab = jest.fn();
-        jest.spyOn(UseSetTab, "default").mockReturnValue(setTab);
+        jest.spyOn(Genesys, "useSetTab").mockReturnValue(setTab);
         const screen = render(<SendToAddressScreen />);
         const input = screen.getByPlaceholderText(translate("address"));
         fireEvent.changeText(input, "ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwsq03ewkvsva4cchhntydu648l7lyvn9w2cctnpask");

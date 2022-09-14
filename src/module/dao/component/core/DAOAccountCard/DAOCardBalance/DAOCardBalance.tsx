@@ -1,6 +1,6 @@
 import { translate } from "locale";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { Col, Typography } from "react-native-components";
+import { Col, Typography } from "@peersyst/react-native-components";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import DAOBalanceRow from "./DAOBalanceRow/DAOBalanceRow";
 import useGetDAOBalance from "module/dao/query/useGetDAOBalance";

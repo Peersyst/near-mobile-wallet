@@ -1,5 +1,5 @@
 import { MainTabContent, MainTabRoot } from "./MainTab.styles";
-import { Typography, useTab } from "react-native-components";
+import { Typography, useTab } from "@peersyst/react-native-components";
 
 export interface MainTabProps {
     index: number;

@@ -1,7 +1,7 @@
 import { HeaderRoot } from "./Header.styles";
 import Toolbar from "../../layout/Toolbar/Toolbar";
 import LogoRow from "module/common/component/display/Logos/LogoRow/LogoRow";
-import { IconButton, Row } from "react-native-components";
+import { IconButton, Row } from "@peersyst/react-native-components";
 import { SettingsIcon } from "icons";
 import useNavigation from "../../../hook/useNavigation";
 import FaucetButton from "module/wallet/component/input/FaucetButton/FaucetButton";

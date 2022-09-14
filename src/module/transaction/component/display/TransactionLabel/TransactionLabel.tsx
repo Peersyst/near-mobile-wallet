@@ -1,4 +1,4 @@
-import { Typography, TypographyProps } from "react-native-components";
+import { Typography, TypographyProps } from "@peersyst/react-native-components";
 import getTransactionLabel from "module/transaction/component/display/TransactionLabel/utils/getTransactionLabel";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
 

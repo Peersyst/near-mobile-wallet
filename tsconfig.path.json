@@ -3,7 +3,11 @@
         "baseUrl": "./src",
         "paths": {
             "locale": ["locale"],
+            "locale/*": ["locale/*"],
+            "config": ["config"],
+            "config/*": ["config/*"],
             "asset": ["asset"],
+            "images": ["asset/image"],
             "icons": ["module/common/icons"],
             "ckb-peersyst-sdk": ["module/sdk"],
             "module/*": ["module/*"],
@@ -11,6 +15,7 @@
             "stack-navigator": ["Stack.ts"],
             "query-utils": ["query/react-query-overrides.ts"],
             "test-utils": ["../test/utils/test-utils"],
+            "test-mocks": ["../test/__mocks__"],
             "mocks/*": ["../test/__mocks__/*"],
             "react-native-components": ["module/common/component/base"]
         }

@@ -1,5 +1,5 @@
 import Select, { SelectProps } from "module/common/component/input/Select/Select";
-import { SelectItem } from "react-native-components";
+import { SelectItem } from "@peersyst/react-native-components";
 import FormGroup from "../FormGroup/FormGroup";
 
 export type optionType = {
@@ -7,7 +7,7 @@ export type optionType = {
     value: string | number;
 };
 
-interface SelectGroupProps extends SelectProps {
+interface SelectGroupProps extends SelectProps<any> {
     options: optionType[];
     label: string;
 }

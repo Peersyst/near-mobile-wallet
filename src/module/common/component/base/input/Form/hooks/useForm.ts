@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { FormContext } from "react-native-components";
+import { FormContext } from "@peersyst/react-native-components";
 
 export interface UseFormResult {
     valid: boolean;

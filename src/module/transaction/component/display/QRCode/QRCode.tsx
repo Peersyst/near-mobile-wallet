@@ -1,5 +1,5 @@
 import { useWindowDimensions } from "react-native";
-import { Row } from "react-native-components";
+import { Row } from "@peersyst/react-native-components";
 import QRCodeBase from "react-native-qrcode-svg";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";

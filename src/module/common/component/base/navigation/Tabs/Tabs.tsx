@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TabsProvider } from "./TabsContext";
 import { TabsProps } from "./Tabs.types";
 import { useControlled } from "@peersyst/react-hooks";
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import { LayoutRectangle } from "react-native";
 
 export default function Tabs({ index, onIndexChange, initialIndex = 0, style, gap = 20, children }: TabsProps): JSX.Element {

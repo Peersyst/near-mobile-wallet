@@ -2,7 +2,7 @@ import { translate } from "locale";
 import RepeatNumericPad from "module/common/component/input/RepeatNumericPad/RepeatNumericPad";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useState } from "react";
-import { createBackdrop, ExposedBackdropProps, useToast } from "react-native-components";
+import { createBackdrop, ExposedBackdropProps, useToast } from "@peersyst/react-native-components";
 import BaseSettingsModal from "../../layout/BaseSettingsModal/BaseSettingsModal";
 
 const UpdatePinModal = createBackdrop(

@@ -1,10 +1,10 @@
-import { Button } from "react-native-components";
+import { Button } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
 import { useButtonStyles } from "./hooks/useButtonStyles";
-import { ButtonAppearanceProps } from "./Button.types";
+import { ButtonRootProps } from "./Button.types";
 
-export const ButtonRoot = styled(Button)<ButtonAppearanceProps>(({ theme, appearance }) => {
-    const { outlined, pressed, contained, pressedContained } = useButtonStyles(theme);
+export const ButtonRoot = styled(Button)<ButtonRootProps>(({ theme, appearance }) => {
+    const { outlined, pressed, filled, pressedFilled } = useButtonStyles(theme);
     return {
         borderRadius: 42,
         fontWeight: "700",
@@ -26,12 +26,12 @@ export const ButtonRoot = styled(Button)<ButtonAppearanceProps>(({ theme, appear
         },
         pressed: {
             ...pressed[appearance],
-            contained: {
-                ...pressedContained[appearance],
+            filled: {
+                ...pressedFilled[appearance],
             },
         },
-        contained: {
-            ...contained[appearance],
+        filled: {
+            ...filled[appearance],
         },
         disabled: {
             borderColor: theme.palette.disabled,

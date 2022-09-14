@@ -1,7 +1,7 @@
 import { translate } from "locale";
 import SecuritySettingsScreen from "module/settings/screen/SecuritySettingsScreen";
 import { fireEvent, render, SuccessApiCall } from "test-utils";
-import * as UseModal from "module/common/component/base/feedback/ModalProvider/hooks/useModal";
+import * as Genesys from "@peersyst/react-native-components";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import { waitFor } from "@testing-library/react-native";
@@ -21,7 +21,7 @@ describe("Test for the SecuritySettingsScreen", () => {
 
     test("Open confirm modal to update pin", () => {
         const showModal = jest.fn();
-        jest.spyOn(UseModal, "useModal").mockReturnValue({ showModal } as any);
+        jest.spyOn(Genesys, "useModal").mockReturnValue({ showModal } as any);
         const screen = render(<SecuritySettingsScreen navigation={jest.fn() as any} />);
         const button = screen.getByText(translate("change_passcode"));
         fireEvent.press(button);

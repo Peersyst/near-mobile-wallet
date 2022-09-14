@@ -1,6 +1,6 @@
 import isHeading from "utils/isHeading";
 import { useMemo } from "react";
-import { Row } from "react-native-components";
+import { Row } from "@peersyst/react-native-components";
 import { BalanceItem } from "./Balance.styles";
 import { BalanceProps } from "./Balance.types";
 import { extractTextStyles } from "utils/extractTextStyles";
