@@ -33,7 +33,6 @@ module.exports = {
         "!./src/module/common/icons/**/*",
         "!./src/module/common/style/**/*",
         "!./src/module/common/service/BaseStorageService.ts",
-        "!./src/module/common/component/base/**/*",
         "!./src/module/common/hook/(useCachedResources.ts|useColorScheme.ts)",
         "!./src/Providers.tsx",
         "!./src/Navigator.tsx",

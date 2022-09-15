@@ -1,5 +1,4 @@
 import { Col, Form, Paper, Row, Typography, useSetTab } from "@peersyst/react-native-components";
-import FormGroup from "module/common/component/input/FormGroup/FormGroup";
 import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
 import sendRecoilState from "module/transaction/state/SendState";
@@ -43,9 +42,12 @@ const DepositSelectAccountScreen = () => {
                 </Row>
                 <Col gap={40}>
                     <Paper style={{ padding: 20 }} elevation={8}>
-                        <FormGroup label={translate("select_a_wallet") + ":"}>
-                            <WalletSelector required name="sender" defaultValue={sendState.senderWalletIndex ?? finalSelectedWallet} />
-                        </FormGroup>
+                        <WalletSelector
+                            label={translate("select_a_wallet") + ":"}
+                            required
+                            name="sender"
+                            defaultValue={sendState.senderWalletIndex ?? finalSelectedWallet}
+                        />
                     </Paper>
                     <Col gap={8}>
                         <Button

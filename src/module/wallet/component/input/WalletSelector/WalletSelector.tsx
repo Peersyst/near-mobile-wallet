@@ -7,7 +7,10 @@ import WalletItem from "./WalletItem";
 import WalletSelectorItem from "./WalletSelectorItem";
 import { useControlled } from "@peersyst/react-hooks";
 
-export type WalletSelectorProps = Omit<SelectProps<number>, "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple">;
+export type WalletSelectorProps = Omit<
+    SelectProps<number>,
+    "options" | "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple"
+>;
 
 const WalletSelector = ({ style, value, onChange, defaultValue, ...rest }: WalletSelectorProps): JSX.Element => {
     const {

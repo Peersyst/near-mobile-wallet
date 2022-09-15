@@ -10,7 +10,6 @@ import {
     useSetTab,
     useToast,
 } from "@peersyst/react-native-components";
-import FormGroup from "module/common/component/input/FormGroup/FormGroup";
 import { translate } from "locale";
 import TextField from "module/common/component/input/TextField/TextField";
 import { ScanIcon } from "module/common/icons/ScanIcon";
@@ -69,25 +68,27 @@ const SendToAddressScreen = () => {
                     <Col gap={40}>
                         <Paper style={{ padding: 20 }} elevation={8}>
                             <Col gap={20}>
-                                <FormGroup label={translate("select_a_wallet") + ":"}>
-                                    <WalletSelector required name="sender" defaultValue={sendState.senderWalletIndex} />
-                                </FormGroup>
-                                <FormGroup label={translate("send_to") + ":"}>
-                                    <TextField
-                                        placeholder={translate("address")}
-                                        suffix={
-                                            <IconButton style={{ color: palette.darkGray, fontSize: 24 }} onPress={() => setScanQr(true)}>
-                                                <ScanIcon />
-                                            </IconButton>
-                                        }
-                                        name="receiver"
-                                        validators={{ address: network }}
-                                        value={receiverAddress}
-                                        onChange={setReceiverAddress}
-                                        autoCapitalize="none"
-                                        autoCorrect={false}
-                                    />
-                                </FormGroup>
+                                <WalletSelector
+                                    label={translate("select_a_wallet") + ":"}
+                                    required
+                                    name="sender"
+                                    defaultValue={sendState.senderWalletIndex}
+                                />
+                                <TextField
+                                    label={translate("send_to") + ":"}
+                                    placeholder={translate("address")}
+                                    suffix={
+                                        <IconButton style={{ color: palette.darkGray, fontSize: 24 }} onPress={() => setScanQr(true)}>
+                                            <ScanIcon />
+                                        </IconButton>
+                                    }
+                                    name="receiver"
+                                    validators={{ address: network }}
+                                    value={receiverAddress}
+                                    onChange={setReceiverAddress}
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
+                                />
                             </Col>
                         </Paper>
                         <Col gap={8}>

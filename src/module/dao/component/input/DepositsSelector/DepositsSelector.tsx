@@ -1,15 +1,16 @@
 import { DAOUnlockableAmount } from "ckb-peersyst-sdk";
 import { useControlled } from "@peersyst/react-hooks";
 import { translate } from "locale";
-import { Suspense, Select, SelectProps } from "@peersyst/react-native-components";
+import { Suspense } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { Typography } from "@peersyst/react-native-components";
 import DepositItem from "./DepositItem";
 import { DepositItemText } from "./DepositItem.styles";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
+import Select, { SelectProps } from "module/common/component/input/Select/Select";
 
 interface DepositsSelectorProps
-    extends Omit<SelectProps<number>, "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple"> {
+    extends Omit<SelectProps<number>, "options" | "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple"> {
     deposits: DAOUnlockableAmount[];
 }
 

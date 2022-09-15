@@ -16,8 +16,7 @@
             "query-utils": ["query/react-query-overrides.ts"],
             "test-utils": ["../test/utils/test-utils"],
             "test-mocks": ["../test/__mocks__"],
-            "mocks/*": ["../test/__mocks__/*"],
-            "react-native-components": ["module/common/component/base"]
+            "mocks/*": ["../test/__mocks__/*"]
         }
     }
 }

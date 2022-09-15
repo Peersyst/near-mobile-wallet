@@ -1,13 +1,15 @@
 import { translate } from "locale";
-import SelectGroup, { optionType } from "module/common/component/input/SelectGroup/SelectGroup";
 import settingsState, { NetworkType } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { config } from "config";
+import Select from "module/common/component/input/Select/Select";
+import { SelectOption } from "@peersyst/react-native-components";
+import { Chain } from "module/common/service/CkbSdkService.types";
 
 const SelectNetwork = (): JSX.Element => {
-    const networkOptions: optionType[] = [
+    const networkOptions: SelectOption<Chain>[] = [
         {
             label: translate("network_name", { name: "Mainnet" }),
             value: "mainnet",
@@ -31,7 +33,7 @@ const SelectNetwork = (): JSX.Element => {
     };
 
     return (
-        <SelectGroup
+        <Select
             disabled={!config.enableMainnet}
             options={networkOptions}
             value={settings.network}

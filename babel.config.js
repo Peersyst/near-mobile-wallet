@@ -17,8 +17,7 @@ module.exports = function (api) {
                         utils: "./src/utils",
                         "stack-navigator": "./src/Stack.ts",
                         "query-utils": "./src/query/react-query-overrides.ts",
-                        "test-mocks": "./test/__mocks__",
-                        "react-native-components": "./src/module/common/component/base"
+                        "test-mocks": "./test/__mocks__"
                     },
                 },
             ],

@@ -1797,37 +1797,37 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@peersyst/react-components-core@^0.1.12":
-  version "0.1.12"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-0.1.12.tgz#baf27522493e38ab0cde173f4d0b150f50ed5695"
-  integrity sha512-n8TmDwdeQl7YtlEF7Dsef3wCPeHpf8a6wyiHgKTDNuNQjl04lraKIAKwc756orBJVUCBp3D+H4iwZoMk+AghBg==
+"@peersyst/react-components-core@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-0.2.0.tgz#3841e87eb4a79e9a4ed0ed3ff673d79bc93eeedc"
+  integrity sha512-OQd43KCucP4BpmySofWqpkp2LvjJnjvAoWveYA4BgxRd8UYGmsIZUd63PoogSVnjUayFVGgM2N56Tdf4y7Hkiw==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-hooks" "^1.3.0"
-    "@peersyst/react-types" "^1.3.4"
-    "@peersyst/react-utils" "^1.5.0"
+    "@peersyst/react-hooks" "^1.4.0"
+    "@peersyst/react-types" "^1.4.0"
+    "@peersyst/react-utils" "^1.6.0"
 
-"@peersyst/react-hooks@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-1.3.0.tgz#29f65326965396171d5d144f9269293019de5208"
-  integrity sha512-3MhMVBmDi8V/mLvNuMGGF+zMpsEppfOS20dmr26rhocG6imCLFIkO106yySQ4YMKu1n1yxroi8COnpCWEeB2nA==
+"@peersyst/react-hooks@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-1.4.0.tgz#1603be840ced60a59ce9570f781e4a4fd2f29b32"
+  integrity sha512-G/N6d46O9/wZEDrPvmVi1TUumpSNUQ8rMho9siF/Lid/gRO3gfCX06qKz5RTsoP/356+wKP227GEQRGHoXtXyg==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-utils" "^1.5.0"
+    "@peersyst/react-utils" "^1.6.0"
 
-"@peersyst/react-native-components@^1.1.25":
-  version "1.1.25"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-1.1.25.tgz#14707a22560a2bcfbd5f39b3d415b5ba08acbc10"
-  integrity sha512-occdftvDaetHDSLUUG/YQU4pVk8/klMnLbW7++z5y3WUWB4GbFHjp3fEfyZFLGe7dVAvCyd67+zHIdG+oE9IFw==
+"@peersyst/react-native-components@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-1.2.0.tgz#198e21bc116f30f0502d2ca4c8b8ec7a78c58c76"
+  integrity sha512-aG8jYAzWPkRNZ4el36clBirZjKU08ytI85Bdkx2IT1nHjKGSIDpDyW8Ot7jTrL2nLp1odq0RjmHfAEOdyWylew==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-components-core" "^0.1.12"
-    "@peersyst/react-hooks" "^1.3.0"
+    "@peersyst/react-components-core" "^0.2.0"
+    "@peersyst/react-hooks" "^1.4.0"
     "@peersyst/react-native-modal" "^1.0.1"
-    "@peersyst/react-native-styled" "^1.2.2"
-    "@peersyst/react-native-utils" "^0.0.5"
-    "@peersyst/react-types" "^1.3.4"
-    "@peersyst/react-utils" "^1.5.0"
+    "@peersyst/react-native-styled" "^1.3.0"
+    "@peersyst/react-native-utils" "^0.1.0"
+    "@peersyst/react-types" "^1.4.0"
+    "@peersyst/react-utils" "^1.6.0"
     "@react-native-async-storage/async-storage" "^1.17.7"
     expo-barcode-scanner "^11.2.1"
     expo-camera "~12.1.2"
@@ -1860,34 +1860,34 @@
     react-native-animatable "1.3.3"
     react-native-keyboard-aware-scroll-view "^0.9.5"
 
-"@peersyst/react-native-styled@^1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-styled/-/react-native-styled-1.2.2.tgz#d1a102292f71bf1fd43ad563f28a6c8975c3ad9b"
-  integrity sha512-Aq0AtIB3VSYG1x+iOxcP0AZoTBl6ngPH8O6X+gH9eqqcPANXsCZjBQ5O8sEQWdgGAt0zrby5RwwKJS+4kXDdDg==
+"@peersyst/react-native-styled@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-styled/-/react-native-styled-1.3.0.tgz#687b098a85de0a6641574e1f1e5b7d55dcf55fbc"
+  integrity sha512-NyjHPGeouU5lbeE0mNgU6TQvRBfoAY6pV1NCwEgU+s9eVoLYde1S3eOq/7MVooF/MG/Cxbikcsxb+3tbN8c4Tg==
   dependencies:
     "@babel/runtime" "^7.16.7"
     react-native-safe-area-context "3.3.2"
 
-"@peersyst/react-native-utils@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-utils/-/react-native-utils-0.0.5.tgz#1e2505062f23140c275b51bc7613820fefb3a951"
-  integrity sha512-DKsIGcNktjzomO0tkbav5HIY7EpTIbBv6rVg4IVXl+4Xa7HywbPL2EUf/zVqKkMEKU2s7G573PEODtohkGviSA==
+"@peersyst/react-native-utils@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-utils/-/react-native-utils-0.1.0.tgz#ba699430d29bde7f5f400f8adb02e6c109d2f265"
+  integrity sha512-yewsXDda32VzG+qho2U/09o7ZK1HSKc5Q4cJk9guiUTbFRQcq82/NJsk0IlTKaW8K7StZ9ucpMAg2YTqUybwvg==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-types" "^1.3.4"
+    "@peersyst/react-types" "^1.4.0"
 
-"@peersyst/react-types@^1.3.4":
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-types/-/react-types-1.3.4.tgz#eb7ed0a590892ab5a0070fb5c66dae9f85324e23"
-  integrity sha512-K2y8dQGO3M+NU6Uz7JTsUT/1bEYi4K+k5LLwbxkhX2MT++CoPLpDNKdhW5LoJfuo7xJ7SH6Rdia25Hr8LB/lIQ==
+"@peersyst/react-types@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-types/-/react-types-1.4.0.tgz#538df3cdcff0a378e34d75450610a4b61668d4ed"
+  integrity sha512-vYeFUjr8/C5hZSWVm5qaa9S+Y5eLGQZPf/g0n1HZWoSm4LKHvxEfkNQzkRnzvEWLrGUe5F185DyrioW2cNwX7g==
 
-"@peersyst/react-utils@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-utils/-/react-utils-1.5.0.tgz#beb9e6bf05d45cdafeb654f39b4c2550ee0e97c7"
-  integrity sha512-tAvZfrBWpgCvGX8mlHIPyQq516GR1n/uiK7926UG5IXnS6R1VB+xcax1BWoNwZgESKsBnn2DQvGK+QqSvmD+pw==
+"@peersyst/react-utils@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-utils/-/react-utils-1.6.0.tgz#27400958d4b1195b8348effb1520e59540dc23c3"
+  integrity sha512-Ez3fX7Rbh57Iq0gdO5In46RtYtUqP7TJIeJp0/795sryaQywpydCyFOwC8rnLPpxCYYcwX73SSmps9pMunqhrg==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-types" "^1.3.4"
+    "@peersyst/react-types" "^1.4.0"
 
 "@rather-labs/nrc-721-sdk@0.0.16":
   version "0.0.16"

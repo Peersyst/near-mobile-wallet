@@ -1,5 +1,4 @@
 import { Col, Form, useSetTab, Suspense } from "@peersyst/react-native-components";
-import FormGroup from "module/common/component/input/FormGroup/FormGroup";
 import { translate } from "locale";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { WithdrawForm, WithdrawScreens, WithdrawSummary } from "module/dao/component/core/WithdrawModal/WithdrawModal";
@@ -70,28 +69,27 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
                 <Col>
                     <Col gap={20}>
                         <WithdrawSelectorCard style={{ marginTop: 5 }}>
-                            <FormGroup label={translate("select_a_wallet") + ":"}>
-                                <WalletSelector
-                                    onChange={(index) => setSelectedWallet(index as number)}
-                                    required
-                                    name="receiverIndex"
-                                    value={selectedWallet}
-                                />
-                            </FormGroup>
+                            <WalletSelector
+                                label={translate("select_a_wallet") + ":"}
+                                onChange={(index) => setSelectedWallet(index as number)}
+                                required
+                                name="receiverIndex"
+                                value={selectedWallet}
+                            />
                         </WithdrawSelectorCard>
                         <WithdrawSelectorCard>
-                            <FormGroup label={`${translate("select_deposit")}:`} style={{ height: 80 }}>
-                                <Suspense isLoading={depositsIsLoading} activityIndicatorSize={"large"}>
-                                    <DepositsSelector
-                                        onChange={(deposit) => setSelectedDeposit(deposit)}
-                                        value={selectedDeposit}
-                                        name="depositIndex"
-                                        deposits={unlockableDeposits}
-                                        required
-                                        defaultValue={0}
-                                    />
-                                </Suspense>
-                            </FormGroup>
+                            <Suspense isLoading={depositsIsLoading} activityIndicatorSize={"large"}>
+                                <DepositsSelector
+                                    label={`${translate("select_deposit")}:`}
+                                    onChange={(deposit) => setSelectedDeposit(deposit)}
+                                    value={selectedDeposit}
+                                    name="depositIndex"
+                                    deposits={unlockableDeposits}
+                                    required
+                                    defaultValue={0}
+                                    style={{ height: 80 }}
+                                />
+                            </Suspense>
                         </WithdrawSelectorCard>
                         <WithdrawButton
                             unlockableDeposits={unlockableDeposits}

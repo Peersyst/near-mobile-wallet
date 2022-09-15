@@ -37,7 +37,6 @@ describe("SelectAccountAndDepositScreen tests", () => {
         const screen = render(<SelectAccountAndDepositScreen setWithdrawInfo={jest.fn()} />);
         await waitFor(() => expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined());
         expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2);
-        expect(screen.getByText(translate("select_deposit") + ":")).toBeDefined();
         expect(screen.getByText(translate("no_deposits"))).toBeDefined();
     });
 
