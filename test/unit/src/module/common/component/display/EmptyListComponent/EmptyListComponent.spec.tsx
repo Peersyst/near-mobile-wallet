@@ -1,6 +1,5 @@
-import { translate } from "locale";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 
 describe("EmptyListComponent test", () => {
     test("Renders correctly", () => {

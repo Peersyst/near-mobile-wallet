@@ -1,9 +1,8 @@
 import * as UseWalletState from "module/wallet/hook/useWalletState";
-import { render, SuccessApiCall } from "test-utils";
+import { render, SuccessApiCall, translate } from "test-utils";
 import { nfts } from "mocks/nft";
 import NftsList from "module/nft/component/core/NftsList/NftsList";
 import { waitFor } from "@testing-library/react-native";
-import { translate } from "locale";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";

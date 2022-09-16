@@ -1,5 +1,4 @@
-import { translate } from "locale";
-import { fireEvent, render } from "test-utils";
+import { fireEvent, render, translate } from "test-utils";
 import RepeatNumericPad from "module/common/component/input/RepeatNumericPad/RepeatNumericPad";
 
 describe("Test for the RepeatNumericPad component", () => {

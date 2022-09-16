@@ -1,7 +1,6 @@
-import { translate } from "locale";
 import { useHandleErrorMessage } from "query/useHandleErrorMessage";
 import { act } from "react-test-renderer";
-import { renderHook } from "test-utils";
+import { renderHook, translate } from "test-utils";
 
 const renderHandleErrorMessage = () =>
     renderHook(() => {

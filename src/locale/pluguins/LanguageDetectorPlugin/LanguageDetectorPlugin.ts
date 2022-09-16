@@ -1,7 +1,7 @@
 import * as Localization from "expo-localization";
 import { SettingsStorage } from "module/settings/SettingsStorage";
-import { LocaleType } from "locale";
 import { LanguageDetectorAsyncModule } from "i18next";
+import { LocaleType, resources } from "locale";
 
 const locales: LocaleType[] = ["en", "es", "zh"];
 

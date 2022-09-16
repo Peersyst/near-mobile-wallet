@@ -1,5 +1,4 @@
-import { render } from "test-utils";
-import { translate } from "locale";
+import { render, translate } from "test-utils";
 import { fireEvent } from "@testing-library/react-native";
 import HomeTabs from "module/home/component/navigation/HomeTabs";
 import * as UseWalletState from "module/wallet/hook/useWalletState";

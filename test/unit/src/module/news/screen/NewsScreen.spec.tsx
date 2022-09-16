@@ -1,6 +1,5 @@
-import { translate } from "locale";
 import NewsScreen from "module/news/screen/NewsScreen";
-import { fireEvent, render } from "test-utils";
+import { fireEvent, render, translate } from "test-utils";
 import * as GetNews from "module/news/query/useGetNews";
 import { ArrayNews } from "mocks/news";
 import { Linking } from "react-native";

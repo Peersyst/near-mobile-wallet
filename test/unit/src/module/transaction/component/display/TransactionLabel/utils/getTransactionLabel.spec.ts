@@ -1,6 +1,6 @@
 import getTransactionLabel from "module/transaction/component/display/TransactionLabel/utils/getTransactionLabel";
 import { TransactionType } from "ckb-peersyst-sdk";
-import { translate } from "locale";
+import { translate } from "test-utils";
 
 describe("getTransactionLabel tests", () => {
     test("Returns sent", () => {

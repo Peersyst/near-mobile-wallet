@@ -1,6 +1,5 @@
-import { translate } from "locale";
 import useFormatTimeDAORemainingCycle from "module/transaction/component/hook/UseFormatTimeDAORemainingCycle/useFormatTimeDAORemaningCycle";
-import { act, renderHook } from "test-utils";
+import { act, renderHook, translate } from "test-utils";
 
 const renderUseFormatTimeDAORemainingCycle = () =>
     renderHook(() => {

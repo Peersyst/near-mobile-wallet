@@ -1,6 +1,5 @@
-import { translate } from "locale";
 import SecuritySettingsScreen from "module/settings/screen/SecuritySettingsScreen";
-import { fireEvent, render, SuccessApiCall } from "test-utils";
+import { fireEvent, render, SuccessApiCall, translate } from "test-utils";
 import * as Genesys from "@peersyst/react-native-components";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { SettingsStorage } from "module/settings/SettingsStorage";

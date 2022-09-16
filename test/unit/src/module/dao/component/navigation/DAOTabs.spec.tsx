@@ -1,5 +1,4 @@
-import { render } from "test-utils";
-import { translate } from "locale";
+import { render, translate } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import DAOTabs from "module/dao/navigation/DAOTabs/DAOTabs";
 import { mockedDAODeposits, mockedDAOUnlocks } from "mocks/DAOTransaction";

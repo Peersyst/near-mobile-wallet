@@ -1,5 +1,5 @@
+import { en } from "locale/locales/en/en";
 import { ApiError } from "module/api/service";
-import en from "../locale/en.json";
 import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface HandleApiErrorMessageResult {
@@ -16,7 +16,7 @@ export function useHandleErrorMessage(): UseHandleErrorMessage {
         const message = error.body?.message || error.statusText;
         if (!code || code === 500) return { message: translate("somethingWentWrong"), type: "error" };
         else if (code === 401) return { message: translate("sessionExpired"), type: "warning" };
-        else return { message: translate(message in en ? error.body.message : "somethingWentWrong"), type: "error" };
+        else return { message: translate(message in en.error ? error.body.message : "somethingWentWrong"), type: "error" };
     };
     return handleErrorMessage;
 }

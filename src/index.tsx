@@ -1,4 +1,3 @@
-import { loadLocalization } from "locale";
 import Providers from "./Providers";
 import Navigator from "./Navigator";
 import { useLoad } from "module/common/query/useLoad";
@@ -8,6 +7,7 @@ import { Suspense } from "@peersyst/react-native-components";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { Platform, UIManager } from "react-native";
+import "./locale/i18n";
 
 if (typeof BigInt === "undefined") global.BigInt = require("big-integer");
 
@@ -16,8 +16,6 @@ if (Platform.OS === "android") {
         UIManager.setLayoutAnimationEnabledExperimental(true);
     }
 }
-
-loadLocalization();
 
 const App = (): JSX.Element => {
     const loading = useLoad();

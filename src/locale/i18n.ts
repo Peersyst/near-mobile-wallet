@@ -17,6 +17,7 @@ i18next
     .use(initReactI18next)
     .use(LanguageDetectorPlugin)
     .init({
+        compatibilityJSON: "v3",
         fallbackLng: "en",
         resources,
         debug: process.env.NODE_ENV === "development",
