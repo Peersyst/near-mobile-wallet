@@ -1,1 +1,22 @@
-{}
+{
+    "somethingWentWrong": "出错了",
+    "sessionExpired": "已超时",
+    "500": "$t(somethingWentWrong)",
+    "401": "$t(sessionExpired)",
+    "invalid_not_null": "必填项",
+    "invalid_number": "该值必须是一个数字",
+    "invalid_email": "您输入的电子邮箱无效",
+    "invalid_password": "密码至少要包含8个字符，包含大小写字母和特殊字符",
+    "invalid_equal": "您输入的不一致",
+    "invalid_number_gt": "该值必须大于{{n}}",
+    "invalid_number_gte": "该值必须大于或等于{{n}}",
+    "invalid_number_eq": "该字必须等于{{n}}",
+    "invalid_number_lt": "该值必须低于{{n}}",
+    "invalid_number_lte": "该值必须低于或等于{{n}}",
+    "invalid_required": "必填项",
+    "insufficient_chars": "至少需要包含{{chars}}个字符",
+    "too_many_chars": "不得超过{{chars}}个字符",
+    "invalid_start": "必须以{{start}}开头",
+    "invalid_end": "必须以{{end}}结尾",
+    "nothing_to_show": "没什么可显示的"
+}
