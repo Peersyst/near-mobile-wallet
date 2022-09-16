@@ -3,12 +3,12 @@ import Keyboard from "../Keyboard/Keyboard";
 import PinDisplay from "../../display/PinDisplay/PinDisplay";
 import { NumericPadProps } from "module/common/component/input/NumericPad/NumericPad.types";
 import { Col, Row, PressableText } from "@peersyst/react-native-components";
-import { translate } from "locale";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style, onCancel }: NumericPadProps): JSX.Element => {
     const [value, setValue] = useState<string>("");
     const [error, setError] = useState<boolean>(errorProp);
-
+    const translate = useTranslate();
     useEffect(() => {
         if (value.length > 3) {
             onSubmit(value)?.then(() => {

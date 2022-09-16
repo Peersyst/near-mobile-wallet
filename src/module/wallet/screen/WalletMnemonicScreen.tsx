@@ -1,11 +1,11 @@
 import { WalletService } from "ckb-peersyst-sdk";
 import { Col, Typography } from "@peersyst/react-native-components";
 import Card from "module/common/component/surface/Card/Card";
-import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
 import { useMemo } from "react";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface WalletMnemonicScreenProps {
     onNextScreen: () => void;
@@ -13,7 +13,7 @@ export interface WalletMnemonicScreenProps {
 
 const WalletMnemonicScreen = ({ onNextScreen }: WalletMnemonicScreenProps): JSX.Element => {
     const { setMnemonic } = useCreateWallet();
-
+    const translate = useTranslate();
     const handleNext = () => {
         setMnemonic(mnemonic);
         onNextScreen();

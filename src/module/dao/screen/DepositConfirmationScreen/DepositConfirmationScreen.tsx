@@ -1,6 +1,5 @@
 import { Col, Typography, useModal } from "@peersyst/react-native-components";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
-import { translate } from "locale";
 import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
@@ -15,8 +14,10 @@ import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { useState } from "react";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const DepositConfirmationScreen = (): JSX.Element => {
+    const translate = useTranslate();
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [loading, setLoading] = useState(false);
     const network = useSelectedNetwork();

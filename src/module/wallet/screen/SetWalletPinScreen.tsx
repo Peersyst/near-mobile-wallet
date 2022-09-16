@@ -1,6 +1,6 @@
-import { translate } from "locale";
 import useCreateWallet from "../hook/useCreateWallet";
 import RepeatNumericPad from "module/common/component/input/RepeatNumericPad/RepeatNumericPad";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface SetWalletPinScreen {
     onCancel?: () => void;
@@ -9,6 +9,7 @@ export interface SetWalletPinScreen {
 
 const SetWalletPinScreen = ({ onCancel, onSuccess }: SetWalletPinScreen): JSX.Element => {
     const { setPin: setWalletPin } = useCreateWallet();
+    const translate = useTranslate();
     const handleRepeatPinSubmit = (p: string) => {
         setWalletPin(p);
         onSuccess();

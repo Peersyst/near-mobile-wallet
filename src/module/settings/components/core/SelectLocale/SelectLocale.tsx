@@ -1,4 +1,4 @@
-import { LocaleType, translate } from "locale";
+import { LocaleType } from "locale";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
@@ -6,8 +6,10 @@ import i18n from "i18n-js";
 import { LayoutAnimation } from "react-native";
 import Select from "module/common/component/input/Select/Select";
 import { SelectOption } from "@peersyst/react-native-components";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const SelectLocale = (): JSX.Element => {
+    const translate = useTranslate();
     const localeOptions: SelectOption<LocaleType>[] = [
         {
             label: translate("es"),

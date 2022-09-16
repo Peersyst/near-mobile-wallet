@@ -1,12 +1,13 @@
 import { createModal, TabPanel, Tabs } from "@peersyst/react-native-components";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
-import { translate } from "locale";
 import WalletsBackupAdvise from "module/wallet/component/core/WalletsBackupModal/WalletsBackupAdvise/WalletsBackupAdvise";
 import { useState } from "react";
 import WalletMnemonicBackup from "module/wallet/component/core/WalletsBackupModal/WalletMnemonicBackup/WalletMnemonicBackup";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const WalletsBackupModal = createModal((props): JSX.Element => {
+    const translate = useTranslate();
     const [open, setOpen] = useState(true);
     const [showPin, setShowPin] = useState(false);
     const [index, setIndex] = useState(0);

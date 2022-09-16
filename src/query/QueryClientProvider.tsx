@@ -1,11 +1,11 @@
 import { FC, useRef } from "react";
 import { useToast } from "@peersyst/react-native-components";
 import { QueryCache, QueryClient, QueryClientProvider as BaseQueryClientProvider } from "react-query";
-import { handleErrorMessage } from "./handleErrorMessage";
+import { useHandleErrorMessage } from "./useHandleErrorMessage";
 
 const QueryClientProvider: FC = ({ children }): JSX.Element => {
     const { showToast } = useToast();
-
+    const handleErrorMessage = useHandleErrorMessage();
     const queryClient = useRef(
         new QueryClient({
             defaultOptions: {
