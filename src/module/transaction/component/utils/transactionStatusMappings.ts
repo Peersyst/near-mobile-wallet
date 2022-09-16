@@ -1,5 +1,5 @@
 import { TransactionStatus } from "ckb-peersyst-sdk";
-import { theme } from "module/common/style/theme";
+import { theme } from "config/theme/theme";
 
 const transactionStatusMappings: Record<TransactionStatus, keyof typeof theme.palette.status> = {
     pending: "warning",
