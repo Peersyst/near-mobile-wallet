@@ -26,6 +26,6 @@ describe("Renders the token list properly", () => {
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         jest.spyOn(sdkInstance, "getTokensBalance").mockReturnValue([]);
         const screen = render(<TokensList />);
-        await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show"))));
+        await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show", { ns: "error" }))));
     });
 });

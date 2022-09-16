@@ -11,7 +11,7 @@ describe("Test for the NewsScreen", () => {
             data: [],
         });
         const screen = render(<NewsScreen />);
-        expect(screen.getByText(translate("nothing_to_show"))).toBeDefined();
+        expect(screen.getByText(translate("nothing_to_show", { ns: "error" }))).toBeDefined();
     });
     test("Renders correctly with news", () => {
         jest.spyOn<any, any>(GetNews, "default").mockReturnValue({

@@ -1,11 +1,10 @@
 import * as Localization from "expo-localization";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import { LanguageDetectorAsyncModule } from "i18next";
-import { LocaleType, resources } from "locale";
-
-const locales: LocaleType[] = ["en", "es", "zh"];
+import { LocaleType } from "locale";
 
 export function getDefaultLocale(): LocaleType {
+    const locales: LocaleType[] = ["en", "es", "zh"];
     const systemLocale = Localization.locale.slice(0, 2);
     return locales.find((l) => systemLocale === l) ?? "en";
 }
