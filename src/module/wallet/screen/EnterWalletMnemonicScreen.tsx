@@ -29,6 +29,7 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonic
     }, [submitted]);
 
     const handleSubmit = ({ mnemonic }: MnemonicForm) => {
+        console.log(mnemonic, mnemonic.join(" "));
         if (!submitted) {
             const valid = WalletService.validateMnemonic(mnemonic.join(" "));
             if (valid) {
