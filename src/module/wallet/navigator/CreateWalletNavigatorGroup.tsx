@@ -76,6 +76,7 @@ const CreateWalletNavigatorGroup = () => {
     return (
         <Tabs index={activeTab} onIndexChange={handleTabChange}>
             <GlassNavigatorModal
+                extraScrollHeight={Platform.OS === "android" ? 60 : 0}
                 onClose={() => setShowGlass(false)}
                 open={showGlass}
                 onExited={handleGlassExit}

@@ -12,6 +12,7 @@ import GlassNavigatorModal from "module/common/component/navigation/GlassNavigat
 import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen/WalletAdvisesScreen";
 import { useResetRecoilState } from "recoil";
 import createWalletState from "../state/CreateWalletState";
+import { Platform } from "react-native";
 
 export enum ImportWalletScreens {
     SET_WALLET_NAME,
@@ -64,9 +65,12 @@ const ImportWalletNavigatorGroup = () => {
         }
     };
 
+    const extraScrollHeight = Platform.OS === "android" ? (activeTab === ImportWalletScreens.ENTER_WALLET_MNEMONIC ? 120 : 60) : 0;
+
     return (
         <Tabs index={activeTab} onIndexChange={handleTabChange}>
             <GlassNavigatorModal
+                extraScrollHeight={extraScrollHeight}
                 onClose={() => setShowGlass(false)}
                 open={showGlass}
                 onExited={handleGlassExit}

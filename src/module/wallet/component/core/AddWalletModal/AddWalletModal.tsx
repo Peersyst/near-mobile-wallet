@@ -62,7 +62,7 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
 
     return (
         <GlassNavigatorModal
-            extraScrollHeight={Platform.OS === "android" ? 80 : 0}
+            extraScrollHeight={Platform.OS === "android" ? 70 : 0}
             scrollable={true}
             open={open}
             onClose={handleClose}
