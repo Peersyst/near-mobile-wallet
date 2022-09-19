@@ -22,10 +22,10 @@ i18next
         resources,
         debug: process.env.NODE_ENV === "development",
         interpolation: {
-            escapeValue: false, // not needed for react as it escapes by default
+            escapeValue: false,
         },
         react: {
-            useSuspense: false, //   <---- this will do the magic
+            useSuspense: false,
         },
     });
 
