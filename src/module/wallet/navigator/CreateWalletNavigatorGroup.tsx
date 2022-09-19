@@ -13,6 +13,7 @@ import { useBackHandler } from "@react-native-community/hooks";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 import { useResetRecoilState } from "recoil";
 import createWalletState from "module/wallet/state/CreateWalletState";
+import { Platform } from "react-native";
 
 export enum CreateWalletScreens {
     SET_WALLET_NAME,

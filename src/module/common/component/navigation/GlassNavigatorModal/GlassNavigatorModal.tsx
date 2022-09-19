@@ -6,6 +6,7 @@ const GlassNavigatorModal = ({
     navbar: { back, onBack, title, logo } = {},
     children,
     style,
+    extraScrollHeight,
     closable = true,
     scrollable,
     ...backdropProps
@@ -14,6 +15,7 @@ const GlassNavigatorModal = ({
         <Backdrop closable={closable} {...backdropProps}>
             {(_open, setOpen) => (
                 <GlassNavigator
+                    extraScrollHeight={extraScrollHeight}
                     breadcrumbs={breadcrumbs}
                     navbar={{
                         back: back && closable,

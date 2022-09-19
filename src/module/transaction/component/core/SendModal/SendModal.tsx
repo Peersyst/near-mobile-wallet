@@ -7,6 +7,7 @@ import { useResetRecoilState } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import SendConfirmationScreen from "module/transaction/screen/SendConfirmationScreen/SendConfirmationScreen";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
+import { Platform } from "react-native";
 
 export enum SendScreens {
     SEND_TO_ADDRESS,
@@ -25,6 +26,7 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
 
     return (
         <GlassNavigatorModal
+            extraScrollHeight={Platform.OS === "android" ? 80 : 0}
             breadcrumbs={{ length: 3, index: activeIndex }}
             navbar={{
                 back: true,

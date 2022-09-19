@@ -6,19 +6,22 @@ import Navbar from "module/common/component/navigation/Navbar/Navbar";
 import Breadcrumbs from "module/common/component/display/Breadcrumbs/Breadcrumbs";
 import { Col, Row } from "@peersyst/react-native-components";
 import { GlassNavigatorContent } from "module/common/component/navigation/GlassNavigator/GlassNavigator.styles";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { KeyboardAwareScrollView, KeyboardAwareScrollViewProps } from "react-native-keyboard-aware-scroll-view";
+import { Platform } from "react-native";
 
 export interface GlassNavigatorProps extends GlassProps {
     navbar?: NavbarProps;
     breadcrumbs?: BreadcrumbsProps;
     children?: ReactNode;
     scrollable?: boolean;
+    extraScrollHeight?: KeyboardAwareScrollViewProps["extraScrollHeight"];
 }
 
 const GlassNavigator = ({
     navbar: navbarProps,
     breadcrumbs: breadcrumbsProps,
     children,
+    extraScrollHeight,
     scrollable,
     ...rest
 }: GlassNavigatorProps): JSX.Element => (
@@ -36,7 +39,7 @@ const GlassNavigator = ({
                 style={{ marginHorizontal: -20, flex: 1 }}
                 //contentContainerStyle={!scrollable && { flex: 1, justifyContent: "flex-end" }}
                 //scrollEnabled={!!scrollable}
-                extraScrollHeight={0}
+                extraScrollHeight={extraScrollHeight}
                 keyboardShouldPersistTaps="handled"
                 enableOnAndroid={true}
                 alwaysBounceVertical={false}
