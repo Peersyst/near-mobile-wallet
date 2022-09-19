@@ -51,6 +51,7 @@ export const MnemonicInput = (): JSX.Element => {
                 onSubmitEditing={handleSubmit}
                 placeholder={translate("add_a_word")}
                 disabled={mnemonic.length > 11}
+                style={{ marginHorizontal: 20 }}
             />
         </Col>
     );
