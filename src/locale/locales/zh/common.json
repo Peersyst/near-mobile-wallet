@@ -109,7 +109,6 @@
     "DAO_withdrawal": "DAO的赎回记录",
     "smart_contract": "智能合约",
     "unlock_DAO": "正在赎回",
-    "invalid_address": "地址无效",
     "wallet": "钱包",
     "copied_to_clipboard": "复制到剪切板",
     "receiver": "接收方",

@@ -18,5 +18,6 @@
     "too_many_chars": "不得超过{{chars}}个字符",
     "invalid_start": "必须以{{start}}开头",
     "invalid_end": "必须以{{end}}结尾",
-    "nothing_to_show": "没什么可显示的"
+    "nothing_to_show": "没什么可显示的",
+    "invalid_address": "地址无效"
 }
