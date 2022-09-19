@@ -3,7 +3,6 @@ import Providers from "./Providers";
 import Navigator from "./Navigator";
 import { useLoad } from "module/common/query/useLoad";
 import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Suspense } from "@peersyst/react-native-components";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
@@ -25,14 +24,7 @@ const App = (): JSX.Element => {
 
     return (
         <Suspense fallback={<LogoPage />} isLoading={loading || loadingSettings}>
-            <KeyboardAwareScrollView
-                keyboardShouldPersistTaps="handled"
-                contentContainerStyle={{ flex: 1 }}
-                style={{ overflow: "visible" }}
-                bounces={false}
-            >
-                <Navigator />
-            </KeyboardAwareScrollView>
+            <Navigator />
         </Suspense>
     );
 };

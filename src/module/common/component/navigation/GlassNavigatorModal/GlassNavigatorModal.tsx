@@ -1,6 +1,5 @@
 import { Backdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import GlassNavigator, { GlassNavigatorProps } from "module/common/component/navigation/GlassNavigator/GlassNavigator";
-import { useWindowDimensions } from "react-native";
 
 const GlassNavigatorModal = ({
     breadcrumbs,
@@ -11,8 +10,6 @@ const GlassNavigatorModal = ({
     scrollable,
     ...backdropProps
 }: ExposedBackdropProps & GlassNavigatorProps): JSX.Element => {
-    const { height } = useWindowDimensions();
-
     return (
         <Backdrop closable={closable} {...backdropProps}>
             {(_open, setOpen) => (
@@ -24,7 +21,7 @@ const GlassNavigatorModal = ({
                         logo,
                         onBack: onBack || (() => setOpen(false)),
                     }}
-                    style={{ height: height * 0.9, ...style }}
+                    style={{ height: "90%", ...style }}
                     scrollable={scrollable}
                 >
                     {children}
