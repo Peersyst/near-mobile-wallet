@@ -1815,15 +1815,15 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^1.6.0"
 
-"@peersyst/react-native-components@^1.2.11":
-  version "1.2.11"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-1.2.11.tgz#64c4b67fb59423fada72b8a178d66f9193c9d515"
-  integrity sha512-V/V0ExDsntcBMPaJt+OD1MESD1j9tlIRHGV+n1JDpeOirSuds0xxA/QtB0c7+u+gyrPTsP23fjnmMouhWaoTgg==
+"@peersyst/react-native-components@^1.2.13":
+  version "1.2.13"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-1.2.13.tgz#1bf4e099807d8a9a1ad71d6ced96eb8b2f88ce01"
+  integrity sha512-JsussDoYxFc7zThQn97g72jPI91LEDVG5eZty/QDU9dh/rLGiEYJgudkWVbd4psMHTO1bUtm2i8n+pWY66WFXw==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-components-core" "^0.2.2"
     "@peersyst/react-hooks" "^1.4.0"
-    "@peersyst/react-native-modal" "^1.0.3"
+    "@peersyst/react-native-modal" "^1.0.4"
     "@peersyst/react-native-styled" "^1.3.0"
     "@peersyst/react-native-utils" "^0.1.0"
     "@peersyst/react-types" "^1.4.0"
@@ -1842,10 +1842,10 @@
     react-native-safe-area-context "3.3.2"
     react-native-svg "^12.1.1"
 
-"@peersyst/react-native-modal@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-modal/-/react-native-modal-1.0.3.tgz#4f1176f5f7553e5769702eb924b5297c09d9d218"
-  integrity sha512-vPcc9NY7OI6wf8BeX96FQTIo/tJHjxlUoe6URnvhA9ibGAGK5mh2kOZGnJQDD2nxR6dAs/LveoAR7Mjmtyf5Vg==
+"@peersyst/react-native-modal@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-modal/-/react-native-modal-1.0.4.tgz#75841b4b69054a4c9dfd2f4f53f681fde3254938"
+  integrity sha512-nUp/DkBnf/s2V5MRNbwSjqJyOrmtH7ZXAOBKO7P2JuhEj+5XwPF0IBpkaxoVozDWDPZ4UXBT1SXYes8UfjXQWg==
   dependencies:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
