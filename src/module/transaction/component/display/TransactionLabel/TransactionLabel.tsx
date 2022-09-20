@@ -1,7 +1,7 @@
 import { Typography, TypographyProps } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
-import useGetTransactionLabel from "./utils/getTransactionLabel";
+import getTransactionLabel from "./utils/getTransactionLabel";
 
 export interface TransactionLabelProps extends Omit<TypographyProps, "children"> {
     type: FullTransaction["type"];
@@ -9,7 +9,7 @@ export interface TransactionLabelProps extends Omit<TypographyProps, "children">
 
 const TransactionLabel = ({ type, ...typographyProps }: TransactionLabelProps): JSX.Element => {
     const translate = useTranslate();
-    const label = useGetTransactionLabel(type, translate);
+    const label = getTransactionLabel(type, translate);
     return <Typography {...typographyProps}>{label}</Typography>;
 };
 
