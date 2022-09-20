@@ -8,12 +8,14 @@ import ImportWalletModal from "module/wallet/component/core/ImportWalletModal/Im
 import { WalletService } from "ckb-peersyst-sdk";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import synchronizeMock from "mocks/synchronize";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("AddWallet - Import", () => {
     jest.setTimeout(20000);
     test("Adds a created wallet successfully", async () => {
         jest.spyOn(CKBSDKService.prototype, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock) as any);
         jest.spyOn(WalletService, "createNewMnemonic").mockReturnValue("Pizza Taco Fries");
+
         const addWalletToStorage = jest
             .spyOn(WalletStorage, "addWallet")
             .mockImplementation((wallet: Omit<StorageWallet, "index">) => SuccessApiCall({ ...wallet, index: 1 }));
@@ -30,7 +32,7 @@ describe("AddWallet - Import", () => {
 
         expect(screen.getByText(translate("mnemonic"))).toBeDefined();
         const mnemonicInput = screen.getByPlaceholderText(translate("add_a_word"));
-        const mnemonic = [...Array(12)].map((_, i) => String.fromCharCode(i + 65));
+        const mnemonic = MnemonicMocked.split(" ");
         mnemonic.forEach((word) => {
             fireEvent.changeText(mnemonicInput, word);
             fireEvent(mnemonicInput, "submitEditing", { nativeEvent: { text: word } });

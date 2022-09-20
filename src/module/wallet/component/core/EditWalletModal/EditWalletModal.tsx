@@ -80,7 +80,7 @@ const EditWalletModal = createModal(({ index, closable = true, onClose, ...backd
                             variant="underlined"
                             value={name}
                             onChange={setName}
-                            style={{ input: { textAlign: "center" } }}
+                            style={{ component: { input: { textAlign: "center" } } }}
                             placeholder={translate("wallet_name")}
                         />
                         <ColorPicker value={walletColors[colorIndex]} onColorPicked={handleColorPicked} />

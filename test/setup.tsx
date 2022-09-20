@@ -47,13 +47,6 @@ jest.mock("expo-localization", () => ({
     decimalSeparator: ".",
 }));
 
-jest.mock("react-native/Libraries/Renderer/shims/ReactNative", () => {
-    return {
-        ...jest.requireActual("react-native/Libraries/Renderer/shims/ReactNative"),
-        createPortal: (element: any) => element,
-    };
-});
-
 import { BackdropProps } from "@peersyst/react-native-components";
 jest.mock("@peersyst/react-native-components", () => {
     const MockBackdrop = ({ children, onOpen, onClose, onExited, onEntered }: BackdropProps) => {
@@ -70,6 +63,7 @@ jest.mock("@peersyst/react-native-components", () => {
         __esModule: true,
         ...jest.requireActual("@peersyst/react-native-components"),
         Backdrop: MockBackdrop,
+        Modal: MockBackdrop,
     };
 });
 

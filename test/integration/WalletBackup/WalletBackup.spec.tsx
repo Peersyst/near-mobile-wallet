@@ -23,7 +23,6 @@ describe("WalletBackup", () => {
         fireEvent.press(screen.getByText(useWalletStateMock.state.wallets[0].name));
         for (let i = 1; i < 5; i++) fireEvent.press(screen.getByText(i.toString()));
         await waitFor(() => expect(screen.getByText(translate("keep_this_safe"))).toBeDefined());
-        fireEvent.press(screen.getByText(translate("next")));
-        mnemonic.forEach((word) => fireEvent.press(screen.getByText(word)));
+        fireEvent.press(screen.getByText(translate("close")));
     });
 });
