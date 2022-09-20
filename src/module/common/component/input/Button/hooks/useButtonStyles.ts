@@ -16,7 +16,7 @@ export function useButtonStyles(theme: Theme): GetVariantStyleProps {
             borderColor: theme.palette.darkGray,
         },
     };
-    const contained = {
+    const filled = {
         dark: {
             backgroundColor: theme.palette.black,
             color: theme.palette.white,
@@ -47,7 +47,7 @@ export function useButtonStyles(theme: Theme): GetVariantStyleProps {
             backgroundColor: theme.palette.darkGray,
         },
     };
-    const pressedContained = {
+    const pressedFilled = {
         dark: {
             backgroundColor: theme.palette.white,
             color: theme.palette.black,
@@ -64,5 +64,5 @@ export function useButtonStyles(theme: Theme): GetVariantStyleProps {
             borderColor: theme.palette.black,
         },
     };
-    return { outlined, pressed, contained, pressedContained };
+    return { outlined, pressed, filled, pressedFilled };
 }

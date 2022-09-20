@@ -1,7 +1,7 @@
 import { translate } from "locale";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
-import { useModal } from "react-native-components";
+import { useModal } from "@peersyst/react-native-components";
 import UpdatePinModal from "module/settings/components/core/UpdatePinModal/UpdatePinModal";
 
 const ChangePasscode = () => {

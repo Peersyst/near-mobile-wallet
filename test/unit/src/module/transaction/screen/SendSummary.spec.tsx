@@ -1,4 +1,4 @@
-import { formatAddress } from "@peersyst/react-utils";
+import { formatHash } from "@peersyst/react-utils";
 import { translate } from "locale";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import SendSummary from "module/transaction/screen/SendConfirmationScreen/SendSummary";
@@ -24,7 +24,7 @@ describe("Test for the SendSummary component", () => {
         expect(screen.getByText("001")).toBeDefined();
         //From
         expect(screen.getByText(translate("from") + ":"));
-        expect("Antonia" + " - " + formatAddress("0xMockedAddress", "middle", 3)).toBeDefined();
+        expect("Antonia" + " - " + formatHash("0xMockedAddress", "middle", 3)).toBeDefined();
         //Message
         expect(screen.getByText(translate("message") + ":")).toBeDefined();
         expect(screen.getByText("hola")).toBeDefined();

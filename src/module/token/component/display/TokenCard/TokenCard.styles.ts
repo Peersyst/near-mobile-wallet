@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled";
 import { Image, View } from "react-native";
-import { Row } from "react-native-components";
+import { Row } from "@peersyst/react-native-components";
 
 export const TokenIcon = styled(Image)(() => ({
     width: 42,

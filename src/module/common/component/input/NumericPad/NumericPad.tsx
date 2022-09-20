@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import Keyboard from "../Keyboard/Keyboard";
 import PinDisplay from "../../display/PinDisplay/PinDisplay";
 import { NumericPadProps } from "module/common/component/input/NumericPad/NumericPad.types";
-import { Col, Row } from "react-native-components";
-import PressableText from "module/common/component/base/input/PressableText/PressableText";
+import { Col, Row, PressableText } from "@peersyst/react-native-components";
 import { translate } from "locale";
 
 const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style, onCancel }: NumericPadProps): JSX.Element => {

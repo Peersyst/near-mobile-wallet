@@ -1,4 +1,4 @@
-import { Col, Row, Typography, useModal } from "react-native-components";
+import { Col, Row, Typography, useModal } from "@peersyst/react-native-components";
 import formatDate from "utils/formatDate";
 import { TransactionAmountConversion, TransactionCardRoot } from "./TransactionCard.styles";
 import TransactionIcon from "module/transaction/component/display/TransactionIcon/TransactionIcon";

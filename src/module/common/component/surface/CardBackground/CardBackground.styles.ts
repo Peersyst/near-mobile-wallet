@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled";
 import { ViewStyle } from "react-native";
-import { Paper } from "react-native-components";
+import { Paper } from "@peersyst/react-native-components";
 
 interface CardBackgroundProps {
     style?: ViewStyle;

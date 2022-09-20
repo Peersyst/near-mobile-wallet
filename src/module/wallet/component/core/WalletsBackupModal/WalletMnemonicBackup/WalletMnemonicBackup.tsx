@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
 import { ActivityIndicator } from "react-native";
-import { Col, Typography } from "react-native-components";
+import { Col, Typography } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import { translate } from "locale";
 import Card from "module/common/component/surface/Card/Card";

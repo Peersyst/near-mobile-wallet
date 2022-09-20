@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import Glass, { GlassProps } from "module/common/component/surface/Glass/Glass";
 import Navbar from "module/common/component/navigation/Navbar/Navbar";
 import Breadcrumbs from "module/common/component/display/Breadcrumbs/Breadcrumbs";
-import { Col, Row } from "react-native-components";
+import { Col, Row } from "@peersyst/react-native-components";
 import { GlassNavigatorContent } from "module/common/component/navigation/GlassNavigator/GlassNavigator.styles";
 import { ScrollView } from "react-native";
 

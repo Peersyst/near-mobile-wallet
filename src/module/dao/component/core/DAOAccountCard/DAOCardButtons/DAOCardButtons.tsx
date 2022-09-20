@@ -1,6 +1,6 @@
 import { DAOWithdrawIcon, DAODepositIcon } from "icons";
 import { translate } from "locale";
-import { useModal } from "react-native-components";
+import { useModal } from "@peersyst/react-native-components";
 import CardButtons from "module/common/component/input/CardButtons/CardButtons";
 import DepositModal from "../../DepositModal/DepositModal";
 import WithdrawModal from "../../WithdrawModal/WithdrawModal";

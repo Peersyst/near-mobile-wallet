@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { Paper, Tab } from "react-native-components";
+import { Paper, Tab } from "@peersyst/react-native-components";
 import { ViewStyle } from "react-native";
 
 export const MainTabRoot = styled(Tab)(() => ({

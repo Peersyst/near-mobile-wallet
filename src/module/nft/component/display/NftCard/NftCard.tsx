@@ -1,5 +1,5 @@
 import { Nft } from "ckb-peersyst-sdk";
-import { Col, Typography } from "react-native-components";
+import { Col, Typography } from "@peersyst/react-native-components";
 import { NftCardImage, NftCardRoot } from "./NftCard.styles";
 
 export type NftCardProps = Nft;

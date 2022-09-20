@@ -1,6 +1,6 @@
 import { render } from "test-utils";
 import GlassNavigator from "module/common/component/navigation/GlassNavigator/GlassNavigator";
-import { Typography } from "react-native-components";
+import { Typography } from "@peersyst/react-native-components";
 
 describe("GlassNavigator tests", () => {
     test("Renders correctly", () => {

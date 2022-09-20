@@ -10,9 +10,9 @@ import { useRecoilValue } from "recoil";
 import { useGetCkbPrice } from "module/common/query/useGetCkbPrice";
 import useCkbConversion from "module/common/hook/useCkbConversion";
 import { useState } from "react";
-import { ControlledSuspense, Row } from "react-native-components";
+import { Suspense, Row } from "@peersyst/react-native-components";
 import { impactAsync, ImpactFeedbackStyle } from "expo-haptics";
-import { image } from "../../../../../asset/image";
+import { dollar_coin, euro_coin, pound_coin, yen_coin, yuan_coin, nervos_coin } from "../../../../../asset/image";
 
 export interface WalletCardProps {
     wallet: Wallet;
@@ -23,11 +23,11 @@ export interface WalletCardRootProps {
 }
 
 const coinsMap: Record<FiatCurrencyType, ImageSourcePropType> = {
-    usd: image.dollarCoin,
-    eur: image.euroCoin,
-    gbp: image.poundCoin,
-    jpy: image.yenCoin,
-    cny: image.yuanCoin,
+    usd: dollar_coin,
+    eur: euro_coin,
+    gbp: pound_coin,
+    jpy: yen_coin,
+    cny: yuan_coin,
 };
 
 const WalletCard = ({ wallet: { name, index, colorIndex, synchronizing } }: WalletCardProps): JSX.Element => {
@@ -46,7 +46,7 @@ const WalletCard = ({ wallet: { name, index, colorIndex, synchronizing } }: Wall
         <WalletCardRoot color={color}>
             <WalletContent>
                 <WalletCardHeader index={index} name={name} />
-                <ControlledSuspense isLoading={balance === undefined} activityIndicatorColor="white" activityIndicatorSize={25}>
+                <Suspense isLoading={balance === undefined} activityIndicatorColor="white" activityIndicatorSize={25}>
                     <TouchableWithoutFeedback onPress={changeCurrencyMode}>
                         <Row gap={5} alignItems="center" justifyContent="center">
                             {(synchronizing || (loadingPrice && showFiat)) && <ActivityIndicator color="white" />}
@@ -57,10 +57,10 @@ const WalletCard = ({ wallet: { name, index, colorIndex, synchronizing } }: Wall
                                 units={false}
                             />
                             <Image source={coinsMap[fiat]} style={{ height: 30, width: 30, display: showFiat ? undefined : "none" }} />
-                            <Image source={image.nervosCoin} style={{ height: 30, width: 30, display: showFiat ? "none" : undefined }} />
+                            <Image source={nervos_coin} style={{ height: 30, width: 30, display: showFiat ? "none" : undefined }} />
                         </Row>
                     </TouchableWithoutFeedback>
-                </ControlledSuspense>
+                </Suspense>
                 <WalletCardButtons />
             </WalletContent>
         </WalletCardRoot>

@@ -1,4 +1,4 @@
-import PressableText from "module/common/component/base/input/PressableText/PressableText";
+import { PressableText } from "@peersyst/react-native-components";
 import { fireEvent, render } from "test-utils";
 
 describe("Test for the Pressable Text", () => {

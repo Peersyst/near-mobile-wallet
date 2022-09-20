@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "react-native-components";
+import { SvgIcon, SvgIconProps } from "@peersyst/react-native-components";
 import { ClipPath, Defs, G, Path, Rect } from "react-native-svg";
 
 export function FaucetIcon(props: Omit<SvgIconProps, "children">): JSX.Element {

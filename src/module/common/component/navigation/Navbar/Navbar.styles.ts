@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { IconButton, Row, Typography } from "react-native-components";
+import { IconButton, Row, Typography } from "@peersyst/react-native-components";
 
 export const NavbarRoot = styled(Row)(() => ({
     width: "100%",

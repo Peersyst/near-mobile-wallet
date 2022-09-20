@@ -1,4 +1,4 @@
-import { Typography } from "react-native-components";
+import { Typography } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
 import { Image } from "react-native";
 

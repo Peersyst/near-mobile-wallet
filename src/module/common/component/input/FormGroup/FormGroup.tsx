@@ -1,4 +1,5 @@
-import { FormGroupProps as BaseFormGroupProps, FormGroup as BaseFormGroup, Typography } from "react-native-components";
+import { Typography } from "@peersyst/react-native-components";
+import { FormGroupProps as BaseFormGroupProps, FormGroup as BaseFormGroup } from "react-native-components";
 
 export interface FormGroupProps extends Omit<BaseFormGroupProps, "label"> {
     label: string;

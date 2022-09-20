@@ -1,6 +1,6 @@
 import { translate } from "locale";
 import BaseSecondaryScreen from "module/common/component/layout/BaseSecondaryScreen/BaseSecondaryScreen";
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import { BottomTabScreenNavigatonProps } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup.types";
 import { MainBottomScreens } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup";
 import SettingsMenu from "module/settings/components/input/SettingsMenu/SettingsMenu";

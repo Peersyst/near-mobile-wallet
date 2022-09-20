@@ -1,5 +1,5 @@
 import { useTheme } from "@peersyst/react-native-styled";
-import { Row } from "react-native-components";
+import { Row } from "@peersyst/react-native-components";
 import ColorSample from "module/common/component/display/ColorSample/ColorSample";
 import { useControlled } from "@peersyst/react-hooks";
 

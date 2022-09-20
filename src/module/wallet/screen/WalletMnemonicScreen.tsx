@@ -1,5 +1,5 @@
 import { WalletService } from "ckb-peersyst-sdk";
-import { Col, Typography } from "react-native-components";
+import { Col, Typography } from "@peersyst/react-native-components";
 import Card from "module/common/component/surface/Card/Card";
 import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";

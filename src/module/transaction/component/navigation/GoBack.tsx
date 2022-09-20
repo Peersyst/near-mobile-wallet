@@ -3,7 +3,7 @@ import { BackIcon } from "icons";
 import { translate } from "locale";
 import useNavigation from "module/common/hook/useNavigation";
 import { Pressable, ViewStyle } from "react-native";
-import { IconButton, Typography } from "react-native-components";
+import { IconButton, Typography } from "@peersyst/react-native-components";
 
 const GoBackRoot = styled(Pressable)(() => ({
     justifyContent: "center",

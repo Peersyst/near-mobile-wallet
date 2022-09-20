@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Col, Typography, useModal } from "react-native-components";
+import { Col, Typography, useModal } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import CreateWalletModal from "module/wallet/component/core/CreateWalletModal/CreateWalletModal";
 import ColorPicker from "../../input/ColorPicker/ColorPicker";

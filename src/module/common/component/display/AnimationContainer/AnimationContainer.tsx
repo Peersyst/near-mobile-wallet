@@ -1,7 +1,7 @@
 import { Image, ViewStyle } from "react-native";
 import { ReactNode } from "react";
 import { AnimationContainerRoot } from "./AnimationContainer.styles";
-import { image } from "asset/image";
+import { animation as webp_animation } from "asset/image";
 
 export interface AmimationContainerProps {
     animation?: boolean;
@@ -14,7 +14,7 @@ const AnimationContainer = ({ animation = true, style, children }: AmimationCont
         <AnimationContainerRoot style={style}>
             {animation && (
                 <Image
-                    source={image.animation}
+                    source={webp_animation}
                     resizeMode="contain"
                     style={{ height: "200%", width: "200%", position: "absolute", zIndex: -1 }}
                 />

@@ -1,6 +1,6 @@
 import { ChipProps } from "module/common/component/display/Chip/Chip.types";
 import Chip from "module/common/component/display/Chip/Chip";
-import { Col, Row } from "react-native-components";
+import { Col, Row } from "@peersyst/react-native-components";
 
 export interface MnemonicListProps {
     mnemonic: string[];

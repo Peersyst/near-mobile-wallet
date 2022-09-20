@@ -2,7 +2,7 @@ import styled from "@peersyst/react-native-styled";
 import { ChevronRightIcon } from "icons";
 import useNavigation from "module/common/hook/useNavigation";
 import { TouchableOpacity } from "react-native";
-import { Row, Typography } from "react-native-components";
+import { Row, Typography } from "@peersyst/react-native-components";
 import { RootStackParamsList } from "stack-navigator";
 
 interface SettingsMenuProps {

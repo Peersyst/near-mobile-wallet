@@ -1,7 +1,7 @@
 import { render } from "test-utils";
 import { translate } from "locale";
 import AuthSwitchScreen from "module/auth/screen/AuthSwitchScreen/AuthSwitchScreen";
-import * as UseTabs from "module/common/component/base/navigation/Tabs/hook/useTabs";
+import * as Genesys from "@peersyst/react-native-components";
 import { fireEvent } from "@testing-library/react-native";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
 
@@ -14,7 +14,7 @@ describe("AuthSwitchScreen tests", () => {
     });
     test("Create wallet button onPress works correctly", () => {
         const setTab = jest.fn();
-        jest.spyOn(UseTabs, "default").mockReturnValue([0, setTab]);
+        jest.spyOn(Genesys, "useTabs").mockReturnValue([0, setTab]);
         const screen = render(<AuthSwitchScreen />);
         const button = screen.getByText(translate("create_wallet"));
         fireEvent.press(button);
@@ -22,7 +22,7 @@ describe("AuthSwitchScreen tests", () => {
     });
     test("Import button onPress works correctly", () => {
         const setTab = jest.fn();
-        jest.spyOn(UseTabs, "default").mockReturnValue([0, setTab]);
+        jest.spyOn(Genesys, "useTabs").mockReturnValue([0, setTab]);
         const screen = render(<AuthSwitchScreen />);
         const button = screen.getByText(translate("import_it"));
         fireEvent.press(button);

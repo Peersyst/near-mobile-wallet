@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from "react";
-import { IconProps, TypographyProps } from "react-native-components";
+import { IconProps, TypographyProps } from "@peersyst/react-native-components";
 import { MainStackParamsList } from "stack-navigator";
 
 export interface BottomBarLinkProps {

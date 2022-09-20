@@ -1,4 +1,4 @@
-import { Typography } from "react-native-components";
+import { Typography } from "@peersyst/react-native-components";
 import { styledWithAs } from "@peersyst/react-native-styled";
 import { DepositItemTextProps, getDepositItemTextColorParams } from "./DepositItem";
 

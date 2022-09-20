@@ -1,5 +1,5 @@
 import CardBackgroundWrapper from "module/common/component/surface/CardBackgroundWrapper/CardBackgroundWrapper";
-import { Typography } from "react-native-components";
+import { Typography } from "@peersyst/react-native-components";
 import { render } from "test-utils";
 
 describe("Test for the card background wrapper", () => {

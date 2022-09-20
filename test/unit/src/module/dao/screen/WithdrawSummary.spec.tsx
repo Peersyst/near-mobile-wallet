@@ -1,4 +1,4 @@
-import { formatAddress } from "@peersyst/react-utils";
+import { formatHash } from "@peersyst/react-utils";
 import { translate } from "locale";
 import WithdrawSummary from "module/dao/screen/WithdrawConfirmationScreen/WithdrawSummary";
 import { render } from "test-utils";
@@ -18,7 +18,7 @@ describe("Test for the withdraw summary", () => {
             />,
         );
         expect(screen.getByText(translate("destination_wallet") + ":")).toBeDefined();
-        expect(screen.getByText("Peersyst" + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();
+        expect(screen.getByText("Peersyst" + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
         expect(screen.getByText(translate("deposit_apc") + ":")).toBeDefined();
         expect(screen.getByText("2%")).toBeDefined();
     });

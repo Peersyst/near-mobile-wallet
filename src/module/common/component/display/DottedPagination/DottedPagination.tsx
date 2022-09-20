@@ -1,4 +1,4 @@
-import { Row } from "react-native-components";
+import { Row } from "@peersyst/react-native-components";
 import { PaginationDot } from "module/common/component/display/DottedPagination/DottedPagination.styles";
 import { DottedPaginationProps } from "./DottedPagination.types";
 

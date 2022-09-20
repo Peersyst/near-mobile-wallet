@@ -1,4 +1,4 @@
-import { createModal, TabPanel, Tabs } from "react-native-components";
+import { createModal, TabPanel, Tabs } from "@peersyst/react-native-components";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 import { translate } from "locale";
 import WalletsBackupAdvise from "module/wallet/component/core/WalletsBackupModal/WalletsBackupAdvise/WalletsBackupAdvise";

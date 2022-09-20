@@ -1,5 +1,4 @@
 import { ExpoConfig, ConfigContext } from "@expo/config";
-import "dotenv/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
     ...config,
@@ -33,15 +32,21 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         },
         splash: { image: "./assets/images/splash.png", resizeMode: "cover", backgroundColor: "#141414" },
     },
-    android: {
-        package: "com.peersyst.ckbull",
-        adaptiveIcon: {
-            foregroundImage: "./assets/images/adaptive-icon.png",
-            backgroundColor: "#141414",
-        },
-        versionCode: Number(process.env.BUILD_NUMBER) || 0,
-        softwareKeyboardLayoutMode: "pan",
-        splash: { image: "./assets/images/splash.png", resizeMode: "cover", backgroundColor: "#141414" },
+    get android(): ExpoConfig["android"] {
+        return {
+            package: "com.peersyst.ckbull",
+            adaptiveIcon: {
+                foregroundImage: "./assets/images/adaptive-icon.png",
+                backgroundColor: "#141414",
+            },
+            versionCode: Number((this.version || "").replace(/\./g, "") + process.env.BUILD_NUMBER) || 0,
+            softwareKeyboardLayoutMode: "pan",
+            splash: {
+                image: "./assets/images/splash.png",
+                resizeMode: "cover",
+                backgroundColor: "#141414",
+            },
+        };
     },
     web: {
         favicon: "./assets/images/favicon.png",

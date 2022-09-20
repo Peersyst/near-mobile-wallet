@@ -5,7 +5,7 @@ import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { MockedUnlockableAmounts } from "mocks/DAO";
 import WithdrawConfirmationScreen from "module/dao/screen/WithdrawConfirmationScreen/WithdrawConfirmationScreen";
-import { formatAddress } from "@peersyst/react-utils";
+import { formatHash } from "@peersyst/react-utils";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { FeeRate } from "ckb-peersyst-sdk";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
@@ -32,7 +32,7 @@ describe("SelectAccountAndDepositScreen tests", () => {
         expect(screen.getByText("001")).toBeDefined();
         //Withdraw summary
         expect(screen.getByText(translate("destination_wallet") + ":")).toBeDefined();
-        expect(screen.getByText("firstWallet" + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();
+        expect(screen.getByText("firstWallet" + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
         expect(screen.getByText(translate("deposit_apc") + ":")).toBeDefined();
         expect(screen.getByText("100%")).toBeDefined();
         expect(screen.getByText(translate("confirm"))).toBeDefined();

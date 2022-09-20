@@ -1,6 +1,6 @@
 import { AdviseCardGroupProps } from "module/common/component/display/AdviseCardGroup/AdviseCardGroup.types";
 import { useControlled } from "@peersyst/react-hooks";
-import { TabPanel, Tabs } from "react-native-components";
+import { TabPanel, Tabs } from "@peersyst/react-native-components";
 import AdviseCard from "module/common/component/display/AdviseCard/AdviseCard";
 
 const AdviseCardGroup = ({ index: indexProp, onIndexChange, advises }: AdviseCardGroupProps): JSX.Element => {

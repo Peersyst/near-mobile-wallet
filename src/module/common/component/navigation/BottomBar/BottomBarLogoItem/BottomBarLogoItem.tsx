@@ -1,7 +1,7 @@
 import { BottomBarLogoItemRoot, PressableImageRoot, BomotBarLogoItemWrapper } from "./BottomBarLogoItem.styles";
 import Isotip from "module/common/component/display/Logos/Isotip/Isotip";
 import { ThemeProvider } from "@peersyst/react-native-styled";
-import { darkTheme } from "module/common/style/darkTheme";
+import darkTheme from "config/theme/darkTheme";
 
 interface BottomBarLogoItemProps {
     onPress: () => void;

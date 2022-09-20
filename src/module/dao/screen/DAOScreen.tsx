@@ -1,5 +1,5 @@
 import BaseWithBackgroundMainScreen from "module/main/component/layout/BaseWithBackgroundMainScreen/BaseWithBackgroundMainScreen";
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import DAOCard from "../component/core/DAOAccountCard/DAOCard";
 import DAOTabs from "../navigation/DAOTabs/DAOTabs";
 

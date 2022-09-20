@@ -1,7 +1,7 @@
 import { NewDate, NewsImage, NewTitle, SimpleNewsCardRoot, TextCont } from "./SimpleNewsCard.styles";
 import { Linking, TouchableWithoutFeedback } from "react-native";
 import formatDate from "utils/formatDate";
-import { Row, WithSkeleton, withSkeleton } from "react-native-components";
+import { Row, WithSkeleton, withSkeleton } from "@peersyst/react-native-components";
 import { formatNews } from "module/news/utils/formatNews";
 import { NewsDto } from "module/news/types";
 

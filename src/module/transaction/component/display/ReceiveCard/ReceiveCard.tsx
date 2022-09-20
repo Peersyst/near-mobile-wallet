@@ -2,7 +2,7 @@ import styled from "@peersyst/react-native-styled";
 import { translate } from "locale";
 import CopyToClipboardIcon from "module/common/component/input/CopyToClipboardIcon/CopyToClipboardIcon";
 import Card from "module/common/component/surface/Card/Card";
-import { Col, Row, Typography, useModal } from "react-native-components";
+import { Col, Row, Typography, useModal } from "@peersyst/react-native-components";
 import GoBack from "../../navigation/GoBack";
 import ReceiveModal from "../../core/ReceiveModal/ReceiveModal";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";

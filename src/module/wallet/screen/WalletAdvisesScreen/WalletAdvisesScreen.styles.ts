@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled";
 import { Image } from "react-native";
-import { Row } from "react-native-components";
+import { Row } from "@peersyst/react-native-components";
 
 const ADVISE_IMAGE_RATIO = 0.35;
 

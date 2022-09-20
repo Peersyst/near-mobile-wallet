@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { ExposedBackdropProps, PaletteMode } from "react-native-components";
+import { ExposedBackdropProps, PaletteMode } from "@peersyst/react-native-components";
 import { NavbarProps } from "../../navigation/Navbar/Navbar.types";
 
 export interface FullScreenModalRootProps {

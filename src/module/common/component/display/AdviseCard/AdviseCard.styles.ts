@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { IconButton } from "react-native-components";
+import { IconButton } from "@peersyst/react-native-components";
 import Card from "module/common/component/surface/Card/Card";
 
 export const BackIconButton = styled(IconButton)(({ theme }) => ({
