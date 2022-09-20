@@ -1,9 +1,7 @@
 import { HeaderIcon, HeaderRoot } from "./Header.styles";
-import { IconButton, Row } from "react-native-components";
+import { Row } from "react-native-components";
 import { SettingsIcon } from "icons";
 import useNavigation from "../../../hook/useNavigation";
-import { useRecoilValue } from "recoil";
-import settingsState from "module/settings/state/SettingsState";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Logo from "../../display/LinearBgLogo/LinearBgLogo";
 

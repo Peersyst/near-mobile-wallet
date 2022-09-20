@@ -1,4 +1,4 @@
-import Svg, { Path, Defs, LinearGradient, Stop, SvgProps } from "react-native-svg";
+import Svg, { Path, Defs, LinearGradient, Stop } from "react-native-svg";
 import { LinearBgLogoProps } from "./LinearBgLogo.types";
 
 const LinearBgLogo = ({ startColor, endColor, ...rest }: LinearBgLogoProps) => (
