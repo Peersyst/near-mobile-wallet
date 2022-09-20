@@ -13,7 +13,7 @@ export function getMockedRouter(
     return {
         key: "Receive-sY9fYDeMufbBe6M_Gt2or",
         name: name,
-        params: params,
+        params: params as any,
         path: undefined,
     };
 }

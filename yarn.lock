@@ -1797,10 +1797,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@peersyst/react-components-core@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-0.2.0.tgz#3841e87eb4a79e9a4ed0ed3ff673d79bc93eeedc"
-  integrity sha512-OQd43KCucP4BpmySofWqpkp2LvjJnjvAoWveYA4BgxRd8UYGmsIZUd63PoogSVnjUayFVGgM2N56Tdf4y7Hkiw==
+"@peersyst/react-components-core@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-0.2.4.tgz#c7f5512f7b9f24b742bfe0a3040e3c88d62b88ae"
+  integrity sha512-84RdvdLCO5/kDjYX7eM4XVM65EffYzpHRUyJx3YT0UKTICRqEbhUktKgQzxyWlsb2cJuM9dsUVEqqtvnwy2lnQ==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-hooks" "^1.4.0"
@@ -1815,15 +1815,14 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^1.6.0"
 
-"@peersyst/react-native-components@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-1.2.0.tgz#198e21bc116f30f0502d2ca4c8b8ec7a78c58c76"
-  integrity sha512-aG8jYAzWPkRNZ4el36clBirZjKU08ytI85Bdkx2IT1nHjKGSIDpDyW8Ot7jTrL2nLp1odq0RjmHfAEOdyWylew==
+"@peersyst/react-native-components@^1.2.16":
+  version "1.2.16"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-1.2.16.tgz#e87206477502ee9467b697a79e069b7686e98309"
+  integrity sha512-JvcoSc07nXOjNckitVwefAhVpUoOEs6ZEj+G4GAC2yu5CcJszw8637kqg72/tMNVj79FN+evkL0s/MEvpp4hIA==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-components-core" "^0.2.0"
+    "@peersyst/react-components-core" "^0.2.4"
     "@peersyst/react-hooks" "^1.4.0"
-    "@peersyst/react-native-modal" "^1.0.1"
     "@peersyst/react-native-styled" "^1.3.0"
     "@peersyst/react-native-utils" "^0.1.0"
     "@peersyst/react-types" "^1.4.0"
@@ -1837,28 +1836,11 @@
     expo-status-bar "^1.2.0"
     react-native-gesture-handler "~2.1.0"
     react-native-keyboard-aware-scroll-view "^0.9.5"
+    react-native-modal "^13.0.1"
     react-native-pager-view "^5.4.15"
     react-native-qrcode-svg "^6.1.2"
     react-native-safe-area-context "3.3.2"
     react-native-svg "^12.1.1"
-
-"@peersyst/react-native-modal@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-modal/-/react-native-modal-1.0.0.tgz#cd58d90f1a3fa2fc15c2e9e5f9a80f327ed37b88"
-  integrity sha512-uP3rHaq5kBaPSPI+Icd7sOPV8WPsv/hcjd6WRwyDmFgBdO/kBdT8gHa6WdXtNJOHaoQ1oTmWB3drfvj4NG8SGA==
-  dependencies:
-    prop-types "^15.6.2"
-    react-native-animatable "1.3.3"
-    react-native-keyboard-aware-scroll-view "^0.9.5"
-
-"@peersyst/react-native-modal@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-modal/-/react-native-modal-1.0.1.tgz#42e49a88cb6f710f851315c24907a012db34175d"
-  integrity sha512-uSgjC/hftCgYzQx7NlSV04LZr0M972cHOMTQ4wouYfhvIyqHVBQkF6d9MvT56/MG4nTU94P/VONzKWopsESapw==
-  dependencies:
-    prop-types "^15.6.2"
-    react-native-animatable "1.3.3"
-    react-native-keyboard-aware-scroll-view "^0.9.5"
 
 "@peersyst/react-native-styled@^1.3.0":
   version "1.3.0"
@@ -7998,6 +7980,14 @@ react-native-keyboard-aware-scroll-view@^0.9.5:
   dependencies:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
+
+react-native-modal@^13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-13.0.1.tgz#691f1e646abb96fa82c1788bf18a16d585da37cd"
+  integrity sha512-UB+mjmUtf+miaG/sDhOikRfBOv0gJdBU2ZE1HtFWp6UixW9jCk/bhGdHUgmZljbPpp0RaO/6YiMmQSSK3kkMaw==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-animatable "1.3.3"
 
 react-native-pager-view@^5.4.15:
   version "5.4.25"
