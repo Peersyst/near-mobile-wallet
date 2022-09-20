@@ -10,6 +10,7 @@ declare module "@peersyst/react-native-styled" {
 declare module "react-native-components" {
     export interface ThemePalette {
         white: string;
+        slate: string;
         black: string;
         darkGray: string;
         darkLightGray: string;

@@ -8,8 +8,10 @@ export const theme = createTheme({
     icons: {
         invalid: () => <></>,
     },
+    toolbarHeight: 64,
     palette: {
-        background: "#dedede",
+        background: "#ffffff",
+        slate: "#3F4246",
         primary: "#0B0D1E",
         white: "#FFFFFF",
         black: "#0B0D1E",
