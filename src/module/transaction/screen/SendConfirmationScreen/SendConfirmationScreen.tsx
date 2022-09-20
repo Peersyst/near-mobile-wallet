@@ -6,7 +6,6 @@ import useSendTransaction from "../../query/useSendTransaction";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import useWalletState from "module/wallet/hook/useWalletState";
-import { WalletStorage } from "module/wallet/WalletStorage";
 import SendSummary from "./SendSummary";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import settingsState from "module/settings/state/SettingsState";
@@ -29,17 +28,15 @@ const SendConfirmationScreen = (): JSX.Element => {
     const senderWallet = wallets[senderWalletIndex!];
     const { name: senderName, index } = senderWallet;
     const serviceInstance = serviceInstancesMap.get(index)?.[network];
-    const { mutate: sendTransaction, isLoading, isSuccess, isError } = useSendTransaction();
+    const { mutate: sendTransaction, isLoading, isSuccess, isError } = useSendTransaction(senderWalletIndex!);
     const { hideModal } = useModal();
 
     const handleConfirmation = async () => {
-        const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
         sendTransaction(
             {
                 amount: convertCKBToShannons(amount!),
                 message: message!,
                 to: receiverAddress!,
-                mnemonic: mnemonic!,
                 feeRate: feeInShannons,
             },
             {

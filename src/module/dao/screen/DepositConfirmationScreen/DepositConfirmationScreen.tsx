@@ -4,7 +4,6 @@ import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import useWalletState from "module/wallet/hook/useWalletState";
-import { WalletStorage } from "module/wallet/WalletStorage";
 import DepositModal from "module/dao/component/core/DepositModal/DepositModal";
 import DepositSummary from "./DepositSummary";
 import useDepositInDAO from "module/dao/query/useDepositInDAO";
@@ -32,9 +31,8 @@ const DepositConfirmationScreen = (): JSX.Element => {
     const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO(senderWalletIndex!);
     const { hideModal } = useModal();
     const handleConfirmation = async () => {
-        const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
         depositInDAO(
-            { amount: convertCKBToShannons(amount!), mnemonic: mnemonic!, feeRate: feeInShannons },
+            { amount: convertCKBToShannons(amount!), feeRate: feeInShannons },
             {
                 onSettled: () => setLoading(false),
             },

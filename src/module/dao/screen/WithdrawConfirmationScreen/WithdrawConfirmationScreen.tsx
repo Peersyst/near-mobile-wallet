@@ -2,7 +2,6 @@ import { Col, Typography, useModal } from "@peersyst/react-native-components";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import useWalletState from "module/wallet/hook/useWalletState";
-import { WalletStorage } from "module/wallet/WalletStorage";
 import WithdrawModal, { WithdrawSummary as WithdrawSummaryType } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import WithdrawSummary from "./WithdrawSummary";
 import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmounts";
@@ -41,10 +40,9 @@ const WithdrawConfirmationScreen = ({
 
     //Functions
     const handleConfirmation = async () => {
-        const mnemonic = await WalletStorage.getMnemonic(receiverIndex);
         if (unlockableDeposits.length > depositIndex) {
             withdrawFromDAO(
-                { unlockableAmount: unlockableDeposits[depositIndex], mnemonic: mnemonic! },
+                { unlockableAmount: unlockableDeposits[depositIndex] },
                 {
                     onSettled: () => setLoading(false),
                 },
