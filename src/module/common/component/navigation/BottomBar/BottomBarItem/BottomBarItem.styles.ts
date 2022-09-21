@@ -4,19 +4,17 @@ import { Icon, Typography } from "react-native-components";
 import { LinkItemIconProps, LinkTextProps } from "../BottomBar.types";
 
 export const LinkItemText = styled(Typography, { textAlign: "center" })<LinkTextProps>(({ theme, isActive }) => ({
-    color: isActive ? theme.palette.black : theme.palette.darkGray,
-    marginTop: -2,
+    color: isActive ? theme.palette.slate : theme.palette.gray,
 }));
 
 export const LinkItemIcon = styled(Icon)<LinkItemIconProps>(({ theme, isActive }) => ({
-    color: isActive ? theme.palette.black : theme.palette.darkGray,
-    fontSize: 27,
+    color: isActive ? theme.palette.slate : theme.palette.gray,
+    fontSize: 20,
 }));
 
 export const BottomBarItemRoot = styled(Pressable)(() => ({
     flexDirection: "column",
-    height: "100%",
+    backgroundColor: "#fff",
     width: 60,
     alignItems: "center",
-    justifyContent: "flex-start",
 }));

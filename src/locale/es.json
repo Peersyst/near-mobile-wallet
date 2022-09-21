@@ -43,7 +43,6 @@
     "advise3_title": "NUNCA compartas tu mnemonic",
     "advise3_text": "Cuando cambies tu teléfono tendrás que reimportar tus mnemonics para acceder a tus cuentas. Nadie de CKBull ni Nervos te preguntará por tus claves privadas o mnemonics. Si alguien te pregunta por ello o te pide introducirlo en algún otro lugar, estás siendo estafado.",
     "news": "Noticias",
-    "DAO": "DAO",
     "add_a_wallet": "Añade un wallet",
     "my_account": "Mi cuenta",
     "keep_this_safe": "Guárdalo en un lugar seguro",
@@ -172,5 +171,6 @@
     "processing": "Procesando...",
     "testnet_warning": "Esto es una versión de Testnet. No envíes CKB de Mainnet a esta cuenta.",
     "dismiss": "Cerrar",
-    "pending_transaction_text": "Tienes una transacción no cometida. Por favor, espera a que esté cometida para poder enviar una nueva."
+    "pending_transaction_text": "Tienes una transacción no cometida. Por favor, espera a que esté cometida para poder enviar una nueva.",
+    "staking": "Staking"
 }

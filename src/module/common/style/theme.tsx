@@ -28,7 +28,7 @@ export const theme = createTheme({
         pink: "#FF66B0",
         purple: "#623EDF",
         darkerGray: "#141414",
-        gray: "#999999",
+        gray: "#A7A7A7",
         lightGray: "#F4F4F4",
         lighterGray: "#EFEFEF",
         red: "#FF0E0E",

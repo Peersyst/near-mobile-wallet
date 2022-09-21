@@ -43,7 +43,6 @@
     "advise3_title": "永远不要分享你的助记词",
     "advise3_text": "当您更换手机时，您需要重新导入助记词才能访问您的帐户。CKBull或Nervos的任何人都不会要求您提供您的私钥或助记词。如果有人要求您或者告诉您要在其他地方输入这些私钥或者助记词，请不要操作，因为这是骗局。",
     "news": "资讯",
-    "DAO": "DAO",
     "add_a_wallet": "添加钱包",
     "my_account": "我的账户",
     "keep_this_safe": "请保管好助记词",
@@ -172,5 +171,6 @@
     "processing": "正在处理中",
     "testnet_warning": "这是一个测试网版本。不要将主网 CKB 发送到该账户。",
     "dismiss": "解雇",
-    "pending_transaction_text": "\n您有一个未提交的事务。请等到它承诺发送一个新的。"
+    "pending_transaction_text": "\n您有一个未提交的事务。请等到它承诺发送一个新的。",
+    "staking": "Staking"
 }
