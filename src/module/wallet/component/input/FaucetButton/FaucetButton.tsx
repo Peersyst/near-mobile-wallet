@@ -1,10 +1,10 @@
-import { IconButton } from "react-native-components";
+import { IconButton } from "@peersyst/react-native-components";
 import { Linking } from "react-native";
-import { FAUCET_URL } from "@env";
 import { FaucetIcon } from "icons";
+import { config } from "config";
 
 const FaucetButton = (): JSX.Element => (
-    <IconButton onPress={() => Linking.openURL(FAUCET_URL)}>
+    <IconButton onPress={() => Linking.openURL(config.faucetUrl)}>
         <FaucetIcon />
     </IconButton>
 );

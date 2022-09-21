@@ -1,11 +1,11 @@
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import { translate } from "locale";
 import AdviseCardGroup from "module/common/component/display/AdviseCardGroup/AdviseCardGroup";
 import { useState } from "react";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
 import Button from "module/common/component/input/Button/Button";
 import { AdviseCardProps } from "module/common/component/display/AdviseCard/AdviseCard.types";
-import { image } from "asset/image";
+import { lock, notes, key } from "asset/image";
 import { AdviseImage, AdviseImageCont } from "./WalletAdvisesScreen.styles";
 
 export interface WalletAdvisesScreenProps {
@@ -14,7 +14,7 @@ export interface WalletAdvisesScreenProps {
     onNextScreen: () => void;
 }
 
-const advisesImages = [image.lock, image.notes, image.key];
+const advisesImages = [lock, notes, key];
 
 const WalletAdvisesScreen = ({ onNextScreen, useTimer = true, nextScreenText }: WalletAdvisesScreenProps): JSX.Element => {
     const [index, setIndex] = useState(0);

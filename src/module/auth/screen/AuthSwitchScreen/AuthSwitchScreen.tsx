@@ -1,7 +1,7 @@
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
 import { AnimatedAuthSwitchScreenRoot, CreatWalletButton, TouchableText } from "./AuthSwitchScreen.styles";
 import { translate } from "locale";
-import { Col, Typography, useTabs } from "react-native-components";
+import { Col, Typography, useTabs } from "@peersyst/react-native-components";
 import { useLogoPageFlex } from "module/common/component/layout/LogoPage/LogoPageContext";
 
 const AuthSwitchScreen = (): JSX.Element => {

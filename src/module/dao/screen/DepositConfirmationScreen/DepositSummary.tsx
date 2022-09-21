@@ -1,6 +1,6 @@
-import { formatAddress } from "@peersyst/react-utils";
+import { formatHash } from "@peersyst/react-utils";
 import { translate } from "locale";
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import BaseSendSummary, { BaseSendSummaryProps } from "../../../transaction/component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../../transaction/component/display/SummaryField/SummaryField";
 import { SummaryText } from "module/transaction/component/display/SummaryField/SummaryField.styles";
@@ -18,7 +18,7 @@ const DepositSummary = ({ amount, fee, senderName, senderAddress }: DepositSumma
         <BaseSendSummary amount={amount} fee={fee}>
             <>
                 <Col gap="3%" style={{ alignSelf: "flex-start" }}>
-                    <SummaryField label={translate("from")}>{senderName + " - " + formatAddress(senderAddress, "middle", 3)}</SummaryField>
+                    <SummaryField label={translate("from")}>{senderName + " - " + formatHash(senderAddress, "middle", 3)}</SummaryField>
                     <SummaryField label={translate("estimated_apc")}>
                         {loadingDao ? `${translate("loading_apc")}...` : `${estimated_apc}%`}
                     </SummaryField>

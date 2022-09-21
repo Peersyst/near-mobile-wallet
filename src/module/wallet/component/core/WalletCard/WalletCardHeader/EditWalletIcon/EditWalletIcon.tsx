@@ -1,4 +1,4 @@
-import { IconButton, IconButtonStyles, useModal } from "react-native-components";
+import { IconButton, IconButtonStyles, useModal } from "@peersyst/react-native-components";
 import { EditIcon } from "icons";
 import EditWalletModal from "module/wallet/component/core/EditWalletModal/EditWalletModal";
 

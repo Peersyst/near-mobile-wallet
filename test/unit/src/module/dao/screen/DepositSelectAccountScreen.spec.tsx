@@ -1,7 +1,7 @@
 import { render } from "test-utils";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
-import * as UseSetTab from "module/common/component/base/navigation/Tabs/hook/useSetTab";
+import * as Genesys from "@peersyst/react-native-components";
 import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { mockedUseWallet } from "mocks/useWalletState";
@@ -28,7 +28,7 @@ describe("DepositSelectAccountScreen tests", () => {
         const setSendState = jest.fn();
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{}, setSendState]);
         const setTab = jest.fn();
-        jest.spyOn(UseSetTab, "default").mockReturnValue(setTab);
+        jest.spyOn(Genesys, "useSetTab").mockReturnValue(setTab);
         const screen = render(<DepositSelectAccountScreen />);
         fireEvent.press(screen.getByText(translate("next")));
         await waitFor(() => expect(setSendState).toHaveBeenCalled());

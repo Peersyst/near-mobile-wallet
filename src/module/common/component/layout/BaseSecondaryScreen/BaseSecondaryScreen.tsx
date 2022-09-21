@@ -2,7 +2,7 @@ import styled from "@peersyst/react-native-styled";
 import BaseMainScreen, { BaseMainScreenProps } from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
 import { BottomTabScreenNavigatonProps } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup.types";
 import { ScrollView } from "react-native";
-import { Col } from "../../base/layout/Col";
+import { Col } from "@peersyst/react-native-components";
 import CardBackgroundWrapper from "../../surface/CardBackgroundWrapper/CardBackgroundWrapper";
 
 export type BaseSecondaryScreenProps = Partial<BottomTabScreenNavigatonProps> & Omit<BaseMainScreenProps, "onBack">;

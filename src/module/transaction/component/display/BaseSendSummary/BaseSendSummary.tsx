@@ -3,7 +3,7 @@ import { SendState } from "module/transaction/state/SendState";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
 import { ReactElement } from "react";
-import { Paper, Col, Row, Typography } from "react-native-components";
+import { Paper, Col, Row, Typography } from "@peersyst/react-native-components";
 
 export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee">> {
     amount: BalanceProps["balance"];

@@ -1,4 +1,4 @@
-import { Animated } from "react-native-components";
+import { Animated } from "@peersyst/react-native-components";
 import NumericPad from "module/common/component/input/NumericPad/NumericPad";
 import { translate } from "locale";
 import { WalletStorage } from "module/wallet/WalletStorage";

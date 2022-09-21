@@ -1,12 +1,13 @@
 import { FeeRate } from "ckb-peersyst-sdk";
 import { translate } from "locale";
-import SelectGroup, { optionType } from "module/common/component/input/SelectGroup/SelectGroup";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { FeeType } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
+import Select from "module/common/component/input/Select/Select";
+import { SelectOption } from "@peersyst/react-native-components";
 
 const SelectFee = (): JSX.Element => {
-    const feeOptions: optionType[] = [
+    const feeOptions: SelectOption<FeeType>[] = [
         {
             label: translate("slow"),
             value: FeeRate.SLOW,
@@ -26,7 +27,7 @@ const SelectFee = (): JSX.Element => {
         SettingsStorage.set({ fee: value });
     };
     return (
-        <SelectGroup
+        <Select
             value={settings.fee}
             onChange={(fee) => handleSelect(fee as FeeType)}
             options={feeOptions}

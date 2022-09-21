@@ -1,5 +1,5 @@
 import { MainTabsContent } from "./MainTabs.styles";
-import { TabGroup, TabPanel, Tabs } from "react-native-components";
+import { TabGroup, TabPanel, Tabs } from "@peersyst/react-native-components";
 import MainTab from "module/main/component/navigation/MainTabs/MainTab/MainTab";
 import { useState } from "react";
 import { MainTabsType as MainTabsProps } from "./MainTabs.types";

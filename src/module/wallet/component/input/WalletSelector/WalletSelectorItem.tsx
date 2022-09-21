@@ -1,7 +1,5 @@
-import { SelectItem } from "react-native-components";
+import { SelectItem, SelectContext, useSelected } from "@peersyst/react-native-components";
 import { useContext } from "react";
-import { SelectContext } from "module/common/component/base/input/Select/SelectContext";
-import { useSelected } from "module/common/component/base/input/Select/hooks/useSelected";
 import WalletItem from "./WalletItem";
 
 export interface WalletSelectorItemProps {

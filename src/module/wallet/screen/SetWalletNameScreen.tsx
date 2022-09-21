@@ -1,10 +1,10 @@
-import { Col, Form, Typography } from "react-native-components";
+import { Col, Form, Typography } from "@peersyst/react-native-components";
 import { translate } from "locale";
 import Card from "module/common/component/surface/Card/Card";
 import TextField from "module/common/component/input/TextField/TextField";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import { image } from "asset/image";
+import { wallet } from "asset/image";
 import WalletImage from "../component/display/WalletImage/WalletImage";
 
 interface SetWalletNameForm {
@@ -29,7 +29,7 @@ const SetWalletNameScreen = ({ onSubmit, submitText }: SetWalletNameScreenProps)
     return (
         <Col flex={1} gap={30} justifyContent="flex-end">
             <Col alignItems="center" justifyContent="center" flex={1}>
-                <WalletImage source={image.wallet} />
+                <WalletImage source={wallet} />
             </Col>
             <Card>
                 <Typography variant="body1">
@@ -41,13 +41,8 @@ const SetWalletNameScreen = ({ onSubmit, submitText }: SetWalletNameScreenProps)
             </Card>
             <Form onSubmit={handleSubmit}>
                 <Col gap={30} style={{ paddingHorizontal: 20 }}>
-                    <TextField
-                        name="walletName"
-                        defaultValue={name}
-                        placeholder={translate("wallet_name")}
-                        validators={{ required: true }}
-                    />
-                    <Button fullWidth variant="outlined">
+                    <TextField name="walletName" defaultValue={name} placeholder={translate("wallet_name")} required />
+                    <Button fullWidth variant="outlined" type="submit">
                         {submitText}
                     </Button>
                 </Col>

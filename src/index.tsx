@@ -4,7 +4,7 @@ import Navigator from "./Navigator";
 import { useLoad } from "module/common/query/useLoad";
 import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
+import { Suspense } from "@peersyst/react-native-components";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { Platform, UIManager } from "react-native";
@@ -24,7 +24,7 @@ const App = (): JSX.Element => {
     const { loading: loadingSettings = false } = useRecoilValue(settingsState);
 
     return (
-        <ControlledSuspense fallback={<LogoPage />} isLoading={loading || loadingSettings}>
+        <Suspense fallback={<LogoPage />} isLoading={loading || loadingSettings}>
             <KeyboardAwareScrollView
                 keyboardShouldPersistTaps="handled"
                 contentContainerStyle={{ flex: 1 }}
@@ -33,7 +33,7 @@ const App = (): JSX.Element => {
             >
                 <Navigator />
             </KeyboardAwareScrollView>
-        </ControlledSuspense>
+        </Suspense>
     );
 };
 

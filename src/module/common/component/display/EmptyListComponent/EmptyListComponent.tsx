@@ -1,5 +1,5 @@
-import { Col } from "react-native-components";
-import { image } from "asset/image";
+import { Col } from "@peersyst/react-native-components";
+import { empty_folder } from "asset/image";
 import { EmptyListComponentImage, EmptyListComponentText } from "./EmptyListComponent.styles";
 import { translate } from "locale";
 
@@ -9,7 +9,7 @@ const EmptyListComponent = (): JSX.Element => {
             <EmptyListComponentText variant="body1" fontWeight="bold" textTransform="uppercase">
                 {translate("nothing_to_show")}
             </EmptyListComponentText>
-            <EmptyListComponentImage source={image.emptyFolder} accessibilityRole="image" />
+            <EmptyListComponentImage source={empty_folder} accessibilityRole="image" />
         </Col>
     );
 };

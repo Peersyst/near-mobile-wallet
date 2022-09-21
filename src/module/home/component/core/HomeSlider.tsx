@@ -1,4 +1,4 @@
-import PagerView from "module/common/component/layout/PagerView/PagerView";
+import { PagerView } from "@peersyst/react-native-components";
 import WalletCard from "module/wallet/component/core/WalletCard/WalletCard";
 import AddWalletCard from "module/wallet/component/display/AddWalletCard/AddWalletCard";
 import useWalletState from "module/wallet/hook/useWalletState";

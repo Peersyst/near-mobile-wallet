@@ -3,7 +3,7 @@ import SendConfirmationScreen from "module/transaction/screen/SendConfirmationSc
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
 import { translate } from "locale";
-import { formatAddress } from "@peersyst/react-utils";
+import { formatHash } from "@peersyst/react-utils";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
@@ -34,9 +34,7 @@ describe("SendConfirmationScreen tests", () => {
         expect(screen.getByText("10")).toBeDefined();
 
         expect(screen.getByText(translate("from") + ":")).toBeDefined();
-        expect(
-            screen.getByText(mockedUseWallet.state.wallets[0].name + " - " + formatAddress("0xMockedAddress", "middle", 3)),
-        ).toBeDefined();
+        expect(screen.getByText(mockedUseWallet.state.wallets[0].name + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
         expect(screen.getByText(translate("to") + ":")).toBeDefined();
         expect(screen.getByText("recei...ess")).toBeDefined();
         expect(screen.getByText(translate("message") + ":")).toBeDefined();

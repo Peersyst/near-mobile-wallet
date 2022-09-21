@@ -1,8 +1,7 @@
-import { Row, Typography } from "react-native-components";
+import { Row, Typography, Suspense } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import useWallet from "module/wallet/hook/useWallet";
-import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 
 export interface WalletItemProps {
     index: number;
@@ -22,9 +21,9 @@ const WalletItem = ({ index, color = "#000000" }: WalletItemProps): JSX.Element 
                 <Typography variant="body1" style={{ color }}>
                     {" - "}
                 </Typography>
-                <ControlledSuspense isLoading={balanceIsLoading} activityIndicatorColor={color} activityIndicatorSize="small">
+                <Suspense isLoading={balanceIsLoading} activityIndicatorColor={color} activityIndicatorSize="small">
                     <Balance balance={balance?.freeBalance || 0} units={"CKB"} variant="body1" boldUnits style={{ color }} />
-                </ControlledSuspense>
+                </Suspense>
             </Row>
         </Row>
     );

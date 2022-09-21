@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { Backdrop, Typography } from "react-native-components";
+import { Backdrop, Typography } from "@peersyst/react-native-components";
 import { SuccessIcon as BaseSuccessIcon } from "icons";
 import BaseGoBack from "module/transaction/component/navigation/GoBack";
 

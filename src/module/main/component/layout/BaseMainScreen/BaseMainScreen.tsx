@@ -2,7 +2,7 @@ import { NavbarProps } from "module/common/component/navigation/Navbar/Navbar.ty
 import { ReactNode } from "react";
 import Navbar from "module/common/component/navigation/Navbar/Navbar";
 import { View } from "react-native";
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import Toolbar from "module/common/component/layout/Toolbar/Toolbar";
 
 export interface BaseMainScreenProps extends NavbarProps {

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
 
 export interface MnemonicPickerProps {

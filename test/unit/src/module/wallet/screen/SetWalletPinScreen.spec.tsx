@@ -20,6 +20,7 @@ describe("SetWalletPin tests", () => {
             setPin,
             setMnemonic: jest.fn(),
             setColorIndex: jest.fn(),
+            reset: jest.fn(),
         });
         const handleSuccess = jest.fn();
 

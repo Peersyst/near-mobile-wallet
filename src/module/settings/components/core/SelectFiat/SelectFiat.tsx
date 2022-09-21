@@ -1,11 +1,12 @@
 import { translate } from "locale";
-import SelectGroup, { optionType } from "module/common/component/input/SelectGroup/SelectGroup";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { FiatCurrencyType } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
+import { SelectOption } from "@peersyst/react-native-components";
+import Select from "module/common/component/input/Select/Select";
 
 const SelectFiat = (): JSX.Element => {
-    const fiatOptions: optionType[] = [
+    const fiatOptions: SelectOption<FiatCurrencyType>[] = [
         {
             label: "USD",
             value: "usd",
@@ -33,7 +34,7 @@ const SelectFiat = (): JSX.Element => {
         SettingsStorage.set({ fiat: value });
     };
     return (
-        <SelectGroup
+        <Select
             value={settings.fiat}
             onChange={(value) => handleSelect(value as FiatCurrencyType)}
             options={fiatOptions}

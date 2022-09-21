@@ -1,5 +1,5 @@
 import SecondaryPage from "module/common/component/layout/BaseSecondaryScreen/BaseSecondaryScreen";
-import { Typography } from "react-native-components";
+import { Typography } from "@peersyst/react-native-components";
 import { fireEvent, render } from "test-utils";
 
 describe("Test for the secondary page", () => {

@@ -1,4 +1,4 @@
-import { createModal, ExposedBackdropProps, TabPanel, Tabs } from "react-native-components";
+import { createModal, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
 import { translate } from "locale";
 import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
 import { useState } from "react";

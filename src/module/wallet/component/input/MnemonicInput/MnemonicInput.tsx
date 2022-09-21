@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Typography, useFormNotification } from "react-native-components";
+import { Col, Typography, useFormNotification } from "@peersyst/react-native-components";
 import Card from "module/common/component/surface/Card/Card";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
 import TextField from "module/common/component/input/TextField/TextField";

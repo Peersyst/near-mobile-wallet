@@ -1,5 +1,5 @@
 import { translate } from "locale";
-import { Row } from "react-native-components";
+import { Row } from "@peersyst/react-native-components";
 import { WalletCardTitle, CopyIcon, EditIcon } from "../WalletCard.styles";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
