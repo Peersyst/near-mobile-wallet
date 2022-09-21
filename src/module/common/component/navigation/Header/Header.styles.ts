@@ -15,6 +15,6 @@ export const HeaderRoot = styled(Toolbar)(({ theme }) => {
 
 export const HeaderIcon = styled(SettingsIcon)(({ theme }) => {
     return {
-        color: theme.palette.slate,
+        color: theme.palette.gray[600],
     };
 });

@@ -7,7 +7,7 @@ export const DAOCardRoot = styled(ImageBackground, { imageStyle: { borderRadius:
     overflow: "hidden",
     height: dimensions.height * 0.3,
     minHeight: 220,
-    backgroundColor: theme.palette.gray,
+    backgroundColor: theme.palette.gray[300],
     borderRadius: 20,
 }));
 

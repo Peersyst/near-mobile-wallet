@@ -1,5 +1,5 @@
 {
-    "projectName": "ckbull",
+    "projectName": "near-mobile-wallet",
     "backendUrl": "http://localhost:3001",
     "minimumTransactionAmount": 61,
     "minimumDaoDeposit": 102,
