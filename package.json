@@ -1,5 +1,5 @@
 {
-    "name": "mobile-base-project",
+    "name": "near-mobile-wallet",
     "private": true,
     "main": "./index.js",
     "scripts": {
@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "@ckb-lumos/lumos": "^0.18.0-rc6",
+        "@expo-google-fonts/manrope": "^0.2.2",
         "@expo/config-plugins": "^4.1.5",
         "@peersyst/react-hooks": "^1.4.0",
         "@peersyst/react-native-components": "^1.2.16",

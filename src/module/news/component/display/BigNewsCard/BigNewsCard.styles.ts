@@ -7,7 +7,7 @@ export const BigNewsImage = styled(Image)(({ theme, dimensions }) => ({
     backgroundColor: theme.palette.lightGray,
     borderRadius: 15,
     borderWidth: 0.1,
-    borderColor: theme.palette.gray,
+    borderColor: theme.palette.gray[300],
 }));
 
 export const BigNewsDate = styled(Typography)(({ theme }) => ({

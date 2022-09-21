@@ -1,16 +1,7 @@
 import { createTheme } from "@peersyst/react-native-components";
+import typography from "./typography";
 
 export const theme = createTheme({
-    typography: {
-        h1: {
-            fontSize: 22,
-        },
-        h2: {
-            fontSize: 18,
-        },
-        h3: {
-            fontSize: 16,
-        },
-    },
-    borderRadius: 24,
+    typography,
+    borderRadius: 16,
 });
