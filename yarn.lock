@@ -1213,6 +1213,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@expo-google-fonts/manrope@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/manrope/-/manrope-0.2.2.tgz#c4dcef24d1825fd74e2f852e1f1383ea0deaf791"
+  integrity sha512-lveLEh77CUVWdOyvjAkB1DIZSS03WYbUCSvGPmqXfPeYIvnnXnuX68DWjY8eeGti5ALAwc1yYz1I7cqc0/xI9g==
+
 "@expo/config-plugins@4.0.6":
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-4.0.6.tgz#ef52f0e4d96ddd52b4cd4cc8c6efbe3d9576c72d"
@@ -1815,10 +1820,10 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^1.6.0"
 
-"@peersyst/react-native-components@^1.2.16":
-  version "1.2.16"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-1.2.16.tgz#e87206477502ee9467b697a79e069b7686e98309"
-  integrity sha512-JvcoSc07nXOjNckitVwefAhVpUoOEs6ZEj+G4GAC2yu5CcJszw8637kqg72/tMNVj79FN+evkL0s/MEvpp4hIA==
+"@peersyst/react-native-components@^1.2.19":
+  version "1.2.19"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-1.2.19.tgz#d9543e933ae6698b965122c70af8a3e99ea7a399"
+  integrity sha512-2rxNvtP6kTWXDA1AUVrSVPdGr2OgaZp1tuS7qKDIjOHAuY4TOy2UpbTOdC3zQW8p1eIe/IRmbGFDYg48cd5nAg==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-components-core" "^0.2.4"
