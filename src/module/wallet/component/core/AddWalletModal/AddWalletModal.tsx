@@ -7,7 +7,6 @@ import GlassNavigatorModal from "module/common/component/navigation/GlassNavigat
 import useServiceInstanceCreation from "module/wallet/hook/useServiceInstanceCreation";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
-import { Platform } from "react-native";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
@@ -61,15 +60,7 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
     };
 
     return (
-        <GlassNavigatorModal
-            extraScrollHeight={Platform.OS === "android" ? 70 : 0}
-            scrollable={true}
-            open={open}
-            onClose={handleClose}
-            navbar={{ back: true, title, onBack }}
-            onExited={handleExited}
-            {...rest}
-        >
+        <GlassNavigatorModal open={open} onClose={handleClose} navbar={{ back: true, title, onBack }} onExited={handleExited} {...rest}>
             {renderProps(handleWalletCreation)}
         </GlassNavigatorModal>
     );

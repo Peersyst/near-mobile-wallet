@@ -6,16 +6,13 @@ const GlassNavigatorModal = ({
     navbar: { back, onBack, title, logo } = {},
     children,
     style,
-    extraScrollHeight,
     closable = true,
-    scrollable,
     ...backdropProps
 }: ExposedBackdropProps & GlassNavigatorProps): JSX.Element => {
     return (
         <Backdrop closable={closable} {...backdropProps}>
             {(_open, setOpen) => (
                 <GlassNavigator
-                    extraScrollHeight={extraScrollHeight}
                     breadcrumbs={breadcrumbs}
                     navbar={{
                         back: back && closable,
@@ -24,7 +21,6 @@ const GlassNavigatorModal = ({
                         onBack: onBack || (() => setOpen(false)),
                     }}
                     style={{ height: "90%", ...style }}
-                    scrollable={scrollable}
                 >
                     {children}
                 </GlassNavigator>
