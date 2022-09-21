@@ -1,6 +1,6 @@
+import { Toolbar } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
 import { SettingsIcon } from "icons";
-import { Toolbar } from "react-native-components";
 
 export const HeaderRoot = styled(Toolbar)(({ theme }) => {
     return {

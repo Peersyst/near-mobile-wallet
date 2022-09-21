@@ -7,6 +7,7 @@ const darkTheme = createTheme({
         mode: "dark",
         background: "#141414",
         primary: "#FFFFFF",
+        slate: "#3F4246",
         text: "#FFFFFF",
         white: "#FFFFFF",
         black: "#0B0D1E",
