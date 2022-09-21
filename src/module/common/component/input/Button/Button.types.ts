@@ -1,17 +1,8 @@
-import { ButtonProps as BaseButtonProps, ButtonStyle } from "@peersyst/react-native-components";
-
-export type ButtonAppearance = "light" | "dark" | "gray";
-
-export interface ButtonRootProps {
-    appearance: ButtonAppearance;
-}
+import { ButtonProps as BaseButtonProps } from "@peersyst/react-native-components";
 
 export interface ButtonProps extends BaseButtonProps {
-    appearance?: ButtonAppearance;
+    /**
+     * Button is rounded
+     */
+    rounded?: boolean | undefined;
 }
-
-export type ButtonStates = "outlined" | "pressed" | "filled" | "pressedFilled";
-
-export type ButtonAppeareanceStyle = Partial<Record<ButtonAppearance, ButtonStyle>>;
-
-export type GetVariantStyleProps = Record<ButtonStates, ButtonAppeareanceStyle>;

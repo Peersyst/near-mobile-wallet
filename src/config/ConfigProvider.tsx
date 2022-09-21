@@ -7,7 +7,6 @@ export interface ConfigProviderProps {
 }
 
 const ConfigProvider = ({ children }: ConfigProviderProps): JSX.Element => {
-    // TODO: Add locale refactor
     return <GenesysConfigProvider config={{ ...config, translate: (w: string) => w }}>{children}</GenesysConfigProvider>;
 };
 
