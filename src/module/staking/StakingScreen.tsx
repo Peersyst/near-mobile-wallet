@@ -6,7 +6,7 @@ const StakingScreen = (): JSX.Element => {
     return (
         <BaseMainScreen>
             <ScrollView>
-                <Col style={{ padding: 20, backgroundColor: "#D9D9D9" }} gap={10}>
+                <Col style={{ padding: 20, backgroundColor: "#f5f5f5" }} gap={10}>
                     <Typography variant="body1Strong">Variant</Typography>
                     <Button variant="primary">Click me</Button>
                     <Button variant="secondary">Click me</Button>
