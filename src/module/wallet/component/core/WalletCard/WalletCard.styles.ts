@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled";
 import CopyToClipboardIcon from "module/common/component/input/CopyToClipboardIcon/CopyToClipboardIcon";
-import { Col, Typography } from "react-native-components";
+import { Col, Typography } from "@peersyst/react-native-components";
 import Balance from "../../display/Balance/Balance";
 import BaseWalletCard from "module/common/component/surface/BaseWalletCard/BaseWalletCard";
 import { WalletCardRootProps } from "module/wallet/component/core/WalletCard/WalletCard";

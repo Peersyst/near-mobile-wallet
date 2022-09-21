@@ -1,7 +1,7 @@
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
 import useGetNews from "module/news/query/useGetNews";
-import { Animated } from "react-native-components";
+import { Animated } from "@peersyst/react-native-components";
 import SimpleNewsCard from "../component/display/SimpleNewsCard/SimpleNewsCard";
 import { NewsList, NewsSpacer } from "./NewsScreen.styles";
 

@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { Row, Typography } from "react-native-components";
+import { Row, Typography } from "@peersyst/react-native-components";
 
 export interface SettingsMenuItemTextProps {
     destructive: boolean;

@@ -1,4 +1,4 @@
-import { Col, Form, useToast } from "react-native-components";
+import { Col, Form, useToast } from "@peersyst/react-native-components";
 import MnemonicInput from "module/wallet/component/input/MnemonicInput/MnemonicInput";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
@@ -46,7 +46,7 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonic
             <Form onSubmit={handleSubmit}>
                 <Col gap={20}>
                     <MnemonicInput />
-                    <Button fullWidth variant="outlined" style={{ marginHorizontal: 20 }}>
+                    <Button type="submit" fullWidth variant="outlined" style={{ marginHorizontal: 20 }}>
                         {submitText}
                     </Button>
                 </Col>

@@ -1,5 +1,5 @@
 import { useLogoPageFlex } from "module/common/component/layout/LogoPage/LogoPageContext";
-import { TabPanel, Tabs, useTabs } from "react-native-components";
+import { TabPanel, Tabs, useTabs } from "@peersyst/react-native-components";
 import { useState } from "react";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
 import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";

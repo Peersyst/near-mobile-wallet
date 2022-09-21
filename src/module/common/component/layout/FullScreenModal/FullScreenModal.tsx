@@ -1,9 +1,9 @@
 import { useTheme } from "@peersyst/react-native-styled";
-import { Backdrop } from "../../base/feedback/Backdrop";
 import Navbar from "../../navigation/Navbar/Navbar";
 import Toolbar from "../Toolbar/Toolbar";
 import { FullScreenModalProps } from "./FullScreenModal.types";
 import BasePage from "../BasePage/BasePage";
+import { Backdrop } from "@peersyst/react-native-components";
 
 const FullScreenModal = ({
     children,

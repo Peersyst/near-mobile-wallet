@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Col, Typography } from "react-native-components";
+import { Col, Typography } from "@peersyst/react-native-components";
 
 export interface TransactionDetailProps {
     title: string;

@@ -1,4 +1,13 @@
-import { Backdrop, Col, createModal, ExposedBackdropProps, PressableText, Row, Typography, useToast } from "react-native-components";
+import {
+    Backdrop,
+    Col,
+    createModal,
+    ExposedBackdropProps,
+    PressableText,
+    Row,
+    Typography,
+    useToast,
+} from "@peersyst/react-native-components";
 import useWallet from "module/wallet/hook/useWallet";
 import useEditWallet from "module/wallet/hook/useEditWallet";
 import { EditWalletModalRoot } from "module/wallet/component/core/EditWalletModal/EditWalletModal.styles";
@@ -71,7 +80,7 @@ const EditWalletModal = createModal(({ index, closable = true, onClose, ...backd
                             variant="underlined"
                             value={name}
                             onChange={setName}
-                            style={{ input: { textAlign: "center" } }}
+                            style={{ component: { input: { textAlign: "center" } } }}
                             placeholder={translate("wallet_name")}
                         />
                         <ColorPicker value={walletColors[colorIndex]} onColorPicked={handleColorPicked} />

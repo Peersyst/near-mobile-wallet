@@ -1,12 +1,22 @@
-import { Col, Form, IconButton, Paper, PressableText, QrScanner, Row, Typography, useSetTab, useToast } from "react-native-components";
-import FormGroup from "module/common/component/input/FormGroup/FormGroup";
+import {
+    Col,
+    Form,
+    IconButton,
+    Paper,
+    PressableText,
+    QrScanner,
+    Row,
+    Typography,
+    useSetTab,
+    useToast,
+} from "@peersyst/react-native-components";
 import { translate } from "locale";
 import TextField from "module/common/component/input/TextField/TextField";
 import { ScanIcon } from "module/common/icons/ScanIcon";
 import { useTheme } from "@peersyst/react-native-styled";
 import Button from "module/common/component/input/Button/Button";
 import sendRecoilState from "module/transaction/state/SendState";
-import { image } from "../../../../asset/image";
+import { send } from "../../../../asset/image";
 import { SendImage } from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen.styles";
 import { useState } from "react";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
@@ -53,34 +63,42 @@ const SendToAddressScreen = () => {
             <Form onSubmit={handleSubmit}>
                 <Col>
                     <Row justifyContent="center">
-                        <SendImage source={image.send} />
+                        <SendImage source={send} />
                     </Row>
                     <Col gap={40}>
                         <Paper style={{ padding: 20 }} elevation={8}>
                             <Col gap={20}>
-                                <FormGroup label={translate("select_a_wallet") + ":"}>
-                                    <WalletSelector required name="sender" defaultValue={sendState.senderWalletIndex} />
-                                </FormGroup>
-                                <FormGroup label={translate("send_to") + ":"}>
-                                    <TextField
-                                        placeholder={translate("address")}
-                                        suffix={
-                                            <IconButton style={{ color: palette.darkGray, fontSize: 24 }} onPress={() => setScanQr(true)}>
-                                                <ScanIcon />
-                                            </IconButton>
-                                        }
-                                        name="receiver"
-                                        validators={{ address: network }}
-                                        value={receiverAddress}
-                                        onChange={setReceiverAddress}
-                                        autoCapitalize="none"
-                                        autoCorrect={false}
-                                    />
-                                </FormGroup>
+                                <WalletSelector
+                                    label={translate("select_a_wallet") + ":"}
+                                    required
+                                    name="sender"
+                                    defaultValue={sendState.senderWalletIndex}
+                                />
+                                <TextField
+                                    label={translate("send_to") + ":"}
+                                    placeholder={translate("address")}
+                                    suffix={
+                                        <IconButton style={{ color: palette.darkGray, fontSize: 24 }} onPress={() => setScanQr(true)}>
+                                            <ScanIcon />
+                                        </IconButton>
+                                    }
+                                    name="receiver"
+                                    validators={{ address: network }}
+                                    value={receiverAddress}
+                                    onChange={setReceiverAddress}
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
+                                />
                             </Col>
                         </Paper>
                         <Col gap={8}>
-                            <Button variant="outlined" fullWidth disabled={uncommittedTransaction} loading={uncommittedTransaction}>
+                            <Button
+                                type="submit"
+                                variant="outlined"
+                                fullWidth
+                                disabled={uncommittedTransaction}
+                                loading={uncommittedTransaction}
+                            >
                                 {translate("next")}
                             </Button>
                             {uncommittedTransaction && (

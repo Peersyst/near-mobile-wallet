@@ -1,5 +1,5 @@
 import { FC, useRef } from "react";
-import { useToast } from "react-native-components";
+import { useToast } from "@peersyst/react-native-components";
 import { QueryCache, QueryClient, QueryClientProvider as BaseQueryClientProvider } from "react-query";
 import { handleErrorMessage } from "./handleErrorMessage";
 
@@ -24,7 +24,6 @@ const QueryClientProvider: FC = ({ children }): JSX.Element => {
             queryCache: new QueryCache({
                 onError: (error) => {
                     const { message, type } = handleErrorMessage(error);
-                    console.error(error);
                     showToast(message, { type });
                 },
             }),

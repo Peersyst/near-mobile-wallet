@@ -1,4 +1,4 @@
-import { Col, ScrollView } from "react-native-components";
+import { Col, ScrollView } from "@peersyst/react-native-components";
 import TransactionDetail from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionDetail";
 import { translate } from "locale";
 import TransactionTypeDetails from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionTypeDetails";

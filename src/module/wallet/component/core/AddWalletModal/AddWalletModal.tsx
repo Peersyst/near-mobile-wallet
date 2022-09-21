@@ -1,4 +1,4 @@
-import { ExposedBackdropProps } from "react-native-components";
+import { ExposedBackdropProps } from "@peersyst/react-native-components";
 import { ReactNode, useState } from "react";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import useWalletState from "module/wallet/hook/useWalletState";

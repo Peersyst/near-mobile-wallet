@@ -1,5 +1,5 @@
 import { AdviseCardProps } from "module/common/component/display/AdviseCard/AdviseCard.types";
-import { Col, Row, Typography } from "react-native-components";
+import { Col, Row, Typography } from "@peersyst/react-native-components";
 import { translate } from "locale";
 import CountdownButton from "../../input/CountdownButton/CountdownButton";
 import { AdviseCardRoot, BackIconButton } from "./AdviseCard.styles";

@@ -1,5 +1,4 @@
-import { Col, Form, useSetTab } from "react-native-components";
-import FormGroup from "module/common/component/input/FormGroup/FormGroup";
+import { Col, Form, useSetTab, Suspense } from "@peersyst/react-native-components";
 import { translate } from "locale";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { WithdrawForm, WithdrawScreens, WithdrawSummary } from "module/dao/component/core/WithdrawModal/WithdrawModal";
@@ -7,7 +6,6 @@ import useGetDAOUnlockableAmounts from "module/dao/query/useGetDAOUnlockableAmou
 import { ErrorMessageText, WithdrawSelectorCard } from "./SelectAccountAndDepositScreen.styles";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
-import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import DepositsSelector from "module/dao/component/input/DepositsSelector/DepositsSelector";
@@ -66,33 +64,32 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
     };
 
     return (
-        <ControlledSuspense isLoading={(isFirstTime && depositsIsLoading) || balanceLoading} fallback={<CenteredLoader color="black" />}>
+        <Suspense isLoading={(isFirstTime && depositsIsLoading) || balanceLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col>
                     <Col gap={20}>
                         <WithdrawSelectorCard style={{ marginTop: 5 }}>
-                            <FormGroup label={translate("select_a_wallet") + ":"}>
-                                <WalletSelector
-                                    onChange={(index) => setSelectedWallet(index as number)}
-                                    required
-                                    name="receiverIndex"
-                                    value={selectedWallet}
-                                />
-                            </FormGroup>
+                            <WalletSelector
+                                label={translate("select_a_wallet") + ":"}
+                                onChange={(index) => setSelectedWallet(index as number)}
+                                required
+                                name="receiverIndex"
+                                value={selectedWallet}
+                            />
                         </WithdrawSelectorCard>
                         <WithdrawSelectorCard>
-                            <FormGroup label={`${translate("select_deposit")}:`} style={{ height: 80 }}>
-                                <ControlledSuspense isLoading={depositsIsLoading} activityIndicatorSize={"large"}>
-                                    <DepositsSelector
-                                        onChange={(deposit) => setSelectedDeposit(deposit as number)}
-                                        value={selectedDeposit}
-                                        name="depositIndex"
-                                        deposits={unlockableDeposits}
-                                        required
-                                        defaultValue={0}
-                                    />
-                                </ControlledSuspense>
-                            </FormGroup>
+                            <Suspense isLoading={depositsIsLoading} activityIndicatorSize={"large"}>
+                                <DepositsSelector
+                                    label={`${translate("select_deposit")}:`}
+                                    onChange={(deposit) => setSelectedDeposit(deposit)}
+                                    value={selectedDeposit}
+                                    name="depositIndex"
+                                    deposits={unlockableDeposits}
+                                    required
+                                    defaultValue={0}
+                                    style={{ height: 80 }}
+                                />
+                            </Suspense>
                         </WithdrawSelectorCard>
                         <WithdrawButton
                             unlockableDeposits={unlockableDeposits}
@@ -108,7 +105,7 @@ const SelectAccountAndDepositScreen = ({ setWithdrawInfo }: WithdrawSelectAccoun
                     </Col>
                 </Col>
             </Form>
-        </ControlledSuspense>
+        </Suspense>
     );
 };
 

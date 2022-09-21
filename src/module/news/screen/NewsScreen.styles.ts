@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled";
 import { View } from "react-native";
-import { List } from "react-native-components";
+import { List } from "@peersyst/react-native-components";
 
 export const NewsList = styled(List)(() => ({
     paddingHorizontal: 16,

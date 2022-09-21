@@ -1,6 +1,6 @@
 import { translate } from "locale";
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
-import { useDialog, useModal } from "react-native-components";
+import { useDialog, useModal } from "@peersyst/react-native-components";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";

@@ -21,6 +21,7 @@ describe("SetWalletNameScreen tests", () => {
             setPin: jest.fn(),
             setMnemonic: jest.fn(),
             setColorIndex: jest.fn(),
+            reset: jest.fn(),
         });
 
         const screen = render(<SetWalletNameScreen onSubmit={handleSubmit} submitText="Submit" />);

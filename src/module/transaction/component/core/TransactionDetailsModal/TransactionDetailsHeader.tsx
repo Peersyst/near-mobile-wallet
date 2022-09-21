@@ -1,5 +1,5 @@
 import TransactionIcon from "module/transaction/component/display/TransactionIcon/TransactionIcon";
-import { Col, Typography } from "react-native-components";
+import { Col, Typography } from "@peersyst/react-native-components";
 import TransactionLabel from "module/transaction/component/display/TransactionLabel/TransactionLabel";
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
 import formatDate from "utils/formatDate";

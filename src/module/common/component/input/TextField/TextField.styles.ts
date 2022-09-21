@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled";
-import TextField from "module/common/component/base/input/TextInput/TextField";
-import { InputStyle, TextInputStyles } from "react-native-components";
+import { TextField } from "@peersyst/react-native-components";
+import { InputStyle, FormControlStateStyle, TextInputStyle } from "@peersyst/react-native-components";
 
 export type TextFieldVariant = "elevated" | "underlined";
 export type TextFieldSize = "md" | "lg";
@@ -21,7 +21,7 @@ export const TextFieldRoot = styled(TextField)<TextFieldRootProps>(({ theme, var
         },
     };
 
-    const commonStyles: TextInputStyles = {
+    const commonStyles: FormControlStateStyle<TextInputStyle> = {
         input: {
             ...inputSizeStyles[size],
             placeholderColor: theme.palette.darkGray,
@@ -30,7 +30,7 @@ export const TextFieldRoot = styled(TextField)<TextFieldRootProps>(({ theme, var
     };
     const { input: commonInputStyles, ...commonRestStyles } = commonStyles;
 
-    const elevatedStyle: TextInputStyles = {
+    const elevatedStyle: FormControlStateStyle<TextInputStyle> = {
         ...commonStyles,
         borderRadius: 45,
         backgroundColor: theme.palette.lighterGray,
@@ -41,7 +41,7 @@ export const TextFieldRoot = styled(TextField)<TextFieldRootProps>(({ theme, var
         ...theme.shadows[7],
     };
 
-    const underlinedStyle: TextInputStyles = {
+    const underlinedStyle: FormControlStateStyle<TextInputStyle> = {
         ...commonRestStyles,
         backgroundColor: "transparent",
         borderTopWidth: 0,
@@ -55,18 +55,12 @@ export const TextFieldRoot = styled(TextField)<TextFieldRootProps>(({ theme, var
             ...commonInputStyles,
             color: theme.palette.darkGray2,
         },
-        hint: {
-            fontSize: 14,
-        },
-        error: {
-            fontSize: 14,
-        },
     };
 
-    const variantStyles: Record<TextFieldVariant, TextInputStyles> = {
+    const variantStyles: Record<TextFieldVariant, FormControlStateStyle<TextInputStyle>> = {
         elevated: elevatedStyle,
         underlined: underlinedStyle,
     };
 
-    return variantStyles[variant];
+    return { component: variantStyles[variant] };
 });

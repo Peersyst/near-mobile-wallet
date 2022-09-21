@@ -1,9 +1,9 @@
 import { InfoIcon } from "icons";
-import { IconButton, Row, Typography } from "react-native-components";
+import { IconButton, Row, Typography } from "@peersyst/react-native-components";
 import { Linking } from "react-native";
-import { theme } from "module/common/style/theme";
 import { ThemeProvider } from "@peersyst/react-native-styled";
 import SelectDAOWallet from "./SelectDAOWallet/SelectDAOWallet";
+import lightTheme from "config/theme/lightTheme";
 
 export const DAO_INFO_URL = "https://medium.com/nervosnetwork/nervos-dao-explained-95e33898b1c";
 
@@ -16,7 +16,7 @@ const DAOCardHeader = (): JSX.Element => {
             <Typography fontWeight="bold" variant="h2">
                 Nervos DAO
             </Typography>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={lightTheme}>
                 <SelectDAOWallet />
             </ThemeProvider>
         </Row>

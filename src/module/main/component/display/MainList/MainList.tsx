@@ -1,6 +1,6 @@
 import Divider from "module/common/component/display/Divider/Divider";
-import { List } from "react-native-components";
-import { ListProps } from "module/common/component/base/display/List/List";
+import { List } from "@peersyst/react-native-components";
+import { ListProps } from "@peersyst/react-native-components";
 import useCkbSync from "module/wallet/hook/useCkbSync";
 
 export type MainListProps = Omit<ListProps, "ItemSeparatorComponent" | "style">;

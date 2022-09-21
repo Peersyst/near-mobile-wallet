@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { Row } from "../../base/layout/Row";
+import { Row } from "@peersyst/react-native-components";
 import PadItem from "../PadItem/PadItem";
 import { PadItemType } from "../PadItem/PadItem.types";
 import { KeyboardRoot } from "./Keyboard.styles";

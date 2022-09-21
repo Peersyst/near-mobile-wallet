@@ -1,7 +1,7 @@
 import { translate } from "locale";
 import WalletsBackupModal from "module/wallet/component/core/WalletsBackupModal/WalletsBackupModal";
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
-import { useModal } from "react-native-components";
+import { useModal } from "@peersyst/react-native-components";
 
 const WalletsBackup = () => {
     const { showModal } = useModal();

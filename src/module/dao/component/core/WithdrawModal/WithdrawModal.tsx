@@ -1,4 +1,4 @@
-import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "react-native-components";
+import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
 import { translate } from "locale";
 import { useState } from "react";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";

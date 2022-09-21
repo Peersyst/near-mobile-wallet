@@ -8,7 +8,7 @@ import { MockedUnlockableAmounts } from "mocks/DAO";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
-import { formatAddress } from "@peersyst/react-utils";
+import { formatHash } from "@peersyst/react-utils";
 
 describe("Withdraw modal test", () => {
     const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
@@ -54,7 +54,7 @@ describe("Withdraw modal test", () => {
 
         // 2 - Withdraw page with correct info
         await waitFor(() => expect(translate("destination_wallet") + ":").toBeDefined());
-        expect(screen.getByText("secondWallet" + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();
+        expect(screen.getByText("secondWallet" + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
         expect(screen.getByText("500")).toBeDefined();
     });
 });

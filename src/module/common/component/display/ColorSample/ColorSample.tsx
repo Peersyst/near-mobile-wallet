@@ -1,6 +1,6 @@
 import { TouchableWithoutFeedback, View, ViewStyle } from "react-native";
 import { ActiveIcon, ColorSampleRoot } from "module/common/component/display/ColorSample/ColorSample.styles";
-import { Animated } from "react-native-components";
+import { Animated } from "@peersyst/react-native-components";
 
 const AnimatedView = Animated.createAnimatedComponent.scale(View, { duration: 150 });
 

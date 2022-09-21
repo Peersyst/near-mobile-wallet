@@ -1213,6 +1213,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@expo-google-fonts/manrope@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/manrope/-/manrope-0.2.2.tgz#c4dcef24d1825fd74e2f852e1f1383ea0deaf791"
+  integrity sha512-lveLEh77CUVWdOyvjAkB1DIZSS03WYbUCSvGPmqXfPeYIvnnXnuX68DWjY8eeGti5ALAwc1yYz1I7cqc0/xI9g==
+
 "@expo/config-plugins@4.0.6":
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-4.0.6.tgz#ef52f0e4d96ddd52b4cd4cc8c6efbe3d9576c72d"
@@ -1797,42 +1802,79 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@peersyst/react-hooks@^1.1.6":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-1.2.0.tgz#39d8bf051fdd55c9cc4ad993dc84a7ac72a0ec76"
-  integrity sha512-RXDjOGIZ1G325jG0c0bdYStBdCDvZHimPRexZNhUaXmE/PhqjCr16Pffi7xU7KNpbM5FxMXksw3voBudpbyBvw==
+"@peersyst/react-components-core@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-0.2.4.tgz#c7f5512f7b9f24b742bfe0a3040e3c88d62b88ae"
+  integrity sha512-84RdvdLCO5/kDjYX7eM4XVM65EffYzpHRUyJx3YT0UKTICRqEbhUktKgQzxyWlsb2cJuM9dsUVEqqtvnwy2lnQ==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-utils" "^1.2.0"
+    "@peersyst/react-hooks" "^1.4.0"
+    "@peersyst/react-types" "^1.4.0"
+    "@peersyst/react-utils" "^1.6.0"
 
-"@peersyst/react-native-modal@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-modal/-/react-native-modal-1.0.0.tgz#cd58d90f1a3fa2fc15c2e9e5f9a80f327ed37b88"
-  integrity sha512-uP3rHaq5kBaPSPI+Icd7sOPV8WPsv/hcjd6WRwyDmFgBdO/kBdT8gHa6WdXtNJOHaoQ1oTmWB3drfvj4NG8SGA==
+"@peersyst/react-hooks@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-1.4.0.tgz#1603be840ced60a59ce9570f781e4a4fd2f29b32"
+  integrity sha512-G/N6d46O9/wZEDrPvmVi1TUumpSNUQ8rMho9siF/Lid/gRO3gfCX06qKz5RTsoP/356+wKP227GEQRGHoXtXyg==
   dependencies:
-    prop-types "^15.6.2"
-    react-native-animatable "1.3.3"
+    "@babel/runtime" "^7.16.7"
+    "@peersyst/react-utils" "^1.6.0"
+
+"@peersyst/react-native-components@^1.2.19":
+  version "1.2.19"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-1.2.19.tgz#d9543e933ae6698b965122c70af8a3e99ea7a399"
+  integrity sha512-2rxNvtP6kTWXDA1AUVrSVPdGr2OgaZp1tuS7qKDIjOHAuY4TOy2UpbTOdC3zQW8p1eIe/IRmbGFDYg48cd5nAg==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+    "@peersyst/react-components-core" "^0.2.4"
+    "@peersyst/react-hooks" "^1.4.0"
+    "@peersyst/react-native-styled" "^1.3.0"
+    "@peersyst/react-native-utils" "^0.1.0"
+    "@peersyst/react-types" "^1.4.0"
+    "@peersyst/react-utils" "^1.6.0"
+    "@react-native-async-storage/async-storage" "^1.17.7"
+    expo-barcode-scanner "^11.2.1"
+    expo-camera "~12.1.2"
+    expo-clipboard "~2.1.0"
+    expo-constants "~13.0.2"
+    expo-localization "~12.0.0"
+    expo-status-bar "^1.2.0"
+    react-native-gesture-handler "~2.1.0"
     react-native-keyboard-aware-scroll-view "^0.9.5"
+    react-native-modal "^13.0.1"
+    react-native-pager-view "^5.4.15"
+    react-native-qrcode-svg "^6.1.2"
+    react-native-safe-area-context "3.3.2"
+    react-native-svg "^12.1.1"
 
-"@peersyst/react-native-styled@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-styled/-/react-native-styled-1.1.1.tgz#c89aa55f2d8dc7dd03381f89fedf9eeaf544c975"
-  integrity sha512-fZYG4744gySZTr5DnkHv4BuN4/4IELALU/+SjGZTJA5shXD5QHJn3rMCIZTHhuKjFyDXN6EIkoEzSZvIzN26rQ==
+"@peersyst/react-native-styled@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-styled/-/react-native-styled-1.3.0.tgz#687b098a85de0a6641574e1f1e5b7d55dcf55fbc"
+  integrity sha512-NyjHPGeouU5lbeE0mNgU6TQvRBfoAY6pV1NCwEgU+s9eVoLYde1S3eOq/7MVooF/MG/Cxbikcsxb+3tbN8c4Tg==
   dependencies:
     "@babel/runtime" "^7.16.7"
+    react-native-safe-area-context "3.3.2"
 
-"@peersyst/react-types@^1.0.0", "@peersyst/react-types@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-types/-/react-types-1.2.0.tgz#7a97b61b8093ce7369cf969a9f2cd725b7c49252"
-  integrity sha512-p6zapXl2iikJUcy3LWJdAt5Hu5HBkCmlNKB3FIvQOtcebDGEF7VSxmTk6MdfU97vLm5gdP1SrwzuNVFw6aJJ8A==
-
-"@peersyst/react-utils@^1.2.0", "@peersyst/react-utils@^1.3.0":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-utils/-/react-utils-1.3.2.tgz#abc8263b8d0fff016dcefb4a990131b7d0386f8d"
-  integrity sha512-p/XM+oZhCRtNahbZ5IjSuG1fhXyAMtD39YJkH0plfEdsPnFCsnbfdTZbfy5nnPzuuGQch0u0j+wg5AD1t75laA==
+"@peersyst/react-native-utils@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-utils/-/react-native-utils-0.1.0.tgz#ba699430d29bde7f5f400f8adb02e6c109d2f265"
+  integrity sha512-yewsXDda32VzG+qho2U/09o7ZK1HSKc5Q4cJk9guiUTbFRQcq82/NJsk0IlTKaW8K7StZ9ucpMAg2YTqUybwvg==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-types" "^1.0.0"
+    "@peersyst/react-types" "^1.4.0"
+
+"@peersyst/react-types@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-types/-/react-types-1.4.0.tgz#538df3cdcff0a378e34d75450610a4b61668d4ed"
+  integrity sha512-vYeFUjr8/C5hZSWVm5qaa9S+Y5eLGQZPf/g0n1HZWoSm4LKHvxEfkNQzkRnzvEWLrGUe5F185DyrioW2cNwX7g==
+
+"@peersyst/react-utils@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-utils/-/react-utils-1.6.0.tgz#27400958d4b1195b8348effb1520e59540dc23c3"
+  integrity sha512-Ez3fX7Rbh57Iq0gdO5In46RtYtUqP7TJIeJp0/795sryaQywpydCyFOwC8rnLPpxCYYcwX73SSmps9pMunqhrg==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+    "@peersyst/react-types" "^1.4.0"
 
 "@rather-labs/nrc-721-sdk@0.0.16":
   version "0.0.16"
@@ -1842,6 +1884,13 @@
     "@nervosnetwork/ckb-sdk-core" "^0.101.0"
     axios "^0.24.0"
     bignumber.js "^9.0.2"
+
+"@react-native-async-storage/async-storage@^1.17.7":
+  version "1.17.10"
+  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.17.10.tgz#8d6a4771912be8454a9e215eebd469b1b8e2e638"
+  integrity sha512-KrR021BmBLsA0TT1AAsfH16bHYy0MSbhdAeBAqpriak3GS1T2alFcdTUvn13p0ZW6FKRD6Bd3ryU2zhU/IYYJQ==
+  dependencies:
+    merge-options "^3.0.4"
 
 "@react-native-async-storage/async-storage@~1.15.0":
   version "1.15.17"
@@ -3929,16 +3978,6 @@ domutils@^2.8.0:
     dom-serializer "^1.0.1"
     domelementtype "^2.2.0"
     domhandler "^4.2.0"
-
-dotenv@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-10.0.0.tgz#3d4227b8fb95f81096cdd2b66653fb2c7085ba81"
-  integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
-
-dotenv@^16.0.0:
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.0.tgz#c619001253be89ebb638d027b609c75c26e47411"
-  integrity sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==
 
 ecurve@^1.0.0:
   version "1.0.6"
@@ -7888,13 +7927,6 @@ react-native-codegen@^0.0.6:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
-react-native-dotenv@^3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-3.3.1.tgz#8f399cf28ca77d860d8e7f7323e439fa60a8ca0b"
-  integrity sha512-gAKXout1XCwCqJ3QPGoQAF2eRzOHgOnwg3x19z+ssow8bDIksJeKBqvoHDyGziVilAIP1J0bEC9Jf+VF8nFang==
-  dependencies:
-    dotenv "^10.0.0"
-
 react-native-expo-bitcoinjs-lib@^2.4.4:
   version "2.4.4"
   resolved "https://registry.yarnpkg.com/react-native-expo-bitcoinjs-lib/-/react-native-expo-bitcoinjs-lib-2.4.4.tgz#95eaa7bae7c7d53281639a4ac5c2598f0bddfbb8"
@@ -7953,6 +7985,19 @@ react-native-keyboard-aware-scroll-view@^0.9.5:
   dependencies:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
+
+react-native-modal@^13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-13.0.1.tgz#691f1e646abb96fa82c1788bf18a16d585da37cd"
+  integrity sha512-UB+mjmUtf+miaG/sDhOikRfBOv0gJdBU2ZE1HtFWp6UixW9jCk/bhGdHUgmZljbPpp0RaO/6YiMmQSSK3kkMaw==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-animatable "1.3.3"
+
+react-native-pager-view@^5.4.15:
+  version "5.4.25"
+  resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.25.tgz#cd639d5387a7f3d5581b55a33c5faa1cbc200f97"
+  integrity sha512-3drrYwaLat2fYszymZe3nHMPASJ4aJMaxiejfA1V5SK3OygYmdtmV2u5prX7TnjueJzGSyyaCYEr2JlrRt4YPg==
 
 react-native-pager-view@^5.4.9:
   version "5.4.15"

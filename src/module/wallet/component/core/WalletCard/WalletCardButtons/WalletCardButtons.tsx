@@ -1,7 +1,7 @@
 import { SendIcon, ReceiveIcon } from "icons";
 import { translate } from "locale";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
-import { useModal } from "react-native-components";
+import { useModal } from "@peersyst/react-native-components";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
 import CardButtons from "module/common/component/input/CardButtons/CardButtons";
 

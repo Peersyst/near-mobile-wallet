@@ -1,9 +1,8 @@
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import MnemonicPicker from "module/wallet/component/input/MnemonicPicker/MnemonicPicker";
 import Card from "module/common/component/surface/Card/Card";
-import { Col, Typography } from "react-native-components";
+import { Col, Typography, useToast } from "@peersyst/react-native-components";
 import { translate } from "locale";
-import { useToast } from "module/common/component/base/feedback/ToastProvider";
 
 export interface PickWalletMnemonicScreenProps {
     onSubmit: () => void;

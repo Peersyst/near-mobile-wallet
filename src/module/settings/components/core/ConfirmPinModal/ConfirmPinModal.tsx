@@ -2,7 +2,7 @@ import { translate } from "locale";
 import NumericPad from "module/common/component/input/NumericPad/NumericPad";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useState } from "react";
-import { Animated, createBackdrop, ExposedBackdropProps } from "react-native-components";
+import { Animated, createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import BaseSettingsModalScreen from "../../layout/BaseSettingsModal/BaseSettingsModal";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 

@@ -1,19 +1,19 @@
 import { render } from "test-utils";
 import { fireEvent } from "@testing-library/react-native";
 import Chip from "module/common/component/display/Chip/Chip";
-import { theme } from "module/common/style/theme";
+import lightTheme from "config/theme/lightTheme";
 
 describe("Chip tests", () => {
     test("Renders correctly", () => {
         const screen = render(<Chip label="Peersyst" />);
         const chip = screen.getByText("Peersyst");
         expect(chip).toBeDefined();
-        expect(chip.props.style.color).toEqual(theme.palette.darkFont);
+        expect(chip.props.style.color).toEqual(lightTheme.palette.darkFont);
     });
     test("Renders dark variant correctly", () => {
         const screen = render(<Chip label="Peersyst" appearance="dark" />);
         const chip = screen.getByText("Peersyst");
-        expect(chip.props.style.color).toEqual(theme.palette.white);
+        expect(chip.props.style.color).toEqual(lightTheme.palette.white);
     });
     test("Renders fullWidth correctly", () => {
         const screen = render(<Chip label="Peersyst" fullWidth />);

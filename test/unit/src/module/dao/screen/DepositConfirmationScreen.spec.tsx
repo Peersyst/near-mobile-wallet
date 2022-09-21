@@ -2,7 +2,7 @@ import { render } from "test-utils";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
 import { translate } from "locale";
-import { formatAddress } from "@peersyst/react-utils";
+import { formatHash } from "@peersyst/react-utils";
 import { mockedUseWallet } from "mocks/useWalletState";
 import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScreen/DepositConfirmationScreen";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
@@ -32,6 +32,6 @@ describe("DepositConfirmationScreen tests", () => {
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
         expect(screen.getByText("001")).toBeDefined();
         expect(screen.getByText(translate("from") + ":")).toBeDefined();
-        expect(screen.getByText(mockedWallet.name + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();
+        expect(screen.getByText(mockedWallet.name + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
     });
 });

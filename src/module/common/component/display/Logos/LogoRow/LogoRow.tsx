@@ -1,4 +1,4 @@
-import { Row } from "react-native-components";
+import { Row } from "@peersyst/react-native-components";
 import Logotip from "../Logotip/Logotip";
 import Isotip from "../Isotip/Isotip";
 

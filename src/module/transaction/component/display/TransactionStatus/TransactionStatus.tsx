@@ -1,4 +1,4 @@
-import { TypographyProps } from "react-native-components";
+import { TypographyProps } from "@peersyst/react-native-components";
 import { TransactionStatusRoot } from "module/transaction/component/display/TransactionStatus/TransactionStatus.styles";
 import { translate } from "locale";
 import { TransactionStatus as TransactionStatusType } from "ckb-peersyst-sdk";

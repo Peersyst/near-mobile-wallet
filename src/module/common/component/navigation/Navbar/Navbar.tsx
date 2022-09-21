@@ -11,6 +11,7 @@ const Navbar = ({ back, title, logo = false, onBack }: NavbarProps): JSX.Element
             navigation.goBack();
         }
     };
+
     return (
         <NavbarRoot>
             {back && (

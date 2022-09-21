@@ -1,0 +1,17 @@
+{
+    "projectName": "near-mobile-wallet",
+    "backendUrl": "https://base-project/api",
+    "minimumTransactionAmount": 61,
+    "minimumDaoDeposit": 102,
+    "mainnetExplorerLink": "https://explorer.nervos.org/",
+    "testnetExplorerLink": "https://pudge.explorer.nervos.org/",
+    "ckbTestnetUrl": "http://ckb-node-test-1.peersyst.com/rpc",
+    "indexerTestnetUrl": "http://ckb-node-test-1.peersyst.com/indexer",
+    "ckbMainnetUrl": "https://ckb-node-mainnet.peersyst.com/rpc",
+    "indexerMainnetUrl": "https://ckb-node-mainnet.peersyst.com/indexer",
+    "faucetUrl": "https://faucet.nervos.org/",
+    "testnetExplorerApi": "https://testnet-api.explorer.nervos.org/api/v1/",
+    "mainnetExplorerApi": "https://mainnet-api.explorer.nervos.org/api/v1/",
+    "maxNumberOfDecimals": 6,
+    "enableMainnet": true
+}

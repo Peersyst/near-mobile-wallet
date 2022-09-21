@@ -1,4 +1,4 @@
-import { Col, createModal, ExposedBackdropProps } from "react-native-components";
+import { Col, createModal, ExposedBackdropProps } from "@peersyst/react-native-components";
 import { TransactionDetailsModalRoot } from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsModal.styles";
 import TransactionDetailsHeader from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsHeader";
 import TransactionDetailsBody from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionDetailsBody";

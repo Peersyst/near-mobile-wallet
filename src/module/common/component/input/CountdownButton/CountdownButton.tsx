@@ -2,14 +2,13 @@ import { CountdownButtonProps } from "module/common/component/input/CountdownBut
 import { useEffect, useState } from "react";
 import Button from "module/common/component/input/Button/Button";
 import { Text } from "react-native";
-import useButtonStyles from "module/common/component/base/input/Button/hooks/useButtonStyles";
 
 const CountdownButton = ({
     seconds: secondsProp,
     disabled: disabledProp = false,
     children,
     style = {},
-    variant = "contained",
+    variant = "filled",
     size = "lg",
     loading,
     onCountdownEnd,
@@ -31,12 +30,11 @@ const CountdownButton = ({
 
     const countdown = seconds > 0;
     const disabled = countdown || disabledProp;
-    const { textStyle } = useButtonStyles(style, variant, size, disabled, false);
 
     return (
         <Button
             loading={countdown || loading}
-            loadingElement={loading ? undefined : <Text style={{ ...textStyle, textTransform: "none" }}>{`... ${seconds}s`}</Text>}
+            loadingElement={loading ? undefined : <Text style={{ textTransform: "none" }}>{`... ${seconds}s`}</Text>}
             disabled={disabled}
             style={style}
             variant={variant}

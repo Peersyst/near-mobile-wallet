@@ -13,8 +13,8 @@ import {
 } from "ckb-peersyst-sdk";
 import { tokenAmountZeroBalanceList, tokensList, UknownToken } from "module/token/mock/token";
 import { Chain, DepositInDAOParams, FullTransaction, SendTransactionParams, WithdrawOrUnlockParams } from "./CkbSdkService.types";
-import { CKB_TESTNET_URL, INDEXER_TESTNET_URL, CKB_MAINNET_URL, INDEXER_MAINNET_URL } from "@env";
 import { TokenAmount, TokenType } from "module/token/types";
+import { config } from "config";
 
 export function getTokenIndexTypeFromScript(scriptType: ScriptType): number {
     return tokensList.findIndex((tkn) => tkn.args === scriptType.args && tkn.codeHash === scriptType.codeHash);
@@ -32,8 +32,8 @@ export function getTokenTypeFromScript(scriptType: ScriptType) {
     return getTokenTypeFromIndex(tokenIndex, scriptType);
 }
 
-export const testnetConnectionService = new ConnectionService(CKB_TESTNET_URL, INDEXER_TESTNET_URL, Environments.Testnet);
-export const mainnetConnectionService = new ConnectionService(CKB_MAINNET_URL, INDEXER_MAINNET_URL, Environments.Mainnet);
+export const testnetConnectionService = new ConnectionService(config.ckbTestnetUrl, config.indexerTestnetUrl, Environments.Testnet);
+export const mainnetConnectionService = new ConnectionService(config.ckbMainnetUrl, config.indexerMainnetUrl, Environments.Mainnet);
 
 export class CKBSDKService {
     private connectionService: ConnectionService;

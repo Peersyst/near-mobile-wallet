@@ -1,7 +1,7 @@
-import { formatAddress } from "@peersyst/react-utils";
+import { formatHash } from "@peersyst/react-utils";
 import { translate } from "locale";
 import { SendState } from "module/transaction/state/SendState";
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import BaseSendSummary, { BaseSendSummaryProps } from "../../component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../component/display/SummaryField/SummaryField";
 
@@ -16,8 +16,8 @@ const SendSummary = ({ amount, fee, receiverAddress, message, senderName, sender
     return (
         <BaseSendSummary amount={amount} fee={fee}>
             <Col gap="3%" style={{ alignSelf: "flex-start" }}>
-                <SummaryField label={translate("from")}>{senderName + " - " + formatAddress(senderAddress, "middle", 3)}</SummaryField>
-                <SummaryField label={translate("to")}>{formatAddress(receiverAddress!, "middle", 3)}</SummaryField>
+                <SummaryField label={translate("from")}>{senderName + " - " + formatHash(senderAddress, "middle", 3)}</SummaryField>
+                <SummaryField label={translate("to")}>{formatHash(receiverAddress!, "middle", 3)}</SummaryField>
                 <SummaryField label={translate("message")}>{message || "-"}</SummaryField>
             </Col>
         </BaseSendSummary>

@@ -1,7 +1,7 @@
 import { translate } from "locale";
 import { render } from "test-utils";
 import { fireEvent } from "@testing-library/react-native";
-import * as UseModal from "module/common/component/base/feedback/ModalProvider/hooks/useModal";
+import * as Genesys from "@peersyst/react-native-components";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
 import WalletCardButtons from "module/wallet/component/core/WalletCard/WalletCardButtons/WalletCardButtons";
@@ -16,7 +16,7 @@ describe("WalletCardButtons tests", () => {
     });
     test("Triggers correctly send button", () => {
         const showModal = jest.fn();
-        jest.spyOn(UseModal, "useModal").mockReturnValue({ showModal } as any);
+        jest.spyOn(Genesys, "useModal").mockReturnValue({ showModal } as any);
         const screen = render(<WalletCardButtons />);
         const button = screen.getByText(translate("send"));
         fireEvent.press(button);
@@ -24,7 +24,7 @@ describe("WalletCardButtons tests", () => {
     });
     test("Triggers correctly receive button", () => {
         const showModal = jest.fn();
-        jest.spyOn(UseModal, "useModal").mockReturnValue({ showModal } as any);
+        jest.spyOn(Genesys, "useModal").mockReturnValue({ showModal } as any);
         const screen = render(<WalletCardButtons />);
         const button = screen.getByText(translate("receive"));
         fireEvent.press(button);

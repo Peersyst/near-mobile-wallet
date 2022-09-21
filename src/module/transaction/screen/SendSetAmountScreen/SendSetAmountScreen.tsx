@@ -1,4 +1,4 @@
-import { Col, Form, Typography, useSetTab } from "react-native-components";
+import { Col, Form, Typography, useSetTab, Suspense } from "@peersyst/react-native-components";
 import { translate } from "locale";
 import TextArea from "module/common/component/input/TextArea/TextArea";
 import Button from "module/common/component/input/Button/Button";
@@ -11,11 +11,10 @@ import { SendScreens } from "module/transaction/component/core/SendModal/SendMod
 import CKBAmountInput from "../../component/input/CKBAmountInput/CKBAmountInput";
 import { CKBAmountInputContainer } from "./SendSetAmountScreen.styles";
 import Card from "module/common/component/surface/Card/Card";
-import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
-import { MINIMUM_DAO_DEPOSIT } from "@env";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
+import { config } from "config";
 
 export interface SendAmountAndMessageResult {
     amount: string;
@@ -40,7 +39,7 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
     };
 
     return (
-        <ControlledSuspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
+        <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col gap="15%">
                     <CKBAmountInputContainer>
@@ -55,18 +54,18 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
                     {type === "dao" ? (
                         <Card>
                             <Typography variant="body1" textAlign="center">
-                                {translate("deposit_warning", { dao_min_deposit: MINIMUM_DAO_DEPOSIT })}
+                                {translate("deposit_warning", { dao_min_deposit: config.minimumDaoDeposit.toString() })}
                             </Typography>
                         </Card>
                     ) : (
                         <TextArea name="message" placeholder={translate("write_a_message")} numberOfLines={7} />
                     )}
-                    <Button variant="outlined" fullWidth>
+                    <Button type="submit" variant="outlined" fullWidth>
                         {translate("next")}
                     </Button>
                 </Col>
             </Form>
-        </ControlledSuspense>
+        </Suspense>
     );
 };
 

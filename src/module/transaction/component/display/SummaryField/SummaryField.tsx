@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import { SummaryText } from "./SummaryField.styles";
 
 export interface SummaryFieldProps {

@@ -4,7 +4,7 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
-import { useDialog, useModal } from "react-native-components";
+import { useDialog, useModal } from "@peersyst/react-native-components";
 import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { useQueryClient } from "react-query";
 

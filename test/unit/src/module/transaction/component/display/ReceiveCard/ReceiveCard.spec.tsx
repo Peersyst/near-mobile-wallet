@@ -1,8 +1,7 @@
 import ReceiveCard from "module/transaction/component/display/ReceiveCard/ReceiveCard";
 import { fireEvent, render } from "test-utils";
 import * as Clipboard from "expo-clipboard";
-import * as UseToast from "module/common/component/base/feedback/ToastProvider/hooks/useToast";
-import * as UseModal from "module/common/component/base/feedback/ModalProvider/hooks/useModal";
+import * as Genesys from "@peersyst/react-native-components";
 import * as UseSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import { translate } from "locale";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
@@ -32,7 +31,7 @@ describe("Test for the receive Card", () => {
     });
     test("Copies address correctly", () => {
         const showToast = jest.fn();
-        jest.spyOn(UseToast, "useToast").mockReturnValue({ showToast, hideToast: jest.fn(), toastActive: false });
+        jest.spyOn(Genesys, "useToast").mockReturnValue({ showToast, hideToast: jest.fn(), toastActive: false });
         jest.spyOn(Clipboard, "setString");
         const screen = render(<ReceiveCard />);
         const icon = screen.getByTestId("FilledCopyIcon");
@@ -43,7 +42,7 @@ describe("Test for the receive Card", () => {
     });
     test("Hides modal correctly", () => {
         const hideModal = jest.fn();
-        jest.spyOn(UseModal, "useModal").mockReturnValue({ hideModal } as any);
+        jest.spyOn(Genesys, "useModal").mockReturnValue({ hideModal } as any);
         const screen = render(<ReceiveCard />);
         expect(screen.getByText(ADDRESS_MOCK)).toBeDefined();
         const text = screen.getByText(translate("go_back"));
