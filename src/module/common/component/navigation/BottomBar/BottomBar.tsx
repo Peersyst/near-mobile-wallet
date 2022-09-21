@@ -19,15 +19,15 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
     return (
         <BottomBarRoot>
             <BottomBarItem
-                onPress={() => handleNavigation(MainBottomScreens.DAO)}
-                isActive={activeTab === MainBottomScreens.DAO}
-                label={translate("DAO")}
+                onPress={() => handleNavigation(MainBottomScreens.STAKING)}
+                isActive={activeTab === MainBottomScreens.STAKING}
+                label={translate("staking")}
                 Icon={<DatabaseIcon />}
             />
             <BottomBarItem
                 onPress={() => handleNavigation(MainBottomScreens.HOME)}
                 isActive={activeTab === MainBottomScreens.HOME}
-                label={translate("news")}
+                label={translate("wallet")}
                 Icon={<NearIcon />}
             />
             <BottomBarItem
