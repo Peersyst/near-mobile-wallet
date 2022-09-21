@@ -32,6 +32,7 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
                 onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,
             }}
             onExited={handleExited}
+            scrollable
             {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>

@@ -26,7 +26,7 @@ const WalletMnemonicScreen = ({ onNextScreen }: WalletMnemonicScreenProps): JSX.
 
     return (
         <Col flex={1} gap={30} justifyContent="flex-end">
-            <Card>
+            <Card style={{ marginTop: 5 }}>
                 <Col gap={30}>
                     <Typography variant="h3" fontWeight="bold" textTransform="uppercase" textAlign="center">
                         {translate("keep_this_safe")}

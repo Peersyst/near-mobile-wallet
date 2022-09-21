@@ -15,7 +15,7 @@ const PickWalletMnemonicScreen = ({ onSubmit }: PickWalletMnemonicScreenProps): 
     const { showToast } = useToast();
 
     return (
-        <Card style={{ flex: 1 }}>
+        <Card style={{ flex: 1, marginTop: 5 }}>
             <Col gap={30}>
                 <Typography variant="h3" fontWeight="bold" textTransform="uppercase" textAlign="center">
                     {translate("select_in_order")}
