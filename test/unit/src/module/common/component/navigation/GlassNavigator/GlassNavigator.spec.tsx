@@ -1,13 +1,13 @@
 import { render } from "test-utils";
-import GlassNavigator from "module/common/component/navigation/GlassNavigator/GlassNavigator";
+import MainNavigator from "module/common/component/navigation/MainNavigator/MainNavigator";
 import { Typography } from "@peersyst/react-native-components";
 
-describe("GlassNavigator tests", () => {
+describe("MainNavigator tests", () => {
     test("Renders correctly", () => {
         const screen = render(
-            <GlassNavigator>
+            <MainNavigator>
                 <Typography variant="body1">Glass content</Typography>
-            </GlassNavigator>,
+            </MainNavigator>,
         );
 
         expect(screen.getByText("Glass content")).toBeDefined();
@@ -15,9 +15,9 @@ describe("GlassNavigator tests", () => {
 
     test("Renders navbar and breadcrumbs", () => {
         const screen = render(
-            <GlassNavigator navbar={{ title: "Navbar title" }} breadcrumbs={{ length: 2, index: 0 }}>
+            <MainNavigator navbar={{ title: "Navbar title" }} breadcrumbs={{ length: 2, index: 0 }}>
                 <Typography variant="body1">Glass content</Typography>
-            </GlassNavigator>,
+            </MainNavigator>,
         );
 
         //Content

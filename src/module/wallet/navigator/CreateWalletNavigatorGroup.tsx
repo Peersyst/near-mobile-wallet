@@ -10,7 +10,7 @@ import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import { useBackHandler } from "@react-native-community/hooks";
-import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
+import MainNavigatorModal from "module/common/component/navigation/MainNavigatorModal/MainNavigatorModal";
 import { useResetRecoilState } from "recoil";
 import createWalletState from "module/wallet/state/CreateWalletState";
 
@@ -74,7 +74,7 @@ const CreateWalletNavigatorGroup = () => {
 
     return (
         <Tabs index={activeTab} onIndexChange={handleTabChange}>
-            <GlassNavigatorModal
+            <MainNavigatorModal
                 onClose={() => setShowGlass(false)}
                 open={showGlass}
                 onExited={handleGlassExit}
@@ -100,7 +100,7 @@ const CreateWalletNavigatorGroup = () => {
                 <TabPanel index={CreateWalletScreens.PICK_WALLET_MNEMONIC}>
                     <PickWalletMnemonicScreen onSubmit={() => handleTabChange(CreateWalletScreens.CREATE_WALLET_SUCCESS)} />
                 </TabPanel>
-            </GlassNavigatorModal>
+            </MainNavigatorModal>
             <TabPanel index={CreateWalletScreens.SET_WALLET_PIN}>
                 <SetWalletPinScreen
                     onSuccess={() => handleTabChange(CreateWalletScreens.WALLET_ADVISES)}

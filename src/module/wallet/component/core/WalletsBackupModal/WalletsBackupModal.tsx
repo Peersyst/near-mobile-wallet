@@ -1,5 +1,5 @@
 import { createModal, TabPanel, Tabs } from "@peersyst/react-native-components";
-import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
+import MainNavigatorModal from "module/common/component/navigation/MainNavigatorModal/MainNavigatorModal";
 import { translate } from "locale";
 import WalletsBackupAdvise from "module/wallet/component/core/WalletsBackupModal/WalletsBackupAdvise/WalletsBackupAdvise";
 import { useState } from "react";
@@ -28,7 +28,7 @@ const WalletsBackupModal = createModal((props): JSX.Element => {
     };
 
     return (
-        <GlassNavigatorModal
+        <MainNavigatorModal
             navbar={{ title: translate("back_up_your_wallets"), back: index === 0 }}
             open={open}
             onClose={() => setOpen(false)}
@@ -43,7 +43,7 @@ const WalletsBackupModal = createModal((props): JSX.Element => {
                 </TabPanel>
                 <ConfirmPinModal open={showPin} onPinConfirmed={handlePinConfirmed} onClose={handlePinClose} />
             </Tabs>
-        </GlassNavigatorModal>
+        </MainNavigatorModal>
     );
 });
 

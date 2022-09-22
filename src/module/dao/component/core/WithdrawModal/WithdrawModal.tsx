@@ -1,7 +1,7 @@
 import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
 import { translate } from "locale";
 import { useState } from "react";
-import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
+import MainNavigatorModal from "module/common/component/navigation/MainNavigatorModal/MainNavigatorModal";
 import SelectAccountAndDepositScreen from "module/dao/screen/SelectAccountAndDepositScreen/SelectAccountAndDepositScreen";
 import WithdrawConfirmationScreen from "module/dao/screen/WithdrawConfirmationScreen/WithdrawConfirmationScreen";
 import { FeeRate } from "ckb-peersyst-sdk";
@@ -26,7 +26,7 @@ const WithdrawModal = createBackdrop((props: ExposedBackdropProps) => {
     const [withdrawInfo, setWithdrawInfo] = useState<WithdrawSummary>({ receiverIndex: 0, depositIndex: 0 });
 
     return (
-        <GlassNavigatorModal
+        <MainNavigatorModal
             breadcrumbs={{ length: WithdrawScreens.__LENGTH, index: activeIndex }}
             navbar={{
                 back: true,
@@ -43,7 +43,7 @@ const WithdrawModal = createBackdrop((props: ExposedBackdropProps) => {
                     <WithdrawConfirmationScreen withdrawInfo={withdrawInfo} />
                 </TabPanel>
             </Tabs>
-        </GlassNavigatorModal>
+        </MainNavigatorModal>
     );
 });
 

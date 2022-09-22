@@ -4,7 +4,7 @@ import LogoRow from "../../display/Logos/LogoRow/LogoRow";
 import { BackIcon } from "icons";
 import useNavigation from "../../../hook/useNavigation";
 
-const Navbar = ({ back, title, logo = false, onBack }: NavbarProps): JSX.Element => {
+const Navbar = ({ back, title, onBack }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
     const goBack = () => {
         if (navigation.canGoBack()) {
@@ -19,7 +19,6 @@ const Navbar = ({ back, title, logo = false, onBack }: NavbarProps): JSX.Element
                     <BackIcon />
                 </BackIconRoot>
             )}
-            {logo && <LogoRow />}
             {title && <Title variant="h2">{title}</Title>}
         </NavbarRoot>
     );
