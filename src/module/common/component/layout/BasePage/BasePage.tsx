@@ -6,7 +6,7 @@ import { StatusBar } from "@peersyst/react-native-components";
 import darkTheme from "config/theme/darkTheme";
 import lightTheme from "config/theme/lightTheme";
 
-const BasePage = ({ children, appearance: appearanceProp, header = true, showIcons }: BasePageProps): JSX.Element => {
+const BasePage = ({ children, appearance: appearanceProp, header = true }: BasePageProps): JSX.Element => {
     const {
         palette: { mode },
     } = useTheme();
@@ -16,7 +16,7 @@ const BasePage = ({ children, appearance: appearanceProp, header = true, showIco
     return (
         <ThemeProvider theme={appearance === "light" ? lightTheme : darkTheme}>
             <BasePageRoot>
-                {header && <Header showIcons={showIcons} />}
+                {header && <Header />}
                 <BasePageContent header={header}>{children}</BasePageContent>
             </BasePageRoot>
             <StatusBar />

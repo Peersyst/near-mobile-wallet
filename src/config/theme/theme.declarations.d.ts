@@ -7,6 +7,7 @@ declare module "@peersyst/react-native-components" {
     export interface ThemePalette {
         // CKBULL
         white: string;
+        slate: string;
         black: string;
         darkGray: string;
         darkLightGray: string;
