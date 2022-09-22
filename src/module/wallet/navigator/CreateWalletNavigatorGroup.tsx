@@ -79,8 +79,7 @@ const CreateWalletNavigatorGroup = () => {
                 onClose={() => setShowGlass(false)}
                 open={showGlass}
                 onExited={handleGlassExit}
-                navbar={{ back: true, title: translate("create_wallet"), onBack: handleBack }}
-                breadcrumbs={{ index: activeTab, length: 4 }}
+                navbar={{ back: true, title: translate("create_wallet"), onBack: handleBack, index: activeTab, length: 4 }}
                 renderBackdrop={false}
             >
                 <TabPanel index={CreateWalletScreens.SET_WALLET_NAME}>

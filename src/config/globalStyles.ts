@@ -12,7 +12,6 @@ const globalStyles: CreateGlobalStyles = ({ theme }) => ({
     },
     Divider: {
         backgroundColor: theme.palette.overlay["8%"],
-        height: 1,
     },
 });
 

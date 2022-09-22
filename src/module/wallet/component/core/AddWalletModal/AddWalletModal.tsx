@@ -60,14 +60,7 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
     };
 
     return (
-        <MainNavigatorModal
-            scrollable={true}
-            open={open}
-            onClose={handleClose}
-            navbar={{ back: true, title, onBack }}
-            onExited={handleExited}
-            {...rest}
-        >
+        <MainNavigatorModal open={open} onClose={handleClose} navbar={{ back: true, title, onBack }} onExited={handleExited} {...rest}>
             {renderProps(handleWalletCreation)}
         </MainNavigatorModal>
     );

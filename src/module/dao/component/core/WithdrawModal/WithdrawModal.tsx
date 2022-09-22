@@ -27,8 +27,9 @@ const WithdrawModal = createBackdrop((props: ExposedBackdropProps) => {
     const translate = useTranslate();
     return (
         <MainNavigatorModal
-            breadcrumbs={{ length: WithdrawScreens.__LENGTH, index: activeIndex }}
             navbar={{
+                length: WithdrawScreens.__LENGTH,
+                index: activeIndex,
                 back: true,
                 title: translate("withdraw"),
                 onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,

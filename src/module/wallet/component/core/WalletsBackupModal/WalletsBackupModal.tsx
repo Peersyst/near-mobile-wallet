@@ -1,6 +1,5 @@
 import { createModal, TabPanel, Tabs } from "@peersyst/react-native-components";
 import MainNavigatorModal from "module/common/component/navigation/MainNavigatorModal/MainNavigatorModal";
-import { translate } from "locale";
 import WalletsBackupAdvise from "module/wallet/component/core/WalletsBackupModal/WalletsBackupAdvise/WalletsBackupAdvise";
 import { useState } from "react";
 import WalletMnemonicBackup from "module/wallet/component/core/WalletsBackupModal/WalletMnemonicBackup/WalletMnemonicBackup";

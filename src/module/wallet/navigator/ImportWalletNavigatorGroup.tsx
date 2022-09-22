@@ -71,8 +71,7 @@ const ImportWalletNavigatorGroup = () => {
                 onClose={() => setShowGlass(false)}
                 open={showGlass}
                 onExited={handleGlassExit}
-                navbar={{ back: true, title: translate("import_wallet"), onBack: handleBack }}
-                breadcrumbs={{ index: activeTab, length: 3 }}
+                navbar={{ back: true, title: translate("import_wallet"), onBack: handleBack, index: activeTab, length: 3 }}
             >
                 <TabPanel index={ImportWalletScreens.SET_WALLET_NAME}>
                     <SetWalletNameScreen
