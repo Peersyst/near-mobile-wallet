@@ -7,7 +7,6 @@ const MainNavigatorModal = ({
     children,
     style,
     closable = true,
-    scrollable,
     ...backdropProps
 }: ExposedBackdropProps & MainNavigatorProps): JSX.Element => {
     const { height } = useWindowDimensions();
@@ -20,8 +19,7 @@ const MainNavigatorModal = ({
                         onBack: onBack || (() => setOpen(false)),
                         ...restNavProps,
                     }}
-                    style={{ height: height * 0.9, ...style }}
-                    scrollable={scrollable}
+                    style={{ height: "90%", ...style }}
                 >
                     {children}
                 </MainNavigator>

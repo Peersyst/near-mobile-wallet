@@ -1,28 +1,31 @@
 import { NavbarProps } from "module/common/component/navigation/Navbar/Navbar.types";
-import { BreadcrumbsProps } from "module/common/component/display/Breadcrumbs/Breadcrumbs.types";
 import { ReactNode } from "react";
 import Navbar from "module/common/component/navigation/Navbar/Navbar";
-import { ScrollView } from "react-native";
 import { ViewStyle } from "react-native";
-import { MainNavigatorContent, MainNavigatorDivider, MainNavigatorNavWrapper, MainNavigatorRoot } from "./MainNavigator.styles";
+import { MainNavigatorContent, MainNavigatorNavWrapper, MainNavigatorRoot } from "./MainNavigator.styles";
 import { Divider } from "@peersyst/react-native-components";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export interface MainNavigatorProps {
     navbar?: NavbarProps;
     children?: ReactNode;
-    scrollable?: boolean;
     style?: ViewStyle;
 }
 
-const MainNavigator = ({ navbar: navbarProps, children, scrollable, style }: MainNavigatorProps): JSX.Element => (
-    <MainNavigatorRoot style={style}>
+const MainNavigator = ({ navbar: navbarProps, children, style }: MainNavigatorProps): JSX.Element => (
+    <MainNavigatorRoot style={style} onStartShouldSetResponder={() => true}>
         <MainNavigatorNavWrapper>{navbarProps && <Navbar {...navbarProps} />}</MainNavigatorNavWrapper>
         <Divider />
-        <ScrollView contentContainerStyle={!scrollable && { flex: 1, justifyContent: "flex-end" }} scrollEnabled={!!scrollable}>
-            <MainNavigatorContent onStartShouldSetResponder={() => true} flex={1} justifyContent="flex-end">
+        <KeyboardAwareScrollView
+            style={{ flex: 1 }}
+            keyboardShouldPersistTaps="handled"
+            enableOnAndroid={true}
+            alwaysBounceVertical={false}
+        >
+            <MainNavigatorContent flex={1} justifyContent="flex-end">
                 {children}
             </MainNavigatorContent>
-        </ScrollView>
+        </KeyboardAwareScrollView>
     </MainNavigatorRoot>
 );
 

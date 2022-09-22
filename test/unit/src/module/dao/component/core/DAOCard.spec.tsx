@@ -1,6 +1,5 @@
-import { translate } from "locale";
 import DAOCard from "module/dao/component/core/DAOAccountCard/DAOCard";
-import { render, SuccessApiCall } from "test-utils";
+import { render, SuccessApiCall, translate } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
 import { MockedDAOBalance } from "mocks/DAO";
 import * as UseWalletState from "module/wallet/hook/useWalletState";

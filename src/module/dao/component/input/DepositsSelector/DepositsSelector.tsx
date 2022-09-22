@@ -1,6 +1,5 @@
 import { DAOUnlockableAmount } from "ckb-peersyst-sdk";
 import { useControlled } from "@peersyst/react-hooks";
-import { translate } from "locale";
 import { Suspense } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { Typography } from "@peersyst/react-native-components";
@@ -8,6 +7,7 @@ import DepositItem from "./DepositItem";
 import { DepositItemText } from "./DepositItem.styles";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 import Select, { SelectProps } from "module/common/component/input/Select/Select";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 interface DepositsSelectorProps
     extends Omit<SelectProps<number>, "options" | "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple"> {
@@ -15,6 +15,7 @@ interface DepositsSelectorProps
 }
 
 const EmptyDepositsComponent = () => {
+    const translate = useTranslate();
     return (
         <Typography variant="body1" textAlign="center" fontWeight="bold" style={{ marginVertical: 4 }}>
             {translate("no_deposits")}
@@ -24,6 +25,7 @@ const EmptyDepositsComponent = () => {
 
 const DepositsSelector = ({ deposits, value, onChange, ...rest }: DepositsSelectorProps): JSX.Element => {
     const [selectedIndex, setSelectedIndex] = useControlled(0, value as number, onChange);
+    const translate = useTranslate();
     const handleItemChange = (i: unknown) => {
         setSelectedIndex(i as number);
     };

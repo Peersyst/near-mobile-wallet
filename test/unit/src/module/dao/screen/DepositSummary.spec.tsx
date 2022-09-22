@@ -1,7 +1,6 @@
 import { formatHash } from "@peersyst/react-utils";
-import { translate } from "locale";
 import DepositSummary from "module/dao/screen/DepositConfirmationScreen/DepositSummary";
-import { render, SuccessApiCall, waitFor } from "test-utils";
+import { render, SuccessApiCall, waitFor, translate } from "test-utils";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { MockedDAOBalance } from "mocks/DAO";

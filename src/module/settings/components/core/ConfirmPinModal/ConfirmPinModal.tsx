@@ -1,10 +1,10 @@
-import { translate } from "locale";
 import NumericPad from "module/common/component/input/NumericPad/NumericPad";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useState } from "react";
 import { Animated, createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import BaseSettingsModalScreen from "../../layout/BaseSettingsModal/BaseSettingsModal";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { duration: 200, appear: true });
 
@@ -19,7 +19,7 @@ const ConfirmPinModal = createBackdrop(
         const [error, setError] = useState<boolean>(false);
         const [open, setOpen] = useState(true);
         const [success, setSuccess] = useState(false);
-
+        const translate = useTranslate();
         const handleSubmit = async (pin: string) => {
             const storedPin = await WalletStorage.getPin();
             if (pin === storedPin) {

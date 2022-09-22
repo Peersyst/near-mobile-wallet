@@ -1,14 +1,15 @@
 import { DAOWithdrawIcon, DAODepositIcon } from "icons";
-import { translate } from "locale";
 import { useModal } from "@peersyst/react-native-components";
 import CardButtons from "module/common/component/input/CardButtons/CardButtons";
 import DepositModal from "../../DepositModal/DepositModal";
 import WithdrawModal from "../../WithdrawModal/WithdrawModal";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const CARD_BUTTON_ICON_SIZE = 24;
 
 const DAOCardButtons = (): JSX.Element => {
     const { showModal } = useModal();
+    const translate = useTranslate();
     return (
         <CardButtons
             //Left props

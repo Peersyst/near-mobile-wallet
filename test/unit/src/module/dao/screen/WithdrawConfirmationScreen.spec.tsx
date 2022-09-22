@@ -1,5 +1,4 @@
-import { render, SuccessApiCall } from "test-utils";
-import { translate } from "locale";
+import { render, SuccessApiCall, translate } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";

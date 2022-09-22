@@ -5,8 +5,10 @@ import WalletsBackupAdvise from "module/wallet/component/core/WalletsBackupModal
 import { useState } from "react";
 import WalletMnemonicBackup from "module/wallet/component/core/WalletsBackupModal/WalletMnemonicBackup/WalletMnemonicBackup";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const WalletsBackupModal = createModal((props): JSX.Element => {
+    const translate = useTranslate();
     const [open, setOpen] = useState(true);
     const [showPin, setShowPin] = useState(false);
     const [index, setIndex] = useState(0);

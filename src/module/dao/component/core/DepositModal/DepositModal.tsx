@@ -1,5 +1,4 @@
 import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
-import { translate } from "locale";
 import { useState } from "react";
 import MainNavigatorModal from "module/common/component/navigation/MainNavigatorModal/MainNavigatorModal";
 import { useResetRecoilState } from "recoil";
@@ -7,6 +6,7 @@ import sendState from "module/transaction/state/SendState";
 import DepositSelectAccountScreen from "module/dao/screen/DepositSelectAccountScreen/DepositSelectAccountScreen";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScreen/DepositConfirmationScreen";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export enum DepositScreens {
     SELECT_ACCOUNT,
@@ -17,7 +17,7 @@ export enum DepositScreens {
 const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
     const [activeIndex, setActiveIndex] = useState(DepositScreens.SELECT_ACCOUNT);
     const resetSendState = useResetRecoilState(sendState);
-
+    const translate = useTranslate();
     const handleExited = () => {
         onExited?.();
         resetSendState();
