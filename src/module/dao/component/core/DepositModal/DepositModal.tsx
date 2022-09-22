@@ -29,8 +29,9 @@ const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps
 
     return (
         <MainNavigatorModal
-            breadcrumbs={{ length: 3, index: activeIndex }}
             navbar={{
+                length: 3,
+                index: activeIndex,
                 back: true,
                 title: translate("deposit"),
                 onBack: activeIndex > 0 ? handleBack : undefined,
