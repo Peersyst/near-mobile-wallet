@@ -10,6 +10,10 @@ const globalStyles: CreateGlobalStyles = ({ theme }) => ({
     Paper: {
         backgroundColor: theme.palette.paper,
     },
+    Divider: {
+        backgroundColor: theme.palette.overlay["8%"],
+        height: 1,
+    },
 });
 
 export default globalStyles;

@@ -2,11 +2,11 @@ import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/
 import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
 import { translate } from "locale";
 import { useState } from "react";
-import MainNavigatorModal from "module/common/component/navigation/MainNavigatorModal/MainNavigatorModal";
 import { useResetRecoilState } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import SendConfirmationScreen from "module/transaction/screen/SendConfirmationScreen/SendConfirmationScreen";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
+import MainNavigatorModal from "module/common/component/navigation/MainNavigatorModal/MainNavigatorModal";
 
 export enum SendScreens {
     SEND_TO_ADDRESS,
@@ -25,10 +25,11 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
 
     return (
         <MainNavigatorModal
-            breadcrumbs={{ length: 3, index: activeIndex }}
             navbar={{
                 back: true,
                 title: translate("send"),
+                length: 3,
+                index: activeIndex,
                 onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,
             }}
             onExited={handleExited}

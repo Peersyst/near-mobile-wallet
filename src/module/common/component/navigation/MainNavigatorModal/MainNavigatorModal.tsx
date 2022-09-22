@@ -3,8 +3,7 @@ import MainNavigator, { MainNavigatorProps } from "module/common/component/navig
 import { useWindowDimensions } from "react-native";
 
 const MainNavigatorModal = ({
-    breadcrumbs,
-    navbar: { back, onBack, title } = {},
+    navbar: { back, onBack, ...restNavProps } = {},
     children,
     style,
     closable = true,
@@ -12,17 +11,14 @@ const MainNavigatorModal = ({
     ...backdropProps
 }: ExposedBackdropProps & MainNavigatorProps): JSX.Element => {
     const { height } = useWindowDimensions();
-
     return (
         <Backdrop closable={closable} {...backdropProps}>
             {(_open, setOpen) => (
                 <MainNavigator
-                    breadcrumbs={breadcrumbs}
                     navbar={{
                         back: back && closable,
-                        title,
-
                         onBack: onBack || (() => setOpen(false)),
+                        ...restNavProps,
                     }}
                     style={{ height: height * 0.9, ...style }}
                     scrollable={scrollable}

@@ -4,4 +4,6 @@ export interface NavbarProps {
     back?: ReactNode;
     onBack?: () => unknown;
     title?: string;
+    length?: number;
+    index?: number;
 }

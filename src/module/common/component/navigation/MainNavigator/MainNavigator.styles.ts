@@ -1,18 +1,29 @@
 import styled from "@peersyst/react-native-styled";
-import { Col } from "@peersyst/react-native-components";
-import { View } from "react-native";
+import { Col, Divider, Row } from "@peersyst/react-native-components";
+import { NavBarHeight } from "../Navbar/Navbar.styles";
 
-export const MainNavigatorRoot = styled(View)(() => ({
+export const MainNavHPadding = "3%";
+
+export const MainNavigatorRoot = styled(Col)(({ theme }) => ({
     position: "absolute",
     bottom: 0,
     width: "100%",
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    borderTopStartRadius: 30,
-    borderTopEndRadius: 30,
+    borderTopStartRadius: theme.borderRadius,
+    borderTopEndRadius: theme.borderRadius,
+    backgroundColor: theme.palette.background,
+}));
+
+export const MainNavigatorNavWrapper = styled(Row)(() => ({
+    paddingVertical: (90 - NavBarHeight) / 2,
+    paddingHorizontal: MainNavHPadding,
 }));
 
 export const MainNavigatorContent = styled(Col)(() => ({
-    paddingBottom: 40,
-    paddingHorizontal: 20,
+    paddingBottom: 20,
+    paddingHorizontal: MainNavHPadding,
+}));
+
+export const MainNavigatorDivider = styled(Divider)(({ theme }) => ({
+    backgroundColor: theme.palette.overlay["8%"],
+    height: 1,
 }));
