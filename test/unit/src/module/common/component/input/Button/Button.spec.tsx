@@ -7,7 +7,6 @@ describe("Button tests", () => {
     test("Renders correctly + outlined + dark appearance", () => {
         const screen = render(<Button>Press me</Button>);
         expect(screen.getByText("Press me")).toBeDefined();
-        expect(screen.getByRole("button").props.style.backgroundColor).toEqual(lightTheme.palette.black);
     });
     test("Renders correctly light appearance", () => {
         const screen = render(
