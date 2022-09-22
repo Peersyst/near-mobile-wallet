@@ -1,9 +1,9 @@
-import { translate } from "locale";
 import { useState } from "react";
 import { Animated } from "@peersyst/react-native-components";
 import NumericPad from "../NumericPad/NumericPad";
 import { NumericPadProps } from "../NumericPad/NumericPad.types";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface RepeatingPinProps extends Omit<NumericPadProps, "onSubmit" | "error" | "style"> {
     onSuccess: NumericPadProps["onSubmit"];
@@ -14,7 +14,7 @@ const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { d
 const RepeatNumericPad = ({ onSuccess, onCancel, placeholder }: RepeatingPinProps) => {
     const [pin, setPin] = useState<string>();
     const [error, setError] = useState(false);
-
+    const translate = useTranslate();
     const handlePinSubmit = (p: string) => {
         setPin(p);
     };

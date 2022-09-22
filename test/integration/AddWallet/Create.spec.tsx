@@ -1,7 +1,6 @@
-import { render, SuccessApiCall, wait } from "test-utils";
+import { render, SuccessApiCall, wait, translate } from "test-utils";
 import CreateWalletModal from "module/wallet/component/core/CreateWalletModal/CreateWalletModal";
 import { fireEvent, waitFor } from "@testing-library/react-native";
-import { translate } from "locale";
 import { act } from "react-dom/test-utils";
 import { StorageWallet, WalletStorage } from "module/wallet/WalletStorage";
 import * as UseWalletState from "module/wallet/hook/useWalletState";

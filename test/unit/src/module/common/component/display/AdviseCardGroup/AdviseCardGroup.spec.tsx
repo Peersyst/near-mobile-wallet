@@ -1,7 +1,6 @@
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import AdviseCardGroup from "module/common/component/display/AdviseCardGroup/AdviseCardGroup";
 import { act, fireEvent } from "@testing-library/react-native";
-import { translate } from "locale";
 
 describe("AdviseCardGroup tests", () => {
     test("Renders correctly", () => {

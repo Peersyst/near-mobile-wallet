@@ -1,7 +1,6 @@
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
 import { createTransaction, transaction } from "mocks/transaction";
-import { translate } from "locale";
 import { TransactionType } from "ckb-peersyst-sdk";
 import * as Recoil from "recoil";
 import * as useGetTokenPrice from "module/token/query/useGetTokenPrice";

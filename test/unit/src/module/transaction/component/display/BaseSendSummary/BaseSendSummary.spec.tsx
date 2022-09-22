@@ -1,7 +1,6 @@
-import { translate } from "locale";
 import BaseSendSummary from "module/transaction/component/display/BaseSendSummary/BaseSendSummary";
 import { Typography } from "@peersyst/react-native-components";
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 
 describe("Test for the BaseSendSummary", () => {
     test("Renders correctly", () => {

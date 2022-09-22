@@ -2,7 +2,7 @@ import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import MnemonicPicker from "module/wallet/component/input/MnemonicPicker/MnemonicPicker";
 import Card from "module/common/component/surface/Card/Card";
 import { Col, Typography, useToast } from "@peersyst/react-native-components";
-import { translate } from "locale";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface PickWalletMnemonicScreenProps {
     onSubmit: () => void;
@@ -13,9 +13,9 @@ const PickWalletMnemonicScreen = ({ onSubmit }: PickWalletMnemonicScreenProps): 
         state: { mnemonic },
     } = useCreateWallet();
     const { showToast } = useToast();
-
+    const translate = useTranslate();
     return (
-        <Card style={{ flex: 1 }}>
+        <Card style={{ flex: 1, marginTop: 5 }}>
             <Col gap={30}>
                 <Typography variant="h3" fontWeight="bold" textTransform="uppercase" textAlign="center">
                     {translate("select_in_order")}
