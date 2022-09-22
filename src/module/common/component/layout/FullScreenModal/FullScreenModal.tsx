@@ -1,19 +1,10 @@
-import { useTheme } from "@peersyst/react-native-styled";
 import Navbar from "../../navigation/Navbar/Navbar";
 import Toolbar from "../Toolbar/Toolbar";
 import { FullScreenModalProps } from "./FullScreenModal.types";
 import BasePage from "../BasePage/BasePage";
 import { Backdrop } from "@peersyst/react-native-components";
 
-const FullScreenModal = ({
-    children,
-    appearance: appearanceProp,
-    logo,
-    title,
-    back,
-    closable = true,
-    ...rest
-}: FullScreenModalProps): JSX.Element => {
+const FullScreenModal = ({ children, logo, title, back, closable = true, ...rest }: FullScreenModalProps): JSX.Element => {
     const navbarProps = { logo, title, back };
 
     return (
