@@ -5,6 +5,6 @@ declare module "@peersyst/react-native-components" {
         filled: false;
         primary: true;
         secondary: true;
-        terciary: true;
+        tertiary: true;
     }
 }

@@ -1,4 +1,4 @@
-import { useLogoPageFlex } from "module/common/component/layout/LogoPage/LogoPageContext";
+import { useLogoPageFlex, useLogoPageGradient } from "module/common/component/layout/LogoPage/LogoPageContext";
 import { TabPanel, Tabs, useTabs } from "@peersyst/react-native-components";
 import { useState } from "react";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
@@ -31,6 +31,7 @@ const CreateWalletNavigatorGroup = () => {
     const [showPin, setShowPin] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     useLogoPageFlex(showPin ? 0.1 : showSuccess ? 1 : 0.4);
+    useLogoPageGradient(false);
     useBackHandler(() => {
         handleBack();
         return true;
