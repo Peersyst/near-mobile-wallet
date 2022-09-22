@@ -4,10 +4,17 @@ import { fireEvent } from "@testing-library/react-native";
 import * as Navigation from "@react-navigation/native";
 
 describe("Test for the Navbar", () => {
-    test("Renders correctly text variant", () => {
+    test("Renders correctly with title & back", () => {
         const screen = render(<Navbar back title="Info" />);
         expect(screen.getByText("Info"));
         expect(screen.getByTestId("BackIcon"));
+    });
+    test("Renders correctly with pagination", () => {
+        const screen = render(<Navbar back title="Info" length={3} index={0} />);
+        expect(screen.getByText("Info"));
+        expect(screen.getByTestId("BackIcon"));
+        expect(screen.getByText("1 /"));
+        expect(screen.getByText("3"));
     });
     test("Go back click works correctly", () => {
         const mockedNavigation = jest.fn();

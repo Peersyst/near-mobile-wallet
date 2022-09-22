@@ -6,25 +6,26 @@ describe("MainNavigator tests", () => {
     test("Renders correctly", () => {
         const screen = render(
             <MainNavigator>
-                <Typography variant="body1">Glass content</Typography>
+                <Typography variant="body1">Main content</Typography>
             </MainNavigator>,
         );
 
-        expect(screen.getByText("Glass content")).toBeDefined();
+        expect(screen.getByText("Main content")).toBeDefined();
     });
 
     test("Renders navbar and breadcrumbs", () => {
         const screen = render(
-            <MainNavigator navbar={{ title: "Navbar title" }} breadcrumbs={{ length: 2, index: 0 }}>
-                <Typography variant="body1">Glass content</Typography>
+            <MainNavigator navbar={{ title: "Navbar title", length: 2, index: 0 }}>
+                <Typography variant="body1">Main content</Typography>
             </MainNavigator>,
         );
 
         //Content
-        expect(screen.getByText("Glass content")).toBeDefined();
+        expect(screen.getByText("Main content")).toBeDefined();
         // Navbar
         expect(screen.getByText("Navbar title")).toBeDefined();
         // Breadcrumbs
-        expect(screen.getByText("1")).toBeDefined();
+        expect(screen.getByText("1 /")).toBeDefined();
+        expect(screen.getByText("2")).toBeDefined();
     });
 });
