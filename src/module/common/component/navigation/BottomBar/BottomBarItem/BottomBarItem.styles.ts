@@ -4,11 +4,11 @@ import { Icon, Typography } from "@peersyst/react-native-components";
 import { LinkItemIconProps, LinkTextProps } from "../BottomBar.types";
 
 export const LinkItemText = styled(Typography, { textAlign: "center" })<LinkTextProps>(({ theme, isActive }) => ({
-    color: theme.palette.gray[isActive ? 600 : 300],
+    color: isActive ? theme.palette.gray[600] : theme.palette.overlay["40%"],
 }));
 
 export const LinkItemIcon = styled(Icon)<LinkItemIconProps>(({ theme, isActive }) => ({
-    color: theme.palette.gray[isActive ? 600 : 300],
+    color: isActive ? theme.palette.gray[600] : theme.palette.overlay["40%"],
     fontSize: 20,
 }));
 
