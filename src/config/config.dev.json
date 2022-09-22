@@ -1,6 +1,6 @@
 {
     "projectName": "near-mobile-wallet",
-    "backendUrl": "http://localhost:3001",
+    "backendUrl": "http://localhost:3002",
     "minimumTransactionAmount": 61,
     "minimumDaoDeposit": 102,
     "mainnetExplorerLink": "https://explorer.nervos.org/",
