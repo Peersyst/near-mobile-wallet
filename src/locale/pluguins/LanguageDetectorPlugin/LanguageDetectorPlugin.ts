@@ -4,7 +4,7 @@ import { LanguageDetectorAsyncModule } from "i18next";
 import { LocaleType } from "locale";
 
 export function getDefaultLocale(): LocaleType {
-    const locales: LocaleType[] = ["en", "es", "zh"];
+    const locales: LocaleType[] = ["en", "es"];
     const systemLocale = Localization.locale.slice(0, 2);
     return locales.find((l) => systemLocale === l) ?? "en";
 }

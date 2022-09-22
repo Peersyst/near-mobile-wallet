@@ -19,10 +19,6 @@ const SelectLocale = (): JSX.Element => {
             label: translate("en"),
             value: "en",
         },
-        {
-            label: translate("zh"),
-            value: "zh",
-        },
     ];
     const [settings, setSettings] = useRecoilState(settingsState);
 
