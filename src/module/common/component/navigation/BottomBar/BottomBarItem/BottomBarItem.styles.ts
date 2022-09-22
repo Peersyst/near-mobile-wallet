@@ -13,8 +13,5 @@ export const LinkItemIcon = styled(Icon)<LinkItemIconProps>(({ theme, isActive }
 }));
 
 export const BottomBarItemRoot = styled(Pressable)(() => ({
-    flexDirection: "column",
-    backgroundColor: "#fff",
-    width: 60,
-    alignItems: "center",
+    width: 56,
 }));
