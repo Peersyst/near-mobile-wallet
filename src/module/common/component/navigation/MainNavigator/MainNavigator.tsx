@@ -13,7 +13,7 @@ export interface MainNavigatorProps {
 }
 
 const MainNavigator = ({ navbar: navbarProps, children, style }: MainNavigatorProps): JSX.Element => (
-    <MainNavigatorRoot style={style} onStartShouldSetResponder={() => true}>
+    <MainNavigatorRoot style={style}>
         <MainNavigatorNavWrapper>{navbarProps && <Navbar {...navbarProps} />}</MainNavigatorNavWrapper>
         <Divider />
         <KeyboardAwareScrollView
