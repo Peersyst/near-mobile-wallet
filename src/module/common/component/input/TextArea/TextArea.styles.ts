@@ -3,16 +3,16 @@ import { TextArea } from "@peersyst/react-native-components";
 
 export const TextAreaRoot = styled(TextArea)(({ theme }) => ({
     component: {
-        borderRadius: 16,
-        backgroundColor: theme.palette.lighterGray,
-        borderColor: "transparent",
-        focused: {
-            borderColor: "transparent",
-        },
+        borderRadius: theme.borderRadiusSm,
+        backgroundColor: theme.palette.background,
+        color: theme.palette.text,
+        borderWidth: 1,
+        borderStyle: "solid",
+        borderColor: theme.palette.overlay["12%"],
         input: {
-            placeholderColor: theme.palette.darkGray,
-            highlightColor: theme.palette.text,
+            ...theme.typography.body2Strong,
+            placeholderColor: theme.palette.overlay["12%"],
+            highlightColor: theme.palette.primary,
         },
-        ...theme.shadows[7],
     },
 }));
