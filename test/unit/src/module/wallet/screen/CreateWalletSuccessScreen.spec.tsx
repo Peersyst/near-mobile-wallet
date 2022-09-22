@@ -1,7 +1,7 @@
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import * as Recoil from "recoil";
-import { render, SuccessApiCall } from "test-utils";
+import { render, SuccessApiCall, wait, act } from "test-utils";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
@@ -19,7 +19,6 @@ describe("CreateWalletSuccessScreen tests", () => {
     });
 
     test("Sets wallet and navigates to main screen", async () => {
-        jest.useFakeTimers();
         const walletState: CreateWalletState = { name: "wallet", pin: "1234", mnemonic: ["pizza", "watermelon", "lemon"], colorIndex: 0 };
         jest.spyOn(UseCreateWallet, "default").mockReturnValue({
             state: walletState,
@@ -37,14 +36,10 @@ describe("CreateWalletSuccessScreen tests", () => {
         jest.spyOn(Recoil, "useSetRecoilState").mockImplementation((state: any) => {
             return state.key === "wallet" ? setWalletState : setSettingsState;
         });
-
         const setSettingsStorage = jest.spyOn(SettingsStorage, "set").mockImplementation(() => new Promise((resolve) => resolve()));
-
         const setWalletStorage = jest.spyOn(WalletStorage, "setSecure").mockImplementation(() => new Promise((resolve) => resolve()));
-
         render(<CreateWalletSuccessScreen />);
-
-        jest.runAllTimers();
+        await act(() => wait(2000));
         expect(setWalletStorage).toHaveBeenCalledWith(
             expect.objectContaining({
                 pin: "1234",
@@ -54,6 +49,5 @@ describe("CreateWalletSuccessScreen tests", () => {
         expect(setSettingsStorage).toHaveBeenCalledWith(expect.objectContaining(defaultSettingsState));
         expect(setWalletState).toHaveBeenCalled();
         expect(setSettingsState).toHaveBeenCalled();
-        jest.useRealTimers();
     });
 });

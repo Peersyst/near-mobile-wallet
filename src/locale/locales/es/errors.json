@@ -1,0 +1,23 @@
+{
+    "somethingWentWrong": "Algo ha ido mal",
+    "sessionExpired": "Tu sesión ha expirado",
+    "500": "$t(somethingWentWrong)",
+    "401": "$t(sessionExpired)",
+    "invalid_not_null": "El campo es requerido",
+    "invalid_number": "Debes introducir un número",
+    "invalid_email": "Correo inválido",
+    "invalid_password": "La contraseña debe contener 8 carácteres, almenos 1 minúscula y una mayúscula y algún caracácter especial",
+    "invalid_equal": "Los campos no pueden ser iguales",
+    "invalid_number_gt": "El número no puede ser mayor a {{n}}",
+    "invalid_number_gte": "El número deber ser mayor a {{n}}",
+    "invalid_number_eq": "El número debe de ser igual a {{n}}",
+    "invalid_number_lt": "El número debe de ser menor a {{n}}",
+    "invalid_number_lte": "El número debe de ser menor o igual a {{n}}",
+    "invalid_required": "El campo es obligatorio",
+    "insufficient_chars": "El campo debe contener al menos {{chars}} carácteres",
+    "too_many_chars": "El campo debe contener menos de {{chars}} carácteres",
+    "invalid_start": "El campo debe empezar con {{start}}",
+    "invalid_end": "El campo debe terminar con {{end}}",
+    "nothingToShow": "No hay nada que mostrar",
+    "invalid_address": "Invalid address"
+}

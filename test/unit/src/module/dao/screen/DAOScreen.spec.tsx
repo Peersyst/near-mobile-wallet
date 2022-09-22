@@ -1,7 +1,6 @@
 import { MockedDAOBalance } from "mocks/DAO";
 import DAOScreen from "module/dao/screen/DAOScreen";
-import { render, SuccessApiCall } from "test-utils";
-import { translate } from "locale";
+import { render, SuccessApiCall, translate } from "test-utils";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";

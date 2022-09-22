@@ -1,10 +1,10 @@
 import { formatHash } from "@peersyst/react-utils";
-import { translate } from "locale";
 import { SummaryText } from "module/transaction/component/display/SummaryField/SummaryField.styles";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { Col } from "@peersyst/react-native-components";
 import BaseSendSummary, { BaseSendSummaryProps } from "../../../transaction/component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../../transaction/component/display/SummaryField/SummaryField";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface WithdrawSummaryProps extends BaseSendSummaryProps {
     receiverName: string;
@@ -14,6 +14,7 @@ export interface WithdrawSummaryProps extends BaseSendSummaryProps {
 }
 
 const WithdrawSummary = ({ amount, fee, receiverName, receiverAddress, depositAPC, compensation }: WithdrawSummaryProps): JSX.Element => {
+    const translate = useTranslate();
     return (
         <BaseSendSummary amount={amount} fee={fee}>
             <Col gap="3%" style={{ alignSelf: "flex-start" }}>

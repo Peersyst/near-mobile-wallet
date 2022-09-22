@@ -1,6 +1,5 @@
 import { Col, Typography, useModal } from "@peersyst/react-native-components";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
-import { translate } from "locale";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import useWalletState from "module/wallet/hook/useWalletState";
 import WithdrawModal, { WithdrawSummary as WithdrawSummaryType } from "module/dao/component/core/WithdrawModal/WithdrawModal";
@@ -13,6 +12,7 @@ import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 interface WithdrawConfirmationScreenProps {
     withdrawInfo: WithdrawSummaryType;
@@ -22,6 +22,7 @@ const WithdrawConfirmationScreen = ({
     withdrawInfo: { receiverIndex, depositIndex, feeRate },
 }: WithdrawConfirmationScreenProps): JSX.Element => {
     //Hooks
+    const translate = useTranslate();
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [loading, setLoading] = useState(false);
     const { hideModal } = useModal();

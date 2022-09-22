@@ -1,9 +1,9 @@
 import styled from "@peersyst/react-native-styled";
 import { BackIcon } from "icons";
-import { translate } from "locale";
 import useNavigation from "module/common/hook/useNavigation";
 import { Pressable, ViewStyle } from "react-native";
 import { IconButton, Typography } from "@peersyst/react-native-components";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const GoBackRoot = styled(Pressable)(() => ({
     justifyContent: "center",
@@ -23,6 +23,7 @@ export interface GoBackProps {
 
 const GoBack = ({ onBack, style }: GoBackProps): JSX.Element => {
     const navigation = useNavigation();
+    const translate = useTranslate();
     const goBack = () => {
         if (onBack) onBack();
         else if (navigation.canGoBack()) {

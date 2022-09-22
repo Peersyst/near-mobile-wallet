@@ -1,5 +1,4 @@
-import { translate } from "locale";
-import { fireEvent, render } from "test-utils";
+import { fireEvent, render, translate } from "test-utils";
 import UpdatePinModal from "module/settings/components/core/UpdatePinModal/UpdatePinModal";
 import { WalletStorage } from "module/wallet/WalletStorage";
 

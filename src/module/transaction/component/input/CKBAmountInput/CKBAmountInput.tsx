@@ -1,4 +1,3 @@
-import { translate } from "locale";
 import TextField from "module/common/component/input/TextField/TextField";
 import { CKBBalance } from "ckb-peersyst-sdk";
 import { Dispatch, SetStateAction } from "react";
@@ -6,6 +5,7 @@ import { NumericInput, Typography } from "@peersyst/react-native-components";
 import formatNumber from "utils/formatNumber";
 import { SendSetAmountScreenProps } from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 import { config } from "config";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 interface CKBAmountInputProps {
     amount: string;
@@ -17,6 +17,7 @@ interface CKBAmountInputProps {
 
 const CKBAmountInput = ({ amount, setAmount, freeBalance, fee, type = "send" }: CKBAmountInputProps): JSX.Element => {
     const isDAO = type === "dao";
+    const translate = useTranslate();
     return (
         <TextField
             variant="underlined"

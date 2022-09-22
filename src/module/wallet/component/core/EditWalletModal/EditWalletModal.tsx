@@ -14,9 +14,9 @@ import { EditWalletModalRoot } from "module/wallet/component/core/EditWalletModa
 import TextField from "module/common/component/input/TextField/TextField";
 import ColorPicker from "module/wallet/component/input/ColorPicker/ColorPicker";
 import { useTheme } from "@peersyst/react-native-styled";
-import { translate } from "locale";
 import { useState } from "react";
 import { WalletStorage } from "module/wallet/WalletStorage";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface EditWalletModalProps extends ExposedBackdropProps {
     index: number;
@@ -24,6 +24,7 @@ export interface EditWalletModalProps extends ExposedBackdropProps {
 
 const EditWalletModal = createModal(({ index, closable = true, onClose, ...backdropProps }: EditWalletModalProps): JSX.Element => {
     const [open, setOpen] = useState(true);
+    const translate = useTranslate();
     const { name, colorIndex } = useWallet(index);
     const {
         setName,
