@@ -13,8 +13,9 @@ export const HeaderRoot = styled(Toolbar)(({ theme }) => {
 });
 
 export const HeaderSettingsButton = styled(IconButton)(({ theme }) => {
+    const light = theme.palette.mode === "light";
     return {
-        color: theme.palette.gray[600],
+        color: theme.palette.gray[light ? 600 : 900],
         fontSize: 24,
     };
 });

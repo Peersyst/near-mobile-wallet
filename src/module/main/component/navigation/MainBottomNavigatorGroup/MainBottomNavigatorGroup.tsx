@@ -11,6 +11,7 @@ import SecuritySettingsScreen from "module/settings/screen/SecuritySettingsScree
 export enum MainBottomScreens {
     HOME = "Home",
     DAO = "DAO",
+    STAKING = "Staking",
     NEWS = "News",
     SETTINGS = "Settings",
     GENERAL_SETTINGS = "GeneralSettings",

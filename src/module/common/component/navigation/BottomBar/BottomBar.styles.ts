@@ -1,11 +1,11 @@
 import styled from "@peersyst/react-native-styled";
 import { Row } from "@peersyst/react-native-components";
 
-export const BottomBarRoot = styled(Row, { justifyContent: "space-around" })(({ theme }) => ({
-    ...theme.shadows[8],
-    backgroundColor: theme.palette.lighterGray,
-    borderTopWidth: 1.2,
-    borderTopColor: "rgba(0,0,0,0.05)",
-    paddingTop: 10,
-    paddingHorizontal: 20,
+export const BottomBarRoot = styled(Row, { justifyContent: "space-around", alignItems: "center" })(({ theme, safeAreaInsets }) => ({
+    backgroundColor: theme.palette.background,
+    borderTopWidth: 1,
+    borderTopColor: theme.palette.overlay["8%"],
+    paddingHorizontal: 32,
+    paddingBottom: safeAreaInsets.bottom + 10,
+    paddingTop: 13,
 }));
