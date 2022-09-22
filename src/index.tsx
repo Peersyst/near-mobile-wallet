@@ -6,7 +6,6 @@ import { Suspense } from "@peersyst/react-native-components";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { Platform, UIManager } from "react-native";
-import "./locale/i18n";
 
 if (typeof BigInt === "undefined") global.BigInt = require("big-integer");
 
