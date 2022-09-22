@@ -4,7 +4,7 @@ import { BaseSettingsModalScreenProps } from "./BaseSettingsModal.types";
 
 const BaseSettingsModalScreen = ({ children, ...rest }: BaseSettingsModalScreenProps): JSX.Element => {
     return (
-        <FullScreenModal {...rest} appearance={"dark"} back>
+        <FullScreenModal {...rest} back>
             <Col flex={1} justifyContent="center">
                 <Row flex={1} style={{ maxHeight: 500 }}>
                     {children}

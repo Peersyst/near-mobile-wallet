@@ -1,7 +1,4 @@
 import "core-js";
-// Load localization for translated assertions
-import { loadTestLocalization } from "./__mocks__/loadTestLocalization";
-loadTestLocalization();
 
 // Mock AsynStorage
 import mockAsyncStorage from "@react-native-async-storage/async-storage/jest/async-storage-mock";

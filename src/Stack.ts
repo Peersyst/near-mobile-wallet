@@ -10,6 +10,7 @@ export type MainStackParamsList = {
     SecuritySettings: undefined;
     DAO: undefined;
     News: undefined;
+    Staking: undefined;
 };
 export type RootStackParamsList = {
     //Auth

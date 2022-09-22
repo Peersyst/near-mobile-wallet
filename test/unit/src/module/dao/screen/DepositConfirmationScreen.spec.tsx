@@ -1,7 +1,6 @@
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
-import { translate } from "locale";
 import { formatHash } from "@peersyst/react-utils";
 import { mockedUseWallet } from "mocks/useWalletState";
 import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScreen/DepositConfirmationScreen";

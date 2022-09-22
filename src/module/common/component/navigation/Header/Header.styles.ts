@@ -1,16 +1,21 @@
+import { IconButton, Toolbar } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
-import { Paper } from "@peersyst/react-native-components";
 
-export const HEADER_PADDING_BOTTOM = 4;
-
-export const HeaderRoot = styled(Paper)(({ theme }) => {
+export const HeaderRoot = styled(Toolbar)(({ theme }) => {
     return {
-        paddingBottom: HEADER_PADDING_BOTTOM,
         zIndex: theme.zIndex.header,
-        backgroundColor: theme.palette.appbar,
+        backgroundColor: theme.palette.background,
         position: "absolute",
         top: 0,
         left: 0,
         width: "100%",
+    };
+});
+
+export const HeaderSettingsButton = styled(IconButton)(({ theme }) => {
+    const light = theme.palette.mode === "light";
+    return {
+        color: theme.palette.gray[light ? 600 : 900],
+        fontSize: 24,
     };
 });

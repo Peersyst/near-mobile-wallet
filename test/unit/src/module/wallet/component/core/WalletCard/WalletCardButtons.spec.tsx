@@ -1,5 +1,4 @@
-import { translate } from "locale";
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import { fireEvent } from "@testing-library/react-native";
 import * as Genesys from "@peersyst/react-native-components";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";

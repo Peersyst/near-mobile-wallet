@@ -1,9 +1,9 @@
 import { formatHash } from "@peersyst/react-utils";
-import { translate } from "locale";
 import { SendState } from "module/transaction/state/SendState";
 import { Col } from "@peersyst/react-native-components";
 import BaseSendSummary, { BaseSendSummaryProps } from "../../component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../component/display/SummaryField/SummaryField";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface SendSummaryProps extends BaseSendSummaryProps {
     senderName: string;
@@ -13,6 +13,7 @@ export interface SendSummaryProps extends BaseSendSummaryProps {
 }
 
 const SendSummary = ({ amount, fee, receiverAddress, message, senderName, senderAddress }: SendSummaryProps): JSX.Element => {
+    const translate = useTranslate();
     return (
         <BaseSendSummary amount={amount} fee={fee}>
             <Col gap="3%" style={{ alignSelf: "flex-start" }}>

@@ -1,8 +1,7 @@
 import { FeeRate } from "ckb-peersyst-sdk";
-import { LocaleType } from "locale";
-import getDefaultLocale from "locale/utils/getDefaultLocale";
 import { atom } from "recoil";
 import { Chain } from "module/common/service/CkbSdkService.types";
+import { getDefaultLocale, LocaleType } from "locale";
 
 export type FiatCurrencyType = "cny" | "usd" | "eur" | "jpy" | "gbp";
 

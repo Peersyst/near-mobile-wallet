@@ -1,7 +1,6 @@
-import { translate } from "locale";
 import { MockedUnlockableAmounts } from "mocks/DAO";
 import WithdrawButton from "module/dao/screen/SelectAccountAndDepositScreen/WithdrawButton";
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import * as UseUncommittedTransaction from "module/transaction/hook/useUncommittedTransaction";
 
 describe("Test for the withdraw button", () => {

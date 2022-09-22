@@ -1,11 +1,11 @@
 import "@peersyst/react-native-components";
 import { Validator } from "@peersyst/react-native-components";
 import { NetworkType } from "module/settings/state/SettingsState";
+import { TFunction } from "react-i18next";
 
 declare module "@peersyst/react-native-components" {
     export interface ConfigTypes {
-        // TODO: Add TranslateFn type
-        TranslateFn: any;
+        TranslateFn: TFunction<"error">;
     }
 
     export interface Config {

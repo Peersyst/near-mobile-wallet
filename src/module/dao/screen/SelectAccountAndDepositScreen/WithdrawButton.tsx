@@ -1,9 +1,10 @@
 import { DAOUnlockableAmount } from "ckb-peersyst-sdk";
-import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
-import formatTimeDAORemainingCycle from "module/transaction/component/utils/formatTimeDAORemainingCycle";
+
 import { Col, Typography } from "@peersyst/react-native-components";
 import useUncommittedTransaction from "module/transaction/hook/useUncommittedTransaction";
+import { useTranslate } from "module/common/hook/useTranslate";
+import useFormatTimeDAORemainingCycle from "module/transaction/component/hook/UseFormatTimeDAORemainingCycle/useFormatTimeDAORemaningCycle";
 
 export interface WithdrawButtonProps {
     unlockableDeposits: DAOUnlockableAmount[];
@@ -13,7 +14,9 @@ export interface WithdrawButtonProps {
 }
 
 const WithdrawButton = ({ unlockableDeposits, buttonLoading, selectedDeposit, errMsg }: WithdrawButtonProps) => {
+    const translate = useTranslate();
     const uncommittedTransaction = useUncommittedTransaction();
+    const formatTimeDAORemainingCycle = useFormatTimeDAORemainingCycle();
     const canContinue = unlockableDeposits[selectedDeposit]?.unlockable || unlockableDeposits[selectedDeposit]?.type === "deposit";
     return canContinue ? (
         <Col gap={8}>

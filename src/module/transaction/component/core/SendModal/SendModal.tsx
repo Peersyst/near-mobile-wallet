@@ -1,12 +1,12 @@
 import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
 import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
-import { translate } from "locale";
 import { useState } from "react";
 import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 import { useResetRecoilState } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import SendConfirmationScreen from "module/transaction/screen/SendConfirmationScreen/SendConfirmationScreen";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export enum SendScreens {
     SEND_TO_ADDRESS,
@@ -17,7 +17,7 @@ export enum SendScreens {
 const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
     const [activeIndex, setActiveIndex] = useState(SendScreens.SEND_TO_ADDRESS);
     const resetSendState = useResetRecoilState(sendState);
-
+    const translate = useTranslate();
     const handleExited = () => {
         onExited?.();
         resetSendState();

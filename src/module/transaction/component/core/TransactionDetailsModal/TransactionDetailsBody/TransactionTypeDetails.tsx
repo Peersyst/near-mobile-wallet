@@ -1,16 +1,17 @@
 import TransactionDetail from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionDetail";
-import { translate } from "locale";
 import { Row, Typography } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
 import { TransactionType } from "ckb-peersyst-sdk";
 import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface TransactionTypeDetailsProps {
     transaction: FullTransaction;
 }
 
 const TransactionTypeDetails = ({ transaction: { type, outputs, inputs } }: TransactionTypeDetailsProps): JSX.Element => {
+    const translate = useTranslate();
     if (type === TransactionType.SEND_CKB)
         return (
             <TransactionDetail title={translate("receiver")}>

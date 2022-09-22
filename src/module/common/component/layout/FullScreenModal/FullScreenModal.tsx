@@ -15,15 +15,11 @@ const FullScreenModal = ({
     ...rest
 }: FullScreenModalProps): JSX.Element => {
     const navbarProps = { logo, title, back };
-    const {
-        palette: { mode },
-    } = useTheme();
-    const appearance = appearanceProp || mode;
 
     return (
         <Backdrop closable={closable} {...rest}>
             {(_open, setOpen) => (
-                <BasePage appearance={appearance} header={false}>
+                <BasePage header={false}>
                     <Toolbar>{Object.entries(navbarProps).length > 0 && <Navbar onBack={() => setOpen(false)} {...navbarProps} />}</Toolbar>
                     {children}
                 </BasePage>
