@@ -3,7 +3,6 @@ import { TabPanel, Tabs, useTabs } from "@peersyst/react-native-components";
 import { useState } from "react";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
 import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
-import { translate } from "locale";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
 import ImportWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import { useBackHandler } from "@react-native-community/hooks";
@@ -12,6 +11,7 @@ import GlassNavigatorModal from "module/common/component/navigation/GlassNavigat
 import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen/WalletAdvisesScreen";
 import { useResetRecoilState } from "recoil";
 import createWalletState from "../state/CreateWalletState";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export enum ImportWalletScreens {
     SET_WALLET_NAME,
@@ -22,6 +22,7 @@ export enum ImportWalletScreens {
 }
 
 const ImportWalletNavigatorGroup = () => {
+    const translate = useTranslate();
     const [activeTab, setActiveTab] = useState(0);
     const setTab = useTabs()[1];
     const [showGlass, setShowGlass] = useState(true);

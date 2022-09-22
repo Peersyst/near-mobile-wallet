@@ -3,9 +3,10 @@ import { Col, Typography, useFormNotification } from "@peersyst/react-native-com
 import Card from "module/common/component/surface/Card/Card";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
 import TextField from "module/common/component/input/TextField/TextField";
-import { translate } from "locale";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export const MnemonicInput = (): JSX.Element => {
+    const translate = useTranslate();
     const [mnemonic, setMnemonic] = useState<string[]>([]);
     const [word, setWord] = useState("");
     useFormNotification("mnemonic", mnemonic, mnemonic.length === 12);

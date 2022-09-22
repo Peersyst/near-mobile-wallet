@@ -1,11 +1,12 @@
-import { translate } from "locale";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { FiatCurrencyType } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import { SelectOption } from "@peersyst/react-native-components";
 import Select from "module/common/component/input/Select/Select";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const SelectFiat = (): JSX.Element => {
+    const translate = useTranslate();
     const fiatOptions: SelectOption<FiatCurrencyType>[] = [
         {
             label: "USD",

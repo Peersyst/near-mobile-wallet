@@ -1,12 +1,13 @@
 import { FeeRate } from "ckb-peersyst-sdk";
-import { translate } from "locale";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { FeeType } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import Select from "module/common/component/input/Select/Select";
 import { SelectOption } from "@peersyst/react-native-components";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const SelectFee = (): JSX.Element => {
+    const translate = useTranslate();
     const feeOptions: SelectOption<FeeType>[] = [
         {
             label: translate("slow"),

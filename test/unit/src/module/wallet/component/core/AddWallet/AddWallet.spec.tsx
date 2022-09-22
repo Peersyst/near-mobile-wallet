@@ -1,8 +1,7 @@
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import Recoil from "recoil";
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import AddWallet from "module/wallet/component/core/AddWallet/AddWallet";
-import { translate } from "locale";
 import { fireEvent } from "@testing-library/react-native";
 import * as Genesys from "@peersyst/react-native-components";
 import CreateWalletModal from "module/wallet/component/core/CreateWalletModal/CreateWalletModal";

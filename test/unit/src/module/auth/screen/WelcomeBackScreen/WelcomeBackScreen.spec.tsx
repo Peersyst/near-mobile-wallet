@@ -1,6 +1,5 @@
 import WelcomeBackScreen from "module/auth/screen/WelcomeBackScreen/WelcomeBackScreen";
-import { render } from "test-utils";
-import { translate } from "locale";
+import { render, translate } from "test-utils";
 import * as Genesys from "@peersyst/react-native-components";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
 

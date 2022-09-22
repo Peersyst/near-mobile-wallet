@@ -1,6 +1,5 @@
-import { translate } from "locale";
 import SummaryField from "module/transaction/component/display/SummaryField/SummaryField";
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 
 describe("Test for the SummaryField component", () => {
     test("Renders correctly", () => {

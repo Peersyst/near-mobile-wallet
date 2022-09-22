@@ -1,5 +1,4 @@
-import { render } from "test-utils";
-import { translate } from "locale";
+import { render, translate } from "test-utils";
 import AuthSwitchScreen from "module/auth/screen/AuthSwitchScreen/AuthSwitchScreen";
 import * as Genesys from "@peersyst/react-native-components";
 import { fireEvent } from "@testing-library/react-native";

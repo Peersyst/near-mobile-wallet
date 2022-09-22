@@ -1,6 +1,5 @@
-import { translate } from "locale";
 import DAOCardBalance from "module/dao/component/core/DAOAccountCard/DAOCardBalance/DAOCardBalance";
-import { render, SuccessApiCall } from "test-utils";
+import { render, SuccessApiCall, translate } from "test-utils";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { MockedDAOBalance } from "mocks/DAO";

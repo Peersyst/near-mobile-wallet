@@ -1,5 +1,4 @@
 import { Col, Form, Typography, useSetTab, Suspense } from "@peersyst/react-native-components";
-import { translate } from "locale";
 import TextArea from "module/common/component/input/TextArea/TextArea";
 import Button from "module/common/component/input/Button/Button";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -15,6 +14,7 @@ import { DepositScreens } from "module/dao/component/core/DepositModal/DepositMo
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 import { config } from "config";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface SendAmountAndMessageResult {
     amount: string;
@@ -27,6 +27,7 @@ export interface SendSetAmountScreenProps {
 
 const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
+    const translate = useTranslate();
     const [amount, setAmount] = useState(sendState.amount || "");
     const { fee: feeInShannons } = useRecoilValue(settingsState);
     const feeInCKB = convertShannonsToCKB(feeInShannons);
