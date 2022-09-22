@@ -10,7 +10,7 @@ export interface TransactionDetailsModalProps extends ExposedBackdropProps {
 
 const TransactionDetailsModal = createModal(({ transaction, ...rest }: TransactionDetailsModalProps) => {
     return (
-        <TransactionDetailsModalRoot showCloseButton {...rest}>
+        <TransactionDetailsModalRoot {...rest}>
             <Col flex={1} gap={20}>
                 <TransactionDetailsHeader transaction={transaction} />
                 <TransactionDetailsBody transaction={transaction} />

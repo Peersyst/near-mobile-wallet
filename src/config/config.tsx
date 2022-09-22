@@ -31,6 +31,11 @@ const config = createConfig({
                 testnetTx: envConfig.testnetExplorerLink + "transaction/",
             },
         },
+        Modal: {
+            defaultProps: {
+                showCloseButton: false,
+            },
+        },
         Button: {
             defaultProps: {
                 variant: "primary",
@@ -41,13 +46,13 @@ const config = createConfig({
                 variant: "body1",
             },
         },
+        NumericInput: {
+            maxDecimals: envConfig.maxNumberOfDecimals,
+        },
         TextInput: {
             defaultProps: {
                 errorElement: false,
             },
-        },
-        NumericInput: {
-            maxDecimals: envConfig.maxNumberOfDecimals,
         },
     },
     themes: {
