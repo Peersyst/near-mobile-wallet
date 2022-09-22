@@ -13,7 +13,7 @@ export const HeaderRoot = styled(Toolbar)(({ theme }) => {
     };
 });
 
-export const HeaderIcon = styled(SettingsIcon)(({ theme }) => {
+export const HeaderSettingsIcon = styled(SettingsIcon)(({ theme }) => {
     return {
         color: theme.palette.gray[600],
     };
