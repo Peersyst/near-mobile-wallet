@@ -1,9 +1,8 @@
 import * as UseWallet from "module/wallet/hook/useWallet";
 import * as UseEditWallet from "module/wallet/hook/useEditWallet";
 import { wallet } from "mocks/wallet";
-import { render, SuccessApiCall } from "test-utils";
+import { render, SuccessApiCall, translate } from "test-utils";
 import EditWalletModal from "module/wallet/component/core/EditWalletModal/EditWalletModal";
-import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import createEditWalletMock, { useEditWalletMock } from "mocks/useEditWallet";
 import * as Genesys from "@peersyst/react-native-components";

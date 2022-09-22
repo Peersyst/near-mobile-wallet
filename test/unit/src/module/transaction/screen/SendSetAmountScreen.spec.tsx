@@ -1,6 +1,5 @@
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
-import { translate } from "locale";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 import * as Recoil from "recoil";
 import * as Genesys from "@peersyst/react-native-components";

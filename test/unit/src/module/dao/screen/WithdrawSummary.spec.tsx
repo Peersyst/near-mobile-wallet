@@ -1,7 +1,6 @@
 import { formatHash } from "@peersyst/react-utils";
-import { translate } from "locale";
 import WithdrawSummary from "module/dao/screen/WithdrawConfirmationScreen/WithdrawSummary";
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import { FeeRate } from "ckb-peersyst-sdk";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 

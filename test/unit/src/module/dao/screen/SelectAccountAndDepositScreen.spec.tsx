@@ -1,5 +1,4 @@
-import { render, SuccessApiCall } from "test-utils";
-import { translate } from "locale";
+import { render, SuccessApiCall, translate } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import SelectAccountAndDepositScreen from "module/dao/screen/SelectAccountAndDepositScreen/SelectAccountAndDepositScreen";
 import * as Genesys from "@peersyst/react-native-components";

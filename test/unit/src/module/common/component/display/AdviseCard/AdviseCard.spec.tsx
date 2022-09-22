@@ -1,7 +1,6 @@
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import AdviseCard from "module/common/component/display/AdviseCard/AdviseCard";
 import { act, fireEvent } from "@testing-library/react-native";
-import { translate } from "locale";
 
 describe("AdviseCard tests", () => {
     test("Renders correctly", async () => {

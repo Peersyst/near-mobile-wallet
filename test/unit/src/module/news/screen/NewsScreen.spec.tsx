@@ -1,6 +1,5 @@
-import { translate } from "locale";
 import NewsScreen from "module/news/screen/NewsScreen";
-import { fireEvent, render } from "test-utils";
+import { fireEvent, render, translate } from "test-utils";
 import * as GetNews from "module/news/query/useGetNews";
 import { ArrayNews } from "mocks/news";
 import { Linking } from "react-native";
@@ -12,7 +11,7 @@ describe("Test for the NewsScreen", () => {
             data: [],
         });
         const screen = render(<NewsScreen />);
-        expect(screen.getByText(translate("nothing_to_show"))).toBeDefined();
+        expect(screen.getByText(translate("nothing_to_show", { ns: "error" }))).toBeDefined();
     });
     test("Renders correctly with news", () => {
         jest.spyOn<any, any>(GetNews, "default").mockReturnValue({

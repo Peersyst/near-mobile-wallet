@@ -1,6 +1,5 @@
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
-import { translate } from "locale";
 import * as UseCreateWalletState from "module/wallet/hook/useCreateWallet";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 

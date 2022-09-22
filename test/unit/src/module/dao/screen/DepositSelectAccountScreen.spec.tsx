@@ -1,8 +1,7 @@
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
 import * as Genesys from "@peersyst/react-native-components";
-import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { mockedUseWallet } from "mocks/useWalletState";
 import DepositSelectAccountScreen from "module/dao/screen/DepositSelectAccountScreen/DepositSelectAccountScreen";

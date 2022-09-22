@@ -1,6 +1,5 @@
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
-import { translate } from "locale";
 import { mockedDAODeposits } from "mocks/DAOTransaction";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
@@ -31,6 +30,6 @@ describe("DAODepositsList tests", () => {
     test("Renders correctly without transactions", async () => {
         jest.spyOn(sdkInstance, "getTransactions").mockReturnValue([]);
         const screen = render(<DAODepositsList />);
-        await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show"))));
+        await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show", { ns: "error" }))));
     });
 });
