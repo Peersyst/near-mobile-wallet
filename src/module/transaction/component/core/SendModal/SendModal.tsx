@@ -6,7 +6,7 @@ import sendState from "module/transaction/state/SendState";
 import SendConfirmationScreen from "module/transaction/screen/SendConfirmationScreen/SendConfirmationScreen";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 import { useTranslate } from "module/common/hook/useTranslate";
-import MainNavigatorModal from "module/common/component/navigation/MainNavigatorModal/MainNavigatorModal";
+import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 
 export enum SendScreens {
     SEND_TO_ADDRESS,
@@ -24,13 +24,15 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
     };
 
     return (
-        <MainNavigatorModal
+        <CardNavigatorModal
             navbar={{
                 back: true,
                 title: translate("send"),
-                length: 3,
-                index: activeIndex,
                 onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,
+                steps: {
+                    length: 3,
+                    index: activeIndex,
+                },
             }}
             onExited={handleExited}
             {...rest}
@@ -46,7 +48,7 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
                     <SendConfirmationScreen />
                 </TabPanel>
             </Tabs>
-        </MainNavigatorModal>
+        </CardNavigatorModal>
     );
 });
 

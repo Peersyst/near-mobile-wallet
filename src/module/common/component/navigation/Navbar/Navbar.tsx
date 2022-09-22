@@ -2,9 +2,10 @@ import { NavbarProps } from "./Navbar.types";
 import { NavbarRoot, BackIconRoot } from "./Navbar.styles";
 import { BackIcon } from "icons";
 import useNavigation from "../../../hook/useNavigation";
-import { Col, Row, Typography } from "@peersyst/react-native-components";
+import { Col, Typography } from "@peersyst/react-native-components";
+import Steps from "module/common/component/display/Steps/Steps";
 
-const Navbar = ({ back, title, onBack, length, index }: NavbarProps): JSX.Element => {
+const Navbar = ({ back, title, onBack, steps }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
     const goBack = () => {
         if (navigation.canGoBack()) {
@@ -25,14 +26,7 @@ const Navbar = ({ back, title, onBack, length, index }: NavbarProps): JSX.Elemen
                         {title}
                     </Typography>
                 )}
-                {length && index !== undefined && (
-                    <Row>
-                        <Typography variant="body3Strong">{index + 1} /</Typography>
-                        <Typography variant="body3Strong" light>
-                            {` ${length}`}
-                        </Typography>
-                    </Row>
-                )}
+                {steps && <Steps index={steps.index} length={steps.length} />}
             </Col>
         </NavbarRoot>
     );

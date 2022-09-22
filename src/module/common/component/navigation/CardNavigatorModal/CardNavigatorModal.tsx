@@ -1,17 +1,17 @@
 import { Backdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
-import MainNavigator, { MainNavigatorProps } from "module/common/component/navigation/MainNavigator/MainNavigator";
+import CardNavigator, { CardNavigatorProps } from "module/common/component/navigation/CardNavigator/CardNavigator";
 
-const MainNavigatorModal = ({
+const CardNavigatorModal = ({
     navbar: { back, onBack, ...restNavProps } = {},
     children,
     style,
     closable = true,
     ...backdropProps
-}: ExposedBackdropProps & MainNavigatorProps): JSX.Element => {
+}: ExposedBackdropProps & CardNavigatorProps): JSX.Element => {
     return (
         <Backdrop closable={closable} {...backdropProps}>
             {(_open, setOpen) => (
-                <MainNavigator
+                <CardNavigator
                     navbar={{
                         back: back && closable,
                         onBack: onBack || (() => setOpen(false)),
@@ -20,10 +20,10 @@ const MainNavigatorModal = ({
                     style={{ height: "90%", ...style }}
                 >
                     {children}
-                </MainNavigator>
+                </CardNavigator>
             )}
         </Backdrop>
     );
 };
 
-export default MainNavigatorModal;
+export default CardNavigatorModal;

@@ -3,7 +3,7 @@ import { ReactNode, useState } from "react";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import MainNavigatorModal from "module/common/component/navigation/MainNavigatorModal/MainNavigatorModal";
+import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import useServiceInstanceCreation from "module/wallet/hook/useServiceInstanceCreation";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
@@ -60,9 +60,9 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
     };
 
     return (
-        <MainNavigatorModal open={open} onClose={handleClose} navbar={{ back: true, title, onBack }} onExited={handleExited} {...rest}>
+        <CardNavigatorModal open={open} onClose={handleClose} navbar={{ back: true, title, onBack }} onExited={handleExited} {...rest}>
             {renderProps(handleWalletCreation)}
-        </MainNavigatorModal>
+        </CardNavigatorModal>
     );
 };
 

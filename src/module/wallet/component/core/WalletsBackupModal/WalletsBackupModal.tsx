@@ -1,5 +1,5 @@
 import { createModal, TabPanel, Tabs } from "@peersyst/react-native-components";
-import MainNavigatorModal from "module/common/component/navigation/MainNavigatorModal/MainNavigatorModal";
+import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import WalletsBackupAdvise from "module/wallet/component/core/WalletsBackupModal/WalletsBackupAdvise/WalletsBackupAdvise";
 import { useState } from "react";
 import WalletMnemonicBackup from "module/wallet/component/core/WalletsBackupModal/WalletMnemonicBackup/WalletMnemonicBackup";
@@ -29,7 +29,7 @@ const WalletsBackupModal = createModal((props): JSX.Element => {
     };
 
     return (
-        <MainNavigatorModal
+        <CardNavigatorModal
             navbar={{ title: translate("back_up_your_wallets"), back: index === 0 }}
             open={open}
             onClose={() => setOpen(false)}
@@ -44,7 +44,7 @@ const WalletsBackupModal = createModal((props): JSX.Element => {
                 </TabPanel>
                 <ConfirmPinModal open={showPin} onPinConfirmed={handlePinConfirmed} onClose={handlePinClose} />
             </Tabs>
-        </MainNavigatorModal>
+        </CardNavigatorModal>
     );
 });
 

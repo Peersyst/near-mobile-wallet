@@ -10,11 +10,12 @@ describe("Test for the Navbar", () => {
         expect(screen.getByTestId("BackIcon"));
     });
     test("Renders correctly with pagination", () => {
-        const screen = render(<Navbar back title="Info" length={3} index={0} />);
-        expect(screen.getByText("Info"));
-        expect(screen.getByTestId("BackIcon"));
-        expect(screen.getByText("1 /"));
-        expect(screen.getByText("3"));
+        const screen = render(<Navbar back title="Info" steps={{ length: 3, index: 0 }} />);
+        expect(screen.getByText("Info")).toBeDefined();
+        expect(screen.getByTestId("BackIcon")).toBeDefined();
+        expect(screen.getByText("1")).toBeDefined();
+        expect(screen.getByText("/")).toBeDefined();
+        expect(screen.getByText("3")).toBeDefined();
     });
     test("Go back click works correctly", () => {
         const mockedNavigation = jest.fn();

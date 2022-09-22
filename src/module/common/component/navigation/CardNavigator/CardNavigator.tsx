@@ -2,19 +2,19 @@ import { NavbarProps } from "module/common/component/navigation/Navbar/Navbar.ty
 import { ReactNode } from "react";
 import Navbar from "module/common/component/navigation/Navbar/Navbar";
 import { ViewStyle } from "react-native";
-import { MainNavigatorContent, MainNavigatorNavWrapper, MainNavigatorRoot } from "./MainNavigator.styles";
+import { CardNavigatorContent, CardNavigatorRoot } from "./CardNavigator.styles";
 import { Divider } from "@peersyst/react-native-components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-export interface MainNavigatorProps {
+export interface CardNavigatorProps {
     navbar?: NavbarProps;
     children?: ReactNode;
     style?: ViewStyle;
 }
 
-const MainNavigator = ({ navbar: navbarProps, children, style }: MainNavigatorProps): JSX.Element => (
-    <MainNavigatorRoot style={style}>
-        <MainNavigatorNavWrapper>{navbarProps && <Navbar {...navbarProps} />}</MainNavigatorNavWrapper>
+const CardNavigator = ({ navbar: navbarProps, children, style }: CardNavigatorProps): JSX.Element => (
+    <CardNavigatorRoot style={style}>
+        {navbarProps && <Navbar {...navbarProps} />}
         <Divider />
         <KeyboardAwareScrollView
             style={{ flex: 1 }}
@@ -22,11 +22,11 @@ const MainNavigator = ({ navbar: navbarProps, children, style }: MainNavigatorPr
             enableOnAndroid={true}
             alwaysBounceVertical={false}
         >
-            <MainNavigatorContent flex={1} justifyContent="flex-end">
+            <CardNavigatorContent flex={1} justifyContent="flex-end">
                 {children}
-            </MainNavigatorContent>
+            </CardNavigatorContent>
         </KeyboardAwareScrollView>
-    </MainNavigatorRoot>
+    </CardNavigatorRoot>
 );
 
-export default MainNavigator;
+export default CardNavigator;
