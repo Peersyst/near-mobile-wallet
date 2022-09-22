@@ -31,6 +31,11 @@ const config = createConfig({
                 testnetTx: envConfig.testnetExplorerLink + "transaction/",
             },
         },
+        Button: {
+            defaultProps: {
+                variant: "primary",
+            },
+        },
         Label: {
             defaultProps: {
                 variant: "body1",
