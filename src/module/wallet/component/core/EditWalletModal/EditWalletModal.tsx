@@ -78,7 +78,6 @@ const EditWalletModal = createModal(({ index, closable = true, onClose, ...backd
                     <Col gap="25%">
                         <TextField
                             size="lg"
-                            variant="underlined"
                             value={name}
                             onChange={setName}
                             style={{ component: { input: { textAlign: "center" } } }}

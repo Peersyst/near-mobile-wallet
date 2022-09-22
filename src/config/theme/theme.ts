@@ -4,4 +4,5 @@ import typography from "./typography";
 export const theme = createTheme({
     typography,
     borderRadius: 16,
+    borderRadiusSm: 8,
 });
