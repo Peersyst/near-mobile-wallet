@@ -2,7 +2,7 @@ import styled from "@peersyst/react-native-styled";
 import { Col, Divider, Row } from "@peersyst/react-native-components";
 import { NavBarHeight } from "../Navbar/Navbar.styles";
 
-export const MainNavHPadding = "5%";
+export const MainNavPadding = "5%";
 
 export const MainNavigatorRoot = styled(Col)(({ theme }) => ({
     position: "absolute",
@@ -15,11 +15,11 @@ export const MainNavigatorRoot = styled(Col)(({ theme }) => ({
 
 export const MainNavigatorNavWrapper = styled(Row)(() => ({
     paddingVertical: (90 - NavBarHeight) / 2,
-    paddingHorizontal: MainNavHPadding,
+    paddingHorizontal: MainNavPadding,
 }));
 
 export const MainNavigatorContent = styled(Col)(() => ({
-    padding: MainNavHPadding,
+    padding: MainNavPadding,
 }));
 
 export const MainNavigatorDivider = styled(Divider)(({ theme }) => ({

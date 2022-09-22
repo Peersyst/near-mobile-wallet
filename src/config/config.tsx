@@ -31,11 +31,6 @@ const config = createConfig({
                 testnetTx: envConfig.testnetExplorerLink + "transaction/",
             },
         },
-        Modal: {
-            defaultProps: {
-                showCloseButton: false,
-            },
-        },
         Button: {
             defaultProps: {
                 variant: "primary",
@@ -44,6 +39,11 @@ const config = createConfig({
         Label: {
             defaultProps: {
                 variant: "body1",
+            },
+        },
+        Modal: {
+            defaultProps: {
+                showCloseButton: false,
             },
         },
         NumericInput: {
