@@ -1,5 +1,4 @@
-import { translate } from "locale";
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import WalletCard from "module/wallet/component/core/WalletCard/WalletCard";
 import * as UseWalletState from "module/wallet/hook/useWalletState";

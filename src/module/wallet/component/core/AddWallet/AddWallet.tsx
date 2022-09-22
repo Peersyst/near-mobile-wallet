@@ -6,11 +6,12 @@ import ColorPicker from "../../input/ColorPicker/ColorPicker";
 import { useTheme } from "@peersyst/react-native-styled";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import Divider from "module/common/component/display/Divider/Divider";
-import { translate } from "locale";
 import ImportWalletModal from "../ImportWalletModal/ImportWalletModal";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const AddWallet = (): JSX.Element => {
     const { palette } = useTheme();
+    const translate = useTranslate();
     const {
         setColorIndex,
         state: { colorIndex },

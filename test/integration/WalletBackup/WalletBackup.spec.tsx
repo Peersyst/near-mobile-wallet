@@ -1,9 +1,8 @@
 import createUseWalletStateMock from "mocks/useWalletState";
 import * as UseWalletStateMock from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import { render, SuccessApiCall, wait } from "test-utils";
+import { render, SuccessApiCall, wait, translate } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
-import { translate } from "locale";
 import WalletsBackupModal from "module/wallet/component/core/WalletsBackupModal/WalletsBackupModal";
 
 describe("WalletBackup", () => {

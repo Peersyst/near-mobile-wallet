@@ -3,14 +3,14 @@ import { LoadingModalBackdrop, SuccessIcon, SuccessMessage } from "./LoadingModa
 import { ThemeProvider } from "@peersyst/react-native-styled";
 import Isotip from "module/common/component/display/Logos/Isotip/Isotip";
 import { useEffect, useState } from "react";
-import { translate } from "locale";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import AnimationContainer from "module/common/component/display/AnimationContainer/AnimationContainer";
 import darkTheme from "config/theme/darkTheme";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const LoadingModal = ({ loading, successMessage, error, success, ...backdropProps }: LoadingModalProps): JSX.Element => {
     const [open, setOpen] = useState(false);
-
+    const translate = useTranslate();
     useEffect(() => {
         if (!open) setOpen(loading || success || error);
         else if (error) setOpen(false);

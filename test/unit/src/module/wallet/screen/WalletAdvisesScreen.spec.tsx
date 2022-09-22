@@ -1,6 +1,5 @@
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen/WalletAdvisesScreen";
-import { translate } from "locale";
 import { act, fireEvent } from "@testing-library/react-native";
 
 describe("WalletAdvisesScreen tests", () => {

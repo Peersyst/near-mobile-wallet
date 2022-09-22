@@ -2,10 +2,10 @@ import { Col, Row, Typography } from "@peersyst/react-native-components";
 import { TokenIcon, TokenPlaceholder, TokenRoot } from "./TokenCard.styles";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { TokenAmount } from "module/token/types";
-import { translate } from "locale";
 import settingsState from "module/settings/state/SettingsState";
 import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
 import { useRecoilValue } from "recoil";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 interface TokenProps {
     token: TokenAmount;
@@ -15,6 +15,7 @@ const TokenCard = ({ token: { type, amount } }: TokenProps): JSX.Element => {
     const { name, tokenName, imageUri, description } = type;
     const { fiat } = useRecoilValue(settingsState);
     const { data: tokenValue } = useGetTokenPrice(fiat, type);
+    const translate = useTranslate();
     return (
         <TokenRoot>
             <Row alignItems="center" gap="6%">

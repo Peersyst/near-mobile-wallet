@@ -1,7 +1,6 @@
-import { translate } from "locale";
 import BottomBar from "module/common/component/navigation/BottomBar/BottomBar";
 import { MainBottomScreens } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup";
-import { fireEvent, render } from "test-utils";
+import { fireEvent, render, translate } from "test-utils";
 import mockedState from "./utils/mockedState";
 
 describe("BottomBar test", () => {
