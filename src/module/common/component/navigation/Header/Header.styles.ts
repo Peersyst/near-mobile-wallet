@@ -1,6 +1,5 @@
-import { Toolbar } from "@peersyst/react-native-components";
+import { IconButton, Toolbar } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
-import { SettingsIcon } from "icons";
 
 export const HeaderRoot = styled(Toolbar)(({ theme }) => {
     return {
@@ -13,8 +12,9 @@ export const HeaderRoot = styled(Toolbar)(({ theme }) => {
     };
 });
 
-export const HeaderSettingsIcon = styled(SettingsIcon)(({ theme }) => {
+export const HeaderSettingsButton = styled(IconButton)(({ theme }) => {
     return {
         color: theme.palette.gray[600],
+        fontSize: 24,
     };
 });
