@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
-import { PaletteMode } from "@peersyst/react-native-components";
 
 export interface BasePageProps {
-    appearance?: PaletteMode;
     header?: boolean;
+    appearance?: string;
     children?: ReactNode;
     showIcons?: boolean;
+    gradient?: boolean;
 }
 
 export interface BasePageContentProps {
