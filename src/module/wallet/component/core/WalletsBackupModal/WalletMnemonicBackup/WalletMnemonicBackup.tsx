@@ -4,8 +4,8 @@ import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicL
 import { ActivityIndicator } from "react-native";
 import { Col, Typography } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
-import { translate } from "locale";
 import Card from "module/common/component/surface/Card/Card";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface WalletMnemonicBackupProps {
     walletIndex: number;
@@ -14,7 +14,7 @@ export interface WalletMnemonicBackupProps {
 
 const WalletMnemonicBackup = ({ walletIndex, onClose }: WalletMnemonicBackupProps): JSX.Element => {
     const [mnemonic, setMnemonic] = useState<string[]>();
-
+    const translate = useTranslate();
     useEffect(() => {
         const getStorageMnemonic = async () => {
             setMnemonic(await WalletStorage.getMnemonic(walletIndex));

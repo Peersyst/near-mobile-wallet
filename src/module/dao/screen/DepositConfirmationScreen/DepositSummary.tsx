@@ -1,10 +1,10 @@
 import { formatHash } from "@peersyst/react-utils";
-import { translate } from "locale";
 import { Col } from "@peersyst/react-native-components";
 import BaseSendSummary, { BaseSendSummaryProps } from "../../../transaction/component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../../transaction/component/display/SummaryField/SummaryField";
 import { SummaryText } from "module/transaction/component/display/SummaryField/SummaryField.styles";
 import useGetDaoInfo from "module/dao/query/useGetDaoInfo";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface DepositSummaryProps extends BaseSendSummaryProps {
     senderName: string;
@@ -13,7 +13,7 @@ export interface DepositSummaryProps extends BaseSendSummaryProps {
 
 const DepositSummary = ({ amount, fee, senderName, senderAddress }: DepositSummaryProps): JSX.Element => {
     const { data: { estimated_apc = "0" } = {}, isLoading: loadingDao } = useGetDaoInfo();
-
+    const translate = useTranslate();
     return (
         <BaseSendSummary amount={amount} fee={fee}>
             <>

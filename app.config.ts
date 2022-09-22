@@ -40,7 +40,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
                 backgroundColor: "#141414",
             },
             versionCode: Number((this.version || "").replace(/\./g, "") + process.env.BUILD_NUMBER) || 0,
-            softwareKeyboardLayoutMode: "pan",
+            softwareKeyboardLayoutMode: "resize",
             splash: {
                 image: "./assets/images/splash.png",
                 resizeMode: "cover",

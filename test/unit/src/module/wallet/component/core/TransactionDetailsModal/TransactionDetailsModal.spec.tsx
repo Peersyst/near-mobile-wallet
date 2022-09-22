@@ -1,7 +1,6 @@
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import TransactionDetailsModal from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsModal";
 import { createTransaction, receivedTransaction, sentTransaction } from "mocks/transaction";
-import { translate } from "locale";
 import { formatHash } from "@peersyst/react-utils";
 import { TransactionType } from "ckb-peersyst-sdk";
 

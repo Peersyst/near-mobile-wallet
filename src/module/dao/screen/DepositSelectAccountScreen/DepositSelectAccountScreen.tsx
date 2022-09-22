@@ -1,5 +1,4 @@
 import { Col, Form, Paper, Row, Typography, useSetTab } from "@peersyst/react-native-components";
-import { translate } from "locale";
 import Button from "module/common/component/input/Button/Button";
 import sendRecoilState from "module/transaction/state/SendState";
 import { deposit } from "../../../../asset/image";
@@ -9,6 +8,7 @@ import WalletSelector from "module/wallet/component/input/WalletSelector/WalletS
 import { DepositImage } from "./DepositImage.styles";
 import useUncommittedTransaction from "module/transaction/hook/useUncommittedTransaction";
 import useWalletState from "module/wallet/hook/useWalletState";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface DepositForm {
     sender: number;
@@ -18,6 +18,7 @@ const DepositSelectAccountScreen = () => {
     const {
         state: { selectedWallet: defaultSelectedWallet, wallets },
     } = useWalletState();
+    const translate = useTranslate();
     const finalSelectedWallet =
         //Check if the user has a previous selectedWallet
         defaultSelectedWallet !== undefined

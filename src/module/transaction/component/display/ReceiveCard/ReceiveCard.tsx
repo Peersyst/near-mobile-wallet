@@ -1,5 +1,4 @@
 import styled from "@peersyst/react-native-styled";
-import { translate } from "locale";
 import CopyToClipboardIcon from "module/common/component/input/CopyToClipboardIcon/CopyToClipboardIcon";
 import Card from "module/common/component/surface/Card/Card";
 import { Col, Row, Typography, useModal } from "@peersyst/react-native-components";
@@ -8,6 +7,7 @@ import ReceiveModal from "../../core/ReceiveModal/ReceiveModal";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const ReceiveCardContent = styled(Col, { justifyContent: "space-between" })(({ dimensions }) => ({
     height: dimensions.height * 0.3,
@@ -20,6 +20,7 @@ const TextAddress = styled(Typography, { textTransform: "uppercase" })(() => ({
 }));
 
 const ReceiveCard = (): JSX.Element => {
+    const translate = useTranslate();
     const network = useSelectedNetwork();
     const { index } = useSelectedWallet();
     const serviceInstance = serviceInstancesMap.get(index)?.[network];

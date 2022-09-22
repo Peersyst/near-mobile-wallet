@@ -1,11 +1,11 @@
 import Select, { SelectProps } from "module/common/component/input/Select/Select";
 import { getLuminance } from "@peersyst/react-utils";
-import { translate } from "locale";
 import { useTheme } from "@peersyst/react-native-styled";
 import useWalletState from "module/wallet/hook/useWalletState";
 import WalletItem from "./WalletItem";
 import WalletSelectorItem from "./WalletSelectorItem";
 import { useControlled } from "@peersyst/react-hooks";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export type WalletSelectorProps = Omit<
     SelectProps<number>,
@@ -16,6 +16,7 @@ const WalletSelector = ({ style, value, onChange, defaultValue, ...rest }: Walle
     const {
         state: { wallets, selectedWallet: defaultAccount = 0 },
     } = useWalletState();
+    const translate = useTranslate();
     const { palette } = useTheme();
     const [selectedIndex, setSelectedIndex] = useControlled((defaultValue as number) ?? defaultAccount, value as number, onChange);
     const selectedWallet = selectedIndex !== undefined ? wallets[selectedIndex] : undefined;

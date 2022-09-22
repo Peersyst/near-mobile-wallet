@@ -1,9 +1,8 @@
 import ReceiveCard from "module/transaction/component/display/ReceiveCard/ReceiveCard";
-import { fireEvent, render } from "test-utils";
+import { fireEvent, render, translate } from "test-utils";
 import * as Clipboard from "expo-clipboard";
 import * as Genesys from "@peersyst/react-native-components";
 import * as UseSelectedWallet from "module/wallet/hook/useSelectedWallet";
-import { translate } from "locale";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
 import { wallet } from "mocks/wallet";
 import { CKBSDKService } from "module/common/service/CkbSdkService";

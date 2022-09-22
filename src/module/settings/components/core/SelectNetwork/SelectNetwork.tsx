@@ -1,4 +1,3 @@
-import { translate } from "locale";
 import settingsState, { NetworkType } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import { SettingsStorage } from "module/settings/SettingsStorage";
@@ -7,8 +6,10 @@ import { config } from "config";
 import Select from "module/common/component/input/Select/Select";
 import { SelectOption } from "@peersyst/react-native-components";
 import { Chain } from "module/common/service/CkbSdkService.types";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const SelectNetwork = (): JSX.Element => {
+    const translate = useTranslate();
     const networkOptions: SelectOption<Chain>[] = [
         {
             label: translate("network_name", { name: "Mainnet" }),

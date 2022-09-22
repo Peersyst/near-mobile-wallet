@@ -1,7 +1,6 @@
 import * as UseSelectedWallet from "module/wallet/hook/useSelectedWallet";
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
-import { translate } from "locale";
 import { wallet } from "mocks/wallet";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 

@@ -1,9 +1,8 @@
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
 import * as Genesys from "@peersyst/react-native-components";
-import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import { mockedUseWallet } from "mocks/useWalletState";
