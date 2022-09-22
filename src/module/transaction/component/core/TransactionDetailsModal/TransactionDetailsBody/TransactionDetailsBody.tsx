@@ -1,10 +1,10 @@
 import { Col, ScrollView } from "@peersyst/react-native-components";
 import TransactionDetail from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionDetail";
-import { translate } from "locale";
 import TransactionTypeDetails from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionTypeDetails";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
 import TransactionStatus from "module/transaction/component/display/TransactionStatus/TransactionStatus";
 import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface TransactionDetailsBodyProps {
     transaction: FullTransaction;
@@ -12,6 +12,7 @@ export interface TransactionDetailsBodyProps {
 
 const TransactionDetailsBody = ({ transaction }: TransactionDetailsBodyProps): JSX.Element => {
     const { transactionHash, status } = transaction;
+    const translate = useTranslate();
     return (
         <ScrollView alwaysBounceVertical={false} style={{ maxHeight: 300 }}>
             <Col gap={10} flex={1}>

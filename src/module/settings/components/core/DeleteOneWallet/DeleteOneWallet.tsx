@@ -1,4 +1,3 @@
-import { translate } from "locale";
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
 import { useDialog, useModal } from "@peersyst/react-native-components";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
@@ -10,8 +9,10 @@ import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/Con
 import { useQueryClient } from "react-query";
 import useWalletQueriesInvalidation from "module/wallet/hook/useWalletQueriesInvalidation";
 import useWalletQueriesRemoval from "module/wallet/hook/useWalletQueriesRemoval";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const DeleteOneWallet = () => {
+    const translate = useTranslate();
     const { showDialog } = useDialog();
     const { showModal } = useModal();
     const [{ wallets, selectedWallet }, setWalletState] = useRecoilState(walletState);

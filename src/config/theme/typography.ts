@@ -4,9 +4,9 @@ import { TextStyle } from "react-native";
 export type FontWeight = "strong" | "regular" | "light";
 
 export const MANROPE: Record<FontWeight, string> = {
-    strong: "Manrope_300Light",
+    light: "Manrope_300Light",
     regular: "Manrope_400Regular",
-    light: "Manrope_600SemiBold",
+    strong: "Manrope_600SemiBold",
 };
 
 export const FONT_STYLE: Record<string, TextStyle> = {

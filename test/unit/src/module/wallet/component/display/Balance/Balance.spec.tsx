@@ -1,6 +1,5 @@
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { render } from "test-utils";
-import { translate } from "locale";
+import { render, translate } from "test-utils";
 
 describe("Text for the Balance component", () => {
     test("Renders correctly", () => {

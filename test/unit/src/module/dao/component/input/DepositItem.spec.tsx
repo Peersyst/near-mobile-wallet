@@ -1,6 +1,5 @@
 import DepositItem from "module/dao/component/input/DepositsSelector/DepositItem";
-import { render } from "test-utils";
-import { translate } from "locale";
+import { render, translate } from "test-utils";
 
 describe("Test for the deposit Item", () => {
     test("Renders correctly", () => {

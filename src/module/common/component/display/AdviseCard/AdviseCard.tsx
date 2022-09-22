@@ -1,11 +1,12 @@
 import { AdviseCardProps } from "module/common/component/display/AdviseCard/AdviseCard.types";
 import { Col, Row, Typography } from "@peersyst/react-native-components";
-import { translate } from "locale";
 import CountdownButton from "../../input/CountdownButton/CountdownButton";
 import { AdviseCardRoot, BackIconButton } from "./AdviseCard.styles";
 import { BackIcon } from "icons";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const AdviseCard = ({ number, totalAdvises, title, text, style, onBack, onNext, timer = 5 }: AdviseCardProps): JSX.Element => {
+    const translate = useTranslate();
     return (
         <AdviseCardRoot style={{ ...style }}>
             <Col flex={1} justifyContent="space-between">

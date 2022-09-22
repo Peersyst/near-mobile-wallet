@@ -1,8 +1,7 @@
 import SelectNetwork from "module/settings/components/core/SelectNetwork/SelectNetwork";
-import { fireEvent, render } from "test-utils";
+import { fireEvent, render, translate } from "test-utils";
 import * as Recoil from "recoil";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
-import { translate } from "locale";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 
 describe("Test for the select network", () => {

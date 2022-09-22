@@ -1,7 +1,6 @@
 import { defaultSettingsState } from "module/settings/state/SettingsState";
-import { fireEvent, render } from "test-utils";
+import { fireEvent, render, translate } from "test-utils";
 import * as Recoil from "recoil";
-import { translate } from "locale";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import SelectLocale from "module/settings/components/core/SelectLocale/SelectLocale";
 
