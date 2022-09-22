@@ -30,12 +30,12 @@ const gradient: Theme["palette"]["gradient"] = {
     greenYellow: [green, gold],
 };
 const overlay: Theme["palette"]["overlay"] = {
-    "80%": "#262626CC",
-    "60%": "#26262699",
-    "40%": "#26262666",
-    "20%": "#26262633",
-    "12%": "#2626261F",
-    "8%": "#26262614",
+    "80%": "#FFFFFFCC",
+    "60%": "#FFFFFF99",
+    "40%": "#FFFFFF66",
+    "20%": "#FFFFFF33",
+    "12%": "#FFFFFF1F",
+    "8%": "#FFFFFF14",
 };
 
 const darkTheme = createTheme({
