@@ -14,7 +14,7 @@ const SetWalletPinScreen = (): JSX.Element => {
     const translate = useTranslate();
     const [error, setError] = useState(false);
     const setWalletState = useSetRecoilState(walletState);
-    useLogoPageFlex(0.3);
+    useLogoPageFlex(0.1);
     const handlePinSubmit = async (pin: string) => {
         const storedPin = await WalletStorage.getPin();
         if (storedPin === pin) {

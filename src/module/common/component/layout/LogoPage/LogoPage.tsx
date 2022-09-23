@@ -33,12 +33,10 @@ const LogoPage = ({ children }: LogoPageProps): JSX.Element => {
     return (
         <ThemeProvider theme={darkTheme}>
             <GradientPage gradient={gradient}>
-                <Col flex={1} style={{ justifyContent: "center" }}>
-                    <LogoPageIconRoot style={{ height: logoAnim.interpolate({ inputRange: [0, 1], outputRange: [0, height] }) }}>
-                        <Logo />
-                    </LogoPageIconRoot>
-                    <LogoPageProvider value={{ setLogoFlex, setGradient }}>{children}</LogoPageProvider>
-                </Col>
+                <LogoPageIconRoot style={{ height: logoAnim.interpolate({ inputRange: [0, 1], outputRange: [0, height] }) }}>
+                    <Logo />
+                </LogoPageIconRoot>
+                <LogoPageProvider value={{ setLogoFlex, setGradient }}>{children}</LogoPageProvider>
             </GradientPage>
         </ThemeProvider>
     );
