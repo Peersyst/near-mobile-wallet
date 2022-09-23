@@ -1,12 +1,12 @@
 import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
 import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
 import { useState } from "react";
-import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
 import { useResetRecoilState } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import SendConfirmationScreen from "module/transaction/screen/SendConfirmationScreen/SendConfirmationScreen";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 import { useTranslate } from "module/common/hook/useTranslate";
+import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 
 export enum SendScreens {
     SEND_TO_ADDRESS,
@@ -24,15 +24,17 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
     };
 
     return (
-        <GlassNavigatorModal
-            breadcrumbs={{ length: 3, index: activeIndex }}
+        <CardNavigatorModal
             navbar={{
                 back: true,
                 title: translate("send"),
                 onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,
+                steps: {
+                    length: 3,
+                    index: activeIndex,
+                },
             }}
             onExited={handleExited}
-            scrollable
             {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
@@ -46,7 +48,7 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
                     <SendConfirmationScreen />
                 </TabPanel>
             </Tabs>
-        </GlassNavigatorModal>
+        </CardNavigatorModal>
     );
 });
 

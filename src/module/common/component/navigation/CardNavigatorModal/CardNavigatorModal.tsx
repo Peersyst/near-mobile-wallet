@@ -1,32 +1,29 @@
 import { Backdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
-import GlassNavigator, { GlassNavigatorProps } from "module/common/component/navigation/GlassNavigator/GlassNavigator";
+import CardNavigator, { CardNavigatorProps } from "module/common/component/navigation/CardNavigator/CardNavigator";
 
-const GlassNavigatorModal = ({
-    breadcrumbs,
-    navbar: { back, onBack, title, logo } = {},
+const CardNavigatorModal = ({
+    navbar: { back, onBack, ...restNavProps } = {},
     children,
     style,
     closable = true,
     ...backdropProps
-}: ExposedBackdropProps & GlassNavigatorProps): JSX.Element => {
+}: ExposedBackdropProps & CardNavigatorProps): JSX.Element => {
     return (
         <Backdrop closable={closable} {...backdropProps}>
             {(_open, setOpen) => (
-                <GlassNavigator
-                    breadcrumbs={breadcrumbs}
+                <CardNavigator
                     navbar={{
                         back: back && closable,
-                        title,
-                        logo,
                         onBack: onBack || (() => setOpen(false)),
+                        ...restNavProps,
                     }}
                     style={{ height: "90%", ...style }}
                 >
                     {children}
-                </GlassNavigator>
+                </CardNavigator>
             )}
         </Backdrop>
     );
 };
 
-export default GlassNavigatorModal;
+export default CardNavigatorModal;

@@ -7,6 +7,8 @@ import { useRecoilValue } from "recoil";
 import walletState from "module/wallet/state/WalletState";
 import WelcomeBackScreen from "module/auth/screen/WelcomeBackScreen/WelcomeBackScreen";
 import IntroduceWalletPinScreen from "module/wallet/screen/IntroduceWalletPinScreen";
+import { ThemeProvider } from "@peersyst/react-native-styled";
+import lightTheme from "config/theme/lightTheme";
 
 export enum AuthScreens {
     AUTH_SWITCH,
@@ -21,28 +23,30 @@ const AuthNavigatorGroup = () => {
 
     return (
         <LogoPage>
-            {hasWallet ? (
-                <Tabs initialIndex={AuthScreens.WELCOME_BACK}>
-                    <TabPanel index={AuthScreens.WELCOME_BACK}>
-                        <WelcomeBackScreen />
-                    </TabPanel>
-                    <TabPanel index={AuthScreens.INTRODUCE_PIN}>
-                        <IntroduceWalletPinScreen />
-                    </TabPanel>
-                </Tabs>
-            ) : (
-                <Tabs>
-                    <TabPanel index={AuthScreens.AUTH_SWITCH}>
-                        <AuthSwitchScreen />
-                    </TabPanel>
-                    <TabPanel index={AuthScreens.IMPORT_WALLET}>
-                        <ImportWalletNavigatorGroup />
-                    </TabPanel>
-                    <TabPanel index={AuthScreens.CREATE_WALLET}>
-                        <CreateWalletNavigatorGroup />
-                    </TabPanel>
-                </Tabs>
-            )}
+            <ThemeProvider theme={lightTheme}>
+                {hasWallet ? (
+                    <Tabs initialIndex={AuthScreens.WELCOME_BACK}>
+                        <TabPanel index={AuthScreens.WELCOME_BACK}>
+                            <WelcomeBackScreen />
+                        </TabPanel>
+                        <TabPanel index={AuthScreens.INTRODUCE_PIN}>
+                            <IntroduceWalletPinScreen />
+                        </TabPanel>
+                    </Tabs>
+                ) : (
+                    <Tabs>
+                        <TabPanel index={AuthScreens.AUTH_SWITCH}>
+                            <AuthSwitchScreen />
+                        </TabPanel>
+                        <TabPanel index={AuthScreens.IMPORT_WALLET}>
+                            <ImportWalletNavigatorGroup />
+                        </TabPanel>
+                        <TabPanel index={AuthScreens.CREATE_WALLET}>
+                            <CreateWalletNavigatorGroup />
+                        </TabPanel>
+                    </Tabs>
+                )}
+            </ThemeProvider>
         </LogoPage>
     );
 };

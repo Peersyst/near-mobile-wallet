@@ -42,13 +42,18 @@ const config = createConfig({
                 variant: "body1",
             },
         },
-        TextInput: {
+        Modal: {
             defaultProps: {
-                errorElement: false,
+                showCloseButton: false,
             },
         },
         NumericInput: {
             maxDecimals: envConfig.maxNumberOfDecimals,
+        },
+        TextInput: {
+            defaultProps: {
+                errorElement: false,
+            },
         },
     },
     themes: {

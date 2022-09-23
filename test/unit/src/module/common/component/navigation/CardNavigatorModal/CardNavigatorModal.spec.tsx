@@ -1,14 +1,14 @@
 import { render } from "test-utils";
-import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
+import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { Text } from "react-native";
 import { fireEvent } from "@testing-library/react-native";
 
-describe("GlassNavigatorModal tests", () => {
+describe("CardNavigatorModal tests", () => {
     test("Renders correctly", () => {
         const screen = render(
-            <GlassNavigatorModal navbar={{ title: "Title" }}>
+            <CardNavigatorModal navbar={{ title: "Title" }}>
                 <Text>Content</Text>
-            </GlassNavigatorModal>,
+            </CardNavigatorModal>,
         );
         expect(screen.getByText("Title")).toBeDefined();
         expect(screen.getByText("Content")).toBeDefined();
@@ -16,9 +16,9 @@ describe("GlassNavigatorModal tests", () => {
 
     test("Renders Back", () => {
         const screen = render(
-            <GlassNavigatorModal navbar={{ title: "Title", back: true }}>
+            <CardNavigatorModal navbar={{ title: "Title", back: true }}>
                 <Text>Content</Text>
-            </GlassNavigatorModal>,
+            </CardNavigatorModal>,
         );
         expect(screen.getByTestId("BackIcon")).toBeDefined();
     });
@@ -26,9 +26,9 @@ describe("GlassNavigatorModal tests", () => {
     test("Calls onBack", () => {
         const handleBack = jest.fn();
         const screen = render(
-            <GlassNavigatorModal navbar={{ title: "Title", back: true, onBack: handleBack }}>
+            <CardNavigatorModal navbar={{ title: "Title", back: true, onBack: handleBack }}>
                 <Text>Content</Text>
-            </GlassNavigatorModal>,
+            </CardNavigatorModal>,
         );
         fireEvent.press(screen.getByTestId("BackIcon"));
         expect(handleBack).toHaveBeenCalled();
