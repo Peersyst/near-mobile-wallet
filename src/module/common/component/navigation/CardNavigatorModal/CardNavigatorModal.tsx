@@ -17,7 +17,7 @@ const CardNavigatorModal = ({
                         onBack: onBack || (() => setOpen(false)),
                         ...restNavProps,
                     }}
-                    style={{ height: "90%", ...style }}
+                    style={style}
                 >
                     {children}
                 </CardNavigator>

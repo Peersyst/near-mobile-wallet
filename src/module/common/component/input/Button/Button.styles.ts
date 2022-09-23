@@ -69,7 +69,9 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             color: "white",
             variant: {
                 outlined: {
-                    borderColor: "transparent",
+                    backgroundColor: "transparent",
+                    color: theme.palette.overlay["20%"],
+                    borderColor: theme.palette.overlay["20%"],
                 },
             },
         },

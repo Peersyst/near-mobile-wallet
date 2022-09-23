@@ -1,9 +1,10 @@
 import styled from "@peersyst/react-native-styled";
-import { Col, Divider } from "@peersyst/react-native-components";
+import { Col } from "@peersyst/react-native-components";
+import { KeyboardAvoidingView } from "react-native";
 
 export const CARD_NAVIGATOR_PADDING = 20;
 
-export const CardNavigatorRoot = styled(Col)(({ theme }) => ({
+export const CardNavigatorRoot = styled(KeyboardAvoidingView)(({ theme }) => ({
     position: "absolute",
     bottom: 0,
     width: "100%",
@@ -12,11 +13,10 @@ export const CardNavigatorRoot = styled(Col)(({ theme }) => ({
     backgroundColor: theme.palette.background,
 }));
 
-export const CardNavigatorContent = styled(Col)(() => ({
-    padding: CARD_NAVIGATOR_PADDING,
+export const CardNavigatorWrapper = styled(Col)(({ safeAreaInsets }) => ({
+    paddingBottom: safeAreaInsets.bottom + 10,
 }));
 
-export const CardNavigatorDivider = styled(Divider)(({ theme }) => ({
-    backgroundColor: theme.palette.overlay["8%"],
-    height: 1,
+export const CardNavigatorContent = styled(Col)(() => ({
+    padding: CARD_NAVIGATOR_PADDING,
 }));
