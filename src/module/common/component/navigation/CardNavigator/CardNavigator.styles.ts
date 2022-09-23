@@ -4,10 +4,11 @@ import { KeyboardAvoidingView } from "react-native";
 
 export const CARD_NAVIGATOR_PADDING = 20;
 
-export const CardNavigatorRoot = styled(KeyboardAvoidingView)(({ theme }) => ({
+export const CardNavigatorRoot = styled(KeyboardAvoidingView)(({ theme, dimensions }) => ({
     position: "absolute",
     bottom: 0,
     width: "100%",
+    maxHeight: dimensions.height * 0.9,
     borderTopStartRadius: theme.borderRadius,
     borderTopEndRadius: theme.borderRadius,
     backgroundColor: theme.palette.background,
@@ -15,6 +16,7 @@ export const CardNavigatorRoot = styled(KeyboardAvoidingView)(({ theme }) => ({
 
 export const CardNavigatorWrapper = styled(Col)(({ safeAreaInsets }) => ({
     paddingBottom: safeAreaInsets.bottom + 10,
+    height: "100%",
 }));
 
 export const CardNavigatorContent = styled(Col)(() => ({

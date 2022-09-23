@@ -37,6 +37,14 @@ const overlay: Theme["palette"]["overlay"] = {
     "12%": "#2626261F",
     "8%": "#26262614",
 };
+const altOverlay: Theme["palette"]["altOverlay"] = {
+    "80%": "#FFFFFFCC",
+    "60%": "#FFFFFF99",
+    "40%": "#FFFFFF66",
+    "20%": "#FFFFFF33",
+    "12%": "#FFFFFF1F",
+    "8%": "#FFFFFF14",
+};
 
 const lightTheme = createTheme({
     ...theme,
@@ -82,6 +90,7 @@ const lightTheme = createTheme({
         appbar: gray[0],
         paper: gray[0],
         backdrop: overlay["60%"],
+        altOverlay,
     },
 });
 
