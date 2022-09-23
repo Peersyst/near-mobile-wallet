@@ -22,11 +22,11 @@ const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style, on
     }, [errorProp]);
 
     return (
-        <Col style={style} justifyContent="space-around" flex={1}>
+        <Col style={{ marginTop: "40%", minHeight: "70%", ...style }} justifyContent="space-around" gap={30}>
             <Row justifyContent="center">
                 <PinDisplay length={value.length} error={error && !value.length} placeholder={error ? undefined : placeholder} />
             </Row>
-            <Col style={style} gap={"8%"}>
+            <Col gap={"8%"}>
                 <Keyboard setValue={setValue} />
                 {onCancel && (
                     <PressableText
