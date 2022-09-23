@@ -26,7 +26,7 @@ const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style, on
             <Row justifyContent="center">
                 <PinDisplay length={value.length} error={error && !value.length} placeholder={error ? undefined : placeholder} />
             </Row>
-            <Col style={style} gap={"8%"}>
+            <Col gap={"8%"} style={style}>
                 <Keyboard setValue={setValue} />
                 {onCancel && (
                     <PressableText

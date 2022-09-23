@@ -9,7 +9,7 @@ import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import { useBackHandler } from "@react-native-community/hooks";
-import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
+import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { useResetRecoilState } from "recoil";
 import createWalletState from "module/wallet/state/CreateWalletState";
 import { useTranslate } from "module/common/hook/useTranslate";
@@ -76,12 +76,11 @@ const CreateWalletNavigatorGroup = () => {
 
     return (
         <Tabs index={activeTab} onIndexChange={handleTabChange}>
-            <GlassNavigatorModal
+            <CardNavigatorModal
                 onClose={() => setShowGlass(false)}
                 open={showGlass}
                 onExited={handleGlassExit}
-                navbar={{ back: true, title: translate("create_wallet"), onBack: handleBack }}
-                breadcrumbs={{ index: activeTab, length: 4 }}
+                navbar={{ back: true, title: translate("create_wallet"), onBack: handleBack, steps: { index: activeTab, length: 4 } }}
                 renderBackdrop={false}
             >
                 <TabPanel index={CreateWalletScreens.SET_WALLET_NAME}>
@@ -102,7 +101,7 @@ const CreateWalletNavigatorGroup = () => {
                 <TabPanel index={CreateWalletScreens.PICK_WALLET_MNEMONIC}>
                     <PickWalletMnemonicScreen onSubmit={() => handleTabChange(CreateWalletScreens.CREATE_WALLET_SUCCESS)} />
                 </TabPanel>
-            </GlassNavigatorModal>
+            </CardNavigatorModal>
             <TabPanel index={CreateWalletScreens.SET_WALLET_PIN}>
                 <SetWalletPinScreen
                     onSuccess={() => handleTabChange(CreateWalletScreens.WALLET_ADVISES)}

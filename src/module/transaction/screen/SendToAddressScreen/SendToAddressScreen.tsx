@@ -67,7 +67,7 @@ const SendToAddressScreen = () => {
                         <SendImage source={send} />
                     </Row>
                     <Col gap={40}>
-                        <Paper style={{ padding: 20 }} elevation={8}>
+                        <Paper style={{ padding: 20 }} elevation={0}>
                             <Col gap={20}>
                                 <WalletSelector
                                     label={translate("select_a_wallet") + ":"}

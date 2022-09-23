@@ -1,6 +1,6 @@
 import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
 import { useState } from "react";
-import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
+import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { useResetRecoilState } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import DepositSelectAccountScreen from "module/dao/screen/DepositSelectAccountScreen/DepositSelectAccountScreen";
@@ -28,9 +28,9 @@ const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps
     }
 
     return (
-        <GlassNavigatorModal
-            breadcrumbs={{ length: 3, index: activeIndex }}
+        <CardNavigatorModal
             navbar={{
+                steps: { length: 3, index: activeIndex },
                 back: true,
                 title: translate("deposit"),
                 onBack: activeIndex > 0 ? handleBack : undefined,
@@ -49,7 +49,7 @@ const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps
                     <DepositConfirmationScreen />
                 </TabPanel>
             </Tabs>
-        </GlassNavigatorModal>
+        </CardNavigatorModal>
     );
 });
 

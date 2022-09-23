@@ -9,7 +9,6 @@ const AuthSwitchScreen = (): JSX.Element => {
     const setTab = useTabs()[1];
     useLogoPageFlex(1);
     useLogoPageGradient(true);
-
     const translate = useTranslate();
     return (
         <AnimatedAuthSwitchScreenRoot in={true} appear>
