@@ -1,13 +1,12 @@
 import { LogoPageIconRoot } from "./LogoPage.styles";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { LogoPageProvider } from "module/common/component/layout/LogoPage/LogoPageContext";
-import { Animated, View } from "react-native";
+import { Animated } from "react-native";
 import Logo from "module/common/component/display/Logo/Logo";
 import { useDimensions } from "@react-native-community/hooks";
 import GradientPage from "module/common/component/layout/GradientPage/GradientPage";
 import { ThemeProvider } from "@peersyst/react-native-styled";
 import darkTheme from "config/theme/darkTheme";
-import { Col } from "@peersyst/react-native-components";
 
 export interface LogoPageProps {
     children?: ReactNode;
