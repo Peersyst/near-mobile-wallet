@@ -4,6 +4,14 @@ import { Theme as RNCTheme } from "@peersyst/react-native-components";
 
 // Custom components theme
 declare module "@peersyst/react-native-components" {
+    export interface Theme {
+        borderRadiusSm: number;
+    }
+
+    export interface CreateTheme {
+        borderRadiusSm?: number;
+    }
+
     export interface ThemePalette {
         // CKBULL
         white: string;

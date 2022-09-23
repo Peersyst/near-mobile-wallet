@@ -20,7 +20,6 @@ const CKBAmountInput = ({ amount, setAmount, freeBalance, fee, type = "send" }: 
     const translate = useTranslate();
     return (
         <TextField
-            variant="underlined"
             size="lg"
             hint={translate("transaction_fee", { fee: formatNumber(fee) as string })}
             value={amount}

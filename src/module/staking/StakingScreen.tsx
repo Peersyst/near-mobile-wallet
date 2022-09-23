@@ -10,7 +10,7 @@ const StakingScreen = (): JSX.Element => {
                     <Typography variant="body1Strong">Variant</Typography>
                     <Button variant="primary">Click me</Button>
                     <Button variant="secondary">Click me</Button>
-                    <Button variant="terciary">Click me</Button>
+                    <Button variant="tertiary">Click me</Button>
                     <Button variant="outlined">Click me</Button>
                     <Button variant="text">Click me</Button>
                     <Typography variant="body1Strong">Sizes</Typography>

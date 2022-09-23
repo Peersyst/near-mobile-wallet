@@ -34,6 +34,7 @@ const config = createConfig({
         Button: {
             defaultProps: {
                 variant: "primary",
+                size: "lg",
             },
         },
         Label: {
