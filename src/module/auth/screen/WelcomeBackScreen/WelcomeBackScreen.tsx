@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { Typography, useSetTab } from "@peersyst/react-native-components";
 import { WelcomeBackScreenRoot } from "./WelcomeBackScreen.styles";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
-import { useTranslate } from "module/common/hook/useTranslate";
 import { useLogoPageFlex, useLogoPageGradient } from "module/common/component/layout/LogoPage/LogoPageContext";
+import { useTranslate } from "module/common/hook/useTranslate";
 import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 
 const WelcomeBackScreen = (): JSX.Element => {
