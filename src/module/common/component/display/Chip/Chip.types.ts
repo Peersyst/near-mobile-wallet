@@ -1,15 +1,16 @@
-import { AppearanceProps } from "module/common/types";
-import { PaletteMode } from "@peersyst/react-native-components";
 import { ViewStyle, TextStyle } from "react-native";
 
 export type ChipStyle = ViewStyle & TextStyle;
 
+export type ChipVariant = "filled" | "outlined";
+
 export interface ChipProps {
     onPress?: () => unknown;
     label: string;
-    appearance?: PaletteMode;
+    variant?: ChipVariant;
     fullWidth?: boolean;
     style?: ChipStyle;
 }
 
-export type ChipRootProps = Pick<ChipProps, "fullWidth"> & AppearanceProps;
+export type ChipRootProps = Pick<ChipProps, "fullWidth" | "variant">;
+export type ChipTextProps = Pick<ChipProps, "variant">;
