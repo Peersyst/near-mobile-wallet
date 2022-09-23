@@ -2,8 +2,8 @@ import { ExpoConfig, ConfigContext } from "@expo/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
     ...config,
-    name: "CKBull",
-    slug: "CKBull",
+    name: "NEAR Mobile Wallet",
+    slug: "NEAR Mobile Wallet",
     owner: "peersyst",
     version: "1.1.3",
     orientation: "portrait",
@@ -21,7 +21,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     assetBundlePatterns: ["**/*"],
     ios: {
         supportsTablet: false,
-        bundleIdentifier: "com.peersyst.ckbull",
+        bundleIdentifier: "com.peersyst.nearmobilewallet",
         buildNumber: process.env.BUILD_NUMBER || "0",
         config: {
             usesNonExemptEncryption: false,
@@ -34,7 +34,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     get android(): ExpoConfig["android"] {
         return {
-            package: "com.peersyst.ckbull",
+            package: "com.peersyst.nearmobilewallet",
             adaptiveIcon: {
                 foregroundImage: "./assets/images/adaptive-icon.png",
                 backgroundColor: "#141414",
