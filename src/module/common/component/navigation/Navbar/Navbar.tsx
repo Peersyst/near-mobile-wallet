@@ -20,7 +20,7 @@ const Navbar = ({ back, title, onBack, steps }: NavbarProps): JSX.Element => {
                     <BackIcon />
                 </BackIconRoot>
             )}
-            <Col alignItems="center" gap={4}>
+            <Col alignItems="center">
                 {title && (
                     <Typography variant="body1Strong" textTransform="uppercase">
                         {title}

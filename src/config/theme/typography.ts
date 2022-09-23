@@ -10,14 +10,14 @@ export const MANROPE: Record<FontWeight, string> = {
 };
 
 export const FONT_STYLE: Record<string, TextStyle> = {
-    h1: { fontSize: 48 },
-    h2: { fontSize: 40 },
-    h3: { fontSize: 32 },
-    h4: { fontSize: 22 },
-    body1: { fontSize: 18 },
-    body2: { fontSize: 16 },
-    body3: { fontSize: 14 },
-    body4: { fontSize: 12 },
+    h1: { fontSize: 48, lineHeight: 56 },
+    h2: { fontSize: 40, lineHeight: 50 },
+    h3: { fontSize: 32, lineHeight: 40 },
+    h4: { fontSize: 22, lineHeight: 32 },
+    body1: { fontSize: 18, lineHeight: 30 },
+    body2: { fontSize: 16, lineHeight: 28 },
+    body3: { fontSize: 14, lineHeight: 20 },
+    body4: { fontSize: 12, lineHeight: 18 },
 };
 
 export function createTypographyVariant(tag: keyof typeof FONT_STYLE, fontWeight: FontWeight, style: TextStyle = {}): TextStyle {

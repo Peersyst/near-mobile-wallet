@@ -1,10 +1,11 @@
 import { NavbarProps } from "module/common/component/navigation/Navbar/Navbar.types";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import Navbar from "module/common/component/navigation/Navbar/Navbar";
-import { ViewStyle } from "react-native";
-import { CardNavigatorContent, CardNavigatorRoot } from "./CardNavigator.styles";
+import { LayoutChangeEvent, ViewStyle } from "react-native";
+import { CardNavigatorContent, CardNavigatorRoot, CardNavigatorWrapper } from "./CardNavigator.styles";
 import { Divider } from "@peersyst/react-native-components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useDimensions } from "@react-native-community/hooks";
 
 export interface CardNavigatorProps {
     navbar?: NavbarProps;
@@ -12,21 +13,35 @@ export interface CardNavigatorProps {
     style?: ViewStyle;
 }
 
-const CardNavigator = ({ navbar: navbarProps, children, style }: CardNavigatorProps): JSX.Element => (
-    <CardNavigatorRoot style={style}>
-        {navbarProps && <Navbar {...navbarProps} />}
-        <Divider />
-        <KeyboardAwareScrollView
-            style={{ flex: 1 }}
-            keyboardShouldPersistTaps="handled"
-            enableOnAndroid={true}
-            alwaysBounceVertical={false}
-        >
-            <CardNavigatorContent flex={1} justifyContent="flex-end">
-                {children}
-            </CardNavigatorContent>
-        </KeyboardAwareScrollView>
-    </CardNavigatorRoot>
-);
+const CardNavigator = ({ navbar: navbarProps, children, style }: CardNavigatorProps): JSX.Element => {
+    const [keyboardPaddingEnabled, setKeyboardPaddingEnabled] = useState(false);
+    const {
+        screen: { height },
+    } = useDimensions();
+
+    const handleLayout = (e: LayoutChangeEvent) => {
+        setKeyboardPaddingEnabled(e.nativeEvent.layout.height < height * 0.65);
+    };
+
+    return (
+        <CardNavigatorRoot style={style} enabled={keyboardPaddingEnabled} behavior="padding">
+            <CardNavigatorWrapper onLayout={handleLayout}>
+                {navbarProps && <Navbar {...navbarProps} />}
+                <Divider />
+                <KeyboardAwareScrollView
+                    style={{ flex: 1 }}
+                    keyboardShouldPersistTaps="handled"
+                    enableOnAndroid={true}
+                    alwaysBounceVertical={false}
+                    enableAutomaticScroll={!keyboardPaddingEnabled}
+                >
+                    <CardNavigatorContent flex={1} justifyContent="flex-end">
+                        {children}
+                    </CardNavigatorContent>
+                </KeyboardAwareScrollView>
+            </CardNavigatorWrapper>
+        </CardNavigatorRoot>
+    );
+};
 
 export default CardNavigator;

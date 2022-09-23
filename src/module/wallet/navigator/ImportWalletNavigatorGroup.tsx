@@ -72,6 +72,7 @@ const ImportWalletNavigatorGroup = () => {
         <Tabs index={activeTab} onIndexChange={handleTabChange}>
             <LightThemeProvider>
                 <CardNavigatorModal
+                    renderBackdrop={false}
                     onClose={() => setShowGlass(false)}
                     open={showGlass}
                     onExited={handleGlassExit}

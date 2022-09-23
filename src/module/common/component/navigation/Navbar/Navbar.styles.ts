@@ -7,8 +7,7 @@ export const NavbarRoot = styled(Row)(() => ({
     justifyContent: "center",
     position: "relative",
     minHeight: 64,
-    paddingHorizontal: 20,
-    paddingVertical: 26,
+    padding: 20,
 }));
 
 export const BackIconRoot = styled(IconButton)(({ theme }) => ({
