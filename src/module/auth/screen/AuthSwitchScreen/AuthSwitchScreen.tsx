@@ -4,6 +4,7 @@ import { useTabs } from "@peersyst/react-native-components";
 import { useLogoPageFlex, useLogoPageGradient } from "module/common/component/layout/LogoPage/LogoPageContext";
 import { useTranslate } from "module/common/hook/useTranslate";
 import Button from "module/common/component/input/Button/Button";
+import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 
 const AuthSwitchScreen = (): JSX.Element => {
     const setTab = useTabs()[1];
@@ -11,14 +12,16 @@ const AuthSwitchScreen = (): JSX.Element => {
     useLogoPageGradient(true);
     const translate = useTranslate();
     return (
-        <AnimatedAuthSwitchScreenRoot in={true} appear>
-            <Button variant="secondary" size="lg" fullWidth onPress={() => setTab(AuthScreens.CREATE_WALLET)}>
-                {translate("create_wallet")}
-            </Button>
-            <Button variant="tertiary" size="lg" fullWidth onPress={() => setTab(AuthScreens.IMPORT_WALLET)}>
-                {translate("importYourNearWallet")}
-            </Button>
-        </AnimatedAuthSwitchScreenRoot>
+        <DarkThemeProvider>
+            <AnimatedAuthSwitchScreenRoot in={true} appear>
+                <Button variant="secondary" size="lg" fullWidth onPress={() => setTab(AuthScreens.CREATE_WALLET)}>
+                    {translate("create_wallet")}
+                </Button>
+                <Button variant="tertiary" size="lg" fullWidth onPress={() => setTab(AuthScreens.IMPORT_WALLET)}>
+                    {translate("importYourNearWallet")}
+                </Button>
+            </AnimatedAuthSwitchScreenRoot>
+        </DarkThemeProvider>
     );
 };
 

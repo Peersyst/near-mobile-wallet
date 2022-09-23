@@ -7,6 +7,7 @@ import { useSetRecoilState } from "recoil";
 import walletState from "module/wallet/state/WalletState";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import { useTranslate } from "module/common/hook/useTranslate";
+import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 
 const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { duration: 200, appear: true });
 
@@ -25,7 +26,11 @@ const SetWalletPinScreen = (): JSX.Element => {
         }
     };
 
-    return <AnimatedNumericPad in={true} error={error} onSubmit={handlePinSubmit} placeholder={translate("enter_your_pin")} />;
+    return (
+        <DarkThemeProvider>
+            <AnimatedNumericPad in={true} error={error} onSubmit={handlePinSubmit} placeholder={translate("enter_your_pin")} />
+        </DarkThemeProvider>
+    );
 };
 
 export default SetWalletPinScreen;
