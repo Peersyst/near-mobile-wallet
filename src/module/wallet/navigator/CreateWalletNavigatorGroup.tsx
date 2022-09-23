@@ -13,6 +13,8 @@ import CardNavigatorModal from "module/common/component/navigation/CardNavigator
 import { useResetRecoilState } from "recoil";
 import createWalletState from "module/wallet/state/CreateWalletState";
 import { useTranslate } from "module/common/hook/useTranslate";
+import LightThemeProvider from "module/common/component/util/ThemeProvider/LightThemeProvider";
+import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 
 export enum CreateWalletScreens {
     SET_WALLET_NAME,
@@ -76,41 +78,45 @@ const CreateWalletNavigatorGroup = () => {
 
     return (
         <Tabs index={activeTab} onIndexChange={handleTabChange}>
-            <CardNavigatorModal
-                onClose={() => setShowGlass(false)}
-                open={showGlass}
-                onExited={handleGlassExit}
-                navbar={{ back: true, title: translate("create_wallet"), onBack: handleBack, steps: { index: activeTab, length: 4 } }}
-                renderBackdrop={false}
-            >
-                <TabPanel index={CreateWalletScreens.SET_WALLET_NAME}>
-                    <SetWalletNameScreen
-                        onSubmit={() => handleTabChange(CreateWalletScreens.SET_WALLET_PIN)}
-                        submitText={translate("set_pin")}
+            <LightThemeProvider>
+                <CardNavigatorModal
+                    onClose={() => setShowGlass(false)}
+                    open={showGlass}
+                    onExited={handleGlassExit}
+                    navbar={{ back: true, title: translate("create_wallet"), onBack: handleBack, steps: { index: activeTab, length: 4 } }}
+                    renderBackdrop={false}
+                >
+                    <TabPanel index={CreateWalletScreens.SET_WALLET_NAME}>
+                        <SetWalletNameScreen
+                            onSubmit={() => handleTabChange(CreateWalletScreens.SET_WALLET_PIN)}
+                            submitText={translate("set_pin")}
+                        />
+                    </TabPanel>
+                    <TabPanel index={CreateWalletScreens.WALLET_ADVISES}>
+                        <WalletAdvisesScreen
+                            onNextScreen={() => handleTabChange(CreateWalletScreens.WALLET_MNEMONIC)}
+                            nextScreenText={translate("generate_mnemonic")}
+                        />
+                    </TabPanel>
+                    <TabPanel index={CreateWalletScreens.WALLET_MNEMONIC}>
+                        <WalletMnemonicScreen onNextScreen={() => handleTabChange(CreateWalletScreens.PICK_WALLET_MNEMONIC)} />
+                    </TabPanel>
+                    <TabPanel index={CreateWalletScreens.PICK_WALLET_MNEMONIC}>
+                        <PickWalletMnemonicScreen onSubmit={() => handleTabChange(CreateWalletScreens.CREATE_WALLET_SUCCESS)} />
+                    </TabPanel>
+                </CardNavigatorModal>
+            </LightThemeProvider>
+            <DarkThemeProvider>
+                <TabPanel index={CreateWalletScreens.SET_WALLET_PIN}>
+                    <SetWalletPinScreen
+                        onSuccess={() => handleTabChange(CreateWalletScreens.WALLET_ADVISES)}
+                        onCancel={() => handleTabChange(CreateWalletScreens.SET_WALLET_NAME)}
                     />
                 </TabPanel>
-                <TabPanel index={CreateWalletScreens.WALLET_ADVISES}>
-                    <WalletAdvisesScreen
-                        onNextScreen={() => handleTabChange(CreateWalletScreens.WALLET_MNEMONIC)}
-                        nextScreenText={translate("generate_mnemonic")}
-                    />
+                <TabPanel index={CreateWalletScreens.CREATE_WALLET_SUCCESS}>
+                    <CreateWalletSuccessScreen />
                 </TabPanel>
-                <TabPanel index={CreateWalletScreens.WALLET_MNEMONIC}>
-                    <WalletMnemonicScreen onNextScreen={() => handleTabChange(CreateWalletScreens.PICK_WALLET_MNEMONIC)} />
-                </TabPanel>
-                <TabPanel index={CreateWalletScreens.PICK_WALLET_MNEMONIC}>
-                    <PickWalletMnemonicScreen onSubmit={() => handleTabChange(CreateWalletScreens.CREATE_WALLET_SUCCESS)} />
-                </TabPanel>
-            </CardNavigatorModal>
-            <TabPanel index={CreateWalletScreens.SET_WALLET_PIN}>
-                <SetWalletPinScreen
-                    onSuccess={() => handleTabChange(CreateWalletScreens.WALLET_ADVISES)}
-                    onCancel={() => handleTabChange(CreateWalletScreens.SET_WALLET_NAME)}
-                />
-            </TabPanel>
-            <TabPanel index={CreateWalletScreens.CREATE_WALLET_SUCCESS}>
-                <CreateWalletSuccessScreen />
-            </TabPanel>
+            </DarkThemeProvider>
         </Tabs>
     );
 };

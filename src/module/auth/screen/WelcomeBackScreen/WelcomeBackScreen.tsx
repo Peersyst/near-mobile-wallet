@@ -4,6 +4,7 @@ import { WelcomeBackScreenRoot } from "./WelcomeBackScreen.styles";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { useLogoPageFlex, useLogoPageGradient } from "module/common/component/layout/LogoPage/LogoPageContext";
+import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 
 const WelcomeBackScreen = (): JSX.Element => {
     const setTab = useSetTab();
@@ -16,9 +17,11 @@ const WelcomeBackScreen = (): JSX.Element => {
     }, []);
 
     return (
-        <WelcomeBackScreenRoot>
-            <Typography variant="body1Strong">{translate("welcome_back")}</Typography>
-        </WelcomeBackScreenRoot>
+        <DarkThemeProvider>
+            <WelcomeBackScreenRoot>
+                <Typography variant="body1Strong">{translate("welcome_back")}</Typography>
+            </WelcomeBackScreenRoot>
+        </DarkThemeProvider>
     );
 };
 

@@ -12,6 +12,8 @@ import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen/Wallet
 import { useResetRecoilState } from "recoil";
 import createWalletState from "../state/CreateWalletState";
 import { useTranslate } from "module/common/hook/useTranslate";
+import LightThemeProvider from "module/common/component/util/ThemeProvider/LightThemeProvider";
+import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 
 export enum ImportWalletScreens {
     SET_WALLET_NAME,
@@ -68,38 +70,45 @@ const ImportWalletNavigatorGroup = () => {
 
     return (
         <Tabs index={activeTab} onIndexChange={handleTabChange}>
-            <CardNavigatorModal
-                onClose={() => setShowGlass(false)}
-                open={showGlass}
-                onExited={handleGlassExit}
-                navbar={{ back: true, title: translate("import_wallet"), onBack: handleBack, steps: { index: activeTab, length: 3 } }}
-            >
-                <TabPanel index={ImportWalletScreens.SET_WALLET_NAME}>
-                    <SetWalletNameScreen
-                        onSubmit={() => handleTabChange(ImportWalletScreens.WALLET_ADVISES)}
-                        submitText={translate("enter_mnemonic")}
+            <LightThemeProvider>
+                <CardNavigatorModal
+                    onClose={() => setShowGlass(false)}
+                    open={showGlass}
+                    onExited={handleGlassExit}
+                    navbar={{ back: true, title: translate("import_wallet"), onBack: handleBack, steps: { index: activeTab, length: 3 } }}
+                >
+                    <TabPanel index={ImportWalletScreens.SET_WALLET_NAME}>
+                        <SetWalletNameScreen
+                            onSubmit={() => handleTabChange(ImportWalletScreens.WALLET_ADVISES)}
+                            submitText={translate("enter_mnemonic")}
+                        />
+                    </TabPanel>
+                    <TabPanel index={ImportWalletScreens.WALLET_ADVISES}>
+                        <WalletAdvisesScreen
+                            onNextScreen={() => handleTabChange(ImportWalletScreens.ENTER_WALLET_MNEMONIC)}
+                            useTimer={false}
+                            nextScreenText={translate("enter_mnemonic")}
+                        />
+                    </TabPanel>
+                    <TabPanel index={ImportWalletScreens.ENTER_WALLET_MNEMONIC}>
+                        <EnterWalletMnemonicScreen
+                            onSubmit={() => handleTabChange(ImportWalletScreens.SET_WALLET_PIN)}
+                            submitText={translate("set_pin")}
+                        />
+                    </TabPanel>
+                </CardNavigatorModal>
+            </LightThemeProvider>
+            <DarkThemeProvider>
+                <TabPanel index={ImportWalletScreens.SET_WALLET_PIN}>
+                    <SetWalletPinScreen
+                        onSuccess={() => handleTabChange(ImportWalletScreens.IMPORT_WALLET_SUCCESS)}
+                        onCancel={handleBack}
                     />
                 </TabPanel>
-                <TabPanel index={ImportWalletScreens.WALLET_ADVISES}>
-                    <WalletAdvisesScreen
-                        onNextScreen={() => handleTabChange(ImportWalletScreens.ENTER_WALLET_MNEMONIC)}
-                        useTimer={false}
-                        nextScreenText={translate("enter_mnemonic")}
-                    />
+                <TabPanel index={ImportWalletScreens.IMPORT_WALLET_SUCCESS}>
+                    <ImportWalletSuccessScreen />
                 </TabPanel>
-                <TabPanel index={ImportWalletScreens.ENTER_WALLET_MNEMONIC}>
-                    <EnterWalletMnemonicScreen
-                        onSubmit={() => handleTabChange(ImportWalletScreens.SET_WALLET_PIN)}
-                        submitText={translate("set_pin")}
-                    />
-                </TabPanel>
-            </CardNavigatorModal>
-            <TabPanel index={ImportWalletScreens.SET_WALLET_PIN}>
-                <SetWalletPinScreen onSuccess={() => handleTabChange(ImportWalletScreens.IMPORT_WALLET_SUCCESS)} onCancel={handleBack} />
-            </TabPanel>
-            <TabPanel index={ImportWalletScreens.IMPORT_WALLET_SUCCESS}>
-                <ImportWalletSuccessScreen />
-            </TabPanel>
+            </DarkThemeProvider>
         </Tabs>
     );
 };
