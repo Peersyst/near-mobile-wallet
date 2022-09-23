@@ -7,7 +7,14 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import Button from "module/common/component/input/Button/Button";
 import { NumericPadRoot } from "module/common/component/input/NumericPad/NumericPad.styles";
 
-const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style, onCancel }: NumericPadProps): JSX.Element => {
+const NumericPad = ({
+    onSubmit,
+    error: errorProp = false,
+    placeholder,
+    style,
+    onCancel,
+    belowLogo = false,
+}: NumericPadProps): JSX.Element => {
     const [value, setValue] = useState<string>("");
     const [error, setError] = useState<boolean>(errorProp);
     const translate = useTranslate();
@@ -24,7 +31,7 @@ const NumericPad = ({ onSubmit, error: errorProp = false, placeholder, style, on
     }, [errorProp]);
 
     return (
-        <NumericPadRoot style={style}>
+        <NumericPadRoot style={style} belowLogo={belowLogo}>
             <Row justifyContent="center">
                 <PinDisplay
                     length={value.length}

@@ -6,7 +6,7 @@ import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
 describe("SetWalletPin tests", () => {
     test("Renders correctly", () => {
         const screen = render(<SetWalletPinScreen onCancel={() => undefined} onSuccess={() => undefined} />);
-        expect(screen.getByText(translate("enter_your_pin"))).toBeDefined();
+        expect(screen.getByText(translate("enter_your_pin").toUpperCase())).toBeDefined();
         expect(screen.getByText("1")).toBeDefined();
         expect(screen.getByText("Cancel")).toBeDefined();
     });
@@ -28,7 +28,7 @@ describe("SetWalletPin tests", () => {
         fireEvent.press(screen.getByText("2"));
         fireEvent.press(screen.getByText("3"));
         fireEvent.press(screen.getByText("4"));
-        expect(screen.getByText(translate("repeat_pin"))).toBeDefined();
+        expect(screen.getByText(translate("repeat_pin").toUpperCase())).toBeDefined();
         fireEvent.press(screen.getByText("1"));
         fireEvent.press(screen.getByText("2"));
         fireEvent.press(screen.getByText("3"));
@@ -43,12 +43,12 @@ describe("SetWalletPin tests", () => {
         fireEvent.press(screen.getByText("2"));
         fireEvent.press(screen.getByText("3"));
         fireEvent.press(screen.getByText("4"));
-        expect(screen.getByText(translate("repeat_pin"))).toBeDefined();
+        expect(screen.getByText(translate("repeat_pin").toUpperCase())).toBeDefined();
         fireEvent.press(screen.getByText("1"));
         fireEvent.press(screen.getByText("2"));
         fireEvent.press(screen.getByText("3"));
         fireEvent.press(screen.getByText("5"));
-        expect(screen.getByText(translate("pins_did_not_match"))).toBeDefined();
+        expect(screen.getByText(translate("pins_did_not_match").toUpperCase())).toBeDefined();
     });
 
     test("Cancel navigates back", async () => {

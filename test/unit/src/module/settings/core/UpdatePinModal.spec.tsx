@@ -11,7 +11,7 @@ describe("Test for the UpdatePinScreen", () => {
         const screen = render(<UpdatePinModal />);
         expect(screen.getByText(translate("update_your_pin")));
         expect(screen.getAllByTestId("BackIcon"));
-        expect(screen.getByText(translate("enter_new_pin")));
+        expect(screen.getByText(translate("enter_new_pin").toUpperCase()));
     });
     test("Updates pin correctly", () => {
         jest.useFakeTimers();
@@ -20,7 +20,7 @@ describe("Test for the UpdatePinScreen", () => {
         for (let i = 1; i < 5; i++) {
             fireEvent.press(screen.getByText(i.toString()));
         }
-        expect(screen.getByText(translate("repeat_pin"))).toBeDefined();
+        expect(screen.getByText(translate("repeat_pin").toUpperCase())).toBeDefined();
         for (let i = 1; i < 5; i++) {
             fireEvent.press(screen.getByText(i.toString()));
         }
@@ -35,7 +35,7 @@ describe("Test for the UpdatePinScreen", () => {
         for (let i = 9; i > 5; i--) {
             fireEvent.press(screen.getByText(i.toString()));
         }
-        expect(screen.getByText(translate("repeat_pin"))).toBeDefined();
+        expect(screen.getByText(translate("repeat_pin").toUpperCase())).toBeDefined();
         for (let i = 4; i < 8; i++) {
             fireEvent.press(screen.getByText(i.toString()));
         }

@@ -8,7 +8,7 @@ describe("Test for the RepeatNumericPad component", () => {
 
     test("Renders correctly", () => {
         const screen = render(<RepeatNumericPad onCancel={jest.fn()} placeholder="placeholder" onSuccess={jest.fn()} />);
-        expect(screen.getByText("placeholder"));
+        expect(screen.getByText("PLACEHOLDER"));
         expect(screen.getAllByTestId("BackIcon"));
         expect(screen.getByText(translate("cancel")));
     });
@@ -18,7 +18,7 @@ describe("Test for the RepeatNumericPad component", () => {
         for (let i = 1; i < 5; i++) {
             fireEvent.press(screen.getByText(i.toString()));
         }
-        expect(screen.getByText(translate("repeat_pin"))).toBeDefined();
+        expect(screen.getByText(translate("repeat_pin").toUpperCase())).toBeDefined();
         for (let i = 1; i < 5; i++) {
             fireEvent.press(screen.getByText(i.toString()));
         }
@@ -30,7 +30,7 @@ describe("Test for the RepeatNumericPad component", () => {
         for (let i = 1; i < 5; i++) {
             fireEvent.press(screen.getByText(i.toString()));
         }
-        expect(screen.getByText(translate("repeat_pin"))).toBeDefined();
+        expect(screen.getByText(translate("repeat_pin").toUpperCase())).toBeDefined();
         for (let i = 5; i > 1; i--) {
             fireEvent.press(screen.getByText(i.toString()));
         }
