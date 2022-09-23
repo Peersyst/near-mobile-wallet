@@ -7,9 +7,7 @@
     "enter_your_pin": "Introduce tu PIN",
     "enter_new_pin": "Introduce tu nuevo PIN",
     "pin_updated_successfully": "PIN actualizado correctamente",
-    "create_wallet": "Crear Wallet",
-    "already_have_wallet": "Ya tienes un Wallet de CKBull?",
-    "import_it": "Impórtalo",
+    "create_wallet": "Crear wallet",
     "security_first": "La seguridad es lo primero. ",
     "set_wallet_name_text": "CKBull ha sido creado priorizando la seguridad de tus activos. Por favor, lee atentamente los siguientes consejos de seguridad para mantener tus fondos seguros y sigue los pasos recomendados.",
     "wallet_name": "Nombre del Wallet",
@@ -154,5 +152,6 @@
     "testnet_warning": "Esto es una versión de Testnet. No envíes CKB de Mainnet a esta cuenta.",
     "dismiss": "Cerrar",
     "pending_transaction_text": "Tienes una transacción no cometida. Por favor, espera a que esté cometida para poder enviar una nueva.",
-    "staking": "Staking"
+    "staking": "Staking",
+    "importYourNearWallet": "Importa tu wallet de NEAR"
 }

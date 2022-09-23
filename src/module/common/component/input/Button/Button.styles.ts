@@ -35,7 +35,7 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
                 backgroundColor: "#FFFFFF",
                 color: "#000000",
             },
-            terciary: {
+            tertiary: {
                 backgroundColor: theme.palette.overlay["12%"],
                 color: "#ffffff",
             },
@@ -56,7 +56,7 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
                 secondary: {
                     backgroundColor: emphasize("#FFFFFF", 0.02),
                 },
-                terciary: {
+                tertiary: {
                     backgroundColor: theme.palette.overlay["20%"],
                 },
                 outlined: {
