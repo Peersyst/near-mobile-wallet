@@ -8,7 +8,7 @@ import ImportWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessS
 import { useBackHandler } from "@react-native-community/hooks";
 import EnterWalletMnemonicScreen from "module/wallet/screen/EnterWalletMnemonicScreen";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
-import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen/WalletAdvisesScreen";
+import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 import { useResetRecoilState } from "recoil";
 import createWalletState from "../state/CreateWalletState";
 import { useTranslate } from "module/common/hook/useTranslate";
@@ -87,7 +87,7 @@ const ImportWalletNavigatorGroup = () => {
                     <TabPanel index={ImportWalletScreens.WALLET_ADVISES}>
                         <WalletAdvisesScreen
                             onNextScreen={() => handleTabChange(ImportWalletScreens.ENTER_WALLET_MNEMONIC)}
-                            useTimer={false}
+                            ensureReading={false}
                             nextScreenText={translate("enter_mnemonic")}
                         />
                     </TabPanel>

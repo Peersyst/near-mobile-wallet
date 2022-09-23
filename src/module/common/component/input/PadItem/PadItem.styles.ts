@@ -18,7 +18,6 @@ export const PadItemRoot = styled(View)(({ theme, dimensions }) => {
 
 export const Item = styled(Text)(({ theme }) => ({
     ...theme.typography.h3Strong,
-    lineHeight: 0,
     color: theme.palette.text,
 }));
 
