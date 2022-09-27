@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
 import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
-import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen/WalletAdvisesScreen";
+import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";

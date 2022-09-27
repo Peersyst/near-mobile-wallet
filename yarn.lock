@@ -1827,10 +1827,10 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^1.6.0"
 
-"@peersyst/react-native-components@^1.2.24":
-  version "1.2.24"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-1.2.24.tgz#c654680c097222073b8c46d901b92b257f784c02"
-  integrity sha512-/23W75td8gK/eJFdKcZ2Kojgw9lIbBweXFGFWAJP75rjxHN0TOFmyxkJI169qgRwJ49Kv9lNvzcFSUSpu2muuQ==
+"@peersyst/react-native-components@^1.2.28":
+  version "1.2.28"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-1.2.28.tgz#c8861ad6e0dd3aadcc0699313cc97569bcb31d43"
+  integrity sha512-wlFosMNB/TYOQLPbzWRgvaCpwy4zJ6iv0F5bsJay3X9gZU2eROdEy+AeBm4nw87Ce++xEe1K/JR7C84an/U6oQ==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-components-core" "^0.2.4"
@@ -8018,15 +8018,10 @@ react-native-modal@^13.0.1:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
 
-react-native-pager-view@^5.4.15:
-  version "5.4.25"
-  resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.25.tgz#cd639d5387a7f3d5581b55a33c5faa1cbc200f97"
-  integrity sha512-3drrYwaLat2fYszymZe3nHMPASJ4aJMaxiejfA1V5SK3OygYmdtmV2u5prX7TnjueJzGSyyaCYEr2JlrRt4YPg==
-
-react-native-pager-view@^5.4.9:
-  version "5.4.15"
-  resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.15.tgz#075fef5ae4ba6ecc37e49b6c4a24770131a2a3cc"
-  integrity sha512-5NssD840wFCuOL4B1ZRiRADvt+Vx2Dgify4SmAUqHXCx03yiGPnRWmFjYXyQeK6gq/8VY+gPGE4bTy9ahzBbDw==
+react-native-pager-view@6.0.0, react-native-pager-view@^5.4.15:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-6.0.0.tgz#e3706da1bb7e55bcd2644d770d36c8dd14b48690"
+  integrity sha512-0qUMUmA/Lhv76F+fbCcYB+iuODH6Lp6E1EYlXw+GM3Ns3FaKFtBaVYXKQSfNhqnTUg9YEOY3HuX+ZMKBSHwNbA==
 
 react-native-qrcode-svg@^6.1.2:
   version "6.1.2"

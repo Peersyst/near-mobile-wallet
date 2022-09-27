@@ -1,39 +1,22 @@
 import { render, translate } from "test-utils";
-import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen/WalletAdvisesScreen";
-import { act, fireEvent } from "@testing-library/react-native";
+import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
+import { fireEvent } from "@testing-library/react-native";
 
 describe("WalletAdvisesScreen tests", () => {
     afterAll(() => {
         jest.restoreAllMocks();
     });
 
+    // Cannot test all flow as we cannot swipe between pages with jest
     test("Renders correctly", () => {
-        jest.useFakeTimers();
-
         const handleNextScreen = jest.fn();
 
         const screen = render(<WalletAdvisesScreen onNextScreen={handleNextScreen} nextScreenText="Next Screen" />);
 
         expect(screen.getByText(translate("advise1_title"))).toBeDefined();
 
-        let generateMnemonicButton = screen.getByText("Next Screen");
+        const generateMnemonicButton = screen.getByText("Next Screen");
         fireEvent.press(generateMnemonicButton);
         expect(handleNextScreen).not.toHaveBeenCalled();
-
-        act(() => jest.runAllTimers());
-        fireEvent.press(screen.getByText(translate("next")));
-        expect(screen.getByText(translate("advise2_title"))).toBeDefined();
-
-        act(() => jest.runAllTimers());
-        fireEvent.press(screen.getByText(translate("next")));
-        expect(screen.getByText(translate("advise3_title"))).toBeDefined();
-
-        act(() => jest.runAllTimers());
-        generateMnemonicButton = screen.getByText("Next Screen");
-        fireEvent.press(generateMnemonicButton);
-        fireEvent.press(generateMnemonicButton);
-        expect(handleNextScreen).toHaveBeenCalled();
-
-        jest.useRealTimers();
     });
 });

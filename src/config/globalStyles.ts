@@ -4,6 +4,17 @@ const globalStyles: CreateGlobalStyles = ({ theme }) => ({
     Divider: {
         backgroundColor: theme.palette.overlay["8%"],
     },
+    DottedPagination: {
+        gap: 6,
+        dot: {
+            width: 8,
+            height: 8,
+            backgroundColor: theme.palette.overlay["8%"],
+            active: {
+                backgroundColor: theme.palette.primary,
+            },
+        },
+    },
     FormControlHint: {
         fontSize: 14,
     },

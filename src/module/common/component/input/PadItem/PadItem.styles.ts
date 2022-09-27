@@ -16,13 +16,18 @@ export const PadItemRoot = styled(View)(({ theme, dimensions }) => {
     };
 });
 
-export const Item = styled(Text)(({ theme }) => ({
-    ...theme.typography.h3Strong,
-    lineHeight: 0,
-    color: theme.palette.text,
-}));
+export const Item = styled(Text)(({ theme, dimensions: { height } }) => {
+    const finalFont = theme.typography[height < 700 ? "h4Strong" : "h3Strong"];
+    return {
+        ...finalFont,
+        color: theme.palette.text,
+    };
+});
 
-export const ItemIcon = styled(Icon)(({ theme }) => ({
-    color: theme.palette.text,
-    fontSize: 36,
-}));
+export const ItemIcon = styled(Icon)(({ theme, dimensions: { height } }) => {
+    const finalFont = theme.typography[height < 700 ? "h4Strong" : "h3Strong"];
+    return {
+        color: theme.palette.text,
+        fontSize: finalFont.fontSize,
+    };
+});

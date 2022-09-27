@@ -3,7 +3,7 @@ import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
 import { useState } from "react";
 import AddWalletModal from "module/wallet/component/core/AddWalletModal/AddWalletModal";
 import EnterWalletMnemonicScreen from "module/wallet/screen/EnterWalletMnemonicScreen";
-import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen/WalletAdvisesScreen";
+import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 import { useTranslate } from "module/common/hook/useTranslate";
 
 const ImportWalletModal = createModal((props: ExposedBackdropProps) => {
@@ -19,7 +19,7 @@ const ImportWalletModal = createModal((props: ExposedBackdropProps) => {
                     <TabPanel index={1}>
                         <WalletAdvisesScreen
                             onNextScreen={() => setIndex(2)}
-                            useTimer={false}
+                            ensureReading={false}
                             nextScreenText={translate("enter_mnemonic")}
                         />
                     </TabPanel>
