@@ -39,7 +39,7 @@ const NumericPad = ({
                     placeholder={error ? undefined : placeholder?.toUpperCase()}
                 />
             </Row>
-            <Col gap="6%" style={style}>
+            <Col gap="3%" style={style}>
                 <Keyboard setValue={setValue} />
                 {onCancel && (
                     <Button variant="text" fullWidth onPress={onCancel}>

@@ -11,7 +11,7 @@ export const ChipRoot = styled(View)<ChipRootProps>(({ theme, variant, fullWidth
     alignSelf: fullWidth ? undefined : "flex-start",
     backgroundColor: variant === "filled" ? theme.palette.gray[900] : "transparent",
     ...(variant === "outlined" && {
-        borderWidth: 1,
+        borderWidth: 2,
         borderStyle: "solid",
         borderColor: theme.palette.overlay["8%"],
     }),
