@@ -19,8 +19,7 @@ describe("Test for the SendSummary component", () => {
         //Base summary
         expect(screen.getByText("2,400")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
-        expect(screen.getByText("0")).toBeDefined();
-        expect(screen.getByText("001")).toBeDefined();
+        expect(screen.getByText("0.001")).toBeDefined();
         //From
         expect(screen.getByText(translate("from") + ":"));
         expect("Antonia" + " - " + formatHash("0xMockedAddress", "middle", 3)).toBeDefined();

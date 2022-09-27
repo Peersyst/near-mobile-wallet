@@ -14,7 +14,7 @@ describe("Test for the deposit Item", () => {
                 type={"deposit"}
             />,
         );
-        expect(screen.getAllByText("CKB")).toHaveLength(2);
+
         expect(screen.getByText("10")).toBeDefined();
         expect(screen.getByText("(APC: 0%)")).toBeDefined();
         expect(screen.getByText(translate("compensation") + ":")).toBeDefined();
@@ -32,7 +32,7 @@ describe("Test for the deposit Item", () => {
                 type={"deposit"}
             />,
         );
-        expect(screen.getAllByText("CKB")).toHaveLength(2);
+
         expect(screen.getByText("10")).toBeDefined();
         expect(screen.getByText("(APC: 10%)")).toBeDefined();
         expect(screen.getByText(translate("compensation") + ":")).toBeDefined();

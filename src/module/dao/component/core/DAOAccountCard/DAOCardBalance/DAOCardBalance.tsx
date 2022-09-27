@@ -13,6 +13,7 @@ const DAOCardBalance = (): JSX.Element => {
     const { data: { estimated_apc = "0" } = {}, isLoading: loadingDao } = useGetDaoInfo();
     const { data: { freeBalance = 0 } = {}, isLoading: balanceLoading } = useGetBalance();
     const { name } = useSelectedWallet();
+
     return (
         <Col gap={"2%"} style={{ paddingHorizontal: "4%" }}>
             <DAOBalanceRow label={translate("wallet")}>
@@ -21,10 +22,10 @@ const DAOCardBalance = (): JSX.Element => {
                 </Typography>
             </DAOBalanceRow>
             <DAOBalanceRow label={translate("available")} isLoading={balanceLoading}>
-                <Balance boldUnits smallBalance balance={freeBalance} decimals={6} units="ckb" variant="h2" />
+                <Balance balance={freeBalance} variant="h2" />
             </DAOBalanceRow>
             <DAOBalanceRow label={translate("locked")} isLoading={daoBalanceLoading}>
-                <Balance boldUnits smallBalance balance={daoBalance?.daoDeposit || 0} decimals={3} units="ckb" variant="h3" />
+                <Balance balance={daoBalance?.daoDeposit || 0} variant="h3" />
             </DAOBalanceRow>
             <DAOBalanceRow label={translate("estimated_apc")} isLoading={loadingDao}>
                 <Typography variant="body1" fontWeight="bold">{`${estimated_apc}%`}</Typography>

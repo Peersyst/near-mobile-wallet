@@ -5,8 +5,9 @@ import { LocaleType } from "locale";
 
 export function getDefaultLocale(): LocaleType {
     const locales: LocaleType[] = ["en", "es"];
-    const systemLocale = Localization.locale.slice(0, 2);
-    return locales.find((l) => systemLocale === l) ?? "en";
+    const systemLocaleEnd = Localization.locale.slice(-2).toLocaleLowerCase();
+    const systemLocaleStart = Localization.locale.slice(0, 2).toLocaleLowerCase();
+    return locales.find((l) => systemLocaleStart === l || systemLocaleEnd === l) ?? "en";
 }
 
 export async function initLang(): Promise<LocaleType> {

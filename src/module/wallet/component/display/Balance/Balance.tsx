@@ -1,64 +1,18 @@
-import isHeading from "utils/isHeading";
-import { useMemo } from "react";
-import { Row } from "@peersyst/react-native-components";
-import { BalanceItem } from "./Balance.styles";
 import { BalanceProps } from "./Balance.types";
-import { extractTextStyles } from "utils/extractTextStyles";
-import { useTheme } from "@peersyst/react-native-styled";
-import formatNumber from "utils/formatNumber";
+import Typography from "module/common/component/display/Typography/Typography";
+import { getCurrencyUnit } from "./utils/getCurrencyUnit";
+import { useFormatNumber } from "module/common/hook/useFormatNumber";
+import { getActionLabel } from "./utils/getActionLabel";
 
-const Balance = ({
-    balance: balanceProps,
-    boldUnits,
-    smallBalance,
-    action = "display",
-    variant,
-    units,
-    style,
-    decimals = 2,
-    showAllDecimals = false,
-    ...rest
-}: BalanceProps): JSX.Element => {
-    const balance = formatNumber(balanceProps.toString(), { split: true, minDecimals: decimals, maxDecimals: decimals, showAllDecimals });
-    const heading = isHeading(variant);
-    const { palette } = useTheme();
-    const [textStyles, rootStyles] = useMemo(
-        () =>
-            extractTextStyles({
-                ...(action === "add" && {
-                    color: palette.status.success,
-                }),
-                ...style,
-            }),
-        [action, palette.status.error, palette.status.success, style],
-    );
+const Balance = ({ balance, options, unit, unitPosition = "right", action = "display", ...typographyProps }: BalanceProps): JSX.Element => {
+    const formatedNum = useFormatNumber(balance.toString(), options);
+    const actionLabel = getActionLabel[action];
     return (
-        <Row gap={heading ? 8 : 4} justifyContent="center" alignItems="flex-end" style={rootStyles}>
-            {action !== "display" && (
-                <BalanceItem variant={variant} style={textStyles} {...rest}>
-                    {action === "add" ? "+" : "-"}
-                </BalanceItem>
-            )}
-            <Row alignItems="center">
-                <BalanceItem style={textStyles} variant={variant} {...rest}>{`${balance[0].replace("-", "")}`}</BalanceItem>
-                {balance[2] && (
-                    <>
-                        <BalanceItem style={textStyles} variant={variant} {...rest}>{`${balance[1]}`}</BalanceItem>
-                        <BalanceItem
-                            variant={variant}
-                            style={textStyles}
-                            smallBalance={smallBalance}
-                            {...rest}
-                        >{`${balance[2]}`}</BalanceItem>
-                    </>
-                )}
-            </Row>
-            {units && (
-                <BalanceItem style={textStyles} variant={variant} {...rest} fontWeight={boldUnits ? "bold" : "normal"}>
-                    {units}
-                </BalanceItem>
-            )}
-        </Row>
+        <Typography {...typographyProps}>
+            {unit && unitPosition === "left" && getCurrencyUnit[unit] + " "}
+            {actionLabel + formatedNum}
+            {unit && unitPosition === "right" && " " + getCurrencyUnit[unit]}
+        </Typography>
     );
 };
 

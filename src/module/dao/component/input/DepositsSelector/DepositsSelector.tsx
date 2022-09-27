@@ -38,9 +38,7 @@ const DepositsSelector = ({ deposits, value, onChange, ...rest }: DepositsSelect
                     <DepositItemText
                         as={Balance}
                         balance={convertShannonsToCKB(deposits[selectedIndex].amount)}
-                        units={"CKB"}
                         variant="body1"
-                        boldUnits
                         unlockable={deposits[selectedIndex].unlockable}
                         selected={false}
                         type={deposits[selectedIndex].type}

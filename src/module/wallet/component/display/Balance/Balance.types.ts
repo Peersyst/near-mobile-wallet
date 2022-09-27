@@ -1,15 +1,15 @@
-import { TextStyle, ViewStyle } from "react-native";
-import { TypographyProps } from "@peersyst/react-native-components";
+import { TypographyProps } from "module/common/component/display/Typography/Typography";
+import { FiatCurrencyType } from "module/settings/state/SettingsState";
+import { FormatNumberOptions } from "utils/formatNumber";
 
-export interface BalanceProps extends Omit<TypographyProps, "children" | "numberOfLines" | "textAlign" | "style"> {
+export type AppCurrency = FiatCurrencyType | "near";
+
+export type BalanceAction = "display" | "add";
+
+export interface BalanceProps extends Omit<TypographyProps, "children"> {
     balance: bigint | number | string;
-    decimals?: number;
-    boldUnits?: boolean;
-    smallBalance?: boolean;
-    action?: "display" | "add" | "subtract";
-    units: string | false;
-    style?: ViewStyle & TextStyle;
-    showAllDecimals?: boolean;
+    unit?: AppCurrency;
+    unitPosition?: "left" | "right";
+    action?: BalanceAction;
+    options?: FormatNumberOptions;
 }
-
-export type BalanceItemProps = Pick<BalanceProps, "smallBalance" | "variant" | "style">;
