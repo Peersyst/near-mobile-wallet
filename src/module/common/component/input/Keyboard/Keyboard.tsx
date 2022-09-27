@@ -25,22 +25,22 @@ const Keyboard = ({ setValue }: KeyboardProps): JSX.Element => {
 
     return (
         <KeyboardRoot>
-            <Row>
+            <Row gap="15%">
                 <PadItem item={"1"} onPress={() => handlePress("1")} />
                 <PadItem item={"2"} onPress={() => handlePress("2")} />
                 <PadItem item={"3"} onPress={() => handlePress("3")} />
             </Row>
-            <Row>
+            <Row gap="15%">
                 <PadItem item={"4"} onPress={() => handlePress("4")} />
                 <PadItem item={"5"} onPress={() => handlePress("5")} />
                 <PadItem item={"6"} onPress={() => handlePress("6")} />
             </Row>
-            <Row>
+            <Row gap="15%">
                 <PadItem item={"7"} onPress={() => handlePress("7")} />
                 <PadItem item={"8"} onPress={() => handlePress("8")} />
                 <PadItem item={"9"} onPress={() => handlePress("9")} />
             </Row>
-            <Row>
+            <Row gap="15%">
                 <PadItem item={"X"} onPress={() => handlePress("X")} />
                 <PadItem item={"0"} onPress={() => handlePress("0")} />
                 <PadItem item={"<"} onPress={() => handlePress("<")} />

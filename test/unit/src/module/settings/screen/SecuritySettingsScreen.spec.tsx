@@ -38,7 +38,7 @@ describe("Test for the SecuritySettingsScreen", () => {
         fireEvent.press(button);
         expect(screen.getByText(translate("delete_data_text"))).toBeDefined();
         fireEvent.press(screen.getByText(translate("delete")));
-        expect(screen.getByText(translate("enter_your_pin"))).toBeDefined();
+        expect(screen.getByText(translate("enter_your_pin").toUpperCase())).toBeDefined();
         for (let i = 1; i < 5; i++) fireEvent.press(screen.getByText(i.toString()));
         await waitFor(() => expect(clearWalletStorage).toHaveBeenCalled());
         await waitFor(() => expect(clearSettingsStorage).toHaveBeenCalled());
@@ -66,7 +66,7 @@ describe("Test for the SecuritySettingsScreen", () => {
             ).toBeDefined(),
         );
         fireEvent.press(screen.getAllByText(translate("delete_wallet", { walletName: mockedUseWallet.state.wallets[0].name }))[1]);
-        expect(screen.getByText(translate("enter_your_pin"))).toBeDefined();
+        expect(screen.getByText(translate("enter_your_pin").toUpperCase())).toBeDefined();
         for (let i = 1; i < 5; i++) fireEvent.press(screen.getByText(i.toString()));
         await waitFor(() => expect(clearWalletStorage).toHaveBeenCalled());
         await waitFor(() => expect(clearSettingsStorage).toHaveBeenCalled());
@@ -91,7 +91,7 @@ describe("Test for the SecuritySettingsScreen", () => {
             expect(screen.getByText(translate("delete_wallet_text", { walletName: mockedUseWallet.state.wallets[0].name }))).toBeDefined(),
         );
         fireEvent.press(screen.getAllByText(translate("delete_wallet", { walletName: mockedUseWallet.state.wallets[0].name }))[1]);
-        expect(screen.getByText(translate("enter_your_pin"))).toBeDefined();
+        expect(screen.getByText(translate("enter_your_pin").toUpperCase())).toBeDefined();
         for (let i = 1; i < 5; i++) fireEvent.press(screen.getByText(i.toString()));
         await waitFor(() => expect(removeWallet).toHaveBeenCalledWith(0));
         await waitFor(() => expect(setInstance).toHaveBeenCalled());

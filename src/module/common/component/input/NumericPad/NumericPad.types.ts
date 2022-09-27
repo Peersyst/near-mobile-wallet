@@ -5,5 +5,10 @@ export interface NumericPadProps {
     onCancel?: () => unknown;
     placeholder?: string;
     error?: boolean;
+    belowLogo?: boolean;
     style?: ViewStyle;
+}
+
+export interface NumericPadRootProps {
+    belowLogo: boolean;
 }

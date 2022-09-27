@@ -68,6 +68,14 @@ declare module "@peersyst/react-native-components" {
             "12%": string;
             "8%": string;
         };
+        altOverlay: {
+            "80%": string;
+            "60%": string;
+            "40%": string;
+            "20%": string;
+            "12%": string;
+            "8%": string;
+        };
     }
 
     export interface TypographyVariantsOverrides {
