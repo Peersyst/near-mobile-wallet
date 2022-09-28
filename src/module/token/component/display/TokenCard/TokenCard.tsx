@@ -29,7 +29,7 @@ const TokenCard = ({ token: { type, amount } }: TokenProps): JSX.Element => {
             </Row>
             <Col alignItems="flex-end">
                 <Balance balance={amount / 10 ** type.decimals} variant="body2" />
-                {tokenValue && <Balance balance={tokenValue * (amount / 10 ** type.decimals)} unit={fiat} variant="body2" />}
+                {tokenValue && <Balance balance={tokenValue * (amount / 10 ** type.decimals)} units={fiat} variant="body2" />}
             </Col>
         </TokenRoot>
     );

@@ -9,9 +9,9 @@ export type BalanceAction = "display" | "add";
 
 export interface BalanceProps extends Omit<TypographyProps, "children"> {
     balance: bigint | number | string;
-    unit?: AppCurrency;
-    customUnit?: string;
-    unitPosition?: "left" | "right";
+    units?: AppCurrency;
+    customUnits?: string;
+    unitsPosition?: "left" | "right";
     action?: BalanceAction;
     options?: FormatNumberOptions;
     isLoading?: boolean;

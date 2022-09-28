@@ -46,7 +46,7 @@ const WalletCard = ({ wallet: { name, index, colorIndex, synchronizing } }: Wall
                                 color={(palette) => palette.white}
                                 variant="h3Strong"
                                 balance={showFiat ? fiatValue : balance?.freeBalance || 0}
-                                unitPosition="left"
+                                unitsPosition="left"
                             />
                         </Row>
                     </TouchableWithoutFeedback>

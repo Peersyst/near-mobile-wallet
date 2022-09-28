@@ -9,9 +9,9 @@ import Spinner from "module/common/component/feedback/Spinner/Spinner";
 const Balance = ({
     balance,
     options,
-    unit,
-    customUnit,
-    unitPosition = "right",
+    units,
+    customUnits,
+    unitsPosition = "right",
     action = "display",
     isLoading = false,
     spinnerProps,
@@ -19,14 +19,14 @@ const Balance = ({
 }: BalanceProps): JSX.Element => {
     const formatedNum = useFormatNumber(balance.toString(), options);
     const actionLabel = getActionLabel[action];
-    const currencyUnit = customUnit || (unit && getCurrencyUnit[unit]);
+    const currencyUnit = customUnits || (units && getCurrencyUnit[units]);
 
     return (
         <Suspense isLoading={isLoading} fallback={<Spinner testID="ActivityIndicator" {...spinnerProps} />}>
             <Typography {...typographyProps}>
-                {currencyUnit && unitPosition === "left" && currencyUnit + " "}
+                {currencyUnit && unitsPosition === "left" && currencyUnit + " "}
                 {actionLabel + formatedNum}
-                {currencyUnit && unitPosition === "right" && " " + currencyUnit}
+                {currencyUnit && unitsPosition === "right" && " " + currencyUnit}
             </Typography>
         </Suspense>
     );

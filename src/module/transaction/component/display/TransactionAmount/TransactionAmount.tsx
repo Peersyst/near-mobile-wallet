@@ -10,7 +10,7 @@ export interface TransactionAmountProps extends Omit<BalanceProps, "balance" | "
 }
 
 const TransactionAmount = ({ amount, type, ...rest }: TransactionAmountProps): JSX.Element => {
-    return <Balance action={transactionTypeToBalanceAction(type)} balance={amount} unit={"token"} {...rest} />;
+    return <Balance action={transactionTypeToBalanceAction(type)} balance={amount} units={"token"} {...rest} />;
 };
 
 export default TransactionAmount;
