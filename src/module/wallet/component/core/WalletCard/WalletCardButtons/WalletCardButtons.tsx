@@ -9,11 +9,11 @@ const WalletCardButtons = (): JSX.Element => {
     const { showModal } = useModal();
     const translate = useTranslate();
     return (
-        <Row gap={10}>
-            <Button variant="secondary" size="md" onPress={() => showModal(SendModal)}>
+        <Row gap={8}>
+            <Button style={{ width: 132 }} variant="secondary" size="md" onPress={() => showModal(SendModal)}>
                 {capitalize(translate("send"))}
             </Button>
-            <Button variant="secondary" size="md" onPress={() => showModal(ReceiveModal)}>
+            <Button style={{ width: 132 }} variant="secondary" size="md" onPress={() => showModal(ReceiveModal)}>
                 {capitalize(translate("receive"))}
             </Button>
         </Row>

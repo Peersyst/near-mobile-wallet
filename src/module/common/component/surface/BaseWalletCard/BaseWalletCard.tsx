@@ -14,7 +14,7 @@ interface BaseWalletCardProps {
 const BaseWalletCard = ({ name, children: { Balance, Buttons } }: BaseWalletCardProps) => {
     return (
         <BaseWalletCardRoot>
-            <Col flex={1} gap={15} alignItems="center">
+            <Col flex={1} gap={15} alignItems="center" justifyContent="center">
                 <Typography color={(p) => p.white} variant="body2Strong">
                     {name}
                 </Typography>
