@@ -23,8 +23,6 @@ describe("Test for the SelectDAOWallet", () => {
         });
         const screen = render(<SelectDAOWallet />);
         await waitFor(() => expect(screen.getAllByText("14,567")).toHaveLength(2));
-        expect(screen.getAllByText("14,567")[0].props.style.color).toEqual("#FFFFFF");
-        expect(screen.getAllByText("14,567")[1].props.style.color).toEqual("#000000");
     });
     test("Updates global selectedWallet correctly", async () => {
         const setSelectedWallet = jest.fn();

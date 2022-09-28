@@ -1,14 +1,28 @@
 import { render } from "test-utils";
-import { Text } from "react-native";
 import BaseWalletCard from "module/common/component/surface/BaseWalletCard/BaseWalletCard";
+import { Text } from "react-native";
 
 describe("BaseWalletCard test", () => {
     test("Renders correctly", () => {
         const screen = render(
-            <BaseWalletCard>
-                <Text>Hola</Text>
+            <BaseWalletCard name="WalletName">
+                {{
+                    Buttons: (
+                        <>
+                            <Text>Buttons</Text>
+                        </>
+                    ),
+                    Balance: (
+                        <>
+                            <Text>Balance</Text>
+                        </>
+                    ),
+                }}
             </BaseWalletCard>,
         );
-        expect(screen.getByText("Hola")).toBeDefined();
+        screen.debug();
+        expect(screen.getByText("WalletName")).toBeDefined();
+        expect(screen.getByText("Buttons")).toBeDefined();
+        expect(screen.getByText("Balance")).toBeDefined();
     });
 });
