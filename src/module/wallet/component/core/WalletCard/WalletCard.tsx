@@ -32,13 +32,14 @@ const WalletCard = ({ wallet: { name, index, synchronizing } }: WalletCardProps)
                 Balance: (
                     <Balance
                         isLoading={synchronizing}
+                        options={{ maxDecimals: 2 }}
                         spinnerProps={{ color: (p) => p.white, size: 42 }}
                         onPress={changeCurrencyMode}
-                        balance={freeBalance ?? 0}
+                        balance={freeBalance || 0}
                         variant="h3Strong"
                         color={(p) => p.white}
-                        unit={showFiat ? fiat : "near"}
-                        unitPosition="left"
+                        units={showFiat ? fiat : "token"}
+                        unitsPosition={showFiat ? "left" : "right"}
                     />
                 ),
             }}

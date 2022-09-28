@@ -23,7 +23,7 @@ const Balance = ({
 
     return (
         <Suspense isLoading={isLoading} fallback={<Spinner testID="ActivityIndicator" {...spinnerProps} />}>
-            <Typography {...typographyProps}>
+            <Typography textAlign="center" {...typographyProps} numberOfLines={1} style={{ width: "100%" }}>
                 {currencyUnit && unitsPosition === "left" && currencyUnit + " "}
                 {actionLabel + formatedNum}
                 {currencyUnit && unitsPosition === "right" && " " + currencyUnit}
