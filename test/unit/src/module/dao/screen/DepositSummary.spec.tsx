@@ -30,8 +30,7 @@ describe("Test for the DepositSummary", () => {
         const screen = render(<DepositSummary senderAddress={"0xMockedAddress"} amount={1000} fee={"0.001"} senderName={"Peersyst"} />);
         expect(screen.getByText("1,000")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
-        expect(screen.getByText("001")).toBeDefined();
-        expect(screen.getByText("0")).toBeDefined();
+        expect(screen.getByText("0.001")).toBeDefined();
         //Sender
         expect(screen.getByText(translate("from") + ":"));
         expect(screen.getByText("Peersyst" + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();

@@ -48,9 +48,7 @@ const DepositItem = ({
                     unlockable={unlockable}
                     selected={isSelected}
                     balance={convertShannonsToCKB(amount)}
-                    units="CKB"
                     variant="body1"
-                    boldUnits
                 />
                 <DepositItemText type={type} unlockable={unlockable} selected={isSelected} variant="body1">
                     {" (APC: " +
@@ -68,9 +66,7 @@ const DepositItem = ({
                     unlockable={unlockable}
                     selected={isSelected}
                     balance={convertShannonsToCKB(compensation)}
-                    units={"CKB"}
                     variant="body2"
-                    boldUnits
                 />
             </Row>
             <Row justifyContent="flex-start">

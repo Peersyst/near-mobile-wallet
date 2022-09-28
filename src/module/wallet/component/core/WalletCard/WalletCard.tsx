@@ -1,11 +1,11 @@
 import useGetBalance from "module/wallet/query/useGetBalance";
-import { ActivityIndicator, Image, ImageSourcePropType, TouchableWithoutFeedback } from "react-native";
+import { ActivityIndicator, TouchableWithoutFeedback } from "react-native";
 import { Wallet } from "module/wallet/state/WalletState";
 import useWalletColorIndex from "module/wallet/hook/useWalletColorIndex";
 import { WalletCardBalance, WalletContent } from "./WalletCard.styles";
 import WalletCardHeader from "./WalletCardHeader/WalletCardHeader";
 import WalletCardButtons from "./WalletCardButtons/WalletCardButtons";
-import settingsState, { FiatCurrencyType } from "module/settings/state/SettingsState";
+import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
 import { useGetCkbPrice } from "module/common/query/useGetCkbPrice";
 import useCkbConversion from "module/common/hook/useCkbConversion";

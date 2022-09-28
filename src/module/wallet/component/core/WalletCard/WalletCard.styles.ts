@@ -21,10 +21,6 @@ export const WalletCardTitle = styled(Typography, { textTransform: "uppercase", 
     textAlign: "center",
 }));
 
-export const WalletCardBalance = styled(Balance, { decimals: 6, boldUnits: true, smallBalance: true })(({ theme }) => ({
-    color: theme.palette.white,
-}));
-
 export const WalletContent = styled(Col, { justifyContent: "space-between" })(() => ({
     height: "100%",
 }));

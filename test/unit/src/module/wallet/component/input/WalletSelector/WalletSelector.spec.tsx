@@ -24,9 +24,8 @@ describe("WalletSelector tests", () => {
         });
 
         const screen = render(<WalletSelector />);
+
         expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2);
         await waitFor(() => expect(screen.getAllByText("1")).toHaveLength(3));
-        expect(screen.getAllByText("00")).toHaveLength(3);
-        expect(screen.getAllByText("CKB")).toHaveLength(3);
     });
 });
