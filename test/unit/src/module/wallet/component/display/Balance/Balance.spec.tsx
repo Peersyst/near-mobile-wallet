@@ -6,4 +6,8 @@ describe("Text for the Balance component", () => {
         const screen = render(<Balance balance={"100"} variant={"h1"} />);
         expect(screen.getByText("100")).toBeDefined();
     });
+    test("Renders correctly when loading", () => {
+        const screen = render(<Balance balance={"100"} variant={"h1"} isLoading />);
+        expect(screen.getByTestId("ActivityIndicator")).toBeDefined();
+    });
 });

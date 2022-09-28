@@ -1,4 +1,5 @@
 import { TypographyProps } from "module/common/component/display/Typography/Typography";
+import { SpinnerProps } from "module/common/component/feedback/Spinner/Spinner";
 import { FiatCurrencyType } from "module/settings/state/SettingsState";
 import { FormatNumberOptions } from "utils/formatNumber";
 
@@ -12,4 +13,6 @@ export interface BalanceProps extends Omit<TypographyProps, "children"> {
     unitPosition?: "left" | "right";
     action?: BalanceAction;
     options?: FormatNumberOptions;
+    isLoading?: boolean;
+    spinnerProps?: SpinnerProps;
 }
