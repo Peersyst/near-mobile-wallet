@@ -34,7 +34,7 @@ const TransactionTypeDetails = ({ transaction: { type, outputs, inputs } }: Tran
                                     outputs.reduce((prev, curr) => (curr.address === input.address ? prev + curr.quantity : prev), 0) -
                                     input.quantity
                                 }
-                                unit="near"
+                                units="token"
                                 variant="body1"
                             />
                         </Row>
