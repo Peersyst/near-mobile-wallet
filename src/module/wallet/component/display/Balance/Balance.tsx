@@ -3,14 +3,14 @@ import Typography from "module/common/component/display/Typography/Typography";
 import { getCurrencyUnit } from "./utils/getCurrencyUnit";
 import { useFormatNumber } from "module/common/hook/useFormatNumber";
 import { getActionLabel } from "./utils/getActionLabel";
-import { ActivityIndicator } from "react-native";
-import Spinner from "module/common/component/feedback/Spinner/Spinner";
 import { Suspense } from "@peersyst/react-native-components";
+import Spinner from "module/common/component/feedback/Spinner/Spinner";
 
 const Balance = ({
     balance,
     options,
     unit,
+    customUnit,
     unitPosition = "right",
     action = "display",
     isLoading = false,
@@ -19,12 +19,14 @@ const Balance = ({
 }: BalanceProps): JSX.Element => {
     const formatedNum = useFormatNumber(balance.toString(), options);
     const actionLabel = getActionLabel[action];
+    const currencyUnit = customUnit || (unit && getCurrencyUnit[unit]);
+
     return (
         <Suspense isLoading={isLoading} fallback={<Spinner testID="ActivityIndicator" {...spinnerProps} />}>
             <Typography {...typographyProps}>
-                {unit && unitPosition === "left" && getCurrencyUnit[unit] + " "}
+                {currencyUnit && unitPosition === "left" && currencyUnit + " "}
                 {actionLabel + formatedNum}
-                {unit && unitPosition === "right" && " " + getCurrencyUnit[unit]}
+                {currencyUnit && unitPosition === "right" && " " + currencyUnit}
             </Typography>
         </Suspense>
     );
