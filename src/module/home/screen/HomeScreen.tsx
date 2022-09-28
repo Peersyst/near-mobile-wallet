@@ -12,7 +12,7 @@ const HomeScreen = (): JSX.Element => {
 
     return (
         <BaseWithBackgroundMainScreen>
-            <Col flex={1} gap={20} style={{ paddingTop: 10 }}>
+            <Col flex={1}>
                 <HomeSlider />
                 {selectedWallet < wallets.length ? <HomeTabs /> : <AddWallet />}
             </Col>

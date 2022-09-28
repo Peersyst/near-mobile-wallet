@@ -18,7 +18,7 @@ const MainTabs = ({ tabs }: MainTabsProps): JSX.Element => {
                         );
                     })}
                 </TabGroup>
-                <Col flex={1} style={{ paddingVertical: 10 }}>
+                <Col flex={1}>
                     {tabs.map(({ item }, index) => {
                         return (
                             <TabPanel key={index} index={index}>
