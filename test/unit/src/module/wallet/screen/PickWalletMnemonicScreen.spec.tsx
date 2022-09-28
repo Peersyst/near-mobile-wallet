@@ -1,5 +1,5 @@
 import { render, translate } from "test-utils";
-import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen";
+import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen/PickWalletMnemonicScreen";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import * as Genesys from "@peersyst/react-native-components";
 import { fireEvent } from "@testing-library/react-native";

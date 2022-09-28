@@ -29,10 +29,10 @@ const MnemonicPicker = ({ mnemonic: mnemonicProp, onSuccess, onError }: Mnemonic
     }, [mnemonic, mnemonicProp]);
 
     return (
-        <Col gap={60}>
+        <Col gap={24}>
             <MnemonicList
                 mnemonic={mnemonic}
-                appearance="dark"
+                variant="filled"
                 onPress={(word) => setMnemonic((oldMnemonic) => oldMnemonic.filter((w) => w !== word))}
             />
             <MnemonicList
