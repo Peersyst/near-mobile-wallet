@@ -10,7 +10,7 @@ const Header = (): JSX.Element => {
     return (
         <HeaderRoot>
             <Row alignItems="center" justifyContent="center" flex={1}>
-                <LinearLogo startColor="#E3935B" endColor="#FFC860" onPress={() => navigation.navigate(MainBottomScreens.HOME)} />
+                <LinearLogo startColor="#5F8AFA" endColor="#4FD1D9" onPress={() => navigation.navigate(MainBottomScreens.HOME)} />
                 <Row style={{ position: "absolute", right: 8 }}>
                     <HeaderSettingsButton onPress={() => navigation.navigate(MainBottomScreens.SETTINGS)}>
                         <SettingsIcon />

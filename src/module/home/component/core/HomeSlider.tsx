@@ -14,13 +14,12 @@ const HomeSlider = (): JSX.Element => {
         <PagerView
             page={selectedWallet}
             onPageSelected={(page) => setSelectedWallet(page)}
-            showPageIndicator
+            showPageIndicator={true}
             gap={0}
-            height="37%"
             pagePadding={{ horizontal: 20 }}
             style={{
-                minHeight: 160,
-                marginBottom: 20,
+                marginBottom: 30,
+                minHeight: 200,
                 pagination: { dot: { backgroundColor: alpha(p.white, 0.5), active: { backgroundColor: p.white } } },
             }}
         >

@@ -1,12 +1,15 @@
 import GradientPage from "module/common/component/layout/GradientPage/GradientPage";
+import { GradientPageProps } from "module/common/component/layout/GradientPage/GradientPage.types";
 import BaseMainScreen, { BaseMainScreenProps } from "../BaseMainScreen/BaseMainScreen";
 
-type BaseWithBackgroundMainScreenProps = Pick<BaseMainScreenProps, "children">;
+type BaseWithBackgroundMainScreenProps = Pick<BaseMainScreenProps, "children"> & Pick<GradientPageProps, "gradient" | "style">;
 
-const BaseWithBackgroundMainScreen = ({ children }: BaseWithBackgroundMainScreenProps): JSX.Element => {
+const BaseWithBackgroundMainScreen = ({ children, style, gradient }: BaseWithBackgroundMainScreenProps): JSX.Element => {
     return (
         <BaseMainScreen>
-            <GradientPage>{children}</GradientPage>
+            <GradientPage style={style} gradient={gradient}>
+                {children}
+            </GradientPage>
         </BaseMainScreen>
     );
 };
