@@ -10,6 +10,7 @@ import { MnemonicMocked } from "mocks/MnemonicMocked";
 import * as useCkbConversion from "module/common/hook/useCkbConversion";
 import * as Recoil from "recoil";
 import * as ExpoHaptics from "expo-haptics";
+import { capitalize } from "@peersyst/react-utils";
 
 describe("WalletCard tests", () => {
     const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
@@ -39,10 +40,8 @@ describe("WalletCard tests", () => {
         await waitFor(() => expect(screen.getByText("10,400")).toBeDefined());
 
         /**Account Buttons */
-        expect(screen.getByText(translate("send"))).toBeDefined();
-        expect(screen.getByTestId("ReceiveIcon")).toBeDefined();
-        expect(screen.getByTestId("SendIcon")).toBeDefined();
-        expect(screen.getByText(translate("receive"))).toBeDefined();
+        expect(screen.getByText(capitalize(translate("send")))).toBeDefined();
+        expect(screen.getByText(capitalize(translate("receive")))).toBeDefined();
     });
 
     test("Change the currency when the user clicks on the balance", async () => {

@@ -20,7 +20,7 @@ const Balance = ({
     const formatedNum = useFormatNumber(balance.toString(), options);
     const actionLabel = getActionLabel[action];
     return (
-        <Suspense isLoading={isLoading} fallback={<Spinner {...spinnerProps} />}>
+        <Suspense isLoading={isLoading} fallback={<Spinner testID="ActivityIndicator" {...spinnerProps} />}>
             <Typography {...typographyProps}>
                 {unit && unitPosition === "left" && getCurrencyUnit[unit] + " "}
                 {actionLabel + formatedNum}
