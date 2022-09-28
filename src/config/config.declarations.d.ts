@@ -15,8 +15,10 @@ declare module "@peersyst/react-native-components" {
         mainnetExplorerLink: string;
         testnetExplorerLink: string;
         ckbTestnetUrl: string;
+        nearTestnetUrl: string;
         indexerTestnetUrl: string;
         ckbMainnetUrl: string;
+        nearMainnetUrl: string;
         indexerMainnetUrl: string;
         faucetUrl: string;
         testnetExplorerApi: string;
@@ -32,8 +34,10 @@ declare module "@peersyst/react-native-components" {
         mainnetExplorerLink: string;
         testnetExplorerLink: string;
         ckbTestnetUrl: string;
+        nearTestnetUrl: string;
         indexerTestnetUrl: string;
         ckbMainnetUrl: string;
+        nearMainnetUrl: string;
         indexerMainnetUrl: string;
         faucetUrl: string;
         testnetExplorerApi: string;
