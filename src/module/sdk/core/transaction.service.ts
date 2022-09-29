@@ -45,8 +45,8 @@ export enum TransactionStatus {
 }
 
 export enum TransactionType {
-    SEND_CKB = "send_ckb",
-    RECEIVE_CKB = "receive_ckb",
+    SEND_NATIVE_TOKEN = "send_ckb",
+    RECEIVE_NATIVE_TOKEN = "receive_ckb",
     SEND_TOKEN = "send_token",
     RECEIVE_TOKEN = "receive_token",
     SEND_NFT = "send_nft",
@@ -185,14 +185,14 @@ export class TransactionService {
             if (Math.abs(amount) < 1) {
                 // It is fee, same receiver and sender
                 if (isRealSender) {
-                    type = TransactionType.SEND_CKB;
+                    type = TransactionType.SEND_NATIVE_TOKEN;
                     amount = complexAmount;
                 } else {
-                    type = TransactionType.RECEIVE_CKB;
+                    type = TransactionType.RECEIVE_NATIVE_TOKEN;
                     amount = receiveAmount;
                 }
             } else {
-                type = !isReceive ? TransactionType.SEND_CKB : TransactionType.RECEIVE_CKB;
+                type = !isReceive ? TransactionType.SEND_NATIVE_TOKEN : TransactionType.RECEIVE_NATIVE_TOKEN;
             }
         } else if (outputIndex !== null) {
             const { type: outputType, data, quantity } = outputs[outputIndex];

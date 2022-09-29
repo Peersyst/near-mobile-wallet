@@ -32,9 +32,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
                 <Col gap={2} flex={1}>
                     <Row justifyContent="space-between">
                         <TransactionLabel variant="body1" fontWeight="bold" type={type} />
-                        {showAmount && (
-                            <TransactionAmount variant="body1" boldUnits type={type} fontWeight="bold" amount={amount} currency={token} />
-                        )}
+                        {showAmount && <TransactionAmount variant="body1" type={type} fontWeight="bold" amount={amount} currency={token} />}
                     </Row>
                     <Row justifyContent="space-between" alignItems="center">
                         {timestamp ? (

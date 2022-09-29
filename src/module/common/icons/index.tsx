@@ -1,4 +1,6 @@
 export * from "./ArrowIcon";
+export * from "./ArrowDownCircleIcon";
+export * from "./ArrowUpCircleIcon";
 export * from "./BackIcon";
 export * from "./CheckIcon";
 export * from "./ChevronRightIcon";

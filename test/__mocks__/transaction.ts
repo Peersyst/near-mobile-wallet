@@ -3,7 +3,7 @@ import { FullTransaction } from "module/common/service/CkbSdkService.types";
 
 export const transaction: FullTransaction = {
     status: TransactionStatus.COMMITTED,
-    type: TransactionType.SEND_CKB,
+    type: TransactionType.SEND_NATIVE_TOKEN,
     amount: 100,
     transactionHash: "0x1234567890abcdef",
     inputs: [],
@@ -15,7 +15,7 @@ export const transaction: FullTransaction = {
 
 export const sentTransaction: FullTransaction = {
     status: TransactionStatus.COMMITTED,
-    type: TransactionType.SEND_CKB,
+    type: TransactionType.SEND_NATIVE_TOKEN,
     amount: 100,
     transactionHash: "0x1234567890abcdef",
     inputs: [],
@@ -32,7 +32,7 @@ export const sentTransaction: FullTransaction = {
 
 export const receivedTransaction: FullTransaction = {
     status: TransactionStatus.COMMITTED,
-    type: TransactionType.RECEIVE_CKB,
+    type: TransactionType.RECEIVE_NATIVE_TOKEN,
     amount: 100,
     transactionHash: "0x1234567890abcdef",
     inputs: [
@@ -57,7 +57,7 @@ export const receivedTransaction: FullTransaction = {
 
 export const transactions: FullTransaction[] = [...Array(3)].map((_, i) => ({
     status: TransactionStatus.COMMITTED,
-    type: TransactionType.SEND_CKB,
+    type: TransactionType.SEND_NATIVE_TOKEN,
     amount: 100,
     transactionHash: "0x1234567890abcde" + i,
     inputs: [],

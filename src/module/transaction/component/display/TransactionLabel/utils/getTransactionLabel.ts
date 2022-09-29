@@ -4,14 +4,14 @@ import { TFunction } from "react-i18next";
 
 export default function (type: FullTransaction["type"], translate: TFunction<"translation">): string {
     switch (type) {
-        case TransactionType.SEND_CKB:
+        case TransactionType.SEND_NATIVE_TOKEN:
         case TransactionType.SEND_TOKEN:
             return translate("sent");
         case TransactionType.SEND_NFT:
             return translate("sent_nft");
         case TransactionType.DEPOSIT_DAO:
             return translate("DAO_deposit");
-        case TransactionType.RECEIVE_CKB:
+        case TransactionType.RECEIVE_NATIVE_TOKEN:
         case TransactionType.RECEIVE_TOKEN:
             return translate("received");
         case TransactionType.RECEIVE_NFT:

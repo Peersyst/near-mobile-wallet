@@ -4,7 +4,7 @@ import { translate } from "test-utils";
 
 describe("getTransactionLabel tests", () => {
     test("Returns sent", () => {
-        expect(getTransactionLabel(TransactionType.SEND_CKB, translate)).toEqual(translate("sent"));
+        expect(getTransactionLabel(TransactionType.SEND_NATIVE_TOKEN, translate)).toEqual(translate("sent"));
         expect(getTransactionLabel(TransactionType.SEND_TOKEN, translate)).toEqual(translate("sent"));
     });
 
@@ -17,7 +17,7 @@ describe("getTransactionLabel tests", () => {
     });
 
     test("Returns received", () => {
-        expect(getTransactionLabel(TransactionType.RECEIVE_CKB, translate)).toEqual(translate("received"));
+        expect(getTransactionLabel(TransactionType.RECEIVE_NATIVE_TOKEN, translate)).toEqual(translate("received"));
         expect(getTransactionLabel(TransactionType.RECEIVE_TOKEN, translate)).toEqual(translate("received"));
     });
 

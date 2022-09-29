@@ -12,7 +12,7 @@ export interface TransactionTypeDetailsProps {
 
 const TransactionTypeDetails = ({ transaction: { type, outputs, inputs } }: TransactionTypeDetailsProps): JSX.Element => {
     const translate = useTranslate();
-    if (type === TransactionType.SEND_CKB)
+    if (type === TransactionType.SEND_NATIVE_TOKEN)
         return (
             <TransactionDetail title={translate("receiver")}>
                 {outputs[0] ? (
@@ -22,7 +22,7 @@ const TransactionTypeDetails = ({ transaction: { type, outputs, inputs } }: Tran
                 )}
             </TransactionDetail>
         );
-    else if (type === TransactionType.RECEIVE_CKB)
+    else if (type === TransactionType.RECEIVE_NATIVE_TOKEN)
         return (
             <TransactionDetail title={translate("senders")}>
                 {inputs.length ? (

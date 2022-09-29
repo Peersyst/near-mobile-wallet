@@ -4,13 +4,13 @@ import { BalanceProps } from "module/wallet/component/display/Balance/Balance.ty
 
 export default function (type: FullTransaction["type"]): BalanceProps["action"] {
     switch (type) {
-        case TransactionType.SEND_CKB:
+        case TransactionType.SEND_NATIVE_TOKEN:
         case TransactionType.SEND_NFT:
         case TransactionType.SEND_TOKEN:
         case TransactionType.DEPOSIT_DAO:
         case TransactionType.SMART_CONTRACT_SEND:
             return "display";
-        case TransactionType.RECEIVE_CKB:
+        case TransactionType.RECEIVE_NATIVE_TOKEN:
         case TransactionType.RECEIVE_NFT:
         case TransactionType.RECEIVE_TOKEN:
         case TransactionType.SMART_CONTRACT_RECEIVE:

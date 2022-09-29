@@ -17,7 +17,7 @@ const TransactionDetailsBody = ({ transaction }: TransactionDetailsBodyProps): J
         <ScrollView alwaysBounceVertical={false} style={{ maxHeight: 300 }}>
             <Col gap={10} flex={1}>
                 <TransactionTypeDetails transaction={transaction} />
-                {/*  {(type === TransactionType.SEND_CKB || type === TransactionType.RECEIVE_CKB) && (
+                {/*  {(type === TransactionType.SEND_NATIVE_TOKEN || type === TransactionType.RECEIVE_NATIVE_TOKEN) && (
                     <TransactionDetail title={translate("message")}>
                         <Typography variant="body1">Transaction message</Typography>
                     </TransactionDetail>

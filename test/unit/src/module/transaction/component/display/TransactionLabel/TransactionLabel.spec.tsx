@@ -4,7 +4,7 @@ import { TransactionType } from "ckb-peersyst-sdk";
 
 describe("TransactionLabel tests", () => {
     test("Renders correctly", () => {
-        const screen = render(<TransactionLabel type={TransactionType.RECEIVE_CKB} variant="body1" />);
+        const screen = render(<TransactionLabel type={TransactionType.RECEIVE_NATIVE_TOKEN} variant="body1" />);
 
         expect(screen.getByText(translate("received"))).toBeDefined();
     });

@@ -4,7 +4,7 @@ import { TransactionType } from "ckb-peersyst-sdk";
 
 describe("TransactionIcon tests", () => {
     test("Renders SendIcon", () => {
-        const screen = render(<TransactionIcon type={TransactionType.SEND_CKB} />);
+        const screen = render(<TransactionIcon type={TransactionType.SEND_NATIVE_TOKEN} />);
         expect(screen.getByTestId("SendIcon")).toBeDefined();
         screen.rerender(<TransactionIcon type={TransactionType.SEND_TOKEN} />);
         expect(screen.getByTestId("SendIcon")).toBeDefined();
@@ -13,7 +13,7 @@ describe("TransactionIcon tests", () => {
     });
 
     test("Renders ReceiveIcon", () => {
-        const screen = render(<TransactionIcon type={TransactionType.RECEIVE_CKB} />);
+        const screen = render(<TransactionIcon type={TransactionType.RECEIVE_NATIVE_TOKEN} />);
         expect(screen.getByTestId("ReceiveIcon")).toBeDefined();
         screen.rerender(<TransactionIcon type={TransactionType.RECEIVE_TOKEN} />);
         expect(screen.getByTestId("ReceiveIcon")).toBeDefined();
