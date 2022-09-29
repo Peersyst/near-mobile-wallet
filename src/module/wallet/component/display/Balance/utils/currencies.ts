@@ -1,7 +1,7 @@
 import { AppCurrency } from "../Balance.types";
 import { config } from "config";
 
-export const getCurrencyUnit: Record<AppCurrency, string> = {
+export const CURRENCY_UNIT: Record<AppCurrency, string> = {
     token: config.tokenName,
     cny: "¥",
     usd: "$",
