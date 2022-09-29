@@ -9,7 +9,7 @@ export type BalanceAction = "display" | "add" | "round";
 
 export interface BalanceProps extends Omit<TypographyProps, "children"> {
     balance: bigint | number | string;
-    units?: string;
+    units?: AppCurrency | string;
     unitsPosition?: "left" | "right";
     action?: BalanceAction;
     options?: FormatNumberOptions;

@@ -1,6 +1,6 @@
 import { AppCurrency, BalanceProps } from "./Balance.types";
 import Typography from "module/common/component/display/Typography/Typography";
-import { getCurrencyUnit } from "./utils/getCurrencyUnit";
+import { CURRENCY_UNIT } from "./utils/currencies";
 import { useFormatNumber } from "module/common/hook/useFormatNumber";
 import { getActionLabel } from "./utils/getActionLabel";
 import { Suspense } from "@peersyst/react-native-components";
@@ -18,7 +18,7 @@ const Balance = ({
 }: BalanceProps): JSX.Element => {
     const formatedNum = useFormatNumber(balance.toString(), options);
     const actionLabel = getActionLabel[action];
-    const currencyUnit = !units ? units : units in getCurrencyUnit ? getCurrencyUnit[units as AppCurrency] : units;
+    const currencyUnit = units && (CURRENCY_UNIT[units as AppCurrency] || units);
 
     return (
         <Suspense isLoading={isLoading} fallback={<Spinner testID="ActivityIndicator" {...spinnerProps} />}>
