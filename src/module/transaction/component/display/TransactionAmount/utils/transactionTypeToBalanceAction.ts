@@ -9,7 +9,7 @@ export default function (type: FullTransaction["type"]): BalanceProps["action"] 
         case TransactionType.SEND_TOKEN:
         case TransactionType.DEPOSIT_DAO:
         case TransactionType.SMART_CONTRACT_SEND:
-            return "subtract";
+            return "display";
         case TransactionType.RECEIVE_CKB:
         case TransactionType.RECEIVE_NFT:
         case TransactionType.RECEIVE_TOKEN:

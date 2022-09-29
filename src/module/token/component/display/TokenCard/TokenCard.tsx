@@ -12,7 +12,7 @@ interface TokenProps {
 }
 
 const TokenCard = ({ token: { type, amount } }: TokenProps): JSX.Element => {
-    const { name, tokenName, imageUri, description } = type;
+    const { name, imageUri, description } = type;
     const { fiat } = useRecoilValue(settingsState);
     const { data: tokenValue } = useGetTokenPrice(fiat, type);
     const translate = useTranslate();
@@ -28,14 +28,7 @@ const TokenCard = ({ token: { type, amount } }: TokenProps): JSX.Element => {
                 </Col>
             </Row>
             <Col alignItems="flex-end">
-                <Balance
-                    balance={amount / 10 ** type.decimals}
-                    decimals={4}
-                    smallBalance
-                    units={tokenName ? (tokenName === "Unknown Token" ? "?" : tokenName) : ""}
-                    boldUnits
-                    variant="body2"
-                />
+                <Balance balance={amount / 10 ** type.decimals} variant="body2" />
                 {tokenValue && <Balance balance={tokenValue * (amount / 10 ** type.decimals)} units={fiat} variant="body2" />}
             </Col>
         </TokenRoot>

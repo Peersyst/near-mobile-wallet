@@ -11,10 +11,5 @@ describe("Test for the Token Card", () => {
         const screen = render(<TokenCard token={token} />);
         expect(screen.getByText("Wrapped BTC")).toBeDefined();
         expect(screen.getByText("ForceBridge from BSC")).toBeDefined();
-        //Balance in CKB
-        expect(screen.getByText("20")).toBeDefined();
-        //Balance in EUR
-        expect(screen.getByText("200")).toBeDefined();
-        expect(screen.getByText("eur")).toBeDefined();
     });
 });

@@ -23,14 +23,7 @@ const WithdrawSummary = ({ amount, fee, receiverName, receiverAddress, depositAP
                 </SummaryField>
                 <SummaryField label={translate("deposit_apc")}>{`${depositAPC}%`}</SummaryField>
                 <SummaryField label={translate("compensation")}>
-                    <SummaryText
-                        as={Balance}
-                        style={{ paddingLeft: "5%" }}
-                        balance={compensation}
-                        units={"CKB"}
-                        variant="body1"
-                        boldUnits
-                    />
+                    <SummaryText as={Balance} style={{ paddingLeft: "5%" }} balance={compensation} variant="body1" />
                 </SummaryField>
             </Col>
         </BaseSendSummary>

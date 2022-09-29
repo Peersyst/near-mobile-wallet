@@ -29,7 +29,7 @@ describe("DepositConfirmationScreen tests", () => {
         const screen = render(<DepositConfirmationScreen />);
         expect(screen.getByText("1,000")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
-        expect(screen.getByText("001")).toBeDefined();
+        expect(screen.getByText("0.001")).toBeDefined();
         expect(screen.getByText(translate("from") + ":")).toBeDefined();
         expect(screen.getByText(mockedWallet.name + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
     });

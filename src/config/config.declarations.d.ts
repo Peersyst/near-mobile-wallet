@@ -23,6 +23,7 @@ declare module "@peersyst/react-native-components" {
         mainnetExplorerApi: string;
         maxNumberOfDecimals: number;
         enableMainnet: boolean;
+        tokenName: string;
     }
 
     export interface CreateConfig {

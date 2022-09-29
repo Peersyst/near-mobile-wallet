@@ -18,10 +18,10 @@ const BaseSendSummary = ({ amount, fee, children }: BaseSendSummaryFullProps): J
         <Paper style={{ padding: "7%" }}>
             <Col gap="3%" alignItems="center">
                 <Col gap={5} alignItems="center">
-                    <Balance balance={amount} units="CKB" variant="h1" boldUnits showAllDecimals />
+                    <Balance balance={amount} variant="h1" />
                     <Row>
                         <Typography variant="body1">{translate("transaction_fee_label")}: </Typography>
-                        <Balance balance={fee} units="CKB" variant="body1" fontWeight="bold" boldUnits showAllDecimals />
+                        <Balance balance={fee} variant="body1" fontWeight="bold" />
                     </Row>
                 </Col>
                 {children}

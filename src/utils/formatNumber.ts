@@ -1,5 +1,7 @@
-import * as Localization from "expo-localization";
 import { minDigits as _minDigits } from "@peersyst/react-utils";
+import { LocaleType } from "locale";
+
+type Separator = "." | ",";
 
 export interface FormatNumberOptions {
     minDigits?: number;
@@ -9,9 +11,21 @@ export interface FormatNumberOptions {
     showAllDecimals?: boolean;
 }
 
+const separators: Record<LocaleType, { decimal: Separator; group: Separator }> = {
+    es: {
+        decimal: ",",
+        group: ".",
+    },
+    en: {
+        decimal: ".",
+        group: ",",
+    },
+};
+
 export default function (
     n: number | string,
     { minDecimals = 0, minDigits = 0, maxDecimals, split = false, showAllDecimals = false }: FormatNumberOptions = {},
+    lang?: LocaleType,
 ): string | [string, string | undefined, string | undefined] {
     const [int, dec = minDecimals ? _minDigits(0, minDecimals) : undefined] = n
         .toString()
@@ -23,10 +37,7 @@ export default function (
                 return decimals.substring(0, showAllDecimals ? decimals.length : maxDecimals);
             }
         });
-    const digitGroupingSeparator = Localization.digitGroupingSeparator;
-    const decimalSeparator = Localization.decimalSeparator;
-    const digitGroupSeparatedInt = int.match(/(\d+?)(?=(\d{3})+(?!\d)|$)/g)?.join(digitGroupingSeparator);
-    return split
-        ? [digitGroupSeparatedInt!, dec ? decimalSeparator : undefined, dec]
-        : digitGroupSeparatedInt + (dec ? decimalSeparator + dec : "");
+    const { decimal, group } = separators[lang || "en"];
+    const digitGroupSeparatedInt = int.match(/(\d+?)(?=(\d{3})+(?!\d)|$)/g)?.join(group);
+    return split ? [digitGroupSeparatedInt!, dec ? decimal : undefined, dec] : digitGroupSeparatedInt + (dec ? decimal + dec : "");
 }
