@@ -7,146 +7,20 @@ import { TransactionStatus, TransactionType } from "ckb-peersyst-sdk";
 
 const TransactionsList = (): JSX.Element => {
     const { data = [], isLoading } = useGetTransactions({ filter: (tx) => isCKBTransaction(tx.type) });
-
+    const txs = [...Array(29)].map((_, i) => ({
+        id: i.toString(),
+        timestamp: new Date().getTime(),
+        amount: 100,
+        type: i % 3 !== 0 ? TransactionType.SEND_NATIVE_TOKEN : TransactionType.RECEIVE_NATIVE_TOKEN,
+        token: "CKB",
+        status: TransactionStatus.COMMITTED,
+    }));
     return (
         <MainList
             loading={isLoading}
-            data={[
-                {
-                    status: TransactionStatus.COMMITTED,
-                    type: TransactionType.RECEIVE_NATIVE_TOKEN,
-                    amount: 100,
-                    transactionHash: "0x1234567890abcdef",
-                    inputs: [],
-                    outputs: [],
-                    blockHash: "0x1234567890abcdef",
-                    blockNumber: 1,
-                    timestamp: new Date(2022, 0, 29),
-                },
-                {
-                    status: TransactionStatus.COMMITTED,
-                    type: TransactionType.SEND_NATIVE_TOKEN,
-                    amount: 100,
-                    transactionHash: "0x1234567890abcdef",
-                    inputs: [],
-                    outputs: [],
-                    blockHash: "0x1234567890abcdef",
-                    blockNumber: 1,
-                    timestamp: new Date(2022, 0, 29),
-                },
-                {
-                    status: TransactionStatus.COMMITTED,
-                    type: TransactionType.SEND_NATIVE_TOKEN,
-                    amount: 100,
-                    transactionHash: "0x1234567890abcdef",
-                    inputs: [],
-                    outputs: [],
-                    blockHash: "0x1234567890abcdef",
-                    blockNumber: 1,
-                    timestamp: new Date(2022, 0, 29),
-                },
-                {
-                    status: TransactionStatus.COMMITTED,
-                    type: TransactionType.RECEIVE_NATIVE_TOKEN,
-                    amount: 100,
-                    transactionHash: "0x1234567890abcdef",
-                    inputs: [],
-                    outputs: [],
-                    blockHash: "0x1234567890abcdef",
-                    blockNumber: 1,
-                    timestamp: new Date(2022, 0, 29),
-                },
-                {
-                    status: TransactionStatus.COMMITTED,
-                    type: TransactionType.SEND_NATIVE_TOKEN,
-                    amount: 100,
-                    transactionHash: "0x1234567890abcdef",
-                    inputs: [],
-                    outputs: [],
-                    blockHash: "0x1234567890abcdef",
-                    blockNumber: 1,
-                    timestamp: new Date(2022, 0, 29),
-                },
-                {
-                    status: TransactionStatus.COMMITTED,
-                    type: TransactionType.SEND_NATIVE_TOKEN,
-                    amount: 100,
-                    transactionHash: "0x1234567890abcdef",
-                    inputs: [],
-                    outputs: [],
-                    blockHash: "0x1234567890abcdef",
-                    blockNumber: 1,
-                    timestamp: new Date(2022, 0, 29),
-                },
-                {
-                    status: TransactionStatus.COMMITTED,
-                    type: TransactionType.RECEIVE_NATIVE_TOKEN,
-                    amount: 100,
-                    transactionHash: "0x1234567890abcdef",
-                    inputs: [],
-                    outputs: [],
-                    blockHash: "0x1234567890abcdef",
-                    blockNumber: 1,
-                    timestamp: new Date(2022, 0, 29),
-                },
-                {
-                    status: TransactionStatus.COMMITTED,
-                    type: TransactionType.SEND_NATIVE_TOKEN,
-                    amount: 100,
-                    transactionHash: "0x1234567890abcdef",
-                    inputs: [],
-                    outputs: [],
-                    blockHash: "0x1234567890abcdef",
-                    blockNumber: 1,
-                    timestamp: new Date(2022, 0, 29),
-                },
-                {
-                    status: TransactionStatus.COMMITTED,
-                    type: TransactionType.SEND_NATIVE_TOKEN,
-                    amount: 100,
-                    transactionHash: "0x1234567890abcdef",
-                    inputs: [],
-                    outputs: [],
-                    blockHash: "0x1234567890abcdef",
-                    blockNumber: 1,
-                    timestamp: new Date(2022, 0, 29),
-                },
-                {
-                    status: TransactionStatus.COMMITTED,
-                    type: TransactionType.RECEIVE_NATIVE_TOKEN,
-                    amount: 100,
-                    transactionHash: "0x1234567890abcdef",
-                    inputs: [],
-                    outputs: [],
-                    blockHash: "0x1234567890abcdef",
-                    blockNumber: 1,
-                    timestamp: new Date(2022, 0, 29),
-                },
-                {
-                    status: TransactionStatus.COMMITTED,
-                    type: TransactionType.SEND_NATIVE_TOKEN,
-                    amount: 100,
-                    transactionHash: "0x1234567890abcdef",
-                    inputs: [],
-                    outputs: [],
-                    blockHash: "0x1234567890abcdef",
-                    blockNumber: 1,
-                    timestamp: new Date(2022, 0, 29),
-                },
-                {
-                    status: TransactionStatus.COMMITTED,
-                    type: TransactionType.SEND_NATIVE_TOKEN,
-                    amount: 100,
-                    transactionHash: "0x1234567890abcdef",
-                    inputs: [],
-                    outputs: [],
-                    blockHash: "0x1234567890abcdef",
-                    blockNumber: 1,
-                    timestamp: new Date(2022, 0, 29),
-                },
-            ]}
+            data={txs}
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
-            renderItem={({ item: tx }) => <TransactionCard transaction={tx} />}
+            renderItem={({ item: tx, index }) => <TransactionCard transaction={tx} last={index === txs.length - 1} />}
             keyExtractor={(_, index) => index.toString()}
         />
     );

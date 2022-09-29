@@ -13,12 +13,9 @@ import TransactionStatus from "../TransactionStatus/TransactionStatus";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
+import { TransactionCardProps } from "./TransactionCard.types";
 
-export interface TransactionCardProps {
-    transaction: FullTransaction;
-}
-
-const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => {
+const TransactionCard = ({ transaction, last = false }: TransactionCardProps): JSX.Element => {
     const { showModal } = useModal();
     const { fiat } = useRecoilValue(settingsState);
     const { data: tokenValue } = useGetTokenPrice(fiat, "nervos-network");
@@ -27,7 +24,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
 
     return (
         <TouchableWithoutFeedback onPress={() => showModal(TransactionDetailsModal, { transaction })}>
-            <TransactionCardRoot>
+            <TransactionCardRoot last={last}>
                 <TransactionIcon type={type} />
                 <Col gap={2} flex={1}>
                     <Row justifyContent="space-between">
