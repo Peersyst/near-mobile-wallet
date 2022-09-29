@@ -4,16 +4,16 @@ import { Col, Row } from "@peersyst/react-native-components";
 
 export interface MnemonicListProps {
     mnemonic: string[];
-    appearance?: ChipProps["appearance"];
+    variant?: ChipProps["variant"];
     onPress?: (item: string) => unknown;
 }
 
-const MnemonicList = ({ mnemonic, appearance = "light", onPress }: MnemonicListProps): JSX.Element => {
+const MnemonicList = ({ mnemonic, variant = "outlined", onPress }: MnemonicListProps): JSX.Element => {
     return (
-        <Col gap={15} alignItems="center" style={{ marginTop: -15 }}>
-            <Row gap={15} wrap justifyContent="center">
+        <Col gap={10} alignItems="center" style={{ marginTop: -15 }}>
+            <Row gap={4} wrap justifyContent="center">
                 {mnemonic.map((word, key) => (
-                    <Chip key={key} label={word} onPress={() => onPress?.(word)} appearance={appearance} style={{ marginTop: 15 }} />
+                    <Chip key={key} label={word} onPress={() => onPress?.(word)} variant={variant} style={{ marginTop: 15 }} />
                 ))}
             </Row>
         </Col>

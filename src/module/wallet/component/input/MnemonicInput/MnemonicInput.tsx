@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Col, Typography, useFormNotification } from "@peersyst/react-native-components";
-import Card from "module/common/component/surface/Card/Card";
+import { Col, useFormNotification } from "@peersyst/react-native-components";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
 import TextField from "module/common/component/input/TextField/TextField";
 import { useTranslate } from "module/common/hook/useTranslate";
+import Advise from "module/common/component/display/Advise/Advise";
 
 export const MnemonicInput = (): JSX.Element => {
     const translate = useTranslate();
@@ -31,18 +31,11 @@ export const MnemonicInput = (): JSX.Element => {
     };
 
     return (
-        <Col gap={20}>
-            <Card style={{ minHeight: 290 }}>
-                <Col gap={10}>
-                    <Col gap={5}>
-                        <Typography variant="h3" fontWeight="bold" textTransform="uppercase" textAlign="center">
-                            {translate("mnemonic")}
-                        </Typography>
-                        <Typography variant="body2">{translate("mnemonic_input_text")}</Typography>
-                    </Col>
-                    <MnemonicList mnemonic={mnemonic} onPress={handleWordPress} />
-                </Col>
-            </Card>
+        <Col gap={24}>
+            <Col gap={24} style={{ minHeight: 290 }}>
+                <Advise title={translate("mnemonic")} text={translate("mnemonic_input_text")} />
+                <MnemonicList mnemonic={mnemonic} onPress={handleWordPress} />
+            </Col>
             <TextField
                 autoCorrect={false}
                 autoCapitalize="none"
@@ -52,7 +45,6 @@ export const MnemonicInput = (): JSX.Element => {
                 onSubmitEditing={handleSubmit}
                 placeholder={translate("add_a_word")}
                 disabled={mnemonic.length > 11}
-                style={{ marginHorizontal: 20 }}
             />
         </Col>
     );
