@@ -7,7 +7,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     owner: "peersyst",
     version: "1.1.3",
     orientation: "portrait",
-    icon: "./assets/images/ckbull-icon.png",
+    icon: "./assets/images/near-icon.png",
     scheme: "myapp",
     userInterfaceStyle: "automatic",
     splash: {
@@ -51,5 +51,4 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     web: {
         favicon: "./assets/images/favicon.png",
     },
-    plugins: ["./plugins/withAnimatedWebp"],
 });
