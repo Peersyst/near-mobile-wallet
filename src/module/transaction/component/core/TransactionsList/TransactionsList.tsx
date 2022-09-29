@@ -11,7 +11,7 @@ const TransactionsList = (): JSX.Element => {
         id: i.toString(),
         timestamp: new Date().getTime(),
         amount: 100,
-        type: i % 3 !== 0 ? TransactionType.SEND_NATIVE_TOKEN : TransactionType.RECEIVE_NATIVE_TOKEN,
+        type: i % 3 !== 0 ? TransactionType.RECEIVE_NATIVE_TOKEN : TransactionType.SEND_NATIVE_TOKEN,
         token: "CKB",
         status: TransactionStatus.COMMITTED,
     }));
