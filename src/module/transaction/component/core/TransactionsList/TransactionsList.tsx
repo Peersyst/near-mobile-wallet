@@ -9,7 +9,7 @@ const TransactionsList = (): JSX.Element => {
     const { data = [], isLoading } = useGetTransactions({ filter: (tx) => isCKBTransaction(tx.type) });
     const txs = [...Array(29)].map((_, i) => ({
         id: i.toString(),
-        timestamp: new Date().getTime(),
+        timestamp: "Thu Sep 29 2022 17:32:43 GMT+0200 (Central European Summer Time)",
         amount: 100,
         type: i % 3 !== 0 ? TransactionType.RECEIVE_NATIVE_TOKEN : TransactionType.SEND_NATIVE_TOKEN,
         token: "CKB",

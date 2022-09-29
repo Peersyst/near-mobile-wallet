@@ -1,17 +1,17 @@
 import { CreateGlobalStyles } from "@peersyst/react-native-components";
 
-const globalStyles: CreateGlobalStyles = ({ theme }) => ({
+const globalStyles: CreateGlobalStyles = ({ theme: { palette: p, typography } }) => ({
     Divider: {
-        backgroundColor: theme.palette.overlay["8%"],
+        backgroundColor: p.overlay["8%"],
     },
     DottedPagination: {
         gap: 6,
         dot: {
             width: 8,
             height: 8,
-            backgroundColor: theme.palette.overlay["8%"],
+            backgroundColor: p.overlay["8%"],
             active: {
-                backgroundColor: theme.palette.primary,
+                backgroundColor: p.primary,
             },
         },
     },
@@ -23,15 +23,15 @@ const globalStyles: CreateGlobalStyles = ({ theme }) => ({
     },
     FormControlLabel: {
         label: {
-            ...theme.typography.body2Strong,
+            ...typography.body2Strong,
         },
     },
     Paper: {
-        backgroundColor: theme.palette.paper,
+        backgroundColor: p.paper,
     },
     Typography: {
         light: {
-            color: theme.palette.gray[300],
+            color: p.gray[p.mode === "light" ? 300 : 900],
         },
     },
 });

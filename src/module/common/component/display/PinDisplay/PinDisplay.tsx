@@ -43,7 +43,7 @@ const PinDisplay = ({ length, error, placeholder }: PinDisplayProps): JSX.Elemen
             {length || !placeholder ? (
                 [...Array(4)].map((_, i) => <PinItem key={i} active={i < length} />)
             ) : (
-                <Typography variant="body2Strong" color={(palette) => palette.altOverlay["60%"]}>
+                <Typography variant="body2Strong" color={(palette) => palette.white}>
                     {placeholder}
                 </Typography>
             )}

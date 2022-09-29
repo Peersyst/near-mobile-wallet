@@ -58,7 +58,7 @@ const config = createConfig({
         },
     },
     themes: {
-        default: darkTheme,
+        default: lightTheme,
     },
     validators: {
         address: CkbAddressValidator,
