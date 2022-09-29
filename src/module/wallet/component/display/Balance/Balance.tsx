@@ -1,4 +1,4 @@
-import { BalanceProps } from "./Balance.types";
+import { AppCurrency, BalanceProps } from "./Balance.types";
 import Typography from "module/common/component/display/Typography/Typography";
 import { getCurrencyUnit } from "./utils/getCurrencyUnit";
 import { useFormatNumber } from "module/common/hook/useFormatNumber";
@@ -10,7 +10,6 @@ const Balance = ({
     balance,
     options,
     units,
-    customUnits,
     unitsPosition = "right",
     action = "display",
     isLoading = false,
@@ -19,7 +18,7 @@ const Balance = ({
 }: BalanceProps): JSX.Element => {
     const formatedNum = useFormatNumber(balance.toString(), options);
     const actionLabel = getActionLabel[action];
-    const currencyUnit = customUnits || (units && getCurrencyUnit[units]);
+    const currencyUnit = !units ? units : units in getCurrencyUnit ? getCurrencyUnit[units as AppCurrency] : units;
 
     return (
         <Suspense isLoading={isLoading} fallback={<Spinner testID="ActivityIndicator" {...spinnerProps} />}>
