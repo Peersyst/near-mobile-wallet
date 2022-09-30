@@ -25,14 +25,13 @@ const WalletCard = ({ wallet: { name, index, synchronizing } }: WalletCardProps)
 
     return (
         <BaseWalletCardRoot>
-            <Col alignItems="center" gap={10}>
+            <Col style={{ width: "100%" }} alignItems="center" gap={10}>
                 <Typography color={(p) => p.white} variant="body2Strong">
                     {name}
                 </Typography>
                 <Balance
-                   /* textAlign="center"
-                    numberOfLines={1}
-                    style={{ width: "100%" }}*/
+                    textAlign="center"
+                    style={{ width: "100%" }}
                     isLoading={synchronizing}
                     options={{ maxDecimals: 2 }}
                     spinnerProps={{ color: (p) => p.white, size: 42 }}
