@@ -12,7 +12,7 @@ const NftsList = (): JSX.Element => {
         <MainList
             loading={isLoading}
             data={data}
-            renderItem={({ item: nft }) => <NftCard {...nft} />}
+            renderItem={({ item: nft, index }) => <NftCard {...nft} last={data.length - 1 === index} />}
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
             keyExtractor={(nft) => nft.tokenId}
         />

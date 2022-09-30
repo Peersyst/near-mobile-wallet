@@ -1,11 +1,12 @@
 import { Nft } from "ckb-peersyst-sdk";
 import { Col, Typography } from "@peersyst/react-native-components";
 import { NftCardImage, NftCardRoot } from "./NftCard.styles";
+import { MainListCardProps } from "module/main/component/display/MainListCard/MainListCard";
 
-export type NftCardProps = Nft;
+export type NftCardProps = Nft & MainListCardProps;
 
-const NftCard = ({ nftName, tokenUri, tokenId, total, data: { description } }: NftCardProps): JSX.Element => (
-    <NftCardRoot>
+const NftCard = ({ nftName, tokenUri, tokenId, total, data: { description }, last }: NftCardProps): JSX.Element => (
+    <NftCardRoot last={last}>
         <NftCardImage source={{ uri: tokenUri }} />
         <Col flex={1} justifyContent="space-between" style={{ paddingVertical: 12 }}>
             <Col gap={2}>
