@@ -24,7 +24,9 @@ const TokensList = (): JSX.Element => {
             loading={isLoading}
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
             data={tokens}
-            renderItem={({ item: token }) => <TokenCard token={token} />}
+            renderItem={({ item: token }) => (
+                <TokenCard token={{ metadata: { name: "Bitcoin", symbol: "BTC", decimals: 8 }, imageUri: "" }} balance={token.amount} />
+            )}
             keyExtractor={(tx) => tx.type.args}
         />
     );

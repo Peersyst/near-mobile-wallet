@@ -3,15 +3,15 @@ import { Image, View } from "react-native";
 import { Row } from "@peersyst/react-native-components";
 
 export const TokenIcon = styled(Image)(() => ({
-    width: 42,
-    height: 42,
+    width: 44,
+    height: 44,
     borderRadius: 10,
 }));
 
 export const TokenPlaceholder = styled(View)(({ theme }) => ({
-    width: 42,
-    height: 42,
-    borderRadius: 10,
+    width: 44,
+    height: 44,
+    borderRadius: 50,
     backgroundColor: theme.palette.darkLightGray,
 }));
 
