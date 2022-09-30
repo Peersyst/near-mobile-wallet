@@ -11,7 +11,7 @@ import * as Recoil from "recoil";
 import * as ExpoHaptics from "expo-haptics";
 import { capitalize } from "@peersyst/react-utils";
 import { config } from "config";
-import { getCurrencyUnit } from "module/wallet/component/display/Balance/utils/getCurrencyUnit";
+import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
 
 describe("WalletCard tests", () => {
     const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
@@ -52,7 +52,7 @@ describe("WalletCard tests", () => {
         await waitFor(() => expect(screen.getByText("10,400 " + config.tokenName)).toBeDefined());
         const text = screen.getByText("10,400 " + config.tokenName);
         fireEvent.press(text);
-        await waitFor(() => expect(screen.getByText(getCurrencyUnit["eur"] + " 10")).toBeDefined());
+        await waitFor(() => expect(screen.getByText(CURRENCY_UNIT["eur"] + " 10")).toBeDefined());
         expect(mockedVibrate).toHaveBeenCalled();
     });
 });
