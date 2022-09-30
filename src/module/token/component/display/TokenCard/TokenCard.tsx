@@ -39,7 +39,7 @@ const TOKEN_PLACEHOLDER_IMAGES: Record<ZeroToFive, ImageSourcePropType> = {
 };
 
 const TokenCard = ({ token: { metadata }, balance, last = false, index = 0 }: TokenCardProps): JSX.Element => {
-    const { name, symbol } = metadata;
+    const { name, symbol, decimals } = metadata;
     const { fiat } = useRecoilValue(settingsState);
     const { data: tokenValue } = useGetTokenPrice(fiat, "binancecoin");
     const imageUri = TOKEN_IMAGES[symbol];
@@ -54,7 +54,16 @@ const TokenCard = ({ token: { metadata }, balance, last = false, index = 0 }: To
             </Row>
             <Col alignItems="flex-end" justifyContent="center" gap={2}>
                 <Balance balance={balance} variant="body3Strong" units={symbol} />
-                {tokenValue && <Balance action="round" color={(p) => p.gray["300"]} balance={"200"} units={fiat} variant="body4Strong" />}
+                {tokenValue && (
+                    <Balance
+                        action="round"
+                        color={(p) => p.gray["300"]}
+                        options={{ maxDecimals: decimals }}
+                        balance={"200"}
+                        units={fiat}
+                        variant="body4Strong"
+                    />
+                )}
             </Col>
         </TokenRoot>
     );
