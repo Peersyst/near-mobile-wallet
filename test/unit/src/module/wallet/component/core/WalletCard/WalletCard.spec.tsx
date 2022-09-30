@@ -7,9 +7,11 @@ import { wallet } from "mocks/wallet";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
-import * as useCkbConversion from "module/common/hook/useCkbConversion";
 import * as Recoil from "recoil";
 import * as ExpoHaptics from "expo-haptics";
+import { capitalize } from "@peersyst/react-utils";
+import { config } from "config";
+import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
 
 describe("WalletCard tests", () => {
     const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
@@ -32,30 +34,25 @@ describe("WalletCard tests", () => {
         const screen = render(<WalletCard wallet={wallet} />);
         /**Account header */
         expect(screen.getByText(mockedUseWallet.state.wallets[0].name)).toBeDefined();
-        expect(screen.getByTestId("EditIcon")).toBeDefined();
-        expect(screen.getByTestId("CopyIcon")).toBeDefined();
 
         /**Account Balance */
-        await waitFor(() => expect(screen.getByText("10,400")).toBeDefined());
+        await waitFor(() => expect(screen.getByText("10,400 " + config.tokenName)).toBeDefined());
 
         /**Account Buttons */
-        expect(screen.getByText(translate("send"))).toBeDefined();
-        expect(screen.getByTestId("ReceiveIcon")).toBeDefined();
-        expect(screen.getByTestId("SendIcon")).toBeDefined();
-        expect(screen.getByText(translate("receive"))).toBeDefined();
+        expect(screen.getByText(capitalize(translate("send")))).toBeDefined();
+        expect(screen.getByText(capitalize(translate("receive")))).toBeDefined();
     });
 
     test("Change the currency when the user clicks on the balance", async () => {
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fiat: "eur" });
-        jest.spyOn(useCkbConversion, "default").mockReturnValue({ value: 10, convertBalance: jest.fn() });
         const mockedVibrate = jest.fn();
         jest.spyOn(ExpoHaptics, "impactAsync").mockImplementation(mockedVibrate);
         const screen = render(<WalletCard wallet={wallet} />);
         /**Account Balance */
-        await waitFor(() => expect(screen.getByText("10,400")).toBeDefined());
-        const text = screen.getByText("10,400");
+        await waitFor(() => expect(screen.getByText("10,400 " + config.tokenName)).toBeDefined());
+        const text = screen.getByText("10,400 " + config.tokenName);
         fireEvent.press(text);
-        await waitFor(() => expect(screen.getByText("10")).toBeDefined());
+        await waitFor(() => expect(screen.getByText(CURRENCY_UNIT["eur"] + " 10")).toBeDefined());
         expect(mockedVibrate).toHaveBeenCalled();
     });
 });

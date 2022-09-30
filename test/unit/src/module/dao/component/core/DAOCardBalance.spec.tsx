@@ -34,7 +34,7 @@ describe("DAO Card balance test", () => {
         expect(screen.getByText(translate("locked"))).toBeDefined();
         expect(screen.getByText(translate("estimated_apc"))).toBeDefined();
         expect(screen.getByText(mockedUseWallet.state.wallets[mockedUseWallet.state.selectedWallet!].name)).toBeDefined();
-        expect(screen.getAllByTestId("actIndicator")).toHaveLength(2);
+        expect(screen.getAllByTestId("ActivityIndicator")).toHaveLength(2);
         await waitFor(() => expect(screen.getByText("12,635")).toBeDefined()); // Available
 
         await waitFor(() => expect(screen.getByText("500")).toBeDefined()); // Locked

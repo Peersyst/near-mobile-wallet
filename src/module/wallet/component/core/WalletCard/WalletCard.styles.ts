@@ -1,16 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import CopyToClipboardIcon from "module/common/component/input/CopyToClipboardIcon/CopyToClipboardIcon";
 import { Col, Typography } from "@peersyst/react-native-components";
-import BaseWalletCard from "module/common/component/surface/BaseWalletCard/BaseWalletCard";
-import { WalletCardRootProps } from "module/wallet/component/core/WalletCard/WalletCard";
 import { EditWalletIcon } from "./WalletCardHeader/EditWalletIcon/EditWalletIcon";
-
-export const WalletCardRoot = styled(BaseWalletCard)<WalletCardRootProps>(({ color }) => {
-    return {
-        paddingBottom: 30,
-        backgroundColor: color,
-    };
-});
 
 export const EditIcon = styled(EditWalletIcon)(({ theme }) => ({
     color: theme.palette.white,

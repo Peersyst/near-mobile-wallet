@@ -1,33 +1,22 @@
 import useGetBalance from "module/wallet/query/useGetBalance";
-import { ActivityIndicator, TouchableWithoutFeedback } from "react-native";
 import { Wallet } from "module/wallet/state/WalletState";
-import useWalletColorIndex from "module/wallet/hook/useWalletColorIndex";
-import { WalletCardRoot, WalletContent } from "./WalletCard.styles";
-import WalletCardHeader from "./WalletCardHeader/WalletCardHeader";
 import WalletCardButtons from "./WalletCardButtons/WalletCardButtons";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
-import { useGetCkbPrice } from "module/common/query/useGetCkbPrice";
-import useCkbConversion from "module/common/hook/useCkbConversion";
 import { useState } from "react";
-import { Suspense, Row } from "@peersyst/react-native-components";
 import { impactAsync, ImpactFeedbackStyle } from "expo-haptics";
 import Balance from "../../display/Balance/Balance";
+import Typography from "module/common/component/display/Typography/Typography";
+import { Col } from "@peersyst/react-native-components";
+import { BaseWalletCardRoot } from "module/common/component/surface/BaseWalletCard/BaseWalletCard.styles";
 
 export interface WalletCardProps {
     wallet: Wallet;
 }
 
-export interface WalletCardRootProps {
-    color: string;
-}
-
-const WalletCard = ({ wallet: { name, index, colorIndex, synchronizing } }: WalletCardProps): JSX.Element => {
-    const color = useWalletColorIndex(colorIndex);
+const WalletCard = ({ wallet: { name, index, synchronizing } }: WalletCardProps): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
-    const { data: balance } = useGetBalance(index);
-    const { isLoading: loadingPrice } = useGetCkbPrice(fiat);
-    const { value: fiatValue } = useCkbConversion(fiat, balance?.freeBalance || 0);
+    const { data: { freeBalance } = {} } = useGetBalance(index);
     const [showFiat, setCurrencyMode] = useState<boolean>(false);
     const changeCurrencyMode = () => {
         impactAsync(ImpactFeedbackStyle.Medium);
@@ -35,25 +24,27 @@ const WalletCard = ({ wallet: { name, index, colorIndex, synchronizing } }: Wall
     };
 
     return (
-        <WalletCardRoot color={color}>
-            <WalletContent>
-                <WalletCardHeader index={index} name={name} />
-                <Suspense isLoading={balance === undefined} activityIndicatorColor="white" activityIndicatorSize={25}>
-                    <TouchableWithoutFeedback onPress={changeCurrencyMode}>
-                        <Row gap={5} alignItems="center" justifyContent="center">
-                            {(synchronizing || (loadingPrice && showFiat)) && <ActivityIndicator color="white" />}
-                            <Balance
-                                color={(palette) => palette.white}
-                                variant="h3Strong"
-                                balance={showFiat ? fiatValue : balance?.freeBalance || 0}
-                                unitsPosition="left"
-                            />
-                        </Row>
-                    </TouchableWithoutFeedback>
-                </Suspense>
-                <WalletCardButtons />
-            </WalletContent>
-        </WalletCardRoot>
+        <BaseWalletCardRoot>
+            <Col style={{ width: "100%" }} alignItems="center" gap={10}>
+                <Typography color={(p) => p.white} variant="body2Strong">
+                    {name}
+                </Typography>
+                <Balance
+                    textAlign="center"
+                    style={{ width: "100%" }}
+                    isLoading={synchronizing}
+                    options={{ maxDecimals: 2 }}
+                    spinnerProps={{ color: (p) => p.white, size: 42 }}
+                    onPress={changeCurrencyMode}
+                    balance={showFiat ? "10" : freeBalance || 0}
+                    variant="h3Strong"
+                    color={(p) => p.white}
+                    units={showFiat ? fiat : "token"}
+                    unitsPosition={showFiat ? "left" : "right"}
+                />
+            </Col>
+            <WalletCardButtons />
+        </BaseWalletCardRoot>
     );
 };
 

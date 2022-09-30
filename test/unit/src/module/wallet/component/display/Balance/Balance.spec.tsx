@@ -28,8 +28,4 @@ describe("Text for the Balance component", () => {
         const screen = render(<Balance action="round" balance={"100"} variant={"h1"} units="usd" />);
         expect(screen.getByText(getActionLabel["round"] + "100 " + CURRENCY_UNIT["usd"])).toBeDefined();
     });
-    test("Renders correctly when loading", () => {
-        const screen = render(<Balance balance={"100"} variant={"h1"} isLoading />);
-        expect(screen.getByTestId("ActivityIndicator")).toBeDefined();
-    });
 });

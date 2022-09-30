@@ -14,10 +14,10 @@ const HomeSlider = (): JSX.Element => {
             page={selectedWallet}
             onPageSelected={(page) => setSelectedWallet(page)}
             showPageIndicator
-            height="33%"
             gap={0}
+            height="33%"
             pagePadding={{ horizontal: 20 }}
-            style={{ minHeight: 203 }}
+            style={{ minHeight: 180 }}
         >
             {wallets.map((wallet, i) => (
                 <WalletCard key={i} wallet={wallet} />
