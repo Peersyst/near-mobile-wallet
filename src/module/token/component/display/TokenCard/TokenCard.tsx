@@ -1,11 +1,14 @@
 import { Col, Row } from "@peersyst/react-native-components";
-import { TokenIcon, TokenPlaceholder, TokenRoot } from "./TokenCard.styles";
+import { TokenIcon, TokenRoot } from "./TokenCard.styles";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import settingsState from "module/settings/state/SettingsState";
 import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
 import { useRecoilValue } from "recoil";
 import Typography from "module/common/component/display/Typography/Typography";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
+import { MainListCardProps } from "module/main/component/display/MainListCard/MainListCard";
+import { TOKEN_IMAGES } from "./utils/TokenImages";
+import { token_placeholder } from "images";
 
 export interface TokenMetadata {
     name: string;
@@ -15,23 +18,23 @@ export interface TokenMetadata {
 
 export interface Token {
     metadata: TokenMetadata;
-    imageUri: string;
 }
 
-export interface TokenCardProps {
+export interface TokenCardProps extends Partial<MainListCardProps> {
     token: Token;
     balance: BalanceProps["balance"];
 }
 
-const TokenCard = ({ token: { metadata, imageUri }, balance }: TokenCardProps): JSX.Element => {
+const TokenCard = ({ token: { metadata }, balance, last = false }: TokenCardProps): JSX.Element => {
     const { name, symbol } = metadata;
     const { fiat } = useRecoilValue(settingsState);
     const { data: tokenValue } = useGetTokenPrice(fiat, "binancecoin");
+    const imageUri = TOKEN_IMAGES[symbol];
 
     return (
-        <TokenRoot>
+        <TokenRoot last={last}>
             <Row alignItems="center" gap={16}>
-                {imageUri ? <TokenIcon source={{ uri: imageUri }} /> : <TokenPlaceholder />}
+                <TokenIcon source={require(token_placeholder)} />
 
                 <Typography variant="body3Strong">{name}</Typography>
             </Row>
