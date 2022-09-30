@@ -26,6 +26,7 @@ const TokensList = (): JSX.Element => {
             data={tokens}
             renderItem={({ item: token, index }) => (
                 <TokenCard
+                    index={index}
                     last={index === tokens.length - 1}
                     token={{ metadata: { name: "Bitcoin", symbol: "BTC", decimals: 8 } }}
                     balance={token.amount}

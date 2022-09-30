@@ -8,7 +8,8 @@ import Typography from "module/common/component/display/Typography/Typography";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
 import { MainListCardProps } from "module/main/component/display/MainListCard/MainListCard";
 import { TOKEN_IMAGES } from "./utils/TokenImages";
-import { token_placeholder } from "images";
+import * as image from "../../../../../asset/image";
+import { ImageSourcePropType } from "react-native";
 
 export interface TokenMetadata {
     name: string;
@@ -23,22 +24,35 @@ export interface Token {
 export interface TokenCardProps extends Partial<MainListCardProps> {
     token: Token;
     balance: BalanceProps["balance"];
+    index?: number;
 }
 
-const TokenCard = ({ token: { metadata }, balance, last = false }: TokenCardProps): JSX.Element => {
+type ZeroToFive = 0 | 1 | 2 | 3 | 4 | 5;
+
+const TOKEN_PLACEHOLDER_IMAGES: Record<ZeroToFive, ImageSourcePropType> = {
+    "0": image.token_placeholder0,
+    "1": image.token_placeholder1,
+    "2": image.token_placeholder2,
+    "3": image.token_placeholder3,
+    "4": image.token_placeholder4,
+    "5": image.token_placeholder5,
+};
+
+const TokenCard = ({ token: { metadata }, balance, last = false, index = 0 }: TokenCardProps): JSX.Element => {
     const { name, symbol } = metadata;
     const { fiat } = useRecoilValue(settingsState);
     const { data: tokenValue } = useGetTokenPrice(fiat, "binancecoin");
     const imageUri = TOKEN_IMAGES[symbol];
-
+    const imageIndex = (index % 6) as ZeroToFive;
     return (
         <TokenRoot last={last}>
             <Row alignItems="center" gap={16}>
-                <TokenIcon source={require(token_placeholder)} />
-
-                <Typography variant="body3Strong">{name}</Typography>
+                <TokenIcon source={imageUri ? { uri: imageUri } : TOKEN_PLACEHOLDER_IMAGES[imageIndex]} />
+                <Typography variant="body3Strong" numberOfLines={1} style={{ width: "65%" }}>
+                    {name}
+                </Typography>
             </Row>
-            <Col alignItems="flex-end">
+            <Col alignItems="flex-end" justifyContent="center" gap={2}>
                 <Balance balance={balance} variant="body3Strong" units={symbol} />
                 {tokenValue && <Balance action="round" color={(p) => p.gray["300"]} balance={"200"} units={fiat} variant="body4Strong" />}
             </Col>

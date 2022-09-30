@@ -1,6 +1,11 @@
 //@ts-nocheck
 export { default as empty_folder } from "./EmptyFolder.png";
-export { default as token_placeholder } from "./TokenPlaceholder.png";
+export { default as token_placeholder0 } from "./TokenPlaceholder0.png";
+export { default as token_placeholder1 } from "./TokenPlaceholder1.png";
+export { default as token_placeholder2 } from "./TokenPlaceholder2.png";
+export { default as token_placeholder3 } from "./TokenPlaceholder3.png";
+export { default as token_placeholder4 } from "./TokenPlaceholder4.png";
+export { default as token_placeholder5 } from "./TokenPlaceholder5.png";
 export { default as animation } from "./animation.webp";
 export { default as colored_background } from "./coloredBackground.png";
 export { default as deposit } from "./deposit.png";
