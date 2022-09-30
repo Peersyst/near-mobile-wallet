@@ -1,8 +1,8 @@
 import styled from "@peersyst/react-native-styled";
-import { Row } from "@peersyst/react-native-components";
-import { TransactionRootProps } from "./TransactionCard.types";
+import { MainListCardRoot } from "module/main/component/display/MainListCard/MainListCard.styles";
+import { MainListCardProps } from "module/main/component/display/MainListCard/MainListCard";
 
-export const TransactionCardRoot = styled(Row, { gap: "4%", alignItems: "center" })<TransactionRootProps>(({ last }) => ({
+export const TransactionCardRoot = styled(MainListCardRoot, { gap: "4%", alignItems: "center" })<MainListCardProps>(({ last }) => ({
     paddingVertical: 14,
     marginBottom: last ? 25 : 0,
 }));

@@ -1,10 +1,6 @@
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
+import { MainListCardProps } from "module/main/component/display/MainListCard/MainListCard";
 
-export interface TransactionCardProps {
+export interface TransactionCardProps extends Partial<MainListCardProps> {
     transaction: FullTransaction;
-    last?: boolean;
-}
-
-export interface TransactionRootProps {
-    last: boolean;
 }
