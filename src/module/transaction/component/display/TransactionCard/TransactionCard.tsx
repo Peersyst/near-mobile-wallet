@@ -1,4 +1,4 @@
-import { Col, Row, useModal } from "@peersyst/react-native-components";
+import { Col, Row, useConfig, useModal } from "@peersyst/react-native-components";
 import formatDate from "utils/formatDate";
 import { TransactionCardRoot } from "./TransactionCard.styles";
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
@@ -19,8 +19,9 @@ import Balance from "module/wallet/component/display/Balance/Balance";
 const TransactionCard = ({ transaction, last = false }: TransactionCardProps): JSX.Element => {
     const { showModal } = useModal();
     const { fiat } = useRecoilValue(settingsState);
+    const tokenName = useConfig("tokenName");
     const { data: tokenValue } = useGetTokenPrice(fiat, "nervos-network");
-    const { timestamp, amount, type, token = "CKB", status } = transaction;
+    const { timestamp, amount, type, token = tokenName, status } = transaction;
     const showAmount = type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
 
     return (
