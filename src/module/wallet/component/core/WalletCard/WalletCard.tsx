@@ -30,6 +30,9 @@ const WalletCard = ({ wallet: { name, index, synchronizing } }: WalletCardProps)
                     {name}
                 </Typography>
                 <Balance
+                   /* textAlign="center"
+                    numberOfLines={1}
+                    style={{ width: "100%" }}*/
                     isLoading={synchronizing}
                     options={{ maxDecimals: 2 }}
                     spinnerProps={{ color: (p) => p.white, size: 42 }}
