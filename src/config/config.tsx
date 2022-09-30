@@ -5,7 +5,6 @@ import devConfig from "./config.dev.json";
 import stagingConfig from "./config.staging.json";
 import { CkbAddressValidator } from "config/validators/CkbAddressValidator";
 import globalStyles from "config/globalStyles";
-import darkTheme from "./theme/darkTheme";
 
 const envConfigs: Record<string, CreateConfig> = {
     test: devConfig,

@@ -1,4 +1,4 @@
-import { Col, ScrollView } from "@peersyst/react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import TransactionDetail from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionDetail";
 import TransactionTypeDetails from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionTypeDetails";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
