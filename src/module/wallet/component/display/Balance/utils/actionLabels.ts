@@ -1,6 +1,6 @@
 import { BalanceAction } from "../Balance.types";
 
-export const getActionLabel: Record<BalanceAction, string> = {
+export const ActionLabels: Record<BalanceAction, string> = {
     add: "+ ",
     display: "",
     round: "≈ ",

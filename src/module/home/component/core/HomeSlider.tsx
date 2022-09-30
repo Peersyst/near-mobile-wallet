@@ -1,7 +1,7 @@
-import { PagerView } from "@peersyst/react-native-components";
 import WalletCard from "module/wallet/component/core/WalletCard/WalletCard";
 import AddWalletCard from "module/wallet/component/display/AddWalletCard/AddWalletCard";
 import useWalletState from "module/wallet/hook/useWalletState";
+import { HomeSliderRoot } from "./HomeSlider.styles";
 
 const HomeSlider = (): JSX.Element => {
     const {
@@ -10,20 +10,18 @@ const HomeSlider = (): JSX.Element => {
     } = useWalletState();
 
     return (
-        <PagerView
+        <HomeSliderRoot
             page={selectedWallet}
             onPageSelected={(page) => setSelectedWallet(page)}
-            showPageIndicator
+            showPageIndicator={true}
             gap={0}
-            height="33%"
             pagePadding={{ horizontal: 20 }}
-            style={{ minHeight: 180 }}
         >
             {wallets.map((wallet, i) => (
                 <WalletCard key={i} wallet={wallet} />
             ))}
             <AddWalletCard />
-        </PagerView>
+        </HomeSliderRoot>
     );
 };
 

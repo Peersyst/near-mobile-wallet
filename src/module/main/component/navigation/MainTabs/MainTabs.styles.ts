@@ -1,22 +1,14 @@
 import styled from "@peersyst/react-native-styled";
-import { Paper } from "@peersyst/react-native-components";
+import { Paper, TabGroup as BaseTabGroup } from "@peersyst/react-native-components";
 
-export interface MainTabsContentProps {
-    activeIndex: number;
-    numberOfTabs: number;
-}
-
-export const MainTabsContent = styled(Paper)<MainTabsContentProps>(({ activeIndex, numberOfTabs }) => ({
+export const MainTabsRoot = styled(Paper)(() => ({
     flex: 1,
-    shadowOffset: {
-        height: -3,
-        width: 0,
-    },
-    shadowRadius: 2,
-    shadowOpacity: 0.15,
-    elevation: 1,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
-    borderTopLeftRadius: activeIndex === 0 ? 0 : undefined,
-    borderTopRightRadius: activeIndex === numberOfTabs - 1 ? 0 : undefined,
+}));
+
+export const TabGroup = styled(BaseTabGroup)(({ theme }) => ({
+    borderBottomWidth: 1,
+    borderColor: theme.palette.overlay["8%"],
+    justifyContent: "center",
 }));
