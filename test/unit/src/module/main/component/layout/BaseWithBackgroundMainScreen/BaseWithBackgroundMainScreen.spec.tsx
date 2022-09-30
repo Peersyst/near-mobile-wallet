@@ -1,13 +1,13 @@
 import { render } from "test-utils";
 import { Text } from "react-native";
-import BaseWithBackgroundMainScreen from "module/main/component/layout/BaseWithBackgroundMainScreen/BaseWithBackgroundMainScreen";
+import BaseMainGradientScreen from "module/main/component/layout/BaseMainGradientScreen/BaseMainGradientScreen";
 
 describe("BaseWithBackgroundMainScreen tests", () => {
     test("Renders correctly", () => {
         const screen = render(
-            <BaseWithBackgroundMainScreen>
+            <BaseMainGradientScreen>
                 <Text>Content</Text>
-            </BaseWithBackgroundMainScreen>,
+            </BaseMainGradientScreen>,
         );
         expect(screen.getByText("Content")).toBeDefined();
     });

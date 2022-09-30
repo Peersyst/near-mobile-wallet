@@ -3,8 +3,7 @@ import Typography from "module/common/component/display/Typography/Typography";
 import { CURRENCY_UNIT } from "./utils/currencies";
 import { useFormatNumber } from "module/common/hook/useFormatNumber";
 import { ACTION_LABEL } from "./utils/getActionLabel";
-import { Suspense } from "@peersyst/react-native-components";
-import Spinner from "module/common/component/feedback/Spinner/Spinner";
+import { Spinner, Suspense } from "@peersyst/react-native-components";
 
 const Balance = ({
     balance,
@@ -21,8 +20,8 @@ const Balance = ({
     const currencyUnit = units && (CURRENCY_UNIT[units as AppCurrency] || units);
 
     return (
-        <Suspense isLoading={isLoading} fallback={<Spinner testID="ActivityIndicator" {...spinnerProps} />}>
-            <Typography {...typographyProps}>
+        <Suspense isLoading={isLoading} fallback={<Spinner {...spinnerProps} />}>
+            <Typography numberOfLines={1} {...typographyProps}>
                 {currencyUnit && unitsPosition === "left" && currencyUnit + " "}
                 {actionLabel + formatedNum}
                 {currencyUnit && unitsPosition === "right" && " " + currencyUnit}
