@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { Image, View } from "react-native";
+import { Image } from "react-native";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 
 export const TokenIcon = styled(Image)(() => ({
