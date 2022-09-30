@@ -24,7 +24,5 @@ export default function (type: FullTransaction["type"]): GetTransactionAmountUti
                 action: "add",
                 primary: true,
             };
-        default:
-            undefined;
     }
 }

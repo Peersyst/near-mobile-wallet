@@ -8,9 +8,7 @@ export interface TransactionDetailProps {
 
 const TransactionDetail = ({ title, children }: TransactionDetailProps): JSX.Element => (
     <Col gap={5}>
-        <Typography variant="h3" fontWeight="bold">
-            {title}
-        </Typography>
+        <Typography variant="body2Strong">{title}</Typography>
         {children}
     </Col>
 );

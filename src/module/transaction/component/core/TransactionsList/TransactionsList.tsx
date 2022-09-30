@@ -10,10 +10,14 @@ const TransactionsList = (): JSX.Element => {
     const txs = [...Array(29)].map((_, i) => ({
         id: i.toString(),
         timestamp: "Thu Sep 29 2022 17:32:43 GMT+0200 (Central European Summer Time)",
-        amount: 100,
-        type: i % 3 !== 0 ? TransactionType.RECEIVE_NATIVE_TOKEN : TransactionType.SEND_NATIVE_TOKEN,
-        token: "CKB",
         status: TransactionStatus.COMMITTED,
+        type: i % 3 === 0 ? TransactionType.SEND_NATIVE_TOKEN : TransactionType.RECEIVE_NATIVE_TOKEN,
+        amount: 100,
+        transactionHash: "0x1234567890abcdef",
+        inputs: [],
+        outputs: [],
+        blockHash: "0x1234567890abcdef",
+        blockNumber: 1,
     }));
     return (
         <MainList

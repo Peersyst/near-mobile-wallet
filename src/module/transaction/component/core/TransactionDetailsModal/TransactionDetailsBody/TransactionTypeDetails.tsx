@@ -16,9 +16,9 @@ const TransactionTypeDetails = ({ transaction: { type, outputs, inputs } }: Tran
         return (
             <TransactionDetail title={translate("receiver")}>
                 {outputs[0] ? (
-                    <BlockchainAddress address={outputs[0].address} type="address" variant="body1" length={8} />
+                    <BlockchainAddress address={outputs[0].address} type="address" variant="body3Regular" length={8} />
                 ) : (
-                    <Typography variant="body1">{translate("unknown")}</Typography>
+                    <Typography variant="body3Regular">{translate("unknown")}</Typography>
                 )}
             </TransactionDetail>
         );
@@ -28,19 +28,19 @@ const TransactionTypeDetails = ({ transaction: { type, outputs, inputs } }: Tran
                 {inputs.length ? (
                     inputs.map((input, key) => (
                         <Row key={key} flex={1} justifyContent="space-between" alignItems="center">
-                            <BlockchainAddress address={input.address} type="address" variant="body1" length={6} />
+                            <BlockchainAddress address={input.address} type="address" variant="body3Regular" length={6} />
                             <Balance
                                 balance={
                                     outputs.reduce((prev, curr) => (curr.address === input.address ? prev + curr.quantity : prev), 0) -
                                     input.quantity
                                 }
                                 units="token"
-                                variant="body1"
+                                variant="body3Regular"
                             />
                         </Row>
                     ))
                 ) : (
-                    <Typography variant="body1">{translate("unknown")}</Typography>
+                    <Typography variant="body3Regular">{translate("unknown")}</Typography>
                 )}
             </TransactionDetail>
         );

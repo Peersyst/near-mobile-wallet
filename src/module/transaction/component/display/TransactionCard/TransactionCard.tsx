@@ -1,6 +1,6 @@
 import { Col, Row, useModal } from "@peersyst/react-native-components";
 import formatDate from "utils/formatDate";
-import { TransactionAmountConversion, TransactionCardRoot } from "./TransactionCard.styles";
+import { TransactionCardRoot } from "./TransactionCard.styles";
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
 import TransactionLabel from "module/transaction/component/display/TransactionLabel/TransactionLabel";
 import TransactionDetailsModal from "../../core/TransactionDetailsModal/TransactionDetailsModal";
