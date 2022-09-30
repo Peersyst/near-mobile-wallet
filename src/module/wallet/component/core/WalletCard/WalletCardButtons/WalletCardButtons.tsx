@@ -8,6 +8,7 @@ import { capitalize } from "@peersyst/react-utils";
 const WalletCardButtons = (): JSX.Element => {
     const { showModal } = useModal();
     const translate = useTranslate();
+
     return (
         <Row gap={8}>
             <Button style={{ width: 132 }} variant="secondary" size="md" onPress={() => showModal(SendModal)}>

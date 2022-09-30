@@ -13,5 +13,5 @@ export const LinkItemIcon = styled(Icon)<LinkItemIconProps>(({ theme, isActive }
 }));
 
 export const BottomBarItemRoot = styled(Pressable)(() => ({
-    width: 56,
+    width: "22%",
 }));

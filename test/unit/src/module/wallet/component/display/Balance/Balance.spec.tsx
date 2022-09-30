@@ -17,14 +17,10 @@ describe("Text for the Balance component", () => {
         expect(screen.getByText("100 " + CURRENCY_UNIT["eur"])).toBeDefined();
     });
     test("Renders correctly dollar", () => {
-        const screen = render(<Balance balance={"100"} variant={"h1"} units="usd" />);
-        expect(screen.getByText("100 " + CURRENCY_UNIT["usd"])).toBeDefined();
-    });
-    test("Renders correctly round", () => {
-        const screen = render(<Balance action="add" balance={"100"} variant={"h1"} units="usd" />);
+        const screen = render(<Balance balance={"100"} variant={"h1"} units="usd" action="add" />);
         expect(screen.getByText(ACTION_LABEL["add"] + "100 " + CURRENCY_UNIT["usd"])).toBeDefined();
     });
-    test("Renders correctly add", () => {
+    test("Renders correctly round", () => {
         const screen = render(<Balance action="round" balance={"100"} variant={"h1"} units="usd" />);
         expect(screen.getByText(ACTION_LABEL["round"] + "100 " + CURRENCY_UNIT["usd"])).toBeDefined();
     });
