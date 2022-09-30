@@ -2,7 +2,7 @@ import { AppCurrency, BalanceProps } from "./Balance.types";
 import Typography from "module/common/component/display/Typography/Typography";
 import { CURRENCY_UNIT } from "./utils/currencies";
 import { useFormatNumber } from "module/common/hook/useFormatNumber";
-import { ACTION_LABEL } from "./utils/getActionLabel";
+import { ACTION_LABEL } from "./utils/ACTION_LABEL";
 import { Spinner, Suspense } from "@peersyst/react-native-components";
 
 const Balance = ({
