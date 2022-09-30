@@ -19,7 +19,7 @@ describe("Renders the token list properly", () => {
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         jest.spyOn(sdkInstance, "getTokensBalance").mockReturnValue([token]);
         const screen = render(<TokensList />);
-        await waitFor(() => expect(screen.getAllByText("Wrapped BTC")));
+        await waitFor(() => expect(screen.getAllByText("Bitcoin")));
     });
     test("Renders empty token list", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
