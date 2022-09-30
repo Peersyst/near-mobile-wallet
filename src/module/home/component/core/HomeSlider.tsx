@@ -17,7 +17,7 @@ const HomeSlider = (): JSX.Element => {
             gap={0}
             height="33%"
             pagePadding={{ horizontal: 20 }}
-            style={{ minHeight: 160 }}
+            style={{ minHeight: 180 }}
         >
             {wallets.map((wallet, i) => (
                 <WalletCard key={i} wallet={wallet} />
