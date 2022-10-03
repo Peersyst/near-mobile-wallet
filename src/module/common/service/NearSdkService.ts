@@ -1,6 +1,6 @@
 import { connect, keyStores, utils, Near, ConnectConfig, KeyPair } from "near-api-js";
 import { config } from "config";
-/// const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
+const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 
 export enum Chains {
     MAINNET = "mainnet",
@@ -19,14 +19,11 @@ export class NearSDKService {
 
         if (mnemonic) {
             this.mnemonic = mnemonic;
-            // const { secretKey } = parseSeedPhrase(mnemonic);
-            const secretKey = this.mnemonic;
+            const { secretKey } = parseSeedPhrase(mnemonic);
             keyPair = utils.KeyPair.fromString(secretKey);
         } else {
-            // const { seedPhrase, secretKey } = generateSeedPhrase();
-            // this.mnemonic = seedPhrase;
-            this.mnemonic = "hola";
-            const secretKey = this.mnemonic;
+            const { seedPhrase, secretKey } = generateSeedPhrase();
+            this.mnemonic = seedPhrase;
             keyPair = utils.KeyPair.fromString(secretKey);
         }
 
