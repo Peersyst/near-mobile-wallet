@@ -4,10 +4,10 @@ export interface TypographyProps extends BaseTypographyProps {
     color?: (theme: Theme["palette"]) => string;
 }
 
-const Typography = ({ color: colorCb, style, ...rest }: TypographyProps): JSX.Element => {
+const Typography = ({ color: colorCb, light, style, ...rest }: TypographyProps): JSX.Element => {
     const { palette } = useTheme();
 
-    const color = colorCb?.(palette) || palette.text;
+    const color = colorCb?.(palette) || palette.gray[light ? 300 : 600];
 
     return <BaseTypography style={{ color, ...style }} {...rest} />;
 };

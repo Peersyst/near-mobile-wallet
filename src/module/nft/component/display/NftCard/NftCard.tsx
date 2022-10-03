@@ -12,7 +12,7 @@ const NftCard = ({ contract_id, metadata: { title, media, copies }, token_id, la
     return (
         <NftCardRoot last={last}>
             <NftCardImage source={{ uri: media ?? "" }} />
-            <Col flex={1} justifyContent="center" gap={14}>
+            <Col flex={1} justifyContent="center" gap="6.5%">
                 <Col gap={2}>
                     {title && (
                         <Typography variant="body1Strong" numberOfLines={1}>
@@ -30,7 +30,13 @@ const NftCard = ({ contract_id, metadata: { title, media, copies }, token_id, la
                         <Typography variant="body4Strong" light numberOfLines={1}>
                             Bought for
                         </Typography>
-                        <Balance variant="body3Strong" light balance={lastTransfer.price} units="token" numberOfLines={1} />
+                        <Balance
+                            variant="body3Strong"
+                            balance={lastTransfer.price}
+                            options={{ maxDecimals: 2 }}
+                            units="token"
+                            numberOfLines={1}
+                        />
                     </Col>
                 )}
             </Col>
