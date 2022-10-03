@@ -13,7 +13,7 @@ const MainList = ({ indicatorStyle, loading, onRefresh, ...rest }: MainListProps
 
     return (
         <List
-            style={{ paddingHorizontal: "6%", paddingTop: 15 }}
+            contentContainerStyle={{ paddingHorizontal: "6%", paddingVertical: 12 }}
             refreshControlProps={{ tintColor: "black" }}
             indicatorStyle={indicatorStyle || "black"}
             loading={synchronizing || loading}

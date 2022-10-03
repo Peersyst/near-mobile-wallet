@@ -1,9 +1,9 @@
 import { TransactionIconRoot, TxIcon } from "./TransactionIcon.styles";
 import { TransactionIconProps } from "./TransactionIcon.types";
-import { TX_ICON_UTILS } from "./utils/txIconUtils";
+import { TX_ICON } from "./utils/txIconUtils";
 
 const TransactionIcon = ({ type }: TransactionIconProps): JSX.Element => {
-    const { Icon, active } = TX_ICON_UTILS[type] || {};
+    const { Icon, active } = TX_ICON[type] || {};
     return (
         <TransactionIconRoot active={active} alignItems="center" justifyContent="center">
             <TxIcon as={Icon} active={active} />
