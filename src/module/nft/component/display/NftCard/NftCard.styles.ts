@@ -1,6 +1,5 @@
 import styled from "@peersyst/react-native-styled";
 import { Image } from "@peersyst/react-native-components";
-import { Dimensions } from "react-native";
 
 const NFT_CARD_WIDTH = 112;
 
