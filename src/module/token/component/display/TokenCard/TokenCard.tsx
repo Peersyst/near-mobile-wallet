@@ -1,14 +1,13 @@
 import { Col, Row } from "@peersyst/react-native-components";
-import { TokenIcon, TokenRoot } from "./TokenCard.styles";
+import { TokenIcon } from "./TokenCard.styles";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import settingsState from "module/settings/state/SettingsState";
 import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
 import { useRecoilValue } from "recoil";
 import Typography from "module/common/component/display/Typography/Typography";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
-import { TOKEN_IMAGES } from "./utils/TokenImages";
-import * as image from "../../../../../asset/image";
-import { ImageSourcePropType } from "react-native";
+import { TOKEN_IMAGES, TOKEN_PLACEHOLDER_IMAGES, ZeroToFive } from "./utils/tokenImages";
+import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 
 export interface TokenMetadata {
     name: string;
@@ -26,17 +25,6 @@ export interface TokenCardProps {
     index?: number;
 }
 
-type ZeroToFive = 0 | 1 | 2 | 3 | 4 | 5;
-
-const TOKEN_PLACEHOLDER_IMAGES: Record<ZeroToFive, ImageSourcePropType> = {
-    "0": image.token_placeholder0,
-    "1": image.token_placeholder1,
-    "2": image.token_placeholder2,
-    "3": image.token_placeholder3,
-    "4": image.token_placeholder4,
-    "5": image.token_placeholder5,
-};
-
 const TokenCard = ({ token: { metadata }, balance, index = 0 }: TokenCardProps): JSX.Element => {
     const { name, symbol, decimals } = metadata;
     const { fiat } = useRecoilValue(settingsState);
@@ -44,7 +32,7 @@ const TokenCard = ({ token: { metadata }, balance, index = 0 }: TokenCardProps):
     const imageUri = TOKEN_IMAGES[symbol];
     const imageIndex = (index % 6) as ZeroToFive;
     return (
-        <TokenRoot>
+        <MainListCard alignItems="center" justifyContent="space-between">
             <Row alignItems="center" gap={16}>
                 <TokenIcon source={imageUri ? { uri: imageUri } : TOKEN_PLACEHOLDER_IMAGES[imageIndex]} />
                 <Typography variant="body3Strong" numberOfLines={1} style={{ width: "65%" }}>
@@ -64,7 +52,7 @@ const TokenCard = ({ token: { metadata }, balance, index = 0 }: TokenCardProps):
                     />
                 )}
             </Col>
-        </TokenRoot>
+        </MainListCard>
     );
 };
 
