@@ -1,5 +1,5 @@
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/ACTION_LABEL";
+import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
 import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
 import { render } from "test-utils";
 

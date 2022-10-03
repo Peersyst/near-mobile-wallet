@@ -3,9 +3,9 @@ import TransactionDetailsModal from "module/transaction/component/core/Transacti
 import { receivedTransaction, sentTransaction } from "mocks/transaction";
 import { formatHash } from "@peersyst/react-utils";
 import { TX_LABEL } from "module/transaction/component/display/TransactionLabel/utils/TX_LABEL";
-import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/getActionLabel";
 import getTransactionAmountUtils from "module/transaction/component/display/TransactionAmount/utils/getTransactionAmountUtils";
 import { config } from "config";
+import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
 
 describe("TransactionDetailsModal test", () => {
     test("Renders Send correctly", () => {
