@@ -1,5 +1,3 @@
-import { MainListCardProps } from "module/main/component/display/MainListCard/MainListCard";
-
 export interface NftMetadata {
     title: string | null; // ex. "Arch Nemesis: Mail Carrier" or "Parcel #5055"
     description: string | null; // free-form description
@@ -31,4 +29,7 @@ export interface Nft {
     approved_account_ids: string[];
 }
 
-export type NftCardProps = Nft & MainListCardProps;
+export type NftCardProps = {
+    nft: Nft;
+    index: number;
+};

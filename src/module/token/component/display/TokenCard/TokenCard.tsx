@@ -6,8 +6,8 @@ import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
 import { useRecoilValue } from "recoil";
 import Typography from "module/common/component/display/Typography/Typography";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
-import { TOKEN_IMAGES, TOKEN_PLACEHOLDER_IMAGES, ZeroToFive } from "./utils/tokenImages";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
+import { TOKEN_IMAGES, ZeroToFive, TOKEN_PLACEHOLDER_IMAGES } from "./utils/tokenImages";
 
 export interface TokenMetadata {
     name: string;

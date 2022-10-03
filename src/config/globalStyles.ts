@@ -31,7 +31,7 @@ const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography } }) =>
     },
     Typography: {
         light: {
-            color: p.gray[300],
+            color: palette.gray[300],
             opacity: 1,
         },
     },

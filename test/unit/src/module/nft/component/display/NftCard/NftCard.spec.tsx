@@ -1,10 +1,13 @@
-import { render } from "test-utils";
+import { formatBalance, render, translate } from "test-utils";
 import NftCard from "module/nft/component/display/NftCard/NftCard";
-import { nft } from "mocks/nft";
+import { tempNft } from "mocks/nft";
 
 describe("NftCard tests", () => {
     test("Renders correctly", () => {
-        const screen = render(<NftCard {...nft} />);
-        expect(screen.getByText("NFT"));
+        const screen = render(<NftCard nft={tempNft} index={0} />);
+        expect(screen.getByText(tempNft.metadata.title!));
+        expect(screen.getByText(tempNft.contract_id));
+        expect(screen.getByText(translate("boughtFor")));
+        expect(screen.getByText(formatBalance({ balance: tempNft.events[0].price.toString(), units: "token" })));
     });
 });

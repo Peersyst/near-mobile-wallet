@@ -156,5 +156,6 @@
     "importYourNearWallet": "Importa tu wallet de NEAR",
     "stake_added": "Stake añadido",
     "unstake": "Unstake",
-    "sentTo": "Enviado a"
+    "sentTo": "Enviado a",
+    "boughtFor": "Comprado por"
 }
