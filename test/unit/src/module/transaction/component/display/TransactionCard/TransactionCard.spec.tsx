@@ -3,7 +3,7 @@ import TransactionCard from "module/transaction/component/display/TransactionCar
 import { transaction } from "mocks/transaction";
 import * as Recoil from "recoil";
 import * as useGetTokenPrice from "module/token/query/useGetTokenPrice";
-import { TX_LABEL } from "module/transaction/component/display/TransactionLabel/utils/TX_LABEL";
+import { TX_LABEL } from "module/transaction/component/display/TransactionLabel/utils/txLabel";
 
 describe("TransactionCard tests", () => {
     beforeAll(() => {

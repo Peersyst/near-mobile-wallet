@@ -6,12 +6,13 @@ import isCKBTransaction from "module/transaction/component/utils/isCKBTransactio
 
 const TransactionsList = (): JSX.Element => {
     const { data = [], isLoading } = useGetTransactions({ filter: (tx) => isCKBTransaction(tx.type) });
+
     return (
         <MainList
             loading={isLoading}
             data={data}
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
-            renderItem={({ item: tx, index }) => <TransactionCard transaction={tx} last={index === data.length - 1} />}
+            renderItem={({ item: tx }) => <TransactionCard transaction={tx} />}
             keyExtractor={(_, index) => index.toString()}
         />
     );

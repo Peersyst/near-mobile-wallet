@@ -154,7 +154,7 @@
     "pending_transaction_text": "Tienes una transacción no cometida. Por favor, espera a que esté cometida para poder enviar una nueva.",
     "staking": "Staking",
     "importYourNearWallet": "Importa tu wallet de NEAR",
-    "stake_added": "Added stake",
+    "stake_added": "Stake añadido",
     "unstake": "Unstake",
     "sentTo": "Enviado a"
 }
