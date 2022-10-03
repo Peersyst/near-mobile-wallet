@@ -2,7 +2,7 @@ import { render } from "test-utils";
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
 import { TransactionType } from "ckb-peersyst-sdk";
 import { config } from "config";
-import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/getActionLabel";
+import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
 
 describe("TransactionAmount tests", () => {
     test("Renders add", () => {
