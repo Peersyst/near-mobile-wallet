@@ -1827,10 +1827,10 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^1.6.0"
 
-"@peersyst/react-native-components@^1.2.33":
-  version "1.2.33"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-1.2.33.tgz#ea90bde7e35f8c5be5118b89f36340a2c0bc18e6"
-  integrity sha512-SlXoSJz8AqaKOSaPrcSGuTvifiNnDQFwXx3h0QGaDx2Pa4GNwTRuKkxXsACDVXZRxYe8eTXpabtZYEc8BSm2nQ==
+"@peersyst/react-native-components@^1.2.35":
+  version "1.2.35"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-1.2.35.tgz#82f9ffb6d07cbb478cb76b9ffe0c2b95e7ae8e67"
+  integrity sha512-6BTSiW7jy5IswYHK2rTUlIRfLByzx93Pnt1w1G4SZQNAD1n17jpdaZNaPsX7dvlbVbwVJy4BvIZrDh3tZV3jYw==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-components-core" "^0.2.5"
@@ -1850,7 +1850,7 @@
     react-native-gesture-handler "~2.1.0"
     react-native-keyboard-aware-scroll-view "^0.9.5"
     react-native-modal "^13.0.1"
-    react-native-pager-view "^5.4.9"
+    react-native-pager-view "^5.4.15"
     react-native-qrcode-svg "^6.1.2"
     react-native-safe-area-context "3.3.2"
     react-native-svg "^12.1.1"
@@ -8014,7 +8014,7 @@ react-native-modal@^13.0.1:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
 
-react-native-pager-view@5.4.9, react-native-pager-view@^5.4.9:
+react-native-pager-view@5.4.9, react-native-pager-view@^5.4.15:
   version "5.4.9"
   resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.9.tgz#c0d40847cfeda5a4e729b53271b0ee0fedff3eb5"
   integrity sha512-D6tzxpwMGdl6CXgtskGWhKRc5cJakCazESRGt7PkqnpyiH3N35ft1KmR82pCSQetAFlytFiToeu3a/dG5CELvA==
