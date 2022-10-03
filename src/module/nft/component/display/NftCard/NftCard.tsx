@@ -1,31 +1,41 @@
-import { Nft } from "ckb-peersyst-sdk";
-import { Col, Typography } from "@peersyst/react-native-components";
+import { Col } from "@peersyst/react-native-components";
+import Typography from "module/common/component/display/Typography/Typography";
+import Balance from "module/wallet/component/display/Balance/Balance";
+import { useMemo } from "react";
 import { NftCardImage, NftCardRoot } from "./NftCard.styles";
-import { MainListCardProps } from "module/main/component/display/MainListCard/MainListCard";
+import { NftCardProps } from "./NftCard.types";
 
-export type NftCardProps = Nft & MainListCardProps;
-
-const NftCard = ({ nftName, tokenUri, tokenId, total, data: { description }, last }: NftCardProps): JSX.Element => (
-    <NftCardRoot last={last}>
-        <NftCardImage source={{ uri: tokenUri }} />
-        <Col flex={1} justifyContent="space-between" style={{ paddingVertical: 12 }}>
-            <Col gap={2}>
-                <Typography variant="body1" fontWeight="bold" numberOfLines={1}>
-                    {nftName}
-                </Typography>
-                <Typography variant="body1" numberOfLines={3}>
-                    {description}
-                </Typography>
-            </Col>
-            {tokenId && total && (
-                <Col alignItems="flex-end">
-                    <Typography variant="body1" fontWeight="bold">
-                        {`${tokenId}/${total}`}
-                    </Typography>
+const NftCard = ({ contract_id, metadata: { title, media, copies }, token_id, last, events }: NftCardProps): JSX.Element => {
+    const lastTransfer = useMemo(() => {
+        return events.find((e) => e.type === "nft_transfer");
+    }, [events]);
+    return (
+        <NftCardRoot last={last}>
+            <NftCardImage source={{ uri: media ?? "" }} />
+            <Col flex={1} justifyContent="center" gap={14}>
+                <Col gap={2}>
+                    {title && (
+                        <Typography variant="body1Strong" numberOfLines={1}>
+                            {title}
+                        </Typography>
+                    )}
+                    {contract_id && (
+                        <Typography variant="body3Strong" numberOfLines={1} color={(p) => p.primary}>
+                            {contract_id}
+                        </Typography>
+                    )}
                 </Col>
-            )}
-        </Col>
-    </NftCardRoot>
-);
+                {lastTransfer && (
+                    <Col>
+                        <Typography variant="body4Strong" light numberOfLines={1}>
+                            Bought for
+                        </Typography>
+                        <Balance variant="body3Strong" light balance={lastTransfer.price} units="token" numberOfLines={1} />
+                    </Col>
+                )}
+            </Col>
+        </NftCardRoot>
+    );
+};
 
 export default NftCard;
