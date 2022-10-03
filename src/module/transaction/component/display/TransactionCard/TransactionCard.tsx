@@ -1,6 +1,5 @@
-import { Col, Row, useConfig, useModal } from "@peersyst/react-native-components";
+import { Col, Row, useModal } from "@peersyst/react-native-components";
 import formatDate from "utils/formatDate";
-import { TransactionCardRoot } from "./TransactionCard.styles";
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
 import TransactionLabel from "module/transaction/component/display/TransactionLabel/TransactionLabel";
 import TransactionDetailsModal from "../../core/TransactionDetailsModal/TransactionDetailsModal";
@@ -15,23 +14,32 @@ import { TouchableWithoutFeedback } from "react-native";
 import TransactionIcon from "../TransactionIcon/TransactionIcon";
 import Typography from "module/common/component/display/Typography/Typography";
 import Balance from "module/wallet/component/display/Balance/Balance";
+import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 
-const TransactionCard = ({ transaction, last = false }: TransactionCardProps): JSX.Element => {
+const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => {
     const { showModal } = useModal();
     const { fiat } = useRecoilValue(settingsState);
-    const tokenName = useConfig("tokenName");
     const { data: tokenValue } = useGetTokenPrice(fiat, "nervos-network");
-    const { timestamp, amount, type, token = tokenName, status } = transaction;
+    const { timestamp, amount, type, token = "token", status } = transaction;
     const showAmount = type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
 
     return (
         <TouchableWithoutFeedback onPress={() => showModal(TransactionDetailsModal, { transaction })}>
-            <TransactionCardRoot last={last}>
+            <MainListCard gap="4%" alignItems="center">
                 <TransactionIcon type={type} />
                 <Col gap={2} flex={1}>
                     <Row justifyContent="space-between">
-                        <TransactionLabel variant="body3Strong" type={type} />
-                        {showAmount && <TransactionAmount variant="body3Strong" type={type} balance={amount} units={token} />}
+                        <TransactionLabel variant="body3Strong" type={type} numberOfLines={1} style={{ width: "55%" }} />
+                        {showAmount && (
+                            <TransactionAmount
+                                variant="body3Strong"
+                                type={type}
+                                amount={amount}
+                                units={token}
+                                numberOfLines={1}
+                                style={{ width: "40%" }}
+                            />
+                        )}
                     </Row>
                     <Row justifyContent="space-between" alignItems="center">
                         {timestamp ? (
@@ -58,7 +66,7 @@ const TransactionCard = ({ transaction, last = false }: TransactionCardProps): J
                         )}
                     </Row>
                 </Col>
-            </TransactionCardRoot>
+            </MainListCard>
         </TouchableWithoutFeedback>
     );
 };

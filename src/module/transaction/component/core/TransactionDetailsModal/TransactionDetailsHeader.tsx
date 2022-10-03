@@ -11,14 +11,13 @@ export interface TransactionDetailsHeaderProps {
 }
 
 const TransactionDetailsHeader = ({ transaction: { type, amount, token, timestamp } }: TransactionDetailsHeaderProps): JSX.Element => {
-    const tokenName = useConfig("tokenName");
     const showAmount = type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
     return (
         <Col alignItems="center" gap={10}>
             <TransactionIcon type={type} />
             <Col gap={5} alignItems="center">
-                <TransactionLabel variant="body1Strong" type={type} />
-                {showAmount && <TransactionAmount variant="body1Strong" type={type} balance={amount} units={token ?? tokenName} />}
+                <TransactionLabel variant="body1Strong" type={type} numberOfLines={2} textAlign="center" />
+                {showAmount && <TransactionAmount variant="body1Strong" type={type} amount={amount} units={token ?? "token"} />}
                 {timestamp && <Typography variant="body4Regular">{formatDate(new Date(timestamp))}</Typography>}
             </Col>
         </Col>

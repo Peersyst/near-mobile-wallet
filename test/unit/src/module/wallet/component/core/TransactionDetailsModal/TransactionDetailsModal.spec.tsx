@@ -2,14 +2,16 @@ import { render, translate } from "test-utils";
 import TransactionDetailsModal from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsModal";
 import { receivedTransaction, sentTransaction } from "mocks/transaction";
 import { formatHash } from "@peersyst/react-utils";
-import { TX_LABEL } from "module/transaction/component/display/TransactionLabel/utils/TX_LABEL";
-import getTransactionAmountUtils from "module/transaction/component/display/TransactionAmount/utils/getTransactionAmountUtils";
+import { TX_LABEL } from "module/transaction/component/display/TransactionLabel/utils/txLabel";
+
 import { config } from "config";
 import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
+import { TX_ICON } from "module/transaction/component/display/TransactionIcon/utils/txIconUtils";
+import transactionTypeToBalanceAction from "module/transaction/component/display/TransactionAmount/utils/transactionTypeToBalanceAction";
 
 describe("TransactionDetailsModal test", () => {
     test("Renders Send correctly", () => {
-        const { action } = getTransactionAmountUtils(sentTransaction.type) || {};
+        const action = transactionTypeToBalanceAction(sentTransaction.type) || "display";
         const screen = render(<TransactionDetailsModal transaction={sentTransaction} />);
         //Header
         expect(screen.getByTestId("ArrowUpCircleIcon")).toBeDefined();
@@ -23,7 +25,7 @@ describe("TransactionDetailsModal test", () => {
     });
 
     test("Renders Receive correctly", () => {
-        const { action } = getTransactionAmountUtils(receivedTransaction.type) || {};
+        const action = transactionTypeToBalanceAction(sentTransaction.type) || "display";
         const screen = render(<TransactionDetailsModal transaction={receivedTransaction} />);
         //HEADER
         expect(screen.getByTestId("ArrowDownCircleIcon")).toBeDefined();

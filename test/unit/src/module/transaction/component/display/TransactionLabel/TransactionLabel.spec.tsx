@@ -1,7 +1,7 @@
 import { render, translate } from "test-utils";
 import TransactionLabel from "module/transaction/component/display/TransactionLabel/TransactionLabel";
 import { TransactionType } from "ckb-peersyst-sdk";
-import { TX_LABEL } from "module/transaction/component/display/TransactionLabel/utils/TX_LABEL";
+import { TX_LABEL } from "module/transaction/component/display/TransactionLabel/utils/txLabel";
 
 describe("TransactionLabel tests", () => {
     test("Renders correctly", () => {

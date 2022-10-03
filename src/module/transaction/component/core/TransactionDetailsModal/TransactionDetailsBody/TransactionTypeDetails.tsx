@@ -30,6 +30,7 @@ const TransactionTypeDetails = ({ transaction: { type, outputs, inputs } }: Tran
                         <Row key={key} flex={1} justifyContent="space-between" alignItems="center">
                             <BlockchainAddress address={input.address} type="address" variant="body3Regular" length={6} />
                             <Balance
+                                options={{ maxDecimals: 2 }}
                                 balance={
                                     outputs.reduce((prev, curr) => (curr.address === input.address ? prev + curr.quantity : prev), 0) -
                                     input.quantity

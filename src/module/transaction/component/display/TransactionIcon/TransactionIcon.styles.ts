@@ -11,5 +11,5 @@ export const TransactionIconRoot = styled(Col)<TransactionIconCompponentProps>((
 }));
 
 export const TxIcon = styledWithAs(Icon)<TransactionIconCompponentProps>(({ theme: { palette: p }, active }) => ({
-    color: active ? p.blue : p.gray[p.mode === "light" ? "300" : "600"],
+    color: active ? p.blue : p.gray[300],
 }));
