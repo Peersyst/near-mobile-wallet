@@ -6,7 +6,6 @@ import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
 import { useRecoilValue } from "recoil";
 import Typography from "module/common/component/display/Typography/Typography";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
-import { MainListCardProps } from "module/main/component/display/MainListCard/MainListCard";
 import { TOKEN_IMAGES } from "./utils/TokenImages";
 import * as image from "../../../../../asset/image";
 import { ImageSourcePropType } from "react-native";
@@ -21,7 +20,7 @@ export interface Token {
     metadata: TokenMetadata;
 }
 
-export interface TokenCardProps extends Partial<MainListCardProps> {
+export interface TokenCardProps {
     token: Token;
     balance: BalanceProps["balance"];
     index?: number;
@@ -38,14 +37,14 @@ const TOKEN_PLACEHOLDER_IMAGES: Record<ZeroToFive, ImageSourcePropType> = {
     "5": image.token_placeholder5,
 };
 
-const TokenCard = ({ token: { metadata }, balance, last = false, index = 0 }: TokenCardProps): JSX.Element => {
+const TokenCard = ({ token: { metadata }, balance, index = 0 }: TokenCardProps): JSX.Element => {
     const { name, symbol, decimals } = metadata;
     const { fiat } = useRecoilValue(settingsState);
     const { data: tokenValue } = useGetTokenPrice(fiat, "binancecoin");
     const imageUri = TOKEN_IMAGES[symbol];
     const imageIndex = (index % 6) as ZeroToFive;
     return (
-        <TokenRoot last={last}>
+        <TokenRoot>
             <Row alignItems="center" gap={16}>
                 <TokenIcon source={imageUri ? { uri: imageUri } : TOKEN_PLACEHOLDER_IMAGES[imageIndex]} />
                 <Typography variant="body3Strong" numberOfLines={1} style={{ width: "65%" }}>
