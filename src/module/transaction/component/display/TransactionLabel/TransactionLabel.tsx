@@ -13,7 +13,7 @@ const TransactionLabel = ({ type, accountId, ...typographyProps }: TransactionLa
     return (
         <Typography {...typographyProps} color={(p) => p.gray[600]}>
             {t(TX_LABEL[type])}
-            {` ${"jordiparracrespobcnpeeersystmotivado.near"}`}
+            {accountId && ` (${accountId})`}
         </Typography>
     );
 };
