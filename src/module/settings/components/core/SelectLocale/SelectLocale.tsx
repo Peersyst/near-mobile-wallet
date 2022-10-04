@@ -2,7 +2,6 @@ import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import { LayoutAnimation } from "react-native";
-import Select from "module/common/component/input/Select/Select";
 import { SelectOption } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { LocaleType } from "locale";
