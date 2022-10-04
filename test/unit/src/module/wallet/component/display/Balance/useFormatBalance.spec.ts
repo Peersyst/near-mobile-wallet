@@ -8,16 +8,12 @@ const renderUseFormatBalance = (props: UseFormatBalanceParams) => {
 };
 
 describe("useFormatBalance", () => {
-    test("Renders display", async () => {
-        await act(async () => {
-            const res = renderUseFormatBalance({
-                balance: 12345,
-                action: "add",
-                units: "token",
-            });
-            setTimeout(() => {
-                expect(res).toBe("+12,345 NEAR");
-            }, 1);
+    test("Renders display", () => {
+        const res = renderUseFormatBalance({
+            balance: 12345,
+            action: "add",
+            units: "token",
         });
+        expect(res).toBe("+12,345 NEAR");
     });
 });
