@@ -10,9 +10,8 @@ module.exports = function (api) {
                     alias: {
                         locale: "./src/locale",
                         config: "./src/config",
-                        asset: "./src/asset",
+                        images: "./src/asset/image",
                         icons: "./src/module/common/icons",
-                        images: "./src/module/common/images",
                         "ckb-peersyst-sdk": "./src/module/sdk",
                         module: "./src/module",
                         utils: "./src/utils",

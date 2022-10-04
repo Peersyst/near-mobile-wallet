@@ -1,5 +1,5 @@
 import { Col } from "@peersyst/react-native-components";
-import { empty_folder } from "asset/image";
+import { empty_folder } from "images";
 import { EmptyListComponentImage } from "./EmptyListComponent.styles";
 import { useTranslate } from "module/common/hook/useTranslate";
 import Typography from "../Typography/Typography";
