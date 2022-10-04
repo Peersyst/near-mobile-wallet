@@ -33,7 +33,7 @@
     "usd": "usd",
     "send": "enviar",
     "receive": "recibir",
-    "receive_info": "CKBull crea una nueva dirección de recepción para cada transacción para conseguir una mayor privacidad. De todos modos, si recibes un pago a una dirección usada anteriormente también podrá ser usada con normalidad.",
+    "receive_info": "Neuron elige una nueva dirección de recepción para mejorar la privacidad. Por favor, diríjase a la Libreta de Direcciones si desea utilizar una dirección de recepción previamente utilizada.",
     "import_wallet": "Importar wallet",
     "enter_mnemonic": "Introducir mnemonic",
     "mnemonic_input_text": "Escribe una palabra y presiona espacio o enter para añadirla o toca una para eliminarla.",
