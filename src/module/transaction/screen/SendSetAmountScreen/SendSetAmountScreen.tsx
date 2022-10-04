@@ -7,9 +7,7 @@ import { useState } from "react";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import settingsState from "module/settings/state/SettingsState";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
-import CKBAmountInput from "../../component/input/CKBAmountInput/CKBAmountInput";
-import { CKBAmountInputContainer } from "./SendSetAmountScreen.styles";
-import Card from "module/common/component/surface/Card/Card";
+import TokenAmountInput from "../../component/input/TokenAmountInput/TokenAmountInput";
 import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
@@ -42,26 +40,22 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
     return (
         <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
-                <Col gap="15%">
-                    <CKBAmountInputContainer>
-                        <CKBAmountInput
-                            type={type}
-                            fee={feeInCKB}
-                            amount={amount}
-                            setAmount={setAmount}
-                            freeBalance={balance?.freeBalance ?? 0}
-                        />
-                    </CKBAmountInputContainer>
+                <Col gap={24}>
+                    <TokenAmountInput
+                        type={type}
+                        fee={feeInCKB}
+                        amount={amount}
+                        setAmount={setAmount}
+                        freeBalance={balance?.freeBalance ?? 0}
+                    />
                     {type === "dao" ? (
-                        <Card>
-                            <Typography variant="body1" textAlign="center">
-                                {translate("deposit_warning", { dao_min_deposit: config.minimumDaoDeposit.toString() })}
-                            </Typography>
-                        </Card>
+                        <Typography variant="body1" textAlign="center">
+                            {translate("deposit_warning", { dao_min_deposit: config.minimumDaoDeposit.toString() })}
+                        </Typography>
                     ) : (
                         <TextArea name="message" placeholder={translate("write_a_message")} numberOfLines={7} />
                     )}
-                    <Button type="submit" variant="outlined" fullWidth>
+                    <Button type="submit" fullWidth>
                         {translate("next")}
                     </Button>
                 </Col>

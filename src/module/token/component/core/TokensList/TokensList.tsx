@@ -27,6 +27,7 @@ const TokensList = (): JSX.Element => {
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
             data={tokens}
             renderItem={({ item: token }) => <TokenCard token={token} />}
+            keyExtractor={(token) => token.metadata.symbol}
         />
     );
 };

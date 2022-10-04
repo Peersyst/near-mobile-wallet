@@ -17,6 +17,7 @@ const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography } }) =>
     },
     FormControlHint: {
         fontSize: 14,
+        color: palette.gray[300],
     },
     FormControlError: {
         fontSize: 14,

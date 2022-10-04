@@ -1,4 +1,3 @@
-import TextField from "module/common/component/input/TextField/TextField";
 import { CKBBalance } from "ckb-peersyst-sdk";
 import { Dispatch, SetStateAction } from "react";
 import { NumericInput, Typography } from "@peersyst/react-native-components";
@@ -6,6 +5,7 @@ import { SendSetAmountScreenProps } from "module/transaction/screen/SendSetAmoun
 import { config } from "config";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { useFormatNumber } from "module/common/hook/useFormatNumber";
+import { TokenAmountInputRoot } from "module/transaction/component/input/TokenAmountInput/TokenAmountInput.styles";
 
 interface CKBAmountInputProps {
     amount: string;
@@ -15,16 +15,15 @@ interface CKBAmountInputProps {
     type?: SendSetAmountScreenProps["type"];
 }
 
-const CKBAmountInput = ({ amount, setAmount, freeBalance, fee, type = "send" }: CKBAmountInputProps): JSX.Element => {
+const TokenAmountInput = ({ amount, setAmount, freeBalance, fee, type = "send" }: CKBAmountInputProps): JSX.Element => {
     const isDAO = type === "dao";
     const translate = useTranslate();
 
     const formattedFee = useFormatNumber(fee);
     const formattedMinTx = useFormatNumber((isDAO ? config.minimumDaoDeposit : config.minimumTransactionAmount).toString());
     return (
-        <TextField
-            size="lg"
-            hint={translate("transaction_fee", { fee: formattedFee })}
+        <TokenAmountInputRoot
+            hint={translate("transaction_fee", { fee: formattedFee, token: config.tokenName })}
             value={amount}
             onChange={setAmount}
             name="amount"
@@ -34,19 +33,16 @@ const CKBAmountInput = ({ amount, setAmount, freeBalance, fee, type = "send" }: 
                     Number(isDAO ? config.minimumDaoDeposit : config.minimumTransactionAmount),
                     translate("minimum_transaction_amount_text", {
                         amount: formattedMinTx,
+                        token: config.tokenName,
                     }),
                 ],
                 lte: [Number(freeBalance) - fee, translate("insufficient_balance")],
             }}
-            suffix={
-                <Typography variant="h2" fontWeight="bold">
-                    CKB
-                </Typography>
-            }
+            suffix={<Typography variant="body1Strong">{config.tokenName}</Typography>}
             input={NumericInput}
             placeholder={translate("enter_amount")}
         />
     );
 };
 
-export default CKBAmountInput;
+export default TokenAmountInput;
