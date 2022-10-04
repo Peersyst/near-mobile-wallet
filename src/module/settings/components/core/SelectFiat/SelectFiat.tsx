@@ -2,8 +2,8 @@ import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { FiatCurrencyType } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import { SelectOption } from "@peersyst/react-native-components";
-import Select from "module/common/component/input/Select/Select";
 import { useTranslate } from "module/common/hook/useTranslate";
+import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
 
 const SelectFiat = (): JSX.Element => {
     const translate = useTranslate();
@@ -30,14 +30,14 @@ const SelectFiat = (): JSX.Element => {
         },
     ];
     const [settings, setSettings] = useRecoilState(settingsState);
-    const handleSelect = async (value: FiatCurrencyType) => {
-        setSettings((s) => ({ ...s, fiat: value }));
-        SettingsStorage.set({ fiat: value });
+    const handleSelect = (fiat: FiatCurrencyType) => {
+        setSettings((s) => ({ ...s, fiat }));
+        SettingsStorage.set({ fiat });
     };
     return (
-        <Select
+        <SettingsSelect
             value={settings.fiat}
-            onChange={(value) => handleSelect(value as FiatCurrencyType)}
+            onChange={(value) => handleSelect(value)}
             options={fiatOptions}
             label={translate("default_currency")}
         />

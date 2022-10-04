@@ -1,9 +1,8 @@
 import useNavigation from "module/common/hook/useNavigation";
-import { TouchableOpacity } from "react-native";
-import { Typography } from "@peersyst/react-native-components";
+import { Row, Typography } from "@peersyst/react-native-components";
 import { RootStackParamsList } from "stack-navigator";
-import { SettingsMenuRoot } from "./SettingsMenu.styles";
 import { ChevronRightIcon } from "icons";
+import SettingsTouchableCard from "../SettingsTouchableCard/SettingsTouchableCard";
 
 interface SettingsMenuProps {
     label: string;
@@ -13,12 +12,12 @@ interface SettingsMenuProps {
 const SettingsMenu = ({ label, location }: SettingsMenuProps): JSX.Element => {
     const navigation = useNavigation();
     return (
-        <TouchableOpacity onPress={() => navigation.navigate(location)}>
-            <SettingsMenuRoot>
+        <SettingsTouchableCard onPress={() => navigation.navigate(location)}>
+            <Row justifyContent="space-between" alignItems="center" flex={1}>
                 <Typography variant="body2Strong">{label}</Typography>
                 <ChevronRightIcon />
-            </SettingsMenuRoot>
-        </TouchableOpacity>
+            </Row>
+        </SettingsTouchableCard>
     );
 };
 

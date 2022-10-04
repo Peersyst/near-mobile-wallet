@@ -7,6 +7,7 @@ import { SelectOption } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { LocaleType } from "locale";
 import i18n from "locale/i18n";
+import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
 
 const SelectLocale = (): JSX.Element => {
     const translate = useTranslate();
@@ -22,19 +23,19 @@ const SelectLocale = (): JSX.Element => {
     ];
     const [settings, setSettings] = useRecoilState(settingsState);
 
-    const handleSelect = async (value: LocaleType) => {
+    const handleSelect = (value: LocaleType) => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         i18n.changeLanguage(value);
         setSettings((s) => ({ ...s, locale: value }));
-        await SettingsStorage.set({ locale: value });
+        SettingsStorage.set({ locale: value });
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     };
     return (
-        <Select
+        <SettingsSelect
             options={localeOptions}
             value={settings.locale}
             label={translate("select_locale")}
-            onChange={(value) => handleSelect(value as LocaleType)}
+            onChange={(value) => handleSelect(value)}
         />
     );
 };

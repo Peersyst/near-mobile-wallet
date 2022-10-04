@@ -11,7 +11,7 @@ const GeneralSettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): J
     const translate = useTranslate();
     return (
         <BaseSecondaryScreen navigation={navigation} title={translate("general_settings")} back={true}>
-            <Col gap={20}>
+            <Col gap={10}>
                 <SelectNetwork />
                 <SelectFee />
                 <SelectFiat />

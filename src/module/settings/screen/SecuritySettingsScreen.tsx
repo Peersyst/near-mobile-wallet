@@ -11,7 +11,7 @@ const SecuritySettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): 
     const translate = useTranslate();
     return (
         <BaseSecondaryScreen navigation={navigation} title={translate("security_settings")} back={true}>
-            <Col gap={20}>
+            <Col gap={10}>
                 <ChangePasscode />
                 <WalletsBackup />
                 <DeleteOneWallet />

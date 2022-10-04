@@ -17,6 +17,9 @@ export const SelectRoot = styled(Select)(({ theme }) => ({
                 fontSize: 20,
             },
         },
+        menu: {
+            height: 260,
+        },
     },
 }));
 
