@@ -36,7 +36,7 @@ const SendToAddressScreen = () => {
             duration: 10000,
             action: (
                 <PressableText variant="body1" fontWeight="bold" onPress={hideToast}>
-                    Dismiss
+                    {translate("dismiss")}
                 </PressableText>
             ),
         });
