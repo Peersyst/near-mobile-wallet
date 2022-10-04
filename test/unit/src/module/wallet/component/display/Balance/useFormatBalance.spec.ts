@@ -1,5 +1,4 @@
 import { useFormatBalance, UseFormatBalanceParams } from "module/wallet/component/display/Balance/hook/useFormatBalance";
-import { act } from "react-test-renderer";
 import { renderHook } from "test-utils";
 
 const renderUseFormatBalance = (props: UseFormatBalanceParams) => {
