@@ -12,6 +12,7 @@ module.exports = function (api) {
                         config: "./src/config",
                         asset: "./src/asset",
                         icons: "./src/module/common/icons",
+                        images: "./src/module/common/images",
                         "ckb-peersyst-sdk": "./src/module/sdk",
                         module: "./src/module",
                         utils: "./src/utils",
