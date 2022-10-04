@@ -31,14 +31,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
                     <Row justifyContent="space-between">
                         <TransactionLabel variant="body3Strong" type={type} numberOfLines={1} style={{ width: "55%" }} />
                         {showAmount && (
-                            <TransactionAmount
-                                variant="body3Strong"
-                                type={type}
-                                amount={amount}
-                                units={token}
-                                numberOfLines={1}
-                                style={{ width: "40%" }}
-                            />
+                            <TransactionAmount variant="body3Strong" type={type} amount={amount} units={token} style={{ width: "40%" }} />
                         )}
                     </Row>
                     <Row justifyContent="space-between" alignItems="center">

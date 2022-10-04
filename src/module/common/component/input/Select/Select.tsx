@@ -6,8 +6,18 @@ export interface SelectProps<T> extends Omit<BaseSelectProps<T>, "header" | "foo
 }
 
 function Select<T = any>({ title, label, ...rest }: SelectProps<T>): JSX.Element {
-    // @ts-ignore
-    return <SelectRoot header={<SelectHeader variant="h3">{title ?? label}</SelectHeader>} label={label} {...rest} />;
+    return (
+        // @ts-ignore
+        <SelectRoot
+            header={
+                <SelectHeader variant="body2Strong" textAlign="center">
+                    {title ?? label}
+                </SelectHeader>
+            }
+            label={label}
+            {...rest}
+        />
+    );
 }
 
 export default Select;

@@ -3,6 +3,7 @@ export * from "./ArrowDownCircleIcon";
 export * from "./ArrowUpCircleIcon";
 export * from "./BackIcon";
 export * from "./CheckIcon";
+export * from "./ChevronDownIcon";
 export * from "./ChevronRightIcon";
 export * from "./CircleIcon";
 export * from "./CopyIcon";
