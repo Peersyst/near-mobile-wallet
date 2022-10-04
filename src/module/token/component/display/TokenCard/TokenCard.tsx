@@ -5,36 +5,23 @@ import settingsState from "module/settings/state/SettingsState";
 import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
 import { useRecoilValue } from "recoil";
 import Typography from "module/common/component/display/Typography/Typography";
-import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
-import { TOKEN_IMAGES, TOKEN_PLACEHOLDER_IMAGES, ZeroToFive } from "./utils/tokenImages";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
-
-export interface TokenMetadata {
-    name: string;
-    symbol: string;
-    decimals: number;
-}
-
-export interface Token {
-    metadata: TokenMetadata;
-}
+import { placeholder_image } from "images";
+import { Token } from "module/sdk/mock.types";
 
 export interface TokenCardProps {
     token: Token;
-    balance: BalanceProps["balance"];
-    index?: number;
 }
 
-const TokenCard = ({ token: { metadata }, balance, index = 0 }: TokenCardProps): JSX.Element => {
-    const { name, symbol, decimals } = metadata;
+const TokenCard = ({ token: { metadata, balance } }: TokenCardProps): JSX.Element => {
+    const { name, symbol, decimals, imageUri } = metadata;
     const { fiat } = useRecoilValue(settingsState);
     const { data: tokenValue } = useGetTokenPrice(fiat, "binancecoin");
-    const imageUri = TOKEN_IMAGES[symbol];
-    const imageIndex = (index % 6) as ZeroToFive;
+
     return (
         <MainListCard alignItems="center" justifyContent="space-between">
             <Row alignItems="center" gap={16}>
-                <TokenIcon source={imageUri ? { uri: imageUri } : TOKEN_PLACEHOLDER_IMAGES[imageIndex]} />
+                <TokenIcon source={imageUri ? { uri: imageUri } : placeholder_image} />
                 <Typography variant="body3Strong" numberOfLines={1} style={{ width: "65%" }}>
                     {name}
                 </Typography>
@@ -44,9 +31,9 @@ const TokenCard = ({ token: { metadata }, balance, index = 0 }: TokenCardProps):
                 {tokenValue && (
                     <Balance
                         action="round"
-                        color={(p) => p.gray["300"]}
+                        light
                         options={{ maxDecimals: decimals }}
-                        balance={"200"}
+                        balance={tokenValue}
                         units={fiat}
                         variant="body4Strong"
                     />

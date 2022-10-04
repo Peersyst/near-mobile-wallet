@@ -1,7 +1,7 @@
 import { Image, ViewStyle } from "react-native";
 import { ReactNode } from "react";
 import { AnimationContainerRoot } from "./AnimationContainer.styles";
-import { animation as webp_animation } from "asset/image";
+import { animation as webp_animation } from "images";
 
 export interface AmimationContainerProps {
     animation?: boolean;
