@@ -100,8 +100,8 @@
     "deposit_completed": "Deposit completed\nsuccessfully",
     "sent": "Sent",
     "received": "Received",
-    "sent_nft": "Sent NFT",
-    "received_nft": "Received NFT",
+    "sent_nft": "Sent NFT to",
+    "received_nft": "Received NFT from",
     "DAO_deposit": "DAO Deposit",
     "DAO_withdrawal": "DAO Withdrawal",
     "smart_contract": "Smart Contract",
@@ -153,5 +153,8 @@
     "dismiss": "Dismiss",
     "pending_transaction_text": "You have an uncommitted transaction. Please, wait until it is committed to send a new one.",
     "staking": "Staking",
-    "importYourNearWallet": "Import your NEAR wallet"
+    "importYourNearWallet": "Import your NEAR wallet",
+    "stake_added": "Added stake",
+    "unstake": "Unstake",
+    "sentTo": "Send to"
 }

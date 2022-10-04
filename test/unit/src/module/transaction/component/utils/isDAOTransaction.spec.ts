@@ -9,7 +9,7 @@ describe("isDAOTransaction tests", () => {
     });
 
     test("Returns false if the type is not from a DAO tx", () => {
-        expect(isDAOTransaction(TransactionType.RECEIVE_CKB)).toEqual(false);
+        expect(isDAOTransaction(TransactionType.RECEIVE_NATIVE_TOKEN)).toEqual(false);
         expect(isDAOTransaction(TransactionType.SEND_NFT)).toEqual(false);
     });
 });

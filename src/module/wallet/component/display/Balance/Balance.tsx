@@ -2,8 +2,8 @@ import { AppCurrency, BalanceProps } from "./Balance.types";
 import Typography from "module/common/component/display/Typography/Typography";
 import { CURRENCY_UNIT } from "./utils/currencies";
 import { useFormatNumber } from "module/common/hook/useFormatNumber";
-import { ActionLabels } from "./utils/actionLabels";
 import { Spinner, Suspense } from "@peersyst/react-native-components";
+import { ACTION_LABEL } from "./utils/actionLabels";
 
 const Balance = ({
     balance,
@@ -16,7 +16,7 @@ const Balance = ({
     ...typographyProps
 }: BalanceProps): JSX.Element => {
     const formatedNum = useFormatNumber(balance.toString(), options);
-    const actionLabel = ActionLabels[action];
+    const actionLabel = ACTION_LABEL[action];
     const currencyUnit = units && (CURRENCY_UNIT[units as AppCurrency] || units);
 
     return (
