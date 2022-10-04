@@ -34,7 +34,9 @@ const ReceiveCard = (): JSX.Element => {
                     <TextAddress variant="body1">{address}</TextAddress>
                     <CopyToClipboardIcon filled text={address || ""} toastMessage={translate("address_copied")} />
                 </Row>
-                <Typography variant="body2">{translate("receive_info")}</Typography>
+                <Typography textAlign="center" variant="body2">
+                    {translate("receive_info")}
+                </Typography>
                 <GoBack onBack={() => hideModal(ReceiveModal.id)} />
             </ReceiveCardContent>
         </Card>

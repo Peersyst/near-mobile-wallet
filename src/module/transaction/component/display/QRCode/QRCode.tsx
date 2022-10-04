@@ -10,7 +10,7 @@ const QRCode = (): JSX.Element => {
     const { index } = useSelectedWallet();
     const serviceInstance = serviceInstancesMap.get(index)?.[network];
     const { height: screenHeight } = useWindowDimensions();
-    const height = screenHeight * 0.35;
+    const height = screenHeight * 0.2;
     return (
         <Row justifyContent="center" testID="QRCode">
             <QRCodeBase value={serviceInstance?.getAddress()} size={height} />
