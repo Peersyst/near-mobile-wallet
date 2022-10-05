@@ -10,10 +10,10 @@ import Button from "module/common/component/input/Button/Button";
 import * as Clipboard from "expo-clipboard";
 
 const TextAddress = styled(Typography, { textTransform: "uppercase" })(() => ({
-    width: "87%",
+    width: "100%",
 }));
 
-const ReceiveModal = createBackdrop((props: ExposedBackdropProps) => {
+const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ close, ...rest }) => {
     const t = useTranslate();
     const network = useSelectedNetwork();
     const { index } = useSelectedWallet();
@@ -24,20 +24,25 @@ const ReceiveModal = createBackdrop((props: ExposedBackdropProps) => {
     const copyToClipboard = () => {
         Clipboard.setString(address || "");
         showToast(t("address_copied"), { type: "success" });
+        closeModal();
+    };
+
+    const closeModal = () => {
+        close();
     };
 
     return (
-        <CardNavigatorModal navbar={{ back: true, title: t("receive") }} {...props}>
-            <Col gap={"5%"} flex={1} alignItems="center" justifyContent="center">
+        <CardNavigatorModal navbar={{ back: true, title: t("receive") }} {...rest}>
+            <Col gap={"8%"} flex={1} justifyContent="center">
                 <QRCode />
-                <Typography textAlign="center" variant="body2" style={{ marginTop: 25 }}>
+                <Typography textAlign="center" variant="body2">
                     {t("receive_info")}
                 </Typography>
                 <TextAddress variant="body1" textAlign="center">
                     {address}
                 </TextAddress>
-                <Button variant="primary" fullWidth onPress={() => copyToClipboard()} style={{ marginTop: 12 }}>
-                    Copy
+                <Button variant="primary" fullWidth onPress={() => copyToClipboard()}>
+                    {t("copy")}
                 </Button>
             </Col>
         </CardNavigatorModal>

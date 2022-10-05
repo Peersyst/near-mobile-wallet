@@ -1,4 +1,3 @@
-import ReceiveCard from "module/transaction/component/display/ReceiveCard/ReceiveCard";
 import { fireEvent, render, translate } from "test-utils";
 import * as Clipboard from "expo-clipboard";
 import * as Genesys from "@peersyst/react-native-components";
@@ -11,7 +10,7 @@ import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 const ADDRESS_MOCK = "0xMockedAddress";
 
-describe("Test for the receive Card", () => {
+describe("Test for the receive Modal", () => {
     const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
 
     beforeEach(() => {
@@ -25,29 +24,18 @@ describe("Test for the receive Card", () => {
     });
 
     test("Renders correctly", () => {
-        const screen = render(<ReceiveCard />);
+        const screen = render(<ReceiveModal />);
         expect(screen.getByText(ADDRESS_MOCK)).toBeDefined();
     });
     test("Copies address correctly", () => {
         const showToast = jest.fn();
         jest.spyOn(Genesys, "useToast").mockReturnValue({ showToast, hideToast: jest.fn(), toastActive: false });
         jest.spyOn(Clipboard, "setString");
-        const screen = render(<ReceiveCard />);
-        const icon = screen.getByTestId("FilledCopyIcon");
-        expect(icon).toBeDefined();
-        fireEvent.press(icon);
+        const screen = render(<ReceiveModal />);
+        const button = screen.getByText(translate("copy"));
+        expect(button).toBeDefined();
+        fireEvent.press(button);
         expect(Clipboard.setString).toHaveBeenCalledWith(ADDRESS_MOCK);
         expect(showToast).toHaveBeenCalledWith(translate("address_copied"), { type: "success" });
-    });
-    test("Hides modal correctly", () => {
-        const hideModal = jest.fn();
-        jest.spyOn(Genesys, "useModal").mockReturnValue({ hideModal } as any);
-        const screen = render(<ReceiveCard />);
-        expect(screen.getByText(ADDRESS_MOCK)).toBeDefined();
-        const text = screen.getByText(translate("go_back"));
-        expect(text).toBeDefined();
-        expect(screen.getByTestId("BackIcon")).toBeDefined();
-        fireEvent.press(text);
-        expect(hideModal).toHaveBeenCalledWith(ReceiveModal.id);
     });
 });
