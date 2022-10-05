@@ -1,5 +1,4 @@
 import { connect, keyStores, utils, Near, ConnectConfig, KeyPair } from "near-api-js";
-import { config } from "config";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 
 export enum Chains {
@@ -14,7 +13,7 @@ export class NearSDKService {
     private nearConfig: ConnectConfig;
     private mnemonic: string;
 
-    constructor(chain: Chains, nameId: string, mnemonic?: string) {
+    constructor(chain: Chains, nameId: string, nodeUrl: string, mnemonic?: string) {
         let keyPair: KeyPair;
 
         if (mnemonic) {
@@ -30,21 +29,11 @@ export class NearSDKService {
         const keyStore = new keyStores.InMemoryKeyStore();
         keyStore.setKey(chain, nameId, keyPair);
 
-        if (chain === Chains.MAINNET) {
-            this.nearConfig = {
-                networkId: chain,
-                keyStore,
-                nodeUrl: config.nearMainnetUrl,
-            };
-        } else if (chain === Chains.TESTNET) {
-            this.nearConfig = {
-                networkId: chain,
-                keyStore,
-                nodeUrl: config.nearTestnetUrl,
-            };
-        } else {
-            throw new Error("Chain not implemented yet");
-        }
+        this.nearConfig = {
+            networkId: chain,
+            keyStore,
+            nodeUrl,
+        };
     }
 
     async connect(): Promise<void> {
