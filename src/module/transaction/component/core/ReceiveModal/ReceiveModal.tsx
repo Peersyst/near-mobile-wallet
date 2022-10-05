@@ -8,6 +8,7 @@ import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import Button from "module/common/component/input/Button/Button";
 import * as Clipboard from "expo-clipboard";
+import Container from "module/common/component/display/Container/Container";
 
 const TextAddress = styled(Typography, { textTransform: "uppercase" })(() => ({
     width: "100%",
@@ -38,9 +39,11 @@ const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ close, ...rest }) =
                 <Typography textAlign="center" variant="body2">
                     {t("receive_info")}
                 </Typography>
-                <TextAddress variant="body1" textAlign="center">
-                    {address}
-                </TextAddress>
+                <Container>
+                    <TextAddress variant="body1" textAlign="center">
+                        {address}
+                    </TextAddress>
+                </Container>
                 <Button variant="primary" fullWidth onPress={() => copyToClipboard()}>
                     {t("copy")}
                 </Button>
