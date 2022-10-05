@@ -8,6 +8,7 @@ export type MainStackParamsList = {
     Settings: undefined;
     GeneralSettings: undefined;
     SecuritySettings: undefined;
+    NewQr: undefined;
     DAO: undefined;
     News: undefined;
     Staking: undefined;
