@@ -1,4 +1,5 @@
-import { connect, keyStores, utils, Near, ConnectConfig, KeyPair } from "near-api-js";
+import { connect, keyStores, utils, Near, ConnectConfig, KeyPair, Account } from "near-api-js";
+import { AccountBalance, AccountAuthorizedApp } from "near-api-js/lib/account";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 
 export enum Chains {
@@ -12,8 +13,10 @@ export class NearSDKService {
     private connection?: Near;
     private nearConfig: ConnectConfig;
     private mnemonic: string;
+    private nameId: string;
 
     constructor(chain: Chains, nameId: string, nodeUrl: string, mnemonic?: string) {
+        this.nameId = nameId;
         let keyPair: KeyPair;
 
         if (mnemonic) {
@@ -36,8 +39,26 @@ export class NearSDKService {
         };
     }
 
+    private async getAccount(): Promise<Account> {
+        if (!this.connection) {
+            throw new Error("Not connected");
+        }
+        return this.connection.account(this.nameId);
+    }
+
     async connect(): Promise<void> {
         this.connection = await connect(this.nearConfig);
+    }
+
+    async getAccountBalance(): Promise<AccountBalance> {
+        const account = await this.getAccount();
+        return account.getAccountBalance();
+    }
+
+    async getAccountDetails(): Promise<AccountAuthorizedApp[]> {
+        const account = await this.getAccount();
+        const { authorizedApps } = await account.getAccountDetails();
+        return authorizedApps;
     }
 
     static async createAndConnect(chain: Chains, nameId: string, mnemonic: string): Promise<NearSDKService> {
