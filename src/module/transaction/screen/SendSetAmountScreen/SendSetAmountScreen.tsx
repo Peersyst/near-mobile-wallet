@@ -17,6 +17,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 export interface SendAmountAndMessageResult {
     amount: string;
     message: string;
+    token: string;
 }
 
 export interface SendSetAmountScreenProps {
@@ -27,13 +28,15 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const translate = useTranslate();
     const [amount, setAmount] = useState(sendState.amount || "");
-    const { fee: feeInShannons } = useRecoilValue(settingsState);
-    const feeInCKB = convertShannonsToCKB(feeInShannons);
+    const { fee: feeInDecimals } = useRecoilValue(settingsState);
+    const fee = convertShannonsToCKB(feeInDecimals);
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex || 0);
     const setTab = useSetTab();
 
-    const handleSubmit = ({ amount, message }: SendAmountAndMessageResult): void => {
-        setSendState((oldState) => ({ ...oldState, amount, message, fee: feeInCKB.toString() }));
+    const isDao = type === "dao";
+
+    const handleSubmit = ({ amount, message, token }: SendAmountAndMessageResult): void => {
+        setSendState((oldState) => ({ ...oldState, amount, message, fee: fee.toString(), token }));
         setTab(type === "send" ? SendScreens.CONFIRMATION : DepositScreens.CONFIRMATION);
     };
 
@@ -43,14 +46,19 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
                 <Col gap={24}>
                     <TokenAmountInput
                         type={type}
-                        fee={feeInCKB}
+                        fee={fee}
                         amount={amount}
                         setAmount={setAmount}
                         freeBalance={balance?.freeBalance ?? 0}
+                        defaultToken={sendState.token}
+                        tokens={isDao ? undefined : ["BTC"]}
                     />
-                    {type === "dao" ? (
+                    {isDao ? (
                         <Typography variant="body1" textAlign="center">
-                            {translate("deposit_warning", { dao_min_deposit: config.minimumDaoDeposit.toString() })}
+                            {translate("deposit_warning", {
+                                dao_min_deposit: config.minimumDaoDeposit.toString(),
+                                token: config.tokenName,
+                            })}
                         </Typography>
                     ) : (
                         <TextArea name="message" placeholder={translate("write_a_message")} numberOfLines={7} />
