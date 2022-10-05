@@ -9,6 +9,6 @@ export const ContainerRoot = styled(View)<ContainerProps>(({ theme, fullWidth })
     alignItems: "center",
     paddingVertical: 16,
     paddingHorizontal: 20,
-    borderColor: theme.palette.gray[300],
+    borderColor: theme.palette.gray[0],
     alignSelf: fullWidth ? undefined : "stretch",
 }));
