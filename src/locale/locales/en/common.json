@@ -34,6 +34,7 @@
     "send": "send",
     "receive": "receive",
     "receive_info": "Neuron picks a new receiving address for better privacy. Please go to the Address Book if you want to use a previously used receiving address.",
+    "copy": "Copy",
     "import_wallet": "Import wallet",
     "enter_mnemonic": "Enter mnemonic",
     "mnemonic_input_text": "Type a word and press space or enter to add it or tap one to remove it.",
