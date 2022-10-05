@@ -40,8 +40,8 @@ export class NearSDKService {
         this.connection = await connect(this.nearConfig);
     }
 
-    static async createAndConnect(chain: Chains, nameId: string, mnemonic: string): Promise<NearSDKService> {
-        const service = new NearSDKService(chain, nameId, mnemonic);
+    static async createAndConnect(chain: Chains, nameId: string, nodeUrl: string, mnemonic?: string): Promise<NearSDKService> {
+        const service = new NearSDKService(chain, nameId, nodeUrl, mnemonic);
         await service.connect();
         return service;
     }
