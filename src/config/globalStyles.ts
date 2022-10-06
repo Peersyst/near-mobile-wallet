@@ -9,7 +9,7 @@ const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography } }) =>
         dot: {
             width: 8,
             height: 8,
-            backgroundColor: palette.overlay["8%"],
+            backgroundColor: "rgba(38, 38, 38, 0.08)",
             active: {
                 backgroundColor: palette.primary,
             },
