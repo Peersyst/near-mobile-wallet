@@ -1,11 +1,12 @@
 import SecondaryPage from "module/common/component/layout/BaseSecondaryScreen/BaseSecondaryScreen";
 import { Typography } from "@peersyst/react-native-components";
 import { fireEvent, render } from "test-utils";
+import * as ReactNavigation from "@react-navigation/native";
 
 describe("Test for the secondary page", () => {
     test("Renders correctly", () => {
         const screen = render(
-            <SecondaryPage title={"Settings"} navigation={jest.fn() as any}>
+            <SecondaryPage title={"Settings"}>
                 <Typography variant={"h1"}>hola</Typography>
             </SecondaryPage>,
         );
@@ -19,8 +20,9 @@ describe("Test for the secondary page", () => {
             canGoBack: mockedCanGoBack,
             goBack: mockedGoBack,
         };
+        jest.spyOn(ReactNavigation, "useNavigation").mockReturnValue(mockedNavigation);
         const screen = render(
-            <SecondaryPage title={"Settings"} back navigation={mockedNavigation as any}>
+            <SecondaryPage title={"Settings"} back>
                 <Typography variant={"h1"}>hola</Typography>
             </SecondaryPage>,
         );

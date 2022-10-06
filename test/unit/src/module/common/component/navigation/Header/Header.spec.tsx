@@ -3,6 +3,7 @@ import { render } from "test-utils";
 import { fireEvent } from "@testing-library/react-native";
 import * as Navigation from "@react-navigation/native";
 import { MainBottomScreens } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup";
+import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainNavigatorGroup";
 
 describe("Header tests", () => {
     test("Renders correctly - withIcons", () => {
@@ -18,7 +19,7 @@ describe("Header tests", () => {
         const screen = render(<Header />);
         const icon = screen.getByTestId("SettingsIcon");
         fireEvent.press(icon);
-        expect(mockedNavigation).toHaveBeenCalledWith(MainBottomScreens.SETTINGS);
+        expect(mockedNavigation).toHaveBeenCalledWith(MainScreens.SETTINGS);
     });
     test("Goes to home", () => {
         const mockedNavigation = jest.fn();
