@@ -7,6 +7,7 @@ export * from "./CheckIcon";
 export * from "./ChevronDownIcon";
 export * from "./ChevronRightIcon";
 export * from "./CircleIcon";
+export * from "./CircleCheckIcon";
 export * from "./CopyIcon";
 export * from "./CrossIcon";
 export * from "./DAOIcon";
