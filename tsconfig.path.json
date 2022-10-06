@@ -6,7 +6,6 @@
             "locale/*": ["locale/*"],
             "config": ["config"],
             "config/*": ["config/*"],
-            "asset": ["asset"],
             "images": ["asset/image"],
             "icons": ["module/common/icons"],
             "ckb-peersyst-sdk": ["module/sdk"],

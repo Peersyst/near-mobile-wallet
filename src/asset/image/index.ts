@@ -1,11 +1,5 @@
 //@ts-nocheck
 export { default as empty_folder } from "./EmptyFolder.png";
-export { default as token_placeholder0 } from "./TokenPlaceholder0.png";
-export { default as token_placeholder1 } from "./TokenPlaceholder1.png";
-export { default as token_placeholder2 } from "./TokenPlaceholder2.png";
-export { default as token_placeholder3 } from "./TokenPlaceholder3.png";
-export { default as token_placeholder4 } from "./TokenPlaceholder4.png";
-export { default as token_placeholder5 } from "./TokenPlaceholder5.png";
 export { default as animation } from "./animation.webp";
 export { default as colored_background } from "./coloredBackground.png";
 export { default as deposit } from "./deposit.png";
@@ -15,6 +9,7 @@ export { default as key } from "./key.png";
 export { default as lock } from "./lock.png";
 export { default as nervos_coin } from "./nervos-coin.png";
 export { default as notes } from "./notes.png";
+export { default as placeholder_image } from "./placeholder_image.png";
 export { default as pound_coin } from "./pound-coin.png";
 export { default as send } from "./send.png";
 export { default as wallet } from "./wallet.png";

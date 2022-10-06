@@ -2,6 +2,7 @@ export * from "./ArrowIcon";
 export * from "./ArrowDownCircleIcon";
 export * from "./ArrowUpCircleIcon";
 export * from "./BackIcon";
+export * from "./CameraIcon";
 export * from "./CheckIcon";
 export * from "./ChevronDownIcon";
 export * from "./ChevronRightIcon";

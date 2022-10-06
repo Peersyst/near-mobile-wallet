@@ -8,6 +8,6 @@ export const formatBalance = ({
     units,
     unitsPosition,
 }: UseFormatBalanceParams) => {
-    const formatedBalance = formatNumber(balance.toString(), options);
-    return baseFormatBalance({ formatedBalance, action, units, unitsPosition });
+    const formattedBalance = formatNumber(balance.toString(), options);
+    return baseFormatBalance({ formattedBalance, action, units, unitsPosition });
 };

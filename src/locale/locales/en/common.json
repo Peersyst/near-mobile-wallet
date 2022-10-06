@@ -53,10 +53,10 @@
     "send_to": "Send to",
     "address": "Address",
     "scanned_address": "Scanned address: {{address}}",
-    "transaction_fee": "Transaction fee: {{fee}} CKB",
+    "transaction_fee": "Transaction fee: {{fee}} {{token}}",
     "write_a_message": "Write a message",
     "enter_amount": "Enter amount",
-    "minimum_transaction_amount_text": "Minimum amount required is {{amount}} CKB",
+    "minimum_transaction_amount_text": "Minimum amount required is {{amount}} {{token}}",
     "insufficient_balance": "Insufficient balance",
     "modify_default_fee": "Modify default fee",
     "general_settings": "General settings",
@@ -156,6 +156,7 @@
     "importYourNearWallet": "Import your NEAR wallet",
     "stake_added": "Added stake",
     "unstake": "Unstake",
-    "sentTo": "Send to",
-    "boughtFor": "Bought for"
+    "sentTo": "Sent to",
+    "boughtFor": "Bought for",
+    "selectAToken": "Select a token"
 }

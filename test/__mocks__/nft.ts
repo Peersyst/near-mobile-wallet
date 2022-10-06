@@ -1,5 +1,5 @@
-import { Nft } from "module/nft/component/display/NftCard/NftCard.types";
 import { Nft as OldNft } from "module/nft/types";
+import { Nft } from "module/sdk/mock.types";
 
 export const tempNft: Nft = {
     token_id: "0",
@@ -27,7 +27,7 @@ export const tempNft: Nft = {
         reference: null,
         reference_hash: null,
     },
-    approved_account_ids: {},
+    approved_account_ids: [],
 };
 
 export const nft: OldNft = {
