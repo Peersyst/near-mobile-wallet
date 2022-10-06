@@ -16,6 +16,7 @@ sed -i'.bak' '14s/.*/var _crypto = _interopRequireDefault(require("react-native-
 # sed -i'.bak' '17s/.*/var Buffer = require("buffer").Buffer;/' ./node_modules/@ckb-lumos/hd/lib/mnemonic/index.js
 sed -i'.bak' '8s/.*/var _crypto = _interopRequireDefault(require("react-native-expo-crypto"));/' ./node_modules/@ckb-lumos/hd/lib/keychain.js
 sed -i'.bak' '15s/.*/var Buffer = require("buffer").Buffer;/' ./node_modules/@ckb-lumos/hd/lib/keychain.js
+sed -i'.bak' "3s/.*/var process = require('process');/" ./node_modules/react-native-expo-crypto/node_modules/pbkdf2/browser.js
 
 #@ckb/lumos overrides
 #Services
