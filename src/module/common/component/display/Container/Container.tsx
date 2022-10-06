@@ -1,8 +1,12 @@
 import { ContainerProps } from "./Container.types";
 import { ContainerRoot } from "./Container.styles";
 
-const Container = (props: ContainerProps) => {
-    return <ContainerRoot fullWidth>{props.children}</ContainerRoot>;
+const Container = ({ fullWidth, children, ...rest }: ContainerProps) => {
+    return (
+        <ContainerRoot fullWidth {...rest}>
+            {children}
+        </ContainerRoot>
+    );
 };
 
 export default Container;

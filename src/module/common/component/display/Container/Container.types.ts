@@ -1,10 +1,5 @@
-import { ViewStyle } from "react-native";
+import { ViewProps } from "react-native";
 
-export type ContainerStyle = ViewStyle;
-
-export interface ContainerProps {
-    onPress?: () => unknown;
+export interface ContainerProps extends ViewProps {
     fullWidth?: boolean;
-    style?: ContainerStyle;
-    children?: JSX.Element;
 }

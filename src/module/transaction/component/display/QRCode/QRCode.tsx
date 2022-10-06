@@ -12,7 +12,7 @@ const QRCode = (): JSX.Element => {
     const { height: screenHeight } = useWindowDimensions();
     const height = screenHeight * 0.25;
     return (
-        <Row justifyContent="center" testID="QRCode" style={{ marginTop: 25 }}>
+        <Row justifyContent="center" testID="QRCode">
             <QRCodeBase value={serviceInstance?.getAddress()} size={height} />
         </Row>
     );

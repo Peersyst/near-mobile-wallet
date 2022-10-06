@@ -4,11 +4,11 @@ import { View } from "react-native";
 
 export const ContainerRoot = styled(View)<ContainerProps>(({ theme, fullWidth }) => ({
     borderStyle: "solid",
-    borderRadius: theme.borderRadius,
-    borderWidth: 2,
+    borderRadius: theme.borderRadiusSm,
+    borderWidth: 1,
     alignItems: "center",
     paddingVertical: 16,
     paddingHorizontal: 20,
-    borderColor: theme.palette.gray[0],
+    borderColor: theme.palette.overlay["8%"],
     alignSelf: fullWidth ? undefined : "stretch",
 }));
