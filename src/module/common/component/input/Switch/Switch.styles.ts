@@ -3,7 +3,6 @@ import { Animated, View } from "react-native";
 import { SwitchThumbProps, SwitchTrackStyle } from "./Switch.types";
 
 export const SwitchThumb = styled(Animated.View)<SwitchThumbProps>(({ height, width, padding, backgroundColor }) => {
-    console.log(backgroundColor);
     return {
         height: height ?? 24,
         width: width ?? 38,

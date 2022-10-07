@@ -8,8 +8,8 @@ export const useGetDefaultStyles = (): FormControlStateStyle<Partial<SwitchStyle
     return {
         disabled: {
             thumb: {
-                backgroundColor: theme.palette.disabled,
-                inactiveBackgroundColor: theme.palette.disabled,
+                backgroundColor: lighten(theme.palette.disabled, 0.1),
+                inactiveBackgroundColor: lighten(theme.palette.disabled, 0.1),
             },
             track: {
                 backgroundColor: lighten(theme.palette.disabled, 0.4),
