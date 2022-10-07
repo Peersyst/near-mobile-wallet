@@ -6,11 +6,20 @@ export interface SwichColor {
     trackBgColor: string;
 }
 
-export default function useGetSwitchColors({ thumbBgColor, inactiveThumbBgColor, trackBgColor }: Partial<SwichColor>): SwichColor {
+export type UseGetSwitchColors = (style: Partial<SwichColor>) => SwichColor;
+
+export default function useGetSwitchColors(): UseGetSwitchColors {
     const theme = useTheme();
-    return {
-        thumbBgColor: thumbBgColor || theme.palette.primary,
-        inactiveThumbBgColor: inactiveThumbBgColor || theme.palette.disabled,
-        trackBgColor: trackBgColor || theme.palette.background,
+    const getSwitchColors = ({
+        thumbBgColor,
+        inactiveThumbBgColor,
+        trackBgColor,
+    }: Partial<SwichColor>) => {
+        return {
+            thumbBgColor: thumbBgColor ?? theme.palette.primary,
+            inactiveThumbBgColor: inactiveThumbBgColor ?? theme.palette.disabled,
+            trackBgColor: trackBgColor ?? theme.palette.background,
+        };
     };
+    return getSwitchColors;
 }

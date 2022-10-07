@@ -69,11 +69,6 @@ export interface HandleLayoutParams {
     type: keyof SwitchWidths;
 }
 
-interface DisabledProps {
-    disabled: boolean;
-}
-
-export type SwitchThumbProps = Omit<SwitchThumbStyle, "backgroundColor"> &
-    DisabledProps & {
-        backgroundColor?: SwitchThumbStyle["backgroundColor"] | Animated.AnimatedInterpolation;
-    };
+export type SwitchThumbProps = Omit<SwitchThumbStyle, "backgroundColor"> & {
+    backgroundColor?: SwitchThumbStyle["backgroundColor"] | Animated.AnimatedInterpolation;
+};
