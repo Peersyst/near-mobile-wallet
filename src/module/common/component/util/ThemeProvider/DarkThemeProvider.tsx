@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { ThemeProvider } from "@peersyst/react-native-styled";
-import darkTheme from "config/theme/darkTheme";
+import { ThemeOverrideProvider } from "@peersyst/react-native-components";
 
-const DarkThemeProvider: FC = ({ children }): JSX.Element => <ThemeProvider theme={darkTheme}>{children}</ThemeProvider>;
+const DarkThemeProvider: FC = ({ children }): JSX.Element => <ThemeOverrideProvider theme="dark">{children}</ThemeOverrideProvider>;
 
 export default DarkThemeProvider;
