@@ -16,9 +16,9 @@ describe("Test for the withdraw summary", () => {
                 compensation={120}
             />,
         );
-        expect(screen.getByText(translate("destination_wallet") + ":")).toBeDefined();
+        expect(screen.getByText(translate("destination_wallet"))).toBeDefined();
         expect(screen.getByText("Peersyst" + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
-        expect(screen.getByText(translate("deposit_apc") + ":")).toBeDefined();
+        expect(screen.getByText(translate("deposit_apc"))).toBeDefined();
         expect(screen.getByText("2%")).toBeDefined();
     });
 });

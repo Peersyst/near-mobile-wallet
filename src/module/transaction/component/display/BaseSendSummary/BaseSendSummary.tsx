@@ -2,31 +2,47 @@ import { SendState } from "module/transaction/state/SendState";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
 import { ReactElement } from "react";
-import { Paper, Col, Row, Typography } from "@peersyst/react-native-components";
+import { Col, Row } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
+import Typography from "module/common/component/display/Typography/Typography";
+import Container from "module/common/component/display/Container/Container";
 
-export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee">> {
+export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee" | "token">> {
     amount: BalanceProps["balance"];
     children: ReactElement;
 }
 
 export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
 
-const BaseSendSummary = ({ amount, fee, children }: BaseSendSummaryFullProps): JSX.Element => {
+const BaseSendSummary = ({ amount, fee, token, children }: BaseSendSummaryFullProps): JSX.Element => {
     const translate = useTranslate();
     return (
-        <Paper style={{ padding: "7%" }}>
-            <Col gap="3%" alignItems="center">
-                <Col gap={5} alignItems="center">
-                    <Balance balance={amount} variant="h1" />
+        <Container>
+            <Col gap={16} alignItems="center">
+                <Col gap={2} alignItems="center">
+                    <Balance balance={amount} variant="h4Strong" units={token} />
                     <Row>
-                        <Typography variant="body1">{translate("transaction_fee_label")}: </Typography>
-                        <Balance balance={fee} variant="body1" fontWeight="bold" />
+                        <Typography variant="body2Regular" light>
+                            {translate("transaction_fee_label")}:{" "}
+                        </Typography>
+                        <Balance balance={fee} variant="body2Strong" fontWeight="bold" units={token} light />
+                    </Row>
+                    <Row>
+                        <Typography variant="body2Regular" color={(palette) => palette.primary}>
+                            {translate("total")}:{" "}
+                        </Typography>
+                        <Balance
+                            balance={Number(amount) + Number(fee)}
+                            variant="body2Strong"
+                            fontWeight="bold"
+                            units={token}
+                            color={(palette) => palette.primary}
+                        />
                     </Row>
                 </Col>
                 {children}
             </Col>
-        </Paper>
+        </Container>
     );
 };
 
