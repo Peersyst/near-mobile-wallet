@@ -34,6 +34,7 @@ declare module "@peersyst/react-native-components" {
         // NEAR
         gray: {
             0: string;
+            100: string;
             300: string;
             600: string;
             900: string;
