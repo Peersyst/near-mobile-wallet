@@ -18,9 +18,9 @@ describe("SendToAddressScreen tests", () => {
 
     test("Renders correctly", () => {
         const screen = render(<SendToAddressScreen />);
-        expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined();
+        expect(screen.getAllByText(translate("select_a_wallet"))).toHaveLength(2); // WalletSelector label and modal title
         expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2);
-        expect(screen.getByText(translate("send_to") + ":")).toBeDefined();
+        expect(screen.getByText(translate("send_to"))).toBeDefined();
         expect(screen.getByPlaceholderText(translate("address"))).toBeDefined();
         expect(screen.getByText(translate("next"))).toBeDefined();
     });

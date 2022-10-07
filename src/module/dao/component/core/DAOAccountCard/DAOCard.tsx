@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@peersyst/react-native-styled";
-import { colored_background } from "asset/image";
+import { colored_background } from "images";
 import { DAOCardRoot, DAOCardContent } from "./DAOAccountCard.styles";
 import DAOCardBalance from "./DAOCardBalance/DAOCardBalance";
 import DAOCardButtons from "./DAOCardButtons/DAOCardButtons";

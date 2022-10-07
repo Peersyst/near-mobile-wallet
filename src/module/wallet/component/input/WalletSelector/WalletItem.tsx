@@ -5,24 +5,21 @@ import useWallet from "module/wallet/hook/useWallet";
 
 export interface WalletItemProps {
     index: number;
-    color?: string;
 }
 
-const WalletItem = ({ index, color = "#000000" }: WalletItemProps): JSX.Element => {
+const WalletItem = ({ index }: WalletItemProps): JSX.Element => {
     const { name } = useWallet(index);
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(index);
 
     return (
         <Row alignItems="center" style={{ overflow: "hidden" }}>
-            <Typography numberOfLines={1} variant="body1" fontWeight="bold" style={{ color, maxWidth: "60%" }}>
+            <Typography numberOfLines={1} variant="body2Strong" style={{ maxWidth: "60%" }}>
                 {name}
             </Typography>
             <Row>
-                <Typography variant="body1" style={{ color }}>
-                    {" - "}
-                </Typography>
-                <Suspense isLoading={balanceIsLoading} activityIndicatorColor={color} activityIndicatorSize="small">
-                    <Balance balance={balance?.freeBalance || 0} variant="body1" style={{ color }} />
+                <Typography variant="body2Strong">{" · "}</Typography>
+                <Suspense isLoading={balanceIsLoading} activityIndicatorSize="small">
+                    <Balance balance={balance?.freeBalance || 0} variant="body2Strong" light options={{ maxDecimals: 2 }} />
                 </Suspense>
             </Row>
         </Row>

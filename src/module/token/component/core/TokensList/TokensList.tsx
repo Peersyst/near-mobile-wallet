@@ -15,9 +15,11 @@ const TokensList = (): JSX.Element => {
     const { isLoading, data: tokens = [] } = useGetTokens(index);
     const tokenPriceUseQueries = useMemo(() => tokensList.map((token) => ["tokenPrice", fiat, token]), [fiat]);
     const refetch = useRefetchQueries();
+
     const handleRefetch = async () => {
         await refetch(tokenPriceUseQueries);
     };
+
     return (
         <MainList
             onRefresh={handleRefetch}
@@ -25,7 +27,7 @@ const TokensList = (): JSX.Element => {
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
             data={tokens}
             renderItem={({ item: token }) => <TokenCard token={token} />}
-            keyExtractor={(tx) => tx.type.args}
+            keyExtractor={(token) => token.metadata.symbol}
         />
     );
 };

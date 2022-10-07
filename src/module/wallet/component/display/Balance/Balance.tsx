@@ -1,9 +1,7 @@
-import { AppCurrency, BalanceProps } from "./Balance.types";
+import { BalanceProps } from "./Balance.types";
 import Typography from "module/common/component/display/Typography/Typography";
-import { CURRENCY_UNIT } from "./utils/currencies";
-import { useFormatNumber } from "module/common/hook/useFormatNumber";
-import { ActionLabels } from "./utils/actionLabels";
 import { Spinner, Suspense } from "@peersyst/react-native-components";
+import { useFormatBalance } from "./hook/useFormatBalance";
 
 const Balance = ({
     balance,
@@ -15,16 +13,12 @@ const Balance = ({
     spinnerProps,
     ...typographyProps
 }: BalanceProps): JSX.Element => {
-    const formatedNum = useFormatNumber(balance.toString(), options);
-    const actionLabel = ActionLabels[action];
-    const currencyUnit = units && (CURRENCY_UNIT[units as AppCurrency] || units);
+    const formattedBalance = useFormatBalance({ balance, options, units, unitsPosition, action });
 
     return (
         <Suspense isLoading={isLoading} fallback={<Spinner {...spinnerProps} />}>
             <Typography numberOfLines={1} {...typographyProps}>
-                {currencyUnit && unitsPosition === "left" && currencyUnit + " "}
-                {actionLabel + formatedNum}
-                {currencyUnit && unitsPosition === "right" && " " + currencyUnit}
+                {formattedBalance}
             </Typography>
         </Suspense>
     );
