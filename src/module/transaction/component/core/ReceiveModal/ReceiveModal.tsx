@@ -31,7 +31,7 @@ const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ close, ...rest }) =
                     {t("receive_info")}
                 </Typography>
                 <Container>
-                    <Typography variant="body2Strong" textAlign="center" style={{ textTransform: "uppercase" }}>
+                    <Typography variant="body2Strong" textAlign="center" textTransform="uppercase">
                         {address}
                     </Typography>
                 </Container>
