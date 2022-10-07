@@ -1,25 +1,33 @@
-import { ReactElement } from "react";
-import { Animated, LayoutChangeEvent, ViewStyle } from "react-native";
+import { LabelProps, FormControlledComponentProps } from "@peersyst/react-native-components";
+import { Animated, LayoutChangeEvent, OpaqueColorValue, ViewStyle } from "react-native";
+import { CoreSwitchProps } from "@peersyst/react-components-core";
 
-export interface SwitchProps {
+export interface SwitchStyle {
     /**
-     * Switch styles
+     * Switch thumb styles
      */
-    style?: SwitchStyle;
+    thumb?: SwitchThumbStyle;
+    /**
+     * Switch track styles
+     */
+    track?: SwitchTrackStyle;
+}
 
+export type BaseSwitchProps = FormControlledComponentProps<CoreSwitchProps<LabelProps>, SwitchStyle>;
+
+export interface SwitchProps extends BaseSwitchProps {
     /**
      * Animation options
      */
     animationConfig?: Omit<Parameters<typeof Animated.timing>[1], "toValue">;
     /**
-     * Left component
+     * Set to true if you want to change the bg color of the thumb when switch state changes
+     * You can algo customize the color with the style { thumb: ThumbStyle } prop
      */
-    LeftComponent?: ReactElement;
-    /**
-     * Right component
-     */
-    RightComponent?: ReactElement;
+    onSwitchChangeBgColor?: boolean;
 }
+
+type ColorWithoutOpaqueColorValue = Exclude<ViewStyle["backgroundColor"], OpaqueColorValue>;
 
 export interface SwitchThumbStyle {
     /**
@@ -37,26 +45,18 @@ export interface SwitchThumbStyle {
     /**
      * Background color of the thumb
      */
-    backgroundColor?: ViewStyle["backgroundColor"];
+    backgroundColor?: ColorWithoutOpaqueColorValue;
+    /**
+     * Background color of the thumb when it is not active
+     */
+    inactiveBackgroundColor?: ColorWithoutOpaqueColorValue;
 }
 
 export interface SwitchTrackStyle {
     /**
      * Background color of the track
      */
-    backgroundColor?: ViewStyle["backgroundColor"];
-}
-
-export interface SwitchStyle {
-    /**
-     * Switch thumb styles
-     */
-    thumb?: SwitchThumbStyle;
-    /**
-     * Switch track styles
-     * @default { backgroundColor: theme.palette.primary }
-     */
-    track?: SwitchTrackStyle;
+    backgroundColor?: ColorWithoutOpaqueColorValue;
 }
 
 export interface SwitchWidths {
@@ -68,3 +68,12 @@ export interface HandleLayoutParams {
     nativeEvent: LayoutChangeEvent["nativeEvent"];
     type: keyof SwitchWidths;
 }
+
+interface DisabledProps {
+    disabled: boolean;
+}
+
+export type SwitchThumbProps = Omit<SwitchThumbStyle, "backgroundColor"> &
+    DisabledProps & {
+        backgroundColor?: SwitchThumbStyle["backgroundColor"] | Animated.AnimatedInterpolation;
+    };
