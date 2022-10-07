@@ -1,4 +1,4 @@
-import { Col, createBackdrop, ExposedBackdropProps, Typography, useToast } from "@peersyst/react-native-components";
+import { Col, createBackdrop, ExposedBackdropProps, useToast } from "@peersyst/react-native-components";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { useTranslate } from "module/common/hook/useTranslate";
 import QRCode from "module/transaction/component/display/QRCode/QRCode";
@@ -8,6 +8,7 @@ import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import Button from "module/common/component/input/Button/Button";
 import * as Clipboard from "expo-clipboard";
 import Container from "module/common/component/display/Container/Container";
+import Typography from "module/common/component/display/Typography/Typography";
 
 const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ close, ...rest }) => {
     const t = useTranslate();
@@ -25,9 +26,9 @@ const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ close, ...rest }) =
 
     return (
         <CardNavigatorModal navbar={{ back: true, title: t("receive") }} {...rest}>
-            <Col gap={"8%"} flex={1} justifyContent="center">
+            <Col gap={24} flex={1} alignItems="center" justifyContent="flex-end">
                 <QRCode />
-                <Typography textAlign="center" variant="body3Regular">
+                <Typography textAlign="center" variant="body3Regular" color={(palette) => palette.overlay["60%"]}>
                     {t("receive_info")}
                 </Typography>
                 <Container>
@@ -35,7 +36,7 @@ const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ close, ...rest }) =
                         {address}
                     </Typography>
                 </Container>
-                <Button variant="primary" fullWidth onPress={() => copyToClipboard()}>
+                <Button variant="primary" fullWidth onPress={copyToClipboard}>
                     {t("copy")}
                 </Button>
             </Col>

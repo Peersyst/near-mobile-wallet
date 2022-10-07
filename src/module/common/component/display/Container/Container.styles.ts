@@ -1,8 +1,7 @@
-import { ContainerProps } from "module/common/component/display/Container/Container.types";
 import styled from "@peersyst/react-native-styled";
 import { View } from "react-native";
 
-export const ContainerRoot = styled(View)<ContainerProps>(({ theme, fullWidth }) => ({
+export const ContainerRoot = styled(View)(({ theme }) => ({
     borderStyle: "solid",
     borderRadius: theme.borderRadiusSm,
     borderWidth: 1,
@@ -10,5 +9,4 @@ export const ContainerRoot = styled(View)<ContainerProps>(({ theme, fullWidth })
     paddingVertical: 16,
     paddingHorizontal: 20,
     borderColor: theme.palette.overlay["8%"],
-    alignSelf: fullWidth ? undefined : "stretch",
 }));
