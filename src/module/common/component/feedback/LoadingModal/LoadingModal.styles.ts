@@ -1,23 +1,33 @@
 import styled from "@peersyst/react-native-styled";
-import { Backdrop, Typography } from "@peersyst/react-native-components";
-import { SuccessIcon as BaseSuccessIcon } from "icons";
-import BaseGoBack from "module/transaction/component/navigation/GoBack";
+import { Col } from "@peersyst/react-native-components";
+import GradientPage from "module/common/component/layout/GradientPage/GradientPage";
+import { View } from "react-native";
+import { CircleCheckIcon } from "icons";
+import Typography from "module/common/component/display/Typography/Typography";
 
-export const LoadingModalBackdrop = styled(Backdrop)(() => ({
-    backgroundColor: "black",
-}));
-
-export const SuccessIcon = styled(BaseSuccessIcon)(() => ({
-    fontSize: 70,
-}));
-
-export const SuccessMessage = styled(Typography)(() => ({
+export const DarkLoadingModalOverlay = styled(View)(({ theme }) => ({
     position: "absolute",
-    top: "50%",
-    marginTop: 55,
+    width: "100%",
+    height: "100%",
+    backgroundColor: theme.palette.mode === "dark" ? theme.palette.altOverlay["80%"] : "transparent",
 }));
 
-export const GoBack = styled(BaseGoBack)(() => ({
-    position: "absolute",
-    bottom: 20,
+export const LoadingModalRoot = styled(GradientPage, { gradient: true })(() => ({
+    width: "100%",
+    height: "100%",
+    justifyContent: "flex-end",
+}));
+
+export const LoadingModalContent = styled(Col, { flex: 0.5, justifyContent: "space-between" })(({ safeAreaInsets }) => ({
+    paddingHorizontal: 20,
+    paddingBottom: safeAreaInsets.bottom + 20,
+}));
+
+export const SuccessIcon = styled(CircleCheckIcon)(({ theme }) => ({
+    fontSize: 72,
+    color: theme.palette.mode === "dark" ? theme.palette.primary : theme.palette.white,
+}));
+
+export const LoadingModalMessage = styled(Typography)(({ theme }) => ({
+    color: theme.palette.white,
 }));
