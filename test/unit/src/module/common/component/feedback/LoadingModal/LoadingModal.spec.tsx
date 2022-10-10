@@ -35,10 +35,10 @@ describe("LoadingModal tests", () => {
         jest.useFakeTimers();
         const screen = render(<SuccessLoadingModal />);
 
-        expect(screen.getByTestId("LogoIcon")).toBeDefined();
+        expect(screen.getByTestId("LinearBgLogo")).toBeDefined();
         expect(screen.getByText(translate("processing"))).toBeDefined();
         act(() => jest.runAllTimers());
-        expect(screen.getByTestId("SuccessIcon")).toBeDefined();
+        expect(screen.getByTestId("CircleCheckIcon")).toBeDefined();
         act(() => jest.runAllTimers());
         jest.useRealTimers();
     });
@@ -47,10 +47,10 @@ describe("LoadingModal tests", () => {
         jest.useFakeTimers();
         const screen = render(<ErrorLoadingModal />);
 
-        expect(screen.getByTestId("LogoIcon")).toBeDefined();
+        expect(screen.getByTestId("LinearBgLogo")).toBeDefined();
         act(() => jest.runAllTimers());
-        expect(screen.queryByTestId("SuccessIcon")).toBeNull();
-        expect(screen.getByTestId("LogoIcon")).toBeDefined();
+        expect(screen.queryByTestId("CircleCheckIcon")).toBeNull();
+        expect(screen.getByTestId("LinearBgLogo")).toBeDefined();
         act(() => jest.runAllTimers());
         jest.useRealTimers();
     });

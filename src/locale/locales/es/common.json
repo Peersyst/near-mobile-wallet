@@ -77,7 +77,7 @@
     "to": "Para",
     "message": "Mensaje",
     "send_confirmation_text": "Cuidado, las transacciones no se pueden deshacer. Este es el último paso, tómate tu tiempo para verificar la información.",
-    "transaction_completed": "¡Transacción\ncompletada!",
+    "transaction_completed": "¡Transacción completada!",
     "available": "Disponible",
     "locked": "Bloqueado",
     "current_apc": "APC actual",
@@ -159,5 +159,6 @@
     "unstake": "Unstake",
     "sentTo": "Enviado a",
     "boughtFor": "Comprado por",
-    "selectAToken": "Select una moneda"
+    "selectAToken": "Select una moneda",
+    "continue": "Continuar"
 }
