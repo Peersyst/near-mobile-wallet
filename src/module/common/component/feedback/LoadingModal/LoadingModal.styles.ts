@@ -25,9 +25,9 @@ export const LoadingModalContent = styled(Col, { flex: 0.5, justifyContent: "spa
 
 export const SuccessIcon = styled(CircleCheckIcon)(({ theme }) => ({
     fontSize: 72,
-    color: theme.palette.mode === "dark" ? theme.palette.primary : "white",
+    color: theme.palette.mode === "dark" ? theme.palette.primary : theme.palette.white,
 }));
 
-export const LoadingModalMessage = styled(Typography)(() => ({
-    color: "white",
+export const LoadingModalMessage = styled(Typography)(({ theme }) => ({
+    color: theme.palette.white,
 }));

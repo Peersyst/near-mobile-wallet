@@ -12,7 +12,8 @@ const LoadingModal = ({ loading, successMessage, error, success, ...backdropProp
     const translate = useTranslate();
 
     const { palette } = useTheme();
-    const logoGradient = palette.mode === "dark" ? palette.gradient.blueTurquoise : ["white", "white"];
+    const white = palette.white;
+    const logoGradient = palette.mode === "dark" ? palette.gradient.blueTurquoise : [white, white];
 
     useEffect(() => {
         if (!open) setOpen(loading || success || error);
