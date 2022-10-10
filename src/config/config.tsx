@@ -5,6 +5,8 @@ import devConfig from "./config.dev.json";
 import stagingConfig from "./config.staging.json";
 import { CkbAddressValidator } from "config/validators/CkbAddressValidator";
 import globalStyles from "config/globalStyles";
+import { ChevronDownIcon } from "icons";
+import darkTheme from "config/theme/darkTheme";
 
 const envConfigs: Record<string, CreateConfig> = {
     test: devConfig,
@@ -50,6 +52,11 @@ const config = createConfig({
         NumericInput: {
             maxDecimals: envConfig.maxNumberOfDecimals,
         },
+        Select: {
+            defaultProps: {
+                icon: <ChevronDownIcon />,
+            },
+        },
         TextInput: {
             defaultProps: {
                 errorElement: false,
@@ -58,6 +65,8 @@ const config = createConfig({
     },
     themes: {
         default: lightTheme,
+        light: lightTheme,
+        dark: darkTheme,
     },
     validators: {
         address: CkbAddressValidator,

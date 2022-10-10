@@ -4,5 +4,5 @@ import { Animated } from "react-native";
 import { classify } from "@peersyst/react-utils";
 
 export const PinDisplayRoot = styled(Animated.createAnimatedComponent(classify(Row)), { gap: 48, alignItems: "center" })(() => ({
-    minHeight: 20,
+    height: 20,
 }));

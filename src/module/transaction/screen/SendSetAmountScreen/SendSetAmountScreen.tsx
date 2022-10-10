@@ -7,9 +7,7 @@ import { useState } from "react";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import settingsState from "module/settings/state/SettingsState";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
-import CKBAmountInput from "../../component/input/CKBAmountInput/CKBAmountInput";
-import { CKBAmountInputContainer } from "./SendSetAmountScreen.styles";
-import Card from "module/common/component/surface/Card/Card";
+import TokenAmountInput from "../../component/input/TokenAmountInput/TokenAmountInput";
 import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
@@ -19,6 +17,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 export interface SendAmountAndMessageResult {
     amount: string;
     message: string;
+    token: string;
 }
 
 export interface SendSetAmountScreenProps {
@@ -29,39 +28,42 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const translate = useTranslate();
     const [amount, setAmount] = useState(sendState.amount || "");
-    const { fee: feeInShannons } = useRecoilValue(settingsState);
-    const feeInCKB = convertShannonsToCKB(feeInShannons);
+    const { fee: feeInDecimals } = useRecoilValue(settingsState);
+    const fee = convertShannonsToCKB(feeInDecimals);
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex || 0);
     const setTab = useSetTab();
 
-    const handleSubmit = ({ amount, message }: SendAmountAndMessageResult): void => {
-        setSendState((oldState) => ({ ...oldState, amount, message, fee: feeInCKB.toString() }));
+    const isDao = type === "dao";
+
+    const handleSubmit = ({ amount, message, token }: SendAmountAndMessageResult): void => {
+        setSendState((oldState) => ({ ...oldState, amount, message, fee: fee.toString(), token }));
         setTab(type === "send" ? SendScreens.CONFIRMATION : DepositScreens.CONFIRMATION);
     };
 
     return (
         <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
-                <Col gap="15%">
-                    <CKBAmountInputContainer>
-                        <CKBAmountInput
-                            type={type}
-                            fee={feeInCKB}
-                            amount={amount}
-                            setAmount={setAmount}
-                            freeBalance={balance?.freeBalance ?? 0}
-                        />
-                    </CKBAmountInputContainer>
-                    {type === "dao" ? (
-                        <Card>
-                            <Typography variant="body1" textAlign="center">
-                                {translate("deposit_warning", { dao_min_deposit: config.minimumDaoDeposit.toString() })}
-                            </Typography>
-                        </Card>
+                <Col gap={24}>
+                    <TokenAmountInput
+                        type={type}
+                        fee={fee}
+                        amount={amount}
+                        setAmount={setAmount}
+                        freeBalance={balance?.freeBalance ?? 0}
+                        defaultToken={sendState.token}
+                        tokens={isDao ? undefined : ["BTC"]}
+                    />
+                    {isDao ? (
+                        <Typography variant="body1" textAlign="center">
+                            {translate("deposit_warning", {
+                                dao_min_deposit: config.minimumDaoDeposit.toString(),
+                                token: config.tokenName,
+                            })}
+                        </Typography>
                     ) : (
                         <TextArea name="message" placeholder={translate("write_a_message")} numberOfLines={7} />
                     )}
-                    <Button type="submit" variant="outlined" fullWidth>
+                    <Button type="submit" fullWidth>
                         {translate("next")}
                     </Button>
                 </Col>

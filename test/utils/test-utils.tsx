@@ -63,5 +63,6 @@ export { customRender as render };
 export * from "./fail-api-call";
 export * from "./success-api-call";
 export * from "./wait";
+export * from "./formatBalance";
 export { customRenderHook as renderHook };
 export { translate };

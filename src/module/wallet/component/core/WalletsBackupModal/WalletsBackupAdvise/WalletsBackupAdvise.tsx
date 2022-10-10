@@ -4,7 +4,7 @@ import CountdownButton from "module/common/component/input/CountdownButton/Count
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { useState } from "react";
 import { WalletsBackupAdviseImage } from "module/wallet/component/core/WalletsBackupModal/WalletsBackupAdvise/WalletBackupAdvise.styles";
-import { notes } from "asset/image";
+import { notes } from "images";
 import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface WalletsBackupAdvise {

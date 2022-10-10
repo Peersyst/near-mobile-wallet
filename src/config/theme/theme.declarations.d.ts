@@ -6,10 +6,12 @@ import { Theme as RNCTheme } from "@peersyst/react-native-components";
 declare module "@peersyst/react-native-components" {
     export interface Theme {
         borderRadiusSm: number;
+        borderRadiusXs: number;
     }
 
     export interface CreateTheme {
         borderRadiusSm?: number;
+        borderRadiusXs?: number;
     }
 
     export interface ThemePalette {

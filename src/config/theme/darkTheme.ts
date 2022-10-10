@@ -4,8 +4,8 @@ import { theme } from "./theme";
 const gray: Theme["palette"]["gray"] = {
     0: "#262626",
     100: "#3F4246",
-    300: "#3F4246",
-    600: "#A7A7A7",
+    300: "#A7A7A7",
+    600: "#dcdcdc",
     900: "#FFFFFF",
 };
 const blue = "#5F8AFA";
