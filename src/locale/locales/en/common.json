@@ -153,5 +153,6 @@
     "dismiss": "Dismiss",
     "pending_transaction_text": "You have an uncommitted transaction. Please, wait until it is committed to send a new one.",
     "staking": "Staking",
-    "importYourNearWallet": "Import your NEAR wallet"
+    "importYourNearWallet": "Import your NEAR wallet",
+    "idiom": "en"
 }

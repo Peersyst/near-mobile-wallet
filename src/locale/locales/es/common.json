@@ -153,5 +153,6 @@
     "dismiss": "Cerrar",
     "pending_transaction_text": "Tienes una transacción no cometida. Por favor, espera a que esté cometida para poder enviar una nueva.",
     "staking": "Staking",
-    "importYourNearWallet": "Importa tu wallet de NEAR"
+    "importYourNearWallet": "Importa tu wallet de NEAR",
+    "idiom": "es"
 }

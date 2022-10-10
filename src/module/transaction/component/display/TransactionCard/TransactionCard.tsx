@@ -13,6 +13,7 @@ import TransactionStatus from "../TransactionStatus/TransactionStatus";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface TransactionCardProps {
     transaction: FullTransaction;
@@ -24,6 +25,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
     const { data: tokenValue } = useGetTokenPrice(fiat, "nervos-network");
     const { timestamp, amount, type, token = "CKB", status } = transaction;
     const showAmount = type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
+    const t = useTranslate();
 
     return (
         <TouchableWithoutFeedback onPress={() => showModal(TransactionDetailsModal, { transaction })}>
@@ -39,7 +41,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
                     <Row justifyContent="space-between" alignItems="center">
                         {timestamp ? (
                             <Typography variant="body2" style={{ marginLeft: 10 }}>
-                                {formatDate(new Date(timestamp))}
+                                {formatDate(new Date(timestamp), "date-hours", t("idiom"))}
                             </Typography>
                         ) : (
                             <TransactionStatus variant="body2" status={status} style={{ marginLeft: 10 }} />
