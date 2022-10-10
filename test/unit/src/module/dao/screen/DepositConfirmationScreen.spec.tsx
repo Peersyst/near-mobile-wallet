@@ -7,6 +7,7 @@ import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScre
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
+import { config } from "config";
 
 describe("DepositConfirmationScreen tests", () => {
     const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
@@ -27,10 +28,12 @@ describe("DepositConfirmationScreen tests", () => {
         });
 
         const screen = render(<DepositConfirmationScreen />);
-        expect(screen.getByText("1,000")).toBeDefined();
+        expect(screen.getByText(`1,000 ${config.tokenName}`)).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
-        expect(screen.getByText("0.001")).toBeDefined();
-        expect(screen.getByText(translate("from") + ":")).toBeDefined();
+        expect(screen.getByText(`0.001 ${config.tokenName}`)).toBeDefined();
+        expect(screen.getByText(translate("total") + ":")).toBeDefined();
+        expect(screen.getByText(`1,000.001 ${config.tokenName}`)).toBeDefined();
+        expect(screen.getByText(translate("from"))).toBeDefined();
         expect(screen.getByText(mockedWallet.name + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
     });
 });

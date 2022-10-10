@@ -22,7 +22,7 @@ const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography } }) =>
     FormControlError: {
         fontSize: 14,
     },
-    FormControlLabel: {
+    Label: {
         label: {
             ...typography.body2Strong,
         },

@@ -20,8 +20,8 @@ const SendConfirmationScreen = (): JSX.Element => {
     const translate = useTranslate();
     const [loading, setLoading] = useState(false);
     const network = useSelectedNetwork();
-    const { amount, fee: feeInCKB, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
-    const { fee: feeInShannons } = useRecoilValue(settingsState);
+    const { amount, fee: fee, senderWalletIndex, receiverAddress, message, token } = useRecoilValue(sendState);
+    const { fee: feeInDecimals } = useRecoilValue(settingsState);
     const {
         state: { wallets },
     } = useWalletState();
@@ -37,7 +37,7 @@ const SendConfirmationScreen = (): JSX.Element => {
                 amount: convertCKBToShannons(amount!),
                 message: message!,
                 to: receiverAddress!,
-                feeRate: feeInShannons,
+                feeRate: feeInDecimals,
             },
             {
                 onSettled: () => setLoading(false),
@@ -47,26 +47,20 @@ const SendConfirmationScreen = (): JSX.Element => {
 
     return (
         <>
-            <Col gap={"5%"}>
+            <Col gap={24} onStartShouldSetResponder={() => true}>
                 <SendSummary
                     amount={amount!}
                     receiverAddress={receiverAddress!}
-                    fee={feeInCKB!}
+                    fee={fee!}
+                    token={token}
                     message={message!}
                     senderName={senderName}
                     senderAddress={serviceInstance?.getAddress() || ""}
                 />
-                <Typography variant="caption" textAlign="center">
+                <Typography variant="body3Regular" textAlign="center" light>
                     {translate("send_confirmation_text")}
                 </Typography>
-                <CountdownButton
-                    loading={loading}
-                    disabled={isSuccess}
-                    variant="outlined"
-                    seconds={5}
-                    fullWidth
-                    onPress={() => setShowConfirmation(true)}
-                >
+                <CountdownButton loading={loading} disabled={isSuccess} seconds={5} fullWidth onPress={() => setShowConfirmation(true)}>
                     {translate("confirm")}
                 </CountdownButton>
             </Col>
