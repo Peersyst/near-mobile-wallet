@@ -9,6 +9,7 @@ import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { FeeRate } from "ckb-peersyst-sdk";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
+import { config } from "config";
 
 describe("SelectAccountAndDepositScreen tests", () => {
     const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
@@ -26,13 +27,15 @@ describe("SelectAccountAndDepositScreen tests", () => {
 
     test("Renders correctly with deposits", async () => {
         const screen = render(<WithdrawConfirmationScreen withdrawInfo={{ receiverIndex: 0, depositIndex: 0, feeRate: FeeRate.NORMAL }} />);
-        await waitFor(() => expect(screen.getAllByText("500")).toHaveLength(2));
+        await waitFor(() => expect(screen.getAllByText(`500 ${config.tokenName}`)).toBeDefined());
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
-        expect(screen.getByText("0.001")).toBeDefined();
+        expect(screen.getByText(`0.001 ${config.tokenName}`)).toBeDefined();
+        expect(screen.getByText(translate("total") + ":")).toBeDefined();
+        expect(screen.getByText(`500.001 ${config.tokenName}`)).toBeDefined();
         //Withdraw summary
-        expect(screen.getByText(translate("destination_wallet") + ":")).toBeDefined();
+        expect(screen.getByText(translate("destination_wallet"))).toBeDefined();
         expect(screen.getByText("firstWallet" + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
-        expect(screen.getByText(translate("deposit_apc") + ":")).toBeDefined();
+        expect(screen.getByText(translate("deposit_apc"))).toBeDefined();
         expect(screen.getByText("100%")).toBeDefined();
         expect(screen.getByText(translate("confirm"))).toBeDefined();
     });

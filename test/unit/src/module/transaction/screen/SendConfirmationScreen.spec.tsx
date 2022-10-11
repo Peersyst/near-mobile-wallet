@@ -7,6 +7,7 @@ import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
+import { config } from "config";
 
 describe("SendConfirmationScreen tests", () => {
     const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
@@ -25,18 +26,21 @@ describe("SendConfirmationScreen tests", () => {
             senderWalletIndex: mockedUseWallet.state.wallets[0].index,
             receiverAddress: "receiver_address",
             message: "Send message",
+            token: "token",
         });
 
         const screen = render(<SendConfirmationScreen />);
-        expect(screen.getByText("1,000")).toBeDefined();
+        expect(screen.getByText(`1,000 ${config.tokenName}`)).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
-        expect(screen.getByText("10")).toBeDefined();
+        expect(screen.getByText(`10 ${config.tokenName}`)).toBeDefined();
+        expect(screen.getByText(translate("total") + ":")).toBeDefined();
+        expect(screen.getByText(`1,010 ${config.tokenName}`)).toBeDefined();
 
-        expect(screen.getByText(translate("from") + ":")).toBeDefined();
+        expect(screen.getByText(translate("from"))).toBeDefined();
         expect(screen.getByText(mockedUseWallet.state.wallets[0].name + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
-        expect(screen.getByText(translate("to") + ":")).toBeDefined();
+        expect(screen.getByText(translate("to"))).toBeDefined();
         expect(screen.getByText("recei...ess")).toBeDefined();
-        expect(screen.getByText(translate("message") + ":")).toBeDefined();
+        expect(screen.getByText(translate("message"))).toBeDefined();
         expect(screen.getByText("Send message")).toBeDefined();
     });
 });

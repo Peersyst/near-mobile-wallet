@@ -78,7 +78,7 @@
     "to": "To",
     "message": "Message",
     "send_confirmation_text": "Careful, transactions cannot be undone.\nTake your time to verify the information.",
-    "transaction_completed": "Transaction\ncompleted!",
+    "transaction_completed": "Transaction completed!",
     "available": "Available",
     "locked": "Locked",
     "current_apc": "Current APC",
@@ -160,5 +160,6 @@
     "unstake": "Unstake",
     "sentTo": "Sent to",
     "boughtFor": "Bought for",
-    "selectAToken": "Select a token"
+    "selectAToken": "Select a token",
+    "continue": "Continue"
 }

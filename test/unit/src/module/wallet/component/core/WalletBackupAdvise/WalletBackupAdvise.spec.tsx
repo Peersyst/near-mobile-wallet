@@ -25,7 +25,7 @@ describe("WalletBackupAdvise", () => {
         });
         const screen = render(<WalletsBackupAdvise onWalletSelected={handleSelection} />);
         expect(screen.getByText(translate("backup_wallet_advise_text"))).toBeDefined();
-        expect(screen.getByText("... 5s")).toBeDefined();
+        expect(screen.getByText("5s")).toBeDefined();
         for (let i = 0; i < 5; i++) act(() => jest.runOnlyPendingTimers());
         expect(screen.getByText(translate("back_up_now"))).toBeDefined();
         fireEvent.press(screen.getByText(translate("back_up_now")));

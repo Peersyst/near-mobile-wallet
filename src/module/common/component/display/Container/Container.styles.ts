@@ -5,7 +5,6 @@ export const ContainerRoot = styled(View)(({ theme }) => ({
     borderStyle: "solid",
     borderRadius: theme.borderRadiusSm,
     borderWidth: 1,
-    alignItems: "center",
     paddingVertical: 16,
     paddingHorizontal: 20,
     borderColor: theme.palette.overlay["8%"],
