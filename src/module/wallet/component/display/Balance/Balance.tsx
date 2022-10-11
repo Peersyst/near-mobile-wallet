@@ -13,7 +13,12 @@ const Balance = ({
     spinnerProps,
     ...typographyProps
 }: BalanceProps): JSX.Element => {
-    const formattedBalance = useFormatBalance({ balance, options, units, unitsPosition, action });
+    const formattedBalance = useFormatBalance(balance, {
+        numberFormatOptions: { maximumFractionDigits: 2, ...options },
+        units,
+        unitsPosition,
+        action,
+    });
 
     return (
         <Suspense isLoading={isLoading} fallback={<Spinner {...spinnerProps} />}>

@@ -1,5 +1,4 @@
 import { Col, Row, useModal } from "@peersyst/react-native-components";
-import formatDate from "utils/formatDate";
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
 import TransactionLabel from "module/transaction/component/display/TransactionLabel/TransactionLabel";
 import TransactionDetailsModal from "../../core/TransactionDetailsModal/TransactionDetailsModal";
@@ -9,13 +8,13 @@ import TransactionStatus from "../TransactionStatus/TransactionStatus";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
-import { useTranslate } from "module/common/hook/useTranslate";
 import { TransactionCardProps } from "./TransactionCard.types";
 import { TouchableWithoutFeedback } from "react-native";
 import TransactionIcon from "../TransactionIcon/TransactionIcon";
 import Typography from "module/common/component/display/Typography/Typography";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
+import useFormatDate from "module/common/hook/useFormatDate";
 
 const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => {
     const { showModal } = useModal();
@@ -23,7 +22,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
     const { data: tokenValue } = useGetTokenPrice(fiat, "nervos-network");
     const { timestamp, amount, type, token = "token", status } = transaction;
     const showAmount = type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
-    const t = useTranslate();
+    const formattedDate = useFormatDate(timestamp);
 
     return (
         <TouchableWithoutFeedback onPress={() => showModal(TransactionDetailsModal, { transaction })}>
@@ -45,7 +44,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
                     <Row justifyContent="space-between" alignItems="center">
                         {timestamp ? (
                             <Typography variant="body4Strong" color={(p) => p.gray[300]}>
-                                {formatDate(new Date(timestamp), "date-hours", t("idiom"))}
+                                {formattedDate}
                             </Typography>
                         ) : (
                             <TransactionStatus variant="body2" status={status} />
@@ -56,7 +55,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
                             showAmount &&
                             tokenValue && (
                                 <Balance
-                                    options={{ maxDecimals: 2 }}
+                                    options={{ maximumFractionDigits: 2, minimumFractionDigits: 2 }}
                                     action="round"
                                     color={(p) => p.gray[300]}
                                     balance={tokenValue * amount}

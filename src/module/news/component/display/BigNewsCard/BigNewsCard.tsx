@@ -1,21 +1,20 @@
 import { NewTitle, SimpleNewsCardRoot } from "../SimpleNewsCard/SimpleNewsCard.styles";
 import { Linking, TouchableWithoutFeedback } from "react-native";
-import formatDate from "utils/formatDate";
 import { Col, withSkeleton } from "@peersyst/react-native-components";
 import { BigNewsDate, BigNewsImage } from "./BigNewsCard.styles";
 import { formatNews } from "module/news/utils/formatNews";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useFormatDate from "module/common/hook/useFormatDate";
 
 const BigNewsCard = (news: any): JSX.Element => {
     const { uri, title, imageUri, date } = formatNews(news);
-    const t = useTranslate();
+    const formattedDate = useFormatDate(date);
     return (
         <TouchableWithoutFeedback onPress={() => Linking.openURL(uri)}>
             <SimpleNewsCardRoot>
                 <Col gap={"3%"}>
                     <BigNewsImage fadeDuration={300} source={{ uri: imageUri }} />
                     <NewTitle variant="caption">{title}</NewTitle>
-                    <BigNewsDate variant="caption">{formatDate(new Date(date), "weekday", t("idiom"))}</BigNewsDate>
+                    <BigNewsDate variant="caption">{formattedDate}</BigNewsDate>
                 </Col>
             </SimpleNewsCardRoot>
         </TouchableWithoutFeedback>

@@ -19,5 +19,6 @@
     "invalid_start": "El campo debe empezar con {{start}}",
     "invalid_end": "El campo debe terminar con {{end}}",
     "nothingToShow": "No hay nada que mostrar",
-    "invalid_address": "Invalid address"
+    "invalid_address": "Invalid address",
+    "copied_to_clipboard": "Copied to clipboard"
 }

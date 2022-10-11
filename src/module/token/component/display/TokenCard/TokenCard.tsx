@@ -14,7 +14,7 @@ export interface TokenCardProps {
 }
 
 const TokenCard = ({ token: { metadata, balance } }: TokenCardProps): JSX.Element => {
-    const { name, symbol, decimals, imageUri } = metadata;
+    const { name, symbol, imageUri } = metadata;
     const { fiat } = useRecoilValue(settingsState);
     const { data: tokenValue } = useGetTokenPrice(fiat, "binancecoin");
 
@@ -22,22 +22,13 @@ const TokenCard = ({ token: { metadata, balance } }: TokenCardProps): JSX.Elemen
         <MainListCard alignItems="center" justifyContent="space-between">
             <Row alignItems="center" gap={16}>
                 <TokenIcon source={imageUri ? { uri: imageUri } : placeholder_image} />
-                <Typography variant="body3Strong" numberOfLines={1} style={{ width: "65%" }}>
+                <Typography variant="body3Strong" numberOfLines={1} style={{ maxWidth: "50%" }}>
                     {name}
                 </Typography>
             </Row>
             <Col alignItems="flex-end" justifyContent="center" gap={2}>
                 <Balance balance={balance} variant="body3Strong" units={symbol} />
-                {tokenValue && (
-                    <Balance
-                        action="round"
-                        light
-                        options={{ maxDecimals: decimals }}
-                        balance={tokenValue}
-                        units={fiat}
-                        variant="body4Strong"
-                    />
-                )}
+                {tokenValue && <Balance action="round" light balance={tokenValue} units={fiat} variant="body4Strong" />}
             </Col>
         </MainListCard>
     );

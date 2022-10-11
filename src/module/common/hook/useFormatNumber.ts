@@ -1,8 +1,6 @@
-import settingsState from "module/settings/state/SettingsState";
-import { useRecoilValue } from "recoil";
-import formatNumber, { FormatNumberOptions } from "utils/formatNumber";
+import { useTranslate } from "module/common/hook/useTranslate";
 
-export const useFormatNumber = (n: number | string, options?: FormatNumberOptions) => {
-    const { locale } = useRecoilValue(settingsState);
-    return formatNumber(n, options, locale);
+export const useFormatNumber = (n: number | string, options?: Intl.NumberFormatOptions) => {
+    const translate = useTranslate();
+    return translate("number", { val: n, ...options });
 };

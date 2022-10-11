@@ -21,7 +21,7 @@ const BaseSendSummary = ({ amount, fee, children }: BaseSendSummaryFullProps): J
                     <Balance balance={amount} variant="h1" />
                     <Row>
                         <Typography variant="body1">{translate("transaction_fee_label")}: </Typography>
-                        <Balance balance={fee} variant="body1" fontWeight="bold" />
+                        <Balance balance={fee} variant="body1" fontWeight="bold" options={{ maximumFractionDigits: 6 }} />
                     </Row>
                 </Col>
                 {children}

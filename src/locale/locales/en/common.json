@@ -1,7 +1,8 @@
 {
+    "number": "{{val, number}}",
+    "date": "{{val, datetime}}",
     "welcome": "Hello",
     "welcome_back": "Welcome back",
-    "name": "Charlie",
     "confirm_your_pin": "Confirm your PIN",
     "update_your_pin": "Update your PIN",
     "enter_your_pin": "Enter your PIN",
@@ -155,7 +156,6 @@
     "pending_transaction_text": "You have an uncommitted transaction. Please, wait until it is committed to send a new one.",
     "staking": "Staking",
     "importYourNearWallet": "Import your NEAR wallet",
-    "idiom": "en",
     "stake_added": "Added stake",
     "unstake": "Unstake",
     "sentTo": "Sent to",

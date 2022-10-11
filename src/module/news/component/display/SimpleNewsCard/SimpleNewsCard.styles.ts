@@ -3,14 +3,14 @@ import { Paper, Typography, Image } from "@peersyst/react-native-components";
 
 export const SimpleNewsCardRoot = styled(Paper)(({ theme, dimensions }) => ({
     padding: dimensions.width * 0.04,
-    borderRadius: theme.borderRadiusXs,
+    borderRadius: theme.borderRadiusSm,
 }));
 
 export const NewsImage = styled(Image)(({ theme, dimensions }) => ({
     width: "100%",
     height: dimensions.width * 0.35,
     backgroundColor: theme.palette.gray[100],
-    borderRadius: 4,
+    borderRadius: theme.borderRadiusXs,
 }));
 
 export const NewTitle = styled(Typography, { numberOfLines: 2 })(({ theme }) => ({

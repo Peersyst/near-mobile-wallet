@@ -43,7 +43,7 @@ const NftCard = ({ nft }: NftCardProps): JSX.Element => {
                                 <Typography variant="body4Strong" light numberOfLines={1}>
                                     {t("boughtFor")}
                                 </Typography>
-                                <Balance variant="body3Strong" balance={lastTransfer.price} options={{ maxDecimals: 2 }} units="token" />
+                                <Balance variant="body3Strong" balance={lastTransfer.price} units="token" />
                             </Col>
                         )}
                     </Col>
