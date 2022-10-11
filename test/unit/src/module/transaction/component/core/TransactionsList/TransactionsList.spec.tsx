@@ -1,6 +1,6 @@
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { transactions } from "mocks/transaction";
-import { render, translate } from "test-utils";
+import { formatDate, render, translate } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
 import TransactionsList from "module/transaction/component/core/TransactionsList/TransactionsList";
 import { mockedUseWallet } from "mocks/useWalletState";
@@ -21,9 +21,8 @@ describe("TransactionsList tests", () => {
         jest.spyOn(sdkInstance, "getTransactions").mockReturnValue(transactions);
 
         const screen = render(<TransactionsList />);
-        await waitFor(() => expect(screen.getByText("01/01/2022 - 00:00")));
-        expect(screen.getByText("02/01/2022 - 00:00"));
-        expect(screen.getByText("03/01/2022 - 00:00"));
+        await waitFor(() => expect(screen.getByText(formatDate(transactions[0].timestamp))));
+        expect(screen.getByText(formatDate(transactions[1].timestamp)));
     });
     test("Renders correctly without transactions", async () => {
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);

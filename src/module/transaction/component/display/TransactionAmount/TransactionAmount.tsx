@@ -11,9 +11,7 @@ export interface TransactionAmountProps extends Omit<BalanceProps, "action" | "b
 const TransactionAmount = ({ type, amount, ...rest }: TransactionAmountProps): JSX.Element => {
     const action = transactionTypeToBalanceAction(type);
     const isPrimary = action === "add";
-    return (
-        <Balance action={action} balance={amount} options={{ maxDecimals: 2 }} color={(p) => p[isPrimary ? "primary" : "text"]} {...rest} />
-    );
+    return <Balance action={action} balance={amount} color={(p) => p[isPrimary ? "primary" : "text"]} {...rest} />;
 };
 
 export default TransactionAmount;

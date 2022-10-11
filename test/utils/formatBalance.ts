@@ -1,13 +1,12 @@
-import { formatBalance as baseFormatBalance, UseFormatBalanceParams } from "module/wallet/component/display/Balance/hook/useFormatBalance";
-import formatNumber from "utils/formatNumber";
+import { FormatBalanceOptions } from "module/wallet/component/display/Balance/utils/formatBalance";
+import baseFormatBalance from "module/wallet/component/display/Balance/utils/formatBalance";
 
-export const formatBalance = ({
-    balance,
-    options = { maxDecimals: 2 },
-    action = "display",
-    units,
-    unitsPosition,
-}: UseFormatBalanceParams) => {
-    const formattedBalance = formatNumber(balance.toString(), options);
-    return baseFormatBalance({ formattedBalance, action, units, unitsPosition });
+export const formatBalance = (
+    balance: bigint | number | string,
+    { numberFormatOptions, action = "display", units, unitsPosition }: FormatBalanceOptions,
+) => {
+    const formattedBalanceNumber = Intl.NumberFormat(undefined, { maximumFractionDigits: 2, ...numberFormatOptions }).format(
+        Number(balance),
+    );
+    return baseFormatBalance(formattedBalanceNumber, { action, units, unitsPosition });
 };

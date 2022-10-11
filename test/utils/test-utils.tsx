@@ -64,5 +64,6 @@ export * from "./fail-api-call";
 export * from "./success-api-call";
 export * from "./wait";
 export * from "./formatBalance";
+export { default as formatDate } from "./formatDate";
 export { customRenderHook as renderHook };
 export { translate };

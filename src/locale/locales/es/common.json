@@ -1,7 +1,8 @@
 {
+    "number": "{{val, number}}",
+    "date": "{{val, datetime}}",
     "welcome": "Hola",
     "welcome_back": "Bienvenido de nuevo",
-    "name": "Charlie",
     "confirm_your_pin": "Confirma tu PIN",
     "update_your_pin": "Actualiza tu PIN",
     "enter_your_pin": "Introduce tu PIN",

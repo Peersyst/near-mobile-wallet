@@ -3,6 +3,7 @@ import { theme } from "./theme";
 
 const gray: Theme["palette"]["gray"] = {
     0: "#FFFFFF",
+    100: "#F6F6F6",
     300: "#A7A7A7",
     600: "#3F4246",
     900: "#262626",
