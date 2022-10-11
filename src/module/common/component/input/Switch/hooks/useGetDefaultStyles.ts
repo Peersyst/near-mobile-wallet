@@ -7,11 +7,11 @@ export const useGetDefaultStyles = (): FormControlStateStyle<Partial<SwitchStyle
     const theme = useTheme();
     return {
         disabled: {
-            thumb: {
+            backgroundColor: lighten(theme.palette.disabled, 0.01),
+            active: {
                 backgroundColor: lighten(theme.palette.disabled, 0.1),
-                inactiveBackgroundColor: lighten(theme.palette.disabled, 0.1),
             },
-            track: {
+            thumb: {
                 backgroundColor: lighten(theme.palette.disabled, 0.4),
             },
         },

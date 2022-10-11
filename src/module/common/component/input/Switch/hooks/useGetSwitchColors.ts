@@ -1,9 +1,9 @@
 import { useTheme } from "@peersyst/react-native-styled";
 
 export interface SwichColor {
-    thumbBgColor: string;
-    inactiveThumbBgColor: string;
     trackBgColor: string;
+    inactiveTrackBgColor: string;
+    thumbBgColor: string;
 }
 
 export type UseGetSwitchColors = (style: Partial<SwichColor>) => SwichColor;
@@ -12,13 +12,13 @@ export default function useGetSwitchColors(): UseGetSwitchColors {
     const theme = useTheme();
     const getSwitchColors = ({
         thumbBgColor,
-        inactiveThumbBgColor,
+        inactiveTrackBgColor,
         trackBgColor,
     }: Partial<SwichColor>) => {
         return {
-            thumbBgColor: thumbBgColor ?? theme.palette.primary,
-            inactiveThumbBgColor: inactiveThumbBgColor ?? theme.palette.disabled,
-            trackBgColor: trackBgColor ?? theme.palette.background,
+            trackBgColor: trackBgColor ?? theme.palette.primary,
+            inactiveTrackBgColor: inactiveTrackBgColor ?? theme.palette.disabled,
+            thumbBgColor: thumbBgColor ?? theme.palette.background,
         };
     };
     return getSwitchColors;

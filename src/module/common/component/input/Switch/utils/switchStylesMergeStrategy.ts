@@ -1,74 +1,115 @@
 import { FormControlContextType } from "@peersyst/react-components-core";
 import { FormControlStateStyle } from "@peersyst/react-native-components";
-import { SwitchStyle } from "../Switch.types";
+import { SwitchBaseStyle, SwitchCoreStyle } from "../Switch.types";
 
 export default function (
+    active: boolean,
     {
-        track: defaultTrackStyle,
-        thumb: defaultThumbStyle,
-        invalid: { track: defaultInvalidTrackStyle, thumb: defaultInvalidThumbStyle } = {},
-        valid: { track: defaultValidTrackStyle, thumb: defaultValidThumbStyle } = {},
-        disabled: { track: defaultDisabledTrackStyle, thumb: defaultDisabledThumbStyle } = {},
-        focused: { track: defaultFocusedTrackStyle, thumb: defaultFocusedThumbStyle } = {},
-        readonly: { track: defaultReadonlyTrackStyle, thumb: defaultReadonlyThumbStyle } = {},
-        required: { track: defaultRequiredTrackStyle, thumb: defaultRequiredThumbStyle } = {},
-    }: FormControlStateStyle<Partial<SwitchStyle>>,
+        invalid: { active: defaultInvalidActiveStyle, ...defaultInvalidInactiveStyle } = {},
+        valid: { active: defaultValidActiveStyle, ...defaultValidInactiveStyle } = {},
+        disabled: { active: defaultDisabledActiveStyle, ...defaultDisabledInactiveStyle } = {},
+        focused: { active: defaultFocusedActiveStyle, ...defaultFocusedInactiveStyle } = {},
+        readonly: { active: defaultReadonlyActiveStyle, ...defaultReadonlyInactiveStyle } = {},
+        required: { active: defaultRequiredActiveStyle, ...defaultRequiredInactiveStyle } = {},
+        active: defaultActiveStyle,
+        ...defaultInactiveStyle
+    }: FormControlStateStyle<SwitchCoreStyle>,
     {
-        track: globalTrackStyle,
-        thumb: globalThumbStyle,
-        invalid: { track: globalInvalidTrackStyle, thumb: globalInvalidThumbStyle } = {},
-        valid: { track: globalValidTrackStyle, thumb: globalValidThumbStyle } = {},
-        disabled: { track: globalDisabledTrackStyle, thumb: globalDisabledThumbStyle } = {},
-        focused: { track: globalFocusedTrackStyle, thumb: globalFocusedThumbStyle } = {},
-        readonly: { track: globalReadonlyTrackStyle, thumb: globalReadonlyThumbStyle } = {},
-        required: { track: globalRequiredTrackStyle, thumb: globalRequiredThumbStyle } = {},
-    }: FormControlStateStyle<Partial<SwitchStyle>>,
+        active: globalActiveStyle,
+        invalid: { active: globalInvalidActiveStyle, ...globalInvalidInactiveStyle } = {},
+        valid: { active: globalValidActiveStyle, ...globalValidInactiveStyle } = {},
+        disabled: { active: globalDisabledActiveStyle, ...globalDisabledInactiveStyle } = {},
+        focused: { active: globalFocusedActiveStyle, ...globalFocusedInactiveStyle } = {},
+        readonly: { active: globalReadonlyActiveStyle, ...globalReadonlyInactiveStyle } = {},
+        required: { active: globalRequiredActiveStyle, ...globalRequiredInactiveStyle } = {},
+        ...globalInactiveStyle
+    }: FormControlStateStyle<Partial<SwitchCoreStyle>>,
     {
-        track: trackStyle,
-        thumb: thumbStyle,
-        invalid: { track: invalidTrackStyle, thumb: invalidThumbStyle } = {},
-        valid: { track: validTrackStyle, thumb: validThumbStyle } = {},
-        disabled: { track: disabledTrackStyle, thumb: disabledThumbStyle } = {},
-        focused: { track: focusedTrackStyle, thumb: focusedThumbStyle } = {},
-        readonly: { track: readonlyTrackStyle, thumb: readonlyThumbStyle } = {},
-        required: { track: requiredTrackStyle, thumb: requiredThumbStyle } = {},
-    }: FormControlStateStyle<Partial<SwitchStyle>>,
-    { required, invalid, disabled, readonly, focused, valid }: FormControlContextType,
-): SwitchStyle {
-    const finalTrackStyle = { ...defaultTrackStyle, ...globalTrackStyle, ...trackStyle };
-    const invalidFinalTrackStyle = { ...defaultInvalidTrackStyle, ...globalInvalidTrackStyle, ...invalidTrackStyle };
-    const validFinalTrackStyle = { ...defaultValidTrackStyle, ...globalValidTrackStyle, ...validTrackStyle };
-    const disabledFinalTrackStyle = { ...defaultDisabledTrackStyle, ...globalDisabledTrackStyle, ...disabledTrackStyle };
-    const focusedFinalTrackStyle = { ...defaultFocusedTrackStyle, ...globalFocusedTrackStyle, ...focusedTrackStyle };
-    const readonlyFinalTrackStyle = { ...defaultReadonlyTrackStyle, ...globalReadonlyTrackStyle, ...readonlyTrackStyle };
-    const requiredFinalTrackStyle = { ...defaultRequiredTrackStyle, ...globalRequiredTrackStyle, ...requiredTrackStyle };
-
-    const finalThumbStyle = { ...defaultThumbStyle, ...globalThumbStyle, ...thumbStyle };
-    const invalidFinalThumbStyle = { ...defaultInvalidThumbStyle, ...globalInvalidThumbStyle, ...invalidThumbStyle };
-    const validFinalThumbStyle = { ...defaultValidThumbStyle, ...globalValidThumbStyle, ...validThumbStyle };
-    const disabledFinalThumbStyle = { ...defaultDisabledThumbStyle, ...globalDisabledThumbStyle, ...disabledThumbStyle };
-    const focusedFinalThumbStyle = { ...defaultFocusedThumbStyle, ...globalFocusedThumbStyle, ...focusedThumbStyle };
-    const readonlyFinalThumbStyle = { ...defaultReadonlyThumbStyle, ...globalReadonlyThumbStyle, ...readonlyThumbStyle };
-    const requiredFinalThumbStyle = { ...defaultRequiredThumbStyle, ...globalRequiredThumbStyle, ...requiredThumbStyle };
-
+        invalid: { active: styleInvalidActiveStyle, ...styleInvalidInactiveStyle } = {},
+        valid: { active: styleValidActiveStyle, ...styleValidInactiveStyle } = {},
+        disabled: { active: styleDisabledActiveStyle, ...styleDisabledInactiveStyle } = {},
+        focused: { active: styleFocusedActiveStyle, ...styleFocusedInactiveStyle } = {},
+        readonly: { active: styleReadonlyActiveStyle, ...styleReadonlyInactiveStyle } = {},
+        required: { active: styleRequiredActiveStyle, ...styleRequiredInactiveStyle } = {},
+        active: styleActiveStyle,
+        ...styleInactiveStyle
+    }: FormControlStateStyle<Partial<SwitchCoreStyle>>,
+    { readonly, required, focused, invalid, valid, disabled }: FormControlContextType,
+): SwitchBaseStyle {
+    const finalActive = {
+        ...defaultActiveStyle,
+        ...globalActiveStyle,
+        ...styleActiveStyle,
+        ...(required && {
+            ...defaultRequiredActiveStyle,
+            ...globalRequiredActiveStyle,
+            ...styleRequiredActiveStyle,
+        }),
+        ...(focused && {
+            ...defaultFocusedActiveStyle,
+            ...globalFocusedActiveStyle,
+            ...styleFocusedActiveStyle,
+        }),
+        ...(readonly && {
+            ...defaultReadonlyActiveStyle,
+            ...globalReadonlyActiveStyle,
+            ...styleReadonlyActiveStyle,
+        }),
+        ...(invalid && {
+            ...defaultInvalidActiveStyle,
+            ...globalInvalidActiveStyle,
+            ...styleInvalidActiveStyle,
+        }),
+        ...(valid && {
+            ...defaultValidActiveStyle,
+            ...globalValidActiveStyle,
+            ...styleValidActiveStyle,
+        }),
+        ...(disabled && {
+            ...defaultDisabledActiveStyle,
+            ...globalDisabledActiveStyle,
+            ...styleDisabledActiveStyle,
+        }),
+    };
+    const finalInactive = {
+        ...defaultInactiveStyle,
+        ...globalInactiveStyle,
+        ...styleInactiveStyle,
+        ...(required && {
+            ...defaultRequiredInactiveStyle,
+            ...globalRequiredInactiveStyle,
+            ...styleRequiredInactiveStyle,
+        }),
+        ...(focused && {
+            ...defaultFocusedInactiveStyle,
+            ...globalFocusedInactiveStyle,
+            ...styleFocusedInactiveStyle,
+        }),
+        ...(readonly && {
+            ...defaultReadonlyInactiveStyle,
+            ...globalReadonlyInactiveStyle,
+            ...styleReadonlyInactiveStyle,
+        }),
+        ...(invalid && {
+            ...defaultInvalidInactiveStyle,
+            ...globalInvalidInactiveStyle,
+            ...styleInvalidInactiveStyle,
+        }),
+        ...(valid && {
+            ...defaultValidInactiveStyle,
+            ...globalValidInactiveStyle,
+            ...styleValidInactiveStyle,
+        }),
+        ...(disabled && {
+            ...defaultDisabledInactiveStyle,
+            ...globalDisabledInactiveStyle,
+            ...styleDisabledInactiveStyle,
+        }),
+    };
     return {
-        thumb: {
-            ...finalThumbStyle,
-            ...(required && requiredFinalThumbStyle),
-            ...(focused && focusedFinalThumbStyle),
-            ...(readonly && readonlyFinalThumbStyle),
-            ...(invalid && invalidFinalThumbStyle),
-            ...(valid && validFinalThumbStyle),
-            ...(disabled && disabledFinalThumbStyle),
-        },
-        track: {
-            ...finalTrackStyle,
-            ...(required && requiredFinalTrackStyle),
-            ...(focused && focusedFinalTrackStyle),
-            ...(readonly && readonlyFinalTrackStyle),
-            ...(invalid && invalidFinalTrackStyle),
-            ...(valid && validFinalTrackStyle),
-            ...(disabled && disabledFinalTrackStyle),
-        },
+        ...finalInactive,
+        ...(active && {
+            ...finalActive,
+        }),
     };
 }

@@ -15,7 +15,17 @@ const StakingScreen = (): JSX.Element => {
                         label={"Switch"}
                         disabled={disabled}
                         LabelProps={{ style: { label: { color: "red" } } }}
-                        style={{ component: { readonly: { thumb: {} } } }}
+                        style={{
+                            component: {
+                                thumb: {
+                                    borderColor: "red",
+                                    borderWidth: 2,
+                                },
+                                active: {
+                                    backgroundColor: "yellow",
+                                },
+                            },
+                        }}
                     >
                         {[
                             <Text style={{ fontSize: 10 }} key="2">
