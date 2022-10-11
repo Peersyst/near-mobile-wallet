@@ -12,9 +12,9 @@ const SimpleNewsCard = ({ ...news }: WithSkeleton<NewsDto>): JSX.Element => {
     return (
         <TouchableWithoutFeedback onPress={() => Linking.openURL(uri)}>
             <SimpleNewsCardRoot elevation={0}>
-                <Col gap={"5%"} justifyContent="center">
+                <Col gap={12} justifyContent="center">
                     <NewsImage source={{ uri: imageUri }} />
-                    <Col gap={"2%"}>
+                    <Col gap={2}>
                         <NewDate variant="body3Regular">{formattedDate}</NewDate>
                         <NewTitle variant="body2Strong">{title}</NewTitle>
                     </Col>
