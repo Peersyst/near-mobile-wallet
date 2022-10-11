@@ -25,7 +25,7 @@ const BaseSendSummary = ({ amount, fee, token, children }: BaseSendSummaryFullPr
                         <Typography variant="body2Regular" light>
                             {translate("transaction_fee_label")}:{" "}
                         </Typography>
-                        <Balance balance={fee} variant="body2Strong" units={token} light />
+                        <Balance balance={fee} variant="body2Strong" units={token} light options={{ maximumFractionDigits: 6 }} />
                     </Row>
                     <Row>
                         <Typography variant="body2Regular" color={(palette) => palette.primary}>
