@@ -21,7 +21,6 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
     const { fiat } = useRecoilValue(settingsState);
     const { data: tokenValue } = useGetTokenPrice(fiat, "nervos-network");
     const { timestamp, amount, type, token = "token", status } = transaction;
-    const absAmount = Math.abs(amount);
     const showAmount = type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
     const formattedDate = useFormatDate(timestamp);
 
@@ -36,7 +35,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
                             <TransactionAmount
                                 variant="body3Strong"
                                 type={type}
-                                amount={absAmount}
+                                amount={amount}
                                 units={token}
                                 style={{ maxWidth: "50%" }}
                             />
@@ -59,7 +58,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
                                     options={{ maximumFractionDigits: 2, minimumFractionDigits: 2 }}
                                     action="round"
                                     color={(p) => p.gray[300]}
-                                    balance={tokenValue * absAmount}
+                                    balance={tokenValue * amount}
                                     units={fiat}
                                     variant="body4Strong"
                                 />

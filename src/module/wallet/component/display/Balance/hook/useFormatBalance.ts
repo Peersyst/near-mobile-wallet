@@ -5,6 +5,7 @@ export const useFormatBalance = (
     balance: bigint | number | string,
     { numberFormatOptions, units, unitsPosition, action }: FormatBalanceOptions,
 ) => {
-    const formattedBalance = useFormatNumber(balance.toString(), numberFormatOptions);
+    const unsignedBalance = balance.toString().replace("-", "");
+    const formattedBalance = useFormatNumber(unsignedBalance, numberFormatOptions);
     return formatBalance(formattedBalance, { action, units, unitsPosition });
 };
