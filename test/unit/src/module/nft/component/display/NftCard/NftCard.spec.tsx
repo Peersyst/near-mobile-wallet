@@ -8,6 +8,8 @@ describe("NftCard tests", () => {
         expect(screen.getByText(tempNft.metadata.title!));
         expect(screen.getByText(tempNft.contract_id));
         expect(screen.getByText(translate("boughtFor")));
-        expect(screen.getByText(formatBalance({ balance: tempNft.events[0].price, units: "token" })));
+        expect(
+            screen.getByText(formatBalance(tempNft.events[0].price, { units: "token", numberFormatOptions: { maximumFractionDigits: 2 } })),
+        );
     });
 });
