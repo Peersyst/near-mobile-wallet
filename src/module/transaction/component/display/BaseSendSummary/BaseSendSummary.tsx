@@ -6,6 +6,7 @@ import { Col, Row } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import Typography from "module/common/component/display/Typography/Typography";
 import Container from "module/common/component/display/Container/Container";
+import { config } from "config";
 
 export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee" | "token">> {
     amount: BalanceProps["balance"];
@@ -20,12 +21,23 @@ const BaseSendSummary = ({ amount, fee, token, children }: BaseSendSummaryFullPr
         <Container>
             <Col gap={16} alignItems="center">
                 <Col gap={2} alignItems="center">
-                    <Balance balance={amount} variant="h4Strong" units={token} />
+                    <Balance
+                        balance={amount}
+                        variant="h4Strong"
+                        units={token}
+                        options={{ maximumFractionDigits: config.maxNumberOfDecimals }}
+                    />
                     <Row>
                         <Typography variant="body2Regular" light>
                             {translate("transaction_fee_label")}:{" "}
                         </Typography>
-                        <Balance balance={fee} variant="body2Strong" units={token} light options={{ maximumFractionDigits: 6 }} />
+                        <Balance
+                            balance={fee}
+                            variant="body2Strong"
+                            units={token}
+                            light
+                            options={{ maximumFractionDigits: config.maxNumberOfDecimals }}
+                        />
                     </Row>
                     <Row>
                         <Typography variant="body2Regular" color={(palette) => palette.primary}>
@@ -36,6 +48,7 @@ const BaseSendSummary = ({ amount, fee, token, children }: BaseSendSummaryFullPr
                             variant="body2Strong"
                             units={token}
                             color={(palette) => palette.primary}
+                            options={{ maximumFractionDigits: config.maxNumberOfDecimals }}
                         />
                     </Row>
                 </Col>
