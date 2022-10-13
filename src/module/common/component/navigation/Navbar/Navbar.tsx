@@ -1,12 +1,13 @@
 import { NavbarProps } from "./Navbar.types";
 import { NavbarRoot, BackIconRoot } from "./Navbar.styles";
 import { BackIcon } from "icons";
-import useNavigation from "../../../hook/useNavigation";
+import useNavigation from "module/common/hook/useNavigation";
 import { Col, Typography } from "@peersyst/react-native-components";
 import Steps from "module/common/component/display/Steps/Steps";
 
 const Navbar = ({ back, title, onBack, steps }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
+
     const goBack = () => {
         if (navigation.canGoBack()) {
             navigation.goBack();

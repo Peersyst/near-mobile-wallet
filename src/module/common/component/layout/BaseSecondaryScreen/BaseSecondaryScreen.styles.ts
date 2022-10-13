@@ -1,7 +1,6 @@
-import { Col } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
+import { ScrollView } from "react-native";
 
-export const ContentRoot = styled(Col)(() => ({
-    paddingVertical: 10,
-    height: "100%",
+export const SecondaryScreenScrollView = styled(ScrollView, { contentContainerStyle: { padding: 10 } })(({ theme }) => ({
+    backgroundColor: theme.palette.gray[100],
 }));

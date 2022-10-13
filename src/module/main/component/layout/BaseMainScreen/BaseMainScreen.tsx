@@ -2,8 +2,8 @@ import { NavbarProps } from "module/common/component/navigation/Navbar/Navbar.ty
 import { ReactNode } from "react";
 import Navbar from "module/common/component/navigation/Navbar/Navbar";
 import { View } from "react-native";
-import { Col } from "@peersyst/react-native-components";
 import Toolbar from "module/common/component/layout/Toolbar/Toolbar";
+import { BaseMainScreenRoot } from "module/main/component/layout/BaseMainScreen/BaseMainScreen.styles";
 
 export interface BaseMainScreenProps extends NavbarProps {
     children: ReactNode;
@@ -11,14 +11,14 @@ export interface BaseMainScreenProps extends NavbarProps {
 
 const BaseMainScreen = ({ children, ...navbarProps }: BaseMainScreenProps): JSX.Element => {
     return (
-        <Col flex={1}>
+        <BaseMainScreenRoot>
             {Object.entries(navbarProps).length > 0 && (
                 <Toolbar>
                     <Navbar {...navbarProps} />
                 </Toolbar>
             )}
             <View style={{ flex: 1 }}>{children}</View>
-        </Col>
+        </BaseMainScreenRoot>
     );
 };
 
