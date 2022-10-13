@@ -13,7 +13,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     splash: {
         image: "./assets/images/splash.png",
         resizeMode: "contain",
-        backgroundColor: "#ffffff",
+        backgroundColor: "#5F8AFA",
     },
     updates: {
         fallbackToCacheTimeout: 0,
@@ -30,21 +30,21 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         infoPlist: {
             NSCameraUsageDescription: "This app uses camera for QR code scanning.",
         },
-        splash: { image: "./assets/images/splash.png", resizeMode: "cover", backgroundColor: "#141414" },
+        splash: { image: "./assets/images/splash.png", resizeMode: "cover", backgroundColor: "#5F8AFA" },
     },
     get android(): ExpoConfig["android"] {
         return {
             package: "com.peersyst.nearmobilewallet",
             adaptiveIcon: {
                 foregroundImage: "./assets/images/adaptive-icon.png",
-                backgroundColor: "#141414",
+                backgroundColor: "#5F8AFA",
             },
             versionCode: Number((this.version || "").replace(/\./g, "") + process.env.BUILD_NUMBER) || 0,
             softwareKeyboardLayoutMode: "resize",
             splash: {
                 image: "./assets/images/splash.png",
                 resizeMode: "cover",
-                backgroundColor: "#141414",
+                backgroundColor: "#5F8AFA",
             },
         };
     },

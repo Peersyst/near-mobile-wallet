@@ -1,11 +1,7 @@
 import MainBottomNavigatorGroup from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup";
 import Stack from "stack-navigator";
 import SettingsNavigatorGroup from "module/settings/components/navigation/SettingsNavigatorGroup/SettingsNavigatorGroup";
-
-export enum MainScreens {
-    MAIN = "Main",
-    SETTINGS = "Settings",
-}
+import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
 
 const MainNavigator = () => {
     return (

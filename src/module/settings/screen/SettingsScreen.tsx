@@ -6,6 +6,7 @@ import { SettingsScreens } from "../components/navigation/SettingsNavigatorGroup
 
 const SettingsScreen = (): JSX.Element => {
     const translate = useTranslate();
+
     return (
         <BaseSecondaryScreen title={translate("settings")} back>
             <Col gap={10}>
