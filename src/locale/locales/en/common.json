@@ -1,7 +1,8 @@
 {
+    "number": "{{val, number}}",
+    "date": "{{val, datetime}}",
     "welcome": "Hello",
     "welcome_back": "Welcome back",
-    "name": "Charlie",
     "confirm_your_pin": "Confirm your PIN",
     "update_your_pin": "Update your PIN",
     "enter_your_pin": "Enter your PIN",
@@ -33,7 +34,8 @@
     "usd": "usd",
     "send": "send",
     "receive": "receive",
-    "receive_info": "CKBull creates a new receiving address for each transaction for greater privacy. However, if you receive a payment to a previously used address, it can also be used normally.",
+    "receive_info": "Neuron picks a new receiving address for better privacy. Please go to the Address Book if you want to use a previously used receiving address.",
+    "copy": "Copy",
     "import_wallet": "Import wallet",
     "enter_mnemonic": "Enter mnemonic",
     "mnemonic_input_text": "Type a word and press space or enter to add it or tap one to remove it.",
@@ -76,7 +78,7 @@
     "to": "To",
     "message": "Message",
     "send_confirmation_text": "Careful, transactions cannot be undone.\nTake your time to verify the information.",
-    "transaction_completed": "Transaction\ncompleted!",
+    "transaction_completed": "Transaction completed!",
     "available": "Available",
     "locked": "Locked",
     "current_apc": "Current APC",
@@ -158,5 +160,6 @@
     "unstake": "Unstake",
     "sentTo": "Sent to",
     "boughtFor": "Bought for",
-    "selectAToken": "Select a token"
+    "selectAToken": "Select a token",
+    "continue": "Continue"
 }

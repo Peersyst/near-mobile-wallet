@@ -7,6 +7,7 @@ import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
+import { config } from "config";
 
 describe("SendModal tests", () => {
     const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
@@ -56,6 +57,6 @@ describe("SendModal tests", () => {
         fireEvent.press(screen.getByText(translate("next")));
 
         // Confirmation
-        await waitFor(() => expect(screen.getByText("1,000,000")).toBeDefined());
+        await waitFor(() => expect(screen.getByText(`1,000,000 ${config.tokenName}`)).toBeDefined());
     });
 });

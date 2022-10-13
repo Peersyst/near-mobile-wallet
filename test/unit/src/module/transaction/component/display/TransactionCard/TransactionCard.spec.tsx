@@ -1,4 +1,4 @@
-import { render, translate } from "test-utils";
+import { render, translate, formatDate } from "test-utils";
 import TransactionCard from "module/transaction/component/display/TransactionCard/TransactionCard";
 import { transaction } from "mocks/transaction";
 import * as Recoil from "recoil";
@@ -17,7 +17,7 @@ describe("TransactionCard tests", () => {
 
     test("Renders correctly with amount", async () => {
         const screen = render(<TransactionCard transaction={transaction} />);
-        expect(screen.getByText("29/01/2022 - 00:00")).toBeDefined();
+        expect(screen.getByText(formatDate(transaction.timestamp))).toBeDefined();
         expect(screen.getByText(translate(TX_LABEL[transaction.type]))).toBeDefined();
         expect(screen.getByTestId("ArrowUpCircleIcon")).toBeDefined();
     });
