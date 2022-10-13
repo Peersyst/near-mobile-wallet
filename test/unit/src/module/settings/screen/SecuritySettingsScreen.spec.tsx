@@ -14,14 +14,14 @@ describe("Test for the SecuritySettingsScreen", () => {
     });
 
     test("Renders correctly", () => {
-        const screen = render(<SecuritySettingsScreen navigation={jest.fn() as any} />);
+        const screen = render(<SecuritySettingsScreen />);
         expect(screen.getByText(translate("change_passcode")));
     });
 
     test("Open confirm modal to update pin", () => {
         const showModal = jest.fn();
         jest.spyOn(Genesys, "useModal").mockReturnValue({ showModal } as any);
-        const screen = render(<SecuritySettingsScreen navigation={jest.fn() as any} />);
+        const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("change_passcode"));
         fireEvent.press(button);
         expect(showModal).toHaveBeenCalled();
@@ -33,7 +33,7 @@ describe("Test for the SecuritySettingsScreen", () => {
         const clearSettingsStorage = jest.spyOn(SettingsStorage, "clear").mockReturnValue(SuccessApiCall(undefined));
         const resetWalletState = jest.fn();
         jest.spyOn(Recoil, "useResetRecoilState").mockReturnValue(resetWalletState);
-        const screen = render(<SecuritySettingsScreen navigation={jest.fn() as any} />);
+        const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("delete_data"));
         fireEvent.press(button);
         expect(screen.getByText(translate("delete_data_text"))).toBeDefined();
@@ -56,7 +56,7 @@ describe("Test for the SecuritySettingsScreen", () => {
             jest.fn(),
         ]);
         const clearInstances = jest.spyOn(serviceInstancesMap, "clear").mockReturnValue();
-        const screen = render(<SecuritySettingsScreen navigation={jest.fn() as any} />);
+        const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("delete_a_wallet"));
         fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[0].name));
         fireEvent.press(button);
@@ -83,7 +83,7 @@ describe("Test for the SecuritySettingsScreen", () => {
         serviceInstancesMap.set(1, {} as any);
         const setInstance = jest.spyOn(serviceInstancesMap, "set").mockReturnValue({} as any);
         const deleteInstance = jest.spyOn(serviceInstancesMap, "delete").mockReturnValue({} as any);
-        const screen = render(<SecuritySettingsScreen navigation={jest.fn() as any} />);
+        const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("delete_a_wallet"));
         fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[0].name));
         fireEvent.press(button);
