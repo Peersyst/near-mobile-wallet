@@ -2,7 +2,6 @@ import { useLogoPageFlex, useLogoPageGradient } from "module/common/component/la
 import { TabPanel, Tabs, useTabs } from "@peersyst/react-native-components";
 import { useState } from "react";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
-import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
 import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
@@ -17,7 +16,6 @@ import LightThemeProvider from "module/common/component/util/ThemeProvider/Light
 import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 
 export enum CreateWalletScreens {
-    SET_WALLET_NAME,
     WALLET_ADVISES,
     WALLET_MNEMONIC,
     PICK_WALLET_MNEMONIC,
@@ -41,14 +39,7 @@ const CreateWalletNavigatorGroup = () => {
     const resetCreateWalletState = useResetRecoilState(createWalletState);
 
     const handleBack = () => {
-        if (activeTab === CreateWalletScreens.SET_WALLET_NAME) {
-            setShowGlass(false);
-        } else if (activeTab === CreateWalletScreens.SET_WALLET_PIN) {
-            setShowPin(false);
-            setShowGlass(true);
-            setActiveTab(CreateWalletScreens.SET_WALLET_NAME);
-        } else if (activeTab === CreateWalletScreens.WALLET_ADVISES) {
-            setShowPin(true);
+        if (activeTab === CreateWalletScreens.WALLET_ADVISES) {
             setShowGlass(false);
         } else if (activeTab >= 0) setActiveTab((t) => t - 1);
     };
@@ -57,13 +48,15 @@ const CreateWalletNavigatorGroup = () => {
         if (t === CreateWalletScreens.SET_WALLET_PIN) {
             setShowPin(true);
             setShowGlass(false);
-        } else if (t === CreateWalletScreens.SET_WALLET_NAME || t === CreateWalletScreens.WALLET_ADVISES) {
+        } else if (t === CreateWalletScreens.WALLET_ADVISES || t === CreateWalletScreens.PICK_WALLET_MNEMONIC) {
             setShowPin(false);
             setShowGlass(true);
             setActiveTab(t);
         } else if (t === CreateWalletScreens.CREATE_WALLET_SUCCESS) {
+            setShowPin(false);
             setShowGlass(false);
             setShowSuccess(true);
+            setActiveTab(t);
         } else setActiveTab(t);
     };
 
@@ -86,12 +79,6 @@ const CreateWalletNavigatorGroup = () => {
                     navbar={{ back: true, title: translate("create_wallet"), onBack: handleBack, steps: { index: activeTab, length: 4 } }}
                     renderBackdrop={false}
                 >
-                    <TabPanel index={CreateWalletScreens.SET_WALLET_NAME}>
-                        <SetWalletNameScreen
-                            onSubmit={() => handleTabChange(CreateWalletScreens.SET_WALLET_PIN)}
-                            submitText={translate("set_pin")}
-                        />
-                    </TabPanel>
                     <TabPanel index={CreateWalletScreens.WALLET_ADVISES}>
                         <WalletAdvisesScreen
                             onNextScreen={() => handleTabChange(CreateWalletScreens.WALLET_MNEMONIC)}
@@ -102,15 +89,15 @@ const CreateWalletNavigatorGroup = () => {
                         <WalletMnemonicScreen onNextScreen={() => handleTabChange(CreateWalletScreens.PICK_WALLET_MNEMONIC)} />
                     </TabPanel>
                     <TabPanel index={CreateWalletScreens.PICK_WALLET_MNEMONIC}>
-                        <PickWalletMnemonicScreen onSubmit={() => handleTabChange(CreateWalletScreens.CREATE_WALLET_SUCCESS)} />
+                        <PickWalletMnemonicScreen onSubmit={() => handleTabChange(CreateWalletScreens.SET_WALLET_PIN)} />
                     </TabPanel>
                 </CardNavigatorModal>
             </LightThemeProvider>
             <DarkThemeProvider>
                 <TabPanel index={CreateWalletScreens.SET_WALLET_PIN}>
                     <SetWalletPinScreen
-                        onSuccess={() => handleTabChange(CreateWalletScreens.WALLET_ADVISES)}
-                        onCancel={() => handleTabChange(CreateWalletScreens.SET_WALLET_NAME)}
+                        onSuccess={() => handleTabChange(CreateWalletScreens.CREATE_WALLET_SUCCESS)}
+                        onCancel={() => handleTabChange(CreateWalletScreens.PICK_WALLET_MNEMONIC)}
                     />
                 </TabPanel>
                 <TabPanel index={CreateWalletScreens.CREATE_WALLET_SUCCESS}>
