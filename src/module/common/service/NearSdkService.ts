@@ -34,6 +34,9 @@ export class NearSDKService {
         };
     }
 
+    // --------------------------------------------------------------
+    // -- CREATION FUNCTIONS ----------------------------------------
+    // --------------------------------------------------------------
     static async createAndConnect(chain: Chains, nodeUrl: string, nameId: string): Promise<NearSDKService> {
         const { seedPhrase, secretKey } = generateSeedPhrase();
         const service = new NearSDKService(chain, nodeUrl, secretKey, nameId, seedPhrase);
@@ -54,6 +57,9 @@ export class NearSDKService {
         return service;
     }
 
+    // --------------------------------------------------------------
+    // -- COMMON FUNCTIONS ------------------------------------------
+    // --------------------------------------------------------------
     private async getAccount(): Promise<Account> {
         if (!this.connection) {
             throw new Error("Not connected");
@@ -73,6 +79,9 @@ export class NearSDKService {
         return decode(encode(this.keyPair.getPublicKey().data)).toString("hex");
     }
 
+    // --------------------------------------------------------------
+    // -- WALLET STATE FUNCTIONS ------------------------------------
+    // --------------------------------------------------------------
     async getAccountBalance(): Promise<AccountBalance> {
         const account = await this.getAccount();
         return account.getAccountBalance();
@@ -83,10 +92,14 @@ export class NearSDKService {
         return account.state();
     }
 
+    // --------------------------------------------------------------
+    // -- TRANSACTIONS FUNCTIONS ------------------------------------
+    // --------------------------------------------------------------
     // Amount is in near
     async sendTransaction(to: string, amount: string): Promise<string> {
         const account = await this.getAccount();
         const amountInYocto = utils.format.parseNearAmount(amount);
+
         const tx = await account.sendMoney(to, amountInYocto);
         return tx.transaction_outcome.id;
     }
@@ -98,5 +111,18 @@ export class NearSDKService {
 
         const address = this.getAddress();
         return this.connection.connection.provider.txStatus(txHash, address);
+    }
+
+    // --------------------------------------------------------------
+    // -- STAKING FUNCTIONS -----------------------------------------
+    // --------------------------------------------------------------
+    // Amount is in near
+    // Staking without validator
+    async stake(amount: string): Promise<string> {
+        const account = await this.getAccount();
+        const amountInYocto = utils.format.parseNearAmount(amount);
+
+        const tx = await account.stake(this.keyPair.getPublicKey(), amountInYocto);
+        return tx.transaction_outcome.id;
     }
 }
