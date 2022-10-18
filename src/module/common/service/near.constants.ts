@@ -1,0 +1,10 @@
+export const NFT_TRANSFER_METHOD = "nft_transfer";
+export const NFT_TRANSFER_GAS = "30000000000000";
+export const FT_TRANSFER_METHOD = "ft_transfer";
+export const STORAGE_BALANCE_METHOD = "storage_balance_of";
+export const STORAGE_DEPOSIT_METHOD = "storage_deposit";
+export const TOKEN_TRANSFER_DEPOSIT = "1";
+export const FT_TRANSFER_GAS = "15000000000000";
+export const FT_STORAGE_DEPOSIT_GAS = "30000000000000";
+export const FT_MINIMUM_STORAGE_BALANCE = "1250000000000000000000";
+export const FT_MINIMUM_STORAGE_BALANCE_LARGE = "12500000000000000000000";

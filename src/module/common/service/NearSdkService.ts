@@ -3,6 +3,18 @@ import { AccountBalance } from "near-api-js/lib/account";
 import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
+import {
+    NFT_TRANSFER_METHOD,
+    NFT_TRANSFER_GAS,
+    TOKEN_TRANSFER_DEPOSIT,
+    FT_TRANSFER_GAS,
+    FT_STORAGE_DEPOSIT_GAS,
+    FT_TRANSFER_METHOD,
+    STORAGE_BALANCE_METHOD,
+    STORAGE_DEPOSIT_METHOD,
+    FT_MINIMUM_STORAGE_BALANCE,
+    FT_MINIMUM_STORAGE_BALANCE_LARGE,
+} from "./near.constants";
 
 export enum Chains {
     MAINNET = "mainnet",
@@ -79,6 +91,29 @@ export class NearSDKService {
         return decode(encode(this.keyPair.getPublicKey().data)).toString("hex");
     }
 
+    async accountExists(nameId: string): Promise<boolean> {
+        // Could also be checked through our indexer api instead of rpc
+
+        if (!this.connection) {
+            throw new Error("Not connected");
+        }
+
+        let exists = true;
+        try {
+            await this.connection.connection.provider.query<AccountView>({
+                request_type: "view_account",
+                account_id: nameId,
+                finality: "final",
+            });
+        } catch (e: any) {
+            if (e.type === "AccountDoesNotExist") {
+                exists = false;
+            }
+        }
+
+        return exists;
+    }
+
     // --------------------------------------------------------------
     // -- WALLET STATE FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
@@ -123,6 +158,81 @@ export class NearSDKService {
         const amountInYocto = utils.format.parseNearAmount(amount);
 
         const tx = await account.stake(this.keyPair.getPublicKey(), amountInYocto);
+        return tx.transaction_outcome.id;
+    }
+
+    // --------------------------------------------------------------
+    // -- TOKENS FUNCTIONS ------------------------------------------
+    // --------------------------------------------------------------
+    private async isStorageBalanceAvailable(contractId: string, accountId: string): Promise<boolean> {
+        const account = await this.getAccount();
+
+        const storageBalance = await account.viewFunction(contractId, STORAGE_BALANCE_METHOD, { account_id: accountId });
+        return storageBalance?.total !== undefined;
+    }
+
+    private async transferStorageDeposit(contractId: string, receiverId: string): Promise<string> {
+        const account = await this.getAccount();
+        let tx: FinalExecutionOutcome;
+
+        try {
+            tx = await account.functionCall({
+                contractId,
+                methodName: STORAGE_DEPOSIT_METHOD,
+                args: { account_id: receiverId, registration_only: true },
+                gas: FT_STORAGE_DEPOSIT_GAS,
+                attachedDeposit: FT_MINIMUM_STORAGE_BALANCE,
+            });
+        } catch (e: any) {
+            if (e.message.includes("attached deposit is less than")) {
+                tx = await account.functionCall({
+                    contractId,
+                    methodName: STORAGE_DEPOSIT_METHOD,
+                    args: { account_id: receiverId, registration_only: true },
+                    gas: FT_STORAGE_DEPOSIT_GAS,
+                    attachedDeposit: FT_MINIMUM_STORAGE_BALANCE_LARGE,
+                });
+            } else {
+                throw e;
+            }
+        }
+
+        return tx.transaction_outcome.id;
+    }
+
+    async sendFungibleTokens(contractId: string, amount: number, receiverId: string, memo: string): Promise<string> {
+        const account = await this.getAccount();
+
+        const storageAvailable = await this.isStorageBalanceAvailable(contractId, receiverId);
+        if (!storageAvailable) {
+            await this.transferStorageDeposit(contractId, receiverId);
+        }
+
+        const tx = await account.functionCall({
+            contractId,
+            methodName: FT_TRANSFER_METHOD,
+            args: { amount, memo, receiver_id: receiverId },
+            gas: FT_TRANSFER_GAS,
+            attachedDeposit: TOKEN_TRANSFER_DEPOSIT,
+        });
+
+        return tx.transaction_outcome.id;
+    }
+
+    // --------------------------------------------------------------
+    // -- NFT FUNCTIONS ---------------------------------------------
+    // --------------------------------------------------------------
+    async sendNFT(contractId: string, tokenId: string, receiverId: string): Promise<string> {
+        const account = await this.getAccount();
+
+        const tx = await account.functionCall({
+            contractId,
+            methodName: NFT_TRANSFER_METHOD,
+            args: { receiver_id: receiverId, token_id: tokenId },
+            gas: NFT_TRANSFER_GAS,
+            attachedDeposit: TOKEN_TRANSFER_DEPOSIT,
+        });
+
         return tx.transaction_outcome.id;
     }
 }
