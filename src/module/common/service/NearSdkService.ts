@@ -161,6 +161,13 @@ export class NearSDKService {
         return tx.transaction_outcome.id;
     }
 
+    async unstake(): Promise<string> {
+        const account = await this.getAccount();
+
+        const tx = await account.stake(this.keyPair.getPublicKey(), 0);
+        return tx.transaction_outcome.id;
+    }
+
     // --------------------------------------------------------------
     // -- TOKENS FUNCTIONS ------------------------------------------
     // --------------------------------------------------------------
