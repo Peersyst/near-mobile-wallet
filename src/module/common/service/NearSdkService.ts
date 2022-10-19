@@ -3,7 +3,19 @@ import { AccountBalance } from "near-api-js/lib/account";
 import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
+
 import {
+    MINIMUM_UNSTAKED,
+    DEPOSIT_STAKE_METHOD,
+    UNSTAKE_METHOD,
+    UNSTAKE_ALL_METHOD,
+    WITHDRAW_METHOD,
+    WITHDRAW_ALL_METHOD,
+    ACCOUNT_TOTAL_BALANCE_METHOD,
+    ACCOUNT_STAKED_BALANCE_METHOD,
+    ACCOUNT_UNSTAKED_BALANCE_METHOD,
+    IS_ACCOUNT_UNSTAKED_BALANCE_AVAILABLE_METHOD,
+    REWARD_FEE_FRACTION_METHOD,
     NFT_TRANSFER_METHOD,
     NFT_TRANSFER_GAS,
     TOKEN_TRANSFER_DEPOSIT,
@@ -22,6 +34,19 @@ export enum Chains {
     TESTNET = "testnet",
     BETANET = "betanet",
     LOCAL = "local",
+}
+
+export interface StakingBalance {
+    staked: number;
+    pending: number;
+    available: number;
+    rewardsEarned?: number;
+}
+
+export interface Validator {
+    accountId: string;
+    fee: number | null;
+    stakingBalance?: StakingBalance;
 }
 
 export class NearSDKService {
@@ -226,8 +251,8 @@ export class NearSDKService {
     // --------------------------------------------------------------
     // -- STAKING FUNCTIONS -----------------------------------------
     // --------------------------------------------------------------
-    // Amount is in near
     // Staking without validator
+    // Amount is in near
     async stake(amount: string): Promise<string> {
         const account = await this.getAccount();
         const amountInYocto = utils.format.parseNearAmount(amount);
@@ -236,10 +261,176 @@ export class NearSDKService {
         return tx.transaction_outcome.id;
     }
 
+    // Staking without validator
     async unstake(): Promise<string> {
         const account = await this.getAccount();
 
         const tx = await account.stake(this.keyPair.getPublicKey(), 0);
+        return tx.transaction_outcome.id;
+    }
+
+    private async getValidatorFee(validatorId: string): Promise<number> {
+        const account = await this.getAccount();
+
+        const resp = await account.viewFunction({ contractId: validatorId, methodName: REWARD_FEE_FRACTION_METHOD, args: {} });
+        return +((resp.numerator * 100) / resp.denominator);
+    }
+
+    private async getValidatorBalance(validatorId: string, validatorDeposit?: number): Promise<StakingBalance> {
+        const account = await this.getAccount();
+        const stakingBalance: StakingBalance = {
+            staked: 0,
+            available: 0,
+            pending: 0,
+        };
+
+        const total = await account.viewFunction({
+            contractId: validatorId,
+            methodName: ACCOUNT_TOTAL_BALANCE_METHOD,
+            args: { account_id: account.accountId },
+        });
+
+        if (validatorDeposit) {
+            stakingBalance.rewardsEarned = total - validatorDeposit;
+        }
+
+        if (parseInt(total, 10) > 0) {
+            const stakedStr = await account.viewFunction({
+                contractId: validatorId,
+                methodName: ACCOUNT_STAKED_BALANCE_METHOD,
+                args: { account_id: account.accountId },
+            });
+            stakingBalance.staked = parseInt(stakedStr, 10);
+
+            const unstakedStr = await account.viewFunction({
+                contractId: validatorId,
+                methodName: ACCOUNT_UNSTAKED_BALANCE_METHOD,
+                args: { account_id: account.accountId },
+            });
+
+            if (parseInt(unstakedStr, 10) > MINIMUM_UNSTAKED) {
+                const isAvailable = await account.viewFunction({
+                    contractId: validatorId,
+                    methodName: IS_ACCOUNT_UNSTAKED_BALANCE_AVAILABLE_METHOD,
+                    args: { account_id: account.accountId },
+                });
+
+                if (isAvailable) {
+                    stakingBalance.available = parseInt(unstakedStr, 10);
+                } else {
+                    stakingBalance.pending = parseInt(unstakedStr, 10);
+                }
+            }
+        }
+
+        return stakingBalance;
+    }
+
+    private async getAllValidatorIds(): Promise<string[]> {
+        if (!this.connection) {
+            throw new Error("Not connected");
+        }
+
+        const status = await this.connection.connection.provider.status();
+        return status.validators.map((validator: any) => validator.account_id);
+    }
+
+    private async getValidatorDataFromId(validatorId: string, queryBalance: boolean): Promise<Validator> {
+        let fee: number | null;
+        let stakingBalance: StakingBalance | null;
+
+        try {
+            fee = await this.getValidatorFee(validatorId);
+
+            if (queryBalance) {
+                stakingBalance = await this.getValidatorBalance(validatorId);
+                return { accountId: validatorId, fee, stakingBalance };
+            }
+        } catch (e) {
+            fee = null;
+        }
+
+        return { accountId: validatorId, fee };
+    }
+
+    async getAllValidators(): Promise<Validator[]> {
+        const validators = await this.getAllValidatorIds();
+        const validatorsProms = validators.map((validator) => this.getValidatorDataFromId(validator, true));
+
+        return Promise.all(validatorsProms);
+    }
+
+    async getTotalStakingBalance(): Promise<StakingBalance> {
+        // TODO: improve with indexer api of only staking validators
+        const validators = await this.getAllValidators();
+        const stakingBalance: StakingBalance = {
+            staked: validators.reduce((ant, act) => ant + (act.stakingBalance?.staked || 0), 0),
+            available: validators.reduce((ant, act) => ant + (act.stakingBalance?.available || 0), 0),
+            pending: validators.reduce((ant, act) => ant + (act.stakingBalance?.pending || 0), 0),
+        };
+
+        return stakingBalance;
+    }
+
+    // Amount is in near
+    async depositAndStakeFromValidator(validatorId: string, amount: string): Promise<string> {
+        const account = await this.getAccount();
+        const amountInYocto = utils.format.parseNearAmount(amount);
+
+        const tx = await account.functionCall({
+            contractId: validatorId,
+            methodName: DEPOSIT_STAKE_METHOD,
+            args: {},
+            attachedDeposit: amountInYocto,
+        });
+        return tx.transaction_outcome.id;
+    }
+
+    // Amount is in near
+    async unstakeFromValidator(validatorId: string, amount: string): Promise<string> {
+        const account = await this.getAccount();
+        const amountInYocto = utils.format.parseNearAmount(amount);
+
+        const tx = await account.functionCall({
+            contractId: validatorId,
+            methodName: UNSTAKE_METHOD,
+            args: { amount: amountInYocto },
+        });
+        return tx.transaction_outcome.id;
+    }
+
+    async unstakeAllFromValidator(validatorId: string): Promise<string> {
+        const account = await this.getAccount();
+
+        const tx = await account.functionCall({
+            contractId: validatorId,
+            methodName: UNSTAKE_ALL_METHOD,
+            args: {},
+        });
+        return tx.transaction_outcome.id;
+    }
+
+    // Amount is in near
+    async withdrawFromValidator(validatorId: string, amount: string): Promise<string> {
+        const account = await this.getAccount();
+        const amountInYocto = utils.format.parseNearAmount(amount);
+
+        const tx = await account.functionCall({
+            contractId: validatorId,
+            methodName: WITHDRAW_METHOD,
+            args: { amount: amountInYocto },
+        });
+        return tx.transaction_outcome.id;
+    }
+
+    async withdrawAllFromValidator(validatorId: string): Promise<string> {
+        const account = await this.getAccount();
+
+        const tx = await account.functionCall({
+            contractId: validatorId,
+            methodName: WITHDRAW_ALL_METHOD,
+            args: {},
+        });
         return tx.transaction_outcome.id;
     }
 
