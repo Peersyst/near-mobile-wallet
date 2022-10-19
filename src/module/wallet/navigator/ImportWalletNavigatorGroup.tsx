@@ -2,7 +2,6 @@ import { useLogoPageFlex, useLogoPageGradient } from "module/common/component/la
 import { TabPanel, Tabs, useTabs } from "@peersyst/react-native-components";
 import { useState } from "react";
 import { AuthScreens } from "module/auth/AuthNavigatorGroup";
-import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
 import ImportWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import { useBackHandler } from "@react-native-community/hooks";
@@ -16,7 +15,6 @@ import LightThemeProvider from "module/common/component/util/ThemeProvider/Light
 import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 
 export enum ImportWalletScreens {
-    SET_WALLET_NAME,
     WALLET_ADVISES,
     ENTER_WALLET_MNEMONIC,
     SET_WALLET_PIN,
@@ -39,7 +37,7 @@ const ImportWalletNavigatorGroup = () => {
     });
 
     const handleBack = () => {
-        if (activeTab === ImportWalletScreens.SET_WALLET_NAME) {
+        if (activeTab === ImportWalletScreens.WALLET_ADVISES) {
             setShowGlass(false);
         } else if (activeTab === ImportWalletScreens.SET_WALLET_PIN) {
             setShowPin(false);
@@ -76,14 +74,8 @@ const ImportWalletNavigatorGroup = () => {
                     onClose={() => setShowGlass(false)}
                     open={showGlass}
                     onExited={handleGlassExit}
-                    navbar={{ back: true, title: translate("import_wallet"), onBack: handleBack, steps: { index: activeTab, length: 3 } }}
+                    navbar={{ back: true, title: translate("import_wallet"), onBack: handleBack, steps: { index: activeTab, length: 2 } }}
                 >
-                    <TabPanel index={ImportWalletScreens.SET_WALLET_NAME}>
-                        <SetWalletNameScreen
-                            onSubmit={() => handleTabChange(ImportWalletScreens.WALLET_ADVISES)}
-                            submitText={translate("enter_mnemonic")}
-                        />
-                    </TabPanel>
                     <TabPanel index={ImportWalletScreens.WALLET_ADVISES}>
                         <WalletAdvisesScreen
                             onNextScreen={() => handleTabChange(ImportWalletScreens.ENTER_WALLET_MNEMONIC)}
