@@ -1,6 +1,7 @@
 import { connect, keyStores, utils, Near, ConnectConfig, KeyPair, Account } from "near-api-js";
 import { AccountBalance } from "near-api-js/lib/account";
 import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
+import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
 
@@ -35,7 +36,7 @@ import {
     NFT_TOKEN_METADATA_METHOD,
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "./near.constants";
-import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
+import { mockNfts } from "./near-nfts.mock";
 
 export enum Chains {
     MAINNET = "mainnet",
@@ -773,6 +774,8 @@ export class NearSDKService {
     }
 
     async getNfts(): Promise<NftToken[]> {
+        // TODO: remove after testing
+        return mockNfts;
         const resp = await fetch(`${this.baseApiUrl}/accounts/${this.getAddress()}/likely-nfts?fromBlockTimestamp=0`);
         if (resp.status !== 200) {
             throw new Error("Bad response status");
