@@ -237,6 +237,14 @@ export class NearSDKService {
         return exists;
     }
 
+    static isImplicitAddress(accountId: string): boolean {
+        return accountId.length === 64 && /[\da-f]/i.test(accountId);
+    }
+
+    async accountCanReceive(accountId: string): Promise<boolean> {
+        return NearSDKService.isImplicitAddress(accountId) || this.accountExists(accountId);
+    }
+
     // Amount is in near
     private async createNewAccount(nameId: string, publicKey: PublicKey, amount: string): Promise<string> {
         const account = await this.getAccount();
