@@ -37,6 +37,7 @@ import {
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "./near.constants";
 import { mockNfts } from "./near-nfts.mock";
+import { DepositInDAOParams, WithdrawOrUnlockParams } from "module/common/service/CkbSdkService.types";
 
 export enum Chains {
     MAINNET = "mainnet",
@@ -795,5 +796,16 @@ export class NearSDKService {
         }
 
         return nftTokens;
+    }
+
+    // --------------------------------------------------------------
+    // -- MOCK CKBSDKService unimplemented methods ------------------
+    // --------------------------------------------------------------
+    async depositInDAO(params: DepositInDAOParams): Promise<string> {
+        return "";
+    }
+
+    async withdrawOrUnlock({ unlockableAmount, mnemonic }: WithdrawOrUnlockParams): Promise<string> {
+        return "";
     }
 }

@@ -1,8 +1,8 @@
 import { atom } from "recoil";
 import { StorageWallet } from "module/wallet/WalletStorage";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { NearSDKService } from "module/common/service/NearSdkService";
 
-export const serviceInstancesMap = new Map<number, { testnet: CKBSDKService; mainnet: CKBSDKService }>();
+export const serviceInstancesMap = new Map<number, { testnet: NearSDKService; mainnet: NearSDKService }>();
 
 export type Wallet = Omit<StorageWallet, "mnemonic"> & { synchronizing?: boolean };
 
