@@ -3,7 +3,7 @@ import { QueryResult } from "query-utils";
 import { useQuery } from "react-query";
 import { NewsDto } from "../types";
 
-const rrssUriProvider = "https://fetchrss.com/rss/6239aa2ceb62c371b8448ee26239aa120841546894777912.xml";
+const rrssUriProvider = "http://fetchrss.com/rss/6239aa2ceb62c371b8448ee2635938580dd00758d37f33a2.xml";
 
 const useGetNews = (): QueryResult<NewsDto[]> =>
     useQuery(["news"], async () => {
@@ -16,8 +16,7 @@ const useGetNews = (): QueryResult<NewsDto[]> =>
             removeNSPrefix: true,
         };
         const parser = new XMLParser(options);
-        const jsonObj = parser.parse(data)["rss"]["channel"]["item"];
-        return jsonObj;
+        return parser.parse(data)["rss"]["channel"]["item"];
     });
 
 export default useGetNews;
