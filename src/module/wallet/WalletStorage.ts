@@ -17,7 +17,8 @@ export interface SecureWalletInfo {
     index: number;
     name: string;
     colorIndex: number;
-    mnemonic: string[];
+    mnemonic?: string[];
+    secret?: string;
 }
 
 export type StorageWallet = SecureWalletInfo & UnencryptedWalletInfo;
@@ -77,6 +78,12 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         const secureStorage = await this.getSecure();
         const walletSecureInfo = secureStorage?.wallets.find((w) => w.index === index);
         return walletSecureInfo?.mnemonic;
+    }
+
+    async getSecret(index: number): Promise<string | undefined> {
+        const secureStorage = await this.getSecure();
+        const walletSecureInfo = secureStorage?.wallets.find((w) => w.index === index);
+        return walletSecureInfo?.secret;
     }
 
     async getInitialState(index: number, chain: Chain): Promise<WalletState | undefined> {
