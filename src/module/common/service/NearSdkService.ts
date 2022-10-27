@@ -118,6 +118,8 @@ export class NearSDKService {
     private chain: Chains;
     private mnemonic?: string;
     private baseApiUrl: string;
+    private static nameRegex = /^(([a-z\d]+[-_])*[a-z\d]+\.)*([a-z\d]+[-_])*[a-z\d]+$/;
+    private static addressRegex = /[\da-f]/i;
 
     constructor(chain: Chains, nodeUrl: string, baseApiUrl: string, secretKey: string, nameId: string, mnemonic?: string) {
         this.chain = chain;
@@ -236,6 +238,31 @@ export class NearSDKService {
         }
 
         return exists;
+    }
+
+    static isImplicitAddress(accountId: string): boolean {
+        return accountId.length === 64 && NearSDKService.addressRegex.test(accountId);
+    }
+
+    static nameIdIsValid(nameId: string): boolean {
+        return nameId.length >= 2 && nameId.length <= 64 && NearSDKService.nameRegex.test(nameId);
+    }
+
+    async accountCanReceive(accountId: string): Promise<boolean> {
+        return NearSDKService.isImplicitAddress(accountId) || this.accountExists(accountId);
+    }
+
+    async nameIsChoosalbe(nameId: string): Promise<boolean> {
+        const exist = await this.accountExists(nameId);
+
+        const address = this.getAddress();
+        const addressParts = address.split(".").length;
+        const nameParts = nameId.split(".").length;
+
+        const nameIsSuper = nameParts === 2 && nameId.indexOf(`.${this.chain}`) !== -1;
+        const nameIsSub = nameId.indexOf(address) !== -1 && nameParts === addressParts + 1;
+
+        return NearSDKService.nameIdIsValid(nameId) && !exist && (nameIsSuper || nameIsSub);
     }
 
     // Amount is in near
