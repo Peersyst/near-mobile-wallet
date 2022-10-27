@@ -19,11 +19,11 @@ declare module "@peersyst/react-native-components" {
         ckbMainnetUrl: string;
         indexerMainnetUrl: string;
         faucetUrl: string;
-        testnetExplorerApi: string;
-        mainnetExplorerApi: string;
         maxNumberOfDecimals: number;
         enableMainnet: boolean;
         tokenName: string;
+        mainnetNodeUrl: string;
+        testnetNodeUrl: string;
     }
 
     export interface CreateConfig {
@@ -37,11 +37,11 @@ declare module "@peersyst/react-native-components" {
         ckbMainnetUrl: string;
         indexerMainnetUrl: string;
         faucetUrl: string;
-        testnetExplorerApi: string;
-        mainnetExplorerApi: string;
         maxNumberOfDecimals: number;
         enableMainnet: boolean;
         tokenName: string;
+        mainnetNodeUrl: string;
+        testnetNodeUrl: string;
     }
 
     export interface ExtraValidators {

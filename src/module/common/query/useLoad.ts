@@ -1,16 +1,15 @@
 import { useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
+import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
-import useServiceInstanceCreation from "module/wallet/hook/useServiceInstanceCreation";
+import serviceInstanceCreation from "module/wallet/hook/useServiceInstanceCreation";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
     const setWalletState = useSetRecoilState(walletState);
     const setSettingsState = useSetRecoilState(settingsState);
-    const createServiceInstance = useServiceInstanceCreation();
 
     useEffect(() => {
         const getStorage = async () => {
@@ -32,16 +31,9 @@ export function useLoad(): boolean {
                 setSettingsState(settings);
 
                 for (let i = 0; i < wallets.length; i += 1) {
-                    const { testnet, mainnet, mnemonic } = wallets.find((w) => w.index === i)!;
-                    await createServiceInstance(i, mnemonic, testnet?.initialState, mainnet?.initialState);
+                    const { mnemonic, name, secret } = wallets.find((w) => w.index === i)!;
+                    await serviceInstanceCreation({ walletIndex: i, nameId: name, mnemonic, secretKey: secret });
                 }
-
-                //Use another thread
-                setTimeout(async () => {
-                    for (let i = 0; i < serviceInstancesMap.size; i += 1) {
-                        await serviceInstancesMap.get(i)?.[settings.network]?.synchronize();
-                    }
-                });
             }
             setLoading(false);
         };
