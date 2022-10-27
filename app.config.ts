@@ -5,8 +5,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     // @ts-ignore
     expo: {
         eas: {
-            projectId: "1b97d88a-b249-45d2-8b0d-aa1724191c39"
-        }
+            projectId: "1b97d88a-b249-45d2-8b0d-aa1724191c39",
+        },
     },
     name: "NEAR Mobile Wallet",
     slug: "NEARMobileWallet",
