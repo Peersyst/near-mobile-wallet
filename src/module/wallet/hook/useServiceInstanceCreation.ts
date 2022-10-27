@@ -16,7 +16,7 @@ const useServiceInstanceCreation = (): ((
             serviceInstancesMap.set(index, {
                 testnet: new NearSDKService(
                     Chains.TESTNET,
-                    config.ckbTestnetUrl,
+                    config.indexerTestnetUrl,
                     config.testnetExplorerApi,
                     "secretKey",
                     nameId,
@@ -24,7 +24,7 @@ const useServiceInstanceCreation = (): ((
                 ),
                 mainnet: new NearSDKService(
                     Chains.MAINNET,
-                    config.ckbMainnetUrl,
+                    config.indexerMainnetUrl,
                     config.mainnetExplorerApi,
                     "secretKey",
                     nameId,

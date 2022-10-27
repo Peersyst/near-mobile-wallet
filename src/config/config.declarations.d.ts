@@ -24,6 +24,8 @@ declare module "@peersyst/react-native-components" {
         maxNumberOfDecimals: number;
         enableMainnet: boolean;
         tokenName: string;
+        indexerTestnetSecretKey: string;
+        indexerMainnetSecretKey: string;
     }
 
     export interface CreateConfig {
@@ -41,6 +43,9 @@ declare module "@peersyst/react-native-components" {
         mainnetExplorerApi: string;
         maxNumberOfDecimals: number;
         enableMainnet: boolean;
+        tokenName: string;
+        indexerTestnetSecretKey: string;
+        indexerMainnetSecretKey: string;
     }
 
     export interface ExtraValidators {
