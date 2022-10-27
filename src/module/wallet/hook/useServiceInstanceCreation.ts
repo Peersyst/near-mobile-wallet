@@ -15,7 +15,7 @@ interface UseServiceInstanceCreationByMnemonicParams extends UseServiceInstanceC
 }
 
 interface UseServiceInstanceCreationBySecretParams extends UseServiceInstanceCreationBaseParams {
-    secret: string;
+    secretKey: string;
 }
 
 interface CreateNearServiceParams {
@@ -23,6 +23,11 @@ interface CreateNearServiceParams {
     secretKey: string;
     nameId: string;
     mnemonic?: string;
+}
+
+interface UseServiceInstanceCreationParams {
+    mnemonic?: string[];
+    secretKey?: string;
 }
 
 function createNearService({ chain, secretKey, nameId, mnemonic }: CreateNearServiceParams) {
@@ -49,26 +54,16 @@ export const useServiceInstanceCreationByMnemonic = (): ((params: UseServiceInst
 };
 
 export const useServiceInstanceCreationBySecret = (): ((params: UseServiceInstanceCreationBySecretParams) => Promise<void>) => {
-    return async ({ walletIndex, nameId, secret }) => {
+    return async ({ walletIndex, nameId, secretKey }) => {
         if (!serviceInstancesMap.has(walletIndex)) {
             serviceInstancesMap.set(walletIndex, {
-                testnet: new NearSDKService(
-                    Chains.TESTNET,
-                    config.indexerTestnetUrl,
-                    config.testnetExplorerApi,
-                    "secretKey",
-                    nameId,
-                    stringMnemonic,
-                ),
-                mainnet: new NearSDKService(
-                    Chains.MAINNET,
-                    config.indexerMainnetUrl,
-                    config.mainnetExplorerApi,
-                    "secretKey",
-                    nameId,
-                    stringMnemonic,
-                ),
+                testnet: createNearService({ chain: Chains.TESTNET, nameId, secretKey }),
+                mainnet: createNearService({ chain: Chains.TESTNET, nameId, secretKey }),
             });
         }
     };
+};
+
+export const useServiceInstanceCreation = ({ mnemonic, secretKey }: UseServiceInstanceCreationParams) => {
+    return mnemonic ? useServiceInstanceCreationByMnemonic : useServiceInstanceCreationBySecret;
 };
