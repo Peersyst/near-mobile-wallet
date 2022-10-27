@@ -1,7 +1,6 @@
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import { SettingsStorage } from "module/settings/SettingsStorage";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { config } from "config";
 import { SelectOption } from "@peersyst/react-native-components";
 import { Chain } from "module/common/service/CkbSdkService.types";
@@ -23,12 +22,6 @@ const SelectNetwork = (): JSX.Element => {
     const [settings, setSettings] = useRecoilState(settingsState);
 
     const handleNetworkChange = (network: Chain) => {
-        //Use another thread
-        setTimeout(async () => {
-            for (let i = 0; i < serviceInstancesMap.size; i += 1) {
-                await serviceInstancesMap.get(i)?.[network]?.synchronize();
-            }
-        });
         setSettings({ ...settings, network });
         SettingsStorage.set({ network });
     };

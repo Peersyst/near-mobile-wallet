@@ -359,6 +359,11 @@ export class NearSDKService {
         return resp.json();
     }
 
+    async getTransaction(txHash: string): Promise<any> {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        return { hash: "", status: "" };
+    }
+
     // --------------------------------------------------------------
     // -- STAKING FUNCTIONS -----------------------------------------
     // --------------------------------------------------------------
@@ -834,5 +839,22 @@ export class NearSDKService {
 
     async withdrawOrUnlock({ unlockableAmount, mnemonic }: WithdrawOrUnlockParams): Promise<string> {
         return "";
+    }
+
+    async getCKBBalance(): Promise<any> {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        return {
+            totalBalance: Math.random() * 10000,
+            occupiedBalance: Math.random() * 10000,
+            freeBalance: Math.random() * 10000,
+        };
+    }
+
+    async getDAOBalance(): Promise<any> {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        return {
+            daoDeposit: Math.random() * 10000,
+            daoCompensation: Math.random() * 10000,
+        };
     }
 }

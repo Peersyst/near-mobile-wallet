@@ -6,7 +6,7 @@ const useCkbSync = (index?: number) => {
     const network = useSelectedNetwork();
     const { synchronizing = false, index: selectedWalletIndex } = useSelectedWallet() || {};
     const synchronize = async () => {
-        await serviceInstancesMap.get(index ?? selectedWalletIndex)?.[network]?.synchronize();
+        await new Promise((resolve) => setTimeout(resolve, 1000));
     };
 
     return {

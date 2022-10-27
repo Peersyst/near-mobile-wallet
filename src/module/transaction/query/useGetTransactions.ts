@@ -16,9 +16,10 @@ const useGetTransactions = ({ index, filter }: UseGetTransactionsOptions = {}) =
     const selectedWallet = useSelectedWalletIndex();
     const usedIndex = index ?? selectedWallet;
     const { data: uncommitedTransactions = [], isLoading: uncommitedTransactionsLoading } = useUncommittedTransactions(usedIndex);
-    const { data: transactions = [], isLoading: transactionsLoading } = useQuery(["transactions", usedIndex, network], () => {
+    const { data: transactions = [], isLoading: transactionsLoading } = useQuery(["transactions", usedIndex, network], async () => {
         const serviceInstance = serviceInstancesMap.get(usedIndex)?.[network];
-        return serviceInstance?.getTransactions().reverse();
+        const tx = (await serviceInstance?.getTransactions()) as FullTransaction[];
+        return tx.reverse();
     });
 
     const txs = useMemo(() => {
