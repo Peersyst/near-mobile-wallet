@@ -4,7 +4,7 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
-import serviceInstanceCreation from "module/wallet/hook/useServiceInstanceCreation";
+import serviceInstanceCreation from "module/wallet/hook/serviceInstanceCreation";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
