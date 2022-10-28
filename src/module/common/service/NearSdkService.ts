@@ -353,6 +353,8 @@ export class NearSDKService {
     }
 
     async getTransactions(page = 1, pageSize = 15): Promise<any> {
+        //TODO: remove the return when we have a proper implementation of the ui
+        return [];
         const resp = await fetch(`${this.baseApiUrl}/transactions/?accountId=${this.getAddress()}&page=${page}&pageSize=${pageSize}`);
         if (resp.status !== 200) {
             throw new Error("Bad response status");
@@ -459,7 +461,6 @@ export class NearSDKService {
 
         try {
             fee = await this.getValidatorFee(validatorId);
-
             if (queryBalance) {
                 stakingBalance = await this.getValidatorBalance(validatorId, totalDeposits);
                 return { accountId: validatorId, fee, stakingBalance };
@@ -846,17 +847,17 @@ export class NearSDKService {
     async getCKBBalance(): Promise<any> {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         return {
-            totalBalance: Math.random() * 10000,
-            occupiedBalance: Math.random() * 10000,
-            freeBalance: Math.random() * 10000,
+            totalBalance: 324234234,
+            occupiedBalance: 324234234,
+            freeBalance: 324234234,
         };
     }
 
     async getDAOBalance(): Promise<any> {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         return {
-            daoDeposit: Math.random() * 10000,
-            daoCompensation: Math.random() * 10000,
+            daoDeposit: 324234234,
+            daoCompensation: 324234234,
         };
     }
 }
