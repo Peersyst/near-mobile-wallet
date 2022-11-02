@@ -5,6 +5,20 @@ import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
 
+import { mockNfts } from "./near-nfts.mock";
+import {
+    Chains,
+    StakingBalance,
+    Validator,
+    TokenMetadata,
+    Token,
+    NftMetadata,
+    NftToken,
+    TransactionDto,
+    Transaction,
+    TransactionActionDto,
+    TransactionAction,
+} from "./NearSdkService.types";
 import {
     MINIMUM_UNSTAKED,
     DEPOSIT_STAKE_METHOD,
@@ -36,78 +50,6 @@ import {
     NFT_TOKEN_METADATA_METHOD,
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "./near.constants";
-import { mockNfts } from "./near-nfts.mock";
-
-export enum Chains {
-    MAINNET = "mainnet",
-    TESTNET = "testnet",
-    BETANET = "betanet",
-    LOCAL = "local",
-}
-
-export interface StakingBalance {
-    staked: number;
-    pending: number;
-    available: number;
-    rewardsEarned?: number;
-}
-
-export interface Validator {
-    accountId: string;
-    fee: number | null;
-    stakingBalance?: StakingBalance;
-}
-
-export interface TokenMetadata {
-    spec: string;
-    name: string;
-    symbol: string;
-    icon: string; // Image in svg
-    reference: string | null;
-    reference_hash: string | null;
-    decimals: number;
-}
-
-export interface Token {
-    metadata: TokenMetadata;
-    balance: number;
-}
-
-export interface NftMetadata {
-    spec: string;
-    name: string;
-    symbol: string;
-    icon: string; // Image in svg
-    reference: string | null;
-    reference_hash: string | null;
-    base_uri: string | null;
-    media?: string;
-}
-
-export interface NftTokenMetadata {
-    title: string;
-    description: string;
-    media: string | null; // data:image
-    media_url: string | null; // Image url
-    media_hash: string | null;
-    copies: number;
-    issued_at: number | null;
-    expires_at: number | null;
-    starts_at: number | null;
-    updated_at: number | null;
-    extra: string | null;
-    reference: string | null; // Extra metadata url
-    reference_hash: string | null;
-}
-
-export interface NftToken {
-    token_id: string;
-    owner_id: string;
-    metadata: NftTokenMetadata;
-    approved_account_ids?: any;
-    royalty?: { [key: string]: number };
-    collection_metadata?: NftMetadata;
-}
 
 export class NearSDKService {
     private connection?: Near;
@@ -331,6 +273,53 @@ export class NearSDKService {
     // --------------------------------------------------------------
     // -- TRANSACTIONS FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
+    static parseTransactionActionDto(transactionActionDto: TransactionActionDto): TransactionAction {
+        return {
+            transactionHash: transactionActionDto.transactionHash,
+            indexInTransaction: transactionActionDto.indexInTransaction,
+            actionKind: transactionActionDto.actionKind,
+            codeSha256: transactionActionDto.args?.code_sha256,
+            gas: transactionActionDto.args?.gas,
+            deposit: transactionActionDto.args?.deposit,
+            argsBase64: transactionActionDto.args?.args_base64,
+            argsJson: transactionActionDto.args?.args_json,
+            methodName: transactionActionDto.args?.method_name,
+            stake: transactionActionDto.args?.stake,
+            publicKey: transactionActionDto.args?.public_key,
+            accessKey: transactionActionDto.args?.access_key
+                ? {
+                      nonce: transactionActionDto.args.access_key.nonce,
+                      permission: {
+                          permissionKind: transactionActionDto.args.access_key.permission?.permission_kind,
+                          permissionDetails: transactionActionDto.args.access_key.permission?.permission_details
+                              ? {
+                                    allowance: transactionActionDto.args.access_key.permission.permission_details.allowance,
+                                    receiverId: transactionActionDto.args.access_key.permission.permission_details.receiver_id,
+                                    methodNames: transactionActionDto.args.access_key.permission.permission_details.method_names,
+                                }
+                              : undefined,
+                      },
+                  }
+                : undefined,
+            beneficiaryId: transactionActionDto.args?.beneficiary_id,
+        };
+    }
+
+    static parseTransactionDto(transactionDto: TransactionDto): Transaction {
+        return {
+            transactionHash: transactionDto.transactionHash,
+            includedInBlockHash: transactionDto.includedInBlockHash,
+            blockTimestamp: transactionDto.blockTimestamp,
+            signerAccountId: transactionDto.signerAccountId,
+            nonce: transactionDto.nonce,
+            receiverAccountId: transactionDto.receiverAccountId,
+            status: transactionDto.status,
+            transactionActions: transactionDto.transactionActions
+                .map(NearSDKService.parseTransactionActionDto)
+                .sort((a, b) => a.indexInTransaction - b.indexInTransaction),
+        };
+    }
+
     // Amount is in near
     async sendTransaction(to: string, amount: string): Promise<string> {
         const account = await this.getAccount();
@@ -349,13 +338,14 @@ export class NearSDKService {
         return this.connection.connection.provider.txStatus(txHash, address);
     }
 
-    async getTransactions(page = 1, pageSize = 15): Promise<any> {
+    async getTransactions(page = 1, pageSize = 15): Promise<Transaction[]> {
         const resp = await fetch(`${this.baseApiUrl}/transactions/?accountId=${this.getAddress()}&page=${page}&pageSize=${pageSize}`);
         if (resp.status !== 200) {
             throw new Error("Bad response status");
         }
 
-        return resp.json();
+        const transactionDtos: TransactionDto[] = await resp.json();
+        return transactionDtos.map(NearSDKService.parseTransactionDto);
     }
 
     // --------------------------------------------------------------
