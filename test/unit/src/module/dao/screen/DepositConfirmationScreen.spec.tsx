@@ -1,27 +1,20 @@
 import { render, translate } from "test-utils";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
 import { formatHash } from "@peersyst/react-utils";
-import { mockedUseWallet } from "mocks/useWalletState";
 import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScreen/DepositConfirmationScreen";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
 import { config } from "config";
+import { mockedAddress, UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("DepositConfirmationScreen tests", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
-
     afterEach(() => {
         jest.restoreAllMocks();
     });
 
     test("Renders correctly", () => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        const mockedWallet = mockedUseWallet.state.wallets[0];
-        jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({
+        new UseGetServiceInstanceMock();
+        const mockedWallet = new UseWalletStateMock().state.wallets[0];
+
+        jest.spyOn(Recoil, "useRecoilValue").mockReturnValueOnce({
             amount: 1000,
             fee: 0.001,
             senderWalletIndex: mockedWallet.index,
@@ -34,6 +27,6 @@ describe("DepositConfirmationScreen tests", () => {
         expect(screen.getByText(translate("total") + ":")).toBeDefined();
         expect(screen.getByText(`1,000.001 ${config.tokenName}`)).toBeDefined();
         expect(screen.getByText(translate("from"))).toBeDefined();
-        expect(screen.getByText(mockedWallet.name + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
+        expect(screen.getByText(mockedWallet.name + " - " + formatHash(mockedAddress, "middle", 3))).toBeDefined();
     });
 });

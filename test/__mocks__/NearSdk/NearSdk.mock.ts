@@ -5,16 +5,20 @@ interface NearSdkMockType {
     service: NearSDKService;
 }
 
-export class BaseNearSkdMock {
+export const MOCKED_ADDRESS = "0xMockedAddress";
+
+export const BaseNearSkdMock = {
     //TODO: add here all the mock fn that are needed
-    getTransactions = jest.fn();
-    constructor() {}
-}
+    getTransactions: jest.fn().mockResolvedValue([]),
+    getAddress: jest.fn().mockReturnValue(MOCKED_ADDRESS),
+    getCKBBalance: jest.fn(),
+    getDAOBalance: jest.fn(),
+};
 
 export class NearSdkMock extends BaseMock implements NearSdkMockType {
     service: NearSDKService;
     constructor({} = {}) {
         super();
-        this.service = new BaseNearSkdMock() as unknown as NearSDKService;
+        this.service = BaseNearSkdMock as unknown as NearSDKService;
     }
 }

@@ -2,19 +2,15 @@ import { Col, createBackdrop, ExposedBackdropProps, useToast } from "@peersyst/r
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { useTranslate } from "module/common/hook/useTranslate";
 import QRCode from "module/transaction/component/display/QRCode/QRCode";
-import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import Button from "module/common/component/input/Button/Button";
 import * as Clipboard from "expo-clipboard";
 import Container from "module/common/component/display/Container/Container";
 import Typography from "module/common/component/display/Typography/Typography";
+import useGetServiceInstance from "module/wallet/hook/useGetServiceInstance";
 
 const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ close, ...rest }) => {
     const t = useTranslate();
-    const network = useSelectedNetwork();
-    const { index } = useSelectedWallet();
-    const serviceInstance = serviceInstancesMap.get(index)?.[network];
+    const { serviceInstance } = useGetServiceInstance();
     const address = serviceInstance?.getAddress();
     const { showToast } = useToast();
 
