@@ -4,12 +4,12 @@ import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import { StorageWallet, WalletStorage } from "module/wallet/WalletStorage";
 import createUseCreateWalletMock from "mocks/useCreateWalletMock";
-import createUseWalletStateMock from "mocks/useWalletState";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import Button from "module/common/component/input/Button/Button";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import synchronizeMock from "mocks/synchronize";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
+import createUseWalletStateMock from "mocks/common/wallet/useWalletState";
 
 describe("AddWalletModal tests", () => {
     afterEach(() => {

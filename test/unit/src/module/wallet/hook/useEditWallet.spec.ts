@@ -1,8 +1,8 @@
 import * as UseWalletState from "module/wallet/hook/useWalletState";
-import createUseWalletStateMock from "mocks/useWalletState";
 import { renderHook } from "test-utils";
 import useEditWallet from "module/wallet/hook/useEditWallet";
 import { act } from "@testing-library/react-hooks";
+import createUseWalletStateMock from "mocks/common/wallet/useWalletState";
 
 describe("useEditWallet tests", () => {
     const setWallets = jest.fn();
