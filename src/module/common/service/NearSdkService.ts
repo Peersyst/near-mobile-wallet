@@ -860,4 +860,9 @@ export class NearSDKService {
             daoCompensation: 324234234,
         };
     }
+
+    async getDAOUnlockableAmounts(): Promise<any> {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        return [];
+    }
 }

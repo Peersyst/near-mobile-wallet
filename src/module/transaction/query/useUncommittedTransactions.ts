@@ -1,19 +1,16 @@
 import { QueryResult } from "query-utils";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
-import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 import { useQuery } from "react-query";
 import useWallet from "module/wallet/hook/useWallet";
-import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
+import walletState from "module/wallet/state/WalletState";
 import { TransactionStatus } from "module/sdk";
 import { useSetRecoilState } from "recoil";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useRef } from "react";
-import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
+import useGetServiceInstance from "module/wallet/hook/useGetServiceInstance";
 
 const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction[]> => {
-    const network = useSelectedNetwork();
-    const selectedWallet = useSelectedWalletIndex();
-    const usedIndex = index ?? selectedWallet;
+    const { serviceInstance, index: usedIndex, network } = useGetServiceInstance(index);
     const wallet = useWallet(usedIndex);
     const { uncommittedTransactionHashes } = wallet[network] || {};
     const setWalletState = useSetRecoilState(walletState);
@@ -23,8 +20,6 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
         ["uncommittedTransactions", usedIndex, network, uncommittedTransactionHashes],
         async () => {
             if (!uncommittedTransactionHashes) return [];
-
-            const serviceInstance = serviceInstancesMap.get(usedIndex)![network];
 
             const updatedUncommittedTransactionHashes: string[] = [];
             let shouldSync = false;

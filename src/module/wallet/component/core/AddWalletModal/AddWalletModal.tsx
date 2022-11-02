@@ -4,7 +4,7 @@ import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
-import serviceInstanceCreation from "module/wallet/hook/serviceInstanceCreation";
+import createServiceInstance from "module/wallet/utils/createServiceInstance";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
@@ -48,7 +48,7 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
                 ],
             }));
 
-            await serviceInstanceCreation({ nameId: name!, mnemonic: mnemonic!, walletIndex: newWallet.index });
+            await createServiceInstance({ nameId: name!, mnemonic: mnemonic!, walletIndex: newWallet.index });
         }
         handleClose();
     };

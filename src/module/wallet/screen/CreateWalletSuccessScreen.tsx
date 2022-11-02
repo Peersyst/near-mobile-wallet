@@ -6,7 +6,7 @@ import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import createWalletState from "module/wallet/state/CreateWalletState";
-import createServiceInstance from "module/wallet/hook/serviceInstanceCreation";
+import createServiceInstance from "module/wallet/utils/createServiceInstance";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {

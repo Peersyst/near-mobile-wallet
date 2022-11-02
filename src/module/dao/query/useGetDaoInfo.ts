@@ -30,7 +30,7 @@ export default function () {
     const network = useSelectedNetwork();
 
     return useQuery(["dao-info", network], async () => {
-        const api = network === "testnet" ? config.testnetExplorerApi : config.mainnetExplorerApi;
+        const api = network === "testnet" ? config.testnetExplorerLink : config.mainnetExplorerLink;
         const headers = new Headers();
         headers.append("Content-Type", "application/vnd.api+json");
         headers.append("Accept", "application/vnd.api+json");

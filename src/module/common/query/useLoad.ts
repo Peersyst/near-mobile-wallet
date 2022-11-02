@@ -4,7 +4,7 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
-import serviceInstanceCreation from "module/wallet/hook/serviceInstanceCreation";
+import createServiceInstance from "module/wallet/utils/createServiceInstance";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
@@ -32,7 +32,7 @@ export function useLoad(): boolean {
 
                 for (let i = 0; i < wallets.length; i += 1) {
                     const { mnemonic, name, secret } = wallets.find((w) => w.index === i)!;
-                    await serviceInstanceCreation({ walletIndex: i, nameId: name, mnemonic, secretKey: secret });
+                    await createServiceInstance({ walletIndex: i, nameId: name, mnemonic, secretKey: secret });
                 }
             }
             setLoading(false);

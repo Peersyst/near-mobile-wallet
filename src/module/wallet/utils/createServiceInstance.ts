@@ -2,16 +2,16 @@ import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { Chains, NearSDKService } from "module/common/service/NearSdkService";
 import { config } from "config";
 
-export interface UseServiceInstanceCreationBaseParams {
+export interface CreateServiceInstanceBaseParams {
     walletIndex: number;
     nameId: string;
 }
 
-export interface UseServiceInstanceCreationByMnemonicParams extends UseServiceInstanceCreationBaseParams {
+export interface CreateServiceInstanceByMnemonicParams extends CreateServiceInstanceBaseParams {
     mnemonic: string[];
 }
 
-export interface UseServiceInstanceCreationBySecretParams extends UseServiceInstanceCreationBaseParams {
+export interface CreateServiceInstanceBySecretParams extends CreateServiceInstanceBaseParams {
     secretKey: string;
 }
 
@@ -22,13 +22,13 @@ export interface CreateNearServiceParams {
     mnemonic?: string;
 }
 
-export interface CreateServiceInstanceParams extends UseServiceInstanceCreationBaseParams {
+export interface CreateServiceInstanceParams extends CreateServiceInstanceBaseParams {
     mnemonic?: string[];
     secretKey?: string;
     walletIndex: number;
 }
 
-const serviceInstanceCreation = async ({ walletIndex, nameId, mnemonic, secretKey }: CreateServiceInstanceParams) => {
+const createServiceInstance = async ({ walletIndex, nameId, mnemonic, secretKey }: CreateServiceInstanceParams) => {
     if (!serviceInstancesMap.has(walletIndex)) {
         if (mnemonic) {
             const stringMnemonic = mnemonic?.join(" ");
@@ -70,4 +70,4 @@ const serviceInstanceCreation = async ({ walletIndex, nameId, mnemonic, secretKe
     }
 };
 
-export default serviceInstanceCreation;
+export default createServiceInstance;
