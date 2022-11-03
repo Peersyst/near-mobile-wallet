@@ -2,29 +2,21 @@ import { render, SuccessApiCall, translate } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import SelectAccountAndDepositScreen from "module/dao/screen/SelectAccountAndDepositScreen/SelectAccountAndDepositScreen";
 import * as Genesys from "@peersyst/react-native-components";
-import { mockedUseWallet } from "mocks/useWalletState";
 import { WithdrawScreens } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import { MockedUnlockableAmounts } from "mocks/DAO";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { FeeRate } from "ckb-peersyst-sdk";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
-import * as UseSelectedWallet from "module/wallet/hook/useSelectedWallet";
-import { wallet } from "mocks/wallet";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
+import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("SelectAccountAndDepositScreen tests", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
+    const { serviceInstance } = new UseGetServiceInstanceMock();
+    const { state } = new UseWalletStateMock();
 
     beforeAll(() => {
-        jest.spyOn(UseSelectedWallet, "default").mockReturnValue(wallet);
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
+        jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 20000,
             occupiedBalance: 9600,
-            freeBalance: 10400,
-        });
+            freeBalance: 12635,
+        } as any);
     });
 
     afterAll(() => {
@@ -32,15 +24,15 @@ describe("SelectAccountAndDepositScreen tests", () => {
     });
 
     test("Renders correctly without deposits", async () => {
-        jest.spyOn(sdkInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall([]));
+        jest.spyOn(serviceInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall([]));
         const screen = render(<SelectAccountAndDepositScreen setWithdrawInfo={jest.fn()} />);
         await waitFor(() => expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined());
-        expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2);
+        expect(screen.getAllByText(state.wallets[0].name)).toHaveLength(2);
         expect(screen.getByText(translate("no_deposits"))).toBeDefined();
     });
 
     test("Updates withdraw state and moves forward to the next screen", async () => {
-        jest.spyOn(sdkInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
+        jest.spyOn(serviceInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
         const setWithdrawInfo = jest.fn();
         const setTab = jest.fn();
         jest.spyOn(Genesys, "useSetTab").mockReturnValue(setTab);

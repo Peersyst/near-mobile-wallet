@@ -1,39 +1,34 @@
 import { render, translate } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import WalletCard from "module/wallet/component/core/WalletCard/WalletCard";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
-import { mockedUseWallet } from "mocks/useWalletState";
-import { wallet } from "mocks/wallet";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
 import * as Recoil from "recoil";
 import * as ExpoHaptics from "expo-haptics";
 import { capitalize } from "@peersyst/react-utils";
 import { config } from "config";
 import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
+import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("WalletCard tests", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
+    const { state } = new UseWalletStateMock();
+    const wallet = state.wallets[0];
+    const { serviceInstance } = new UseGetServiceInstanceMock();
 
-    afterEach(() => {
+    afterAll(() => {
         jest.restoreAllMocks();
     });
 
     beforeEach(() => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
+        jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 20000,
             occupiedBalance: 9600,
             freeBalance: 10400,
-        });
+        } as any);
     });
 
     test("Renders correctly", async () => {
         const screen = render(<WalletCard wallet={wallet} />);
         /**Account header */
-        expect(screen.getByText(mockedUseWallet.state.wallets[0].name)).toBeDefined();
+        expect(screen.getByText(wallet.name)).toBeDefined();
 
         /**Account Balance */
         await waitFor(() => expect(screen.getByText("10,400 " + config.tokenName)).toBeDefined());

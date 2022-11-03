@@ -1,32 +1,23 @@
 import { formatHash } from "@peersyst/react-utils";
 import DepositSummary from "module/dao/screen/DepositConfirmationScreen/DepositSummary";
 import { render, SuccessApiCall, waitFor, translate } from "test-utils";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
-import { mockedUseWallet } from "mocks/useWalletState";
 import { MockedDAOBalance } from "mocks/DAO";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
 import * as UseGetDaoInfo from "module/dao/query/useGetDaoInfo";
 import daoInfo from "mocks/daoInfo";
 import { config } from "config";
+import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("Test for the DepositSummary", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
-
-    beforeAll(() => {
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-    });
+    const { serviceInstance } = new UseGetServiceInstanceMock();
+    new UseWalletStateMock();
 
     afterEach(() => {
         jest.restoreAllMocks();
     });
 
     test("Renders correctly", async () => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getDAOBalance").mockReturnValue(SuccessApiCall(MockedDAOBalance));
-        jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(serviceInstance, "getDAOBalance").mockReturnValue(SuccessApiCall(MockedDAOBalance));
+
         jest.spyOn(UseGetDaoInfo, "default").mockReturnValue({ data: daoInfo, isLoading: false } as any);
         const screen = render(<DepositSummary senderAddress={"0xMockedAddress"} amount={1000} fee={"0.001"} senderName={"Peersyst"} />);
         expect(screen.getByText(`1,000 ${config.tokenName}`)).toBeDefined();

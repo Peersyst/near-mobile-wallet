@@ -7,12 +7,10 @@ import useWalletState from "module/wallet/hook/useWalletState";
 import DepositModal from "module/dao/component/core/DepositModal/DepositModal";
 import DepositSummary from "./DepositSummary";
 import useDepositInDAO from "module/dao/query/useDepositInDAO";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import settingsState from "module/settings/state/SettingsState";
 import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { useState } from "react";
-import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useGetServiceInstance from "module/wallet/hook/useGetServiceInstance";
 

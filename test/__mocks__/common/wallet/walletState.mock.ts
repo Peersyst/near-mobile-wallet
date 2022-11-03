@@ -12,7 +12,7 @@ export class WalletStateMock extends BaseMock implements WalletState {
     constructor({
         hasWallet = true,
         isAuthenticated = true,
-        wallets = [new WalletMock(), new WalletMock()],
+        wallets = [new WalletMock(), new WalletMock({ name: "secondWallet", index: 1 })],
         isFirstTime = false,
         selectedWallet = 0,
     }: Partial<UseWalletStateResult["state"]> = {}) {

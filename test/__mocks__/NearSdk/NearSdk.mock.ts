@@ -13,6 +13,9 @@ export const BaseNearSkdMock = {
     getAddress: jest.fn().mockReturnValue(MOCKED_ADDRESS),
     getCKBBalance: jest.fn(),
     getDAOBalance: jest.fn(),
+    getDAOUnlockableAmounts: jest.fn(),
+    getNfts: jest.fn(),
+    getTokensBalance: jest.fn(),
 };
 
 export class NearSdkMock extends BaseMock implements NearSdkMockType {

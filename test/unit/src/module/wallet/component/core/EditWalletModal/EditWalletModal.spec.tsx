@@ -1,22 +1,21 @@
-import * as UseWallet from "module/wallet/hook/useWallet";
 import * as UseEditWallet from "module/wallet/hook/useEditWallet";
-import { wallet } from "mocks/wallet";
 import { render, SuccessApiCall, translate } from "test-utils";
 import EditWalletModal from "module/wallet/component/core/EditWalletModal/EditWalletModal";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import createEditWalletMock, { useEditWalletMock } from "mocks/useEditWallet";
 import * as Genesys from "@peersyst/react-native-components";
 import { WalletStorage } from "module/wallet/WalletStorage";
+import { UseWalletMock } from "mocks/common/wallet/useWallet.mock";
 
 describe("EditWallet tests", () => {
-    beforeAll(() => {
-        jest.spyOn(UseWallet, "default").mockReturnValue(wallet);
+    const { wallet } = new UseWalletMock();
+    afterAll(() => {
+        jest.clearAllMocks();
     });
 
     test("Renders correctly", () => {
         jest.spyOn(UseEditWallet, "default").mockReturnValue(useEditWalletMock);
         const screen = render(<EditWalletModal index={0} />);
-
         expect(screen.getByText(translate("edit_wallet")));
         expect(screen.getByDisplayValue(wallet.name));
     });

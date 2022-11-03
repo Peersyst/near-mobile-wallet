@@ -1,23 +1,18 @@
-import { token } from "mocks/tokens";
 import TokensList from "module/token/component/core/TokensList/TokensList";
 import { render, waitFor } from "test-utils";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
-import { mockedUseWallet } from "mocks/useWalletState";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
+import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { newToken } from "mocks/tokens";
 
 describe("Renders the token list properly", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
+    new UseWalletStateMock();
+    const { serviceInstance } = new UseGetServiceInstanceMock();
 
     afterEach(() => {
         jest.restoreAllMocks();
     });
 
     test("Renders correctly", async () => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getTokensBalance").mockReturnValue([token]);
+        jest.spyOn(serviceInstance, "getTokensBalance").mockResolvedValue([newToken] as any);
         const screen = render(<TokensList />);
         await waitFor(() => expect(screen.getAllByText("Bitcoin")));
     });
