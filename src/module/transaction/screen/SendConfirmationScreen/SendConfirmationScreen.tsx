@@ -54,7 +54,7 @@ const SendConfirmationScreen = (): JSX.Element => {
                     token={token}
                     message={message!}
                     senderName={senderName}
-                    senderAddress={serviceInstance?.getAddress() || ""}
+                    senderAddress={serviceInstance.getAddress() || ""}
                 />
                 <Typography variant="body3Regular" textAlign="center" light>
                     {translate("send_confirmation_text")}

@@ -4,22 +4,22 @@ import * as Genesys from "@peersyst/react-native-components";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import { waitFor } from "@testing-library/react-native";
-import * as Recoil from "recoil";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseGetServiceInstanceMock, UseWalletStateMock, WalletMock, WalletStateMock } from "test-mocks";
 
 describe("Test for the SecuritySettingsScreen", () => {
-    afterEach(() => {
+    beforeEach(() => {
         jest.restoreAllMocks();
     });
-    const { state } = new UseWalletStateMock();
-    new UseGetServiceInstanceMock();
+
     test("Renders correctly", () => {
         const screen = render(<SecuritySettingsScreen />);
         expect(screen.getByText(translate("change_passcode")));
     });
 
     test("Open confirm modal to update pin", () => {
+        new UseWalletStateMock();
+        new UseGetServiceInstanceMock();
         const showModal = jest.fn();
         jest.spyOn(Genesys, "useModal").mockReturnValue({ showModal } as any);
         const screen = render(<SecuritySettingsScreen />);
@@ -29,11 +29,12 @@ describe("Test for the SecuritySettingsScreen", () => {
     });
 
     test("Deletes data", async () => {
+        const resetWalletState = jest.fn();
+        new UseWalletStateMock({ reset: resetWalletState });
+        new UseGetServiceInstanceMock();
         const clearWalletStorage = jest.spyOn(WalletStorage, "clearAll").mockReturnValue(SuccessApiCall(undefined));
         jest.spyOn(WalletStorage, "getPin").mockReturnValue(SuccessApiCall("1234"));
         const clearSettingsStorage = jest.spyOn(SettingsStorage, "clear").mockReturnValue(SuccessApiCall(undefined));
-        const resetWalletState = jest.fn();
-        jest.spyOn(Recoil, "useResetRecoilState").mockReturnValue(resetWalletState);
         const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("delete_data"));
         fireEvent.press(button);
@@ -47,13 +48,15 @@ describe("Test for the SecuritySettingsScreen", () => {
     });
 
     test("Deletes only wallet and data", async () => {
+        new UseGetServiceInstanceMock();
+        const clearInstances = jest.spyOn(serviceInstancesMap, "clear").mockReturnValue();
+        const resetWalletState = jest.fn();
+        const state = new WalletStateMock({ wallets: [new WalletMock()] });
+        new UseWalletStateMock({ reset: resetWalletState, state });
         const clearWalletStorage = jest.spyOn(WalletStorage, "clearAll").mockReturnValue(SuccessApiCall(undefined));
         jest.spyOn(WalletStorage, "getPin").mockReturnValue(SuccessApiCall("1234"));
         const clearSettingsStorage = jest.spyOn(SettingsStorage, "clear").mockReturnValue(SuccessApiCall(undefined));
-        const resetWalletState = jest.fn();
-        jest.spyOn(Recoil, "useResetRecoilState").mockReturnValue(resetWalletState);
-        jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{ ...state, wallets: [state.wallets[0]] }, jest.fn()]);
-        const clearInstances = jest.spyOn(serviceInstancesMap, "clear").mockReturnValue();
+
         const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("delete_a_wallet"));
         fireEvent.press(screen.getByText(state.wallets[0].name));
@@ -74,7 +77,7 @@ describe("Test for the SecuritySettingsScreen", () => {
         const removeWallet = jest.spyOn(WalletStorage, "removeWallet").mockReturnValue(SuccessApiCall(undefined));
         jest.spyOn(WalletStorage, "getPin").mockReturnValue(SuccessApiCall("1234"));
         const setWalletState = jest.fn();
-        jest.spyOn(Recoil, "useRecoilState").mockReturnValue([state, setWalletState]);
+        const { state } = new UseWalletStateMock({ setWallets: setWalletState });
         serviceInstancesMap.set(0, {} as any);
         serviceInstancesMap.set(1, {} as any);
         const setInstance = jest.spyOn(serviceInstancesMap, "set").mockReturnValue({} as any);

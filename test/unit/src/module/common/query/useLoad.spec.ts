@@ -1,12 +1,11 @@
 import { useLoad } from "module/common/query/useLoad";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useRecoilValue } from "recoil";
-import { renderHook, SuccessApiCall, waitFor } from "test-utils";
+import { renderHook, waitFor } from "test-utils";
 import walletState from "module/wallet/state/WalletState";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import synchronizeMock from "mocks/synchronize";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
+import * as CreateServiceInstance from "module/wallet/utils/createServiceInstance";
 
 const renderUseLoad = () =>
     renderHook(() => {
@@ -32,7 +31,7 @@ describe("useLoad tests", () => {
     });
 
     test("Loads with a wallet", async () => {
-        jest.spyOn(CKBSDKService.prototype, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock) as any);
+        jest.spyOn(CreateServiceInstance, "default").mockResolvedValue();
         const getWallets = jest
             .spyOn(WalletStorage, "getWallets")
             .mockImplementation(

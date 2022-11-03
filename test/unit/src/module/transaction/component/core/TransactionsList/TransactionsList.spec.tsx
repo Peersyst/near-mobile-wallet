@@ -5,13 +5,12 @@ import TransactionsList from "module/transaction/component/core/TransactionsList
 import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("TransactionsList tests", () => {
-    new UseWalletStateMock();
-
-    afterAll(() => {
+    beforeEach(() => {
         jest.restoreAllMocks();
     });
 
     test("Renders correctly with an account", async () => {
+        new UseWalletStateMock();
         const { serviceInstance } = new UseGetServiceInstanceMock();
         jest.spyOn(serviceInstance, "getTransactions").mockReturnValue(transactions as any);
         const screen = render(<TransactionsList />);
@@ -19,9 +18,10 @@ describe("TransactionsList tests", () => {
         expect(screen.getByText(formatDate(transactions[1].timestamp)));
     });
     test("Renders correctly without transactions", async () => {
+        new UseWalletStateMock();
         const { serviceInstance } = new UseGetServiceInstanceMock();
-        const screen = render(<TransactionsList />);
         jest.spyOn(serviceInstance, "getTransactions").mockReturnValue([] as any);
+        const screen = render(<TransactionsList />);
         await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show", { ns: "error" }))));
     });
 });

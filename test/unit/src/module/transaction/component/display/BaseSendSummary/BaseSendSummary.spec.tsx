@@ -5,7 +5,7 @@ import { render, translate } from "test-utils";
 describe("Test for the BaseSendSummary", () => {
     test("Renders correctly", () => {
         const screen = render(
-            <BaseSendSummary amount={1000} fee={"10"}>
+            <BaseSendSummary amount={1000} fee={"10"} token={""}>
                 <Typography variant="body1">Children</Typography>
             </BaseSendSummary>,
         );

@@ -1,17 +1,16 @@
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
 import { useDialog, useModal } from "@peersyst/react-native-components";
-import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { useQueryClient } from "react-query";
 import { useTranslate } from "module/common/hook/useTranslate";
+import useWalletState from "module/wallet/hook/useWalletState";
 
 const DeleteData = () => {
     const translate = useTranslate();
-    const resetWalletState = useResetRecoilState(walletState);
-    const setWalletState = useSetRecoilState(walletState);
+    const { setState, reset } = useWalletState();
     const queryClient = useQueryClient();
     const { showModal } = useModal();
     const { showDialog } = useDialog();
@@ -20,11 +19,11 @@ const DeleteData = () => {
         showModal(ConfirmPinModal, {
             onPinConfirmed: async () => {
                 await WalletStorage.clearAll();
-                setWalletState((state) => ({ ...state, isAuthenticated: false, hasWallet: false }));
+                setState((state) => ({ ...state, isAuthenticated: false, hasWallet: false }));
                 serviceInstancesMap.clear();
                 await SettingsStorage.clear();
                 await queryClient.invalidateQueries();
-                resetWalletState();
+                reset();
             },
         });
     };
