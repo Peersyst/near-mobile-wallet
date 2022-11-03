@@ -19,8 +19,9 @@ describe("TransactionsList tests", () => {
         expect(screen.getByText(formatDate(transactions[1].timestamp)));
     });
     test("Renders correctly without transactions", async () => {
-        new UseGetServiceInstanceMock();
+        const { serviceInstance } = new UseGetServiceInstanceMock();
         const screen = render(<TransactionsList />);
+        jest.spyOn(serviceInstance, "getTransactions").mockReturnValue([] as any);
         await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show", { ns: "error" }))));
     });
 });

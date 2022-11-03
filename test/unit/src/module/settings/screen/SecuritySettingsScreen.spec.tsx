@@ -6,13 +6,14 @@ import { SettingsStorage } from "module/settings/SettingsStorage";
 import { waitFor } from "@testing-library/react-native";
 import * as Recoil from "recoil";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { UseWalletStateMock } from "test-mocks";
+import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("Test for the SecuritySettingsScreen", () => {
     afterEach(() => {
         jest.restoreAllMocks();
     });
     const { state } = new UseWalletStateMock();
+    new UseGetServiceInstanceMock();
     test("Renders correctly", () => {
         const screen = render(<SecuritySettingsScreen />);
         expect(screen.getByText(translate("change_passcode")));

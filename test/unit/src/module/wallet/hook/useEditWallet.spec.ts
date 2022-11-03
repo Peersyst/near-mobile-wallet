@@ -1,18 +1,13 @@
-import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { renderHook } from "test-utils";
 import useEditWallet from "module/wallet/hook/useEditWallet";
 import { act } from "@testing-library/react-hooks";
-import createUseWalletStateMock from "mocks/common/wallet/useWalletState";
+import { UseWalletStateMock } from "test-mocks";
 
 describe("useEditWallet tests", () => {
     const setWallets = jest.fn();
-    const useWalletStateResultMock = createUseWalletStateMock({ setWallets });
+    const useWalletStateResultMock = new UseWalletStateMock({ setWallets });
 
-    beforeEach(() => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(useWalletStateResultMock);
-    });
-
-    afterEach(() => {
+    afterAll(() => {
         jest.restoreAllMocks();
     });
 

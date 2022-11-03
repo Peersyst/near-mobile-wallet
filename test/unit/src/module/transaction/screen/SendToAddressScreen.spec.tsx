@@ -1,17 +1,14 @@
 import { render, translate } from "test-utils";
 import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
 import * as Genesys from "@peersyst/react-native-components";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
-import { mockedUseWallet } from "mocks/useWalletState";
+import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("SendToAddressScreen tests", () => {
-    beforeAll(() => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-    });
-
+    new UseGetServiceInstanceMock();
+    const { state } = new UseWalletStateMock();
     afterAll(() => {
         jest.restoreAllMocks();
     });
@@ -19,7 +16,7 @@ describe("SendToAddressScreen tests", () => {
     test("Renders correctly", () => {
         const screen = render(<SendToAddressScreen />);
         expect(screen.getAllByText(translate("select_a_wallet"))).toHaveLength(2); // WalletSelector label and modal title
-        expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2);
+        expect(screen.getAllByText(state.wallets[0].name)).toHaveLength(2);
         expect(screen.getByText(translate("send_to"))).toBeDefined();
         expect(screen.getByPlaceholderText(translate("address"))).toBeDefined();
         expect(screen.getByText(translate("next"))).toBeDefined();
@@ -28,7 +25,7 @@ describe("SendToAddressScreen tests", () => {
     test("Renders correctly when an addresses had been selected previously", () => {
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{ senderWalletIndex: 1, receiverAddress: "receiver_address" }, jest.fn()]);
         const screen = render(<SendToAddressScreen />);
-        expect(screen.getAllByText(mockedUseWallet.state.wallets[1].name)).toHaveLength(2);
+        expect(screen.getAllByText(state.wallets[1].name)).toHaveLength(2);
         expect(screen.getByDisplayValue("receiver_address")).toBeDefined();
     });
 

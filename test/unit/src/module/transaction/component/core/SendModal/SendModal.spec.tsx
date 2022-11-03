@@ -8,22 +8,21 @@ import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 import { config } from "config";
+import { UseWalletStateMock, UseGetServiceInstanceMock } from "test-mocks";
 
 describe("SendModal tests", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
-
+    new UseWalletStateMock();
+    const { serviceInstance } = new UseGetServiceInstanceMock();
     afterAll(() => {
         jest.restoreAllMocks();
     });
 
     beforeAll(() => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: 120000000,
-            occupiedBalance: 20000000,
-            freeBalance: 100000000,
-        });
+        jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
+            totalBalance: 12000,
+            occupiedBalance: 2000,
+            freeBalance: 10000,
+        } as any);
     });
 
     test("Renders correctly", () => {
