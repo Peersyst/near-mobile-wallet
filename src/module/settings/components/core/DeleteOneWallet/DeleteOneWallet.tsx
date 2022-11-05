@@ -72,13 +72,6 @@ const DeleteOneWallet = () => {
 
     const handleWalletSelection = (index: number) => {
         const walletToDelete = wallets.find((w) => w.index === index);
-        console.log(
-            walletToDelete,
-            translate("delete_wallet", { walletName: walletToDelete?.name }),
-            translate(wallets.length === 1 ? "delete_only_wallet_text" : "delete_wallet_text", {
-                walletName: walletToDelete?.name,
-            }),
-        );
         if (walletToDelete) {
             setTimeout(() => {
                 showDialog({

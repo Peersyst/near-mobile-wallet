@@ -20,7 +20,7 @@ export const BaseNearSkdMock = {
 
 export class NearSdkMock extends BaseMock implements NearSdkMockType {
     service: NearSDKService;
-    constructor({} = {}) {
+    constructor() {
         super();
         this.service = BaseNearSkdMock as unknown as NearSDKService;
     }

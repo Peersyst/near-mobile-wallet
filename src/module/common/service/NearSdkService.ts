@@ -363,6 +363,7 @@ export class NearSDKService {
         return resp.json();
     }
 
+    /* eslint-disable */
     async getTransaction(txHash: string): Promise<any> {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         return { hash: "", status: "" };
@@ -836,10 +837,12 @@ export class NearSDKService {
     // --------------------------------------------------------------
     // -- MOCK CKBSDKService unimplemented methods ------------------
     // --------------------------------------------------------------
+    /* eslint-disable */
     async depositInDAO(params: DepositInDAOParams): Promise<string> {
         return "";
     }
 
+    /* eslint-disable */
     async withdrawOrUnlock({ unlockableAmount, mnemonic }: WithdrawOrUnlockParams): Promise<string> {
         return "";
     }
