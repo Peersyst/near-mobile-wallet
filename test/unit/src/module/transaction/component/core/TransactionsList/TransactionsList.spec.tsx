@@ -12,7 +12,7 @@ describe("TransactionsList tests", () => {
     test("Renders correctly with an account", async () => {
         new UseWalletStateMock();
         const { serviceInstance } = new UseGetServiceInstanceMock();
-        jest.spyOn(serviceInstance, "getTransactions").mockReturnValue(transactions as any);
+        jest.spyOn(serviceInstance, "getTransactions").mockReturnValue(transactions);
         const screen = render(<TransactionsList />);
         await waitFor(() => expect(screen.getByText(formatDate(transactions[0].timestamp))).toBeDefined());
         expect(screen.getByText(formatDate(transactions[1].timestamp)));
@@ -20,7 +20,7 @@ describe("TransactionsList tests", () => {
     test("Renders correctly without transactions", async () => {
         new UseWalletStateMock();
         const { serviceInstance } = new UseGetServiceInstanceMock();
-        jest.spyOn(serviceInstance, "getTransactions").mockReturnValue([] as any);
+        jest.spyOn(serviceInstance, "getTransactions").mockReturnValue([]);
         const screen = render(<TransactionsList />);
         await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show", { ns: "error" }))));
     });

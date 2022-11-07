@@ -7,7 +7,7 @@ describe("Test for the DAOScreen", () => {
     test("Renders correctly", async () => {
         new UseWalletStateMock();
         const { serviceInstance } = new UseGetServiceInstanceMock();
-        jest.spyOn(serviceInstance, "getTransactions").mockReturnValue([] as any);
+        jest.spyOn(serviceInstance, "getTransactions").mockReturnValue([]);
         jest.spyOn(serviceInstance, "getDAOBalance").mockReturnValue(SuccessApiCall(MockedDAOBalance));
         const screen = render(<DAOScreen />);
         //DAO Card

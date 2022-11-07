@@ -38,7 +38,7 @@ import {
 import { mockNfts } from "./near-nfts.mock";
 
 //TODO: remove CKB imports for mocking
-import { DepositInDAOParams, WithdrawOrUnlockParams } from "module/common/service/CkbSdkService.types";
+import { DepositInDAOParams, FullTransaction, WithdrawOrUnlockParams } from "module/common/service/CkbSdkService.types";
 import { CKBBalance, DAOBalance, DAOUnlockableAmount, TokenAmount, WalletState } from "ckb-peersyst-sdk";
 
 export enum Chains {
@@ -354,22 +354,15 @@ export class NearSDKService {
         return this.connection.connection.provider.txStatus(txHash, address);
     }
 
-    async getTransactions(page = 1, pageSize = 15): Promise<any> {
-        //TODO: remove this mock
-        return [];
+    // REMOVE COMMENT
+    /* async getTransactions(page = 1, pageSize = 15): Promise<any> {
         const resp = await fetch(`${this.baseApiUrl}/transactions/?accountId=${this.getAddress()}&page=${page}&pageSize=${pageSize}`);
         if (resp.status !== 200) {
             throw new Error("Bad response status");
         }
 
         return resp.json();
-    }
-
-    /* eslint-disable */
-    async getTransaction(txHash: string): Promise<any> {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        return { hash: "", status: "" };
-    }
+    } */
 
     // --------------------------------------------------------------
     // -- STAKING FUNCTIONS -----------------------------------------
@@ -879,6 +872,16 @@ export class NearSDKService {
 
     async getDAOUnlockableAmounts(): Promise<DAOUnlockableAmount[]> {
         await this.wait();
+        return [];
+    }
+
+    /* eslint-disable */
+    async getTransaction(txHash: string): Promise<FullTransaction> {
+        await this.wait();
+        return { hash: "", status: "" } as any as FullTransaction;
+    }
+
+    getTransactions(): FullTransaction[] {
         return [];
     }
 
