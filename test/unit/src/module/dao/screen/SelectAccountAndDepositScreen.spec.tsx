@@ -16,7 +16,7 @@ describe("SelectAccountAndDepositScreen tests", () => {
             totalBalance: 20000,
             occupiedBalance: 9600,
             freeBalance: 12635,
-        } as any);
+        });
     });
 
     afterAll(() => {

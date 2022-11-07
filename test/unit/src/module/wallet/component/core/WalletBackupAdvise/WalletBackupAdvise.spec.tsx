@@ -17,7 +17,7 @@ describe("WalletBackupAdvise", () => {
             totalBalance: 1,
             occupiedBalance: 0,
             freeBalance: 1,
-        } as any);
+        });
         const screen = render(<WalletsBackupAdvise onWalletSelected={handleSelection} />);
         expect(screen.getByText(translate("backup_wallet_advise_text"))).toBeDefined();
         expect(screen.getByText("5s")).toBeDefined();

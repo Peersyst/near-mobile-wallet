@@ -10,7 +10,7 @@ describe("Test for the SelectDAOWallet", () => {
             totalBalance: 20000,
             occupiedBalance: 9600,
             freeBalance: 14567,
-        } as any);
+        });
     });
 
     afterAll(() => {

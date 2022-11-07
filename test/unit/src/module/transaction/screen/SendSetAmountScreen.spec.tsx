@@ -19,7 +19,7 @@ describe("SendAmountAndMessageScreen tests", () => {
             totalBalance: 12000,
             occupiedBalance: 2000,
             freeBalance: 10000,
-        } as any);
+        });
     });
 
     afterAll(() => {

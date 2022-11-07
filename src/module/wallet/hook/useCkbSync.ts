@@ -1,12 +1,13 @@
+import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
+import { serviceInstancesMap } from "../state/WalletState";
 
-/* eslint-disable */
 const useCkbSync = (index?: number) => {
-    const { synchronizing = false } = useSelectedWallet() || {};
+    const network = useSelectedNetwork();
+    const { synchronizing = false, index: selectedWalletIndex } = useSelectedWallet() || {};
     const synchronize = async () => {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await serviceInstancesMap.get(index ?? selectedWalletIndex)?.[network]?.synchronize();
     };
-
     return {
         synchronizing,
         synchronize,

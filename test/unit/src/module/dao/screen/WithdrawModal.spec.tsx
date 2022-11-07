@@ -21,7 +21,7 @@ describe("Withdraw modal test", () => {
             totalBalance: 20000,
             occupiedBalance: 9600,
             freeBalance: 10400,
-        } as any);
+        });
     });
 
     afterAll(() => {

@@ -4,7 +4,6 @@ import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/pr
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
-
 import {
     MINIMUM_UNSTAKED,
     DEPOSIT_STAKE_METHOD,
@@ -37,7 +36,10 @@ import {
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "./near.constants";
 import { mockNfts } from "./near-nfts.mock";
+
+//TODO: remove CKB imports for mocking
 import { DepositInDAOParams, WithdrawOrUnlockParams } from "module/common/service/CkbSdkService.types";
+import { CKBBalance, DAOBalance, DAOUnlockableAmount, TokenAmount, WalletState } from "ckb-peersyst-sdk";
 
 export enum Chains {
     MAINNET = "mainnet",
@@ -837,6 +839,18 @@ export class NearSDKService {
     // --------------------------------------------------------------
     // -- MOCK CKBSDKService unimplemented methods ------------------
     // --------------------------------------------------------------
+
+    async wait(time = 500): Promise<void> {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve();
+            }, time);
+        });
+    }
+    async synchronize(): Promise<WalletState> {
+        await this.wait(100);
+        return {} as WalletState;
+    }
     /* eslint-disable */
     async depositInDAO(params: DepositInDAOParams): Promise<string> {
         return "";
@@ -847,8 +861,7 @@ export class NearSDKService {
         return "";
     }
 
-    async getCKBBalance(): Promise<any> {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+    getCKBBalance(): CKBBalance {
         return {
             totalBalance: 324234234,
             occupiedBalance: 324234234,
@@ -856,21 +869,21 @@ export class NearSDKService {
         };
     }
 
-    async getDAOBalance(): Promise<any> {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+    async getDAOBalance(): Promise<DAOBalance> {
+        await this.wait();
         return {
             daoDeposit: 324234234,
             daoCompensation: 324234234,
         };
     }
 
-    async getDAOUnlockableAmounts(): Promise<any> {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+    async getDAOUnlockableAmounts(): Promise<DAOUnlockableAmount[]> {
+        await this.wait();
         return [];
     }
 
-    async getTokensBalance(): Promise<any> {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+    async getTokensBalance(): Promise<TokenAmount[]> {
+        await this.wait();
         return [
             {
                 metadata: {
@@ -882,6 +895,6 @@ export class NearSDKService {
                 },
                 balance: BigInt(100),
             },
-        ];
+        ] as any as TokenAmount[];
     }
 }

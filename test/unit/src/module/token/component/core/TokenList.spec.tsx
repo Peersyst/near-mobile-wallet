@@ -12,7 +12,8 @@ describe("Renders the token list properly", () => {
     });
 
     test("Renders correctly", async () => {
-        jest.spyOn(serviceInstance, "getTokensBalance").mockResolvedValue([newToken] as any);
+        //TODO: remove this comment in NEAR and update mock in CKBUll
+        jest.spyOn(serviceInstance, "getTokensBalance").mockResolvedValue([newToken as any]);
         const screen = render(<TokensList />);
         await waitFor(() => expect(screen.getAllByText("Bitcoin")));
     });

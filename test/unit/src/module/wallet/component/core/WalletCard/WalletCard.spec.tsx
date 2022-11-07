@@ -22,7 +22,7 @@ describe("WalletCard tests", () => {
             totalBalance: 20000,
             occupiedBalance: 9600,
             freeBalance: 10400,
-        } as any);
+        });
     });
 
     test("Renders correctly", async () => {

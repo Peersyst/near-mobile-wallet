@@ -17,7 +17,7 @@ describe("SendModal tests", () => {
             totalBalance: 12000,
             occupiedBalance: 2000,
             freeBalance: 1000000,
-        } as any);
+        });
     });
 
     test("Renders correctly", () => {

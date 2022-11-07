@@ -15,7 +15,7 @@ describe("WalletSelector tests", () => {
             totalBalance: 1,
             occupiedBalance: 0,
             freeBalance: 1,
-        } as any);
+        });
 
         const screen = render(<WalletSelector />);
 
