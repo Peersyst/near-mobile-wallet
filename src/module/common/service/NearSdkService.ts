@@ -112,8 +112,6 @@ export interface NftToken {
     collection_metadata?: NftMetadata;
 }
 
-const accountCacheMap: Map<NearSDKService, Account> = new Map();
-
 export class NearSDKService {
     private connection?: Near;
     private nearConfig: ConnectConfig;
@@ -476,6 +474,15 @@ export class NearSDKService {
     }
 
     async getTotalStakingBalance(): Promise<StakingBalance> {
+        // TODO: Remove comments
+        // const resp = await fetch(`${this.baseApiUrl}/accounts/${this.getAddress()}/likely-tokens?fromBlockTimestamp=0`);
+        // if (resp.status !== 200) {
+        //     throw new Error("Bad response status");
+        // }
+        // const stakingBalances: { validatorId: string; amount: number }[] = await resp.json();
+        // const validatorsProms = stakingBalances.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
+        // const validators = await Promise.all(validatorsProms);
+
         // TODO: remove get all validators line
         const validators = await this.getAllValidators();
 
@@ -613,11 +620,8 @@ export class NearSDKService {
     }
 
     async getTokenMetadata(contractId: string): Promise<TokenMetadata> {
-        if (!accountCacheMap.has(this)) {
-            const new_account = await this.getAccount();
-            accountCacheMap.set(this, new_account);
-        }
-        const account = accountCacheMap.get(this)!;
+        // TODO: Cache this call
+        const account = await this.getAccount();
         return account.viewFunction({
             contractId,
             methodName: FT_METADATA_METHOD,
@@ -626,6 +630,7 @@ export class NearSDKService {
     }
 
     async getTokenBalance(contractId: string): Promise<number> {
+        // TODO: Cache this call
         const account = await this.getAccount();
         return account.viewFunction({
             contractId,
