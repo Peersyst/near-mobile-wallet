@@ -355,7 +355,7 @@ export class NearSDKService {
     }
 
     async getTransactions(page = 1, pageSize = 15): Promise<any> {
-        //TODO: remove the return when we have a proper implementation of the ui
+        //TODO: remove this mock
         return [];
         const resp = await fetch(`${this.baseApiUrl}/transactions/?accountId=${this.getAddress()}&page=${page}&pageSize=${pageSize}`);
         if (resp.status !== 200) {
@@ -813,7 +813,7 @@ export class NearSDKService {
     }
 
     async getNfts(): Promise<NftToken[]> {
-        // TODO: remove after testing
+        // TODO: remove mock
         return mockNfts;
         const resp = await fetch(`${this.baseApiUrl}/accounts/${this.getAddress()}/likely-nfts?fromBlockTimestamp=0`);
         if (resp.status !== 200) {
