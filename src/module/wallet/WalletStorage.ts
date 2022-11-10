@@ -18,7 +18,7 @@ export interface SecureWalletInfo {
     name: string;
     colorIndex: number;
     mnemonic?: string[];
-    secret?: string;
+    secret?: string; //TODO: remove this comment in Near & remove this field in CKB
 }
 
 export type StorageWallet = SecureWalletInfo & UnencryptedWalletInfo;

@@ -1,6 +1,15 @@
-import BaseMock from "mocks/common/base.mock";
+import BaseMock, { MockFnType } from "mocks/common/base.mock";
 import { NearSDKService } from "module/common/service/NearSdkService";
 
+interface NearSdkServiceMockType {
+    getTransactions: MockFnType;
+    getAddress: MockFnType;
+    getCKBBalance: MockFnType;
+    getDAOBalance: MockFnType;
+    getDAOUnlockableAmounts: MockFnType;
+    getNfts: MockFnType;
+    getTokensBalance: MockFnType;
+}
 interface NearSdkMockType {
     service: NearSDKService;
 }
@@ -19,9 +28,30 @@ export const BaseNearSkdMock = {
 };
 
 export class NearSdkMock extends BaseMock implements NearSdkMockType {
-    service: NearSDKService;
+    public service: NearSDKService;
     constructor() {
         super();
-        this.service = BaseNearSkdMock as unknown as NearSDKService;
+        this.service = new NearSdkServiceMock() as any as NearSDKService;
+    }
+}
+
+export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockType {
+    getTransactions: MockFnType;
+    getAddress: MockFnType;
+    getCKBBalance: MockFnType;
+    getDAOBalance: MockFnType;
+    getDAOUnlockableAmounts: MockFnType;
+    getNfts: MockFnType;
+    getTokensBalance: MockFnType;
+
+    constructor() {
+        super();
+        this.getTransactions = jest.fn().mockReturnValue([]);
+        this.getAddress = jest.fn().mockReturnValue(MOCKED_ADDRESS);
+        this.getCKBBalance = jest.fn();
+        this.getDAOBalance = jest.fn();
+        this.getDAOUnlockableAmounts = jest.fn();
+        this.getNfts = jest.fn();
+        this.getTokensBalance = jest.fn();
     }
 }

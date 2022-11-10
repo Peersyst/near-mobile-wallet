@@ -10,7 +10,7 @@ import useWalletState from "module/wallet/hook/useWalletState";
 
 const DeleteData = () => {
     const translate = useTranslate();
-    const { setState, reset } = useWalletState();
+    const { setState: setWalletState, reset: resetWalletState } = useWalletState();
     const queryClient = useQueryClient();
     const { showModal } = useModal();
     const { showDialog } = useDialog();
@@ -19,11 +19,11 @@ const DeleteData = () => {
         showModal(ConfirmPinModal, {
             onPinConfirmed: async () => {
                 await WalletStorage.clearAll();
-                setState((state) => ({ ...state, isAuthenticated: false, hasWallet: false }));
+                setWalletState((state) => ({ ...state, isAuthenticated: false, hasWallet: false }));
                 serviceInstancesMap.clear();
                 await SettingsStorage.clear();
                 await queryClient.invalidateQueries();
-                reset();
+                resetWalletState();
             },
         });
     };

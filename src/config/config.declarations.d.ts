@@ -12,8 +12,8 @@ declare module "@peersyst/react-native-components" {
         backendUrl: string;
         minimumTransactionAmount: number;
         minimumDaoDeposit: number;
-        mainnetExplorerLink: string;
-        testnetExplorerLink: string;
+        mainnetExplorerApi: string;
+        testnetExplorerApi: string;
         ckbTestnetUrl: string;
         indexerTestnetUrl: string;
         ckbMainnetUrl: string;
@@ -30,8 +30,8 @@ declare module "@peersyst/react-native-components" {
         backendUrl: string;
         minimumTransactionAmount: number;
         minimumDaoDeposit: number;
-        mainnetExplorerLink: string;
-        testnetExplorerLink: string;
+        mainnetExplorerApi: string;
+        testnetExplorerApi: string;
         ckbTestnetUrl: string;
         indexerTestnetUrl: string;
         ckbMainnetUrl: string;

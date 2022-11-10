@@ -27,6 +27,7 @@ describe("AddWalletModal tests", () => {
             index: 2,
         };
         const resetCreateWallet = jest.fn();
+        //TODO: reomve this comment in NEAR, fix this in CKBull
         const state = new WalletStateMock({
             wallets: [
                 {

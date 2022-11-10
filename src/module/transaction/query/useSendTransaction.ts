@@ -9,6 +9,7 @@ const useSendTransaction = (senderIndex: number) => {
     const addUncommittedTransaction = useAddUncommittedTransaction();
 
     return useMutation(async (params: Omit<SendTransactionParams, "mnemonic">) => {
+        //TODO: get mnemonic from wallet storage in ckb
         //const mnemonic = await WalletStorage.getMnemonic(senderIndex!);
         const hash = await serviceInstance.sendTransaction(params.to, params.amount.toString());
         if (hash) await addUncommittedTransaction(senderIndex, network, hash);

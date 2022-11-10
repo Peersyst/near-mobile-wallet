@@ -48,8 +48,7 @@ const createServiceInstance = async ({ walletIndex, nameId, mnemonic, secretKey 
                     nameId,
                 ),
             });
-        }
-        if (secretKey) {
+        } else if (secretKey) {
             serviceInstancesMap.set(walletIndex, {
                 testnet: await NearSDKService.importFromSecretKey(
                     Chains.TESTNET,

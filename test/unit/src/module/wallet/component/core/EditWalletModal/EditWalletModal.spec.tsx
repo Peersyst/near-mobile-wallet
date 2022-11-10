@@ -9,9 +9,6 @@ import { UseWalletMock } from "mocks/common/wallet/useWallet.mock";
 
 describe("EditWallet tests", () => {
     const { wallet } = new UseWalletMock();
-    afterAll(() => {
-        jest.clearAllMocks();
-    });
 
     test("Renders correctly", () => {
         jest.spyOn(UseEditWallet, "default").mockReturnValue(useEditWalletMock);
