@@ -1,4 +1,4 @@
-import { NearSdkMock } from "mocks/NearSdk";
+import { NearSdkServiceMock } from "mocks/NearSdk";
 import { Chain } from "module/common/service/CkbSdkService.types";
 import { Chains, NearSDKService } from "module/common/service/NearSdkService";
 import * as useServiceInstance from "module/wallet/hook/useServiceInstance";
@@ -10,7 +10,7 @@ export class UseServiceInstanceMock extends BaseMock implements useServiceInstan
     index: number;
     constructor({
         network = Chains.TESTNET,
-        serviceInstance = new NearSdkMock().service,
+        serviceInstance = new NearSdkServiceMock() as any as NearSDKService,
         index = 0,
     }: Partial<useServiceInstance.useServiceInstanceReturn> = {}) {
         super();
