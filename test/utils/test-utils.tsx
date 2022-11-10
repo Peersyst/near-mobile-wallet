@@ -14,7 +14,7 @@ export interface CreateWrapperConfig {
     queryClientConfig?: QueryClientConfig;
 }
 
-export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): FC => {
+export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): FC<PropsWithChildren> => {
     const queryClient = new QueryClient(
         deepmerge(
             {
@@ -58,7 +58,7 @@ const customRenderHook = <TProps, TResult>(
 const translate: (...params: any) => string = i18n.t;
 
 export * from "@testing-library/react-native";
-export * from "@testing-library/jest-native";
+export * from "@testing-library/jest-native/extend-expect";
 export { customRender as render };
 export * from "./fail-api-call";
 export * from "./success-api-call";
