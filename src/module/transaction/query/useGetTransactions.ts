@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import useUncommittedTransactions from "module/transaction/query/useUncommittedTransactions";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
 import { useMemo } from "react";
-import useGetServiceInstance from "module/wallet/hook/useGetServiceInstance";
+import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 export interface UseGetTransactionsOptions {
     index?: number;
@@ -10,7 +10,7 @@ export interface UseGetTransactionsOptions {
 }
 
 const useGetTransactions = ({ index, filter }: UseGetTransactionsOptions = {}) => {
-    const { serviceInstance, index: usedIndex, network } = useGetServiceInstance(index);
+    const { serviceInstance, index: usedIndex, network } = useServiceInstance(index);
     const { data: uncommitedTransactions = [], isLoading: uncommitedTransactionsLoading } = useUncommittedTransactions(usedIndex);
 
     const { data: transactions = [], isLoading: transactionsLoading } = useQuery(["transactions", usedIndex, network], async () => {

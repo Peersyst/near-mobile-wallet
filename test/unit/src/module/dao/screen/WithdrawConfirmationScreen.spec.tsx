@@ -7,10 +7,10 @@ import { formatHash } from "@peersyst/react-utils";
 import { FeeRate } from "ckb-peersyst-sdk";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { config } from "config";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("SelectAccountAndDepositScreen tests", () => {
-    const { serviceInstance } = new UseGetServiceInstanceMock();
+    const { serviceInstance } = new UseServiceInstanceMock();
     new UseWalletStateMock();
 
     beforeAll(() => {

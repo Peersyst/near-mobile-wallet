@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
-import useGetServiceInstance from "../hook/useGetServiceInstance";
+import useServiceInstance from "../hook/useServiceInstance";
 
 const useGetBalance = (index?: number) => {
-    const { serviceInstance, index: usedIndex, network } = useGetServiceInstance(index);
+    const { serviceInstance, index: usedIndex, network } = useServiceInstance(index);
     return useQuery(["balance", usedIndex, network], () => serviceInstance.getCKBBalance(), {
         refetchInterval: 1500,
     });

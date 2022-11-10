@@ -5,7 +5,7 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import { waitFor } from "@testing-library/react-native";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { UseGetServiceInstanceMock, UseWalletStateMock, WalletMock, WalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock, WalletMock, WalletStateMock } from "test-mocks";
 
 describe("Test for the SecuritySettingsScreen", () => {
     beforeEach(() => {
@@ -19,7 +19,7 @@ describe("Test for the SecuritySettingsScreen", () => {
 
     test("Open confirm modal to update pin", () => {
         new UseWalletStateMock();
-        new UseGetServiceInstanceMock();
+        new UseServiceInstanceMock();
         const showModal = jest.fn();
         jest.spyOn(Genesys, "useModal").mockReturnValue({ showModal } as any);
         const screen = render(<SecuritySettingsScreen />);
@@ -31,7 +31,7 @@ describe("Test for the SecuritySettingsScreen", () => {
     test("Deletes data", async () => {
         const resetWalletState = jest.fn();
         new UseWalletStateMock({ reset: resetWalletState });
-        new UseGetServiceInstanceMock();
+        new UseServiceInstanceMock();
         const clearWalletStorage = jest.spyOn(WalletStorage, "clearAll").mockReturnValue(SuccessApiCall(undefined));
         jest.spyOn(WalletStorage, "getPin").mockReturnValue(SuccessApiCall("1234"));
         const clearSettingsStorage = jest.spyOn(SettingsStorage, "clear").mockReturnValue(SuccessApiCall(undefined));
@@ -48,7 +48,7 @@ describe("Test for the SecuritySettingsScreen", () => {
     });
 
     test("Deletes only wallet and data", async () => {
-        new UseGetServiceInstanceMock();
+        new UseServiceInstanceMock();
         const clearInstances = jest.spyOn(serviceInstancesMap, "clear").mockReturnValue();
         const resetWalletState = jest.fn();
         const state = new WalletStateMock({ wallets: [new WalletMock()] });

@@ -2,10 +2,10 @@ import { useMutation } from "react-query";
 import { SendTransactionParams } from "module/common/service/CkbSdkService.types";
 import useAddUncommittedTransaction from "module/transaction/query/useAddUncommitedTransaction";
 /* import { WalletStorage } from "module/wallet/WalletStorage"; */
-import useGetServiceInstance from "module/wallet/hook/useGetServiceInstance";
+import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 const useSendTransaction = (senderIndex: number) => {
-    const { serviceInstance, network } = useGetServiceInstance(senderIndex);
+    const { serviceInstance, network } = useServiceInstance(senderIndex);
     const addUncommittedTransaction = useAddUncommittedTransaction();
 
     return useMutation(async (params: Omit<SendTransactionParams, "mnemonic">) => {

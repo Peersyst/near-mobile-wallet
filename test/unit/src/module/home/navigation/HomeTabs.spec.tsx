@@ -1,12 +1,12 @@
 import { render, translate } from "test-utils";
 import { fireEvent } from "@testing-library/react-native";
 import HomeTabs from "module/home/component/navigation/HomeTabs";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("HomeTabs tests", () => {
     test("Renders correctly", () => {
         new UseWalletStateMock();
-        new UseGetServiceInstanceMock();
+        new UseServiceInstanceMock();
         const screen = render(<HomeTabs />);
         expect(screen.getAllByText(translate("transactions"))).toHaveLength(1);
         fireEvent.press(screen.getByText(translate("currencies")));

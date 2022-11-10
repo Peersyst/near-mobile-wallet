@@ -12,7 +12,7 @@ import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { useState } from "react";
 import { useTranslate } from "module/common/hook/useTranslate";
-import useGetServiceInstance from "module/wallet/hook/useGetServiceInstance";
+import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 const SendConfirmationScreen = (): JSX.Element => {
     const [showConfirmation, setShowConfirmation] = useState(false);
@@ -26,7 +26,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
     const { name: senderName, index } = senderWallet;
-    const { serviceInstance } = useGetServiceInstance(index);
+    const { serviceInstance } = useServiceInstance(index);
     const { mutate: sendTransaction, isLoading, isSuccess, isError } = useSendTransaction(senderWalletIndex!);
     const { hideModal } = useModal();
 

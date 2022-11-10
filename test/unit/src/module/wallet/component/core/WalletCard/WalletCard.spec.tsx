@@ -6,12 +6,12 @@ import * as ExpoHaptics from "expo-haptics";
 import { capitalize } from "@peersyst/react-utils";
 import { config } from "config";
 import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("WalletCard tests", () => {
     const { state } = new UseWalletStateMock();
     const wallet = state.wallets[0];
-    const { serviceInstance } = new UseGetServiceInstanceMock();
+    const { serviceInstance } = new UseServiceInstanceMock();
 
     afterAll(() => {
         jest.restoreAllMocks();

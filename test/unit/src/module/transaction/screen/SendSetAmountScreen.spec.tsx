@@ -6,11 +6,11 @@ import * as Genesys from "@peersyst/react-native-components";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import { FeeRate } from "ckb-peersyst-sdk";
 import { config } from "config";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("SendAmountAndMessageScreen tests", () => {
     new UseWalletStateMock();
-    const { serviceInstance } = new UseGetServiceInstanceMock();
+    const { serviceInstance } = new UseServiceInstanceMock();
     const setSendState = jest.fn();
     beforeAll(() => {
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{}, setSendState]);

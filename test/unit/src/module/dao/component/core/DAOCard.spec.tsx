@@ -4,10 +4,10 @@ import { waitFor } from "@testing-library/react-native";
 import { MockedDAOBalance } from "mocks/DAO";
 import * as UseGetDaoInfo from "module/dao/query/useGetDaoInfo";
 import daoInfo from "mocks/daoInfo";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("Test for the DAO Card", () => {
-    const { serviceInstance } = new UseGetServiceInstanceMock();
+    const { serviceInstance } = new UseServiceInstanceMock();
     new UseWalletStateMock();
     afterAll(() => {
         jest.restoreAllMocks();

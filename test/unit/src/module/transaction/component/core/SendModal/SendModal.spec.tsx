@@ -3,11 +3,11 @@ import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import * as Recoil from "recoil";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { config } from "config";
-import { UseWalletStateMock, UseGetServiceInstanceMock } from "test-mocks";
+import { UseWalletStateMock, UseServiceInstanceMock } from "test-mocks";
 
 describe("SendModal tests", () => {
     new UseWalletStateMock();
-    const { serviceInstance } = new UseGetServiceInstanceMock();
+    const { serviceInstance } = new UseServiceInstanceMock();
     afterAll(() => {
         jest.restoreAllMocks();
     });

@@ -7,10 +7,10 @@ import { TransactionStatus } from "module/sdk";
 import { useSetRecoilState } from "recoil";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useRef } from "react";
-import useGetServiceInstance from "module/wallet/hook/useGetServiceInstance";
+import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction[]> => {
-    const { serviceInstance, index: usedIndex, network } = useGetServiceInstance(index);
+    const { serviceInstance, index: usedIndex, network } = useServiceInstance(index);
     const wallet = useWallet(usedIndex);
     const { uncommittedTransactionHashes } = wallet[network] || {};
     const setWalletState = useSetRecoilState(walletState);

@@ -1,11 +1,11 @@
 import TokensList from "module/token/component/core/TokensList/TokensList";
 import { render, waitFor } from "test-utils";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 import { newToken } from "mocks/tokens";
 
 describe("Renders the token list properly", () => {
     new UseWalletStateMock();
-    const { serviceInstance } = new UseGetServiceInstanceMock();
+    const { serviceInstance } = new UseServiceInstanceMock();
 
     afterEach(() => {
         jest.restoreAllMocks();

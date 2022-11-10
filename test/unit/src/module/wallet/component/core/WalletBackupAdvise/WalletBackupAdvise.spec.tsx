@@ -1,10 +1,10 @@
 import WalletsBackupAdvise from "module/wallet/component/core/WalletsBackupModal/WalletsBackupAdvise/WalletsBackupAdvise";
 import { render, translate } from "test-utils";
 import { act, fireEvent } from "@testing-library/react-native";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("WalletBackupAdvise", () => {
-    const { serviceInstance } = new UseGetServiceInstanceMock();
+    const { serviceInstance } = new UseServiceInstanceMock();
     const { state } = new UseWalletStateMock();
 
     afterEach(() => {

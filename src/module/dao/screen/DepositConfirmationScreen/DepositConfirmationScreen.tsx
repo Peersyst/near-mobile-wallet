@@ -12,7 +12,7 @@ import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { useState } from "react";
 import { useTranslate } from "module/common/hook/useTranslate";
-import useGetServiceInstance from "module/wallet/hook/useGetServiceInstance";
+import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 const DepositConfirmationScreen = (): JSX.Element => {
     const translate = useTranslate();
@@ -24,7 +24,7 @@ const DepositConfirmationScreen = (): JSX.Element => {
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
     const { name: senderName } = senderWallet;
-    const { serviceInstance } = useGetServiceInstance(senderWalletIndex);
+    const { serviceInstance } = useServiceInstance(senderWalletIndex);
     const { fee: feeInShannons } = useRecoilValue(settingsState);
     const { mutate: depositInDAO, isLoading, isSuccess, isError } = useDepositInDAO(senderWalletIndex!);
     const { hideModal } = useModal();

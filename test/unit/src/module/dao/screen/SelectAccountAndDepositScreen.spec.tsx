@@ -5,10 +5,10 @@ import * as Genesys from "@peersyst/react-native-components";
 import { WithdrawScreens } from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import { MockedUnlockableAmounts } from "mocks/DAO";
 import { FeeRate } from "ckb-peersyst-sdk";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("SelectAccountAndDepositScreen tests", () => {
-    const { serviceInstance } = new UseGetServiceInstanceMock();
+    const { serviceInstance } = new UseServiceInstanceMock();
     const { state } = new UseWalletStateMock();
 
     beforeAll(() => {

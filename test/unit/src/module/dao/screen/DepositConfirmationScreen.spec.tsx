@@ -3,7 +3,7 @@ import * as Recoil from "recoil";
 import { formatHash } from "@peersyst/react-utils";
 import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScreen/DepositConfirmationScreen";
 import { config } from "config";
-import { MOCKED_ADDRESS, UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { MOCKED_ADDRESS, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("DepositConfirmationScreen tests", () => {
     afterEach(() => {
@@ -11,7 +11,7 @@ describe("DepositConfirmationScreen tests", () => {
     });
 
     test("Renders correctly", () => {
-        new UseGetServiceInstanceMock();
+        new UseServiceInstanceMock();
         const mockedWallet = new UseWalletStateMock().state.wallets[0];
 
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValueOnce({

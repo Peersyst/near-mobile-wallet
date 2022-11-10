@@ -4,7 +4,7 @@ import { MockedDAOBalance } from "mocks/DAO";
 import { waitFor } from "@testing-library/react-native";
 import * as UseGetDaoInfo from "module/dao/query/useGetDaoInfo";
 import daoInfo from "mocks/daoInfo";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("DAO Card balance test", () => {
     afterAll(() => {
@@ -13,7 +13,7 @@ describe("DAO Card balance test", () => {
 
     test("Renders correctly", async () => {
         const { state } = new UseWalletStateMock();
-        const { serviceInstance } = new UseGetServiceInstanceMock();
+        const { serviceInstance } = new UseServiceInstanceMock();
         jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 20000,
             occupiedBalance: 9600,

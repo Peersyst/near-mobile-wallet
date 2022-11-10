@@ -2,11 +2,11 @@ import { render, SuccessApiCall } from "test-utils";
 import { tempNft } from "mocks/nft";
 import NftsList from "module/nft/component/core/NftsList/NftsList";
 import { waitFor } from "@testing-library/react-native";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("NftsList tests", () => {
     new UseWalletStateMock();
-    const { serviceInstance } = new UseGetServiceInstanceMock();
+    const { serviceInstance } = new UseServiceInstanceMock();
 
     afterAll(() => {
         jest.restoreAllMocks();

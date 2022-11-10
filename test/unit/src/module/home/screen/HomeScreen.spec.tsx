@@ -1,9 +1,9 @@
 import { render, translate } from "test-utils";
 import HomeScreen from "module/home/screen/HomeScreen";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("HomeScreen tests", () => {
-    new UseGetServiceInstanceMock();
+    new UseServiceInstanceMock();
     afterEach(() => {
         jest.restoreAllMocks();
     });

@@ -1,10 +1,10 @@
 import { render } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("WalletSelector tests", () => {
-    const { serviceInstance } = new UseGetServiceInstanceMock();
+    const { serviceInstance } = new UseServiceInstanceMock();
     const { state } = new UseWalletStateMock();
     afterEach(() => {
         jest.restoreAllMocks();

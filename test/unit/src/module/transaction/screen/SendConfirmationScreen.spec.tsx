@@ -3,10 +3,10 @@ import SendConfirmationScreen from "module/transaction/screen/SendConfirmationSc
 import * as Recoil from "recoil";
 import { formatHash } from "@peersyst/react-utils";
 import { config } from "config";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("SendConfirmationScreen tests", () => {
-    new UseGetServiceInstanceMock();
+    new UseServiceInstanceMock();
     const { state } = new UseWalletStateMock();
     afterEach(() => {
         jest.restoreAllMocks();

@@ -2,11 +2,11 @@ import { fireEvent, render, translate } from "test-utils";
 import * as Clipboard from "expo-clipboard";
 import * as Genesys from "@peersyst/react-native-components";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
-import { MOCKED_ADDRESS, UseGetServiceInstanceMock, WalletStateMock } from "test-mocks";
+import { MOCKED_ADDRESS, UseServiceInstanceMock, WalletStateMock } from "test-mocks";
 
 describe("Test for the receive Modal", () => {
     beforeEach(() => {
-        new UseGetServiceInstanceMock();
+        new UseServiceInstanceMock();
         new WalletStateMock();
     });
 

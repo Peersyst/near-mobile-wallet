@@ -4,11 +4,11 @@ import * as Genesys from "@peersyst/react-native-components";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import DepositSelectAccountScreen from "module/dao/screen/DepositSelectAccountScreen/DepositSelectAccountScreen";
 import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("DepositSelectAccountScreen tests", () => {
     const { state } = new UseWalletStateMock();
-    new UseGetServiceInstanceMock();
+    new UseServiceInstanceMock();
     afterAll(() => {
         jest.restoreAllMocks();
     });

@@ -6,11 +6,11 @@ import Button from "module/common/component/input/Button/Button";
 import * as Clipboard from "expo-clipboard";
 import Container from "module/common/component/display/Container/Container";
 import Typography from "module/common/component/display/Typography/Typography";
-import useGetServiceInstance from "module/wallet/hook/useGetServiceInstance";
+import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ close, ...rest }) => {
     const t = useTranslate();
-    const { serviceInstance } = useGetServiceInstance();
+    const { serviceInstance } = useServiceInstance();
     const address = serviceInstance?.getAddress();
     const { showToast } = useToast();
 

@@ -5,10 +5,10 @@ import { MockedUnlockableAmounts } from "mocks/DAO";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { formatHash } from "@peersyst/react-utils";
 import { config } from "config";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("Withdraw modal test", () => {
-    const { serviceInstance } = new UseGetServiceInstanceMock();
+    const { serviceInstance } = new UseServiceInstanceMock();
     const { state } = new UseWalletStateMock();
 
     beforeAll(() => {

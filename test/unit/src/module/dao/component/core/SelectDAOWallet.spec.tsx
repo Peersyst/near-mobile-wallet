@@ -1,9 +1,9 @@
 import { fireEvent, render, waitFor } from "test-utils";
 import SelectDAOWallet from "module/dao/component/core/DAOAccountCard/DAOCardHeader/SelectDAOWallet/SelectDAOWallet";
-import { UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("Test for the SelectDAOWallet", () => {
-    const { serviceInstance } = new UseGetServiceInstanceMock();
+    const { serviceInstance } = new UseServiceInstanceMock();
 
     beforeEach(() => {
         jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({

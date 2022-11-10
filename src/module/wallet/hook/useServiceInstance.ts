@@ -4,13 +4,13 @@ import { NetworkType } from "module/settings/state/SettingsState";
 import { serviceInstancesMap } from "../state/WalletState";
 import useSelectedWalletIndex from "./useSelectedWalletIndex";
 
-export interface UseGetServiceInstanceReturn {
+export interface useServiceInstanceReturn {
     index: number;
     network: NetworkType;
     serviceInstance: NearSDKService;
 }
 
-export default function useGetServiceInstance(index?: number): UseGetServiceInstanceReturn {
+export default function useServiceInstance(index?: number): useServiceInstanceReturn {
     const network = useSelectedNetwork();
     const selectedWallet = useSelectedWalletIndex();
     const usedIndex = index ?? selectedWallet;

@@ -1,12 +1,12 @@
 import { fireEvent, render } from "test-utils";
 import * as Clipboard from "expo-clipboard";
 import WalletCardHeader from "module/wallet/component/core/WalletCard/WalletCardHeader/WalletCardHeader";
-import { MOCKED_ADDRESS, UseGetServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { MOCKED_ADDRESS, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("WalletCardHeader tests", () => {
     beforeAll(() => {
         new UseWalletStateMock();
-        new UseGetServiceInstanceMock();
+        new UseServiceInstanceMock();
     });
 
     afterAll(() => {
