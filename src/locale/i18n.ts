@@ -2,8 +2,6 @@ import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import { en } from "./locales/en/en";
 import { es } from "./locales/es/es";
-// Polyfill Intl as it is not included in RN
-import "intl";
 
 import LanguageDetectorPlugin from "./pluguins/LanguageDetectorPlugin/LanguageDetectorPlugin";
 
