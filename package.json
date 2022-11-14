@@ -36,7 +36,7 @@
         "@peersyst/react-types": "^1.5.0",
         "@peersyst/react-utils": "^2.0.0",
         "@rather-labs/nrc-721-sdk": "0.0.16",
-        "@react-native-async-storage/async-storage": "~1.17.3",
+        "@react-native-async-storage/async-storage": "~1.17.11",
         "@react-native-community/hooks": "^2.8.1",
         "@react-navigation/bottom-tabs": "^6.2.0",
         "@react-navigation/native": "^6.0.8",
@@ -120,7 +120,9 @@
     },
     "resolutions": {
         "@types/react": "18.0.25",
+        "react": "18.1.0",
         "@types/react-dom": "18.0.8",
+        "react-dom": "18.1.0",
         "react-native-pager-view": "6.0.0"
     }
 }

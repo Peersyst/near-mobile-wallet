@@ -1,6 +1,6 @@
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { render } from "test-utils";
-import { waitFor } from "@testing-library/react-native";
+import { fireEvent, waitFor } from "@testing-library/react-native";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
@@ -25,7 +25,8 @@ describe("WalletSelector tests", () => {
 
         const screen = render(<WalletSelector />);
 
-        expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2);
+        //act(() => expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2));
+        fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[0].name));
         await waitFor(() => expect(screen.getAllByText("1")).toHaveLength(3));
     });
 });

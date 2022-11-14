@@ -58,8 +58,8 @@ describe("Test for the SecuritySettingsScreen", () => {
         const clearInstances = jest.spyOn(serviceInstancesMap, "clear").mockReturnValue();
         const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("delete_a_wallet"));
-        fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[0].name));
         fireEvent.press(button);
+        fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[0].name));
         await waitFor(() =>
             expect(
                 screen.getByText(translate("delete_only_wallet_text", { walletName: mockedUseWallet.state.wallets[0].name })),
@@ -85,8 +85,8 @@ describe("Test for the SecuritySettingsScreen", () => {
         const deleteInstance = jest.spyOn(serviceInstancesMap, "delete").mockReturnValue({} as any);
         const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("delete_a_wallet"));
-        fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[0].name));
         fireEvent.press(button);
+        fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[0].name));
         await waitFor(() =>
             expect(screen.getByText(translate("delete_wallet_text", { walletName: mockedUseWallet.state.wallets[0].name }))).toBeDefined(),
         );
