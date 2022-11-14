@@ -54,7 +54,8 @@ describe("Withdraw modal test", () => {
 
         // 2 - Withdraw page with correct info
         await waitFor(() => expect(translate("destination_wallet") + ":").toBeDefined());
+
+        await waitFor(() => expect(screen.getByText(`500 ${config.tokenName}`)).toBeDefined());
         expect(screen.getByText("secondWallet" + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
-        expect(screen.getByText(`500 ${config.tokenName}`)).toBeDefined();
     });
 });
