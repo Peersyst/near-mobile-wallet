@@ -22,7 +22,7 @@ describe("Test for the SelectDAOWallet", () => {
             freeBalance: 14567,
         });
         const screen = render(<SelectDAOWallet />);
-        await waitFor(() => expect(screen.getAllByText("14,567")).toHaveLength(2));
+        expect(await screen.findByText("14,567")).toBeDefined();
     });
     test("Updates global selectedWallet correctly", async () => {
         const setSelectedWallet = jest.fn();
@@ -34,9 +34,11 @@ describe("Test for the SelectDAOWallet", () => {
             freeBalance: 14567,
         });
         const screen = render(<SelectDAOWallet />);
-        await waitFor(() => expect(screen.getAllByText("14,567")).toHaveLength(2));
-        const walletItem = screen.getAllByText("14,567")[1];
-        fireEvent.press(walletItem);
+        const walletCardIcon = screen.getByTestId("FilledWalletIcon");
+        fireEvent.press(walletCardIcon);
+        const walletItems = await screen.findAllByText(screen.getByText("14,567"));
+        expect(walletItems.length).toBe(2);
+        fireEvent.press(walletItems[1]);
         expect(setSelectedWallet).toBeCalledWith(1);
     });
 });

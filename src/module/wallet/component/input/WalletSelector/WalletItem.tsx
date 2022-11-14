@@ -5,7 +5,6 @@ import useWallet from "module/wallet/hook/useWallet";
 
 export interface WalletItemProps {
     index: number;
-    color: string;
 }
 
 const WalletItem = ({ index }: WalletItemProps): JSX.Element => {

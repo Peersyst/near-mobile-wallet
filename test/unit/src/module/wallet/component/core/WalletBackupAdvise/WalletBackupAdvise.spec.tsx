@@ -13,7 +13,7 @@ describe("WalletBackupAdvise", () => {
     afterEach(() => {
         jest.restoreAllMocks();
     });
-    test("Renders correctly", () => {
+    test("Renders correctly", async () => {
         jest.useFakeTimers();
         const handleSelection = jest.fn();
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
@@ -29,7 +29,8 @@ describe("WalletBackupAdvise", () => {
         for (let i = 0; i < 5; i++) act(() => jest.runOnlyPendingTimers());
         expect(screen.getByText(translate("back_up_now"))).toBeDefined();
         fireEvent.press(screen.getByText(translate("back_up_now")));
-        fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[0].name));
+        const wallet = await screen.findByText(mockedUseWallet.state.wallets[0].name);
+        fireEvent.press(wallet);
         expect(handleSelection).toHaveBeenCalledWith(0);
         jest.useRealTimers();
     });
