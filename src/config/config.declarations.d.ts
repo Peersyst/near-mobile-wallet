@@ -9,7 +9,6 @@ declare module "@peersyst/react-native-components" {
     }
 
     export interface Config {
-        backendUrl: string;
         minimumTransactionAmount: number;
         minimumDaoDeposit: number;
         mainnetExplorerLink: string;
@@ -27,7 +26,6 @@ declare module "@peersyst/react-native-components" {
     }
 
     export interface CreateConfig {
-        backendUrl: string;
         minimumTransactionAmount: number;
         minimumDaoDeposit: number;
         mainnetExplorerLink: string;
