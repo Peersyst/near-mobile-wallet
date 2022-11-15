@@ -34,8 +34,8 @@ describe("SelectAccountAndDepositScreen tests", () => {
     test("Renders correctly without deposits", async () => {
         jest.spyOn(sdkInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall([]));
         const screen = render(<SelectAccountAndDepositScreen setWithdrawInfo={jest.fn()} />);
-        await waitFor(() => expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined());
-        expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2);
+        expect(await screen.findByText(translate("select_a_wallet") + ":")).toBeDefined();
+        expect(screen.getByText(mockedUseWallet.state.wallets[0].name)).toBeDefined();
         expect(screen.getByText(translate("no_deposits"))).toBeDefined();
     });
 
@@ -45,7 +45,7 @@ describe("SelectAccountAndDepositScreen tests", () => {
         const setTab = jest.fn();
         jest.spyOn(Genesys, "useSetTab").mockReturnValue(setTab);
         const screen = render(<SelectAccountAndDepositScreen setWithdrawInfo={setWithdrawInfo} />);
-        await waitFor(() => expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined());
+        expect(await screen.findByText(translate("select_a_wallet") + ":")).toBeDefined();
         expect(screen.getAllByText("500")).toHaveLength(4);
         const button = screen.getByText(translate("withdraw"));
         fireEvent.press(button);
