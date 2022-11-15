@@ -14,7 +14,6 @@ describe("WalletBackupAdvise", () => {
         jest.restoreAllMocks();
     });
     test("Renders correctly", async () => {
-        jest.useFakeTimers();
         const handleSelection = jest.fn();
         jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
@@ -31,6 +30,7 @@ describe("WalletBackupAdvise", () => {
         fireEvent.press(screen.getByText(translate("back_up_now")));
         const wallet = await screen.findByText(mockedUseWallet.state.wallets[0].name);
         fireEvent.press(wallet);
+        jest.useFakeTimers();
         expect(handleSelection).toHaveBeenCalledWith(0);
         jest.useRealTimers();
     });

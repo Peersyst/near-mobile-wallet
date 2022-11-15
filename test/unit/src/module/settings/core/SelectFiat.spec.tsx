@@ -11,11 +11,10 @@ describe("Test for the SelectFiat component", () => {
         expect(screen.getByText("USD")).toBeDefined();
     });
     test("Change the fiat currency correctly", async () => {
-        jest.useFakeTimers();
         const setSettingsState = jest.fn();
         const mockedRecoilState = [defaultSettingsState, setSettingsState];
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue(mockedRecoilState as any);
-        const setSettingsStorage = jest.spyOn(SettingsStorage, "set").mockImplementation(() => new Promise((resolve) => resolve()));
+        const setSettingsStorage = jest.spyOn(SettingsStorage, "set").mockResolvedValue();
         const screen = render(<SelectFiat />);
         const usdItem = screen.getByText("USD");
         fireEvent.press(usdItem); //open the modal

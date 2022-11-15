@@ -18,6 +18,7 @@ const SelectDaoWallet = (): JSX.Element => {
     return (
         <WalletSelector
             value={selectedWallet}
+            onOpen={() => console.log("trying to open wallet selector")}
             onChange={(index) => handleWalletSelection(index as number)}
             display={
                 <SelectDAOWalletButton>

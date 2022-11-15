@@ -27,4 +27,17 @@ describe("WalletSelector tests", () => {
         fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[0].name));
         await waitFor(() => expect(screen.getAllByText("1")).toHaveLength(3));
     });
+    test("Renders correctly with ", async () => {
+        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
+        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
+            totalBalance: 1,
+            occupiedBalance: 0,
+            freeBalance: 1,
+        });
+
+        const screen = render(<WalletSelector />);
+        fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[0].name));
+        await waitFor(() => expect(screen.getAllByText("1")).toHaveLength(3));
+    });
 });
