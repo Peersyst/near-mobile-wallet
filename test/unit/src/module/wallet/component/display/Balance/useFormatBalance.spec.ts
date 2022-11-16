@@ -1,3 +1,4 @@
+import { config } from "config";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
 import { renderHook } from "test-utils";
 
@@ -12,6 +13,6 @@ describe("useFormatBalance", () => {
             action: "add",
             units: "token",
         });
-        expect(res).toBe("+12,345 NEAR");
+        expect(res).toBe("+12,345 " + config.tokenName);
     });
 });
