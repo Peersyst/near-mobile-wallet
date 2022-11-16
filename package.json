@@ -1,5 +1,5 @@
 {
-    "name": "near-mobile-wallet",
+    "name": "ckbull-mobile-wallet",
     "private": true,
     "main": "./index.js",
     "scripts": {
