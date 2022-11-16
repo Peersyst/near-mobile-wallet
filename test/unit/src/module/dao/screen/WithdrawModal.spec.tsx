@@ -5,7 +5,7 @@ import { MockedUnlockableAmounts } from "mocks/DAO";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { formatHash } from "@peersyst/react-utils";
 import { config } from "config";
-import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { MOCKED_ADDRESS, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("Withdraw modal test", () => {
     const { serviceInstance } = new UseServiceInstanceMock();
@@ -60,6 +60,6 @@ describe("Withdraw modal test", () => {
         await waitFor(() => expect(translate("destination_wallet") + ":").toBeDefined());
 
         await waitFor(() => expect(screen.getByText(`500 ${config.tokenName}`)).toBeDefined());
-        expect(screen.getByText("secondWallet" + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
+        expect(screen.getByText("secondWallet" + " - " + formatHash(MOCKED_ADDRESS, "middle", 3))).toBeDefined();
     });
 });

@@ -23,7 +23,6 @@ const SelectNetwork = (): JSX.Element => {
     const [settings, setSettings] = useRecoilState(settingsState);
 
     const handleNetworkChange = (network: Chain) => {
-        //TODO: remove this fn for Near or the comment in CKBull
         //Use another thread
         setTimeout(async () => {
             for (let i = 0; i < serviceInstancesMap.size; i += 1) {

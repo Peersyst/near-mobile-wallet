@@ -7,16 +7,16 @@ import { useRecoilValue } from "recoil";
 import Typography from "module/common/component/display/Typography/Typography";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 import { placeholder_image } from "images";
-import { Token } from "module/sdk/mock.types";
+import { TokenAmount } from "module/token/types";
 
 export interface TokenCardProps {
-    token: Token;
+    token: TokenAmount;
 }
 
-const TokenCard = ({ token: { metadata, balance } }: TokenCardProps): JSX.Element => {
-    const { name, symbol, imageUri } = metadata;
+const TokenCard = ({ token: { type, amount } }: TokenCardProps): JSX.Element => {
+    const { name, tokenName, imageUri } = type;
     const { fiat } = useRecoilValue(settingsState);
-    const { data: tokenValue } = useGetTokenPrice(fiat, "binancecoin");
+    const { data: tokenValue } = useGetTokenPrice(fiat, type);
 
     return (
         <MainListCard alignItems="center" justifyContent="space-between">
@@ -27,7 +27,12 @@ const TokenCard = ({ token: { metadata, balance } }: TokenCardProps): JSX.Elemen
                 </Typography>
             </Row>
             <Col alignItems="flex-end" justifyContent="center" gap={2}>
-                <Balance balance={balance} variant="body3Strong" units={symbol} />
+                <Balance
+                    options={{ maximumFractionDigits: 4 }}
+                    balance={amount / 10 ** type.decimals}
+                    units={tokenName ? (tokenName === "Unknown Token" ? "?" : tokenName) : ""}
+                    variant="body2"
+                />
                 {tokenValue && <Balance action="round" light balance={tokenValue} units={fiat} variant="body4Strong" />}
             </Col>
         </MainListCard>

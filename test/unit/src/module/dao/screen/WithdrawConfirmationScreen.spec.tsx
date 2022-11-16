@@ -7,7 +7,7 @@ import { formatHash } from "@peersyst/react-utils";
 import { FeeRate } from "ckb-peersyst-sdk";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { config } from "config";
-import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { MOCKED_ADDRESS, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("SelectAccountAndDepositScreen tests", () => {
     const { serviceInstance } = new UseServiceInstanceMock();
@@ -31,7 +31,7 @@ describe("SelectAccountAndDepositScreen tests", () => {
         expect(screen.getByText(`500.001 ${config.tokenName}`)).toBeDefined();
         //Withdraw summary
         expect(screen.getByText(translate("destination_wallet"))).toBeDefined();
-        expect(screen.getByText("firstWallet" + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
+        expect(screen.getByText("firstWallet" + " - " + formatHash(MOCKED_ADDRESS, "middle", 3))).toBeDefined();
         expect(screen.getByText(translate("deposit_apc"))).toBeDefined();
         expect(screen.getByText("100%")).toBeDefined();
         expect(screen.getByText(translate("confirm"))).toBeDefined();

@@ -6,7 +6,7 @@ import walletState, { serviceInstancesMap } from "module/wallet/state/WalletStat
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import createWalletState from "module/wallet/state/CreateWalletState";
-import createServiceInstance from "module/wallet/utils/createServiceInstance";
+import useServiceInstanceCreation from "module/wallet/hook/useServiceInstanceCreation";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {
@@ -15,6 +15,7 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
     const setWalletState = useSetRecoilState(walletState);
     const setSettingsState = useSetRecoilState(settingsState);
     const resetCreateWalletState = useResetRecoilState(createWalletState);
+    const createServiceInstance = useServiceInstanceCreation();
 
     useEffect(() => {
         const setStorage = async () => {
@@ -31,10 +32,9 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
             setSettingsState(defaultSettingsState);
 
             if (mnemonic) {
-                await createServiceInstance({ walletIndex: 0, nameId: name!, mnemonic: mnemonic! });
+                await createServiceInstance(0, mnemonic);
             }
 
-            //TODO: remove this fn for Near or the comment in CKBull
             //Use another thread
             setTimeout(async () => {
                 await serviceInstancesMap.get(0)?.[defaultSettingsState.network]?.synchronize();

@@ -3,7 +3,7 @@ import SendConfirmationScreen from "module/transaction/screen/SendConfirmationSc
 import * as Recoil from "recoil";
 import { formatHash } from "@peersyst/react-utils";
 import { config } from "config";
-import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { MOCKED_ADDRESS, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("SendConfirmationScreen tests", () => {
     new UseServiceInstanceMock();
@@ -30,7 +30,7 @@ describe("SendConfirmationScreen tests", () => {
         expect(screen.getByText(`1,010 ${config.tokenName}`)).toBeDefined();
 
         expect(screen.getByText(translate("from"))).toBeDefined();
-        expect(screen.getByText(state.wallets[0].name + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
+        expect(screen.getByText(state.wallets[0].name + " - " + formatHash(MOCKED_ADDRESS, "middle", 3))).toBeDefined();
         expect(screen.getByText(translate("to"))).toBeDefined();
         expect(screen.getByText("recei...ess")).toBeDefined();
         expect(screen.getByText(translate("message"))).toBeDefined();

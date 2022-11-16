@@ -1,11 +1,12 @@
 import { useLoad } from "module/common/query/useLoad";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useRecoilValue } from "recoil";
-import { renderHook, waitFor } from "test-utils";
+import { renderHook, SuccessApiCall, waitFor } from "test-utils";
 import walletState from "module/wallet/state/WalletState";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
+import synchronizeMock from "mocks/synchronize";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
-import * as CreateServiceInstance from "module/wallet/utils/createServiceInstance";
 
 const renderUseLoad = () =>
     renderHook(() => {
@@ -21,7 +22,7 @@ describe("useLoad tests", () => {
     });
 
     test("Loads without wallets", async () => {
-        const getWallets = jest.spyOn(WalletStorage, "getWallets").mockImplementation(() => new Promise((resolve) => resolve(undefined)));
+        const getWallets = jest.spyOn(WalletStorage, "getWallets").mockImplementation().mockResolvedValue();
         const { result } = renderUseLoad();
         expect(result.current.loading).toBe(true);
         expect(getWallets).toHaveBeenCalled();
@@ -31,7 +32,7 @@ describe("useLoad tests", () => {
     });
 
     test("Loads with a wallet", async () => {
-        jest.spyOn(CreateServiceInstance, "default").mockResolvedValue();
+        jest.spyOn(CKBSDKService.prototype, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock) as any);
         const getWallets = jest
             .spyOn(WalletStorage, "getWallets")
             .mockImplementation(

@@ -4,9 +4,9 @@ import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
-import createServiceInstance from "module/wallet/utils/createServiceInstance";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import useServiceInstanceCreation from "module/wallet/hook/useServiceInstanceCreation";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
@@ -21,6 +21,7 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
         reset: resetCreateWalletState,
     } = useCreateWallet();
     const { setState: setWalletState } = useWalletState();
+    const createServiceInstance = useServiceInstanceCreation();
     const network = useSelectedNetwork();
 
     const handleClose = () => {
@@ -48,12 +49,12 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
                 ],
             }));
 
-            //TODO: remove this fn for Near or the comment in CKBull
+            await createServiceInstance(newWallet.index, mnemonic!);
+
             //Use another thread
             setTimeout(async () => {
                 await serviceInstancesMap.get(newWallet.index)?.[network]?.synchronize();
             });
-            await createServiceInstance({ nameId: name!, mnemonic: mnemonic!, walletIndex: newWallet.index });
         }
         handleClose();
     };
