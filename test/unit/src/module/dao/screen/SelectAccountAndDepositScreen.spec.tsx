@@ -46,7 +46,8 @@ describe("SelectAccountAndDepositScreen tests", () => {
         jest.spyOn(Genesys, "useSetTab").mockReturnValue(setTab);
         const screen = render(<SelectAccountAndDepositScreen setWithdrawInfo={setWithdrawInfo} />);
         expect(await screen.findByText(translate("select_a_wallet") + ":")).toBeDefined();
-        expect(screen.getAllByText("500")).toHaveLength(4);
+        expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined();
+        expect(screen.getByText("500")).toBeDefined();
         const button = screen.getByText(translate("withdraw"));
         fireEvent.press(button);
         //The deposit is zero because it corresponds to the 0 pos of the MockedUnlockableAmounts

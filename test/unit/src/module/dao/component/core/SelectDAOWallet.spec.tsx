@@ -8,6 +8,14 @@ import { MnemonicMocked } from "mocks/MnemonicMocked";
 
 describe("Test for the SelectDAOWallet", () => {
     const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
+    const setSelectedWallet = jest.fn();
+    jest.spyOn(UseWalletState, "default").mockReturnValue(createUseWalletStateMock({ setSelectedWallet }));
+    jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
+    jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
+        totalBalance: 20000,
+        occupiedBalance: 9600,
+        freeBalance: 14567,
+    });
 
     afterAll(() => {
         jest.restoreAllMocks();
@@ -19,20 +27,13 @@ describe("Test for the SelectDAOWallet", () => {
         expect(walletCardIcon).toBeDefined();
     });
     test("Updates global selectedWallet correctly", async () => {
-        const setSelectedWallet = jest.fn();
-        jest.spyOn(UseWalletState, "default").mockReturnValue(createUseWalletStateMock({ setSelectedWallet }));
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: 20000,
-            occupiedBalance: 9600,
-            freeBalance: 14567,
-        });
         const screen = render(<SelectDAOWallet />);
         const walletCardIcon = screen.getByTestId("FilledWalletIcon");
         expect(walletCardIcon).toBeDefined();
-        fireEvent.press(walletCardIcon);
+        const displayButton = screen.getByTestId("select-display-touchable");
+        fireEvent.press(displayButton);
         expect(screen.getByText(translate("select_a_wallet"))).toBeDefined();
-        const walletItems = screen.getAllByText("14,567");
+        const walletItems = await screen.findAllByText("14,567");
         expect(walletItems.length).toBe(2);
         fireEvent.press(walletItems[1]);
         expect(setSelectedWallet).toBeCalledWith(1);

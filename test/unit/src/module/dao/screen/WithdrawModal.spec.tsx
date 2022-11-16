@@ -50,7 +50,10 @@ describe("Withdraw modal test", () => {
         fireEvent.press(secondAccount);
 
         //Load new deposits
-        await waitFor(() => expect(screen.getByText("500")).toBeDefined());
+        const defaultDeposit = await screen.findByText("500");
+        expect(defaultDeposit).toBeDefined();
+        //Open the modal
+        fireEvent.press(defaultDeposit);
         //Click on the second deposit -> check in unlockable type withdraw and unlockable true
         const button = screen.getByText(translate("available"));
         fireEvent.press(button);
