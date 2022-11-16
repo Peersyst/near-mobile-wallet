@@ -37,10 +37,6 @@ import {
 } from "./near.constants";
 import { mockNfts } from "./near-nfts.mock";
 
-//TODO: remove CKB imports for mocking
-import { DepositInDAOParams, FullTransaction, WithdrawOrUnlockParams } from "module/common/service/CkbSdkService.types";
-import { CKBBalance, DAOBalance, DAOUnlockableAmount, TokenAmount, WalletState } from "ckb-peersyst-sdk";
-
 export enum Chains {
     MAINNET = "mainnet",
     TESTNET = "testnet",
@@ -699,11 +695,7 @@ export class NearSDKService {
     }
 
     async getNftMetadata(contractId: string): Promise<NftMetadata> {
-        if (!accountCacheMap.has(this)) {
-            const new_account = await this.getAccount();
-            accountCacheMap.set(this, new_account);
-        }
-        const account = accountCacheMap.get(this)!;
+        const account = await this.getAccount();
         return account.viewFunction({
             contractId,
             methodName: NFT_METADATA_METHOD,
@@ -713,11 +705,7 @@ export class NearSDKService {
 
     // Mintbase non-standard method
     private async getNftTokenMetadata(contractId: string, tokenId: string, baseUri: string): Promise<NftMetadata> {
-        if (!accountCacheMap.has(this)) {
-            const new_account = await this.getAccount();
-            accountCacheMap.set(this, new_account);
-        }
-        const account = accountCacheMap.get(this)!;
+        const account = await this.getAccount();
         let metadata = await account.viewFunction({
             contractId,
             methodName: NFT_TOKEN_METADATA_METHOD,
@@ -832,77 +820,5 @@ export class NearSDKService {
         }
 
         return nftTokens;
-    }
-
-    // --------------------------------------------------------------
-    // -- MOCK CKBSDKService unimplemented methods ------------------
-    // --------------------------------------------------------------
-
-    async wait(time = 500): Promise<void> {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve();
-            }, time);
-        });
-    }
-    async synchronize(): Promise<WalletState> {
-        await this.wait(100);
-        return {} as WalletState;
-    }
-    /* eslint-disable */
-    async depositInDAO(params: DepositInDAOParams): Promise<string> {
-        return "";
-    }
-
-    /* eslint-disable */
-    async withdrawOrUnlock({ unlockableAmount, mnemonic }: WithdrawOrUnlockParams): Promise<string> {
-        return "";
-    }
-
-    getCKBBalance(): CKBBalance {
-        return {
-            totalBalance: 324234234,
-            occupiedBalance: 324234234,
-            freeBalance: 324234234,
-        };
-    }
-
-    async getDAOBalance(): Promise<DAOBalance> {
-        await this.wait();
-        return {
-            daoDeposit: 324234234,
-            daoCompensation: 324234234,
-        };
-    }
-
-    async getDAOUnlockableAmounts(): Promise<DAOUnlockableAmount[]> {
-        await this.wait();
-        return [];
-    }
-
-    /* eslint-disable */
-    async getTransaction(txHash: string): Promise<FullTransaction> {
-        await this.wait();
-        return { hash: "", status: "" } as any as FullTransaction;
-    }
-
-    getTransactions(): FullTransaction[] {
-        return [];
-    }
-
-    async getTokensBalance(): Promise<TokenAmount[]> {
-        await this.wait();
-        return [
-            {
-                metadata: {
-                    name: "Bitcoin",
-                    symbol: "BTC",
-                    decimals: 8,
-                    imageUri:
-                        "https://s3-alpha-sig.figma.com/img/32d6/c448/29fed82fec1d9892f7ee8191c7283e41?Expires=1665964800&Signature=UpMwOiI1dE6o2pIE6PrgeoxV0N6i41c2gE4XyM7hPVJtrsF-4qTCuIew6FywlEZtVjmkEAlkO0QH2S5GRe-aX8zhgwbJZcVxd2Je8DngIQCORc0yW3HH~SEM8ze59uNK40MmYhg78cG209ZCWlb~Jg~5TA8TGhcnvu~vsCWzQMk1fz1G799X9gKKDClSCIVtkgyaedhE9ja5ev3WvL0i91a~RHB~j00Ts79ijxmIO-qXd1zS9IsnzzH6-bJXvPzB7O4AJngWk6dwncJ3KubuJQvB27VK~R4kGM5xHqaxXl76g3SNA5qV~dbuPW6zLkd4qHQzqAtE2uDvPfMj8zrCVQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
-                },
-                balance: BigInt(100),
-            },
-        ] as any as TokenAmount[];
     }
 }

@@ -29,24 +29,6 @@ export function createTypographyVariant(tag: keyof typeof FONT_STYLE, fontWeight
 }
 
 const typography: CreateTheme["typography"] = {
-    // CKBULL
-    h1: {
-        fontSize: 22,
-    },
-    h2: {
-        fontSize: 18,
-    },
-    h3: {
-        fontFamily: "Manrope_400Regular",
-        fontSize: 16,
-    },
-    body1: {
-        fontFamily: "Manrope_600SemiBold",
-    },
-    body2: {
-        fontFamily: "Manrope_400Regular",
-    },
-    // NEAR
     h1Strong: createTypographyVariant("h1", "strong"),
     h1Regular: createTypographyVariant("h1", "regular"),
     h1Light: createTypographyVariant("h1", "light"),
