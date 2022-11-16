@@ -2,12 +2,6 @@ import { ExpoConfig, ConfigContext } from "@expo/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
     ...config,
-    // @ts-ignore
-    expo: {
-        eas: {
-            projectId: "1b97d88a-b249-45d2-8b0d-aa1724191c39",
-        },
-    },
     name: "NEAR Mobile Wallet",
     slug: "NEARMobileWallet",
     owner: "peersyst",
@@ -56,5 +50,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     web: {
         favicon: "./assets/images/favicon.png",
+    },
+    extra: {
+        eas: {
+            projectId: "1b97d88a-b249-45d2-8b0d-aa1724191c39",
+        },
     },
 });
