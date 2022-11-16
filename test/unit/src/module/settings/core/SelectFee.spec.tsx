@@ -11,20 +11,21 @@ describe("Test for the SelectFee component", () => {
         const mockedRecoilState = [defaultSettingsState, setSettingsState];
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue(mockedRecoilState as any);
         const screen = render(<SelectFee />);
-        expect(screen.getAllByText(translate("modify_default_fee"))).toHaveLength(2);
-        expect(screen.getByText(translate("slow"))).toBeDefined();
-        expect(screen.getByText(translate("fast"))).toBeDefined();
-        expect(screen.getAllByText(translate("average"))).toHaveLength(2);
+        expect(screen.getByText(translate("modify_default_fee"))).toBeDefined();
+        expect(screen.getAllByText(translate("average"))).toBeDefined();
     });
-    test("Change the fee correctly", () => {
+    test("Change the fee correctly", async () => {
         jest.useFakeTimers();
         const setSettingsState = jest.fn();
         const mockedRecoilState = [defaultSettingsState, setSettingsState];
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue(mockedRecoilState as any);
-        const setSettingsStorage = jest.spyOn(SettingsStorage, "set").mockImplementation(() => new Promise((resolve) => resolve()));
+        const setSettingsStorage = jest.spyOn(SettingsStorage, "set").mockResolvedValue();
         const screen = render(<SelectFee />);
-        const item = screen.getByText(translate("fast"));
+        const item = screen.getByText(translate("average"));
         fireEvent.press(item);
+        const fastItem = await screen.findByText(translate("fast"));
+        expect(fastItem).toBeDefined();
+        fireEvent.press(fastItem);
         jest.runAllTimers();
         expect(setSettingsStorage).toHaveBeenCalledWith({ fee: FeeRate.FAST });
         expect(setSettingsState).toHaveBeenCalled();

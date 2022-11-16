@@ -1,8 +1,7 @@
 import "core-js";
 
-// Mock AsynStorage
-import mockAsyncStorage from "@react-native-async-storage/async-storage/jest/async-storage-mock";
-jest.mock("@react-native-async-storage/async-storage", () => mockAsyncStorage);
+// Mock AsyncStorage
+jest.mock("@react-native-async-storage/async-storage", () => require("@react-native-async-storage/async-storage/jest/async-storage-mock"));
 
 // Turn off network queries error logging
 /* eslint-disable no-console  */
@@ -44,23 +43,10 @@ jest.mock("expo-localization", () => ({
     decimalSeparator: ".",
 }));
 
-import { BackdropProps } from "@peersyst/react-native-components";
 jest.mock("@peersyst/react-native-components", () => {
-    const MockBackdrop = ({ children, onOpen, onClose, onExited, onEntered }: BackdropProps) => {
-        const handleClose = () => {
-            onClose?.();
-            onExited?.();
-        };
-        onOpen?.();
-        onEntered?.();
-        return <>{typeof children === "function" ? children(true, jest.fn(handleClose)) : children}</>;
-    };
-
     return {
         __esModule: true,
         ...jest.requireActual("@peersyst/react-native-components"),
-        Backdrop: MockBackdrop,
-        Modal: MockBackdrop,
     };
 });
 

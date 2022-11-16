@@ -56,11 +56,11 @@ describe("Test for the SecuritySettingsScreen", () => {
         const clearWalletStorage = jest.spyOn(WalletStorage, "clearAll").mockReturnValue(SuccessApiCall(undefined));
         jest.spyOn(WalletStorage, "getPin").mockReturnValue(SuccessApiCall("1234"));
         const clearSettingsStorage = jest.spyOn(SettingsStorage, "clear").mockReturnValue(SuccessApiCall(undefined));
-
         const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("delete_a_wallet"));
-        fireEvent.press(screen.getByText(state.wallets[0].name));
         fireEvent.press(button);
+        const wallet = screen.getByText(state.wallets[0].name);
+        fireEvent.press(wallet);
         await waitFor(() =>
             expect(screen.getByText(translate("delete_only_wallet_text", { walletName: state.wallets[0].name }))).toBeDefined(),
         );
@@ -84,8 +84,8 @@ describe("Test for the SecuritySettingsScreen", () => {
         const deleteInstance = jest.spyOn(serviceInstancesMap, "delete").mockReturnValue({} as any);
         const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("delete_a_wallet"));
-        fireEvent.press(screen.getByText(state.wallets[0].name));
         fireEvent.press(button);
+        fireEvent.press(screen.getByText(state.wallets[0].name));
         await waitFor(() => expect(screen.getByText(translate("delete_wallet_text", { walletName: state.wallets[0].name }))).toBeDefined());
         fireEvent.press(screen.getAllByText(translate("delete_wallet", { walletName: state.wallets[0].name }))[1]);
         expect(screen.getByText(translate("enter_your_pin").toUpperCase())).toBeDefined();

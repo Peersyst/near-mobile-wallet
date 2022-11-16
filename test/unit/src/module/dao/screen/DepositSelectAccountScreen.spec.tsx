@@ -16,7 +16,7 @@ describe("DepositSelectAccountScreen tests", () => {
     test("Renders correctly", () => {
         const screen = render(<DepositSelectAccountScreen />);
         expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined();
-        expect(screen.getAllByText(state.wallets[0].name)).toHaveLength(2);
+        expect(screen.getAllByText(state.wallets[0].name)).toBeDefined();
         expect(screen.getByText(translate("next"))).toBeDefined();
     });
 

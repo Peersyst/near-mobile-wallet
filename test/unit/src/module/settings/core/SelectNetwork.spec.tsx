@@ -9,26 +9,22 @@ describe("Test for the select network", () => {
         jest.restoreAllMocks();
     });
     test("Returns correctly", () => {
-        const setSettingsState = jest.fn();
-        const mockedRecoilState = [defaultSettingsState, setSettingsState];
-        jest.spyOn(Recoil, "useRecoilState").mockReturnValue(mockedRecoilState as any);
         const screen = render(<SelectNetwork />);
-        expect(screen.getAllByText(translate("select_your_network"))).toHaveLength(2);
-        expect(screen.getByText(translate("network_name", { name: "Mainnet" }))).toBeDefined();
-        expect(screen.getAllByText(translate("network_name", { name: "Testnet" }))).toHaveLength(2);
+        expect(screen.getByText(translate("select_your_network"))).toBeDefined();
+        expect(screen.getByText(translate("network_name", { name: "Testnet" }))).toBeDefined();
     });
-    test("Change the network correctly", () => {
-        jest.useFakeTimers();
+    test("Change the network correctly", async () => {
         const setSettingsState = jest.fn();
         const mockedRecoilState = [defaultSettingsState, setSettingsState];
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue(mockedRecoilState as any);
-        const setSettingsStorage = jest.spyOn(SettingsStorage, "set").mockImplementation(() => new Promise((resolve) => resolve()));
+        const setSettingsStorage = jest.spyOn(SettingsStorage, "set").mockResolvedValue();
         const screen = render(<SelectNetwork />);
-        const item = screen.getByText(translate("network_name", { name: "Mainnet" }));
-        fireEvent.press(item);
-        jest.runAllTimers();
+        const testnetItem = screen.getByText(translate("network_name", { name: "Testnet" }));
+        fireEvent.press(testnetItem); //open modal
+        const mainnetItem = await screen.findByText(translate("network_name", { name: "Mainnet" }));
+        fireEvent.press(mainnetItem); //select the mainnet
+
         expect(setSettingsStorage).toHaveBeenCalledWith({ network: "mainnet" });
         expect(setSettingsState).toHaveBeenCalled();
-        jest.useRealTimers();
     });
 });

@@ -15,8 +15,8 @@ describe("SendToAddressScreen tests", () => {
 
     test("Renders correctly", () => {
         const screen = render(<SendToAddressScreen />);
-        expect(screen.getAllByText(translate("select_a_wallet"))).toHaveLength(2); // WalletSelector label and modal title
-        expect(screen.getAllByText(state.wallets[0].name)).toHaveLength(2);
+        expect(screen.getByText(translate("select_a_wallet"))).toBeDefined();
+        expect(screen.getByText(state.wallets[0].name)).toBeDefined();
         expect(screen.getByText(translate("send_to"))).toBeDefined();
         expect(screen.getByPlaceholderText(translate("address"))).toBeDefined();
         expect(screen.getByText(translate("next"))).toBeDefined();
@@ -25,7 +25,7 @@ describe("SendToAddressScreen tests", () => {
     test("Renders correctly when an addresses had been selected previously", () => {
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{ senderWalletIndex: 1, receiverAddress: "receiver_address" }, jest.fn()]);
         const screen = render(<SendToAddressScreen />);
-        expect(screen.getAllByText(state.wallets[1].name)).toHaveLength(2);
+        expect(screen.getByText(state.wallets[1].name)).toBeDefined();
         expect(screen.getByDisplayValue("receiver_address")).toBeDefined();
     });
 

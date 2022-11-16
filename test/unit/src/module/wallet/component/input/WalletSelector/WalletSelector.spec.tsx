@@ -1,5 +1,5 @@
 import { render } from "test-utils";
-import { waitFor } from "@testing-library/react-native";
+import { fireEvent } from "@testing-library/react-native";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
@@ -16,10 +16,8 @@ describe("WalletSelector tests", () => {
             occupiedBalance: 0,
             freeBalance: 1,
         });
-
         const screen = render(<WalletSelector />);
-
-        expect(screen.getAllByText(state.wallets[0].name)).toHaveLength(2);
-        await waitFor(() => expect(screen.getAllByText("1")).toHaveLength(3));
+        fireEvent.press(screen.getByText(state.wallets[0].name));
+        expect(await screen.findAllByText("1")).toHaveLength(3);
     });
 });
