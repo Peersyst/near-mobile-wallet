@@ -2,18 +2,18 @@ import { ExpoConfig, ConfigContext } from "@expo/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
     ...config,
-    name: "NEAR Mobile Wallet",
-    slug: "NEARMobileWallet",
+    name: "CKBull",
+    slug: "CKBull",
     owner: "peersyst",
     version: "1.1.3",
     orientation: "portrait",
-    icon: "./assets/images/near-icon.png",
+    icon: "./assets/images/ckbull-icon.png",
     scheme: "myapp",
     userInterfaceStyle: "automatic",
     splash: {
         image: "./assets/images/splash.png",
         resizeMode: "contain",
-        backgroundColor: "#5F8AFA",
+        backgroundColor: "#ffffff",
     },
     updates: {
         fallbackToCacheTimeout: 0,
@@ -21,7 +21,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     assetBundlePatterns: ["**/*"],
     ios: {
         supportsTablet: false,
-        bundleIdentifier: "com.peersyst.nearmobilewallet",
+        bundleIdentifier: "com.peersyst.ckbull",
         buildNumber: process.env.BUILD_NUMBER || "0",
         config: {
             usesNonExemptEncryption: false,
@@ -30,21 +30,21 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         infoPlist: {
             NSCameraUsageDescription: "This app uses camera for QR code scanning.",
         },
-        splash: { image: "./assets/images/splash.png", resizeMode: "cover", backgroundColor: "#5F8AFA" },
+        splash: { image: "./assets/images/splash.png", resizeMode: "cover", backgroundColor: "#141414" },
     },
     get android(): ExpoConfig["android"] {
         return {
-            package: "com.peersyst.nearmobilewallet",
+            package: "com.peersyst.ckbull",
             adaptiveIcon: {
                 foregroundImage: "./assets/images/adaptive-icon.png",
-                backgroundColor: "#5F8AFA",
+                backgroundColor: "#141414",
             },
             versionCode: Number((this.version || "").replace(/\./g, "") + process.env.BUILD_NUMBER) || 0,
             softwareKeyboardLayoutMode: "resize",
             splash: {
                 image: "./assets/images/splash.png",
                 resizeMode: "cover",
-                backgroundColor: "#5F8AFA",
+                backgroundColor: "#141414",
             },
         };
     },
