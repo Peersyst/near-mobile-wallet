@@ -14,8 +14,7 @@ const useGetTransactions = ({ index, filter }: UseGetTransactionsOptions = {}) =
     const { data: uncommitedTransactions = [], isLoading: uncommitedTransactionsLoading } = useUncommittedTransactions(usedIndex);
 
     const { data: transactions = [], isLoading: transactionsLoading } = useQuery(["transactions", usedIndex, network], async () => {
-        const tsx = serviceInstance?.getTransactions().reverse();
-        return tsx.reverse();
+        return serviceInstance?.getTransactions().reverse();
     });
 
     const txs = useMemo(() => {
