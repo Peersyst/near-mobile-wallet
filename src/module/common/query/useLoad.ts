@@ -4,12 +4,13 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
-import createServiceInstance from "module/wallet/utils/createServiceInstance";
+import useServiceInstanceCreation from "module/wallet/hook/useServiceInstanceCreation";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
     const setWalletState = useSetRecoilState(walletState);
     const setSettingsState = useSetRecoilState(settingsState);
+    const createServiceInstance = useServiceInstanceCreation();
 
     useEffect(() => {
         const getStorage = async () => {
@@ -21,9 +22,9 @@ export function useLoad(): boolean {
                 setWalletState((state) => ({
                     ...state,
                     hasWallet: true,
-                    //Order wallets and remove secret/mnemonic
+                    //Order wallets and remove mnemonic
                     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                    wallets: wallets.map(({ mnemonic, secret, ...wallet }) => wallet).sort((w1, w2) => w1.index - w2.index),
+                    wallets: wallets.map(({ mnemonic, ...wallet }) => wallet).sort((w1, w2) => w1.index - w2.index),
                 }));
 
                 //Get the settings from storage and set it to the state
@@ -31,11 +32,10 @@ export function useLoad(): boolean {
                 setSettingsState(settings);
 
                 for (let i = 0; i < wallets.length; i += 1) {
-                    const { mnemonic, name, secret } = wallets.find((w) => w.index === i)!;
-                    await createServiceInstance({ walletIndex: i, nameId: name, mnemonic, secretKey: secret });
+                    const { testnet, mainnet, mnemonic } = wallets.find((w) => w.index === i)!;
+                    await createServiceInstance(i, mnemonic, testnet?.initialState, mainnet?.initialState);
                 }
 
-                //TODO: remove this fn for Near or the comment in CKBull
                 //Use another thread
                 setTimeout(async () => {
                     for (let i = 0; i < serviceInstancesMap.size; i += 1) {

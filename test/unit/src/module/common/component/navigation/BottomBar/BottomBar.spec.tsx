@@ -6,9 +6,9 @@ import mockedState from "./utils/mockedState";
 describe("BottomBar test", () => {
     test("Renders correctly", () => {
         const screen = render(<BottomBar state={{ ...mockedState, index: 0 } as any} navigation={{ navigate: jest.fn() } as any} />);
-        //Staking
-        expect(screen.getByText(translate("staking"))).toBeDefined();
-        expect(screen.getByTestId("DatabaseIcon")).toBeDefined();
+        //DAO
+        expect(screen.getByText(translate("DAO"))).toBeDefined();
+        expect(screen.getByTestId("DAOIcon")).toBeDefined();
         //Wallet
         expect(screen.getByText(translate("wallet"))).toBeDefined();
         expect(screen.getByTestId("NearIcon")).toBeDefined();
@@ -16,18 +16,18 @@ describe("BottomBar test", () => {
         expect(screen.getByTestId("PinIcon")).toBeDefined();
         expect(screen.getByText(translate("news"))).toBeDefined();
     });
-    test("Navigate to Staking Screen", () => {
+    test("Navigate to DAO Screen", () => {
         const mockedNavigate = jest.fn();
         const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: mockedNavigate } as any} />);
-        const newsButton = screen.getByTestId("DatabaseIcon");
-        fireEvent.press(newsButton);
-        expect(mockedNavigate).toHaveBeenCalledWith(MainBottomScreens.STAKING);
+        const daoButton = screen.getByTestId("DAOIcon");
+        fireEvent.press(daoButton);
+        expect(mockedNavigate).toHaveBeenCalledWith(MainBottomScreens.DAO);
     });
     test("Navigate to Home Screen", () => {
         const mockedNavigate = jest.fn();
         const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: mockedNavigate } as any} />);
-        const newsButton = screen.getByTestId("NearIcon");
-        fireEvent.press(newsButton);
+        const nearIcon = screen.getByTestId("NearIcon");
+        fireEvent.press(nearIcon);
         expect(mockedNavigate).toHaveBeenCalledWith(MainBottomScreens.HOME);
     });
     test("Navigate to News Screen", () => {

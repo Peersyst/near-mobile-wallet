@@ -47,7 +47,6 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
                 }
             }
             if (shouldSync) {
-                //TODO: remove this fn for Near or the comment in CKBull
                 //Use another thread
                 await serviceInstance.synchronize();
                 setWalletState((state) => ({

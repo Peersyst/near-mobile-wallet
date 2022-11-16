@@ -1,4 +1,4 @@
-import { NearSDKService } from "module/common/service/NearSdkService";
+import { CKBSDKService } from "module/common/service/CkbSdkService";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import { NetworkType } from "module/settings/state/SettingsState";
 import { serviceInstancesMap } from "../state/WalletState";
@@ -7,7 +7,7 @@ import useSelectedWalletIndex from "./useSelectedWalletIndex";
 export interface useServiceInstanceReturn {
     index: number;
     network: NetworkType;
-    serviceInstance: NearSDKService;
+    serviceInstance: CKBSDKService;
 }
 
 export default function useServiceInstance(index?: number): useServiceInstanceReturn {

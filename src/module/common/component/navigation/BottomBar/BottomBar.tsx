@@ -1,5 +1,5 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { NearIcon, PinIcon } from "icons";
+import { DAOIcon, NearIcon, PinIcon } from "icons";
 import { MainBottomScreens } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup";
 import { MainStackParamsList } from "stack-navigator";
 import { BottomBarRoot } from "./BottomBar.styles";
@@ -20,10 +20,10 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
     return (
         <BottomBarRoot>
             <BottomBarItem
-                onPress={() => handleNavigation(MainBottomScreens.STAKING)}
-                isActive={activeTab === MainBottomScreens.STAKING}
-                label={translate("staking")}
-                Icon={<DatabaseIcon />}
+                onPress={() => handleNavigation(MainBottomScreens.DAO)}
+                isActive={activeTab === MainBottomScreens.DAO}
+                label={translate("DAO")}
+                Icon={<DAOIcon />}
             />
             <BottomBarItem
                 onPress={() => handleNavigation(MainBottomScreens.HOME)}
