@@ -1,8 +1,8 @@
 import { FiatCurrencyType } from "module/settings/state/SettingsState";
-import { useGetCkbPrice } from "../query/useGetCkbPrice";
+import { useGetNativeTokenPrice } from "../query/useGetNativeTokenPrice";
 
-export default function useCkbConversion(currency: FiatCurrencyType, balance: number) {
-    const { data = [] } = useGetCkbPrice(currency);
+export default function useNativeTokenConversion(currency: FiatCurrencyType, balance: number) {
+    const { data = [] } = useGetNativeTokenPrice(currency);
     function convertBalance(balance: number): number {
         return typeof data === "number" ? data * balance : 0.01;
     }

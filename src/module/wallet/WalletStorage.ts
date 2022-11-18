@@ -1,6 +1,8 @@
-import { WalletState } from "ckb-peersyst-sdk";
+import { WalletState } from "near-peersyst-sdk";
 import { BaseStorageService } from "module/common/service/BaseStorageService";
-import { Chain } from "module/common/service/CkbSdkService.types";
+import { NetworkType } from "module/settings/state/SettingsState";
+
+export type Chain = NetworkType;
 
 export interface UnencryptedWalletChainInfo {
     initialState?: WalletState;
@@ -18,7 +20,7 @@ export interface SecureWalletInfo {
     name: string;
     colorIndex: number;
     mnemonic?: string[];
-    secret?: string; //TODO: remove this comment in Near & remove this field in CKB
+    secret?: string;
 }
 
 export type StorageWallet = SecureWalletInfo & UnencryptedWalletInfo;

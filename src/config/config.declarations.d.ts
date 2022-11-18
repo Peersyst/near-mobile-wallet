@@ -23,6 +23,7 @@ declare module "@peersyst/react-native-components" {
         tokenName: string;
         mainnetNodeUrl: string;
         testnetNodeUrl: string;
+        coingeckoTokenApiId: string;
     }
 
     export interface CreateConfig {
@@ -40,6 +41,7 @@ declare module "@peersyst/react-native-components" {
         tokenName: string;
         mainnetNodeUrl: string;
         testnetNodeUrl: string;
+        coingeckoTokenApiId: string;
     }
 
     export interface ExtraValidators {

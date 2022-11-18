@@ -1,4 +1,3 @@
-import { CKBBalance } from "ckb-peersyst-sdk";
 import { Dispatch, SetStateAction } from "react";
 import { NumericInput } from "@peersyst/react-native-components";
 import { SendSetAmountScreenProps } from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
@@ -9,11 +8,12 @@ import { TokenAmountInputRoot } from "module/transaction/component/input/TokenAm
 import TokenSelector from "module/token/component/input/TokenSelector/TokenSelector";
 import { TokenSelectorProps } from "module/token/component/input/TokenSelector/TokenSelector.types";
 import { useControlled } from "@peersyst/react-hooks";
+import { AccountBalance } from "near-peersyst-sdk";
 
 interface AmountInputProps extends Partial<Pick<TokenSelectorProps, "defaultToken" | "token" | "tokens" | "onTokenChange">> {
     amount: string;
     setAmount: Dispatch<SetStateAction<string>>;
-    freeBalance: CKBBalance["freeBalance"];
+    available: AccountBalance["available"];
     fee: number;
     type?: SendSetAmountScreenProps["type"];
     defaultToken?: string;
@@ -24,7 +24,7 @@ interface AmountInputProps extends Partial<Pick<TokenSelectorProps, "defaultToke
 const TokenAmountInput = ({
     amount,
     setAmount,
-    freeBalance,
+    available,
     fee,
     type = "send",
     defaultToken = config.tokenName,
@@ -55,7 +55,7 @@ const TokenAmountInput = ({
                         token: token,
                     }),
                 ],
-                lte: [Number(freeBalance) - fee, translate("insufficient_balance")],
+                lte: [Number(available) - fee, translate("insufficient_balance")],
             }}
             suffix={<TokenSelector token={token} tokens={tokens} onTokenChange={setToken} />}
             input={NumericInput}

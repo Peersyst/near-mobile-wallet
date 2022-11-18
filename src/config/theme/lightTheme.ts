@@ -73,6 +73,7 @@ const lightTheme = createTheme({
             warning: orange,
             error: red,
         },
+        wallet: ["#15C8BD", "#47B5D6", "#623EDF", "#924AD9", "#FF66B0", "#E4AF4C"],
         appbar: gray[0],
         paper: gray[0],
         backdrop: overlay["60%"],

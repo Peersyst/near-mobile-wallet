@@ -1,4 +1,4 @@
-import { TransactionType } from "ckb-peersyst-sdk";
+import { TransactionType } from "near-peersyst-sdk";
 import { TransaltionResourceType } from "locale";
 
 export const TX_LABEL: Record<Partial<TransactionType>, TransaltionResourceType> = {

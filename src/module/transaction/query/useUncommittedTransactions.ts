@@ -1,5 +1,4 @@
 import { QueryResult } from "query-utils";
-import { FullTransaction } from "module/common/service/CkbSdkService.types";
 import { useQuery } from "react-query";
 import useWallet from "module/wallet/hook/useWallet";
 import walletState from "module/wallet/state/WalletState";

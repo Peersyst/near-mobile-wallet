@@ -1,4 +1,4 @@
-import { WalletService } from "ckb-peersyst-sdk";
+import { WalletService } from "near-peersyst-sdk";
 import { Col } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";

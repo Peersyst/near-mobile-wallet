@@ -4,7 +4,7 @@ import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/S
 import * as Recoil from "recoil";
 import * as Genesys from "@peersyst/react-native-components";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
-import { FeeRate } from "ckb-peersyst-sdk";
+import { FeeRate } from "near-peersyst-sdk";
 import { config } from "config";
 import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
@@ -18,7 +18,7 @@ describe("SendAmountAndMessageScreen tests", () => {
         jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 12000,
             occupiedBalance: 2000,
-            freeBalance: 10000,
+            available: 10000,
         });
     });
 

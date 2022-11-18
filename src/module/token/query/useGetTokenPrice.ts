@@ -1,4 +1,4 @@
-import { ScriptType } from "ckb-peersyst-sdk";
+import { ScriptType } from "near-peersyst-sdk";
 import { useQuery } from "react-query";
 import { QueryResult } from "query-utils";
 import { FiatCurrencyType } from "module/settings/state/SettingsState";

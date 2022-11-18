@@ -1,12 +1,12 @@
 import { formatHash } from "@peersyst/react-utils";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
 import SendSummary from "module/transaction/screen/SendConfirmationScreen/SendSummary";
 import { render, translate } from "test-utils";
 import { config } from "config";
+import { MOCKED_ADDRESS, UseServiceInstanceMock } from "test-mocks";
 
 describe("Test for the SendSummary component", () => {
     test("Renders correctly", () => {
-        jest.spyOn(CKBSDKService.prototype, "getAddress").mockReturnValue("0xMockedAddress");
+        new UseServiceInstanceMock();
         const screen = render(
             <SendSummary
                 senderAddress="0xMockedAddress"
@@ -26,7 +26,7 @@ describe("Test for the SendSummary component", () => {
         expect(screen.getByText(`2,400.001 ${config.tokenName}`)).toBeDefined();
         //From
         expect(screen.getByText(translate("from")));
-        expect("Antonia" + " - " + formatHash("0xMockedAddress", "middle", 3)).toBeDefined();
+        expect("Antonia" + " - " + formatHash(MOCKED_ADDRESS, "middle", 3)).toBeDefined();
         //Message
         expect(screen.getByText(translate("message"))).toBeDefined();
         expect(screen.getByText("hola")).toBeDefined();

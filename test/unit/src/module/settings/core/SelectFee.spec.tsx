@@ -3,7 +3,7 @@ import { defaultSettingsState } from "module/settings/state/SettingsState";
 import { fireEvent, render, translate } from "test-utils";
 import * as Recoil from "recoil";
 import { SettingsStorage } from "module/settings/SettingsStorage";
-import { FeeRate } from "ckb-peersyst-sdk";
+import { FeeRate } from "near-peersyst-sdk";
 
 describe("Test for the SelectFee component", () => {
     test("Renders correctly", () => {

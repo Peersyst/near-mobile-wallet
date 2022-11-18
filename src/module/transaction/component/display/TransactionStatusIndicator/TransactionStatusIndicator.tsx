@@ -1,5 +1,5 @@
 import { TransactionStatusIndicatorRoot } from "./TransactionStatusIndicator.styles";
-import { TransactionStatus } from "ckb-peersyst-sdk";
+import { TransactionStatus } from "near-peersyst-sdk";
 import { Animated, Easing } from "react-native";
 import { useEffect, useRef } from "react";
 import { classify } from "@peersyst/react-utils";

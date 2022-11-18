@@ -16,7 +16,7 @@ export interface WalletCardProps {
 
 const WalletCard = ({ wallet: { name, index, synchronizing } }: WalletCardProps): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
-    const { data: { freeBalance } = {} } = useGetBalance(index);
+    const { data: { available } = {} } = useGetBalance(index);
     const [showFiat, setCurrencyMode] = useState<boolean>(false);
     const changeCurrencyMode = () => {
         impactAsync(ImpactFeedbackStyle.Medium);
@@ -36,7 +36,7 @@ const WalletCard = ({ wallet: { name, index, synchronizing } }: WalletCardProps)
                     options={{ maxDecimals: 2 }}
                     spinnerProps={{ color: (p) => p.white, size: 42 }}
                     onPress={changeCurrencyMode}
-                    balance={showFiat ? "10" : freeBalance || 0}
+                    balance={showFiat ? "10" : available || 0}
                     variant="h3Strong"
                     color={(p) => p.white}
                     units={showFiat ? fiat : "token"}

@@ -35,7 +35,6 @@ export function useLoad(): boolean {
                     await createServiceInstance({ walletIndex: i, nameId: name, mnemonic, secretKey: secret });
                 }
 
-                //TODO: remove this fn for Near or the comment in CKBull
                 //Use another thread
                 setTimeout(async () => {
                     for (let i = 0; i < serviceInstancesMap.size; i += 1) {

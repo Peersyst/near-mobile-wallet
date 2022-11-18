@@ -1,4 +1,4 @@
-import { TransactionStatus, TransactionType } from "ckb-peersyst-sdk";
+import { TransactionStatus, TransactionType } from "near-peersyst-sdk";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
 
 export const transaction: FullTransaction = {

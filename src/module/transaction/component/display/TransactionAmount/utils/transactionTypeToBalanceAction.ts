@@ -1,4 +1,4 @@
-import { TransactionType } from "ckb-peersyst-sdk";
+import { TransactionType } from "near-peersyst-sdk";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
 

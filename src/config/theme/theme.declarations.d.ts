@@ -34,6 +34,7 @@ declare module "@peersyst/react-native-components" {
         purple: string;
         lilac: string;
         orange: string;
+        wallet: string[];
         gradient: {
             lilacBlue: [string, string];
             lilacOrange: [string, string];

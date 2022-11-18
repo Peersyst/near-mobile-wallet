@@ -14,7 +14,7 @@ describe("WalletSelector tests", () => {
         jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 1,
             occupiedBalance: 0,
-            freeBalance: 1,
+            available: 1,
         });
         const screen = render(<WalletSelector />);
         fireEvent.press(screen.getByText(state.wallets[0].name));

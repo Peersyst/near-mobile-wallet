@@ -1,17 +1,18 @@
 import { useMutation } from "react-query";
-import { SendTransactionParams } from "module/common/service/CkbSdkService.types";
 import useAddUncommittedTransaction from "module/transaction/query/useAddUncommitedTransaction";
-/* import { WalletStorage } from "module/wallet/WalletStorage"; */
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
+
+export interface UseSendTransactionParams {
+    to: string;
+    amount: string;
+}
 
 const useSendTransaction = (senderIndex: number) => {
     const { serviceInstance, network } = useServiceInstance(senderIndex);
     const addUncommittedTransaction = useAddUncommittedTransaction();
 
-    return useMutation(async (params: Omit<SendTransactionParams, "mnemonic">) => {
-        //TODO: get mnemonic from wallet storage in ckb
-        //const mnemonic = await WalletStorage.getMnemonic(senderIndex!);
-        const hash = await serviceInstance.sendTransaction(params.to, params.amount.toString());
+    return useMutation(async ({ to, amount }: UseSendTransactionParams) => {
+        const hash = await serviceInstance.sendTransaction(to, amount.toString());
         if (hash) await addUncommittedTransaction(senderIndex, network, hash);
     });
 };

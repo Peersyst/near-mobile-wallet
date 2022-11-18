@@ -7,12 +7,12 @@ import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
 import { CreateWalletState } from "module/wallet/state/CreateWalletState";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
 import synchronizeMock from "mocks/synchronize";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
+import { UseServiceInstanceMock } from "test-mocks";
 
 describe("CreateWalletSuccessScreen tests", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
+    const { serviceInstance: sdkInstance } = new UseServiceInstanceMock();
 
     afterAll(() => {
         jest.restoreAllMocks();

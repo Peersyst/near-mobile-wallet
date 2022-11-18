@@ -319,6 +319,7 @@ export class NearSDKService {
     // --------------------------------------------------------------
     async getAccountBalance(): Promise<AccountBalance> {
         const account = await this.getAccount();
+        console.log(account, await account.getAccountBalance());
         return account.getAccountBalance();
     }
 
@@ -349,14 +350,15 @@ export class NearSDKService {
     }
 
     // REMOVE COMMENT
-    /* async getTransactions(page = 1, pageSize = 15): Promise<any> {
+    async getTransactions(page = 1, pageSize = 15): Promise<any> {
+        return []; //TODO implement this
         const resp = await fetch(`${this.baseApiUrl}/transactions/?accountId=${this.getAddress()}&page=${page}&pageSize=${pageSize}`);
         if (resp.status !== 200) {
             throw new Error("Bad response status");
         }
 
         return resp.json();
-    } */
+    }
 
     // --------------------------------------------------------------
     // -- STAKING FUNCTIONS -----------------------------------------
@@ -820,5 +822,10 @@ export class NearSDKService {
         }
 
         return nftTokens;
+    }
+
+    //TODO: revise this method
+    async synchronize(): Promise<void> {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
     }
 }

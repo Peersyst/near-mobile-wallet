@@ -8,7 +8,6 @@ import useGetBalance from "module/wallet/query/useGetBalance";
 import settingsState from "module/settings/state/SettingsState";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import TokenAmountInput from "../../component/input/TokenAmountInput/TokenAmountInput";
-import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 import { config } from "config";
@@ -37,7 +36,8 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
 
     const handleSubmit = ({ amount, message, token }: SendAmountAndMessageResult): void => {
         setSendState((oldState) => ({ ...oldState, amount, message, fee: fee.toString(), token }));
-        setTab(type === "send" ? SendScreens.CONFIRMATION : DepositScreens.CONFIRMATION);
+        //TODO: revise this add staking or remove DAO
+        setTab(type === "send" ? SendScreens.CONFIRMATION : SendScreens.CONFIRMATION);
     };
 
     return (
@@ -49,7 +49,7 @@ const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.E
                         fee={fee}
                         amount={amount}
                         setAmount={setAmount}
-                        freeBalance={balance?.freeBalance ?? 0}
+                        available={balance?.available ?? "0"}
                         defaultToken={sendState.token}
                         tokens={isDao ? undefined : ["BTC"]}
                     />

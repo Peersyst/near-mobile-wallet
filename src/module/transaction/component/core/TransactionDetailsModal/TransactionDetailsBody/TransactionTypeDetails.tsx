@@ -2,7 +2,7 @@ import TransactionDetail from "module/transaction/component/core/TransactionDeta
 import { Row, Typography } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { FullTransaction } from "module/common/service/CkbSdkService.types";
-import { TransactionType } from "ckb-peersyst-sdk";
+import { TransactionType } from "near-peersyst-sdk";
 import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
 import { useTranslate } from "module/common/hook/useTranslate";
 

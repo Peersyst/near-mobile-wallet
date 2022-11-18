@@ -67,6 +67,7 @@ const darkTheme = createTheme({
         orange,
         gradient,
         overlay,
+        wallet: ["#15C8BD", "#47B5D6", "#623EDF", "#924AD9", "#FF66B0", "#E4AF4C"],
         status: {
             info: blue,
             success: green,

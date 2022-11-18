@@ -21,7 +21,7 @@ describe("WalletCard tests", () => {
         jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 20000,
             occupiedBalance: 9600,
-            freeBalance: 10400,
+            available: 10400,
         });
     });
 

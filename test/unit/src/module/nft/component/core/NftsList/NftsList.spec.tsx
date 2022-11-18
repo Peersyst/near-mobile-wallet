@@ -1,8 +1,7 @@
-import { render, SuccessApiCall } from "test-utils";
-import { tempNft } from "mocks/nft";
+import { render, SuccessApiCall, translate } from "test-utils";
 import NftsList from "module/nft/component/core/NftsList/NftsList";
 import { waitFor } from "@testing-library/react-native";
-import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { NftTokensMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("NftsList tests", () => {
     new UseWalletStateMock();
@@ -13,17 +12,15 @@ describe("NftsList tests", () => {
     });
 
     test("Renders correctly", async () => {
-        jest.spyOn(serviceInstance, "getNfts").mockReturnValue(SuccessApiCall([tempNft] as any));
+        const { nfts } = new NftTokensMock();
+        jest.spyOn(serviceInstance, "getNfts").mockReturnValue(SuccessApiCall(nfts));
         const screen = render(<NftsList />);
-        await waitFor(() => expect(screen.getByText(tempNft.metadata.title!)));
+        await waitFor(() => expect(screen.getByText(nfts[0].metadata.title!)));
     });
 
-    // IGNORED WHILE MOCKED
-    /* test("Renders correctly without transactions", async () => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getNfts").mockReturnValue(SuccessApiCall([]));
+    test("Renders correctly without transactions", async () => {
+        jest.spyOn(serviceInstance, "getNfts").mockReturnValue(SuccessApiCall([]));
         const screen = render(<NftsList />);
         await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show", { ns: "error" }))));
-    });*/
+    });
 });

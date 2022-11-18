@@ -16,7 +16,7 @@ describe("WalletBackupAdvise", () => {
         jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 1,
             occupiedBalance: 0,
-            freeBalance: 1,
+            available: 1,
         });
         const screen = render(<WalletsBackupAdvise onWalletSelected={handleSelection} />);
         expect(screen.getByText(translate("backup_wallet_advise_text"))).toBeDefined();

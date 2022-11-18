@@ -1,4 +1,4 @@
-import { TransactionType } from "ckb-peersyst-sdk";
+import { TransactionType } from "near-peersyst-sdk";
 
 export interface TransactionIconProps {
     type: TransactionType;

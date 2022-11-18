@@ -1,6 +1,6 @@
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { Chains, NearSDKService } from "module/common/service/NearSdkService";
 import { config } from "config";
+import { Chains, NearSDKService } from "near-peersyst-sdk";
 
 export interface CreateServiceInstanceBaseParams {
     walletIndex: number;

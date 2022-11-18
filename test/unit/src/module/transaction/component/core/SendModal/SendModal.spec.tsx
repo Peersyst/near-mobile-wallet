@@ -16,7 +16,7 @@ describe("SendModal tests", () => {
         jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 12000,
             occupiedBalance: 2000,
-            freeBalance: 1000000,
+            available: 1000000,
         });
     });
 

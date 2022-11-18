@@ -13,5 +13,6 @@
     "mainnetExplorerApi": "https://mainnet-api.explorer.nervos.org/api/v1/",
     "maxNumberOfDecimals": 6,
     "enableMainnet": true,
-    "tokenName": "NEAR"
+    "tokenName": "NEAR",
+    "coingeckoTokenApiId": "near"
 }

@@ -12,7 +12,7 @@ module.exports = function (api) {
                         config: "./src/config",
                         images: "./src/asset/image",
                         icons: "./src/module/common/icons",
-                        "ckb-peersyst-sdk": "./src/module/sdk",
+                        "near-peersyst-sdk": "./src/module/sdk",
                         module: "./src/module",
                         utils: "./src/utils",
                         "stack-navigator": "./src/Stack.ts",

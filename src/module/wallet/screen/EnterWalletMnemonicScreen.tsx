@@ -3,7 +3,7 @@ import MnemonicInput from "module/wallet/component/input/MnemonicInput/MnemonicI
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useEffect, useState } from "react";
-import { WalletService } from "ckb-peersyst-sdk";
+import { WalletService } from "near-peersyst-sdk";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import { useTranslate } from "module/common/hook/useTranslate";
 
