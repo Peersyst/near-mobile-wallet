@@ -33,7 +33,7 @@ const WalletCard = ({ wallet: { name, index, synchronizing } }: WalletCardProps)
                     textAlign="center"
                     style={{ width: "100%" }}
                     isLoading={synchronizing}
-                    options={{ maxDecimals: 2 }}
+                    options={{ maximumFractionDigits: 2 }}
                     spinnerProps={{ color: (p) => p.white, size: 42 }}
                     onPress={changeCurrencyMode}
                     balance={showFiat ? "10" : available || 0}

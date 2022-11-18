@@ -3,7 +3,7 @@ import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import * as Recoil from "recoil";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { config } from "config";
-import { UseWalletStateMock, UseServiceInstanceMock } from "test-mocks";
+import { UseWalletStateMock, UseServiceInstanceMock, AccountBalanceMock, MOCKED_NAMED_ADDRESS } from "test-mocks";
 
 describe("SendModal tests", () => {
     new UseWalletStateMock();
@@ -13,11 +13,8 @@ describe("SendModal tests", () => {
     });
 
     beforeAll(() => {
-        jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: 12000,
-            occupiedBalance: 2000,
-            available: 1000000,
-        });
+        const acountBalance = new AccountBalanceMock();
+        jest.spyOn(serviceInstance, "getAccountBalance").mockResolvedValue(acountBalance);
     });
 
     test("Renders correctly", () => {
@@ -39,10 +36,7 @@ describe("SendModal tests", () => {
         const screen = render(<SendModal />);
 
         // Enter receiver address, sender address equals the selected account (0)
-        fireEvent.changeText(
-            screen.getByPlaceholderText(translate("address")),
-            "ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwsq03ewkvsva4cchhntydu648l7lyvn9w2cctnpask",
-        );
+        fireEvent.changeText(screen.getByPlaceholderText(translate("address")), MOCKED_NAMED_ADDRESS);
         fireEvent.press(screen.getByText(translate("next")));
 
         // Enter amount and message

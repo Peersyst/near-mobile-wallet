@@ -10,16 +10,12 @@ import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("SendAmountAndMessageScreen tests", () => {
     new UseWalletStateMock();
-    const { serviceInstance } = new UseServiceInstanceMock();
+    new UseServiceInstanceMock();
     const setSendState = jest.fn();
+
     beforeAll(() => {
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{}, setSendState]);
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fee: FeeRate.NORMAL });
-        jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: 12000,
-            occupiedBalance: 2000,
-            available: 10000,
-        });
     });
 
     afterAll(() => {

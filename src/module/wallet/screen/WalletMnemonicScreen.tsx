@@ -1,4 +1,3 @@
-import { WalletService } from "near-peersyst-sdk";
 import { Col } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
@@ -6,6 +5,7 @@ import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicL
 import { useMemo } from "react";
 import { useTranslate } from "module/common/hook/useTranslate";
 import Advise from "module/common/component/display/Advise/Advise";
+import { NearSDKService } from "near-peersyst-sdk";
 
 export interface WalletMnemonicScreenProps {
     onNextScreen: () => void;
@@ -20,7 +20,7 @@ const WalletMnemonicScreen = ({ onNextScreen }: WalletMnemonicScreenProps): JSX.
     };
 
     const mnemonic = useMemo(() => {
-        const mnemonicStr = WalletService.createNewMnemonic();
+        const mnemonicStr = NearSDKService.createNewMnemonic();
         return mnemonicStr.split(" ");
     }, []);
 

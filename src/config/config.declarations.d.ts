@@ -13,9 +13,7 @@ declare module "@peersyst/react-native-components" {
         minimumDaoDeposit: number;
         mainnetExplorerApi: string;
         testnetExplorerApi: string;
-        ckbTestnetUrl: string;
         indexerTestnetUrl: string;
-        ckbMainnetUrl: string;
         indexerMainnetUrl: string;
         faucetUrl: string;
         maxNumberOfDecimals: number;
@@ -31,9 +29,7 @@ declare module "@peersyst/react-native-components" {
         minimumDaoDeposit: number;
         mainnetExplorerApi: string;
         testnetExplorerApi: string;
-        ckbTestnetUrl: string;
         indexerTestnetUrl: string;
-        ckbMainnetUrl: string;
         indexerMainnetUrl: string;
         faucetUrl: string;
         maxNumberOfDecimals: number;
@@ -45,7 +41,7 @@ declare module "@peersyst/react-native-components" {
     }
 
     export interface ExtraValidators {
-        address: Validator<NetworkType>;
+        address: Validator;
     }
 
     export interface BlockchainLinksTypesOverrides {

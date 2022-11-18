@@ -6,7 +6,7 @@ describe("Renders the token list properly", () => {
     new UseWalletStateMock();
     const { serviceInstance } = new UseServiceInstanceMock();
 
-    afterEach(() => {
+    afterAll(() => {
         jest.restoreAllMocks();
     });
 

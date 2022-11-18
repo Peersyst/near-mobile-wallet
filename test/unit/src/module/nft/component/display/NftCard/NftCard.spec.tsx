@@ -7,7 +7,7 @@ describe("NftCard tests", () => {
         const nft = new NftTokenMock();
         const screen = render(<NftCard nft={nft} />);
         expect(screen.getByText(nft.metadata.title!));
-        expect(screen.getByText(nft.token_id));
+        expect(screen.getByText(nft.owner_id));
         expect(screen.getByText(translate("boughtFor")));
         expect(screen.getByText(formatBalance(500, { units: "token", numberFormatOptions: { maximumFractionDigits: 2 } })));
     });

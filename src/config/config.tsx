@@ -4,10 +4,10 @@ import prodConfig from "./config.prod.json";
 import devConfig from "./config.dev.json";
 import stagingConfig from "./config.staging.json";
 import baseConfig from "./config.base.json";
-import { CkbAddressValidator } from "config/validators/CkbAddressValidator";
 import globalStyles from "config/globalStyles";
 import { ChevronDownIcon } from "icons";
 import darkTheme from "config/theme/darkTheme";
+import { AddressValidator } from "./validators/AddressValidator";
 
 const envConfigs: Record<string, CreateConfig> = {
     test: { ...baseConfig, ...devConfig },
@@ -70,7 +70,7 @@ const config = createConfig({
         dark: darkTheme,
     },
     validators: {
-        address: CkbAddressValidator,
+        address: AddressValidator,
     },
     globalStyles,
 });

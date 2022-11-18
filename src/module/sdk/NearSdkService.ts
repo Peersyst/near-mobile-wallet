@@ -4,6 +4,7 @@ import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/pr
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
+const bip39 = require("bip39-light");
 import {
     MINIMUM_UNSTAKED,
     DEPOSIT_STAKE_METHOD,
@@ -192,6 +193,10 @@ export class NearSDKService {
         return service;
     }
 
+    static createNewMnemonic(): string {
+        return bip39.generateMnemonic();
+    }
+
     // --------------------------------------------------------------
     // -- COMMON FUNCTIONS ------------------------------------------
     // --------------------------------------------------------------
@@ -244,6 +249,14 @@ export class NearSDKService {
 
     static nameIdIsValid(nameId: string): boolean {
         return nameId.length >= 2 && nameId.length <= 64 && NearSDKService.nameRegex.test(nameId);
+    }
+
+    static isImplicitAddressOrNameValid(accoutOrNameId: string): boolean {
+        return NearSDKService.nameIdIsValid(accoutOrNameId) || NearSDKService.isImplicitAddress(accoutOrNameId);
+    }
+
+    static validateMnemonic(mnemonic: string): boolean {
+        return bip39.validateMnemonic(mnemonic);
     }
 
     async accountCanReceive(accountId: string): Promise<boolean> {
@@ -319,7 +332,6 @@ export class NearSDKService {
     // --------------------------------------------------------------
     async getAccountBalance(): Promise<AccountBalance> {
         const account = await this.getAccount();
-        console.log(account, await account.getAccountBalance());
         return account.getAccountBalance();
     }
 
