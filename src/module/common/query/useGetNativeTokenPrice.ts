@@ -18,6 +18,7 @@ export const useGetNativeTokenPrice = (currency?: FiatCurrencyType): QueryResult
                 const data = await res.json();
                 return data?.market_data?.current_price[finalCurrency];
             } catch (e) {
+                // eslint-disable-next-line no-console
                 console.warn("Error loading token price", e);
                 return 0;
             }

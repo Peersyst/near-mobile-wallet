@@ -1,7 +1,6 @@
 import Root from "./src";
 import useCachedResources from "./src/module/common/hook/useCachedResources";
 import { LogBox } from "react-native";
-import React from "react";
 // Polyfill Intl as it is not included in RN
 import "intl";
 

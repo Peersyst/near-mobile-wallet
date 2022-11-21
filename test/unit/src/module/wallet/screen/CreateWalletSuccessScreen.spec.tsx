@@ -8,7 +8,6 @@ import { defaultSettingsState } from "module/settings/state/SettingsState";
 import { CreateWalletState } from "module/wallet/state/CreateWalletState";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import synchronizeMock from "mocks/synchronize";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
 import { UseServiceInstanceMock } from "test-mocks";
 
 describe("CreateWalletSuccessScreen tests", () => {

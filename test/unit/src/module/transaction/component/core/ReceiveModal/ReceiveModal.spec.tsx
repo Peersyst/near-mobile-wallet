@@ -21,12 +21,13 @@ describe("Test for the receive Modal", () => {
     test("Copies address correctly", () => {
         const showToast = jest.fn();
         jest.spyOn(Genesys, "useToast").mockReturnValue({ showToast, hideToast: jest.fn(), toastActive: false });
-        jest.spyOn(Clipboard, "setString");
+        const mockedCopy = jest.fn();
+        jest.spyOn(Clipboard, "setStringAsync").mockImplementation(mockedCopy);
         const screen = render(<ReceiveModal />);
         const button = screen.getByText(translate("copy"));
         expect(button).toBeDefined();
         fireEvent.press(button);
-        expect(Clipboard.setString).toHaveBeenCalledWith(MOCKED_ADDRESS);
+        expect(mockedCopy).toHaveBeenCalledWith(MOCKED_ADDRESS);
         expect(showToast).toHaveBeenCalledWith(translate("address_copied"), { type: "success" });
     });
 });

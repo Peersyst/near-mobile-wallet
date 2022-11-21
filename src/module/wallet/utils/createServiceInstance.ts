@@ -38,14 +38,14 @@ const createServiceInstance = async ({ walletIndex, nameId, mnemonic, secretKey 
                     config.testnetNodeUrl,
                     config.indexerTestnetUrl,
                     stringMnemonic,
-                    "doctorparra.near",
+                    nameId,
                 ),
                 mainnet: await NearSDKService.importFromMnemonic(
                     Chains.MAINNET,
                     config.mainnetNodeUrl,
                     config.indexerMainnetUrl,
                     stringMnemonic,
-                    "doctorparra.near",
+                    nameId,
                 ),
             });
         } else if (secretKey) {
@@ -55,14 +55,14 @@ const createServiceInstance = async ({ walletIndex, nameId, mnemonic, secretKey 
                     config.testnetNodeUrl,
                     config.indexerTestnetUrl,
                     secretKey,
-                    "doctorparra.near",
+                    nameId,
                 ),
                 mainnet: await NearSDKService.importFromSecretKey(
                     Chains.MAINNET,
                     config.mainnetNodeUrl,
                     config.indexerMainnetUrl,
                     secretKey,
-                    "doctorparra.near",
+                    nameId,
                 ),
             });
         }

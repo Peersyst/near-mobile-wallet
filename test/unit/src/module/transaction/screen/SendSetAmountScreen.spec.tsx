@@ -31,16 +31,6 @@ describe("SendAmountAndMessageScreen tests", () => {
         expect(screen.getByText(translate("next"))).toBeDefined();
     });
 
-    test("Renders correctly with type dao deposit", async () => {
-        const screen = render(<SendSetAmountScreen type="dao" />);
-        await waitFor(() => expect(screen.getByPlaceholderText(translate("enter_amount"))).toBeDefined());
-        expect(
-            screen.getByText(
-                translate("deposit_warning", { dao_min_deposit: config.minimumDaoDeposit.toString(), token: config.tokenName }),
-            ),
-        ).toBeDefined();
-    });
-
     test("Sets send state and advances to next screen", async () => {
         const setTab = jest.fn();
         jest.spyOn(Genesys, "useSetTab").mockReturnValue(setTab);

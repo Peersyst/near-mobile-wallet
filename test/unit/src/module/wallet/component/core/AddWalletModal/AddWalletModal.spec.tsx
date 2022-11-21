@@ -3,7 +3,6 @@ import AddWalletModal from "module/wallet/component/core/AddWalletModal/AddWalle
 import { StorageWallet, WalletStorage } from "module/wallet/WalletStorage";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import Button from "module/common/component/input/Button/Button";
-import synchronizeMock from "mocks/synchronize";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 import { UseWalletStateMock, WalletStateMock } from "test-mocks";
 

@@ -8,7 +8,6 @@ import { SendScreens } from "module/transaction/component/core/SendModal/SendMod
 import { useRecoilState } from "recoil";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import useUncommittedTransaction from "module/transaction/hook/useUncommittedTransaction";
-import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { CameraIcon } from "icons";
 import QrScanner from "module/common/component/input/QrScanner/QrScanner";
@@ -27,7 +26,6 @@ const SendToAddressScreen = () => {
     const { showToast, hideToast } = useToast();
     const setTab = useSetTab();
     const uncommittedTransaction = useUncommittedTransaction();
-    const network = useSelectedNetwork();
 
     const handleAddressScan = (data: string) => {
         setReceiverAddress(data);
