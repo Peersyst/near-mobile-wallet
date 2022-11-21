@@ -87,11 +87,19 @@ export interface TransactionActionDto {
     args: any;
 }
 
-export enum TransactionStatus {
+//TODO: Update TransactionStatus
+/* export enum TransactionStatus {
     UNKNOWN = "UNKNOWN",
     FAILURE = "FAILURE",
     SUCCESS_VALUE = "SUCCESS_VALUE",
     SUCCESS_RECEIPT_ID = "SUCCESS_RECEIPT_ID",
+} */
+
+export enum TransactionStatus {
+    PENDING = "pending",
+    PROPOSED = "proposed",
+    COMMITTED = "committed",
+    REJECTED = "rejected",
 }
 
 export interface TransactionDto {
@@ -153,4 +161,18 @@ export interface Transaction {
     receiverAccountId: string;
     status: TransactionStatus;
     transactionActions: TransactionAction[];
+}
+
+//TODO: update this enum
+export enum TransactionType {
+    SEND_NATIVE_TOKEN = "send_native_token",
+    RECEIVE_NATIVE_TOKEN = "receive_native_token",
+    SEND_TOKEN = "send_token",
+    RECEIVE_TOKEN = "receive_token",
+    SEND_NFT = "send_nft",
+    RECEIVE_NFT = "receive_nft",
+    SMART_CONTRACT_SEND = "smart_contract_send",
+    SMART_CONTRACT_RECEIVE = "smart_contract_receive",
+    STAKE = "stake",
+    UNSTAKE = "unstake",
 }
