@@ -1,4 +1,4 @@
-import { TokenType as TokenSDKType } from "near-peersyst-sdk";
+import { Token as TokenSDKType } from "near-peersyst-sdk";
 
 export type ApiIdType = "usd-coin" | "binancecoin" | "ethereum" | "tether" | "wrapped-bitcoin" | "nervos-network";
 

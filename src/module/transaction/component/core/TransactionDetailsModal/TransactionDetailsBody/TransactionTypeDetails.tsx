@@ -1,8 +1,7 @@
 import TransactionDetail from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionDetail";
 import { Row, Typography } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { FullTransaction } from "module/common/service/CkbSdkService.types";
-import { TransactionType } from "near-peersyst-sdk";
+import { TransactionType, FullTransaction } from "near-peersyst-sdk";
 import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
 import { useTranslate } from "module/common/hook/useTranslate";
 
@@ -30,7 +29,7 @@ const TransactionTypeDetails = ({ transaction: { type, outputs, inputs } }: Tran
                         <Row key={key} flex={1} justifyContent="space-between" alignItems="center">
                             <BlockchainAddress address={input.address} type="address" variant="body3Regular" length={6} />
                             <Balance
-                                options={{ maxDecimals: 2 }}
+                                options={{ maximumFractionDigits: 2 }}
                                 balance={
                                     outputs.reduce((prev, curr) => (curr.address === input.address ? prev + curr.quantity : prev), 0) -
                                     input.quantity

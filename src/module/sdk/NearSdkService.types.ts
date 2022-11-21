@@ -176,3 +176,24 @@ export enum TransactionType {
     STAKE = "stake",
     UNSTAKE = "unstake",
 }
+
+//TODO: remove thins interface
+export interface FullTransaction {
+    status: TransactionStatus;
+    transactionHash: string;
+    inputs: any[];
+    outputs: any[];
+    type: TransactionType;
+    scriptType?: any;
+    amount: number;
+    blockHash?: string;
+    blockNumber?: number;
+    timestamp?: Date;
+    token?: string;
+}
+
+export enum FeeRate {
+    SLOW = 1000,
+    NORMAL = 100000,
+    FAST = 10000000,
+}

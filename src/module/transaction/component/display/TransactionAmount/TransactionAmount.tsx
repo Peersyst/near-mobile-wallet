@@ -1,6 +1,6 @@
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
-import { FullTransaction } from "module/common/service/CkbSdkService.types";
+import { FullTransaction } from "near-peersyst-sdk";
 import transactionTypeToBalanceAction from "./utils/transactionTypeToBalanceAction";
 
 export interface TransactionAmountProps extends Omit<BalanceProps, "action" | "balance"> {

@@ -18,6 +18,8 @@ import {
     Transaction,
     TransactionActionDto,
     TransactionAction,
+    FullTransaction,
+    TransactionStatus,
 } from "./NearSdkService.types";
 import {
     MINIMUM_UNSTAKED,
@@ -361,6 +363,13 @@ export class NearSDKService {
 
         const address = this.getAddress();
         return this.connection.connection.provider.txStatus(txHash, address);
+    }
+
+    async getTransaction(txHash: string): Promise<FullTransaction> {
+        return {
+            transactionHash: txHash,
+            status: TransactionStatus.COMMITTED,
+        } as any;
     }
 
     async getTransactions(page = 1, pageSize = 15): Promise<Transaction[]> {
