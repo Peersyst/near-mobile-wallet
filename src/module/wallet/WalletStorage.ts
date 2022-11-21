@@ -1,9 +1,13 @@
-import { WalletState } from "near-peersyst-sdk";
 import { BaseStorageService } from "module/common/service/BaseStorageService";
 import { NetworkType } from "module/settings/state/SettingsState";
 
 export type Chain = NetworkType;
 
+export type WalletState = {
+    //TODO revise this type
+    name: string;
+    colorIndex: number;
+};
 export interface UnencryptedWalletChainInfo {
     initialState?: WalletState;
     uncommittedTransactionHashes?: string[];
