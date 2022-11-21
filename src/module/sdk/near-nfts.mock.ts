@@ -1,4 +1,4 @@
-import { NftToken, NftMetadata } from "./NearSdkService";
+import { NftMetadata, NftToken } from "module/common/service/NearSdkService.types";
 
 const collection1Metadata: NftMetadata = {
     spec: "nft-1.0.0",
