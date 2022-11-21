@@ -14,8 +14,8 @@ const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ close, ...rest }) =
     const address = serviceInstance?.getAddress();
     const { showToast } = useToast();
 
-    const copyToClipboard = () => {
-        Clipboard.setString(address || "");
+    const copyToClipboard = async () => {
+        await Clipboard.setStringAsync(address || "");
         showToast(t("address_copied"), { type: "success" });
         close();
     };

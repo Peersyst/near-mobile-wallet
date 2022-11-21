@@ -23,6 +23,7 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonic
     const [submitted, setSubmitted] = useState(false);
     const { showToast } = useToast();
 
+    //TODO: remove this useEffect
     useEffect(() => {
         if (submitted) {
             setSubmitted(false);

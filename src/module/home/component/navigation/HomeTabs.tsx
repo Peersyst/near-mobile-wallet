@@ -10,7 +10,7 @@ const HomeTabs = (): JSX.Element => {
     const HomeTabs: MainTabItemType[] = [
         {
             title: translate("transactions"),
-            item: <></>,
+            item: <TransactionsList />,
         },
         {
             title: translate("currencies"),

@@ -37,6 +37,7 @@ import {
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "./near.constants";
 import { mockNfts } from "./near-nfts.mock";
+import { convertAccountBalanceToNear } from "./near.utils";
 
 export enum Chains {
     MAINNET = "mainnet",
@@ -330,9 +331,21 @@ export class NearSDKService {
     // --------------------------------------------------------------
     // -- WALLET STATE FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
+    //Returns the balance in near
     async getAccountBalance(): Promise<AccountBalance> {
-        const account = await this.getAccount();
-        return account.getAccountBalance();
+        try {
+            const account = await this.getAccount();
+            const accountBalance: AccountBalance = await account.getAccountBalance();
+            const res = convertAccountBalanceToNear(accountBalance);
+            return res;
+        } catch (e: any) {
+            return {
+                total: "0",
+                available: "0",
+                staked: "0",
+                stateStaked: "0",
+            };
+        }
     }
 
     async getAccountState(): Promise<AccountView> {
@@ -651,6 +664,7 @@ export class NearSDKService {
 
     async getAccountTokens(): Promise<Token[]> {
         const resp = await fetch(`${this.baseApiUrl}/accounts/${this.getAddress()}/likely-tokens?fromBlockTimestamp=0`);
+        return []; //TODO: remove mock
         if (resp.status !== 200) {
             throw new Error("Bad response status");
         }

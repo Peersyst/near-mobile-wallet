@@ -10,11 +10,10 @@ declare module "@peersyst/react-native-components" {
 
     export interface Config {
         minimumTransactionAmount: number;
-        minimumDaoDeposit: number;
-        mainnetExplorerApi: string;
-        testnetExplorerApi: string;
         indexerTestnetUrl: string;
         indexerMainnetUrl: string;
+        mainnetExplorerLink: string;
+        testnetExplorerLink: string;
         faucetUrl: string;
         maxNumberOfDecimals: number;
         enableMainnet: boolean;
@@ -26,11 +25,10 @@ declare module "@peersyst/react-native-components" {
 
     export interface CreateConfig {
         minimumTransactionAmount: number;
-        minimumDaoDeposit: number;
-        mainnetExplorerApi: string;
-        testnetExplorerApi: string;
         indexerTestnetUrl: string;
         indexerMainnetUrl: string;
+        mainnetExplorerLink: string;
+        testnetExplorerLink: string;
         faucetUrl: string;
         maxNumberOfDecimals: number;
         enableMainnet: boolean;

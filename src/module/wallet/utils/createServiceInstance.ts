@@ -18,7 +18,7 @@ export interface CreateServiceInstanceBySecretParams extends CreateServiceInstan
 export interface CreateNearServiceParams {
     chain: Chains;
     secretKey: string;
-    nameId: string;
+    nameId?: string;
     mnemonic?: string;
 }
 
@@ -38,14 +38,14 @@ const createServiceInstance = async ({ walletIndex, nameId, mnemonic, secretKey 
                     config.testnetNodeUrl,
                     config.indexerTestnetUrl,
                     stringMnemonic,
-                    nameId,
+                    "doctorparra.near",
                 ),
                 mainnet: await NearSDKService.importFromMnemonic(
                     Chains.MAINNET,
                     config.mainnetNodeUrl,
                     config.indexerMainnetUrl,
                     stringMnemonic,
-                    nameId,
+                    "doctorparra.near",
                 ),
             });
         } else if (secretKey) {
@@ -55,14 +55,14 @@ const createServiceInstance = async ({ walletIndex, nameId, mnemonic, secretKey 
                     config.testnetNodeUrl,
                     config.indexerTestnetUrl,
                     secretKey,
-                    nameId,
+                    "doctorparra.near",
                 ),
                 mainnet: await NearSDKService.importFromSecretKey(
                     Chains.MAINNET,
                     config.mainnetNodeUrl,
                     config.indexerMainnetUrl,
                     secretKey,
-                    nameId,
+                    "doctorparra.near",
                 ),
             });
         }
