@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
 import { NumericInput } from "@peersyst/react-native-components";
-import { SendSetAmountScreenProps } from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 import { config } from "config";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { useFormatNumber } from "module/common/hook/useFormatNumber";
@@ -15,7 +14,6 @@ interface AmountInputProps extends Partial<Pick<TokenSelectorProps, "defaultToke
     setAmount: Dispatch<SetStateAction<string>>;
     available: AccountBalance["available"];
     fee: number;
-    type?: SendSetAmountScreenProps["type"];
     defaultToken?: string;
     tokens?: string[];
     onTokenChange?: (token: string) => void;
@@ -26,19 +24,17 @@ const TokenAmountInput = ({
     setAmount,
     available,
     fee,
-    type = "send",
     defaultToken = config.tokenName,
     token: tokenProp,
     tokens = [],
     onTokenChange,
 }: AmountInputProps): JSX.Element => {
-    const isDAO = type === "dao";
     const translate = useTranslate();
 
     const [token, setToken] = useControlled(defaultToken, tokenProp, onTokenChange);
 
     const formattedFee = useFormatNumber(fee);
-    const formattedMinTx = useFormatNumber((isDAO ? config.minimumDaoDeposit : config.minimumTransactionAmount).toString());
+    const formattedMinTx = useFormatNumber(config.minimumTransactionAmount.toString());
 
     return (
         <TokenAmountInputRoot
@@ -49,7 +45,7 @@ const TokenAmountInput = ({
             required
             validators={{
                 gte: [
-                    Number(isDAO ? config.minimumDaoDeposit : config.minimumTransactionAmount),
+                    Number(config.minimumTransactionAmount),
                     translate("minimum_transaction_amount_text", {
                         amount: formattedMinTx,
                         token: token,

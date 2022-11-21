@@ -7,7 +7,6 @@ import StakingScreen from "module/staking/StakingScreen";
 
 export enum MainBottomScreens {
     HOME = "Home",
-    DAO = "DAO",
     STAKING = "Staking",
     NEWS = "News",
 }

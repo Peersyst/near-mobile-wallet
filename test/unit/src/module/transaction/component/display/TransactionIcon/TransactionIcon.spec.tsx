@@ -18,7 +18,7 @@ describe("TransactionIcon tests", () => {
         expect(screen.getByTestId("NearIcon")).toBeDefined();
     });
 
-    test("Renders DAOWithdrawIcon", () => {
+    test("Renders Unstake", () => {
         const screen = render(<TransactionIcon type={TransactionType.UNSTAKE} />);
         expect(screen.getByTestId("NearIcon")).toBeDefined();
     });

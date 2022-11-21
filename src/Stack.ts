@@ -6,7 +6,6 @@ export type MainStackParamsList = {
     Main: undefined;
     Settings: undefined;
     Home: undefined;
-    DAO: undefined;
     News: undefined;
     Staking: undefined;
 };
