@@ -8,7 +8,6 @@ import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingM
 import useWalletState from "module/wallet/hook/useWalletState";
 import SendSummary from "./SendSummary";
 import settingsState from "module/settings/state/SettingsState";
-import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { useState } from "react";
 import { useTranslate } from "module/common/hook/useTranslate";
@@ -33,7 +32,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     const handleConfirmation = async () => {
         sendTransaction(
             {
-                amount: convertCKBToShannons(amount!),
+                amount: amount!,
                 message: message!,
                 to: receiverAddress!,
                 feeRate: feeInDecimals,

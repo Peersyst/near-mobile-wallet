@@ -5,6 +5,8 @@ import useServiceInstance from "module/wallet/hook/useServiceInstance";
 export interface UseSendTransactionParams {
     to: string;
     amount: string;
+    message?: string;
+    feeRate?: number;
 }
 
 const useSendTransaction = (senderIndex: number) => {

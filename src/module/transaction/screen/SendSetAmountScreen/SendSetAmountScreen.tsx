@@ -1,4 +1,4 @@
-import { Col, Form, Typography, useSetTab, Suspense } from "@peersyst/react-native-components";
+import { Col, Form, useSetTab, Suspense } from "@peersyst/react-native-components";
 import TextArea from "module/common/component/input/TextArea/TextArea";
 import Button from "module/common/component/input/Button/Button";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -9,7 +9,6 @@ import settingsState from "module/settings/state/SettingsState";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import TokenAmountInput from "../../component/input/TokenAmountInput/TokenAmountInput";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
-import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
 import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface SendAmountAndMessageResult {
@@ -23,7 +22,7 @@ const SendSetAmountScreen = (): JSX.Element => {
     const translate = useTranslate();
     const [amount, setAmount] = useState(sendState.amount || "");
     const { fee: feeInDecimals } = useRecoilValue(settingsState);
-    const fee = convertShannonsToCKB(feeInDecimals);
+    const fee = feeInDecimals.toString(); //TODO: convert to token
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex || 0);
     const setTab = useSetTab();
 
