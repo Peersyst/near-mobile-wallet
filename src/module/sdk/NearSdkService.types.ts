@@ -1,9 +1,13 @@
+import { AccountBalance as BaseAccountBalance } from "near-api-js/lib/account";
+
 export enum Chains {
     MAINNET = "mainnet",
     TESTNET = "testnet",
     BETANET = "betanet",
     LOCAL = "local",
 }
+
+export type AccountBalance = BaseAccountBalance;
 
 export interface StakingBalance {
     staked: number;

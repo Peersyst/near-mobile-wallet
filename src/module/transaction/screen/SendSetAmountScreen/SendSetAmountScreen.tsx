@@ -22,7 +22,7 @@ const SendSetAmountScreen = (): JSX.Element => {
     const translate = useTranslate();
     const [amount, setAmount] = useState(sendState.amount || "");
     const { fee: feeInDecimals } = useRecoilValue(settingsState);
-    const fee = feeInDecimals.toString(); //TODO: convert to token
+    const fee = feeInDecimals; //TODO: convert to token
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex || 0);
     const setTab = useSetTab();
 
@@ -36,7 +36,7 @@ const SendSetAmountScreen = (): JSX.Element => {
             <Form onSubmit={handleSubmit}>
                 <Col gap={24}>
                     <TokenAmountInput
-                        fee={fee}
+                        fee={0.001} //Update this to fee
                         amount={amount}
                         setAmount={setAmount}
                         available={balance?.available ?? "0"}
