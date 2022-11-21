@@ -4,7 +4,6 @@ import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/pr
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
-
 import { mockNfts } from "./near-nfts.mock";
 import {
     Chains,
