@@ -14,7 +14,7 @@ const useSendTransaction = (senderIndex: number) => {
     const addUncommittedTransaction = useAddUncommittedTransaction();
 
     return useMutation(async ({ to, amount }: UseSendTransactionParams) => {
-        const hash = await serviceInstance.sendTransaction(to, amount.toString());
+        const hash = await serviceInstance.sendTransaction(to, amount.toString()); //TODO: add feeRate + msg
         if (hash) await addUncommittedTransaction(senderIndex, network, hash);
     });
 };

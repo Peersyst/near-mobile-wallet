@@ -32,7 +32,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     const handleConfirmation = async () => {
         sendTransaction(
             {
-                amount: amount!,
+                amount: amount!, //TODO: revise the unit (yocto vs near)
                 message: message!,
                 to: receiverAddress!,
                 feeRate: feeInDecimals,
