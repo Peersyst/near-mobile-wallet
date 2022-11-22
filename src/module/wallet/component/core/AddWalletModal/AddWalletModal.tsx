@@ -5,7 +5,6 @@ import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import createServiceInstance from "module/wallet/utils/createServiceInstance";
-import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
