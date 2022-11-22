@@ -846,9 +846,4 @@ export class NearSDKService {
 
         return nftTokens;
     }
-
-    //TODO: revise this method
-    async synchronize(): Promise<void> {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-    }
 }

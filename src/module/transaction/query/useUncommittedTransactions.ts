@@ -1,29 +1,37 @@
 import { QueryResult } from "query-utils";
 import { useQuery } from "react-query";
 import useWallet from "module/wallet/hook/useWallet";
-import walletState from "module/wallet/state/WalletState";
-import { useSetRecoilState } from "recoil";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useRef } from "react";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import { FullTransaction, TransactionStatus } from "near-peersyst-sdk";
+import useUpdateUncommittedTransactions from "./useUpdateUncommitedTransactions";
 
 const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction[]> => {
     const { serviceInstance, index: usedIndex, network } = useServiceInstance(index);
     const wallet = useWallet(usedIndex);
     const { uncommittedTransactionHashes } = wallet[network] || {};
-    const setWalletState = useSetRecoilState(walletState);
     const rejectedHashes: string[] = useRef([]).current;
+    const updateUnCommitedTxsHashes = useUpdateUncommittedTransactions(usedIndex);
 
     return useQuery(
         ["uncommittedTransactions", usedIndex, network, uncommittedTransactionHashes],
         async () => {
+            /**
+             * We have to check if the user has pending transactions that have been rejected/committed
+             * - If it is still uncommitted add it to the list of uncommitted transactions
+             * - If it is committed remove it from the list of uncommitted transactions
+             * - If it is rejected remove it from the list of uncommitted transactions and add it to the list of rejected transactions
+             *
+             *  Each hash of the uncommited txs is stored in the storage. In the useLoad.ts we set the wallet state
+             *  in which for each wallet it has the uncommited txs hashes.
+             *  Check in WalletStorage.ts ( especially UnencryptedWalletChainInfo) to see how it is stored
+             *  The uncommited txs hashes are stored in the useAddUncommittedTransaction
+             */
             if (!uncommittedTransactionHashes) return [];
-
             const updatedUncommittedTransactionHashes: string[] = [];
             let shouldSync = false;
             const uncommittedTransactions: FullTransaction[] = [];
-
             for (const hash of uncommittedTransactionHashes) {
                 try {
                     const tx = await serviceInstance.getTransaction(hash);
@@ -35,8 +43,8 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
                             await WalletStorage.removeUncommittedTransactionHash(usedIndex, network, hash);
                             rejectedHashes.push(hash);
                         }
-                        // If committed remove it and sync in order to refresh data and refetch useGetTransactiions
                     } else {
+                        // If committed remove it and sync in order to refresh data and refetch useGetTransactions
                         await WalletStorage.removeUncommittedTransactionHash(usedIndex, network, hash);
                         shouldSync = true;
                     }
@@ -46,25 +54,7 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
                 }
             }
             if (shouldSync) {
-                //TODO: remove this fn for Near or the comment in CKBull
-                //Use another thread
-                await serviceInstance.synchronize();
-                setWalletState((state) => ({
-                    ...state,
-                    wallets: state.wallets.map((w) => {
-                        if (w.index !== usedIndex) return w;
-                        else {
-                            const networkInfo = w[network];
-                            return {
-                                ...w,
-                                [network]: {
-                                    ...networkInfo,
-                                    uncommittedTransactionHashes: updatedUncommittedTransactionHashes,
-                                },
-                            };
-                        }
-                    }),
-                }));
+                updateUnCommitedTxsHashes(updatedUncommittedTransactionHashes);
             }
             return uncommittedTransactions;
         },

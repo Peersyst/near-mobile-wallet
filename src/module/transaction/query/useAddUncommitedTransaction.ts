@@ -1,29 +1,17 @@
 import { WalletStorage } from "module/wallet/WalletStorage";
-import { useSetRecoilState } from "recoil";
-import walletState from "module/wallet/state/WalletState";
 import { NetworkType } from "module/settings/state/SettingsState";
+import useWalletState from "module/wallet/hook/useWalletState";
+import useUpdateUncommittedTransactions from "./useUpdateUncommitedTransactions";
 
 const useAddUncommittedTransaction = (): ((index: number, chain: NetworkType, hash: string) => Promise<void>) => {
-    const setWalletState = useSetRecoilState(walletState);
+    const {
+        state: { wallets },
+    } = useWalletState();
 
     return async (index, chain, hash) => {
-        setWalletState((state) => ({
-            ...state,
-            wallets: state.wallets.map((w) => {
-                if (w.index !== index) return w;
-                else {
-                    const networkInfo = w[chain];
-                    const uncommittedTransactionHashes = w?.[chain]?.uncommittedTransactionHashes || [];
-                    return {
-                        ...w,
-                        [chain]: {
-                            ...networkInfo,
-                            uncommittedTransactionHashes: [...uncommittedTransactionHashes, hash],
-                        },
-                    };
-                }
-            }),
-        }));
+        const updateUnCommitedTxsHashes = useUpdateUncommittedTransactions(index);
+        const uncommittedTransactionHashes = wallets[index][chain]?.uncommittedTransactionHashes || [];
+        updateUnCommitedTxsHashes([...uncommittedTransactionHashes, hash]);
         await WalletStorage.addUncommittedTransactionHash(index, chain, hash);
     };
 };

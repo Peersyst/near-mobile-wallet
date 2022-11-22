@@ -23,12 +23,6 @@ const SelectNetwork = (): JSX.Element => {
     const [settings, setSettings] = useRecoilState(settingsState);
 
     const handleNetworkChange = (network: NetworkType) => {
-        //Use another thread
-        setTimeout(async () => {
-            for (let i = 0; i < serviceInstancesMap.size; i += 1) {
-                await serviceInstancesMap.get(i)?.[network]?.synchronize();
-            }
-        });
         setSettings({ ...settings, network });
         SettingsStorage.set({ network });
     };

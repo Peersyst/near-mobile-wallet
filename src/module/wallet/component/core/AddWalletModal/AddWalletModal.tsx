@@ -48,10 +48,6 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
                 ],
             }));
 
-            //Use another thread
-            setTimeout(async () => {
-                await serviceInstancesMap.get(newWallet.index)?.[network]?.synchronize();
-            });
             await createServiceInstance({ nameId: name!, mnemonic: mnemonic!, walletIndex: newWallet.index });
         }
         handleClose();

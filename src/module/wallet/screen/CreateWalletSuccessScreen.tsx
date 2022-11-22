@@ -34,10 +34,6 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
                 await createServiceInstance({ walletIndex: 0, nameId: name!, mnemonic: mnemonic! });
             }
 
-            //Use another thread
-            setTimeout(async () => {
-                await serviceInstancesMap.get(0)?.[defaultSettingsState.network]?.synchronize();
-            });
             resetCreateWalletState();
         };
         setTimeout(setStorage, 2000);
