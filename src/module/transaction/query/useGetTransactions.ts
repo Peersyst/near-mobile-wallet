@@ -24,12 +24,11 @@ const useGetTransactions = ({ index, filter }: UseGetTransactionsOptions = {}) =
     const txs = useMemo(() => {
         //Only add new txs
         const filteredTransacations = transactions.filter(
-            //ADD type
+            //TODO: add type
             (tx: any) => !uncommitedTransactions.find((uTx) => tx.transactionHash === uTx.transactionHash),
         );
-        return filter
-            ? [...uncommitedTransactions, ...filteredTransacations].filter(filter)
-            : [...uncommitedTransactions, ...filteredTransacations];
+        const finalTxs = [...uncommitedTransactions, ...filteredTransacations];
+        return filter ? finalTxs.filter(filter) : finalTxs;
     }, [uncommitedTransactions, transactions, filter]);
 
     return {

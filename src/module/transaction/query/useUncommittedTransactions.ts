@@ -19,9 +19,9 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
         async () => {
             /**
              * We have to check if the user has pending transactions that have been rejected/committed
-             * - If it is still uncommitted add it to the list of uncommitted transactions
-             * - If it is committed remove it from the list of uncommitted transactions
-             * - If it is rejected remove it from the list of uncommitted transactions and add it to the list of rejected transactions
+             * - If it is still uncommitted add it to the list of the new uncommitted transactions
+             * - If it is committed remove it from the list of new uncommitted transactions
+             * - If it is rejected remove it from the list of new uncommitted transactions and add it to the list of rejected transactions
              *
              *  Each hash of the uncommited txs is stored in the storage. In the useLoad.ts we set the wallet state
              *  in which for each wallet it has the uncommited txs hashes.
@@ -30,7 +30,6 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
              */
             if (!uncommittedTransactionHashes) return [];
             const updatedUncommittedTransactionHashes: string[] = [];
-            let shouldSync = false;
             const uncommittedTransactions: FullTransaction[] = [];
             for (const hash of uncommittedTransactionHashes) {
                 try {
@@ -46,16 +45,13 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
                     } else {
                         // If committed remove it and sync in order to refresh data and refetch useGetTransactions
                         await WalletStorage.removeUncommittedTransactionHash(usedIndex, network, hash);
-                        shouldSync = true;
                     }
                 } catch {
                     await WalletStorage.removeUncommittedTransactionHash(usedIndex, network, hash);
                     rejectedHashes.push(hash);
                 }
             }
-            if (shouldSync) {
-                updateUnCommitedTxsHashes(updatedUncommittedTransactionHashes);
-            }
+            updateUnCommitedTxsHashes(updatedUncommittedTransactionHashes);
             return uncommittedTransactions;
         },
         {
