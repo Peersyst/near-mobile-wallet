@@ -17,7 +17,7 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
      * but we want to display the rejected txs that we have uncommited in that session
      */
     const rejectedHashes: string[] = useRef([]).current;
-    const updateUncommitedTxsHashes = useUpdateUncommittedTransactions(usedIndex);
+    const updateUncommitedTxsHashes = useUpdateUncommittedTransactions();
     const removeUTxFromStorage = (hash: string): Promise<void> => {
         return WalletStorage.removeUncommittedTransactionHash(usedIndex, network, hash);
     };
@@ -62,7 +62,7 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
                     rejectedHashes.push(hash);
                 }
             }
-            if (shouldSync) updateUncommitedTxsHashes(updatedUncommittedTransactionHashes);
+            if (shouldSync) updateUncommitedTxsHashes(updatedUncommittedTransactionHashes, usedIndex);
 
             return uncommittedTransactions;
         },
