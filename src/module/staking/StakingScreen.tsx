@@ -1,5 +1,6 @@
 import { Col, ScrollView, Typography } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
+import SelectDaoWallet from "module/dao/component/core/DAOAccountCard/DAOCardHeader/SelectDAOWallet/SelectDAOWallet";
 import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
 
 const StakingScreen = (): JSX.Element => {
@@ -7,6 +8,7 @@ const StakingScreen = (): JSX.Element => {
         <BaseMainScreen>
             <ScrollView>
                 <Col style={{ padding: 20, backgroundColor: "#f5f5f5" }} gap={10}>
+                    <SelectDaoWallet />
                     <Typography variant="body1Strong">Variant</Typography>
                     <Button variant="primary">Click me</Button>
                     <Button variant="secondary">Click me</Button>

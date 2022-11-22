@@ -1,6 +1,5 @@
 import DAOCard from "module/dao/component/core/DAOAccountCard/DAOCard";
 import { render, SuccessApiCall, translate } from "test-utils";
-import { waitFor } from "@testing-library/react-native";
 import { MockedDAOBalance } from "mocks/DAO";
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { mockedUseWallet } from "mocks/useWalletState";
@@ -32,8 +31,7 @@ describe("Test for the DAO Card", () => {
         //Balance
         expect(screen.getByText(translate("available"))).toBeDefined();
         /**Account Balance */
-        //This is 3 because of card + 2 of the modal
-        await waitFor(() => expect(screen.getAllByText("12,635")).toHaveLength(3));
+        expect(await screen.findByText("12,635")).toBeDefined();
         expect(screen.getByText(translate("locked"))).toBeDefined();
         expect(screen.getByText("500")).toBeDefined();
         expect(screen.getByText(translate("estimated_apc"))).toBeDefined();

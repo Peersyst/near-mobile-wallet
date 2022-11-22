@@ -1,6 +1,6 @@
 import * as UseWalletState from "module/wallet/hook/useWalletState";
 import { render } from "test-utils";
-import { waitFor } from "@testing-library/react-native";
+import { fireEvent, waitFor } from "@testing-library/react-native";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { mockedUseWallet } from "mocks/useWalletState";
 import { CKBSDKService } from "module/common/service/CkbSdkService";
@@ -24,8 +24,20 @@ describe("WalletSelector tests", () => {
         });
 
         const screen = render(<WalletSelector />);
+        fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[0].name));
+        await waitFor(() => expect(screen.getAllByText("1")).toHaveLength(3));
+    });
+    test("Renders correctly with ", async () => {
+        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
+        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
+            totalBalance: 1,
+            occupiedBalance: 0,
+            freeBalance: 1,
+        });
 
-        expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2);
+        const screen = render(<WalletSelector />);
+        fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[0].name));
         await waitFor(() => expect(screen.getAllByText("1")).toHaveLength(3));
     });
 });

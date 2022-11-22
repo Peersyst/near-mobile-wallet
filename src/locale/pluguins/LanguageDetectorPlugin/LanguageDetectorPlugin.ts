@@ -11,7 +11,7 @@ export function getDefaultLocale(): LocaleType {
 }
 
 export async function initLang(): Promise<LocaleType> {
-    const storedLocale = await SettingsStorage.getLocale();
+    const storedLocale = await SettingsStorage?.getLocale();
     return storedLocale || getDefaultLocale();
 }
 
