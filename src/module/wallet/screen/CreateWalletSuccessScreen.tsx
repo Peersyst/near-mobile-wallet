@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useResetRecoilState, useSetRecoilState } from "recoil";
-import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
+import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import createWalletState from "module/wallet/state/CreateWalletState";
@@ -34,10 +34,6 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
                 await createServiceInstance({ walletIndex: 0, nameId: name!, mnemonic: mnemonic! });
             }
 
-            //Use another thread
-            setTimeout(async () => {
-                await serviceInstancesMap.get(0)?.[defaultSettingsState.network]?.synchronize();
-            });
             resetCreateWalletState();
         };
         setTimeout(setStorage, 2000);

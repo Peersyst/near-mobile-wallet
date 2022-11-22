@@ -7,7 +7,6 @@ interface NearSdkServiceMockType {
     getAddress: MockFnType;
     getNfts: MockFnType;
     getAccountTokens: MockFnType;
-    synchronize: MockFnType;
 }
 
 export const MOCKED_ADDRESS = "0xMockedAddress";
@@ -18,7 +17,6 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
     getAddress: MockFnType;
     getNfts: MockFnType;
     getAccountTokens: MockFnType;
-    synchronize: MockFnType;
     getAccountBalance: MockFnType;
     //TODO: add here all the mock fn that are needed
 
@@ -28,7 +26,6 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
         this.getAddress = jest.fn().mockReturnValue(MOCKED_ADDRESS);
         this.getNfts = jest.fn();
         this.getAccountTokens = jest.fn().mockResolvedValue(new TokensMock());
-        this.synchronize = jest.fn().mockResolvedValue(void 0);
         this.getAccountBalance = jest.fn().mockResolvedValue(new AccountBalanceMock());
     }
 }

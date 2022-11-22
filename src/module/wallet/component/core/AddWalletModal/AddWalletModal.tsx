@@ -6,7 +6,6 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import createServiceInstance from "module/wallet/utils/createServiceInstance";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
@@ -21,7 +20,6 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
         reset: resetCreateWalletState,
     } = useCreateWallet();
     const { setState: setWalletState } = useWalletState();
-    const network = useSelectedNetwork();
 
     const handleClose = () => {
         setOpen(false);
@@ -48,10 +46,6 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
                 ],
             }));
 
-            //Use another thread
-            setTimeout(async () => {
-                await serviceInstancesMap.get(newWallet.index)?.[network]?.synchronize();
-            });
             await createServiceInstance({ nameId: name!, mnemonic: mnemonic!, walletIndex: newWallet.index });
         }
         handleClose();
