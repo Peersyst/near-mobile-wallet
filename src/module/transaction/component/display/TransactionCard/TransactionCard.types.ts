@@ -1,5 +1,5 @@
-import { Transaction } from "near-peersyst-sdk";
+import { FullTransaction } from "near-peersyst-sdk";
 
 export interface TransactionCardProps {
-    transaction: Transaction;
+    transaction: FullTransaction;
 }
