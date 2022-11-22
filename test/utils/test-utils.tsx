@@ -9,6 +9,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { ModalProvider } from "@peersyst/react-native-components";
 import { ConfigProvider } from "config";
 import { translate } from "./translate";
+import i18n from "locale/i18n";
+import { I18nextProvider } from "react-i18next";
 
 export interface CreateWrapperConfig {
     queryClientConfig?: QueryClientConfig;
@@ -30,17 +32,19 @@ export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): 
 
     return function Wrapper({ children }: PropsWithChildren<unknown>): JSX.Element {
         return (
-            <RecoilRoot>
-                <QueryClientProvider client={queryClient}>
-                    <SafeAreaProvider initialSafeAreaInsets={{ top: 0, left: 0, right: 0, bottom: 0 }}>
-                        <ConfigProvider>
-                            <NavigationContainer>
-                                <ModalProvider>{children}</ModalProvider>
-                            </NavigationContainer>
-                        </ConfigProvider>
-                    </SafeAreaProvider>
-                </QueryClientProvider>
-            </RecoilRoot>
+            <I18nextProvider i18n={i18n}>
+                <RecoilRoot>
+                    <QueryClientProvider client={queryClient}>
+                        <SafeAreaProvider initialSafeAreaInsets={{ top: 0, left: 0, right: 0, bottom: 0 }}>
+                            <ConfigProvider>
+                                <NavigationContainer>
+                                    <ModalProvider>{children}</ModalProvider>
+                                </NavigationContainer>
+                            </ConfigProvider>
+                        </SafeAreaProvider>
+                    </QueryClientProvider>
+                </RecoilRoot>
+            </I18nextProvider>
         );
     };
 };
@@ -53,6 +57,7 @@ const customRender = (
 const customRenderHook = <TProps, TResult>(
     callback: (props: TProps) => TResult,
     { queryClientConfig, ...rest }: Omit<RenderHookOptions<TProps>, "wrapper"> & CreateWrapperConfig = {},
+    // @ts-ignore @testing-library/react-hooks still uses react 17
 ): RenderHookResult<TProps, TResult> => renderHook<TProps, TResult>(callback, { wrapper: createWrapper({ queryClientConfig }), ...rest });
 
 export * from "@testing-library/react-native";

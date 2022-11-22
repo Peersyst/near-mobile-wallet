@@ -40,12 +40,20 @@ describe("Withdraw modal test", () => {
         const screen = render(<WithdrawModal />);
         // 1 - Select second account and second deposit
         // Waits untill the first screen is load -> currentState: receiverIndex:0, depositIndex:0, feeRate: "10"
-        await waitFor(() => expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined());
-        expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2);
-        //Click on the second wallet
-        fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[1].name));
+        expect(await screen.findByText(translate("select_a_wallet") + ":"));
+        const wallet = screen.getByText(mockedUseWallet.state.wallets[0].name);
+        expect(wallet).toBeDefined();
+        //Open the modal
+        fireEvent.press(wallet);
+        //Select the second account
+        const secondAccount = await screen.findByText(mockedUseWallet.state.wallets[1].name);
+        fireEvent.press(secondAccount);
+
         //Load new deposits
-        await waitFor(() => expect(screen.getAllByText("500")).toHaveLength(4));
+        const defaultDeposit = await screen.findByText("500");
+        expect(defaultDeposit).toBeDefined();
+        //Open the modal
+        fireEvent.press(defaultDeposit);
         //Click on the second deposit -> check in unlockable type withdraw and unlockable true
         const button = screen.getByText(translate("available"));
         fireEvent.press(button);
