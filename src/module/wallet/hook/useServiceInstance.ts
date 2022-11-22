@@ -13,7 +13,7 @@ export interface useServiceInstanceReturn {
 export default function useServiceInstance(index?: number): useServiceInstanceReturn {
     const network = useSelectedNetwork();
     const selectedWallet = useSelectedWalletIndex();
-    const usedIndex = index ?? selectedWallet;
+    const usedIndex = index !== undefined ? index : selectedWallet;
     const serviceInstance = serviceInstancesMap.get(index || selectedWallet)![network];
     return { serviceInstance, network, index: usedIndex };
 }
