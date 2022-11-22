@@ -47,7 +47,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
                                 {formattedDate}
                             </Typography>
                         ) : (
-                            <TransactionStatus variant="body2" status={status} />
+                            <TransactionStatus variant="body4Regular" status={status} />
                         )}
                         {status !== TransactionStatusEnum.COMMITTED ? (
                             <TransactionStatusIndicator status={status} />

@@ -74,8 +74,12 @@ declare module "@peersyst/react-native-components" {
         h4: false;
         h5: false;
         h6: false;
+        body1: false;
+        body2: false;
         subtitle1: false;
         subtitle2: false;
+        button: false;
+        caption: false;
         h1Strong: true;
         h1Regular: true;
         h1Light: true;

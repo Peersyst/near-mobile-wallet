@@ -5,7 +5,7 @@ describe("Test for the Pressable Text", () => {
     test("Renders correctly", () => {
         const mocked = jest.fn();
         const screen = render(
-            <PressableText variant="body1" onPress={mocked}>
+            <PressableText variant="body3Regular" onPress={mocked}>
                 Hello world!
             </PressableText>,
         );

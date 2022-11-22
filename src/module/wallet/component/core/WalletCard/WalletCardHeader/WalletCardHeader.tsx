@@ -14,7 +14,7 @@ const WalletCardHeader = ({ index, name }: AccountCardHeaderProps): JSX.Element 
     return (
         <Row justifyContent="space-between" alignItems="center">
             <EditIcon index={index} />
-            <WalletCardTitle variant="h3">{name}</WalletCardTitle>
+            <WalletCardTitle variant="h4Regular">{name}</WalletCardTitle>
             <CopyIcon text={serviceInstance?.getAddress() || ""} toastMessage={translate("address_copied")} />
         </Row>
     );

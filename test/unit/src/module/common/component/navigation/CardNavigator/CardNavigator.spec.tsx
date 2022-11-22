@@ -6,7 +6,7 @@ describe("CardNavigator tests", () => {
     test("Renders correctly", () => {
         const screen = render(
             <CardNavigator>
-                <Typography variant="body1">Main content</Typography>
+                <Typography variant="body3Regular">Main content</Typography>
             </CardNavigator>,
         );
 
@@ -16,7 +16,7 @@ describe("CardNavigator tests", () => {
     test("Renders navbar and steps", () => {
         const screen = render(
             <CardNavigator navbar={{ title: "Navbar title", steps: { length: 2, index: 0 } }}>
-                <Typography variant="body1">Main content</Typography>
+                <Typography variant="body3Regular">Main content</Typography>
             </CardNavigator>,
         );
 

@@ -15,7 +15,7 @@ const AddWalletCard = (): JSX.Element => {
         <AddWalletCardRoot style={colorIndex !== undefined ? { backgroundColor: walletColors[colorIndex] } : undefined}>
             <ContentRoot>
                 <AddIcon />
-                <AddText variant="h3">{translate("add_a_wallet")}</AddText>
+                <AddText variant="h4Regular">{translate("add_a_wallet")}</AddText>
             </ContentRoot>
         </AddWalletCardRoot>
     );

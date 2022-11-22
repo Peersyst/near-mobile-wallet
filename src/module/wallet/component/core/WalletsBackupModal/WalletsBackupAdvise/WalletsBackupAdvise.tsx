@@ -20,7 +20,7 @@ const WalletsBackupAdvise = ({ onWalletSelected }: WalletsBackupAdvise): JSX.Ele
                 <WalletsBackupAdviseImage source={notes} />
             </Row>
             <Card>
-                <Typography variant="body1">{translate("backup_wallet_advise_text")}</Typography>
+                <Typography variant="body3Regular">{translate("backup_wallet_advise_text")}</Typography>
             </Card>
             <WalletSelector
                 disabled={!selectorEnabled}

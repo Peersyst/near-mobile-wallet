@@ -37,7 +37,7 @@ const AddWallet = (): JSX.Element => {
                     {translate("create_a_wallet")}
                 </Button>
                 <Divider width="full-width">
-                    <Typography variant="body1" light textTransform="uppercase">
+                    <Typography variant="body3Regular" light textTransform="uppercase">
                         {translate("or")}
                     </Typography>
                 </Divider>
