@@ -1,7 +1,7 @@
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { NetworkType } from "module/settings/state/SettingsState";
 import useWalletState from "module/wallet/hook/useWalletState";
-import useUpdateUncommittedTransactions from "../query/useUpdateUncommitedTransactions";
+import useUpdateUncommittedTransactions from "./useUpdateUncommitedTransactions";
 
 const useAddUncommittedTransaction = (): ((index: number, chain: NetworkType, hash: string) => Promise<void>) => {
     const {

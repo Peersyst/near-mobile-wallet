@@ -5,7 +5,7 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import { useRef } from "react";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import { FullTransaction, TransactionStatus } from "near-peersyst-sdk";
-import useUpdateUncommittedTransactions from "./useUpdateUncommitedTransactions";
+import useUpdateUncommittedTransactions from "../hook/useUpdateUncommitedTransactions";
 
 const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction[]> => {
     const { serviceInstance, index: usedIndex, network } = useServiceInstance(index);
