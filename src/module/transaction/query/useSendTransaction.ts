@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import useAddUncommittedTransaction from "module/transaction/query/useAddUncommitedTransaction";
+import useAddUncommittedTransaction from "module/transaction/hook/useAddUncommitedTransaction";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 export interface UseSendTransactionParams {

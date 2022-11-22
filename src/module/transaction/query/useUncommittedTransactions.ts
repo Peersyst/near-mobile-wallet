@@ -23,18 +23,15 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
     };
     return useQuery(
         ["uncommittedTransactions", usedIndex, network, uncommittedTransactionHashes],
+        /**
+         *  We have to check if the user has pending transactions that have been rejected/committed
+         *  Each hash of the uncommited txs is stored in the storage.
+         *  In the useLoad is where the state is set based on the storage.
+         *  In this state each wallet has its uncommited txs hashes.
+         *  Check in WalletStorage.ts ( especially UnencryptedWalletChainInfo) to see how it is stored
+         *  The uncommited txs hashes are stored in the useAddUncommittedTransaction
+         */
         async () => {
-            /**
-             * We have to check if the user has pending transactions that have been rejected/committed
-             * - If it is still uncommitted add it to the list of the new uncommitted transactions
-             * - If it is committed remove it from the list of new uncommitted transactions
-             * - If it is rejected remove it from the list of new uncommitted transactions and add it to the list of rejected transactions
-             *
-             *  Each hash of the uncommited txs is stored in the storage. In the useLoad.ts we set the wallet state
-             *  in which for each wallet it has the uncommited txs hashes.
-             *  Check in WalletStorage.ts ( especially UnencryptedWalletChainInfo) to see how it is stored
-             *  The uncommited txs hashes are stored in the useAddUncommittedTransaction
-             */
             if (!uncommittedTransactionHashes) return [];
 
             const updatedUncommittedTransactionHashes: string[] = [];
