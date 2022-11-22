@@ -1,7 +1,7 @@
 import { NetworkType } from "module/settings/state/SettingsState";
 import { UnencryptedWalletInfo } from "../WalletStorage";
 
-export default function updateWalletUncommitedTxHashes<W extends UnencryptedWalletInfo>(
+export default function updateWalletUncommittedTxHashes<W extends UnencryptedWalletInfo>(
     wallets: W[],
     walletIndex: number,
     network: NetworkType,

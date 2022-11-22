@@ -1,6 +1,6 @@
 import { BaseStorageService } from "module/common/service/BaseStorageService";
 import { NetworkType } from "module/settings/state/SettingsState";
-import updateWalletUncommitedTxHashes from "./utils/updateWalletUncommitedTxHashes";
+import updateWalletUncommitedTxHashes from "./utils/updateWalletUncommittedTxHashes";
 
 export type Chain = NetworkType;
 
