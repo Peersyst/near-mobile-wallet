@@ -17,8 +17,10 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
      * but we want to display the rejected txs that we have uncommited in that session
      */
     const rejectedHashes: string[] = useRef([]).current;
-    const updateUnCommitedTxsHashes = useUpdateUncommittedTransactions(usedIndex);
-
+    const updateUncommitedTxsHashes = useUpdateUncommittedTransactions(usedIndex);
+    const removeUTxFromStorage = (hash: string): Promise<void> => {
+        return WalletStorage.removeUncommittedTransactionHash(usedIndex, network, hash);
+    };
     return useQuery(
         ["uncommittedTransactions", usedIndex, network, uncommittedTransactionHashes],
         async () => {
@@ -34,8 +36,11 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
              *  The uncommited txs hashes are stored in the useAddUncommittedTransaction
              */
             if (!uncommittedTransactionHashes) return [];
+
             const updatedUncommittedTransactionHashes: string[] = [];
+            let shouldSync = false;
             const uncommittedTransactions: FullTransaction[] = [];
+
             for (const hash of uncommittedTransactionHashes) {
                 try {
                     const tx = await serviceInstance.getTransaction(hash);
@@ -44,19 +49,21 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
                         updatedUncommittedTransactionHashes.push(hash);
                         // If rejected keep it in the list but remove it from storage in order to show it just in the current session
                         if (tx.status === TransactionStatus.REJECTED && !rejectedHashes.find((h) => h === hash)) {
-                            await WalletStorage.removeUncommittedTransactionHash(usedIndex, network, hash);
+                            await removeUTxFromStorage(hash);
                             rejectedHashes.push(hash);
                         }
                     } else {
                         // If committed remove it and sync in order to refresh data and refetch useGetTransactions
-                        await WalletStorage.removeUncommittedTransactionHash(usedIndex, network, hash);
+                        await removeUTxFromStorage(hash);
+                        shouldSync = true;
                     }
                 } catch {
-                    await WalletStorage.removeUncommittedTransactionHash(usedIndex, network, hash);
+                    await removeUTxFromStorage(hash);
                     rejectedHashes.push(hash);
                 }
             }
-            updateUnCommitedTxsHashes(updatedUncommittedTransactionHashes);
+            if (shouldSync) updateUncommitedTxsHashes(updatedUncommittedTransactionHashes);
+
             return uncommittedTransactions;
         },
         {

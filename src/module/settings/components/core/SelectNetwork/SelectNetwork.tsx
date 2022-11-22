@@ -5,7 +5,6 @@ import { config } from "config";
 import { SelectOption } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { Chains } from "near-peersyst-sdk";
 
 const SelectNetwork = (): JSX.Element => {

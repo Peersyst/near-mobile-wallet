@@ -1,7 +1,7 @@
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import * as Recoil from "recoil";
-import { render, SuccessApiCall, wait, act } from "test-utils";
+import { render, wait, act } from "test-utils";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
