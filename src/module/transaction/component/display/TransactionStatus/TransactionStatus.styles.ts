@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { TransactionStatus } from "ckb-peersyst-sdk";
+import { TransactionStatus } from "near-peersyst-sdk";
 import { Typography } from "@peersyst/react-native-components";
 import transactionStatusMappings from "../../utils/transactionStatusMappings";
 

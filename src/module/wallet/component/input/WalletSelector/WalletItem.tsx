@@ -19,7 +19,7 @@ const WalletItem = ({ index }: WalletItemProps): JSX.Element => {
             <Row>
                 <Typography variant="body2Strong">{" · "}</Typography>
                 <Suspense isLoading={balanceIsLoading} activityIndicatorSize="small">
-                    <Balance balance={balance?.freeBalance || 0} variant="body2Strong" light />
+                    <Balance balance={balance?.available || 0} variant="body2Strong" light />
                 </Suspense>
             </Row>
         </Row>

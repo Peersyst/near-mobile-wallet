@@ -48,7 +48,6 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
                 ],
             }));
 
-            //TODO: remove this fn for Near or the comment in CKBull
             //Use another thread
             setTimeout(async () => {
                 await serviceInstancesMap.get(newWallet.index)?.[network]?.synchronize();

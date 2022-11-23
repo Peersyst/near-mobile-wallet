@@ -15,25 +15,10 @@ declare module "@peersyst/react-native-components" {
     }
 
     export interface ThemePalette {
-        // CKBULL
-        white: string;
-        black: string;
-        darkGray: string;
-        darkLightGray: string;
-        darkerGray: string;
-        darkGray2: string;
-        darkLightGray2: string;
-        fullBlack: string;
-        lightGray: string;
-        lighterGray: string;
-        darkFont: string;
-        turquoise: string;
-        violet: string;
-        pink: string;
         appbar: string;
         paper: string;
-        wallet: string[];
-        // NEAR
+        white: string;
+        black: string;
         gray: {
             0: string;
             100: string;
@@ -49,6 +34,7 @@ declare module "@peersyst/react-native-components" {
         purple: string;
         lilac: string;
         orange: string;
+        wallet: string[];
         gradient: {
             lilacBlue: [string, string];
             lilacOrange: [string, string];
@@ -82,6 +68,9 @@ declare module "@peersyst/react-native-components" {
     }
 
     export interface TypographyVariantsOverrides {
+        h1: false;
+        h2: false;
+        h3: false;
         h4: false;
         h5: false;
         h6: false;

@@ -1,6 +1,5 @@
 import "@peersyst/react-native-components";
 import { Validator } from "@peersyst/react-native-components";
-import { NetworkType } from "module/settings/state/SettingsState";
 import { TFunction } from "react-i18next";
 
 declare module "@peersyst/react-native-components" {
@@ -10,40 +9,36 @@ declare module "@peersyst/react-native-components" {
 
     export interface Config {
         minimumTransactionAmount: number;
-        minimumDaoDeposit: number;
-        mainnetExplorerApi: string;
-        testnetExplorerApi: string;
-        ckbTestnetUrl: string;
         indexerTestnetUrl: string;
-        ckbMainnetUrl: string;
         indexerMainnetUrl: string;
+        mainnetExplorerLink: string;
+        testnetExplorerLink: string;
         faucetUrl: string;
         maxNumberOfDecimals: number;
         enableMainnet: boolean;
         tokenName: string;
         mainnetNodeUrl: string;
         testnetNodeUrl: string;
+        coingeckoTokenApiId: string;
     }
 
     export interface CreateConfig {
         minimumTransactionAmount: number;
-        minimumDaoDeposit: number;
-        mainnetExplorerApi: string;
-        testnetExplorerApi: string;
-        ckbTestnetUrl: string;
         indexerTestnetUrl: string;
-        ckbMainnetUrl: string;
         indexerMainnetUrl: string;
+        mainnetExplorerLink: string;
+        testnetExplorerLink: string;
         faucetUrl: string;
         maxNumberOfDecimals: number;
         enableMainnet: boolean;
         tokenName: string;
         mainnetNodeUrl: string;
         testnetNodeUrl: string;
+        coingeckoTokenApiId: string;
     }
 
     export interface ExtraValidators {
-        address: Validator<NetworkType>;
+        address: Validator;
     }
 
     export interface BlockchainLinksTypesOverrides {

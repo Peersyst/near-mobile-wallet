@@ -2,7 +2,7 @@ import { Col, createModal, ExposedBackdropProps } from "@peersyst/react-native-c
 import { TransactionDetailsModalRoot } from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsModal.styles";
 import TransactionDetailsHeader from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsHeader";
 import TransactionDetailsBody from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionDetailsBody";
-import { FullTransaction } from "module/common/service/CkbSdkService.types";
+import { FullTransaction } from "near-peersyst-sdk";
 
 export interface TransactionDetailsModalProps extends ExposedBackdropProps {
     transaction: FullTransaction;

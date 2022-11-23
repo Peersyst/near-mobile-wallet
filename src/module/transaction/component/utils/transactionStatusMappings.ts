@@ -1,4 +1,4 @@
-import { TransactionStatus } from "ckb-peersyst-sdk";
+import { TransactionStatus } from "near-peersyst-sdk";
 import { theme } from "config/theme/theme";
 
 const transactionStatusMappings: Record<TransactionStatus, keyof typeof theme.palette.status> = {

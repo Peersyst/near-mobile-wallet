@@ -1,12 +1,11 @@
 import { useQuery } from "react-query";
 import useUncommittedTransactions from "module/transaction/query/useUncommittedTransactions";
-import { FullTransaction } from "module/common/service/CkbSdkService.types";
 import { useMemo } from "react";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 export interface UseGetTransactionsOptions {
     index?: number;
-    filter?: (tx: FullTransaction) => boolean;
+    filter?: (tx: any) => boolean; //TODO: add type
 }
 
 const useGetTransactions = ({ index, filter }: UseGetTransactionsOptions = {}) => {
@@ -19,8 +18,8 @@ const useGetTransactions = ({ index, filter }: UseGetTransactionsOptions = {}) =
 
     const txs = useMemo(() => {
         const filteredTransacations = transactions.filter(
-            (tx) => !uncommitedTransactions.find((uTx) => tx.transactionHash === uTx.transactionHash),
-        );
+            (tx: any) => !uncommitedTransactions.find((uTx) => tx.transactionHash === uTx.transactionHash),
+        ); //ADD type
         return filter
             ? [...uncommitedTransactions, ...filteredTransacations].filter(filter)
             : [...uncommitedTransactions, ...filteredTransacations];

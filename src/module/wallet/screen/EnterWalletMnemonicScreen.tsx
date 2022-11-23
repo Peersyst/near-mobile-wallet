@@ -3,9 +3,9 @@ import MnemonicInput from "module/wallet/component/input/MnemonicInput/MnemonicI
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useEffect, useState } from "react";
-import { WalletService } from "ckb-peersyst-sdk";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import { useTranslate } from "module/common/hook/useTranslate";
+import { NearSDKService } from "near-peersyst-sdk";
 
 export interface MnemonicForm {
     mnemonic: string[];
@@ -22,6 +22,7 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonic
     const [submitted, setSubmitted] = useState(false);
     const { showToast } = useToast();
 
+    //TODO: remove this useEffect
     useEffect(() => {
         if (submitted) {
             setSubmitted(false);
@@ -31,7 +32,7 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonic
 
     const handleSubmit = ({ mnemonic }: MnemonicForm) => {
         if (!submitted) {
-            const valid = WalletService.validateMnemonic(mnemonic.join(" "));
+            const valid = NearSDKService.validateMnemonic(mnemonic.join(" "));
             if (valid) {
                 setMnemonic(mnemonic);
                 setSubmitted(true);

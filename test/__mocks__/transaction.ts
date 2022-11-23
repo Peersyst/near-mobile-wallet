@@ -1,5 +1,5 @@
-import { TransactionStatus, TransactionType } from "ckb-peersyst-sdk";
-import { FullTransaction } from "module/common/service/CkbSdkService.types";
+import { TransactionStatus, TransactionType } from "near-peersyst-sdk";
+import { FullTransaction } from "near-peersyst-sdk";
 
 export const transaction: FullTransaction = {
     status: TransactionStatus.COMMITTED,

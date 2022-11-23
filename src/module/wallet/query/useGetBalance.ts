@@ -3,7 +3,7 @@ import useServiceInstance from "../hook/useServiceInstance";
 
 const useGetBalance = (index?: number) => {
     const { serviceInstance, index: usedIndex, network } = useServiceInstance(index);
-    return useQuery(["balance", usedIndex, network], () => serviceInstance.getCKBBalance(), {
+    return useQuery(["balance", usedIndex, network], () => serviceInstance.getAccountBalance(), {
         refetchInterval: 1500,
     });
 };

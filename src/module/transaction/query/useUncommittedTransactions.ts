@@ -1,13 +1,12 @@
 import { QueryResult } from "query-utils";
-import { FullTransaction } from "module/common/service/CkbSdkService.types";
 import { useQuery } from "react-query";
 import useWallet from "module/wallet/hook/useWallet";
 import walletState from "module/wallet/state/WalletState";
-import { TransactionStatus } from "module/sdk";
 import { useSetRecoilState } from "recoil";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useRef } from "react";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
+import { FullTransaction, TransactionStatus } from "near-peersyst-sdk";
 
 const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction[]> => {
     const { serviceInstance, index: usedIndex, network } = useServiceInstance(index);

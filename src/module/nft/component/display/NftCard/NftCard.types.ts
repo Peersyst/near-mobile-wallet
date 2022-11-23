@@ -1,5 +1,5 @@
-import { Nft } from "module/sdk/mock.types";
+import { NftToken } from "near-peersyst-sdk";
 
 export type NftCardProps = {
-    nft: Nft;
+    nft: NftToken;
 };

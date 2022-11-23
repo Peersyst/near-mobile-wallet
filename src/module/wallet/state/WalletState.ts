@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 import { StorageWallet } from "module/wallet/WalletStorage";
-import { NearSDKService } from "module/common/service/NearSdkService";
+import { NearSDKService } from "near-peersyst-sdk";
 
 export const serviceInstancesMap = new Map<number, { testnet: NearSDKService; mainnet: NearSDKService }>();
 

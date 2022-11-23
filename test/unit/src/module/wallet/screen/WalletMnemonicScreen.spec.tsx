@@ -2,13 +2,13 @@ import { render, translate } from "test-utils";
 import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import { fireEvent } from "@testing-library/react-native";
 import * as UseCreateWalletState from "module/wallet/hook/useCreateWallet";
-import { WalletService } from "ckb-peersyst-sdk";
+import { NearSDKService } from "near-peersyst-sdk";
 
 describe("WalletMnemonicScreen tests", () => {
     const mnemonicArr = ["witch", "collapse", "practice", "feed", "shame", "open", "despair", "creek", "road", "again", "ice", "least"];
 
     beforeAll(() => {
-        jest.spyOn(WalletService, "createNewMnemonic").mockReturnValue(mnemonicArr.join(" "));
+        jest.spyOn(NearSDKService, "createNewMnemonic").mockReturnValue(mnemonicArr.join(" "));
     });
 
     afterAll(() => {

@@ -7,21 +7,21 @@ import { useRecoilValue } from "recoil";
 import Typography from "module/common/component/display/Typography/Typography";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 import { placeholder_image } from "images";
-import { Token } from "module/sdk/mock.types";
+import { Token } from "near-peersyst-sdk";
 
 export interface TokenCardProps {
     token: Token;
 }
 
 const TokenCard = ({ token: { metadata, balance } }: TokenCardProps): JSX.Element => {
-    const { name, symbol, imageUri } = metadata;
+    const { name, symbol, icon } = metadata;
     const { fiat } = useRecoilValue(settingsState);
     const { data: tokenValue } = useGetTokenPrice(fiat, "binancecoin");
 
     return (
         <MainListCard alignItems="center" justifyContent="space-between">
             <Row alignItems="center" gap={16}>
-                <TokenIcon source={imageUri ? { uri: imageUri } : placeholder_image} />
+                <TokenIcon source={icon ? { uri: icon } : placeholder_image} />
                 <Typography variant="body3Strong" numberOfLines={1} style={{ maxWidth: "50%" }}>
                     {name}
                 </Typography>

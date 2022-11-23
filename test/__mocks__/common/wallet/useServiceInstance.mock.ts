@@ -1,16 +1,16 @@
 import { NearSdkServiceMock } from "mocks/NearSdk";
-import { Chain } from "module/common/service/CkbSdkService.types";
-import { Chains, NearSDKService } from "module/common/service/NearSdkService";
+import { Chains, NearSDKService } from "near-peersyst-sdk";
+import { NetworkType } from "module/settings/state/SettingsState";
 import * as useServiceInstance from "module/wallet/hook/useServiceInstance";
 import BaseMock from "../base.mock";
 
 export class UseServiceInstanceMock extends BaseMock implements useServiceInstance.useServiceInstanceReturn {
-    network: Chain;
+    network: NetworkType;
     serviceInstance: NearSDKService;
     index: number;
     constructor({
         network = Chains.TESTNET,
-        serviceInstance = new NearSdkServiceMock() as any as NearSDKService,
+        serviceInstance = new NearSdkServiceMock() as any as NearSDKService, //Delete this any as soon as the NearSdkServiceMock is finished
         index = 0,
     }: Partial<useServiceInstance.useServiceInstanceReturn> = {}) {
         super();

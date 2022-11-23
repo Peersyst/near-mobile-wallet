@@ -1,4 +1,4 @@
-import { FeeRate } from "ckb-peersyst-sdk";
+import { FeeRate } from "near-peersyst-sdk";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { FeeType } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";

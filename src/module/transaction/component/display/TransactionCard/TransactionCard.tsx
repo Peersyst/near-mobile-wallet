@@ -2,7 +2,7 @@ import { Col, Row, useModal } from "@peersyst/react-native-components";
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
 import TransactionLabel from "module/transaction/component/display/TransactionLabel/TransactionLabel";
 import TransactionDetailsModal from "../../core/TransactionDetailsModal/TransactionDetailsModal";
-import { TransactionStatus as TransactionStatusEnum, TransactionType } from "ckb-peersyst-sdk";
+import { TransactionStatus as TransactionStatusEnum, TransactionType } from "near-peersyst-sdk";
 import TransactionStatusIndicator from "module/transaction/component/display/TransactionStatusIndicator/TransactionStatusIndicator";
 import TransactionStatus from "../TransactionStatus/TransactionStatus";
 import { useRecoilValue } from "recoil";

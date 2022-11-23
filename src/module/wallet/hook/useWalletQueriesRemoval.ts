@@ -7,8 +7,6 @@ const useWalletQueriesRemoval = (): ((index: number) => void) => {
         queryClient.removeQueries(["tokens", index]);
         queryClient.removeQueries(["nfts", index]);
         queryClient.removeQueries(["balance", index]);
-        queryClient.removeQueries(["daoBalance", index]);
-        queryClient.removeQueries(["daoUnlockableAmounts", index]);
         queryClient.removeQueries(["uncommittedTransactions", index]);
     };
 };

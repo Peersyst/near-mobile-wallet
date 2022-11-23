@@ -1,7 +1,7 @@
 import { Col } from "@peersyst/react-native-components";
 import TransactionDetail from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionDetail";
 import TransactionTypeDetails from "module/transaction/component/core/TransactionDetailsModal/TransactionDetailsBody/TransactionTypeDetails";
-import { FullTransaction } from "module/common/service/CkbSdkService.types";
+import { FullTransaction } from "near-peersyst-sdk";
 import TransactionStatus from "module/transaction/component/display/TransactionStatus/TransactionStatus";
 import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
 import { useTranslate } from "module/common/hook/useTranslate";

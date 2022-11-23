@@ -2,8 +2,7 @@ import TransactionIcon from "module/transaction/component/display/TransactionIco
 import { Col, Typography } from "@peersyst/react-native-components";
 import TransactionLabel from "module/transaction/component/display/TransactionLabel/TransactionLabel";
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
-import { FullTransaction } from "module/common/service/CkbSdkService.types";
-import { TransactionType } from "ckb-peersyst-sdk";
+import { TransactionType, FullTransaction } from "near-peersyst-sdk";
 import useFormatDate from "module/common/hook/useFormatDate";
 
 export interface TransactionDetailsHeaderProps {

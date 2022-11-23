@@ -34,7 +34,6 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
                 await createServiceInstance({ walletIndex: 0, nameId: name!, mnemonic: mnemonic! });
             }
 
-            //TODO: remove this fn for Near or the comment in CKBull
             //Use another thread
             setTimeout(async () => {
                 await serviceInstancesMap.get(0)?.[defaultSettingsState.network]?.synchronize();

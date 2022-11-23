@@ -1,7 +1,5 @@
-import { CKBBalance } from "ckb-peersyst-sdk";
 import { Dispatch, SetStateAction } from "react";
 import { NumericInput } from "@peersyst/react-native-components";
-import { SendSetAmountScreenProps } from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 import { config } from "config";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { useFormatNumber } from "module/common/hook/useFormatNumber";
@@ -9,13 +7,13 @@ import { TokenAmountInputRoot } from "module/transaction/component/input/TokenAm
 import TokenSelector from "module/token/component/input/TokenSelector/TokenSelector";
 import { TokenSelectorProps } from "module/token/component/input/TokenSelector/TokenSelector.types";
 import { useControlled } from "@peersyst/react-hooks";
+import { AccountBalance } from "near-peersyst-sdk";
 
 interface AmountInputProps extends Partial<Pick<TokenSelectorProps, "defaultToken" | "token" | "tokens" | "onTokenChange">> {
     amount: string;
     setAmount: Dispatch<SetStateAction<string>>;
-    freeBalance: CKBBalance["freeBalance"];
+    available: AccountBalance["available"];
     fee: number;
-    type?: SendSetAmountScreenProps["type"];
     defaultToken?: string;
     tokens?: string[];
     onTokenChange?: (token: string) => void;
@@ -24,21 +22,19 @@ interface AmountInputProps extends Partial<Pick<TokenSelectorProps, "defaultToke
 const TokenAmountInput = ({
     amount,
     setAmount,
-    freeBalance,
+    available,
     fee,
-    type = "send",
     defaultToken = config.tokenName,
     token: tokenProp,
     tokens = [],
     onTokenChange,
 }: AmountInputProps): JSX.Element => {
-    const isDAO = type === "dao";
     const translate = useTranslate();
 
     const [token, setToken] = useControlled(defaultToken, tokenProp, onTokenChange);
 
     const formattedFee = useFormatNumber(fee);
-    const formattedMinTx = useFormatNumber((isDAO ? config.minimumDaoDeposit : config.minimumTransactionAmount).toString());
+    const formattedMinTx = useFormatNumber(config.minimumTransactionAmount.toString());
 
     return (
         <TokenAmountInputRoot
@@ -49,13 +45,13 @@ const TokenAmountInput = ({
             required
             validators={{
                 gte: [
-                    Number(isDAO ? config.minimumDaoDeposit : config.minimumTransactionAmount),
+                    Number(config.minimumTransactionAmount),
                     translate("minimum_transaction_amount_text", {
                         amount: formattedMinTx,
                         token: token,
                     }),
                 ],
-                lte: [Number(freeBalance) - fee, translate("insufficient_balance")],
+                lte: [Number(available) - fee, translate("insufficient_balance")],
             }}
             suffix={<TokenSelector token={token} tokens={tokens} onTokenChange={setToken} />}
             input={NumericInput}

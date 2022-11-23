@@ -1,4 +1,4 @@
-import { TransactionType } from "ckb-peersyst-sdk";
+import { TransactionType } from "near-peersyst-sdk";
 import { ArrowDownCircleIcon, ArrowUpCircleIcon, NearIcon } from "icons";
 
 interface TxIcon {

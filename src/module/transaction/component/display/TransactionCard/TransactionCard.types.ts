@@ -1,4 +1,4 @@
-import { FullTransaction } from "module/common/service/CkbSdkService.types";
+import { FullTransaction } from "near-peersyst-sdk";
 
 export interface TransactionCardProps {
     transaction: FullTransaction;

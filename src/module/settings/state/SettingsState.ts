@@ -1,11 +1,10 @@
-import { FeeRate } from "ckb-peersyst-sdk";
 import { atom } from "recoil";
-import { Chain } from "module/common/service/CkbSdkService.types";
 import { getDefaultLocale, LocaleType } from "locale";
+import { Chains, FeeRate } from "near-peersyst-sdk";
 
 export type FiatCurrencyType = "cny" | "usd" | "eur" | "jpy" | "gbp";
 
-export type NetworkType = Chain;
+export type NetworkType = Chains.TESTNET | Chains.MAINNET;
 
 export type FeeType = FeeRate.SLOW | FeeRate.NORMAL | FeeRate.FAST;
 
@@ -17,7 +16,12 @@ export interface SettingsState {
     loading?: boolean;
 }
 
-export const defaultSettingsState: SettingsState = { locale: getDefaultLocale(), fiat: "usd", network: "testnet", fee: FeeRate.NORMAL };
+export const defaultSettingsState: SettingsState = {
+    locale: getDefaultLocale(),
+    fiat: "usd",
+    network: Chains.TESTNET,
+    fee: FeeRate.NORMAL,
+};
 
 const settingsState = atom<SettingsState>({
     key: "settings",

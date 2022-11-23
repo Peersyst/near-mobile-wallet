@@ -1,4 +1,4 @@
-import { DAODepositIcon } from "icons";
+import { DatabaseIcon } from "icons";
 import CardButtons from "module/common/component/input/CardButtons/CardButtons";
 import { fireEvent, render } from "test-utils";
 
@@ -8,17 +8,17 @@ describe("Test for the card buttons", () => {
             <CardButtons
                 //Left props
                 leftLabel={"leftLabel"}
-                leftIcon={<DAODepositIcon />}
+                leftIcon={<DatabaseIcon />}
                 leftButtonOnPress={jest.fn()}
                 //Right props
                 rightLabel={"rightLabel"}
-                rightIcon={<DAODepositIcon />}
+                rightIcon={<DatabaseIcon />}
                 rightButtonOnPress={jest.fn()}
             />,
         );
         expect(screen.getByText("leftLabel")).toBeDefined();
         expect(screen.getByText("rightLabel")).toBeDefined();
-        expect(screen.getAllByTestId("DAODepositIcon")).toHaveLength(2);
+        expect(screen.getAllByTestId("DatabaseIcon")).toHaveLength(2);
     });
     test("Triggers left function correctly", () => {
         const mockedLeftFunc = jest.fn();
@@ -26,11 +26,11 @@ describe("Test for the card buttons", () => {
             <CardButtons
                 //Left props
                 leftLabel={"leftLabel"}
-                leftIcon={<DAODepositIcon />}
+                leftIcon={<DatabaseIcon />}
                 leftButtonOnPress={mockedLeftFunc}
                 //Right props
                 rightLabel={"rightLabel"}
-                rightIcon={<DAODepositIcon />}
+                rightIcon={<DatabaseIcon />}
                 rightButtonOnPress={jest.fn()}
             />,
         );
@@ -44,11 +44,11 @@ describe("Test for the card buttons", () => {
             <CardButtons
                 //Left props
                 leftLabel={"leftLabel"}
-                leftIcon={<DAODepositIcon />}
+                leftIcon={<DatabaseIcon />}
                 leftButtonOnPress={jest.fn()}
                 //Right props
                 rightLabel={"rightLabel"}
-                rightIcon={<DAODepositIcon />}
+                rightIcon={<DatabaseIcon />}
                 rightButtonOnPress={mockedRightFunc}
             />,
         );
