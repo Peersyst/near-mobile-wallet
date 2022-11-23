@@ -283,6 +283,7 @@ export class NearSDKService {
             const res = convertAccountBalanceToNear(accountBalance);
             return res;
         } catch (e: any) {
+            console.warn("Error in balance", e);
             return {
                 total: "0",
                 available: "0",
@@ -373,6 +374,7 @@ export class NearSDKService {
     }
 
     async getTransactions(page = 1, pageSize = 15): Promise<Transaction[]> {
+        return [];
         const resp = await fetch(`${this.baseApiUrl}/transactions/?accountId=${this.getAddress()}&page=${page}&pageSize=${pageSize}`);
         if (resp.status !== 200) {
             throw new Error("Bad response status");

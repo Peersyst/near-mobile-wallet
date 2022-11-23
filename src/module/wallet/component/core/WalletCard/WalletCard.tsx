@@ -18,6 +18,7 @@ const WalletCard = ({ wallet: { name, index } }: WalletCardProps): JSX.Element =
     const { fiat } = useRecoilValue(settingsState);
     const { data: { available } = {}, isLoading } = useGetBalance(index);
     const [showFiat, setCurrencyMode] = useState<boolean>(false);
+
     const changeCurrencyMode = () => {
         impactAsync(ImpactFeedbackStyle.Medium);
         setCurrencyMode((value) => !value);

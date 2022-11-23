@@ -10,7 +10,7 @@ import createServiceInstance from "module/wallet/utils/createServiceInstance";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {
-        state: { mnemonic, pin, name },
+        state: { mnemonic, pin, name = "testingpeersyst.near" },
     } = useCreateWallet();
     const setWalletState = useSetRecoilState(walletState);
     const setSettingsState = useSetRecoilState(settingsState);
@@ -18,6 +18,7 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
 
     useEffect(() => {
         const setStorage = async () => {
+            await createServiceInstance({ walletIndex: 0, nameId: name, mnemonic: mnemonic! });
             await WalletStorage.setSecure({ pin: pin!, wallets: [{ name: name!, colorIndex: 0, mnemonic: mnemonic!, index: 0 }] });
             await SettingsStorage.set(defaultSettingsState);
 
@@ -29,10 +30,6 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
                 selectedWallet: 0,
             }));
             setSettingsState(defaultSettingsState);
-
-            if (mnemonic) {
-                await createServiceInstance({ walletIndex: 0, nameId: name!, mnemonic: mnemonic! });
-            }
 
             resetCreateWalletState();
         };

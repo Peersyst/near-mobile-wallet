@@ -38,7 +38,6 @@ const createServiceInstance = async ({ walletIndex, nameId, mnemonic, secretKey 
                     config.testnetNodeUrl,
                     config.indexerTestnetUrl,
                     stringMnemonic,
-                    nameId,
                 ),
                 mainnet: await NearSDKService.importFromMnemonic(
                     Chains.MAINNET,
@@ -66,6 +65,7 @@ const createServiceInstance = async ({ walletIndex, nameId, mnemonic, secretKey 
                 ),
             });
         }
+        return serviceInstancesMap.get(walletIndex);
     }
 };
 

@@ -8,7 +8,7 @@ const HomeSlider = (): JSX.Element => {
         state: { wallets, selectedWallet = 0 },
         setSelectedWallet,
     } = useWalletState();
-
+    console.log(wallets);
     return (
         <HomeSliderRoot
             page={selectedWallet}
