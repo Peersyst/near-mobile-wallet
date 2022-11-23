@@ -5,7 +5,7 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import { useRef } from "react";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import { FullTransaction, TransactionStatus } from "near-peersyst-sdk";
-import useUpdateUncommittedTransactions from "../hook/useUpdateUncommitedTransactions";
+import useUpdateUncommittedTransactionsState from "../hook/useUpdateUncommitedTransactionsState";
 
 const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction[]> => {
     const { serviceInstance, index: usedIndex, network } = useServiceInstance(index);
@@ -17,8 +17,8 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
      * but we want to display the rejected txs that we have uncommited in that session
      */
     const rejectedHashes: string[] = useRef([]).current;
-    const updateUncommitedTxsHashes = useUpdateUncommittedTransactions();
-    const removeUTxFromStorage = (hash: string): Promise<void> => {
+    const updateUncommitedTxsHashes = useUpdateUncommittedTransactionsState();
+    const removeUncommitedTxFromStorage = (hash: string): Promise<void> => {
         return WalletStorage.removeUncommittedTransactionHash(usedIndex, network, hash);
     };
     return useQuery(
@@ -46,16 +46,16 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
                         updatedUncommittedTransactionHashes.push(hash);
                         // If rejected keep it in the list but remove it from storage in order to show it just in the current session
                         if (tx.status === TransactionStatus.REJECTED && !rejectedHashes.find((h) => h === hash)) {
-                            await removeUTxFromStorage(hash);
+                            await removeUncommitedTxFromStorage(hash);
                             rejectedHashes.push(hash);
                         }
                     } else {
                         // If committed remove it and sync in order to refresh data and refetch useGetTransactions
-                        await removeUTxFromStorage(hash);
+                        await removeUncommitedTxFromStorage(hash);
                         shouldSync = true;
                     }
                 } catch {
-                    await removeUTxFromStorage(hash);
+                    await removeUncommitedTxFromStorage(hash);
                     rejectedHashes.push(hash);
                 }
             }
