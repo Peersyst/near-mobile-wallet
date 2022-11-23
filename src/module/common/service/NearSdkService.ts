@@ -6,7 +6,7 @@ const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
 import { mockNfts } from "./near-nfts.mock";
 import {
-    Chains,
+    // Chains
     StakingBalance,
     Validator,
     TokenMetadata,
@@ -52,7 +52,12 @@ import {
 //TODO: remove CKB imports for mocking
 import { DepositInDAOParams, FullTransaction, WithdrawOrUnlockParams } from "module/common/service/CkbSdkService.types";
 import { CKBBalance, DAOBalance, DAOUnlockableAmount, TokenAmount, WalletState } from "ckb-peersyst-sdk";
-
+export enum Chains {
+    MAINNET = "mainnet",
+    TESTNET = "testnet",
+    BETANET = "betanet",
+    LOCAL = "local",
+}
 export class NearSDKService {
     private connection?: Near;
     private nearConfig: ConnectConfig;
@@ -689,11 +694,7 @@ export class NearSDKService {
     }
 
     async getNftMetadata(contractId: string): Promise<NftMetadata> {
-        if (!accountCacheMap.has(this)) {
-            const new_account = await this.getAccount();
-            accountCacheMap.set(this, new_account);
-        }
-        const account = accountCacheMap.get(this)!;
+        const account = await this.getAccount();
         return account.viewFunction({
             contractId,
             methodName: NFT_METADATA_METHOD,
@@ -703,11 +704,7 @@ export class NearSDKService {
 
     // Mintbase non-standard method
     private async getNftTokenMetadata(contractId: string, tokenId: string, baseUri: string): Promise<NftMetadata> {
-        if (!accountCacheMap.has(this)) {
-            const new_account = await this.getAccount();
-            accountCacheMap.set(this, new_account);
-        }
-        const account = accountCacheMap.get(this)!;
+        const account = await this.getAccount();
         let metadata = await account.viewFunction({
             contractId,
             methodName: NFT_TOKEN_METADATA_METHOD,
