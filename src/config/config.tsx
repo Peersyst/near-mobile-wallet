@@ -42,7 +42,7 @@ const config = createConfig({
         },
         Label: {
             defaultProps: {
-                variant: "body1",
+                variant: "body3Strong",
             },
         },
         Modal: {

@@ -13,8 +13,8 @@ const BigNewsCard = (news: any): JSX.Element => {
             <SimpleNewsCardRoot>
                 <Col gap={"3%"}>
                     <BigNewsImage fadeDuration={300} source={{ uri: imageUri }} />
-                    <NewTitle variant="caption">{title}</NewTitle>
-                    <BigNewsDate variant="caption">{formattedDate}</BigNewsDate>
+                    <NewTitle variant="body4Regular">{title}</NewTitle>
+                    <BigNewsDate variant="body4Regular">{formattedDate}</BigNewsDate>
                 </Col>
             </SimpleNewsCardRoot>
         </TouchableWithoutFeedback>

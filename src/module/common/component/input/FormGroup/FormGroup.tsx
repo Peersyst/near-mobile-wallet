@@ -6,7 +6,7 @@ export interface FormGroupProps extends Omit<BaseFormGroupProps, "label"> {
 }
 
 const FormGroup = ({ label, ...rest }: FormGroupProps): JSX.Element => (
-    <BaseFormGroup label={<Typography variant="body1">{label}</Typography>} {...rest} />
+    <BaseFormGroup label={<Typography variant="body3Regular">{label}</Typography>} {...rest} />
 );
 
 export default FormGroup;

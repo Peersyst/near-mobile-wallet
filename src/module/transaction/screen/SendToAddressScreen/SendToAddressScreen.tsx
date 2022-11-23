@@ -33,7 +33,7 @@ const SendToAddressScreen = () => {
             type: "success",
             duration: 10000,
             action: (
-                <PressableText variant="body1" fontWeight="bold" onPress={hideToast}>
+                <PressableText variant="body3Strong" onPress={hideToast}>
                     {translate("dismiss")}
                 </PressableText>
             ),
@@ -75,7 +75,7 @@ const SendToAddressScreen = () => {
                             {translate("next")}
                         </Button>
                         {uncommittedTransaction && (
-                            <Typography variant="body2" textAlign="center">
+                            <Typography variant="body4Regular" textAlign="center">
                                 {translate("pending_transaction_text")}
                             </Typography>
                         )}

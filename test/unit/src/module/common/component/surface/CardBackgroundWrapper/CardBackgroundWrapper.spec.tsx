@@ -6,7 +6,7 @@ describe("Test for the card background wrapper", () => {
     test("Renders correctly", () => {
         const screen = render(
             <CardBackgroundWrapper>
-                <Typography variant="body1">Card content</Typography>
+                <Typography variant="body3Regular">Card content</Typography>
             </CardBackgroundWrapper>,
         );
         expect(screen.getByText("Card content")).toBeDefined();

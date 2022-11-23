@@ -6,7 +6,7 @@ import { TX_LABEL } from "module/transaction/component/display/TransactionLabel/
 describe("TransactionLabel tests", () => {
     test("Renders correctly", () => {
         const type = TransactionType.RECEIVE_NATIVE_TOKEN;
-        const screen = render(<TransactionLabel type={type} variant="body1" />);
+        const screen = render(<TransactionLabel type={type} variant="body3Regular" />);
 
         expect(screen.getByText(translate(TX_LABEL[type]))).toBeDefined();
     });

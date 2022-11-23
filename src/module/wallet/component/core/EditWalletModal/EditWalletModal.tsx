@@ -65,13 +65,11 @@ const EditWalletModal = createModal(({ index, closable = true, onClose, ...backd
             <EditWalletModalRoot>
                 <Col gap={40}>
                     <Row justifyContent="space-between" alignItems="center">
-                        <PressableText variant="body2" onPress={() => handleClose(false)}>
+                        <PressableText variant="body4Regular" onPress={() => handleClose(false)}>
                             {translate("cancel")}
                         </PressableText>
-                        <Typography variant="h3" fontWeight="bold">
-                            {translate("edit_wallet")}
-                        </Typography>
-                        <PressableText variant="body2" disabled={name === ""} onPress={() => handleClose(true)}>
+                        <Typography variant="h4Strong">{translate("edit_wallet")}</Typography>
+                        <PressableText variant="body4Regular" disabled={name === ""} onPress={() => handleClose(true)}>
                             {translate("save")}
                         </PressableText>
                     </Row>

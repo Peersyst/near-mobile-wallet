@@ -6,7 +6,7 @@ describe("Test for the BaseSendSummary", () => {
     test("Renders correctly", () => {
         const screen = render(
             <BaseSendSummary amount={1000} fee={"10"} token={"tokenName"}>
-                <Typography variant="body1">Children</Typography>
+                <Typography variant="body3Regular">Children</Typography>
             </BaseSendSummary>,
         );
         expect(screen.getByText("1,000 tokenName")).toBeDefined();

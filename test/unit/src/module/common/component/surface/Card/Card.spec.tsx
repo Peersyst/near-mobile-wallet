@@ -6,7 +6,7 @@ describe("Card tests", () => {
     test("Renders correctly", () => {
         const screen = render(
             <Card>
-                <Typography variant="body1">Card content</Typography>
+                <Typography variant="body3Regular">Card content</Typography>
             </Card>,
         );
 

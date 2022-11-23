@@ -9,19 +9,19 @@ describe("MainTabs tests", () => {
         const Tabs: MainTabItemType[] = [
             {
                 title: "Tab1",
-                item: <Typography variant="body1">Text1</Typography>,
+                item: <Typography variant="body3Regular">Text1</Typography>,
             },
             {
                 title: "Tab2",
-                item: <Typography variant="body1">Text2</Typography>,
+                item: <Typography variant="body3Regular">Text2</Typography>,
             },
             {
                 title: "Tab3",
-                item: <Typography variant="body1">Text3</Typography>,
+                item: <Typography variant="body3Regular">Text3</Typography>,
             },
             {
                 title: "Tab4",
-                item: <Typography variant="body1">Text4</Typography>,
+                item: <Typography variant="body3Regular">Text4</Typography>,
             },
         ];
         const screen = render(<MainTabs tabs={Tabs} />);
