@@ -4,10 +4,13 @@ import updateWalletUncommittedTxHashes from "module/wallet/utils/updateWalletUnc
 
 export default function useUpdateUncommittedTransactions() {
     const { index, network } = useServiceInstance();
-    const { state, setWallets } = useWalletState();
+    const {
+        state: { wallets },
+        setWallets,
+    } = useWalletState();
     const updateHashes = (hashes: string[] = [], walletIndex?: number) => {
         const finalIndex = walletIndex === undefined ? index : walletIndex;
-        const updatedWallets = updateWalletUncommittedTxHashes(state.wallets, finalIndex, network, hashes);
+        const updatedWallets = updateWalletUncommittedTxHashes(wallets, finalIndex, network, hashes);
         setWallets(updatedWallets);
     };
     return updateHashes;

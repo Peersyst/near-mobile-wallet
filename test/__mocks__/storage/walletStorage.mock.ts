@@ -70,16 +70,15 @@ export class StorageWalletMock extends BaseMock implements StorageWalletMockType
     secret?: string;
     testnet?: UnencryptedWalletChainInfoMock;
     mainnet?: UnencryptedWalletChainInfoMock;
-    constructor({ testnet, mainnet, name, index, colorIndex, ...rest }: Partial<StorageWalletMockType> = {}) {
+    constructor({ testnet, mainnet, ...rest }: Partial<StorageWalletMockType> = {}) {
         super();
-        const { index, name, colorIndex, mnemonic, secret } = new SecureWalletInfoMock(rest);
-        const uncryptedWallet = new UnencryptedWalletInfoMock({ testnet, mainnet });
+        const { index, name, colorIndex, mnemonic, secret } = new SecureWalletInfoMock({ ...rest });
         this.index = index;
         this.name = name;
         this.colorIndex = colorIndex;
         this.mnemonic = mnemonic;
         this.secret = secret;
-        this.testnet = testnet ?? uncryptedWallet;
+        this.testnet = testnet ?? new UnencryptedWalletChainInfoMock();
         this.mainnet = mainnet ?? new UnencryptedWalletChainInfoMock();
     }
 }
