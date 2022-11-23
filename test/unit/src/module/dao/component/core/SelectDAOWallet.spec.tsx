@@ -1,32 +1,31 @@
 import { fireEvent, render, translate } from "test-utils";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
-import createUseWalletStateMock from "mocks/useWalletState";
 import SelectDAOWallet from "module/dao/component/core/DAOAccountCard/DAOCardHeader/SelectDAOWallet/SelectDAOWallet";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("Test for the SelectDAOWallet", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
-    const setSelectedWallet = jest.fn();
-    jest.spyOn(UseWalletState, "default").mockReturnValue(createUseWalletStateMock({ setSelectedWallet }));
-    jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-    jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-        totalBalance: 20000,
-        occupiedBalance: 9600,
-        freeBalance: 14567,
+    const { serviceInstance } = new UseServiceInstanceMock();
+
+    beforeEach(() => {
+        jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
+            totalBalance: 20000,
+            occupiedBalance: 9600,
+            freeBalance: 14567,
+        });
     });
 
     afterAll(() => {
         jest.restoreAllMocks();
     });
 
-    test("Renders correctly", () => {
+    test("Renders correctly", async () => {
+        new UseWalletStateMock();
         const screen = render(<SelectDAOWallet />);
         const walletCardIcon = screen.getByTestId("FilledWalletIcon");
         expect(walletCardIcon).toBeDefined();
     });
     test("Updates global selectedWallet correctly", async () => {
+        const setSelectedWallet = jest.fn();
+        new UseWalletStateMock({ setSelectedWallet });
         const screen = render(<SelectDAOWallet />);
         const walletCardIcon = screen.getByTestId("FilledWalletIcon");
         expect(walletCardIcon).toBeDefined();

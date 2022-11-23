@@ -1,27 +1,23 @@
 import WithdrawModal from "module/dao/component/core/WithdrawModal/WithdrawModal";
 import { render, SuccessApiCall, translate } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
-import { mockedUseWallet } from "mocks/useWalletState";
 import { MockedUnlockableAmounts } from "mocks/DAO";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
 import { formatHash } from "@peersyst/react-utils";
 import { config } from "config";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("Withdraw modal test", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
+    const { serviceInstance } = new UseServiceInstanceMock();
+    const { state } = new UseWalletStateMock();
 
     beforeAll(() => {
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: serviceInstance, mainnet: serviceInstance });
     });
 
     beforeEach(() => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(sdkInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
-        jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
-        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
+        jest.spyOn(serviceInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
+        jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 20000,
             occupiedBalance: 9600,
             freeBalance: 10400,
@@ -41,12 +37,12 @@ describe("Withdraw modal test", () => {
         // 1 - Select second account and second deposit
         // Waits untill the first screen is load -> currentState: receiverIndex:0, depositIndex:0, feeRate: "10"
         expect(await screen.findByText(translate("select_a_wallet") + ":"));
-        const wallet = screen.getByText(mockedUseWallet.state.wallets[0].name);
+        const wallet = screen.getByText(state.wallets[0].name);
         expect(wallet).toBeDefined();
         //Open the modal
         fireEvent.press(wallet);
         //Select the second account
-        const secondAccount = await screen.findByText(mockedUseWallet.state.wallets[1].name);
+        const secondAccount = await screen.findByText(state.wallets[1].name);
         fireEvent.press(secondAccount);
 
         //Load new deposits

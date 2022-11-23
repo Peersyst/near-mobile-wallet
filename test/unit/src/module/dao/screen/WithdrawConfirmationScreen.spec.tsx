@@ -1,24 +1,21 @@
 import { render, SuccessApiCall, translate } from "test-utils";
 import { waitFor } from "@testing-library/react-native";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
-import { mockedUseWallet } from "mocks/useWalletState";
+
 import { MockedUnlockableAmounts } from "mocks/DAO";
 import WithdrawConfirmationScreen from "module/dao/screen/WithdrawConfirmationScreen/WithdrawConfirmationScreen";
 import { formatHash } from "@peersyst/react-utils";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { FeeRate } from "ckb-peersyst-sdk";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
 import { config } from "config";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("SelectAccountAndDepositScreen tests", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
+    const { serviceInstance } = new UseServiceInstanceMock();
+    new UseWalletStateMock();
 
     beforeAll(() => {
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(sdkInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
-        jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: serviceInstance, mainnet: serviceInstance });
+        jest.spyOn(serviceInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
     });
 
     afterAll(() => {

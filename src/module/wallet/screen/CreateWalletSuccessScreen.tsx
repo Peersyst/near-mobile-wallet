@@ -2,12 +2,11 @@ import { useEffect } from "react";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useResetRecoilState, useSetRecoilState } from "recoil";
-import walletState from "module/wallet/state/WalletState";
+import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import createWalletState from "module/wallet/state/CreateWalletState";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import useServiceInstanceCreation from "module/wallet/hook/useServiceInstanceCreation";
+import createServiceInstance from "module/wallet/utils/createServiceInstance";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {
@@ -16,7 +15,6 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
     const setWalletState = useSetRecoilState(walletState);
     const setSettingsState = useSetRecoilState(settingsState);
     const resetCreateWalletState = useResetRecoilState(createWalletState);
-    const createServiceInstance = useServiceInstanceCreation();
 
     useEffect(() => {
         const setStorage = async () => {
@@ -33,14 +31,14 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
             setSettingsState(defaultSettingsState);
 
             if (mnemonic) {
-                await createServiceInstance(0, mnemonic);
+                await createServiceInstance({ walletIndex: 0, nameId: name!, mnemonic: mnemonic! });
             }
 
+            //TODO: remove this fn for Near or the comment in CKBull
             //Use another thread
             setTimeout(async () => {
                 await serviceInstancesMap.get(0)?.[defaultSettingsState.network]?.synchronize();
             });
-
             resetCreateWalletState();
         };
         setTimeout(setStorage, 2000);

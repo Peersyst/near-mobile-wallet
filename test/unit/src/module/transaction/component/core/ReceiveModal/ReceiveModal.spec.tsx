@@ -1,22 +1,13 @@
 import { fireEvent, render, translate } from "test-utils";
 import * as Clipboard from "expo-clipboard";
 import * as Genesys from "@peersyst/react-native-components";
-import * as UseSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
-import { wallet } from "mocks/wallet";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
-
-const ADDRESS_MOCK = "0xMockedAddress";
+import { MOCKED_ADDRESS, UseServiceInstanceMock, WalletStateMock } from "test-mocks";
 
 describe("Test for the receive Modal", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
-
     beforeEach(() => {
-        jest.spyOn(UseSelectedWallet, "default").mockReturnValue(wallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getAddress").mockReturnValue(ADDRESS_MOCK);
+        new UseServiceInstanceMock();
+        new WalletStateMock();
     });
 
     afterEach(() => {
@@ -25,7 +16,7 @@ describe("Test for the receive Modal", () => {
 
     test("Renders correctly", () => {
         const screen = render(<ReceiveModal />);
-        expect(screen.getByText(ADDRESS_MOCK)).toBeDefined();
+        expect(screen.getByText(MOCKED_ADDRESS)).toBeDefined();
     });
     test("Copies address correctly", () => {
         const showToast = jest.fn();
@@ -35,7 +26,7 @@ describe("Test for the receive Modal", () => {
         const button = screen.getByText(translate("copy"));
         expect(button).toBeDefined();
         fireEvent.press(button);
-        expect(Clipboard.setString).toHaveBeenCalledWith(ADDRESS_MOCK);
+        expect(Clipboard.setString).toHaveBeenCalledWith(MOCKED_ADDRESS);
         expect(showToast).toHaveBeenCalledWith(translate("address_copied"), { type: "success" });
     });
 });

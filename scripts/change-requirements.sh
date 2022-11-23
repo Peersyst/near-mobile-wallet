@@ -33,4 +33,10 @@ sed -i'.bak' "67s/.*/const response = await (0, fetch)(target.uri, mergeOptions(
 sed -i'.bak' "14s/.*/var fetch = require('whatwg-fetch').fetch;/" ./node_modules/@ckb-lumos/ckb-indexer/lib/collector.js
 sed -i'.bak' "209s/.*/const res = await (0, fetch)(rpcUrl, {/" ./node_modules/@ckb-lumos/ckb-indexer/lib/collector.js
 
+#Crypto
+sed -i'.bak' "1s/.*/const randomBytes = require('react-native-expo-crypto').randomBytes;/" ./node_modules/bip39-light/index.js
+sed -i'.bak' "2s/.*/if (false) {/" ./node_modules/bip39-light/index.js
+sed -i'.bak' "8s/.*//" ./node_modules/bip39-light/index.js
+
+
 echo "Package requirements changed successfully!"

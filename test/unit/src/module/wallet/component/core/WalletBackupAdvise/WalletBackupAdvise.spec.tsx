@@ -1,14 +1,11 @@
 import WalletsBackupAdvise from "module/wallet/component/core/WalletsBackupModal/WalletsBackupAdvise/WalletsBackupAdvise";
 import { render, translate } from "test-utils";
 import { act, fireEvent } from "@testing-library/react-native";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
-import { mockedUseWallet } from "mocks/useWalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("WalletBackupAdvise", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
+    const { serviceInstance } = new UseServiceInstanceMock();
+    new UseWalletStateMock();
 
     afterEach(() => {
         jest.restoreAllMocks();
@@ -16,9 +13,7 @@ describe("WalletBackupAdvise", () => {
     test("Renders correctly", async () => {
         jest.useFakeTimers();
         const handleSelection = jest.fn();
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
+        jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 1,
             occupiedBalance: 0,
             freeBalance: 1,

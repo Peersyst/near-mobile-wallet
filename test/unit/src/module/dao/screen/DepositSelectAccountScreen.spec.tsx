@@ -1,17 +1,14 @@
 import { render, translate } from "test-utils";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
 import * as Genesys from "@peersyst/react-native-components";
 import { fireEvent, waitFor } from "@testing-library/react-native";
-import { mockedUseWallet } from "mocks/useWalletState";
 import DepositSelectAccountScreen from "module/dao/screen/DepositSelectAccountScreen/DepositSelectAccountScreen";
 import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("DepositSelectAccountScreen tests", () => {
-    beforeAll(() => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-    });
-
+    const { state } = new UseWalletStateMock();
+    new UseServiceInstanceMock();
     afterAll(() => {
         jest.restoreAllMocks();
     });
@@ -19,7 +16,7 @@ describe("DepositSelectAccountScreen tests", () => {
     test("Renders correctly", () => {
         const screen = render(<DepositSelectAccountScreen />);
         expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined();
-        expect(screen.getByText(mockedUseWallet.state.wallets[0].name)).toBeDefined();
+        expect(screen.getAllByText(state.wallets[0].name)).toBeDefined();
         expect(screen.getByText(translate("next"))).toBeDefined();
     });
 

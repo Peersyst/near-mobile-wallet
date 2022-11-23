@@ -6,7 +6,6 @@ import isCKBTransaction from "module/transaction/component/utils/isCKBTransactio
 
 const TransactionsList = (): JSX.Element => {
     const { data = [], isLoading } = useGetTransactions({ filter: (tx) => isCKBTransaction(tx.type) });
-
     return (
         <MainList
             loading={isLoading}

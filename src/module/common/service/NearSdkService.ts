@@ -6,7 +6,7 @@ const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
 import { mockNfts } from "./near-nfts.mock";
 import {
-    Chains,
+    // Chains
     StakingBalance,
     Validator,
     TokenMetadata,
@@ -49,7 +49,15 @@ import {
     NFT_TOKEN_METADATA_METHOD,
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "./near.constants";
-
+//TODO: remove CKB imports for mocking
+import { DepositInDAOParams, FullTransaction, WithdrawOrUnlockParams } from "module/common/service/CkbSdkService.types";
+import { CKBBalance, DAOBalance, DAOUnlockableAmount, TokenAmount, WalletState } from "ckb-peersyst-sdk";
+export enum Chains {
+    MAINNET = "mainnet",
+    TESTNET = "testnet",
+    BETANET = "betanet",
+    LOCAL = "local",
+}
 export class NearSDKService {
     private connection?: Near;
     private nearConfig: ConnectConfig;
@@ -337,14 +345,17 @@ export class NearSDKService {
         return this.connection.connection.provider.txStatus(txHash, address);
     }
 
-    async getTransactions(page = 1, pageSize = 15): Promise<Transaction[]> {
-        const resp = await fetch(`${this.baseApiUrl}/transactions/?accountId=${this.getAddress()}&page=${page}&pageSize=${pageSize}`);
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    async getTransactions(page = 1, pageSize = 15): Promise<FullTransaction[]> {
+        return [];
+        //Remove mock
+        /* const resp = await fetch(`${this.baseApiUrl}/transactions/?accountId=${this.getAddress()}&page=${page}&pageSize=${pageSize}`);
         if (resp.status !== 200) {
             throw new Error("Bad response status");
         }
 
         const transactionDtos: TransactionDto[] = await resp.json();
-        return transactionDtos.map(NearSDKService.parseTransactionDto);
+        return transactionDtos.map(NearSDKService.parseTransactionDto); */
     }
 
     // --------------------------------------------------------------
@@ -440,7 +451,6 @@ export class NearSDKService {
 
         try {
             fee = await this.getValidatorFee(validatorId);
-
             if (queryBalance) {
                 stakingBalance = await this.getValidatorBalance(validatorId, totalDeposits);
                 return { accountId: validatorId, fee, stakingBalance };
@@ -616,6 +626,7 @@ export class NearSDKService {
     }
 
     async getTokenBalance(contractId: string): Promise<number> {
+        // TODO: Cache this call
         const account = await this.getAccount();
         return account.viewFunction({
             contractId,
@@ -684,7 +695,6 @@ export class NearSDKService {
     }
 
     async getNftMetadata(contractId: string): Promise<NftMetadata> {
-        // TODO: Cache this call
         const account = await this.getAccount();
         return account.viewFunction({
             contractId,
@@ -695,7 +705,6 @@ export class NearSDKService {
 
     // Mintbase non-standard method
     private async getNftTokenMetadata(contractId: string, tokenId: string, baseUri: string): Promise<NftMetadata> {
-        // TODO: Cache this call
         const account = await this.getAccount();
         let metadata = await account.viewFunction({
             contractId,
@@ -790,7 +799,7 @@ export class NearSDKService {
     }
 
     async getNfts(): Promise<NftToken[]> {
-        // TODO: remove after testing
+        // TODO: remove mock
         return mockNfts;
         const resp = await fetch(`${this.baseApiUrl}/accounts/${this.getAddress()}/likely-nfts?fromBlockTimestamp=0`);
         if (resp.status !== 200) {
@@ -811,5 +820,73 @@ export class NearSDKService {
         }
 
         return nftTokens;
+    }
+
+    // --------------------------------------------------------------
+    // -- MOCK CKBSDKService unimplemented methods ------------------
+    // --------------------------------------------------------------
+
+    async wait(time = 500): Promise<void> {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve();
+            }, time);
+        });
+    }
+    async synchronize(): Promise<WalletState> {
+        await this.wait(100);
+        return {} as WalletState;
+    }
+    /* eslint-disable */
+    async depositInDAO(params: DepositInDAOParams): Promise<string> {
+        return "";
+    }
+
+    /* eslint-disable */
+    async withdrawOrUnlock({ unlockableAmount, mnemonic }: WithdrawOrUnlockParams): Promise<string> {
+        return "";
+    }
+
+    getCKBBalance(): CKBBalance {
+        return {
+            totalBalance: 324234234,
+            occupiedBalance: 324234234,
+            freeBalance: 324234234,
+        };
+    }
+
+    async getDAOBalance(): Promise<DAOBalance> {
+        await this.wait();
+        return {
+            daoDeposit: 324234234,
+            daoCompensation: 324234234,
+        };
+    }
+
+    async getDAOUnlockableAmounts(): Promise<DAOUnlockableAmount[]> {
+        await this.wait();
+        return [];
+    }
+
+    /* eslint-disable */
+    async getTransaction(txHash: string): Promise<FullTransaction> {
+        await this.wait();
+        return { hash: "", status: "" } as any as FullTransaction;
+    }
+
+    async getTokensBalance(): Promise<TokenAmount[]> {
+        await this.wait();
+        return [
+            {
+                metadata: {
+                    name: "Bitcoin",
+                    symbol: "BTC",
+                    decimals: 8,
+                    imageUri:
+                        "https://s3-alpha-sig.figma.com/img/32d6/c448/29fed82fec1d9892f7ee8191c7283e41?Expires=1665964800&Signature=UpMwOiI1dE6o2pIE6PrgeoxV0N6i41c2gE4XyM7hPVJtrsF-4qTCuIew6FywlEZtVjmkEAlkO0QH2S5GRe-aX8zhgwbJZcVxd2Je8DngIQCORc0yW3HH~SEM8ze59uNK40MmYhg78cG209ZCWlb~Jg~5TA8TGhcnvu~vsCWzQMk1fz1G799X9gKKDClSCIVtkgyaedhE9ja5ev3WvL0i91a~RHB~j00Ts79ijxmIO-qXd1zS9IsnzzH6-bJXvPzB7O4AJngWk6dwncJ3KubuJQvB27VK~R4kGM5xHqaxXl76g3SNA5qV~dbuPW6zLkd4qHQzqAtE2uDvPfMj8zrCVQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+                },
+                balance: BigInt(100),
+            },
+        ] as any as TokenAmount[];
     }
 }

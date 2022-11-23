@@ -1,28 +1,22 @@
 import { render, translate } from "test-utils";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
 import { fireEvent, waitFor } from "@testing-library/react-native";
-import { mockedUseWallet } from "mocks/useWalletState";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
 import { config } from "config";
+import { UseWalletStateMock, UseServiceInstanceMock } from "test-mocks";
 
 describe("SendModal tests", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
-
+    new UseWalletStateMock();
+    const { serviceInstance } = new UseServiceInstanceMock();
     afterAll(() => {
         jest.restoreAllMocks();
     });
 
     beforeAll(() => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: 120000000,
-            occupiedBalance: 20000000,
-            freeBalance: 100000000,
+        jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
+            totalBalance: 12000,
+            occupiedBalance: 2000,
+            freeBalance: 1000000,
         });
     });
 
@@ -52,11 +46,11 @@ describe("SendModal tests", () => {
         fireEvent.press(screen.getByText(translate("next")));
 
         // Enter amount and message
-        await waitFor(() => fireEvent.changeText(screen.getByPlaceholderText(translate("enter_amount")), "1000000"));
+        await waitFor(() => fireEvent.changeText(screen.getByPlaceholderText(translate("enter_amount")), "6000"));
         fireEvent.changeText(screen.getByPlaceholderText(translate("write_a_message")), "This is a message");
         fireEvent.press(screen.getByText(translate("next")));
-
+        screen.debug();
         // Confirmation
-        await waitFor(() => expect(screen.getByText(`1,000,000 ${config.tokenName}`)).toBeDefined());
+        await waitFor(() => expect(screen.getByText(`6,000 ${config.tokenName}`)).toBeDefined());
     });
 });

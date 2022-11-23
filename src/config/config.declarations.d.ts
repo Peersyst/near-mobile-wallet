@@ -9,38 +9,37 @@ declare module "@peersyst/react-native-components" {
     }
 
     export interface Config {
-        backendUrl: string;
         minimumTransactionAmount: number;
         minimumDaoDeposit: number;
-        mainnetExplorerLink: string;
-        testnetExplorerLink: string;
+        mainnetExplorerApi: string;
+        testnetExplorerApi: string;
         ckbTestnetUrl: string;
         indexerTestnetUrl: string;
         ckbMainnetUrl: string;
         indexerMainnetUrl: string;
         faucetUrl: string;
-        testnetExplorerApi: string;
-        mainnetExplorerApi: string;
         maxNumberOfDecimals: number;
         enableMainnet: boolean;
         tokenName: string;
+        mainnetNodeUrl: string;
+        testnetNodeUrl: string;
     }
 
     export interface CreateConfig {
-        backendUrl: string;
         minimumTransactionAmount: number;
         minimumDaoDeposit: number;
-        mainnetExplorerLink: string;
-        testnetExplorerLink: string;
+        mainnetExplorerApi: string;
+        testnetExplorerApi: string;
         ckbTestnetUrl: string;
         indexerTestnetUrl: string;
         ckbMainnetUrl: string;
         indexerMainnetUrl: string;
         faucetUrl: string;
-        testnetExplorerApi: string;
-        mainnetExplorerApi: string;
         maxNumberOfDecimals: number;
         enableMainnet: boolean;
+        tokenName: string;
+        mainnetNodeUrl: string;
+        testnetNodeUrl: string;
     }
 
     export interface ExtraValidators {

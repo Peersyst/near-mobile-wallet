@@ -1,4 +1,5 @@
 import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
+
 import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { WalletState } from "module/sdk";
 import { WalletStorage } from "module/wallet/WalletStorage";
