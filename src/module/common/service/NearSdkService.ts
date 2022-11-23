@@ -345,6 +345,7 @@ export class NearSDKService {
         return this.connection.connection.provider.txStatus(txHash, address);
     }
 
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     async getTransactions(page = 1, pageSize = 15): Promise<FullTransaction[]> {
         return [];
         //Remove mock
