@@ -32,6 +32,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         },
         splash: { image: "./assets/images/splash.png", resizeMode: "cover", backgroundColor: "#5F8AFA" },
     },
+    extra: {
+        eas: {
+            projectId: "1b97d88a-b249-45d2-8b0d-aa1724191c39",
+        },
+    },
     get android(): ExpoConfig["android"] {
         return {
             package: "com.peersyst.nearmobilewallet",

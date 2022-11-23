@@ -75,7 +75,7 @@
         "react-native": "0.70.5",
         "react-native-expo-bitcoinjs-lib": "^2.4.4",
         "react-native-expo-crypto": "^2.1.4",
-        "react-native-gesture-handler": "~2.8.0",
+        "react-native-gesture-handler": "~2.1.0",
         "react-native-keyboard-aware-scroll-view": "^0.9.5",
         "react-native-pager-view": "6.0.1",
         "react-native-qrcode-svg": "^6.1.2",
