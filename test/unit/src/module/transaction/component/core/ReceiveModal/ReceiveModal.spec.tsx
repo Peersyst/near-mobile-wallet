@@ -1,17 +1,32 @@
-import * as UseSelectedWallet from "module/wallet/hook/useSelectedWallet";
-import { render } from "test-utils";
+import { fireEvent, render, translate } from "test-utils";
+import * as Clipboard from "expo-clipboard";
+import * as Genesys from "@peersyst/react-native-components";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
-import { translate } from "locale";
-import { wallet } from "mocks/wallet";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { MOCKED_ADDRESS, UseServiceInstanceMock, WalletStateMock } from "test-mocks";
 
-describe("ReceiveModal tests", () => {
+describe("Test for the receive Modal", () => {
+    beforeEach(() => {
+        new UseServiceInstanceMock();
+        new WalletStateMock();
+    });
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
     test("Renders correctly", () => {
-        jest.spyOn(UseSelectedWallet, "default").mockReturnValue(wallet);
-        jest.spyOn(CKBSDKService.prototype, "getAddress").mockReturnValue("0xMockedAddress");
         const screen = render(<ReceiveModal />);
-        expect(screen.getByText(translate("receive"))).toBeDefined();
-        expect(screen.getByTestId("QRCode")).toBeDefined();
-        expect(screen.getByText(translate("receive_info"))).toBeDefined();
+        expect(screen.getByText(MOCKED_ADDRESS)).toBeDefined();
+    });
+    test("Copies address correctly", () => {
+        const showToast = jest.fn();
+        jest.spyOn(Genesys, "useToast").mockReturnValue({ showToast, hideToast: jest.fn(), toastActive: false });
+        jest.spyOn(Clipboard, "setString");
+        const screen = render(<ReceiveModal />);
+        const button = screen.getByText(translate("copy"));
+        expect(button).toBeDefined();
+        fireEvent.press(button);
+        expect(Clipboard.setString).toHaveBeenCalledWith(MOCKED_ADDRESS);
+        expect(showToast).toHaveBeenCalledWith(translate("address_copied"), { type: "success" });
     });
 });

@@ -1,5 +1,5 @@
 import { OverridableStringUnion } from "@peersyst/react-types";
-import { TypographyVariants, TypographyVariantsOverrides } from "module/common/component/base/style";
+import { TypographyVariants, TypographyVariantsOverrides } from "@peersyst/react-native-components";
 
 type TypographyVariantType = OverridableStringUnion<TypographyVariants, TypographyVariantsOverrides>;
 

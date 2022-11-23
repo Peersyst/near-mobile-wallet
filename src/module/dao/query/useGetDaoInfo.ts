@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
-import { MAINNET_EXPLORER_API, TESTNET_EXPLORER_API } from "@env";
+import { config } from "config";
 
 export interface DaoInfo {
     total_deposit: string;
@@ -30,7 +30,7 @@ export default function () {
     const network = useSelectedNetwork();
 
     return useQuery(["dao-info", network], async () => {
-        const api = network === "testnet" ? TESTNET_EXPLORER_API : MAINNET_EXPLORER_API;
+        const api = network === "testnet" ? config.testnetExplorerApi : config.mainnetExplorerApi;
         const headers = new Headers();
         headers.append("Content-Type", "application/vnd.api+json");
         headers.append("Accept", "application/vnd.api+json");

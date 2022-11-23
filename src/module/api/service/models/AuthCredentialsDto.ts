@@ -4,4 +4,4 @@
 
 export type AuthCredentialsDto = {
     access_token: string;
-}
+};

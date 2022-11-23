@@ -1,6 +1,5 @@
-import { translate } from "locale";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
-import { fireEvent, render, SuccessApiCall, waitFor } from "test-utils";
+import { fireEvent, render, SuccessApiCall, waitFor, translate } from "test-utils";
 import { WalletStorage } from "module/wallet/WalletStorage";
 
 describe("Test for the Confirm Pin Modal", () => {

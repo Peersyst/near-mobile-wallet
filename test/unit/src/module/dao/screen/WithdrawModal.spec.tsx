@@ -1,27 +1,23 @@
 import WithdrawModal from "module/dao/component/core/WithdrawModal/WithdrawModal";
-import { render, SuccessApiCall } from "test-utils";
-import { translate } from "locale";
+import { render, SuccessApiCall, translate } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
-import { mockedUseWallet } from "mocks/useWalletState";
 import { MockedUnlockableAmounts } from "mocks/DAO";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
-import { formatAddress } from "@peersyst/react-utils";
+import { formatHash } from "@peersyst/react-utils";
+import { config } from "config";
+import { MOCKED_ADDRESS, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("Withdraw modal test", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
+    const { serviceInstance } = new UseServiceInstanceMock();
+    const { state } = new UseWalletStateMock();
 
     beforeAll(() => {
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: serviceInstance, mainnet: serviceInstance });
     });
 
     beforeEach(() => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(sdkInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
-        jest.spyOn(sdkInstance, "getAddress").mockReturnValue("0xMockedAddress");
-        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
+        jest.spyOn(serviceInstance, "getDAOUnlockableAmounts").mockReturnValue(SuccessApiCall(MockedUnlockableAmounts));
+        jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
             totalBalance: 20000,
             occupiedBalance: 9600,
             freeBalance: 10400,
@@ -40,12 +36,20 @@ describe("Withdraw modal test", () => {
         const screen = render(<WithdrawModal />);
         // 1 - Select second account and second deposit
         // Waits untill the first screen is load -> currentState: receiverIndex:0, depositIndex:0, feeRate: "10"
-        await waitFor(() => expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined());
-        expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2);
-        //Click on the second wallet
-        fireEvent.press(screen.getByText(mockedUseWallet.state.wallets[1].name));
+        expect(await screen.findByText(translate("select_a_wallet") + ":"));
+        const wallet = screen.getByText(state.wallets[0].name);
+        expect(wallet).toBeDefined();
+        //Open the modal
+        fireEvent.press(wallet);
+        //Select the second account
+        const secondAccount = await screen.findByText(state.wallets[1].name);
+        fireEvent.press(secondAccount);
+
         //Load new deposits
-        await waitFor(() => expect(screen.getAllByText("500")).toHaveLength(4));
+        const defaultDeposit = await screen.findByText("500");
+        expect(defaultDeposit).toBeDefined();
+        //Open the modal
+        fireEvent.press(defaultDeposit);
         //Click on the second deposit -> check in unlockable type withdraw and unlockable true
         const button = screen.getByText(translate("available"));
         fireEvent.press(button);
@@ -54,7 +58,8 @@ describe("Withdraw modal test", () => {
 
         // 2 - Withdraw page with correct info
         await waitFor(() => expect(translate("destination_wallet") + ":").toBeDefined());
-        expect(screen.getByText("secondWallet" + " - " + formatAddress("0xMockedAddress", "middle", 3))).toBeDefined();
-        expect(screen.getByText("500")).toBeDefined();
+
+        await waitFor(() => expect(screen.getByText(`500 ${config.tokenName}`)).toBeDefined());
+        expect(screen.getByText("secondWallet" + " - " + formatHash(MOCKED_ADDRESS, "middle", 3))).toBeDefined();
     });
 });

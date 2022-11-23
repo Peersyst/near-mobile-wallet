@@ -1,5 +1,9 @@
 import PinItem from "./PinItem/PinItem";
-import { PinDisplayPlaceholder, PinDisplayRoot } from "./PinDisplay.styles";
+import { PinDisplayRoot } from "./PinDisplay.styles";
+import Typography from "../Typography/Typography";
+import { useEffect, useRef } from "react";
+import { Animated, Easing } from "react-native";
+import { alpha } from "@peersyst/react-utils";
 
 export interface PinDisplayProps {
     length: number;
@@ -7,17 +11,42 @@ export interface PinDisplayProps {
     error?: boolean;
 }
 
-const animationDuration: number[] = [60, 90, 130, 120];
-
 const PinDisplay = ({ length, error, placeholder }: PinDisplayProps): JSX.Element => {
+    const errorAnimation = useRef(new Animated.Value(0)).current;
+
+    useEffect(() => {
+        if (error) {
+            Animated.sequence([
+                Animated.timing(errorAnimation, {
+                    toValue: 5,
+                    easing: Easing.ease,
+                    duration: 50,
+                    useNativeDriver: false,
+                }),
+                Animated.timing(errorAnimation, {
+                    easing: Easing.ease,
+                    toValue: -5,
+                    duration: 50,
+                    useNativeDriver: false,
+                }),
+                Animated.timing(errorAnimation, {
+                    easing: Easing.ease,
+                    toValue: 0,
+                    duration: 50,
+                    useNativeDriver: false,
+                }),
+            ]).start();
+        }
+    }, [error]);
+
     return (
-        <PinDisplayRoot>
+        <PinDisplayRoot style={{ transform: [{ translateX: errorAnimation }] }}>
             {length || !placeholder ? (
-                [...Array(4)].map((_, i) => (
-                    <PinItem error={error} animationHeight={-6} duration={animationDuration[i]} key={i} active={i < length} />
-                ))
+                [...Array(4)].map((_, i) => <PinItem key={i} active={i < length} />)
             ) : (
-                <PinDisplayPlaceholder>{placeholder}</PinDisplayPlaceholder>
+                <Typography variant="body2Strong" color={(palette) => alpha(palette.white, 0.6)}>
+                    {placeholder}
+                </Typography>
             )}
         </PinDisplayRoot>
     );

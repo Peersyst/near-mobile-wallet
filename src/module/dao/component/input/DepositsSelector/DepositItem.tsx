@@ -1,12 +1,11 @@
-import { Row, SelectItem, Theme } from "react-native-components";
+import { Row, SelectItem, Theme, useSelected } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { useSelected } from "module/common/component/base/input/Select/hooks/useSelected";
 import { DAOUnlockableAmount } from "ckb-peersyst-sdk";
-import formatTimeDAORemainingCycle from "module/transaction/component/utils/formatTimeDAORemainingCycle";
 import { DepositItemText } from "./DepositItem.styles";
-import { translate } from "locale";
 import { getAPC } from "module/dao/utils/getAPC";
 import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
+import { useTranslate } from "module/common/hook/useTranslate";
+import useFormatTimeDAORemainingCycle from "module/transaction/component/hook/UseFormatTimeDAORemainingCycle/useFormatTimeDAORemaningCycle";
 
 export interface DepositItemProps {
     amount: DAOUnlockableAmount["amount"];
@@ -38,6 +37,8 @@ const DepositItem = ({
     type,
 }: DepositItemProps): JSX.Element => {
     const isSelected = useSelected(value, selectedIndex, false);
+    const translate = useTranslate();
+    const formatTimeDAORemainingCycle = useFormatTimeDAORemainingCycle();
     return (
         <SelectItem value={value} key={value}>
             <Row justifyContent="flex-start">
@@ -47,9 +48,7 @@ const DepositItem = ({
                     unlockable={unlockable}
                     selected={isSelected}
                     balance={convertShannonsToCKB(amount)}
-                    units="CKB"
                     variant="body1"
-                    boldUnits
                 />
                 <DepositItemText type={type} unlockable={unlockable} selected={isSelected} variant="body1">
                     {" (APC: " +
@@ -67,9 +66,7 @@ const DepositItem = ({
                     unlockable={unlockable}
                     selected={isSelected}
                     balance={convertShannonsToCKB(compensation)}
-                    units={"CKB"}
                     variant="body2"
-                    boldUnits
                 />
             </Row>
             <Row justifyContent="flex-start">

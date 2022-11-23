@@ -7,7 +7,7 @@ describe("isDAODeposit tests", () => {
     });
 
     test("Returns false if the type is not from a DAO deposit tx", () => {
-        expect(isDAODeposit(TransactionType.RECEIVE_CKB)).toEqual(false);
+        expect(isDAODeposit(TransactionType.RECEIVE_NATIVE_TOKEN)).toEqual(false);
         expect(isDAODeposit(TransactionType.WITHDRAW_DAO)).toEqual(false);
     });
 });

@@ -1,6 +1,5 @@
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import EnterWalletMnemonicScreen from "module/wallet/screen/EnterWalletMnemonicScreen";
-import { translate } from "locale";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import { MnemonicMocked } from "mocks/MnemonicMocked";

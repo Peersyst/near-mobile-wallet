@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "react-native-components";
+import { SvgIcon, SvgIconProps } from "@peersyst/react-native-components";
 import { Defs, LinearGradient, Path, Stop } from "react-native-svg";
 
 export function FilledWalletIcon(props: Omit<SvgIconProps, "children">): JSX.Element {

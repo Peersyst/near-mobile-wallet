@@ -1,7 +1,7 @@
-import PagerView from "module/common/component/layout/PagerView/PagerView";
 import WalletCard from "module/wallet/component/core/WalletCard/WalletCard";
 import AddWalletCard from "module/wallet/component/display/AddWalletCard/AddWalletCard";
 import useWalletState from "module/wallet/hook/useWalletState";
+import { HomeSliderRoot } from "./HomeSlider.styles";
 
 const HomeSlider = (): JSX.Element => {
     const {
@@ -10,20 +10,18 @@ const HomeSlider = (): JSX.Element => {
     } = useWalletState();
 
     return (
-        <PagerView
+        <HomeSliderRoot
             page={selectedWallet}
             onPageSelected={(page) => setSelectedWallet(page)}
-            showPageIndicator
-            height="33%"
+            showPageIndicator={true}
             gap={0}
             pagePadding={{ horizontal: 20 }}
-            style={{ minHeight: 203 }}
         >
             {wallets.map((wallet, i) => (
                 <WalletCard key={i} wallet={wallet} />
             ))}
             <AddWalletCard />
-        </PagerView>
+        </HomeSliderRoot>
     );
 };
 

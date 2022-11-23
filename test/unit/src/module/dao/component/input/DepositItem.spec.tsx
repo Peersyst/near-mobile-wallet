@@ -1,6 +1,5 @@
 import DepositItem from "module/dao/component/input/DepositsSelector/DepositItem";
-import { render } from "test-utils";
-import { translate } from "locale";
+import { render, translate } from "test-utils";
 
 describe("Test for the deposit Item", () => {
     test("Renders correctly", () => {
@@ -15,7 +14,7 @@ describe("Test for the deposit Item", () => {
                 type={"deposit"}
             />,
         );
-        expect(screen.getAllByText("CKB")).toHaveLength(2);
+
         expect(screen.getByText("10")).toBeDefined();
         expect(screen.getByText("(APC: 0%)")).toBeDefined();
         expect(screen.getByText(translate("compensation") + ":")).toBeDefined();
@@ -33,7 +32,7 @@ describe("Test for the deposit Item", () => {
                 type={"deposit"}
             />,
         );
-        expect(screen.getAllByText("CKB")).toHaveLength(2);
+
         expect(screen.getByText("10")).toBeDefined();
         expect(screen.getByText("(APC: 10%)")).toBeDefined();
         expect(screen.getByText(translate("compensation") + ":")).toBeDefined();

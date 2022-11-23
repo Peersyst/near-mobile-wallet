@@ -1,17 +1,32 @@
+import { config } from "config";
 import Balance from "module/wallet/component/display/Balance/Balance";
+import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
+import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
 import { render } from "test-utils";
-import { translate } from "locale";
 
 describe("Text for the Balance component", () => {
     test("Renders correctly", () => {
-        const screen = render(<Balance units={translate("token")} balance={"100"} decimals={6} variant={"h1"} />);
-        expect(screen.getByText(translate("token"))).toBeDefined();
+        const screen = render(<Balance balance={"100"} variant={"h1"} />);
         expect(screen.getByText("100")).toBeDefined();
-        expect(screen.getByText("000000")).toBeDefined();
     });
-    test("Renders smallBalance", () => {
-        const screen = render(<Balance smallBalance units={"X"} balance={"1000"} decimals={6} variant={"h1"} />);
-        const normalFontSize = screen.getByText("1,000").props.style.fontSize;
-        expect(screen.getByText("000000").props.style.fontSize).toEqual(normalFontSize * 0.7);
+    test("Renders correctly near", () => {
+        const screen = render(<Balance balance={"100"} variant={"h1"} units="token" />);
+        expect(screen.getByText("100 " + config.tokenName)).toBeDefined();
+    });
+    test("Renders correctly eur", () => {
+        const screen = render(<Balance balance={"100"} variant={"h1"} units="eur" />);
+        expect(screen.getByText("100 " + CURRENCY_UNIT["eur"])).toBeDefined();
+    });
+    test("Renders correctly dollar", () => {
+        const screen = render(<Balance balance={"100"} variant={"h1"} units="usd" action="add" />);
+        expect(screen.getByText(ACTION_LABEL["add"] + "100 " + CURRENCY_UNIT["usd"])).toBeDefined();
+    });
+    test("Renders correctly round", () => {
+        const screen = render(<Balance action="round" balance={"100"} variant={"h1"} units="usd" />);
+        expect(screen.getByText(ACTION_LABEL["round"] + "100 " + CURRENCY_UNIT["usd"])).toBeDefined();
+    });
+    test("Renders correctly when loading", () => {
+        const screen = render(<Balance balance={"100"} variant={"h1"} isLoading />);
+        expect(screen.getByTestId("ActivityIndicator")).toBeDefined();
     });
 });

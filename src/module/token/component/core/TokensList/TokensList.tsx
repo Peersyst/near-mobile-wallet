@@ -15,9 +15,11 @@ const TokensList = (): JSX.Element => {
     const { isLoading, data: tokens = [] } = useGetTokens(index);
     const tokenPriceUseQueries = useMemo(() => tokensList.map((token) => ["tokenPrice", fiat, token]), [fiat]);
     const refetch = useRefetchQueries();
+
     const handleRefetch = async () => {
         await refetch(tokenPriceUseQueries);
     };
+
     return (
         <MainList
             onRefresh={handleRefetch}

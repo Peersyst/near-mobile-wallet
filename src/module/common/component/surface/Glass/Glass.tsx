@@ -1,8 +1,8 @@
 import { GlassRoot } from "./Glass.styles";
 import { ThemeProvider } from "@peersyst/react-native-styled";
-import { theme } from "module/common/style/theme";
 import { ReactNode } from "react";
 import { ViewStyle } from "react-native";
+import lightTheme from "config/theme/lightTheme";
 
 export interface GlassProps {
     style?: ViewStyle;
@@ -10,7 +10,7 @@ export interface GlassProps {
 }
 
 const Glass = (props: GlassProps): JSX.Element => (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={lightTheme}>
         <GlassRoot {...props} />
     </ThemeProvider>
 );

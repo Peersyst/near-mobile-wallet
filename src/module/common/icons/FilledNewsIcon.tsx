@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "react-native-components";
+import { SvgIcon, SvgIconProps } from "@peersyst/react-native-components";
 import { Path } from "react-native-svg";
 
 export function FilledNewsIcon(props: Omit<SvgIconProps, "children">): JSX.Element {

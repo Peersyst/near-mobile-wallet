@@ -1,4 +1,7 @@
-import { BlockchainAddress as BaseBlockchainAddress, BlockchainAddressProps as BaseBlockchainAddressProps } from "react-native-components";
+import {
+    BlockchainAddress as BaseBlockchainAddress,
+    BlockchainAddressProps as BaseBlockchainAddressProps,
+} from "@peersyst/react-native-components";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 
 export type BlockchainAddressType = "address" | "tx";
@@ -11,7 +14,7 @@ const BlockchainAddress = ({ type: typeProp, ...rest }: BlockchainAddressProps):
     const network = useSelectedNetwork();
 
     const type = ((): BaseBlockchainAddressProps["type"] => {
-        if (network === "testnet") return typeProp === "address" ? "testnetAddress" : "tesnetTx";
+        if (network === "testnet") return typeProp === "address" ? "testnetAddress" : "testnetTx";
         else return typeProp === "address" ? "mainnetAddress" : "mainnetTx";
     })();
 

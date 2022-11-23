@@ -1,27 +1,23 @@
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
 import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
 import * as Recoil from "recoil";
-import * as UseSetTab from "module/common/component/base/navigation/Tabs/hook/useSetTab";
-import { translate } from "locale";
+import * as Genesys from "@peersyst/react-native-components";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
-import { mockedUseWallet } from "mocks/useWalletState";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("SendToAddressScreen tests", () => {
-    beforeAll(() => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-    });
-
+    new UseServiceInstanceMock();
+    const { state } = new UseWalletStateMock();
     afterAll(() => {
         jest.restoreAllMocks();
     });
 
     test("Renders correctly", () => {
         const screen = render(<SendToAddressScreen />);
-        expect(screen.getByText(translate("select_a_wallet") + ":")).toBeDefined();
-        expect(screen.getAllByText(mockedUseWallet.state.wallets[0].name)).toHaveLength(2);
-        expect(screen.getByText(translate("send_to") + ":")).toBeDefined();
+        expect(screen.getByText(translate("select_a_wallet"))).toBeDefined();
+        expect(screen.getByText(state.wallets[0].name)).toBeDefined();
+        expect(screen.getByText(translate("send_to"))).toBeDefined();
         expect(screen.getByPlaceholderText(translate("address"))).toBeDefined();
         expect(screen.getByText(translate("next"))).toBeDefined();
     });
@@ -29,7 +25,7 @@ describe("SendToAddressScreen tests", () => {
     test("Renders correctly when an addresses had been selected previously", () => {
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{ senderWalletIndex: 1, receiverAddress: "receiver_address" }, jest.fn()]);
         const screen = render(<SendToAddressScreen />);
-        expect(screen.getAllByText(mockedUseWallet.state.wallets[1].name)).toHaveLength(2);
+        expect(screen.getByText(state.wallets[1].name)).toBeDefined();
         expect(screen.getByDisplayValue("receiver_address")).toBeDefined();
     });
 
@@ -37,7 +33,7 @@ describe("SendToAddressScreen tests", () => {
         const setSendState = jest.fn();
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{}, setSendState]);
         const setTab = jest.fn();
-        jest.spyOn(UseSetTab, "default").mockReturnValue(setTab);
+        jest.spyOn(Genesys, "useSetTab").mockReturnValue(setTab);
         const screen = render(<SendToAddressScreen />);
         const input = screen.getByPlaceholderText(translate("address"));
         fireEvent.changeText(input, "ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwsq03ewkvsva4cchhntydu648l7lyvn9w2cctnpask");

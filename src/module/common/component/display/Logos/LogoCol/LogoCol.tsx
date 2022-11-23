@@ -1,4 +1,4 @@
-import { SvgIconProps } from "react-native-components";
+import { SvgIconProps } from "@peersyst/react-native-components";
 import { LogoColIcon, LogoColRoot } from "./LogoCol.styles";
 import AnimationContainer from "module/common/component/display/AnimationContainer/AnimationContainer";
 

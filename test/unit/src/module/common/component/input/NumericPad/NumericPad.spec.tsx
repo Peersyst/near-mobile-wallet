@@ -7,12 +7,9 @@ describe("Keyboard test", () => {
         const handleSubmit = jest.fn();
         const screen = render(<NumericPad onSubmit={handleSubmit} placeholder="Placeholder" />);
 
-        expect(screen.getByText("Placeholder"));
+        expect(screen.getByText("PLACEHOLDER"));
 
         fireEvent.press(screen.getByText("0"));
-
-        expect(screen.getAllByTestId("CircleIcon")).toHaveLength(3);
-
         fireEvent.press(screen.getByText("1"));
         fireEvent.press(screen.getByText("2"));
         fireEvent.press(screen.getByText("3"));

@@ -1,6 +1,6 @@
 import Card from "module/common/component/surface/Card/Card";
 import { render } from "test-utils";
-import { Typography } from "react-native-components";
+import { Typography } from "@peersyst/react-native-components";
 
 describe("Card tests", () => {
     test("Renders correctly", () => {

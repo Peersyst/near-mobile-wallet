@@ -1,12 +1,12 @@
-import { ExposedBackdropProps } from "react-native-components";
+import { ExposedBackdropProps } from "@peersyst/react-native-components";
 import { ReactNode, useState } from "react";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
-import useServiceInstanceCreation from "module/wallet/hook/useServiceInstanceCreation";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import useServiceInstanceCreation from "module/wallet/hook/useServiceInstanceCreation";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
@@ -60,16 +60,9 @@ const AddWalletModal = ({ onExited, onClose, children: renderProps, title, onBac
     };
 
     return (
-        <GlassNavigatorModal
-            scrollable={true}
-            open={open}
-            onClose={handleClose}
-            navbar={{ back: true, title, onBack }}
-            onExited={handleExited}
-            {...rest}
-        >
+        <CardNavigatorModal open={open} onClose={handleClose} navbar={{ back: true, title, onBack }} onExited={handleExited} {...rest}>
             {renderProps(handleWalletCreation)}
-        </GlassNavigatorModal>
+        </CardNavigatorModal>
     );
 };
 

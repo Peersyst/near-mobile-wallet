@@ -1,21 +1,25 @@
-import { translate } from "locale";
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
-import { useDialog, useModal } from "react-native-components";
+import { useDialog, useModal } from "@peersyst/react-native-components";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
-import { useRecoilState, useResetRecoilState } from "recoil";
-import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { useQueryClient } from "react-query";
 import useWalletQueriesInvalidation from "module/wallet/hook/useWalletQueriesInvalidation";
 import useWalletQueriesRemoval from "module/wallet/hook/useWalletQueriesRemoval";
+import { useTranslate } from "module/common/hook/useTranslate";
+import useWalletState from "module/wallet/hook/useWalletState";
 
 const DeleteOneWallet = () => {
+    const translate = useTranslate();
     const { showDialog } = useDialog();
     const { showModal } = useModal();
-    const [{ wallets, selectedWallet }, setWalletState] = useRecoilState(walletState);
-    const resetWalletState = useResetRecoilState(walletState);
+    const {
+        reset,
+        setState: setWalletState,
+        state: { wallets, selectedWallet },
+    } = useWalletState();
     const queryClient = useQueryClient();
     const invalidateWalletQueries = useWalletQueriesInvalidation();
     const removeWalletQueries = useWalletQueriesRemoval();
@@ -35,7 +39,7 @@ const DeleteOneWallet = () => {
                         serviceInstancesMap.clear();
                         await SettingsStorage.clear();
                         await queryClient.invalidateQueries();
-                        resetWalletState();
+                        reset();
                     } else {
                         //Remove wallet from storage
                         await WalletStorage.removeWallet(index);

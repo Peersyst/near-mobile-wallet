@@ -1,4 +1,4 @@
-import { PaletteMode } from "react-native-components";
+import { PaletteMode } from "@peersyst/react-native-components";
 
 export type DirectionType = "horizontal" | "vertical";
 

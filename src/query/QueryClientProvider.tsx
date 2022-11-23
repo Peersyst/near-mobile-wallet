@@ -1,11 +1,12 @@
-import { FC, useRef } from "react";
-import { useToast } from "react-native-components";
+import { FC, ReactNode, useRef } from "react";
+import { useToast } from "@peersyst/react-native-components";
 import { QueryCache, QueryClient, QueryClientProvider as BaseQueryClientProvider } from "react-query";
+import { useTranslate } from "module/common/hook/useTranslate";
 import { handleErrorMessage } from "./handleErrorMessage";
 
-const QueryClientProvider: FC = ({ children }): JSX.Element => {
+const QueryClientProvider: FC<{ children?: ReactNode }> = ({ children }): JSX.Element => {
     const { showToast } = useToast();
-
+    const translate = useTranslate("error");
     const queryClient = useRef(
         new QueryClient({
             defaultOptions: {
@@ -16,15 +17,14 @@ const QueryClientProvider: FC = ({ children }): JSX.Element => {
                 },
                 mutations: {
                     onError: (error) => {
-                        const { message, type } = handleErrorMessage(error);
+                        const { message, type } = handleErrorMessage(error, translate);
                         showToast(message, { type });
                     },
                 },
             },
             queryCache: new QueryCache({
                 onError: (error) => {
-                    const { message, type } = handleErrorMessage(error);
-                    console.error(error);
+                    const { message, type } = handleErrorMessage(error, translate);
                     showToast(message, { type });
                 },
             }),

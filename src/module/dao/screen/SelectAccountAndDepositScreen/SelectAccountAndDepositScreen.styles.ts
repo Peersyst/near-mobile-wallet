@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { Paper, Typography } from "react-native-components";
+import { Paper, Typography } from "@peersyst/react-native-components";
 
 export const WithdrawSelectorCard = styled(Paper, { elevation: 8 })(() => ({
     padding: 20,

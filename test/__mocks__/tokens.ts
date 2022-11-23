@@ -3,6 +3,7 @@ import { TokenAmount } from "module/token/types";
 
 export const token: TokenAmount = {
     type: {
+        apiId: "wrapped-bitcoin",
         name: "Wrapped BTC",
         description: "ForceBridge from BSC",
         tokenName: "BTC|bsc",
@@ -25,6 +26,7 @@ export const tokens: TokenAmount[] = [...Array(5)].map((_, i) => ({
         name: tokensList[i].name,
         decimals: tokensList[i].decimals,
         description: tokensList[i].description,
+        apiId: tokensList[i].apiId,
     },
     amount: 20,
 }));

@@ -1,13 +1,22 @@
-import { Backdrop, Col, createModal, ExposedBackdropProps, PressableText, Row, Typography, useToast } from "react-native-components";
+import {
+    Backdrop,
+    Col,
+    createModal,
+    ExposedBackdropProps,
+    PressableText,
+    Row,
+    Typography,
+    useToast,
+} from "@peersyst/react-native-components";
 import useWallet from "module/wallet/hook/useWallet";
 import useEditWallet from "module/wallet/hook/useEditWallet";
 import { EditWalletModalRoot } from "module/wallet/component/core/EditWalletModal/EditWalletModal.styles";
 import TextField from "module/common/component/input/TextField/TextField";
 import ColorPicker from "module/wallet/component/input/ColorPicker/ColorPicker";
 import { useTheme } from "@peersyst/react-native-styled";
-import { translate } from "locale";
 import { useState } from "react";
 import { WalletStorage } from "module/wallet/WalletStorage";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface EditWalletModalProps extends ExposedBackdropProps {
     index: number;
@@ -15,6 +24,7 @@ export interface EditWalletModalProps extends ExposedBackdropProps {
 
 const EditWalletModal = createModal(({ index, closable = true, onClose, ...backdropProps }: EditWalletModalProps): JSX.Element => {
     const [open, setOpen] = useState(true);
+    const translate = useTranslate();
     const { name, colorIndex } = useWallet(index);
     const {
         setName,
@@ -68,10 +78,9 @@ const EditWalletModal = createModal(({ index, closable = true, onClose, ...backd
                     <Col gap="25%">
                         <TextField
                             size="lg"
-                            variant="underlined"
                             value={name}
                             onChange={setName}
-                            style={{ input: { textAlign: "center" } }}
+                            style={{ component: { input: { textAlign: "center" } } }}
                             placeholder={translate("wallet_name")}
                         />
                         <ColorPicker value={walletColors[colorIndex]} onColorPicked={handleColorPicked} />

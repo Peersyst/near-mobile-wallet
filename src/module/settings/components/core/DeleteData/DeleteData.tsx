@@ -1,16 +1,16 @@
-import { translate } from "locale";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { serviceInstancesMap } from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
-import { useDialog, useModal } from "react-native-components";
-import { useResetRecoilState, useSetRecoilState } from "recoil";
+import { useDialog, useModal } from "@peersyst/react-native-components";
 import { useQueryClient } from "react-query";
+import { useTranslate } from "module/common/hook/useTranslate";
+import useWalletState from "module/wallet/hook/useWalletState";
 
 const DeleteData = () => {
-    const resetWalletState = useResetRecoilState(walletState);
-    const setWalletState = useSetRecoilState(walletState);
+    const translate = useTranslate();
+    const { setState: setWalletState, reset: resetWalletState } = useWalletState();
     const queryClient = useQueryClient();
     const { showModal } = useModal();
     const { showDialog } = useDialog();

@@ -1,5 +1,4 @@
 import { ExpoConfig, ConfigContext } from "@expo/config";
-import "dotenv/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
     ...config,
@@ -33,6 +32,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         },
         splash: { image: "./assets/images/splash.png", resizeMode: "cover", backgroundColor: "#141414" },
     },
+    extra: {
+        eas: {
+            projectId: "1b97d88a-b249-45d2-8b0d-aa1724191c39",
+        },
+    },
     get android(): ExpoConfig["android"] {
         return {
             package: "com.peersyst.ckbull",
@@ -41,7 +45,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
                 backgroundColor: "#141414",
             },
             versionCode: Number((this.version || "").replace(/\./g, "") + process.env.BUILD_NUMBER) || 0,
-            softwareKeyboardLayoutMode: "pan",
+            softwareKeyboardLayoutMode: "resize",
             splash: {
                 image: "./assets/images/splash.png",
                 resizeMode: "cover",
@@ -52,5 +56,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     web: {
         favicon: "./assets/images/favicon.png",
     },
-    plugins: ["./plugins/withAnimatedWebp"],
+    extra: {
+        eas: {
+            projectId: "1b97d88a-b249-45d2-8b0d-aa1724191c39",
+        },
+    },
 });

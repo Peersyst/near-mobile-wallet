@@ -4,7 +4,9 @@
 import type { ApiException } from '../models/ApiException';
 import type { AuthCredentialsDto } from '../models/AuthCredentialsDto';
 import type { LoginRequest } from '../models/LoginRequest';
+
 import type { CancelablePromise } from '../core/CancelablePromise';
+import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
 export class AuthenticateService {
@@ -19,9 +21,9 @@ export class AuthenticateService {
     public static authControllerLogin(
         requestBody: LoginRequest,
     ): CancelablePromise<ApiException | AuthCredentialsDto> {
-        return __request({
+        return __request(OpenAPI, {
             method: 'POST',
-            path: `/api/auth/login`,
+            url: '/api/auth/login',
             body: requestBody,
             mediaType: 'application/json',
         });

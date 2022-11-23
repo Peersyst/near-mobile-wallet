@@ -1,6 +1,6 @@
 import { render } from "test-utils";
 import Notification from "module/common/component/display/Notification/Notification";
-import { theme } from "module/common/style/theme";
+import lightTheme from "config/theme/lightTheme";
 
 describe("Notifications tests", () => {
     test("Renders correctly", () => {
@@ -11,6 +11,6 @@ describe("Notifications tests", () => {
     test("Renders notification active", () => {
         const screen = render(<Notification hasNotifications />);
         const circle = screen.getByTestId("activeCircle");
-        expect(circle.props.style.backgroundColor).toEqual(theme.palette.red);
+        expect(circle.props.style.backgroundColor).toEqual(lightTheme.palette.red);
     });
 });

@@ -1,8 +1,7 @@
-import { translate } from "locale";
-import { Row } from "react-native-components";
+import { Row } from "@peersyst/react-native-components";
 import { WalletCardTitle, CopyIcon, EditIcon } from "../WalletCard.styles";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
+import { useTranslate } from "module/common/hook/useTranslate";
+import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 interface AccountCardHeaderProps {
     index: number;
@@ -10,8 +9,8 @@ interface AccountCardHeaderProps {
 }
 
 const WalletCardHeader = ({ index, name }: AccountCardHeaderProps): JSX.Element => {
-    const network = useSelectedNetwork();
-    const serviceInstance = serviceInstancesMap.get(index)?.[network];
+    const { serviceInstance } = useServiceInstance(index);
+    const translate = useTranslate();
     return (
         <Row justifyContent="space-between" alignItems="center">
             <EditIcon index={index} />

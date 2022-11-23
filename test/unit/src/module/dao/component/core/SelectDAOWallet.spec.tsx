@@ -1,44 +1,40 @@
-import { fireEvent, render, waitFor } from "test-utils";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
-import createUseWalletStateMock, { mockedUseWallet } from "mocks/useWalletState";
+import { fireEvent, render, translate } from "test-utils";
 import SelectDAOWallet from "module/dao/component/core/DAOAccountCard/DAOCardHeader/SelectDAOWallet/SelectDAOWallet";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
+import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("Test for the SelectDAOWallet", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
+    const { serviceInstance } = new UseServiceInstanceMock();
+
+    beforeEach(() => {
+        jest.spyOn(serviceInstance, "getCKBBalance").mockReturnValue({
+            totalBalance: 20000,
+            occupiedBalance: 9600,
+            freeBalance: 14567,
+        });
+    });
 
     afterAll(() => {
         jest.restoreAllMocks();
     });
 
     test("Renders correctly", async () => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: 20000,
-            occupiedBalance: 9600,
-            freeBalance: 14567,
-        });
+        new UseWalletStateMock();
         const screen = render(<SelectDAOWallet />);
-        await waitFor(() => expect(screen.getAllByText("14,567")).toHaveLength(2));
-        expect(screen.getAllByText("14,567")[0].props.style.color).toEqual("#FFFFFF");
-        expect(screen.getAllByText("14,567")[1].props.style.color).toEqual("#000000");
+        const walletCardIcon = screen.getByTestId("FilledWalletIcon");
+        expect(walletCardIcon).toBeDefined();
     });
     test("Updates global selectedWallet correctly", async () => {
         const setSelectedWallet = jest.fn();
-        jest.spyOn(UseWalletState, "default").mockReturnValue(createUseWalletStateMock({ setSelectedWallet }));
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: 20000,
-            occupiedBalance: 9600,
-            freeBalance: 14567,
-        });
+        new UseWalletStateMock({ setSelectedWallet });
         const screen = render(<SelectDAOWallet />);
-        await waitFor(() => expect(screen.getAllByText("14,567")).toHaveLength(2));
-        const walletItem = screen.getAllByText("14,567")[1];
-        fireEvent.press(walletItem);
+        const walletCardIcon = screen.getByTestId("FilledWalletIcon");
+        expect(walletCardIcon).toBeDefined();
+        const displayButton = screen.getByTestId("select-display-touchable");
+        fireEvent.press(displayButton);
+        expect(screen.getByText(translate("select_a_wallet"))).toBeDefined();
+        const walletItems = await screen.findAllByText("14,567");
+        expect(walletItems.length).toBe(2);
+        fireEvent.press(walletItems[1]);
         expect(setSelectedWallet).toBeCalledWith(1);
     });
 });

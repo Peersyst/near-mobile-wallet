@@ -1,5 +1,5 @@
 import AuthSwitchScreen from "./screen/AuthSwitchScreen/AuthSwitchScreen";
-import { TabPanel, Tabs } from "react-native-components";
+import { TabPanel, Tabs } from "@peersyst/react-native-components";
 import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
 import CreateWalletNavigatorGroup from "module/wallet/navigator/CreateWalletNavigatorGroup";
 import ImportWalletNavigatorGroup from "module/wallet/navigator/ImportWalletNavigatorGroup";

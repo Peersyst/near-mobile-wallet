@@ -1,11 +1,11 @@
-import { Col, Row, Typography } from "react-native-components";
+import { Col, Row, Typography } from "@peersyst/react-native-components";
 import Card from "module/common/component/surface/Card/Card";
-import { translate } from "locale";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { useState } from "react";
 import { WalletsBackupAdviseImage } from "module/wallet/component/core/WalletsBackupModal/WalletsBackupAdvise/WalletBackupAdvise.styles";
-import { image } from "asset/image";
+import { notes } from "images";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface WalletsBackupAdvise {
     onWalletSelected: (index: number) => void;
@@ -13,11 +13,11 @@ export interface WalletsBackupAdvise {
 
 const WalletsBackupAdvise = ({ onWalletSelected }: WalletsBackupAdvise): JSX.Element => {
     const [selectorEnabled, setSelectorEnabled] = useState(false);
-
+    const translate = useTranslate();
     return (
         <Col gap={40} justifyContent="flex-end" flex={1}>
             <Row flex={1} justifyContent="center" alignItems="center">
-                <WalletsBackupAdviseImage source={image.notes} />
+                <WalletsBackupAdviseImage source={notes} />
             </Row>
             <Card>
                 <Typography variant="body1">{translate("backup_wallet_advise_text")}</Typography>

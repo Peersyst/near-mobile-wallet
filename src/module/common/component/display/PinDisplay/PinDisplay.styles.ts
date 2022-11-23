@@ -1,11 +1,8 @@
 import styled from "@peersyst/react-native-styled";
-import { Row } from "react-native-components";
-import { Text } from "react-native";
+import { Row } from "@peersyst/react-native-components";
+import { Animated } from "react-native";
+import { classify } from "@peersyst/react-utils";
 
-export const PinDisplayRoot = styled(Row, { gap: 14, alignItems: "center" })(() => ({ height: 20 }));
-
-export const PinDisplayPlaceholder = styled(Text)(({ theme }) => ({
-    color: theme.palette.text,
-    opacity: 0.8,
-    fontSize: 16,
+export const PinDisplayRoot = styled(Animated.createAnimatedComponent(classify(Row)), { gap: 48, alignItems: "center" })(() => ({
+    height: 20,
 }));

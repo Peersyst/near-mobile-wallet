@@ -7,6 +7,7 @@
             "node": "14.18.3",
             "env": {
                 "BUILD_NUMBER": "__BUILD_NUMBER__",
+                "REACT_APP_ENV_CONFIG": "staging",
                 "MINIMUM_TRANSACTION_AMOUNT": "61",
                 "MAINNET_EXPLORER_LINK": "https://explorer.nervos.org/",
                 "TESTNET_EXPLORER_LINK": "https://pudge.explorer.nervos.org/",
@@ -32,6 +33,7 @@
             "node": "14.18.3",
             "env": {
                 "BUILD_NUMBER": "__BUILD_NUMBER__",
+                "REACT_APP_ENV_CONFIG": "production",
                 "MINIMUM_TRANSACTION_AMOUNT": "61",
                 "MAINNET_EXPLORER_LINK": "https://explorer.nervos.org/",
                 "TESTNET_EXPLORER_LINK": "https://pudge.explorer.nervos.org/",

@@ -8,6 +8,6 @@ describe("isUnlockOrWithdrawDAO tests", () => {
     });
 
     test("Returns false if the type is not from a DAO unlock tx", () => {
-        expect(isUnlockOrWithdrawDAO(TransactionType.RECEIVE_CKB)).toEqual(false);
+        expect(isUnlockOrWithdrawDAO(TransactionType.RECEIVE_NATIVE_TOKEN)).toEqual(false);
     });
 });

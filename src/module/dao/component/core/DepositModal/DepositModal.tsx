@@ -1,12 +1,12 @@
-import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "react-native-components";
-import { translate } from "locale";
+import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
 import { useState } from "react";
-import GlassNavigatorModal from "module/common/component/navigation/GlassNavigatorModal/GlassNavigatorModal";
+import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { useResetRecoilState } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import DepositSelectAccountScreen from "module/dao/screen/DepositSelectAccountScreen/DepositSelectAccountScreen";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 import DepositConfirmationScreen from "module/dao/screen/DepositConfirmationScreen/DepositConfirmationScreen";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export enum DepositScreens {
     SELECT_ACCOUNT,
@@ -17,19 +17,23 @@ export enum DepositScreens {
 const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
     const [activeIndex, setActiveIndex] = useState(DepositScreens.SELECT_ACCOUNT);
     const resetSendState = useResetRecoilState(sendState);
-
+    const translate = useTranslate();
     const handleExited = () => {
         onExited?.();
         resetSendState();
     };
 
+    function handleBack() {
+        setActiveIndex((oldIndex) => oldIndex - 1);
+    }
+
     return (
-        <GlassNavigatorModal
-            breadcrumbs={{ length: 3, index: activeIndex }}
+        <CardNavigatorModal
             navbar={{
+                steps: { length: 3, index: activeIndex },
                 back: true,
                 title: translate("deposit"),
-                onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,
+                onBack: activeIndex > 0 ? handleBack : undefined,
             }}
             onExited={handleExited}
             {...rest}
@@ -45,7 +49,7 @@ const DepositModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps
                     <DepositConfirmationScreen />
                 </TabPanel>
             </Tabs>
-        </GlassNavigatorModal>
+        </CardNavigatorModal>
     );
 });
 

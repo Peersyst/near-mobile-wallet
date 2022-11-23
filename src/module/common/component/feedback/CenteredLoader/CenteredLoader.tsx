@@ -1,5 +1,5 @@
 import { ActivityIndicator, ActivityIndicatorProps } from "react-native";
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 
 export type CenteredLoaderProps = Omit<ActivityIndicatorProps, "size">;
 

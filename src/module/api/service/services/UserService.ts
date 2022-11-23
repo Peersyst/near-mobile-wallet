@@ -4,7 +4,9 @@
 import type { ApiException } from '../models/ApiException';
 import type { CreateUserRequest } from '../models/CreateUserRequest';
 import type { UserDto } from '../models/UserDto';
+
 import type { CancelablePromise } from '../core/CancelablePromise';
+import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
 export class UserService {
@@ -19,9 +21,9 @@ export class UserService {
     public static userControllerCreate(
         requestBody: CreateUserRequest,
     ): CancelablePromise<ApiException | UserDto> {
-        return __request({
+        return __request(OpenAPI, {
             method: 'POST',
-            path: `/api/users/create`,
+            url: '/api/users/create',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -34,9 +36,9 @@ export class UserService {
      * @throws ApiError
      */
     public static userControllerInfo(): CancelablePromise<UserDto | ApiException> {
-        return __request({
+        return __request(OpenAPI, {
             method: 'GET',
-            path: `/api/users/info`,
+            url: '/api/users/info',
         });
     }
 
@@ -47,9 +49,9 @@ export class UserService {
      * @throws ApiError
      */
     public static userControllerFindAll(): CancelablePromise<Array<UserDto> | ApiException> {
-        return __request({
+        return __request(OpenAPI, {
             method: 'GET',
-            path: `/api/users/all`,
+            url: '/api/users/all',
         });
     }
 

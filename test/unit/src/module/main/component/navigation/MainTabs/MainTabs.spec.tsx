@@ -2,7 +2,7 @@ import { render } from "test-utils";
 import MainTabs from "module/main/component/navigation/MainTabs/MainTabs";
 import { fireEvent } from "@testing-library/react-native";
 import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
-import { Typography } from "react-native-components";
+import { Typography } from "@peersyst/react-native-components";
 
 describe("MainTabs tests", () => {
     test("Renders correctly", () => {

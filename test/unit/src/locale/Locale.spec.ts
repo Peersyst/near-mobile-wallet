@@ -1,18 +1,21 @@
-import i18n from "i18n-js";
-import { loadLocalization } from "locale";
+import { LocaleType, NameSpacesType } from "locale/i18n.types";
+import { resources } from "locale/i18n";
 
-describe("LocaleTest", () => {
-    test("All keys are set in both languages", async () => {
-        await loadLocalization();
-        const languages = i18n.translations;
-        for (const language of Object.keys(languages)) {
-            const languageTranslations = languages[language];
-            for (const translationKey of Object.keys(languageTranslations)) {
-                for (const comparingLanguage of Object.keys(languages)) {
-                    expect((languages[comparingLanguage] as { [k in string]: unknown })[translationKey]).toBeDefined();
-                }
-            }
-        }
-        expect(true).toBeTruthy();
+describe("Test for the locales", () => {
+    test("Locales test: All locales have same number of namespaces. Then, for each namespace check that all have the same number of keys", () => {
+        const languages = Object.keys(resources) as LocaleType[];
+        const localeNameSpaces = languages.map((lang) => Object.keys(resources[lang])) as NameSpacesType[][];
+        const baseNsLength = localeNameSpaces[0].length;
+        //For each locale
+        //Don't compare to itself
+        localeNameSpaces.slice(1).forEach((namespacesArray, localeIndex) => {
+            expect(namespacesArray.length).toBe(baseNsLength);
+            //For each namespace
+            namespacesArray.forEach((ns) => {
+                const baseNameSpaceLength = Object.keys(resources["en"][ns]).length;
+                const namespaceLength = Object.keys(resources[languages[localeIndex]][ns]).length;
+                expect(baseNameSpaceLength).toBe(namespaceLength);
+            });
+        });
     });
 });
