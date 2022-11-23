@@ -1,10 +1,10 @@
-import useUpdateUncommitedTransactions from "module/transaction/hook/useUpdateUncommitedTransactions";
+import useUpdateUncommitedTransactionsState from "module/transaction/hook/useUpdateUncommitedTransactionsState";
 import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 import { renderHook } from "test-utils";
 import updateWalletUncommittedTxHashes from "module/wallet/utils/updateWalletUncommittedTxHashes";
 
-const renderUseUpdateUncommitedTransactions = () => {
-    return renderHook(() => useUpdateUncommitedTransactions()).result.current;
+const renderUseUpdateUncommitedTransactionsState = () => {
+    return renderHook(() => useUpdateUncommitedTransactionsState()).result.current;
 };
 
 describe("useUpdateUncommitedTransactions test", () => {
@@ -14,7 +14,7 @@ describe("useUpdateUncommitedTransactions test", () => {
             state: { wallets },
         } = new UseWalletStateMock({ setWallets: setWalletsMock });
         const { index, network } = new UseServiceInstanceMock();
-        const updateHashes = renderUseUpdateUncommitedTransactions();
+        const updateHashes = renderUseUpdateUncommitedTransactionsState();
         expect(updateHashes).toBeDefined();
         const hashes = ["hash1", "hash2"];
         updateHashes(hashes);
