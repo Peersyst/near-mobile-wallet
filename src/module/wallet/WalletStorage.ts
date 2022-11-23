@@ -4,13 +4,7 @@ import updateWalletUncommitedTxHashes from "./utils/updateWalletUncommittedTxHas
 
 export type Chain = NetworkType;
 
-export type WalletState = {
-    //TODO revise this type
-    name: string;
-    colorIndex: number;
-};
 export interface UnencryptedWalletChainInfo {
-    initialState?: WalletState;
     uncommittedTransactionHashes?: string[];
 }
 
@@ -93,12 +87,6 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         return walletSecureInfo?.secret;
     }
 
-    async getInitialState(index: number, chain: Chain): Promise<WalletState | undefined> {
-        const storage = await this.get();
-        const walletUnencryptedInfo = storage?.wallets.find((w) => w.index === index) || { index: index };
-        return walletUnencryptedInfo?.[chain]?.initialState;
-    }
-
     async getUncommittedTransactionHashes(index: number, chain: Chain): Promise<string[] | undefined> {
         const storage = await this.get();
         const walletUnencryptedInfo = storage?.wallets.find((w) => w.index === index) || { index: index };
@@ -174,26 +162,5 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
     async setPin(pin: string): Promise<void> {
         const secureStorage = (await this.getSecure()) || { wallets: [] };
         await this.setSecure({ ...secureStorage, pin });
-    }
-
-    async setInitialState(index: number, chain: Chain, walletState: WalletState): Promise<void> {
-        const wallets = await this.getWallets();
-        if (wallets) {
-            await this.setWallets(
-                wallets.map((wallet) => {
-                    if (wallet.index !== index) return wallet;
-                    else {
-                        const chainInfo = wallet[chain];
-                        return {
-                            ...wallet,
-                            [chain]: {
-                                ...chainInfo,
-                                initialState: walletState,
-                            },
-                        };
-                    }
-                }),
-            );
-        }
     }
 })();
