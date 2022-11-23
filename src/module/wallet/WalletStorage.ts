@@ -1,5 +1,6 @@
 import { BaseStorageService } from "module/common/service/BaseStorageService";
 import { NetworkType } from "module/settings/state/SettingsState";
+import updateWalletUncommitedTxHashes from "./utils/updateWalletUncommittedTxHashes";
 
 export type Chain = NetworkType;
 
@@ -104,46 +105,26 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         return walletUnencryptedInfo?.[chain]?.uncommittedTransactionHashes;
     }
 
+    async updateUncommitedTransactionHashes(index: number, chain: Chain, hashes: string[]): Promise<void> {
+        const storage = await this.get();
+        if (!storage) return;
+        const updatedWallets = updateWalletUncommitedTxHashes(storage.wallets, index, chain, hashes);
+        return this.set({ ...storage, wallets: updatedWallets });
+    }
+
     async addUncommittedTransactionHash(index: number, chain: Chain, hash: string): Promise<void> {
         const storage = await this.get();
         if (!storage) return;
-        const updatedWallets = storage?.wallets.map((w) => {
-            if (w.index !== index) return w;
-            else {
-                const chainInfo = w[chain];
-                const uncommittedTransactionsHashes = chainInfo?.uncommittedTransactionHashes || [];
-                return {
-                    ...w,
-                    [chain]: {
-                        ...chainInfo,
-                        uncommittedTransactionHashes: [...uncommittedTransactionsHashes, hash],
-                    },
-                };
-            }
-        });
-        return this.set({ ...storage, wallets: updatedWallets });
+        const uncommittedTransactionHashes = (await this.getUncommittedTransactionHashes(index, chain)) || [];
+        return this.updateUncommitedTransactionHashes(index, chain, [...uncommittedTransactionHashes, hash]);
     }
 
     async removeUncommittedTransactionHash(index: number, chain: Chain, hash: string): Promise<void> {
         const storage = await this.get();
         if (!storage) return;
-        const updatedWallets = storage?.wallets.map((w) => {
-            if (w.index !== index) return w;
-            else {
-                const chainInfo = w[chain];
-                const uncommittedTransactionsHashes = chainInfo?.uncommittedTransactionHashes;
-                return {
-                    ...w,
-                    [chain]: {
-                        ...chainInfo,
-                        uncommittedTransactionHashes: uncommittedTransactionsHashes
-                            ? uncommittedTransactionsHashes.filter((h) => h !== hash)
-                            : [],
-                    },
-                };
-            }
-        });
-        return this.set({ ...storage, wallets: updatedWallets });
+        const uncommittedTransactionHashes = (await this.getUncommittedTransactionHashes(index, chain)) || [];
+        const finalUncommittedTransactionHashes = uncommittedTransactionHashes.filter((h) => h !== hash);
+        return this.updateUncommitedTransactionHashes(index, chain, finalUncommittedTransactionHashes);
     }
 
     async getPin(): Promise<string | undefined> {
