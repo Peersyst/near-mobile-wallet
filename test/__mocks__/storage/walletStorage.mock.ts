@@ -1,27 +1,10 @@
 import BaseMock from "mocks/common/base.mock";
-import { SecureWalletInfo, WalletState } from "module/wallet/WalletStorage";
+import { SecureWalletInfo, UnencryptedWalletChainInfo } from "module/wallet/WalletStorage";
 
-export class InitialWalletStateMock extends BaseMock implements WalletState {
-    name: string;
-    colorIndex: number;
-    constructor({ name = "firstWallet", colorIndex = 0 }: Partial<WalletState> = {}) {
-        super();
-        this.name = name;
-        this.colorIndex = colorIndex;
-    }
-}
-
-export interface UnencryptedWalletChainInfoMockType {
-    initialState?: InitialWalletStateMock;
+export class UnencryptedWalletChainInfoMock extends BaseMock implements UnencryptedWalletChainInfo {
     uncommittedTransactionHashes?: string[];
-}
-
-export class UnencryptedWalletChainInfoMock extends BaseMock implements UnencryptedWalletChainInfoMockType {
-    initialState?: InitialWalletStateMock;
-    uncommittedTransactionHashes?: string[];
-    constructor({ initialState, uncommittedTransactionHashes }: Partial<UnencryptedWalletChainInfoMockType> = {}) {
+    constructor({ uncommittedTransactionHashes }: Partial<UnencryptedWalletChainInfo> = {}) {
         super();
-        this.initialState = initialState ?? new InitialWalletStateMock();
         this.uncommittedTransactionHashes = uncommittedTransactionHashes;
     }
 }
