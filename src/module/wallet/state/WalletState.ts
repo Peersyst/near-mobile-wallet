@@ -4,7 +4,7 @@ import { NearSDKService } from "near-peersyst-sdk";
 
 export const serviceInstancesMap = new Map<number, { testnet: NearSDKService; mainnet: NearSDKService }>();
 
-export type Wallet = Omit<StorageWallet, "mnemonic"> & { synchronizing?: boolean };
+export type Wallet = Omit<StorageWallet, "mnemonic">;
 
 export interface WalletState {
     hasWallet: boolean;

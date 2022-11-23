@@ -1,13 +1,12 @@
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import * as Recoil from "recoil";
-import { render, SuccessApiCall, wait, act } from "test-utils";
+import { render, wait, act } from "test-utils";
 import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
 import { CreateWalletState } from "module/wallet/state/CreateWalletState";
 import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import synchronizeMock from "mocks/synchronize";
 import { UseServiceInstanceMock } from "test-mocks";
 
 describe("CreateWalletSuccessScreen tests", () => {
@@ -29,7 +28,7 @@ describe("CreateWalletSuccessScreen tests", () => {
         });
         jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
         jest.spyOn(serviceInstancesMap, "has").mockReturnValue(true);
-        jest.spyOn(sdkInstance, "synchronize").mockReturnValue(SuccessApiCall(synchronizeMock as any));
+
         const setWalletState = jest.fn();
         const setSettingsState = jest.fn();
         jest.spyOn(Recoil, "useSetRecoilState").mockImplementation((state: any) => {
