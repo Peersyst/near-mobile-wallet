@@ -14,6 +14,6 @@ export default function useServiceInstance(index?: number): useServiceInstanceRe
     const network = useSelectedNetwork();
     const selectedWallet = useSelectedWalletIndex();
     const usedIndex = index !== undefined ? index : selectedWallet;
-    const serviceInstance = serviceInstancesMap.get(index || selectedWallet)![network];
+    const serviceInstance = serviceInstancesMap.get(network)![usedIndex];
     return { serviceInstance, network, index: usedIndex };
 }

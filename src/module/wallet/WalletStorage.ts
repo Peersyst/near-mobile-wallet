@@ -2,131 +2,84 @@ import { BaseStorageService } from "module/common/service/BaseStorageService";
 import { NetworkType } from "module/settings/state/SettingsState";
 import updateWalletUncommitedTxHashes from "./utils/updateWalletUncommittedTxHashes";
 
-export type Chain = NetworkType;
-
-export interface UnencryptedWalletChainInfo {
-    uncommittedTransactionHashes?: string[];
-}
-
 export interface UnencryptedWalletInfo {
     index: number;
-    testnet?: UnencryptedWalletChainInfo;
-    mainnet?: UnencryptedWalletChainInfo;
+    uncommittedTransactionHashes?: string[];
+    imported?: boolean;
+    colorIndex: number;
+    account: string;
 }
 
 export interface SecureWalletInfo {
     index: number;
-    name: string;
-    colorIndex: number;
+    /**
+     * This mnemonic is used to import the wallet with a mnemonic once the user has already a mnemonic
+     */
     mnemonic?: string[];
-    secret?: string;
+    privateKey: string;
 }
 
-export type StorageWallet = SecureWalletInfo & UnencryptedWalletInfo;
-
 export interface SecureWalletStorageType {
-    wallets: SecureWalletInfo[];
+    testnet: SecureWalletInfo[];
+    mainnet: SecureWalletInfo[];
     pin: string | undefined;
+    mnemonic: string | undefined;
 }
 
 export interface UnsecureWalletStorageType {
-    wallets: UnencryptedWalletInfo[];
+    testnet: UnencryptedWalletInfo[];
+    mainnet: UnencryptedWalletInfo[];
 }
+
+export type WalletInfoStorage = SecureWalletStorageType & SecureWalletInfo & Omit<UnencryptedWalletInfo, "index">;
+
+export type StorageWallet = {
+    pin: SecureWalletStorageType["pin"];
+    mnemonic: SecureWalletStorageType["mnemonic"];
+    testnet: WalletInfoStorage[];
+    mainnet: WalletInfoStorage[];
+};
 
 export const WalletStorage = new (class extends BaseStorageService<SecureWalletStorageType, UnsecureWalletStorageType> {
     constructor() {
         super("wallet");
     }
 
-    async getWallets(): Promise<StorageWallet[] | undefined> {
-        const secureStorage = await this.getSecure();
-        if (!secureStorage) return undefined;
-        const storage = await this.get();
-        const wallets: StorageWallet[] = [];
-        for (let i = 0; i < secureStorage.wallets.length; i++) {
-            const walletSecureInfo = secureStorage.wallets.find((w) => w.index === i);
-            if (walletSecureInfo) {
-                const walletUnencryptedInfo = storage?.wallets.find((w) => w.index === i) || { index: i };
-                wallets.push({ ...walletSecureInfo, ...walletUnencryptedInfo });
-            }
-        }
-
-        return wallets;
-    }
-
-    async getWallet(index: number): Promise<StorageWallet | undefined> {
-        const secureStorage = await this.getSecure();
-        const walletSecureInfo = secureStorage?.wallets.find((w) => w.index === index);
-        if (!walletSecureInfo) return undefined;
-        const storage = await this.get();
-        const walletUnencryptedInfo = storage?.wallets.find((w) => w.index === index) || { index: index };
-        return { ...walletSecureInfo, ...walletUnencryptedInfo };
-    }
-
-    async getName(index: number): Promise<string | undefined> {
-        const secureStorage = await this.getSecure();
-        const walletSecureInfo = secureStorage?.wallets.find((w) => w.index === index);
-        return walletSecureInfo?.name;
-    }
-
-    async getColorIndex(index: number): Promise<number | undefined> {
-        const secureStorage = await this.getSecure();
-        const walletSecureInfo = secureStorage?.wallets.find((w) => w.index === index);
-        return walletSecureInfo?.colorIndex;
-    }
-
-    async getMnemonic(index: number): Promise<string[] | undefined> {
-        const secureStorage = await this.getSecure();
-        const walletSecureInfo = secureStorage?.wallets.find((w) => w.index === index);
-        return walletSecureInfo?.mnemonic;
-    }
-
-    async getSecret(index: number): Promise<string | undefined> {
-        const secureStorage = await this.getSecure();
-        const walletSecureInfo = secureStorage?.wallets.find((w) => w.index === index);
-        return walletSecureInfo?.secret;
-    }
-
-    async getUncommittedTransactionHashes(index: number, chain: Chain): Promise<string[] | undefined> {
-        const storage = await this.get();
-        const walletUnencryptedInfo = storage?.wallets.find((w) => w.index === index) || { index: index };
-        return walletUnencryptedInfo?.[chain]?.uncommittedTransactionHashes;
-    }
-
-    async updateUncommitedTransactionHashes(index: number, chain: Chain, hashes: string[]): Promise<void> {
-        const storage = await this.get();
-        if (!storage) return;
-        const updatedWallets = updateWalletUncommitedTxHashes(storage.wallets, index, chain, hashes);
-        return this.set({ ...storage, wallets: updatedWallets });
-    }
-
-    async addUncommittedTransactionHash(index: number, chain: Chain, hash: string): Promise<void> {
-        const storage = await this.get();
-        if (!storage) return;
-        const uncommittedTransactionHashes = (await this.getUncommittedTransactionHashes(index, chain)) || [];
-        return this.updateUncommitedTransactionHashes(index, chain, [...uncommittedTransactionHashes, hash]);
-    }
-
-    async removeUncommittedTransactionHash(index: number, chain: Chain, hash: string): Promise<void> {
-        const storage = await this.get();
-        if (!storage) return;
-        const uncommittedTransactionHashes = (await this.getUncommittedTransactionHashes(index, chain)) || [];
-        const finalUncommittedTransactionHashes = uncommittedTransactionHashes.filter((h) => h !== hash);
-        return this.updateUncommitedTransactionHashes(index, chain, finalUncommittedTransactionHashes);
-    }
-
-    async getPin(): Promise<string | undefined> {
+    /**
+     * STORAGE METHODS
+     */
+    async getPin(): Promise<StorageWallet["pin"]> {
         const secureStorage = await this.getSecure();
         return secureStorage?.pin;
     }
 
-    async setWallets(wallets: StorageWallet[]): Promise<void> {
+    async setPin(pin: string): Promise<void> {
+        const secureStorage = await this.getSecure();
+        if (secureStorage) {
+            return this.setSecure({ ...secureStorage, pin });
+        } else {
+            console.warn("You should not set a pin if you don't have a mnemonic");
+            return;
+        }
+    }
+
+    async getMnemonic(): Promise<StorageWallet["mnemonic"]> {
+        return (await this.getSecure())?.mnemonic;
+    }
+
+    async setMnemonic(mnemonic: string): Promise<void> {
+        const secureStorage = await this.getSecure();
+        if (secureStorage) {
+            return this.setSecure({ ...secureStorage, mnemonic });
+        } else {
+            console.warn("You should not set a mnemonic if you don't have a pin");
+            return;
+        }
+    }
+
+    async setWallets(wallets: WalletStorage[], network: NetworkType): Promise<void> {
         const walletsSecureInfo: SecureWalletInfo[] = [];
         const walletsUnencryptedInfo: UnencryptedWalletInfo[] = [];
-        wallets.forEach(({ index, mainnet, testnet, ...secureData }) => {
-            walletsSecureInfo.push({ index, ...secureData });
-            walletsUnencryptedInfo.push({ index, mainnet, testnet });
-        });
         const secureStorage = (await this.getSecure()) || { pin: undefined };
         const storage = await this.get();
         await this.setSecure({ ...secureStorage, wallets: walletsSecureInfo });
@@ -159,8 +112,89 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         }
     }
 
-    async setPin(pin: string): Promise<void> {
-        const secureStorage = (await this.getSecure()) || { wallets: [] };
-        await this.setSecure({ ...secureStorage, pin });
+    async getWallets(): Promise<StorageWallet[] | undefined> {
+        const secureStorage = await this.getSecure();
+        if (!secureStorage) return undefined;
+        const storage = await this.get();
+        const wallets: StorageWallet[] = [];
+        for (let i = 0; i < secureStorage.wallets.length; i++) {
+            const walletSecureInfo = secureStorage.wallets.find((w) => w.index === i);
+            if (walletSecureInfo) {
+                const walletUnencryptedInfo = storage?.wallets.find((w) => w.index === i) || { index: i, colorIndex: 0 };
+                wallets.push({ ...walletSecureInfo, ...walletUnencryptedInfo });
+            }
+        }
+        return wallets.sort((a, b) => a.index - b.index);
+    }
+
+    async getWallet(index: number): Promise<StorageWallet | undefined> {
+        const secureStorage = await this.getSecure();
+        const walletSecureInfo = secureStorage?.wallets.find((w) => w.index === index);
+        if (!walletSecureInfo) return undefined;
+        const storage = await this.get();
+        const walletUnencryptedInfo = storage?.wallets.find((w) => w.index === index) || { index: index, colorIndex: 0 };
+        return { ...walletSecureInfo, ...walletUnencryptedInfo };
+    }
+
+    /**
+     * SECURE WALLETS METHODS
+     */
+    async getSecureWallet(index: number, network: NetworkType): Promise<SecureWalletInfo | undefined> {
+        return (await this.getSecure())?.[network][index];
+    }
+
+    async getWalletMnemonic(index: number, network: NetworkType): Promise<SecureWalletInfo["mnemonic"]> {
+        return (await this.getSecureWallet(index, network))?.mnemonic;
+    }
+
+    async getWalletPrivateKey(index: number, network: NetworkType): Promise<SecureWalletInfo["privateKey"] | undefined> {
+        return (await this.getSecureWallet(index, network))?.privateKey;
+    }
+
+    /**
+     * UNENCRYPTED WALLETS METHODS
+     */
+    async getUnEncrypedWallets(network: NetworkType): Promise<UnencryptedWalletInfo[]> {
+        return (await this.get())?.[network] || [];
+    }
+    async getUnencryptedWallet(index: number, network: NetworkType): Promise<UnencryptedWalletInfo | undefined> {
+        return (await this.getUnEncrypedWallets(network))[index];
+    }
+    async getAccount(index: number, network: NetworkType): Promise<UnencryptedWalletInfo["account"] | undefined> {
+        return (await this.getUnencryptedWallet(index, network))?.account;
+    }
+
+    async getColorIndex(index: number, network: NetworkType): Promise<UnencryptedWalletInfo["colorIndex"] | undefined> {
+        return (await this.getUnencryptedWallet(index, network))?.colorIndex;
+    }
+
+    async getUncommittedTransactionHashes(
+        index: number,
+        network: NetworkType,
+    ): Promise<UnencryptedWalletInfo["uncommittedTransactionHashes"]> {
+        return (await this.getUnencryptedWallet(index, network))?.uncommittedTransactionHashes;
+    }
+
+    async updateUncommitedTransactionHashes(index: number, network: NetworkType, hashes: string[]): Promise<void> {
+        const wallets = await this.getUnEncrypedWallets(network);
+        const storage = await this.get();
+        if (!wallets || !storage) return;
+        const updatedWallets = updateWalletUncommitedTxHashes(wallets, index, network, hashes);
+        return this.set({ ...storage, [network]: updatedWallets });
+    }
+
+    async addUncommittedTransactionHash(index: number, network: NetworkType, hash: string): Promise<void> {
+        const storage = await this.get();
+        if (!storage) return;
+        const uncommittedTransactionHashes = (await this.getUncommittedTransactionHashes(index, network)) || [];
+        return this.updateUncommitedTransactionHashes(index, network, [...uncommittedTransactionHashes, hash]);
+    }
+
+    async removeUncommittedTransactionHash(index: number, chain: NetworkType, hash: string): Promise<void> {
+        const storage = await this.get();
+        if (!storage) return;
+        const uncommittedTransactionHashes = (await this.getUncommittedTransactionHashes(index, chain)) || [];
+        const finalUncommittedTransactionHashes = uncommittedTransactionHashes.filter((h) => h !== hash);
+        return this.updateUncommitedTransactionHashes(index, chain, finalUncommittedTransactionHashes);
     }
 })();

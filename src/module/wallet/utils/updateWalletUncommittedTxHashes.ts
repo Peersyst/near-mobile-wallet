@@ -10,11 +10,10 @@ export default function updateWalletUncommittedTxHashes<W extends UnencryptedWal
     return wallets.map((w) => {
         if (w.index !== walletIndex) return w;
         else {
-            const walletInfo = w[network];
             return {
                 ...w,
                 [network]: {
-                    ...walletInfo,
+                    ...w,
                     uncommittedTransactionHashes: hashes,
                 },
             };
