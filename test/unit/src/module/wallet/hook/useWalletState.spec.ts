@@ -34,7 +34,6 @@ describe("useWalletState tests", () => {
         act(() =>
             result.current.setState({
                 isAuthenticated: true,
-                isFirstTime: true,
                 hasWallet: true,
                 selectedWallet: 2,
                 wallets: [
@@ -45,7 +44,6 @@ describe("useWalletState tests", () => {
         );
         expect(result.current.state).toEqual({
             isAuthenticated: true,
-            isFirstTime: true,
             hasWallet: true,
             selectedWallet: 2,
             wallets: [
@@ -54,6 +52,6 @@ describe("useWalletState tests", () => {
             ],
         });
         act(() => result.current.reset());
-        expect(result.current.state).toEqual({ hasWallet: false, isAuthenticated: false, isFirstTime: false, wallets: [] });
+        expect(result.current.state).toEqual({ hasWallet: false, isAuthenticated: false, wallets: [] });
     });
 });

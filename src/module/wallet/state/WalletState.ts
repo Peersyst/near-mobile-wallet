@@ -10,13 +10,12 @@ export interface WalletState {
     hasWallet: boolean;
     isAuthenticated: boolean;
     wallets: Wallet[];
-    isFirstTime: boolean;
     selectedWallet?: number;
 }
 
 const walletState = atom<WalletState>({
     key: "wallet",
-    default: { hasWallet: false, isAuthenticated: false, isFirstTime: false, wallets: [] },
+    default: { hasWallet: false, isAuthenticated: false, wallets: [] },
 });
 
 export default walletState;
