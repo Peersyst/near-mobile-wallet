@@ -10,7 +10,7 @@ const useAddUncommittedTransaction = (): ((index: number, chain: NetworkType, ha
     const updateUncommitedTxsHashes = useUpdateUncommittedTransactionsState();
 
     return async (index, chain, hash) => {
-        const uncommittedTransactionHashes = wallets[index][chain]?.uncommittedTransactionHashes || [];
+        const uncommittedTransactionHashes = wallets[index]?.uncommittedTransactionHashes || [];
         updateUncommitedTxsHashes([...uncommittedTransactionHashes, hash], index);
         await WalletStorage.addUncommittedTransactionHash(index, chain, hash);
     };

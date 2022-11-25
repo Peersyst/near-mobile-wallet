@@ -1,7 +1,7 @@
 import useUpdateUncommitedTransactionsState from "module/transaction/hook/useUpdateUncommitedTransactionsState";
+import { updateWalletUncommittedTxHashes } from "module/wallet/utils/wallet.utils";
 import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 import { renderHook } from "test-utils";
-import updateWalletUncommittedTxHashes from "module/wallet/utils/updateWalletUncommittedTxHashes";
 
 const renderUseUpdateUncommitedTransactionsState = () => {
     return renderHook(() => useUpdateUncommitedTransactionsState()).result.current;

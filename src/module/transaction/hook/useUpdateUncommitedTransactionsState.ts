@@ -1,6 +1,6 @@
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import useWalletState from "module/wallet/hook/useWalletState";
-import updateWalletUncommittedTxHashes from "module/wallet/utils/updateWalletUncommittedTxHashes";
+import { updateWalletUncommittedTxHashes } from "module/wallet/utils/wallet.utils";
 
 export default function useUpdateUncommittedTransactionsState() {
     const { index, network } = useServiceInstance();

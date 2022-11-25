@@ -5,6 +5,7 @@ import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import createServiceInstance from "module/wallet/utils/createServiceInstance";
+import { getWallet, orderWallets } from "module/wallet/utils/wallet.utils";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
@@ -13,8 +14,12 @@ export function useLoad(): boolean {
 
     useEffect(() => {
         const getStorage = async () => {
+            //Get the settings from storage
+            const settings = (await SettingsStorage.getAllSettings()) || defaultSettingsState;
+
             //Check if there is a previous wallet
-            const wallets = await WalletStorage.getWallets();
+            const wallets = await WalletStorage.getWallets(settings.network);
+            const mnemonic = await WalletStorage.getMnemonic();
 
             //Has already a wallet if not will go to CreateWallet
             if (wallets) {
@@ -23,16 +28,15 @@ export function useLoad(): boolean {
                     hasWallet: true,
                     //Order wallets and remove secret/mnemonic
                     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                    wallets: wallets.map(({ mnemonic, secret, ...wallet }) => wallet).sort((w1, w2) => w1.index - w2.index),
+                    wallets: orderWallets(wallets.map(({ privateKey, ...wallet }) => wallet)),
                 }));
 
-                //Get the settings from storage and set it to the state
-                const settings = (await SettingsStorage.getAllSettings()) || defaultSettingsState;
+                //Set the settings to the state
                 setSettingsState(settings);
 
                 for (let i = 0; i < wallets.length; i += 1) {
-                    const { mnemonic, name, secret } = wallets.find((w) => w.index === i)!;
-                    await createServiceInstance({ walletIndex: i, nameId: name, mnemonic, secretKey: secret });
+                    const { account, privateKey } = getWallet(i, wallets)!;
+                    await createServiceInstance({ walletIndex: i, nameId: account, secretKey: privateKey });
                 }
             }
             setLoading(false);
