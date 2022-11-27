@@ -9,6 +9,7 @@ export interface CreateWalletState {
     name: string | undefined;
     pin: string | undefined;
     mnemonic: string[] | undefined;
+    privateKey: string | undefined;
     colorIndex: number | undefined;
 }
 
@@ -17,6 +18,7 @@ const createWalletState = atom<CreateWalletState>({
     default: {
         name: undefined,
         pin: undefined,
+        privateKey: undefined,
         mnemonic: undefined,
         colorIndex: undefined,
     },

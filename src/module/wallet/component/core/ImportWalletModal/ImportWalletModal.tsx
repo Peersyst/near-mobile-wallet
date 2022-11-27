@@ -9,8 +9,9 @@ import { useTranslate } from "module/common/hook/useTranslate";
 const ImportWalletModal = createModal((props: ExposedBackdropProps) => {
     const [index, setIndex] = useState(0);
     const translate = useTranslate();
+    //TODO: import by privateKey
     return (
-        <AddWalletModal title={translate("import_wallet")} onBack={index ? () => setIndex((i) => i - 1) : undefined} {...props}>
+        <AddWalletModal imported title={translate("import_wallet")} onBack={index ? () => setIndex((i) => i - 1) : undefined} {...props}>
             {(handleWalletCreation) => (
                 <Tabs index={index} onIndexChange={setIndex}>
                     <TabPanel index={0}>

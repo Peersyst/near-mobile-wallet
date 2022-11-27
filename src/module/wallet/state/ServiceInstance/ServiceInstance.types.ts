@@ -15,5 +15,5 @@ export interface SetServiceParams {
 export interface CreateServiceInstanceParams extends Omit<SetServiceParams, "service"> {
     mnemonic?: string;
     nameId?: string;
-    secretKey?: string;
+    privateKey?: string;
 }

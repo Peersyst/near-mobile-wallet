@@ -23,15 +23,15 @@ const BASE_NEAR_SDK_PARAMS: Record<NetworkType, BaseNearSdkParms> = {
 export const createNearSDKService = async ({
     nameId,
     mnemonic,
-    secretKey,
+    privateKey,
     network,
 }: Omit<CreateServiceInstanceParams, "serviceIndex">): Promise<NearSDKService | undefined> => {
     let service: NearSDKService;
     const { nodeUrl, indexerUrl } = BASE_NEAR_SDK_PARAMS[network];
     if (mnemonic) {
         service = await NearSDKService.importFromMnemonic(network, nodeUrl, indexerUrl, mnemonic, nameId);
-    } else if (secretKey) {
-        service = await NearSDKService.importFromSecretKey(network, nodeUrl, indexerUrl, secretKey, nameId);
+    } else if (privateKey) {
+        service = await NearSDKService.importFromSecretKey(network, nodeUrl, indexerUrl, privateKey, nameId);
     } else {
         console.warn("You should provide at least one mnemonic or a private key to create and instance");
         return;
@@ -51,5 +51,7 @@ export const setService = async ({ network, serviceIndex, service }: SetServiceP
 
 export const createServiceInstance = async ({ network, serviceIndex, ...rest }: CreateServiceInstanceParams) => {
     const service = await createNearSDKService({ network, ...rest });
-    if (service) setService({ serviceIndex, network, service });
+    if (service) {
+        setService({ serviceIndex, network, service });
+    }
 };

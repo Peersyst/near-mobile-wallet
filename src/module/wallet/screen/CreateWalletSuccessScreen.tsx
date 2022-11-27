@@ -21,9 +21,19 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
             //TODO: get wallets from SDK with a util
             const wallets = [] as any;
             const parsedMnemonic = mnemonic?.join(" ")!;
-            await WalletStorage.setWalletStorage({ pin, mnemonic: parsedMnemonic, [network]: wallets });
-            await SettingsStorage.set(defaultSettingsState);
 
+            //Store information in the storage
+            await SettingsStorage.set(defaultSettingsState);
+            await WalletStorage.setWalletStorage({ pin, mnemonic: parsedMnemonic, [network]: wallets });
+
+            //Init serviceInstanceMap
+            await createServiceInstance({ serviceIndex: 0, mnemonic: parsedMnemonic, network });
+
+            /**
+             * Set state. Set wallet state must be the last one because if isAuthenticate becomes true
+             * it will navigate to MainNavigatorGroup
+             */
+            setSettingsState(defaultSettingsState);
             setWalletState((state) => ({
                 ...state,
                 wallets: wallets,
@@ -31,12 +41,8 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
                 isAuthenticated: true,
                 selectedWallet: 0,
             }));
-            setSettingsState(defaultSettingsState);
 
-            if (mnemonic) {
-                await createServiceInstance({ serviceIndex: 0, mnemonic: parsedMnemonic, network });
-            }
-
+            //After all clean createWalletState
             resetCreateWalletState();
         };
         setTimeout(setStorage, 2000);

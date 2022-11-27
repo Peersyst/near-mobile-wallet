@@ -33,7 +33,7 @@ export function useLoad(): boolean {
 
                 for (let i = 0; i < orderedWallets.length; i += 1) {
                     const { account, privateKey } = getWallet(i, orderedWallets)!;
-                    await createServiceInstance({ serviceIndex: i, nameId: account, secretKey: privateKey, network: settings.network });
+                    await createServiceInstance({ serviceIndex: i, nameId: account, privateKey, network: settings.network });
                 }
             }
             setLoading(false);
