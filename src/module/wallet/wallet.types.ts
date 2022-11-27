@@ -27,7 +27,9 @@ export interface UnsecureWalletStorageType {
 
 export type StorageWallet = SecureWalletInfo & Omit<UnencryptedWalletInfo, "index">;
 
-export type StorageWallets = {
+export type StorageWithoutPrivateKey = Omit<StorageWallet, "privateKey">;
+
+export type WalletStorageType = {
     pin: SecureWalletStorageType["pin"];
     mnemonic: SecureWalletStorageType["mnemonic"];
     testnet: StorageWallet[];

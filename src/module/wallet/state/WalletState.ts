@@ -1,9 +1,5 @@
 import { atom } from "recoil";
-import { NearSDKService } from "near-peersyst-sdk";
-import { NetworkType } from "module/settings/state/SettingsState";
 import { StorageWallet } from "../wallet.types";
-
-export const serviceInstancesMap = new Map<NetworkType, NearSDKService[]>();
 
 export type Wallet = Omit<StorageWallet, "privateKey">;
 

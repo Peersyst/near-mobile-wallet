@@ -1,5 +1,5 @@
 import { NetworkType } from "module/settings/state/SettingsState";
-import { BaseStorageWallet, UnencryptedWalletInfo, UpdatableWallet } from "../wallet.types";
+import { BaseStorageWallet, StorageWallet, UnencryptedWalletInfo, UpdatableWallet } from "../wallet.types";
 
 export function updateWalletUncommittedTxHashes<W extends UnencryptedWalletInfo>(
     wallets: W[],
@@ -50,4 +50,12 @@ export function updateWallet<W extends UpdatableWallet>(wallets: W[], index: num
 
 export function resetWallet<W extends UpdatableWallet>(wallets: W[], index: number, baseInfo: W): W[] {
     return updateWallet<W>(wallets, index, baseInfo);
+}
+
+export function removeKeyFromWallet({ privateKey, ...rest }: StorageWallet): Omit<StorageWallet, "privateKey"> {
+    return { ...rest };
+}
+
+export function removeKeysFromWallets(wallets: StorageWallet[]): Omit<StorageWallet, "privateKey">[] {
+    return wallets.map((w) => removeKeyFromWallet(w));
 }

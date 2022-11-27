@@ -4,8 +4,8 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
-import createServiceInstance from "module/wallet/utils/createServiceInstance";
-import { getWallet, orderWallets } from "module/wallet/utils/wallet.utils";
+import { createServiceInstance } from "module/wallet/state/ServiceInstance/ServiceInstance";
+import { getWallet, removeKeysFromWallets } from "module/wallet/utils/wallet.utils";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
@@ -18,25 +18,22 @@ export function useLoad(): boolean {
             const settings = (await SettingsStorage.getAllSettings()) || defaultSettingsState;
 
             //Check if there is a previous wallet
-            const wallets = await WalletStorage.getWallets(settings.network);
-            const mnemonic = await WalletStorage.getMnemonic();
+            const orderedWallets = await WalletStorage.getWallets(settings.network);
 
             //Has already a wallet if not will go to CreateWallet
-            if (wallets) {
+            if (orderedWallets) {
                 setWalletState((state) => ({
                     ...state,
                     hasWallet: true,
-                    //Order wallets and remove secret/mnemonic
-                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                    wallets: orderWallets(wallets.map(({ privateKey, ...wallet }) => wallet)),
+                    wallets: removeKeysFromWallets(orderedWallets),
                 }));
 
                 //Set the settings to the state
                 setSettingsState(settings);
 
-                for (let i = 0; i < wallets.length; i += 1) {
-                    const { account, privateKey } = getWallet(i, wallets)!;
-                    await createServiceInstance({ walletIndex: i, nameId: account, secretKey: privateKey });
+                for (let i = 0; i < orderedWallets.length; i += 1) {
+                    const { account, privateKey } = getWallet(i, orderedWallets)!;
+                    await createServiceInstance({ serviceIndex: i, nameId: account, secretKey: privateKey, network: settings.network });
                 }
             }
             setLoading(false);

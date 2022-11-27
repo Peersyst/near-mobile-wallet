@@ -1,13 +1,14 @@
+import { Loosen } from "@peersyst/react-types";
 import { BaseStorageService } from "module/common/service/BaseStorageService";
 import { NetworkType } from "module/settings/state/SettingsState";
-import deleteWallet, { getWallet as getWalletUtils, orderWallets, setWallet, updateWalletUncommittedTxHashes } from "./utils/wallet.utils";
+import deleteWallet, { getWallet as getWalletUtil, orderWallets, setWallet, updateWalletUncommittedTxHashes } from "./utils/wallet.utils";
 import {
     SecureWalletStorageType,
     UnsecureWalletStorageType,
-    StorageWallets,
     StorageWallet,
     SecureWalletInfo,
     UnencryptedWalletInfo,
+    WalletStorageType,
 } from "./wallet.types";
 
 export const WalletStorage = new (class extends BaseStorageService<SecureWalletStorageType, UnsecureWalletStorageType> {
@@ -18,7 +19,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
     /**
      * STORAGE METHODS
      */
-    async getPin(): Promise<StorageWallets["pin"]> {
+    async getPin(): Promise<Storage["pin"]> {
         const secureStorage = await this.getSecure();
         return secureStorage?.pin;
     }
@@ -33,7 +34,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         }
     }
 
-    async getMnemonic(): Promise<StorageWallets["mnemonic"]> {
+    async getMnemonic(): Promise<Storage["mnemonic"]> {
         return (await this.getSecure())?.mnemonic;
     }
 
@@ -47,6 +48,14 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         }
     }
 
+    async setWalletStorage({ pin, mainnet = [], testnet = [], mnemonic }: Loosen<Loosen<WalletStorageType, "mainnet">, "testnet">) {
+        const unencryptedStorage = (await this.get()) || {};
+        const { secretWallets: secretMainnetWallets, unencryptedWallets: unencryptedMainnetWallets } = this.separateWallets(mainnet);
+        const { secretWallets: secretTestnetWallets, unencryptedWallets: unencryptedTestnetWallets } = this.separateWallets(testnet);
+        await this.setSecure({ pin, mainnet: secretMainnetWallets, mnemonic, testnet: secretTestnetWallets });
+        await this.set({ ...unencryptedStorage, mainnet: unencryptedMainnetWallets, testnet: unencryptedTestnetWallets });
+    }
+
     /**
      * WALLET STORAGE METHODS
      */
@@ -58,8 +67,8 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         const secureWallets = secureStorage[network];
         const walletsUnencryptedInfo = storage?.[network] || [];
         for (let i = 0; i < secureWallets.length; i++) {
-            const walletSecureInfo = getWalletUtils(i, secureWallets);
-            const walletUnencryptedInfo = getWalletUtils(i, walletsUnencryptedInfo);
+            const walletSecureInfo = getWalletUtil(i, secureWallets);
+            const walletUnencryptedInfo = getWalletUtil(i, walletsUnencryptedInfo);
             if (walletSecureInfo && walletUnencryptedInfo) {
                 wallets.push({ ...walletSecureInfo, ...walletUnencryptedInfo });
             } else if (walletSecureInfo) {
@@ -86,20 +95,35 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         return { ...secureWallet, ...walletUnencryptedInfo };
     }
 
+    public separateWallet({ privateKey, index, ...rest }: StorageWallet) {
+        return {
+            secureWallet: { privateKey, index },
+            unencryptedWallet: { index, ...rest },
+        };
+    }
+
+    public separateWallets(wallets: StorageWallet[]) {
+        const secretWallets: SecureWalletInfo[] = [];
+        const unencryptedWallets: UnencryptedWalletInfo[] = [];
+        wallets.forEach(({ privateKey, index, ...rest }) => {
+            secretWallets.push({ index, privateKey });
+            unencryptedWallets.push({ index, ...rest });
+        });
+        return {
+            secretWallets,
+            unencryptedWallets,
+        };
+    }
+
     async setWallets(wallets: StorageWallet[], network: NetworkType): Promise<void> {
-        const walletsSecureInfo: SecureWalletInfo[] = [];
-        const walletsUnencryptedInfo: UnencryptedWalletInfo[] = [];
         const secureStorage = (await this.getSecure()) || { pin: undefined, mnemonic: undefined, testnet: [], mainnet: [] };
         const storage = (await this.get()) || { testnet: [], mainnet: [] };
-        wallets.forEach(({ privateKey, index, ...rest }) => {
-            walletsSecureInfo.push({ index, privateKey });
-            walletsUnencryptedInfo.push({ index, ...rest });
-        });
+        const { secretWallets, unencryptedWallets } = this.separateWallets(wallets);
         await this.setSecure({
             ...secureStorage,
-            [network]: walletsSecureInfo,
+            [network]: secretWallets,
         });
-        await this.set({ ...storage, [network]: walletsUnencryptedInfo });
+        await this.set({ ...storage, [network]: unencryptedWallets });
     }
 
     async addWallet(wallet: Omit<StorageWallet, "index">, network: NetworkType): Promise<StorageWallet | undefined> {
@@ -134,7 +158,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
 
     async getSecureWallet(index: number, network: NetworkType): Promise<SecureWalletInfo | undefined> {
         const wallets = await this.getSecureWallets(network);
-        return getWalletUtils(index, wallets);
+        return getWalletUtil(index, wallets);
     }
 
     async getWalletPrivateKey(index: number, network: NetworkType): Promise<SecureWalletInfo["privateKey"] | undefined> {
@@ -149,7 +173,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
     }
     async getUnencryptedWallet(index: number, network: NetworkType): Promise<UnencryptedWalletInfo | undefined> {
         const wallets = await this.getUnencrypedWallets(network);
-        return getWalletUtils(index, wallets);
+        return getWalletUtil(index, wallets);
     }
     async setUnencryptedWallet(wallet: UnencryptedWalletInfo, network: NetworkType, index: number): Promise<void> {
         const storage = await this.get();

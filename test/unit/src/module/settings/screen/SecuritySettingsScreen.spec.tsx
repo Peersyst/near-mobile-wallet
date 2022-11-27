@@ -4,7 +4,7 @@ import * as Genesys from "@peersyst/react-native-components";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import { waitFor } from "@testing-library/react-native";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { serviceInstancesMap } from "module/wallet/state/ServiceInstance/ServiceInstance";
 import { UseServiceInstanceMock, UseWalletStateMock, WalletMock, WalletStateMock } from "test-mocks";
 
 describe("Test for the SecuritySettingsScreen", () => {

@@ -1,29 +1,32 @@
 import { useEffect } from "react";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import { useResetRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
 import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import createWalletState from "module/wallet/state/CreateWalletState";
-import createServiceInstance from "module/wallet/utils/createServiceInstance";
+import { createServiceInstance } from "module/wallet/state/ServiceInstance/ServiceInstance";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {
-        state: { mnemonic, pin, name },
+        state: { mnemonic, pin },
     } = useCreateWallet();
     const setWalletState = useSetRecoilState(walletState);
-    const setSettingsState = useSetRecoilState(settingsState);
+    const [{ network }, setSettingsState] = useRecoilState(settingsState);
     const resetCreateWalletState = useResetRecoilState(createWalletState);
 
     useEffect(() => {
         const setStorage = async () => {
-            await WalletStorage.setSecure({ pin: pin!, wallets: [{ name: name!, colorIndex: 0, mnemonic: mnemonic!, index: 0 }] });
+            //TODO: get wallets from SDK with a util
+            const wallets = [] as any;
+            const parsedMnemonic = mnemonic?.join(" ")!;
+            await WalletStorage.setWalletStorage({ pin, mnemonic: parsedMnemonic, [network]: wallets });
             await SettingsStorage.set(defaultSettingsState);
 
             setWalletState((state) => ({
                 ...state,
-                wallets: [{ name: name!, colorIndex: 0, index: 0 }],
+                wallets: wallets,
                 hasWallet: true,
                 isAuthenticated: true,
                 selectedWallet: 0,
@@ -31,7 +34,7 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
             setSettingsState(defaultSettingsState);
 
             if (mnemonic) {
-                await createServiceInstance({ walletIndex: 0, nameId: name!, mnemonic: mnemonic! });
+                await createServiceInstance({ serviceIndex: 0, mnemonic: parsedMnemonic, network });
             }
 
             resetCreateWalletState();

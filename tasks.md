@@ -1,0 +1,3 @@
+-   make locale in settings mandatory
+-   remove loading from settings state
+-   Fix locale types

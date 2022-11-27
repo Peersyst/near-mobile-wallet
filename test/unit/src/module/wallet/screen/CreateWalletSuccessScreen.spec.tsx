@@ -6,7 +6,7 @@ import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessS
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
 import { CreateWalletState } from "module/wallet/state/CreateWalletState";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { serviceInstancesMap } from "module/wallet/state/ServiceInstance/ServiceInstance";
 import { UseServiceInstanceMock } from "test-mocks";
 
 describe("CreateWalletSuccessScreen tests", () => {
