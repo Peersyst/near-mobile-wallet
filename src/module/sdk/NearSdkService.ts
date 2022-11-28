@@ -14,10 +14,7 @@ import {
     Token,
     NftMetadata,
     NftToken,
-    TransactionDto,
     Transaction,
-    TransactionActionDto,
-    TransactionAction,
     FullTransaction,
     TransactionStatus,
 } from "./NearSdkService.types";
@@ -53,9 +50,7 @@ import {
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "./near.constants";
 import { convertAccountBalanceToNear } from "./near.utils";
-
-// Until no indexer
-export const EXTERNAL_NEAR_API = true;
+import { NearApiService } from "./NearApiService";
 
 export class NearSDKService {
     private connection?: Near;
@@ -114,25 +109,9 @@ export class NearSDKService {
         return service;
     }
 
-    static async getAccountsFromPublicKey(publicKey: string, baseApiUrl: string): Promise<string[]> {
-        let response: Response;
-
-        if (!EXTERNAL_NEAR_API) {
-            response = await fetch(`${baseApiUrl}/accounts/public-key/${publicKey}`);
-        } else {
-            response = await fetch(`${baseApiUrl}/publicKey/${publicKey}/accounts`);
-        }
-
-        if (response.status !== 200) {
-            throw new Error("Bad response status");
-        }
-        const accounts: string[] = await response.json();
-        return accounts;
-    }
-
     static async importFromMnemonic(chain: Chains, nodeUrl: string, baseApiUrl: string, mnemonic: string): Promise<NearSDKService[]> {
         const { secretKey, publicKey } = parseSeedPhrase(mnemonic);
-        const nameIds = await NearSDKService.getAccountsFromPublicKey(publicKey, baseApiUrl);
+        const nameIds = await NearApiService.getAccountsFromPublicKey(publicKey, baseApiUrl);
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
         }
@@ -147,7 +126,7 @@ export class NearSDKService {
 
     static async importFromSecretKey(chain: Chains, nodeUrl: string, baseApiUrl: string, secretKey: string): Promise<NearSDKService[]> {
         const publicKey = new KeyPairEd25519(secretKey.split(":").at(-1)!).getPublicKey().toString();
-        const nameIds = await NearSDKService.getAccountsFromPublicKey(publicKey, baseApiUrl);
+        const nameIds = await NearApiService.getAccountsFromPublicKey(publicKey, baseApiUrl);
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
         }
@@ -328,53 +307,6 @@ export class NearSDKService {
     // --------------------------------------------------------------
     // -- TRANSACTIONS FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
-    static parseTransactionActionDto(transactionActionDto: TransactionActionDto): TransactionAction {
-        return {
-            transactionHash: transactionActionDto.transactionHash,
-            indexInTransaction: transactionActionDto.indexInTransaction,
-            actionKind: transactionActionDto.actionKind,
-            codeSha256: transactionActionDto.args?.code_sha256,
-            gas: transactionActionDto.args?.gas,
-            deposit: transactionActionDto.args?.deposit,
-            argsBase64: transactionActionDto.args?.args_base64,
-            argsJson: transactionActionDto.args?.args_json,
-            methodName: transactionActionDto.args?.method_name,
-            stake: transactionActionDto.args?.stake,
-            publicKey: transactionActionDto.args?.public_key,
-            accessKey: transactionActionDto.args?.access_key
-                ? {
-                      nonce: transactionActionDto.args.access_key.nonce,
-                      permission: {
-                          permissionKind: transactionActionDto.args.access_key.permission?.permission_kind,
-                          permissionDetails: transactionActionDto.args.access_key.permission?.permission_details
-                              ? {
-                                    allowance: transactionActionDto.args.access_key.permission.permission_details.allowance,
-                                    receiverId: transactionActionDto.args.access_key.permission.permission_details.receiver_id,
-                                    methodNames: transactionActionDto.args.access_key.permission.permission_details.method_names,
-                                }
-                              : undefined,
-                      },
-                  }
-                : undefined,
-            beneficiaryId: transactionActionDto.args?.beneficiary_id,
-        };
-    }
-
-    static parseTransactionDto(transactionDto: TransactionDto): Transaction {
-        return {
-            transactionHash: transactionDto.transactionHash,
-            includedInBlockHash: transactionDto.includedInBlockHash,
-            blockTimestamp: transactionDto.blockTimestamp,
-            signerAccountId: transactionDto.signerAccountId,
-            nonce: transactionDto.nonce,
-            receiverAccountId: transactionDto.receiverAccountId,
-            status: transactionDto.status,
-            transactionActions: transactionDto.transactionActions
-                .map(NearSDKService.parseTransactionActionDto)
-                .sort((a, b) => a.indexInTransaction - b.indexInTransaction),
-        };
-    }
-
     // Amount is in near
     async sendTransaction(to: string, amount: string): Promise<string> {
         const account = await this.getAccount();
@@ -401,13 +333,7 @@ export class NearSDKService {
     }
 
     async getTransactions(page = 1, pageSize = 15): Promise<Transaction[]> {
-        const resp = await fetch(`${this.baseApiUrl}/transactions/?accountId=${this.getAddress()}&page=${page}&pageSize=${pageSize}`);
-        if (resp.status !== 200) {
-            throw new Error("Bad response status");
-        }
-
-        const transactionDtos: TransactionDto[] = await resp.json();
-        return transactionDtos.map(NearSDKService.parseTransactionDto);
+        return NearApiService.getTransactions(this.getAddress(), this.baseApiUrl, page, pageSize);
     }
 
     // --------------------------------------------------------------
@@ -523,24 +449,9 @@ export class NearSDKService {
 
     async getTotalStakingBalance(): Promise<StakingBalance> {
         // TODO: Remove comments
-        // let validators: Validator[];
-        // if (!EXTERNAL_NEAR_API) {
-        //     const response = await fetch(`${this.baseApiUrl}/accounts/${this.getAddress()}/staking-deposits`);
-        //     if (resp.status !== 200) {
-        //         throw new Error("Bad response status");
-        //     }
-        //     const stakingBalances: { validatorId: string; amount: number }[] = await resp.json();
-        //     const validatorsProms = stakingBalances.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
-        //     validators = await Promise.all(validatorsProms);
-        // } else {
-        //     const response = await fetch(`${this.baseApiUrl}/staking-deposits/${this.getAddress()}`);
-        //     if (resp.status !== 200) {
-        //         throw new Error("Bad response status");
-        //     }
-        //     const stakingBalances: { validator_id: string; deposit: string }[] = await resp.json();
-        //     const validatorsProms = stakingBalances.map(({ validator_id, deposit }) => this.getValidatorDataFromId(validator_id, true, parseInt(deposit, 10)));
-        //     validators = await Promise.all(validatorsProms);
-        // }
+        // const stakingDeposits = await NearApiService.getStakingDeposits(this.getAddress(), this.baseApiUrl);
+        // const validatorsProms = stakingDeposits.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
+        // const validators = await Promise.all(validatorsProms);
 
         // TODO: remove get all validators line
         const validators = await this.getAllValidators();
@@ -699,18 +610,8 @@ export class NearSDKService {
     }
 
     async getAccountTokens(): Promise<Token[]> {
-        let resp: Response;
-        if (!EXTERNAL_NEAR_API) {
-            resp = await fetch(`${this.baseApiUrl}/accounts/${this.getAddress()}/likely-tokens?fromBlockTimestamp=0`);
-        } else {
-            resp = await fetch(`${this.baseApiUrl}/account/${this.getAddress()}/likelyTokensFromBlock?fromBlockTimestamp=0`);
-        }
         return []; //TODO: remove mock
-        if (resp.status !== 200) {
-            throw new Error("Bad response status");
-        }
-
-        const contractIds: string[] = await resp.json();
+        const contractIds = await NearApiService.getLikelyTokens(this.getAddress(), this.baseApiUrl);
         const tokens: Token[] = [];
 
         for (const contractId of contractIds) {
@@ -725,7 +626,7 @@ export class NearSDKService {
             //     });
             // }
 
-            // TODO: Remove after testing
+            // TODO: Remove next 4 lines after testing
             const metadata = await this.getTokenMetadata(contractId);
             tokens.push({
                 balance: balance / metadata.decimals,
@@ -870,17 +771,8 @@ export class NearSDKService {
     async getNfts(): Promise<NftToken[]> {
         // TODO: remove mock
         return mockNfts;
-        let resp: Response;
-        if (!EXTERNAL_NEAR_API) {
-            resp = await fetch(`${this.baseApiUrl}/accounts/${this.getAddress()}/likely-nfts?fromBlockTimestamp=0`);
-        } else {
-            resp = await fetch(`${this.baseApiUrl}/account/${this.getAddress()}/likelyNFTsFromBlock?fromBlockTimestamp=0`);
-        }
-        if (resp.status !== 200) {
-            throw new Error("Bad response status");
-        }
 
-        const contractIds: string[] = await resp.json();
+        const contractIds = await NearApiService.getLikelyNfts(this.getAddress(), this.baseApiUrl);
         const nftTokens: NftToken[] = [];
 
         for (const contractId of contractIds) {
