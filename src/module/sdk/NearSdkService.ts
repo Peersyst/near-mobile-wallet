@@ -408,7 +408,9 @@ export class NearSDKService {
     async getTransactions(page = 1, pageSize = 15): Promise<Transaction[]> {
         const resp = await fetch(`${this.baseApiUrl}/transactions/?accountId=${this.getAddress()}&page=${page}&pageSize=${pageSize}`);
         if (resp.status !== 200) {
-            throw new Error("Bad response status");
+            console.warn("Error getting transactions");
+            return [];
+            //throw new Error("Bad response status");
         }
 
         const transactionDtos: TransactionDto[] = await resp.json();

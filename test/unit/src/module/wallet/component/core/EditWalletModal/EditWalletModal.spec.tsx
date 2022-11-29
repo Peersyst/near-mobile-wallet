@@ -8,21 +8,18 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import { UseWalletMock } from "mocks/common/wallet/useWallet.mock";
 
 describe("EditWallet tests", () => {
-    const { wallet } = new UseWalletMock();
+    new UseWalletMock();
 
     test("Renders correctly", () => {
         jest.spyOn(UseEditWallet, "default").mockReturnValue(useEditWalletMock);
         const screen = render(<EditWalletModal index={0} />);
         expect(screen.getByText(translate("edit_wallet")));
-        expect(screen.getByDisplayValue(wallet.name));
     });
 
     test("Wallet is edited and saved correctly", async () => {
-        const setName = jest.fn();
         const setColorIndex = jest.fn();
         jest.spyOn(UseEditWallet, "default").mockReturnValue(
             createEditWalletMock({
-                setName,
                 setColorIndex,
             }),
         );
@@ -38,8 +35,6 @@ describe("EditWallet tests", () => {
 
         expect(screen.getByText(translate("edit_wallet")));
 
-        fireEvent.changeText(screen.getByDisplayValue(wallet.name), "New name");
-        expect(setName).toHaveBeenCalledWith("New name");
         fireEvent.press(screen.getAllByRole("button")[5]);
         expect(setColorIndex).toHaveBeenCalledWith(3);
 
@@ -49,12 +44,10 @@ describe("EditWallet tests", () => {
     });
 
     test("Wallet is edited and then cancelled", async () => {
-        const setName = jest.fn();
         const setColorIndex = jest.fn();
         const reset = jest.fn();
         jest.spyOn(UseEditWallet, "default").mockReturnValue(
             createEditWalletMock({
-                setName,
                 setColorIndex,
                 reset,
             }),
@@ -64,8 +57,6 @@ describe("EditWallet tests", () => {
 
         expect(screen.getByText(translate("edit_wallet")));
 
-        fireEvent.changeText(screen.getByDisplayValue(wallet.name), "New name");
-        expect(setName).toHaveBeenCalledWith("New name");
         fireEvent.press(screen.getAllByRole("button")[5]);
         expect(setColorIndex).toHaveBeenCalledWith(3);
 

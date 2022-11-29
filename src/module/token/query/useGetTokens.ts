@@ -5,15 +5,9 @@ import { Token } from "near-peersyst-sdk";
 
 const useGetTokens = (index?: number): QueryResult<Token[]> => {
     const { index: usedIndex, network, serviceInstance } = useServiceInstance(index);
-    return useQuery(
-        ["tokens", usedIndex, network],
-        async (): Promise<Token[]> => {
-            return await serviceInstance.getAccountTokens();
-        },
-        {
-            enabled: false, //TODO: enable when tokens are ready
-        },
-    );
+    return useQuery(["tokens", usedIndex, network], async (): Promise<Token[]> => {
+        return await serviceInstance.getAccountTokens();
+    });
 };
 
 export default useGetTokens;

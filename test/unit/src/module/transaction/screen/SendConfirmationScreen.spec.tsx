@@ -16,7 +16,7 @@ describe("SendConfirmationScreen tests", () => {
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({
             amount: 1000,
             fee: 10,
-            senderWalletIndex: state.wallets[0].index,
+            senderWalletIndex: 0,
             receiverAddress: "receiver_address",
             message: "Send message",
             token: "token",
@@ -30,7 +30,7 @@ describe("SendConfirmationScreen tests", () => {
         expect(screen.getByText(`1,010 ${config.tokenName}`)).toBeDefined();
 
         expect(screen.getByText(translate("from"))).toBeDefined();
-        expect(screen.getByText(state.wallets[0].name + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
+        expect(screen.getByText(state.wallets[0].account + " - " + formatHash("0xMockedAddress", "middle", 3))).toBeDefined();
         expect(screen.getByText(translate("to"))).toBeDefined();
         expect(screen.getByText("recei...ess")).toBeDefined();
         expect(screen.getByText(translate("message"))).toBeDefined();

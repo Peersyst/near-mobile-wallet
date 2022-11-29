@@ -24,8 +24,8 @@ const SendConfirmationScreen = (): JSX.Element => {
         state: { wallets },
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
-    const { name: senderName, index } = senderWallet;
-    const { serviceInstance } = useServiceInstance(index);
+    const { account: senderName } = senderWallet;
+    const { serviceInstance } = useServiceInstance(senderWalletIndex);
     const { mutate: sendTransaction, isLoading, isSuccess, isError } = useSendTransaction(senderWalletIndex!);
     const { hideModal } = useModal();
 

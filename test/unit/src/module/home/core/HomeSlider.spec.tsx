@@ -7,7 +7,7 @@ describe("Test for the Home Slider", () => {
     new UseServiceInstanceMock();
     test("Renders correctly with cells", () => {
         const screen = render(<HomeSlider />);
-        expect(screen.getAllByText(state.wallets[0].name)).toBeDefined();
-        expect(screen.getAllByText(state.wallets[1].name)).toBeDefined();
+        expect(screen.getAllByText(state.wallets[0].account)).toBeDefined();
+        expect(screen.getAllByText(state.wallets[1].account)).toBeDefined();
     });
 });

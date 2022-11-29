@@ -17,15 +17,9 @@ export interface UseGetTransactionsOptions {
 const useGetTransactions = ({ index, filter }: UseGetTransactionsOptions = {}) => {
     const { serviceInstance, index: usedIndex, network } = useServiceInstance(index);
     const { data: uncommitedTransactions = [], isLoading: uncommitedTransactionsLoading } = useUncommittedTransactions(usedIndex);
-    const { data: transactions = [], isLoading: transactionsLoading } = useQuery(
-        ["transactions", usedIndex, network],
-        async () => {
-            return (await serviceInstance?.getTransactions())?.reverse();
-        },
-        {
-            enabled: false, //TODO: enable when transactions are ready
-        },
-    );
+    const { data: transactions = [], isLoading: transactionsLoading } = useQuery(["transactions", usedIndex, network], async () => {
+        return (await serviceInstance?.getTransactions())?.reverse();
+    });
 
     const txs = useMemo(() => {
         //Only add new txs

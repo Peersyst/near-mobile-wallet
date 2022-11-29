@@ -9,7 +9,7 @@ export interface CreateWalletState {
     name: string | undefined;
     pin: string | undefined;
     mnemonic: string[] | undefined;
-    privateKey: string | undefined;
+    privateKey?: string | undefined;
     colorIndex: number | undefined;
 }
 

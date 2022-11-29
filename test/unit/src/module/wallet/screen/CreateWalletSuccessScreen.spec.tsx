@@ -17,7 +17,12 @@ describe("CreateWalletSuccessScreen tests", () => {
     });
 
     test("Sets wallet and navigates to main screen", async () => {
-        const walletState: CreateWalletState = { name: "wallet", pin: "1234", mnemonic: ["pizza", "watermelon", "lemon"], colorIndex: 0 };
+        const walletState: CreateWalletState = {
+            name: "wallet",
+            pin: "1234",
+            mnemonic: ["pizza", "watermelon", "lemon"],
+            colorIndex: 0,
+        };
         jest.spyOn(UseCreateWallet, "default").mockReturnValue({
             state: walletState,
             setPin: jest.fn(),
@@ -26,7 +31,7 @@ describe("CreateWalletSuccessScreen tests", () => {
             setColorIndex: jest.fn(),
             reset: jest.fn(),
         });
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
+        jest.spyOn(serviceInstancesMap, "get").mockReturnValue([sdkInstance]);
         jest.spyOn(serviceInstancesMap, "has").mockReturnValue(true);
 
         const setWalletState = jest.fn();
