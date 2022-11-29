@@ -2,13 +2,12 @@ import { useEffect } from "react";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
-import walletState, { Wallet } from "module/wallet/state/WalletState";
+import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import createWalletState from "module/wallet/state/CreateWalletState";
-import ServiceInstance from "../state/ServiceInstance/ServiceInstance";
-import { SecureWalletInfo, StorageWallet } from "../wallet.types";
 import { Chains } from "near-peersyst-sdk";
+import WalletController from "../utils/WalletController";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {
@@ -20,40 +19,15 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
 
     useEffect(() => {
         const setStorage = async () => {
-            const wallets: Wallet[] = []; //Wallets to be added to the state
-            const newStorageWallets: StorageWallet[] = []; //Wallets to be added to the storage
-            const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets to be added to the secure storage
-            let privateKey: string = "";
             const parsedMnemonic = mnemonic?.join(" ")!;
-
-            //Init serviceInstanceMap
-            const accounts = await ServiceInstance.createServiceInstance({ mnemonic: parsedMnemonic, network });
-            for (const [index, { account, privateKey: pK }] of accounts.entries()) {
-                if (index === 0) privateKey = pK;
-                const wallet: Wallet = {
-                    account,
-                    colorIndex: 0,
-                };
-                wallets.push(wallet);
-                walletIds.push(index);
-                newStorageWallets.push({
-                    ...wallet,
-                    index,
-                });
-            }
-
-            //Store information in the storage
-            const newSecureStorageWallet: SecureWalletInfo = {
-                privateKey,
-                walletIds,
-            };
+            const { wallets, newSecureWallets, newStorageWallets } = await WalletController.importWallets(network, parsedMnemonic);
             await SettingsStorage.set(defaultSettingsState);
             const isTestnet = network === Chains.TESTNET;
             await WalletStorage.setSecure({
                 pin,
                 mnemonic: parsedMnemonic,
-                testnet: isTestnet ? [newSecureStorageWallet] : [],
-                mainnet: !isTestnet ? [newSecureStorageWallet] : [],
+                testnet: isTestnet ? newSecureWallets : [],
+                mainnet: !isTestnet ? newSecureWallets : [],
             });
             await WalletStorage.setUnencryptedWallets(newStorageWallets, network);
             /**
@@ -72,7 +46,7 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
             //After all clean createWalletState
             resetCreateWalletState();
         };
-        setTimeout(setStorage, 2000);
+        setTimeout(setStorage, 2000); //TODO: Revise this timeout
     }, []);
 
     return <></>;

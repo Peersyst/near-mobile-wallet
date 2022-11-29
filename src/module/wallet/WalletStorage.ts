@@ -115,10 +115,11 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         const walletGroup = findByWalletId(walletId, wallets);
         if (walletGroup) {
             const newWalletGroup = deleteWalletId(walletId, walletGroup);
+            const tempWalletGroup = deleteWalletFromPrivateKey(walletGroup.privateKey, wallets);
             if (newWalletGroup.walletIds.length === 0) {
-                await this.setSecureWallets(deleteWalletFromPrivateKey(walletGroup.privateKey, wallets), network);
+                await this.setSecureWallets(tempWalletGroup, network);
             } else {
-                await this.setSecureWallets([...deleteWalletFromPrivateKey(walletGroup.privateKey, wallets), newWalletGroup], network);
+                await this.setSecureWallets([...tempWalletGroup, newWalletGroup], network);
             }
         }
     }
@@ -171,13 +172,6 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
             const newWallets = deleteWallet(wallets, index);
             await this.setUnencryptedWallets(newWallets, network);
         }
-    }
-
-    async getAccountAddress(network: NetworkType, index: number): Promise<string | undefined> {
-        return (await this.getUnencryptedWallet(index, network))?.account;
-    }
-    async getColorIndex(index: number, network: NetworkType): Promise<UnencryptedWalletInfo["colorIndex"] | undefined> {
-        return (await this.getUnencryptedWallet(index, network))?.colorIndex;
     }
 
     async getUncommittedTransactionHashes(

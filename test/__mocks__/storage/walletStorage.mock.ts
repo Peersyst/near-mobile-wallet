@@ -1,6 +1,6 @@
 import BaseMock from "mocks/common/base.mock";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
-import { SecureWalletInfo, SecureWalletStorageType, UnencryptedWalletInfo, UnsecureWalletStorageType } from "module/wallet/wallet.types";
+import { SecureWalletInfo, SecureWalletStorageType, UnencryptedWalletInfo } from "module/wallet/wallet.types";
 
 export class UnencryptedWalletInfoMock extends BaseMock implements UnencryptedWalletInfo {
     account: string;
@@ -16,6 +16,14 @@ export class UnencryptedWalletInfoMock extends BaseMock implements UnencryptedWa
         this.account = account ?? "firstWallet";
         this.uncommittedTransactionHashes = uncommittedTransactionHashes;
         this.imported = imported;
+    }
+}
+
+export class UnencryptedWalletsInfoMock extends BaseMock {
+    wallets: UnencryptedWalletInfo[];
+    constructor({ wallets, length = 1 }: Partial<{ wallets: UnencryptedWalletInfo[]; length: number }> = {}) {
+        super();
+        this.wallets = wallets ?? Array.from({ length }, (_, i) => new UnencryptedWalletInfoMock({ index: i }));
     }
 }
 
@@ -37,9 +45,13 @@ export class UnsecureWalletStorageTypeMock extends BaseMock implements UnsecureW
 export class SecureWalletInfoMock extends BaseMock implements SecureWalletInfo {
     walletIds: number[];
     privateKey: string;
-    constructor({ walletIds = [], privateKey = "privateKey" }: Partial<SecureWalletInfo> = {}) {
+    constructor({
+        walletIds,
+        privateKey = "privateKey",
+        walletIdsLength = 2,
+    }: Partial<SecureWalletInfo & { walletIdsLength: number }> = {}) {
         super();
-        this.walletIds = walletIds;
+        this.walletIds = walletIds ?? Array.from({ length: walletIdsLength }, (_, i) => i);
         this.privateKey = privateKey;
     }
 }
@@ -56,5 +68,13 @@ export class SecureWalletStorageTypeMock extends BaseMock implements SecureWalle
         this.mnemonic = mnemonic;
         this.testnet = testnet;
         this.mainnet = mainnet;
+    }
+}
+
+export class SecureWalletsInfoMock extends BaseMock {
+    wallets: SecureWalletInfoMock[];
+    constructor({ wallets, length = 1 }: Partial<{ wallets: SecureWalletInfoMock[]; length: number }> = {}) {
+        super();
+        this.wallets = wallets ?? Array.from({ length }, () => new SecureWalletInfoMock({ walletIdsLength: 2 }));
     }
 }

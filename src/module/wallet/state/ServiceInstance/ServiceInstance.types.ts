@@ -29,7 +29,7 @@ export interface InitServiceInstanceParams extends Omit<SetServicesParams, "serv
     mnemonic?: string;
 }
 
-export interface CreateInstanceParams {
+export interface CreateInstanceReturn {
     account: string;
     privateKey: string;
 }
