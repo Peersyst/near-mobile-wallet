@@ -58,6 +58,7 @@ export class NearSDKService {
     private nameId: string;
     private keyPair: KeyPairEd25519;
     private chain: Chains;
+    private masterAccount: string;
     private mnemonic?: string;
     private baseApiUrl: string;
     private static nameRegex = /^(([a-z\d]+[-_])*[a-z\d]+\.)*([a-z\d]+[-_])*[a-z\d]+$/;
@@ -65,6 +66,7 @@ export class NearSDKService {
 
     constructor(chain: Chains, nodeUrl: string, baseApiUrl: string, secretKey: string, nameId: string, mnemonic?: string) {
         this.chain = chain;
+        this.masterAccount = chain === Chains.MAINNET ? "near" : this.chain;
         this.nameId = nameId;
         this.mnemonic = mnemonic;
         this.baseApiUrl = baseApiUrl;
@@ -216,7 +218,7 @@ export class NearSDKService {
         const addressParts = address.split(".").length;
         const nameParts = nameId.split(".").length;
 
-        const nameIsSuper = nameParts === 2 && nameId.indexOf(`.${this.chain}`) !== -1;
+        const nameIsSuper = nameParts === 2 && nameId.indexOf(`.${this.masterAccount}`) !== -1;
         const nameIsSub = nameId.indexOf(address) !== -1 && nameParts === addressParts + 1;
 
         return NearSDKService.nameIdIsValid(nameId) && !exist && (nameIsSuper || nameIsSub);
@@ -225,7 +227,18 @@ export class NearSDKService {
     // Amount is in near
     private async createNewAccount(nameId: string, publicKey: PublicKey, amount: string): Promise<string> {
         const account = await this.getAccount();
-        const tx = await account.createAccount(nameId, publicKey, utils.format.parseNearAmount(amount));
+
+        if (nameId.includes(account.accountId)) {
+            const tx = await account.createAccount(nameId, publicKey, utils.format.parseNearAmount(amount));
+            return tx.transaction_outcome.id;
+        }
+
+        const tx = await account.functionCall({
+            contractId: this.masterAccount,
+            methodName: "create_account",
+            args: { new_account_id: nameId, new_public_key: publicKey.toString() },
+            attachedDeposit: utils.format.parseNearAmount(amount),
+        });
         return tx.transaction_outcome.id;
     }
 
