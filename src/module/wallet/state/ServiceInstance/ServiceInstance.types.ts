@@ -6,14 +6,30 @@ export interface BaseNearSdkParms {
     indexerUrl: string;
 }
 
-export interface SetServiceParams {
-    serviceIndex: number;
+export interface BaseSetServiceParams {
     network: NetworkType;
-    service: NearSDKService;
 }
 
-export interface CreateServiceInstanceParams extends Omit<SetServiceParams, "service"> {
+export interface SetServicesParams extends BaseSetServiceParams {
+    services: NearSDKService[];
+}
+
+export interface SetServiceParams extends BaseSetServiceParams {
+    service: NearSDKService;
+    serviceIndex: number;
+}
+
+export interface CreateServiceInstanceParams extends BaseSetServiceParams {
+    privateKey?: string;
     mnemonic?: string;
     nameId?: string;
-    privateKey?: string;
+}
+
+export interface InitServiceInstanceParams extends Omit<SetServicesParams, "services"> {
+    mnemonic?: string;
+}
+
+export interface CreateInstanceParams {
+    account: string;
+    privateKey: string;
 }

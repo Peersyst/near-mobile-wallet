@@ -2,10 +2,10 @@ import useGetNfts from "module/nft/query/useGetNfts";
 import NftCard from "module/nft/component/display/NftCard/NftCard";
 import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
-import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
+import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 
 const NftsList = (): JSX.Element => {
-    const { index } = useSelectedWallet();
+    const index = useSelectedWalletIndex();
     const { data = [], isLoading } = useGetNfts(index);
 
     return (

@@ -8,11 +8,14 @@ import { useRecoilValue } from "recoil";
 import { tokensList } from "module/token/mock/token";
 import { useRefetchQueries } from "../../../../../query/useRefetchQueries";
 import { useMemo } from "react";
+import useWalletState from "module/wallet/hook/useWalletState";
 
 const TokensList = (): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
-    const { index } = useSelectedWallet();
-    const { isLoading, data: tokens = [] } = useGetTokens(index);
+    const {
+        state: { selectedWallet },
+    } = useWalletState();
+    const { isLoading, data: tokens = [] } = useGetTokens(selectedWallet);
     const tokenPriceUseQueries = useMemo(() => tokensList.map((token) => ["tokenPrice", fiat, token]), [fiat]);
     const refetch = useRefetchQueries();
 

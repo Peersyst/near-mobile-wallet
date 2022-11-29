@@ -29,11 +29,11 @@ const WalletSelector = ({ style, value, onChange, defaultValue, ...rest }: Walle
             style={style}
             title={translate("select_a_wallet")}
             placeholder={translate("no_account_selected")}
-            renderValue={() => (selectedWallet !== undefined ? <WalletItem index={selectedWallet.index} /> : undefined)}
+            renderValue={() => (selectedWallet !== undefined ? <WalletItem index={selectedIndex} /> : undefined)}
             {...rest}
         >
-            {wallets.map(({ index: walletIndex }, index) => (
-                <WalletSelectorItem walletIndex={walletIndex} index={index} key={walletIndex} />
+            {wallets.map((_, index) => (
+                <WalletSelectorItem index={index} key={index} />
             ))}
         </Select>
     );

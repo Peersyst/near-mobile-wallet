@@ -4,7 +4,13 @@ import { NftToken } from "near-peersyst-sdk";
 
 export default function (index?: number): UseQueryResult<NftToken[]> {
     const { index: usedIndex, network, serviceInstance } = useServiceInstance(index);
-    return useQuery(["nfts", usedIndex, network], async (): Promise<NftToken[]> => {
-        return await serviceInstance.getNfts();
-    });
+    return useQuery(
+        ["nfts", usedIndex, network],
+        async (): Promise<NftToken[]> => {
+            return await serviceInstance.getNfts();
+        },
+        {
+            enabled: false, //TODO: enable when nfts are ready
+        },
+    );
 }

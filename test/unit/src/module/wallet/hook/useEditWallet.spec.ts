@@ -11,15 +11,6 @@ describe("useEditWallet tests", () => {
         jest.restoreAllMocks();
     });
 
-    test("Sets name", () => {
-        const { result } = renderHook(() => useEditWallet(0));
-        act(() => result.current.setName("Modified name"));
-        expect(setWallets).toHaveBeenCalledWith([
-            { ...useWalletStateResultMock.state.wallets[0], name: "Modified name" },
-            useWalletStateResultMock.state.wallets[1],
-        ]);
-    });
-
     test("Sets colorIndex", () => {
         const { result } = renderHook(() => useEditWallet(0));
         act(() => result.current.setColorIndex(2));

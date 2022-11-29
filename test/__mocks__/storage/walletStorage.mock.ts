@@ -1,67 +1,60 @@
 import BaseMock from "mocks/common/base.mock";
-import { SecureWalletInfo, UnencryptedWalletChainInfo } from "module/wallet/WalletStorage";
+import { MnemonicMocked } from "mocks/MnemonicMocked";
+import { SecureWalletInfo, SecureWalletStorageType, UnencryptedWalletInfo, UnsecureWalletStorageType } from "module/wallet/wallet.types";
 
-export class UnencryptedWalletChainInfoMock extends BaseMock implements UnencryptedWalletChainInfo {
+export class UnencryptedWalletInfoMock extends BaseMock implements UnencryptedWalletInfo {
+    account: string;
+    colorIndex: number;
+    index: number;
+    imported?: boolean;
     uncommittedTransactionHashes?: string[];
-    constructor({ uncommittedTransactionHashes }: Partial<UnencryptedWalletChainInfo> = {}) {
+
+    constructor({ index, colorIndex, account, uncommittedTransactionHashes = [], imported = false }: Partial<UnencryptedWalletInfo> = {}) {
         super();
+        this.index = index ?? 0;
+        this.colorIndex = colorIndex ?? 0;
+        this.account = account ?? "firstWallet";
         this.uncommittedTransactionHashes = uncommittedTransactionHashes;
+        this.imported = imported;
     }
 }
 
-export interface UnencryptedWalletInfoMock {
-    index: number;
-    testnet?: UnencryptedWalletChainInfoMock;
-    mainnet?: UnencryptedWalletChainInfoMock;
+export interface UnsecureWalletStorageTypeMock {
+    testnet: UnencryptedWalletInfoMock[];
+    mainnet: UnencryptedWalletInfoMock[];
 }
 
-export class UnencryptedWalletInfoMock extends BaseMock implements UnencryptedWalletInfoMock {
-    index: number;
-    testnet?: UnencryptedWalletChainInfoMock;
-    mainnet?: UnencryptedWalletChainInfoMock;
-    constructor({ index, testnet, mainnet }: Partial<UnencryptedWalletInfoMock> = {}) {
+export class UnsecureWalletStorageTypeMock extends BaseMock implements UnsecureWalletStorageTypeMock {
+    testnet: UnencryptedWalletInfoMock[];
+    mainnet: UnencryptedWalletInfoMock[];
+    constructor({ testnet = [], mainnet = [] }: Partial<UnsecureWalletStorageTypeMock> = {}) {
         super();
-        this.index = index ?? 0;
-        this.testnet = testnet ?? new UnencryptedWalletChainInfoMock();
-        this.mainnet = mainnet ?? new UnencryptedWalletChainInfoMock();
+        this.testnet = testnet;
+        this.mainnet = mainnet;
     }
 }
 
 export class SecureWalletInfoMock extends BaseMock implements SecureWalletInfo {
-    index: number;
-    name: string;
-    colorIndex: number;
-    mnemonic?: string[];
-    secret?: string;
-    constructor({ index, name, colorIndex, mnemonic, secret }: Partial<SecureWalletInfo> = {}) {
+    walletIds: number[];
+    privateKey: string;
+    constructor({ walletIds = [], privateKey = "privateKey" }: Partial<SecureWalletInfo> = {}) {
         super();
-        this.index = index ?? 0;
-        this.name = name ?? "firstWallet";
-        this.colorIndex = colorIndex ?? 0;
-        this.mnemonic = mnemonic;
-        this.secret = secret;
+        this.walletIds = walletIds;
+        this.privateKey = privateKey;
     }
 }
 
-export type StorageWalletMockType = SecureWalletInfo & UnencryptedWalletInfoMock;
+export class SecureWalletStorageTypeMock extends BaseMock implements SecureWalletStorageType {
+    pin: SecureWalletStorageType["pin"];
+    mnemonic: SecureWalletStorageType["mnemonic"];
+    testnet: SecureWalletStorageType["testnet"];
+    mainnet: SecureWalletStorageType["mainnet"];
 
-export class StorageWalletMock extends BaseMock implements StorageWalletMockType {
-    index: number;
-    name: string;
-    colorIndex: number;
-    mnemonic?: string[];
-    secret?: string;
-    testnet?: UnencryptedWalletChainInfoMock;
-    mainnet?: UnencryptedWalletChainInfoMock;
-    constructor({ testnet, mainnet, ...rest }: Partial<StorageWalletMockType> = {}) {
+    constructor({ pin = "1234", mnemonic = MnemonicMocked, testnet = [], mainnet = [] }: Partial<SecureWalletStorageType> = {}) {
         super();
-        const { index, name, colorIndex, mnemonic, secret } = new SecureWalletInfoMock({ ...rest });
-        this.index = index;
-        this.name = name;
-        this.colorIndex = colorIndex;
+        this.pin = pin;
         this.mnemonic = mnemonic;
-        this.secret = secret;
-        this.testnet = testnet ?? new UnencryptedWalletChainInfoMock();
-        this.mainnet = mainnet ?? new UnencryptedWalletChainInfoMock();
+        this.testnet = testnet;
+        this.mainnet = mainnet;
     }
 }

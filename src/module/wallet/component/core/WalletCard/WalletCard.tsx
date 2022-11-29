@@ -12,10 +12,12 @@ import { BaseWalletCardRoot } from "module/common/component/surface/BaseWalletCa
 
 export interface WalletCardProps {
     wallet: Wallet;
+    index: number;
 }
 
-const WalletCard = ({ wallet: { name, index } }: WalletCardProps): JSX.Element => {
+const WalletCard = ({ wallet: { account }, index }: WalletCardProps): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
+
     const { data: { available } = {}, isLoading } = useGetBalance(index);
     const [showFiat, setCurrencyMode] = useState<boolean>(false);
     const changeCurrencyMode = () => {
@@ -25,9 +27,15 @@ const WalletCard = ({ wallet: { name, index } }: WalletCardProps): JSX.Element =
 
     return (
         <BaseWalletCardRoot>
-            <Col style={{ width: "100%" }} alignItems="center" gap={10}>
-                <Typography color={(p) => p.white} variant="body2Strong">
-                    {name}
+            <Col style={{ width: "100%" }} alignItems="center" gap={10} justifyContent="center">
+                <Typography
+                    numberOfLines={1}
+                    color={(p) => p.white}
+                    textAlign="center"
+                    variant="body2Strong"
+                    style={{ maxWidth: "70%", overflow: "visible" }}
+                >
+                    {account}
                 </Typography>
                 <Balance
                     textAlign="center"

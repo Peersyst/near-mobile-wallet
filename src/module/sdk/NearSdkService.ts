@@ -146,7 +146,8 @@ export class NearSDKService {
     }
 
     static async importFromSecretKey(chain: Chains, nodeUrl: string, baseApiUrl: string, secretKey: string): Promise<NearSDKService[]> {
-        const publicKey = new KeyPairEd25519(secretKey.split(":").at(-1)!).getPublicKey().toString();
+        const secret = secretKey.split(":").pop();
+        const publicKey = new KeyPairEd25519(secret!).getPublicKey().toString();
         const nameIds = await NearSDKService.getAccountsFromPublicKey(publicKey, baseApiUrl);
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
@@ -185,6 +186,10 @@ export class NearSDKService {
 
     getMnemonic(): string | undefined {
         return this.mnemonic;
+    }
+
+    getKeyPair(): string {
+        return this.keyPair.toString();
     }
 
     async accountExists(nameId: string): Promise<boolean> {

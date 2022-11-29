@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 import { StorageWallet } from "../wallet.types";
 
-export type Wallet = Omit<StorageWallet, "privateKey">;
+export type Wallet = Omit<StorageWallet, "index">;
 
 export interface WalletState {
     hasWallet: boolean;

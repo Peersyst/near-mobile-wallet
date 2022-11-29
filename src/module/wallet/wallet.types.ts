@@ -1,16 +1,27 @@
-export interface BaseStorageWallet {
+import { NetworkType } from "module/settings/state/SettingsState";
+
+export interface BaseWallet {
     index: number;
 }
 
-export interface UnencryptedWalletInfo extends BaseStorageWallet {
+/**
+ * STORAGE TYPES
+ */
+export interface UnencryptedWalletInfo extends BaseWallet {
     uncommittedTransactionHashes?: string[];
     imported?: boolean;
     colorIndex: number;
     account: string;
 }
 
-export interface SecureWalletInfo extends BaseStorageWallet {
+export interface UnsecureWalletStorageType {
+    testnet: [];
+    mainnet: UnencryptedWalletInfo[];
+}
+
+export interface SecureWalletInfo {
     privateKey: string;
+    walletIds: number[];
 }
 
 export interface SecureWalletStorageType {
@@ -20,20 +31,19 @@ export interface SecureWalletStorageType {
     mnemonic: string | undefined;
 }
 
-export interface UnsecureWalletStorageType {
-    testnet: UnencryptedWalletInfo[];
-    mainnet: UnencryptedWalletInfo[];
-}
+export type StorageWallet = UnencryptedWalletInfo;
 
-export type StorageWallet = SecureWalletInfo & Omit<UnencryptedWalletInfo, "index">;
-
-export type StorageWithoutPrivateKey = Omit<StorageWallet, "privateKey">;
-
-export type WalletStorageType = {
+export interface WalletStorageType {
     pin: SecureWalletStorageType["pin"];
     mnemonic: SecureWalletStorageType["mnemonic"];
     testnet: StorageWallet[];
     mainnet: StorageWallet[];
-};
+}
+
+export interface SetWalletsParams {
+    wallets: StorageWallet[];
+    secureWallets: SecureWalletInfo[];
+    network: NetworkType;
+}
 
 export type UpdatableWallet = Pick<UnencryptedWalletInfo, "colorIndex" | "index">;

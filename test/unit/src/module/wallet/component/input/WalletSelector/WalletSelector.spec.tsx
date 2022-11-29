@@ -19,7 +19,7 @@ describe("WalletSelector tests", () => {
 
     test("Renders correctly", async () => {
         const screen = render(<WalletSelector />);
-        fireEvent.press(screen.getByText(state.wallets[0].name));
+        fireEvent.press(screen.getByText(state.wallets[0].account));
         expect(await screen.findAllByText(accountBalance.available)).toHaveLength(3);
     });
 });

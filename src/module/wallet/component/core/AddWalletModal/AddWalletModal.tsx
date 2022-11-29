@@ -2,9 +2,7 @@ import { ExposedBackdropProps } from "@peersyst/react-native-components";
 import { ReactNode, useState } from "react";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import useWalletState from "module/wallet/hook/useWalletState";
-import { WalletStorage } from "module/wallet/WalletStorage";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
-import { createServiceInstance } from "module/wallet/state/ServiceInstance/ServiceInstance";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 
@@ -42,16 +40,7 @@ const AddWalletModal = ({
     };
 
     const handleWalletCreation = async () => {
-        const baseWallet = { colorIndex: colorIndex!, privateKey: privateKey!, imported, account: name! };
-        const newWallet = await WalletStorage.addWallet(baseWallet, network);
-        if (newWallet) {
-            const finalWallet = { ...baseWallet, index: newWallet.index };
-            await createServiceInstance({ nameId: name!, serviceIndex: newWallet.index, privateKey, network: network });
-            setWalletState((state) => ({
-                ...state,
-                wallets: [...state.wallets, finalWallet],
-            }));
-        }
+        //TODO: implement wallet creation
         handleClose();
     };
 

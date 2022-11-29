@@ -1,41 +1,31 @@
 import { useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import walletState from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
-import { createServiceInstance } from "module/wallet/state/ServiceInstance/ServiceInstance";
-import { getWallet, removeKeysFromWallets } from "module/wallet/utils/wallet.utils";
+import useRecoverWallets from "module/wallet/hook/useRecoverWallets";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
-    const setWalletState = useSetRecoilState(walletState);
     const setSettingsState = useSetRecoilState(settingsState);
+    const recoverWallets = useRecoverWallets();
 
     useEffect(() => {
         const getStorage = async () => {
-            //Get the settings from storage
             const settings = (await SettingsStorage.getAllSettings()) || defaultSettingsState;
+            /**
+             * oldStorageWallets: has all the information about the wallets (that is set into the state)
+             * walletGroups: has all the privateKeys and walletIds that point into the oldStorageWallets
+             */
+            const oldStorageWallets = await WalletStorage.getWallets(settings.network);
+            const walletGroups = await WalletStorage.getSecureWallets(settings.network);
 
-            //Check if there is a previous wallet
-            const orderedWallets = await WalletStorage.getWallets(settings.network);
-
-            //Has already a wallet if not will go to CreateWallet
-            if (orderedWallets) {
-                setWalletState((state) => ({
-                    ...state,
-                    hasWallet: true,
-                    wallets: removeKeysFromWallets(orderedWallets),
-                }));
-
-                //Set the settings to the state
+            //Has already a wallet if not will go to Create/Import Wallet
+            if (oldStorageWallets.length !== 0 && walletGroups.length !== 0) {
                 setSettingsState(settings);
-
-                for (let i = 0; i < orderedWallets.length; i += 1) {
-                    const { account, privateKey } = getWallet(i, orderedWallets)!;
-                    await createServiceInstance({ serviceIndex: i, nameId: account, privateKey, network: settings.network });
-                }
+                await recoverWallets(settings.network, oldStorageWallets, walletGroups);
             }
+
             setLoading(false);
         };
         getStorage();

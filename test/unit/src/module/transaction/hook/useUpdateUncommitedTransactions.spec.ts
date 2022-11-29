@@ -13,11 +13,11 @@ describe("useUpdateUncommitedTransactions test", () => {
         const {
             state: { wallets },
         } = new UseWalletStateMock({ setWallets: setWalletsMock });
-        const { index, network } = new UseServiceInstanceMock();
+        const { index } = new UseServiceInstanceMock();
         const updateHashes = renderUseUpdateUncommitedTransactionsState();
         expect(updateHashes).toBeDefined();
         const hashes = ["hash1", "hash2"];
         updateHashes(hashes);
-        expect(setWalletsMock).toBeCalledWith(updateWalletUncommittedTxHashes(wallets, index, network, hashes));
+        expect(setWalletsMock).toBeCalledWith(updateWalletUncommittedTxHashes(wallets, hashes, index));
     });
 });

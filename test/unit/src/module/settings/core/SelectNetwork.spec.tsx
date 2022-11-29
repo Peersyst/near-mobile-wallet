@@ -11,7 +11,7 @@ describe("Test for the select network", () => {
     test("Returns correctly", () => {
         const screen = render(<SelectNetwork />);
         expect(screen.getByText(translate("select_your_network"))).toBeDefined();
-        expect(screen.getByText(translate("network_name", { name: "Testnet" }))).toBeDefined();
+        expect(screen.getByText(translate("network_name", { name: "Mainnet" }))).toBeDefined();
     });
     test("Change the network correctly", async () => {
         const setSettingsState = jest.fn();
@@ -19,12 +19,12 @@ describe("Test for the select network", () => {
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue(mockedRecoilState as any);
         const setSettingsStorage = jest.spyOn(SettingsStorage, "set").mockResolvedValue();
         const screen = render(<SelectNetwork />);
-        const testnetItem = screen.getByText(translate("network_name", { name: "Testnet" }));
+        const testnetItem = screen.getByText(translate("network_name", { name: "Mainnet" }));
         fireEvent.press(testnetItem); //open modal
-        const mainnetItem = await screen.findByText(translate("network_name", { name: "Mainnet" }));
+        const mainnetItem = await screen.findByText(translate("network_name", { name: "Testnet" }));
         fireEvent.press(mainnetItem); //select the mainnet
 
-        expect(setSettingsStorage).toHaveBeenCalledWith({ network: "mainnet" });
+        expect(setSettingsStorage).toHaveBeenCalledWith({ network: "testnet" });
         expect(setSettingsState).toHaveBeenCalled();
     });
 });

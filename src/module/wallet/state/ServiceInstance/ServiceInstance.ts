@@ -1,7 +1,14 @@
 import { config } from "config";
 import { Chains, NearSDKService } from "near-peersyst-sdk";
 import { NetworkType } from "module/settings/state/SettingsState";
-import { BaseNearSdkParms, CreateServiceInstanceParams, SetServiceParams } from "./ServiceInstance.types";
+import {
+    BaseNearSdkParms,
+    CreateInstanceParams,
+    CreateServiceInstanceParams,
+    SetServiceParams,
+    SetServicesParams,
+} from "./ServiceInstance.types";
+import { Wallet } from "../WalletState";
 
 export const serviceInstancesMap = new Map<NetworkType, NearSDKService[]>();
 
@@ -20,38 +27,53 @@ const BASE_NEAR_SDK_PARAMS: Record<NetworkType, BaseNearSdkParms> = {
     [Chains.MAINNET]: MAINNET_PARAMS,
 };
 
-export const createNearSDKService = async ({
-    nameId,
-    mnemonic,
-    privateKey,
-    network,
-}: Omit<CreateServiceInstanceParams, "serviceIndex">): Promise<NearSDKService | undefined> => {
-    let service: NearSDKService;
-    const { nodeUrl, indexerUrl } = BASE_NEAR_SDK_PARAMS[network];
-    if (mnemonic) {
-        service = await NearSDKService.importFromMnemonic(network, nodeUrl, indexerUrl, mnemonic, nameId);
-    } else if (privateKey) {
-        service = await NearSDKService.importFromSecretKey(network, nodeUrl, indexerUrl, privateKey, nameId);
-    } else {
-        console.warn("You should provide at least one mnemonic or a private key to create and instance");
-        return;
+export default class ServiceInstance {
+    static async createNearSDKService({
+        privateKey,
+        network,
+        mnemonic,
+    }: Omit<CreateServiceInstanceParams, "serviceIndex">): Promise<NearSDKService[]> {
+        let services: NearSDKService[] = [];
+        const { nodeUrl, indexerUrl } = BASE_NEAR_SDK_PARAMS[network];
+        if (mnemonic) {
+            services = await NearSDKService.importFromMnemonic(network, nodeUrl, indexerUrl, mnemonic);
+        } else if (privateKey) {
+            services = await NearSDKService.importFromSecretKey(network, nodeUrl, indexerUrl, privateKey);
+        } else {
+            console.warn("You should provide at least one mnemonic or a private key to create and instance");
+            return services;
+        }
+        return services;
     }
-    return service;
-};
 
-export const setService = async ({ network, serviceIndex, service }: SetServiceParams) => {
-    if (!serviceInstancesMap.has(network)) {
-        console.warn("Network not supported");
-        return;
+    static async setService({ network, serviceIndex, service }: SetServiceParams) {
+        const services = ServiceInstance.getServices(network);
+        services[serviceIndex] = service;
+        serviceInstancesMap.set(network, services);
     }
-    const services = serviceInstancesMap.get(network) ?? [];
-    services[serviceIndex] = service;
-    serviceInstancesMap.set(network, services);
-};
 
-export const createServiceInstance = async ({ network, serviceIndex, ...rest }: CreateServiceInstanceParams) => {
-    const service = await createNearSDKService({ network, ...rest });
-    if (service) {
-        setService({ serviceIndex, network, service });
+    static getServices(network: NetworkType): NearSDKService[] {
+        return serviceInstancesMap.get(network) ?? [];
     }
-};
+
+    static setServices({ network, services }: SetServicesParams) {
+        serviceInstancesMap.set(network, services);
+    }
+
+    static async createServiceInstance({ network, ...rest }: CreateServiceInstanceParams): Promise<CreateInstanceParams[]> {
+        const services = await ServiceInstance.createNearSDKService({ network, ...rest });
+        ServiceInstance.setServices({ network, services });
+        return services.map((s) => ({ account: s.getAddress(), privateKey: s.getKeyPair() }));
+    }
+
+    /**
+     * Create new services instances and set them to the serviceInstancesMap
+     * @returns Array of the all the addresses associated with the privateKey
+     */
+    static addServiceInstances = async ({ network, ...rest }: CreateServiceInstanceParams): Promise<CreateInstanceParams[]> => {
+        const services = await ServiceInstance.createNearSDKService({ network, ...rest });
+        const currentServices = ServiceInstance.getServices(network);
+        ServiceInstance.setServices({ network, services: [...currentServices, ...services] });
+        return services.map((s) => ({ account: s.getAddress(), privateKey: s.getKeyPair() }));
+    };
+}

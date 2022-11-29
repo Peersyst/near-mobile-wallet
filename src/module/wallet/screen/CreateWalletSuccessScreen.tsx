@@ -2,11 +2,13 @@ import { useEffect } from "react";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
-import walletState from "module/wallet/state/WalletState";
+import walletState, { Wallet } from "module/wallet/state/WalletState";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import createWalletState from "module/wallet/state/CreateWalletState";
-import { createServiceInstance } from "module/wallet/state/ServiceInstance/ServiceInstance";
+import ServiceInstance from "../state/ServiceInstance/ServiceInstance";
+import { SecureWalletInfo, StorageWallet } from "../wallet.types";
+import { Chains } from "near-peersyst-sdk";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const {
@@ -18,17 +20,42 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
 
     useEffect(() => {
         const setStorage = async () => {
-            //TODO: get wallets from SDK with a util
-            const wallets = [] as any;
+            const wallets: Wallet[] = []; //Wallets to be added to the state
+            const newStorageWallets: StorageWallet[] = []; //Wallets to be added to the storage
+            const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets to be added to the secure storage
+            let privateKey: string = "";
             const parsedMnemonic = mnemonic?.join(" ")!;
 
-            //Store information in the storage
-            await SettingsStorage.set(defaultSettingsState);
-            await WalletStorage.setWalletStorage({ pin, mnemonic: parsedMnemonic, [network]: wallets });
-
             //Init serviceInstanceMap
-            await createServiceInstance({ serviceIndex: 0, mnemonic: parsedMnemonic, network });
+            const accounts = await ServiceInstance.createServiceInstance({ mnemonic: parsedMnemonic, network });
+            for (const [index, { account, privateKey: pK }] of accounts.entries()) {
+                if (index === 0) privateKey = pK;
+                const wallet: Wallet = {
+                    account,
+                    colorIndex: 0,
+                };
+                wallets.push(wallet);
+                walletIds.push(index);
+                newStorageWallets.push({
+                    ...wallet,
+                    index,
+                });
+            }
 
+            //Store information in the storage
+            const newSecureStorageWallet: SecureWalletInfo = {
+                privateKey,
+                walletIds,
+            };
+            await SettingsStorage.set(defaultSettingsState);
+            const isTestnet = network === Chains.TESTNET;
+            await WalletStorage.setSecure({
+                pin,
+                mnemonic: parsedMnemonic,
+                testnet: isTestnet ? [newSecureStorageWallet] : [],
+                mainnet: !isTestnet ? [newSecureStorageWallet] : [],
+            });
+            await WalletStorage.setUnencryptedWallets(newStorageWallets, network);
             /**
              * Set state. Set wallet state must be the last one because if isAuthenticate becomes true
              * it will navigate to MainNavigatorGroup

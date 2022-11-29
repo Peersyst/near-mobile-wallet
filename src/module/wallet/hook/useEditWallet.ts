@@ -1,6 +1,6 @@
 import useWalletState from "module/wallet/hook/useWalletState";
 import { useMemo } from "react";
-import { getWallet, updateWallet } from "../utils/wallet.utils";
+import { Wallet } from "../state/WalletState";
 
 export interface UseEditWalletResult {
     setColorIndex: (index: number) => void;
@@ -15,20 +15,20 @@ export default function (index: number): UseEditWalletResult {
     } = useWalletState();
 
     const initialState = useMemo(() => {
-        const { account, colorIndex } = getWallet(index, wallets)!;
+        const { account, colorIndex } = wallets[index];
         return {
             account,
             colorIndex,
         };
     }, [index]);
 
-    const setColorIndex = (colorIndex: number) => {
-        setWallets(updateWallet(wallets, index, { colorIndex }));
+    const updateWallet = (info: Partial<Wallet>) => {
+        setWallets(wallets.map((wallet, mapIndex) => (mapIndex === index ? { ...wallet, ...info } : wallet)));
     };
 
-    const reset = () => {
-        setWallets(wallets.map((wallet) => (wallet.index === index ? { ...wallet, ...initialState } : wallet)));
-    };
+    const setColorIndex = (colorIndex: number) => updateWallet({ colorIndex });
+
+    const reset = () => updateWallet(initialState);
 
     return {
         setColorIndex,
