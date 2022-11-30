@@ -12,12 +12,12 @@ export interface WalletState {
      * When the user switch between networks, the wallets must be updated
      */
     wallets: Wallet[];
-    selectedWallet?: number;
+    selectedWallet: number;
 }
 
 const walletState = atom<WalletState>({
     key: "wallet",
-    default: { hasWallet: false, isAuthenticated: false, wallets: [] },
+    default: { hasWallet: false, isAuthenticated: false, wallets: [], selectedWallet: 0 },
 });
 
 export default walletState;

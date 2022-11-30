@@ -1,28 +1,38 @@
 import { NetworkType } from "module/settings/state/SettingsState";
+import { Chains } from "near-peersyst-sdk";
 import ServiceInstance from "../state/ServiceInstance/ServiceInstance";
 import { Wallet } from "../state/WalletState";
 import { StorageWallet, SecureWalletInfo } from "../wallet.types";
+import { WalletStorage } from "../WalletStorage";
 import { getWallet } from "./wallet.utils";
 
 interface ImportWalletsReturn {
     wallets: Wallet[];
-    newStorageWallets: StorageWallet[];
-    newSecureWallets: SecureWalletInfo[];
 }
 
 interface RecoverWalletsReturn extends ImportWalletsReturn {
-    updateSecure: boolean;
+    hasWallets: boolean;
 }
 
 export default class WalletController {
-    static async importWallets(network: NetworkType, mnemonic: string): Promise<ImportWalletsReturn> {
+    static async importWallets(
+        network: NetworkType,
+        pin?: string,
+        mnemonic?: string,
+        privateKeyParam?: string,
+    ): Promise<ImportWalletsReturn> {
         const wallets: Wallet[] = []; //Wallets to be added to the state
         const newStorageWallets: StorageWallet[] = []; //Wallets to be added to the storage
         const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets to be added to the secure storage
         let privateKey: string = "";
 
         //Init serviceInstanceMap
-        const accounts = await ServiceInstance.createServiceInstance({ mnemonic, network });
+        const accounts = await ServiceInstance.createServiceInstance({
+            network,
+            privateKey: privateKeyParam,
+            mnemonic: privateKeyParam ? undefined : mnemonic,
+        });
+
         for (const [index, { account, privateKey: pK }] of accounts.entries()) {
             if (index === 0) privateKey = pK;
             const wallet: Wallet = {
@@ -44,14 +54,29 @@ export default class WalletController {
                 walletIds,
             },
         ];
-        return { wallets, newStorageWallets, newSecureWallets };
+        const isTestnet = network === Chains.TESTNET;
+        if (pin && mnemonic) {
+            await WalletStorage.setSecure({
+                pin,
+                mnemonic,
+                testnet: isTestnet ? newSecureWallets : [],
+                mainnet: !isTestnet ? newSecureWallets : [],
+            });
+        } else {
+            await WalletStorage.setSecureWallets(newSecureWallets, network);
+        }
+        await WalletStorage.setUnencryptedWallets(newStorageWallets, network);
+        return { wallets };
     }
 
-    static async recoverWallets(
-        network: NetworkType,
-        oldStorageWallets: StorageWallet[],
-        walletGroups: SecureWalletInfo[],
-    ): Promise<RecoverWalletsReturn> {
+    static async recoverWallets(network: NetworkType): Promise<RecoverWalletsReturn> {
+        //Info about the wallets (that is set into the state)
+        const oldStorageWallets = await WalletStorage.getWallets(network);
+        //Has all the privateKeys and walletIds that point into the oldStorageWallets
+        const walletGroups = await WalletStorage.getSecureWallets(network);
+
+        if (oldStorageWallets.length === 0 || walletGroups.length === 0) return { wallets: [], hasWallets: false };
+
         const wallets: Wallet[] = []; //Wallets to be added to the state
         const newStorageWallets: StorageWallet[] = [...oldStorageWallets]; //Wallets to be added to the storage
         const newSecureWallets: SecureWalletInfo[] = [...walletGroups]; //Wallets to be added to the secure storage
@@ -92,6 +117,9 @@ export default class WalletController {
             wallets.push(...tempWallets);
             newStorageWallets.push(...tempStorageWallets);
         }
-        return { wallets, newStorageWallets, newSecureWallets, updateSecure };
+        //Update the storage
+        if (updateSecure) await WalletStorage.setSecureWallets(newSecureWallets, network);
+        if (newStorageWallets.length !== oldStorageWallets.length) await WalletStorage.setUnencryptedWallets(newStorageWallets, network);
+        return { wallets, hasWallets: true };
     }
 }
