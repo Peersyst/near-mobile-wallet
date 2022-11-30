@@ -124,6 +124,17 @@ export interface TransactionDto {
     transactionActions: TransactionActionDto[];
 }
 
+export interface TransactionKWDto {
+    block_hash: string;
+    block_timestamp: string;
+    hash: string;
+    action_index: number;
+    signer_id: string;
+    receiver_id: string;
+    action_kind: TransactionActionKind;
+    args: any;
+}
+
 export interface PermissionDetails {
     allowance: string;
     receiverId: string;
@@ -161,9 +172,9 @@ export interface Transaction {
     includedInBlockHash: string;
     blockTimestamp: string;
     signerAccountId: string;
-    nonce: number;
+    nonce?: number;
     receiverAccountId: string;
-    status: TransactionStatus;
+    status?: TransactionStatus;
     transactionActions: TransactionAction[];
 }
 
