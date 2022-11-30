@@ -21,7 +21,7 @@ describe("Test for the WalletController", () => {
         jest.spyOn(WalletStorage, "setSecure").mockImplementation(mockedSetSecure);
         jest.spyOn(WalletStorage, "setUnencryptedWallets").mockImplementation(mockedSetUnencryptedWallets);
         jest.spyOn(WalletStorage, "setSecureWallets").mockImplementation(mockedSetSecureWallets);
-        jest.spyOn(WalletStorage, "addSecureWalletIds").mockImplementation(mockedSetWalletIds);
+        jest.spyOn(WalletStorage, "setSecureWalletIds").mockImplementation(mockedSetWalletIds);
     });
 
     describe("Import wallet test", () => {

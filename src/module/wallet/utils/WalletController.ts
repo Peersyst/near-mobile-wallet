@@ -50,7 +50,7 @@ export default class WalletController {
             });
         } else {
             //Import account with previous accounts
-            await WalletStorage.addSecureWalletIds(walletIds, privateKey, network);
+            await WalletStorage.setSecureWalletIds(walletIds, privateKey, network);
         }
         await WalletStorage.setUnencryptedWallets(newStorageWallets, network);
 
