@@ -2,7 +2,6 @@ import TokenCard from "../../display/TokenCard/TokenCard";
 import useGetTokens from "../../../query/useGetTokens";
 import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
-import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
 import { tokensList } from "module/token/mock/token";

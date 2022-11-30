@@ -20,7 +20,7 @@ export default class WalletController {
         const wallets: Wallet[] = []; //Wallets to be added to the state
         const newStorageWallets: StorageWallet[] = []; //Wallets to be added to the storage
         const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets to be added to the secure storage
-        let privateKey: string = "";
+        let privateKey = "";
 
         //Init serviceInstanceMap
         const accounts = await ServiceInstance.createServiceInstance({
@@ -84,6 +84,7 @@ export default class WalletController {
                 if (wallet) {
                     tempWallets.push(wallet);
                 } else {
+                    /* eslint-disable no-console */
                     console.warn("Corrupted storage: Wallet not found. WalletId: ", walletId);
                 }
             }

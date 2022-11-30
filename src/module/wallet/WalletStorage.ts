@@ -37,6 +37,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         if (secureStorage) {
             return this.setSecure({ ...secureStorage, pin });
         } else {
+            /* eslint-disable no-console */
             console.warn("You should not set a pin if you don't have a mnemonic");
             return;
         }
@@ -51,6 +52,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         if (secureStorage) {
             return this.setSecure({ ...secureStorage, mnemonic });
         } else {
+            /* eslint-disable no-console */
             console.warn("You should not set a mnemonic if you don't have a pin");
             return;
         }
@@ -143,7 +145,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         if (walletGroup) {
             const newWalletGroup = deleteWalletId(walletId, walletGroup);
             const tempWalletGroups = deleteWalletFromPrivateKey(walletGroup.privateKey, wallets);
-            let finalWalletGroup: SecureWalletInfo[] = [...tempWalletGroups];
+            const finalWalletGroup: SecureWalletInfo[] = [...tempWalletGroups];
             if (newWalletGroup.walletIds.length !== 0) {
                 //Do not delete oldWalletGroup because there are stille some walletIds on it
                 finalWalletGroup.push(newWalletGroup);

@@ -39,6 +39,7 @@ export default class ServiceInstance {
         } else if (privateKey) {
             services = await NearSDKService.importFromSecretKey(network, nodeUrl, indexerUrl, privateKey);
         } else {
+            /* eslint-disable no-console */
             console.warn("You should provide at least one mnemonic or a private key to create and instance");
             return services;
         }
