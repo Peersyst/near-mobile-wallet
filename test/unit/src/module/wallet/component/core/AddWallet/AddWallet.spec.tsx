@@ -1,4 +1,3 @@
-import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 import Recoil from "recoil";
 import { render, translate } from "test-utils";
 import AddWallet from "module/wallet/component/core/AddWallet/AddWallet";
@@ -6,19 +5,11 @@ import { fireEvent } from "@testing-library/react-native";
 import * as Genesys from "@peersyst/react-native-components";
 import CreateWalletModal from "module/wallet/component/core/CreateWalletModal/CreateWalletModal";
 import ImportWalletModal from "module/wallet/component/core/ImportWalletModal/ImportWalletModal";
-import createUseCreateWalletMock from "mocks/useCreateWalletMock";
+import { UseCreateWalletMock } from "test-mocks";
 
 describe("AddWallet tests", () => {
     test("Renders correctly", () => {
-        const setColorIndex = jest.fn();
-        jest.spyOn(UseCreateWallet, "default").mockReturnValue({
-            state: { name: undefined, pin: undefined, mnemonic: undefined, colorIndex: undefined },
-            setName: jest.fn(),
-            setPin: jest.fn(),
-            setMnemonic: jest.fn(),
-            setColorIndex,
-            reset: jest.fn(),
-        });
+        const { setColorIndex } = new UseCreateWalletMock();
         const resetCreateWalletState = jest.fn();
         jest.spyOn(Recoil, "useResetRecoilState").mockReturnValue(resetCreateWalletState);
 
@@ -37,8 +28,7 @@ describe("AddWallet tests", () => {
     test("Shows create wallet", () => {
         const showModal = jest.fn();
         jest.spyOn(Genesys, "useModal").mockReturnValue({ showModal, hideModal: jest.fn(), isModalActive: jest.fn() });
-        jest.spyOn(UseCreateWallet, "default").mockReturnValue(createUseCreateWalletMock({ state: { colorIndex: 0 } }));
-
+        new UseCreateWalletMock();
         const screen = render(<AddWallet />);
         fireEvent.press(screen.getByText(translate("create_a_wallet")));
         expect(showModal).toHaveBeenCalledWith(CreateWalletModal);
@@ -47,8 +37,7 @@ describe("AddWallet tests", () => {
     test("Shows import wallet", () => {
         const showModal = jest.fn();
         jest.spyOn(Genesys, "useModal").mockReturnValue({ showModal, hideModal: jest.fn(), isModalActive: jest.fn() });
-        jest.spyOn(UseCreateWallet, "default").mockReturnValue(createUseCreateWalletMock({ state: { colorIndex: 0 } }));
-
+        new UseCreateWalletMock();
         const screen = render(<AddWallet />);
         fireEvent.press(screen.getByText(translate("import_a_wallet")));
         expect(showModal).toHaveBeenCalledWith(ImportWalletModal);

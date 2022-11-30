@@ -6,7 +6,8 @@ import WalletController from "../utils/WalletController";
 export default function useRecoverWallets() {
     const setWalletState = useSetRecoilState(walletState);
     const recoverWallets = async (network: NetworkType): Promise<boolean> => {
-        const { wallets, hasWallets } = await WalletController.recoverWallets(network);
+        const { wallets } = await WalletController.recoverWallets(network);
+        const hasWallets = wallets.length !== 0;
         if (hasWallets) {
             setWalletState((state) => ({
                 ...state,

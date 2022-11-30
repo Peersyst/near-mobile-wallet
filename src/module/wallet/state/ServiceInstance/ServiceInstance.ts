@@ -51,6 +51,10 @@ export default class ServiceInstance {
         serviceInstancesMap.set(network, services);
     }
 
+    static getService(network: NetworkType, index: number): NearSDKService | undefined {
+        return serviceInstancesMap.get(network)?.[index];
+    }
+
     static getServices(network: NetworkType): NearSDKService[] {
         return serviceInstancesMap.get(network) ?? [];
     }

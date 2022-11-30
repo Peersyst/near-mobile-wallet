@@ -6,12 +6,8 @@ import { StorageWallet, SecureWalletInfo } from "../wallet.types";
 import { WalletStorage } from "../WalletStorage";
 import { getWallet } from "./wallet.utils";
 
-interface ImportWalletsReturn {
+interface WalletsControllerBaseReturn {
     wallets: Wallet[];
-}
-
-interface RecoverWalletsReturn extends ImportWalletsReturn {
-    hasWallets: boolean;
 }
 
 export default class WalletController {
@@ -20,7 +16,7 @@ export default class WalletController {
         pin?: string,
         mnemonic?: string,
         privateKeyParam?: string,
-    ): Promise<ImportWalletsReturn> {
+    ): Promise<WalletsControllerBaseReturn> {
         const wallets: Wallet[] = []; //Wallets to be added to the state
         const newStorageWallets: StorageWallet[] = []; //Wallets to be added to the storage
         const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets to be added to the secure storage
@@ -35,27 +31,17 @@ export default class WalletController {
 
         for (const [index, { account, privateKey: pK }] of accounts.entries()) {
             if (index === 0) privateKey = pK;
-            const wallet: Wallet = {
-                account,
-                colorIndex: 0,
-            };
+            const wallet: Wallet = { account, colorIndex: 0 };
             wallets.push(wallet);
             walletIds.push(index);
-            newStorageWallets.push({
-                ...wallet,
-                index,
-            });
+            newStorageWallets.push({ ...wallet, index });
         }
 
-        //Store information in the storage
-        const newSecureWallets = [
-            {
-                privateKey,
-                walletIds,
-            },
-        ];
-        const isTestnet = network === Chains.TESTNET;
         if (pin && mnemonic) {
+            //Store information in the storage
+            const newSecureWallets = [{ privateKey, walletIds }];
+            const isTestnet = network === Chains.TESTNET;
+            //First app import
             await WalletStorage.setSecure({
                 pin,
                 mnemonic,
@@ -63,19 +49,21 @@ export default class WalletController {
                 mainnet: !isTestnet ? newSecureWallets : [],
             });
         } else {
-            await WalletStorage.setSecureWallets(newSecureWallets, network);
+            //Import account with previous accounts
+            await WalletStorage.addSecureWalletIds(walletIds, privateKey, network);
         }
         await WalletStorage.setUnencryptedWallets(newStorageWallets, network);
+
         return { wallets };
     }
 
-    static async recoverWallets(network: NetworkType): Promise<RecoverWalletsReturn> {
+    static async recoverWallets(network: NetworkType): Promise<WalletsControllerBaseReturn> {
         //Info about the wallets (that is set into the state)
         const oldStorageWallets = await WalletStorage.getWallets(network);
         //Has all the privateKeys and walletIds that point into the oldStorageWallets
         const walletGroups = await WalletStorage.getSecureWallets(network);
 
-        if (oldStorageWallets.length === 0 || walletGroups.length === 0) return { wallets: [], hasWallets: false };
+        if (oldStorageWallets.length === 0 || walletGroups.length === 0) return { wallets: [] };
 
         const wallets: Wallet[] = []; //Wallets to be added to the state
         const newStorageWallets: StorageWallet[] = [...oldStorageWallets]; //Wallets to be added to the storage
@@ -120,6 +108,6 @@ export default class WalletController {
         //Update the storage
         if (updateSecure) await WalletStorage.setSecureWallets(newSecureWallets, network);
         if (newStorageWallets.length !== oldStorageWallets.length) await WalletStorage.setUnencryptedWallets(newStorageWallets, network);
-        return { wallets, hasWallets: true };
+        return { wallets };
     }
 }

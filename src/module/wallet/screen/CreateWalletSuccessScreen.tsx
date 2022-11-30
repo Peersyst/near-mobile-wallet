@@ -6,14 +6,13 @@ import createWalletState from "module/wallet/state/CreateWalletState";
 import useImportWallets from "../hook/useImportWallets";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
-    const [{ network }, setSettingsState] = useRecoilState(settingsState);
+    const [{ network }] = useRecoilState(settingsState);
     const resetCreateWalletState = useResetRecoilState(createWalletState);
     const importWallets = useImportWallets();
     useEffect(() => {
         const setStorage = async () => {
-            await importWallets(network);
             await SettingsStorage.set(defaultSettingsState);
-            setSettingsState(defaultSettingsState);
+            await importWallets(network);
             //After all clean createWalletState
             resetCreateWalletState();
         };

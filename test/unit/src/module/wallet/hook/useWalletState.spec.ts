@@ -13,13 +13,13 @@ describe("useWalletState tests", () => {
         const { result } = renderHook(() => useWalletState());
         act(() =>
             result.current.setWallets([
-                { name: "wallet1", index: 0, colorIndex: 0 },
-                { name: "wallet2", index: 1, colorIndex: 1 },
+                { account: "wallet1", colorIndex: 0 },
+                { account: "wallet2", colorIndex: 1 },
             ]),
         );
         expect(result.current.state.wallets).toEqual([
-            { name: "wallet1", index: 0, colorIndex: 0 },
-            { name: "wallet2", index: 1, colorIndex: 1 },
+            { account: "wallet1", colorIndex: 0 },
+            { account: "wallet2", colorIndex: 1 },
         ]);
     });
 
@@ -37,8 +37,8 @@ describe("useWalletState tests", () => {
                 hasWallet: true,
                 selectedWallet: 2,
                 wallets: [
-                    { name: "wallet1", index: 0, colorIndex: 0 },
-                    { name: "wallet2", index: 1, colorIndex: 1 },
+                    { account: "wallet1", colorIndex: 0 },
+                    { account: "wallet2", colorIndex: 1 },
                 ],
             }),
         );
@@ -47,11 +47,11 @@ describe("useWalletState tests", () => {
             hasWallet: true,
             selectedWallet: 2,
             wallets: [
-                { name: "wallet1", index: 0, colorIndex: 0 },
-                { name: "wallet2", index: 1, colorIndex: 1 },
+                { account: "wallet1", colorIndex: 0 },
+                { account: "wallet2", colorIndex: 1 },
             ],
         });
         act(() => result.current.reset());
-        expect(result.current.state).toEqual({ hasWallet: false, isAuthenticated: false, wallets: [] });
+        expect(result.current.state).toEqual({ hasWallet: false, isAuthenticated: false, wallets: [], selectedWallet: 0 });
     });
 });

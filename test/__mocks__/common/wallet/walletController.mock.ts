@@ -1,5 +1,7 @@
 import { SecureWalletInfoMock, UnencryptedWalletInfoMock } from "mocks/storage";
+import { CreateInstanceReturn } from "module/wallet/state/ServiceInstance/ServiceInstance.types";
 import WalletController from "module/wallet/utils/WalletController";
+import { UnencryptedWalletInfo } from "module/wallet/wallet.types";
 import BaseMock, { MockFnType } from "../base.mock";
 import { WalletMock } from "./wallet.mock";
 
@@ -35,5 +37,34 @@ export class WalletControllerRecoverMock extends BaseMock implements WalletContr
         this.returnMock = returnMock;
         this.recoverWallets = recoverWallets ?? jest.fn().mockResolvedValue(returnMock);
         this.mock = jest.spyOn(WalletController, "recoverWallets").mockImplementation(this.recoverWallets);
+    }
+}
+
+export class WalletControllerMocks extends BaseMock {
+    accounts: CreateInstanceReturn[] = [];
+    walletIds: number[] = [];
+    storageWallets: UnencryptedWalletInfo[] = [];
+    constructor(length: number, privateKey: string, startIndex = 0) {
+        super();
+        const accounts: CreateInstanceReturn[] = [];
+        const walletIds: number[] = [];
+        const storageWallets: UnencryptedWalletInfo[] = [];
+        for (const [i] of [...Array(length)].entries()) {
+            const index = startIndex + i;
+            const account = "acc - " + index;
+            accounts.push({
+                privateKey,
+                account,
+            });
+            walletIds.push(index);
+            storageWallets.push({
+                account,
+                index: index,
+                colorIndex: 0,
+            });
+        }
+        this.accounts = accounts;
+        this.walletIds = walletIds;
+        this.storageWallets = storageWallets;
     }
 }
