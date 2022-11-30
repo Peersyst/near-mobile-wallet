@@ -45,7 +45,7 @@ describe("Test for the SecuritySettingsScreen", () => {
         await waitFor(() => expect(clearSettingsStorage).toHaveBeenCalled());
         await waitFor(() => expect(resetWalletState).toHaveBeenCalled());
     });
-    //implement test when doing the delete data fnctionality
+    //TODO: implement test when doing the delete data fnctionality
     /*   test("Deletes only wallet and data", async () => {
         new UseServiceInstanceMock();
         const clearInstances = jest.spyOn(serviceInstancesMap, "clear").mockReturnValue();

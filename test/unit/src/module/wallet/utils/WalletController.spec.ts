@@ -89,7 +89,7 @@ describe("Test for the WalletController", () => {
             jest.spyOn(ServiceInstance, "addServiceInstances").mockResolvedValue([...accounts, ...newAccounts]);
 
             const { wallets } = await WalletController.recoverWallets(network);
-            //Do not save anything in storage
+            //Save with the walletIds
             expect(mockedSetSecureWallets).toHaveBeenCalledWith(
                 [
                     {
