@@ -17,7 +17,7 @@ describe("CreateWalletSuccessScreen tests", () => {
         const mockedImportWallets = jest.fn().mockResolvedValue({ wallets: [] });
         jest.spyOn(UseImportWallets, "default").mockReturnValue(mockedImportWallets);
         render(<CreateWalletSuccessScreen />);
-        await act(() => wait(2000));
+        await act(() => wait(1000));
         expect(setSettingsStorage).toHaveBeenCalledWith(expect.objectContaining(defaultSettingsState));
         expect(mockedImportWallets).toHaveBeenCalled();
         expect(resetWalletState).toHaveBeenCalled();
