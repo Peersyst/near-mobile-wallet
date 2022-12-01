@@ -13,7 +13,7 @@ const CopyToClipboardIcon = ({ text, style, toastMessage, filled, ...rest }: Cop
     const { showToast } = useToast();
 
     const copyToClipboard = () => {
-        Clipboard.setString(text);
+        Clipboard.setStringAsync(text);
         if (toastMessage) showToast(toastMessage, { type: "success" });
     };
 

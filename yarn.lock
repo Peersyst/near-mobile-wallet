@@ -2041,15 +2041,15 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@peersyst/react-components-core@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-1.0.1.tgz#b0ae76654b9e506085db54341ab3afafa9f2f51f"
-  integrity sha512-qUAohA+mrOwYE8pgYQqkDJ1WxnGC8DiTqVEyJlR2/q7KxV5R0P1sJhC/wtPDuEBWV2WeZwKaey3a54t1kS+NmA==
+"@peersyst/react-components-core@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-1.0.6.tgz#008e8852ebdd8f150e1204e6836b8156aa5412ba"
+  integrity sha512-IiOP9iJS1IfhgScIuSegBObHewusBUX3jinfe7EmZu7ghEECRrC+EBOZhK/FjjenZQmB8FUXFUpiSkuJru3teQ==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-hooks" "^2.0.1"
+    "@peersyst/react-hooks" "^2.0.2"
     "@peersyst/react-types" "^1.5.0"
-    "@peersyst/react-utils" "^2.0.0"
+    "@peersyst/react-utils" "^2.1.0"
     validator "^13.7.0"
 
 "@peersyst/react-hooks@^2.0.0":
@@ -2060,31 +2060,31 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^2.0.0"
 
-"@peersyst/react-hooks@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-2.0.1.tgz#31f9f453da5eaa082765f0ee691383aea216cd38"
-  integrity sha512-YQOH2Nwe7Qqz5YO6cFibO6pcOnnsswKNsgxtFQOJH/owjvwWCvMHOgbiR6wwVoo1Jif551lHKgcFhM7DV0pp+g==
-  dependencies:
-    "@babel/runtime" "^7.16.7"
-    "@peersyst/react-utils" "^2.0.0"
-
-"@peersyst/react-native-components@^2.0.2":
+"@peersyst/react-hooks@^2.0.2":
   version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-2.0.2.tgz#9e18a42114fdfe1b8e9ee5fb50550c858b020853"
-  integrity sha512-XJrMCFYWSM+UqVl69tIEOreu6uJcp7BC655QKWyDW0knnnZ6ONpcf1VNJscthFGL1e4lWn5ZBbKqvG7hLMrygQ==
+  resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-2.0.2.tgz#ac9b55c905bb7883c7ce46020f242b44c260b225"
+  integrity sha512-Zy2j6MVwQXfq8wZLbpOrnFWJAICfxEmziWsSjpauS8dL1BTRlJyN7wVXSuHHz0jcddR/S1PkjYqGfcXcHPJSuQ==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-components-core" "^1.0.1"
-    "@peersyst/react-hooks" "^2.0.1"
+    "@peersyst/react-utils" "^2.1.0"
+
+"@peersyst/react-native-components@^2.0.11":
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-2.0.12.tgz#485bae2d321031f183d55efa77c773a3b19e518b"
+  integrity sha512-wP6muis4ibCO0OhEy51H8kn7RZCVqqrvG+RZMcZudPb9PeMZo20Mhz9LXCD1XfTH7/c2u62IXRPhmtlyRIUt7A==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+    "@peersyst/react-components-core" "^1.0.6"
+    "@peersyst/react-hooks" "^2.0.2"
     "@peersyst/react-native-styled" "^2.0.0"
-    "@peersyst/react-native-utils" "^1.0.0"
+    "@peersyst/react-native-utils" "^1.0.1"
     "@peersyst/react-types" "^1.5.0"
-    "@peersyst/react-utils" "^2.0.0"
+    "@peersyst/react-utils" "^2.1.0"
     "@react-native-async-storage/async-storage" "^1.17.7"
     "@react-native-community/hooks" "^2.8.1"
     expo-barcode-scanner "^11.2.1"
     expo-camera "~12.1.2"
-    expo-clipboard "~2.1.0"
+    expo-clipboard "~4.0.1"
     expo-constants "~13.0.2"
     expo-localization "~12.0.0"
     expo-status-bar "^1.2.0"
@@ -2105,10 +2105,10 @@
     "@peersyst/react-utils" "^2.0.0"
     react-native-safe-area-context "4.4.1"
 
-"@peersyst/react-native-utils@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-utils/-/react-native-utils-1.0.0.tgz#ebdf41945a33514bc68efeb80171bb4bd536c1c0"
-  integrity sha512-0SYSBZ0HzjNB7TySmTr2lIMzEpRUZID3U7TbjjVsQ2bR6dZRi9Y55QGxuFWNOgc/CHT2KMIBSmMbWIlfLyd0jw==
+"@peersyst/react-native-utils@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-utils/-/react-native-utils-1.0.1.tgz#fad179653f2ecae4f350302ed8ed8311312a0205"
+  integrity sha512-oXBKanVnOGVEzwhr/kLGbQ2uYe267gX47i+4BQcDLtSeZo8qvcaKDGSzqsp6t6bztQcVc6N6ztE7Pxben5+WeA==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-types" "^1.5.0"
@@ -2122,6 +2122,15 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@peersyst/react-utils/-/react-utils-2.0.0.tgz#dfe0e7705c99cd45371c969d62226e09ae2bae1a"
   integrity sha512-MZ52gPEX/cVBWXAlBtyFklrhGtd0lsu+GLMncjtxRPbb1Yncq22oGJGaZXHlQB+Y9gXMVvQR5VeUriPeOywj8Q==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+    "@peersyst/react-types" "^1.5.0"
+    validate-color "^2.2.1"
+
+"@peersyst/react-utils@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-utils/-/react-utils-2.1.0.tgz#a9588a1494773e986caf3acfdb2f873b43bceebf"
+  integrity sha512-+nGQliMXdhBqVKr45fEFHyWCX//VUXCzZobX/Ao9RSmqYstkM0aFr9bcw7jMDks9yGfba3Mw24nkPc7yOsag5Q==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-types" "^1.5.0"
@@ -5021,11 +5030,6 @@ expo-camera@~13.0.0:
   dependencies:
     "@koale/useworker" "^4.0.2"
     invariant "^2.2.4"
-
-expo-clipboard@~2.1.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/expo-clipboard/-/expo-clipboard-2.1.1.tgz#77a506eb70918e6a4708760e6cfb0fafdc18192d"
-  integrity sha512-ay4zv7JGIWT/lqFsonWK8BQ4FuMLaSNFg5gaYJQcIZgZoCyF9f7GRh1HrV3tA0rCPA3i9T6Kt8/8vMMrraH9RQ==
 
 expo-clipboard@~4.0.1:
   version "4.0.1"

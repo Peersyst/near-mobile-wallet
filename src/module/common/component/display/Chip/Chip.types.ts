@@ -2,7 +2,9 @@ import { ViewStyle, TextStyle } from "react-native";
 
 export type ChipStyle = ViewStyle & TextStyle;
 
-export type ChipVariant = "filled" | "outlined";
+export type ChipVariant = "filled" | "outlined" | "glass";
+
+export type ChipSize = "sm" | "md";
 
 export interface ChipProps {
     onPress?: () => unknown;
@@ -10,7 +12,8 @@ export interface ChipProps {
     variant?: ChipVariant;
     fullWidth?: boolean;
     style?: ChipStyle;
+    size?: ChipSize;
 }
 
-export type ChipRootProps = Pick<ChipProps, "fullWidth" | "variant">;
-export type ChipTextProps = Pick<ChipProps, "variant">;
+export type ChipRootProps = Pick<ChipProps, "fullWidth" | "variant" | "size">;
+export type ChipTextProps = Pick<ChipProps, "variant" | "size">;
