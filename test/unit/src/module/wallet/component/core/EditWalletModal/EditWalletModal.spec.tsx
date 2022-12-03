@@ -35,9 +35,6 @@ describe("EditWallet tests", () => {
 
         expect(screen.getByText(translate("edit_wallet")));
 
-        fireEvent.press(screen.getAllByRole("button")[5]);
-        expect(setColorIndex).toHaveBeenCalledWith(3);
-
         fireEvent.press(screen.getByText(translate("save")));
         expect(editWallet).toHaveBeenCalledWith(0, expect.any(Object));
         await waitFor(() => expect(showToast).toHaveBeenCalledWith(translate("wallet_edited"), { type: "success" }));
@@ -56,9 +53,6 @@ describe("EditWallet tests", () => {
         const screen = render(<EditWalletModal index={0} />);
 
         expect(screen.getByText(translate("edit_wallet")));
-
-        fireEvent.press(screen.getAllByRole("button")[5]);
-        expect(setColorIndex).toHaveBeenCalledWith(3);
 
         fireEvent.press(screen.getByText(translate("cancel")));
         expect(reset).toHaveBeenCalled();

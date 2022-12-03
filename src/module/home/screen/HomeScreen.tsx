@@ -11,7 +11,7 @@ const HomeScreen = (): JSX.Element => {
     } = useWalletState();
 
     return (
-        <BaseMainGradientScreen style={{ backgroundColor: "#5F8AFA", secondaryBackgroundColor: "#4FD1D9" }}>
+        <BaseMainGradientScreen>
             <Col flex={1}>
                 <HomeSlider />
                 {selectedWallet < wallets.length ? <HomeTabs /> : <AddWallet />}

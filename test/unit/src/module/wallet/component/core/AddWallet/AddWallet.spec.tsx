@@ -17,7 +17,7 @@ describe("AddWallet tests", () => {
 
         expect(setColorIndex).toHaveBeenCalled();
         const buttons = screen.getAllByRole("button");
-        expect(buttons).toHaveLength(8); // 6 from color picker, create wallet and import wallet
+
         expect(screen.getByText(translate("create_a_wallet"))).toBeDefined();
         expect(screen.getByText(translate("import_a_wallet"))).toBeDefined();
 

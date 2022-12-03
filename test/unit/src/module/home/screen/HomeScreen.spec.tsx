@@ -4,12 +4,13 @@ import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("HomeScreen tests", () => {
     new UseServiceInstanceMock();
+    new UseWalletStateMock();
+
     afterEach(() => {
         jest.restoreAllMocks();
     });
 
     test("Renders correctly when a wallet is selected", () => {
-        new UseWalletStateMock();
         const screen = render(<HomeScreen />);
         expect(screen.getByText(translate("transactions"))).toBeDefined();
     });

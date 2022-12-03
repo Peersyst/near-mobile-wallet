@@ -2,6 +2,8 @@
 import "@peersyst/react-native-styled";
 import { Theme as RNCTheme } from "@peersyst/react-native-components";
 
+export type PaletteGradient = [string, string];
+
 // Custom components theme
 declare module "@peersyst/react-native-components" {
     export interface Theme {
@@ -34,20 +36,20 @@ declare module "@peersyst/react-native-components" {
         purple: string;
         lilac: string;
         orange: string;
-        wallet: string[];
+        wallet: PaletteGradient[];
         gradient: {
-            lilacBlue: [string, string];
-            lilacOrange: [string, string];
-            lilacRed: [string, string];
-            blueGreen: [string, string];
-            blueTurquoise: [string, string];
-            bluePurple: [string, string];
-            purpleLilac: [string, string];
-            purpleTurquoise: [string, string];
-            purpleRed: [string, string];
-            redOrange: [string, string];
-            orangeYellow: [string, string];
-            greenYellow: [string, string];
+            lilacBlue: PaletteGradient;
+            lilacOrange: PaletteGradient;
+            lilacRed: PaletteGradient;
+            blueGreen: PaletteGradient;
+            blueTurquoise: PaletteGradient;
+            bluePurple: PaletteGradient;
+            purpleLilac: PaletteGradient;
+            purpleTurquoise: PaletteGradient;
+            purpleRed: PaletteGradient;
+            redOrange: PaletteGradient;
+            orangeYellow: PaletteGradient;
+            greenYellow: PaletteGradient;
         };
         overlay: {
             "80%": string;

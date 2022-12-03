@@ -26,12 +26,12 @@ const AddWallet = (): JSX.Element => {
     }, []);
 
     const handleColorPick = (pickedColor: string) => {
-        setColorIndex(palette.wallet.findIndex((c) => c === pickedColor));
+        setColorIndex(palette.wallet.findIndex((c) => c[0] === pickedColor));
     };
 
     return (
         <Col flex={1} gap="14%" style={{ paddingHorizontal: "5%" }}>
-            <ColorPicker value={colorIndex !== undefined ? palette.wallet[colorIndex] : undefined} onColorPicked={handleColorPick} />
+            <ColorPicker value={colorIndex !== undefined ? palette.wallet[colorIndex][0] : undefined} onColorPicked={handleColorPick} />
             <Col gap="4%">
                 <Button fullWidth variant="outlined" disabled={colorIndex === undefined} onPress={() => showModal(CreateWalletModal)}>
                     {translate("create_a_wallet")}

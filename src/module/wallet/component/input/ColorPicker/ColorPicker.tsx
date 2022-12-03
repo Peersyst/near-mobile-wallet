@@ -9,6 +9,7 @@ export interface ColoPickerProps {
     onColorPicked?: (color: string) => void;
 }
 
+//TODO: remove/update component
 const ColorPicker = ({ defaultValue, value, onColorPicked }: ColoPickerProps): JSX.Element => {
     const [pickedColor, setPickedColorColor] = useControlled(defaultValue || "", value, onColorPicked);
 
@@ -23,7 +24,7 @@ const ColorPicker = ({ defaultValue, value, onColorPicked }: ColoPickerProps): J
 
     return (
         <Row alignItems="center" justifyContent="center" gap="6%">
-            {walletColors.map((color, key) => (
+            {walletColors.map(([color], key) => (
                 <ColorSample color={color} active={pickedColor === color} onPress={handleColorPick} key={key} />
             ))}
         </Row>
