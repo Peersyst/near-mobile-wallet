@@ -7,7 +7,7 @@ export class WalletStateMock extends BaseMock implements WalletState {
     hasWallet: boolean;
     isAuthenticated: boolean;
     wallets: Wallet[];
-    selectedWallet?: number | undefined;
+    selectedWallet: number;
     constructor({
         hasWallet = true,
         isAuthenticated = true,

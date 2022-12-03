@@ -7,6 +7,7 @@ import { capitalize } from "@peersyst/react-utils";
 import { config } from "config";
 import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
 import { AccountBalanceMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseNativeTokenConversionMock } from "mocks/common/wallet/useNativeTokenConversion";
 
 describe("WalletCard tests", () => {
     const { state } = new UseWalletStateMock();
@@ -33,8 +34,14 @@ describe("WalletCard tests", () => {
         expect(screen.getByText(capitalize(translate("receive")))).toBeDefined();
     });
 
+    test("Display imported tag", () => {
+        const screen = render(<WalletCard wallet={{ ...wallet, imported: true }} index={0} />);
+        expect(screen.getByText(translate("imported").toUpperCase())).toBeDefined();
+    });
+
     test("Change the currency when the user clicks on the balance", async () => {
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fiat: "eur" });
+        new UseNativeTokenConversionMock({ value: "10" });
         const mockedVibrate = jest.fn();
         jest.spyOn(ExpoHaptics, "impactAsync").mockImplementation(mockedVibrate);
         const screen = render(<WalletCard wallet={wallet} index={0} />);

@@ -3,7 +3,7 @@ import BlockchainAddress, { BlockchainAddressProps } from "module/common/compone
 import Chip from "module/common/component/display/Chip/Chip";
 import { useTranslate } from "module/common/hook/useTranslate";
 
-export interface AccountProps extends BlockchainAddressProps {
+export interface AccountProps extends Omit<BlockchainAddressProps, "type" | "copy"> {
     imported?: boolean;
 }
 
@@ -12,7 +12,7 @@ const Account = ({ imported, style, ...rest }: AccountProps) => {
 
     return (
         <Row style={{ maxWidth: "100%", ...style }} gap={"3%"}>
-            <BlockchainAddress {...rest} style={{ maxWidth: imported ? "60%" : "100%" }} />
+            <BlockchainAddress {...rest} type="address" style={{ maxWidth: imported ? "60%" : "100%" }} />
             {imported && <Chip label={translate("imported").toUpperCase()} variant="glass" />}
         </Row>
     );
