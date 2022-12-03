@@ -26,7 +26,7 @@ export default class WalletController {
         const accounts = await ServiceInstance.createServiceInstance({
             network,
             privateKey: privateKeyParam,
-            mnemonic: privateKeyParam ? undefined : mnemonic,
+            mnemonic: mnemonic,
         });
 
         for (const [index, { account, privateKey: pK }] of accounts.entries()) {
@@ -68,7 +68,6 @@ export default class WalletController {
         const wallets: Wallet[] = []; //Wallets to be added to the state
         const newStorageWallets: StorageWallet[] = [...oldStorageWallets]; //Wallets to be added to the storage
         const newSecureWallets: SecureWalletInfo[] = [...walletGroups]; //Wallets to be added to the secure storage
-        let updateSecure = false;
 
         for (const [index, walletGroup] of walletGroups.entries()) {
             const accounts = await ServiceInstance.addServiceInstances({
@@ -100,15 +99,15 @@ export default class WalletController {
                     tempWallets.push(wallet);
                     tempStorageWallets.push({ ...wallet, index: newIndex });
                     newSecureWallets[index].walletIds = [...walletGroup.walletIds, newIndex];
-                    updateSecure = true;
                 }
             }
             wallets.push(...tempWallets);
             newStorageWallets.push(...tempStorageWallets);
         }
+        const shouldUpdateWallets = newStorageWallets.length !== oldStorageWallets.length;
         //Update the storage
-        if (updateSecure) await WalletStorage.setSecureWallets(newSecureWallets, network);
-        if (newStorageWallets.length !== oldStorageWallets.length) await WalletStorage.setUnencryptedWallets(newStorageWallets, network);
+        if (shouldUpdateWallets) await WalletStorage.setSecureWallets(newSecureWallets, network);
+        if (shouldUpdateWallets) await WalletStorage.setUnencryptedWallets(newStorageWallets, network);
         return { wallets };
     }
 }
