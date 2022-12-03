@@ -153,5 +153,11 @@
     "sentTo": "Sent to",
     "boughtFor": "Bought for",
     "selectAToken": "Select a token",
-    "continue": "Continue"
+    "continue": "Continue",
+    "how_to_add_an_account": "How to add an account?",
+    "add_a_wallet_txt": "You can add an account by importing a private key or a mnemonic. You can also create a new account from scratch.",
+    "create": "Create",
+    "import": "Importar",
+    "create_your_account": "Create your account",
+    "welcome_to_near_mobile": "Welcome to NEAR Mobile"
 }

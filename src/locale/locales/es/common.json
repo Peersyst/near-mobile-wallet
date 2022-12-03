@@ -153,5 +153,11 @@
     "sentTo": "Enviado a",
     "boughtFor": "Comprado por",
     "selectAToken": "Select una moneda",
-    "continue": "Continuar"
+    "continue": "Continuar",
+    "how_to_add_an_account": "¿Cómo añadir una cuenta?",
+    "add_a_wallet_txt": "Puedes añadir una cuenta importando una clave privada o un mnemonic. También puedes crear un nueva cuenta desde cero.",
+    "create": "Crear",
+    "import": "Importar",
+    "create_your_account": "Crea tu cuenta",
+    "welcome_to_near_mobile": "Bienvenido a NEAR Mobile"
 }

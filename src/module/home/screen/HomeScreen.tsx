@@ -4,6 +4,7 @@ import BaseMainGradientScreen from "module/main/component/layout/BaseMainGradien
 import HomeTabs from "../component/navigation/HomeTabs";
 import AddWallet from "module/wallet/component/core/AddWallet/AddWallet";
 import useWalletState from "module/wallet/hook/useWalletState";
+import { MainHomeCard } from "./HomeScreen.styles";
 
 const HomeScreen = (): JSX.Element => {
     const {
@@ -14,7 +15,7 @@ const HomeScreen = (): JSX.Element => {
         <BaseMainGradientScreen style={{ backgroundColor: "#5F8AFA", secondaryBackgroundColor: "#4FD1D9" }}>
             <Col flex={1}>
                 <HomeSlider />
-                {selectedWallet < wallets.length ? <HomeTabs /> : <AddWallet />}
+                <MainHomeCard>{selectedWallet < wallets.length ? <HomeTabs /> : <AddWallet />}</MainHomeCard>
             </Col>
         </BaseMainGradientScreen>
     );
