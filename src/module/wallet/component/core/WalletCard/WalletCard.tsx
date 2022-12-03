@@ -11,6 +11,7 @@ import { Col } from "@peersyst/react-native-components";
 import { BaseWalletCardRoot } from "module/common/component/surface/BaseWalletCard/BaseWalletCard.styles";
 import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
 import Address from "../../display/Address/Address";
+import useNativeTokenConversion from "module/common/hook/useNativeTokenConversion";
 
 export interface WalletCardProps {
     wallet: Wallet;
@@ -19,24 +20,27 @@ export interface WalletCardProps {
 
 const WalletCard = ({ wallet: { account, imported }, index }: WalletCardProps): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
-    const { data: { available } = {}, isLoading } = useGetBalance(index);
+    const { data: { available } = { available: "0" }, isLoading } = useGetBalance(index);
+    const { value: fiatValue } = useNativeTokenConversion(fiat, available);
     const [showFiat, setCurrencyMode] = useState<boolean>(false);
+
     const changeCurrencyMode = () => {
         impactAsync(ImpactFeedbackStyle.Medium);
         setCurrencyMode((value) => !value);
     };
+
     return (
         <BaseWalletCardRoot>
             <Col style={{ width: "100%" }} alignItems="center" gap={10} justifyContent="center">
-                <Address style={{ maxWidth: "100%" }} imported={imported} type="address" address={account} variant="body2Strong" />
+                <Address imported={imported} type="address" address={account} variant="body2Strong" style={{ maxWidth: "85%" }} />
                 <Balance
                     textAlign="center"
                     style={{ width: "100%" }}
                     isLoading={isLoading}
-                    options={{ maximumFractionDigits: 2 }}
+                    options={{ maximumFractionDigits: showFiat ? 2 : 3 }}
                     spinnerProps={{ color: (p) => p.white, size: 42 }}
                     onPress={changeCurrencyMode}
-                    balance={showFiat ? "10" : available || 0} //TODO: add query to get fiat balance
+                    balance={showFiat ? fiatValue : available}
                     variant="h3Strong"
                     color={(p) => p.white}
                     units={showFiat ? fiat : "token"}

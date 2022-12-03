@@ -9,10 +9,10 @@ export interface AddressProps extends BlockchainAddressProps {
 
 const Address = ({ imported, style, ...rest }: AddressProps) => {
     const translate = useTranslate();
-    const maxWidth = imported ? "60%" : "80%";
+
     return (
-        <Row style={style} gap={5}>
-            <BlockchainAddress {...rest} style={{ maxWidth }} />
+        <Row style={{ maxWidth: "100%", ...style }} gap={"3%"}>
+            <BlockchainAddress {...rest} style={{ maxWidth: imported ? "60%" : "100%" }} />
             {imported && <Chip label={translate("imported").toUpperCase()} variant="glass" />}
         </Row>
     );

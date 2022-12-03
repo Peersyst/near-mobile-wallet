@@ -1,4 +1,4 @@
-import { ViewStyle, TextStyle } from "react-native";
+import { ViewStyle, TextStyle, ViewProps } from "react-native";
 
 export type ChipStyle = ViewStyle & TextStyle;
 
@@ -6,7 +6,7 @@ export type ChipVariant = "filled" | "outlined" | "glass";
 
 export type ChipSize = "sm" | "md";
 
-export interface ChipProps {
+export interface ChipProps extends Omit<ViewProps, "style"> {
     onPress?: () => unknown;
     label: string;
     variant?: ChipVariant;
