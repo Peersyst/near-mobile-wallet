@@ -6,11 +6,9 @@ import { useRecoilValue } from "recoil";
 import { useState } from "react";
 import { impactAsync, ImpactFeedbackStyle } from "expo-haptics";
 import Balance from "../../display/Balance/Balance";
-import Typography from "module/common/component/display/Typography/Typography";
 import { Col } from "@peersyst/react-native-components";
 import { BaseWalletCardRoot } from "module/common/component/surface/BaseWalletCard/BaseWalletCard.styles";
-import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
-import Address from "../../display/Address/Address";
+import Account from "../../display/Account/Account";
 import useNativeTokenConversion from "module/common/hook/useNativeTokenConversion";
 
 export interface WalletCardProps {
@@ -32,7 +30,7 @@ const WalletCard = ({ wallet: { account, imported }, index }: WalletCardProps): 
     return (
         <BaseWalletCardRoot>
             <Col style={{ width: "100%" }} alignItems="center" gap={10} justifyContent="center">
-                <Address imported={index === 2} type="address" address={account} variant="body2Strong" />
+                <Account imported={imported} type="address" address={account} variant="body2Strong" />
                 <Balance
                     textAlign="center"
                     style={{ width: "100%" }}

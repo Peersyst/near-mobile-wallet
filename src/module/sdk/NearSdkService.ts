@@ -147,7 +147,7 @@ export class NearSDKService {
         nodeUrl: string,
         baseApiUrl: string,
         secretKey: string,
-        nearDecimals: number,
+        nearDecimals?: number,
     ): Promise<NearSDKService[]> {
         const secret = secretKey.split(":").pop();
         const publicKey = new KeyPairEd25519(secret!).getPublicKey().toString();

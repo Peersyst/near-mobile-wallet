@@ -3,11 +3,11 @@ import BlockchainAddress, { BlockchainAddressProps } from "module/common/compone
 import Chip from "module/common/component/display/Chip/Chip";
 import { useTranslate } from "module/common/hook/useTranslate";
 
-export interface AddressProps extends BlockchainAddressProps {
+export interface AccountProps extends BlockchainAddressProps {
     imported?: boolean;
 }
 
-const Address = ({ imported, style, ...rest }: AddressProps) => {
+const Account = ({ imported, style, ...rest }: AccountProps) => {
     const translate = useTranslate();
 
     return (
@@ -18,4 +18,4 @@ const Address = ({ imported, style, ...rest }: AddressProps) => {
     );
 };
 
-export default Address;
+export default Account;
