@@ -32,7 +32,7 @@ const WalletCard = ({ wallet: { account, imported }, index }: WalletCardProps): 
     return (
         <BaseWalletCardRoot>
             <Col style={{ width: "100%" }} alignItems="center" gap={10} justifyContent="center">
-                <Address imported={imported} type="address" address={account} variant="body2Strong" style={{ maxWidth: "85%" }} />
+                <Address imported={index === 2} type="address" address={account} variant="body2Strong" />
                 <Balance
                     textAlign="center"
                     style={{ width: "100%" }}
