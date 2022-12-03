@@ -11,9 +11,9 @@ const Account = ({ imported, style, ...rest }: AccountProps) => {
     const translate = useTranslate();
 
     return (
-        <Row style={{ maxWidth: "100%", ...style }} gap={"3%"}>
+        <Row style={{ maxWidth: "100%", ...style }} gap={"2%"}>
             <BlockchainAddress {...rest} type="address" style={{ maxWidth: imported ? "60%" : "100%" }} />
-            {imported && <Chip label={translate("imported").toUpperCase()} variant="glass" />}
+            {imported && <Chip label={translate("imported").toUpperCase()} variant="glass" size="sm" />}
         </Row>
     );
 };
