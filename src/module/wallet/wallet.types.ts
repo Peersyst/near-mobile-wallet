@@ -11,6 +11,7 @@ export interface UnencryptedWalletInfo extends BaseWallet {
     uncommittedTransactionHashes?: string[];
     imported?: boolean;
     account: string;
+    colorIndex: number;
 }
 
 export interface UnsecureWalletStorageType {

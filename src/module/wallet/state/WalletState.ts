@@ -1,9 +1,7 @@
 import { atom } from "recoil";
 import { StorageWallet } from "../wallet.types";
 
-export type Wallet = StorageWallet & {
-    colorIndex: number;
-};
+export type Wallet = StorageWallet;
 
 export interface WalletState {
     hasWallet: boolean;

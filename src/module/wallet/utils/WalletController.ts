@@ -2,7 +2,7 @@ import { NetworkType } from "module/settings/state/SettingsState";
 import { Chains } from "near-peersyst-sdk";
 import ServiceInstance from "../state/ServiceInstance/ServiceInstance";
 import { Wallet } from "../state/WalletState";
-import { SecureWalletInfo } from "../wallet.types";
+import { SecureWalletInfo, UnencryptedWalletInfo } from "../wallet.types";
 import { WalletStorage } from "../WalletStorage";
 import { WalletUtils } from "./WalletUtils";
 
@@ -17,14 +17,13 @@ export default class WalletController {
         mnemonic?: string,
         privateKeyParam?: string,
     ): Promise<WalletsControllerBaseReturn> {
-        const wallets: Wallet[] = []; //Wallets to be added to the state
-        const numOfPrevWallets = (await WalletStorage.getUnencryptedWallets(network)).length;
+        const wallets = await WalletStorage.getUnencryptedWallets(network);
         const secureStorage = await WalletStorage.getSecure();
         const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets to be added to the secure storage
         let privateKey = "";
 
         if ((mnemonic && secureStorage?.mnemonic === mnemonic) || secureStorage?.[network].find((w) => w.privateKey === privateKeyParam)) {
-            return { wallets: [] };
+            return { wallets };
         }
 
         //Init serviceInstanceMap
@@ -34,14 +33,16 @@ export default class WalletController {
             mnemonic: mnemonic,
         });
 
+        const numOfPrevWallets = wallets.length;
+        //Add new accounts
         for (const [index, { account, privateKey: pK }] of accounts.entries()) {
             /**
              * Don't used privateKeyParam because it can be undefined
-             * and the wallet will be created with a privateKey derived from the mnemonic
+             * and in this case the wallet will be created with a privateKey derived from the mnemonic
              */
             if (index === 0) privateKey = pK;
             const newIndex = numOfPrevWallets + index;
-            const wallet: Wallet = { account, index: newIndex, colorIndex: 0 };
+            const wallet: UnencryptedWalletInfo = { account, index: newIndex, colorIndex: WalletUtils.getWalletColor(account) };
             wallets.push(wallet);
             walletIds.push(newIndex);
         }
@@ -63,7 +64,7 @@ export default class WalletController {
         }
         await WalletStorage.setUnencryptedWallets(wallets, network);
 
-        return { wallets };
+        return { wallets: wallets };
     }
 
     static async recoverWallets(network: NetworkType): Promise<WalletsControllerBaseReturn> {
@@ -99,7 +100,7 @@ export default class WalletController {
 
                     //Check that the account has not been deleted outside the app
                 } else if (accounts.find((a) => a.account === wallet.account)) {
-                    tempWallets.push({ ...wallet, colorIndex: 0, index: newWalletIndex });
+                    tempWallets.push({ ...wallet, index: newWalletIndex });
                     newAccountIds.push(walletId);
                     newWalletIndex++;
                 }
@@ -112,10 +113,10 @@ export default class WalletController {
                     const newWallet: Wallet = {
                         account,
                         index: newWalletIndex,
-                        colorIndex: 0,
+                        colorIndex: WalletUtils.getWalletColor(account),
                     };
                     tempWallets.push(newWallet);
-                    newAccountIds.push(newWallet.index);
+                    newAccountIds.push(newWalletIndex);
                     newWalletIndex++;
                 }
             }
