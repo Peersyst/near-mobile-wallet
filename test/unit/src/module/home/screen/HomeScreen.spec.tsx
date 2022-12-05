@@ -1,4 +1,4 @@
-import { render, translate } from "test-utils";
+import { render, translate, screen } from "test-utils";
 import HomeScreen from "module/home/screen/HomeScreen";
 import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
@@ -10,12 +10,15 @@ describe("HomeScreen tests", () => {
 
     test("Renders correctly when a wallet is selected", () => {
         new UseWalletStateMock();
-        const screen = render(<HomeScreen />);
+        render(<HomeScreen />);
         expect(screen.getByText(translate("transactions"))).toBeDefined();
     });
 
     test("Renders correctly when a wallet is not selected", () => {
-        const screen = render(<HomeScreen />);
-        expect(screen.getByText(translate("create_a_wallet"))).toBeDefined();
+        render(<HomeScreen />);
+        //Walletcard
+        expect(screen.getByText(translate("create_your_account"))).toBeDefined();
+        //Add wallet
+        expect(screen.getByText(translate("add_a_wallet_txt")));
     });
 });
