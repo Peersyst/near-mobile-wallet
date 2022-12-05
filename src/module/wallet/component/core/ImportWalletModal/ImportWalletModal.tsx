@@ -5,6 +5,7 @@ import AddWalletModal from "module/wallet/component/core/AddWalletModal/AddWalle
 import EnterWalletMnemonicScreen from "module/wallet/screen/EnterWalletMnemonicScreen";
 import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 import { useTranslate } from "module/common/hook/useTranslate";
+import SelectMnemonicOrPrivateKeyScreen from "module/wallet/screen/SelectMnemonicOrPrivateKeyScreen/SelectMnemonicOrPrivateKeyScreen";
 
 const ImportWalletModal = createModal((props: ExposedBackdropProps) => {
     const [index, setIndex] = useState(0);
@@ -15,7 +16,7 @@ const ImportWalletModal = createModal((props: ExposedBackdropProps) => {
             {(handleWalletCreation) => (
                 <Tabs index={index} onIndexChange={setIndex}>
                     <TabPanel index={0}>
-                        <SetWalletNameScreen onSubmit={() => setIndex(1)} submitText={translate("next")} />
+                        <SelectMnemonicOrPrivateKeyScreen onSubmit={() => setIndex(1)} />
                     </TabPanel>
                     <TabPanel index={1}>
                         <WalletAdvisesScreen
