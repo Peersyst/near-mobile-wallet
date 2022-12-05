@@ -42,7 +42,8 @@ describe("Test for the WalletController", () => {
             //Import one wallet
             expect(wallets).toHaveLength(1);
         });
-        test("Import wallets without pin and mnemonic but with privateKey with multiple account ", async () => {
+
+        test("Import wallets without pin and mnemonic but with privateKey and with multiple account ", async () => {
             const length = 10;
             network = Chains.MAINNET;
             const { accounts, walletIds, storageWallets } = new WalletControllerMocks(length, privateKey);
@@ -55,6 +56,32 @@ describe("Test for the WalletController", () => {
             expect(mockedSetWalletIds).toHaveBeenCalledWith(walletIds, privateKey, network);
             //Import the wallets
             expect(wallets).toHaveLength(length);
+        });
+
+        test("Do not allow to import same mnemonic", async () => {
+            jest.spyOn(WalletStorage, "getSecure").mockResolvedValue({ mnemonic, testnet: [], mainnet: [], pin: "1234" });
+            const { wallets } = await WalletController.importWallets(network, pin, mnemonic);
+            //Updates unencrypted storage
+            expect(mockedSetSecure).not.toHaveBeenCalled();
+            //Do not update encrypted storage
+            expect(mockedSetWalletIds).not.toHaveBeenCalled();
+            //Import one wallet
+            expect(wallets).toHaveLength(0);
+        });
+        test("Do not allow to import with same private key", async () => {
+            jest.spyOn(WalletStorage, "getSecure").mockResolvedValue({
+                mnemonic,
+                testnet: [{ privateKey, walletIds: [1] }],
+                mainnet: [],
+                pin: "1234",
+            });
+            const { wallets } = await WalletController.importWallets(network, pin, undefined, privateKey);
+            //Updates unencrypted storage
+            expect(mockedSetSecure).not.toHaveBeenCalled();
+            //Do not update encrypted storage
+            expect(mockedSetWalletIds).not.toHaveBeenCalled();
+            //Import one wallet
+            expect(wallets).toHaveLength(0);
         });
     });
 
@@ -128,6 +155,35 @@ describe("Test for the WalletController", () => {
             expect(mockedSetUnencryptedWallets).not.toHaveBeenCalledWith(newStorageWallets);
             //Recover the wallet to save it in state
             expect(wallets).toHaveLength(length1 + length2);
+        });
+
+        test("Recovers some wallets with differents keys. Some accounts deleted outside the app", async () => {
+            const length = 2;
+            const { walletIds, storageWallets } = new WalletControllerMocks(length, privateKey);
+            const {
+                accounts: accounts2,
+                walletIds: walletIds2,
+                storageWallets: storageWallets2,
+            } = new WalletControllerMocks(length - 1, privateKey);
+
+            jest.spyOn(WalletStorage, "getWallets").mockResolvedValue(storageWallets);
+            jest.spyOn(WalletStorage, "getSecureWallets").mockResolvedValue([{ privateKey, walletIds }]);
+            jest.spyOn(ServiceInstance, "addServiceInstances").mockResolvedValueOnce(accounts2);
+
+            const { wallets } = await WalletController.recoverWallets(network);
+            //Save with the walletIds
+            expect(mockedSetSecureWallets).toHaveBeenCalledWith(
+                [
+                    {
+                        privateKey,
+                        walletIds: walletIds2,
+                    },
+                ],
+                network,
+            );
+            expect(mockedSetUnencryptedWallets).toHaveBeenCalledWith(storageWallets2, network);
+            //Recover the wallet to save it in state
+            expect(wallets).toHaveLength(accounts2.length);
         });
     });
 });

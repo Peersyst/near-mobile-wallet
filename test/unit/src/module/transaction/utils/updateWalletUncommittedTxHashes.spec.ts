@@ -1,4 +1,4 @@
-import { updateWalletUncommittedTxHashes } from "module/wallet/utils/wallet.utils";
+import { WalletUtils } from "module/wallet/utils/WalletUtils";
 import { UnencryptedWalletInfoMock } from "test-mocks";
 
 describe("Test for the updateWalletUncommittedTxHashes function", () => {
@@ -7,7 +7,7 @@ describe("Test for the updateWalletUncommittedTxHashes function", () => {
         const wallet2 = new UnencryptedWalletInfoMock();
 
         const wallets = [wallet, wallet2];
-        const updatedWallet = updateWalletUncommittedTxHashes(wallets, ["tx3", "tx4"], 0);
+        const updatedWallet = WalletUtils.updateWalletUncommittedTxHashes(wallets, ["tx3", "tx4"], 0);
         expect(updatedWallet[0].uncommittedTransactionHashes).toEqual(["tx3", "tx4"]);
     });
 });

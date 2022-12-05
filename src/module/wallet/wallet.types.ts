@@ -10,7 +10,6 @@ export interface BaseWallet {
 export interface UnencryptedWalletInfo extends BaseWallet {
     uncommittedTransactionHashes?: string[];
     imported?: boolean;
-    colorIndex: number;
     account: string;
 }
 
@@ -46,4 +45,4 @@ export interface SetWalletsParams {
     network: NetworkType;
 }
 
-export type UpdatableWallet = Pick<UnencryptedWalletInfo, "colorIndex" | "index">;
+export type UpdatableWallet = Pick<UnencryptedWalletInfo, "index">;
