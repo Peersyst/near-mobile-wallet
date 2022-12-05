@@ -12,10 +12,9 @@ import { BaseWalletCardRoot } from "module/common/component/surface/BaseWalletCa
 
 export interface WalletCardProps {
     wallet: Wallet;
-    index: number;
 }
 
-const WalletCard = ({ wallet: { account }, index }: WalletCardProps): JSX.Element => {
+const WalletCard = ({ wallet: { account, index } }: WalletCardProps): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
 
     const { data: { available } = {}, isLoading } = useGetBalance(index);

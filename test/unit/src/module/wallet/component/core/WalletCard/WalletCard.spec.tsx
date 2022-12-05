@@ -20,7 +20,7 @@ describe("WalletCard tests", () => {
     });
 
     test("Renders correctly", async () => {
-        const screen = render(<WalletCard wallet={wallet} index={0} />);
+        const screen = render(<WalletCard wallet={wallet} />);
         /**Account header */
         expect(screen.getByText(wallet.account)).toBeDefined();
 
@@ -37,7 +37,7 @@ describe("WalletCard tests", () => {
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fiat: "eur" });
         const mockedVibrate = jest.fn();
         jest.spyOn(ExpoHaptics, "impactAsync").mockImplementation(mockedVibrate);
-        const screen = render(<WalletCard wallet={wallet} index={0} />);
+        const screen = render(<WalletCard wallet={wallet} />);
         /**Account Balance */
         const balance = await screen.findByText(formatBalance(accountBalance.available, { units: config.tokenName }));
         expect(balance).toBeDefined();

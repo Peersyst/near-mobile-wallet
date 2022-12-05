@@ -49,6 +49,12 @@ export class WalletUtils {
         });
     }
 
+    //Color methods
+    static getWalletColor(account: string): number {
+        //TODO: Implement this
+        return (account.split("").pop()?.charCodeAt(0) || 0) % 3;
+    }
+
     //Secure wallet methods
     static deleteWalletFromPrivateKey(privateKey: string, wallets: SecureWalletInfo[]): SecureWalletInfo[] {
         return wallets.filter((wallet) => wallet.privateKey !== privateKey);
