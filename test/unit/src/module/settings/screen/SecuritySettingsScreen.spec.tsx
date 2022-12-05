@@ -4,7 +4,7 @@ import * as Genesys from "@peersyst/react-native-components";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import { waitFor } from "@testing-library/react-native";
-import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseModalMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("Test for the SecuritySettingsScreen", () => {
     beforeEach(() => {
@@ -19,8 +19,7 @@ describe("Test for the SecuritySettingsScreen", () => {
     test("Open confirm modal to update pin", () => {
         new UseWalletStateMock();
         new UseServiceInstanceMock();
-        const showModal = jest.fn();
-        jest.spyOn(Genesys, "useModal").mockReturnValue({ showModal } as any);
+        const { showModal } = new UseModalMock();
         const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("change_passcode"));
         fireEvent.press(button);
