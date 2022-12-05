@@ -1,7 +1,7 @@
 import { ExposedBackdropProps } from "@peersyst/react-native-components";
 import { ReactNode, useState } from "react";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
+import { AddWalletModalRoot } from "./AddWalletModal.styles";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
@@ -43,9 +43,9 @@ const AddWalletModal = ({
     };
 
     return (
-        <CardNavigatorModal open={open} onClose={handleClose} navbar={{ back: true, title, onBack }} onExited={handleExited} {...rest}>
+        <AddWalletModalRoot open={open} onClose={handleClose} navbar={{ back: true, title, onBack }} onExited={handleExited} {...rest}>
             {renderProps(handleWalletCreation)}
-        </CardNavigatorModal>
+        </AddWalletModalRoot>
     );
 };
 
