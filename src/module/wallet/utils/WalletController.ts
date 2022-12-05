@@ -23,7 +23,7 @@ export default class WalletController {
         const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets to be added to the secure storage
         let privateKey = "";
 
-        if (secureStorage?.mnemonic === mnemonic || secureStorage?.[network].find((w) => w.privateKey === privateKeyParam)) {
+        if ((mnemonic && secureStorage?.mnemonic === mnemonic) || secureStorage?.[network].find((w) => w.privateKey === privateKeyParam)) {
             return { wallets: [] };
         }
 

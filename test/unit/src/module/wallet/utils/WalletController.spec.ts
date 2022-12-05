@@ -69,6 +69,7 @@ describe("Test for the WalletController", () => {
             expect(wallets).toHaveLength(0);
         });
         test("Do not allow to import with same private key", async () => {
+            network = Chains.TESTNET;
             jest.spyOn(WalletStorage, "getSecure").mockResolvedValue({
                 mnemonic,
                 testnet: [{ privateKey, walletIds: [1] }],

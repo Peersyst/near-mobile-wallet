@@ -44,5 +44,3 @@ export interface SetWalletsParams {
     secureWallets: SecureWalletInfo[];
     network: NetworkType;
 }
-
-export type UpdatableWallet = Pick<UnencryptedWalletInfo, "index">;

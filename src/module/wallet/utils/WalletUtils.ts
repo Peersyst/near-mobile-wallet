@@ -1,4 +1,4 @@
-import { BaseWallet, SecureWalletInfo, UnencryptedWalletInfo, UpdatableWallet } from "../wallet.types";
+import { BaseWallet, SecureWalletInfo, UnencryptedWalletInfo } from "../wallet.types";
 
 export class WalletUtils {
     //Base wallet methods
