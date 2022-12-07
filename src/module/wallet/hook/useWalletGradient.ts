@@ -1,12 +1,18 @@
 import { useTheme } from "@peersyst/react-native-styled";
+import { WALLET_GRADIENT_LENGTH } from "config/theme/baseTheme";
 import { PaletteGradient } from "config/theme/theme.declarations";
-import useSelectedWallet from "./useSelectedWallet";
+import useWalletState from "./useWalletState";
 
 export default function (index?: number): PaletteGradient {
-    const wallet = useSelectedWallet();
+    const {
+        state: { wallets, selectedWallet = 0 },
+    } = useWalletState();
+
+    const finalIndex = (index ?? selectedWallet > wallets.length - 1 ? 0 : selectedWallet) % WALLET_GRADIENT_LENGTH;
+
     const {
         palette: { wallet: walletColors },
     } = useTheme();
-    const finalIndex = (index ?? wallet?.colorIndex ?? 0) % walletColors.length;
+
     return walletColors[finalIndex];
 }
