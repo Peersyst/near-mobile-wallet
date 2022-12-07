@@ -39,7 +39,7 @@ export default class WalletController {
         }
 
         //Init serviceInstanceMap
-        const accounts = await ServiceInstance.createServiceInstance({ network, privateKey: privateKeyParam, mnemonic });
+        const accounts = await ServiceInstance.addServiceInstances({ network, privateKey: privateKeyParam, mnemonic });
         const numOfPrevWallets = storageWallets.length;
 
         //Add new accounts
