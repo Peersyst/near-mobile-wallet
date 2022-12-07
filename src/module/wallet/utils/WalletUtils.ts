@@ -1,3 +1,4 @@
+import { WALLET_GRADIENT_LENGTH } from "config/theme/baseTheme";
 import { BaseWallet, SecureWalletInfo, UnencryptedWalletInfo } from "../wallet.types";
 
 export class WalletUtils {
@@ -51,8 +52,15 @@ export class WalletUtils {
 
     //Color methods
     static getWalletColor(account: string): number {
-        //TODO: Implement this
-        return (account.split("").pop()?.charCodeAt(0) || 0) % 3;
+        try {
+            const charNum = account
+                .slice(0, 8)
+                .split("")
+                .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+            return charNum % WALLET_GRADIENT_LENGTH;
+        } catch (e) {
+            return 0;
+        }
     }
 
     //Secure wallet methods
