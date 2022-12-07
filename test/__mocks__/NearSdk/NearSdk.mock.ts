@@ -10,8 +10,8 @@ interface NearSdkServiceMockType {
 }
 
 export const MOCKED_ADDRESS = "0xMockedAddress";
-export const MOCKED_NAMED_ADDRESS = "helloworld.near";
-export const MOCKED_PK = "";
+export const MOCKED_NAMED_ADDRESS = "nearmobiletest.near";
+export const MOCKED_PK = "ed25519:52TugYjnoBcbinZDrvWoxXrDBJR7mu3gKfVpujK9op5EQN7PpdHqoX6aZA4D6FoCEwMkbEPYzczZBMRXR8XTayJy";
 
 export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockType {
     getTransactions: MockFnType;

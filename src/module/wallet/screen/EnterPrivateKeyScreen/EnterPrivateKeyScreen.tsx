@@ -24,12 +24,12 @@ const EnterPrivateKeyScreen = ({ onSubmit, submitText }: EnterPrivateKeyScreenPr
 
     useEffect(() => {
         if (privateKey) {
+            setLoading(true);
             onSubmit?.();
         }
     }, [privateKey]);
 
     const handleSubmit = async ({ privateKey }: PrivateKeyForm) => {
-        setLoading(true);
         setPrivateKey(privateKey);
     };
 

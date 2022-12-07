@@ -33,10 +33,10 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonic
         }
     }, [mnemonic]);
 
-    const handleSubmit = ({ mnemonic }: MnemonicForm) => {
-        const valid = NearSDKService.validateMnemonic(mnemonic.join(" "));
+    const handleSubmit = ({ mnemonic: mnemonicParam }: MnemonicForm) => {
+        const valid = NearSDKService.validateMnemonic(mnemonicParam.join(" "));
         if (valid) {
-            setMnemonic(mnemonic);
+            setMnemonic(mnemonicParam);
         } else {
             notificationAsync(NotificationFeedbackType.Error);
             showToast(translate("incorrect_mnemonic"), { type: "error" });

@@ -1,6 +1,5 @@
 import BaseMock, { MockFnType } from "../base.mock";
 import { CreateWalletState } from "module/wallet/state/CreateWalletState";
-import { MnemonicMocked } from "../../MnemonicMocked";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 
 export class CreateWalletStateMock extends BaseMock implements CreateWalletState {
@@ -12,7 +11,7 @@ export class CreateWalletStateMock extends BaseMock implements CreateWalletState
         super();
         this.name = name ?? "newWallet";
         this.pin = pin ?? "1234";
-        this.mnemonic = mnemonic ?? MnemonicMocked.split(" ");
+        this.mnemonic = mnemonic;
         this.privateKey = privateKey;
     }
 }
@@ -23,6 +22,8 @@ interface UseCreateWalletMockType {
     setPin: MockFnType;
     setMnemonic: MockFnType;
     reset: MockFnType;
+    setPrivateKey: MockFnType;
+    setImportWithPrivateKey: MockFnType;
 }
 
 export class UseCreateWalletMock extends BaseMock implements UseCreateWalletMockType {
@@ -30,6 +31,8 @@ export class UseCreateWalletMock extends BaseMock implements UseCreateWalletMock
     setName: MockFnType;
     setPin: MockFnType;
     setMnemonic: MockFnType;
+    setPrivateKey: MockFnType;
+    setImportWithPrivateKey: MockFnType;
     reset: MockFnType;
     constructor({
         state,
@@ -37,6 +40,8 @@ export class UseCreateWalletMock extends BaseMock implements UseCreateWalletMock
         setName = jest.fn(),
         setPin = jest.fn(),
         reset = jest.fn(),
+        setImportWithPrivateKey = jest.fn(),
+        setPrivateKey = jest.fn(),
     }: Partial<UseCreateWalletMockType> = {}) {
         super();
         this.state = state ?? new CreateWalletStateMock();
@@ -44,6 +49,8 @@ export class UseCreateWalletMock extends BaseMock implements UseCreateWalletMock
         this.setName = setName;
         this.setPin = setPin;
         this.reset = reset;
+        this.setImportWithPrivateKey = setImportWithPrivateKey;
+        this.setPrivateKey = setPrivateKey;
         this.mock = jest.spyOn(UseCreateWallet, "default").mockReturnValue(this);
     }
 }
