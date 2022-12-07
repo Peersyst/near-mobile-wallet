@@ -13,10 +13,9 @@ import useNativeTokenConversion from "module/common/hook/useNativeTokenConversio
 
 export interface WalletCardProps {
     wallet: Wallet;
-    index: number;
 }
 
-const WalletCard = ({ wallet: { account, imported }, index }: WalletCardProps): JSX.Element => {
+const WalletCard = ({ wallet: { account, index, imported } }: WalletCardProps): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
     const { data: { available } = { available: "0" }, isLoading } = useGetBalance(index);
     const { value: fiatValue } = useNativeTokenConversion(fiat, available);
