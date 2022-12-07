@@ -23,14 +23,11 @@ const AddWalletModal = ({
     ...rest
 }: AddWalletModalProps): JSX.Element => {
     const [open, setOpen] = useState(true);
-    //TODO: implement create wallet
-    const {
-        //state: { privateKey, name, colorIndex },
-        reset: resetCreateWalletState,
-    } = useCreateWallet();
-    //const { setState: setWalletState } = useWalletState();
+    const { reset: resetCreateWalletState } = useCreateWallet();
+
     const importWallet = useImportWallets();
     const { network } = useRecoilValue(settingsState);
+
     const handleClose = () => {
         setOpen(false);
         onClose?.();
@@ -43,7 +40,9 @@ const AddWalletModal = ({
 
     const handleWalletCreation = async () => {
         //TODO: implement create wallet
-        if (imported) await importWallet(network);
+        if (imported) {
+            await importWallet(network);
+        }
         handleClose();
     };
 

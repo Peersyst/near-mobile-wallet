@@ -3,6 +3,7 @@ import Button from "module/common/component/input/Button/Button";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import TextField from "module/common/component/input/TextField/TextField";
+import { useEffect, useState } from "react";
 
 export interface EnterPrivateKeyScreenProps {
     onSubmit: () => void;
@@ -14,13 +15,24 @@ interface PrivateKeyForm {
 }
 
 const EnterPrivateKeyScreen = ({ onSubmit, submitText }: EnterPrivateKeyScreenProps) => {
-    const { setPrivateKey } = useCreateWallet();
+    const {
+        setPrivateKey,
+        state: { privateKey },
+    } = useCreateWallet();
     const translate = useTranslate();
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = ({ privateKey }: PrivateKeyForm) => {
+    useEffect(() => {
+        if (privateKey) {
+            onSubmit?.();
+        }
+    }, [privateKey]);
+
+    const handleSubmit = async ({ privateKey }: PrivateKeyForm) => {
+        setLoading(true);
         setPrivateKey(privateKey);
-        onSubmit();
     };
+
     return (
         <Col gap="10%">
             <Form onSubmit={handleSubmit}>
@@ -32,7 +44,7 @@ const EnterPrivateKeyScreen = ({ onSubmit, submitText }: EnterPrivateKeyScreenPr
                         placeholder={translate("enter_private_key")}
                         required
                     />
-                    <Button fullWidth type="submit">
+                    <Button fullWidth type="submit" loading={loading}>
                         {submitText}
                     </Button>
                 </Col>

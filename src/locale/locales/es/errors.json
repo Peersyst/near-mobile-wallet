@@ -21,5 +21,7 @@
     "nothingToShow": "No hay nada que mostrar",
     "invalid_address": "Invalid address",
     "copied_to_clipboard": "Copied to clipboard",
-    "invalid_private_key": "Clave privada inválida"
+    "invalid_private_key": "Clave privada inválida",
+    "private_key_already_exists": "Ya tenías la llave privada importada",
+    "mnemonic_already_exists": "Ya tenías el mnemonic importado"
 }

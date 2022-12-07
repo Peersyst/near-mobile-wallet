@@ -18,18 +18,19 @@ export default function useImportWallets() {
     const importWallets = async (network: NetworkType): Promise<Wallet[]> => {
         const parsedMnemonic = mnemonic?.join(" ");
         const { wallets } = await WalletController.importWallets(network, pin, parsedMnemonic, privateKey);
+
         if (wallets.length > 0) {
             setWalletState((state) => {
                 return {
                     ...state,
-                    wallets: wallets,
+                    wallets: [...state.wallets, ...wallets],
                     hasWallet: true,
                     isAuthenticated: true,
                 };
             });
         } else {
-            const secret = parsedMnemonic || translate("private_key");
-            showToast(translateError("secret_key_already_exists", { secret }), { type: "warning" });
+            const localeKey = (parsedMnemonic ? "mnemonic" : "private_key") + "_already_exists";
+            showToast(translateError(localeKey), { type: "info" });
         }
         return wallets;
     };

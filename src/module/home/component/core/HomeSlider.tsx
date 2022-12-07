@@ -19,9 +19,9 @@ const HomeSlider = (): JSX.Element => {
                 gap={0}
                 pagePadding={{ horizontal: 20 }}
             >
-                {wallets.map((wallet, i) => (
-                    <WalletCard key={i} wallet={wallet} />
-                ))}
+                {wallets.map((wallet) => {
+                    return <WalletCard key={wallet.index} wallet={wallet} />;
+                })}
                 <AddWalletCard />
             </HomeSliderRoot>
         </DarkThemeProvider>

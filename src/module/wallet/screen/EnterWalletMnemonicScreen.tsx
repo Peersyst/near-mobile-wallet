@@ -26,7 +26,7 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonic
     useEffect(() => {
         if (submitted) {
             setSubmitted(false);
-            onSubmit();
+            onSubmit?.();
         }
     }, [submitted]);
 
