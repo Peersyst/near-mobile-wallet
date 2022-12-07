@@ -1,8 +1,6 @@
 import Button from "module/common/component/input/Button/Button";
 import AddWalletModal from "module/wallet/component/core/AddWalletModal/AddWalletModal";
-import { UnencryptedWalletInfo } from "module/wallet/wallet.types";
-import { WalletStorage } from "module/wallet/WalletStorage";
-import { UseToastMock, UseWalletStateMock, WalletMock, WalletStateMock } from "test-mocks";
+import { UseToastMock, WalletMock } from "test-mocks";
 import { fireEvent, render, SuccessApiCall, translate, waitFor } from "test-utils";
 import * as UseImportWallets from "module/wallet/hook/useImportWallets";
 
