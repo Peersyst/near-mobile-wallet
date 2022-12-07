@@ -1,10 +1,11 @@
-import { ExposedBackdropProps } from "@peersyst/react-native-components";
-import { ReactNode, useState } from "react";
+import { ExposedBackdropProps, useToast } from "@peersyst/react-native-components";
+import { ReactNode, useEffect, useState } from "react";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { AddWalletModalRoot } from "./AddWalletModal.styles";
 import useImportWallets from "module/wallet/hook/useImportWallets";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
@@ -24,9 +25,10 @@ const AddWalletModal = ({
 }: AddWalletModalProps): JSX.Element => {
     const [open, setOpen] = useState(true);
     const { reset: resetCreateWalletState } = useCreateWallet();
-
     const importWallet = useImportWallets();
     const { network } = useRecoilValue(settingsState);
+    const { showToast } = useToast();
+    const translate = useTranslate();
 
     const handleClose = () => {
         setOpen(false);
@@ -41,7 +43,8 @@ const AddWalletModal = ({
     const handleWalletCreation = async () => {
         //TODO: implement create wallet
         if (imported) {
-            await importWallet(network);
+            const wallets = await importWallet(network);
+            if (wallets.length > 0) showToast(translate("import_success" + (wallets.length === 1 ? "_one" : "_other")));
         }
         handleClose();
     };

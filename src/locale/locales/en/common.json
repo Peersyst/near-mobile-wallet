@@ -166,5 +166,7 @@
     "private_key": "Private key",
     "enter_private_key": "Enter your private key",
     "import_warning_title": "Warning when importing your account/s",
-    "import_warning_txt": "Important information about importing your account. Remember to keep your private key and/or mnemonic in a safe place."
+    "import_warning_txt": "Important information about importing your account. Remember to keep your private key and/or mnemonic in a safe place.",
+    "import_success_one": "Account imported successfully",
+    "import_success_other": "Accounts imported successfully"
 }

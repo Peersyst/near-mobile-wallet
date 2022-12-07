@@ -12,7 +12,6 @@ export default function useImportWallets() {
     } = useCreateWallet();
     const setWalletState = useSetRecoilState(walletState);
     const { showToast } = useToast();
-    const translate = useTranslate();
     const translateError = useTranslate("error");
 
     const importWallets = async (network: NetworkType): Promise<Wallet[]> => {
@@ -30,7 +29,9 @@ export default function useImportWallets() {
             });
         } else {
             const localeKey = (parsedMnemonic ? "mnemonic" : "private_key") + "_already_exists";
-            showToast(translateError(localeKey), { type: "info" });
+            setTimeout(() => {
+                showToast(translateError(localeKey));
+            }, 1000);
         }
         return wallets;
     };

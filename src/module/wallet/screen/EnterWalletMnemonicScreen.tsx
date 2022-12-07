@@ -18,28 +18,28 @@ export interface EnterWalletMnemonicScreenProps {
 
 const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonicScreenProps): JSX.Element => {
     const translate = useTranslate();
-    const { setMnemonic } = useCreateWallet();
-    const [submitted, setSubmitted] = useState(false);
+    const {
+        setMnemonic,
+        state: { mnemonic },
+    } = useCreateWallet();
+    const [loading, setLoading] = useState(false);
+
     const { showToast } = useToast();
 
-    //TODO: remove this useEffect
     useEffect(() => {
-        if (submitted) {
-            setSubmitted(false);
+        if (mnemonic) {
             onSubmit?.();
+            setLoading(true);
         }
-    }, [submitted]);
+    }, [mnemonic]);
 
     const handleSubmit = ({ mnemonic }: MnemonicForm) => {
-        if (!submitted) {
-            const valid = NearSDKService.validateMnemonic(mnemonic.join(" "));
-            if (valid) {
-                setMnemonic(mnemonic);
-                setSubmitted(true);
-            } else {
-                notificationAsync(NotificationFeedbackType.Error);
-                showToast(translate("incorrect_mnemonic"), { type: "error" });
-            }
+        const valid = NearSDKService.validateMnemonic(mnemonic.join(" "));
+        if (valid) {
+            setMnemonic(mnemonic);
+        } else {
+            notificationAsync(NotificationFeedbackType.Error);
+            showToast(translate("incorrect_mnemonic"), { type: "error" });
         }
     };
 
@@ -48,7 +48,7 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonic
             <Form onSubmit={handleSubmit}>
                 <Col gap={24} style={{ marginTop: 5 }}>
                     <MnemonicInput />
-                    <Button type="submit" fullWidth>
+                    <Button type="submit" fullWidth loading={loading}>
                         {submitText}
                     </Button>
                 </Col>
