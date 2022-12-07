@@ -162,5 +162,7 @@
     "create_your_account": "Create your account",
     "welcome_to_near_mobile": "Welcome to NEAR Mobile",
     "import_with_mnemonic": "Import with mnemonic",
-    "import_with_private_key": "Import with private key"
+    "import_with_private_key": "Import with private key",
+    "import_warning_title": "Warning when importing your account/s",
+    "import_warning_txt": "Important information about importing your account. Remember to keep your private key and/or mnemonic in a safe place."
 }

@@ -6,7 +6,6 @@ export interface UseCreateWalletResult {
     setName: (name: string | undefined) => void;
     setPin: (pin: string | undefined) => void;
     setMnemonic: (mnemonic: string[] | undefined) => void;
-    setColorIndex: (colorIndex: number | undefined) => void;
     setImportWithPrivateKey: (importWithPrivateKey: boolean) => void;
     reset: () => void;
 }
