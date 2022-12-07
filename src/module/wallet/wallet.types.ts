@@ -28,6 +28,7 @@ export interface SecureWalletStorageType {
     mainnet: SecureWalletInfo[];
     pin: string | undefined;
     mnemonic: string | undefined;
+    mainPrivateKey: string | undefined;
 }
 
 export type StorageWallet = UnencryptedWalletInfo;

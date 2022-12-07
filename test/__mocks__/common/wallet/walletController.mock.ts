@@ -44,7 +44,7 @@ export class WalletControllerMocks extends BaseMock {
     accounts: CreateInstanceReturn[] = [];
     walletIds: number[] = [];
     storageWallets: UnencryptedWalletInfo[] = [];
-    constructor(length: number, privateKey: string, startIndex = 0) {
+    constructor(length: number, privateKey: string, startIndex = 0, imported = false) {
         super();
         const accounts: CreateInstanceReturn[] = [];
         const walletIds: number[] = [];
@@ -60,6 +60,7 @@ export class WalletControllerMocks extends BaseMock {
             storageWallets.push({
                 account,
                 index: index,
+                ...(imported && { imported: true }),
             });
         }
         this.accounts = accounts;

@@ -39,17 +39,6 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         return (await this.getSecure())?.mnemonic;
     }
 
-    async setMnemonic(mnemonic: string): Promise<void> {
-        const secureStorage = await this.getSecure();
-        if (secureStorage) {
-            return this.setSecure({ ...secureStorage, mnemonic });
-        } else {
-            /* eslint-disable no-console */
-            console.warn("You should not set a mnemonic if you don't have a pin");
-            return;
-        }
-    }
-
     /**
      * WALLET STORAGE METHODS
      */
@@ -88,7 +77,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
 
     async setSecureWallets(wallets: SecureWalletInfo[], network: NetworkType, secureStorageParam?: SecureWalletStorageType): Promise<void> {
         const secureStorage = secureStorageParam ||
-            (await this.getSecure()) || { pin: undefined, mnemonic: undefined, testnet: [], mainnet: [] };
+            (await this.getSecure()) || { pin: undefined, mnemonic: undefined, testnet: [], mainnet: [], mainPrivateKey: undefined };
         await this.setSecure({ ...secureStorage, [network]: wallets });
     }
 
@@ -97,7 +86,13 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
     }
 
     async setSecureWalletIds(walletIds: number[], privateKey: string, network: NetworkType): Promise<void> {
-        const secureStorage = (await this.getSecure()) || { pin: undefined, mnemonic: undefined, testnet: [], mainnet: [] };
+        const secureStorage = (await this.getSecure()) || {
+            pin: undefined,
+            mnemonic: undefined,
+            testnet: [],
+            mainnet: [],
+            mainPrivateKey: undefined,
+        };
         const secureWallets = secureStorage[network];
         const walletGroup = WalletUtils.findByPrivateKey(privateKey, secureWallets);
         let wallets: SecureWalletInfo[];
@@ -114,7 +109,13 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
     }
 
     async deleteSecureWalletId(walletIdToBeDeleted: number, network: NetworkType): Promise<void> {
-        const secureStorage = (await this.getSecure()) || { pin: undefined, mnemonic: undefined, testnet: [], mainnet: [] };
+        const secureStorage = (await this.getSecure()) || {
+            pin: undefined,
+            mnemonic: undefined,
+            testnet: [],
+            mainnet: [],
+            mainPrivateKey: undefined,
+        };
         const wallets = secureStorage[network];
         const newWallets = WalletUtils.deleteWalletId(walletIdToBeDeleted, wallets);
         await this.setSecureWallets(newWallets, network, secureStorage);
