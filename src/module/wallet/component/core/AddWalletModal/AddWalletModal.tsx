@@ -2,6 +2,9 @@ import { ExposedBackdropProps } from "@peersyst/react-native-components";
 import { ReactNode, useState } from "react";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { AddWalletModalRoot } from "./AddWalletModal.styles";
+import useImportWallets from "module/wallet/hook/useImportWallets";
+import settingsState from "module/settings/state/SettingsState";
+import { useRecoilValue } from "recoil";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
@@ -16,17 +19,18 @@ const AddWalletModal = ({
     children: renderProps,
     title,
     onBack,
-    //imported,
+    imported,
     ...rest
 }: AddWalletModalProps): JSX.Element => {
     const [open, setOpen] = useState(true);
-    //TODO: implement add wallet modal
+    //TODO: implement create wallet
     const {
         //state: { privateKey, name, colorIndex },
         reset: resetCreateWalletState,
     } = useCreateWallet();
     //const { setState: setWalletState } = useWalletState();
-    //const { network } = useRecoilValue(settingsState);
+    const importWallet = useImportWallets();
+    const { network } = useRecoilValue(settingsState);
     const handleClose = () => {
         setOpen(false);
         onClose?.();
@@ -38,7 +42,8 @@ const AddWalletModal = ({
     };
 
     const handleWalletCreation = async () => {
-        //TODO: implement wallet creation
+        //TODO: implement create wallet
+        if (imported) await importWallet(network);
         handleClose();
     };
 

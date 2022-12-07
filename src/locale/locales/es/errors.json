@@ -20,5 +20,6 @@
     "invalid_end": "El campo debe terminar con {{end}}",
     "nothingToShow": "No hay nada que mostrar",
     "invalid_address": "Invalid address",
-    "copied_to_clipboard": "Copied to clipboard"
+    "copied_to_clipboard": "Copied to clipboard",
+    "invalid_private_key": "Clave privada inválida"
 }

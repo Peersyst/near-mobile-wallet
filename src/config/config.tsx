@@ -8,6 +8,7 @@ import globalStyles from "config/globalStyles";
 import { ChevronDownIcon } from "icons";
 import darkTheme from "config/theme/darkTheme";
 import { AddressValidator } from "./validators/AddressValidator";
+import { PrivateKeyValidator } from "./validators/PrivateKeyValidator";
 
 const envConfigs: Record<string, CreateConfig> = {
     test: { ...baseConfig, ...devConfig },
@@ -71,6 +72,7 @@ const config = createConfig({
     },
     validators: {
         address: AddressValidator,
+        privateKey: PrivateKeyValidator,
     },
     globalStyles,
 });

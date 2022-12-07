@@ -161,6 +161,8 @@
     "import": "Importar",
     "create_your_account": "Crea tu cuenta",
     "welcome_to_near_mobile": "Bienvenido a NEAR Mobile",
+    "private_key": "Clave privada",
+    "enter_private_key": "Introduce tu clave privada",
     "import_with_mnemonic": "Importar con mnemonic",
     "import_with_private_key": "Importar con clave privada",
     "import_warning_title": "Advertencia al importar su(s) cuenta(s)",

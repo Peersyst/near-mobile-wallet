@@ -20,5 +20,7 @@
     "invalid_end": "The field must end with {{end}}",
     "nothing_to_show": "Nothing to show",
     "invalid_address": "Invalid address",
-    "copied_to_clipboard": "Copied to clipboard"
+    "copied_to_clipboard": "Copied to clipboard",
+    "invalid_private_key": "Invalid private key",
+    "secret_key_already_exists": "Your {{secret}} key already exists"
 }

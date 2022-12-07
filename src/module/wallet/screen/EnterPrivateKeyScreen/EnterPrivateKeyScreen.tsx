@@ -1,25 +1,37 @@
-import { Col, Form, TextField } from "@peersyst/react-native-components";
+import { Col, Form } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
+import TextField from "module/common/component/input/TextField/TextField";
 
 export interface EnterPrivateKeyScreenProps {
     onSubmit: () => void;
     submitText: string;
 }
 
+interface PrivateKeyForm {
+    privateKey: string;
+}
+
 const EnterPrivateKeyScreen = ({ onSubmit, submitText }: EnterPrivateKeyScreenProps) => {
-    const { setImportWithPrivateKey } = useCreateWallet();
+    const { setPrivateKey } = useCreateWallet();
     const translate = useTranslate();
-    //TODO: implement this component
-    const handleSubmit = () => {
+
+    const handleSubmit = ({ privateKey }: PrivateKeyForm) => {
+        setPrivateKey(privateKey);
         onSubmit();
     };
     return (
         <Col gap="10%">
             <Form onSubmit={handleSubmit}>
                 <Col gap={30}>
-                    <TextField name="privateKey" placeholder={translate("wallet_name")} required />
+                    <TextField
+                        name="privateKey"
+                        validators={{ privateKey: true }}
+                        label={translate("private_key")}
+                        placeholder={translate("enter_private_key")}
+                        required
+                    />
                     <Button fullWidth type="submit">
                         {submitText}
                     </Button>

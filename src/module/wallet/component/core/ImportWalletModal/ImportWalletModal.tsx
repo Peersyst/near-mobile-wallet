@@ -7,6 +7,7 @@ import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 import { useTranslate } from "module/common/hook/useTranslate";
 import SelectMnemonicOrPrivateKeyScreen from "module/wallet/screen/SelectMnemonicOrPrivateKeyScreen/SelectMnemonicOrPrivateKeyScreen";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
+import EnterPrivateKeyScreen from "module/wallet/screen/EnterPrivateKeyScreen/EnterPrivateKeyScreen";
 
 const ImportWalletModal = createModal((props: ExposedBackdropProps) => {
     const [index, setIndex] = useState(0);
@@ -14,7 +15,7 @@ const ImportWalletModal = createModal((props: ExposedBackdropProps) => {
         state: { importWithPrivateKey },
     } = useCreateWallet();
     const translate = useTranslate();
-    //TODO: import by privateKey
+
     return (
         <AddWalletModal imported title={translate("import_wallet")} onBack={index ? () => setIndex((i) => i - 1) : undefined} {...props}>
             {(handleWalletCreation) => (
@@ -24,7 +25,7 @@ const ImportWalletModal = createModal((props: ExposedBackdropProps) => {
                     </TabPanel>
                     <TabPanel index={1}>
                         {importWithPrivateKey ? (
-                            <EnterWalletMnemonicScreen onSubmit={handleWalletCreation} submitText={translate("import_wallet")} />
+                            <EnterPrivateKeyScreen onSubmit={handleWalletCreation} submitText={translate("import_wallet")} />
                         ) : (
                             <EnterWalletMnemonicScreen onSubmit={handleWalletCreation} submitText={translate("import_wallet")} />
                         )}

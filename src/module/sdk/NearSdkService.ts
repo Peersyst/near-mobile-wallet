@@ -1,7 +1,7 @@
 import { connect, keyStores, Near, ConnectConfig, Account } from "near-api-js";
 import { AccountBalance } from "near-api-js/lib/account";
 import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
-import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
+import { KeyPair, KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
 const bip39 = require("bip39-light");
@@ -82,18 +82,7 @@ export class NearSDKService {
         this.baseApiUrl = baseApiUrl;
         this.nearDecimals = nearDecimals;
         // Create KeyPairEd25519
-        const parts = secretKey.split(":");
-        if (parts.length === 1) {
-            this.keyPair = new KeyPairEd25519(secretKey);
-        } else if (parts.length === 2) {
-            if (parts[0].toUpperCase() === "ED25519") {
-                this.keyPair = new KeyPairEd25519(parts[1]);
-            } else {
-                throw new Error(`Unknown curve: ${parts[0]}`);
-            }
-        } else {
-            throw new Error("Invalid encoded key format, must be <curve>:<encoded key>");
-        }
+        this.keyPair = NearSDKService.createKeyPairFromSecretKey(secretKey);
 
         const keyStore = new keyStores.InMemoryKeyStore();
         keyStore.setKey(chain, nameId, this.keyPair);
@@ -231,6 +220,19 @@ export class NearSDKService {
 
     static validateMnemonic(mnemonic: string): boolean {
         return bip39.validateMnemonic(mnemonic);
+    }
+
+    static createKeyPairFromSecretKey(secretKey: string): KeyPairEd25519 {
+        return KeyPairEd25519.fromString(secretKey) as KeyPairEd25519;
+    }
+
+    static isSecretKeyValid(secretKey: string): boolean {
+        try {
+            this.createKeyPairFromSecretKey(secretKey);
+            return true;
+        } catch (e) {
+            return false;
+        }
     }
 
     async accountCanReceive(accountId: string): Promise<boolean> {
