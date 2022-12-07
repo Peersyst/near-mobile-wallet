@@ -3,7 +3,6 @@ import * as Recoil from "recoil";
 import { renderHook, waitFor } from "test-utils";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
 import * as UseRecoverWallet from "module/wallet/hook/useRecoverWallets";
-import { SettingsStorage } from "module/settings/SettingsStorage";
 
 const renderUseLoad = () =>
     renderHook(() => {
