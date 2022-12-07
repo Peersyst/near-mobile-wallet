@@ -31,4 +31,20 @@ describe("useLoad tests", () => {
         await waitFor(() => expect(result.current.loading).toBe(false));
         await waitFor(() => expect(mockedSetSettingsState).toBeCalledWith(defaultSettingsState));
     });
+
+    test("Loads with a testnet wallet but without mainnet", async () => {
+        const mockedRecover = jest.fn();
+        mockedRecover.mockResolvedValueOnce(false);
+        mockedRecover.mockResolvedValueOnce(true);
+        jest.spyOn(UseRecoverWallet, "default").mockReturnValue(mockedRecover);
+
+        const mockedSetSettingsState = jest.fn();
+        jest.spyOn(Recoil, "useSetRecoilState").mockReturnValue(mockedSetSettingsState);
+
+        const { result } = renderUseLoad();
+        expect(result.current.loading).toBe(true);
+
+        await waitFor(() => expect(result.current.loading).toBe(false));
+        await waitFor(() => expect(mockedSetSettingsState).toBeCalledWith({ ...defaultSettingsState, network: "testnet" }));
+    });
 });
