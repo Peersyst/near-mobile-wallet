@@ -28,7 +28,7 @@ describe("Test for the WalletController", () => {
         test("Import wallet with pin and mnemonic ", async () => {
             //Mocks
             const { accounts } = new WalletControllerMocks(1, privateKey);
-            jest.spyOn(ServiceInstance, "createServiceInstance").mockResolvedValue(accounts);
+            jest.spyOn(ServiceInstance, "addServiceInstances").mockResolvedValue(accounts);
 
             const { wallets } = await WalletController.importWallets(network, pin, mnemonic);
             //Updates unencrypted storage
@@ -48,7 +48,7 @@ describe("Test for the WalletController", () => {
             const length = 10;
             network = Chains.MAINNET;
             const { accounts, walletIds, storageWallets } = new WalletControllerMocks(length, privateKey);
-            jest.spyOn(ServiceInstance, "createServiceInstance").mockResolvedValue(accounts);
+            jest.spyOn(ServiceInstance, "addServiceInstances").mockResolvedValue(accounts);
 
             const { wallets } = await WalletController.importWallets(network, undefined, undefined, privateKey);
             //Updates unencrypted storage
