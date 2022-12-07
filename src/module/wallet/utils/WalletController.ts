@@ -95,7 +95,7 @@ export default class WalletController {
         const oldStorageWallets = await WalletStorage.getWallets(network); //Sorted by index
         //Has all the privateKeys and walletIds that point into the oldStorageWallets
         const oldWalletGroups = secureStorage?.[network] || [];
-        const mainPrivateKey = secureStorage?.mainPrivateKey!; //If has previous wallets, it has a mainPrivateKey
+        const mainPrivateKey = secureStorage?.mainPrivateKey || ""; //If has previous wallets, it has a mainPrivateKey
 
         const newWallets: Wallet[] = [];
         let numberOfNewAccounts = 0;
