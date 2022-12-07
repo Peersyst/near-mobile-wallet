@@ -60,7 +60,6 @@ export class WalletControllerMocks extends BaseMock {
             storageWallets.push({
                 account,
                 index: index,
-                colorIndex: 0,
             });
         }
         this.accounts = accounts;

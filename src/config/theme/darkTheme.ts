@@ -1,5 +1,6 @@
 import { createTheme, Theme } from "@peersyst/react-native-components";
 import { theme } from "./theme";
+import { baseTheme } from "./baseTheme";
 
 const gray: Theme["palette"]["gray"] = {
     0: "#262626",
@@ -8,28 +9,7 @@ const gray: Theme["palette"]["gray"] = {
     600: "#dcdcdc",
     900: "#FFFFFF",
 };
-const blue = "#5F8AFA";
-const green = "#AAD055";
-const gold = "#FFC860";
-const red = "#DB5555";
-const aqua = "#4FD1D9";
-const purple = "#6B6EF9";
-const lilac = "#A463B0";
-const orange = "#E3935B";
-const gradient: Theme["palette"]["gradient"] = {
-    lilacBlue: [lilac, blue],
-    lilacOrange: [lilac, orange],
-    lilacRed: [lilac, red],
-    blueGreen: [blue, green],
-    blueTurquoise: [blue, aqua],
-    bluePurple: [blue, purple],
-    purpleLilac: [purple, lilac],
-    purpleTurquoise: [purple, aqua],
-    purpleRed: [purple, red],
-    redOrange: [red, orange],
-    orangeYellow: [orange, gold],
-    greenYellow: [green, gold],
-};
+
 const overlay: Theme["palette"]["overlay"] = {
     "80%": "#FFFFFFCC",
     "60%": "#FFFFFF99",
@@ -50,30 +30,12 @@ const altOverlay: Theme["palette"]["altOverlay"] = {
 const darkTheme = createTheme({
     ...theme,
     palette: {
+        ...baseTheme,
         mode: "dark",
         background: gray[0],
-        primary: blue,
         text: gray[900],
-        white: "#FFFFFF",
-        black: "#000000",
         gray,
-        blue,
-        green,
-        gold,
-        red,
-        aqua,
-        purple,
-        lilac,
-        orange,
-        gradient,
         overlay,
-        wallet: ["#15C8BD", "#47B5D6", "#623EDF", "#924AD9", "#FF66B0", "#E4AF4C"],
-        status: {
-            info: blue,
-            success: green,
-            warning: orange,
-            error: red,
-        },
         appbar: gray[0],
         paper: gray[0],
         backdrop: overlay["60%"],

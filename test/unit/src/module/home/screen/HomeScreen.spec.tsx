@@ -4,6 +4,8 @@ import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("HomeScreen tests", () => {
     new UseServiceInstanceMock();
+    new UseWalletStateMock();
+
     afterEach(() => {
         jest.restoreAllMocks();
     });

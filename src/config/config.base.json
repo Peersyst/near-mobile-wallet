@@ -8,8 +8,9 @@
     "faucetUrl": "https://faucet.nervos.org/",
     "mainnetNodeUrl": "https://rpc.mainnet.near.org",
     "testnetNodeUrl": "https://rpc.testnet.near.org",
-    "maxNumberOfDecimals": 6,
+    "maxNumberOfDecimals": 4,
     "enableMainnet": true,
     "tokenName": "NEAR",
-    "coingeckoTokenApiId": "near"
+    "coingeckoTokenApiId": "near",
+    "fetchPriceConversionInterval": 180000
 }
