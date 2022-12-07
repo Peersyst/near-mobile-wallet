@@ -32,11 +32,14 @@ export default class WalletController {
         const newWallets: Wallet[] = [];
         const secureStorage = await WalletStorage.getSecure();
         const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets to be added to the secure storage
+
         let privateKey = "";
 
         if ((mnemonic && secureStorage?.mnemonic === mnemonic) || secureStorage?.[network].find((w) => w.privateKey === privateKeyParam)) {
             return { wallets: [] };
         }
+
+        const imported = !mnemonic || mnemonic !== secureStorage?.mnemonic;
 
         //Init serviceInstanceMap
         const accounts = await ServiceInstance.addServiceInstances({ network, privateKey: privateKeyParam, mnemonic });
@@ -50,7 +53,7 @@ export default class WalletController {
              */
             if (index === 0) privateKey = pK;
             const newIndex = numOfPrevWallets + index;
-            const baseWallet: UnencryptedWalletInfo = { account, index: newIndex };
+            const baseWallet: UnencryptedWalletInfo = { account, index: newIndex, ...(imported && { imported }) };
             storageWallets.push(baseWallet);
             newWallets.push({ ...baseWallet, colorIndex: WalletUtils.getWalletColor(account) });
             walletIds.push(newIndex);
@@ -64,6 +67,7 @@ export default class WalletController {
             await WalletStorage.setSecure({
                 pin,
                 mnemonic,
+                mainPrivateKey: privateKey,
                 testnet: isTestnet ? newSecureWallets : [],
                 mainnet: !isTestnet ? newSecureWallets : [],
             });
@@ -86,10 +90,12 @@ export default class WalletController {
      * @returns The recovered wallets
      */
     static async recoverWallets(network: NetworkType): Promise<WalletsControllerBaseReturn> {
+        const secureStorage = await WalletStorage.getSecure();
         //Info about the wallets (that is set into the state)
         const oldStorageWallets = await WalletStorage.getWallets(network); //Sorted by index
         //Has all the privateKeys and walletIds that point into the oldStorageWallets
-        const oldWalletGroups = await WalletStorage.getSecureWallets(network);
+        const oldWalletGroups = secureStorage?.[network] || [];
+        const mainPrivateKey = secureStorage?.mainPrivateKey || ""; //If has previous wallets, it has a mainPrivateKey
 
         const newWallets: Wallet[] = [];
         let numberOfNewAccounts = 0;
@@ -158,12 +164,17 @@ export default class WalletController {
                     //Check if the walletGroup already exists (maybe had all their previous accounts deleted)
                     const oldWalletGroup = finalSecureWallets.find(({ privateKey }) => privateKey === walletGroup.privateKey);
                     const finalIds: number[] = oldWalletGroup?.walletIds || [];
+                    const imported = walletGroup.privateKey !== mainPrivateKey;
                     //Add new accounts
                     for (const { account } of walletGroup.newWallets) {
                         const newIndex = finalStorageWallets.length;
                         const newBaseWallet: UnencryptedWalletInfo = { account, index: newIndex };
                         finalStorageWallets.push(newBaseWallet);
-                        finalWallets.push({ ...newBaseWallet, colorIndex: WalletUtils.getWalletColor(account) });
+                        finalWallets.push({
+                            ...newBaseWallet,
+                            colorIndex: WalletUtils.getWalletColor(account),
+                            ...(imported && { imported }),
+                        });
                         finalIds.push(newIndex);
                     }
                     //Update with the new accounts
