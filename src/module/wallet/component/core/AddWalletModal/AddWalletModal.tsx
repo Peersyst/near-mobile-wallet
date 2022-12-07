@@ -44,7 +44,8 @@ const AddWalletModal = ({
         //TODO: implement create wallet
         if (imported) {
             const wallets = await importWallet(network);
-            if (wallets.length > 0) showToast(translate("import_success" + (wallets.length === 1 ? "_one" : "_other")));
+            if (wallets.length > 0)
+                showToast(translate("import_success" + (wallets.length === 1 ? "_one" : "_other")), { type: "success" });
         }
         handleClose();
     };
