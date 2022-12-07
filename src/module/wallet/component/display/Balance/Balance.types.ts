@@ -6,8 +6,10 @@ export type AppCurrency = FiatCurrencyType | "token";
 
 export type BalanceAction = "display" | "add" | "round";
 
+export type FullNumber = bigint | number | string;
+
 export interface BalanceProps extends Omit<TypographyProps, "children" | "numberOfLines"> {
-    balance: bigint | number | string;
+    balance: FullNumber;
     units?: AppCurrency | string;
     unitsPosition?: "left" | "right";
     action?: BalanceAction;

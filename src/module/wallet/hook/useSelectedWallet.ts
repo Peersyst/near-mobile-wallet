@@ -1,9 +1,11 @@
 import { Wallet } from "module/wallet/state/WalletState";
 import useWalletState from "module/wallet/hook/useWalletState";
+import { WalletUtils } from "../utils/WalletUtils";
 
 export default function (): Wallet {
     const {
         state: { wallets, selectedWallet = 0 },
     } = useWalletState();
-    return selectedWallet > wallets.length - 1 ? wallets[wallets.length - 1] : wallets[selectedWallet];
+    const selectedIndex = selectedWallet > wallets.length - 1 ? wallets.length - 1 : selectedWallet;
+    return WalletUtils.getWallet(selectedIndex, wallets)!;
 }

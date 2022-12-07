@@ -27,3 +27,4 @@ export const NFT_TOKEN_METADATA_METHOD = "nft_token_metadata";
 export const NFT_SUPPLY_METHOD = "nft_supply_for_owner";
 export const NFT_OWNER_TOKENS_METHOD = "nft_tokens_for_owner";
 export const NFT_OWNER_TOKENS_SET_METHOD = "nft_tokens_for_owner_set";
+export const BASE_NEAR_DECIMALS = 5;

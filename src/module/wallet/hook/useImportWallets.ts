@@ -12,14 +12,16 @@ export default function useImportWallets() {
     const importWallets = async (network: NetworkType): Promise<Wallet[]> => {
         const parsedMnemonic = mnemonic?.join(" ");
         const { wallets } = await WalletController.importWallets(network, pin, parsedMnemonic, privateKey);
-        setWalletState((state) => {
-            return {
-                ...state,
-                wallets: wallets,
-                hasWallet: true,
-                isAuthenticated: true,
-            };
-        });
+        if (wallets.length > 0) {
+            setWalletState((state) => {
+                return {
+                    ...state,
+                    wallets: wallets,
+                    hasWallet: true,
+                    isAuthenticated: true,
+                };
+            });
+        }
         return wallets;
     };
     return importWallets;

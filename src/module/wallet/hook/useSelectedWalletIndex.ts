@@ -1,6 +1,8 @@
-import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
+import useWalletState from "./useWalletState";
 
 export default function (): number {
-    const { index } = useSelectedWallet();
-    return index;
+    const {
+        state: { selectedWallet },
+    } = useWalletState();
+    return selectedWallet;
 }
