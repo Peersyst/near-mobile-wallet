@@ -92,7 +92,7 @@ export default class WalletController {
         const oldWalletGroups = await WalletStorage.getSecureWallets(network);
 
         const newWallets: Wallet[] = [];
-        let numberOfNewAccounts: number = 0;
+        let numberOfNewAccounts = 0;
         const newWalletGroups: TempWalletGroup[] = [];
         const deletedIds: number[] = [];
 
