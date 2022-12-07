@@ -1,6 +1,6 @@
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import useWalletState from "module/wallet/hook/useWalletState";
-import { updateWalletUncommittedTxHashes } from "module/wallet/utils/wallet.utils";
+import { WalletUtils } from "module/wallet/utils/WalletUtils";
 
 export default function useUpdateUncommittedTransactionsState() {
     const { index } = useServiceInstance();
@@ -10,7 +10,7 @@ export default function useUpdateUncommittedTransactionsState() {
     } = useWalletState();
     const updateHashes = (hashes: string[] = [], walletIndex?: number) => {
         const finalIndex = walletIndex === undefined ? index : walletIndex;
-        const newWallets = updateWalletUncommittedTxHashes(wallets, hashes, finalIndex);
+        const newWallets = WalletUtils.updateWalletUncommittedTxHashes(wallets, hashes, finalIndex);
         setWallets(newWallets);
     };
     return updateHashes;

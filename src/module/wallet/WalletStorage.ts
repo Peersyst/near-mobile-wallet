@@ -1,15 +1,6 @@
 import { BaseStorageService } from "module/common/service/BaseStorageService";
 import { NetworkType } from "module/settings/state/SettingsState";
-import deleteWallet, {
-    deleteWalletFromPrivateKey,
-    deleteWalletId,
-    findByPrivateKey,
-    getWallet as getWalletUtil,
-    findByWalletId,
-    setWallet,
-    updateWalletUncommittedTxHashes,
-    orderWallets,
-} from "./utils/wallet.utils";
+import { WalletUtils } from "./utils/WalletUtils";
 import {
     SecureWalletStorageType,
     UnsecureWalletStorageType,
@@ -17,6 +8,7 @@ import {
     SecureWalletInfo,
     UnencryptedWalletInfo,
     SetWalletsParams,
+    WalletStorageType,
 } from "./wallet.types";
 
 export const WalletStorage = new (class extends BaseStorageService<SecureWalletStorageType, UnsecureWalletStorageType> {
@@ -27,7 +19,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
     /**
      * STORAGE METHODS
      */
-    async getPin(): Promise<Storage["pin"]> {
+    async getPin(): Promise<WalletStorageType["pin"]> {
         const secureStorage = await this.getSecure();
         return secureStorage?.pin;
     }
@@ -43,7 +35,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         }
     }
 
-    async getMnemonic(): Promise<Storage["mnemonic"]> {
+    async getMnemonic(): Promise<WalletStorageType["mnemonic"]> {
         return (await this.getSecure())?.mnemonic;
     }
 
@@ -58,25 +50,14 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         }
     }
 
+    /**
+     * WALLET STORAGE METHODS
+     */
     async setWallets({ network, wallets, secureWallets }: SetWalletsParams): Promise<void> {
         await this.setSecureWallets(secureWallets, network);
         await this.setUnencryptedWallets(wallets, network);
     }
 
-    /**
-     * WALLET STORAGE METHODS
-     */
-
-    async addWallet(wallet: StorageWallet, network: NetworkType, privateKey: string, index: number): Promise<void> {
-        await this.setUnencryptedWallet(wallet, network, index);
-        await this.setSecureWalletId(index, privateKey, network);
-    }
-    async editWallet(index: number, network: NetworkType, info: Partial<Pick<StorageWallet, "colorIndex">>): Promise<void> {
-        const wallet = await this.getUnencryptedWallet(index, network);
-        if (wallet) {
-            await this.setUnencryptedWallet({ ...wallet, ...info }, network, index);
-        }
-    }
     async removeWallet(index: number, network: NetworkType): Promise<void> {
         await this.removeUnencryptedWallet(index, network);
         await this.deleteSecureWalletId(index, network);
@@ -95,18 +76,13 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         return (await this.getSecure())?.[network] || [];
     }
 
-    async getSecureWalletGroup(network: NetworkType, privateKey: string): Promise<SecureWalletInfo | undefined> {
+    async getSecureWalletGroup(privateKey: string, network: NetworkType): Promise<SecureWalletInfo | undefined> {
         const wallets = await this.getSecureWallets(network);
-        return findByPrivateKey(privateKey, wallets);
-    }
-
-    async getWalletByPrivateKey(privateKey: string, network: NetworkType): Promise<SecureWalletInfo | undefined> {
-        const wallets = await this.getSecureWallets(network);
-        return findByPrivateKey(privateKey, wallets);
+        return WalletUtils.findByPrivateKey(privateKey, wallets);
     }
 
     async getWalletsIdsFromPrivateKey(privateKey: string, network: NetworkType): Promise<SecureWalletInfo["walletIds"] | undefined> {
-        const walletGroup = await this.getWalletByPrivateKey(privateKey, network);
+        const walletGroup = await this.getSecureWalletGroup(privateKey, network);
         return walletGroup?.walletIds;
     }
 
@@ -123,12 +99,12 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
     async setSecureWalletIds(walletIds: number[], privateKey: string, network: NetworkType): Promise<void> {
         const secureStorage = (await this.getSecure()) || { pin: undefined, mnemonic: undefined, testnet: [], mainnet: [] };
         const secureWallets = secureStorage[network];
-        const walletGroup = findByPrivateKey(privateKey, secureWallets);
+        const walletGroup = WalletUtils.findByPrivateKey(privateKey, secureWallets);
         let wallets: SecureWalletInfo[];
         if (walletGroup) {
-            const newIds = walletIds.filter((id) => !walletGroup.walletIds.includes(id));
+            const newIds = WalletUtils.getNewIds(walletGroup, walletIds);
             wallets = [
-                ...deleteWalletFromPrivateKey(privateKey, secureWallets),
+                ...WalletUtils.deleteWalletFromPrivateKey(privateKey, secureWallets),
                 { privateKey: walletGroup.privateKey, walletIds: [...walletGroup.walletIds, ...newIds] },
             ];
         } else {
@@ -137,33 +113,23 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         await this.setSecureWallets(wallets, network, secureStorage);
     }
 
-    async deleteSecureWalletId(walletId: number, network: NetworkType): Promise<void> {
+    async deleteSecureWalletId(walletIdToBeDeleted: number, network: NetworkType): Promise<void> {
         const secureStorage = (await this.getSecure()) || { pin: undefined, mnemonic: undefined, testnet: [], mainnet: [] };
         const wallets = secureStorage[network];
-        //Find the walletGroup (same privateKey) related to the walletId
-        const walletGroup = findByWalletId(walletId, wallets);
-        if (walletGroup) {
-            const newWalletGroup = deleteWalletId(walletId, walletGroup);
-            const tempWalletGroups = deleteWalletFromPrivateKey(walletGroup.privateKey, wallets);
-            const finalWalletGroup: SecureWalletInfo[] = [...tempWalletGroups];
-            if (newWalletGroup.walletIds.length !== 0) {
-                //Do not delete oldWalletGroup because there are stille some walletIds on it
-                finalWalletGroup.push(newWalletGroup);
-            }
-            await this.setSecureWallets(tempWalletGroups, network, secureStorage);
-        }
+        const newWallets = WalletUtils.deleteWalletId(walletIdToBeDeleted, wallets);
+        await this.setSecureWallets(newWallets, network, secureStorage);
     }
 
     /**
      * UNENCRYPTED WALLETS METHODS
      */
     async getUnencryptedWallets(network: NetworkType): Promise<UnencryptedWalletInfo[]> {
-        return orderWallets((await this.get())?.[network] || []);
+        return WalletUtils.orderWallets((await this.get())?.[network] || []);
     }
 
     async getUnencryptedWallet(index: number, network: NetworkType): Promise<UnencryptedWalletInfo | undefined> {
         const wallets = await this.getUnencryptedWallets(network);
-        return getWalletUtil(index, wallets);
+        return WalletUtils.getWallet(index, wallets);
     }
 
     async setUnencryptedWallets(
@@ -175,20 +141,30 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         await this.set({ ...storage, [network]: wallets });
     }
 
+    async addUnencryptedWallets(
+        newWallets: UnencryptedWalletInfo[],
+        network: NetworkType,
+        storageParam?: UnsecureWalletStorageType,
+    ): Promise<void> {
+        const storage = storageParam || (await this.get()) || { testnet: [], mainnet: [] };
+        const oldWallets = storage[network];
+        await this.set({ ...storage, [network]: [...oldWallets, ...newWallets] });
+    }
+
     async setUnencryptedWallet(wallet: UnencryptedWalletInfo, network: NetworkType, index?: number): Promise<void> {
         const storage = await this.get();
-        const wallets = orderWallets(storage?.[network] || []);
+        const wallets = WalletUtils.orderWallets(storage?.[network] || []);
         if (storage && wallets) {
-            const newWallets = setWallet(wallets, wallet, index ?? wallets.length);
+            const newWallets = WalletUtils.setWallet(wallets, wallet, index ?? wallets.length);
             await this.setUnencryptedWallets(newWallets, network, storage);
         }
     }
 
     async removeUnencryptedWallet(index: number, network: NetworkType): Promise<void> {
         const storage = await this.get();
-        const wallets = orderWallets(storage?.[network] || []);
+        const wallets = WalletUtils.orderWallets(storage?.[network] || []);
         if (storage && wallets) {
-            const newWallets = deleteWallet(wallets, index);
+            const newWallets = WalletUtils.deleteWallet(wallets, index);
             await this.setUnencryptedWallets(newWallets, network, storage);
         }
     }
@@ -200,26 +176,32 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         return (await this.getUnencryptedWallet(index, network))?.uncommittedTransactionHashes;
     }
 
-    async updateUncommitedTransactionHashes(index: number, network: NetworkType, hashes: string[]): Promise<void> {
-        const storage = await this.get();
+    async updateUncommitedTransactionHashes(
+        index: number,
+        network: NetworkType,
+        hashes: string[],
+        storageParam?: UnsecureWalletStorageType,
+    ): Promise<void> {
+        const storage = storageParam || (await this.get());
         if (!storage) return;
-        const wallets = orderWallets(storage[network] || []);
-        const newWallets = updateWalletUncommittedTxHashes(wallets, hashes, index);
-        return this.set({ ...storage, [network]: newWallets });
+        const wallets = WalletUtils.orderWallets(storage[network] || []);
+        const newWallets = WalletUtils.updateWalletUncommittedTxHashes(wallets, hashes, index);
+        return this.setUnencryptedWallets(newWallets, network, storage);
     }
 
     async addUncommittedTransactionHash(index: number, network: NetworkType, hash: string): Promise<void> {
         const storage = await this.get();
         if (!storage) return;
         const uncommittedTransactionHashes = (await this.getUncommittedTransactionHashes(index, network)) || [];
-        return this.updateUncommitedTransactionHashes(index, network, [...uncommittedTransactionHashes, hash]);
+        return this.updateUncommitedTransactionHashes(index, network, [...uncommittedTransactionHashes, hash], storage);
     }
 
-    async removeUncommittedTransactionHash(index: number, chain: NetworkType, hash: string): Promise<void> {
+    async removeUncommittedTransactionHash(index: number, network: NetworkType, hash: string): Promise<void> {
         const storage = await this.get();
-        if (!storage) return;
-        const uncommittedTransactionHashes = (await this.getUncommittedTransactionHashes(index, chain)) || [];
-        const finalUncommittedTransactionHashes = uncommittedTransactionHashes.filter((h) => h !== hash);
-        return this.updateUncommitedTransactionHashes(index, chain, finalUncommittedTransactionHashes);
+        const wallets = storage?.[network];
+        const uncommittedTransactionHashes = WalletUtils.getWallet(index, wallets)?.uncommittedTransactionHashes;
+        if (!storage || !wallets || !uncommittedTransactionHashes) return;
+        const newWallets = WalletUtils.removeWalletUncommittedTxHash(wallets, index, hash);
+        return this.setUnencryptedWallets(newWallets, network, storage);
     }
 })();
