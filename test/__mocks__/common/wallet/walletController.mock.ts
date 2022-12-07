@@ -1,7 +1,6 @@
 import { SecureWalletInfoMock, UnencryptedWalletInfoMock } from "mocks/storage";
 import { CreateInstanceReturn } from "module/wallet/state/ServiceInstance/ServiceInstance.types";
 import WalletController from "module/wallet/utils/WalletController";
-import { WalletUtils } from "module/wallet/utils/WalletUtils";
 import { UnencryptedWalletInfo } from "module/wallet/wallet.types";
 import BaseMock, { MockFnType } from "../base.mock";
 import { WalletMock } from "./wallet.mock";
@@ -61,7 +60,6 @@ export class WalletControllerMocks extends BaseMock {
             storageWallets.push({
                 account,
                 index: index,
-                colorIndex: WalletUtils.getWalletColor(account),
             });
         }
         this.accounts = accounts;
