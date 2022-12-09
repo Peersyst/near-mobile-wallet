@@ -51,7 +51,16 @@ export default class WalletController {
              * Don't used privateKeyParam because it can be undefined
              * and in that case the wallet will create a privateKey derived from the mnemonic
              */
-            if (index === 0) privateKey = pK;
+            if (index === 0) {
+                if (storageWallets.length > 0) {
+                    const repeatedPrivateKey = secureStorage?.[network].find((w) => w.privateKey === pK);
+                    if (repeatedPrivateKey) {
+                        //The account already exists
+                        return { wallets: [] };
+                    }
+                }
+                privateKey = pK;
+            }
             const newIndex = numOfPrevWallets + index;
             const baseWallet: UnencryptedWalletInfo = { account, index: newIndex };
             storageWallets.push(baseWallet);
