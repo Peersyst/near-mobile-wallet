@@ -6,13 +6,7 @@ import useImportWallets from "module/wallet/hook/useImportWallets";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
 import { useTranslate } from "module/common/hook/useTranslate";
-
-export interface AddWalletModalProps extends ExposedBackdropProps {
-    title: string;
-    onBack?: () => void;
-    children: (handleWalletCreation: () => Promise<void>) => ReactNode;
-    imported?: boolean;
-}
+import { AddWalletModalProps } from "./AddWalletModal.types";
 
 const AddWalletModal = ({
     onExited,
@@ -21,6 +15,7 @@ const AddWalletModal = ({
     title,
     onBack,
     imported,
+    steps,
     ...rest
 }: AddWalletModalProps): JSX.Element => {
     const [open, setOpen] = useState(true);
@@ -52,7 +47,13 @@ const AddWalletModal = ({
     };
 
     return (
-        <AddWalletModalRoot open={open} onClose={handleClose} navbar={{ back: true, title, onBack }} onExited={handleExited} {...rest}>
+        <AddWalletModalRoot
+            open={open}
+            onClose={handleClose}
+            navbar={{ back: true, title, onBack, steps }}
+            onExited={handleExited}
+            {...rest}
+        >
             <AddWalletModalContent>{renderProps(handleWalletCreation)}</AddWalletModalContent>
         </AddWalletModalRoot>
     );

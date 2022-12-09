@@ -12,11 +12,23 @@ const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
     const [index, setIndex] = useState(0);
     const translate = useTranslate();
     return (
-        <AddWalletModal title={translate("create_wallet")} onBack={index ? () => setIndex((i) => i - 1) : undefined} {...props}>
+        <AddWalletModal
+            steps={
+                index
+                    ? {
+                          index: index - 1,
+                          length: 3,
+                      }
+                    : undefined
+            }
+            title={translate("create_wallet")}
+            onBack={index ? () => setIndex((i) => i - 1) : undefined}
+            {...props}
+        >
             {(handleWalletCreation) => (
                 <Tabs index={index} onIndexChange={setIndex}>
                     <TabPanel index={0}>
-                        <AddCustomNameWarning />
+                        <AddCustomNameWarning submitText={translate("continue")} onSubmit={() => setIndex(1)} />
                     </TabPanel>
                     <TabPanel index={1}>
                         <WalletAdvisesScreen onNextScreen={() => setIndex(2)} nextScreenText={translate("generate_mnemonic")} />
