@@ -39,7 +39,7 @@ export default class WalletController {
             return { wallets: [] };
         }
 
-        const imported = !mnemonic || mnemonic !== secureStorage?.mnemonic;
+        const imported = !mnemonic || (secureStorage?.mnemonic && mnemonic !== secureStorage?.mnemonic);
 
         //Init serviceInstanceMap
         const accounts = await ServiceInstance.addServiceInstances({ network, privateKey: privateKeyParam, mnemonic });
