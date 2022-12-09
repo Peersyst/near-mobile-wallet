@@ -169,5 +169,6 @@
     "import_warning_txt": "Información importante sobre la importación de su(s) cuenta(s). Recuerde tener su clave privada y/o mnemonic en un lugar seguro.",
     "import_success_one": "¡Cuenta importada correctament!",
     "import_success_other": "¡Cuentas importadas correctament!",
-    "add_custom_address_warning": "Añade una cuenta con una dirección personalizada y utilízala en lugar de la dirección por defecto, que no es tan amigable para las personas. Será más fácil de recordar y compartir para ti y tus contactos."
+    "add_custom_address_warning": "Añade una cuenta con una dirección personalizada y utilízala en lugar de la dirección por defecto, que no es tan amigable para las personas. Será más fácil de recordar y compartir para ti y tus contactos.",
+    "enter_your_custom_address": "Introduce tu dirección personalizada"
 }

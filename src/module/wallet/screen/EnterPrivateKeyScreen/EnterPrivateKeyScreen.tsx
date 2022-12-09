@@ -34,6 +34,7 @@ const EnterPrivateKeyScreen = ({ onSubmit, submitText }: BaseAddWalletModalScree
             <Form onSubmit={handleSubmit}>
                 <Col gap={30}>
                     <TextField
+                        size="lg"
                         name="privateKey"
                         validators={{ privateKey: true }}
                         label={translate("private_key")}

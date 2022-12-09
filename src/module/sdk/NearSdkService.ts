@@ -241,15 +241,7 @@ export class NearSDKService {
 
     async nameIsChoosalbe(nameId: string): Promise<boolean> {
         const exist = await this.accountExists(nameId);
-
-        const address = this.getAddress();
-        const addressParts = address.split(".").length;
-        const nameParts = nameId.split(".").length;
-
-        const nameIsSuper = nameParts === 2 && nameId.indexOf(`.${this.masterAccount}`) !== -1;
-        const nameIsSub = nameId.indexOf(address) !== -1 && nameParts === addressParts + 1;
-
-        return NearSDKService.nameIdIsValid(nameId) && !exist && (nameIsSuper || nameIsSub);
+        return NearSDKService.nameIdIsValid(nameId) && !exist;
     }
 
     // Amount is in near

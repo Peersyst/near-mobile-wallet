@@ -3,13 +3,14 @@ import styled from "@peersyst/react-native-styled";
 import { CARD_NAVIGATOR_PADDING } from "module/common/component/navigation/CardNavigator/CardNavigator.styles";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { NARVAR_HEIGHT } from "module/common/component/navigation/Navbar/Navbar.styles";
+import { AddWalletModalContentProps } from "./AddWalletModal.types";
 
 export const AddWalletModalRoot = styled(CardNavigatorModal)(({ dimensions }) => ({
     minHeight: dimensions.height * 0.85,
 }));
 
-export const AddWalletModalContent = styled(Col)(({ dimensions }) => ({
+export const AddWalletModalContent = styled(Col)<AddWalletModalContentProps>(({ dimensions, steps }) => ({
     paddingTop: "3%",
-    minHeight: dimensions.height * 0.85 - NARVAR_HEIGHT - CARD_NAVIGATOR_PADDING,
+    minHeight: dimensions.height * 0.85 - NARVAR_HEIGHT - CARD_NAVIGATOR_PADDING / (steps ? 0.5 : 1),
     flex: 1,
 }));

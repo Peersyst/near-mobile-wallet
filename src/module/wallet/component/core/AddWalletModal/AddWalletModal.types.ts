@@ -14,3 +14,7 @@ export interface BaseAddWalletModalScreenProps {
     onSubmit: () => void;
     submitText: string;
 }
+
+export interface AddWalletModalContentProps {
+    steps: boolean;
+}
