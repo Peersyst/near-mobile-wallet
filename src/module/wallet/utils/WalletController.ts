@@ -53,9 +53,9 @@ export default class WalletController {
              */
             if (index === 0) privateKey = pK;
             const newIndex = numOfPrevWallets + index;
-            const baseWallet: UnencryptedWalletInfo = { account, index: newIndex, ...(imported && { imported }) };
+            const baseWallet: UnencryptedWalletInfo = { account, index: newIndex };
             storageWallets.push(baseWallet);
-            newWallets.push({ ...baseWallet, colorIndex: WalletUtils.getWalletColor(account) });
+            newWallets.push({ ...baseWallet, colorIndex: WalletUtils.getWalletColor(account), ...(imported && { imported }) });
             walletIds.push(newIndex);
         }
 
@@ -111,7 +111,7 @@ export default class WalletController {
 
             //Get all the accounts from the private key
             const accounts = await ServiceInstance.addServiceInstances({ network: network, privateKey: walletGroup.privateKey });
-
+            const imported = walletGroup.privateKey !== mainPrivateKey;
             //Recover the old accounts and check if there are deleted accounts
             for (const walletId of walletGroup.walletIds) {
                 const wallet = WalletUtils.getWallet(walletId, oldStorageWallets);
@@ -119,7 +119,11 @@ export default class WalletController {
                     /* eslint-disable no-console */
                     console.warn("Corrupted storage: Wallet not found. WalletId: ", walletId);
                 } else if (accounts.find((a) => a.account === wallet.account)) {
-                    const newWallet = { ...wallet, colorIndex: WalletUtils.getWalletColor(wallet.account) };
+                    const newWallet = {
+                        ...wallet,
+                        colorIndex: WalletUtils.getWalletColor(wallet.account),
+                        ...(imported && { imported: true }),
+                    };
                     newWallets[wallet.index] = newWallet;
                     tempWallets.push(newWallet);
                 } else {
@@ -150,6 +154,7 @@ export default class WalletController {
                 //Delete the wallets and update the wallet.index of secure and unencrypted wallets
                 const { newFinalWallets, newSecureWallets, newStorageWallets } = this.deletedWallets(
                     oldStorageWallets,
+                    newWallets,
                     oldWalletGroups,
                     deletedIds,
                 );
@@ -177,7 +182,7 @@ export default class WalletController {
                         });
                         finalIds.push(newIndex);
                     }
-                    //Update with the new accounts
+                    //Update the secure storage with the new accounts
                     if (finalIds.length > 0) {
                         const newWalletGroup = { privateKey: walletGroup.privateKey, walletIds: finalIds };
                         if (oldWalletGroup) {
@@ -198,7 +203,12 @@ export default class WalletController {
         }
     }
 
-    static deletedWallets(storageWallets: UnencryptedWalletInfo[], walletGroups: SecureWalletInfo[], deletedIds: number[]) {
+    static deletedWallets(
+        storageWallets: UnencryptedWalletInfo[],
+        wallets: Wallet[],
+        walletGroups: SecureWalletInfo[],
+        deletedIds: number[],
+    ) {
         const sortedDeletedIds = deletedIds.sort((a, b) => {
             if (a > b) return 1;
             if (a < b) return -1;
@@ -218,7 +228,8 @@ export default class WalletController {
                 const newIndex = storageWallet.index - currentDeletedIndex;
                 newIndexNumberMap.set(storageWallet.index, newIndex);
                 newStorageWallets.push({ ...storageWallet, index: newIndex });
-                newFinalWallets.push({ ...storageWallet, index: newIndex, colorIndex: WalletUtils.getWalletColor(storageWallet.account) });
+                const wallet = WalletUtils.getWallet(storageWallet.index, wallets);
+                if (wallet) newFinalWallets.push({ ...wallet, index: newIndex });
             }
         }
         for (const walletGroup of walletGroups) {
