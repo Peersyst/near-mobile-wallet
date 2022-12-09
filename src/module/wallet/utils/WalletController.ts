@@ -168,16 +168,15 @@ export default class WalletController {
                     //Add new accounts
                     for (const { account } of walletGroup.newWallets) {
                         const newIndex = finalStorageWallets.length;
-                        const newBaseWallet: UnencryptedWalletInfo = { account, index: newIndex };
+                        const newBaseWallet: UnencryptedWalletInfo = { account, index: newIndex, ...(imported && { imported }) };
                         finalStorageWallets.push(newBaseWallet);
                         finalWallets.push({
                             ...newBaseWallet,
                             colorIndex: WalletUtils.getWalletColor(account),
-                            ...(imported && { imported }),
                         });
                         finalIds.push(newIndex);
                     }
-                    //Update with the new accounts
+                    //Update the secure storage with the new accounts
                     if (finalIds.length > 0) {
                         const newWalletGroup = { privateKey: walletGroup.privateKey, walletIds: finalIds };
                         if (oldWalletGroup) {
