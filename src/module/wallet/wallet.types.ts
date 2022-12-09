@@ -9,7 +9,6 @@ export interface BaseWallet {
  */
 export interface UnencryptedWalletInfo extends BaseWallet {
     uncommittedTransactionHashes?: string[];
-    imported?: boolean;
     account: string;
 }
 
