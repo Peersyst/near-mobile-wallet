@@ -1,7 +1,7 @@
 import { ExposedBackdropProps, useToast } from "@peersyst/react-native-components";
 import { ReactNode, useState } from "react";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import { AddWalletModalRoot } from "./AddWalletModal.styles";
+import { AddWalletModalContent, AddWalletModalRoot } from "./AddWalletModal.styles";
 import useImportWallets from "module/wallet/hook/useImportWallets";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
@@ -53,7 +53,7 @@ const AddWalletModal = ({
 
     return (
         <AddWalletModalRoot open={open} onClose={handleClose} navbar={{ back: true, title, onBack }} onExited={handleExited} {...rest}>
-            {renderProps(handleWalletCreation)}
+            <AddWalletModalContent>{renderProps(handleWalletCreation)}</AddWalletModalContent>
         </AddWalletModalRoot>
     );
 };

@@ -32,10 +32,7 @@ export const MnemonicInput = (): JSX.Element => {
 
     return (
         <Col gap={24}>
-            <Col gap={24} style={{ minHeight: 290 }}>
-                <Advise title={translate("mnemonic")} text={translate("mnemonic_input_text")} />
-                <MnemonicList mnemonic={mnemonic} onPress={handleWordPress} />
-            </Col>
+            <Advise title={translate("mnemonic")} text={translate("mnemonic_input_text")} />
             <TextField
                 autoCorrect={false}
                 autoCapitalize="none"
@@ -46,6 +43,7 @@ export const MnemonicInput = (): JSX.Element => {
                 placeholder={translate("add_a_word")}
                 disabled={mnemonic.length > 11}
             />
+            <MnemonicList mnemonic={mnemonic} onPress={handleWordPress} />
         </Col>
     );
 };

@@ -36,3 +36,4 @@ export * from "./SuccessIcon";
 export * from "./TransactionReceivedIcon";
 export * from "./TransactionSentIcon";
 export * from "./WalletIcon";
+export * from "./YourverycoolidIcon";

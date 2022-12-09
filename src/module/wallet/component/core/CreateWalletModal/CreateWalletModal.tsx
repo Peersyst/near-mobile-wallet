@@ -6,6 +6,7 @@ import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScr
 import { useState } from "react";
 import AddWalletModal from "module/wallet/component/core/AddWalletModal/AddWalletModal";
 import { useTranslate } from "module/common/hook/useTranslate";
+import AddCustomNameWarning from "module/wallet/screen/AddCustomNameWarning/AddCustomNameWarning";
 
 const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
     const [index, setIndex] = useState(0);
@@ -15,7 +16,7 @@ const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
             {(handleWalletCreation) => (
                 <Tabs index={index} onIndexChange={setIndex}>
                     <TabPanel index={0}>
-                        <SetWalletNameScreen onSubmit={() => setIndex(1)} submitText={translate("next")} />
+                        <AddCustomNameWarning />
                     </TabPanel>
                     <TabPanel index={1}>
                         <WalletAdvisesScreen onNextScreen={() => setIndex(2)} nextScreenText={translate("generate_mnemonic")} />
