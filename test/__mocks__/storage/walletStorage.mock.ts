@@ -2,19 +2,18 @@ import BaseMock from "mocks/common/base.mock";
 import { MnemonicMocked } from "mocks/MnemonicMocked";
 import { SecureWalletInfo, SecureWalletStorageType, UnencryptedWalletInfo } from "module/wallet/wallet.types";
 import { MOCKED_PK } from "test-mocks";
+import { WalletStorage } from "module/wallet/WalletStorage";
 
 export class UnencryptedWalletInfoMock extends BaseMock implements UnencryptedWalletInfo {
     account: string;
     index: number;
-    imported?: boolean;
     uncommittedTransactionHashes?: string[];
 
-    constructor({ index, account, uncommittedTransactionHashes = [], imported = false }: Partial<UnencryptedWalletInfo> = {}) {
+    constructor({ index, account, uncommittedTransactionHashes = [] }: Partial<UnencryptedWalletInfo> = {}) {
         super();
         this.index = index ?? 0;
         this.account = account ?? "firstWallet";
         this.uncommittedTransactionHashes = uncommittedTransactionHashes;
-        this.imported = imported;
     }
 }
 
@@ -75,6 +74,7 @@ export class SecureWalletStorageTypeMock extends BaseMock implements SecureWalle
         this.testnet = testnet;
         this.mainnet = mainnet;
         this.mainPrivateKey = mainPrivateKey;
+        this.mock = jest.spyOn(WalletStorage, "getSecure").mockResolvedValue(this);
     }
 }
 

@@ -3,6 +3,7 @@ import { StorageWallet } from "../wallet.types";
 
 export type Wallet = StorageWallet & {
     colorIndex: number;
+    imported?: boolean;
 };
 
 export interface WalletState {
