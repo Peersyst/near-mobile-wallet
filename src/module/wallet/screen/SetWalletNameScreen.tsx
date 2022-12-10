@@ -27,10 +27,11 @@ const SetWalletNameScreen = ({ onSubmit, submitText }: SetWalletNameScreenProps)
     const translate = useTranslate();
     const translateError = useTranslate("error");
     const { value, handleChange, debouncedValue, debouncing } = useDebounce("");
-    const { data: available = false, isLoading: nameLoading } = useCheckNameAvailability(debouncedValue + ".near");
+    const finalName = debouncedValue + ".near";
+    const { data: available = false, isLoading: nameLoading } = useCheckNameAvailability(finalName);
 
     const handleSubmit = ({ walletName }: SetWalletNameForm) => {
-        setName(walletName);
+        setName(walletName + ".near");
         onSubmit();
     };
 
@@ -48,11 +49,11 @@ const SetWalletNameScreen = ({ onSubmit, submitText }: SetWalletNameScreenProps)
                                 .near
                             </Typography>
                         }
-                        hint={success ? translate("name_available", { name: value }) : undefined}
+                        hint={success ? translate("name_available", { name: finalName }) : undefined}
                         name="walletName"
                         defaultValue={""}
                         value={value}
-                        error={[error, translateError("invalid_name_ID", { nameID: value })]}
+                        error={[error, translateError("invalid_name_ID", { nameID: finalName })]}
                         onChange={handleChange}
                         placeholder="mycooldid"
                         hideError={false}

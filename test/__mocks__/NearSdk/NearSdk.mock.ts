@@ -19,6 +19,7 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
     getNfts: MockFnType;
     getAccountTokens: MockFnType;
     getAccountBalance: MockFnType;
+    nameIsChoosalbe: MockFnType;
     //TODO: add here all the mock fn that are needed
 
     constructor() {
@@ -28,5 +29,6 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
         this.getNfts = jest.fn();
         this.getAccountTokens = jest.fn().mockResolvedValue(new TokensMock());
         this.getAccountBalance = jest.fn().mockResolvedValue(new AccountBalanceMock());
+        this.nameIsChoosalbe = jest.fn().mockResolvedValue(true);
     }
 }

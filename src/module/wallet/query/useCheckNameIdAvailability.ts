@@ -10,7 +10,7 @@ const useCheckNameAvailability = (name?: string): UseQueryResult<boolean> => {
             return await serviceInstance?.nameIsChoosalbe(name!);
         },
         {
-            enabled: !!name && !!serviceInstance,
+            enabled: !!name && name !== ".near" && !!serviceInstance,
             cacheTime: 0,
         },
     );
