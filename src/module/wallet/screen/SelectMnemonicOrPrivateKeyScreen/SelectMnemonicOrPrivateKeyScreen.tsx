@@ -17,7 +17,7 @@ const SelectMnemonicOrPrivateKeyScreen = ({ onSubmit }: SelectMnemonicOrPrivateK
     };
 
     return (
-        <Col gap="10%">
+        <Col gap="10%" flex={1} justifyContent="space-between">
             <Advise title={translate("import_warning_title")} text={translate("import_warning_txt")} gap="2%" />
             <Col gap="5%">
                 <Button fullWidth onPress={() => handlePress("mnemonic")}>
