@@ -23,10 +23,7 @@ const ALLOWED_INIDICATIONS: TransaltionResourceType[] = ["allowed_lowercase_char
 const NOT_ALLOWED_INIDICATIONS: TransaltionResourceType[] = ["not_allowed_chars", "near_account_min_chars", "near_account_max_chars"];
 
 const SetWalletNameScreen = ({ onSubmit, submitText }: SetWalletNameScreenProps): JSX.Element => {
-    const {
-        setName,
-        state: { name },
-    } = useCreateWallet();
+    const { setName } = useCreateWallet();
     const translate = useTranslate();
     const translateError = useTranslate("error");
     const { value, handleChange, debouncedValue, debouncing } = useDebounce("");

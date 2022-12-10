@@ -1,5 +1,4 @@
 import { createModal, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
-import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
 import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen/PickWalletMnemonicScreen";
 import { useState } from "react";
