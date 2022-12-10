@@ -1,5 +1,4 @@
 import { render, translate } from "test-utils";
-import * as UseCreateWalletState from "module/wallet/hook/useCreateWallet";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
 import { UseCreateWalletMock } from "test-mocks";
