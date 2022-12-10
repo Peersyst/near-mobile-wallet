@@ -170,5 +170,14 @@
     "import_success_one": "¡Cuenta importada correctament!",
     "import_success_other": "¡Cuentas importadas correctament!",
     "add_custom_address_warning": "Añade una cuenta con una dirección personalizada y utilízala en lugar de la dirección por defecto, que no es tan amigable para las personas. Será más fácil de recordar y compartir para ti y tus contactos.",
-    "enter_your_custom_address": "Introduce tu dirección personalizada"
+    "enter_your_custom_address": "Introduce tu dirección personalizada",
+    "you_cant_use": "No puedes utilizar",
+    "you_can_use": "Puedes utilizar",
+    "allowed_lowercase_chars": "Carácteres en minúscula (a-z)",
+    "allowed_digits": "Números (0-9)",
+    "allowed_separators_chars": "Los carácteres (_-.) se pueden usar como separadores",
+    "not_allowed_chars": "El carácter '@'",
+    "near_account_min_chars": "Menos de 2 carácteres",
+    "near_account_max_chars": "Más de 59 carácteres (64 es el máximo contanto '.near')",
+    "name_available": "¡Bien! {{name}} está disponible"
 }

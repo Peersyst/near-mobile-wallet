@@ -19,7 +19,7 @@
     "invalid_start": "The field must start with {{start}}",
     "invalid_end": "The field must end with {{end}}",
     "nothing_to_show": "Nothing to show",
-    "invalid_address": "Invalid address",
+    "invalid_address": "Dirección inválida",
     "copied_to_clipboard": "Copied to clipboard",
     "invalid_private_key": "Invalid private key",
     "private_key_already_exists": "Ya tenías la llave privada importada",

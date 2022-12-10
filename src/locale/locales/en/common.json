@@ -170,5 +170,14 @@
     "import_success_one": "Account imported successfully",
     "import_success_other": "Accounts imported successfully",
     "add_custom_address_warning": "Add a custom address account and use it instead of the not so human friendly default address. It will be easier for you and your contacts to remember and share.",
-    "enter_your_custom_address": "Enter your custom address"
+    "enter_your_custom_address": "Enter your custom address",
+    "you_cant_use": "You can't use",
+    "you_can_use": "You can use",
+    "allowed_lowercase_chars": "Lowercase characters (a-z)",
+    "allowed_digits": "Digits (0-9)",
+    "allowed_separators_chars": "Characters (_-.) can be used as separators",
+    "not_allowed_chars": "Character '@'",
+    "near_account_min_chars": "Fewer than 2 characters",
+    "near_account_max_chars": "More than 59 characters (64 is the limit counting '.near')",
+    "name_available": "Great! {{name}} is available"
 }
