@@ -16,7 +16,7 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
             //After all clean createWalletState
             resetCreateWalletState();
         };
-        setTimeout(setStorage, 1000); //TODO: Revise this timeout
+        setStorage();
     }, []);
 
     return <></>;
