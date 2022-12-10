@@ -30,23 +30,20 @@ const EnterPrivateKeyScreen = ({ onSubmit, submitText }: BaseAddWalletModalScree
     };
 
     return (
-        <Col gap="10%">
-            <Form onSubmit={handleSubmit}>
-                <Col gap={30}>
-                    <TextField
-                        size="lg"
-                        name="privateKey"
-                        validators={{ privateKey: true }}
-                        label={translate("private_key")}
-                        placeholder={translate("enter_private_key")}
-                        required
-                    />
-                    <Button fullWidth type="submit" loading={loading}>
-                        {submitText}
-                    </Button>
-                </Col>
-            </Form>
-        </Col>
+        <Form onSubmit={handleSubmit} style={{ flex: 1 }}>
+            <Col gap="10%" flex={1} justifyContent="space-between">
+                <TextField
+                    name="privateKey"
+                    validators={{ privateKey: true }}
+                    label={translate("private_key")}
+                    placeholder={translate("enter_private_key")}
+                    required
+                />
+                <Button fullWidth type="submit" loading={loading}>
+                    {submitText}
+                </Button>
+            </Col>
+        </Form>
     );
 };
 

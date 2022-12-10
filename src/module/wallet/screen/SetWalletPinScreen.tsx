@@ -14,14 +14,17 @@ const SetWalletPinScreen = ({ onCancel, onSuccess }: SetWalletPinScreen): JSX.El
         state: { pin },
     } = useCreateWallet();
     const translate = useTranslate();
+
     const handleRepeatPinSubmit = (p: string) => {
         setWalletPin(p);
     };
+
     useEffect(() => {
         if (pin) {
             onSuccess();
         }
-    }, [pin]);
+    }, [pin, onSuccess]);
+
     return <RepeatNumericPad belowLogo onCancel={onCancel} placeholder={translate("enter_your_pin")} onSuccess={handleRepeatPinSubmit} />;
 };
 
