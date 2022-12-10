@@ -42,7 +42,7 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: BaseAddWalletModalS
     return (
         <Col justifyContent="flex-end" flex={1}>
             <Form onSubmit={handleSubmit} style={{ flex: 1 }}>
-                <Col gap={24} flex={1} justifyContent="space-between">
+                <Col gap={24} flex={1}>
                     <MnemonicInput />
                     <Button type="submit" fullWidth loading={loading}>
                         {submitText}
