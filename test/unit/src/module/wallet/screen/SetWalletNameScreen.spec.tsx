@@ -1,11 +1,11 @@
 import { render, translate, screen } from "test-utils";
-import SetWalletNameScreen from "module/wallet/screen/SetWalletNameScreen";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { UseCreateWalletMock, UseServiceInstanceMock } from "test-mocks";
+import SetAccountNameScreen from "module/wallet/screen/SetAccountNameScreen/SetAccountNameScreen";
 
-describe("SetWalletNameScreen tests", () => {
+describe("SetAccountNameScreen tests", () => {
     test("Renders correctly", () => {
-        render(<SetWalletNameScreen onSubmit={() => undefined} submitText="Submit" />);
+        render(<SetAccountNameScreen onSubmit={() => undefined} submitText="Submit" />);
         expect(screen.getByText(translate("enter_your_custom_address"))).toBeDefined();
         expect(screen.getByText("Submit")).toBeDefined();
     });
@@ -15,7 +15,7 @@ describe("SetWalletNameScreen tests", () => {
         const { setName } = new UseCreateWalletMock();
         const { serviceInstance } = new UseServiceInstanceMock();
 
-        render(<SetWalletNameScreen onSubmit={handleSubmit} submitText="Submit" />);
+        render(<SetAccountNameScreen onSubmit={handleSubmit} submitText="Submit" />);
         const nameInput = screen.getByPlaceholderText("mycooldid");
         expect(nameInput).toBeDefined();
 

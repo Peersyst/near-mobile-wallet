@@ -1,19 +1,19 @@
 import { Col, Form } from "@peersyst/react-native-components";
-import TextField from "module/common/component/input/TextField/TextField";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useTranslate } from "module/common/hook/useTranslate";
 import Typography from "module/common/component/display/Typography/Typography";
 import { useDebounce } from "@peersyst/react-hooks";
-import useCheckNameAvailability from "../query/useCheckNameIdAvailability";
+import useCheckNameAvailability from "../../query/useCheckNameIdAvailability";
 import ExplanationList from "module/common/component/display/ExplanationList/ExplanationList";
 import { TransaltionResourceType } from "locale";
+import { AccountNameTextField } from "./SetAccountNameScreen.styles";
 
 interface SetWalletNameForm {
     walletName: string;
 }
 
-export interface SetWalletNameScreenProps {
+export interface SetAccountNameScreenProps {
     onSubmit: () => void;
     submitText: string;
 }
@@ -22,7 +22,7 @@ const ALLOWED_INIDICATIONS: TransaltionResourceType[] = ["allowed_lowercase_char
 
 const NOT_ALLOWED_INIDICATIONS: TransaltionResourceType[] = ["not_allowed_chars", "near_account_min_chars", "near_account_max_chars"];
 
-const SetWalletNameScreen = ({ onSubmit, submitText }: SetWalletNameScreenProps): JSX.Element => {
+const SetAccountNameScreen = ({ onSubmit, submitText }: SetAccountNameScreenProps): JSX.Element => {
     const { setName } = useCreateWallet();
     const translate = useTranslate();
     const translateError = useTranslate("error");
@@ -36,14 +36,14 @@ const SetWalletNameScreen = ({ onSubmit, submitText }: SetWalletNameScreenProps)
     };
 
     const finalLoding = debouncing || nameLoading;
-    const error = !available;
+    const error = !available && debouncedValue.length > 0 && debouncedValue.length < 59;
     const success = !finalLoding && available;
 
     return (
         <Form onSubmit={handleSubmit} style={{ flex: 1 }}>
             <Col flex={1} gap={30}>
                 <Col gap="7%" flex={1}>
-                    <TextField
+                    <AccountNameTextField
                         suffix={
                             <Typography variant="body2Strong" style={{ fontSize: 16 }}>
                                 .near
@@ -73,4 +73,4 @@ const SetWalletNameScreen = ({ onSubmit, submitText }: SetWalletNameScreenProps)
     );
 };
 
-export default SetWalletNameScreen;
+export default SetAccountNameScreen;
