@@ -22,6 +22,6 @@
     "invalid_address": "Invalid address",
     "copied_to_clipboard": "Copied to clipboard",
     "invalid_private_key": "Invalid private key",
-    "private_key_already_exists": "Ya tenías la llave privada importada",
-    "mnemonic_already_exists": "Ya tenías el mnemonic importado"
+    "private_key_already_exists": "You have already imported the private key",
+    "mnemonic_already_exists": "You had already imported the mnemonic"
 }
