@@ -19,10 +19,13 @@ const ALLOWED_INIDICATIONS: TransaltionResourceType[] = ["allowed_lowercase_char
 const NOT_ALLOWED_INIDICATIONS: TransaltionResourceType[] = ["not_allowed_chars", "near_account_min_chars", "near_account_max_chars"];
 
 const SetAccountNameScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreenProps): JSX.Element => {
-    const { setName } = useCreateWallet();
+    const {
+        setName,
+        state: { name = "" },
+    } = useCreateWallet();
     const translate = useTranslate();
     const translateError = useTranslate("error");
-    const { value, handleChange, debouncedValue, debouncing } = useDebounce("");
+    const { value, handleChange, debouncedValue, debouncing } = useDebounce(name.substring(0, name.length - 5));
     const finalName = debouncedValue + ".near";
     const { data: available = false, isLoading: nameLoading } = useCheckNameAvailability(finalName);
 
@@ -33,7 +36,7 @@ const SetAccountNameScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreen
 
     const finalLoding = debouncing || nameLoading;
     const error = !available && debouncedValue.length > 0 && debouncedValue.length < 59;
-    const success = !finalLoding && available;
+    const success = !finalLoding && available && finalName !== name;
 
     return (
         <Form onSubmit={handleSubmit} style={{ flex: 1 }}>
