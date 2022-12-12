@@ -6,6 +6,7 @@ import AddWalletModal from "module/wallet/component/core/AddWalletModal/AddWalle
 import { useTranslate } from "module/common/hook/useTranslate";
 import AddCustomNameWarning from "module/wallet/screen/AddCustomNameWarning/AddCustomNameWarning";
 import SetAccountNameScreen from "module/wallet/screen/SetAccountNameScreen/SetAccountNameScreen";
+import SelectFundingAccount from "module/wallet/screen/SelectFundingAccount/SelectFundingAccount";
 
 const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
     const [index, setIndex] = useState(0);
@@ -33,7 +34,7 @@ const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
                         <SetAccountNameScreen onSubmit={() => setIndex(2)} submitText={translate("continue")} />
                     </TabPanel>
                     <TabPanel index={2}>
-                        <WalletMnemonicScreen onNextScreen={() => setIndex(3)} />
+                        <SelectFundingAccount onNextScreen={() => setIndex(3)} />
                     </TabPanel>
                     <TabPanel index={3}>
                         <PickWalletMnemonicScreen onSubmit={handleWalletCreation} />
