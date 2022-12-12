@@ -9,6 +9,8 @@ import { ChevronDownIcon } from "icons";
 import darkTheme from "config/theme/darkTheme";
 import { AddressValidator } from "./validators/AddressValidator";
 import { PrivateKeyValidator } from "./validators/PrivateKeyValidator";
+import { RadioCheckedIcon } from "module/common/icons/RadioCheckedIcon";
+import { RadioUncheckedIcon } from "module/common/icons/RadioUncheckedIcon";
 
 const envConfigs: Record<string, CreateConfig> = {
     test: { ...baseConfig, ...devConfig },
@@ -62,6 +64,12 @@ const config = createConfig({
         TextInput: {
             defaultProps: {
                 errorElement: false,
+            },
+        },
+        RadioButton: {
+            defaultProps: {
+                icon: <RadioUncheckedIcon />,
+                checkedIcon: <RadioCheckedIcon />,
             },
         },
     },

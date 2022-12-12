@@ -181,5 +181,6 @@
     "near_account_max_chars": "More than 59 characters (64 is the limit counting '.near')",
     "name_available": "Great! {{name}} is available",
     "select_funding_acc_explanation_1": "You need to fund it with ",
-    "select_funding_acc_explanation_2": " You can fund it with an existing account or import a new one."
+    "select_funding_acc_explanation_2": " You can fund it with an existing account.",
+    "select_funding_acc": "Select funding account"
 }

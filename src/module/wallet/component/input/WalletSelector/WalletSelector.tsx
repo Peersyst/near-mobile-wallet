@@ -1,9 +1,8 @@
 import Select, { SelectProps } from "module/common/component/input/Select/Select";
-import useWalletState from "module/wallet/hook/useWalletState";
 import WalletItem from "./WalletItem";
 import WalletSelectorItem from "./WalletSelectorItem";
-import { useControlled } from "@peersyst/react-hooks";
 import { useTranslate } from "module/common/hook/useTranslate";
+import useWalletSelector from "module/wallet/hook/useWalletSelector";
 
 export type WalletSelectorProps = Omit<
     SelectProps<number>,
@@ -11,21 +10,14 @@ export type WalletSelectorProps = Omit<
 >;
 
 const WalletSelector = ({ style, value, onChange, defaultValue, ...rest }: WalletSelectorProps): JSX.Element => {
-    const {
-        state: { wallets, selectedWallet: defaultAccount = 0 },
-    } = useWalletState();
     const translate = useTranslate();
-    const [selectedIndex, setSelectedIndex] = useControlled((defaultValue as number) ?? defaultAccount, value as number, onChange);
-    const selectedWallet = selectedIndex !== undefined ? wallets[selectedIndex] : undefined;
 
-    const handleItemChange = (i: unknown) => {
-        setSelectedIndex(i as number);
-    };
+    const { selectedIndex, selectedWallet, handleChange, wallets } = useWalletSelector({ value, onChange, defaultValue });
 
     return (
         <Select
             value={selectedIndex}
-            onChange={handleItemChange}
+            onChange={handleChange}
             style={style}
             title={translate("select_a_wallet")}
             placeholder={translate("no_account_selected")}

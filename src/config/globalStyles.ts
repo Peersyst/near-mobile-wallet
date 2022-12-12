@@ -36,6 +36,11 @@ const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography } }) =>
             opacity: 1,
         },
     },
+    RadioButton: {
+        label: {
+            ...typography.body3Strong,
+        },
+    },
 });
 
 export default globalStyles;
