@@ -22,9 +22,14 @@ const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography } }) =>
     FormControlError: {
         fontSize: 14,
     },
-    Label: {
+    FormControlLabel: {
         label: {
             ...typography.body2Strong,
+        },
+    },
+    Label: {
+        label: {
+            ...typography.body3Strong,
         },
     },
     Paper: {
@@ -34,11 +39,6 @@ const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography } }) =>
         light: {
             color: palette.gray[300],
             opacity: 1,
-        },
-    },
-    RadioButton: {
-        label: {
-            ...typography.body3Strong,
         },
     },
 });

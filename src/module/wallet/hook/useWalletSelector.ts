@@ -11,9 +11,7 @@ export default function useWalletSelector({ defaultValue, value, onChange }: Use
     const [selectedIndex, setSelectedIndex] = useControlled((defaultValue as number) ?? defaultAccount, value as number, onChange);
     const selectedWallet = selectedIndex !== undefined ? wallets[selectedIndex] : undefined;
 
-    const handleChange = (i: number) => {
-        setSelectedIndex(i);
-    };
+    const handleChange = (i: number) => setSelectedIndex(i);
 
     return {
         selectedIndex,
