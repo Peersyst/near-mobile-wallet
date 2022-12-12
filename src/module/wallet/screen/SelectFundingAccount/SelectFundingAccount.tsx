@@ -8,8 +8,8 @@ import WalletSelectorGroup from "module/wallet/component/input/WalletSelectorGro
 const SelectFundingAccount = ({ onSubmit, submitText }: BaseAddWalletModalScreenProps) => {
     const translate = useTranslate();
 
-    const handleSubmit = () => {
-        onSubmit?.();
+    const handleSubmit = (a: any) => {
+        console.log("submit", a);
     };
     return (
         <Form onSubmit={handleSubmit} style={{ flex: 1 }}>
@@ -22,7 +22,7 @@ const SelectFundingAccount = ({ onSubmit, submitText }: BaseAddWalletModalScreen
                         </Typography>
                         {translate("select_funding_acc_explanation_2")}
                     </Typography>
-                    <WalletSelectorGroup defaultValue={undefined} value={undefined} onChange={undefined} />
+                    <WalletSelectorGroup required name="hola" />
                 </Col>
                 <Button fullWidth type="submit">
                     {submitText}

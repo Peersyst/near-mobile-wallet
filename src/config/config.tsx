@@ -46,6 +46,7 @@ const config = createConfig({
         Label: {
             defaultProps: {
                 variant: "body3Strong",
+                numberOfLines: 1,
             },
         },
         Modal: {

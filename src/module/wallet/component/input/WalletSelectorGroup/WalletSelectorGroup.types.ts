@@ -1,4 +1,5 @@
 import { SelectorGroupProps } from "@peersyst/react-native-components";
 
-export type WalletSelectorProps = Pick<SelectorGroupProps<number>, "onChange" | "value" | "defaultValue"> &
-    Partial<Pick<SelectorGroupProps<number>, "label">>;
+export type WalletSelectorProps = Partial<
+    Pick<SelectorGroupProps<number>, "label" | "name" | "required" | "disabled" | "readonly" | "onChange" | "value" | "defaultValue">
+>;
