@@ -8,21 +8,17 @@ import useCheckNameAvailability from "../../query/useCheckNameIdAvailability";
 import ExplanationList from "module/common/component/display/ExplanationList/ExplanationList";
 import { TransaltionResourceType } from "locale";
 import { AccountNameTextField } from "./SetAccountNameScreen.styles";
+import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
 
 interface SetWalletNameForm {
     walletName: string;
-}
-
-export interface SetAccountNameScreenProps {
-    onSubmit: () => void;
-    submitText: string;
 }
 
 const ALLOWED_INIDICATIONS: TransaltionResourceType[] = ["allowed_lowercase_chars", "allowed_digits", "allowed_separators_chars"];
 
 const NOT_ALLOWED_INIDICATIONS: TransaltionResourceType[] = ["not_allowed_chars", "near_account_min_chars", "near_account_max_chars"];
 
-const SetAccountNameScreen = ({ onSubmit, submitText }: SetAccountNameScreenProps): JSX.Element => {
+const SetAccountNameScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreenProps): JSX.Element => {
     const { setName } = useCreateWallet();
     const translate = useTranslate();
     const translateError = useTranslate("error");
