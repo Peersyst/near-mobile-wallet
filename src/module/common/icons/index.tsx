@@ -25,6 +25,8 @@ export * from "./NewsIcon";
 export * from "./NotificationIcon";
 export * from "./PinIcon";
 export * from "./PlusIcon";
+export * from "./RadioCheckedIcon";
+export * from "./RadioUncheckedIcon";
 export * from "./ReceiveIcon";
 export * from "./RefreshIcon";
 export * from "./ScanIcon";

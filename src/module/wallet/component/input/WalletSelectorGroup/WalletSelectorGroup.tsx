@@ -12,6 +12,7 @@ const WalletSelectorGroup = ({ value, defaultValue, onChange, label }: WalletSel
             value={selectedIndex}
             onChange={handleChange}
             label={label || translate("select_funding_acc")}
+            style={{ label: { color: "red" } }}
             options={[...wallets, ...wallets].map(({ account, index }, i) => ({ label: account, value: i }))}
         />
     );
