@@ -14,7 +14,7 @@ const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
     return (
         <AddWalletModal
             steps={
-                index
+                index !== 0 && index !== 4
                     ? {
                           index: index - 1,
                           length: 3,
@@ -34,7 +34,7 @@ const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
                         <SetAccountNameScreen onSubmit={() => setIndex(2)} submitText={translate("continue")} />
                     </TabPanel>
                     <TabPanel index={2}>
-                        <SelectFundingAccount onNextScreen={() => setIndex(3)} />
+                        <SelectFundingAccount onSubmit={() => setIndex(3)} submitText={translate("continue")} />
                     </TabPanel>
                     <TabPanel index={3}>
                         <PickWalletMnemonicScreen onSubmit={handleWalletCreation} />
