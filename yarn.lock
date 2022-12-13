@@ -2041,13 +2041,13 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@peersyst/react-components-core@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-1.0.6.tgz#008e8852ebdd8f150e1204e6836b8156aa5412ba"
-  integrity sha512-IiOP9iJS1IfhgScIuSegBObHewusBUX3jinfe7EmZu7ghEECRrC+EBOZhK/FjjenZQmB8FUXFUpiSkuJru3teQ==
+"@peersyst/react-components-core@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-1.0.8.tgz#39bd97bcfeda8b53d378d48b2fbfefa2473b8184"
+  integrity sha512-AEzcI9GPBOujNtzI5ZKWPPKgJCBZn5F8txKMwkU/cJ1UmYdZ8N88JgsrLzXGy/kcdCTh7fog18/VytKUdnshug==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-hooks" "^2.0.2"
+    "@peersyst/react-hooks" "^2.0.3"
     "@peersyst/react-types" "^1.5.0"
     "@peersyst/react-utils" "^2.1.0"
     validator "^13.7.0"
@@ -2060,14 +2060,22 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^2.1.0"
 
-"@peersyst/react-native-components@^2.0.16":
-  version "2.0.16"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-2.0.16.tgz#3a24ba4139dc3a1cec46b27d1b6dd0927e544975"
-  integrity sha512-89cQTHrTztOO9A5Sw0C+2MY6bqhbdClWNRkD2O3G151IrcnsP3XoOJ2/g0KyCoB+Q+CYTxQaMskufcFDeKZuEQ==
+"@peersyst/react-hooks@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-2.0.3.tgz#0f21e67c9359b63c912ae8f60d51ddf200f72b7a"
+  integrity sha512-+pheqYb7krRQTVaV9EauGYx1n0ki+rEllIYNwVRRlMCVC87zliugWWtC7/n2LjhWGmifAc57YeU1rYyFYJ0Q+g==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-components-core" "^1.0.6"
-    "@peersyst/react-hooks" "^2.0.2"
+    "@peersyst/react-utils" "^2.1.0"
+
+"@peersyst/react-native-components@^2.0.18":
+  version "2.0.18"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-2.0.18.tgz#8e792382d8c891d21353d49d7742733a6e1edb5e"
+  integrity sha512-pR1c/rmlaCJpFn/a6StxpNhACq0yAhCKoVtpFuc6zCdz5Oo6ci7LGM1ihcnHfa+ZPkB/Pe7JQbVrn2v0kecOSQ==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+    "@peersyst/react-components-core" "^1.0.8"
+    "@peersyst/react-hooks" "^2.0.3"
     "@peersyst/react-native-styled" "^2.0.0"
     "@peersyst/react-native-utils" "^1.0.1"
     "@peersyst/react-types" "^1.5.0"
