@@ -1,27 +1,28 @@
-import { Row, Selector, SelectorGroup } from "@peersyst/react-native-components";
+import { SelectorGroup } from "@peersyst/react-native-components";
+import { config } from "config";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useWalletSelector from "module/wallet/hook/useWalletSelector";
-import AccountBalance from "../../display/AccountBalance/AccountBalance";
+import AccountSelector from "module/wallet/screen/SelectFundingAccount/AccountSelector";
 import { WalletSelectorProps } from "./WalletSelectorGroup.types";
 
-const WalletSelectorGroup = ({ value, defaultValue, onChange, label, ...rest }: WalletSelectorProps) => {
-    const { selectedIndex, handleChange, wallets } = useWalletSelector({ value, onChange, defaultValue });
-
+const WalletSelectorGroup = ({ value, defaultValue = 0, onChange, label, ...rest }: WalletSelectorProps) => {
+    const { selectedIndex, handleChange, wallets, error } = useWalletSelector({ value, defaultValue });
     const translate = useTranslate();
+    const translateError = useTranslate("error");
+
     return (
         <SelectorGroup
             LabelProps={{ gap: "7%" }}
             label={label || translate("select_funding_acc")}
             gap="7%"
+            style={{ component: { width: "100%" } }}
             value={selectedIndex}
+            error={[error, translateError("invalid_seleccted_account", { amountInNEAR: config.minBalanceToCreateAccount })]}
             onChange={handleChange}
             {...rest}
         >
             {wallets.map(({ index, account }, i) => (
-                <Row alignItems="center" key={i} justifyContent="space-between" style={{ width: "100%" }}>
-                    <Selector value={index} label={account} />
-                    <AccountBalance index={index} key={index} variant="body3Strong" units="token" light />
-                </Row>
+                <AccountSelector key={i} index={index} account={account} />
             ))}
         </SelectorGroup>
     );

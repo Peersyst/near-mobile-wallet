@@ -21,6 +21,8 @@ declare module "@peersyst/react-native-components" {
         testnetNodeUrl: string;
         coingeckoTokenApiId: string;
         fetchPriceConversionInterval: number;
+        minBalanceToCreateAccount: string;
+        estimatedFee: string;
     }
 
     export interface CreateConfig {
@@ -37,6 +39,8 @@ declare module "@peersyst/react-native-components" {
         testnetNodeUrl: string;
         coingeckoTokenApiId: string;
         fetchPriceConversionInterval: number;
+        minBalanceToCreateAccount: string;
+        estimatedFee: string;
     }
 
     export interface ExtraValidators {

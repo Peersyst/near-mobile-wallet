@@ -11,6 +11,7 @@ export interface CreateWalletState {
     mnemonic?: string[] | undefined;
     privateKey?: string | undefined;
     importWithPrivateKey?: boolean;
+    fundingAccount?: number;
 }
 
 const createWalletState = atom<CreateWalletState>({

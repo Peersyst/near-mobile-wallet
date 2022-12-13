@@ -12,5 +12,7 @@
     "enableMainnet": true,
     "tokenName": "NEAR",
     "coingeckoTokenApiId": "near",
-    "fetchPriceConversionInterval": 180000
+    "fetchPriceConversionInterval": 180000,
+    "minBalanceToCreateAccount": "0.1",
+    "estimatedFee": "100000000000000"
 }

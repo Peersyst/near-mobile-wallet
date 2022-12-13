@@ -1,6 +1,6 @@
 import { CreateGlobalStyles } from "@peersyst/react-native-components";
 
-const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography } }) => ({
+const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography }, dimensions }) => ({
     Divider: {
         backgroundColor: palette.overlay["8%"],
     },
@@ -25,11 +25,13 @@ const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography } }) =>
     FormControlLabel: {
         label: {
             ...typography.body2Strong,
+            maxWidth: "100%",
         },
     },
     Label: {
         label: {
             ...typography.body3Strong,
+            maxWidth: "60%",
         },
     },
     Paper: {
