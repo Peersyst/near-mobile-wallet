@@ -2,7 +2,7 @@ import { SelectorGroup } from "@peersyst/react-native-components";
 import { config } from "config";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useWalletSelector from "module/wallet/hook/useWalletSelector";
-import AccountSelector from "module/wallet/screen/SelectFundingAccount/AccountSelector";
+import AccountSelector from "./AccountSelector";
 import { WalletSelectorProps } from "./WalletSelectorGroup.types";
 
 const WalletSelectorGroup = ({ value, defaultValue = 0, onChange, label, ...rest }: WalletSelectorProps) => {

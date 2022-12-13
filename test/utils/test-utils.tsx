@@ -52,7 +52,10 @@ export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): 
 const customRender = (
     ui: ReactElement,
     { queryClientConfig, ...rest }: Omit<RenderOptions, "wrapper"> & CreateWrapperConfig = {},
-): RenderAPI => render(ui, { wrapper: createWrapper({ queryClientConfig }), ...rest });
+): RenderAPI => {
+    console.log(ui);
+    return render(ui, { wrapper: createWrapper({ queryClientConfig }), ...rest });
+};
 
 const customRenderHook = <TProps, TResult>(
     callback: (props: TProps) => TResult,
