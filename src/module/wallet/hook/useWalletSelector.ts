@@ -7,7 +7,7 @@ import useWalletState from "./useWalletState";
 
 export type UseWalletSelectorParams = Pick<WalletSelectorProps, "value" | "defaultValue" | "onChange">;
 
-export default function useWalletSelector({ defaultValue, value, onChange }: UseWalletSelectorParams) {
+export default function useWalletSelector({ defaultValue, value, onChange }: UseWalletSelectorParams = {}) {
     const {
         state: { wallets, selectedWallet: defaultAccount = 0 },
     } = useWalletState();

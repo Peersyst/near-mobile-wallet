@@ -1,6 +1,6 @@
 import { config } from "config";
 import WalletSelectorGroup from "module/wallet/component/input/WalletSelectorGroup/WalletSelectorGroup";
-import { AccountBalanceMock, UseServiceInstanceMock, UseWalletStateMock, WalletMock, WalletStateMock } from "test-mocks";
+import { AccountBalanceMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 import { fireEvent, render, translate, waitFor } from "test-utils";
 
 describe("WalletSelectorGroup", () => {

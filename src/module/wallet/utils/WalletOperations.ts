@@ -1,4 +1,4 @@
-import { convertNearToYocto, convertYoctoToNear } from "near-peersyst-sdk";
+import { convertNearToYocto } from "near-peersyst-sdk";
 
 export class WalletOperations {
     static isBigger(a: string | number, b: string | number) {
