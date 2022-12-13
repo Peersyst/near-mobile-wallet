@@ -1,5 +1,5 @@
-import { SelectorGroup } from "@peersyst/react-native-components";
 import { config } from "config";
+import SelectorGroup from "module/common/component/input/SelectorGroup/SelectorGroup";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useWalletSelector from "module/wallet/hook/useWalletSelector";
 import AccountSelector from "./AccountSelector";

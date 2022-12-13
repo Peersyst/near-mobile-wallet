@@ -24,6 +24,7 @@ interface UseCreateWalletMockType {
     reset: MockFnType;
     setPrivateKey: MockFnType;
     setImportWithPrivateKey: MockFnType;
+    setFundAccount: MockFnType;
 }
 
 export class UseCreateWalletMock extends BaseMock implements UseCreateWalletMockType {
@@ -34,6 +35,7 @@ export class UseCreateWalletMock extends BaseMock implements UseCreateWalletMock
     setPrivateKey: MockFnType;
     setImportWithPrivateKey: MockFnType;
     reset: MockFnType;
+    setFundAccount: MockFnType;
     constructor({
         state,
         setMnemonic = jest.fn(),
@@ -42,6 +44,7 @@ export class UseCreateWalletMock extends BaseMock implements UseCreateWalletMock
         reset = jest.fn(),
         setImportWithPrivateKey = jest.fn(),
         setPrivateKey = jest.fn(),
+        setFundAccount = jest.fn(),
     }: Partial<UseCreateWalletMockType> = {}) {
         super();
         this.state = state ?? new CreateWalletStateMock();
@@ -51,6 +54,7 @@ export class UseCreateWalletMock extends BaseMock implements UseCreateWalletMock
         this.reset = reset;
         this.setImportWithPrivateKey = setImportWithPrivateKey;
         this.setPrivateKey = setPrivateKey;
+        this.setFundAccount = setFundAccount;
         this.mock = jest.spyOn(UseCreateWallet, "default").mockReturnValue(this);
     }
 }

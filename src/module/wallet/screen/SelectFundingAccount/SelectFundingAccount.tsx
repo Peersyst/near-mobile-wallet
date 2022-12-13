@@ -40,7 +40,7 @@ const SelectFundingAccount = ({ onSubmit, submitText }: BaseAddWalletModalScreen
                         </Typography>
                         {translate("select_funding_acc_explanation_2")}
                     </Typography>
-                    <WalletSelectorGroup name="fundingAccount" />
+                    <WalletSelectorGroup name="fundingAccount" defaultValue={0} />
                 </Col>
                 <Button fullWidth type="submit">
                     {submitText}
