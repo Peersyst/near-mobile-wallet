@@ -24,7 +24,7 @@ const SelectFundingAccount = ({ onSubmit, submitText }: BaseAddWalletModalScreen
     };
 
     useEffect(() => {
-        if (fundingAccount) {
+        if (fundingAccount !== undefined) {
             onSubmit();
         }
     }, [fundingAccount]);
