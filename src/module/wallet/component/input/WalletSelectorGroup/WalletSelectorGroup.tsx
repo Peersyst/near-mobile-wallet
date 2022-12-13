@@ -6,7 +6,7 @@ import AccountSelector from "module/wallet/screen/SelectFundingAccount/AccountSe
 import { WalletSelectorProps } from "./WalletSelectorGroup.types";
 
 const WalletSelectorGroup = ({ value, defaultValue = 0, onChange, label, ...rest }: WalletSelectorProps) => {
-    const { selectedIndex, handleChange, wallets, error } = useWalletSelector({ value, defaultValue });
+    const { selectedIndex, handleChange, wallets, error } = useWalletSelector({ value, defaultValue, onChange });
     const translate = useTranslate();
     const translateError = useTranslate("error");
 

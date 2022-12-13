@@ -1,6 +1,6 @@
 import { CreateGlobalStyles } from "@peersyst/react-native-components";
 
-const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography }, dimensions }) => ({
+const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography } }) => ({
     Divider: {
         backgroundColor: palette.overlay["8%"],
     },
