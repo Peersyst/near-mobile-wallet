@@ -2,8 +2,17 @@ import { render, translate, screen } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { UseCreateWalletMock, UseServiceInstanceMock } from "test-mocks";
 import SetAccountNameScreen from "module/wallet/screen/SetAccountNameScreen/SetAccountNameScreen";
+import * as Recoil from "recoil";
+import { defaultSettingsState } from "module/settings/state/SettingsState";
+import { Chains } from "near-peersyst-sdk";
 
 describe("SetAccountNameScreen tests", () => {
+    beforeAll(() => {
+        jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ ...defaultSettingsState, network: Chains.MAINNET });
+    });
+    afterAll(() => {
+        jest.resetAllMocks();
+    });
     test("Renders correctly", () => {
         render(<SetAccountNameScreen onSubmit={() => undefined} submitText="Submit" />);
         expect(screen.getByText(translate("enter_your_custom_address"))).toBeDefined();

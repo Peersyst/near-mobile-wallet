@@ -9,6 +9,9 @@ import ExplanationList from "module/common/component/display/ExplanationList/Exp
 import { TransaltionResourceType } from "locale";
 import { AccountNameTextField } from "./SetAccountNameScreen.styles";
 import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
+import { useRecoilValue } from "recoil";
+import settingsState from "module/settings/state/SettingsState";
+import { Chains } from "near-peersyst-sdk";
 
 interface SetWalletNameForm {
     walletName: string;
@@ -25,12 +28,14 @@ const SetAccountNameScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreen
     } = useCreateWallet();
     const translate = useTranslate();
     const translateError = useTranslate("error");
-    const { value, handleChange, debouncedValue, debouncing } = useDebounce(name.substring(0, name.length - 5));
-    const finalName = debouncedValue + ".near";
+    const { network } = useRecoilValue(settingsState);
+    const suffix = network === Chains.MAINNET ? ".near" : ".testnet";
+    const { value, handleChange, debouncedValue, debouncing } = useDebounce(name.substring(0, name.length - suffix.length));
+    const finalName = debouncedValue + suffix;
     const { data: available = false, isLoading: nameLoading } = useCheckNameAvailability(finalName);
 
     const handleSubmit = ({ walletName }: SetWalletNameForm) => {
-        setName(walletName + ".near");
+        setName(walletName + suffix);
         onSubmit();
     };
 
@@ -45,7 +50,7 @@ const SetAccountNameScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreen
                     <AccountNameTextField
                         suffix={
                             <Typography variant="body2Strong" style={{ fontSize: 16 }}>
-                                .near
+                                {suffix}
                             </Typography>
                         }
                         hint={success ? translate("name_available", { name: finalName }) : undefined}
