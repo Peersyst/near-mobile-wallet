@@ -6,6 +6,9 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import AddCustomNameWarning from "module/wallet/screen/AddCustomNameWarning/AddCustomNameWarning";
 import SetAccountNameScreen from "module/wallet/screen/SetAccountNameScreen/SetAccountNameScreen";
 import SelectFundingAccount from "module/wallet/screen/SelectFundingAccount/SelectFundingAccount";
+import CreateAccountConfirmationScreen from "module/wallet/screen/CreateAccountConfirmScreen/CreateAccountConfirmationScreen";
+import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
+import CreateAccountSuccessScreen from "module/wallet/screen/CreateAccountSuccessScreen/CreateAccountSuccessScreen";
 
 const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
     const [index, setIndex] = useState(0);
@@ -24,19 +27,22 @@ const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
             onBack={index ? () => setIndex((i) => i - 1) : undefined}
             {...props}
         >
-            {(handleWalletCreation) => (
+            {(handleWalletCreation, handleClose) => (
                 <Tabs index={index} onIndexChange={setIndex}>
                     <TabPanel index={0}>
-                        <AddCustomNameWarning submitText={translate("continue")} onSubmit={() => setIndex(1)} />
+                        <AddCustomNameWarning onSubmit={() => setIndex(1)} />
                     </TabPanel>
                     <TabPanel index={1}>
-                        <SetAccountNameScreen onSubmit={() => setIndex(2)} submitText={translate("continue")} />
+                        <SetAccountNameScreen onSubmit={() => setIndex(2)} />
                     </TabPanel>
                     <TabPanel index={2}>
-                        <SelectFundingAccount onSubmit={() => setIndex(3)} submitText={translate("continue")} />
+                        <SelectFundingAccount onSubmit={() => setIndex(3)} />
                     </TabPanel>
                     <TabPanel index={3}>
-                        <PickWalletMnemonicScreen onSubmit={handleWalletCreation} />
+                        <CreateAccountConfirmationScreen onSubmit={() => setIndex(4)} onCancel={handleClose} />
+                    </TabPanel>
+                    <TabPanel index={4}>
+                        <CreateAccountSuccessScreen />
                     </TabPanel>
                 </Tabs>
             )}

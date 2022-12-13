@@ -54,7 +54,7 @@ const AddWalletModal = ({
             onExited={handleExited}
             {...rest}
         >
-            <AddWalletModalContent steps={!!steps}>{renderProps(handleWalletCreation)}</AddWalletModalContent>
+            <AddWalletModalContent steps={!!steps}>{renderProps(handleWalletCreation, handleClose)}</AddWalletModalContent>
         </AddWalletModalRoot>
     );
 };

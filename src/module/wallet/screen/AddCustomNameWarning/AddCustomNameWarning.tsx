@@ -16,7 +16,7 @@ const AddCustomNameWarning = ({ submitText, onSubmit }: BaseAddWalletModalScreen
                 </Typography>
             </Col>
             <Button fullWidth onPress={() => onSubmit()}>
-                {submitText}
+                {submitText || translate("continue")}
             </Button>
         </Col>
     );

@@ -1,9 +1,26 @@
-import { convertNearToYocto } from "near-peersyst-sdk";
+import { convertNearToYocto, convertYoctoToNear } from "near-peersyst-sdk";
+const BigInt = require("bn.js");
 
 export class WalletOperations {
     static isBigger(a: string | number, b: string | number) {
         const finalA = convertNearToYocto(a.toString());
         const finalB = convertNearToYocto(b.toString());
-        return BigInt(finalA) > BigInt(finalB);
+        return new BigInt(finalA).gt(new BigInt(finalB));
+    }
+
+    static add(a: string | number, b: string | number, returnBigInt = false) {
+        try {
+            const finalA = convertNearToYocto(a.toString());
+            const finalB = convertNearToYocto(b.toString());
+            const res = new BigInt(finalA).add(new BigInt(finalB));
+            if (returnBigInt) return res;
+            else {
+                return convertYoctoToNear(res);
+            }
+        } catch (e) {
+            // eslint-disable-next-line no-console
+            console.warn("Error adding", a, b, e);
+            return "0";
+        }
     }
 }
