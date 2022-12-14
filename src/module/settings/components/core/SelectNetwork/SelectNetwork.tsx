@@ -6,6 +6,8 @@ import { SelectOption } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
 import { Chains } from "near-peersyst-sdk";
+import ServiceInstance from "module/wallet/state/ServiceInstance/ServiceInstance";
+import useWalletState from "module/wallet/hook/useWalletState";
 
 const SelectNetwork = (): JSX.Element => {
     const translate = useTranslate();
@@ -20,10 +22,13 @@ const SelectNetwork = (): JSX.Element => {
         },
     ];
     const [settings, setSettings] = useRecoilState(settingsState);
+    const { setWallets } = useWalletState();
 
     const handleNetworkChange = (network: NetworkType) => {
         setSettings({ ...settings, network });
         SettingsStorage.set({ network });
+        const wallets = ServiceInstance.getServices(network);
+        setWallets(wallets);
     };
 
     return (

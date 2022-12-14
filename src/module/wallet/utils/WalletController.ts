@@ -279,4 +279,16 @@ export default class WalletController {
             ...(imported && { imported }),
         };
     }
+
+    static async recoverWalletFromStorage(network: NetworkType) {
+        const storageWallets = await WalletStorage.getUnencryptedWallets(network);
+        const wallets: Wallet[] = [];
+        for (const wallet of storageWallets) {
+            wallets.push({
+                ...wallet,
+                colorIndex: WalletUtils.getWalletColor(wallet.account),
+            });
+        }
+        return wallets;
+    }
 }
