@@ -50,15 +50,15 @@ export const baseTheme: Partial<Theme["palette"]> = {
         gradient.purpleLilac,
         gradient.orangeYellow,
         gradient.lilacRed,
+        gradient.purpleRed,
         gradient.blueGreen,
-        gradient.redOrange,
         gradient.lilacBlue,
         gradient.lilacOrange,
         gradient.blueGreen,
         gradient.greenYellow,
         gradient.bluePurple,
         gradient.purpleTurquoise,
-        gradient.purpleRed,
+        gradient.redOrange,
     ],
 };
 
