@@ -31,7 +31,7 @@ const SelectFundingAccount = ({ onSubmit, submitText }: BaseAddWalletModalScreen
 
     return (
         <Form onSubmit={handleSubmit} style={{ flex: 1 }}>
-            <Col gap="10%" flex={1} justifyContent="space-between">
+            <Col gap="10%" flex={1}>
                 <Col flex={1} gap="6%">
                     <Typography variant="body3Regular" light textAlign="center">
                         {translate("select_funding_acc_explanation_1")}
