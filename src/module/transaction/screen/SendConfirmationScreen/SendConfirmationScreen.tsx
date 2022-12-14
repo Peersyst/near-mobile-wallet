@@ -25,7 +25,6 @@ const SendConfirmationScreen = (): JSX.Element => {
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
     const { account: senderName } = senderWallet;
-    const { serviceInstance } = useServiceInstance(senderWalletIndex);
     const { mutate: sendTransaction, isLoading, isSuccess, isError } = useSendTransaction(senderWalletIndex!);
     const { hideModal } = useModal();
 
@@ -48,12 +47,13 @@ const SendConfirmationScreen = (): JSX.Element => {
             <Col gap={24} onStartShouldSetResponder={() => true}>
                 <SendSummary
                     amount={amount!}
-                    receiverAddress={receiverAddress!}
                     fee={fee!}
                     token={token}
                     message={message!}
-                    senderName={senderName}
-                    senderAddress={serviceInstance.getAddress() || ""}
+                    senderAccount={senderName}
+                    total
+                    showFiat
+                    receiverAccount={receiverAddress!}
                 />
                 <Typography variant="body3Regular" textAlign="center" light>
                     {translate("send_confirmation_text")}

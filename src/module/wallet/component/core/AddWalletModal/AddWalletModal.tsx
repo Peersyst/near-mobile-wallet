@@ -27,6 +27,7 @@ const AddWalletModal = ({
     const { network } = useRecoilValue(settingsState);
     const { showToast } = useToast();
     const translate = useTranslate();
+    const translateError = useTranslate("error");
 
     const handleClose = () => {
         setOpen(false);
@@ -49,7 +50,8 @@ const AddWalletModal = ({
             //Create wallet
             const wallet = await createNewWallet(network);
             if (!wallet) {
-                showToast(translate("error_creating_account"), { type: "error" });
+                showToast(translateError("error_creating_account"), { type: "error" });
+                handleClose();
             }
         }
         if (closeOnWalletCreation) handleClose();

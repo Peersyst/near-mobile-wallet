@@ -26,6 +26,7 @@ const BaseSendSummary = ({ amount, fee, token, children, total, showFiat, style 
     const translate = useTranslate();
     const { fiat } = useRecoilValue(settingsState);
     const { value: fiatValue } = useNativeTokenConversion(fiat, amount);
+
     return (
         <Container style={{ width: "100%", ...style }}>
             <Col gap="10%" alignItems="center">

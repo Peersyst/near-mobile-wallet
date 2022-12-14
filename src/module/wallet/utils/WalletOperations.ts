@@ -15,7 +15,7 @@ export class WalletOperations {
             const res = new BigInt(finalA).add(new BigInt(finalB));
             if (returnBigInt) return res;
             else {
-                return convertYoctoToNear(res);
+                return convertYoctoToNear(res).toString();
             }
         } catch (e) {
             // eslint-disable-next-line no-console
