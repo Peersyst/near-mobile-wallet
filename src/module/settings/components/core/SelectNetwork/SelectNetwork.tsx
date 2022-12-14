@@ -27,8 +27,7 @@ const SelectNetwork = (): JSX.Element => {
     const handleNetworkChange = (network: NetworkType) => {
         setSettings({ ...settings, network });
         SettingsStorage.set({ network });
-        const wallets = ServiceInstance.getServices(network);
-        setWallets(wallets);
+        setWallets([]);
     };
 
     return (
