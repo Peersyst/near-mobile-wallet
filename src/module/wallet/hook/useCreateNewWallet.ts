@@ -19,21 +19,16 @@ export default function useCreateNewWallet() {
         //Send transaction using the selected service instance
         const newService = await serviceInstance.createNewAccountWithSameSecretKey(name!, config.minBalanceToCreateAccount);
         if (!newService) return;
-        /**
-         * Save new account:
-         * - Set the new account in the wallet state
-         * - Set the new account with its pK in the storage
-         * - Set a new service instance with the new account
-         */
 
+        //Set storage & set new service instance
         const newWallet = await WalletController.createNewWallet(name!, fundingAccount!, newService, network);
         if (!newWallet) return;
-        setWalletState((state) => {
-            return {
-                ...state,
-                wallets: [...state.wallets, newWallet],
-            };
-        });
+
+        setWalletState((state) => ({
+            ...state,
+            wallets: [...state.wallets, newWallet],
+        }));
+
         return newWallet;
     };
 

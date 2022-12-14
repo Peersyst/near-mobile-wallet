@@ -253,7 +253,10 @@ export default class WalletController {
     }
 
     /**
-     * Create a new wallet
+     * Create new account:
+     * - Set the new account in the wallet state
+     * - Set the new account with its pK in the storage
+     * - Set a new service instance with the new account
      */
     static async createNewWallet(
         newAccount: string,
