@@ -8,6 +8,7 @@ export interface AddWalletModalProps extends ExposedBackdropProps {
     children: (handleWalletCreation: () => Promise<void>, handleClose: () => void) => ReactNode;
     imported?: boolean;
     steps?: StepsProps;
+    closeOnWalletCreation?: boolean;
 }
 
 export interface BaseAddWalletModalScreenProps {

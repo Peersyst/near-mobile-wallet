@@ -50,7 +50,7 @@ import {
     NFT_OWNER_TOKENS_SET_METHOD,
     BASE_NEAR_DECIMALS,
 } from "./near.constants";
-import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertYoctoToNear } from "./near.utils";
+import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto, convertYoctoToNear } from "./near.utils";
 import { NearApiService } from "./NearApiService";
 
 export class NearSDKService {
@@ -301,24 +301,29 @@ export class NearSDKService {
     }
 
     // Amount is in near
-    async createNewAccountWithSameSecretKey(nameId: string, amount: string, nearDecimals?: number): Promise<NearSDKService> {
+    async createNewAccountWithSameSecretKey(nameId: string, amount: string, nearDecimals?: number): Promise<NearSDKService | undefined> {
         const exists = await this.accountExists(nameId);
         if (exists) {
             throw new Error("Account already exists");
         }
+        try {
+            await this.createNewAccount(nameId, this.keyPair.getPublicKey(), amount);
 
-        await this.createNewAccount(nameId, this.keyPair.getPublicKey(), amount);
-
-        const service = new NearSDKService(
-            this.chain,
-            this.nearConfig.nodeUrl,
-            this.baseApiUrl,
-            this.keyPair.secretKey,
-            nameId,
-            nearDecimals,
-        );
-        await service.connect();
-        return service;
+            const service = new NearSDKService(
+                this.chain,
+                this.nearConfig.nodeUrl,
+                this.baseApiUrl,
+                this.keyPair.secretKey,
+                nameId,
+                nearDecimals,
+            );
+            await service.connect();
+            return service;
+        } catch (e) {
+            // eslint-disable-next-line no-console
+            console.warn("Error creating new account", e);
+            return;
+        }
     }
 
     async deleteAccount(beneficiaryId: string): Promise<string> {
@@ -331,7 +336,7 @@ export class NearSDKService {
     // -- UTILS FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
     public parseNearAmount(amount: string): string {
-        return convertYoctoToNear(amount, this.nearDecimals);
+        return convertNearToYocto(amount);
     }
     public convertAccountBalanceToNear(accountBalance: AccountBalance): AccountBalance {
         return convertAccountBalanceToNearUtil(accountBalance, this.nearDecimals);

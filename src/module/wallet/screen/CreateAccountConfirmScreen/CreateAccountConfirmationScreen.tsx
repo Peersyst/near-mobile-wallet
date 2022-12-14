@@ -6,18 +6,35 @@ import SendSummary from "module/transaction/screen/SendConfirmationScreen/SendSu
 import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import useWallet from "module/wallet/hook/useWallet";
+import { useState } from "react";
 
 export interface CreateAccountConfirmationScreenProps extends BaseAddWalletModalScreenProps {
     onCancel: () => void;
     cancelText?: string;
+    createAccount: () => Promise<void>;
 }
 
-const CreateAccountConfirmationScreen = ({ cancelText, onCancel, onSubmit, submitText }: CreateAccountConfirmationScreenProps) => {
+const CreateAccountConfirmationScreen = ({
+    cancelText,
+    onCancel,
+    onSubmit,
+    submitText,
+    createAccount,
+}: CreateAccountConfirmationScreenProps) => {
     const {
         state: { name, fundingAccount },
     } = useCreateWallet();
     const { account } = useWallet(fundingAccount!);
     const translate = useTranslate();
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async () => {
+        setLoading(true);
+        await createAccount();
+        setLoading(false);
+        onSubmit();
+    };
+
     return (
         <Col flex={1} alignItems="center" justifyContent="space-between">
             <SendSummary
@@ -26,12 +43,13 @@ const CreateAccountConfirmationScreen = ({ cancelText, onCancel, onSubmit, submi
                 amount={config.minBalanceToCreateAccount}
                 fee={config.estimatedFee}
                 token="token"
+                showFiat
             />
             <Col style={{ width: "100%" }}>
-                <Button variant="text" fullWidth onPress={onCancel}>
+                <Button variant="text" fullWidth onPress={onCancel} disabled={loading}>
                     {cancelText || translate("cancel")}
                 </Button>
-                <Button fullWidth onPress={onSubmit}>
+                <Button fullWidth onPress={handleSubmit} loading={loading}>
                     {submitText || translate("continue")}
                 </Button>
             </Col>

@@ -12,10 +12,10 @@ export interface SendSummaryProps extends BaseSendSummaryProps {
     message?: SendState["message"];
 }
 
-const SendSummary = ({ amount, fee, token, senderAccount, message, receiverAccount }: SendSummaryProps): JSX.Element => {
+const SendSummary = ({ senderAccount, message, receiverAccount, ...rest }: SendSummaryProps): JSX.Element => {
     const translate = useTranslate();
     return (
-        <BaseSendSummary amount={amount} fee={fee} token={token}>
+        <BaseSendSummary {...rest}>
             <Col gap="8%" style={{ alignSelf: "flex-start" }}>
                 <SummaryField label={translate("from")}>
                     <BlockchainAddress type="address" variant="body2Strong" address={senderAccount} />

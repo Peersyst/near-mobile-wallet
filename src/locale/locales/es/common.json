@@ -182,5 +182,8 @@
     "name_available": "¡Bien! {{name}} está disponible",
     "select_funding_acc_explanation_1": "Debes financiar la cuenta con ",
     "select_funding_acc_explanation_2": " Puedes financiarlo con una cuenta existente.",
-    "select_funding_acc": "Selecciona una cuenta"
+    "select_funding_acc": "Selecciona una cuenta",
+    "create_account_success": "Ya puedes usar tu nueva cuenta",
+    "add_a_custom_address": "Añadir un nombre custom",
+    "success": "éxito!"
 }

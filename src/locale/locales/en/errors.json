@@ -25,5 +25,6 @@
     "private_key_already_exists": "You have already imported the private key",
     "mnemonic_already_exists": "You had already imported the mnemonic",
     "invalid_name_ID": "Oh! {{nameID}} is not available. Maybe you have it in another account?",
-    "invalid_seleccted_account": "You must select an account with a balance greater than {{amountInNEAR}} NEAR."
+    "invalid_seleccted_account": "You must select an account with a balance greater than {{amountInNEAR}} NEAR.",
+    "error_creating_account": "Error creating account"
 }

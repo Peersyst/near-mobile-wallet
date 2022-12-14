@@ -70,6 +70,11 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         return WalletUtils.findByPrivateKey(privateKey, wallets);
     }
 
+    async getSecureWalletGroupByWalletId(walletId: number, network: NetworkType): Promise<SecureWalletInfo | undefined> {
+        const wallets = await this.getSecureWallets(network);
+        return WalletUtils.findSecureByWalletId(walletId, wallets);
+    }
+
     async getWalletsIdsFromPrivateKey(privateKey: string, network: NetworkType): Promise<SecureWalletInfo["walletIds"] | undefined> {
         const walletGroup = await this.getSecureWalletGroup(privateKey, network);
         return walletGroup?.walletIds;
@@ -158,6 +163,16 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         if (storage && wallets) {
             const newWallets = WalletUtils.setWallet(wallets, wallet, index ?? wallets.length);
             await this.setUnencryptedWallets(newWallets, network, storage);
+        }
+    }
+
+    async addNewUnencryptedWallet(wallet: Omit<UnencryptedWalletInfo, "index">, network: NetworkType): Promise<number | undefined> {
+        const storage = await this.get();
+        const wallets = WalletUtils.orderWallets(storage?.[network] || []);
+        if (storage && wallets) {
+            const newWallets = WalletUtils.addWallet(wallets, wallet);
+            await this.setUnencryptedWallets(newWallets, network, storage);
+            return newWallets[newWallets.length - 1].index;
         }
     }
 

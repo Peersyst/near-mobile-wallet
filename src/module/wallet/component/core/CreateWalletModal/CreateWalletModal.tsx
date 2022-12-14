@@ -1,5 +1,4 @@
 import { createModal, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
-import PickWalletMnemonicScreen from "module/wallet/screen/PickWalletMnemonicScreen/PickWalletMnemonicScreen";
 import { useState } from "react";
 import AddWalletModal from "module/wallet/component/core/AddWalletModal/AddWalletModal";
 import { useTranslate } from "module/common/hook/useTranslate";
@@ -7,12 +6,26 @@ import AddCustomNameWarning from "module/wallet/screen/AddCustomNameWarning/AddC
 import SetAccountNameScreen from "module/wallet/screen/SetAccountNameScreen/SetAccountNameScreen";
 import SelectFundingAccount from "module/wallet/screen/SelectFundingAccount/SelectFundingAccount";
 import CreateAccountConfirmationScreen from "module/wallet/screen/CreateAccountConfirmScreen/CreateAccountConfirmationScreen";
-import CreateWalletSuccessScreen from "module/wallet/screen/CreateWalletSuccessScreen";
 import CreateAccountSuccessScreen from "module/wallet/screen/CreateAccountSuccessScreen/CreateAccountSuccessScreen";
+import { TransaltionResourceType } from "locale";
+
+export const LOCALE_MODAL_TITLES: TransaltionResourceType[] = [
+    "add_a_custom_address",
+    "add_a_custom_address",
+    "select_funding_acc",
+    "confirm",
+    "success",
+];
 
 const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
     const [index, setIndex] = useState(0);
     const translate = useTranslate();
+    const handleOnBack = () => {
+        if (index !== 0) {
+            setIndex((i) => i - 1);
+        }
+    };
+
     return (
         <AddWalletModal
             steps={
@@ -23,8 +36,9 @@ const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
                       }
                     : undefined
             }
-            title={translate("create_wallet")}
-            onBack={index ? () => setIndex((i) => i - 1) : undefined}
+            title={translate(LOCALE_MODAL_TITLES[index])}
+            onBack={handleOnBack}
+            closeOnWalletCreation={false}
             {...props}
         >
             {(handleWalletCreation, handleClose) => (
@@ -39,10 +53,14 @@ const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
                         <SelectFundingAccount onSubmit={() => setIndex(3)} />
                     </TabPanel>
                     <TabPanel index={3}>
-                        <CreateAccountConfirmationScreen onSubmit={() => setIndex(4)} onCancel={handleClose} />
+                        <CreateAccountConfirmationScreen
+                            createAccount={handleWalletCreation}
+                            onSubmit={() => setIndex(4)}
+                            onCancel={handleClose}
+                        />
                     </TabPanel>
                     <TabPanel index={4}>
-                        <CreateAccountSuccessScreen />
+                        <CreateAccountSuccessScreen onSubmit={handleClose} />
                     </TabPanel>
                 </Tabs>
             )}

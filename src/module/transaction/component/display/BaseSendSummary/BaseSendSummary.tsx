@@ -20,7 +20,7 @@ export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee"
 
 export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
 
-const BaseSendSummary = ({ amount, fee, token, children, total, showFiat = true }: BaseSendSummaryFullProps): JSX.Element => {
+const BaseSendSummary = ({ amount, fee, token, children, total, showFiat }: BaseSendSummaryFullProps): JSX.Element => {
     const translate = useTranslate();
     const { fiat } = useRecoilValue(settingsState);
     const { value: fiatValue } = useNativeTokenConversion(fiat, amount);

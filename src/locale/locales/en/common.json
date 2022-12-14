@@ -182,5 +182,8 @@
     "name_available": "Great! {{name}} is available",
     "select_funding_acc_explanation_1": "You need to fund it with ",
     "select_funding_acc_explanation_2": " You can fund it with an existing account.",
-    "select_funding_acc": "Select funding account"
+    "select_funding_acc": "Select funding account",
+    "create_account_success": "You can now use your new account",
+    "add_a_custom_address": "Add a custom address",
+    "success": "success!"
 }
