@@ -37,7 +37,7 @@ describe("UseImportWallets test", () => {
     test("Return undefined if service creation fails", async () => {
         new UseServiceInstanceMock();
         new UseCreateWalletMock({ state: new CreateWalletStateMock({ name }) });
-        const { setState, state } = new UseWalletStateMock();
+        const { setState } = new UseWalletStateMock();
         jest.spyOn(WalletController, "createNewWallet").mockResolvedValue(undefined);
         const create = renderUseCreateNewWallet();
         const w = await create(Chains.TESTNET);
@@ -48,7 +48,7 @@ describe("UseImportWallets test", () => {
     test("Return undefined if saving the new account fails", async () => {
         const { serviceInstance } = new UseServiceInstanceMock();
         new UseCreateWalletMock({ state: new CreateWalletStateMock({ name }) });
-        const { setState, state } = new UseWalletStateMock();
+        const { setState } = new UseWalletStateMock();
         jest.spyOn(serviceInstance, "createNewAccountWithSameSecretKey").mockResolvedValue(undefined);
         const create = renderUseCreateNewWallet();
         const w = await create(Chains.TESTNET);
