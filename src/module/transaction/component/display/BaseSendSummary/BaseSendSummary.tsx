@@ -10,22 +10,24 @@ import { WalletOperations } from "module/wallet/utils/WalletOperations";
 import useNativeTokenConversion from "module/common/hook/useNativeTokenConversion";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
+import { ViewStyle } from "react-native";
 
 export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee" | "token">> {
     amount: string | number;
     children: ReactElement;
     total?: boolean;
     showFiat?: boolean;
+    style?: ViewStyle;
 }
 
 export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
 
-const BaseSendSummary = ({ amount, fee, token, children, total, showFiat }: BaseSendSummaryFullProps): JSX.Element => {
+const BaseSendSummary = ({ amount, fee, token, children, total, showFiat, style }: BaseSendSummaryFullProps): JSX.Element => {
     const translate = useTranslate();
     const { fiat } = useRecoilValue(settingsState);
     const { value: fiatValue } = useNativeTokenConversion(fiat, amount);
     return (
-        <Container>
+        <Container style={{ width: "100%", ...style }}>
             <Col gap="10%" alignItems="center">
                 <Col gap={2} alignItems="center" style={{ width: "100%" }}>
                     <Typography variant="h4Strong" textAlign="center" numberOfLines={1}>
