@@ -4,7 +4,6 @@ import { Wallet } from "../state/WalletState";
 import WalletController from "../utils/WalletController";
 import useCreateWallet from "./useCreateWallet";
 import useServiceInstance from "./useServiceInstance";
-import useWallet from "./useWallet";
 import useWalletState from "./useWalletState";
 
 export default function useCreateNewWallet() {
@@ -19,6 +18,7 @@ export default function useCreateNewWallet() {
     const createWallet = async (network: NetworkType): Promise<Wallet | undefined> => {
         //Send transaction using the selected service instance
         const newService = await serviceInstance.createNewAccountWithSameSecretKey(name!, config.minBalanceToCreateAccount);
+        if (!newService) return;
         /**
          * Save new account:
          * - Set the new account in the wallet state
@@ -27,9 +27,7 @@ export default function useCreateNewWallet() {
          */
 
         const newWallet = await WalletController.createNewWallet(name!, fundingAccount!, newService, network);
-        if (!newWallet || !newService) {
-            return;
-        }
+        if (!newWallet) return;
         setWalletState((state) => {
             return {
                 ...state,
