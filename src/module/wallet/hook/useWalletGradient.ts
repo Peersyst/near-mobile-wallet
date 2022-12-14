@@ -10,7 +10,7 @@ export default function (index?: number): PaletteGradient {
     const {
         palette: { wallet: walletColors },
     } = useTheme();
-    console.log("walletColors", wallets);
+
     const finalIndex = index === undefined ? (selectedWallet > wallets.length - 1 ? 0 : selectedWallet) : index;
     const wallet = WalletUtils.getWallet(finalIndex, wallets);
 

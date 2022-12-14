@@ -1,7 +1,6 @@
 import { render, translate, screen } from "test-utils";
 import HomeScreen from "module/home/screen/HomeScreen";
 import { UseServiceInstanceMock, UseWalletStateMock, WalletStateMock } from "test-mocks";
-import { act } from "@testing-library/react-hooks";
 
 describe("HomeScreen tests", () => {
     test("Renders correctly when a wallet is selected", () => {
