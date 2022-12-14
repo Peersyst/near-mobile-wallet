@@ -185,5 +185,6 @@
     "select_funding_acc": "Select funding account",
     "create_account_success": "You can now use your new account",
     "add_a_custom_address": "Add a custom address",
-    "success": "success!"
+    "success": "success!",
+    "select_theme": "Change theme"
 }
