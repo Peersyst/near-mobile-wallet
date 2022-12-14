@@ -75,6 +75,20 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         return WalletUtils.findSecureByWalletId(walletId, wallets);
     }
 
+    async getSecureWalletGroupAndMainPrivateKey(
+        walletId: number,
+        network: NetworkType,
+    ): Promise<{ walletGroup: SecureWalletInfo; imported: boolean } | undefined> {
+        const secure = await this.getSecure();
+        const mainPrivateKey = secure?.mainPrivateKey;
+        const wallets = secure?.[network];
+        if (!secure || !mainPrivateKey || !wallets) return;
+        const walletGroup = WalletUtils.findSecureByWalletId(walletId, wallets);
+        if (walletGroup && mainPrivateKey) {
+            return { walletGroup, imported: mainPrivateKey !== walletGroup.privateKey };
+        }
+    }
+
     async getWalletsIdsFromPrivateKey(privateKey: string, network: NetworkType): Promise<SecureWalletInfo["walletIds"] | undefined> {
         const walletGroup = await this.getSecureWalletGroup(privateKey, network);
         return walletGroup?.walletIds;

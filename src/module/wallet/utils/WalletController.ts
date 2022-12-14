@@ -261,15 +261,19 @@ export default class WalletController {
         newService: NearSDKService,
         network: NetworkType,
     ): Promise<Wallet | undefined> {
-        const walletGroup = await WalletStorage.getSecureWalletGroupByWalletId(oldWalletIndex, network);
-        const newIndex = await WalletStorage.addNewUnencryptedWallet({ account: newAccount }, network);
-        if (newIndex === undefined || walletGroup === undefined) return undefined;
+        const [walletGroupAndImported, newIndex] = await Promise.all([
+            await WalletStorage.getSecureWalletGroupAndMainPrivateKey(oldWalletIndex, network),
+            await WalletStorage.addNewUnencryptedWallet({ account: newAccount }, network),
+        ]);
+        if (newIndex === undefined || walletGroupAndImported?.walletGroup === undefined) return undefined;
+        const { walletGroup, imported } = walletGroupAndImported;
         await WalletStorage.setSecureWalletId(newIndex, walletGroup.privateKey, network);
         ServiceInstance.addService({ service: newService, network });
         return {
             account: newAccount,
             index: newIndex,
             colorIndex: WalletUtils.getWalletColor(newAccount),
+            ...(imported && { imported }),
         };
     }
 }
