@@ -1,7 +1,8 @@
 import { IconButton, IconButtonProps, ThemeIcons, ThemePalette, useTheme } from "@peersyst/react-native-components";
 
 export interface StatusIconsProps extends Omit<IconButtonProps, "children"> {
-    status: "info" | "warning" | "error" | "success" | "valid" | "invalid";
+    statusIcon: "info" | "warning" | "error" | "success" | "valid" | "invalid";
+    statusColor?: keyof ThemePalette["status"];
 }
 
 interface StatusIconsUtils {
@@ -9,7 +10,7 @@ interface StatusIconsUtils {
     color: keyof ThemePalette["status"];
 }
 
-const STATUS_ICONS_UTILS: Record<StatusIconsProps["status"], StatusIconsUtils> = {
+const STATUS_ICONS_UTILS: Record<StatusIconsProps["statusIcon"], StatusIconsUtils> = {
     info: {
         icon: "info",
         color: "info",
@@ -36,14 +37,14 @@ const STATUS_ICONS_UTILS: Record<StatusIconsProps["status"], StatusIconsUtils> =
     },
 };
 
-const StatusIcon = ({ status: statusProp, style, ...rest }: StatusIconsProps) => {
+const StatusIcon = ({ statusIcon, statusColor, style, ...rest }: StatusIconsProps) => {
     const {
         icons,
         palette: { status },
     } = useTheme();
-    const { icon, color: colorUtil } = STATUS_ICONS_UTILS[statusProp];
+    const { icon, color: colorUtil } = STATUS_ICONS_UTILS[statusIcon];
     const Icon = icons[icon];
-    const color = status[colorUtil];
+    const color = status[statusColor ?? colorUtil];
     return (
         <IconButton {...rest} style={{ color, ...style }}>
             <Icon />

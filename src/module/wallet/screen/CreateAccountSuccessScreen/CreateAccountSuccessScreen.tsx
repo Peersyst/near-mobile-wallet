@@ -10,7 +10,7 @@ const CreateAccountSuccessScreen = ({ submitText, onSubmit }: BaseAddWalletModal
     return (
         <Col flex={1} justifyContent="space-between">
             <Col alignItems="center" gap="2.5%">
-                <StatusIcon status="valid" style={{ fontSize: 30 }} />
+                <StatusIcon statusIcon="valid" style={{ fontSize: 30 }} />
                 <Typography variant="body2Strong" light>
                     {translate("create_account_success")}
                 </Typography>
