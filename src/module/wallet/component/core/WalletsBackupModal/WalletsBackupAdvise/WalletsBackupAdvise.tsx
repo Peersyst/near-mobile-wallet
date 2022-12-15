@@ -16,9 +16,10 @@ export interface WalletsBackupAdvise {
 const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdvise): JSX.Element => {
     const translate = useTranslate();
     const [{ method }, setMethod] = useRecoilState(backupWalletState);
-    const handlePress = (method: BackUp) => () => setMethod(method);
+    const handlePress = (method: BackUp) => setMethod({ method });
 
     useEffect(() => {
+        console.log("method", method);
         if (method) onSubmit(method);
     }, [method]);
 

@@ -8,7 +8,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 
 const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { duration: 200, appear: true });
 
-interface ConfirmPinScreenProps
+export interface ConfirmPinScreenProps
     extends Omit<ExposedBackdropProps, "animationIn" | "animationOut" | "animationInTiming" | "animationOutTiming"> {
     onPinConfirmed: () => any;
     onConfirmedExited?: () => any;

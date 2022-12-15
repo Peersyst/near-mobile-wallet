@@ -29,7 +29,7 @@ const CardNavigator = ({ navbar: navbarProps, children, style }: CardNavigatorPr
                 {navbarProps && <Navbar {...navbarProps} />}
                 <Divider />
                 <KeyboardAwareScrollView
-                    style={{ flex: 1, backgroundColor: "blue", height: "100%" }}
+                    style={{ flex: 1, height: "100%" }}
                     keyboardShouldPersistTaps="handled"
                     enableOnAndroid={true}
                     contentContainerStyle={{ flexGrow: 1 }}
