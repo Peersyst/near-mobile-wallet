@@ -1,7 +1,7 @@
 import { useToast } from "@peersyst/react-native-components";
 import { useState } from "react";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import { AddWalletModalContent, AddWalletModalRoot } from "./AddWalletModal.styles";
+import { AddWalletModalRoot } from "./AddWalletModal.styles";
 import useImportWallets from "module/wallet/hook/useImportWallets";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
@@ -54,7 +54,7 @@ const AddWalletModal = ({
             onExited={handleExited}
             {...rest}
         >
-            <AddWalletModalContent>{renderProps(handleWalletCreation)}</AddWalletModalContent>
+            {renderProps(handleWalletCreation)}
         </AddWalletModalRoot>
     );
 };
