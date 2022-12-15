@@ -1,12 +1,13 @@
 import { useToast } from "@peersyst/react-native-components";
 import { useState } from "react";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import { AddWalletModalContent, AddWalletModalRoot } from "./AddWalletModal.styles";
+import { AddWalletModalRoot } from "./AddWalletModal.styles";
 import useImportWallets from "module/wallet/hook/useImportWallets";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { AddWalletModalProps } from "./AddWalletModal.types";
+import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 
 const AddWalletModal = ({
     onExited,
@@ -54,7 +55,7 @@ const AddWalletModal = ({
             onExited={handleExited}
             {...rest}
         >
-            <AddWalletModalContent steps={!!steps}>{renderProps(handleWalletCreation)}</AddWalletModalContent>
+            {renderProps(handleWalletCreation)}
         </AddWalletModalRoot>
     );
 };
