@@ -13,7 +13,11 @@ const WalletsBackupModal = createModal((props): JSX.Element => {
     const [index, setIndex] = useState(0);
     const [selectedWalletIndex, setSelectedWalletIndex] = useState<number>();
 
-    const handleWalletSelection = (walletIndex: number): void => {
+    const handleBackupMethodChange = () => {
+        setTimeout(() => setShowPin(true), 400);
+    };
+
+    const handleWalletSelection = (walletIndex: number | undefined): void => {
         setSelectedWalletIndex(walletIndex);
         setTimeout(() => setShowPin(true), 400);
     };
@@ -37,7 +41,7 @@ const WalletsBackupModal = createModal((props): JSX.Element => {
         >
             <Tabs index={index} onIndexChange={setIndex}>
                 <TabPanel index={0}>
-                    <WalletsBackupAdvise onWalletSelected={handleWalletSelection} />
+                    <WalletsBackupAdvise onSubmit={handleBackupMethodChange} />
                 </TabPanel>
                 <TabPanel index={1}>
                     <WalletMnemonicBackup walletIndex={selectedWalletIndex!} onClose={() => setOpen(false)} />

@@ -1,37 +1,49 @@
 import { Col, Row, Typography } from "@peersyst/react-native-components";
-import Card from "module/common/component/surface/Card/Card";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
-import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
-import { useState } from "react";
 import { WalletsBackupAdviseImage } from "module/wallet/component/core/WalletsBackupModal/WalletsBackupAdvise/WalletBackupAdvise.styles";
 import { notes } from "images";
 import { useTranslate } from "module/common/hook/useTranslate";
+import { BackUp } from "../WalletsBackupModal";
+import { useRecoilState } from "recoil";
+import backupWalletState from "module/wallet/state/BackUpWalletState";
+import { useEffect } from "react";
 
 export interface WalletsBackupAdvise {
-    onWalletSelected: (index: number) => void;
+    onSubmit: (method: BackUp) => void;
 }
 
-const WalletsBackupAdvise = ({ onWalletSelected }: WalletsBackupAdvise): JSX.Element => {
-    const [selectorEnabled, setSelectorEnabled] = useState(false);
+const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdvise): JSX.Element => {
     const translate = useTranslate();
+    const [{ method }, setMethod] = useRecoilState(backupWalletState);
+    const handlePress = (method: BackUp) => () => setMethod(method);
+
+    useEffect(() => {
+        if (method) onSubmit(method);
+    }, [method]);
+
     return (
-        <Col gap={40} justifyContent="flex-end" flex={1}>
-            <Row flex={1} justifyContent="center" alignItems="center">
-                <WalletsBackupAdviseImage source={notes} />
-            </Row>
-            <Card>
-                <Typography variant="body3Regular">{translate("backup_wallet_advise_text")}</Typography>
-            </Card>
-            <WalletSelector
-                disabled={!selectorEnabled}
-                display={
-                    <CountdownButton seconds={5} onCountdownEnd={() => setSelectorEnabled(true)} fullWidth>
-                        {translate("back_up_now")}
-                    </CountdownButton>
-                }
-                onChange={(index) => onWalletSelected(index as number)}
-                value={-1}
-            />
+        <Col gap="10%" flex={1}>
+            <Col flex={1}>
+                <Row flex={1} justifyContent="center" alignItems="center">
+                    <WalletsBackupAdviseImage source={notes} />
+                </Row>
+                <Col gap="3%">
+                    <Typography variant="body3Regular" textAlign="center">
+                        {translate("backup_wallet_advise_text")}
+                    </Typography>
+                    <Typography variant="body3Strong" textAlign="center">
+                        {translate("backup_wallet_advise_text_2")}
+                    </Typography>
+                </Col>
+            </Col>
+            <Col gap="4%">
+                <CountdownButton seconds={5} fullWidth onPress={() => handlePress("mnemonic")}>
+                    {translate("back_up_now")}
+                </CountdownButton>
+                <CountdownButton seconds={5} fullWidth onPress={() => handlePress("mnemonic")}>
+                    {translate("back_up_now")}
+                </CountdownButton>
+            </Col>
         </Col>
     );
 };
