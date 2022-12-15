@@ -11,11 +11,13 @@ const SwitchTheme = () => {
         palette: { mode },
     } = useTheme();
     const translate = useTranslate();
+    const value = mode === "light";
     const changeTheme = async () => {
-        setTheme(mode === "light" ? "dark" : "light");
+        setTheme(value ? "dark" : "light");
     };
+
     return (
-        <SettingsSwitch onChange={changeTheme} value={mode === "light"} label={translate("select_theme")}>
+        <SettingsSwitch onChange={changeTheme} value={value} label={translate("select_theme")}>
             {[
                 <SwitchThemeIcon key="moon">
                     <MoonIcon />

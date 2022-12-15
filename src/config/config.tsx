@@ -78,6 +78,7 @@ const config = createConfig({
                 LabelProps: {
                     alignment: "space-between",
                 },
+                defaultValue: true,
             },
         },
     },
