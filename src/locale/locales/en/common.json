@@ -115,7 +115,7 @@
     "delete": "Delete",
     "back_up_your_wallets": "Back up your wallets",
     "backup_wallet_advise_text": "If you continue you will see your recovery phrase or private key for each of your accounts. If your device is lost or stolen, you will only be able to recover your funds with this recovery phrase or the keys for each account.",
-    "backup_wallet_advise_text_2": "Accounts tagged as imported can only be retrieved with the private key corresponding to that account.",
+    "backup_wallet_advise_text_2": "Remember that the accounts tagged as imported can only be retrieved with the private key corresponding to that account.",
     "back_up_now": "Back up now",
     "close": "Close",
     "mnemonic_for": "Mnemonic for {{name}}",

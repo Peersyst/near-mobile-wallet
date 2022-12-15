@@ -5,6 +5,7 @@ import { useState } from "react";
 import WalletMnemonicBackup from "module/wallet/component/core/WalletsBackupModal/WalletMnemonicBackup/WalletMnemonicBackup";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { useTranslate } from "module/common/hook/useTranslate";
+import { WalletBackupModalRoot } from "./WalletsBackupModal.styles";
 
 const WalletsBackupModal = createModal((props): JSX.Element => {
     const translate = useTranslate();
@@ -33,13 +34,13 @@ const WalletsBackupModal = createModal((props): JSX.Element => {
     };
 
     return (
-        <CardNavigatorModal
+        <WalletBackupModalRoot
             navbar={{ title: translate("back_up_your_wallets"), back: index === 0 }}
             open={open}
             onClose={() => setOpen(false)}
             {...props}
         >
-            <Tabs index={index} onIndexChange={setIndex}>
+            <Tabs index={index} onIndexChange={setIndex} style={{ height: "100%", backgroundColor: "red" }}>
                 <TabPanel index={0}>
                     <WalletsBackupAdvise onSubmit={handleBackupMethodChange} />
                 </TabPanel>
@@ -48,7 +49,7 @@ const WalletsBackupModal = createModal((props): JSX.Element => {
                 </TabPanel>
                 <ConfirmPinModal open={showPin} onPinConfirmed={handlePinConfirmed} onClose={handlePinClose} />
             </Tabs>
-        </CardNavigatorModal>
+        </WalletBackupModalRoot>
     );
 });
 
