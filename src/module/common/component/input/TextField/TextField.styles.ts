@@ -33,13 +33,6 @@ export const TextFieldRoot = styled(TextField)<TextFieldRootProps>(({ theme, siz
             borderStyle: "solid",
             borderColor: theme.palette.overlay["12%"],
             paddingHorizontal: 20,
-            disabled: {
-                borderColor: "red",
-                backgroundColor: "red",
-                input: {
-                    borderColor: "red",
-                },
-            },
         },
     };
 });

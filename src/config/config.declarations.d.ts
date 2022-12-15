@@ -5,8 +5,6 @@ import { TFunction } from "react-i18next";
 export type EnvConfig = "test" | "development" | "production" | "staging";
 
 declare module "@peersyst/react-native-components" {
-    export type EnvConfig = "test" | "development" | "production" | "staging";
-
     export interface ConfigTypes {
         TranslateFn: TFunction<"error">;
     }
