@@ -3,6 +3,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { MoonIcon } from "module/common/icons/MoonIcon";
 import { SunIcon } from "module/common/icons/SunIcon";
 import SettingsSwitch from "../../input/SetttingsSwitch/SettingsSwitch";
+import { SwitchThemeIcon } from "./SwitchTheme.styles";
 
 const SwitchTheme = () => {
     const setTheme = useSetTheme();
@@ -14,14 +15,22 @@ const SwitchTheme = () => {
         setTheme(mode === "light" ? "dark" : "light");
     };
     return (
-        <SettingsSwitch onChange={changeTheme} label={translate("select_theme")}>
+        <SettingsSwitch
+            LabelProps={{
+                alignment: "space-between",
+            }}
+            style={{ backgroundColor: "red" }}
+            onChange={changeTheme}
+            value={mode === "light"}
+            label={translate("select_theme")}
+        >
             {[
-                <Row flex={1} alignItems="center">
-                    <SunIcon style={{ fontSize: 12 }} />
-                </Row>,
-                <Row flex={1} alignItems="center" justifyContent="flex-end" style={{ marginRight: -2 }}>
-                    <MoonIcon style={{ fontSize: 15 }} />
-                </Row>,
+                <SwitchThemeIcon key="moon">
+                    <MoonIcon />
+                </SwitchThemeIcon>,
+                <SwitchThemeIcon key="sun">
+                    <SunIcon />
+                </SwitchThemeIcon>,
             ]}
         </SettingsSwitch>
     );
