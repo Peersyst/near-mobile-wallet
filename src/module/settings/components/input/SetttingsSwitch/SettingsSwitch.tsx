@@ -5,10 +5,10 @@ export interface SettingsSwitchProps extends SwitchProps {
     label: string;
 }
 
-const SettingsSwitch = ({ ...rest }: SettingsSwitchProps) => {
+const SettingsSwitch = (props: SettingsSwitchProps) => {
     return (
         <SettingsCard>
-            <Switch {...rest} />
+            <Switch {...props} />
         </SettingsCard>
     );
 };
