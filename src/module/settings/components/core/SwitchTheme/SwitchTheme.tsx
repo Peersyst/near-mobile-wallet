@@ -1,4 +1,4 @@
-import { Row, useSetTheme, useTheme } from "@peersyst/react-native-components";
+import { useSetTheme, useTheme } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { MoonIcon } from "module/common/icons/MoonIcon";
 import { SunIcon } from "module/common/icons/SunIcon";
