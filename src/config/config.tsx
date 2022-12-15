@@ -73,11 +73,6 @@ const config = createConfig({
                 checkedIcon: <RadioCheckedIcon />,
             },
         },
-        Row: {
-            defaultProps: {
-                style: {},
-            },
-        },
         Switch: {
             defaultProps: {
                 LabelProps: {
