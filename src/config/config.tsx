@@ -73,6 +73,18 @@ const config = createConfig({
                 checkedIcon: <RadioCheckedIcon />,
             },
         },
+        Row: {
+            defaultProps: {
+                style: {},
+            },
+        },
+        Switch: {
+            defaultProps: {
+                LabelProps: {
+                    alignment: "space-between",
+                },
+            },
+        },
     },
     themes: {
         default: lightTheme,

@@ -3,5 +3,5 @@ import styled from "@peersyst/react-native-styled";
 
 export const SwitchThemeIcon = styled(Icon)(({ theme }) => ({
     color: theme.palette.white,
-    fontSize: 13,
+    fontSize: 12,
 }));

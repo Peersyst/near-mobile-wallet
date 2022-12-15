@@ -15,15 +15,7 @@ const SwitchTheme = () => {
         setTheme(mode === "light" ? "dark" : "light");
     };
     return (
-        <SettingsSwitch
-            LabelProps={{
-                alignment: "space-between",
-            }}
-            style={{ backgroundColor: "red" }}
-            onChange={changeTheme}
-            value={mode === "light"}
-            label={translate("select_theme")}
-        >
+        <SettingsSwitch onChange={changeTheme} value={mode === "light"} label={translate("select_theme")}>
             {[
                 <SwitchThemeIcon key="moon">
                     <MoonIcon />
