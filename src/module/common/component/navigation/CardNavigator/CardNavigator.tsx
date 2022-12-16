@@ -33,6 +33,7 @@ const CardNavigator = ({ navbar: navbarProps, children, style }: CardNavigatorPr
                     keyboardShouldPersistTaps="handled"
                     enableOnAndroid={true}
                     alwaysBounceVertical={false}
+                    contentContainerStyle={{ flexGrow: 1 }}
                     enableAutomaticScroll={!keyboardPaddingEnabled}
                 >
                     <CardNavigatorContent flex={1} justifyContent="flex-end">
