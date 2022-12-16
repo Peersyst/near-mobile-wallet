@@ -23,6 +23,6 @@ export class UseConfigMock extends BaseMock implements UseConfigMock {
         this.config = { ...envConfigs.test, ...config } as Genesys.Config;
         this.key = key;
         this.useConfig = useConfig || jest.fn().mockImplementation((s?: keyof Genesys.Config) => this.config[s ?? this.key]);
-        jest.spyOn(Genesys, "useConfig").mockReturnValue(this.useConfig);
+        jest.spyOn(Genesys, "useConfig").mockImplementation(this.useConfig);
     }
 }
