@@ -8,19 +8,19 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import Advise from "module/common/component/display/Advise/Advise";
 
 export interface WalletMnemonicBackupProps {
-    walletIndex: number;
     onClose: () => void;
 }
 
-const WalletMnemonicBackup = ({ walletIndex, onClose }: WalletMnemonicBackupProps): JSX.Element => {
+const WalletMnemonicBackup = ({ onClose }: WalletMnemonicBackupProps): JSX.Element => {
     const [mnemonic, setMnemonic] = useState<string[]>();
     const translate = useTranslate();
+
     useEffect(() => {
         const getStorageMnemonic = async () => {
-            setMnemonic(await WalletStorage.getMnemonic(walletIndex));
+            setMnemonic((await WalletStorage.getMnemonic())?.split(" "));
         };
         getStorageMnemonic();
-    }, [walletIndex]);
+    }, []);
 
     if (!mnemonic) return <ActivityIndicator size="large" />;
     return (
