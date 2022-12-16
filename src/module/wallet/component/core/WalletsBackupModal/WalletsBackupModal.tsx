@@ -6,12 +6,14 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { WalletBackupModalRoot } from "./WalletsBackupModal.styles";
 import { useRecoilValue } from "recoil";
 import backupWalletState from "module/wallet/state/BackUpWalletState";
+import WalletsBackupSelectAccount from "./WalletsBackupSelectAccount/WalletsBackupSelectAccount";
+import WalletPrivateKeyBackup from "./WalletPrivateKeyBackup/WalletPrivateKeyBackup";
 
 export enum WalletsBackupModalTabs {
     ADVISE,
-    MNEMONIC,
     SELECT_WALLET,
-    PRIVATE_KEY,
+    SHOW_MNEMONIC,
+    SHOW_PRIVATE_KEY,
 }
 
 const WalletsBackupModal = createModal((props): JSX.Element => {
@@ -21,12 +23,12 @@ const WalletsBackupModal = createModal((props): JSX.Element => {
     const { method } = useRecoilValue(backupWalletState);
 
     const handleBackupMethodChange = () => {
-        setIndex(method === "mnemonic" ? WalletsBackupModalTabs.MNEMONIC : WalletsBackupModalTabs.SELECT_WALLET);
+        setIndex(method === "mnemonic" ? WalletsBackupModalTabs.SHOW_MNEMONIC : WalletsBackupModalTabs.SELECT_WALLET);
     };
 
     return (
         <WalletBackupModalRoot
-            navbar={{ title: translate("back_up_your_wallets"), back: index === 0 }}
+            navbar={{ title: translate("back_up_your_wallets"), back: index < WalletsBackupModalTabs.SHOW_MNEMONIC }}
             open={open}
             onClose={() => setOpen(false)}
             {...props}
@@ -35,11 +37,14 @@ const WalletsBackupModal = createModal((props): JSX.Element => {
                 <TabPanel index={WalletsBackupModalTabs.ADVISE}>
                     <WalletsBackupAdvise onSubmit={handleBackupMethodChange} />
                 </TabPanel>
-                <TabPanel index={WalletsBackupModalTabs.MNEMONIC}>
+                <TabPanel index={WalletsBackupModalTabs.SELECT_WALLET}>
+                    <WalletsBackupSelectAccount onSubmit={() => setIndex(WalletsBackupModalTabs.SHOW_PRIVATE_KEY)} />
+                </TabPanel>
+                <TabPanel index={WalletsBackupModalTabs.SHOW_MNEMONIC}>
                     <WalletMnemonicBackup onClose={() => setOpen(false)} />
                 </TabPanel>
-                <TabPanel index={WalletsBackupModalTabs.PRIVATE_KEY}>
-                    <WalletMnemonicBackup onClose={() => setOpen(false)} />
+                <TabPanel index={WalletsBackupModalTabs.SHOW_PRIVATE_KEY}>
+                    <WalletPrivateKeyBackup onClose={() => setOpen(false)} />
                 </TabPanel>
             </Tabs>
         </WalletBackupModalRoot>

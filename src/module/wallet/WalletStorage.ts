@@ -94,6 +94,11 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         return walletGroup?.walletIds;
     }
 
+    async getWalletPrivateKey(walletId: number, network: NetworkType): Promise<string | undefined> {
+        const walletGroup = await this.getSecureWalletGroupByWalletId(walletId, network);
+        return walletGroup?.privateKey;
+    }
+
     async setSecureWallets(wallets: SecureWalletInfo[], network: NetworkType, secureStorageParam?: SecureWalletStorageType): Promise<void> {
         const secureStorage = secureStorageParam ||
             (await this.getSecure()) || { pin: undefined, mnemonic: undefined, testnet: [], mainnet: [], mainPrivateKey: undefined };

@@ -19,10 +19,10 @@ export interface HandlePressParams {
 
 const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdvise): JSX.Element => {
     const translate = useTranslate();
-    const setMethod = useSetRecoilState(backupWalletState);
+    const setState = useSetRecoilState(backupWalletState);
 
     const handlePress = ({ method, showConfirmPinModal }: HandlePressParams) => {
-        setMethod({ method });
+        setState({ method });
         showConfirmPinModal();
     };
 

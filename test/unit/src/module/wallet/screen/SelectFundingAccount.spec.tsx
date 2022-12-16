@@ -1,9 +1,9 @@
 import { config } from "config";
-import SelectFundingAccount from "module/wallet/screen/SelectFundingAccount/SelectFundingAccount";
+import SelectFundingAccountScreen from "module/wallet/screen/SelectFundingAccountScreen/SelectFundingAccountScreen";
 import { AccountBalanceMock, UseCreateWalletMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 import { render, waitFor, screen, fireEvent } from "test-utils";
 
-describe("SelectFundingAccount", () => {
+describe("SelectFundingAccountScreen", () => {
     test("Selects account and navigates", async () => {
         const { serviceInstance } = new UseServiceInstanceMock();
         const {
@@ -13,7 +13,7 @@ describe("SelectFundingAccount", () => {
         const { setFundAccount } = new UseCreateWalletMock();
         jest.spyOn(serviceInstance, "getAccountBalance").mockResolvedValue(accountBalance);
         const handleSubmit = jest.fn();
-        render(<SelectFundingAccount onSubmit={handleSubmit} submitText={"continue"} />);
+        render(<SelectFundingAccountScreen onSubmit={handleSubmit} submitText={"continue"} />);
         expect(screen.getByText("Select funding account")).toBeDefined();
         await waitFor(() => expect(screen.getAllByText("5 " + config.tokenName)).toHaveLength(wallets.length));
         await waitFor(() => expect(screen.getByText(wallets[0].account)).toBeDefined());

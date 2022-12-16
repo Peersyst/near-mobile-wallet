@@ -6,7 +6,7 @@ import useWalletSelector from "module/wallet/hook/useWalletSelector";
 import AccountSelector from "./AccountSelector";
 import { WalletSelectorProps } from "./WalletSelectorGroup.types";
 
-const WalletSelectorGroup = ({ value, defaultValue = 0, onChange, label, ...rest }: WalletSelectorProps) => {
+const WalletSelectorGroup = ({ value, defaultValue = 0, onChange, label, withBalanceError = true, ...rest }: WalletSelectorProps) => {
     const { selectedIndex, handleChange, wallets, error } = useWalletSelector({ value, defaultValue, onChange });
     const translate = useTranslate();
     const translateError = useTranslate("error");
@@ -19,7 +19,12 @@ const WalletSelectorGroup = ({ value, defaultValue = 0, onChange, label, ...rest
                 gap="7%"
                 style={{ component: { width: "100%" } }}
                 value={selectedIndex}
-                error={[error, translateError("invalid_seleccted_account", { amountInNEAR: config.minBalanceToCreateAccount })]}
+                error={
+                    withBalanceError && [
+                        error,
+                        translateError("invalid_seleccted_account", { amountInNEAR: config.minBalanceToCreateAccount }),
+                    ]
+                }
                 onChange={handleChange}
                 {...rest}
             >
