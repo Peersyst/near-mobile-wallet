@@ -28,7 +28,7 @@ const WalletPrivateKeyBackup = ({ onClose }: WalletPrivateKeyBackupProps): JSX.E
 
     return (
         <WalletBackupBaseDisplay onClose={onClose} loading={!privateKey}>
-            <BlockchainAddressCard address={privateKey!} onCopy={onClose} />
+            <BlockchainAddressCard address={privateKey!} />
         </WalletBackupBaseDisplay>
     );
 };
