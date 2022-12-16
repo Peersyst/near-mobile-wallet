@@ -3,6 +3,7 @@ import * as Recoil from "recoil";
 import { renderHook, waitFor } from "test-utils";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
 import * as UseRecoverWallet from "module/wallet/hook/useRecoverWallets";
+import { UseConfigMock } from "mocks/genesys/useConfig/useConfig.mock";
 
 const renderUseLoad = () =>
     renderHook(() => {
@@ -36,6 +37,7 @@ describe("useLoad tests", () => {
         const mockedRecover = jest.fn();
         mockedRecover.mockResolvedValueOnce(false);
         mockedRecover.mockResolvedValueOnce(true);
+        new UseConfigMock({ config: { enableChangeNetwork: true } });
         jest.spyOn(UseRecoverWallet, "default").mockReturnValue(mockedRecover);
 
         const mockedSetSettingsState = jest.fn();
