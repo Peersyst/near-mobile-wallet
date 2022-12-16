@@ -28,7 +28,7 @@ const WalletsBackupModal = createModal((props): JSX.Element => {
 
     return (
         <WalletBackupModalRoot
-            navbar={{ title: translate("back_up_your_wallets"), back: index < WalletsBackupModalTabs.SHOW_MNEMONIC }}
+            navbar={{ title: translate("back_up_your_accounts"), back: index < WalletsBackupModalTabs.SHOW_MNEMONIC }}
             open={open}
             onClose={() => setOpen(false)}
             {...props}

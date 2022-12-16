@@ -7,6 +7,7 @@ import {
     ConfirmPinModalWrapper,
     ConfirmPinModalWrapperPropsRenderProps,
 } from "module/settings/components/core/ConfirmPinModal/ConfirmPinModalWrapper";
+import Advise from "module/common/component/display/Advise/Advise";
 
 export interface WalletsBackupAdvise {
     onSubmit: () => void;
@@ -31,15 +32,13 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdvise): JSX.Element => 
             {({ showConfirmPinModal }) => (
                 <Col gap="10%" flex={1}>
                     <Col flex={1} gap="3%">
-                        <Typography variant="body3Strong" textAlign="center">
-                            Keep them safe
-                        </Typography>
+                        <Advise title={translate("keep_this_safe")} />
                         <Col gap="3%">
                             <Typography variant="body3Regular" textAlign="center">
                                 {translate("backup_wallet_advise_text") + " "}
-                                <Typography variant="body3Strong" textAlign="center">
-                                    {translate("backup_wallet_advise_text_2")}
-                                </Typography>
+                            </Typography>
+                            <Typography variant="body3Strong" textAlign="center">
+                                {translate("backup_wallet_advise_text_2")}
                             </Typography>
                         </Col>
                     </Col>
@@ -53,7 +52,7 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdvise): JSX.Element => 
                                 })
                             }
                         >
-                            Con Mnemonic
+                            {translate("export_mnemonic")}
                         </Button>
                         <Button
                             fullWidth
@@ -64,7 +63,7 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdvise): JSX.Element => 
                                 })
                             }
                         >
-                            PK
+                            {translate("export_private_key")}
                         </Button>
                     </Col>
                 </Col>

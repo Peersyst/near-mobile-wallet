@@ -113,7 +113,7 @@
     "delete_data": "Borrar datos",
     "delete_data_text": "Estás seguro de que quieres borrar todos los datos de este dispositivo? Deberás introducir tu PIN para realizar esta acción.",
     "delete": "Borrar",
-    "back_up_your_wallets": "Respalda tus cuentas",
+    "back_up_your_accounts": "Respalda tus cuentas",
     "backup_wallet_advise_text": "Si continuas verás tu frase de recuperación o la clave privada para cada uno de tus cuentas. Si roban o pierdes tu dispositivo, solo podrás recuperar tus fondos con esta frase de recuperación o con las claves para cada cuenta.",
     "backup_wallet_advise_text_2": "Recuerda, que las cuentas con la etiqueta de importada solo podrán ser recuperadas con la clave correspondiente a esa cuenta.",
     "back_up_now": "Respaldar",
@@ -187,5 +187,8 @@
     "create_account_success": "Ya puedes usar tu nueva cuenta",
     "add_a_custom_address": "Añadir un nombre custom",
     "success": "¡éxito!",
-    "select_theme": "Cambiar tema"
+    "select_theme": "Cambiar tema",
+    "private_key_copied": "¡Llave privada copiada en el portapapeles!",
+    "export_mnemonic": "Exportar mnemonic",
+    "export_private_key": "Exportar llave privada"
 }
