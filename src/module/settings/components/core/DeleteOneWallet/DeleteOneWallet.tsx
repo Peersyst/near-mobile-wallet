@@ -1,7 +1,7 @@
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
 import { useDialog, useModal } from "@peersyst/react-native-components";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
-import { serviceInstancesMap } from "module/wallet/state/ServiceInstance/ServiceInstance";
+import { serviceInstancesMap } from "module/wallet/state/ServiceInstances/ServiceInstances";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
@@ -51,10 +51,10 @@ const DeleteOneWallet = () => {
                                 wallets: newWallets,
                             };
                         });
-                        //Reorder serviceInstances and invalidate queries from the following wallets
-                        const serviceInstancesSize = serviceInstancesMap.size;
-                        const lastServiceInstanceIndex = serviceInstancesSize - 1;
-                        for (let i = 0; i < serviceInstancesSize; i++) {
+                        //Reorder ServiceInstancess and invalidate queries from the following wallets
+                        const ServiceInstancessSize = serviceInstancesMap.size;
+                        const lastServiceInstancesIndex = ServiceInstancessSize - 1;
+                        for (let i = 0; i < ServiceInstancessSize; i++) {
                             if (i > index) {
                                 serviceInstancesMap.set(i - 1, serviceInstancesMap.get(i)!);
                                 await invalidateWalletQueries(i - 1, "testnet");
@@ -62,8 +62,8 @@ const DeleteOneWallet = () => {
                             }
                         }
                         //Delete last service instance and queries from last position
-                        serviceInstancesMap.delete(serviceInstancesSize);
-                        removeWalletQueries(lastServiceInstanceIndex);
+                        serviceInstancesMap.delete(ServiceInstancessSize);
+                        removeWalletQueries(lastServiceInstancesIndex);
                     }
                 },
             });

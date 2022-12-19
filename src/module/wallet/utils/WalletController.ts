@@ -1,7 +1,7 @@
 import { NetworkType } from "module/settings/state/SettingsState";
 import { Chains } from "near-peersyst-sdk";
-import ServiceInstance from "../state/ServiceInstance/ServiceInstance";
-import { CreateInstanceReturn } from "../state/ServiceInstance/ServiceInstance.types";
+import ServiceInstances from "../state/ServiceInstances/ServiceInstances";
+import { CreateInstanceReturn } from "../state/ServiceInstances/ServiceInstances.types";
 import { Wallet } from "../state/WalletState";
 import { SecureWalletInfo, UnencryptedWalletInfo } from "../wallet.types";
 import { WalletStorage } from "../WalletStorage";
@@ -41,8 +41,8 @@ export default class WalletController {
 
         const imported = !mnemonic || mnemonic !== secureStorage?.mnemonic;
 
-        //Init serviceInstanceMap
-        const accounts = await ServiceInstance.addServiceInstances({ network, privateKey: privateKeyParam, mnemonic });
+        //Init serviceInstancesMap
+        const accounts = await ServiceInstances.addServiceInstances({ network, privateKey: privateKeyParam, mnemonic });
         const numOfPrevWallets = storageWallets.length;
 
         //Add new accounts
@@ -110,7 +110,7 @@ export default class WalletController {
             const accountDeletedIds: number[] = [];
 
             //Get all the accounts from the private key
-            const accounts = await ServiceInstance.addServiceInstances({ network: network, privateKey: walletGroup.privateKey });
+            const accounts = await ServiceInstances.addServiceInstances({ network: network, privateKey: walletGroup.privateKey });
             const imported = walletGroup.privateKey !== mainPrivateKey;
             //Recover the old accounts and check if there are deleted accounts
             for (const walletId of walletGroup.walletIds) {
