@@ -107,7 +107,7 @@ describe("Test for the WalletController", () => {
             expect(wallets).toHaveLength(0);
         });
 
-        test("Recovers stored wallet. No accounts created outside the app", async () => {
+        test("Recovers stored wallet. No accounts created/deleted outside the app", async () => {
             const { accounts, walletIds, storageWallets } = new WalletControllerMocks(1, privateKey);
             jest.spyOn(WalletStorage, "getWallets").mockResolvedValue(storageWallets);
             new SecureWalletStorageTypeMock({ [network]: [{ privateKey, walletIds }] });
@@ -123,7 +123,7 @@ describe("Test for the WalletController", () => {
             expect(wallets[0].index).toBe(0);
         });
 
-        test("Recovers stored wallet. Some accounts created outside the app", async () => {
+        test("Recovers stored wallet. Some accounts created/deleted outside the app", async () => {
             const { accounts, walletIds, storageWallets } = new WalletControllerMocks(1, privateKey);
             const { accounts: newAccounts, storageWallets: newStorageWallets } = new WalletControllerMocks(2, privateKey, 1);
 
@@ -144,6 +144,7 @@ describe("Test for the WalletController", () => {
                 ],
                 network,
             );
+
             expect(mockedSetUnencryptedWallets).toHaveBeenCalledWith([...storageWallets, ...newStorageWallets], network);
             //Recover the wallet to save it in state
             expect(wallets).toHaveLength(3);
@@ -153,7 +154,7 @@ describe("Test for the WalletController", () => {
             }
         });
 
-        test("Recovers some wallets with differents keys. No accounts created outside the app", async () => {
+        test("Recovers some wallets with differents keys. No accounts created/deleted outside the app", async () => {
             const length1 = 3;
             const length2 = 8;
             const { accounts, walletIds, storageWallets } = new WalletControllerMocks(length1, privateKey);
