@@ -9,7 +9,7 @@ import { useControlled } from "@peersyst/react-hooks";
 import { useCopyToClipboard } from "module/common/hook/useCopyToClipboard";
 import BlockchainAddressCard from "module/wallet/component/input/BlockchainAddressCard/BlockchainAddressCard";
 
-const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ close, open: openProp, onClose, ...rest }) => {
+const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ open: openProp, onClose, ...rest }) => {
     const translate = useTranslate();
     const [open, setOpen] = useControlled(true, openProp, onClose);
     const { serviceInstance } = useServiceInstance();
