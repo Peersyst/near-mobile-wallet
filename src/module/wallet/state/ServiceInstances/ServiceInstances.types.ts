@@ -1,7 +1,7 @@
 import { NetworkType } from "module/settings/state/SettingsState";
 import { NearSDKService } from "near-peersyst-sdk";
 
-export interface BaseNearSdkParms {
+export interface BaseNearSdkParams {
     nodeUrl: string;
     indexerUrl: string;
 }

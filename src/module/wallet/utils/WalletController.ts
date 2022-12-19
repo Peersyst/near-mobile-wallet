@@ -28,22 +28,23 @@ export default class WalletController {
         mnemonic?: string,
         privateKeyParam?: string,
     ): Promise<WalletsControllerBaseReturn> {
-        const storageWallets = await WalletStorage.getUnencryptedWallets(network);
-        const newWallets: Wallet[] = [];
+        /**
+         * Get secure storage and check if has mnemonic and if the pK/mnemonic is not repeated
+         */
         const secureStorage = await WalletStorage.getSecure();
-        const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets to be added to the secure storage
-
-        let privateKey = "";
-
         if ((mnemonic && secureStorage?.mnemonic === mnemonic) || secureStorage?.[network].find((w) => w.privateKey === privateKeyParam)) {
             return { wallets: [] };
         }
 
+        const storageWallets = await WalletStorage.getUnencryptedWallets(network);
+        const numOfPrevWallets = storageWallets.length;
+        const newWallets: Wallet[] = [];
+        const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets' ids to be added to the secure storage
         const imported = !mnemonic || mnemonic !== secureStorage?.mnemonic;
+        let privateKey = "";
 
         //Init serviceInstancesMap
         const accounts = await ServiceInstances.addServiceInstances({ network, privateKey: privateKeyParam, mnemonic });
-        const numOfPrevWallets = storageWallets.length;
 
         //Add new accounts
         for (const [index, { account, privateKey: pK }] of accounts.entries()) {
@@ -95,15 +96,15 @@ export default class WalletController {
         const oldStorageWallets = await WalletStorage.getWallets(network); //Sorted by index
         //Has all the privateKeys and walletIds that point into the oldStorageWallets
         const oldWalletGroups = secureStorage?.[network] || [];
-        const mainPrivateKey = secureStorage?.mainPrivateKey || ""; //If has previous wallets, it has a mainPrivateKey
+
+        //Does not have any previous wallet
+        if (oldStorageWallets.length === 0 || oldWalletGroups.length === 0) return { wallets: [] };
 
         const newWallets: Wallet[] = [];
         let numberOfNewAccounts = 0;
         const newWalletGroups: TempWalletGroup[] = [];
         const deletedIds: number[] = [];
-
-        //Does not have any previous wallet
-        if (oldStorageWallets.length === 0 || oldWalletGroups.length === 0) return { wallets: [] };
+        const mainPrivateKey = secureStorage?.mainPrivateKey || ""; //If has previous wallets, it has a mainPrivateKey
 
         for (const walletGroup of oldWalletGroups) {
             const tempWallets: Wallet[] = [];
@@ -118,6 +119,8 @@ export default class WalletController {
                 if (!wallet) {
                     /* eslint-disable no-console */
                     console.warn("Corrupted storage: Wallet not found. WalletId: ", walletId);
+                    deletedIds.push(walletId);
+                    accountDeletedIds.push(walletId);
                 } else if (accounts.find((a) => a.account === wallet.account)) {
                     const newWallet = {
                         ...wallet,

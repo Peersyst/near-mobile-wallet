@@ -2,7 +2,7 @@ import { config } from "config";
 import { Chains, NearSDKService } from "near-peersyst-sdk";
 import { NetworkType } from "module/settings/state/SettingsState";
 import {
-    BaseNearSdkParms,
+    BaseNearSdkParams,
     CreateInstanceReturn,
     CreateServiceInstancesParams,
     SetServiceParams,
@@ -11,23 +11,41 @@ import {
 
 export const serviceInstancesMap = new Map<NetworkType, NearSDKService[]>();
 
-const TESTNET_PARAMS: BaseNearSdkParms = {
+const TESTNET_PARAMS: BaseNearSdkParams = {
     nodeUrl: config.testnetNodeUrl,
     indexerUrl: config.indexerTestnetUrl,
 };
 
-const MAINNET_PARAMS: BaseNearSdkParms = {
+const MAINNET_PARAMS: BaseNearSdkParams = {
     nodeUrl: config.mainnetNodeUrl,
     indexerUrl: config.indexerMainnetUrl,
 };
 
-const BASE_NEAR_SDK_PARAMS: Record<NetworkType, BaseNearSdkParms> = {
+const BASE_NEAR_SDK_PARAMS: Record<NetworkType, BaseNearSdkParams> = {
     [Chains.TESTNET]: TESTNET_PARAMS,
     [Chains.MAINNET]: MAINNET_PARAMS,
 };
 
 export default new (class ServiceInstances {
-    private async createServiceInstance({
+    getServiceInstance(network: NetworkType, index: number): NearSDKService | undefined {
+        return serviceInstancesMap.get(network)?.[index];
+    }
+
+    async setService({ network, serviceIndex, service }: SetServiceParams) {
+        const services = this.getServiceInstances(network);
+        services[serviceIndex] = service;
+        serviceInstancesMap.set(network, services);
+    }
+
+    getServiceInstances(network: NetworkType): NearSDKService[] {
+        return serviceInstancesMap.get(network) ?? [];
+    }
+
+    setServiceInstances({ network, services }: SetServicesParams) {
+        serviceInstancesMap.set(network, services);
+    }
+
+    private async createServiceInstances({
         privateKey,
         network,
         mnemonic,
@@ -46,26 +64,8 @@ export default new (class ServiceInstances {
         return services;
     }
 
-    async setService({ network, serviceIndex, service }: SetServiceParams) {
-        const services = this.getServiceInstances(network);
-        services[serviceIndex] = service;
-        serviceInstancesMap.set(network, services);
-    }
-
-    getServiceInstance(network: NetworkType, index: number): NearSDKService | undefined {
-        return serviceInstancesMap.get(network)?.[index];
-    }
-
-    getServiceInstances(network: NetworkType): NearSDKService[] {
-        return serviceInstancesMap.get(network) ?? [];
-    }
-
-    setServiceInstances({ network, services }: SetServicesParams) {
-        serviceInstancesMap.set(network, services);
-    }
-
-    async createServiceInstances({ network, ...rest }: CreateServiceInstancesParams): Promise<CreateInstanceReturn[]> {
-        const services = await this.createServiceInstance({ network, ...rest });
+    async initializeServiceInstances({ network, ...rest }: CreateServiceInstancesParams): Promise<CreateInstanceReturn[]> {
+        const services = await this.createServiceInstances({ network, ...rest });
         this.setServiceInstances({ network, services });
         return services.map((s) => ({ account: s.getAddress(), privateKey: s.getKeyPair() }));
     }
@@ -75,7 +75,7 @@ export default new (class ServiceInstances {
      * @returns Array of the all the addresses associated with the privateKey
      */
     async addServiceInstances({ network, ...rest }: CreateServiceInstancesParams): Promise<CreateInstanceReturn[]> {
-        const services = await this.createServiceInstance({ network, ...rest });
+        const services = await this.createServiceInstances({ network, ...rest });
         const currentServices = this.getServiceInstances(network);
         this.setServiceInstances({ network, services: [...currentServices, ...services] });
         return services.map((s) => ({ account: s.getAddress(), privateKey: s.getKeyPair() }));
