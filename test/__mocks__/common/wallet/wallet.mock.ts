@@ -23,3 +23,17 @@ export class WalletMock extends BaseMock implements Wallet {
         this.uncommittedTransactionHashes = uncommittedTransactionHashes;
     }
 }
+
+export interface WalletMockParams {
+    length: number;
+    wallets?: WalletMock[];
+}
+
+export class WalletsMock extends BaseMock {
+    wallets: WalletMock[];
+
+    constructor({ length, wallets }: WalletMockParams = { length: 2 }) {
+        super();
+        this.wallets = wallets ?? Array.from({ length }, (_, i) => new WalletMock({ index: i, account: `wallet - ${i}` }));
+    }
+}
