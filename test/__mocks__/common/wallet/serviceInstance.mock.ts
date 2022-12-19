@@ -1,4 +1,4 @@
-import ServiceInstance from "module/wallet/state/ServiceInstance/ServiceInstance";
+import ServiceInstances from "module/wallet/state/ServiceInstances/ServiceInstances";
 import BaseMock, { MockFnType } from "../base.mock";
 import { ImportWalletsReturnMock } from "./walletController.mock";
 
@@ -18,18 +18,18 @@ export class CreateInstanceReturnMock extends BaseMock {
 }
 
 interface AddServiceInstancesMockType {
-    addServiceInstanceMock: MockFnType;
+    AddServiceInstancesMock: MockFnType;
     returnMock: ImportWalletsReturnMock[];
 }
 
 export class AddServiceInstancesMock extends BaseMock {
-    addServiceInstanceMock: MockFnType;
+    AddServiceInstancesMock: MockFnType;
     returnMock: ImportWalletsReturnMock[];
 
-    constructor({ addServiceInstanceMock, returnMock }: Partial<AddServiceInstancesMockType> = {}) {
+    constructor({ AddServiceInstancesMock, returnMock }: Partial<AddServiceInstancesMockType> = {}) {
         super();
         this.returnMock = returnMock ?? [new ImportWalletsReturnMock()];
-        this.addServiceInstanceMock = addServiceInstanceMock ?? jest.fn().mockResolvedValue(["account1", "account2"]);
-        this.mock = jest.spyOn(ServiceInstance, "addServiceInstances").mockImplementation(this.addServiceInstanceMock);
+        this.AddServiceInstancesMock = AddServiceInstancesMock ?? jest.fn().mockResolvedValue(["account1", "account2"]);
+        this.mock = jest.spyOn(ServiceInstances, "addServiceInstances").mockImplementation(this.AddServiceInstancesMock);
     }
 }
