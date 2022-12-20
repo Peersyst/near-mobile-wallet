@@ -16,7 +16,7 @@ export interface UseWalletSelectorResult {
     error: boolean;
 }
 
-export default function useWalletSelector({ defaultValue, value, onChange }: UseWalletSelectorParams = {}):UseWalletSelectorResult {
+export default function useWalletSelector({ defaultValue, value, onChange }: UseWalletSelectorParams = {}): UseWalletSelectorResult {
     const {
         state: { wallets, selectedWallet: defaultAccount = 0 },
     } = useWalletState();

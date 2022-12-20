@@ -11,20 +11,22 @@ const WalletSelectorGroup = ({ value, defaultValue = 0, onChange, label, ...rest
     const translateError = useTranslate("error");
 
     return (
-        <SelectorGroup
-            LabelProps={{ gap: "7%" }}
-            label={label || translate("select_funding_acc")}
-            gap="7%"
-            style={{ component: { width: "100%" } }}
-            value={selectedIndex}
-            error={[error, translateError("invalid_seleccted_account", { amountInNEAR: config.minBalanceToCreateAccount })]}
-            onChange={setWalletIndex}
-            {...rest}
-        >
-            {wallets.map(({ index, account }, i) => (
-                <AccountSelector key={i} index={index} account={account} />
-            ))}
-        </SelectorGroup>
+        <ScrollView>
+            <SelectorGroup
+                LabelProps={{ gap: "7%" }}
+                label={label || translate("select_funding_acc")}
+                gap="7%"
+                style={{ component: { width: "100%" } }}
+                value={selectedIndex}
+                error={[error, translateError("invalid_seleccted_account", { amountInNEAR: config.minBalanceToCreateAccount })]}
+                onChange={setWalletIndex}
+                {...rest}
+            >
+                {wallets.map(({ index, account }, i) => (
+                    <AccountSelector key={i} index={index} account={account} />
+                ))}
+            </SelectorGroup>
+        </ScrollView>
     );
 };
 

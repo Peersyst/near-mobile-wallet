@@ -1,4 +1,4 @@
-import { Col, Form, ScrollView } from "@peersyst/react-native-components";
+import { Col, Form } from "@peersyst/react-native-components";
 import { config } from "config";
 import Typography from "module/common/component/display/Typography/Typography";
 import Button from "module/common/component/input/Button/Button";
