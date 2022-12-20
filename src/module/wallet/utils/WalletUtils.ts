@@ -25,6 +25,15 @@ export class WalletUtils {
         return wallets.sort((a, b) => a.index - b.index);
     }
 
+    //UNENCRYPTED wallet methods
+    static addWallet<W extends UnencryptedWalletInfo>(wallets: W[], wallet: Omit<W, "index">): W[] {
+        const newWallet = {
+            ...wallet,
+            index: wallets.length,
+        } as W;
+        return [...wallets, newWallet];
+    }
+
     //Uncommited transaction hashes methods
     static updateUncommitedTransactionHashes<W extends UnencryptedWalletInfo>(wallet: W, uncommittedTransactionHashes: string[]): W {
         return {
@@ -92,7 +101,7 @@ export class WalletUtils {
         return wallets.find((wallet) => wallet.privateKey === privateKey);
     }
 
-    static findByWalletId(walletId: number, wallets: SecureWalletInfo[]): SecureWalletInfo | undefined {
+    static findSecureByWalletId(walletId: number, wallets: SecureWalletInfo[]): SecureWalletInfo | undefined {
         return wallets.find((wallet) => wallet.walletIds.includes(walletId));
     }
 

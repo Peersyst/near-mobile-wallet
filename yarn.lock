@@ -2041,13 +2041,13 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@peersyst/react-components-core@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-1.0.8.tgz#39bd97bcfeda8b53d378d48b2fbfefa2473b8184"
-  integrity sha512-AEzcI9GPBOujNtzI5ZKWPPKgJCBZn5F8txKMwkU/cJ1UmYdZ8N88JgsrLzXGy/kcdCTh7fog18/VytKUdnshug==
+"@peersyst/react-components-core@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-1.0.9.tgz#7c566b677ee6bcf49496cc4a216b8be6f8bb8df1"
+  integrity sha512-yb9T17IG+ERf9+jDyK635Eb2pQmqWRRWO5Gf+nsOy/fesrWzzqmjIxIgdnc/04UmZjAcXr3/gpRsYzkxYq624Q==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-hooks" "^2.0.3"
+    "@peersyst/react-hooks" "^2.0.4"
     "@peersyst/react-types" "^1.5.0"
     "@peersyst/react-utils" "^2.1.0"
     validator "^13.7.0"
@@ -2060,22 +2060,22 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^2.1.0"
 
-"@peersyst/react-hooks@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-2.0.3.tgz#0f21e67c9359b63c912ae8f60d51ddf200f72b7a"
-  integrity sha512-+pheqYb7krRQTVaV9EauGYx1n0ki+rEllIYNwVRRlMCVC87zliugWWtC7/n2LjhWGmifAc57YeU1rYyFYJ0Q+g==
+"@peersyst/react-hooks@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-2.0.4.tgz#7eaf9c2676766a94471684cc425d4578a82da377"
+  integrity sha512-XO6xHmBIrsVdCyf22YDqatNc1CLdTmMmBxTQU2BKW4t1I4rDfLd+5DYnLif4kb3JpDvdQws8iU8Iyf8RypbW8A==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^2.1.0"
 
-"@peersyst/react-native-components@^2.0.19":
-  version "2.0.19"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-2.0.19.tgz#0e7f91dca491a480515e139fe99107bcdf3fad18"
-  integrity sha512-tfhGlE8135xGj2YXEGCgBAovwV5cgVuuWTsKEbTyquqHsKXdKGFAVp/8P97nF1dW33TCFCsx+qanZrj0v4FDvg==
+"@peersyst/react-native-components@^2.0.22":
+  version "2.0.22"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-2.0.22.tgz#837e4bb327fed74e9770bca76ccd6acacb2ff54a"
+  integrity sha512-QMTL/0EJrTkjWfKzJJ56PqXwb60qkMNxdeJEiz+epp9WW0FM9lLY+V17yopLzoZ5AVUUcvommSoCHeQFZXD8eQ==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-components-core" "^1.0.8"
-    "@peersyst/react-hooks" "^2.0.3"
+    "@peersyst/react-components-core" "^1.0.9"
+    "@peersyst/react-hooks" "^2.0.4"
     "@peersyst/react-native-styled" "^2.0.0"
     "@peersyst/react-native-utils" "^1.0.1"
     "@peersyst/react-types" "^1.5.0"

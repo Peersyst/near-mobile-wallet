@@ -8,11 +8,11 @@
     "faucetUrl": "https://faucet.nervos.org/",
     "mainnetNodeUrl": "https://rpc.mainnet.near.org",
     "testnetNodeUrl": "https://rpc.testnet.near.org",
-    "maxNumberOfDecimals": 4,
-    "enableMainnet": true,
+    "maxNumberOfDecimals": 5,
+    "enableChangeNetwork": true,
     "tokenName": "NEAR",
     "coingeckoTokenApiId": "near",
     "fetchPriceConversionInterval": 180000,
     "minBalanceToCreateAccount": "0.1",
-    "estimatedFee": "0.0000000001"
+    "estimatedFee": "0.00005"
 }

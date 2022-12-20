@@ -5,14 +5,15 @@ import { ReactNode } from "react";
 export interface AddWalletModalProps extends ExposedBackdropProps {
     title: string;
     onBack?: () => void;
-    children: (handleWalletCreation: () => Promise<void>) => ReactNode;
+    children: (handleWalletCreation: () => Promise<void>, handleClose: () => void) => ReactNode;
     imported?: boolean;
     steps?: StepsProps;
+    closeOnWalletCreation?: boolean;
 }
 
 export interface BaseAddWalletModalScreenProps {
     onSubmit: () => void;
-    submitText: string;
+    submitText?: string;
 }
 
 export interface AddWalletModalContentProps {

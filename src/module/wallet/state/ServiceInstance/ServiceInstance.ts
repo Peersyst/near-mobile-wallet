@@ -2,6 +2,7 @@ import { config } from "config";
 import { Chains, NearSDKService } from "near-peersyst-sdk";
 import { NetworkType } from "module/settings/state/SettingsState";
 import {
+    AddServiceParams,
     BaseNearSdkParms,
     CreateInstanceReturn,
     CreateServiceInstanceParams,
@@ -50,7 +51,6 @@ export default class ServiceInstance {
     static async setService({ network, serviceIndex, service }: SetServiceParams) {
         const services = ServiceInstance.getServices(network);
         services[serviceIndex] = service;
-        serviceInstancesMap.set(network, services);
     }
 
     static getService(network: NetworkType, index: number): NearSDKService | undefined {
@@ -63,6 +63,11 @@ export default class ServiceInstance {
 
     static setServices({ network, services }: SetServicesParams) {
         serviceInstancesMap.set(network, services);
+    }
+
+    static addService({ network, service }: AddServiceParams) {
+        const services = ServiceInstance.getServices(network);
+        services.push(service);
     }
 
     static async createServiceInstance({ network, ...rest }: CreateServiceInstanceParams): Promise<CreateInstanceReturn[]> {

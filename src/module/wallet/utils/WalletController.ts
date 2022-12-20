@@ -1,5 +1,5 @@
 import { NetworkType } from "module/settings/state/SettingsState";
-import { Chains } from "near-peersyst-sdk";
+import { Chains, NearSDKService } from "near-peersyst-sdk";
 import ServiceInstance from "../state/ServiceInstance/ServiceInstance";
 import { CreateInstanceReturn } from "../state/ServiceInstance/ServiceInstance.types";
 import { Wallet } from "../state/WalletState";
@@ -250,5 +250,33 @@ export default class WalletController {
             if (finalIds.length > 0) newSecureWallets.push({ privateKey: walletGroup.privateKey, walletIds: finalIds });
         }
         return { newStorageWallets, newFinalWallets, newSecureWallets };
+    }
+
+    /**
+     * Create new account:
+     * - Set the new account in the wallet state
+     * - Set the new account with its pK in the storage
+     * - Set a new service instance with the new account
+     */
+    static async createNewWallet(
+        newAccount: string,
+        oldWalletIndex: number,
+        newService: NearSDKService,
+        network: NetworkType,
+    ): Promise<Wallet | undefined> {
+        const [walletGroupAndImported, newIndex] = await Promise.all([
+            await WalletStorage.getSecureWalletGroupAndMainPrivateKey(oldWalletIndex, network),
+            await WalletStorage.addNewUnencryptedWallet({ account: newAccount }, network),
+        ]);
+        if (newIndex === undefined || walletGroupAndImported?.walletGroup === undefined) return undefined;
+        const { walletGroup, imported } = walletGroupAndImported;
+        await WalletStorage.setSecureWalletId(newIndex, walletGroup.privateKey, network);
+        ServiceInstance.addService({ service: newService, network });
+        return {
+            account: newAccount,
+            index: newIndex,
+            colorIndex: WalletUtils.getWalletColor(newAccount),
+            ...(imported && { imported }),
+        };
     }
 }
