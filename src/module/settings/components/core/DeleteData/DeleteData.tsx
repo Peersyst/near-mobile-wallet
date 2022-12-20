@@ -1,6 +1,6 @@
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import { serviceInstancesMap } from "module/wallet/state/ServiceInstance/ServiceInstance";
+import { serviceInstancesMap } from "module/wallet/state/ServiceInstances/ServiceInstances";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
 import { useDialog, useModal } from "@peersyst/react-native-components";

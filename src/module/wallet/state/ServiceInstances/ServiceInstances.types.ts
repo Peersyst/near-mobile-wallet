@@ -1,31 +1,31 @@
 import { NetworkType } from "module/settings/state/SettingsState";
 import { NearSDKService } from "near-peersyst-sdk";
 
-export interface BaseNearSdkParms {
+export interface BaseNearSdkParams {
     nodeUrl: string;
     indexerUrl: string;
 }
 
-export interface BaseSetServiceParams {
+export interface BaseSetServiceInstancesParams {
     network: NetworkType;
 }
 
-export interface SetServicesParams extends BaseSetServiceParams {
+export interface SetServicesParams extends BaseSetServiceInstancesParams {
     services: NearSDKService[];
 }
 
-export interface SetServiceParams extends BaseSetServiceParams {
+export interface SetServiceParams extends BaseSetServiceInstancesParams {
     service: NearSDKService;
     serviceIndex: number;
 }
 
-export interface CreateServiceInstanceParams extends BaseSetServiceParams {
+export interface CreateServiceInstancesParams extends BaseSetServiceInstancesParams {
     privateKey?: string;
     mnemonic?: string;
     nameId?: string;
 }
 
-export interface InitServiceInstanceParams extends Omit<SetServicesParams, "services"> {
+export interface InitServiceInstancesParams extends Omit<SetServicesParams, "services"> {
     mnemonic?: string;
 }
 

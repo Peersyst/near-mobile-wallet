@@ -1,54 +1,90 @@
 import { NetworkType } from "module/settings/state/SettingsState";
 import { Chains } from "near-peersyst-sdk";
-import ServiceInstance from "../state/ServiceInstance/ServiceInstance";
-import { CreateInstanceReturn } from "../state/ServiceInstance/ServiceInstance.types";
+import ServiceInstances from "../state/ServiceInstances/ServiceInstances";
+import { CreateInstanceReturn } from "../state/ServiceInstances/ServiceInstances.types";
 import { Wallet } from "../state/WalletState";
 import { SecureWalletInfo, UnencryptedWalletInfo } from "../wallet.types";
 import { WalletStorage } from "../WalletStorage";
 import { WalletUtils } from "./WalletUtils";
 
-interface WalletsControllerBaseReturn {
+export interface WalletControllerBaseReturn {
     wallets: Wallet[];
 }
 
-interface TempWalletGroup {
+export interface TempWalletGroup {
     deletedIds: number[];
     privateKey: string;
     newWallets: CreateInstanceReturn[];
 }
 
-export default class WalletController {
+export interface AddNewWalletsParams {
+    newWalletGroups: TempWalletGroup[];
+    secureWallets: SecureWalletInfo[];
+    storageWallets: UnencryptedWalletInfo[];
+    wallets: Wallet[];
+    mainPrivateKey: string;
+}
+
+export interface UpdateWalletsReturn {
+    updatedStorageWallets: UnencryptedWalletInfo[];
+    updatedWallets: Wallet[];
+    updatedSecureWallets: SecureWalletInfo[];
+}
+
+export interface GetWalletsParams {
+    network: NetworkType;
+    walletGroups: SecureWalletInfo[];
+    mainPrivateKey: string;
+    storageWallets: UnencryptedWalletInfo[];
+}
+
+export interface GetWalletsReturn {
+    newWallets: Wallet[];
+    newWalletGroups: TempWalletGroup[];
+    deletedIds: number[];
+}
+
+export interface CheckWalletsReturn extends GetWalletsReturn {
+    hasNewAccounts: boolean;
+}
+
+export default new (class WalletController {
     /**
      * Import a wallet from a private key or a mnemonic
-     * @returns Returns the new wallets and if the secret is repeated
+     * @returns Returns the new wallets (not the previous ones)
      */
-    static async importWallets(
+    async importWallets(
         network: NetworkType,
         pin?: string,
         mnemonic?: string,
         privateKeyParam?: string,
-    ): Promise<WalletsControllerBaseReturn> {
-        const storageWallets = await WalletStorage.getUnencryptedWallets(network);
-        const newWallets: Wallet[] = [];
+    ): Promise<WalletControllerBaseReturn> {
+        /**
+         * Get secure storage and check if has a mnemonic and if the pK/mnemonic is not repeated (already in storage)
+         */
         const secureStorage = await WalletStorage.getSecure();
-        const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets to be added to the secure storage
 
-        let privateKey = "";
-
-        if ((mnemonic && secureStorage?.mnemonic === mnemonic) || secureStorage?.[network].find((w) => w.privateKey === privateKeyParam)) {
+        if (
+            (mnemonic && secureStorage?.mnemonic === mnemonic) ||
+            (!mnemonic && secureStorage?.[network].find((w) => w.privateKey === privateKeyParam))
+        ) {
             return { wallets: [] };
         }
 
-        const imported = !mnemonic || (secureStorage?.mnemonic && mnemonic !== secureStorage?.mnemonic);
-
-        //Init serviceInstanceMap
-        const accounts = await ServiceInstance.addServiceInstances({ network, privateKey: privateKeyParam, mnemonic });
+        const storageWallets = await WalletStorage.getUnencryptedWallets(network);
         const numOfPrevWallets = storageWallets.length;
+        const newWallets: Wallet[] = [];
+        const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets' ids to be added to the secure storage
+        const imported = !mnemonic || !!secureStorage?.mnemonic;
+        let privateKey = "";
+
+        //Init serviceInstancesMap
+        const accounts = await ServiceInstances.addServiceInstances({ network, privateKey: privateKeyParam, mnemonic });
 
         //Add new accounts
         for (const [index, { account, privateKey: pK }] of accounts.entries()) {
             /**
-             * Don't used privateKeyParam because it can be undefined
+             * privateKeyParam is not used because it can be undefined
              * and in that case the wallet will create a privateKey derived from the mnemonic
              */
             if (index === 0) {
@@ -98,35 +134,93 @@ export default class WalletController {
      * - Some wallets can be deleted outside the app
      * @returns The recovered wallets
      */
-    static async recoverWallets(network: NetworkType): Promise<WalletsControllerBaseReturn> {
+    async recoverWallets(network: NetworkType): Promise<WalletControllerBaseReturn> {
         const secureStorage = await WalletStorage.getSecure();
         //Info about the wallets (that is set into the state)
-        const oldStorageWallets = await WalletStorage.getWallets(network); //Sorted by index
+        const storageWallets = await WalletStorage.getWallets(network); //Sorted by index
         //Has all the privateKeys and walletIds that point into the oldStorageWallets
-        const oldWalletGroups = secureStorage?.[network] || [];
-        const mainPrivateKey = secureStorage?.mainPrivateKey || ""; //If has previous wallets, it has a mainPrivateKey
-
-        const newWallets: Wallet[] = [];
-        let numberOfNewAccounts = 0;
-        const newWalletGroups: TempWalletGroup[] = [];
-        const deletedIds: number[] = [];
+        const walletGroups = secureStorage?.[network] || [];
 
         //Does not have any previous wallet
-        if (oldStorageWallets.length === 0 || oldWalletGroups.length === 0) return { wallets: [] };
+        if (storageWallets.length === 0 || walletGroups.length === 0) return { wallets: [] };
 
-        for (const walletGroup of oldWalletGroups) {
+        const mainPrivateKey = secureStorage?.mainPrivateKey || ""; //If has previous wallets, it has a mainPrivateKey
+
+        const { newWallets, newWalletGroups, deletedIds, hasNewAccounts } = await this.checkWallets({
+            network,
+            walletGroups,
+            mainPrivateKey,
+            storageWallets,
+        });
+
+        const hasDeletedAccounts = deletedIds.length > 0;
+
+        //No accounts created/deleted outside the app
+        if (!hasDeletedAccounts && !hasNewAccounts) {
+            return { wallets: newWallets };
+        } else {
+            let finalWallets: Wallet[] = [...newWallets];
+            let finalWalletGroups: SecureWalletInfo[] = [...walletGroups];
+            let finalStorageWallets: UnencryptedWalletInfo[] = [...storageWallets];
+            //Delete wallets
+            if (hasDeletedAccounts) {
+                //Delete the wallets and update the wallet.index of secure and unencrypted wallets
+                const { updatedSecureWallets, updatedStorageWallets, updatedWallets } = this.deleteRemovedWallets(
+                    storageWallets,
+                    newWallets,
+                    walletGroups,
+                    deletedIds,
+                );
+                finalWallets = [...updatedWallets];
+                finalWalletGroups = [...updatedSecureWallets];
+                finalStorageWallets = [...updatedStorageWallets];
+            }
+
+            //Add new wallets
+            if (hasNewAccounts) {
+                //Delete the wallets and update the wallet.index of secure and unencrypted wallets
+                const { updatedSecureWallets, updatedStorageWallets, updatedWallets } = this.addNewWallets({
+                    wallets: finalWallets,
+                    secureWallets: finalWalletGroups,
+                    storageWallets: finalStorageWallets,
+                    mainPrivateKey,
+                    newWalletGroups,
+                });
+                finalWallets = [...updatedWallets];
+                finalWalletGroups = [...updatedSecureWallets];
+                finalStorageWallets = [...updatedStorageWallets];
+            }
+
+            await WalletStorage.setSecureWallets(finalWalletGroups, network);
+            await WalletStorage.setUnencryptedWallets(finalStorageWallets, network);
+            return { wallets: finalWallets };
+        }
+    }
+
+    /**
+     * Get all the wallets. Check if has deleted wallets and if some new wallets has been created outside the app
+     */
+    private async checkWallets({ network, walletGroups, mainPrivateKey, storageWallets }: GetWalletsParams): Promise<CheckWalletsReturn> {
+        const newWallets: Wallet[] = [];
+        const newWalletGroups: TempWalletGroup[] = [];
+        const deletedIds: number[] = [];
+        let hasNewAccounts = false;
+
+        for (const walletGroup of walletGroups) {
             const tempWallets: Wallet[] = [];
             const accountDeletedIds: number[] = [];
 
             //Get all the accounts from the private key
-            const accounts = await ServiceInstance.addServiceInstances({ network: network, privateKey: walletGroup.privateKey });
+            const accounts = await ServiceInstances.addServiceInstances({ network: network, privateKey: walletGroup.privateKey });
             const imported = walletGroup.privateKey !== mainPrivateKey;
             //Recover the old accounts and check if there are deleted accounts
             for (const walletId of walletGroup.walletIds) {
-                const wallet = WalletUtils.getWallet(walletId, oldStorageWallets);
+                const wallet = WalletUtils.getWallet(walletId, storageWallets);
                 if (!wallet) {
                     /* eslint-disable no-console */
                     console.warn("Corrupted storage: Wallet not found. WalletId: ", walletId);
+                    deletedIds.push(walletId);
+                    accountDeletedIds.push(walletId);
                 } else if (accounts.find((a) => a.account === wallet.account)) {
                     const newWallet = {
                         ...wallet,
@@ -140,84 +234,79 @@ export default class WalletController {
                     accountDeletedIds.push(walletId);
                 }
             }
-
-            //Check if there are new accounts
             const newTempAccounts = accounts.filter(({ account }) => !tempWallets.find((w) => w.account === account));
-            numberOfNewAccounts += newTempAccounts.length;
+            if (newTempAccounts.length > 0) hasNewAccounts = true;
             newWalletGroups.push({ deletedIds: accountDeletedIds, newWallets: newTempAccounts, privateKey: walletGroup.privateKey });
         }
 
-        const numberOfDeletedWallets = deletedIds.length;
-
-        //No accounts created/deleted outside the app
-        if (numberOfDeletedWallets === 0 && numberOfNewAccounts === 0) {
-            return { wallets: newWallets };
-        } else {
-            //There are new accounts or some has been deleted
-            let finalSecureWallets: SecureWalletInfo[] = [...oldWalletGroups];
-            let finalStorageWallets: UnencryptedWalletInfo[] = [...oldStorageWallets];
-            let finalWallets: Wallet[] = [...newWallets];
-
-            //Delete wallets
-            if (numberOfDeletedWallets > 0) {
-                //Delete the wallets and update the wallet.index of secure and unencrypted wallets
-                const { newFinalWallets, newSecureWallets, newStorageWallets } = this.deletedWallets(
-                    oldStorageWallets,
-                    newWallets,
-                    oldWalletGroups,
-                    deletedIds,
-                );
-                finalSecureWallets = [...newSecureWallets];
-                finalStorageWallets = [...newStorageWallets];
-                finalWallets = [...newFinalWallets];
-            }
-
-            //Add new wallets
-            if (numberOfNewAccounts > 0) {
-                for (const walletGroup of newWalletGroups) {
-                    //Check if the walletGroup already exists (maybe had all their previous accounts deleted)
-                    const oldWalletGroup = finalSecureWallets.find(({ privateKey }) => privateKey === walletGroup.privateKey);
-                    const finalIds: number[] = oldWalletGroup?.walletIds || [];
-                    const imported = walletGroup.privateKey !== mainPrivateKey;
-                    //Add new accounts
-                    for (const { account } of walletGroup.newWallets) {
-                        const newIndex = finalStorageWallets.length;
-                        const newBaseWallet: UnencryptedWalletInfo = { account, index: newIndex };
-                        finalStorageWallets.push(newBaseWallet);
-                        finalWallets.push({
-                            ...newBaseWallet,
-                            colorIndex: WalletUtils.getWalletColor(account),
-                            ...(imported && { imported }),
-                        });
-                        finalIds.push(newIndex);
-                    }
-                    //Update the secure storage with the new accounts
-                    if (finalIds.length > 0) {
-                        const newWalletGroup = { privateKey: walletGroup.privateKey, walletIds: finalIds };
-                        if (oldWalletGroup) {
-                            //If the walletGroup already exists, update it
-                            const tempSecureWallets = finalSecureWallets.filter(({ privateKey }) => privateKey !== walletGroup.privateKey);
-                            finalSecureWallets = [...tempSecureWallets, newWalletGroup];
-                        } else {
-                            //If the walletGroup does not exist, create it
-                            finalSecureWallets.push(newWalletGroup);
-                        }
-                    }
-                }
-            }
-
-            await WalletStorage.setSecureWallets(finalSecureWallets, network);
-            await WalletStorage.setUnencryptedWallets(finalStorageWallets, network);
-            return { wallets: finalWallets };
-        }
+        return {
+            newWallets,
+            newWalletGroups,
+            deletedIds,
+            hasNewAccounts,
+        };
     }
 
-    static deletedWallets(
+    /**
+     * Adds new wallets to the variables not to the storage
+     */
+    private addNewWallets({
+        newWalletGroups,
+        secureWallets,
+        storageWallets,
+        wallets,
+        mainPrivateKey,
+    }: AddNewWalletsParams): UpdateWalletsReturn {
+        const updatedWallets: Wallet[] = [...wallets];
+        let updatedSecureWallets: SecureWalletInfo[] = [...secureWallets];
+        const updatedStorageWallets: UnencryptedWalletInfo[] = [...storageWallets];
+
+        for (const walletGroup of newWalletGroups) {
+            //Check if the walletGroup already exists (maybe had all their previous accounts deleted)
+            const oldWalletGroup = updatedSecureWallets.find(({ privateKey }) => privateKey === walletGroup.privateKey);
+            const finalIds: number[] = oldWalletGroup?.walletIds || [];
+            const imported = walletGroup.privateKey !== mainPrivateKey;
+            //Add new accounts
+            for (const { account } of walletGroup.newWallets) {
+                const newIndex = updatedStorageWallets.length;
+                const newBaseWallet: UnencryptedWalletInfo = { account, index: newIndex };
+                updatedStorageWallets.push(newBaseWallet);
+                updatedWallets.push({
+                    ...newBaseWallet,
+                    colorIndex: WalletUtils.getWalletColor(account),
+                    ...(imported && { imported }),
+                });
+                finalIds.push(newIndex);
+            }
+            //Update the secure storage with the new accounts
+            if (finalIds.length > 0) {
+                const newWalletGroup = { privateKey: walletGroup.privateKey, walletIds: finalIds };
+                if (oldWalletGroup) {
+                    //If the walletGroup already exists, update it
+                    const tempSecureWallets = updatedSecureWallets.filter(({ privateKey }) => privateKey !== walletGroup.privateKey);
+                    updatedSecureWallets = [...tempSecureWallets, newWalletGroup];
+                } else {
+                    //If the walletGroup does not exist, create it
+                    updatedSecureWallets.push(newWalletGroup);
+                }
+            }
+        }
+        return {
+            updatedStorageWallets,
+            updatedWallets,
+            updatedSecureWallets,
+        };
+    }
+
+    /**
+     * Delete the wallets from the variables not from storage
+     */
+    private deleteRemovedWallets(
         storageWallets: UnencryptedWalletInfo[],
         wallets: Wallet[],
         walletGroups: SecureWalletInfo[],
         deletedIds: number[],
-    ) {
+    ): UpdateWalletsReturn {
         const sortedDeletedIds = deletedIds.sort((a, b) => {
             if (a > b) return 1;
             if (a < b) return -1;
@@ -225,20 +314,19 @@ export default class WalletController {
         });
         let currentDeletedIndex = 0;
         const newIndexNumberMap = new Map<number, number>();
-        const newStorageWallets: UnencryptedWalletInfo[] = [];
-        const newFinalWallets: Wallet[] = [];
-        const newSecureWallets: SecureWalletInfo[] = [];
+        const updatedStorageWallets: UnencryptedWalletInfo[] = [];
+        const updatedWallets: Wallet[] = [];
+        const updatedSecureWallets: SecureWalletInfo[] = [];
 
         for (const storageWallet of storageWallets) {
             if (currentDeletedIndex < sortedDeletedIds.length && sortedDeletedIds[currentDeletedIndex] === storageWallet.index) {
                 currentDeletedIndex++;
-                continue;
             } else {
                 const newIndex = storageWallet.index - currentDeletedIndex;
                 newIndexNumberMap.set(storageWallet.index, newIndex);
-                newStorageWallets.push({ ...storageWallet, index: newIndex });
+                updatedStorageWallets.push({ ...storageWallet, index: newIndex });
                 const wallet = WalletUtils.getWallet(storageWallet.index, wallets);
-                if (wallet) newFinalWallets.push({ ...wallet, index: newIndex });
+                if (wallet) updatedWallets.push({ ...wallet, index: newIndex });
             }
         }
         for (const walletGroup of walletGroups) {
@@ -247,8 +335,8 @@ export default class WalletController {
                 const newIndex = newIndexNumberMap.get(walletId);
                 if (newIndex !== undefined) finalIds.push(newIndex);
             }
-            if (finalIds.length > 0) newSecureWallets.push({ privateKey: walletGroup.privateKey, walletIds: finalIds });
+            if (finalIds.length > 0) updatedSecureWallets.push({ privateKey: walletGroup.privateKey, walletIds: finalIds });
         }
-        return { newStorageWallets, newFinalWallets, newSecureWallets };
+        return { updatedStorageWallets, updatedWallets, updatedSecureWallets };
     }
-}
+})();

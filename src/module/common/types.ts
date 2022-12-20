@@ -4,6 +4,8 @@ export type DirectionType = "horizontal" | "vertical";
 
 export type SizeType = "sm" | "md" | "lg";
 
+export type FullNumber = bigint | number | string;
+
 export interface AppearanceProps {
     appearance: PaletteMode;
 }

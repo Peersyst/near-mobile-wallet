@@ -9,9 +9,10 @@ export class WalletUtils {
             else return wallet;
         });
     }
-    static getWallet<W extends BaseWallet>(index: number, wallets?: W[]): W | undefined {
+    static getWallet<W extends BaseWallet>(index: number, wallets: W[] | undefined): W | undefined {
         if (!wallets || index > wallets.length) return undefined;
-        if (wallets[index].index === index) return wallets[index]; //Avoid filtering if they are in order
+        const wallet = wallets[index];
+        if (wallet.index === index) return wallet; //Avoid filtering if they are in order
         return wallets.find((wallet) => wallet.index === index);
     }
 
