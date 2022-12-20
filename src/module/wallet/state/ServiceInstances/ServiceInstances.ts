@@ -52,11 +52,10 @@ export default new (class ServiceInstances {
     }: Omit<CreateServiceInstancesParams, "serviceIndex">): Promise<NearSDKService[]> {
         let services: NearSDKService[] = [];
         const { nodeUrl, indexerUrl } = BASE_NEAR_SDK_PARAMS[network];
-        const decimals = config.maxNumberOfDecimals;
         if (mnemonic) {
-            services = await NearSDKService.importFromMnemonic(network, nodeUrl, indexerUrl, mnemonic, decimals);
+            services = await NearSDKService.importFromMnemonic(network, nodeUrl, indexerUrl, mnemonic);
         } else if (privateKey) {
-            services = await NearSDKService.importFromSecretKey(network, nodeUrl, indexerUrl, privateKey, decimals);
+            services = await NearSDKService.importFromSecretKey(network, nodeUrl, indexerUrl, privateKey);
         } else {
             /* eslint-disable no-console */
             console.warn("You should provide at least one mnemonic or a private key to create and instance");
