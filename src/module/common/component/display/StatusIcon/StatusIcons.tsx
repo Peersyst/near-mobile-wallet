@@ -1,7 +1,7 @@
 import { IconButton, IconButtonProps, ThemeIcons, ThemePalette, useTheme } from "@peersyst/react-native-components";
 
 export interface StatusIconsProps extends Omit<IconButtonProps, "children"> {
-    statusIcon: "info" | "warning" | "error" | "success" | "valid" | "invalid";
+    status: "info" | "warning" | "error" | "success" | "valid" | "invalid";
     statusColor?: keyof ThemePalette["status"];
 }
 
@@ -10,7 +10,7 @@ interface StatusIconsUtils {
     color: keyof ThemePalette["status"];
 }
 
-const STATUS_ICONS_UTILS: Record<StatusIconsProps["statusIcon"], StatusIconsUtils> = {
+const STATUS_ICONS_CONFIG: Record<StatusIconsProps["status"], StatusIconsUtils> = {
     info: {
         icon: "info",
         color: "info",
@@ -37,12 +37,12 @@ const STATUS_ICONS_UTILS: Record<StatusIconsProps["statusIcon"], StatusIconsUtil
     },
 };
 
-const StatusIcon = ({ statusIcon, statusColor, style, ...rest }: StatusIconsProps) => {
+const StatusIcon = ({ status: statusProp, statusColor, style, ...rest }: StatusIconsProps) => {
     const {
         icons,
         palette: { status },
     } = useTheme();
-    const { icon, color: colorUtil } = STATUS_ICONS_UTILS[statusIcon];
+    const { icon, color: colorUtil } = STATUS_ICONS_CONFIG[statusProp];
     const Icon = icons[icon];
     const color = status[statusColor ?? colorUtil];
     return (
