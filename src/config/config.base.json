@@ -9,7 +9,7 @@
     "mainnetNodeUrl": "https://rpc.mainnet.near.org",
     "testnetNodeUrl": "https://rpc.testnet.near.org",
     "maxNumberOfDecimals": 5,
-    "enableMainnet": true,
+    "enableChangeNetwork": true,
     "tokenName": "NEAR",
     "coingeckoTokenApiId": "near",
     "fetchPriceConversionInterval": 180000,
