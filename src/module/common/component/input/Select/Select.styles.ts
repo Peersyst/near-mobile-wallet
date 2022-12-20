@@ -16,6 +16,12 @@ export const SelectRoot = styled(Select)(({ theme }) => ({
                 color: theme.palette.gray[300],
                 fontSize: 20,
             },
+            disabled: {
+                borderColor: theme.palette.overlay["12%"],
+            },
+            readonly: {
+                borderColor: theme.palette.overlay["12%"],
+            },
         },
     },
 }));

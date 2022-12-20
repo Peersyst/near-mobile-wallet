@@ -2,9 +2,10 @@ import { MnemonicMocked } from "mocks/MnemonicMocked";
 import { NetworkType } from "module/settings/state/SettingsState";
 import ServiceInstances from "module/wallet/state/ServiceInstances/ServiceInstances";
 import WalletController from "module/wallet/utils/WalletController";
+import { WalletUtils } from "module/wallet/utils/WalletUtils";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import { Chains } from "near-peersyst-sdk";
-import { WalletControllerMocks, SecureWalletStorageTypeMock, MOCKED_PK } from "test-mocks";
+import { Chains, NearSDKService } from "near-peersyst-sdk";
+import { WalletControllerMocks, SecureWalletStorageTypeMock, MOCKED_PK, NearSdkServiceMock } from "test-mocks";
 
 describe("Test for the WalletController", () => {
     let network: NetworkType = Chains.TESTNET;
@@ -22,6 +23,24 @@ describe("Test for the WalletController", () => {
         jest.spyOn(WalletStorage, "setUnencryptedWallets").mockImplementation(mockedSetUnencryptedWallets);
         jest.spyOn(WalletStorage, "setSecureWallets").mockImplementation(mockedSetSecureWallets);
         jest.spyOn(WalletStorage, "setSecureWalletIds").mockImplementation(mockedSetWalletIds);
+    });
+
+    describe("Create new wallet test", () => {
+        const newAcc = "newAcc";
+
+        test("Create new wallet test", async () => {
+            const service = new NearSdkServiceMock() as any as NearSDKService;
+            const { walletIds } = new WalletControllerMocks(3, privateKey);
+            jest.spyOn(WalletStorage, "getSecureWalletGroupAndMainPrivateKey").mockResolvedValue({
+                imported: false,
+                walletGroup: { privateKey, walletIds },
+            });
+            jest.spyOn(WalletStorage, "addNewUnencryptedWallet").mockResolvedValue(3);
+            const mockedAddService = jest.spyOn(ServiceInstances, "addService");
+            const wallet = await WalletController.createNewWallet(newAcc, 2, service, network);
+            expect(mockedAddService).toHaveBeenCalledWith({ service, network });
+            expect(wallet).toEqual({ index: 3, account: newAcc, colorIndex: WalletUtils.getWalletColor(newAcc) });
+        });
     });
 
     describe("Import wallet test", () => {
