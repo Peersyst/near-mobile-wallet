@@ -25,7 +25,7 @@ describe("SetAccountNameScreen tests", () => {
         const { serviceInstance } = new UseServiceInstanceMock();
 
         render(<SetAccountNameScreen onSubmit={handleSubmit} submitText="Submit" />);
-        const nameInput = screen.getByPlaceholderText("mycooldid");
+        const nameInput = screen.getByPlaceholderText("mycoolid");
         expect(nameInput).toBeDefined();
 
         //Tries with an name that is not available
