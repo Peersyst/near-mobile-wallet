@@ -1,5 +1,5 @@
 import { Col } from "@peersyst/react-native-components";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "module/common/component/input/Button/Button";
 import { useTranslate } from "module/common/hook/useTranslate";
 import AdviseGroup from "module/common/component/display/AdviseGroup/AdviseGroup";
@@ -22,13 +22,14 @@ const WalletAdvisesScreen = ({ onNextScreen, ensureReading = true, nextScreenTex
         { title: translate("advise3_title"), text: translate("advise3_text") },
     ];
 
-    useEffect(() => {
-        if (index === advises.length - 1) setHasVisitedLastAdvise(true);
-    }, [index]);
-
     return (
         <Col flex={1} gap={24}>
-            <AdviseGroup index={index} onIndexChange={setIndex} advises={advises} />
+            <AdviseGroup
+                onLastAdviseVisited={() => setHasVisitedLastAdvise(true)}
+                index={index}
+                onIndexChange={setIndex}
+                advises={advises}
+            />
             <Button disabled={ensureReading && !hasVisitedLastAdvise} fullWidth onPress={onNextScreen}>
                 {nextScreenText}
             </Button>

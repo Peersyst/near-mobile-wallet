@@ -23,12 +23,12 @@ const ImportWalletModal = createModal((props: ExposedBackdropProps) => {
         <AddWalletModal imported title={translate("import_wallet")} onBack={index ? () => setIndex((i) => i - 1) : undefined} {...props}>
             {(handleWalletCreation) => (
                 <Tabs index={index} onIndexChange={setIndex}>
-                    <TabPanel index={0}>
+                    <TabPanel index={ImportWalletModalTabs.CHOOSE_MNEMONIC_OR_PRIVATE_KEY_TAB}>
                         <SelectMnemonicOrPrivateKeyScreen
                             onSubmit={() => setIndex(ImportWalletModalTabs.ENTER_MNEMONIC_OR_PRIVATE_KEY_TAB)}
                         />
                     </TabPanel>
-                    <TabPanel index={1}>
+                    <TabPanel index={ImportWalletModalTabs.ENTER_MNEMONIC_OR_PRIVATE_KEY_TAB}>
                         {importWithPrivateKey ? (
                             <EnterPrivateKeyScreen onSubmit={handleWalletCreation} submitText={translate("import_wallet")} />
                         ) : (

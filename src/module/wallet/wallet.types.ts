@@ -44,3 +44,8 @@ export interface SetWalletsParams {
     secureWallets: SecureWalletInfo[];
     network: NetworkType;
 }
+
+export interface BaseWalletWithFormScreenProps {
+    onSubmit: () => void;
+    submitText?: string;
+}
