@@ -36,7 +36,7 @@ describe("Test for the WalletController", () => {
                 walletGroup: { privateKey, walletIds },
             });
             jest.spyOn(WalletStorage, "addNewUnencryptedWallet").mockResolvedValue(3);
-            const mockedAddService = jest.spyOn(ServiceInstance, "addService");
+            const mockedAddService = jest.spyOn(ServiceInstances, "addService");
             const wallet = await WalletController.createNewWallet(newAcc, 2, service, network);
             expect(mockedAddService).toHaveBeenCalledWith({ service, network });
             expect(wallet).toEqual({ index: 3, account: newAcc, colorIndex: WalletUtils.getWalletColor(newAcc) });
