@@ -1,5 +1,5 @@
 import { SecureWalletInfoMock, UnencryptedWalletInfoMock } from "mocks/storage";
-import { CreateInstanceReturn } from "module/wallet/state/ServiceInstance/ServiceInstance.types";
+import { CreateInstanceReturn } from "module/wallet/state/ServiceInstances/ServiceInstances.types";
 import WalletController from "module/wallet/utils/WalletController";
 import { UnencryptedWalletInfo } from "module/wallet/wallet.types";
 import BaseMock, { MockFnType } from "../base.mock";
