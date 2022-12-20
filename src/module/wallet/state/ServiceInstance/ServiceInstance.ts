@@ -51,7 +51,6 @@ export default class ServiceInstance {
     static async setService({ network, serviceIndex, service }: SetServiceParams) {
         const services = ServiceInstance.getServices(network);
         services[serviceIndex] = service;
-        serviceInstancesMap.set(network, services);
     }
 
     static getService(network: NetworkType, index: number): NearSDKService | undefined {
@@ -69,7 +68,6 @@ export default class ServiceInstance {
     static addService({ network, service }: AddServiceParams) {
         const services = ServiceInstance.getServices(network);
         services.push(service);
-        ServiceInstance.setServices({ network, services });
     }
 
     static async createServiceInstance({ network, ...rest }: CreateServiceInstanceParams): Promise<CreateInstanceReturn[]> {

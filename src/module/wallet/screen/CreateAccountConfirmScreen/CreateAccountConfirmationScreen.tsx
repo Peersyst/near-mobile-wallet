@@ -8,10 +8,11 @@ import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import useWallet from "module/wallet/hook/useWallet";
 import { useState } from "react";
 
-export interface CreateAccountConfirmationScreenProps extends BaseAddWalletModalScreenProps {
+export interface CreateAccountConfirmationScreenProps extends Pick<BaseAddWalletModalScreenProps, "submitText"> {
     onCancel: () => void;
     cancelText?: string;
-    createAccount: () => Promise<void>;
+    onSuccess: () => void;
+    onSubmit: () => Promise<void>;
 }
 
 const CreateAccountConfirmationScreen = ({
@@ -19,7 +20,7 @@ const CreateAccountConfirmationScreen = ({
     onCancel,
     onSubmit,
     submitText,
-    createAccount,
+    onSuccess,
 }: CreateAccountConfirmationScreenProps) => {
     const {
         state: { name, fundingAccount },
@@ -30,9 +31,9 @@ const CreateAccountConfirmationScreen = ({
 
     const handleSubmit = async () => {
         setLoading(true);
-        await createAccount();
+        await onSubmit();
         setLoading(false);
-        onSubmit();
+        onSuccess();
     };
 
     return (

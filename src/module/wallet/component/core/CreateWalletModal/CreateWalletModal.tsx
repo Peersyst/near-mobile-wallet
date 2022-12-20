@@ -17,8 +17,16 @@ export const LOCALE_MODAL_TITLES: TransaltionResourceType[] = [
     "success",
 ];
 
+export enum CreateWalletModalTabs {
+    WARNING_TAB,
+    SET_ACCOUNT_NAME_TAB,
+    SET_FUNDING_ACC_TAB,
+    CONFIRM_TAB,
+    SUCCESS_TAB,
+}
+
 const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(CreateWalletModalTabs.WARNING_TAB);
     const translate = useTranslate();
     const handleOnBack = () => {
         if (index !== 0) {
@@ -44,18 +52,18 @@ const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
             {(handleWalletCreation, handleClose) => (
                 <Tabs index={index} onIndexChange={setIndex}>
                     <TabPanel index={0}>
-                        <AddCustomNameWarning onSubmit={() => setIndex(1)} />
+                        <AddCustomNameWarning onSubmit={() => setIndex(CreateWalletModalTabs.SET_ACCOUNT_NAME_TAB)} />
                     </TabPanel>
                     <TabPanel index={1}>
-                        <SetAccountNameScreen onSubmit={() => setIndex(2)} />
+                        <SetAccountNameScreen onSubmit={() => setIndex(CreateWalletModalTabs.SET_FUNDING_ACC_TAB)} />
                     </TabPanel>
                     <TabPanel index={2}>
-                        <SelectFundingAccountScreen onSubmit={() => setIndex(3)} />
+                        <SelectFundingAccountScreen onSubmit={() => setIndex(CreateWalletModalTabs.CONFIRM_TAB)} />
                     </TabPanel>
                     <TabPanel index={3}>
                         <CreateAccountConfirmationScreen
-                            createAccount={handleWalletCreation}
-                            onSubmit={() => setIndex(4)}
+                            onSubmit={handleWalletCreation}
+                            onSuccess={() => setIndex(CreateWalletModalTabs.SUCCESS_TAB)}
                             onCancel={handleClose}
                         />
                     </TabPanel>

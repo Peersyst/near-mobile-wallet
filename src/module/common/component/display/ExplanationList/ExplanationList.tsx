@@ -9,7 +9,7 @@ const ExplanationList = ({ children, allowed }: ExplanationListProps) => {
     return (
         <Col>
             <Row gap={8}>
-                <StatusIcon statusIcon={allowed ? "valid" : "invalid"} />
+                <StatusIcon status={allowed ? "valid" : "invalid"} />
                 <Typography variant="body3Strong">{translate(allowed ? "you_can_use" : "you_cant_use") + " :"}</Typography>
             </Row>
             <DotList style={{ marginLeft: "10%" }}>{children}</DotList>
