@@ -4,17 +4,13 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import TextField from "module/common/component/input/TextField/TextField";
 import { useEffect, useState } from "react";
-
-export interface EnterPrivateKeyScreenProps {
-    onSubmit: () => void;
-    submitText: string;
-}
+import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
 
 interface PrivateKeyForm {
     privateKey: string;
 }
 
-const EnterPrivateKeyScreen = ({ onSubmit, submitText }: EnterPrivateKeyScreenProps) => {
+const EnterPrivateKeyScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreenProps) => {
     const {
         setPrivateKey,
         state: { privateKey },

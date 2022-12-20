@@ -7,8 +7,13 @@ import SelectMnemonicOrPrivateKeyScreen from "module/wallet/screen/SelectMnemoni
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import EnterPrivateKeyScreen from "module/wallet/screen/EnterPrivateKeyScreen/EnterPrivateKeyScreen";
 
+export enum ImportWalletModalTabs {
+    CHOOSE_MNEMONIC_OR_PRIVATE_KEY_TAB,
+    ENTER_MNEMONIC_OR_PRIVATE_KEY_TAB,
+}
+
 const ImportWalletModal = createModal((props: ExposedBackdropProps) => {
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(ImportWalletModalTabs.CHOOSE_MNEMONIC_OR_PRIVATE_KEY_TAB);
     const {
         state: { importWithPrivateKey },
     } = useCreateWallet();
@@ -19,7 +24,9 @@ const ImportWalletModal = createModal((props: ExposedBackdropProps) => {
             {(handleWalletCreation) => (
                 <Tabs index={index} onIndexChange={setIndex}>
                     <TabPanel index={0}>
-                        <SelectMnemonicOrPrivateKeyScreen onSubmit={() => setIndex(1)} />
+                        <SelectMnemonicOrPrivateKeyScreen
+                            onSubmit={() => setIndex(ImportWalletModalTabs.ENTER_MNEMONIC_OR_PRIVATE_KEY_TAB)}
+                        />
                     </TabPanel>
                     <TabPanel index={1}>
                         {importWithPrivateKey ? (

@@ -6,17 +6,13 @@ import { useEffect, useState } from "react";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { NearSDKService } from "near-peersyst-sdk";
+import { BaseAddWalletModalScreenProps } from "../component/core/AddWalletModal/AddWalletModal.types";
 
 export interface MnemonicForm {
     mnemonic: string[];
 }
 
-export interface EnterWalletMnemonicScreenProps {
-    onSubmit: () => void;
-    submitText: string;
-}
-
-const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonicScreenProps): JSX.Element => {
+const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreenProps): JSX.Element => {
     const translate = useTranslate();
     const {
         setMnemonic,

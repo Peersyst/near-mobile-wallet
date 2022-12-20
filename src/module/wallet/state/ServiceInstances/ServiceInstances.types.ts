@@ -14,6 +14,10 @@ export interface SetServicesParams extends BaseSetServiceInstancesParams {
     services: NearSDKService[];
 }
 
+export interface AddServiceParams extends BaseSetServiceInstancesParams {
+    service: NearSDKService;
+}
+
 export interface SetServiceParams extends BaseSetServiceInstancesParams {
     service: NearSDKService;
     serviceIndex: number;

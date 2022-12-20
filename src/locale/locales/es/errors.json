@@ -19,9 +19,12 @@
     "invalid_start": "El campo debe empezar con {{start}}",
     "invalid_end": "El campo debe terminar con {{end}}",
     "nothingToShow": "No hay nada que mostrar",
-    "invalid_address": "Invalid address",
+    "invalid_address": "Dirección inválida",
     "copied_to_clipboard": "Copied to clipboard",
     "invalid_private_key": "Clave privada inválida",
     "private_key_already_exists": "Ya tenías la llave privada importada",
-    "mnemonic_already_exists": "Ya tenías el mnemonic importado"
+    "mnemonic_already_exists": "Ya tenías el mnemonic importado",
+    "invalid_name_ID": "¡Oh! {{nameID}} no está disponible. ¿Tal vez lo tienes en otra cuenta?",
+    "invalid_seleccted_account": "Debes seleccionar una cuenta con un balance de almenos {{amountInNEAR}} NEAR.",
+    "error_creating_account": "Error al crear la cuenta"
 }

@@ -35,7 +35,7 @@ describe("WalletCard tests", () => {
     });
 
     test("Display imported tag", () => {
-        const screen = render(<WalletCard wallet={{ ...wallet, imported: true }} index={0} />);
+        const screen = render(<WalletCard wallet={{ ...wallet, imported: true }} />);
         expect(screen.getByText(translate("imported").toUpperCase())).toBeDefined();
     });
 

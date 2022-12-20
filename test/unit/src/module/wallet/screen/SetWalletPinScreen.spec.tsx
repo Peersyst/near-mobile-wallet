@@ -16,6 +16,7 @@ describe("SetWalletPin tests", () => {
         const handleSuccess = jest.fn();
 
         const screen = render(<SetWalletPinScreen onCancel={() => undefined} onSuccess={handleSuccess} />);
+
         fireEvent.press(screen.getByText("1"));
         fireEvent.press(screen.getByText("2"));
         fireEvent.press(screen.getByText("3"));
@@ -31,6 +32,7 @@ describe("SetWalletPin tests", () => {
 
     test("Sets pin incorrectly", async () => {
         const screen = render(<SetWalletPinScreen onCancel={() => undefined} onSuccess={() => undefined} />);
+
         fireEvent.press(screen.getByText("1"));
         fireEvent.press(screen.getByText("2"));
         fireEvent.press(screen.getByText("3"));
@@ -47,6 +49,7 @@ describe("SetWalletPin tests", () => {
         const handleCancel = jest.fn();
 
         const screen = render(<SetWalletPinScreen onSuccess={() => undefined} onCancel={handleCancel} />);
+
         const cancelButton = screen.getByText(translate("cancel"));
         fireEvent.press(cancelButton);
         expect(handleCancel).toHaveBeenCalled();
