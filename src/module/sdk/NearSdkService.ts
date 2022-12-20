@@ -82,18 +82,7 @@ export class NearSDKService {
         this.baseApiUrl = baseApiUrl;
         this.nearDecimals = nearDecimals;
         // Create KeyPairEd25519
-        const parts = secretKey.split(":");
-        if (parts.length === 1) {
-            this.keyPair = new KeyPairEd25519(secretKey);
-        } else if (parts.length === 2) {
-            if (parts[0].toUpperCase() === "ED25519") {
-                this.keyPair = new KeyPairEd25519(parts[1]);
-            } else {
-                throw new Error(`Unknown curve: ${parts[0]}`);
-            }
-        } else {
-            throw new Error("Invalid encoded key format, must be <curve>:<encoded key>");
-        }
+        this.keyPair = NearSDKService.createKeyPairFromSecretKey(secretKey);
 
         const keyStore = new keyStores.InMemoryKeyStore();
         keyStore.setKey(chain, nameId, this.keyPair);
@@ -233,21 +222,26 @@ export class NearSDKService {
         return bip39.validateMnemonic(mnemonic);
     }
 
+    static createKeyPairFromSecretKey(secretKey: string): KeyPairEd25519 {
+        return KeyPairEd25519.fromString(secretKey) as KeyPairEd25519;
+    }
+
+    static isSecretKeyValid(secretKey: string): boolean {
+        try {
+            this.createKeyPairFromSecretKey(secretKey);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    }
+
     async accountCanReceive(accountId: string): Promise<boolean> {
         return NearSDKService.isImplicitAddress(accountId) || this.accountExists(accountId);
     }
 
     async nameIsChoosalbe(nameId: string): Promise<boolean> {
         const exist = await this.accountExists(nameId);
-
-        const address = this.getAddress();
-        const addressParts = address.split(".").length;
-        const nameParts = nameId.split(".").length;
-
-        const nameIsSuper = nameParts === 2 && nameId.indexOf(`.${this.masterAccount}`) !== -1;
-        const nameIsSub = nameId.indexOf(address) !== -1 && nameParts === addressParts + 1;
-
-        return NearSDKService.nameIdIsValid(nameId) && !exist && (nameIsSuper || nameIsSub);
+        return !exist && NearSDKService.nameIdIsValid(nameId);
     }
 
     // Amount is in near
@@ -307,24 +301,29 @@ export class NearSDKService {
     }
 
     // Amount is in near
-    async createNewAccountWithSameSecretKey(nameId: string, amount: string, nearDecimals?: number): Promise<NearSDKService> {
+    async createNewAccountWithSameSecretKey(nameId: string, amount: string, nearDecimals?: number): Promise<NearSDKService | undefined> {
         const exists = await this.accountExists(nameId);
         if (exists) {
             throw new Error("Account already exists");
         }
+        try {
+            await this.createNewAccount(nameId, this.keyPair.getPublicKey(), amount);
 
-        await this.createNewAccount(nameId, this.keyPair.getPublicKey(), amount);
-
-        const service = new NearSDKService(
-            this.chain,
-            this.nearConfig.nodeUrl,
-            this.baseApiUrl,
-            this.keyPair.secretKey,
-            nameId,
-            nearDecimals,
-        );
-        await service.connect();
-        return service;
+            const service = new NearSDKService(
+                this.chain,
+                this.nearConfig.nodeUrl,
+                this.baseApiUrl,
+                this.keyPair.secretKey,
+                nameId,
+                nearDecimals,
+            );
+            await service.connect();
+            return service;
+        } catch (e) {
+            // eslint-disable-next-line no-console
+            console.warn("Error creating new account", e);
+            return;
+        }
     }
 
     async deleteAccount(beneficiaryId: string): Promise<string> {

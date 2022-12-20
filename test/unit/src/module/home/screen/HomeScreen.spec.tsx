@@ -10,11 +10,14 @@ describe("HomeScreen tests", () => {
         expect(screen.getByText(translate("transactions"))).toBeDefined();
     });
 
-    test("Renders correctly create acc", () => {
+    test("Renders correctly when a wallet is not selected", () => {
         new UseServiceInstanceMock();
         const state = new WalletStateMock({ selectedWallet: 21 });
         new UseWalletStateMock({ state });
         render(<HomeScreen />);
-        expect(screen.getByText(translate("create_a_wallet"))).toBeDefined();
+        //Walletcard
+        expect(screen.getByText(translate("create_your_account"))).toBeDefined();
+        //Add wallet
+        expect(screen.getByText(translate("add_a_wallet_txt")));
     });
 });

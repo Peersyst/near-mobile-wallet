@@ -1,10 +1,9 @@
+import { render, translate, screen } from "test-utils";
 import AddWallet from "module/wallet/component/core/AddWallet/AddWallet";
-import { render } from "test-utils";
 
 describe("AddWallet tests", () => {
-    //TODO: implement this test in next pr
-    test("works", () => {
+    test("Renders correctly", () => {
         render(<AddWallet />);
-        expect(true).toBe(true);
+        expect(screen.getByText(translate("add_a_wallet_txt")));
     });
 });

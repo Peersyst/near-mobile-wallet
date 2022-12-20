@@ -1,30 +1,22 @@
-import { Col, Typography, useModal } from "@peersyst/react-native-components";
-import Button from "module/common/component/input/Button/Button";
-import CreateWalletModal from "module/wallet/component/core/CreateWalletModal/CreateWalletModal";
-import Divider from "module/common/component/display/Divider/Divider";
-import ImportWalletModal from "../ImportWalletModal/ImportWalletModal";
+import { Col } from "@peersyst/react-native-components";
+import Advise from "module/common/component/display/Advise/Advise";
 import { useTranslate } from "module/common/hook/useTranslate";
+import useWalletState from "module/wallet/hook/useWalletState";
+import { Bubble } from "./Bubble/Bubble";
 
 const AddWallet = (): JSX.Element => {
     const translate = useTranslate();
-
-    const { showModal } = useModal();
-
+    const {
+        state: { hasWallet },
+    } = useWalletState();
     return (
-        <Col flex={1} gap="14%" style={{ paddingHorizontal: "5%" }}>
-            <Col gap="4%">
-                <Button fullWidth variant="outlined" onPress={() => showModal(CreateWalletModal)}>
-                    {translate("create_a_wallet")}
-                </Button>
-                <Divider width="full-width">
-                    <Typography variant="body3Regular" light textTransform="uppercase">
-                        {translate("or")}
-                    </Typography>
-                </Divider>
-                <Button fullWidth variant="outlined" onPress={() => showModal(ImportWalletModal)}>
-                    {translate("import_a_wallet")}
-                </Button>
-            </Col>
+        <Col flex={1} alignItems="center" style={{ padding: "10%" }} gap="7%">
+            <Bubble />
+            <Advise
+                gap={"2%"}
+                title={translate(hasWallet ? "how_to_add_an_account" : "welcome_to_near_mobile")}
+                text={translate("add_a_wallet_txt")}
+            />
         </Col>
     );
 };

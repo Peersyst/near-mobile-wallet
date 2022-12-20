@@ -1,14 +1,13 @@
-import { ExposedBackdropProps } from "@peersyst/react-native-components";
-import { ReactNode, useState } from "react";
+import { useToast } from "@peersyst/react-native-components";
+import { useState } from "react";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
-
-export interface AddWalletModalProps extends ExposedBackdropProps {
-    title: string;
-    onBack?: () => void;
-    children: (handleWalletCreation: () => Promise<void>) => ReactNode;
-    imported?: boolean;
-}
+import { AddWalletModalRoot } from "./AddWalletModal.styles";
+import useImportWallets from "module/wallet/hook/useImportWallets";
+import settingsState from "module/settings/state/SettingsState";
+import { useRecoilValue } from "recoil";
+import { useTranslate } from "module/common/hook/useTranslate";
+import { AddWalletModalProps } from "./AddWalletModal.types";
+import useCreateNewWallet from "module/wallet/hook/useCreateNewWallet";
 
 const AddWalletModal = ({
     onExited,
@@ -16,17 +15,20 @@ const AddWalletModal = ({
     children: renderProps,
     title,
     onBack,
-    //imported,
+    imported,
+    steps,
+    closeOnWalletCreation = true,
     ...rest
 }: AddWalletModalProps): JSX.Element => {
     const [open, setOpen] = useState(true);
-    //TODO: implement add wallet modal
-    const {
-        //state: { privateKey, name, colorIndex },
-        reset: resetCreateWalletState,
-    } = useCreateWallet();
-    //const { setState: setWalletState } = useWalletState();
-    //const { network } = useRecoilValue(settingsState);
+    const { reset: resetCreateWalletState } = useCreateWallet();
+    const importWallet = useImportWallets();
+    const createNewWallet = useCreateNewWallet();
+    const { network } = useRecoilValue(settingsState);
+    const { showToast } = useToast();
+    const translate = useTranslate();
+    const translateError = useTranslate("error");
+
     const handleClose = () => {
         setOpen(false);
         onClose?.();
@@ -38,14 +40,33 @@ const AddWalletModal = ({
     };
 
     const handleWalletCreation = async () => {
-        //TODO: implement wallet creation
-        handleClose();
+        if (imported) {
+            //Import wallet
+            const wallets = await importWallet(network);
+            if (wallets.length > 0) {
+                showToast(translate("import_success" + (wallets.length === 1 ? "_one" : "_other")), { type: "success" });
+            }
+        } else {
+            //Create wallet
+            const wallet = await createNewWallet(network);
+            if (!wallet) {
+                showToast(translateError("error_creating_account"), { type: "error" });
+                handleClose();
+            }
+        }
+        if (closeOnWalletCreation) handleClose();
     };
 
     return (
-        <CardNavigatorModal open={open} onClose={handleClose} navbar={{ back: true, title, onBack }} onExited={handleExited} {...rest}>
-            {renderProps(handleWalletCreation)}
-        </CardNavigatorModal>
+        <AddWalletModalRoot
+            open={open}
+            onClose={handleClose}
+            navbar={{ back: true, title, onBack, steps }}
+            onExited={handleExited}
+            {...rest}
+        >
+            {renderProps(handleWalletCreation, handleClose)}
+        </AddWalletModalRoot>
     );
 };
 
