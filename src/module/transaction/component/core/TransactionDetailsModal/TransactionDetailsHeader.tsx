@@ -1,4 +1,4 @@
-import TransactionIcon from "module/transaction/component/display/TransactionIcon/TransactionIcon";
+import ActionIcon from "module/transaction/component/display/ActionIcon/ActionIcon";
 import { Col, Typography } from "@peersyst/react-native-components";
 import TransactionLabel from "module/transaction/component/display/TransactionLabel/TransactionLabel";
 import TransactionAmount from "module/transaction/component/display/TransactionAmount/TransactionAmount";
@@ -15,7 +15,7 @@ const TransactionDetailsHeader = ({ transaction: { type, amount, token, timestam
 
     return (
         <Col alignItems="center" gap={10}>
-            <TransactionIcon type={type} />
+            <ActionIcon type={type} />
             <Col gap={5} alignItems="center">
                 <TransactionLabel variant="body1Strong" type={type} numberOfLines={2} textAlign="center" />
                 {showAmount && <TransactionAmount variant="body1Strong" type={type} amount={amount} units={token ?? "token"} />}

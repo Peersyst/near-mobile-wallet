@@ -34,31 +34,6 @@ export class WalletUtils {
         return [...wallets, newWallet];
     }
 
-    //Uncommited transaction hashes methods
-    static updateUncommitedTransactionHashes<W extends UnencryptedWalletInfo>(wallet: W, uncommittedTransactionHashes: string[]): W {
-        return {
-            ...wallet,
-            uncommittedTransactionHashes,
-        };
-    }
-    static updateWalletUncommittedTxHashes<W extends UnencryptedWalletInfo>(wallets: W[], hashes: string[], walletIndex: number): W[] {
-        return wallets.map((w, index) => {
-            if (index !== walletIndex) return w;
-            else {
-                return this.updateUncommitedTransactionHashes(w, hashes);
-            }
-        });
-    }
-    static removeWalletUncommittedTxHash(wallets: UnencryptedWalletInfo[], walletIndex: number, hash: string): UnencryptedWalletInfo[] {
-        return wallets.map((w, index) => {
-            if (index !== walletIndex) return w;
-            else {
-                const newHashes = w.uncommittedTransactionHashes?.filter((h) => h !== hash) || [];
-                return this.updateUncommitedTransactionHashes(w, newHashes);
-            }
-        });
-    }
-
     //Color methods
     static getWalletColor(account: string): number {
         try {

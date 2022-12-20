@@ -8,7 +8,7 @@ import TransactionStatus from "../TransactionStatus/TransactionStatus";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
-import { TransactionCardProps } from "./TransactionCard.types";
+import { ActionCardProps } from "./ActionCard.types";
 import { TouchableWithoutFeedback } from "react-native";
 import ActionIcon from "../ActionIcon/ActionIcon";
 import Typography from "module/common/component/display/Typography/Typography";
@@ -16,18 +16,18 @@ import Balance from "module/wallet/component/display/Balance/Balance";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 import useFormatDate from "module/common/hook/useFormatDate";
 
-const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => {
+const ActionCard = ({ action }: ActionCardProps): JSX.Element => {
     const { showModal } = useModal();
     const { fiat } = useRecoilValue(settingsState);
     const { data: tokenValue } = useGetTokenPrice(fiat, "nervos-network");
-    const { timestamp, amount, type, token = "token", status } = transaction;
+    const { actionKind } = action;
     const showAmount = type !== TransactionType.SEND_NFT && type !== TransactionType.RECEIVE_NFT;
     const formattedDate = useFormatDate(timestamp);
 
     return (
         <TouchableWithoutFeedback onPress={() => showModal(TransactionDetailsModal, { transaction })}>
             <MainListCard gap="4%" alignItems="center">
-                <ActionIcon type={type} />
+                <ActionIcon type={actionKind} />
                 <Col gap={2} flex={1}>
                     <Row justifyContent="space-between">
                         <TransactionLabel variant="body3Strong" type={type} numberOfLines={1} style={{ maxWidth: "45%" }} />
@@ -71,4 +71,4 @@ const TransactionCard = ({ transaction }: TransactionCardProps): JSX.Element => 
     );
 };
 
-export default TransactionCard;
+export default ActionCard;

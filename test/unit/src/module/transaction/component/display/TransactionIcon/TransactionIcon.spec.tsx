@@ -1,25 +1,25 @@
 import { render } from "test-utils";
-import TransactionIcon from "module/transaction/component/display/TransactionIcon/TransactionIcon";
+import ActionIcon from "module/transaction/component/display/ActionIcon/ActionIcon";
 import { TransactionType } from "near-peersyst-sdk";
 
-describe("TransactionIcon tests", () => {
+describe("ActionIcon tests", () => {
     test("Renders SendIcon", () => {
-        const screen = render(<TransactionIcon type={TransactionType.SEND_NATIVE_TOKEN} />);
+        const screen = render(<ActionIcon type={TransactionType.SEND_NATIVE_TOKEN} />);
         expect(screen.getByTestId("ArrowUpCircleIcon")).toBeDefined();
     });
 
     test("Renders ReceiveIcon", () => {
-        const screen = render(<TransactionIcon type={TransactionType.RECEIVE_NATIVE_TOKEN} />);
+        const screen = render(<ActionIcon type={TransactionType.RECEIVE_NATIVE_TOKEN} />);
         expect(screen.getByTestId("ArrowDownCircleIcon")).toBeDefined();
     });
 
     test("Renders StakeIcon", () => {
-        const screen = render(<TransactionIcon type={TransactionType.STAKE} />);
+        const screen = render(<ActionIcon type={TransactionType.STAKE} />);
         expect(screen.getByTestId("NearIcon")).toBeDefined();
     });
 
     test("Renders Unstake", () => {
-        const screen = render(<TransactionIcon type={TransactionType.UNSTAKE} />);
+        const screen = render(<ActionIcon type={TransactionType.UNSTAKE} />);
         expect(screen.getByTestId("NearIcon")).toBeDefined();
     });
 });

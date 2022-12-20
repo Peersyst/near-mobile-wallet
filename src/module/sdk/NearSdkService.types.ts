@@ -178,35 +178,6 @@ export interface Transaction {
     transactionActions: TransactionAction[];
 }
 
-//TODO: update this enum
-export enum TransactionType {
-    SEND_NATIVE_TOKEN = "send_native_token",
-    RECEIVE_NATIVE_TOKEN = "receive_native_token",
-    SEND_TOKEN = "send_token",
-    RECEIVE_TOKEN = "receive_token",
-    SEND_NFT = "send_nft",
-    RECEIVE_NFT = "receive_nft",
-    SMART_CONTRACT_SEND = "smart_contract_send",
-    SMART_CONTRACT_RECEIVE = "smart_contract_receive",
-    STAKE = "stake",
-    UNSTAKE = "unstake",
-}
-
-//TODO: remove thins interface
-export interface FullTransaction {
-    status: TransactionStatus;
-    transactionHash: string;
-    inputs: any[];
-    outputs: any[];
-    type: TransactionType;
-    scriptType?: any;
-    amount: number;
-    blockHash?: string;
-    blockNumber?: number;
-    timestamp?: Date;
-    token?: string;
-}
-
 export enum FeeRate {
     SLOW = 1000,
     NORMAL = 100000,

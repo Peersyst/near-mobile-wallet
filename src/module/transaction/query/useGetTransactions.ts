@@ -1,6 +1,4 @@
 import { useQuery } from "react-query";
-import useUncommittedTransactions from "module/transaction/query/useUncommittedTransactions";
-import { useMemo } from "react";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 export interface UseGetTransactionsOptions {
