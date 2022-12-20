@@ -112,11 +112,8 @@ export class NearApiService {
         if (!EXTERNAL_NEAR_API) {
             const response = await fetch(`${baseApiUrl}/transactions/?accountId=${address}&page=${page}&pageSize=${pageSize}`);
             if (response.status !== 200) {
-                /* eslint-disable no-console */
-                console.warn("Error getting transactions");
-                //throw new Error("Bad response status");
+                throw new Error("Bad response status");
             }
-
             const transactionDtos: TransactionDto[] = await response.json();
             return transactionDtos.map(NearApiService.parseTransactionDto);
         }

@@ -8,32 +8,23 @@ export interface UseGetTransactionsOptions {
      * Index of the wallet to use
      */
     index?: number;
-    /**
-     * The filter to apply to the transactions
-     */
-    filter?: (tx: any) => boolean; //TODO: add type
 }
 
-const useGetTransactions = ({ index, filter }: UseGetTransactionsOptions = {}) => {
+const useGetTransactions = ({ index }: UseGetTransactionsOptions = {}) => {
     const { serviceInstance, index: usedIndex, network } = useServiceInstance(index);
-    const { data: uncommitedTransactions = [], isLoading: uncommitedTransactionsLoading } = useUncommittedTransactions(usedIndex);
+    //const { data: uncommitedTransactions = [], isLoading: uncommitedTransactionsLoading } = useUncommittedTransactions(usedIndex);
     const { data: transactions = [], isLoading: transactionsLoading } = useQuery(["transactions", usedIndex, network], async () => {
-        return (await serviceInstance?.getTransactions())?.reverse();
+        try {
+            const txs = await serviceInstance?.getTransactions();
+            return txs;
+        } catch (e) {
+            return [];
+        }
     });
 
-    const txs = useMemo(() => {
-        //Only add new txs
-        const filteredTransacations = transactions.filter(
-            //TODO: add type
-            (tx: any) => !uncommitedTransactions.find((uTx) => tx.transactionHash === uTx.transactionHash),
-        );
-        const finalTxs = [...uncommitedTransactions, ...filteredTransacations];
-        return filter ? finalTxs.filter(filter) : finalTxs;
-    }, [uncommitedTransactions, transactions, filter]);
-
     return {
-        data: txs,
-        isLoading: uncommitedTransactionsLoading || transactionsLoading,
+        data: transactions,
+        isLoading: transactionsLoading,
     };
 };
 
