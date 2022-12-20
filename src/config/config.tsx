@@ -11,8 +11,9 @@ import { AddressValidator } from "./validators/AddressValidator";
 import { PrivateKeyValidator } from "./validators/PrivateKeyValidator";
 import { RadioCheckedIcon } from "module/common/icons/RadioCheckedIcon";
 import { RadioUncheckedIcon } from "module/common/icons/RadioUncheckedIcon";
+import { EnvConfig } from "./config.declarations";
 
-const envConfigs: Record<string, CreateConfig> = {
+export const envConfigs: Record<EnvConfig, CreateConfig> = {
     test: { ...baseConfig, ...devConfig },
     development: { ...baseConfig, ...devConfig },
     production: { ...baseConfig, ...prodConfig },
@@ -24,7 +25,7 @@ const envKey = environment.REACT_APP_ENV_CONFIG || environment.NODE_ENV!;
 
 if (!(envKey in envConfigs)) throw new Error(`${envKey} is not a valid env config`);
 
-const envConfig = envConfigs[envKey];
+const envConfig = envConfigs[envKey as EnvConfig];
 
 const config = createConfig({
     ...envConfig,

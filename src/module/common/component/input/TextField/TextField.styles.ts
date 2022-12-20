@@ -1,6 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { TextField } from "@peersyst/react-native-components";
-import { InputStyle } from "@peersyst/react-native-components";
+import { InputStyle, TextField } from "@peersyst/react-native-components";
 
 export type TextFieldSize = "md" | "lg";
 
