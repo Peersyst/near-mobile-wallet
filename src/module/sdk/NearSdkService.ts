@@ -50,7 +50,7 @@ import {
     NFT_OWNER_TOKENS_SET_METHOD,
     BASE_NEAR_DECIMALS,
 } from "./near.constants";
-import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertYoctoToNear } from "./near.utils";
+import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto } from "./near.utils";
 import { NearApiService } from "./NearApiService";
 
 export class NearSDKService {
@@ -337,7 +337,7 @@ export class NearSDKService {
     // -- UTILS FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
     public parseNearAmount(amount: string): string {
-        return convertYoctoToNear(amount, this.nearDecimals);
+        return convertNearToYocto(amount);
     }
     public convertAccountBalanceToNear(accountBalance: AccountBalance): AccountBalance {
         return convertAccountBalanceToNearUtil(accountBalance, this.nearDecimals);
