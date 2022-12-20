@@ -3,6 +3,7 @@ import * as Recoil from "recoil";
 import { renderHook, waitFor } from "test-utils";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
 import * as UseRecoverWallet from "module/wallet/hook/useRecoverWallets";
+import { UseConfigMock } from "mocks/genesys/useConfig/useConfig.mock";
 
 const renderUseLoad = () =>
     renderHook(() => {
@@ -32,10 +33,11 @@ describe("useLoad tests", () => {
         await waitFor(() => expect(mockedSetSettingsState).toBeCalledWith(defaultSettingsState));
     });
 
-    test("Loads with a testnet wallet but without mainnet", async () => {
+    test("Loads with a testnet wallet but without the default network", async () => {
         const mockedRecover = jest.fn();
         mockedRecover.mockResolvedValueOnce(false);
         mockedRecover.mockResolvedValueOnce(true);
+        new UseConfigMock({ config: { enableChangeNetwork: true } });
         jest.spyOn(UseRecoverWallet, "default").mockReturnValue(mockedRecover);
 
         const mockedSetSettingsState = jest.fn();
@@ -45,6 +47,7 @@ describe("useLoad tests", () => {
         expect(result.current.loading).toBe(true);
 
         await waitFor(() => expect(result.current.loading).toBe(false));
-        await waitFor(() => expect(mockedSetSettingsState).toBeCalledWith({ ...defaultSettingsState, network: "testnet" }));
+        const chain = defaultSettingsState.network === "mainnet" ? "testnet" : "mainnet";
+        await waitFor(() => expect(mockedSetSettingsState).toBeCalledWith({ ...defaultSettingsState, network: chain }));
     });
 });

@@ -1,19 +1,15 @@
-import { Col, Row, Typography, useTheme } from "@peersyst/react-native-components";
+import { Col, Row, Typography } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import DotList from "../DotList/DotList";
-import { InvalidIcon, ValidIcon } from "./GuidelinesList.style";
-import { GuidelinesListProps } from "./GuidelinesList.types";
+import StatusIcon from "../StatusIcon/StatusIcons";
+import { GuidelinesListProps } from "./ExplanationList.types";
 
 const GuidelinesList = ({ children, allowed }: GuidelinesListProps) => {
     const translate = useTranslate();
-    const {
-        icons: { invalid: Invalid, valid: Valid },
-    } = useTheme();
-    const Icon = allowed ? ValidIcon : InvalidIcon;
     return (
         <Col>
             <Row gap={8}>
-                <Icon>{allowed ? <Valid /> : <Invalid />}</Icon>
+                <StatusIcon status={allowed ? "valid" : "invalid"} />
                 <Typography variant="body3Strong">{translate(allowed ? "you_can_use" : "you_cant_use") + " :"}</Typography>
             </Row>
             <DotList style={{ marginLeft: "10%" }}>{children}</DotList>

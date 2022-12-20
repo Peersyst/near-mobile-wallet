@@ -1,4 +1,5 @@
 import BaseMock, { MockFnType } from "mocks/common/base.mock";
+import { NearSDKService } from "near-peersyst-sdk";
 import { AccountBalanceMock } from "./accountBalance.mock";
 import { TokensMock } from "./token.mock";
 
@@ -20,6 +21,7 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
     getAccountTokens: MockFnType;
     getAccountBalance: MockFnType;
     nameIsChoosalbe: MockFnType;
+    createNewAccountWithSameSecretKey: MockFnType;
     //TODO: add here all the mock fn that are needed
 
     constructor() {
@@ -30,5 +32,6 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
         this.getAccountTokens = jest.fn().mockResolvedValue(new TokensMock());
         this.getAccountBalance = jest.fn().mockResolvedValue(new AccountBalanceMock());
         this.nameIsChoosalbe = jest.fn().mockResolvedValue(true);
+        this.createNewAccountWithSameSecretKey = jest.fn().mockResolvedValue(this as any as NearSDKService);
     }
 }

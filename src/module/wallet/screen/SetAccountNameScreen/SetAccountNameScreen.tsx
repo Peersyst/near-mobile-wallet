@@ -70,7 +70,7 @@ const SetAccountNameScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreen
                     <GuidelinesList allowed={false}>{NOT_ALLOWED_INIDICATIONS.map((key) => translate(key))}</GuidelinesList>
                 </Col>
                 <Button fullWidth type="submit" loading={finalLoding}>
-                    {submitText}
+                    {submitText || translate("continue")}
                 </Button>
             </Col>
         </Form>

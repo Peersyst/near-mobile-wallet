@@ -301,24 +301,29 @@ export class NearSDKService {
     }
 
     // Amount is in near
-    async createNewAccountWithSameSecretKey(nameId: string, amount: string, nearDecimals?: number): Promise<NearSDKService> {
+    async createNewAccountWithSameSecretKey(nameId: string, amount: string, nearDecimals?: number): Promise<NearSDKService | undefined> {
         const exists = await this.accountExists(nameId);
         if (exists) {
             throw new Error("Account already exists");
         }
+        try {
+            await this.createNewAccount(nameId, this.keyPair.getPublicKey(), amount);
 
-        await this.createNewAccount(nameId, this.keyPair.getPublicKey(), amount);
-
-        const service = new NearSDKService(
-            this.chain,
-            this.nearConfig.nodeUrl,
-            this.baseApiUrl,
-            this.keyPair.secretKey,
-            nameId,
-            nearDecimals,
-        );
-        await service.connect();
-        return service;
+            const service = new NearSDKService(
+                this.chain,
+                this.nearConfig.nodeUrl,
+                this.baseApiUrl,
+                this.keyPair.secretKey,
+                nameId,
+                nearDecimals,
+            );
+            await service.connect();
+            return service;
+        } catch (e) {
+            // eslint-disable-next-line no-console
+            console.warn("Error creating new account", e);
+            return;
+        }
     }
 
     async deleteAccount(beneficiaryId: string): Promise<string> {

@@ -179,5 +179,12 @@
     "not_allowed_chars": "El carácter '@'",
     "near_account_min_chars": "Menos de 2 carácteres",
     "near_account_max_chars": "Más de 59 carácteres (64 es el máximo contanto '.near')",
-    "name_available": "¡Bien! {{name}} está disponible"
+    "name_available": "¡Bien! {{name}} está disponible",
+    "select_funding_acc_explanation_1": "Debes financiar la cuenta con ",
+    "select_funding_acc_explanation_2": " Puedes financiarlo con una cuenta existente.",
+    "select_funding_acc": "Selecciona una cuenta",
+    "create_account_success": "Ya puedes usar tu nueva cuenta",
+    "add_a_custom_address": "Añadir un nombre custom",
+    "success": "¡éxito!",
+    "select_theme": "Cambiar tema"
 }
