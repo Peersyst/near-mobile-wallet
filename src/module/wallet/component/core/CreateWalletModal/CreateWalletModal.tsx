@@ -51,23 +51,23 @@ const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
         >
             {(handleWalletCreation, handleClose) => (
                 <Tabs index={index} onIndexChange={setIndex}>
-                    <TabPanel index={0}>
+                    <TabPanel index={CreateWalletModalTabs.WARNING_TAB}>
                         <AddCustomNameWarning onSubmit={() => setIndex(CreateWalletModalTabs.SET_ACCOUNT_NAME_TAB)} />
                     </TabPanel>
-                    <TabPanel index={1}>
+                    <TabPanel index={CreateWalletModalTabs.SET_ACCOUNT_NAME_TAB}>
                         <SetAccountNameScreen onSubmit={() => setIndex(CreateWalletModalTabs.SET_FUNDING_ACC_TAB)} />
                     </TabPanel>
-                    <TabPanel index={2}>
+                    <TabPanel index={CreateWalletModalTabs.SET_FUNDING_ACC_TAB}>
                         <SelectFundingAccountScreen onSubmit={() => setIndex(CreateWalletModalTabs.CONFIRM_TAB)} />
                     </TabPanel>
-                    <TabPanel index={3}>
+                    <TabPanel index={CreateWalletModalTabs.CONFIRM_TAB}>
                         <CreateAccountConfirmationScreen
                             onSubmit={handleWalletCreation}
                             onSuccess={() => setIndex(CreateWalletModalTabs.SUCCESS_TAB)}
                             onCancel={handleClose}
                         />
                     </TabPanel>
-                    <TabPanel index={4}>
+                    <TabPanel index={CreateWalletModalTabs.SUCCESS_TAB}>
                         <CreateAccountSuccessScreen onSubmit={handleClose} />
                     </TabPanel>
                 </Tabs>
