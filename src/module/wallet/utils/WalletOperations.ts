@@ -2,13 +2,13 @@ import { convertNearToYocto, convertYoctoToNear } from "near-peersyst-sdk";
 const BigInt = require("bn.js");
 
 export class WalletOperations {
-    static isBigger(a: string | number, b: string | number) {
+    static isBigger(a: string | number, b: string | number): boolean {
         const finalA = convertNearToYocto(a.toString());
         const finalB = convertNearToYocto(b.toString());
         return new BigInt(finalA).gt(new BigInt(finalB));
     }
 
-    static add(a: string | number, b: string | number, returnBigInt = false) {
+    static add(a: string | number, b: string | number, returnBigInt = false): string {
         try {
             const finalA = convertNearToYocto(a.toString());
             const finalB = convertNearToYocto(b.toString());

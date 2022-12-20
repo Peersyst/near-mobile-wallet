@@ -10,7 +10,7 @@ describe("CreateAccountConfirmationScreen", () => {
         const handleCreateAccount = jest.fn().mockResolvedValue(true);
         new UseWalletMock({ account: "acc" });
         const { state } = new UseCreateWalletMock();
-        render(<CreateAccountConfirmationScreen onCancel={handleOnCancel} createAccount={handleCreateAccount} onSubmit={handleOnSubmit} />);
+        render(<CreateAccountConfirmationScreen onCancel={handleOnCancel} onSubmit={handleCreateAccount} onSuccess={handleOnSubmit} />);
         //Send summary
         expect(screen.getByText(`0.1 ${config.tokenName}`)).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + " · ")).toBeDefined();
