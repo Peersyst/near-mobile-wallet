@@ -4,9 +4,6 @@ import settingsState, { FiatCurrencyType } from "module/settings/state/SettingsS
 import { config } from "config";
 import { useRecoilValue } from "recoil";
 
-// Refetch the data every 3 minutes
-const CONVERSION_PRICE_INTERVAL = 1000 * 60 * 3;
-
 export const useGetNativeTokenPrice = (currency?: FiatCurrencyType): QueryResult<number> => {
     const { fiat } = useRecoilValue(settingsState);
     const finalCurrency = currency || fiat;
@@ -24,7 +21,7 @@ export const useGetNativeTokenPrice = (currency?: FiatCurrencyType): QueryResult
             }
         },
         {
-            refetchInterval: CONVERSION_PRICE_INTERVAL,
+            refetchInterval: config.fetchPriceConversionInterval,
         },
     );
 };

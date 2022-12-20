@@ -1,5 +1,6 @@
 import { SpinnerProps } from "@peersyst/react-native-components";
 import { TypographyProps } from "module/common/component/display/Typography/Typography";
+import { FullNumber } from "module/common/types";
 import { FiatCurrencyType } from "module/settings/state/SettingsState";
 
 export type AppCurrency = FiatCurrencyType | "token";
@@ -7,7 +8,7 @@ export type AppCurrency = FiatCurrencyType | "token";
 export type BalanceAction = "display" | "add" | "round";
 
 export interface BalanceProps extends Omit<TypographyProps, "children" | "numberOfLines"> {
-    balance: bigint | number | string;
+    balance: FullNumber;
     units?: AppCurrency | string;
     unitsPosition?: "left" | "right";
     action?: BalanceAction;

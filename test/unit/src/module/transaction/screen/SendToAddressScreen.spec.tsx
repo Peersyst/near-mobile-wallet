@@ -16,7 +16,7 @@ describe("SendToAddressScreen tests", () => {
     test("Renders correctly", () => {
         const screen = render(<SendToAddressScreen />);
         expect(screen.getByText(translate("select_a_wallet"))).toBeDefined();
-        expect(screen.getByText(state.wallets[0].name)).toBeDefined();
+        expect(screen.getByText(state.wallets[0].account)).toBeDefined();
         expect(screen.getByText(translate("send_to"))).toBeDefined();
         expect(screen.getByPlaceholderText(translate("address"))).toBeDefined();
         expect(screen.getByText(translate("next"))).toBeDefined();
@@ -25,7 +25,7 @@ describe("SendToAddressScreen tests", () => {
     test("Renders correctly when an addresses had been selected previously", () => {
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{ senderWalletIndex: 1, receiverAddress: MOCKED_NAMED_ADDRESS }, jest.fn()]);
         const screen = render(<SendToAddressScreen />);
-        expect(screen.getByText(state.wallets[1].name)).toBeDefined();
+        expect(screen.getByText(state.wallets[1].account)).toBeDefined();
         expect(screen.getByDisplayValue(MOCKED_NAMED_ADDRESS)).toBeDefined();
     });
 

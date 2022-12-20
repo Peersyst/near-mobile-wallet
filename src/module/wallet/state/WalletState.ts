@@ -1,22 +1,26 @@
 import { atom } from "recoil";
-import { StorageWallet } from "module/wallet/WalletStorage";
-import { NearSDKService } from "near-peersyst-sdk";
+import { StorageWallet } from "../wallet.types";
 
-export const serviceInstancesMap = new Map<number, { testnet: NearSDKService; mainnet: NearSDKService }>();
-
-export type Wallet = Omit<StorageWallet, "mnemonic">;
+export type Wallet = StorageWallet & {
+    colorIndex: number;
+    imported?: boolean;
+};
 
 export interface WalletState {
     hasWallet: boolean;
     isAuthenticated: boolean;
+    /**
+     * They can be tesnet or mainnet wallets, but only one network type at a time
+     * They are setted in useLoad from the information in the storage
+     * When the user switch between networks, the wallets must be updated
+     */
     wallets: Wallet[];
-    isFirstTime: boolean;
-    selectedWallet?: number;
+    selectedWallet: number;
 }
 
 const walletState = atom<WalletState>({
     key: "wallet",
-    default: { hasWallet: false, isAuthenticated: false, isFirstTime: false, wallets: [] },
+    default: { hasWallet: false, isAuthenticated: false, wallets: [], selectedWallet: 0 },
 });
 
 export default walletState;

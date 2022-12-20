@@ -24,8 +24,8 @@ describe("useAddUncommittedTransaction", () => {
         expect(mockedAddUncommittedTransactionHash).toBeCalledWith(0, Chains.TESTNET, "hash");
     });
     test("Works correctly when adding one tx with previous txs", () => {
-        const wallet1 = new WalletMock({ index: 0, testnet: { uncommittedTransactionHashes: ["hash1"] } });
-        const wallet2 = new WalletMock({ index: 1, testnet: { uncommittedTransactionHashes: ["hash2"] } });
+        const wallet1 = new WalletMock({ uncommittedTransactionHashes: ["hash1"] });
+        const wallet2 = new WalletMock({ uncommittedTransactionHashes: ["hash2"] });
         const state = new WalletStateMock({ wallets: [wallet1, wallet2] });
         new UseWalletStateMock({ state });
         const mockedAddUncommittedTransactionHash = jest.fn();

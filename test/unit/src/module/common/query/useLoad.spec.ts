@@ -1,18 +1,14 @@
 import { useLoad } from "module/common/query/useLoad";
-import { WalletStorage } from "module/wallet/WalletStorage";
-import { useRecoilValue } from "recoil";
+import * as Recoil from "recoil";
 import { renderHook, waitFor } from "test-utils";
-import walletState from "module/wallet/state/WalletState";
-import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
-import * as CreateServiceInstance from "module/wallet/utils/createServiceInstance";
+import { defaultSettingsState } from "module/settings/state/SettingsState";
+import * as UseRecoverWallet from "module/wallet/hook/useRecoverWallets";
+import { UseConfigMock } from "mocks/genesys/useConfig/useConfig.mock";
 
 const renderUseLoad = () =>
     renderHook(() => {
         const loading = useLoad();
-        const { hasWallet, wallets, isAuthenticated } = useRecoilValue(walletState);
-        const settings = useRecoilValue(settingsState);
-        return { loading, hasWallet, wallets, isAuthenticated, settings };
+        return { loading };
     });
 
 describe("useLoad tests", () => {
@@ -21,28 +17,37 @@ describe("useLoad tests", () => {
     });
 
     test("Loads without wallets", async () => {
-        const getWallets = jest.spyOn(WalletStorage, "getWallets").mockImplementation(() => new Promise((resolve) => resolve(undefined)));
+        jest.spyOn(UseRecoverWallet, "default").mockReturnValue(jest.fn().mockResolvedValue(false));
         const { result } = renderUseLoad();
         expect(result.current.loading).toBe(true);
-        expect(getWallets).toHaveBeenCalled();
         await waitFor(() => expect(result.current.loading).toBe(false));
-        expect(result.current.wallets).toHaveLength(0);
-        expect(result.current.hasWallet).toBe(false);
     });
 
     test("Loads with a wallet", async () => {
-        jest.spyOn(CreateServiceInstance, "default").mockResolvedValue();
-        const getWallets = jest
-            .spyOn(WalletStorage, "getWallets")
-            .mockImplementation(
-                () => new Promise((resolve) => resolve([{ name: "wallet", mnemonic: [MnemonicMocked], index: 0, colorIndex: 0 }])),
-            );
+        jest.spyOn(UseRecoverWallet, "default").mockReturnValue(jest.fn().mockResolvedValue(true));
+        const mockedSetSettingsState = jest.fn();
+        jest.spyOn(Recoil, "useSetRecoilState").mockReturnValue(mockedSetSettingsState);
         const { result } = renderUseLoad();
         expect(result.current.loading).toBe(true);
-        expect(getWallets).toHaveBeenCalled();
         await waitFor(() => expect(result.current.loading).toBe(false));
-        expect(result.current.hasWallet).toBe(true);
-        expect(result.current.wallets[0].name).toEqual("wallet");
-        expect(result.current.settings).toEqual(defaultSettingsState);
+        await waitFor(() => expect(mockedSetSettingsState).toBeCalledWith(defaultSettingsState));
+    });
+
+    test("Loads with a testnet wallet but without the default network", async () => {
+        const mockedRecover = jest.fn();
+        mockedRecover.mockResolvedValueOnce(false);
+        mockedRecover.mockResolvedValueOnce(true);
+        new UseConfigMock({ config: { enableChangeNetwork: true } });
+        jest.spyOn(UseRecoverWallet, "default").mockReturnValue(mockedRecover);
+
+        const mockedSetSettingsState = jest.fn();
+        jest.spyOn(Recoil, "useSetRecoilState").mockReturnValue(mockedSetSettingsState);
+
+        const { result } = renderUseLoad();
+        expect(result.current.loading).toBe(true);
+
+        await waitFor(() => expect(result.current.loading).toBe(false));
+        const chain = defaultSettingsState.network === "mainnet" ? "testnet" : "mainnet";
+        await waitFor(() => expect(mockedSetSettingsState).toBeCalledWith({ ...defaultSettingsState, network: chain }));
     });
 });

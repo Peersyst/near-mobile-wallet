@@ -7,20 +7,17 @@ export class WalletStateMock extends BaseMock implements WalletState {
     hasWallet: boolean;
     isAuthenticated: boolean;
     wallets: Wallet[];
-    isFirstTime: boolean;
-    selectedWallet?: number | undefined;
+    selectedWallet: number;
     constructor({
         hasWallet = true,
         isAuthenticated = true,
-        wallets = [new WalletMock(), new WalletMock({ name: "secondWallet", index: 1 })],
-        isFirstTime = false,
+        wallets = [new WalletMock(), new WalletMock({ account: "secondWallet", colorIndex: 1, index: 1 })],
         selectedWallet = 0,
     }: Partial<UseWalletStateResult["state"]> = {}) {
         super();
         this.hasWallet = hasWallet;
         this.isAuthenticated = isAuthenticated;
         this.wallets = wallets;
-        this.isFirstTime = isFirstTime;
         this.selectedWallet = selectedWallet;
     }
 }

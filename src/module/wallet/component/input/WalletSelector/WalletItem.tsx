@@ -8,13 +8,13 @@ export interface WalletItemProps {
 }
 
 const WalletItem = ({ index }: WalletItemProps): JSX.Element => {
-    const { name } = useWallet(index);
+    const { account } = useWallet(index);
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(index);
 
     return (
         <Row alignItems="center" style={{ overflow: "hidden" }}>
             <Typography numberOfLines={1} variant="body2Strong" style={{ maxWidth: "60%" }}>
-                {name}
+                {account}
             </Typography>
             <Row>
                 <Typography variant="body2Strong">{" · "}</Typography>

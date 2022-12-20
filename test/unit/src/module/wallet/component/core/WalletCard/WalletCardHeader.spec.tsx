@@ -16,16 +16,15 @@ describe("WalletCardHeader tests", () => {
     test("Renders correctly", () => {
         const screen = render(<WalletCardHeader name="my_account" index={0} />);
         expect(screen.getByText("my_account")).toBeDefined();
-        expect(screen.getByTestId("EditIcon")).toBeDefined();
         expect(screen.getByTestId("CopyIcon")).toBeDefined();
     });
 
     test("Copies correctly", () => {
-        jest.spyOn(Clipboard, "setString");
+        jest.spyOn(Clipboard, "setStringAsync");
         const screen = render(<WalletCardHeader name="my_account" index={0} />);
         const icon = screen.getByTestId("CopyIcon");
         expect(icon).toBeDefined();
         fireEvent.press(icon);
-        expect(Clipboard.setString).toHaveBeenCalledWith(MOCKED_ADDRESS);
+        expect(Clipboard.setStringAsync).toHaveBeenCalledWith(MOCKED_ADDRESS);
     });
 });

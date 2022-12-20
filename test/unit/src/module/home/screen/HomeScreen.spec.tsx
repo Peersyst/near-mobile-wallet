@@ -1,21 +1,23 @@
-import { render, translate } from "test-utils";
+import { render, translate, screen } from "test-utils";
 import HomeScreen from "module/home/screen/HomeScreen";
-import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { UseServiceInstanceMock, UseWalletStateMock, WalletStateMock } from "test-mocks";
 
 describe("HomeScreen tests", () => {
-    new UseServiceInstanceMock();
-    afterEach(() => {
-        jest.restoreAllMocks();
-    });
-
     test("Renders correctly when a wallet is selected", () => {
+        new UseServiceInstanceMock();
         new UseWalletStateMock();
         const screen = render(<HomeScreen />);
         expect(screen.getByText(translate("transactions"))).toBeDefined();
     });
 
     test("Renders correctly when a wallet is not selected", () => {
-        const screen = render(<HomeScreen />);
-        expect(screen.getByText(translate("create_a_wallet"))).toBeDefined();
+        new UseServiceInstanceMock();
+        const state = new WalletStateMock({ selectedWallet: 21 });
+        new UseWalletStateMock({ state });
+        render(<HomeScreen />);
+        //Walletcard
+        expect(screen.getByText(translate("create_your_account"))).toBeDefined();
+        //Add wallet
+        expect(screen.getByText(translate("add_a_wallet_txt")));
     });
 });

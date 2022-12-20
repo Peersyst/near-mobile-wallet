@@ -11,7 +11,6 @@ import settingsState from "module/settings/state/SettingsState";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { useState } from "react";
 import { useTranslate } from "module/common/hook/useTranslate";
-import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 const SendConfirmationScreen = (): JSX.Element => {
     const [showConfirmation, setShowConfirmation] = useState(false);
@@ -24,8 +23,7 @@ const SendConfirmationScreen = (): JSX.Element => {
         state: { wallets },
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
-    const { name: senderName, index } = senderWallet;
-    const { serviceInstance } = useServiceInstance(index);
+    const { account: senderName } = senderWallet;
     const { mutate: sendTransaction, isLoading, isSuccess, isError } = useSendTransaction(senderWalletIndex!);
     const { hideModal } = useModal();
 
@@ -48,12 +46,13 @@ const SendConfirmationScreen = (): JSX.Element => {
             <Col gap={24} onStartShouldSetResponder={() => true}>
                 <SendSummary
                     amount={amount!}
-                    receiverAddress={receiverAddress!}
                     fee={fee!}
                     token={token}
                     message={message!}
-                    senderName={senderName}
-                    senderAddress={serviceInstance.getAddress() || ""}
+                    senderAccount={senderName}
+                    total
+                    showFiat
+                    receiverAccount={receiverAddress!}
                 />
                 <Typography variant="body3Regular" textAlign="center" light>
                     {translate("send_confirmation_text")}

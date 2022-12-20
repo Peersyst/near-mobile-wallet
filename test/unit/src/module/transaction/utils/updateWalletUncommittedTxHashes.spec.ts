@@ -1,18 +1,13 @@
-import { StorageWalletMock, UnencryptedWalletChainInfoMock } from "mocks/storage";
-import { NetworkType } from "module/settings/state/SettingsState";
-import updateWalletUncommittedTxHashes from "module/wallet/utils/updateWalletUncommittedTxHashes";
-import { Chains } from "near-peersyst-sdk";
+import { WalletUtils } from "module/wallet/utils/WalletUtils";
+import { UnencryptedWalletInfoMock } from "test-mocks";
 
 describe("Test for the updateWalletUncommittedTxHashes function", () => {
     test("should update the uncommitted tx hashes", () => {
-        const testnet = new UnencryptedWalletChainInfoMock({ uncommittedTransactionHashes: ["tx1", "tx2"] });
-        const mainnet = new UnencryptedWalletChainInfoMock();
-        const wallet = new StorageWalletMock({ testnet, mainnet });
-        const wallet2 = new StorageWalletMock();
+        const wallet = new UnencryptedWalletInfoMock({ uncommittedTransactionHashes: ["tx1", "tx2"] });
+        const wallet2 = new UnencryptedWalletInfoMock();
+
         const wallets = [wallet, wallet2];
-        const network: NetworkType = Chains.TESTNET;
-        const updatedWallet = updateWalletUncommittedTxHashes(wallets, 0, network, ["tx3", "tx4"]);
-        expect(wallet.testnet?.uncommittedTransactionHashes).toEqual(["tx1", "tx2"]);
-        expect(updatedWallet[0].testnet?.uncommittedTransactionHashes).toEqual(["tx3", "tx4"]);
+        const updatedWallet = WalletUtils.updateWalletUncommittedTxHashes(wallets, ["tx3", "tx4"], 0);
+        expect(updatedWallet[0].uncommittedTransactionHashes).toEqual(["tx3", "tx4"]);
     });
 });

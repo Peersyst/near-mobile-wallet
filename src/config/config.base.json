@@ -3,13 +3,16 @@
     "minimumTransactionAmount": 61,
     "mainnetExplorerLink": "https://explorer.mainnet.near.org",
     "testnetExplorerLink": "https://explorer.testnet.near.org",
-    "indexerTestnetUrl": "http://ckb-node-test-1.peersyst.com/indexer",
-    "indexerMainnetUrl": "https://ckb-node-mainnet.peersyst.com/indexer",
+    "indexerTestnetUrl": "https://testnet-api.kitwallet.app",
+    "indexerMainnetUrl": "https://api.kitwallet.app",
     "faucetUrl": "https://faucet.nervos.org/",
     "mainnetNodeUrl": "https://rpc.mainnet.near.org",
     "testnetNodeUrl": "https://rpc.testnet.near.org",
-    "maxNumberOfDecimals": 6,
-    "enableMainnet": true,
+    "maxNumberOfDecimals": 5,
+    "enableChangeNetwork": true,
     "tokenName": "NEAR",
-    "coingeckoTokenApiId": "near"
+    "coingeckoTokenApiId": "near",
+    "fetchPriceConversionInterval": 180000,
+    "minBalanceToCreateAccount": "0.1",
+    "estimatedFee": "0.00005"
 }

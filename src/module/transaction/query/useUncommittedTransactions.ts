@@ -10,7 +10,7 @@ import useUpdateUncommittedTransactionsState from "../hook/useUpdateUncommitedTr
 const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction[]> => {
     const { serviceInstance, index: usedIndex, network } = useServiceInstance(index);
     const wallet = useWallet(usedIndex);
-    const { uncommittedTransactionHashes } = wallet[network] || {};
+    const { uncommittedTransactionHashes } = wallet || {};
     /**
      * We need to use a ref here because the query will be re-run
      * and we don't want to remove the hashes from the storage on each re-run

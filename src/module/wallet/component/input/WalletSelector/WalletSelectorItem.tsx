@@ -3,13 +3,12 @@ import WalletItem from "./WalletItem";
 
 export interface WalletSelectorItemProps {
     index: number;
-    walletIndex: number;
 }
 
-const WalletSelectorItem = ({ index, walletIndex }: WalletSelectorItemProps): JSX.Element => {
+const WalletSelectorItem = ({ index }: WalletSelectorItemProps): JSX.Element => {
     return (
-        <SelectItem value={walletIndex} key={index}>
-            <WalletItem index={walletIndex} />
+        <SelectItem value={index} key={index}>
+            <WalletItem index={index} />
         </SelectItem>
     );
 };

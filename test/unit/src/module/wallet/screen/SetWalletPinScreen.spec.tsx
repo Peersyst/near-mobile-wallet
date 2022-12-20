@@ -1,7 +1,7 @@
 import { render, translate } from "test-utils";
-import * as UseCreateWalletState from "module/wallet/hook/useCreateWallet";
-import { fireEvent } from "@testing-library/react-native";
+import { fireEvent, waitFor } from "@testing-library/react-native";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
+import { UseCreateWalletMock } from "test-mocks";
 
 describe("SetWalletPin tests", () => {
     test("Renders correctly", () => {
@@ -12,18 +12,11 @@ describe("SetWalletPin tests", () => {
     });
 
     test("Sets pin correctly", async () => {
-        const setPin = jest.fn();
-        jest.spyOn(UseCreateWalletState, "default").mockReturnValue({
-            state: { name: undefined, pin: undefined, mnemonic: undefined, colorIndex: undefined },
-            setName: jest.fn(),
-            setPin,
-            setMnemonic: jest.fn(),
-            setColorIndex: jest.fn(),
-            reset: jest.fn(),
-        });
+        const { setPin } = new UseCreateWalletMock();
         const handleSuccess = jest.fn();
 
         const screen = render(<SetWalletPinScreen onCancel={() => undefined} onSuccess={handleSuccess} />);
+
         fireEvent.press(screen.getByText("1"));
         fireEvent.press(screen.getByText("2"));
         fireEvent.press(screen.getByText("3"));
@@ -34,11 +27,12 @@ describe("SetWalletPin tests", () => {
         fireEvent.press(screen.getByText("3"));
         fireEvent.press(screen.getByText("4"));
         expect(setPin).toHaveBeenCalledWith("1234");
-        expect(handleSuccess).toHaveBeenCalled();
+        await waitFor(() => expect(handleSuccess).toHaveBeenCalled());
     });
 
     test("Sets pin incorrectly", async () => {
         const screen = render(<SetWalletPinScreen onCancel={() => undefined} onSuccess={() => undefined} />);
+
         fireEvent.press(screen.getByText("1"));
         fireEvent.press(screen.getByText("2"));
         fireEvent.press(screen.getByText("3"));
@@ -55,6 +49,7 @@ describe("SetWalletPin tests", () => {
         const handleCancel = jest.fn();
 
         const screen = render(<SetWalletPinScreen onSuccess={() => undefined} onCancel={handleCancel} />);
+
         const cancelButton = screen.getByText(translate("cancel"));
         fireEvent.press(cancelButton);
         expect(handleCancel).toHaveBeenCalled();

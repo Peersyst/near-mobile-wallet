@@ -1,22 +1,25 @@
 import { Wallet } from "module/wallet/state/WalletState";
-import { UnencryptedWalletChainInfo } from "module/wallet/WalletStorage";
 import BaseMock from "../base.mock";
 
 export class WalletMock extends BaseMock implements Wallet {
-    index: number;
-    name: string;
-    colorIndex: number;
-    secret?: string | undefined;
-    testnet?: UnencryptedWalletChainInfo | undefined;
-    mainnet?: UnencryptedWalletChainInfo | undefined;
+    account: Wallet["account"];
+    colorIndex: Wallet["colorIndex"];
+    imported: Wallet["imported"];
+    index: Wallet["index"];
+    uncommittedTransactionHashes: Wallet["uncommittedTransactionHashes"];
 
-    constructor({ name = "firstWallet", index = 0, colorIndex = 0, testnet, secret, mainnet }: Partial<Wallet> = {}) {
+    constructor({
+        index = 0,
+        account = "firstWallet",
+        colorIndex = 0,
+        imported = false,
+        uncommittedTransactionHashes = [],
+    }: Partial<Wallet> = {}) {
         super();
         this.index = index;
-        this.name = name;
+        this.account = account;
         this.colorIndex = colorIndex;
-        this.testnet = testnet;
-        this.mainnet = mainnet;
-        this.secret = secret;
+        this.imported = imported;
+        this.uncommittedTransactionHashes = uncommittedTransactionHashes;
     }
 }

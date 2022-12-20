@@ -1,9 +1,8 @@
 import Select, { SelectProps } from "module/common/component/input/Select/Select";
-import useWalletState from "module/wallet/hook/useWalletState";
 import WalletItem from "./WalletItem";
 import WalletSelectorItem from "./WalletSelectorItem";
-import { useControlled } from "@peersyst/react-hooks";
 import { useTranslate } from "module/common/hook/useTranslate";
+import useWalletSelector from "module/wallet/hook/useWalletSelector";
 
 export type WalletSelectorProps = Omit<
     SelectProps<number>,
@@ -11,29 +10,22 @@ export type WalletSelectorProps = Omit<
 >;
 
 const WalletSelector = ({ style, value, onChange, defaultValue, ...rest }: WalletSelectorProps): JSX.Element => {
-    const {
-        state: { wallets, selectedWallet: defaultAccount = 0 },
-    } = useWalletState();
     const translate = useTranslate();
-    const [selectedIndex, setSelectedIndex] = useControlled((defaultValue as number) ?? defaultAccount, value as number, onChange);
-    const selectedWallet = selectedIndex !== undefined ? wallets[selectedIndex] : undefined;
 
-    const handleItemChange = (i: unknown) => {
-        setSelectedIndex(i as number);
-    };
+    const { selectedIndex, selectedWallet, setWalletIndex, wallets } = useWalletSelector({ value, onChange, defaultValue });
 
     return (
         <Select
             value={selectedIndex}
-            onChange={handleItemChange}
+            onChange={setWalletIndex}
             style={style}
             title={translate("select_a_wallet")}
             placeholder={translate("no_account_selected")}
-            renderValue={() => (selectedWallet !== undefined ? <WalletItem index={selectedWallet.index} /> : undefined)}
+            renderValue={() => (selectedWallet !== undefined ? <WalletItem index={selectedIndex} /> : undefined)}
             {...rest}
         >
-            {wallets.map(({ index: walletIndex }, index) => (
-                <WalletSelectorItem walletIndex={walletIndex} index={index} key={walletIndex} />
+            {wallets.map((_, index) => (
+                <WalletSelectorItem index={index} key={index} />
             ))}
         </Select>
     );

@@ -1,11 +1,9 @@
 import SecuritySettingsScreen from "module/settings/screen/SecuritySettingsScreen";
 import { fireEvent, render, SuccessApiCall, translate } from "test-utils";
-import * as Genesys from "@peersyst/react-native-components";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import { waitFor } from "@testing-library/react-native";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { UseServiceInstanceMock, UseWalletStateMock, WalletMock, WalletStateMock } from "test-mocks";
+import { UseModalMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("Test for the SecuritySettingsScreen", () => {
     beforeEach(() => {
@@ -20,8 +18,7 @@ describe("Test for the SecuritySettingsScreen", () => {
     test("Open confirm modal to update pin", () => {
         new UseWalletStateMock();
         new UseServiceInstanceMock();
-        const showModal = jest.fn();
-        jest.spyOn(Genesys, "useModal").mockReturnValue({ showModal } as any);
+        const { showModal } = new UseModalMock();
         const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("change_passcode"));
         fireEvent.press(button);
@@ -46,8 +43,8 @@ describe("Test for the SecuritySettingsScreen", () => {
         await waitFor(() => expect(clearSettingsStorage).toHaveBeenCalled());
         await waitFor(() => expect(resetWalletState).toHaveBeenCalled());
     });
-
-    test("Deletes only wallet and data", async () => {
+    //TODO: implement test when doing the delete data fnctionality
+    /*   test("Deletes only wallet and data", async () => {
         new UseServiceInstanceMock();
         const clearInstances = jest.spyOn(serviceInstancesMap, "clear").mockReturnValue();
         const resetWalletState = jest.fn();
@@ -59,40 +56,41 @@ describe("Test for the SecuritySettingsScreen", () => {
         const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("delete_a_wallet"));
         fireEvent.press(button);
-        const wallet = screen.getByText(state.wallets[0].name);
+        const wallet = screen.getByText(state.wallets[0].account);
         fireEvent.press(wallet);
         await waitFor(() =>
-            expect(screen.getByText(translate("delete_only_wallet_text", { walletName: state.wallets[0].name }))).toBeDefined(),
+            expect(screen.getByText(translate("delete_only_wallet_text", { walletName: state.wallets[0].account }))).toBeDefined(),
         );
-        fireEvent.press(screen.getAllByText(translate("delete_wallet", { walletName: state.wallets[0].name }))[1]);
+        fireEvent.press(screen.getAllByText(translate("delete_wallet", { walletName: state.wallets[0].account }))[1]);
         expect(screen.getByText(translate("enter_your_pin").toUpperCase())).toBeDefined();
         for (let i = 1; i < 5; i++) fireEvent.press(screen.getByText(i.toString()));
         await waitFor(() => expect(clearWalletStorage).toHaveBeenCalled());
         await waitFor(() => expect(clearSettingsStorage).toHaveBeenCalled());
         await waitFor(() => expect(resetWalletState).toHaveBeenCalled());
         await waitFor(() => expect(clearInstances).toHaveBeenCalled());
-    });
+    }); */
 
-    test("Deletes first wallet", async () => {
+    /* test("Deletes first wallet", async () => {
         const removeWallet = jest.spyOn(WalletStorage, "removeWallet").mockReturnValue(SuccessApiCall(undefined));
         jest.spyOn(WalletStorage, "getPin").mockReturnValue(SuccessApiCall("1234"));
         const setWalletState = jest.fn();
         const { state } = new UseWalletStateMock({ setWallets: setWalletState });
-        serviceInstancesMap.set(0, {} as any);
-        serviceInstancesMap.set(1, {} as any);
+        serviceInstancesMap.set(Chains.TESTNET, []);
         const setInstance = jest.spyOn(serviceInstancesMap, "set").mockReturnValue({} as any);
         const deleteInstance = jest.spyOn(serviceInstancesMap, "delete").mockReturnValue({} as any);
         const screen = render(<SecuritySettingsScreen />);
         const button = screen.getByText(translate("delete_a_wallet"));
         fireEvent.press(button);
-        fireEvent.press(screen.getByText(state.wallets[0].name));
-        await waitFor(() => expect(screen.getByText(translate("delete_wallet_text", { walletName: state.wallets[0].name }))).toBeDefined());
-        fireEvent.press(screen.getAllByText(translate("delete_wallet", { walletName: state.wallets[0].name }))[1]);
+        fireEvent.press(screen.getByText(state.wallets[0].account));
+        await waitFor(() =>
+            expect(screen.getByText(translate("delete_wallet_text", { walletName: state.wallets[0].account }))).toBeDefined(),
+        );
+        fireEvent.press(screen.getAllByText(translate("delete_wallet", { walletName: state.wallets[0].account }))[1]);
         expect(screen.getByText(translate("enter_your_pin").toUpperCase())).toBeDefined();
         for (let i = 1; i < 5; i++) fireEvent.press(screen.getByText(i.toString()));
         await waitFor(() => expect(removeWallet).toHaveBeenCalledWith(0));
         await waitFor(() => expect(setInstance).toHaveBeenCalled());
         await waitFor(() => expect(deleteInstance).toHaveBeenCalled());
         serviceInstancesMap.clear();
-    });
+    }); */
 });
