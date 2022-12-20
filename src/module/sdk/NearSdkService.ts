@@ -1,4 +1,4 @@
-import { connect, keyStores, utils, Near, ConnectConfig, Account } from "near-api-js";
+import { connect, keyStores, Near, ConnectConfig, Account } from "near-api-js";
 import { AccountBalance } from "near-api-js/lib/account";
 import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
@@ -49,7 +49,7 @@ import {
     NFT_TOKEN_METADATA_METHOD,
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "./near.constants";
-import { convertAccountBalanceToNear } from "./near.utils";
+import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto } from "./near.utils";
 import { NearApiService } from "./NearApiService";
 
 export class NearSDKService {
@@ -63,27 +63,25 @@ export class NearSDKService {
     private baseApiUrl: string;
     private static nameRegex = /^(([a-z\d]+[-_])*[a-z\d]+\.)*([a-z\d]+[-_])*[a-z\d]+$/;
     private static addressRegex = /[\da-f]/i;
+    public nearDecimals: number | undefined;
 
-    constructor(chain: Chains, nodeUrl: string, baseApiUrl: string, secretKey: string, nameId: string, mnemonic?: string) {
+    constructor(
+        chain: Chains,
+        nodeUrl: string,
+        baseApiUrl: string,
+        secretKey: string,
+        nameId: string,
+        nearDecimals?: number,
+        mnemonic?: string,
+    ) {
         this.chain = chain;
         this.masterAccount = chain === Chains.MAINNET ? "near" : this.chain;
         this.nameId = nameId;
         this.mnemonic = mnemonic;
         this.baseApiUrl = baseApiUrl;
-
+        this.nearDecimals = nearDecimals;
         // Create KeyPairEd25519
-        const parts = secretKey.split(":");
-        if (parts.length === 1) {
-            this.keyPair = new KeyPairEd25519(secretKey);
-        } else if (parts.length === 2) {
-            if (parts[0].toUpperCase() === "ED25519") {
-                this.keyPair = new KeyPairEd25519(parts[1]);
-            } else {
-                throw new Error(`Unknown curve: ${parts[0]}`);
-            }
-        } else {
-            throw new Error("Invalid encoded key format, must be <curve>:<encoded key>");
-        }
+        this.keyPair = NearSDKService.createKeyPairFromSecretKey(secretKey);
 
         const keyStore = new keyStores.InMemoryKeyStore();
         keyStore.setKey(chain, nameId, this.keyPair);
@@ -102,16 +100,22 @@ export class NearSDKService {
         return decode(encode(publicKey.data)).toString("hex");
     }
 
-    static async createAndConnect(chain: Chains, nodeUrl: string, baseApiUrl: string): Promise<NearSDKService> {
+    static async createAndConnect(chain: Chains, nodeUrl: string, baseApiUrl: string, nearDecimals?: number): Promise<NearSDKService> {
         const { seedPhrase, secretKey, publicKey } = generateSeedPhrase();
         const nameId = NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey));
 
-        const service = new NearSDKService(chain, nodeUrl, baseApiUrl, secretKey, nameId, seedPhrase);
+        const service = new NearSDKService(chain, nodeUrl, baseApiUrl, secretKey, nameId, nearDecimals, seedPhrase);
         await service.connect();
         return service;
     }
 
-    static async importFromMnemonic(chain: Chains, nodeUrl: string, baseApiUrl: string, mnemonic: string): Promise<NearSDKService[]> {
+    static async importFromMnemonic(
+        chain: Chains,
+        nodeUrl: string,
+        baseApiUrl: string,
+        mnemonic: string,
+        nearDecimals?: number,
+    ): Promise<NearSDKService[]> {
         const { secretKey, publicKey } = parseSeedPhrase(mnemonic);
         const nameIds = await NearApiService.getAccountsFromPublicKey(publicKey, baseApiUrl);
         if (nameIds.length === 0) {
@@ -119,23 +123,28 @@ export class NearSDKService {
         }
 
         const services = nameIds.map(async (nameId) => {
-            const service = new NearSDKService(chain, nodeUrl, baseApiUrl, secretKey, nameId, mnemonic);
+            const service = new NearSDKService(chain, nodeUrl, baseApiUrl, secretKey, nameId, nearDecimals, mnemonic);
             await service.connect();
             return service;
         });
         return Promise.all(services);
     }
 
-    static async importFromSecretKey(chain: Chains, nodeUrl: string, baseApiUrl: string, secretKey: string): Promise<NearSDKService[]> {
+    static async importFromSecretKey(
+        chain: Chains,
+        nodeUrl: string,
+        baseApiUrl: string,
+        secretKey: string,
+        nearDecimals?: number,
+    ): Promise<NearSDKService[]> {
         const secret = secretKey.split(":").pop();
         const publicKey = new KeyPairEd25519(secret!).getPublicKey().toString();
         const nameIds = await NearApiService.getAccountsFromPublicKey(publicKey, baseApiUrl);
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
         }
-
         const services = nameIds.map(async (nameId) => {
-            const service = new NearSDKService(chain, nodeUrl, baseApiUrl, secretKey, nameId);
+            const service = new NearSDKService(chain, nodeUrl, baseApiUrl, secretKey, nameId, nearDecimals);
             await service.connect();
             return service;
         });
@@ -212,21 +221,26 @@ export class NearSDKService {
         return bip39.validateMnemonic(mnemonic);
     }
 
+    static createKeyPairFromSecretKey(secretKey: string): KeyPairEd25519 {
+        return KeyPairEd25519.fromString(secretKey) as KeyPairEd25519;
+    }
+
+    static isSecretKeyValid(secretKey: string): boolean {
+        try {
+            this.createKeyPairFromSecretKey(secretKey);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    }
+
     async accountCanReceive(accountId: string): Promise<boolean> {
         return NearSDKService.isImplicitAddress(accountId) || this.accountExists(accountId);
     }
 
     async nameIsChoosalbe(nameId: string): Promise<boolean> {
         const exist = await this.accountExists(nameId);
-
-        const address = this.getAddress();
-        const addressParts = address.split(".").length;
-        const nameParts = nameId.split(".").length;
-
-        const nameIsSuper = nameParts === 2 && nameId.indexOf(`.${this.masterAccount}`) !== -1;
-        const nameIsSub = nameId.indexOf(address) !== -1 && nameParts === addressParts + 1;
-
-        return NearSDKService.nameIdIsValid(nameId) && !exist && (nameIsSuper || nameIsSub);
+        return !exist && NearSDKService.nameIdIsValid(nameId);
     }
 
     // Amount is in near
@@ -234,7 +248,7 @@ export class NearSDKService {
         const account = await this.getAccount();
 
         if (nameId.includes(account.accountId)) {
-            const tx = await account.createAccount(nameId, publicKey, utils.format.parseNearAmount(amount));
+            const tx = await account.createAccount(nameId, publicKey, this.parseNearAmount(amount));
             return tx.transaction_outcome.id;
         }
 
@@ -242,13 +256,13 @@ export class NearSDKService {
             contractId: this.masterAccount,
             methodName: "create_account",
             args: { new_account_id: nameId, new_public_key: publicKey.toString() },
-            attachedDeposit: utils.format.parseNearAmount(amount),
+            attachedDeposit: this.parseNearAmount(amount),
         });
         return tx.transaction_outcome.id;
     }
 
     // Amount is in near
-    async createNewAccountWithNewMnemonic(nameId: string, amount: string): Promise<NearSDKService> {
+    async createNewAccountWithNewMnemonic(nameId: string, amount: string, nearDecimals?: number): Promise<NearSDKService> {
         const exists = await this.accountExists(nameId);
         if (exists) {
             throw new Error("Account already exists");
@@ -257,13 +271,21 @@ export class NearSDKService {
         const { seedPhrase, publicKey, secretKey } = generateSeedPhrase();
         await this.createNewAccount(nameId, PublicKey.fromString(publicKey), amount);
 
-        const service = new NearSDKService(this.chain, this.nearConfig.nodeUrl, this.baseApiUrl, secretKey, nameId, seedPhrase);
+        const service = new NearSDKService(
+            this.chain,
+            this.nearConfig.nodeUrl,
+            this.baseApiUrl,
+            secretKey,
+            nameId,
+            nearDecimals,
+            seedPhrase,
+        );
         await service.connect();
         return service;
     }
 
     // Amount is in near
-    async createNewAccountWithNewSecretKey(nameId: string, amount: string): Promise<NearSDKService> {
+    async createNewAccountWithNewSecretKey(nameId: string, amount: string, nearDecimals?: number): Promise<NearSDKService> {
         const exists = await this.accountExists(nameId);
         if (exists) {
             throw new Error("Account already exists");
@@ -272,29 +294,51 @@ export class NearSDKService {
         const keyPair = KeyPairEd25519.fromRandom();
         await this.createNewAccount(nameId, keyPair.getPublicKey(), amount);
 
-        const service = new NearSDKService(this.chain, this.nearConfig.nodeUrl, this.baseApiUrl, keyPair.secretKey, nameId);
+        const service = new NearSDKService(this.chain, this.nearConfig.nodeUrl, this.baseApiUrl, keyPair.secretKey, nameId, nearDecimals);
         await service.connect();
         return service;
     }
 
     // Amount is in near
-    async createNewAccountWithSameSecretKey(nameId: string, amount: string): Promise<NearSDKService> {
+    async createNewAccountWithSameSecretKey(nameId: string, amount: string, nearDecimals?: number): Promise<NearSDKService | undefined> {
         const exists = await this.accountExists(nameId);
         if (exists) {
             throw new Error("Account already exists");
         }
+        try {
+            await this.createNewAccount(nameId, this.keyPair.getPublicKey(), amount);
 
-        await this.createNewAccount(nameId, this.keyPair.getPublicKey(), amount);
-
-        const service = new NearSDKService(this.chain, this.nearConfig.nodeUrl, this.baseApiUrl, this.keyPair.secretKey, nameId);
-        await service.connect();
-        return service;
+            const service = new NearSDKService(
+                this.chain,
+                this.nearConfig.nodeUrl,
+                this.baseApiUrl,
+                this.keyPair.secretKey,
+                nameId,
+                nearDecimals,
+            );
+            await service.connect();
+            return service;
+        } catch (e) {
+            // eslint-disable-next-line no-console
+            console.warn("Error creating new account", e);
+            return;
+        }
     }
 
     async deleteAccount(beneficiaryId: string): Promise<string> {
         const account = await this.getAccount();
         const tx = await account.deleteAccount(beneficiaryId);
         return tx.transaction_outcome.id;
+    }
+
+    // --------------------------------------------------------------
+    // -- UTILS FUNCTIONS ------------------------------------
+    // --------------------------------------------------------------
+    public parseNearAmount(amount: string): string {
+        return convertNearToYocto(amount);
+    }
+    public convertAccountBalanceToNear(accountBalance: AccountBalance): AccountBalance {
+        return convertAccountBalanceToNearUtil(accountBalance, this.nearDecimals);
     }
 
     // --------------------------------------------------------------
@@ -305,8 +349,7 @@ export class NearSDKService {
         try {
             const account = await this.getAccount();
             const accountBalance: AccountBalance = await account.getAccountBalance();
-            const res = convertAccountBalanceToNear(accountBalance);
-            return res;
+            return this.convertAccountBalanceToNear(accountBalance);
         } catch (e: any) {
             return {
                 total: "0",
@@ -328,7 +371,7 @@ export class NearSDKService {
     // Amount is in near
     async sendTransaction(to: string, amount: string): Promise<string> {
         const account = await this.getAccount();
-        const amountInYocto = utils.format.parseNearAmount(amount);
+        const amountInYocto = this.parseNearAmount(amount);
 
         const tx = await account.sendMoney(to, amountInYocto);
         return tx.transaction_outcome.id;
@@ -361,7 +404,7 @@ export class NearSDKService {
     // Amount is in near
     async stake(amount: string): Promise<string> {
         const account = await this.getAccount();
-        const amountInYocto = utils.format.parseNearAmount(amount);
+        const amountInYocto = this.parseNearAmount(amount);
 
         const tx = await account.stake(this.keyPair.getPublicKey(), amountInYocto);
         return tx.transaction_outcome.id;
@@ -486,7 +529,7 @@ export class NearSDKService {
     // Amount is in near
     async depositAndStakeFromValidator(validatorId: string, amount: string): Promise<string> {
         const account = await this.getAccount();
-        const amountInYocto = utils.format.parseNearAmount(amount);
+        const amountInYocto = this.parseNearAmount(amount);
 
         const tx = await account.functionCall({
             contractId: validatorId,
@@ -500,7 +543,7 @@ export class NearSDKService {
     // Amount is in near
     async unstakeFromValidator(validatorId: string, amount: string): Promise<string> {
         const account = await this.getAccount();
-        const amountInYocto = utils.format.parseNearAmount(amount);
+        const amountInYocto = this.parseNearAmount(amount);
 
         const tx = await account.functionCall({
             contractId: validatorId,
@@ -524,7 +567,7 @@ export class NearSDKService {
     // Amount is in near
     async withdrawFromValidator(validatorId: string, amount: string): Promise<string> {
         const account = await this.getAccount();
-        const amountInYocto = utils.format.parseNearAmount(amount);
+        const amountInYocto = this.parseNearAmount(amount);
 
         const tx = await account.functionCall({
             contractId: validatorId,

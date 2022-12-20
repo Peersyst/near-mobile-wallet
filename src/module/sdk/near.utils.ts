@@ -15,18 +15,21 @@ export function convertNearToYocto(amountInNear: string): string {
  * @param amountInYocto
  * @returns The amount in Near
  */
-export function convertYoctoToNear(amountInYocto: string): string {
-    return utils.format.formatNearAmount(amountInYocto);
+export function convertYoctoToNear(amountInYocto: string, fracDigits?: number | undefined): string {
+    return utils.format.formatNearAmount(amountInYocto, fracDigits);
 }
 
 /**
  * Convert AccountBalance in yocto to Near amount
  */
-export function convertAccountBalanceToNear({ total, available, staked, stateStaked }: AccountBalance): AccountBalance {
+export function convertAccountBalanceToNear(
+    { total, available, staked, stateStaked }: AccountBalance,
+    fracDigits?: number | undefined,
+): AccountBalance {
     return {
-        total: convertYoctoToNear(total),
-        available: convertYoctoToNear(available),
-        staked: convertYoctoToNear(staked),
-        stateStaked: convertYoctoToNear(stateStaked),
+        total: convertYoctoToNear(total, fracDigits),
+        available: convertYoctoToNear(available, fracDigits),
+        staked: convertYoctoToNear(staked, fracDigits),
+        stateStaked: convertYoctoToNear(stateStaked, fracDigits),
     };
 }

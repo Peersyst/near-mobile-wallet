@@ -3,8 +3,10 @@ import { render } from "test-utils";
 import { fireEvent } from "@testing-library/react-native";
 import * as Navigation from "@react-navigation/native";
 import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
+import { UseWalletStateMock } from "test-mocks";
 
 describe("Header tests", () => {
+    new UseWalletStateMock();
     test("Renders correctly - withIcons", () => {
         const screen = render(<Header />);
         const images = screen.getAllByRole("image");

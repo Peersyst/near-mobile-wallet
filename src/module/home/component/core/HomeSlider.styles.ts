@@ -3,8 +3,8 @@ import styled from "@peersyst/react-native-styled";
 import { alpha } from "@peersyst/react-utils";
 
 export const HomeSliderRoot = styled(PagerView)(({ theme: { palette: p } }) => ({
-    marginBottom: "7.5%",
-    marginTop: "2.5%",
+    marginBottom: "8%",
+    marginTop: "4.5%",
     minHeight: "35%",
     pagination: { dot: { backgroundColor: alpha(p.white, 0.4), active: { backgroundColor: p.white } } },
 }));

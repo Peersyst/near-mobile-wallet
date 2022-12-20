@@ -7,10 +7,11 @@ import { atom } from "recoil";
 
 export interface CreateWalletState {
     name: string | undefined;
-    pin: string | undefined;
-    mnemonic: string[] | undefined;
+    pin?: string | undefined;
+    mnemonic?: string[] | undefined;
     privateKey?: string | undefined; //Only used for import with privateKey (has other previous accounts)
-    colorIndex: number | undefined;
+    importWithPrivateKey?: boolean;
+    fundingAccount?: number;
 }
 
 const createWalletState = atom<CreateWalletState>({
@@ -20,7 +21,7 @@ const createWalletState = atom<CreateWalletState>({
         pin: undefined,
         privateKey: undefined,
         mnemonic: undefined,
-        colorIndex: undefined,
+        importWithPrivateKey: false,
     },
 });
 

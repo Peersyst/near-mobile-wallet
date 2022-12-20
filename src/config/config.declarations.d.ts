@@ -2,6 +2,8 @@ import "@peersyst/react-native-components";
 import { Validator } from "@peersyst/react-native-components";
 import { TFunction } from "react-i18next";
 
+export type EnvConfig = "test" | "development" | "production" | "staging";
+
 declare module "@peersyst/react-native-components" {
     export interface ConfigTypes {
         TranslateFn: TFunction<"error">;
@@ -15,11 +17,14 @@ declare module "@peersyst/react-native-components" {
         testnetExplorerLink: string;
         faucetUrl: string;
         maxNumberOfDecimals: number;
-        enableMainnet: boolean;
+        enableChangeNetwork: boolean;
         tokenName: string;
         mainnetNodeUrl: string;
         testnetNodeUrl: string;
         coingeckoTokenApiId: string;
+        fetchPriceConversionInterval: number;
+        minBalanceToCreateAccount: string;
+        estimatedFee: string;
     }
 
     export interface CreateConfig {
@@ -30,15 +35,19 @@ declare module "@peersyst/react-native-components" {
         testnetExplorerLink: string;
         faucetUrl: string;
         maxNumberOfDecimals: number;
-        enableMainnet: boolean;
+        enableChangeNetwork: boolean;
         tokenName: string;
         mainnetNodeUrl: string;
         testnetNodeUrl: string;
         coingeckoTokenApiId: string;
+        fetchPriceConversionInterval: number;
+        minBalanceToCreateAccount: string;
+        estimatedFee: string;
     }
 
     export interface ExtraValidators {
         address: Validator;
+        privateKey: Validator;
     }
 
     export interface BlockchainLinksTypesOverrides {
