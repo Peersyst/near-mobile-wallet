@@ -9,6 +9,7 @@ import CreateWalletModal from "../../core/CreateWalletModal/CreateWalletModal";
 const AddWalletCard = (): JSX.Element => {
     const translate = useTranslate();
     const { showModal } = useModal();
+
     return (
         <ContentRoot>
             <AddText variant="h4Regular">{translate("create_your_account")}</AddText>

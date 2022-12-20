@@ -1,6 +1,5 @@
-import { renderHook } from "test-utils";
+import { act, renderHook } from "test-utils";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import { act } from "react-test-renderer";
 
 describe("useCreateWallet tests", () => {
     test("Sets name", () => {
