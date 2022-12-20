@@ -1,8 +1,7 @@
 import settingsState, { NetworkType } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import { SettingsStorage } from "module/settings/SettingsStorage";
-import { config } from "config";
-import { SelectOption } from "@peersyst/react-native-components";
+import { SelectOption, useConfig } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
 import { Chains } from "near-peersyst-sdk";
@@ -26,9 +25,11 @@ const SelectNetwork = (): JSX.Element => {
         SettingsStorage.set({ network });
     };
 
+    const enableChangeNetwork = useConfig("enableChangeNetwork");
+
     return (
         <SettingsSelect
-            disabled={!config.enableMainnet}
+            disabled={!enableChangeNetwork}
             options={networkOptions}
             value={settings.network}
             label={translate("select_your_network")}

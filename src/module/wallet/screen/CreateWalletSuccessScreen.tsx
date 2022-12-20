@@ -4,6 +4,7 @@ import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import createWalletState from "module/wallet/state/CreateWalletState";
 import useImportWallets from "../hook/useImportWallets";
+import { InteractionManager } from "react-native";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const [{ network }] = useRecoilState(settingsState);
@@ -16,7 +17,11 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
             //After all clean createWalletState
             resetCreateWalletState();
         };
-        setTimeout(setStorage, 1000); //TODO: Revise this timeout
+        setTimeout(() => {
+            InteractionManager.runAfterInteractions(() => {
+                setStorage();
+            });
+        }, 500);
     }, []);
 
     return <></>;

@@ -4,14 +4,15 @@ import { HeaderRoot, HeaderSettingsButton } from "./Header.styles";
 import { Row } from "@peersyst/react-native-components";
 import useNavigation from "module/common/hook/useNavigation";
 import { MainScreens } from "../MainNavigatorGroup/MainScreens";
+import useWalletGradient from "module/wallet/hook/useWalletGradient";
 
 const Header = (): JSX.Element => {
     const navigation = useNavigation();
-
+    const [startColor, endColor] = useWalletGradient();
     return (
         <HeaderRoot>
             <Row alignItems="center" justifyContent="center" flex={1}>
-                <LinearLogo startColor="#5F8AFA" endColor="#4FD1D9" />
+                <LinearLogo startColor={startColor} endColor={endColor} />
                 <Row style={{ position: "absolute", right: 8 }}>
                     <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.SETTINGS)}>
                         <SettingsIcon />

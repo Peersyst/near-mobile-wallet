@@ -1,5 +1,5 @@
 import { NetworkType } from "module/settings/state/SettingsState";
-import { Chains } from "near-peersyst-sdk";
+import { Chains, NearSDKService } from "near-peersyst-sdk";
 import ServiceInstances from "../state/ServiceInstances/ServiceInstances";
 import { CreateInstanceReturn } from "../state/ServiceInstances/ServiceInstances.types";
 import { Wallet } from "../state/WalletState";
@@ -51,7 +51,7 @@ export interface CheckWalletsReturn extends GetWalletsReturn {
 export default new (class WalletController {
     /**
      * Import a wallet from a private key or a mnemonic
-     * @returns Returns the new wallets
+     * @returns Returns the new wallets (not the previous ones)
      */
     async importWallets(
         network: NetworkType,
@@ -63,7 +63,11 @@ export default new (class WalletController {
          * Get secure storage and check if has a mnemonic and if the pK/mnemonic is not repeated (already in storage)
          */
         const secureStorage = await WalletStorage.getSecure();
-        if ((mnemonic && secureStorage?.mnemonic === mnemonic) || secureStorage?.[network].find((w) => w.privateKey === privateKeyParam)) {
+
+        if (
+            (mnemonic && secureStorage?.mnemonic === mnemonic) ||
+            (!mnemonic && secureStorage?.[network].find((w) => w.privateKey === privateKeyParam))
+        ) {
             return { wallets: [] };
         }
 
@@ -71,7 +75,7 @@ export default new (class WalletController {
         const numOfPrevWallets = storageWallets.length;
         const newWallets: Wallet[] = [];
         const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets' ids to be added to the secure storage
-        const imported = !mnemonic || mnemonic !== secureStorage?.mnemonic;
+        const imported = !mnemonic || !!secureStorage?.mnemonic;
         let privateKey = "";
 
         //Init serviceInstancesMap
@@ -83,7 +87,16 @@ export default new (class WalletController {
              * privateKeyParam is not used because it can be undefined
              * and in that case the wallet will create a privateKey derived from the mnemonic
              */
-            if (index === 0) privateKey = pK;
+            if (index === 0) {
+                if (storageWallets.length > 0) {
+                    const repeatedPrivateKey = secureStorage?.[network].find((w) => w.privateKey === pK);
+                    if (repeatedPrivateKey) {
+                        //The account already exists
+                        return { wallets: [] };
+                    }
+                }
+                privateKey = pK;
+            }
             const newIndex = numOfPrevWallets + index;
             const baseWallet: UnencryptedWalletInfo = { account, index: newIndex };
             storageWallets.push(baseWallet);
@@ -221,8 +234,6 @@ export default new (class WalletController {
                     accountDeletedIds.push(walletId);
                 }
             }
-
-            //Check if there are new accounts
             const newTempAccounts = accounts.filter(({ account }) => !tempWallets.find((w) => w.account === account));
             if (newTempAccounts.length > 0) hasNewAccounts = true;
             newWalletGroups.push({ deletedIds: accountDeletedIds, newWallets: newTempAccounts, privateKey: walletGroup.privateKey });
@@ -327,5 +338,33 @@ export default new (class WalletController {
             if (finalIds.length > 0) updatedSecureWallets.push({ privateKey: walletGroup.privateKey, walletIds: finalIds });
         }
         return { updatedStorageWallets, updatedWallets, updatedSecureWallets };
+    }
+
+    /**
+     * Create new account:
+     * - Set the new account in the wallet state
+     * - Set the new account with its pK in the storage
+     * - Set a new service instance with the new account
+     */
+    async createNewWallet(
+        newAccount: string,
+        oldWalletIndex: number,
+        newService: NearSDKService,
+        network: NetworkType,
+    ): Promise<Wallet | undefined> {
+        const [walletGroupAndImported, newIndex] = await Promise.all([
+            await WalletStorage.getSecureWalletGroupAndMainPrivateKey(oldWalletIndex, network),
+            await WalletStorage.addNewUnencryptedWallet({ account: newAccount }, network),
+        ]);
+        if (newIndex === undefined || walletGroupAndImported?.walletGroup === undefined) return undefined;
+        const { walletGroup, imported } = walletGroupAndImported;
+        await WalletStorage.setSecureWalletId(newIndex, walletGroup.privateKey, network);
+        ServiceInstances.addService({ service: newService, network });
+        return {
+            account: newAccount,
+            index: newIndex,
+            colorIndex: WalletUtils.getWalletColor(newAccount),
+            ...(imported && { imported }),
+        };
     }
 })();

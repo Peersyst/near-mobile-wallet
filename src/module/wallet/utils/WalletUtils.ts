@@ -1,3 +1,4 @@
+import { WALLET_GRADIENT_LENGTH } from "config/theme/baseTheme";
 import { BaseWallet, SecureWalletInfo, UnencryptedWalletInfo } from "../wallet.types";
 
 export class WalletUtils {
@@ -23,6 +24,15 @@ export class WalletUtils {
 
     static orderWallets<W extends BaseWallet>(wallets: W[]): W[] {
         return wallets.sort((a, b) => a.index - b.index);
+    }
+
+    //UNENCRYPTED wallet methods
+    static addWallet<W extends UnencryptedWalletInfo>(wallets: W[], wallet: Omit<W, "index">): W[] {
+        const newWallet = {
+            ...wallet,
+            index: wallets.length,
+        } as W;
+        return [...wallets, newWallet];
     }
 
     //Uncommited transaction hashes methods
@@ -52,8 +62,15 @@ export class WalletUtils {
 
     //Color methods
     static getWalletColor(account: string): number {
-        //TODO: Implement this
-        return (account.split("").pop()?.charCodeAt(0) || 0) % 3;
+        try {
+            const charNum = account
+                .slice(0, 8)
+                .split("")
+                .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+            return charNum % WALLET_GRADIENT_LENGTH;
+        } catch (e) {
+            return 0;
+        }
     }
 
     //Secure wallet methods
@@ -85,7 +102,7 @@ export class WalletUtils {
         return wallets.find((wallet) => wallet.privateKey === privateKey);
     }
 
-    static findByWalletId(walletId: number, wallets: SecureWalletInfo[]): SecureWalletInfo | undefined {
+    static findSecureByWalletId(walletId: number, wallets: SecureWalletInfo[]): SecureWalletInfo | undefined {
         return wallets.find((wallet) => wallet.walletIds.includes(walletId));
     }
 

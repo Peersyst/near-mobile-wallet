@@ -1,6 +1,5 @@
 import BaseMock, { MockFnType } from "../base.mock";
 import { CreateWalletState } from "module/wallet/state/CreateWalletState";
-import { MnemonicMocked } from "../../MnemonicMocked";
 import * as UseCreateWallet from "module/wallet/hook/useCreateWallet";
 
 export class CreateWalletStateMock extends BaseMock implements CreateWalletState {
@@ -8,14 +7,12 @@ export class CreateWalletStateMock extends BaseMock implements CreateWalletState
     pin: string | undefined;
     mnemonic: string[] | undefined;
     privateKey?: string | undefined;
-    colorIndex: number | undefined;
-    constructor({ name, pin, mnemonic, privateKey, colorIndex }: Partial<CreateWalletState> = {}) {
+    constructor({ name, pin, mnemonic, privateKey }: Partial<CreateWalletState> = {}) {
         super();
         this.name = name ?? "newWallet";
         this.pin = pin ?? "1234";
-        this.mnemonic = mnemonic ?? MnemonicMocked.split(" ");
+        this.mnemonic = mnemonic;
         this.privateKey = privateKey;
-        this.colorIndex = colorIndex ?? 0;
     }
 }
 
@@ -24,8 +21,10 @@ interface UseCreateWalletMockType {
     setName: MockFnType;
     setPin: MockFnType;
     setMnemonic: MockFnType;
-    setColorIndex: MockFnType;
     reset: MockFnType;
+    setPrivateKey: MockFnType;
+    setImportWithPrivateKey: MockFnType;
+    setFundAccount: MockFnType;
 }
 
 export class UseCreateWalletMock extends BaseMock implements UseCreateWalletMockType {
@@ -33,23 +32,29 @@ export class UseCreateWalletMock extends BaseMock implements UseCreateWalletMock
     setName: MockFnType;
     setPin: MockFnType;
     setMnemonic: MockFnType;
-    setColorIndex: MockFnType;
+    setPrivateKey: MockFnType;
+    setImportWithPrivateKey: MockFnType;
     reset: MockFnType;
+    setFundAccount: MockFnType;
     constructor({
         state,
-        setColorIndex = jest.fn(),
         setMnemonic = jest.fn(),
         setName = jest.fn(),
         setPin = jest.fn(),
         reset = jest.fn(),
+        setImportWithPrivateKey = jest.fn(),
+        setPrivateKey = jest.fn(),
+        setFundAccount = jest.fn(),
     }: Partial<UseCreateWalletMockType> = {}) {
         super();
         this.state = state ?? new CreateWalletStateMock();
         this.setMnemonic = setMnemonic;
-        this.setColorIndex = setColorIndex;
         this.setName = setName;
         this.setPin = setPin;
         this.reset = reset;
+        this.setImportWithPrivateKey = setImportWithPrivateKey;
+        this.setPrivateKey = setPrivateKey;
+        this.setFundAccount = setFundAccount;
         this.mock = jest.spyOn(UseCreateWallet, "default").mockReturnValue(this);
     }
 }
