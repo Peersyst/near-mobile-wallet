@@ -167,6 +167,6 @@
     "import_with_private_key": "Importar con clave privada",
     "import_warning_title": "Advertencia al importar su(s) cuenta(s)",
     "import_warning_txt": "Información importante sobre la importación de su(s) cuenta(s). Recuerde tener su clave privada y/o mnemonic en un lugar seguro.",
-    "import_success_one": "¡Cuenta importada correctament!",
-    "import_success_other": "¡Cuentas importadas correctament!"
+    "import_success_one": "¡Cuenta importada correctamente!",
+    "import_success_other": "¡Cuentas importadas correctamente!"
 }

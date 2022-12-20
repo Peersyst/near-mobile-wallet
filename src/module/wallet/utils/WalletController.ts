@@ -51,7 +51,7 @@ export interface CheckWalletsReturn extends GetWalletsReturn {
 export default new (class WalletController {
     /**
      * Import a wallet from a private key or a mnemonic
-     * @returns Returns the new wallets
+     * @returns Returns the new wallets (not the previous ones)
      */
     async importWallets(
         network: NetworkType,
@@ -63,7 +63,11 @@ export default new (class WalletController {
          * Get secure storage and check if has a mnemonic and if the pK/mnemonic is not repeated (already in storage)
          */
         const secureStorage = await WalletStorage.getSecure();
-        if ((mnemonic && secureStorage?.mnemonic === mnemonic) || secureStorage?.[network].find((w) => w.privateKey === privateKeyParam)) {
+
+        if (
+            (mnemonic && secureStorage?.mnemonic === mnemonic) ||
+            (!mnemonic && secureStorage?.[network].find((w) => w.privateKey === privateKeyParam))
+        ) {
             return { wallets: [] };
         }
 
@@ -71,7 +75,7 @@ export default new (class WalletController {
         const numOfPrevWallets = storageWallets.length;
         const newWallets: Wallet[] = [];
         const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets' ids to be added to the secure storage
-        const imported = !mnemonic || (secureStorage?.mnemonic && mnemonic !== secureStorage?.mnemonic);
+        const imported = !mnemonic || !!secureStorage?.mnemonic;
         let privateKey = "";
 
         //Init serviceInstancesMap
@@ -230,8 +234,6 @@ export default new (class WalletController {
                     accountDeletedIds.push(walletId);
                 }
             }
-
-            //Check if there are new accounts
             const newTempAccounts = accounts.filter(({ account }) => !tempWallets.find((w) => w.account === account));
             if (newTempAccounts.length > 0) hasNewAccounts = true;
             newWalletGroups.push({ deletedIds: accountDeletedIds, newWallets: newTempAccounts, privateKey: walletGroup.privateKey });
