@@ -5,7 +5,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import Typography from "module/common/component/display/Typography/Typography";
 import { useDebounce } from "@peersyst/react-hooks";
 import useCheckNameAvailability from "../../query/useCheckNameIdAvailability";
-import ExplanationList from "module/common/component/display/ExplanationList/ExplanationList";
+import GuidelinesList from "module/common/component/display/GuidelinesList/GuidelinesList";
 import { TransaltionResourceType } from "locale";
 import { AccountNameTextField } from "./SetAccountNameScreen.styles";
 import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
@@ -59,15 +59,15 @@ const SetAccountNameScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreen
                         value={value}
                         error={[error, translateError("invalid_name_ID", { nameID: finalName })]}
                         onChange={handleChange}
-                        placeholder="mycooldid"
+                        placeholder="mycoolid"
                         hideError={finalLoding}
                         validators={{ maxChars: 64, minChars: 2, address: true }}
                         label={translate("enter_your_custom_address")}
                         showValid={success}
                         required
                     />
-                    <ExplanationList allowed>{ALLOWED_INIDICATIONS.map((key) => translate(key))}</ExplanationList>
-                    <ExplanationList allowed={false}>{NOT_ALLOWED_INIDICATIONS.map((key) => translate(key))}</ExplanationList>
+                    <GuidelinesList allowed>{ALLOWED_INIDICATIONS.map((key) => translate(key))}</GuidelinesList>
+                    <GuidelinesList allowed={false}>{NOT_ALLOWED_INIDICATIONS.map((key) => translate(key))}</GuidelinesList>
                 </Col>
                 <Button fullWidth type="submit" loading={finalLoding}>
                     {submitText}

@@ -1,10 +1,10 @@
 import { Col, Row, Typography, useTheme } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import DotList from "../DotList/DotList";
-import { InvalidIcon, ValidIcon } from "./ExplanationList.style";
-import { ExplanationListProps } from "./ExplanationList.types";
+import { InvalidIcon, ValidIcon } from "./GuidelinesList.style";
+import { GuidelinesListProps } from "./GuidelinesList.types";
 
-const ExplanationList = ({ children, allowed }: ExplanationListProps) => {
+const GuidelinesList = ({ children, allowed }: GuidelinesListProps) => {
     const translate = useTranslate();
     const {
         icons: { invalid: Invalid, valid: Valid },
@@ -21,4 +21,4 @@ const ExplanationList = ({ children, allowed }: ExplanationListProps) => {
     );
 };
 
-export default ExplanationList;
+export default GuidelinesList;
