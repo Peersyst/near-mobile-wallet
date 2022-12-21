@@ -1,6 +1,6 @@
 import Svg, { Path, Defs, LinearGradient, Stop, SvgProps } from "react-native-svg";
 
-export function BaseDialogIcon(props: SvgProps): JSX.Element {
+export function BubbleIcon(props: SvgProps): JSX.Element {
     return (
         <Svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
             <Path

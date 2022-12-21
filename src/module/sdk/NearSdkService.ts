@@ -48,7 +48,6 @@ import {
     NFT_OWNER_TOKENS_METHOD,
     NFT_TOKEN_METADATA_METHOD,
     NFT_OWNER_TOKENS_SET_METHOD,
-    BASE_NEAR_DECIMALS,
 } from "./near.constants";
 import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto } from "./near.utils";
 import { NearApiService } from "./NearApiService";
@@ -64,7 +63,7 @@ export class NearSDKService {
     private baseApiUrl: string;
     private static nameRegex = /^(([a-z\d]+[-_])*[a-z\d]+\.)*([a-z\d]+[-_])*[a-z\d]+$/;
     private static addressRegex = /[\da-f]/i;
-    public nearDecimals: number;
+    public nearDecimals: number | undefined;
 
     constructor(
         chain: Chains,
@@ -72,7 +71,7 @@ export class NearSDKService {
         baseApiUrl: string,
         secretKey: string,
         nameId: string,
-        nearDecimals: number = BASE_NEAR_DECIMALS,
+        nearDecimals?: number,
         mnemonic?: string,
     ) {
         this.chain = chain;
@@ -241,7 +240,7 @@ export class NearSDKService {
 
     async nameIsChoosalbe(nameId: string): Promise<boolean> {
         const exist = await this.accountExists(nameId);
-        return NearSDKService.nameIdIsValid(nameId) && !exist;
+        return !exist && NearSDKService.nameIdIsValid(nameId);
     }
 
     // Amount is in near

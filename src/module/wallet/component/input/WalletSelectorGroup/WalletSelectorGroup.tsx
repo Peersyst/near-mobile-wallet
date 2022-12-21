@@ -1,13 +1,12 @@
-import { ScrollView } from "@peersyst/react-native-components";
+import { ScrollView, SelectorGroup } from "@peersyst/react-native-components";
 import { config } from "config";
-import SelectorGroup from "module/common/component/input/SelectorGroup/SelectorGroup";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useWalletSelector from "module/wallet/hook/useWalletSelector";
 import AccountSelector from "./AccountSelector";
 import { WalletSelectorProps } from "./WalletSelectorGroup.types";
 
 const WalletSelectorGroup = ({ value, defaultValue = 0, onChange, label, withBalanceError = true, ...rest }: WalletSelectorProps) => {
-    const { selectedIndex, handleChange, wallets, error } = useWalletSelector({ value, defaultValue, onChange });
+    const { selectedIndex, setWalletIndex, wallets, error } = useWalletSelector({ value, defaultValue, onChange });
     const translate = useTranslate();
     const translateError = useTranslate("error");
 
@@ -25,7 +24,7 @@ const WalletSelectorGroup = ({ value, defaultValue = 0, onChange, label, withBal
                         translateError("invalid_seleccted_account", { amountInNEAR: config.minBalanceToCreateAccount }),
                     ]
                 }
-                onChange={handleChange}
+                onChange={setWalletIndex}
                 {...rest}
             >
                 {wallets.map(({ index, account }, i) => (

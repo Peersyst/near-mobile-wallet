@@ -25,7 +25,7 @@ describe("useWalletSelector tests", () => {
         expect(useWalletSelector.current).toEqual({
             selectedIndex: 0,
             selectedWallet: wallets[0],
-            handleChange: expect.any(Function),
+            setWalletIndex: expect.any(Function),
             wallets: wallets,
             error: true,
         });
@@ -33,7 +33,7 @@ describe("useWalletSelector tests", () => {
         expect(useWalletSelector.current).toEqual({
             selectedIndex: 0,
             selectedWallet: wallets[0],
-            handleChange: expect.any(Function),
+            setWalletIndex: expect.any(Function),
             wallets: wallets,
             error: false,
         });
@@ -50,7 +50,7 @@ describe("useWalletSelector tests", () => {
         expect(useWalletSelector.current).toEqual({
             selectedIndex: 0,
             selectedWallet: wallets[0],
-            handleChange: expect.any(Function),
+            setWalletIndex: expect.any(Function),
             wallets: wallets,
             error: true,
         });
@@ -58,7 +58,7 @@ describe("useWalletSelector tests", () => {
         expect(useWalletSelector.current).toEqual({
             selectedIndex: 0,
             selectedWallet: wallets[0],
-            handleChange: expect.any(Function),
+            setWalletIndex: expect.any(Function),
             wallets: wallets,
             error: true,
         });
