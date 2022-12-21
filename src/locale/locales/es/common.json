@@ -190,5 +190,6 @@
     "select_theme": "Cambiar tema",
     "private_key_copied": "¡Llave privada copiada en el portapapeles!",
     "export_mnemonic": "Exportar mnemonic",
-    "export_private_key": "Exportar llave privada"
+    "export_private_key": "Exportar llave privada",
+    "new_account_created": "Nueva cuenta creada"
 }

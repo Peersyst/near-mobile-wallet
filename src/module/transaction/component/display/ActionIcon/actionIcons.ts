@@ -1,8 +1,9 @@
 import { TransactionActionKind } from "near-peersyst-sdk";
 import { ArrowDownCircleIcon, ArrowUpCircleIcon, NearIcon, UserAddIcon, UserDeleteIcon, CodeIcon, LockIcon } from "icons";
-import { ActionIcon, TxIcon } from "./ActionIcon.types";
+import { TxIcon } from "./ActionIcon.types";
+import { AddedTransactionActionKind, EnhancedTransactionActionKind } from "../ActionCard/ActionCard.types";
 
-export const ACTION_ICONS: Partial<Record<ActionIcon, TxIcon>> = {
+export const ACTION_ICONS: Record<EnhancedTransactionActionKind, TxIcon> = {
     [TransactionActionKind.STAKE]: {
         Icon: NearIcon,
         active: false,
@@ -31,11 +32,11 @@ export const ACTION_ICONS: Partial<Record<ActionIcon, TxIcon>> = {
         Icon: LockIcon,
         active: false,
     },
-    ["TRANSFER_RECEIVE"]: {
+    [AddedTransactionActionKind.TRANSFER_RECEIVE]: {
         Icon: ArrowDownCircleIcon,
         active: true,
     },
-    ["TRANSFER_SEND"]: {
+    [AddedTransactionActionKind.TRANSFER_SEND]: {
         Icon: ArrowUpCircleIcon,
         active: false,
     },

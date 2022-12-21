@@ -1,15 +1,13 @@
 import { ArrowUpCircleIcon } from "module/common/icons/ArrowUpCircleIcon";
-import { TransactionActionKind } from "near-peersyst-sdk";
+import { EnhancedTransactionActionKind } from "../ActionCard/ActionCard.types";
 
 export interface TxIcon {
     Icon: typeof ArrowUpCircleIcon;
     active: boolean;
 }
 
-export type ActionIcon = Exclude<keyof typeof TransactionActionKind, "TRANSFER"> | "TRANSFER_RECEIVE" | "TRANSFER_SEND";
-
 export interface ActionIconProps {
-    type: ActionIcon;
+    actionKind: EnhancedTransactionActionKind;
 }
 
 export interface ActionIconCompponentProps {
