@@ -4,20 +4,32 @@ import { useRecoilValue } from "recoil";
 import Balance from "../Balance/Balance";
 import { BalanceProps } from "../Balance/Balance.types";
 
-export interface FiatBalanceProps extends Omit<BalanceProps, "balance"> {
+export interface BaseFiatBalanceProps extends Omit<BalanceProps, "balance" | "action"> {
     balance: string | number;
 }
 
-const NearBalanceInFiat = ({ balance, ...rest }: FiatBalanceProps) => {
+export interface FiatBalanceProps extends BaseFiatBalanceProps {
+    tokenUnits?: string;
+}
+
+const NearBalanceInFiat = ({ balance, ...rest }: BaseFiatBalanceProps) => {
     const { fiat } = useRecoilValue(settingsState);
     const { value: fiatValue } = useNativeTokenConversion(fiat, balance);
     return <Balance balance={fiatValue} {...rest} />;
 };
 
 //TODO: implement FTBalanceInFiat
-const FiatBalance = ({ units, balance, ...rest }: FiatBalanceProps) => {
-    const BalanceComponent = units === "token" ? NearBalanceInFiat : Balance;
-    return <BalanceComponent units={units} balance="0" {...rest} />;
+const FiatBalance = ({ units, tokenUnits, options, ...rest }: FiatBalanceProps) => {
+    const { fiat } = useRecoilValue(settingsState);
+    const BalanceComponent = tokenUnits === "token" ? NearBalanceInFiat : Balance;
+    return (
+        <BalanceComponent
+            options={{ maximumFractionDigits: 2, minimumFractionDigits: 2, ...options }}
+            units={units ?? fiat}
+            {...rest}
+            action="round"
+        />
+    );
 };
 
 export default FiatBalance;
