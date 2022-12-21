@@ -3,23 +3,7 @@ import { TransactionDto, TransactionActionDto, TransactionKWDto, Transaction, Tr
 // Until no indexer
 export const EXTERNAL_NEAR_API = true;
 
-export class NearApiService {
-    static async getAccountsFromPublicKey(publicKey: string, baseApiUrl: string): Promise<string[]> {
-        let response: Response;
-
-        if (!EXTERNAL_NEAR_API) {
-            response = await fetch(`${baseApiUrl}/accounts/public-key/${publicKey}`);
-        } else {
-            response = await fetch(`${baseApiUrl}/publicKey/${publicKey}/accounts`);
-        }
-
-        if (response.status !== 200) {
-            throw new Error("Bad response status");
-        }
-        const accounts: string[] = await response.json();
-        return accounts;
-    }
-
+export class NearApiParserService {
     static parseTransactionActionDto(transactionActionDto: TransactionActionDto): TransactionAction {
         return {
             transactionHash: transactionActionDto.transactionHash,
@@ -62,7 +46,7 @@ export class NearApiService {
             receiverAccountId: transactionDto.receiverAccountId,
             status: transactionDto.status,
             transactionActions: transactionDto.transactionActions
-                .map(NearApiService.parseTransactionActionDto)
+                .map(NearApiParserService.parseTransactionActionDto)
                 .sort((a, b) => a.indexInTransaction - b.indexInTransaction),
         };
     }
@@ -107,15 +91,39 @@ export class NearApiService {
             ],
         };
     }
+}
+
+async function handleFetch<T>(url: string): Promise<T> {
+    const response: Response = await fetch(url);
+    if (response.status !== 200) throw new Error(`Error ${response.status} ${response.statusText}`);
+    const data = await response.json();
+    return data as T;
+}
+
+export class NearApiService {
+    static async getAccountsFromPublicKey(publicKey: string, baseApiUrl: string): Promise<string[]> {
+        let response: Response;
+
+        if (!EXTERNAL_NEAR_API) {
+            response = await fetch(`${baseApiUrl}/accounts/public-key/${publicKey}`);
+        } else {
+            response = await fetch(`${baseApiUrl}/publicKey/${publicKey}/accounts`);
+        }
+
+        if (response.status !== 200) {
+            throw new Error("Bad response status");
+        }
+        const accounts: string[] = await response.json();
+        return accounts;
+    }
 
     static async getTransactions(address: string, baseApiUrl: string, page = 1, pageSize = 15): Promise<Transaction[]> {
+        let url = "";
         if (!EXTERNAL_NEAR_API) {
-            const response = await fetch(`${baseApiUrl}/transactions/?accountId=${address}&page=${page}&pageSize=${pageSize}`);
-            if (response.status !== 200) {
-                throw new Error("Bad response status");
-            }
-            const transactionDtos: TransactionDto[] = await response.json();
-            return transactionDtos.map(NearApiService.parseTransactionDto);
+            const transactionDtos = await handleFetch<TransactionDto[]>(
+                `${baseApiUrl}/transactions/?accountId=${address}&page=${page}&pageSize=${pageSize}`,
+            );
+            return transactionDtos.map(NearApiParserService.parseTransactionDto);
         }
 
         const response = await fetch(`${baseApiUrl}/account/${address}/activity`);
@@ -124,7 +132,7 @@ export class NearApiService {
         }
 
         const transactionDtos: TransactionKWDto[] = await response.json();
-        return transactionDtos.map(NearApiService.parseTransactionKWDto);
+        return transactionDtos.map(NearApiParserService.parseTransactionKWDto);
     }
 
     static async getStakingDeposits(address: string, baseApiUrl: string): Promise<{ validatorId: string; amount: number }[]> {

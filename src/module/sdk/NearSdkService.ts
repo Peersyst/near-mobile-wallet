@@ -397,6 +397,8 @@ export class NearSDKService {
         return NearApiService.getTransactions(this.getAddress(), this.baseApiUrl, page, pageSize);
     }
 
+    async getRecentActivity(): Promise<RecentActivity[]> {}
+
     // --------------------------------------------------------------
     // -- STAKING FUNCTIONS -----------------------------------------
     // --------------------------------------------------------------
