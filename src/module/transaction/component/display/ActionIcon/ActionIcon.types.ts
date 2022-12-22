@@ -1,5 +1,5 @@
 import { ArrowUpCircleIcon } from "module/common/icons/ArrowUpCircleIcon";
-import { EnhancedTransactionActionKind } from "../ActionCard/ActionCard.types";
+import { ActionKind } from "near-peersyst-sdk";
 
 export interface TxIcon {
     Icon: typeof ArrowUpCircleIcon;
@@ -7,9 +7,11 @@ export interface TxIcon {
 }
 
 export interface ActionIconProps {
-    actionKind: EnhancedTransactionActionKind;
+    actionKind: ActionKind;
 }
 
 export interface ActionIconCompponentProps {
     active?: boolean;
 }
+
+export type ActionIcon = Record<ActionKind, TxIcon>;

@@ -1,5 +1,31 @@
 import { AccountBalance as BaseAccountBalance } from "near-api-js/lib/account";
 
+/**
+ * SDK Instance Types
+ */
+export interface BaseCreateNearSdkParams {
+    chain: Chains;
+    nodeUrl: string;
+    baseApiUrl: string;
+    nearDecimals?: number;
+    enableIndexer: boolean;
+}
+
+export interface CreateNearSdkWithMnemonicParams extends BaseCreateNearSdkParams {
+    mnemonic: string;
+}
+
+export interface CreateNearSdkWithSecretKeyParams extends BaseCreateNearSdkParams {
+    secretKey: string;
+}
+
+export interface CreateNearSdkParams extends BaseCreateNearSdkParams {
+    secretKey: string;
+    nameId: string;
+    nearDecimals?: number;
+    mnemonic?: string;
+}
+
 export enum Chains {
     MAINNET = "mainnet",
     TESTNET = "testnet",
@@ -8,6 +34,28 @@ export enum Chains {
 }
 
 export type AccountBalance = BaseAccountBalance;
+
+/**
+ * PERMISSIONS & ACCESS
+ */
+export interface PermissionDetails {
+    allowance: string;
+    receiverId: string;
+    methodNames: string[];
+}
+export interface Permission {
+    permissionKind: "FULL_ACCESS" | "FUNCTION_CALL";
+    permissionDetails?: PermissionDetails; // Only if permissionKind is FUNCTION_CALL
+}
+
+export interface AccessKey {
+    nonce: number;
+    permission: Permission;
+}
+
+/**
+ * STAKING
+ */
 
 export interface StakingBalance {
     staked: number;
@@ -22,6 +70,14 @@ export interface Validator {
     stakingBalance?: StakingBalance;
 }
 
+export interface StakingDeposit {
+    validatorId: string;
+    amount: number;
+}
+
+/**
+ * FT
+ */
 export interface TokenMetadata {
     spec: string;
     name: string;
@@ -36,6 +92,10 @@ export interface Token {
     metadata: TokenMetadata;
     balance: number;
 }
+
+/**
+ * NFTS
+ */
 
 export interface NftMetadata {
     spec: string;
@@ -72,6 +132,9 @@ export interface NftToken {
     royalty?: { [key: string]: number };
     collection_metadata?: NftMetadata;
 }
+/**
+ * TRANSACTION & ACTIONS
+ */
 
 export enum TransactionActionKind {
     CREATE_ACCOUNT = "CREATE_ACCOUNT",
@@ -84,71 +147,11 @@ export enum TransactionActionKind {
     DELETE_ACCOUNT = "DELETE_ACCOUNT",
 }
 
-export interface TransactionActionDto {
-    transactionHash: string;
-    indexInTransaction: number;
-    actionKind: TransactionActionKind;
-    args: any;
-}
-
-//TODO: Update TransactionStatus
-/* export enum TransactionStatus {
+export enum TransactionStatus {
     UNKNOWN = "UNKNOWN",
     FAILURE = "FAILURE",
     SUCCESS_VALUE = "SUCCESS_VALUE",
     SUCCESS_RECEIPT_ID = "SUCCESS_RECEIPT_ID",
-} */
-
-export enum TransactionStatus {
-    PENDING = "pending",
-    PROPOSED = "proposed",
-    COMMITTED = "committed",
-    REJECTED = "rejected",
-}
-
-export interface TransactionDto {
-    transactionHash: string;
-    includedInBlockHash: string;
-    includedInChunkHash: string;
-    indexInChunk: number;
-    blockTimestamp: string;
-    signerAccountId: string;
-    signerPublicKey: string;
-    nonce: number;
-    receiverAccountId: string;
-    signature: string;
-    status: TransactionStatus;
-    convertedIntoReceiptId: string;
-    receiptConversionGasBurnt: string | null;
-    receiptConversionTokensBurnt: string | null;
-    transactionActions: TransactionActionDto[];
-}
-
-export interface TransactionKWDto {
-    block_hash: string;
-    block_timestamp: string;
-    hash: string;
-    action_index: number;
-    signer_id: string;
-    receiver_id: string;
-    action_kind: TransactionActionKind;
-    args: any;
-}
-
-export interface PermissionDetails {
-    allowance: string;
-    receiverId: string;
-    methodNames: string[];
-}
-
-export interface Permission {
-    permissionKind: "FULL_ACCESS" | "FUNCTION_CALL";
-    permissionDetails?: PermissionDetails; // Only if permissionKind is FUNCTION_CALL
-}
-
-export interface AccessKey {
-    nonce: number;
-    permission: Permission;
 }
 
 export interface TransactionAction {
@@ -175,7 +178,7 @@ export interface Transaction {
     nonce?: number;
     receiverAccountId: string;
     status?: TransactionStatus;
-    transactionActions: TransactionAction[];
+    transactionActions: Action[];
 }
 
 export enum FeeRate {
@@ -183,3 +186,17 @@ export enum FeeRate {
     NORMAL = 100000,
     FAST = 10000000,
 }
+
+export enum EnhancedTransactionActionKind {
+    TRANSFER_RECEIVE = "TRANSFER_RECEIVE",
+    TRANSFER_SEND = "TRANSFER_SEND",
+}
+
+export type ActionKind = Exclude<keyof typeof TransactionActionKind, "TRANSFER"> | EnhancedTransactionActionKind;
+
+export type TransactionWithoutActions = Omit<Transaction, "transactionActions">;
+
+export type Action = Omit<TransactionAction, "actionKind"> & {
+    transaction: TransactionWithoutActions;
+    actionKind: ActionKind;
+};

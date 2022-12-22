@@ -1,11 +1,7 @@
-import { TransactionActionKind } from "near-peersyst-sdk";
+import { Action, ActionKind, EnhancedTransactionActionKind, TransactionActionKind } from "near-peersyst-sdk";
 import { config } from "config";
-import { AddedTransactionActionKind, EnhancedTransactionAction, EnhancedTransactionActionKind } from "../ActionCard.types";
 
-export const TRANSFER_ACTIONS: EnhancedTransactionActionKind[] = [
-    AddedTransactionActionKind.TRANSFER_RECEIVE,
-    AddedTransactionActionKind.TRANSFER_SEND,
-];
+export const TRANSFER_ACTIONS: ActionKind[] = [EnhancedTransactionActionKind.TRANSFER_RECEIVE, EnhancedTransactionActionKind.TRANSFER_SEND];
 
 export interface GetAmountAndTokenNameFromAction {
     amount: string | undefined;
@@ -16,7 +12,7 @@ export default function getAmountAndTokenNameFromAction({
     actionKind,
     deposit,
     stake,
-}: EnhancedTransactionAction): GetAmountAndTokenNameFromAction | undefined {
+}: Action): GetAmountAndTokenNameFromAction | undefined {
     if (TRANSFER_ACTIONS.includes(actionKind)) {
         return {
             amount: deposit,

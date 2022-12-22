@@ -1,6 +1,5 @@
 import { useTranslate } from "module/common/hook/useTranslate";
-import { TransactionActionKind } from "near-peersyst-sdk";
-import { AddedTransactionActionKind, EnhancedTransactionAction } from "../../../ActionCard/ActionCard.types";
+import { Action, EnhancedTransactionActionKind, TransactionActionKind } from "near-peersyst-sdk";
 
 export const useGetActionLabel = ({
     actionKind,
@@ -8,7 +7,7 @@ export const useGetActionLabel = ({
     codeSha256,
     methodName,
     transaction: { receiverAccountId },
-}: EnhancedTransactionAction): string => {
+}: Action): string => {
     const translate = useTranslate();
     switch (actionKind) {
         case TransactionActionKind.STAKE: {
@@ -32,10 +31,10 @@ export const useGetActionLabel = ({
         case TransactionActionKind.DELETE_KEY: {
             return `${translate("key_deleted")}: ${publicKey}`;
         }
-        case AddedTransactionActionKind.TRANSFER_SEND: {
+        case EnhancedTransactionActionKind.TRANSFER_SEND: {
             return `${translate("send_to")} ${receiverAccountId}`;
         }
-        case AddedTransactionActionKind.TRANSFER_RECEIVE: {
+        case EnhancedTransactionActionKind.TRANSFER_RECEIVE: {
             return `${translate("from")} ${receiverAccountId}`;
         }
         default: {

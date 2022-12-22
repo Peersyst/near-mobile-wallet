@@ -1,9 +1,9 @@
 import Typography, { TypographyProps } from "module/common/component/display/Typography/Typography";
-import { EnhancedTransactionAction } from "../ActionCard/ActionCard.types";
+import { Action } from "near-peersyst-sdk";
 import { useGetActionLabel } from "./hooks/useGetActionLabel/useGetActionLabel";
 
 export interface ActionLabelProps extends Omit<TypographyProps, "children"> {
-    action: EnhancedTransactionAction;
+    action: Action;
 }
 
 const ActionLabel = ({ action, ...typographyProps }: ActionLabelProps): JSX.Element => {

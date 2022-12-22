@@ -5,7 +5,7 @@ import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
 const bip39 = require("bip39-light");
-import { mockNfts } from "./near-nfts.mock";
+import { mockNfts } from "../near-nfts.mock";
 import {
     Chains,
     StakingBalance,
@@ -15,8 +15,11 @@ import {
     NftMetadata,
     NftToken,
     Transaction,
-    FullTransaction,
-    TransactionStatus,
+    CreateNearSdkParams,
+    BaseCreateNearSdkParams,
+    CreateNearSdkWithMnemonicParams,
+    CreateNearSdkWithSecretKeyParams,
+    Action,
 } from "./NearSdkService.types";
 import {
     MINIMUM_UNSTAKED,
@@ -48,9 +51,9 @@ import {
     NFT_OWNER_TOKENS_METHOD,
     NFT_TOKEN_METADATA_METHOD,
     NFT_OWNER_TOKENS_SET_METHOD,
-} from "./near.constants";
-import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto } from "./near.utils";
-import { NearApiService } from "./NearApiService";
+} from "../utils/near.constants";
+import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto } from "../utils/near.utils";
+import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
 
 export class NearSDKService {
     private connection?: Near;
@@ -60,26 +63,22 @@ export class NearSDKService {
     private chain: Chains;
     private masterAccount: string;
     private mnemonic?: string;
+    private apiService: NearApiServiceInterface;
+    private enableIndexer: boolean;
     private baseApiUrl: string;
     private static nameRegex = /^(([a-z\d]+[-_])*[a-z\d]+\.)*([a-z\d]+[-_])*[a-z\d]+$/;
     private static addressRegex = /[\da-f]/i;
     public nearDecimals: number | undefined;
 
-    constructor(
-        chain: Chains,
-        nodeUrl: string,
-        baseApiUrl: string,
-        secretKey: string,
-        nameId: string,
-        nearDecimals?: number,
-        mnemonic?: string,
-    ) {
+    constructor({ chain, nodeUrl, baseApiUrl, enableIndexer, secretKey, nameId, nearDecimals, mnemonic }: CreateNearSdkParams) {
         this.chain = chain;
         this.masterAccount = chain === Chains.MAINNET ? "near" : this.chain;
         this.nameId = nameId;
         this.mnemonic = mnemonic;
         this.baseApiUrl = baseApiUrl;
+        this.apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer);
         this.nearDecimals = nearDecimals;
+        this.enableIndexer = enableIndexer;
         // Create KeyPairEd25519
         this.keyPair = NearSDKService.createKeyPairFromSecretKey(secretKey);
 
@@ -100,51 +99,53 @@ export class NearSDKService {
         return decode(encode(publicKey.data)).toString("hex");
     }
 
-    static async createAndConnect(chain: Chains, nodeUrl: string, baseApiUrl: string, nearDecimals?: number): Promise<NearSDKService> {
+    static createApiService(baseApiUrl: string, enableIndexer: boolean): NearApiServiceInterface {
+        return enableIndexer ? new IndexerService(baseApiUrl) : new ApiService(baseApiUrl);
+    }
+
+    static async createAndConnect(params: BaseCreateNearSdkParams): Promise<NearSDKService> {
         const { seedPhrase, secretKey, publicKey } = generateSeedPhrase();
         const nameId = NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey));
-
-        const service = new NearSDKService(chain, nodeUrl, baseApiUrl, secretKey, nameId, nearDecimals, seedPhrase);
+        const service = new NearSDKService({ ...params, nameId, secretKey, mnemonic: seedPhrase });
         await service.connect();
         return service;
     }
 
-    static async importFromMnemonic(
-        chain: Chains,
-        nodeUrl: string,
-        baseApiUrl: string,
-        mnemonic: string,
-        nearDecimals?: number,
-    ): Promise<NearSDKService[]> {
+    static async importFromMnemonic({
+        mnemonic,
+        baseApiUrl,
+        enableIndexer,
+        ...rest
+    }: CreateNearSdkWithMnemonicParams): Promise<NearSDKService[]> {
         const { secretKey, publicKey } = parseSeedPhrase(mnemonic);
-        const nameIds = await NearApiService.getAccountsFromPublicKey(publicKey, baseApiUrl);
+        const apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer);
+        const nameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
         }
-
         const services = nameIds.map(async (nameId) => {
-            const service = new NearSDKService(chain, nodeUrl, baseApiUrl, secretKey, nameId, nearDecimals, mnemonic);
+            const service = new NearSDKService({ baseApiUrl, secretKey, nameId, mnemonic, enableIndexer, ...rest });
             await service.connect();
             return service;
         });
         return Promise.all(services);
     }
 
-    static async importFromSecretKey(
-        chain: Chains,
-        nodeUrl: string,
-        baseApiUrl: string,
-        secretKey: string,
-        nearDecimals?: number,
-    ): Promise<NearSDKService[]> {
+    static async importFromSecretKey({
+        secretKey,
+        baseApiUrl,
+        enableIndexer,
+        ...rest
+    }: CreateNearSdkWithSecretKeyParams): Promise<NearSDKService[]> {
         const secret = secretKey.split(":").pop();
         const publicKey = new KeyPairEd25519(secret!).getPublicKey().toString();
-        const nameIds = await NearApiService.getAccountsFromPublicKey(publicKey, baseApiUrl);
+        const apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer);
+        const nameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
         }
         const services = nameIds.map(async (nameId) => {
-            const service = new NearSDKService(chain, nodeUrl, baseApiUrl, secretKey, nameId, nearDecimals);
+            const service = new NearSDKService({ ...rest, baseApiUrl, secretKey, nameId, enableIndexer });
             await service.connect();
             return service;
         });
@@ -168,6 +169,13 @@ export class NearSDKService {
 
     async connect(): Promise<void> {
         this.connection = await connect(this.nearConfig);
+    }
+
+    private getConnection(): Near {
+        if (!this.connection) {
+            throw new Error("Not connected");
+        }
+        return this.connection;
     }
 
     getAddress(): string {
@@ -271,15 +279,16 @@ export class NearSDKService {
         const { seedPhrase, publicKey, secretKey } = generateSeedPhrase();
         await this.createNewAccount(nameId, PublicKey.fromString(publicKey), amount);
 
-        const service = new NearSDKService(
-            this.chain,
-            this.nearConfig.nodeUrl,
-            this.baseApiUrl,
+        const service = new NearSDKService({
+            chain: this.chain,
+            nodeUrl: this.nearConfig.nodeUrl,
+            baseApiUrl: this.baseApiUrl,
             secretKey,
             nameId,
             nearDecimals,
-            seedPhrase,
-        );
+            mnemonic: seedPhrase,
+            enableIndexer: this.enableIndexer,
+        });
         await service.connect();
         return service;
     }
@@ -290,11 +299,17 @@ export class NearSDKService {
         if (exists) {
             throw new Error("Account already exists");
         }
-
         const keyPair = KeyPairEd25519.fromRandom();
         await this.createNewAccount(nameId, keyPair.getPublicKey(), amount);
-
-        const service = new NearSDKService(this.chain, this.nearConfig.nodeUrl, this.baseApiUrl, keyPair.secretKey, nameId, nearDecimals);
+        const service = new NearSDKService({
+            chain: this.chain,
+            nodeUrl: this.nearConfig.nodeUrl,
+            baseApiUrl: this.baseApiUrl,
+            secretKey: keyPair.secretKey,
+            nameId,
+            nearDecimals,
+            enableIndexer: this.enableIndexer,
+        });
         await service.connect();
         return service;
     }
@@ -307,15 +322,15 @@ export class NearSDKService {
         }
         try {
             await this.createNewAccount(nameId, this.keyPair.getPublicKey(), amount);
-
-            const service = new NearSDKService(
-                this.chain,
-                this.nearConfig.nodeUrl,
-                this.baseApiUrl,
-                this.keyPair.secretKey,
+            const service = new NearSDKService({
+                chain: this.chain,
+                nodeUrl: this.nearConfig.nodeUrl,
+                baseApiUrl: this.baseApiUrl,
+                secretKey: this.keyPair.secretKey,
                 nameId,
                 nearDecimals,
-            );
+                enableIndexer: this.enableIndexer,
+            });
             await service.connect();
             return service;
         } catch (e) {
@@ -378,26 +393,15 @@ export class NearSDKService {
     }
 
     async getTransactionStatus(txHash: string): Promise<FinalExecutionOutcome> {
-        if (!this.connection) {
-            throw new Error("Not connected");
-        }
-
+        const connection = this.getConnection();
         const address = this.getAddress();
-        return this.connection.connection.provider.txStatus(txHash, address);
+        return connection.connection.provider.txStatus(txHash, address);
     }
 
-    async getTransaction(txHash: string): Promise<FullTransaction> {
-        return {
-            transactionHash: txHash,
-            status: TransactionStatus.COMMITTED,
-        } as any;
+    async getRecentActivity(): Promise<Action[]> {
+        this.getConnection();
+        return this.apiService.getRecentActivity({ address: this.getAddress() });
     }
-
-    async getTransactions(page = 1, pageSize = 15): Promise<Transaction[]> {
-        return NearApiService.getTransactions(this.getAddress(), this.baseApiUrl, page, pageSize);
-    }
-
-    async getRecentActivity(): Promise<RecentActivity[]> {}
 
     // --------------------------------------------------------------
     // -- STAKING FUNCTIONS -----------------------------------------
@@ -512,7 +516,7 @@ export class NearSDKService {
 
     async getTotalStakingBalance(): Promise<StakingBalance> {
         // TODO: Remove comments
-        // const stakingDeposits = await NearApiService.getStakingDeposits(this.getAddress(), this.baseApiUrl);
+        // const stakingDeposits = await this.apiService.getStakingDeposits(this.getAddress(), this.baseApiUrl);
         // const validatorsProms = stakingDeposits.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
         // const validators = await Promise.all(validatorsProms);
 
@@ -674,7 +678,7 @@ export class NearSDKService {
 
     async getAccountTokens(): Promise<Token[]> {
         return []; //TODO: remove mock
-        const contractIds = await NearApiService.getLikelyTokens(this.getAddress(), this.baseApiUrl);
+        const contractIds = await this.apiService.getLikelyTokens(this.getAddress(), this.baseApiUrl);
         const tokens: Token[] = [];
 
         for (const contractId of contractIds) {
@@ -835,7 +839,7 @@ export class NearSDKService {
         // TODO: remove mock
         return mockNfts;
 
-        const contractIds = await NearApiService.getLikelyNfts(this.getAddress(), this.baseApiUrl);
+        const contractIds = await this.apiService.getLikelyNfts(this.getAddress(), this.baseApiUrl);
         const nftTokens: NftToken[] = [];
 
         for (const contractId of contractIds) {
