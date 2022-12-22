@@ -4,9 +4,7 @@ import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
-import { tokensList } from "module/token/mock/token";
 import { useRefetchQueries } from "../../../../../query/useRefetchQueries";
-import { useMemo } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
 
 const TokensList = (): JSX.Element => {
@@ -15,11 +13,11 @@ const TokensList = (): JSX.Element => {
         state: { selectedWallet },
     } = useWalletState();
     const { isLoading, data: tokens = [] } = useGetTokens(selectedWallet);
-    const tokenPriceUseQueries = useMemo(() => tokensList.map((token) => ["tokenPrice", fiat, token]), [fiat]);
+    //   const tokenPriceUseQueries = useMemo(() => tokensList.map((token) => ["tokenPrice", fiat, token]), [fiat]);
     const refetch = useRefetchQueries();
 
     const handleRefetch = async () => {
-        await refetch(tokenPriceUseQueries);
+        await refetch(["tokenPrice", fiat]);
     };
 
     return (

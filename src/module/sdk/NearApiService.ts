@@ -156,12 +156,11 @@ export class NearApiService {
         } else {
             response = await fetch(`${baseApiUrl}/account/${address}/likelyTokensFromBlock?fromBlockTimestamp=0`);
         }
-
         if (response.status !== 200) {
             throw new Error("Bad response status");
         }
 
-        const contractIds: string[] = await response.json();
+        const contractIds: string[] = (await response.json()).list;
         return contractIds;
     }
 

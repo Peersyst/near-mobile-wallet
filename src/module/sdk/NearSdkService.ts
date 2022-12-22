@@ -4,6 +4,7 @@ import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/pr
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
+
 const bip39 = require("bip39-light");
 import { mockNfts } from "./near-nfts.mock";
 import {
@@ -671,13 +672,10 @@ export class NearSDKService {
     }
 
     async getAccountTokens(): Promise<Token[]> {
-        return []; //TODO: remove mock
         const contractIds = await NearApiService.getLikelyTokens(this.getAddress(), this.baseApiUrl);
         const tokens: Token[] = [];
-
         for (const contractId of contractIds) {
             const balance = await this.getTokenBalance(contractId);
-
             // TODO: Uncomment after testing
             // if (balance > 0) {
             //     const metadata = await this.getTokenMetadata(contractId);
@@ -692,6 +690,7 @@ export class NearSDKService {
             tokens.push({
                 balance: balance / metadata.decimals,
                 metadata,
+                contractId: contractId,
             });
         }
 

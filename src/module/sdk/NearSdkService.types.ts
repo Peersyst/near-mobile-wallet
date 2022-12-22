@@ -35,6 +35,7 @@ export interface TokenMetadata {
 export interface Token {
     metadata: TokenMetadata;
     balance: number;
+    contractId?: string;
 }
 
 export interface NftMetadata {
