@@ -60,6 +60,7 @@ const AddWalletModal = ({
     return (
         <AddWalletModalRoot
             open={open}
+            style={{ height: "100%" }}
             onClose={handleClose}
             navbar={{ back: true, title, onBack, steps }}
             onExited={handleExited}
