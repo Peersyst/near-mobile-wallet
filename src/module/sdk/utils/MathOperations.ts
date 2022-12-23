@@ -1,7 +1,7 @@
-import { convertNearToYocto, convertYoctoToNear } from "near-peersyst-sdk";
+import { convertNearToYocto, convertYoctoToNear } from "./near.utils";
 const BigInt = require("bn.js");
 
-export class WalletOperations {
+export class MathOperations {
     static isBigger(a: string | number, b: string | number): boolean {
         const finalA = convertNearToYocto(a.toString());
         const finalB = convertNearToYocto(b.toString());

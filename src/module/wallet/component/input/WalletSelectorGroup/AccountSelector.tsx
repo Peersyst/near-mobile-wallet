@@ -1,7 +1,7 @@
 import { Row, Selector } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import useGetBalance from "module/wallet/query/useGetBalance";
-import { WalletOperations } from "module/wallet/utils/WalletOperations";
+import { MathOperations } from "near-peersyst-sdk";
 import { config } from "config";
 
 export interface AccountSelectorProps {
@@ -17,7 +17,7 @@ const AccountSelector = ({ index, account }: AccountSelectorProps) => {
             <Balance
                 style={{ width: "25%" }}
                 balance={available}
-                options={{ maximumFractionDigits: WalletOperations.isBigger(available, config.minBalanceToCreateAccount) ? 1 : 3 }}
+                options={{ maximumFractionDigits: MathOperations.isBigger(available, config.minBalanceToCreateAccount) ? 1 : 3 }}
                 key={index}
                 textAlign="right"
                 variant="body3Strong"
