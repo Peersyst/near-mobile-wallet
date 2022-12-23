@@ -1,5 +1,6 @@
 import { utils } from "near-api-js";
 import { AccountBalance } from "near-api-js/lib/account";
+import { MathOperations } from "./MathOperations";
 
 /**
  * Convert Near amount to yocto
@@ -36,4 +37,9 @@ export function convertAccountBalanceToNear(
 
 export function parseBlockTimestamp(blockTimestamp: string): string {
     return parseInt(blockTimestamp.toString().slice(0, 13), 10).toString();
+}
+
+export function parseTokenAmount(amount: string, decimals: string, precision = 6): string {
+    const denominator = MathOperations.BNExp(10, parseInt(decimals, 10));
+    return MathOperations.BNDevide(amount, denominator).slice(0, precision);
 }

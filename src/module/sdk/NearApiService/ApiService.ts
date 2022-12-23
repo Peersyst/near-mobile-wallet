@@ -104,9 +104,27 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     async getLikelyTokens({ address }: NearApiServiceParams): Promise<string[]> {
-        return (
-            await this.handleFetch<LikelyResponseApiDto>(`${this.endPoint}/account/${address}/likelyTokensFromBlock?fromBlockTimestamp=0`)
-        ).list;
+        return [
+            "wrap.near",
+            "a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.factory.bridge.near",
+            "dac17f958d2ee523a2206206994597c13d831ec7.factory.bridge.near",
+            "6b175474e89094c44da98b954eedeac495271d0f.factory.bridge.near",
+            "c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2.factory.bridge.near",
+            "111111111117dc0aa78b770fa6a738034120c302.factory.bridge.near",
+            "c944e90c64b2c07662a292be6244bdf05cda44a7.factory.bridge.near",
+            "token.skyward.near",
+            "token.v2.ref-finance.near",
+            "berryclub.ek.near",
+            "6f259637dcd74c767781e37bc6133cd6a68aa161.factory.bridge.near",
+            "de30da39c46104798bb5aa3fe8b9e0e1f348163f.factory.bridge.near",
+            "1f9840a85d5af5bf1d1762f925bdaddc4201f984.factory.bridge.near",
+            "2260fac5e5542a773aa44fbcfedf7c193bc2c599.factory.bridge.near",
+            "514910771af9ca656af840dff83e8264ecf986ca.factory.bridge.near",
+            "token.paras.near",
+            "meta-pool.near",
+            "marmaj.tkn.near",
+            "52a047ee205701895ee06a375492490ec9c597ce.factory.bridge.near",
+        ];
     }
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
