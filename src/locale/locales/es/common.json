@@ -199,5 +199,6 @@
     "key_added": "Clave de acceso añadida",
     "key_deleted": "Clave de acceso borrada",
     "unknown_action": "Acción desconocida",
-    "recent_activity": "Actividad reciente"
+    "recent_activity": "Actividad reciente",
+    "collection": "Colección"
 }
