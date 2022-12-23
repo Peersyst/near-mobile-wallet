@@ -1,16 +1,12 @@
 import { Col, Row } from "@peersyst/react-native-components";
-import { TokenIcon } from "./TokenCard.styles";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import settingsState from "module/settings/state/SettingsState";
-import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
 import { useRecoilValue } from "recoil";
 import Typography from "module/common/component/display/Typography/Typography";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
-import { placeholder_image } from "images";
 import { Token } from "near-peersyst-sdk";
-import { encodeSvg, isSvg } from "utils/svg";
-import { SvgXml } from "react-native-svg";
 import useNativeTokenPrice from "module/common/hook/useNativeTokePrice";
+import TokenIcon from "../TokenIcon/TokenIcon";
 
 export interface TokenCardProps {
     token: Token;
@@ -23,11 +19,7 @@ const TokenCard = ({ token: { metadata, balance, contractId } }: TokenCardProps)
     return (
         <MainListCard alignItems="center" justifyContent="space-between">
             <Row alignItems="center" gap={16}>
-                {isSvg(icon) ? (
-                    <SvgXml xml={encodeSvg(icon)} width={44} height={44} />
-                ) : (
-                    <TokenIcon source={icon ? icon : placeholder_image} />
-                )}
+                <TokenIcon icon={icon} />
                 <Typography variant="body3Strong" numberOfLines={1} style={{ maxWidth: "70%" }}>
                     {name}
                 </Typography>

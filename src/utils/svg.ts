@@ -8,6 +8,6 @@ export function encodeSvg(svgString: string) {
     return svgParseFormat;
 }
 
-export function isSvg(svgString: string) {
-    return svgString ? svgString.includes("data:image/svg") : undefined;
+export function isSvg(svgString: string): boolean {
+    return svgString ? svgString.includes("data:image/svg") : false;
 }

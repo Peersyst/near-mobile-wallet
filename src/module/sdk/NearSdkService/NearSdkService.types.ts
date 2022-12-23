@@ -85,12 +85,12 @@ export interface TokenMetadata {
     icon: string; // Image in svg
     reference: string | null;
     reference_hash: string | null;
-    decimals: number;
+    decimals: string;
 }
 
 export interface Token {
     metadata: TokenMetadata;
-    balance: number;
+    balance: string;
     contractId?: string;
 }
 
