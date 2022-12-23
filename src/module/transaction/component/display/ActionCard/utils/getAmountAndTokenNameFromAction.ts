@@ -16,7 +16,7 @@ export default function getAmountAndTokenNameFromAction({
     if (TRANSFER_ACTIONS.includes(actionKind)) {
         return {
             amount: deposit,
-            tokenName: config.tokenName,
+            tokenName: "token",
         };
     } else if (actionKind === TransactionActionKind.STAKE) {
         return {

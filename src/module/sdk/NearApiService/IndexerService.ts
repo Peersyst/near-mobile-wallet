@@ -6,6 +6,7 @@ import {
     TransactionActionKind,
     TransactionWithoutActions,
 } from "../NearSdkService";
+import { parseBlockTimestamp } from "../utils";
 import { FetchService } from "./FetchService";
 import {
     NearApiServiceInterface,
@@ -43,9 +44,10 @@ export class IndexerService extends FetchService implements NearApiServiceInterf
         transaction: TransactionIndexerDto,
         account: string,
     ): Action {
-        const { transactionActions, ...rest } = transaction || {};
+        const { transactionActions, blockTimestamp, ...rest } = transaction || {};
         const finalTransaction: TransactionWithoutActions = {
             ...rest,
+            blockTimestamp: parseBlockTimestamp(blockTimestamp),
         };
         return {
             transaction: finalTransaction,

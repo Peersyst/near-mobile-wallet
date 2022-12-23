@@ -33,3 +33,7 @@ export function convertAccountBalanceToNear(
         stateStaked: convertYoctoToNear(stateStaked, fracDigits),
     };
 }
+
+export function parseBlockTimestamp(blockTimestamp: string): string {
+    return parseInt(blockTimestamp.toString().slice(0, 13), 10).toString();
+}

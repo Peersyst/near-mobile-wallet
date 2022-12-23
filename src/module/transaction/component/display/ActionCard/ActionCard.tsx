@@ -15,22 +15,21 @@ const ActionCard = ({ action }: ActionCardProps): JSX.Element => {
         transaction: { blockTimestamp },
     } = action;
     const { amount, tokenName } = getAmountAndTokenNameFromAction(action) || {};
-    const formattedDate = useFormatDate(blockTimestamp);
+
+    const formattedDate = useFormatDate(Number(blockTimestamp));
 
     return (
         <MainListCard gap="4%" alignItems="center">
             <ActionIcon actionKind={actionKind} />
             <Col gap={2} flex={1}>
                 <Row justifyContent="space-between">
-                    <ActionLabel variant="body3Strong" action={action} numberOfLines={1} style={{ maxWidth: amount ? "45%" : "90%" }} />
+                    <Row style={{ maxWidth: amount ? "65%" : "100%" }}>
+                        <ActionLabel variant="body3Strong" action={action} numberOfLines={amount ? 1 : 2} />
+                    </Row>
                     {amount && (
-                        <ActionAmount
-                            variant="body3Strong"
-                            actionKind={actionKind}
-                            amount={amount}
-                            units={tokenName}
-                            style={{ maxWidth: "50%" }}
-                        />
+                        <Row style={{ maxWidth: "35%" }}>
+                            <ActionAmount variant="body3Strong" actionKind={actionKind} amount={amount} units={tokenName} />
+                        </Row>
                     )}
                 </Row>
                 <Row justifyContent="space-between" alignItems="center">

@@ -18,7 +18,7 @@ export interface WalletCardProps {
 const WalletCard = ({ wallet: { account, index, imported } }: WalletCardProps): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
     const { data: { available } = { available: "0" }, isLoading } = useGetBalance(index);
-    const { value: fiatValue } = useNativeTokenConversion(fiat, available);
+    // const { value: fiatValue } = useNativeTokenConversion(fiat, available);
     const [showFiat, setCurrencyMode] = useState<boolean>(false);
 
     const changeCurrencyMode = () => {
@@ -34,10 +34,10 @@ const WalletCard = ({ wallet: { account, index, imported } }: WalletCardProps): 
                     textAlign="center"
                     style={{ width: "100%" }}
                     isLoading={isLoading}
-                    options={{ maximumFractionDigits: showFiat ? 2 : 3 }}
+                    options={{ maximumFractionDigits: showFiat ? 3 : 3 }}
                     spinnerProps={{ color: (p) => p.white, size: 42 }}
                     onPress={changeCurrencyMode}
-                    balance={showFiat ? fiatValue : available}
+                    balance={showFiat ? 0 : available}
                     variant="h3Strong"
                     color={(p) => p.white}
                     units={showFiat ? fiat : "token"}

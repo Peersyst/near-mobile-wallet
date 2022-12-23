@@ -7,6 +7,7 @@ import {
     TransactionActionKind,
     TransactionWithoutActions,
 } from "../NearSdkService";
+import { convertYoctoToNear, parseBlockTimestamp } from "../utils";
 import { FetchService } from "./FetchService";
 import {
     AccessKeyApiDto,
@@ -65,7 +66,7 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
         const transaction: TransactionWithoutActions = {
             transactionHash: hash,
             includedInBlockHash: block_hash,
-            blockTimestamp: block_timestamp,
+            blockTimestamp: parseBlockTimestamp(block_timestamp),
             signerAccountId: signer_id,
             receiverAccountId: receiver_id,
         };
@@ -79,10 +80,10 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
             argsJson: args_json, // For FUNCTION_CALL kind
             ...(code_sha256 && { codeSha256: code_sha256 }), // For DEPLOY_CONTRACT kind
             ...(gas && { gas }), // For FUNCTION_CALL kind
-            ...(deposit && { deposit }), //
+            ...(deposit && { deposit: convertYoctoToNear(deposit) }), //
             ...(args_base64 && { argsBase64: args_base64 }), // For FUNCTION_CALL kind
             ...(method_name && { methodName: method_name }), // For FUNCTION_CALL kind
-            ...(stake && { stake }), // For STAKE kind
+            ...(stake && { stake: convertYoctoToNear(stake) }), // For STAKE kind
             ...(public_key && { publicKey: public_key }), // For STAKE, ADD_KEY, DELETE_KEY kind
             ...(access_key && { accessKey: this.parseAccessKeyApiDto(access_key) }), // For ADD_KEY kind
             ...(beneficiary_id && { beneficiaryId: beneficiary_id }), // For DELETE_ACCOUNT kind
@@ -115,7 +116,7 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
-        const txs = await this.handleFetch<ActionApiDto[]>(`${this.endPoint}/accounts/${address}/activity`);
+        const txs = await this.handleFetch<ActionApiDto[]>(`${this.endPoint}/account/${address}/activity`);
         return txs.map((tx) => this.parseActionApiDto(tx, address));
     }
 

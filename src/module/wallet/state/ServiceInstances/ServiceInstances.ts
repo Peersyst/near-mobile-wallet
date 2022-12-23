@@ -59,9 +59,21 @@ export default new (class ServiceInstances {
         let services: NearSDKService[] = [];
         const { nodeUrl, indexerUrl } = BASE_NEAR_SDK_PARAMS[network];
         if (mnemonic) {
-            services = await NearSDKService.importFromMnemonic(network, nodeUrl, indexerUrl, mnemonic);
+            services = await NearSDKService.importFromMnemonic({
+                chain: network,
+                nodeUrl,
+                baseApiUrl: indexerUrl,
+                mnemonic,
+                enableIndexer: config.enableIndexer,
+            });
         } else if (privateKey) {
-            services = await NearSDKService.importFromSecretKey(network, nodeUrl, indexerUrl, privateKey);
+            services = await NearSDKService.importFromSecretKey({
+                chain: network,
+                nodeUrl,
+                baseApiUrl: indexerUrl,
+                secretKey: privateKey,
+                enableIndexer: config.enableIndexer,
+            });
         } else {
             /* eslint-disable no-console */
             console.warn("You should provide at least one mnemonic or a private key to create and instance");

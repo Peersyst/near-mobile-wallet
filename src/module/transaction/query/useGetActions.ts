@@ -12,7 +12,12 @@ export interface UseGetActionsOptions {
 const useGetActions = ({ index }: UseGetActionsOptions = {}) => {
     const { serviceInstance, index: usedIndex, network } = useServiceInstance(index);
     return useQuery([Queries.ACTIONS, usedIndex, network], async () => {
-        return await serviceInstance?.getTransactions();
+        try {
+            return await serviceInstance.getRecentActivity();
+        } catch (e) {
+            console.log(e);
+            return [];
+        }
     });
 };
 

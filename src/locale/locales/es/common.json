@@ -191,5 +191,6 @@
     "private_key_copied": "¡Llave privada copiada en el portapapeles!",
     "export_mnemonic": "Exportar mnemonic",
     "export_private_key": "Exportar llave privada",
-    "new_account_created": "Nueva cuenta creada"
+    "new_account_created": "Nueva cuenta creada",
+    "recent_activity": "Últimos movimientos"
 }
