@@ -6,7 +6,7 @@ export const useGetActionLabel = ({
     publicKey,
     codeSha256,
     methodName,
-    transaction: { receiverAccountId },
+    transaction: { receiverAccountId, signerAccountId },
 }: Action): string => {
     const translate = useTranslate();
     switch (actionKind) {
@@ -35,7 +35,7 @@ export const useGetActionLabel = ({
             return `${translate("send_to")} ${receiverAccountId}`;
         }
         case EnhancedTransactionActionKind.TRANSFER_RECEIVE: {
-            return `${translate("from")} ${receiverAccountId}`;
+            return `${translate("from")} ${signerAccountId}`;
         }
         default: {
             return translate("unknown_action"); //assert (maybe in the future there are new actions)
