@@ -54,7 +54,7 @@ export interface TransactionActionIndexerDto {
 /**
  * API Types
  */
-export interface LikelyApiResponseDto {
+export interface LikelyResponseApiDto {
     version: string;
     lastBlockTimestamp: string;
     list: string[];
@@ -63,7 +63,7 @@ export interface LikelyApiResponseDto {
 export interface ActionApiDto {
     action_index: number;
     action_kind: TransactionActionKind;
-    args: TransactionActionApiArgsDto;
+    args: TransactionActionArgsApiDto;
     block_hash: string;
     block_timestamp: string;
     hash: string;
@@ -71,7 +71,7 @@ export interface ActionApiDto {
     signer_id: string;
 }
 
-export interface TransactionActionApiArgsDto {
+export interface TransactionActionArgsApiDto {
     args_base64?: string; // For FUNCTION_CALL kind
     args_json?: unknown; // For FUNCTION_CALL kind
     code_sha256?: string; // For DEPLOY_CONTRACT kind
@@ -100,7 +100,7 @@ export interface PermissionApiDto {
     permission_details?: PermissionDetailsApiDto; // Only if permissionKind is FUNCTION_CALL
 }
 
-export interface StakingDepositApi {
+export interface StakingDepositApiDto {
     validator_id: string;
     deposit: string;
 }

@@ -11,11 +11,11 @@ import { convertYoctoToNear, parseBlockTimestamp } from "../utils";
 import { FetchService } from "./FetchService";
 import {
     AccessKeyApiDto,
-    LikelyApiResponseDto,
+    LikelyResponseApiDto,
     NearApiServiceInterface,
     NearApiServicePaginatedParams,
     NearApiServiceParams,
-    StakingDepositApi,
+    StakingDepositApiDto,
     ActionApiDto,
 } from "./NearApiService.types";
 
@@ -29,7 +29,7 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     /**
      * Parsers
      */
-    private parseStakingDepositApiDto(stkgDep: StakingDepositApi): StakingDeposit {
+    private parseStakingDepositApiDtoDto(stkgDep: StakingDepositApiDto): StakingDeposit {
         return { validatorId: stkgDep.validator_id, amount: parseInt(stkgDep.deposit, 10) };
     }
 
@@ -99,19 +99,19 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
-        const apiDeposits = await this.handleFetch<StakingDepositApi[]>(`${this.endPoint}/staking-deposits/${address}`);
-        return apiDeposits.map(this.parseStakingDepositApiDto);
+        const apiDeposits = await this.handleFetch<StakingDepositApiDto[]>(`${this.endPoint}/staking-deposits/${address}`);
+        return apiDeposits.map(this.parseStakingDepositApiDtoDto);
     }
 
     async getLikelyTokens({ address }: NearApiServiceParams): Promise<string[]> {
         return (
-            await this.handleFetch<LikelyApiResponseDto>(`${this.endPoint}/account/${address}/likelyTokensFromBlock?fromBlockTimestamp=0`)
+            await this.handleFetch<LikelyResponseApiDto>(`${this.endPoint}/account/${address}/likelyTokensFromBlock?fromBlockTimestamp=0`)
         ).list;
     }
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
         return (
-            await this.handleFetch<LikelyApiResponseDto>(`${this.endPoint}/account/${address}/likelyNFTsFromBlock?fromBlockTimestamp=0`)
+            await this.handleFetch<LikelyResponseApiDto>(`${this.endPoint}/account/${address}/likelyNFTsFromBlock?fromBlockTimestamp=0`)
         ).list;
     }
 
