@@ -15,6 +15,8 @@ const useGetActions = ({ index }: UseGetActionsOptions = {}) => {
         try {
             return await serviceInstance.getRecentActivity();
         } catch (e) {
+            // eslint-disable-next-line no-console
+            console.warn("Error fetching recent activity");
             return [];
         }
     });
