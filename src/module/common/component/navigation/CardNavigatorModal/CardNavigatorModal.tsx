@@ -24,7 +24,7 @@ const CardNavigatorModal = ({
                             }),
                         ...restNavProps,
                     }}
-                    style={{ height: "100%", ...style }}
+                    style={style}
                 >
                     {children}
                 </CardNavigator>
