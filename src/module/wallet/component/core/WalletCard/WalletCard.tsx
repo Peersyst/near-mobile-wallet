@@ -34,7 +34,7 @@ const WalletCard = ({ wallet: { account, index, imported } }: WalletCardProps): 
                     textAlign="center"
                     style={{ width: "100%" }}
                     isLoading={isLoading}
-                    options={{ maximumFractionDigits: showFiat ? 3 : 3 }}
+                    options={{ maximumFractionDigits: showFiat ? 2 : 3 }}
                     spinnerProps={{ color: (p) => p.white, size: 42 }}
                     onPress={changeCurrencyMode}
                     balance={showFiat ? fiatValue : available}

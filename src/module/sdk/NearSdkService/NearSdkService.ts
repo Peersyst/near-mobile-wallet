@@ -158,11 +158,9 @@ export class NearSDKService {
     // -- COMMON FUNCTIONS ------------------------------------------
     // --------------------------------------------------------------
     private async getAccount(): Promise<Account> {
-        if (!this.connection) {
-            throw new Error("Not connected");
-        }
+        const connection = this.getConnection();
         const address = this.getAddress();
-        return this.connection.account(address);
+        return connection.account(address);
     }
 
     async connect(): Promise<void> {
@@ -191,13 +189,11 @@ export class NearSDKService {
     async accountExists(nameId: string): Promise<boolean> {
         // Could also be checked through our indexer api instead of rpc
 
-        if (!this.connection) {
-            throw new Error("Not connected");
-        }
+        const { connection } = this.getConnection();
 
         let exists = true;
         try {
-            await this.connection.connection.provider.query<AccountView>({
+            await connection.provider.query<AccountView>({
                 request_type: "view_account",
                 account_id: nameId,
                 finality: "final",
@@ -391,9 +387,9 @@ export class NearSDKService {
     }
 
     async getTransactionStatus(txHash: string): Promise<FinalExecutionOutcome> {
-        const connection = this.getConnection();
+        const { connection } = this.getConnection();
         const address = this.getAddress();
-        return connection.connection.provider.txStatus(txHash, address);
+        return connection.provider.txStatus(txHash, address);
     }
 
     async getRecentActivity(): Promise<Action[]> {
@@ -480,11 +476,8 @@ export class NearSDKService {
     }
 
     private async getAllValidatorIds(): Promise<string[]> {
-        if (!this.connection) {
-            throw new Error("Not connected");
-        }
-
-        const status = await this.connection.connection.provider.status();
+        const { connection } = this.getConnection();
+        const status = await connection.provider.status();
         return status.validators.map((validator: any) => validator.account_id);
     }
 

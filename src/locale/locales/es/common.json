@@ -192,5 +192,12 @@
     "export_mnemonic": "Exportar mnemonic",
     "export_private_key": "Exportar llave privada",
     "new_account_created": "Nueva cuenta creada",
-    "recent_activity": "Últimos movimientos"
+    "account_deleted": "Cuenta borrada",
+    "contract_deployed": "Contrato desplegado",
+    "method_in": "método en",
+    "called": "Llamada",
+    "key_added": "Clave de acceso añadida",
+    "key_deleted": "Clave de acceso borrada",
+    "unknown_action": "Acción desconocida",
+    "recent_activity": "Actividad reciente"
 }

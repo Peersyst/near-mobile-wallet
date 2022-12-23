@@ -4,7 +4,7 @@ import Queries from "../../../query/queries";
 
 export interface UseGetActionsOptions {
     /**
-     * Index of the wallet to use
+     * Index of the account to use
      */
     index?: number;
 }
