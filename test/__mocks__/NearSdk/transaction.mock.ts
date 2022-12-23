@@ -22,7 +22,7 @@ export class TransactionWithoutActionsMock extends BaseMock implements Transacti
         super();
         this.transactionHash = transactionHash || "transactionHash";
         this.includedInBlockHash = includedInBlockHash || "includedInBlockHash";
-        this.blockTimestamp = blockTimestamp || "blockTimestamp";
+        this.blockTimestamp = blockTimestamp || Date.now().toString();
         this.signerAccountId = signerAccountId || MOCKED_NAMED_ADDRESS;
         this.nonce = nonce;
         this.receiverAccountId = receiverAccountId || MOCKED_ADDRESS;

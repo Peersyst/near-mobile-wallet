@@ -6,7 +6,7 @@ export interface UseGetActionsMockType {
     actions: ActionMock[];
 }
 
-export class UseGetActionMock extends BaseMock {
+export class UseGetActionsMock extends BaseMock {
     actions: ActionMock[];
     constructor({ actions }: Partial<UseGetActionsMockType> = {}) {
         super();
