@@ -1,3 +1,4 @@
+import { LocaleType } from "locale";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
 
@@ -5,11 +6,11 @@ const cleanDate = (date: string) => {
     return date.charAt(0).toUpperCase() + date.slice(1).replace(/\./g, "");
 };
 
-export default function (
+export const formatDate = (
+    locale: LocaleType,
     date?: Date | string | number,
-    options: Intl.DateTimeFormatOptions = { day: "2-digit", weekday: "short", month: "short", year: "numeric" },
-): string {
-    const { locale } = useRecoilValue(settingsState);
+    options: Intl.DateTimeFormatOptions = { weekday: "short", day: "2-digit", month: "short", year: "numeric" },
+) => {
     try {
         const finalDate = new Date(date || Date.now());
         const weekday = cleanDate(new Intl.DateTimeFormat(locale, { weekday: options.weekday }).format(finalDate));
@@ -20,4 +21,12 @@ export default function (
     } catch (e) {
         return date?.toString() || "";
     }
+};
+
+export default function (
+    date?: Date | string | number,
+    options: Intl.DateTimeFormatOptions = { weekday: "short", day: "2-digit", month: "short", year: "numeric" },
+): string {
+    const { locale = "en" } = useRecoilValue(settingsState);
+    return formatDate(locale, date, options);
 }

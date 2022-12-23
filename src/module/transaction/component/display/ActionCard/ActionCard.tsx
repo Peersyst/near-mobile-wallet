@@ -5,7 +5,7 @@ import Typography from "module/common/component/display/Typography/Typography";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 import useFormatDate from "module/common/hook/useFormatDate";
 import ActionLabel from "../ActionLabel/ActionLabel";
-import ActionAmount from "module/transaction/component/display/ActionAmount/TransactionAmount";
+import ActionAmount from "module/transaction/component/display/ActionAmount/ActionAmount";
 import getAmountAndTokenNameFromAction from "./utils/getAmountAndTokenNameFromAction";
 import FiatBalance from "module/wallet/component/display/FiatBalance/FiatBalance";
 
