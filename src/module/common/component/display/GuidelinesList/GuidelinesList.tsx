@@ -2,9 +2,9 @@ import { Col, Row, Typography } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import DotList from "../DotList/DotList";
 import StatusIcon from "../StatusIcon/StatusIcons";
-import { ExplanationListProps } from "./ExplanationList.types";
+import { GuidelinesListProps } from "./ExplanationList.types";
 
-const ExplanationList = ({ children, allowed }: ExplanationListProps) => {
+const GuidelinesList = ({ children, allowed }: GuidelinesListProps) => {
     const translate = useTranslate();
     return (
         <Col>
@@ -17,4 +17,4 @@ const ExplanationList = ({ children, allowed }: ExplanationListProps) => {
     );
 };
 
-export default ExplanationList;
+export default GuidelinesList;
