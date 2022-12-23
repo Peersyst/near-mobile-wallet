@@ -25,6 +25,7 @@ declare module "@peersyst/react-native-components" {
         fetchPriceConversionInterval: number;
         minBalanceToCreateAccount: string;
         estimatedFee: string;
+        enableIndexer: boolean;
     }
 
     export interface CreateConfig {
@@ -43,6 +44,7 @@ declare module "@peersyst/react-native-components" {
         fetchPriceConversionInterval: number;
         minBalanceToCreateAccount: string;
         estimatedFee: string;
+        enableIndexer: boolean;
     }
 
     export interface ExtraValidators {

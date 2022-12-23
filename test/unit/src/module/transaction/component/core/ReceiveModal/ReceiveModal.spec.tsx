@@ -1,8 +1,7 @@
 import { fireEvent, render, translate } from "test-utils";
-import * as Clipboard from "expo-clipboard";
-import * as Genesys from "@peersyst/react-native-components";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
 import { MOCKED_ADDRESS, UseServiceInstanceMock, WalletStateMock } from "test-mocks";
+import * as UseCopyToClipboard from "module/common/hook/useCopyToClipboard";
 
 describe("Test for the receive Modal", () => {
     beforeEach(() => {
@@ -19,15 +18,12 @@ describe("Test for the receive Modal", () => {
         expect(screen.getByText(MOCKED_ADDRESS)).toBeDefined();
     });
     test("Copies address correctly", () => {
-        const showToast = jest.fn();
-        jest.spyOn(Genesys, "useToast").mockReturnValue({ showToast, hideToast: jest.fn(), toastActive: false });
         const mockedCopy = jest.fn();
-        jest.spyOn(Clipboard, "setStringAsync").mockImplementation(mockedCopy);
+        jest.spyOn(UseCopyToClipboard, "useCopyToClipboard").mockReturnValue(mockedCopy);
         const screen = render(<ReceiveModal />);
         const button = screen.getByText(translate("copy"));
         expect(button).toBeDefined();
         fireEvent.press(button);
-        expect(mockedCopy).toHaveBeenCalledWith(MOCKED_ADDRESS);
-        expect(showToast).toHaveBeenCalledWith(translate("address_copied"), { type: "success" });
+        expect(mockedCopy).toHaveBeenCalledWith({ message: MOCKED_ADDRESS, toastMessage: translate("address_copied") });
     });
 });

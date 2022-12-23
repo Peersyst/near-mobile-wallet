@@ -8,7 +8,6 @@ export interface BaseWallet {
  * STORAGE TYPES
  */
 export interface UnencryptedWalletInfo extends BaseWallet {
-    uncommittedTransactionHashes?: string[];
     account: string;
 }
 
@@ -43,4 +42,9 @@ export interface SetWalletsParams {
     wallets: StorageWallet[];
     secureWallets: SecureWalletInfo[];
     network: NetworkType;
+}
+
+export interface BaseWalletWithFormScreenProps {
+    onSubmit: () => void;
+    submitText?: string;
 }
