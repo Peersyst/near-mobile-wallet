@@ -15,7 +15,6 @@ export interface FiatBalanceProps extends BaseFiatBalanceProps {
 const NearBalanceInFiat = ({ balance, ...rest }: BaseFiatBalanceProps) => {
     const { fiat } = useRecoilValue(settingsState);
     const { value: fiatValue } = useNativeTokenConversion(fiat, balance);
-    console.log("fiatValue", fiatValue);
     return <Balance balance={fiatValue} {...rest} />;
 };
 

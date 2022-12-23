@@ -1,4 +1,4 @@
-import { Col, Form, IconButton, PressableText, Typography, useSetTab, useToast } from "@peersyst/react-native-components";
+import { Col, Form, IconButton, PressableText, useSetTab, useToast } from "@peersyst/react-native-components";
 import TextField from "module/common/component/input/TextField/TextField";
 import { useTheme } from "@peersyst/react-native-styled";
 import Button from "module/common/component/input/Button/Button";

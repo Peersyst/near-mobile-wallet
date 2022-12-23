@@ -1,5 +1,4 @@
 import { Action, ActionKind, EnhancedTransactionActionKind, TransactionActionKind } from "near-peersyst-sdk";
-import { config } from "config";
 
 export const TRANSFER_ACTIONS: ActionKind[] = [EnhancedTransactionActionKind.TRANSFER_RECEIVE, EnhancedTransactionActionKind.TRANSFER_SEND];
 

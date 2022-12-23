@@ -44,6 +44,7 @@ export class IndexerService extends FetchService implements NearApiServiceInterf
         transaction: TransactionIndexerDto,
         account: string,
     ): Action {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { transactionActions, blockTimestamp, ...rest } = transaction || {};
         const finalTransaction: TransactionWithoutActions = {
             ...rest,

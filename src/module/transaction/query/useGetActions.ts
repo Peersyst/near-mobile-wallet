@@ -15,7 +15,6 @@ const useGetActions = ({ index }: UseGetActionsOptions = {}) => {
         try {
             return await serviceInstance.getRecentActivity();
         } catch (e) {
-            console.log(e);
             return [];
         }
     });

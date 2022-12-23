@@ -5,7 +5,6 @@ import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
 const bip39 = require("bip39-light");
-import { mockNfts } from "../near-nfts.mock";
 import {
     Chains,
     StakingBalance,
