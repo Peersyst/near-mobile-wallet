@@ -7,3 +7,7 @@ export function encodeSvg(svgString: string) {
     const svgParseFormat = svgReplace.split("'").join('"');
     return svgParseFormat;
 }
+
+export function isSvg(svgString: string) {
+    return svgString ? svgString.includes("data:image/svg") : undefined;
+}

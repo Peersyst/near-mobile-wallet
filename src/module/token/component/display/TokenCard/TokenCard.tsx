@@ -8,8 +8,9 @@ import Typography from "module/common/component/display/Typography/Typography";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 import { placeholder_image } from "images";
 import { Token } from "near-peersyst-sdk";
-import { encodeSvg } from "utils/svg";
+import { encodeSvg, isSvg } from "utils/svg";
 import { SvgXml } from "react-native-svg";
+import useNativeTokenPrice from "module/common/hook/useNativeTokePrice";
 
 export interface TokenCardProps {
     token: Token;
@@ -18,11 +19,15 @@ export interface TokenCardProps {
 const TokenCard = ({ token: { metadata, balance, contractId } }: TokenCardProps): JSX.Element => {
     const { name, symbol, icon } = metadata;
     const { fiat } = useRecoilValue(settingsState);
-    const { data: tokenValue } = useGetTokenPrice(fiat, contractId!);
+    const { data: tokenValue } = useNativeTokenPrice(fiat, contractId!);
     return (
         <MainListCard alignItems="center" justifyContent="space-between">
             <Row alignItems="center" gap={16}>
-                {icon ? <SvgXml xml={encodeSvg(icon)} width={44} height={44} /> : <TokenIcon source={placeholder_image} />}
+                {isSvg(icon) ? (
+                    <SvgXml xml={encodeSvg(icon)} width={44} height={44} />
+                ) : (
+                    <TokenIcon source={icon ? icon : placeholder_image} />
+                )}
                 <Typography variant="body3Strong" numberOfLines={1} style={{ maxWidth: "70%" }}>
                     {name}
                 </Typography>

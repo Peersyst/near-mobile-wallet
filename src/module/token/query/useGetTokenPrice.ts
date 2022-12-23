@@ -5,15 +5,15 @@ import { FiatCurrencyType } from "module/settings/state/SettingsState";
 // Refetch the data every 3 minutes
 const CONVERSION_PRICE_INTERVAL = 1000 * 60 * 3;
 
-export const useGetTokenPrice = (currency: FiatCurrencyType, type: string): QueryResult<number | undefined> =>
+interface tokens {
+    token: [];
+}
+
+export const useGetTokenPrice = (currency: FiatCurrencyType): QueryResult<tokens | undefined> =>
     useQuery(
-        ["tokenPrice", currency, type],
+        ["tokenPrice", currency],
         async () => {
-            const apiId = type; //TODO: implement this for other tokens
-            if (apiId) {
-                const prices = await (await fetch("https://indexer.ref.finance/list-token-price")).json();
-                return prices[type] ? prices[type]["price"] : 0;
-            } else return undefined;
+            return await (await fetch("https://indexer.ref.finance/list-token-price")).json();
         },
         {
             refetchInterval: CONVERSION_PRICE_INTERVAL,
