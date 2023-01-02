@@ -5,7 +5,7 @@ import useNavigation from "module/common/hook/useNavigation";
 import { Col, Typography } from "@peersyst/react-native-components";
 import Steps from "module/common/component/display/Steps/Steps";
 
-const Navbar = ({ back, title, onBack, steps }: NavbarProps): JSX.Element => {
+const Navbar = ({ back, title, onBack, steps, children }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
 
     const goBack = () => {
@@ -13,7 +13,7 @@ const Navbar = ({ back, title, onBack, steps }: NavbarProps): JSX.Element => {
             navigation.goBack();
         }
     };
-
+    if (children) return <NavbarRoot>{children}</NavbarRoot>;
     return (
         <NavbarRoot>
             {back && (

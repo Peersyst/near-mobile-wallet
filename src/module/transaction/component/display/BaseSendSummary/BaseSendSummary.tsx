@@ -11,6 +11,7 @@ import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { ViewStyle } from "react-native";
 import { MathOperations } from "near-peersyst-sdk";
+import Fee from "../Fee/Fee";
 
 export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee" | "token">> {
     amount: string | number;
@@ -52,20 +53,7 @@ const BaseSendSummary = ({ amount, fee, token, children, total, showFiat, style 
                             </>
                         )}
                     </Typography>
-                    <Typography variant="body3Regular" light textAlign="center">
-                        {translate("transaction_fee_label")}
-                        {" · "}
-                        <Balance
-                            balance={fee}
-                            variant="body3Strong"
-                            units={token}
-                            light
-                            options={{
-                                maximumFractionDigits: config.maxNumberOfDecimals,
-                                minimumFractionDigits: config.maxNumberOfDecimals,
-                            }}
-                        />
-                    </Typography>
+                    <Fee fee={fee} tag="body3" />
                     {total && (
                         <Typography variant="body2Regular" color={(palette) => palette.primary} textAlign="center">
                             {translate("total")}:{" "}

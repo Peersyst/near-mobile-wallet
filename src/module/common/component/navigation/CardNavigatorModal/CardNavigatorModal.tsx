@@ -1,6 +1,8 @@
 import { Backdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import CardNavigator, { CardNavigatorProps } from "module/common/component/navigation/CardNavigator/CardNavigator";
 
+export type CardNavigatorModalProps = ExposedBackdropProps & CardNavigatorProps;
+
 const CardNavigatorModal = ({
     navbar: { back, onBack, ...restNavProps } = {},
     children,
@@ -9,7 +11,7 @@ const CardNavigatorModal = ({
     closable = true,
     onClose,
     ...backdropProps
-}: ExposedBackdropProps & CardNavigatorProps): JSX.Element => {
+}: CardNavigatorModalProps): JSX.Element => {
     return (
         <Backdrop closable={closable} onClose={onClose} {...backdropProps} open={open}>
             {(_open, setOpen) => (

@@ -1,7 +1,8 @@
 import { TokenSelectorProps } from "module/token/component/input/TokenSelector/TokenSelector.types";
-import { useConfig } from "@peersyst/react-native-components";
+import { Modal, useConfig } from "@peersyst/react-native-components";
 import { TokenSelectorRoot } from "module/token/component/input/TokenSelector/TokenSelector.styles";
 import { useTranslate } from "module/common/hook/useTranslate";
+import Typography from "module/common/component/display/Typography/Typography";
 
 const TokenSelector = ({
     defaultToken,
@@ -17,16 +18,9 @@ const TokenSelector = ({
     const tokensList = [nativeToken, ...tokens];
 
     return (
-        <TokenSelectorRoot
-            name="token"
-            variant={variant}
-            defaultValue={defaultToken || nativeToken}
-            value={token}
-            options={tokensList.map((token) => ({ label: token, value: token }))}
-            onChange={onTokenChange}
-            title={translate("selectAToken")}
-            {...otherSelectProps}
-        />
+        <Modal>
+            <Typography variant="body2Strong">{translate("select_token")}</Typography>
+        </Modal>
     );
 };
 

@@ -6,4 +6,5 @@ export interface NavbarProps {
     onBack?: () => unknown;
     title?: string;
     steps?: StepsProps;
+    children?: ReactNode;
 }

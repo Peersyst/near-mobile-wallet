@@ -10,6 +10,7 @@ import { SendScreens } from "module/transaction/component/core/SendModal/SendMod
 import TokenAmountInput from "../../component/input/TokenAmountInput/TokenAmountInput";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import { useTranslate } from "module/common/hook/useTranslate";
+import WalletAssetSelector from "module/wallet/component/input/WalletAssetSelector/WalletAssetSelector";
 
 export interface SendAmountAndMessageResult {
     amount: string;
@@ -35,14 +36,7 @@ const SendSetAmountScreen = (): JSX.Element => {
         <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col gap={24}>
-                    <TokenAmountInput
-                        fee={0.001} //Update this to fee
-                        amount={amount}
-                        setAmount={setAmount}
-                        available={balance?.available ?? "0"}
-                        defaultToken={sendState.token}
-                        tokens={["BTC"]} //TODO: remove this tokens mocked
-                    />
+                    <WalletAssetSelector />
                     <TextArea name="message" placeholder={translate("write_a_message")} numberOfLines={7} />
                     <Button type="submit" fullWidth>
                         {translate("next")}

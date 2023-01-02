@@ -1,5 +1,11 @@
 import { NetworkType } from "module/settings/state/SettingsState";
 
+export enum AssetType {
+    TOKEN = "token",
+    FT = "ft",
+    NFT = "nft",
+} //token refers as near token
+
 export interface BaseWallet {
     index: number;
 }
