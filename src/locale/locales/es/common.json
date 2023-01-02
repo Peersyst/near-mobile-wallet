@@ -200,5 +200,6 @@
     "key_deleted": "Clave de acceso borrada",
     "unknown_action": "Acción desconocida",
     "recent_activity": "Actividad reciente",
-    "collection": "Colección"
+    "collection": "Colección",
+    "choose_what_to_send": "Elige que quieres enviar"
 }

@@ -3,18 +3,16 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { useSetRecoilState } from "recoil";
 import backupWalletState, { BackUp } from "module/wallet/state/BackUpWalletState";
 import Button from "module/common/component/input/Button/Button";
-import {
-    ConfirmPinModalWrapper,
-    ConfirmPinModalWrapperPropsRenderProps,
-} from "module/settings/components/core/ConfirmPinModal/ConfirmPinModalWrapper";
+import { ConfirmPinModalWrapper } from "module/settings/components/core/ConfirmPinModal/ConfirmPinModalWrapper";
 import Advise from "module/common/component/display/Advise/Advise";
+import { ConfirmPinModalWrapperPropsRenderProps } from "module/wallet/component/input/WalletAssetSelector/WalletAssetSelector.types";
 
 export interface WalletsBackupAdvise {
     onSubmit: () => void;
 }
 
 export interface HandlePressParams {
-    showConfirmPinModal: ConfirmPinModalWrapperPropsRenderProps["showConfirmPinModal"];
+    showModal: ConfirmPinModalWrapperPropsRenderProps["showModal"];
     method: BackUp;
 }
 
@@ -22,14 +20,14 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdvise): JSX.Element => 
     const translate = useTranslate();
     const setState = useSetRecoilState(backupWalletState);
 
-    const handlePress = ({ method, showConfirmPinModal }: HandlePressParams) => {
+    const handlePress = ({ method, showModal }: HandlePressParams) => {
         setState({ method });
-        showConfirmPinModal();
+        showModal();
     };
 
     return (
         <ConfirmPinModalWrapper onPinConfirmed={onSubmit}>
-            {({ showConfirmPinModal }) => (
+            {({ showModal }) => (
                 <Col gap="10%" flex={1}>
                     <Col flex={1} gap="3%">
                         <Advise title={translate("keep_this_safe")} />
@@ -48,7 +46,7 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdvise): JSX.Element => 
                             onPress={() =>
                                 handlePress({
                                     method: "mnemonic",
-                                    showConfirmPinModal,
+                                    showModal,
                                 })
                             }
                         >
@@ -59,7 +57,7 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdvise): JSX.Element => 
                             onPress={() =>
                                 handlePress({
                                     method: "privateKey",
-                                    showConfirmPinModal,
+                                    showModal,
                                 })
                             }
                         >

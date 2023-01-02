@@ -4,6 +4,19 @@ import { BackIcon } from "icons";
 import useNavigation from "module/common/hook/useNavigation";
 import { Col, Typography } from "@peersyst/react-native-components";
 import Steps from "module/common/component/display/Steps/Steps";
+import { TypographyProps } from "../../display/Typography/Typography";
+
+export interface NavbarTitleProps extends Omit<TypographyProps, "variant" | "children"> {
+    title: string;
+}
+
+export const NavbarTitle = ({ title, ...rest }: NavbarTitleProps) => {
+    return (
+        <Typography variant="body1Strong" {...rest}>
+            {title}
+        </Typography>
+    );
+};
 
 const Navbar = ({ back, title, onBack, steps, children }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
@@ -22,11 +35,7 @@ const Navbar = ({ back, title, onBack, steps, children }: NavbarProps): JSX.Elem
                 </BackIconRoot>
             )}
             <Col alignItems="center">
-                {title && (
-                    <Typography variant="body1Strong" textTransform="uppercase">
-                        {title}
-                    </Typography>
-                )}
+                {title && <NavbarTitle title={title} textTransform="uppercase" />}
                 {steps && <Steps index={steps.index} length={steps.length} />}
             </Col>
         </NavbarRoot>
