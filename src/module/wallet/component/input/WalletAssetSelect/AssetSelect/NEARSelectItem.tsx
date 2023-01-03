@@ -2,7 +2,7 @@ import useGetBalance from "module/wallet/query/useGetBalance";
 import BaseTokenSelectItem from "./BaseTokenSelectItem";
 
 const NEARSelectItem = () => {
-    const { data: { available } = { available: "0" }, isLoading } = useGetBalance();
+    const { data: { available } = { available: "0" } } = useGetBalance();
     return <BaseTokenSelectItem units="token" balance={available} icon="" />;
 };
 

@@ -1,7 +1,7 @@
-import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 import TokenIcon, { TokenIconProps } from "module/token/component/display/TokenIcon/TokenIcon";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
+import BaseSelectItemCard from "./BaseSelectItemCard";
 
 export interface BaseTokenSelectItemProps {
     icon: TokenIconProps["icon"];
@@ -11,10 +11,10 @@ export interface BaseTokenSelectItemProps {
 
 const BaseTokenSelectItem = ({ icon, balance, units }: BaseTokenSelectItemProps) => {
     return (
-        <MainListCard alignItems="center" gap="5%">
+        <BaseSelectItemCard onPress={() => console.log("hola")}>
             <TokenIcon icon={icon} />
             <Balance balance={balance} variant="body2Strong" units={units} />
-        </MainListCard>
+        </BaseSelectItemCard>
     );
 };
 

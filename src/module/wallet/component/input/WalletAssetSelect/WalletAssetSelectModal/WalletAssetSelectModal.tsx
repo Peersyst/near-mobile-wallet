@@ -1,20 +1,20 @@
-import { Col, Row } from "@peersyst/react-native-components";
-import Typography from "module/common/component/display/Typography/Typography";
+import { Row } from "@peersyst/react-native-components";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { NavbarTitle } from "module/common/component/navigation/Navbar/Navbar";
+import { useModalWrapper } from "module/common/hook/useModalWrapper";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { ChevronUpIcon } from "module/common/icons/ChevronUpIcon";
-import { useState } from "react";
 import AssetSelect from "../AssetSelect/AssetSelect";
 import { WalletAssetSelectModalProps } from "../WalletAssetSelect.types";
 
 export const WalletAssetSelectModal = ({ children, navbar, ...rest }: WalletAssetSelectModalProps) => {
-    const [open, setOpen] = useState(false);
+    const { open, showModal, hideModal } = useModalWrapper();
+
     const translate = useTranslate();
-    const hideModal = () => setOpen(false);
+
     return (
         <>
-            {children({ showModal: () => setOpen(true), hideModal })}
+            {children({ showModal, hideModal })}
             <CardNavigatorModal
                 navbar={{
                     children: (
@@ -29,7 +29,7 @@ export const WalletAssetSelectModal = ({ children, navbar, ...rest }: WalletAsse
                 }}
                 {...rest}
                 open={open}
-                onClose={() => setOpen(false)}
+                onClose={hideModal}
             >
                 <AssetSelect />
             </CardNavigatorModal>
