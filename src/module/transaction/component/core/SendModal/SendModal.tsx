@@ -15,7 +15,7 @@ export enum SendScreens {
 }
 
 const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
-    const [activeIndex, setActiveIndex] = useState(SendScreens.SEND_TO_ADDRESS);
+    const [activeIndex, setActiveIndex] = useState(SendScreens.AMOUNT_AND_MESSAGE);
     const resetSendState = useResetRecoilState(sendState);
     const translate = useTranslate();
     const handleExited = () => {

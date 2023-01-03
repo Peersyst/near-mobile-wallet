@@ -5,6 +5,6 @@ export interface ConfirmPinModalWrapperPropsRenderProps {
     hideModal: () => void;
 }
 
-export type WalletAssetSelectorModalProps = Omit<CardNavigatorModalProps, "open" | "children"> & {
+export type WalletAssetSelectModalProps = Omit<CardNavigatorModalProps, "open" | "children"> & {
     children: (props: ConfirmPinModalWrapperPropsRenderProps) => JSX.Element;
 };

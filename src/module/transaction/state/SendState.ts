@@ -6,7 +6,6 @@ export interface SendState {
     senderWalletIndex?: number;
     receiverAddress?: string;
     amount?: string;
-    message?: string;
     nft?: NftToken;
     ft?: Token;
     asset: AssetType;

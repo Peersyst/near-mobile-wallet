@@ -5,9 +5,10 @@ import { NavbarTitle } from "module/common/component/navigation/Navbar/Navbar";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { ChevronUpIcon } from "module/common/icons/ChevronUpIcon";
 import { useState } from "react";
-import { WalletAssetSelectorModalProps } from "./WalletAssetSelector.types";
+import AssetSelect from "../AssetSelect/AssetSelect";
+import { WalletAssetSelectModalProps } from "../WalletAssetSelect.types";
 
-export const WalletAssetSelectorModal = ({ children, navbar, ...rest }: WalletAssetSelectorModalProps) => {
+export const WalletAssetSelectModal = ({ children, navbar, ...rest }: WalletAssetSelectModalProps) => {
     const [open, setOpen] = useState(false);
     const translate = useTranslate();
     const hideModal = () => setOpen(false);
@@ -30,9 +31,7 @@ export const WalletAssetSelectorModal = ({ children, navbar, ...rest }: WalletAs
                 open={open}
                 onClose={() => setOpen(false)}
             >
-                <Col style={{ height: 300 }}>
-                    <Typography variant="body2Strong">{"Seleccionar el token"}</Typography>
-                </Col>
+                <AssetSelect />
             </CardNavigatorModal>
         </>
     );
