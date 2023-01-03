@@ -22,13 +22,12 @@ const SendSetAmountScreen = (): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const translate = useTranslate();
     const [amount, setAmount] = useState(sendState.amount || "");
-    const { fee: feeInDecimals } = useRecoilValue(settingsState);
-    const fee = feeInDecimals; //TODO: convert to token
+
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex || 0);
     const setTab = useSetTab();
 
     const handleSubmit = ({ amount, message, token }: SendAmountAndMessageResult): void => {
-        setSendState((oldState) => ({ ...oldState, amount, message, fee: fee.toString(), token }));
+        setSendState((oldState) => ({ ...oldState, amount, message, token }));
         setTab(SendScreens.CONFIRMATION);
     };
 
@@ -37,7 +36,7 @@ const SendSetAmountScreen = (): JSX.Element => {
             <Form onSubmit={handleSubmit}>
                 <Col gap={24}>
                     <WalletAssetSelector />
-                    <TextArea name="message" placeholder={translate("write_a_message")} numberOfLines={7} />
+                    <TextArea name="message" placeholder={translate("write_a_message")} numberOfLines={3} />
                     <Button type="submit" fullWidth>
                         {translate("next")}
                     </Button>

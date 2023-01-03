@@ -201,5 +201,6 @@
     "unknown_action": "Unknown acction",
     "recent_activity": "Recent activity",
     "collection": "Collection",
-    "choose_what_to_send": "Choose what to send"
+    "choose_what_to_send": "Choose what to send",
+    "select_asset": "Select asset"
 }
