@@ -1,10 +1,10 @@
 import { CardNavigatorModalProps } from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
+import { UseModalWrapperReturn } from "module/common/hook/useModalWrapper";
+import { AssetSelectProps } from "./AssetSelect/AssetSelect.types";
 
-export interface ConfirmPinModalWrapperPropsRenderProps {
-    showModal: () => void;
-    hideModal: () => void;
-}
-
-export type WalletAssetSelectModalProps = Omit<CardNavigatorModalProps, "open" | "children"> & {
-    children: (props: ConfirmPinModalWrapperPropsRenderProps) => JSX.Element;
+export type WalletAssetSelectModalProps = Omit<CardNavigatorModalProps, "children" | "navbar" | "defaultOpen"> & {
+    assetSelectProps: AssetSelectProps;
+    hideModal: UseModalWrapperReturn["hideModal"];
 };
+
+export type WalletAssetSelectProps = AssetSelectProps;

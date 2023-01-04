@@ -8,7 +8,7 @@ export interface BaseSelectItemCardProps {
     onPress: () => void;
 }
 
-const BaseSelectItemCard = ({ children, onPress }: BaseSelectItemCardProps) => {
+const BaseSelectItemCard = ({ children, onPress }: BaseSelectItemCardProps): JSX.Element => {
     const { palette } = useTheme();
     return (
         <TouchableHighlight activeOpacity={1} underlayColor={palette.gray["100"]} onPress={onPress}>

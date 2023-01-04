@@ -3,30 +3,39 @@ import Typography from "module/common/component/display/Typography/Typography";
 import { useTranslate } from "module/common/hook/useTranslate";
 import NftImage from "module/nft/component/display/NftImage/NftImage";
 import useGetNfts from "module/nft/query/useGetNfts";
+import { AssetType } from "module/wallet/wallet.types";
 import { NftToken } from "near-peersyst-sdk";
-import { memo } from "react";
 import BaseSelectItemCard from "./BaseSelectItemCard";
+import { useAssetSelect } from "./hook/useAssetSelect";
 
 export interface NftSelectItemProps {
     nft: NftToken;
 }
 
-export const NftSelectItem = memo(({ nft }: NftSelectItemProps) => {
+export const NftSelectItem = ({ nft }: NftSelectItemProps) => {
     const {
         metadata: { title, media_url },
     } = nft;
+    const { setSelectedAsset } = useAssetSelect();
+    const handleOnPress = () => {
+        setSelectedAsset({
+            type: AssetType.NFT,
+            nft,
+        });
+    };
     return (
-        <BaseSelectItemCard onPress={() => console.log("hola")}>
+        <BaseSelectItemCard onPress={handleOnPress}>
             <NftImage uri={media_url} />
             <Typography variant="body1Strong" numberOfLines={1}>
                 {title}
             </Typography>
         </BaseSelectItemCard>
     );
-});
+};
 
 const NftSelectItemList = (): JSX.Element => {
-    const { data: nfts = [] } = useGetNfts(4);
+    const { index } = useAssetSelect();
+    const { data: nfts = [] } = useGetNfts(index);
     const translate = useTranslate();
     return (
         <>

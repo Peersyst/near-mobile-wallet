@@ -1,15 +1,30 @@
 import useGetTokens from "module/token/query/useGetTokens";
+import { AssetType } from "module/wallet/wallet.types";
 import { Token } from "near-peersyst-sdk";
 import BaseTokenSelectItem from "./BaseTokenSelectItem";
+import { useAssetSelect } from "./hook/useAssetSelect";
 
-export const TokenSelectItem = ({ balance = "0", metadata }: Token) => {
+export interface TokenSelectItemProps {
+    token: Token;
+}
+
+export const TokenSelectItem = ({ token }: TokenSelectItemProps) => {
+    const { balance = "0", metadata } = token;
     const { symbol, icon } = metadata;
-    return <BaseTokenSelectItem units={symbol} balance={balance} icon={icon} />;
+    const { setSelectedAsset } = useAssetSelect();
+    const handleOnPress = () => {
+        setSelectedAsset({
+            type: AssetType.FT,
+            ft: token,
+        });
+    };
+    return <BaseTokenSelectItem onPress={handleOnPress} units={symbol} balance={balance} icon={icon} />;
 };
 
 const TokenSelectItemlist = (): JSX.Element => {
-    const { data: tokens = [] } = useGetTokens(2);
-    return <>{tokens.length > 0 && tokens.map((token) => <TokenSelectItem key={token.metadata.symbol} {...token} />)}</>;
+    const { index } = useAssetSelect();
+    const { data: tokens = [] } = useGetTokens(index);
+    return <>{tokens.length > 0 && tokens.map((token) => <TokenSelectItem key={token.metadata.symbol} token={token} />)}</>;
 };
 
 export default TokenSelectItemlist;
