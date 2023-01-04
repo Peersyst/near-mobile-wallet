@@ -22,16 +22,15 @@ const SendSetAmountScreen = (): JSX.Element => {
     const { isLoading: balanceIsLoading } = useGetBalance(senderWalletIndex);
     const setTab = useSetTab();
 
-    const handleSubmit = ({ amount, token }: SendAmountAndMessageResult): void => {
-        setSendState((oldState) => ({ ...oldState, amount, token }));
-        setTab(SendScreens.CONFIRMATION);
+    const handleSubmit = (res: SendAmountAndMessageResult): void => {
+        console.log(res);
     };
 
     return (
         <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col gap={24}>
-                    <WalletAssetSelect index={senderWalletIndex} />
+                    <WalletAssetSelect required index={senderWalletIndex} name="jordi" />
                     <Button type="submit" fullWidth>
                         {translate("next")}
                     </Button>

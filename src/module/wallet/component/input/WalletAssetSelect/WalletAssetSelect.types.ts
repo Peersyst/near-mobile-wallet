@@ -2,12 +2,9 @@ import { CoreFormControlledComponentProps, FormControlledComponentProps, LabelPr
 import { AssetType } from "module/wallet/wallet.types";
 import { NftToken, Token } from "near-peersyst-sdk";
 
-export interface BaseAssetSelectProps {
+export type WalletAssetSelectProps = FormControlledComponentProps<CoreFormControlledComponentProps<Asset | undefined, LabelProps>> & {
     index: number;
-}
-
-export type AssetSelectProps = FormControlledComponentProps<CoreFormControlledComponentProps<Asset | undefined, LabelProps>> &
-    BaseAssetSelectProps;
+};
 
 export interface Asset {
     type: AssetType;

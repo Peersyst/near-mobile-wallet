@@ -3,10 +3,10 @@ import CardNavigatorModal from "module/common/component/navigation/CardNavigator
 import { NavbarTitle } from "module/common/component/navigation/Navbar/Navbar";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { ChevronUpIcon } from "module/common/icons/ChevronUpIcon";
-import AssetSelect from "../AssetSelect/AssetSelect";
+import AssetSelect from "../InnerAssetSelect/InnerAssetSelect";
 import { WalletAssetSelectModalProps } from "./WalletAssetSelectModal.types";
 
-export const WalletAssetSelectModal = ({ assetSelectProps, hideModal, ...rest }: WalletAssetSelectModalProps) => {
+export const WalletAssetSelectModal = ({ hideModal, ...rest }: WalletAssetSelectModalProps) => {
     const translate = useTranslate();
     return (
         <CardNavigatorModal
@@ -23,7 +23,7 @@ export const WalletAssetSelectModal = ({ assetSelectProps, hideModal, ...rest }:
             style={{ minHeight: 280 }}
             {...rest}
         >
-            <AssetSelect {...assetSelectProps} />
+            <AssetSelect />
         </CardNavigatorModal>
     );
 };

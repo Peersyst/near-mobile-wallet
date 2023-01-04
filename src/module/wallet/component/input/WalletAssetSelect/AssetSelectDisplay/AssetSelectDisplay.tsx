@@ -7,18 +7,17 @@ import Balance from "module/wallet/component/display/Balance/Balance";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { AssetType } from "module/wallet/wallet.types";
 import { TouchableWithoutFeedback } from "react-native";
-import { Asset } from "../AssetSelect/AssetSelect.types";
+import { useAssetSelect } from "../hook/useAssetSelect";
 import { ChevronDownIcon } from "./AssetSelectDisplay.styles";
 
 export interface AssetSelectDisplayProps {
     onPress: () => void;
-    asset: Asset | undefined;
-    index: number;
 }
 
-export type AssetValueDisplayProps = Omit<AssetSelectDisplayProps, "onPress"> & Omit<TypographyProps, "children">;
+export type AssetValueDisplayProps = Omit<TypographyProps, "children">;
 
-export const AssetValueDisplay = ({ asset, index, ...rest }: AssetValueDisplayProps): JSX.Element => {
+export const AssetValueDisplay = ({ ...rest }: AssetValueDisplayProps): JSX.Element => {
+    const { index, asset } = useAssetSelect();
     const { data: { available } = { available: "0" } } = useGetBalance(index);
     const { type, nft, ft } = asset ?? {};
     switch (type) {
@@ -35,15 +34,16 @@ export const AssetValueDisplay = ({ asset, index, ...rest }: AssetValueDisplayPr
     }
 };
 
-const AssetSelectDisplay = ({ onPress, asset, index }: AssetSelectDisplayProps) => {
+const AssetSelectDisplay = ({ onPress }: AssetSelectDisplayProps) => {
     const translate = useTranslate();
+    const { asset } = useAssetSelect();
     return (
         <TouchableWithoutFeedback onPress={onPress}>
             <Container>
                 <Col alignItems="center" flex={1} gap="2%">
                     <Row alignItems="center" gap={5} justifyContent="center" style={{ maxWidth: "100%" }}>
                         {asset ? (
-                            <AssetValueDisplay index={index} asset={asset} variant="h4Strong" />
+                            <AssetValueDisplay variant="h4Strong" />
                         ) : (
                             <Typography variant="h4Strong">{translate("select_asset")}</Typography>
                         )}

@@ -6,7 +6,7 @@ import useGetNfts from "module/nft/query/useGetNfts";
 import { AssetType } from "module/wallet/wallet.types";
 import { NftToken } from "near-peersyst-sdk";
 import BaseSelectItemCard from "./BaseSelectItemCard";
-import { useAssetSelect } from "./hook/useAssetSelect";
+import { useAssetSelect } from "../hook/useAssetSelect";
 
 export interface NftSelectItemProps {
     nft: NftToken;

@@ -2,7 +2,7 @@ import useGetTokens from "module/token/query/useGetTokens";
 import { AssetType } from "module/wallet/wallet.types";
 import { Token } from "near-peersyst-sdk";
 import BaseTokenSelectItem from "./BaseTokenSelectItem";
-import { useAssetSelect } from "./hook/useAssetSelect";
+import { useAssetSelect } from "../hook/useAssetSelect";
 
 export interface TokenSelectItemProps {
     token: Token;

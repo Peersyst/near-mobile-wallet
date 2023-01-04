@@ -1,7 +1,7 @@
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { AssetType } from "module/wallet/wallet.types";
 import BaseTokenSelectItem from "./BaseTokenSelectItem";
-import { useAssetSelect } from "./hook/useAssetSelect";
+import { useAssetSelect } from "../hook/useAssetSelect";
 
 const NEARSelectItem = (): JSX.Element => {
     const { index } = useAssetSelect();

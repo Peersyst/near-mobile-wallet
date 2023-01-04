@@ -1,4 +1,4 @@
-import NEARSelectItem from "module/wallet/component/input/WalletAssetSelect/AssetSelect/NEARSelectItem";
+import NEARSelectItem from "module/wallet/component/input/WalletAssetSelect/InnerAssetSelect/NEARSelectItem";
 import { UseGetBalanceMock } from "test-mocks";
 import { render } from "test-utils";
 

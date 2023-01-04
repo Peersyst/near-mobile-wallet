@@ -1,15 +1,17 @@
 import { useControlled } from "@peersyst/react-hooks";
+import { FormControl, Label } from "@peersyst/react-native-components";
 import { useModalWrapper } from "module/common/hook/useModalWrapper";
 import { useGetAllAssets } from "module/wallet/query/useGetAllAssets";
-import { Asset, AssetSelectProps } from "./AssetSelect/AssetSelect.types";
+import { AssetSelectProvider } from "./context/AssetSelectContext";
 import AssetSelectDisplay from "./AssetSelectDisplay/AssetSelectDisplay";
+import { Asset, WalletAssetSelectProps } from "./WalletAssetSelect.types";
 import { WalletAssetSelectModal } from "./WalletAssetSelectModal/WalletAssetSelectModal";
 
-const WalletAssetSelect = ({ index, ...rest }: AssetSelectProps) => {
+const WalletAssetSelect = ({ index, ...rest }: WalletAssetSelectProps) => {
     useGetAllAssets(); //On mount start fetching all assets
 
     const { open, showModal, hideModal } = useModalWrapper();
-    const { value, defaultValue, onChange, ...assetSelectRest } = rest;
+    const { value, defaultValue, onChange, LabelProps, ...assetSelectRest } = rest;
     const [asset, setAsset] = useControlled(defaultValue, value, onChange);
 
     const handleAssetChange = (asset: Asset | undefined) => {
@@ -20,14 +22,26 @@ const WalletAssetSelect = ({ index, ...rest }: AssetSelectProps) => {
     };
 
     return (
-        <>
-            <WalletAssetSelectModal
-                assetSelectProps={{ value: asset, onChange: handleAssetChange, index, ...assetSelectRest }}
-                hideModal={hideModal}
-                open={open}
-            />
-            <AssetSelectDisplay onPress={showModal} asset={asset} index={index} />
-        </>
+        <FormControl<Asset | undefined>
+            value={asset}
+            onChange={handleAssetChange}
+            Label={[
+                Label,
+                {
+                    placement: "top",
+                    ...LabelProps,
+                },
+            ]}
+            defaultValue={defaultValue}
+            {...assetSelectRest}
+        >
+            {() => (
+                <AssetSelectProvider value={{ index, setSelectedAsset: handleAssetChange, asset }}>
+                    <AssetSelectDisplay onPress={showModal} />
+                    <WalletAssetSelectModal hideModal={hideModal} onClose={hideModal} open={open} />
+                </AssetSelectProvider>
+            )}
+        </FormControl>
     );
 };
 
