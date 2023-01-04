@@ -24,7 +24,7 @@ export const TokenSelectItem = ({ token }: TokenSelectItemProps) => {
 const TokenSelectItemlist = (): JSX.Element => {
     const { index } = useAssetSelect();
     const { data: tokens = [] } = useGetTokens(index);
-    return <>{tokens.length > 0 && tokens.map((token) => <TokenSelectItem key={token.metadata.symbol} token={token} />)}</>;
+    return <>{tokens.length > 0 && tokens.map((token, index) => <TokenSelectItem key={index} token={token} />)}</>;
 };
 
 export default TokenSelectItemlist;

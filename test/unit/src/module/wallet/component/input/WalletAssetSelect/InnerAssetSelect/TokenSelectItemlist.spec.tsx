@@ -1,6 +1,6 @@
-import { TokenSelectItem } from "module/wallet/component/input/WalletAssetSelect/InnerAssetSelect/TokenSelectItemlist";
+import TokenSelectItemlist, { TokenSelectItem } from "module/wallet/component/input/WalletAssetSelect/InnerAssetSelect/TokenSelectItemlist";
 import { AssetType } from "module/wallet/wallet.types";
-import { TokenMock, UseAssetSelectMock } from "test-mocks";
+import { TokenMock, UseAssetSelectMock, UseGetTokensMock } from "test-mocks";
 import { fireEvent, render, screen, translate, waitFor } from "test-utils";
 
 describe("TokenSelectItemList test", () => {
@@ -15,5 +15,14 @@ describe("TokenSelectItemList test", () => {
             expect(setSelectedAsset).toBeCalledWith({ type: AssetType.FT, ft });
         });
     });
-    describe("TokenSelectItemList test", () => {});
+    describe("TokenSelectItemList test", () => {
+        test("Renders the list correctly", async () => {
+            const { fts } = new UseGetTokensMock();
+            const ft = fts[0];
+            render(<TokenSelectItemlist />);
+            await waitFor(() =>
+                expect(screen.getAllByText(translate("number", { val: ft.balance }) + " " + ft.metadata.symbol)).toHaveLength(fts.length),
+            );
+        });
+    });
 });
