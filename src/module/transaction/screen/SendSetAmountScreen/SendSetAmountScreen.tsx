@@ -7,6 +7,7 @@ import { SendScreens } from "module/transaction/component/core/SendModal/SendMod
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import { useTranslate } from "module/common/hook/useTranslate";
 import WalletAssetSelect from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect";
+import TextField from "module/common/component/input/TextField/TextField";
 
 export interface SendAmountAndMessageResult {
     amount: string;
@@ -30,7 +31,8 @@ const SendSetAmountScreen = (): JSX.Element => {
         <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col gap={24}>
-                    <WalletAssetSelect required index={senderWalletIndex} name="jordi" />
+                    <WalletAssetSelect label="Select what to send" defaultValue={sendState.asset} index={senderWalletIndex} name="jordi" />
+                    <TextField label={"Select the amount to send"} keyboardType="numeric" validators={{ number: true }} />
                     <Button type="submit" fullWidth>
                         {translate("next")}
                     </Button>

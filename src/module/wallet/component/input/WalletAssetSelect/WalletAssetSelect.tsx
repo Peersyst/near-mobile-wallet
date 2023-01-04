@@ -1,5 +1,5 @@
 import { useControlled } from "@peersyst/react-hooks";
-import { FormControl, Label } from "@peersyst/react-native-components";
+import { FormControl, FormControlLabel, Row } from "@peersyst/react-native-components";
 import { useModalWrapper } from "module/common/hook/useModalWrapper";
 import { useGetAllAssets } from "module/wallet/query/useGetAllAssets";
 import { AssetSelectProvider } from "./context/AssetSelectContext";
@@ -8,7 +8,7 @@ import { Asset, WalletAssetSelectProps } from "./WalletAssetSelect.types";
 import { WalletAssetSelectModal } from "./WalletAssetSelectModal/WalletAssetSelectModal";
 
 const WalletAssetSelect = ({ index, ...rest }: WalletAssetSelectProps) => {
-    useGetAllAssets(); //On mount start fetching all assets
+    useGetAllAssets(index); //On mount start fetching all assets
 
     const { open, showModal, hideModal } = useModalWrapper();
     const { value, defaultValue, onChange, LabelProps, ...assetSelectRest } = rest;
@@ -26,7 +26,7 @@ const WalletAssetSelect = ({ index, ...rest }: WalletAssetSelectProps) => {
             value={asset}
             onChange={handleAssetChange}
             Label={[
-                Label,
+                FormControlLabel,
                 {
                     placement: "top",
                     ...LabelProps,

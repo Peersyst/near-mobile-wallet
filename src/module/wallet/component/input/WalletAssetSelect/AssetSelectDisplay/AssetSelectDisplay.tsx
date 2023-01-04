@@ -39,7 +39,7 @@ const AssetSelectDisplay = ({ onPress }: AssetSelectDisplayProps) => {
     const { asset } = useAssetSelect();
     return (
         <TouchableWithoutFeedback onPress={onPress}>
-            <Container>
+            <Container style={{ width: "100%" }}>
                 <Col alignItems="center" flex={1} gap="2%">
                     <Row alignItems="center" gap={5} justifyContent="center" style={{ maxWidth: "100%" }}>
                         {asset ? (
