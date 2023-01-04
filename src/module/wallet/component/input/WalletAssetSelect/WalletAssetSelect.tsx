@@ -1,16 +1,15 @@
 import { useControlled } from "@peersyst/react-hooks";
 import { useModalWrapper } from "module/common/hook/useModalWrapper";
 import { useGetAllAssets } from "module/wallet/query/useGetAllAssets";
-import { Asset } from "./AssetSelect/AssetSelect.types";
+import { Asset, AssetSelectProps } from "./AssetSelect/AssetSelect.types";
 import AssetSelectDisplay from "./AssetSelectDisplay/AssetSelectDisplay";
-import { WalletAssetSelectProps } from "./WalletAssetSelect.types";
 import { WalletAssetSelectModal } from "./WalletAssetSelectModal/WalletAssetSelectModal";
 
-const WalletAssetSelect = (props: WalletAssetSelectProps) => {
+const WalletAssetSelect = ({ index, ...rest }: AssetSelectProps) => {
     useGetAllAssets(); //On mount start fetching all assets
 
     const { open, showModal, hideModal } = useModalWrapper();
-    const { value, defaultValue, onChange, ...assetSelectRest } = props;
+    const { value, defaultValue, onChange, ...assetSelectRest } = rest;
     const [asset, setAsset] = useControlled(defaultValue, value, onChange);
     const handleAssetChange = (asset: Asset | undefined) => {
         if (asset) {
@@ -22,11 +21,11 @@ const WalletAssetSelect = (props: WalletAssetSelectProps) => {
     return (
         <>
             <WalletAssetSelectModal
-                assetSelectProps={{ value: asset, onChange: handleAssetChange, ...assetSelectRest }}
+                assetSelectProps={{ value: asset, onChange: handleAssetChange, index, ...assetSelectRest }}
                 hideModal={hideModal}
                 open={open}
             />
-            <AssetSelectDisplay onPress={showModal} asset={asset} />
+            <AssetSelectDisplay onPress={showModal} asset={asset} index={index} />
         </>
     );
 };

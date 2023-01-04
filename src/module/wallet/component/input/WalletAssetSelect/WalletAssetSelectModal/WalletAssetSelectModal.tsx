@@ -4,7 +4,7 @@ import { NavbarTitle } from "module/common/component/navigation/Navbar/Navbar";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { ChevronUpIcon } from "module/common/icons/ChevronUpIcon";
 import AssetSelect from "../AssetSelect/AssetSelect";
-import { WalletAssetSelectModalProps } from "../WalletAssetSelect.types";
+import { WalletAssetSelectModalProps } from "./WalletAssetSelectModal.types";
 
 export const WalletAssetSelectModal = ({ assetSelectProps, hideModal, ...rest }: WalletAssetSelectModalProps) => {
     const translate = useTranslate();
