@@ -8,3 +8,4 @@ export * from "./useCreateWalletMock";
 export * from "./useWalletSelector.mock";
 export * from "./asset.mock";
 export * from "./useGetBalance.mock";
+export * from "./useAssetSelect.mock";
