@@ -22,7 +22,6 @@ export const WalletAssetSelectModal = ({ assetSelectProps, hideModal, ...rest }:
             }}
             style={{ minHeight: 280 }}
             {...rest}
-            onClose={hideModal}
         >
             <AssetSelect {...assetSelectProps} />
         </CardNavigatorModal>

@@ -11,6 +11,7 @@ const WalletAssetSelect = ({ index, ...rest }: AssetSelectProps) => {
     const { open, showModal, hideModal } = useModalWrapper();
     const { value, defaultValue, onChange, ...assetSelectRest } = rest;
     const [asset, setAsset] = useControlled(defaultValue, value, onChange);
+
     const handleAssetChange = (asset: Asset | undefined) => {
         if (asset) {
             setAsset(asset);

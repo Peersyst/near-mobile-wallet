@@ -2,7 +2,6 @@ import { Col, Form, useSetTab, Suspense } from "@peersyst/react-native-component
 import Button from "module/common/component/input/Button/Button";
 import { useRecoilState } from "recoil";
 import sendRecoilState from "module/transaction/state/SendState";
-import { useState } from "react";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
@@ -18,9 +17,9 @@ export interface SendAmountAndMessageResult {
 const SendSetAmountScreen = (): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     const translate = useTranslate();
-    const [amount, setAmount] = useState(sendState.amount || "");
 
-    const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex || 0);
+    const senderWalletIndex = sendState.senderWalletIndex!;
+    const { isLoading: balanceIsLoading } = useGetBalance(senderWalletIndex);
     const setTab = useSetTab();
 
     const handleSubmit = ({ amount, token }: SendAmountAndMessageResult): void => {
@@ -32,7 +31,7 @@ const SendSetAmountScreen = (): JSX.Element => {
         <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col gap={24}>
-                    <WalletAssetSelect />
+                    <WalletAssetSelect index={senderWalletIndex} />
                     <Button type="submit" fullWidth>
                         {translate("next")}
                     </Button>
