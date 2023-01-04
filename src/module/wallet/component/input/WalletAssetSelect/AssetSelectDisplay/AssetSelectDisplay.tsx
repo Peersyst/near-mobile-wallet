@@ -1,6 +1,6 @@
 import { Col, Row } from "@peersyst/react-native-components";
 import Container from "module/common/component/display/Container/Container";
-import Typography from "module/common/component/display/Typography/Typography";
+import Typography, { TypographyProps } from "module/common/component/display/Typography/Typography";
 import { useTranslate } from "module/common/hook/useTranslate";
 import Fee from "module/transaction/component/display/Fee/Fee";
 import Balance from "module/wallet/component/display/Balance/Balance";
@@ -16,21 +16,22 @@ export interface AssetSelectDisplayProps {
     index: number;
 }
 
-export const AssetValueDisplay = ({ asset, index }: Omit<AssetSelectDisplayProps, "onPress">): JSX.Element => {
-    const variant = "h4Strong";
+export type AssetValueDisplayProps = Omit<AssetSelectDisplayProps, "onPress"> & Omit<TypographyProps, "children">;
+
+export const AssetValueDisplay = ({ asset, index, ...rest }: AssetValueDisplayProps): JSX.Element => {
     const { data: { available } = { available: "0" } } = useGetBalance(index);
     const { type, nft, ft } = asset ?? {};
     switch (type) {
         case AssetType.NFT:
             return (
-                <Typography numberOfLines={1} variant={variant}>
+                <Typography numberOfLines={1} {...rest}>
                     {nft?.metadata.title}
                 </Typography>
             );
         case AssetType.FT:
-            return <Balance variant={variant} units={ft?.metadata.symbol} balance={ft?.balance ?? "0"} />;
+            return <Balance units={ft?.metadata.symbol} balance={ft?.balance ?? "0"} {...rest} />;
         default:
-            return <Balance variant={variant} units="token" balance={available} />;
+            return <Balance units="token" balance={available} {...rest} />;
     }
 };
 
@@ -42,7 +43,7 @@ const AssetSelectDisplay = ({ onPress, asset, index }: AssetSelectDisplayProps) 
                 <Col alignItems="center" flex={1} gap="2%">
                     <Row alignItems="center" gap={5} justifyContent="center" style={{ maxWidth: "100%" }}>
                         {asset ? (
-                            <AssetValueDisplay index={index} asset={asset} />
+                            <AssetValueDisplay index={index} asset={asset} variant="h4Strong" />
                         ) : (
                             <Typography variant="h4Strong">{translate("select_asset")}</Typography>
                         )}

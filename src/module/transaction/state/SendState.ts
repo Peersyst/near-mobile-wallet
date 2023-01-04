@@ -1,20 +1,18 @@
 import { atom } from "recoil";
-import { NftToken, Token } from "near-peersyst-sdk";
 import { AssetType } from "module/wallet/wallet.types";
+import { Asset } from "module/wallet/component/input/WalletAssetSelect/AssetSelect/AssetSelect.types";
 
 export interface SendState {
     senderWalletIndex?: number;
     receiverAddress?: string;
     amount?: string;
-    nft?: NftToken;
-    ft?: Token;
-    asset: AssetType;
+    asset: Asset;
 }
 
 const sendState = atom<SendState>({
     key: "send",
     default: {
-        asset: AssetType.TOKEN,
+        asset: { type: AssetType.TOKEN },
     },
 });
 
