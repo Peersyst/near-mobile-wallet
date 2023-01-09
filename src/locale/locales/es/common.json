@@ -79,7 +79,7 @@
     "message": "Mensaje",
     "send_confirmation_text": "Cuidado, las transacciones no se pueden deshacer. Este es el último paso, tómate tu tiempo para verificar la información.",
     "transaction_completed": "¡Transacción completada!",
-    "available": "Disponible",
+    "available": "disponible",
     "locked": "Bloqueado",
     "deposit": "Depositar",
     "withdraw": "Retirar",

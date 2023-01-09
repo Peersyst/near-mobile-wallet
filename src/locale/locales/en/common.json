@@ -79,7 +79,7 @@
     "message": "Message",
     "send_confirmation_text": "Careful, transactions cannot be undone.\nTake your time to verify the information.",
     "transaction_completed": "Transaction completed!",
-    "available": "Available",
+    "available": "available",
     "locked": "Locked",
     "deposit": "Deposit",
     "withdraw": "Withdraw",
