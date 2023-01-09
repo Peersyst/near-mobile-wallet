@@ -19,7 +19,7 @@ const TokenCard = ({ token: { metadata, balance, contractId } }: TokenCardProps)
     return (
         <MainListCard alignItems="center" justifyContent="space-between">
             <Row alignItems="center" gap={16}>
-                <TokenIcon icon={icon} />
+                <TokenIcon icon={icon} symbol={symbol} />
                 <Typography variant="body3Strong" numberOfLines={1} style={{ maxWidth: "70%" }}>
                     {name}
                 </Typography>
