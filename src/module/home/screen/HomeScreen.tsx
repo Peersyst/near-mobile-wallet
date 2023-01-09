@@ -1,5 +1,5 @@
 import { Col } from "@peersyst/react-native-components";
-import HomeSlider from "module/home/component/core/HomeSlider";
+import HomeSlider from "module/home/component/core/HomeSlider/HomeSlider";
 import BaseMainGradientScreen from "module/main/component/layout/BaseMainGradientScreen/BaseMainGradientScreen";
 import HomeTabs from "../component/navigation/HomeTabs";
 import AddWallet from "module/wallet/component/core/AddWallet/AddWallet";

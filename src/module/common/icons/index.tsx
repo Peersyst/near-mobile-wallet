@@ -33,6 +33,7 @@ export * from "./RefreshIcon";
 export * from "./ScanIcon";
 export * from "./SendIcon";
 export * from "./SettingsIcon";
+export * from "./SlashIcon";
 export * from "./SmartContractIcon";
 export * from "./StarIcon";
 export * from "./SuccessIcon";

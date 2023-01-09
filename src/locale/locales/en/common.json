@@ -147,6 +147,8 @@
     "dismiss": "Dismiss",
     "pending_transaction_text": "You have an uncommitted transaction. Please, wait until it is committed to send a new one.",
     "staking": "Staking",
+    "staked": "staked",
+    "stakeMyTokens": "Stake my tokens",
     "importYourNearWallet": "Import your NEAR wallet",
     "stake_added": "Added stake",
     "unstake": "Unstake",
