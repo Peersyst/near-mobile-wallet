@@ -17,35 +17,29 @@ export const useNEARAmountInputValidator = ({ amount, index }: UseNEARAmountInpu
     const translateError = useTranslate("error");
     const { data: { available } = { available: "0" } } = useGetBalance(index);
 
-    try {
-        //Check if amount is less than available balance minus the fee
-        const finalAvailable = subtractNearAmounts(available, config.estimatedFee);
-        const isGreaterThanMax = isNEARAmountGreaterThanThreshold(amount, finalAvailable);
-        const formattedMaxAvailable = useFormatBalance(finalAvailable, {
-            units: "token",
-            unitsPosition: "right",
-            numberFormatOptions: { maximumFractionDigits: 6 },
-        });
-        const finalMaxAmountError: TextFieldProps["error"] = isGreaterThanMax && [
-            isGreaterThanMax,
-            translateError("invalid_number_lt", { n: formattedMaxAvailable }),
-        ];
+    //Check if amount is less than available balance minus the fee
+    const finalAvailable = subtractNearAmounts(available, config.estimatedFee);
+    const isGreaterThanMax = isNEARAmountGreaterThanThreshold(amount, finalAvailable);
+    const formattedMaxAvailable = useFormatBalance(finalAvailable, {
+        units: "token",
+        unitsPosition: "right",
+        numberFormatOptions: { maximumFractionDigits: 6 },
+    });
+    const finalMaxAmountError: TextFieldProps["error"] = isGreaterThanMax && [
+        isGreaterThanMax,
+        translateError("invalid_number_lt", { n: formattedMaxAvailable }),
+    ];
 
-        //Check if the amount is greater than zero
-        const isGreaterThanZero = isNEARAmountGreaterThanThreshold(amount, "0");
-        const finalMinAmountError: TextFieldProps["error"] = !isGreaterThanZero && [
-            !isGreaterThanZero,
-            translateError("invalid_number_gt", { n: "0 " + config.tokenName }),
-        ];
+    //Check if the amount is greater than zero
+    const isGreaterThanZero = isNEARAmountGreaterThanThreshold(amount, "0");
+    const finalMinAmountError: TextFieldProps["error"] = !isGreaterThanZero && [
+        !isGreaterThanZero,
+        translateError("invalid_number_gt", { n: "0 " + config.tokenName }),
+    ];
 
-        const error = finalMaxAmountError || finalMinAmountError;
+    const error = finalMaxAmountError || finalMinAmountError;
 
-        return {
-            error,
-        };
-    } catch (e) {
-        return {
-            error: true,
-        };
-    }
+    return {
+        error,
+    };
 };

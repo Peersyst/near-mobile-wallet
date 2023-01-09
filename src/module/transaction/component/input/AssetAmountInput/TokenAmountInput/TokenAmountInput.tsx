@@ -1,6 +1,6 @@
 import { useControlled } from "@peersyst/react-hooks";
 import { NumericInputProps } from "module/common/component/input/NumericInput/NumericInput";
-import BaseAssetAmountInput from "../BaseAssetAmountInput";
+import BaseAssetAmountInput from "../BaseAssetAmountInput/BaseAssetAmountInput";
 import { Token } from "near-peersyst-sdk";
 import { useFTAmountInputValidator } from "./hook/useFTAmountInputValidator";
 

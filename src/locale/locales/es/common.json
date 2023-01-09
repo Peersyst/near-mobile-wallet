@@ -202,5 +202,6 @@
     "recent_activity": "Actividad reciente",
     "collection": "Colección",
     "choose_what_to_send": "Elige que quieres enviar",
-    "select_asset": "Elige entre tus activos"
+    "select_asset": "Elige entre tus activos",
+    "send_only_one_nft": "Solo puedes enviar 1 Nft"
 }

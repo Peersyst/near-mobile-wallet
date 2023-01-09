@@ -2068,7 +2068,7 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^2.1.0"
 
-"@peersyst/react-native-components@^2.0.23":
+"@peersyst/react-native-components@^2.0.22":
   version "2.0.23"
   resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-2.0.23.tgz#e98963b0271e7a8f4459580904bf94af8f43eb79"
   integrity sha512-1XFHcRAKHuVJPVTr9VgWSyeA7wY76pDOaca42lMnSShr6WuMDdwySnR1wDzqDqaytOdpKnWPCcHTwu7gIwlOAA==
