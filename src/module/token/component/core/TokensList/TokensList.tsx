@@ -6,6 +6,7 @@ import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
 import { useRefetchQueries } from "../../../../../query/useRefetchQueries";
 import useWalletState from "module/wallet/hook/useWalletState";
+import Queries from "../../../../../query/queries";
 
 const TokensList = (): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
@@ -17,7 +18,7 @@ const TokensList = (): JSX.Element => {
     const refetch = useRefetchQueries();
 
     const handleRefetch = async () => {
-        await refetch(["tokenPrice", fiat]);
+        await refetch([Queries.TOKEN_PRICE, fiat]);
     };
 
     return (
