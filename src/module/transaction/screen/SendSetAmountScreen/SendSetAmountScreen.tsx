@@ -8,6 +8,8 @@ import CenteredLoader from "module/common/component/feedback/CenteredLoader/Cent
 import { useTranslate } from "module/common/hook/useTranslate";
 import WalletAssetSelect from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect";
 import TextField from "module/common/component/input/TextField/TextField";
+import AssetAmountInput from "module/transaction/component/input/AssetAmountInput/AssetAmountInput";
+import { useState } from "react";
 
 export interface SendAmountAndMessageResult {
     amount: string;
@@ -17,6 +19,7 @@ export interface SendAmountAndMessageResult {
 
 const SendSetAmountScreen = (): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
+    const [asset, setAsset] = useState(sendState.asset);
     const translate = useTranslate();
 
     const senderWalletIndex = sendState.senderWalletIndex!;
@@ -31,8 +34,14 @@ const SendSetAmountScreen = (): JSX.Element => {
         <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col gap={24}>
-                    <WalletAssetSelect label="Select what to send" defaultValue={sendState.asset} index={senderWalletIndex} name="jordi" />
-                    <TextField label={"Select the amount to send"} keyboardType="numeric" validators={{ number: true }} />
+                    <WalletAssetSelect
+                        label={translate("choose_what_to_send")}
+                        onChange={(asset) => setAsset(asset)}
+                        value={asset}
+                        index={senderWalletIndex}
+                        name="jordi"
+                    />
+                    <AssetAmountInput label={"Enter the amount to send"} asset={asset} name="amount" index={sendState.senderWalletIndex} />
                     <Button type="submit" fullWidth>
                         {translate("next")}
                     </Button>

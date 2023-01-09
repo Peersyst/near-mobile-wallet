@@ -3,6 +3,9 @@ const BN = require("bn.js");
 
 export class MathOperations {
     //Big number operations
+    static BNToString(bn: string): string {
+        return new BN(bn).toString();
+    }
     static BNExp(base: number, exponent: number): string {
         return new BN(base).pow(new BN(exponent)).toString();
     }
@@ -14,6 +17,13 @@ export class MathOperations {
         const denominator = BigInt(b);
         return (numerator / denominator).toString();
     }
+    static BNMultiply(a: string, b: string): string {
+        return new BN(a).mul(new BN(b)).toString();
+    }
+    static BNSubtract(a: string, b: string): string {
+        return new BN(a).sub(new BN(b)).toString();
+    }
+
     // Number operations
     /**
      * Params must be in nears

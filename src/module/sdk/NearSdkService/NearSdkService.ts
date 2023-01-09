@@ -51,7 +51,12 @@ import {
     NFT_TOKEN_METADATA_METHOD,
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "../utils/near.constants";
-import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto, parseTokenAmount } from "../utils/near.utils";
+import {
+    convertAccountBalanceToNear as convertAccountBalanceToNearUtil,
+    convertNearToYocto,
+    formatTokenAmount,
+    parseTokenAmount,
+} from "../utils/near.utils";
 import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
 import { MathOperations } from "../utils";
 
@@ -676,7 +681,7 @@ export class NearSDKService {
             const [balance, metadata] = await Promise.all([this.getTokenBalance(contractId), this.getTokenMetadata(contractId)]);
             if (MathOperations.BNIsBigger(balance, "0")) {
                 tokens.push({
-                    balance: parseTokenAmount(balance, metadata.decimals.toString()),
+                    balance: formatTokenAmount(balance, metadata.decimals.toString()),
                     metadata,
                     contractId: contractId,
                 });
