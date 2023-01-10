@@ -34,7 +34,7 @@ export const useFTAmountInputValidator = ({ amount, ft }: UseFtAmountInputValida
     const isGreaterThanZero = isTokenAmountGreaterThanThreshold(amount, "0", decimals);
     const finalMinAmountGreaterThanZero: TextFieldProps["error"] = !isGreaterThanZero && [
         !isGreaterThanZero,
-        translateError("invalid_number_lt", { n: "0 " + symbol }),
+        translateError("invalid_number_gt", { n: "0 " + symbol }),
     ];
 
     //Check the amount is greater than the minDecimal
