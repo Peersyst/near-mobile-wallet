@@ -5,11 +5,12 @@ import Button from "module/common/component/input/Button/Button";
 import sendRecoilState from "module/transaction/state/SendState";
 import { useState } from "react";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { CameraIcon } from "icons";
 import QrScanner from "module/common/component/input/QrScanner/QrScanner";
+import settingsState from "module/settings/state/SettingsState";
 
 export interface SendForm {
     sender: number;
@@ -19,6 +20,7 @@ export interface SendForm {
 const SendToAddressScreen = () => {
     const translate = useTranslate();
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
+    const { network } = useRecoilValue(settingsState);
     const [receiverAddress, setReceiverAddress] = useState(sendState.receiverAddress || "");
     const [scanQr, setScanQr] = useState(false);
     const { palette } = useTheme();
@@ -62,7 +64,7 @@ const SendToAddressScreen = () => {
                             </IconButton>
                         }
                         name="receiver"
-                        validators={{ address: true }}
+                        validators={{ address: network }}
                         value={receiverAddress}
                         onChange={setReceiverAddress}
                         autoCapitalize="none"
