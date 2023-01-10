@@ -1,7 +1,7 @@
 import { convertNearToYocto, convertYoctoToNear } from "./near.utils";
 const BigInt = require("bn.js");
 
-export class MathOperations {
+export class BalanceOperations {
     /**
      * Params must be in nears
      */

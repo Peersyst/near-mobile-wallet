@@ -7,7 +7,7 @@ import useFormatDate from "module/common/hook/useFormatDate";
 
 const SimpleNewsCard = ({ ...news }: WithSkeleton<NewsDto>): JSX.Element => {
     const { uri, title, imageUri, date } = formatNews(news);
-    const formattedDate = useFormatDate(date);
+    const formatDate = useFormatDate();
 
     return (
         <TouchableWithoutFeedback onPress={() => Linking.openURL(uri)}>
@@ -15,7 +15,7 @@ const SimpleNewsCard = ({ ...news }: WithSkeleton<NewsDto>): JSX.Element => {
                 <Col gap={12} justifyContent="center">
                     <NewsImage source={{ uri: imageUri }} />
                     <Col gap={2}>
-                        <NewDate variant="body3Regular">{formattedDate}</NewDate>
+                        <NewDate variant="body3Regular">{formatDate(date)}</NewDate>
                         <NewTitle variant="body2Strong">{title}</NewTitle>
                     </Col>
                 </Col>
