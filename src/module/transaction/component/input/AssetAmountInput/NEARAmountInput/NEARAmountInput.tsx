@@ -4,6 +4,7 @@ import { config } from "config";
 import { useNEARAmountInputValidator } from "./hook/useNEARAmountInputValidator";
 import BaseAssetAmountInput from "../BaseAssetAmountInput/BaseAssetAmountInput";
 import { NumericInputProps } from "module/common/component/input/NumericInput/NumericInput";
+import { handleAssetAmountChange } from "../BaseAssetAmountInput/utils/handleAssetAmountChange";
 
 export interface NEARAmountInputProps extends Omit<NumericInputProps, "validators" | "suffix"> {
     index: number;
@@ -14,14 +15,7 @@ const NEARAmountInput = ({ index, defaultValue = "", value, onChange, error: err
     const { error } = useNEARAmountInputValidator({ index, amount });
     const { isLoading } = useGetBalance(index);
 
-    const handleOnChange = (value: string) => {
-        const [int, decimals] = value.split(".");
-        if (decimals) {
-            setAmount(`${int}.${decimals.slice(0, 24)}`); // 24 is the max precision on NEAR
-        } else {
-            setAmount(value);
-        }
-    };
+    const handleOnChange = (value: string) => handleAssetAmountChange({ amount: value, setAmount, decimals: 24 });
 
     return (
         <BaseAssetAmountInput

@@ -65,9 +65,6 @@ const config = createConfig({
                 errorElement: false,
             },
         },
-        NumericInput: {
-            maxDecimals: 200,
-        },
         RadioButton: {
             defaultProps: {
                 icon: <RadioUncheckedIcon />,

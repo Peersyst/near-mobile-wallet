@@ -12,7 +12,7 @@ export interface SelectAccountScreenProps {
     onSubmit: FormProps["onSubmit"];
     children?: ReactNode;
     submitText?: string;
-    minBalanceToCreateAccount?: WalletSelectorProps["minBalance"];
+    minBalance?: WalletSelectorProps["minBalance"];
     style?: ViewStyle;
 }
 
@@ -22,7 +22,7 @@ const SelectAccountScreen = ({
     children,
     submitText,
     style,
-    minBalanceToCreateAccount = config.minBalanceToCreateAccount,
+    minBalance = config.minBalanceToCreateAccount,
 }: SelectAccountScreenProps) => {
     const translate = useTranslate();
     return (
@@ -30,7 +30,7 @@ const SelectAccountScreen = ({
             <Col gap="10%" flex={1}>
                 <Col flex={1} gap="6%">
                     {children}
-                    <WalletSelectorGroup name={name} defaultValue={0} minBalance={minBalanceToCreateAccount} />
+                    <WalletSelectorGroup name={name} defaultValue={0} minBalance={minBalance} />
                 </Col>
                 <Button fullWidth type="submit">
                     {submitText || translate("continue")}
