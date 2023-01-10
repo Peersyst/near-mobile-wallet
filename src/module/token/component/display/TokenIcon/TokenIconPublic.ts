@@ -1,11 +1,11 @@
 const TOKENS = [
     { url: "", symbol: "near" },
-    { url: "https://pub-f313cac3edf54338910a8f6842fd0e9c.r2.dev/USDT.e.png", symbol: "nUSDT" },
-    { url: "https://pub-f313cac3edf54338910a8f6842fd0e9c.r2.dev/USDC.png", symbol: "nUSDC" },
-    { url: "", symbol: "nDAI" },
-    { url: "", symbol: "nWETH" },
-    { url: "", symbol: "n1INCH" },
-    { url: "", symbol: "nGRT" },
+    { url: "https://pub-f313cac3edf54338910a8f6842fd0e9c.r2.dev/USDT.e.png", symbol: "USDT.e" },
+    { url: "https://pub-f313cac3edf54338910a8f6842fd0e9c.r2.dev/USDC.png", symbol: "USDC" },
+    { url: "", symbol: "DAI" },
+    { url: "", symbol: "WETH" },
+    { url: "", symbol: "1INCH" },
+    { url: "", symbol: "GRT" },
     { url: "https://pub-f313cac3edf54338910a8f6842fd0e9c.r2.dev/SKYWARD.png", symbol: "SKYWARD" },
     { url: "https://pub-f313cac3edf54338910a8f6842fd0e9c.r2.dev/REF.png", symbol: "REF" },
     { url: "", symbol: "BANANA" },
@@ -54,8 +54,4 @@ const TOKENS = [
 export function getTokenIconPublic(symbol: string) {
     const token = TOKENS.find((el) => el.symbol === symbol && el.url !== "");
     return token ? token.url : false;
-}
-
-export function isTokenIconPublic(symbol: string) {
-    return TOKENS.find((el) => el.symbol === symbol && el.url !== "");
 }

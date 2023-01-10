@@ -1,6 +1,6 @@
 import { placeholder_image } from "images";
 import { TokenIconRoot } from "./TokenIcon.styles";
-import { getTokenIconPublic, isTokenIconPublic } from "./TokenIconPublic";
+import { getTokenIconPublic } from "./TokenIconPublic";
 
 export interface TokenSize {
     width: number;
@@ -14,7 +14,8 @@ export interface TokenIconProps extends Partial<TokenSize> {
 
 const TokenIcon = ({ height = 44, width = 44, symbol }: TokenIconProps) => {
     const sizeProps = { height, width };
-    return <TokenIconRoot source={isTokenIconPublic(symbol) ? { uri: getTokenIconPublic(symbol) } : placeholder_image} {...sizeProps} />;
+    const iconUri = getTokenIconPublic(symbol);
+    return <TokenIconRoot source={iconUri ? { uri: iconUri } : placeholder_image} {...sizeProps} />;
 };
 
 export default TokenIcon;
