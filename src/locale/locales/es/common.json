@@ -203,5 +203,6 @@
     "collection": "Colección",
     "choose_what_to_send": "Elige que quieres enviar",
     "select_asset": "Elige entre tus activos",
-    "send_only_one_nft": "Solo puedes enviar 1 Nft"
+    "send_only_one_nft": "Solo puedes enviar 1 Nft",
+    "select_the_amount_to_send": "Selecciona la cantidad a enviar"
 }

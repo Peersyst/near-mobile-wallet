@@ -38,7 +38,6 @@ export const useFTAmountInputValidator = ({ amount, ft }: UseFtAmountInputValida
     ];
 
     //Check the amount is greater than the minDecimal
-
     const formatedMinDecimal =
         "0." +
         Array(parseInt(decimals, 10) - 1)

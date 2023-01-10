@@ -17,7 +17,7 @@ const NEARAmountInput = ({ index, disabled, defaultValue = "", value, onChange, 
     const handleOnChange = (value: string) => {
         const [int, decimals] = value.split(".");
         if (decimals) {
-            setAmount(`${int}.${decimals.slice(0, 24)}`); // 24 is the max precision of NEAR
+            setAmount(`${int}.${decimals.slice(0, 24)}`); // 24 is the max precision on NEAR
         } else {
             setAmount(value);
         }

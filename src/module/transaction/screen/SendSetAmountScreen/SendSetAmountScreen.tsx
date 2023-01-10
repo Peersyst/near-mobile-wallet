@@ -1,21 +1,21 @@
 import { Col, Form, useSetTab, Suspense } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import { useRecoilState } from "recoil";
-import sendRecoilState from "module/transaction/state/SendState";
+import sendRecoilState, { SendState } from "module/transaction/state/SendState";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import { useTranslate } from "module/common/hook/useTranslate";
 import WalletAssetSelect from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect";
-import TextField from "module/common/component/input/TextField/TextField";
 import AssetAmountInput from "module/transaction/component/input/AssetAmountInput/AssetAmountInput";
 import { useState } from "react";
 
-export interface SendAmountAndMessageResult {
-    amount: string;
-    message: string;
-    token: string;
-}
+export type SendAmountAndMessageResult = Pick<SendState, "amount" | "asset">;
+
+export const SEND_SET_AMOUNT_FORM_KEYS: Partial<Record<keyof SendState, keyof SendState>> = {
+    asset: "asset",
+    amount: "amount",
+};
 
 const SendSetAmountScreen = (): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
@@ -27,7 +27,11 @@ const SendSetAmountScreen = (): JSX.Element => {
     const setTab = useSetTab();
 
     const handleSubmit = (res: SendAmountAndMessageResult): void => {
-        console.log(res);
+        setSendState((oldState) => ({
+            ...oldState,
+            res,
+        }));
+        setTab(SendScreens.CONFIRMATION);
     };
 
     return (
@@ -39,9 +43,14 @@ const SendSetAmountScreen = (): JSX.Element => {
                         onChange={(asset) => setAsset(asset)}
                         value={asset}
                         index={senderWalletIndex}
-                        name="jordi"
+                        name={SEND_SET_AMOUNT_FORM_KEYS.asset}
                     />
-                    <AssetAmountInput label={"Enter the amount to send"} asset={asset} name="amount" index={sendState.senderWalletIndex} />
+                    <AssetAmountInput
+                        label={translate("select_the_amount_to_send")}
+                        asset={asset}
+                        name={SEND_SET_AMOUNT_FORM_KEYS.amount}
+                        index={sendState.senderWalletIndex}
+                    />
                     <Button type="submit" fullWidth>
                         {translate("next")}
                     </Button>
