@@ -55,9 +55,6 @@ const config = createConfig({
                 showCloseButton: false,
             },
         },
-        NumericInput: {
-            maxDecimals: envConfig.maxNumberOfDecimals,
-        },
         Select: {
             defaultProps: {
                 icon: <ChevronDownIcon />,
@@ -67,6 +64,9 @@ const config = createConfig({
             defaultProps: {
                 errorElement: false,
             },
+        },
+        NumericInput: {
+            maxDecimals: 200,
         },
         RadioButton: {
             defaultProps: {

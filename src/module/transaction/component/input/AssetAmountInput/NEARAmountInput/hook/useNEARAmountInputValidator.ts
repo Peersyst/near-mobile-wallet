@@ -17,6 +17,13 @@ export const useNEARAmountInputValidator = ({ amount, index }: UseNEARAmountInpu
     const translateError = useTranslate("error");
     const { data: { available } = { available: "0" } } = useGetBalance(index);
 
+    //Check if has enough balance
+    const hasEnoughBalance = isNEARAmountGreaterThanThreshold(available, config.estimatedFee);
+    const finalHasEnoughBalanceError: TextFieldProps["error"] = !hasEnoughBalance && [
+        !hasEnoughBalance,
+        translateError("insufficient_balance"),
+    ];
+
     //Check if amount is less than available balance minus the fee
     const finalAvailable = subtractNearAmounts(available, config.estimatedFee);
     const isGreaterThanMax = isNEARAmountGreaterThanThreshold(amount, finalAvailable);
@@ -33,11 +40,11 @@ export const useNEARAmountInputValidator = ({ amount, index }: UseNEARAmountInpu
     //Check if the amount is greater than zero
     const isGreaterThanZero = isNEARAmountGreaterThanThreshold(amount, "0");
     const finalMinAmountError: TextFieldProps["error"] = !isGreaterThanZero && [
-        !isGreaterThanZero,
+        !isGreaterThanZero || amount === "",
         translateError("invalid_number_gt", { n: "0 " + config.tokenName }),
     ];
 
-    const error = finalMaxAmountError || finalMinAmountError;
+    const error = finalHasEnoughBalanceError || finalMaxAmountError || finalMinAmountError;
 
     return {
         error,

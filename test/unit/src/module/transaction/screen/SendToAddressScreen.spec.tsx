@@ -1,13 +1,16 @@
-import { render, translate } from "test-utils";
+import { formatBalance, render, translate } from "test-utils";
 import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
 import * as Recoil from "recoil";
 import * as Genesys from "@peersyst/react-native-components";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import { MOCKED_NAMED_ADDRESS, UseGetBalanceMock, UseWalletStateMock } from "test-mocks";
+import { config } from "config";
 
 describe("SendToAddressScreen tests", () => {
-    new UseGetBalanceMock();
+    const {
+        balance: { available },
+    } = new UseGetBalanceMock();
     const { state } = new UseWalletStateMock();
     afterAll(() => {
         jest.restoreAllMocks();
@@ -36,6 +39,7 @@ describe("SendToAddressScreen tests", () => {
         jest.spyOn(Genesys, "useSetTab").mockReturnValue(setTab);
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ network: "mainnet" });
         const screen = render(<SendToAddressScreen />);
+        await waitFor(() => expect(screen.getByText(formatBalance(available, { units: config.tokenName }))).toBeDefined());
         const input = screen.getByPlaceholderText(translate("address"));
         fireEvent.changeText(input, MOCKED_NAMED_ADDRESS);
         fireEvent.press(screen.getByText(translate("next")));

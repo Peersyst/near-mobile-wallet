@@ -11,6 +11,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { CameraIcon } from "icons";
 import QrScanner from "module/common/component/input/QrScanner/QrScanner";
 import settingsState from "module/settings/state/SettingsState";
+import { config } from "config";
 
 export interface SendForm {
     sender: number;
@@ -53,6 +54,7 @@ const SendToAddressScreen = () => {
                         label={translate("select_a_wallet")}
                         required
                         name="sender"
+                        minBalance={config.estimatedFee}
                         defaultValue={sendState.senderWalletIndex}
                     />
                     <TextField

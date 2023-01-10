@@ -11,10 +11,18 @@ export interface TokenAmountInputProps extends Omit<NumericInputProps, "validato
 const TokenAmountInput = ({ ft, defaultValue = "", value, onChange, error: errorProp, ...rest }: TokenAmountInputProps) => {
     const [amount, setAmount] = useControlled(defaultValue, value, onChange);
     const {
-        metadata: { symbol },
+        metadata: { symbol, decimals: decimalsMetadata },
     } = ft;
     const { error } = useFTAmountInputValidator({ amount, ft });
-    return <BaseAssetAmountInput error={errorProp || error} value={amount} onChange={setAmount} units={symbol} {...rest} />;
+    const handleOnChange = (value: string) => {
+        const [int, decimals] = value.split(".");
+        if (decimals) {
+            setAmount(`${int}.${decimals.slice(0, Number(decimalsMetadata))}`);
+        } else {
+            setAmount(value);
+        }
+    };
+    return <BaseAssetAmountInput error={errorProp || error} value={amount} onChange={handleOnChange} units={symbol} {...rest} />;
 };
 
 export default TokenAmountInput;
