@@ -27,10 +27,13 @@ const SendSetAmountScreen = (): JSX.Element => {
     const setTab = useSetTab();
 
     const handleSubmit = (res: SendAmountAndMessageResult): void => {
-        setSendState((oldState) => ({
-            ...oldState,
-            res,
-        }));
+        setSendState((oldState) => {
+            console.log(oldState);
+            return {
+                ...oldState,
+                res,
+            };
+        });
         setTab(SendScreens.CONFIRMATION);
     };
 
@@ -48,6 +51,7 @@ const SendSetAmountScreen = (): JSX.Element => {
                     <AssetAmountInput
                         label={translate("select_the_amount_to_send")}
                         asset={asset}
+                        placeholder={translate("enter_amount")}
                         name={SEND_SET_AMOUNT_FORM_KEYS.amount}
                         index={sendState.senderWalletIndex}
                     />
