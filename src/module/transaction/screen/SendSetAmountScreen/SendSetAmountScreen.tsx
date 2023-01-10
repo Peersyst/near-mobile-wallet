@@ -27,13 +27,10 @@ const SendSetAmountScreen = (): JSX.Element => {
     const setTab = useSetTab();
 
     const handleSubmit = (res: SendAmountAndMessageResult): void => {
-        setSendState((oldState) => {
-            console.log(oldState);
-            return {
-                ...oldState,
-                res,
-            };
-        });
+        setSendState((oldState) => ({
+            ...oldState,
+            res,
+        }));
         setTab(SendScreens.CONFIRMATION);
     };
 

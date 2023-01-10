@@ -1,5 +1,5 @@
 import { useControlled } from "@peersyst/react-hooks";
-import { FormControl, FormControlLabel, Row } from "@peersyst/react-native-components";
+import { FormControl, FormControlLabel } from "@peersyst/react-native-components";
 import { useModalWrapper } from "module/common/hook/useModalWrapper";
 import { useGetAllAssets } from "module/wallet/query/useGetAllAssets";
 import { AssetSelectProvider } from "./context/AssetSelectContext";

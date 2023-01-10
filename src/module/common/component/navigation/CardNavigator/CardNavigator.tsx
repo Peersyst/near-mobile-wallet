@@ -1,5 +1,5 @@
 import { NavbarProps } from "module/common/component/navigation/Navbar/Navbar.types";
-import { ReactElement, ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import Navbar from "module/common/component/navigation/Navbar/Navbar";
 import { LayoutChangeEvent, ViewStyle } from "react-native";
 import { CardNavigatorContent, CardNavigatorRoot, CardNavigatorWrapper } from "./CardNavigator.styles";

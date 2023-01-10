@@ -1,10 +1,8 @@
-import { WrapperModalBaseChildrenProps } from "module/common/component/feedback/WrapperModal/WrapperModal";
-import { useModalWrapper } from "module/common/hook/useModalWrapper";
-import { useState } from "react";
+import { BaseUseModalWrapperReturn, useModalWrapper } from "module/common/hook/useModalWrapper";
 import ConfirmPinModal, { ConfirmPinScreenProps } from "./ConfirmPinModal";
 
 export type ConfirmPinModalWrapperProps = Omit<ConfirmPinScreenProps, "open" | "children"> & {
-    children: (props: WrapperModalBaseChildrenProps) => JSX.Element;
+    children: (props: BaseUseModalWrapperReturn) => JSX.Element;
 };
 
 export function ConfirmPinModalWrapper({ children, onPinConfirmed, onClose, ...rest }: ConfirmPinModalWrapperProps): JSX.Element {

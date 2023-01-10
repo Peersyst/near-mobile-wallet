@@ -1,9 +1,12 @@
 import { useState } from "react";
 
-export interface UseModalWrapperReturn {
-    open: boolean;
+export interface BaseUseModalWrapperReturn {
     showModal: () => void;
     hideModal: () => void;
+}
+
+export interface UseModalWrapperReturn extends BaseUseModalWrapperReturn {
+    open: boolean;
 }
 
 export function useModalWrapper(): UseModalWrapperReturn {

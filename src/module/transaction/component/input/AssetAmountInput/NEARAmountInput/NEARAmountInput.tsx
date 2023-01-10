@@ -9,7 +9,7 @@ export interface NEARAmountInputProps extends Omit<NumericInputProps, "validator
     index: number;
 }
 
-const NEARAmountInput = ({ index, disabled, defaultValue = "", value, onChange, error: errorProp, ...rest }: NEARAmountInputProps) => {
+const NEARAmountInput = ({ index, defaultValue = "", value, onChange, error: errorProp, ...rest }: NEARAmountInputProps) => {
     const [amount, setAmount] = useControlled(defaultValue, value, onChange);
     const { error } = useNEARAmountInputValidator({ index, amount });
     const { isLoading } = useGetBalance(index);

@@ -7,14 +7,7 @@ export type BaseAssetAmountInputProps = Omit<NumericInputProps, "suffix"> & {
     units: string;
 };
 
-const BaseAssetAmountInput = ({
-    loading = false,
-
-    units,
-    disabled,
-
-    ...rest
-}: BaseAssetAmountInputProps) => {
+const BaseAssetAmountInput = ({ loading = false, units, disabled, ...rest }: BaseAssetAmountInputProps) => {
     return (
         <NumericInput
             disabled={loading || disabled}

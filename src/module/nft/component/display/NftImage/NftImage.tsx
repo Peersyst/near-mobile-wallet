@@ -7,6 +7,7 @@ export interface NftImageProps extends Omit<ImageProps, "source"> {
     uri?: string | null;
 }
 
+// eslint-disable-next-line react/display-name
 const NftImage = memo(({ uri }: NftImageProps) => {
     return (
         <NftImageRoot

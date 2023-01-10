@@ -8,7 +8,7 @@ export interface TokenAmountInputProps extends Omit<NumericInputProps, "validato
     ft: Token;
 }
 
-const TokenAmountInput = ({ ft, disabled, defaultValue = "", value, onChange, error: errorProp, ...rest }: TokenAmountInputProps) => {
+const TokenAmountInput = ({ ft, defaultValue = "", value, onChange, error: errorProp, ...rest }: TokenAmountInputProps) => {
     const [amount, setAmount] = useControlled(defaultValue, value, onChange);
     const {
         metadata: { symbol },
