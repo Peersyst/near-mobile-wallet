@@ -29,16 +29,14 @@ const CardNavigator = ({ navbar: navbarProps, children, style }: CardNavigatorPr
                 {navbarProps && <Navbar {...navbarProps} />}
                 <Divider />
                 <KeyboardAwareScrollView
-                    style={{ flex: 1 }}
+                    style={{ flex: 1, height: "100%" }}
                     keyboardShouldPersistTaps="handled"
                     enableOnAndroid={true}
-                    alwaysBounceVertical={false}
                     contentContainerStyle={{ flexGrow: 1 }}
+                    alwaysBounceVertical={false}
                     enableAutomaticScroll={!keyboardPaddingEnabled}
                 >
-                    <CardNavigatorContent flex={1} justifyContent="flex-end">
-                        {children}
-                    </CardNavigatorContent>
+                    <CardNavigatorContent flex={1}>{children}</CardNavigatorContent>
                 </KeyboardAwareScrollView>
             </CardNavigatorWrapper>
         </CardNavigatorRoot>
