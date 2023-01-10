@@ -1,6 +1,5 @@
 import { useQuery } from "react-query";
 import { QueryResult } from "query-utils";
-import { FiatCurrencyType } from "module/settings/state/SettingsState";
 import Queries from "../../../query/queries";
 
 // Refetch the data every 3 minutes
@@ -10,11 +9,11 @@ interface tokens {
     token: [];
 }
 
-export const useGetTokenPrice = (currency: FiatCurrencyType): QueryResult<tokens | undefined> =>
+export const useGetTokenPrice = (): QueryResult<tokens | undefined> =>
     useQuery(
-        [Queries.TOKEN_PRICE, currency],
+        [Queries.TOKEN_PRICE],
         async () => {
             return await (await fetch("https://indexer.ref.finance/list-token-price")).json();
         },
-        { enabled: !!currency, refetchInterval: CONVERSION_PRICE_INTERVAL },
+        { refetchInterval: CONVERSION_PRICE_INTERVAL },
     );
