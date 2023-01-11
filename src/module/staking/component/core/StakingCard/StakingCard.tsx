@@ -1,38 +1,16 @@
-import { BaseWalletCardRoot } from "module/common/component/surface/BaseWalletCard/BaseWalletCard.styles";
-import Account from "module/wallet/component/display/Account/Account";
 import { WalletCardProps } from "module/wallet/component/core/WalletCard/WalletCard";
-import { Row, useModal } from "@peersyst/react-native-components";
-import StakingInfoLabel from "module/staking/component/core/StakingInfoLabel/StakingInfoLabel";
-import { useTranslate } from "module/common/hook/useTranslate";
-import useGetTotalStaking from "module/staking/query/useGetTotalStaking";
-import Button from "module/common/component/input/Button/Button";
-import { SlashIcon } from "icons";
-import StakeModal from "module/staking/component/core/StakeModal/StakeModal";
-import useGetBalance from "module/wallet/query/useGetBalance";
+import BaseWalletCard from "module/common/component/surface/BaseWalletCard/BaseWalletCard";
+import StakingCardContent from "module/staking/component/core/StakingCard/StakingCardContent/StakingCardContent";
+import StakingCardButtons from "module/staking/component/core/StakingCard/StakingCardButtons/StakingCardButtons";
 
-const StakingCard = ({ wallet: { account, index, imported } }: WalletCardProps): JSX.Element => {
-    const translate = useTranslate();
-    const { isLoading, data: { staked } = { staked: 0 } } = useGetTotalStaking(index);
-    const { data: { available } = { available: 0 } } = useGetBalance(index);
-    const { showModal } = useModal();
-
-    const availableLabel = translate("available");
-    const stakedLabel = translate("staked");
-
+const StakingCard = ({ wallet }: WalletCardProps): JSX.Element => {
     return (
-        <BaseWalletCardRoot gap={16}>
-            <Account imported={imported} address={account} variant="body2Strong" />
-            <Row alignItems="center" gap={16}>
-                <StakingInfoLabel loading={isLoading} amount={available} label={availableLabel} />
-                <SlashIcon />
-                <StakingInfoLabel loading={isLoading} amount={staked} label={stakedLabel} />
-            </Row>
-            <Row>
-                <Button style={{ width: 272 }} variant="secondary" size="md" onPress={() => showModal(StakeModal)}>
-                    {translate("stakeMyTokens")}
-                </Button>
-            </Row>
-        </BaseWalletCardRoot>
+        <BaseWalletCard wallet={wallet} gap={26}>
+            {{
+                content: <StakingCardContent wallet={wallet} />,
+                button: <StakingCardButtons />,
+            }}
+        </BaseWalletCard>
     );
 };
 

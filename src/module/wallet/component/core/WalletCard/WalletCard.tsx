@@ -6,18 +6,16 @@ import { useRecoilValue } from "recoil";
 import { useState } from "react";
 import { impactAsync, ImpactFeedbackStyle } from "expo-haptics";
 import Balance from "../../display/Balance/Balance";
-import { Col } from "@peersyst/react-native-components";
-import { BaseWalletCardRoot } from "module/common/component/surface/BaseWalletCard/BaseWalletCard.styles";
-import Account from "../../display/Account/Account";
 import useNativeTokenConversion from "module/common/hook/useNativeTokenConversion";
+import BaseWalletCard from "module/common/component/surface/BaseWalletCard/BaseWalletCard";
 
 export interface WalletCardProps {
     wallet: Wallet;
 }
 
-const WalletCard = ({ wallet: { account, index, imported } }: WalletCardProps): JSX.Element => {
+const WalletCard = ({ wallet }: WalletCardProps): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
-    const { data: { available } = { available: "0" }, isLoading } = useGetBalance(index);
+    const { data: { available } = { available: "0" }, isLoading } = useGetBalance(wallet.index);
     const { value: fiatValue } = useNativeTokenConversion(fiat, available);
     const [showFiat, setCurrencyMode] = useState<boolean>(false);
 
@@ -27,25 +25,26 @@ const WalletCard = ({ wallet: { account, index, imported } }: WalletCardProps): 
     };
 
     return (
-        <BaseWalletCardRoot>
-            <Col style={{ width: "100%" }} alignItems="center" gap={10} justifyContent="center">
-                <Account imported={imported} address={account} variant="body2Strong" />
-                <Balance
-                    textAlign="center"
-                    style={{ width: "100%" }}
-                    isLoading={isLoading}
-                    options={{ maximumFractionDigits: showFiat ? 2 : 3 }}
-                    spinnerProps={{ color: (p) => p.white, size: 42 }}
-                    onPress={changeCurrencyMode}
-                    balance={showFiat ? fiatValue : available}
-                    variant="h3Strong"
-                    color={(p) => p.white}
-                    units={showFiat ? fiat : "token"}
-                    unitsPosition={showFiat ? "left" : "right"}
-                />
-            </Col>
-            <WalletCardButtons />
-        </BaseWalletCardRoot>
+        <BaseWalletCard wallet={wallet} gap={20}>
+            {{
+                content: (
+                    <Balance
+                        textAlign="center"
+                        style={{ width: "100%" }}
+                        isLoading={isLoading}
+                        options={{ maximumFractionDigits: showFiat ? 2 : 3 }}
+                        spinnerProps={{ color: (p) => p.white, size: 42 }}
+                        onPress={changeCurrencyMode}
+                        balance={showFiat ? fiatValue : available}
+                        variant="h3Strong"
+                        color={(p) => p.white}
+                        units={showFiat ? fiat : "token"}
+                        unitsPosition={showFiat ? "left" : "right"}
+                    />
+                ),
+                button: <WalletCardButtons />,
+            }}
+        </BaseWalletCard>
     );
 };
 
