@@ -1,5 +1,6 @@
 import StakingInfoLabel from "module/staking/component/core/StakingInfoLabel/StakingInfoLabel";
 import { render } from "test-utils";
+import config from "config/config";
 
 describe("Test for StakingInfoLabel component", () => {
     test("Renders correctly with data", () => {
@@ -13,6 +14,6 @@ describe("Test for StakingInfoLabel component", () => {
         );
 
         expect(screen.getByText(mockedStakingInfoLabel.amount.toString())).toBeDefined();
-        expect(screen.getByText(mockedStakingInfoLabel.label)).toBeDefined();
+        expect(screen.getByText(config.tokenName + " " + mockedStakingInfoLabel.label)).toBeDefined();
     });
 });
