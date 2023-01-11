@@ -14,5 +14,6 @@
     "coingeckoTokenApiId": "near",
     "fetchPriceConversionInterval": 180000,
     "minBalanceToCreateAccount": "0.1",
-    "estimatedFee": "0.00005"
+    "estimatedFee": "0.00005",
+    "enableIndexer": false
 }

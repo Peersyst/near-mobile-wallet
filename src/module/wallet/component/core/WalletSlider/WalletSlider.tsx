@@ -2,14 +2,15 @@ import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkTh
 import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletSliderRoot } from "./WalletSlider.styles";
 import AddWalletCard from "module/wallet/component/display/AddWalletCard/AddWalletCard";
+import { Wallet } from "module/wallet/state/WalletState";
 
 interface WalletSliderProps {
-    cards: JSX.Element[];
+    Card: (props: { wallet: Wallet }) => JSX.Element;
 }
 
-const WalletSlider = ({ cards }: WalletSliderProps): JSX.Element => {
+const WalletSlider = ({ Card }: WalletSliderProps): JSX.Element => {
     const {
-        state: { selectedWallet = 0 },
+        state: { selectedWallet = 0, wallets },
         setSelectedWallet,
     } = useWalletState();
 
@@ -22,7 +23,9 @@ const WalletSlider = ({ cards }: WalletSliderProps): JSX.Element => {
                 gap={0}
                 pagePadding={{ horizontal: 20 }}
             >
-                {cards}
+                {wallets.map((wallet) => (
+                    <Card wallet={wallet} key={wallet.account} />
+                ))}
                 <AddWalletCard />
             </WalletSliderRoot>
         </DarkThemeProvider>

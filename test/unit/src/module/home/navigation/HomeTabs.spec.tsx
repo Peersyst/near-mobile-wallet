@@ -8,7 +8,7 @@ describe("HomeTabs tests", () => {
         new UseWalletStateMock();
         new UseServiceInstanceMock();
         const screen = render(<HomeTabs />);
-        expect(screen.getAllByText(translate("transactions"))).toHaveLength(1);
+        expect(screen.getAllByText(translate("recent_activity"))).toHaveLength(1);
         fireEvent.press(screen.getByText(translate("currencies")));
         expect(screen.getAllByText(translate("currencies"))).toHaveLength(1);
         fireEvent.press(screen.getByText(translate("nfts")));

@@ -94,6 +94,11 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         return walletGroup?.walletIds;
     }
 
+    async getWalletPrivateKey(walletId: number, network: NetworkType): Promise<string | undefined> {
+        const walletGroup = await this.getSecureWalletGroupByWalletId(walletId, network);
+        return walletGroup?.privateKey;
+    }
+
     async setSecureWallets(wallets: SecureWalletInfo[], network: NetworkType, secureStorageParam?: SecureWalletStorageType): Promise<void> {
         const secureStorage = secureStorageParam ||
             (await this.getSecure()) || { pin: undefined, mnemonic: undefined, testnet: [], mainnet: [], mainPrivateKey: undefined };
@@ -197,41 +202,5 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
             const newWallets = WalletUtils.deleteWallet(wallets, index);
             await this.setUnencryptedWallets(newWallets, network, storage);
         }
-    }
-
-    async getUncommittedTransactionHashes(
-        index: number,
-        network: NetworkType,
-    ): Promise<UnencryptedWalletInfo["uncommittedTransactionHashes"]> {
-        return (await this.getUnencryptedWallet(index, network))?.uncommittedTransactionHashes;
-    }
-
-    async updateUncommitedTransactionHashes(
-        index: number,
-        network: NetworkType,
-        hashes: string[],
-        storageParam?: UnsecureWalletStorageType,
-    ): Promise<void> {
-        const storage = storageParam || (await this.get());
-        if (!storage) return;
-        const wallets = WalletUtils.orderWallets(storage[network] || []);
-        const newWallets = WalletUtils.updateWalletUncommittedTxHashes(wallets, hashes, index);
-        return this.setUnencryptedWallets(newWallets, network, storage);
-    }
-
-    async addUncommittedTransactionHash(index: number, network: NetworkType, hash: string): Promise<void> {
-        const storage = await this.get();
-        if (!storage) return;
-        const uncommittedTransactionHashes = (await this.getUncommittedTransactionHashes(index, network)) || [];
-        return this.updateUncommitedTransactionHashes(index, network, [...uncommittedTransactionHashes, hash], storage);
-    }
-
-    async removeUncommittedTransactionHash(index: number, network: NetworkType, hash: string): Promise<void> {
-        const storage = await this.get();
-        const wallets = storage?.[network];
-        const uncommittedTransactionHashes = WalletUtils.getWallet(index, wallets)?.uncommittedTransactionHashes;
-        if (!storage || !wallets || !uncommittedTransactionHashes) return;
-        const newWallets = WalletUtils.removeWalletUncommittedTxHash(wallets, index, hash);
-        return this.setUnencryptedWallets(newWallets, network, storage);
     }
 })();

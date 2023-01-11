@@ -1,12 +1,7 @@
-import { translate } from "./translate";
+import { formatDate } from "module/common/hook/useFormatDate";
 
-const formatDate = (
-    date?: Date | string | number,
-    options: Intl.DateTimeFormatOptions = { weekday: "short", day: "2-digit", month: "short", year: "numeric" },
-) =>
-    translate("date", {
-        val: date ? new Date(date) : Date.now(),
-        ...options,
-    });
+export const formatDateTest = (date: Date | string | number) => {
+    return formatDate("en", date);
+};
 
-export default formatDate;
+export default formatDateTest;

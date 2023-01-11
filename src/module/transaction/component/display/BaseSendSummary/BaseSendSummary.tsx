@@ -6,11 +6,11 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import Typography from "module/common/component/display/Typography/Typography";
 import Container from "module/common/component/display/Container/Container";
 import { config } from "config";
-import { WalletOperations } from "module/wallet/utils/WalletOperations";
 import useNativeTokenConversion from "module/common/hook/useNativeTokenConversion";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { ViewStyle } from "react-native";
+import { BalanceOperations } from "near-peersyst-sdk";
 
 export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee" | "token">> {
     amount: string | number;
@@ -70,7 +70,7 @@ const BaseSendSummary = ({ amount, fee, token, children, total, showFiat, style 
                         <Typography variant="body2Regular" color={(palette) => palette.primary} textAlign="center">
                             {translate("total")}:{" "}
                             <Balance
-                                balance={WalletOperations.add(amount, fee)}
+                                balance={BalanceOperations.add(amount, fee)}
                                 variant="body2Strong"
                                 units={token}
                                 color={(palette) => palette.primary}

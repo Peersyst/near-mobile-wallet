@@ -1,10 +1,9 @@
-import { Col } from "@peersyst/react-native-components";
 import HomeSlider from "module/home/component/core/HomeSlider/HomeSlider";
-import BaseMainGradientScreen from "module/main/component/layout/BaseMainGradientScreen/BaseMainGradientScreen";
 import HomeTabs from "../component/navigation/HomeTabs";
 import AddWallet from "module/wallet/component/core/AddWallet/AddWallet";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { MainHomeCard } from "./HomeScreen.styles";
+import MainGradientScreen from "module/main/component/layout/MainGradientScreen/MainGradientScreen";
 
 const HomeScreen = (): JSX.Element => {
     const {
@@ -12,12 +11,12 @@ const HomeScreen = (): JSX.Element => {
     } = useWalletState();
 
     return (
-        <BaseMainGradientScreen>
-            <Col flex={1}>
-                <HomeSlider />
-                <MainHomeCard>{selectedWallet < wallets.length ? <HomeTabs /> : <AddWallet />}</MainHomeCard>
-            </Col>
-        </BaseMainGradientScreen>
+        <MainGradientScreen>
+            {{
+                slider: <HomeSlider />,
+                content: <MainHomeCard>{selectedWallet < wallets.length ? <HomeTabs /> : <AddWallet />}</MainHomeCard>,
+            }}
+        </MainGradientScreen>
     );
 };
 
