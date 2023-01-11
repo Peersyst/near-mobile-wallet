@@ -11,8 +11,9 @@ export interface UseSendTransactionParams {
 const useSendTransaction = (senderIndex: number) => {
     const { serviceInstance } = useServiceInstance(senderIndex);
 
-    return useMutation(async ({ to, amount }: UseSendTransactionParams) => {
-        await serviceInstance.sendTransaction(to, amount.toString()); //TODO: add feeRate + msg
+    return useMutation(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+        /* await serviceInstance.sendTransaction(to, amount.toString()); //TODO: add feeRate + msg */
     });
 };
 

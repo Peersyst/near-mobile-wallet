@@ -14,6 +14,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     const translate = useTranslate();
     const { hideModal } = useModal();
     const { amount, senderWalletIndex, receiverAddress, asset } = useRecoilValue(sendState);
+    console.log(amount, senderWalletIndex, receiverAddress, asset);
     const { fee: feeInDecimals } = useRecoilValue(settingsState);
     const {
         state: { wallets },
@@ -23,12 +24,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     const { mutateAsync: sendTransaction, ...rest } = useSendTransaction(senderWalletIndex!);
 
     async function handleConfirmation() {
-        sendTransaction({
-            amount: amount!, //TODO: revise the unit (yocto vs near)
-            message: message!,
-            to: receiverAddress!,
-            feeRate: feeInDecimals,
-        });
+        await sendTransaction();
     }
 
     function closeModal() {
@@ -39,16 +35,8 @@ const SendConfirmationScreen = (): JSX.Element => {
         <SendTransactionModal onExited={closeModal} useMutationResult={{ ...rest }} sendTransaction={handleConfirmation}>
             {({ showModal, isSuccess, isLoading }) => (
                 <Col gap={24} onStartShouldSetResponder={() => true}>
-                    <SendSummary
-                        amount={amount!}
-                        fee={fee!}
-                        token={token}
-                        message={message!}
-                        senderAccount={senderName}
-                        total
-                        showFiat
-                        receiverAccount={receiverAddress!}
-                    />
+                    <SendSummary senderAccount={senderName!} receiverAccount={receiverAddress!} amount={amount!} />
+
                     <Typography variant="body3Regular" textAlign="center" light>
                         {translate("send_confirmation_text")}
                     </Typography>

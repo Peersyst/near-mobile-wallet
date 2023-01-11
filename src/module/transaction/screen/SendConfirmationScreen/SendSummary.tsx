@@ -8,10 +8,9 @@ import BlockchainAddress from "module/common/component/display/BlockchainAddress
 export interface SendSummaryProps extends BaseSendSummaryProps {
     senderAccount: string;
     receiverAccount: string;
-    message?: SendState["message"];
 }
 
-const SendSummary = ({ senderAccount, message, receiverAccount, ...rest }: SendSummaryProps): JSX.Element => {
+const SendSummary = ({ senderAccount, receiverAccount, ...rest }: SendSummaryProps): JSX.Element => {
     const translate = useTranslate();
     return (
         <BaseSendSummary {...rest}>
@@ -22,7 +21,6 @@ const SendSummary = ({ senderAccount, message, receiverAccount, ...rest }: SendS
                 <SummaryField label={translate("to")}>
                     <BlockchainAddress type="address" variant="body2Strong" address={receiverAccount} />
                 </SummaryField>
-                {message && <SummaryField label={translate("message")}>{message || "-"}</SummaryField>}
             </Col>
         </BaseSendSummary>
     );

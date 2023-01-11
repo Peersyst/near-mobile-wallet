@@ -11,19 +11,20 @@ import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { ViewStyle } from "react-native";
 import { BalanceOperations } from "near-peersyst-sdk";
-import Fee from "../Fee/Fee";
+import Fee, { FeeProps } from "../Fee/Fee";
 
-export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee" | "token">> {
+export interface BaseSendSummaryFullProps {
     amount: string | number;
     children: ReactElement;
     total?: boolean;
     showFiat?: boolean;
     style?: ViewStyle;
+    fee?: FeeProps["fee"];
 }
 
 export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
 
-const BaseSendSummary = ({ amount, fee, token, children, total, showFiat, style }: BaseSendSummaryFullProps): JSX.Element => {
+const BaseSendSummary = ({ amount, fee, children, total, showFiat, style }: BaseSendSummaryFullProps): JSX.Element => {
     const translate = useTranslate();
     const { fiat } = useRecoilValue(settingsState);
     const { value: fiatValue } = useNativeTokenConversion(fiat, amount);
@@ -33,39 +34,27 @@ const BaseSendSummary = ({ amount, fee, token, children, total, showFiat, style 
             <Col gap="10%" alignItems="center">
                 <Col gap={2} alignItems="center" style={{ width: "100%" }}>
                     <Typography variant="h4Strong" textAlign="center" numberOfLines={1}>
-                        <Balance
+                        {/*  <Balance
                             balance={amount}
                             variant="h4Strong"
-                            units={token}
+                            units={"token"}
                             options={{ maximumFractionDigits: config.maxNumberOfDecimals }}
-                        />
+                        /> */}
                         {showFiat && (
                             <>
                                 {" "}
-                                <Balance
+                                {/*   <Balance
                                     light
                                     balance={fiatValue}
                                     variant="body2Regular"
                                     action="round"
                                     units={fiat}
                                     options={{ maximumFractionDigits: 2 }}
-                                />
+                                /> */}
                             </>
                         )}
                     </Typography>
-                    <Fee fee={fee} tag="body3" />
-                    {total && (
-                        <Typography variant="body2Regular" color={(palette) => palette.primary} textAlign="center">
-                            {translate("total")}:{" "}
-                            <Balance
-                                balance={BalanceOperations.add(amount, fee)}
-                                variant="body2Strong"
-                                units={token}
-                                color={(palette) => palette.primary}
-                                options={{ maximumFractionDigits: config.maxNumberOfDecimals }}
-                            />
-                        </Typography>
-                    )}
+                    {/*  <Fee fee={fee} tag="body3" /> */}
                 </Col>
                 {children}
             </Col>
