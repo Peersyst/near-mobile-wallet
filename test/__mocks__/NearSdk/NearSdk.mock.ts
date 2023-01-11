@@ -11,7 +11,7 @@ interface NearSdkServiceMockType {
     getAccountTokens: MockFnType;
 }
 
-export const MOCKED_ADDRESS = "0xMockedAddress";
+export const MOCKED_ADDRESS = "3493c5193e78d5723246f9d109af668ba8b17d2128358a5dd0c4e777c1c5e6ee";
 export const MOCKED_NAMED_ADDRESS = "nearmobiletest.near";
 export const MOCKED_PK = "ed25519:5Esk1YZbtUCzptJeWWWC1BraF8UVrkDuiRLftQswAza2n3zctfCBEQ8vwBWcpvnmusxYH7svskm9HenEzuwrHD7h";
 
@@ -23,6 +23,7 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
     getAccountBalance: MockFnType;
     nameIsChoosalbe: MockFnType;
     createNewAccountWithSameSecretKey: MockFnType;
+    getRecentActivity: MockFnType;
     getTotalStakingBalance: MockFnType;
     //TODO: add here all the mock fn that are needed
 
@@ -34,6 +35,7 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
         this.getAccountTokens = jest.fn().mockResolvedValue(new TokensMock());
         this.getAccountBalance = jest.fn().mockResolvedValue(new AccountBalanceMock());
         this.nameIsChoosalbe = jest.fn().mockResolvedValue(true);
+        this.getRecentActivity = jest.fn().mockResolvedValue([]);
         this.createNewAccountWithSameSecretKey = jest.fn().mockResolvedValue(this as any as NearSDKService);
         this.getTotalStakingBalance = jest.fn().mockResolvedValue(new StakingBalanceMock());
     }

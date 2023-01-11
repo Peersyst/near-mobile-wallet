@@ -1,5 +1,6 @@
 import { ExposedBackdropProps } from "@peersyst/react-native-components";
 import { StepsProps } from "module/common/component/display/Steps/Steps";
+import { BaseWalletWithFormScreenProps } from "module/wallet/wallet.types";
 import { ReactNode } from "react";
 
 export interface AddWalletModalProps extends ExposedBackdropProps {
@@ -11,10 +12,7 @@ export interface AddWalletModalProps extends ExposedBackdropProps {
     closeOnWalletCreation?: boolean;
 }
 
-export interface BaseAddWalletModalScreenProps {
-    onSubmit: () => void;
-    submitText?: string;
-}
+export type BaseAddWalletModalScreenProps = BaseWalletWithFormScreenProps;
 
 export interface AddWalletModalContentProps {
     steps: boolean;

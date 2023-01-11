@@ -1,4 +1,4 @@
-import { Col, Form, IconButton, PressableText, Typography, useSetTab, useToast } from "@peersyst/react-native-components";
+import { Col, Form, IconButton, PressableText, useSetTab, useToast } from "@peersyst/react-native-components";
 import TextField from "module/common/component/input/TextField/TextField";
 import { useTheme } from "@peersyst/react-native-styled";
 import Button from "module/common/component/input/Button/Button";
@@ -7,7 +7,6 @@ import { useState } from "react";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import { useRecoilState } from "recoil";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
-import useUncommittedTransaction from "module/transaction/hook/useUncommittedTransaction";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { CameraIcon } from "icons";
 import QrScanner from "module/common/component/input/QrScanner/QrScanner";
@@ -25,7 +24,6 @@ const SendToAddressScreen = () => {
     const { palette } = useTheme();
     const { showToast, hideToast } = useToast();
     const setTab = useSetTab();
-    const uncommittedTransaction = useUncommittedTransaction();
 
     const handleAddressScan = (data: string) => {
         setReceiverAddress(data);
@@ -71,14 +69,9 @@ const SendToAddressScreen = () => {
                         autoCorrect={false}
                     />
                     <Col gap={8}>
-                        <Button type="submit" fullWidth disabled={uncommittedTransaction} loading={uncommittedTransaction}>
+                        <Button type="submit" fullWidth>
                             {translate("next")}
                         </Button>
-                        {uncommittedTransaction && (
-                            <Typography variant="body4Regular" textAlign="center">
-                                {translate("pending_transaction_text")}
-                            </Typography>
-                        )}
                     </Col>
                 </Col>
             </Form>
