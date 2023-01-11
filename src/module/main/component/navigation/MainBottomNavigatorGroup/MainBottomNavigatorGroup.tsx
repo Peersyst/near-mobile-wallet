@@ -3,7 +3,7 @@ import { BottomTab } from "stack-navigator";
 import HomeScreen from "module/home/screen/HomeScreen";
 import NewsScreen from "module/news/screen/NewsScreen";
 import BasePage from "module/common/component/layout/BasePage/BasePage";
-import StakingScreen from "module/staking/StakingScreen";
+import StakingScreen from "module/staking/screen/StakingScreen";
 
 export enum MainBottomScreens {
     HOME = "Home",

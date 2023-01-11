@@ -1,4 +1,4 @@
-import HomeSlider from "module/home/component/core/HomeSlider";
+import HomeSlider from "module/home/component/core/HomeSlider/HomeSlider";
 import { render } from "test-utils";
 import { UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 

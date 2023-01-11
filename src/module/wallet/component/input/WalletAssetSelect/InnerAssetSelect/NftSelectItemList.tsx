@@ -21,6 +21,7 @@ export const NftSelectItemImage = memo((props: NftImageProps) => {
 export const NftSelectItem = ({ nft }: NftSelectItemProps) => {
     const {
         metadata: { title, media_url },
+        token_id,
     } = nft;
     const { setSelectedAsset } = useAssetSelect();
     const handleOnPress = () => {
@@ -31,7 +32,7 @@ export const NftSelectItem = ({ nft }: NftSelectItemProps) => {
     };
     return (
         <BaseSelectItemCard onPress={handleOnPress}>
-            <NftSelectItemImage uri={media_url} />
+            <NftSelectItemImage uri={media_url} tokenId={token_id} />
             <Typography variant="body2Strong" numberOfLines={1}>
                 {title}
             </Typography>
@@ -46,7 +47,7 @@ const NftSelectItemList = (): JSX.Element => {
     return (
         <>
             {nfts.length > 0 && (
-                <Col gap="3%">
+                <Col>
                     <Typography variant="body2Strong" numberOfLines={1} light>
                         {translate("nfts")}
                     </Typography>
