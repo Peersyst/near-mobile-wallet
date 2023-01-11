@@ -3,7 +3,7 @@ import { config } from "config";
 import { WalletSelectorProps } from "../component/input/WalletSelector/WalletSelector";
 import useGetBalance from "../query/useGetBalance";
 import { Wallet } from "../state/WalletState";
-import { MathOperations } from "near-peersyst-sdk";
+import { BalanceOperations } from "near-peersyst-sdk";
 import useWalletState from "./useWalletState";
 
 export type UseWalletSelectorParams = Pick<WalletSelectorProps, "value" | "defaultValue" | "onChange">;
@@ -30,6 +30,6 @@ export default function useWalletSelector({ defaultValue, value, onChange }: Use
         selectedWallet,
         setWalletIndex,
         wallets,
-        error: !MathOperations.isBigger(available, config.minBalanceToCreateAccount),
+        error: !BalanceOperations.isBigger(available, config.minBalanceToCreateAccount),
     };
 }
