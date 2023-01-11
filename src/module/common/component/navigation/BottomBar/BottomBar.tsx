@@ -6,6 +6,8 @@ import { BottomBarRoot } from "./BottomBar.styles";
 import BottomBarItem from "./BottomBarItem/BottomBarItem";
 import { DatabaseIcon } from "module/common/icons/DatabaseIcon";
 import { useTranslate } from "module/common/hook/useTranslate";
+import { useModal } from "@peersyst/react-native-components";
+import AddStakeModal from "module/staking/component/core/AddStakeModal/AddStakeModal";
 
 type BottomBarProps = Pick<BottomTabBarProps, "state" | "navigation">;
 
@@ -17,10 +19,11 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
             navigation.navigate(link);
         }
     };
+    const { showModal } = useModal();
     return (
         <BottomBarRoot>
             <BottomBarItem
-                onPress={() => handleNavigation(MainBottomScreens.STAKING)}
+                onPress={() => showModal(AddStakeModal)}
                 isActive={activeTab === MainBottomScreens.STAKING}
                 label={translate("staking")}
                 Icon={<DatabaseIcon />}

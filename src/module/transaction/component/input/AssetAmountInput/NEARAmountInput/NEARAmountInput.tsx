@@ -6,7 +6,7 @@ import BaseAssetAmountInput from "../BaseAssetAmountInput/BaseAssetAmountInput";
 import { NumericInputProps } from "module/common/component/input/NumericInput/NumericInput";
 import { handleAssetAmountChange } from "../BaseAssetAmountInput/utils/handleAssetAmountChange";
 
-export interface NEARAmountInputProps extends Omit<NumericInputProps, "validators" | "suffix"> {
+export interface NEARAmountInputProps extends Omit<NumericInputProps, "validators"> {
     index: number;
 }
 

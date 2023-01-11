@@ -204,5 +204,9 @@
     "choose_what_to_send": "Elige que quieres enviar",
     "select_asset": "Elige entre tus activos",
     "send_only_one_nft": "Solo puedes enviar 1 Nft",
-    "select_the_amount_to_send": "Selecciona la cantidad a enviar"
+    "select_the_amount_to_send": "Selecciona la cantidad a enviar",
+    "stake_your_near" : "STAKE tus tokens",
+    "select_validator" : "Seleccionar Validador",
+    "confirm_validator" : "Confirmar Validador",
+    "enter_amount_want_to_stake" : "Ingrese el monto"
 }
