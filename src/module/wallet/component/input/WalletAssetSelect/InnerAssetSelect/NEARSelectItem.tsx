@@ -12,7 +12,7 @@ const NEARSelectItem = (): JSX.Element => {
             type: AssetType.TOKEN,
         });
     };
-    return <BaseTokenSelectItem onPress={handleOnPress} units="token" balance={available} icon="" />;
+    return <BaseTokenSelectItem onPress={handleOnPress} units="token" balance={available} />;
 };
 
 export default NEARSelectItem;

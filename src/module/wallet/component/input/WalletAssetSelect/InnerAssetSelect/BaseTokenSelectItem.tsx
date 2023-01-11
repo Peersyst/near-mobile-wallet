@@ -4,16 +4,16 @@ import { BalanceProps } from "module/wallet/component/display/Balance/Balance.ty
 import BaseSelectItemCard, { BaseSelectItemCardProps } from "./BaseSelectItemCard";
 
 export interface BaseTokenSelectItemProps {
-    icon: TokenIconProps["icon"];
+    icon?: TokenIconProps["icon"];
     balance: BalanceProps["balance"];
     units: BalanceProps["units"];
     onPress: BaseSelectItemCardProps["onPress"];
 }
 
-const BaseTokenSelectItem = ({ icon, balance, units, onPress }: BaseTokenSelectItemProps): JSX.Element => {
+const BaseTokenSelectItem = ({ icon = "", balance, units, onPress }: BaseTokenSelectItemProps): JSX.Element => {
     return (
         <BaseSelectItemCard onPress={onPress}>
-            <TokenIcon icon={icon} />
+            <TokenIcon icon={icon} symbol={units} />
             <Balance balance={balance} variant="body2Strong" units={units} />
         </BaseSelectItemCard>
     );

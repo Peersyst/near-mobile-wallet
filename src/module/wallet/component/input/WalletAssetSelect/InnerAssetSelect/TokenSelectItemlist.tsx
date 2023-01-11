@@ -18,6 +18,7 @@ export const TokenSelectItem = ({ token }: TokenSelectItemProps) => {
             ft: token,
         });
     };
+
     return <BaseTokenSelectItem onPress={handleOnPress} units={symbol} balance={balance} icon={icon} />;
 };
 

@@ -20,18 +20,17 @@ export const AssetValueDisplay = ({ ...rest }: AssetValueDisplayProps): JSX.Elem
     const { index, asset } = useAssetSelect();
     const { data: { available } = { available: "0" } } = useGetBalance(index);
     const { type, nft, ft } = asset ?? {};
-    switch (type) {
-        case AssetType.NFT:
-            return (
+    return (
+        <>
+            {type === AssetType.NFT && (
                 <Typography numberOfLines={1} {...rest}>
                     {nft?.metadata.title}
                 </Typography>
-            );
-        case AssetType.FT:
-            return <Balance units={ft?.metadata.symbol} balance={ft?.balance ?? "0"} {...rest} />;
-        default:
-            return <Balance units="token" balance={available} {...rest} />;
-    }
+            )}
+            {type === AssetType.FT && <Balance units={ft?.metadata.symbol} balance={ft?.balance ?? "0"} {...rest} />}
+            {type === AssetType.TOKEN && <Balance units="token" balance={available} {...rest} />}
+        </>
+    );
 };
 
 const AssetSelectDisplay = ({ onPress }: AssetSelectDisplayProps) => {
