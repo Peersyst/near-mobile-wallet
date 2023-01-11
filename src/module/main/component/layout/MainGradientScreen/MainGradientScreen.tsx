@@ -3,15 +3,15 @@ import { Col } from "@peersyst/react-native-components";
 import { ReactElement } from "react";
 
 interface MainGradientScreenProps {
-    children: { slider: ReactElement; body?: ReactElement };
+    children: { slider: ReactElement; content?: ReactElement };
 }
 
-const MainGradientScreen = ({ children: { slider, body } }: MainGradientScreenProps): JSX.Element => {
+const MainGradientScreen = ({ children: { slider, content } }: MainGradientScreenProps): JSX.Element => {
     return (
         <BaseMainGradientScreen>
             <Col flex={1}>
                 {slider}
-                {body}
+                {content}
             </Col>
         </BaseMainGradientScreen>
     );

@@ -14,7 +14,7 @@ const HomeScreen = (): JSX.Element => {
         <MainGradientScreen>
             {{
                 slider: <HomeSlider />,
-                body: <MainHomeCard>{selectedWallet < wallets.length ? <HomeTabs /> : <AddWallet />}</MainHomeCard>,
+                content: <MainHomeCard>{selectedWallet < wallets.length ? <HomeTabs /> : <AddWallet />}</MainHomeCard>,
             }}
         </MainGradientScreen>
     );
