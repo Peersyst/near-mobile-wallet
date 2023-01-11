@@ -7,11 +7,11 @@ import settingsState, { FiatCurrencyType } from "module/settings/state/SettingsS
 
 export type CoinPrice = Record<string, number>;
 
-export const useGetCoinPrice = (apiId?: string, currency?: FiatCurrencyType): QueryResult<number> => {
+export const useGetCoinPrice = (apiId?: string, fiatParam?: FiatCurrencyType): QueryResult<number> => {
     const { fiat } = useRecoilValue(settingsState);
-    const finalCurrency = currency || fiat;
+    const finalCurrency = fiatParam || fiat;
     return useQuery(
-        [Queries.NATIVE_TOKEN_PRICE, apiId, finalCurrency],
+        [Queries.COIN_PRICE, apiId, finalCurrency],
         async () => {
             try {
                 const res = await fetch(`https://api.coingecko.com/api/v3/coins/${apiId}`);

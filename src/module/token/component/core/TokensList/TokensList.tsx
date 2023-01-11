@@ -17,7 +17,7 @@ const TokensList = (): JSX.Element => {
     const refetch = useRefetchQueries();
 
     const handleRefetch = async () => {
-        await refetch([Queries.TOKEN_PRICE, fiat]);
+        await refetch([Queries.TOKENS_PRICE, fiat]);
     };
 
     return (

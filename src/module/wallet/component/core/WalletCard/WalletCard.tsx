@@ -18,7 +18,7 @@ export interface WalletCardProps {
 const WalletCard = ({ wallet: { account, index, imported } }: WalletCardProps): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
     const { data: { available } = { available: "0" }, isLoading } = useGetBalance(index);
-    const { value: fiatValue } = useNativeTokenConversion(fiat, available);
+    const { value: fiatValue } = useNativeTokenConversion(available, fiat);
     const [showFiat, setCurrencyMode] = useState<boolean>(false);
 
     const changeCurrencyMode = () => {

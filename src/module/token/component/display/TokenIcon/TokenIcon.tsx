@@ -8,13 +8,12 @@ export interface TokenSize {
 }
 
 export interface TokenIconProps extends Partial<TokenSize> {
-    icon: string;
-    symbol: string;
+    units: string;
 }
 
-const TokenIcon = ({ height = 44, width = 44, symbol }: TokenIconProps) => {
+const TokenIcon = ({ height = 44, width = 44, units }: TokenIconProps) => {
     const sizeProps = { height, width };
-    const iconUri = getTokenIconPublic(symbol);
+    const iconUri = getTokenIconPublic(units);
     return <TokenIconRoot source={iconUri ? { uri: iconUri } : placeholder_image} {...sizeProps} />;
 };
 
