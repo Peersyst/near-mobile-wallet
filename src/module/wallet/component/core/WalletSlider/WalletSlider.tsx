@@ -1,18 +1,26 @@
 import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
-import WalletCard from "module/wallet/component/core/WalletCard/WalletCard";
-import AddWalletCard from "module/wallet/component/display/AddWalletCard/AddWalletCard";
 import useWalletState from "module/wallet/hook/useWalletState";
-import { HomeSliderRoot } from "./HomeSlider.styles";
+import { WalletSliderRoot } from "./WalletSlider.styles";
+import AddWalletCard from "module/wallet/component/display/AddWalletCard/AddWalletCard";
+import { Wallet } from "module/wallet/state/WalletState";
 
-const HomeSlider = (): JSX.Element => {
+interface BaseWalletSliderProps {
+    wallet: Wallet;
+}
+
+interface WalletSliderProps {
+    Card: (props: BaseWalletSliderProps) => JSX.Element;
+}
+
+const WalletSlider = ({ Card }: WalletSliderProps): JSX.Element => {
     const {
-        state: { wallets, selectedWallet = 0 },
+        state: { selectedWallet = 0, wallets },
         setSelectedWallet,
     } = useWalletState();
 
     return (
         <DarkThemeProvider>
-            <HomeSliderRoot
+            <WalletSliderRoot
                 page={selectedWallet}
                 onPageSelected={(page) => setSelectedWallet(page)}
                 showPageIndicator={true}
@@ -20,12 +28,12 @@ const HomeSlider = (): JSX.Element => {
                 pagePadding={{ horizontal: 20 }}
             >
                 {wallets.map((wallet) => (
-                    <WalletCard key={wallet.account} wallet={wallet} />
+                    <Card wallet={wallet} key={wallet.account} />
                 ))}
                 <AddWalletCard />
-            </HomeSliderRoot>
+            </WalletSliderRoot>
         </DarkThemeProvider>
     );
 };
 
-export default HomeSlider;
+export default WalletSlider;
