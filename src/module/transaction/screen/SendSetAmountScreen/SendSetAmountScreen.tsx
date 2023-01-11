@@ -9,6 +9,8 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import WalletAssetSelect from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect";
 import AssetAmountInput from "module/transaction/component/input/AssetAmountInput/AssetAmountInput";
 import { useState } from "react";
+import { Asset } from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect.types";
+import { AssetType } from "module/wallet/wallet.types";
 
 export type SendAmountAndMessageResult = Pick<SendState, "amount" | "asset">;
 
@@ -19,7 +21,10 @@ export const SEND_SET_AMOUNT_FORM_KEYS: Partial<Record<keyof SendState, keyof Se
 
 const SendSetAmountScreen = (): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
-    const [asset, setAsset] = useState(sendState.asset);
+    /**
+     * asset will never be undefined because by default sendRoilState has it defined
+     */
+    const [asset, setAsset] = useState<Asset | undefined>(sendState.asset);
     const translate = useTranslate();
 
     const senderWalletIndex = sendState.senderWalletIndex!;
@@ -29,7 +34,7 @@ const SendSetAmountScreen = (): JSX.Element => {
     const handleSubmit = (res: SendAmountAndMessageResult): void => {
         setSendState((oldState) => ({
             ...oldState,
-            res,
+            ...res,
         }));
         setTab(SendScreens.CONFIRMATION);
     };
@@ -47,7 +52,7 @@ const SendSetAmountScreen = (): JSX.Element => {
                     />
                     <AssetAmountInput
                         label={translate("select_the_amount_to_send")}
-                        asset={asset}
+                        asset={asset ?? { type: AssetType.TOKEN }}
                         placeholder={translate("enter_amount")}
                         name={SEND_SET_AMOUNT_FORM_KEYS.amount}
                         index={sendState.senderWalletIndex}
