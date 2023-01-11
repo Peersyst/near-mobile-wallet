@@ -3,7 +3,7 @@ import { Col } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 
 interface StakingInfoLabelProps {
-    amount: number | undefined;
+    amount: number | string | undefined;
     label: string | undefined;
     loading: boolean;
 }

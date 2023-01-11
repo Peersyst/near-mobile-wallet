@@ -188,5 +188,9 @@
     "create_account_success": "Ya puedes usar tu nueva cuenta",
     "add_a_custom_address": "Añadir un nombre custom",
     "success": "¡éxito!",
-    "select_theme": "Cambiar tema"
+    "select_theme": "Cambiar tema",
+    "pendingRelease": "Pendiente de liberación",
+    "totalAmountStaked": "Cantidad total stakeada",
+    "rewardsEarned": "Recompensas obtenidas",
+    "availableForWithdrawal": "Disponible para retirada"
 }

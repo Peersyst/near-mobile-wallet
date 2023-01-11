@@ -188,5 +188,9 @@
     "create_account_success": "You can now use your new account",
     "add_a_custom_address": "Add a custom address",
     "success": "success!",
-    "select_theme": "Change theme"
+    "select_theme": "Change theme",
+    "pendingRelease": "Pending release",
+    "totalAmountStaked": "Total amount staked",
+    "rewardsEarned": "Rewards earned",
+    "availableForWithdrawal": "Available for withdrawal"
 }

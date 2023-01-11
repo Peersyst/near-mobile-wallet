@@ -42,6 +42,7 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             outlined: {
                 borderColor: theme.palette.text,
                 color: theme.palette.text,
+                borderWidth: 1,
             },
             text: {
                 color: theme.palette.text,
