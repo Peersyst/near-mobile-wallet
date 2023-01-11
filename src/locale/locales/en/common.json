@@ -190,5 +190,14 @@
     "select_theme": "Change theme",
     "private_key_copied": "Private key copied to clipboard!",
     "export_mnemonic": "Export mnemonic",
-    "export_private_key": "Export private key"
+    "export_private_key": "Export private key",
+    "new_account_created": "New account created",
+    "account_deleted": "Account deleted",
+    "contract_deployed": "Contract deployed",
+    "method_in": "method in",
+    "called": "Called",
+    "key_added": "Access key added",
+    "key_deleted": "Access key deleted",
+    "unknown_action": "Unknown acction",
+    "recent_activity": "Recent activity"
 }

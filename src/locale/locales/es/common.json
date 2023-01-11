@@ -190,5 +190,14 @@
     "select_theme": "Cambiar tema",
     "private_key_copied": "¡Llave privada copiada en el portapapeles!",
     "export_mnemonic": "Exportar mnemonic",
-    "export_private_key": "Exportar llave privada"
+    "export_private_key": "Exportar llave privada",
+    "new_account_created": "Nueva cuenta creada",
+    "account_deleted": "Cuenta borrada",
+    "contract_deployed": "Contrato desplegado",
+    "method_in": "del contrato",
+    "called": "Llamada al método",
+    "key_added": "Clave de acceso añadida",
+    "key_deleted": "Clave de acceso borrada",
+    "unknown_action": "Acción desconocida",
+    "recent_activity": "Últimos movimientos"
 }

@@ -7,7 +7,7 @@ describe("HomeScreen tests", () => {
         new UseServiceInstanceMock();
         new UseWalletStateMock();
         const screen = render(<HomeScreen />);
-        expect(screen.getByText(translate("transactions"))).toBeDefined();
+        expect(screen.getByText(translate("recent_activity"))).toBeDefined();
     });
 
     test("Renders correctly when a wallet is not selected", () => {

@@ -8,7 +8,6 @@ export interface BaseWallet {
  * STORAGE TYPES
  */
 export interface UnencryptedWalletInfo extends BaseWallet {
-    uncommittedTransactionHashes?: string[];
     account: string;
 }
 

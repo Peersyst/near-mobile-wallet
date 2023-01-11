@@ -1,5 +1,4 @@
 import { useMutation } from "react-query";
-import useAddUncommittedTransaction from "module/transaction/hook/useAddUncommitedTransaction";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 export interface UseSendTransactionParams {
@@ -10,12 +9,10 @@ export interface UseSendTransactionParams {
 }
 
 const useSendTransaction = (senderIndex: number) => {
-    const { serviceInstance, network } = useServiceInstance(senderIndex);
-    const addUncommittedTransaction = useAddUncommittedTransaction();
+    const { serviceInstance } = useServiceInstance(senderIndex);
 
     return useMutation(async ({ to, amount }: UseSendTransactionParams) => {
-        const hash = await serviceInstance.sendTransaction(to, amount.toString()); //TODO: add feeRate + msg
-        if (hash) await addUncommittedTransaction(senderIndex, network, hash);
+        await serviceInstance.sendTransaction(to, amount.toString()); //TODO: add feeRate + msg
     });
 };
 
