@@ -15,8 +15,7 @@ const ActionCard = ({ action }: ActionCardProps): JSX.Element => {
         transaction: { blockTimestamp },
     } = action;
     const { amount, tokenName } = getAmountAndTokenNameFromAction(action) || {};
-
-    const formattedDate = useFormatDate(Number(blockTimestamp));
+    const formatDate = useFormatDate();
 
     return (
         <MainListCard gap="4%" alignItems="center">
@@ -34,7 +33,7 @@ const ActionCard = ({ action }: ActionCardProps): JSX.Element => {
                 </Row>
                 <Row justifyContent="space-between" alignItems="center">
                     <Typography variant="body4Strong" color={(p) => p.gray[300]}>
-                        {formattedDate}
+                        {formatDate(Number(blockTimestamp))}
                     </Typography>
                     {amount && <FiatBalance color={(p) => p.gray[300]} balance={amount} variant="body4Strong" tokenUnits={tokenName} />}
                 </Row>

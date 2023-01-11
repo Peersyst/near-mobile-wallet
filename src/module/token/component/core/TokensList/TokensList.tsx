@@ -14,7 +14,6 @@ const TokensList = (): JSX.Element => {
         state: { selectedWallet },
     } = useWalletState();
     const { isLoading, data: tokens = [] } = useGetTokens(selectedWallet);
-    //   const tokenPriceUseQueries = useMemo(() => tokensList.map((token) => ["tokenPrice", fiat, token]), [fiat]);
     const refetch = useRefetchQueries();
 
     const handleRefetch = async () => {
