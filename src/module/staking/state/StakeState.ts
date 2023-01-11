@@ -6,6 +6,9 @@ export interface StakeState {
 
 const stakeState = atom<StakeState>({
     key: "stake",
+    default: {
+        amount: "",
+    },
 });
 
 export default stakeState;
