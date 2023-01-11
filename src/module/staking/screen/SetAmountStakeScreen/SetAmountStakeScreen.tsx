@@ -5,6 +5,8 @@ import { SendScreens } from "module/transaction/component/core/SendModal/SendMod
 import { useRecoilState } from "recoil";
 import { useTranslate } from "module/common/hook/useTranslate";
 import NEARAmountInput from "module/transaction/component/input/AssetAmountInput/NEARAmountInput/NEARAmountInput";
+import useWalletState from "module/wallet/hook/useWalletState";
+import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 
 export interface SendForm {
     amount: number;
@@ -13,6 +15,7 @@ export interface SendForm {
 const SetAmountStakeScreen = () => {
     const translate = useTranslate();
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
+    const { index } = useSelectedWallet();
     const setTab = useSetTab();
 
     const handleSubmit = ({ amount }: SendForm) => {
@@ -28,7 +31,7 @@ const SetAmountStakeScreen = () => {
                         <NEARAmountInput
                             label={translate("enter_amount_want_to_stake")!}
                             hint={translate("success")!}
-                            index={1}
+                            index={index}
                             suffix={<Button variant="text">Max</Button>}
                             required
                         />
