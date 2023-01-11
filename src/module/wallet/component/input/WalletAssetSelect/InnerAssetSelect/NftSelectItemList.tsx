@@ -1,16 +1,21 @@
 import { Col } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import { useTranslate } from "module/common/hook/useTranslate";
-import NftImage from "module/nft/component/display/NftImage/NftImage";
+import NftImage, { NftImageProps } from "module/nft/component/display/NftImage/NftImage";
 import useGetNfts from "module/nft/query/useGetNfts";
 import { AssetType } from "module/wallet/wallet.types";
 import { NftToken } from "near-peersyst-sdk";
 import BaseSelectItemCard from "./BaseSelectItemCard";
 import { useAssetSelect } from "../hook/useAssetSelect";
+import { memo } from "react";
 
 export interface NftSelectItemProps {
     nft: NftToken;
 }
+
+export const NftSelectItemImage = memo((props: NftImageProps) => {
+    return <NftImage {...props} style={{ height: 72, width: 72, borderRadius: 8 }} />;
+});
 
 export const NftSelectItem = ({ nft }: NftSelectItemProps) => {
     const {
@@ -25,8 +30,8 @@ export const NftSelectItem = ({ nft }: NftSelectItemProps) => {
     };
     return (
         <BaseSelectItemCard onPress={handleOnPress}>
-            <NftImage uri={media_url} />
-            <Typography variant="body1Strong" numberOfLines={1}>
+            <NftSelectItemImage uri={media_url} />
+            <Typography variant="body2Strong" numberOfLines={1}>
                 {title}
             </Typography>
         </BaseSelectItemCard>
