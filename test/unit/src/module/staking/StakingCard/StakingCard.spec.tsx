@@ -18,7 +18,7 @@ describe("Test for StakingCard component", () => {
         await waitFor(() => expect(screen.getAllByText(mockedStakingBalance.staked.toString())).toBeDefined());
         await waitFor(() => expect(screen.getAllByText(mockedStakingBalance.available.toString())).toBeDefined());
 
-        expect(screen.getByRole("button", { name: translate("stakeMyTokens") })).toBeDefined();
+        expect(screen.getByRole("button", { name: translate("stake_my_tokens") })).toBeDefined();
     });
 
     test("Display imported tag", () => {

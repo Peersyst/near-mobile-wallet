@@ -42,7 +42,7 @@ const WalletCard = ({ wallet }: WalletCardProps): JSX.Element => {
                         unitsPosition={showFiat ? "left" : "right"}
                     />
                 ),
-                button: <WalletCardButtons />,
+                footer: <WalletCardButtons />,
             }}
         </BaseWalletCard>
     );

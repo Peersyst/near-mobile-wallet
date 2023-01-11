@@ -12,6 +12,6 @@ describe("Test for StakingSlider component", () => {
         expect(screen.getAllByText(state.wallets[0].account)).toBeDefined();
         expect(screen.getAllByText(config.tokenName + " " + translate("available"))).toBeDefined();
         expect(screen.getAllByText(config.tokenName + " " + translate("staked"))).toBeDefined();
-        expect(screen.getAllByRole("button", { name: translate("stakeMyTokens") })).toBeDefined();
+        expect(screen.getAllByRole("button", { name: translate("stake_my_tokens") })).toBeDefined();
     });
 });

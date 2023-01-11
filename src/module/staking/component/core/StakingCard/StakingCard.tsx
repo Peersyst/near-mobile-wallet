@@ -8,7 +8,7 @@ const StakingCard = ({ wallet }: WalletCardProps): JSX.Element => {
         <BaseWalletCard wallet={wallet} gap={26}>
             {{
                 content: <StakingCardContent wallet={wallet} />,
-                button: <StakingCardButtons />,
+                footer: <StakingCardButtons />,
             }}
         </BaseWalletCard>
     );
