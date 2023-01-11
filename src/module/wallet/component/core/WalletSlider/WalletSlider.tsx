@@ -4,8 +4,12 @@ import { WalletSliderRoot } from "./WalletSlider.styles";
 import AddWalletCard from "module/wallet/component/display/AddWalletCard/AddWalletCard";
 import { Wallet } from "module/wallet/state/WalletState";
 
+interface BaseWalletSliderProps {
+    wallet: Wallet;
+}
+
 interface WalletSliderProps {
-    Card: (props: { wallet: Wallet }) => JSX.Element;
+    Card: (props: BaseWalletSliderProps) => JSX.Element;
 }
 
 const WalletSlider = ({ Card }: WalletSliderProps): JSX.Element => {

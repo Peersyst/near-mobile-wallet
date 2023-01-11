@@ -3,7 +3,7 @@ import { Col } from "@peersyst/react-native-components";
 import { ReactElement } from "react";
 
 interface MainGradientScreenProps {
-    children: { slider: ReactElement; content?: ReactElement };
+    children: { slider: ReactElement; content: ReactElement };
 }
 
 const MainGradientScreen = ({ children: { slider, content } }: MainGradientScreenProps): JSX.Element => {

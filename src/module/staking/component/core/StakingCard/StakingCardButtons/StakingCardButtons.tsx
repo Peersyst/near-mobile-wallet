@@ -1,6 +1,6 @@
 import Button from "module/common/component/input/Button/Button";
 import StakeModal from "module/staking/component/core/StakeModal/StakeModal";
-import { Row, useModal } from "@peersyst/react-native-components";
+import { useModal } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 
 const StakingCardButtons = (): JSX.Element => {
@@ -8,11 +8,9 @@ const StakingCardButtons = (): JSX.Element => {
     const translate = useTranslate();
 
     return (
-        <Row>
-            <Button style={{ width: 272 }} variant="secondary" size="md" onPress={() => showModal(StakeModal)}>
-                {translate("stakeMyTokens")}
-            </Button>
-        </Row>
+        <Button style={{ width: 272 }} variant="secondary" size="md" onPress={() => showModal(StakeModal)}>
+            {translate("stakeMyTokens")}
+        </Button>
     );
 };
 

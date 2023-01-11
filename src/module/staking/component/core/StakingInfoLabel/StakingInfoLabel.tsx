@@ -1,7 +1,7 @@
-import Typography from "module/common/component/display/Typography/Typography";
 import { Col } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import config from "config/config";
+import { StakingInfoLabelLightText } from "./StakingInfoLabel.styles";
 
 interface StakingInfoLabelProps {
     amount: number | string | undefined;
@@ -13,9 +13,9 @@ const StakingInfoLabel = ({ loading, amount, label }: StakingInfoLabelProps): JS
     return (
         <Col flex={1} justifyContent="center" style={{ width: "50%" }}>
             <Balance textAlign="center" isLoading={loading} balance={amount ?? 0} variant="h4Strong" style={{ width: "100%" }} />
-            <Typography textAlign="center" variant="body3Strong" light>
+            <StakingInfoLabelLightText textAlign="center" variant="body3Strong">
                 {config.tokenName + " " + label}
-            </Typography>
+            </StakingInfoLabelLightText>
         </Col>
     );
 };

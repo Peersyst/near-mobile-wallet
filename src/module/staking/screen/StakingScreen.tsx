@@ -6,6 +6,7 @@ const StakingScreen = (): JSX.Element => {
         <MainGradientScreen>
             {{
                 slider: <StakingSlider />,
+                content: <></>,
             }}
         </MainGradientScreen>
     );
