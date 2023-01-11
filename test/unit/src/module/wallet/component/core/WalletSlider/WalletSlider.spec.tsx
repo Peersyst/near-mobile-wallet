@@ -20,6 +20,6 @@ describe("Tests for WalletSlider component", () => {
         const screen = render(<WalletSlider Card={StakingCard} />);
 
         expect(screen.getAllByText(state.wallets[0].account)).toBeDefined();
-        expect(screen.getAllByText(capitalize(translate("stakeMyTokens")))).toBeDefined();
+        expect(screen.getAllByText(capitalize(translate("stake_my_tokens")))).toBeDefined();
     });
 });

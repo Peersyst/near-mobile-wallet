@@ -6,6 +6,6 @@ describe("Tests for StakingCardButtons", () => {
     test("Renders correctly", () => {
         render(<StakingCardButtons />);
 
-        expect(screen.getByRole("button", { name: translate("stakeMyTokens") })).toBeDefined();
+        expect(screen.getByRole("button", { name: translate("stake_my_tokens") })).toBeDefined();
     });
 });

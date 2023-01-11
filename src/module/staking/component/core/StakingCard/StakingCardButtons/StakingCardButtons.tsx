@@ -9,7 +9,7 @@ const StakingCardButtons = (): JSX.Element => {
 
     return (
         <Button style={{ width: 272 }} variant="secondary" size="md" onPress={() => showModal(StakeModal)}>
-            {translate("stakeMyTokens")}
+            {translate("stake_my_tokens")}
         </Button>
     );
 };
