@@ -20,10 +20,10 @@ import {
 } from "./NearApiService.types";
 
 export class ApiService extends FetchService implements NearApiServiceInterface {
-    public endPoint: string;
+    public baseUrl: string;
     constructor(endpoint: string) {
         super();
-        this.endPoint = endpoint;
+        this.baseUrl = endpoint;
     }
 
     /**
@@ -95,28 +95,27 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
      */
 
     async getAccountsFromPublicKey({ address }: NearApiServiceParams): Promise<string[]> {
-        return await this.handleFetch<string[]>(`${this.endPoint}/publicKey/${address}/accounts`);
+        return await this.handleFetch<string[]>(`${this.baseUrl}/publicKey/${address}/accounts`);
     }
 
     async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
-        const apiDeposits = await this.handleFetch<StakingDepositApiDto[]>(`${this.endPoint}/staking-deposits/${address}`);
+        const apiDeposits = await this.handleFetch<StakingDepositApiDto[]>(`${this.baseUrl}/staking-deposits/${address}`);
         return apiDeposits.map(this.parseStakingDepositApiDtoDto);
     }
 
     async getLikelyTokens({ address }: NearApiServiceParams): Promise<string[]> {
         return (
-            await this.handleFetch<LikelyResponseApiDto>(`${this.endPoint}/account/${address}/likelyTokensFromBlock?fromBlockTimestamp=0`)
+            await this.handleFetch<LikelyResponseApiDto>(`${this.baseUrl}/account/${address}/likelyTokensFromBlock?fromBlockTimestamp=0`)
         ).list;
     }
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
-        return (
-            await this.handleFetch<LikelyResponseApiDto>(`${this.endPoint}/account/${address}/likelyNFTsFromBlock?fromBlockTimestamp=0`)
-        ).list;
+        return (await this.handleFetch<LikelyResponseApiDto>(`${this.baseUrl}/account/${address}/likelyNFTsFromBlock?fromBlockTimestamp=0`))
+            .list;
     }
 
     async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
-        const txs = await this.handleFetch<ActionApiDto[]>(`${this.endPoint}/account/${address}/activity`);
+        const txs = await this.handleFetch<ActionApiDto[]>(`${this.baseUrl}/account/${address}/activity`);
         return txs.map((tx) => this.parseActionApiDto(tx, address));
     }
 

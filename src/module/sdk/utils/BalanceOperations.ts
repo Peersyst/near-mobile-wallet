@@ -1,7 +1,7 @@
 import { convertNearToYocto, convertYoctoToNear } from "./near.utils";
 const BN = require("bn.js");
 
-export class MathOperations {
+export class BalanceOperations {
     //Big number operations
     static BNExp(base: number, exponent: number): string {
         return new BN(base).pow(new BN(exponent)).toString();

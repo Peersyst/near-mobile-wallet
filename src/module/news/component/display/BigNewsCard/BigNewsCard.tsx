@@ -7,14 +7,14 @@ import useFormatDate from "module/common/hook/useFormatDate";
 
 const BigNewsCard = (news: any): JSX.Element => {
     const { uri, title, imageUri, date } = formatNews(news);
-    const formattedDate = useFormatDate(date);
+    const formatDate = useFormatDate();
     return (
         <TouchableWithoutFeedback onPress={() => Linking.openURL(uri)}>
             <SimpleNewsCardRoot>
                 <Col gap={"3%"}>
                     <BigNewsImage fadeDuration={300} source={{ uri: imageUri }} />
                     <NewTitle variant="body4Regular">{title}</NewTitle>
-                    <BigNewsDate variant="body4Regular">{formattedDate}</BigNewsDate>
+                    <BigNewsDate variant="body4Regular">{formatDate(date)}</BigNewsDate>
                 </Col>
             </SimpleNewsCardRoot>
         </TouchableWithoutFeedback>
