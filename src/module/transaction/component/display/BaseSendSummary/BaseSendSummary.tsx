@@ -10,7 +10,7 @@ import useNativeTokenConversion from "module/common/hook/useNativeTokenConversio
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { ViewStyle } from "react-native";
-import { MathOperations } from "near-peersyst-sdk";
+import { BalanceOperations } from "near-peersyst-sdk";
 import Fee from "../Fee/Fee";
 
 export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee" | "token">> {
@@ -58,7 +58,7 @@ const BaseSendSummary = ({ amount, fee, token, children, total, showFiat, style 
                         <Typography variant="body2Regular" color={(palette) => palette.primary} textAlign="center">
                             {translate("total")}:{" "}
                             <Balance
-                                balance={MathOperations.add(amount, fee)}
+                                balance={BalanceOperations.add(amount, fee)}
                                 variant="body2Strong"
                                 units={token}
                                 color={(palette) => palette.primary}

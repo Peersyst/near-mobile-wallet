@@ -2,7 +2,7 @@ import { Action, ActionKind, EnhancedTransactionActionKind, TransactionActionKin
 
 export const TRANSFER_ACTIONS: ActionKind[] = [EnhancedTransactionActionKind.TRANSFER_RECEIVE, EnhancedTransactionActionKind.TRANSFER_SEND];
 
-export interface GetAmountAndTokenNameFromAction {
+export interface GetAmountAndTokenNameFromActionResult {
     amount: string | undefined;
     tokenName?: string;
 }
@@ -11,7 +11,7 @@ export default function getAmountAndTokenNameFromAction({
     actionKind,
     deposit,
     stake,
-}: Action): GetAmountAndTokenNameFromAction | undefined {
+}: Action): GetAmountAndTokenNameFromActionResult | undefined {
     if (TRANSFER_ACTIONS.includes(actionKind)) {
         return {
             amount: deposit,

@@ -1,8 +1,7 @@
-import { FiatCurrencyType } from "module/settings/state/SettingsState";
 import { useGetTokenPrice } from "module/token/query/useGetTokenPrice";
 
-export default function useNativeTokenPrice(fiat: FiatCurrencyType, contractId: string) {
-    const { data = {} } = useGetTokenPrice(fiat);
+export default function useNativeTokenPrice(contractId: string) {
+    const { data = {} } = useGetTokenPrice();
     let price = 0;
     const tokensKeys = Object.keys(data);
     const tokensValues = Object.values(data);
