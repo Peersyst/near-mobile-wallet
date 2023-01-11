@@ -16,16 +16,15 @@ const NftCard = ({ nft }: NftCardProps): JSX.Element => {
     } = nft;
     return (
         <TouchableWithoutFeedback>
-            <MainListCard gap="6.5%">
+            <MainListCard gap="6.5%" alignItems="center">
                 <NftCardImage
-                    style={{ width: 100, height: 100 }}
                     fallback={placeholder_image}
                     source={{
                         uri: media_url ?? placeholder_image,
                     }}
                 />
                 <Col flex={1} gap={12} justifyContent="center">
-                    <Col gap={2} flex={1}>
+                    <Col gap={2} flex={1} justifyContent="center">
                         {title && (
                             <Typography variant="body1Strong" numberOfLines={1}>
                                 {title}
