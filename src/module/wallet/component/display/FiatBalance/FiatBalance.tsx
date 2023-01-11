@@ -1,5 +1,4 @@
 import useNativeTokenConversion from "module/common/hook/useNativeTokenConversion";
-import { useGetTokenPrice } from "module/common/query/useGetTokenPrice";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
 import Balance from "../Balance/Balance";

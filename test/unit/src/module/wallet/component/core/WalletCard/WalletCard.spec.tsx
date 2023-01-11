@@ -26,8 +26,8 @@ describe("WalletCard tests", () => {
         expect(screen.getByText(wallet.account)).toBeDefined();
 
         /**Account Balance */
-        //const balance = await screen.findByText(formatBalance(accountBalance.available, { units: config.tokenName }));
-        //expect(balance).toBeDefined();
+        const balance = await screen.findByText(formatBalance(accountBalance.available, { units: config.tokenName }));
+        expect(balance).toBeDefined();
 
         /**Account Buttons */
         expect(screen.getByText(capitalize(translate("send")))).toBeDefined();
@@ -46,11 +46,11 @@ describe("WalletCard tests", () => {
         jest.spyOn(ExpoHaptics, "impactAsync").mockImplementation(mockedVibrate);
         const screen = render(<WalletCard wallet={wallet} />);
         /**Account Balance */
-        //const balance = await screen.findByText(formatBalance(accountBalance.available, { units: config.tokenName }));
-        //expect(balance).toBeDefined();
-        //fireEvent.press(balance);
+        const balance = await screen.findByText(formatBalance(accountBalance.available, { units: config.tokenName }));
+        expect(balance).toBeDefined();
+        fireEvent.press(balance);
 
-        //await waitFor(() => expect(screen.getByText(CURRENCY_UNIT["eur"] + " 10")).toBeDefined());
-        //expect(mockedVibrate).toHaveBeenCalled();
+        await waitFor(() => expect(screen.getByText(CURRENCY_UNIT["eur"] + " 10")).toBeDefined());
+        expect(mockedVibrate).toHaveBeenCalled();
     });
 });
