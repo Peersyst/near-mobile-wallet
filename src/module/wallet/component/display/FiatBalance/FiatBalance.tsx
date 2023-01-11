@@ -4,37 +4,37 @@ import { useRecoilValue } from "recoil";
 import Balance from "../Balance/Balance";
 import { BalanceProps } from "../Balance/Balance.types";
 import { Token } from "near-peersyst-sdk";
-import useNativeTokenPrice from "module/common/hook/useNativeTokePrice";
-import { useGetFiatPrice } from "module/common/hook/useGetFiatPrice";
+import useTokenConversion from "module/token/hook/useTokenConversion";
 
 export interface BaseFiatBalanceProps extends Omit<BalanceProps, "balance" | "action"> {
     balance: string | number;
+}
+export interface TokenBalanceInFiatProps extends BaseFiatBalanceProps {
     token: Token;
 }
 
-export interface FiatBalanceProps extends BaseFiatBalanceProps {
-    tokenUnits?: string;
+export interface FiatBalanceProps extends Omit<BaseFiatBalanceProps, "units"> {
+    token?: Token;
 }
 
-const TokenBalanceInFiat = ({ balance, token, ...rest }: BaseFiatBalanceProps) => {
-    const { fiat } = useRecoilValue(settingsState);
-    const { data: tokenValue } = useNativeTokenPrice(token.contractId!);
-    const { data = 0 } = useGetFiatPrice(fiat);
-    return tokenValue ? <Balance balance={tokenValue * Number(balance) * data} action="round" {...rest} /> : <></>;
+const TokenBalanceInFiat = ({ balance, token, ...rest }: TokenBalanceInFiatProps) => {
+    const { value } = useTokenConversion(balance, token.contractId);
+    return value ? <Balance balance={value} action="round" {...rest} /> : <></>;
 };
 
 const NearBalanceInFiat = ({ balance, ...rest }: BaseFiatBalanceProps) => {
-    const { fiat } = useRecoilValue(settingsState);
-    const { value: fiatValue } = useNativeTokenConversion(fiat, balance);
+    const { value: fiatValue } = useNativeTokenConversion(balance);
     return <Balance balance={fiatValue} action="round" {...rest} />;
 };
 
-//TODO: implement FTBalanceInFiat
-const FiatBalance = ({ units, tokenUnits, options, ...rest }: FiatBalanceProps) => {
+const FiatBalance = ({ token, options, ...rest }: FiatBalanceProps) => {
     const { fiat } = useRecoilValue(settingsState);
-    const BalanceComponent = tokenUnits === "token" ? NearBalanceInFiat : TokenBalanceInFiat;
+    const baseProps = { options: { maximumFractionDigits: 2, minimumFractionDigits: 2, ...options }, ...rest, units: fiat };
     return (
-        <BalanceComponent options={{ maximumFractionDigits: 2, minimumFractionDigits: 2, ...options }} units={units ?? fiat} {...rest} />
+        <>
+            {token === undefined && <NearBalanceInFiat {...baseProps} />}
+            {token !== undefined && <TokenBalanceInFiat token={token} {...baseProps} />}
+        </>
     );
 };
 
