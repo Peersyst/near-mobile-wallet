@@ -22,7 +22,12 @@ const TokenIcon = ({ height = 44, width = 44, token, nativeToken }: TokenIconPro
     const sizeProps = { height, width };
     const symbol = token?.metadata.symbol;
     const url = symbol ? getSupportedTokenUri(symbol) : undefined;
-    return <TokenIconRoot source={nativeToken ? placeholder_image : { uri: url ?? toDataUrl(token?.contractId) }} {...sizeProps} />;
+    return (
+        <TokenIconRoot
+            source={nativeToken ? placeholder_image : { uri: url ?? toDataUrl(token?.contractId || "contractId") }}
+            {...sizeProps}
+        />
+    );
 };
 
 export default TokenIcon;
