@@ -29,7 +29,7 @@ const StakingDetail = ({ title, amount, stakeable }: StakingDetailProps): JSX.El
                         <Balance isLoading={false} balance={amount ?? 0} variant="body3Strong" /> {config.tokenName}
                     </Typography>
                     <Typography variant="body4Strong" light>
-                        ≈ {amount} NEAR
+                        ≈ {amount} {config.tokenName}
                     </Typography>
                 </Col>
             </Row>

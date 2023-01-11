@@ -11,6 +11,6 @@ export class StakingBalanceMock extends BaseMock implements StakingBalance {
         this.staked = staked || 0;
         this.available = available || 0;
         this.pending = pending || 0;
-        this.rewardsEarned = rewardsEarned;
+        this.rewardsEarned = rewardsEarned || 0;
     }
 }
