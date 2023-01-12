@@ -206,5 +206,7 @@
     "pendingRelease": "Pending release",
     "totalAmountStaked": "Total amount staked",
     "rewardsEarned": "Rewards earned",
-    "availableForWithdrawal": "Available for withdrawal"
+    "availableForWithdrawal": "Available for withdrawal",
+    "your_current_validators": "Your current validators",
+    "fee": "fee"
 }
