@@ -13,14 +13,14 @@ const SendConfirmationScreen = (): JSX.Element => {
     const translate = useTranslate();
     const { hideModal } = useModal();
     const sendStateValue = useRecoilValue(sendState);
-    const { asset, amount, receiverAddress, senderWalletIndex } = sendStateValue;
-
+    const { sendTransaction, ...rest } = useSendTransaction(sendStateValue);
     const {
         state: { wallets },
     } = useWalletState();
+
+    const { asset, amount, receiverAddress, senderWalletIndex } = sendStateValue;
     const senderWallet = wallets[senderWalletIndex!];
     const { account: senderName } = senderWallet;
-    const { sendTransaction, ...rest } = useSendTransaction(sendStateValue);
 
     async function handleConfirmation() {
         await sendTransaction();

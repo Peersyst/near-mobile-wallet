@@ -645,11 +645,10 @@ export class NearSDKService {
         if (!storageAvailable) {
             await this.transferStorageDeposit(contractId, receiverId);
         }
-        console.log(contractId, amount, receiverId, memo);
         const tx = await account.functionCall({
             contractId,
             methodName: FT_TRANSFER_METHOD,
-            args: { amount, receiver_id: receiverId },
+            args: { amount, receiver_id: receiverId, memo },
             gas: FT_TRANSFER_GAS,
             attachedDeposit: TOKEN_TRANSFER_DEPOSIT,
         });
