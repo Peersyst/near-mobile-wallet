@@ -5,7 +5,6 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { CircleNearIcon, StakingDetailRoot } from "module/staking/component/core/StakingDetail/StakingDetail.styles";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import UnstakeModal from "module/staking/component/core/UnstakeModal/UnstakeModal";
-import config from "config/config";
 import { alpha } from "@peersyst/react-utils";
 import { IconCircleWrapper } from "module/common/component/display/IconCircleWrapper/IconCircleWrapper.styles";
 import { useTheme } from "@peersyst/react-native-styled";
@@ -29,12 +28,8 @@ const StakingDetail = ({ title, amount, stakeable }: StakingDetailProps): JSX.El
                 </IconCircleWrapper>
                 <Col>
                     <Typography variant="body3Regular">{title}</Typography>
-                    <Typography variant="body3Strong">
-                        <Balance isLoading={false} balance={amount ?? 0} variant="body3Strong" /> {config.tokenName}
-                    </Typography>
-                    <Typography variant="body4Strong" light>
-                        ≈ {amount} {config.tokenName}
-                    </Typography>
+                    <Balance balance={amount ?? 0} variant="body3Strong" units="token" />
+                    <Balance balance={amount ?? 0} variant="body4Strong" units="usd" light />
                 </Col>
             </Row>
             {stakeable && (

@@ -11,19 +11,12 @@ interface MainGradientScreenProps {
 const MainGradientScreen = ({ children: { slider, content }, scrollable = false }: MainGradientScreenProps): JSX.Element => {
     return (
         <BaseMainGradientScreen>
-            {scrollable ? (
-                <Col flex={1}>
-                    <ScrollView>
-                        {slider}
-                        {content}
-                    </ScrollView>
-                </Col>
-            ) : (
-                <Col flex={1}>
+            <Col flex={1}>
+                <ScrollView scrollEnabled={scrollable}>
                     {slider}
                     {content}
-                </Col>
-            )}
+                </ScrollView>
+            </Col>
         </BaseMainGradientScreen>
     );
 };
