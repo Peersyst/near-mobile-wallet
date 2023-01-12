@@ -30,6 +30,20 @@ export function subtractNearAmounts(amount1: string, amount2: string): string {
 }
 
 /**
+ * Add Near amount from another Near amount
+ */
+export function addNearAmounts(amount1: string, amount2: string): string {
+    const amount1InYocto = convertNearToYocto(amount1);
+    console.log("Amount1", amount1, amount1InYocto);
+    const amount2InYocto = convertNearToYocto(amount2);
+    console.log("Amount2", amount2, amount2InYocto);
+    console.log("Summ", BalanceOperations.BNAdd(amount1InYocto, amount2InYocto));
+    console.log("Summ 2", BalanceOperations.BNAdd(amount1InYocto, amount2InYocto));
+    console.log("Near summ", convertYoctoToNear(BalanceOperations.BNAdd(amount1InYocto, amount2InYocto)));
+    return convertYoctoToNear(BalanceOperations.BNAdd(amount1InYocto, amount2InYocto));
+}
+
+/**
  *
  * @param amount In NEAR
  * @param threshold In NEAR
@@ -81,7 +95,7 @@ export const removeTrailingZeros = (amount: string): string => amount.replace(/\
 export const removeLeftZeros = (amount: string): string => amount.replace(/^0+/, "");
 
 /**
- * @returns The bigversion of the balance
+ * @returns The bigint of the balance
  */
 export function parseTokenAmount(amount: string, tokenDecimals: string): string {
     const [integer, decimals] = amount.split(".");

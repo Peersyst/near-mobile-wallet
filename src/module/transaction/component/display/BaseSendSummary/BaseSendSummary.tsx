@@ -5,7 +5,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import Typography from "module/common/component/display/Typography/Typography";
 import Container from "module/common/component/display/Container/Container";
 import { ViewStyle } from "react-native";
-import { BalanceOperations, NftToken, Token } from "near-peersyst-sdk";
+import { addNearAmounts, BalanceOperations, NftToken, Token } from "near-peersyst-sdk";
 import Fee, { FeeProps } from "../Fee/Fee";
 import FiatBalance from "module/wallet/component/display/FiatBalance/FiatBalance";
 import { TotalText } from "./BaseSendSummary.styles";
@@ -26,7 +26,7 @@ export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
 
 const BaseSendSummary = ({ amount, fee, children, showTotal, showFiat, style, token, nft }: BaseSendSummaryFullProps): JSX.Element => {
     const translate = useTranslate();
-
+    const finalFee = fee ?? config.estimatedFee;
     return (
         <Container style={{ width: "100%", ...style }}>
             <Col gap="10%" alignItems="center">
@@ -53,9 +53,10 @@ const BaseSendSummary = ({ amount, fee, children, showTotal, showFiat, style, to
                                 {translate("total")}
                                 {" · "}
                                 <TotalText
+                                    options={{ minimumFractionDigits: finalFee.length }}
                                     as={Balance}
                                     light
-                                    balance={BalanceOperations.add(amount, fee ?? config.estimatedFee)}
+                                    balance={addNearAmounts(amount.toString(), fee ?? config.estimatedFee)}
                                     variant="body2Strong"
                                     units="token"
                                 />

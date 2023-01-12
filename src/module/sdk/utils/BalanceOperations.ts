@@ -23,6 +23,9 @@ export class BalanceOperations {
     static BNSubtract(a: string, b: string): string {
         return new BN(a).sub(new BN(b)).toString();
     }
+    static BNAdd(a: string, b: string): string {
+        return new BN(a).add(new BN(b)).toString();
+    }
 
     // Number operations
     /**
