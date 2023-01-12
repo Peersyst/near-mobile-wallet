@@ -2,13 +2,15 @@ import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/
 import { useState } from "react";
 import { useResetRecoilState } from "recoil";
 import sendState from "module/transaction/state/SendState";
-import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import SetAmountStakeScreen from "module/staking/screen/SetAmountStakeScreen/SetAmountStakeScreen";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { TransaltionResourceType } from "locale";
+import SelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/SelectValidatorScreen";
+import { AddStakeModalRoot } from "./AddStakeModal.styles";
 
 export enum SendScreens {
     SET_AMOUNT,
+    SELECT_VALIDATOR,
 }
 
 const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
@@ -24,7 +26,7 @@ const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProp
     const ADD_STAKE_MODAL_TITLES: TransaltionResourceType[] = ["stake_your_near", "select_validator", "confirm_validator", "success"];
 
     return (
-        <CardNavigatorModal
+        <AddStakeModalRoot
             navbar={{
                 back: true,
                 title: translate(ADD_STAKE_MODAL_TITLES[Number(activeIndex)])!,
@@ -41,8 +43,11 @@ const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProp
                 <TabPanel index={SendScreens.SET_AMOUNT}>
                     <SetAmountStakeScreen />
                 </TabPanel>
+                <TabPanel index={SendScreens.SELECT_VALIDATOR}>
+                    <SelectValidatorScreen />
+                </TabPanel>
             </Tabs>
-        </CardNavigatorModal>
+        </AddStakeModalRoot>
     );
 });
 

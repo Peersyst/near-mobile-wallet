@@ -210,5 +210,9 @@
     "confirm_validator" : "CONFIRM VALIDATOR",
     "enter_amount_want_to_stake" : "Enter the amount you want to stake",
     "available_balance" : "Available - {{amount}} NEAR (≈ {{amount_price}})",
-    "max": "MAX"
+    "max": "MAX",
+    "enter_a_validator_account_id": "Enter a validator account ID",
+    "validator_name_near": "validator-name.near",
+    "enter_new_validator" : "Enter a new validator or select one from the list to stake your NEAR.",
+    "or_select_a_validator" : "Or select a validator"
 }
