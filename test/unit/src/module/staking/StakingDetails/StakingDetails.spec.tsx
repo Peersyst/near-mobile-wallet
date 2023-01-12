@@ -19,8 +19,8 @@ describe("Tests for StakingDetails", () => {
         expect(screen.getByText(translate("availableForWithdrawal"))).toBeDefined();
 
         expect(screen.getAllByTestId("NearIcon")).toHaveLength(4);
-        expect(screen.getByText(mockedStakingBalance.staked.toString())).toBeDefined();
-        expect(screen.getByText(mockedStakingBalance.available.toString())).toBeDefined();
-        expect(screen.getByText(mockedStakingBalance.pending.toString())).toBeDefined();
+        expect(screen.getByText("10 NEAR")).toBeDefined();
+        expect(screen.getByText("5 NEAR")).toBeDefined();
+        expect(screen.getByText("2 NEAR")).toBeDefined();
     });
 });
