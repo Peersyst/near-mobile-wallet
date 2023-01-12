@@ -2,7 +2,7 @@ import { PagerView } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
 import { alpha } from "@peersyst/react-utils";
 
-export const HomeSliderRoot = styled(PagerView)(({ theme: { palette: p } }) => ({
+export const WalletSliderRoot = styled(PagerView)(({ theme: { palette: p } }) => ({
     marginBottom: "8%",
     marginTop: "4.5%",
     minHeight: "35%",

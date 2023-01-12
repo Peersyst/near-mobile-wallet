@@ -10,7 +10,7 @@ export interface TokenSelectItemProps {
 
 export const TokenSelectItem = ({ token }: TokenSelectItemProps) => {
     const { balance = "0", metadata } = token;
-    const { symbol, icon } = metadata;
+    const { symbol } = metadata;
     const { setSelectedAsset } = useAssetSelect();
     const handleOnPress = () => {
         setSelectedAsset({
@@ -18,7 +18,8 @@ export const TokenSelectItem = ({ token }: TokenSelectItemProps) => {
             ft: token,
         });
     };
-    return <BaseTokenSelectItem onPress={handleOnPress} units={symbol} balance={balance} icon={icon} />;
+
+    return <BaseTokenSelectItem onPress={handleOnPress} units={symbol} balance={balance} token={token} />;
 };
 
 const TokenSelectItemlist = (): JSX.Element => {

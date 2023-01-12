@@ -23,10 +23,14 @@ export const formatDate = (
     }
 };
 
-export default function (
-    date?: Date | string | number,
-    options: Intl.DateTimeFormatOptions = { weekday: "short", day: "2-digit", month: "short", year: "numeric" },
-): string {
-    const { locale = "en" } = useRecoilValue(settingsState);
-    return formatDate(locale, date, options);
+export default function (): (date: Date | string | number, options?: Intl.DateTimeFormatOptions, locale?: LocaleType) => string {
+    const { locale: defaultLocale = "en" } = useRecoilValue(settingsState);
+    const finalFormatDate = (
+        date: Date | string | number,
+        options: Intl.DateTimeFormatOptions = { weekday: "short", day: "2-digit", month: "short", year: "numeric" },
+        locale?: LocaleType,
+    ) => {
+        return formatDate(locale ?? defaultLocale, date, options);
+    };
+    return finalFormatDate;
 }

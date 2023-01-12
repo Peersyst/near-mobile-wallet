@@ -53,7 +53,7 @@ import {
 } from "../utils/near.constants";
 import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto, formatTokenAmount } from "../utils/near.utils";
 import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
-import { MathOperations } from "../utils";
+import { BalanceOperations } from "../utils";
 
 export class NearSDKService {
     private connection?: Near;
@@ -682,7 +682,7 @@ export class NearSDKService {
         const tokens: Token[] = [];
         for (const contractId of contractIds) {
             const [balance, metadata] = await Promise.all([this.getTokenBalance(contractId), this.getTokenMetadata(contractId)]);
-            if (MathOperations.BNIsBigger(balance, "0")) {
+            if (BalanceOperations.BNIsBigger(balance, "0")) {
                 tokens.push({
                     balance: formatTokenAmount(balance, metadata.decimals.toString()),
                     metadata,

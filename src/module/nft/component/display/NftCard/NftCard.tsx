@@ -12,13 +12,15 @@ const NftCard = ({ nft }: NftCardProps): JSX.Element => {
         metadata: { title, media_url },
         collection_metadata,
         owner_id,
+        token_id,
     } = nft;
+
     return (
         <TouchableWithoutFeedback>
-            <MainListCard gap="6.5%">
-                <NftImage uri={media_url} />
+            <MainListCard gap="6.5%" alignItems="center">
+                <NftImage uri={media_url} tokenId={token_id} />
                 <Col flex={1} gap={12} justifyContent="center">
-                    <Col gap={2} flex={1}>
+                    <Col gap={2} flex={1} justifyContent="center">
                         {title && (
                             <Typography variant="body1Strong" numberOfLines={1}>
                                 {title}
