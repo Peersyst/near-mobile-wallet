@@ -35,7 +35,7 @@ const ActionCard = ({ action }: ActionCardProps): JSX.Element => {
                     <Typography variant="body4Strong" color={(p) => p.gray[300]}>
                         {formatDate(Number(blockTimestamp))}
                     </Typography>
-                    {amount && <FiatBalance color={(p) => p.gray[300]} balance={amount} variant="body4Strong" tokenUnits={tokenName} />}
+                    {amount && <FiatBalance color={(p) => p.gray[300]} balance={amount} variant="body4Strong" />}
                 </Row>
             </Col>
         </MainListCard>

@@ -4,6 +4,7 @@ import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/pr
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
+
 const bip39 = require("bip39-light");
 import {
     Chains,
@@ -50,8 +51,9 @@ import {
     NFT_TOKEN_METADATA_METHOD,
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "../utils/near.constants";
-import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto } from "../utils/near.utils";
+import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto, parseTokenAmount } from "../utils/near.utils";
 import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
+import { BalanceOperations } from "../utils";
 
 export class NearSDKService {
     private connection?: Near;
@@ -657,7 +659,7 @@ export class NearSDKService {
         });
     }
 
-    async getTokenBalance(contractId: string): Promise<number> {
+    async getTokenBalance(contractId: string): Promise<string> {
         // TODO: Cache this call
         const account = await this.getAccount();
         return account.viewFunction({
@@ -670,16 +672,16 @@ export class NearSDKService {
     async getAccountTokens(): Promise<Token[]> {
         const contractIds = await this.apiService.getLikelyTokens({ address: this.getAddress() });
         const tokens: Token[] = [];
-
         for (const contractId of contractIds) {
-            const balance = await this.getTokenBalance(contractId);
-            const metadata = await this.getTokenMetadata(contractId);
-            tokens.push({
-                balance: balance / metadata.decimals,
-                metadata,
-            });
+            const [balance, metadata] = await Promise.all([this.getTokenBalance(contractId), this.getTokenMetadata(contractId)]);
+            if (BalanceOperations.BNIsBigger(balance, "0")) {
+                tokens.push({
+                    balance: parseTokenAmount(balance, metadata.decimals.toString()),
+                    metadata,
+                    contractId: contractId,
+                });
+            }
         }
-
         return tokens;
     }
 

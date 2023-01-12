@@ -49,6 +49,7 @@ describe("WalletCard tests", () => {
         const balance = await screen.findByText(formatBalance(accountBalance.available, { units: config.tokenName }));
         expect(balance).toBeDefined();
         fireEvent.press(balance);
+
         await waitFor(() => expect(screen.getByText(CURRENCY_UNIT["eur"] + " 10")).toBeDefined());
         expect(mockedVibrate).toHaveBeenCalled();
     });
