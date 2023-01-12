@@ -5,15 +5,10 @@ import { useState } from "react";
 import { InteractionManager } from "react-native";
 import { SendTransactionModalProps } from "./SendTransactionModal.types";
 
-function SendTransactionModal<TData = unknown, TError = unknown, TVariables = void, TContext = unknown>({
-    useMutationResult,
-    onExited,
-    children,
-    sendTransaction,
-}: SendTransactionModalProps<TData, TError, TVariables, TContext>) {
+function SendTransactionModal({ useMutationStatusResult, onExited, children, sendTransaction }: SendTransactionModalProps) {
     const translate = useTranslate();
     const [showConfirmation, setShowConfirmation] = useState(false);
-    const { isLoading, isSuccess, isError } = useMutationResult;
+    const { isLoading, isSuccess, isError } = useMutationStatusResult;
 
     function runAfterInteractions(cb?: () => void) {
         if (cb) {

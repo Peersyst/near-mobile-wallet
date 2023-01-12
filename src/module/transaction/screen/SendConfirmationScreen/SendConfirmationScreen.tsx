@@ -2,26 +2,25 @@ import { Col, Typography, useModal } from "@peersyst/react-native-components";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
 import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
-import useSendTransaction from "../../query/useSendTransaction";
 import useWalletState from "module/wallet/hook/useWalletState";
 import SendSummary from "./SendSummary";
-import settingsState from "module/settings/state/SettingsState";
 import { useTranslate } from "module/common/hook/useTranslate";
 import SendTransactionModal from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
+import { useSendTransaction } from "module/transaction/hook/useSendTransaction";
 
 const SendConfirmationScreen = (): JSX.Element => {
     const translate = useTranslate();
     const { hideModal } = useModal();
-    const { amount, senderWalletIndex, receiverAddress, asset } = useRecoilValue(sendState);
-    console.log(amount, senderWalletIndex, receiverAddress, asset);
-    const { fee: feeInDecimals } = useRecoilValue(settingsState);
+    const sendStateValue = useRecoilValue(sendState);
+    const { asset, amount, receiverAddress, senderWalletIndex } = sendStateValue;
+
     const {
         state: { wallets },
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
     const { account: senderName } = senderWallet;
-    const { mutateAsync: sendTransaction, ...rest } = useSendTransaction(senderWalletIndex!);
+    const { sendTransaction, ...rest } = useSendTransaction(sendStateValue);
 
     async function handleConfirmation() {
         await sendTransaction();
@@ -32,11 +31,18 @@ const SendConfirmationScreen = (): JSX.Element => {
     }
 
     return (
-        <SendTransactionModal onExited={closeModal} useMutationResult={{ ...rest }} sendTransaction={handleConfirmation}>
+        <SendTransactionModal onExited={closeModal} useMutationStatusResult={{ ...rest }} sendTransaction={handleConfirmation}>
             {({ showModal, isSuccess, isLoading }) => (
                 <Col gap={24} onStartShouldSetResponder={() => true}>
-                    <SendSummary senderAccount={senderName!} receiverAccount={receiverAddress!} amount={amount!} />
-
+                    <SendSummary
+                        nft={asset.nft}
+                        token={asset.ft}
+                        showFiat
+                        showTotal
+                        senderAccount={senderName!}
+                        receiverAccount={receiverAddress!}
+                        amount={amount!}
+                    />
                     <Typography variant="body3Regular" textAlign="center" light>
                         {translate("send_confirmation_text")}
                     </Typography>

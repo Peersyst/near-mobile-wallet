@@ -60,6 +60,9 @@ export function parseBlockTimestamp(blockTimestamp: string): string {
     return parseInt(blockTimestamp.toString().slice(0, 13), 10).toString();
 }
 
+/**
+ * @returns The number version of the balance (with decimals)
+ */
 export function formatTokenAmount(amount: string, decimals: string, precision?: number): string {
     const denominator = BalanceOperations.BNExp(10, parseInt(decimals, 10));
     return BalanceOperations.BNDevide(amount, denominator).slice(0, precision ?? Number(decimals));
@@ -77,6 +80,9 @@ export const removeTrailingZeros = (amount: string): string => amount.replace(/\
  */
 export const removeLeftZeros = (amount: string): string => amount.replace(/^0+/, "");
 
+/**
+ * @returns The bigversion of the balance
+ */
 export function parseTokenAmount(amount: string, tokenDecimals: string): string {
     const [integer, decimals] = amount.split(".");
     const finalTokenDecimals = parseInt(tokenDecimals, 10);

@@ -1,14 +1,15 @@
 import { BaseUseModalWrapperReturn } from "module/common/hook/useModalWrapper";
-import { UseMutationResult } from "react-query";
 
-export type SendTransactionModalChildrenProps<TData = unknown, TError = unknown, TVariables = void, TContext = unknown> = Pick<
-    BaseUseModalWrapperReturn,
-    "showModal"
-> &
-    Pick<UseMutationResult<TData, TError, TVariables, TContext>, "isLoading" | "isError" | "isSuccess">;
+export type SendTransactionModalChildrenProps = Pick<BaseUseModalWrapperReturn, "showModal"> & UseMutationStatusResult;
 
-export interface SendTransactionModalProps<TData = unknown, TError = unknown, TVariables = void, TContext = unknown> {
-    useMutationResult: Omit<UseMutationResult<TData, TError, TVariables, TContext>, "mutateAsync">;
+export interface UseMutationStatusResult {
+    isLoading: boolean;
+    isError: boolean;
+    isSuccess: boolean;
+}
+
+export interface SendTransactionModalProps {
+    useMutationStatusResult: UseMutationStatusResult;
     onExited?: () => unknown;
     sendTransaction: () => void | Promise<unknown>;
     children: (props: SendTransactionModalChildrenProps) => JSX.Element;
