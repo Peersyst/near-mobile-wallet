@@ -1,7 +1,14 @@
-import { Backdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
-import CardNavigator, { CardNavigatorProps } from "module/common/component/navigation/CardNavigator/CardNavigator";
+import { ExposedBackdropProps } from "@peersyst/react-native-components";
+import { ReactNode } from "react";
+import CardModal, { CardModalProps } from "../../feedback/CardModal/CardModal";
+import Navbar from "../Navbar/Navbar";
+import { NavbarProps } from "../Navbar/Navbar.types";
 
-export type CardNavigatorModalProps = ExposedBackdropProps & CardNavigatorProps;
+export type CardNavigatorModalProps = ExposedBackdropProps & {
+    navbar?: NavbarProps;
+    children: ReactNode;
+    style?: CardModalProps["style"];
+};
 
 const CardNavigatorModal = ({
     navbar: { back, onBack, ...restNavProps } = {},
@@ -13,25 +20,24 @@ const CardNavigatorModal = ({
     ...backdropProps
 }: CardNavigatorModalProps): JSX.Element => {
     return (
-        <Backdrop closable={closable} onClose={onClose} {...backdropProps} open={open}>
-            {(_open, setOpen) => (
-                <CardNavigator
-                    navbar={{
-                        back: back && closable,
-                        onBack:
+        <CardModal closable={closable} onClose={onClose} {...backdropProps} open={open}>
+            {(open, setOpen) => ({
+                header: (
+                    <Navbar
+                        back={back && closable}
+                        onBack={
                             onBack ||
                             (() => {
                                 setOpen(false);
                                 if (open !== undefined) onClose?.();
-                            }),
-                        ...restNavProps,
-                    }}
-                    style={style}
-                >
-                    {children}
-                </CardNavigator>
-            )}
-        </Backdrop>
+                            })
+                        }
+                        {...restNavProps}
+                    />
+                ),
+                body: children,
+            })}
+        </CardModal>
     );
 };
 
