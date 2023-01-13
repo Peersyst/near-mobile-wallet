@@ -216,5 +216,9 @@
     "enter_a_validator_account_id": "Ingrese el Id del validador",
     "validator_name_near": "validator-name.near",
     "enter_new_validator" : "Ingrese un nuevo Id de validador o seleccione una de la lista de Stake de NEAR",
-    "or_select_a_validator" : "O seleccione un Validador"
+    "or_select_a_validator" : "O seleccione un Validador",
+    "pendingRelease": "Pendiente de liberación",
+    "totalAmountStaked": "Cantidad total stakeada",
+    "rewardsEarned": "Recompensas obtenidas",
+    "availableForWithdrawal": "Disponible para retirada"
 }
