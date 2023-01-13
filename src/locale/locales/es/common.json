@@ -220,5 +220,6 @@
     "pendingRelease": "Pendiente de liberación",
     "totalAmountStaked": "Cantidad total stakeada",
     "rewardsEarned": "Recompensas obtenidas",
-    "availableForWithdrawal": "Disponible para retirada"
+    "availableForWithdrawal": "Disponible para retirada",
+    "fee": "fee"
 }

@@ -1,4 +1,4 @@
-import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
+import { createBackdrop, ExposedBackdropProps, Label, TabPanel, Tabs } from "@peersyst/react-native-components";
 import { useState } from "react";
 import { useResetRecoilState } from "recoil";
 import sendState from "module/transaction/state/SendState";
@@ -11,6 +11,7 @@ import { AddStakeModalRoot } from "./AddStakeModal.styles";
 export enum SendScreens {
     SET_AMOUNT,
     SELECT_VALIDATOR,
+    CONFIRM_VALIDATOR,
 }
 
 const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
@@ -45,6 +46,9 @@ const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProp
                 </TabPanel>
                 <TabPanel index={SendScreens.SELECT_VALIDATOR}>
                     <SelectValidatorScreen />
+                </TabPanel>
+                <TabPanel index={SendScreens.CONFIRM_VALIDATOR}>
+                    <Label label={"confirm"}></Label>
                 </TabPanel>
             </Tabs>
         </AddStakeModalRoot>

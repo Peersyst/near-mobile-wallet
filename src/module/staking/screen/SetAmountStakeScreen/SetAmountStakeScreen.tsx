@@ -53,23 +53,23 @@ const SetAmountStakeScreen = () => {
 
     return (
         <>
-            <Form onSubmit={handleSubmit}>
-                <Col gap={24}>
-                    <NEARAmountInput
-                        label={translate("enter_amount_want_to_stake")!}
-                        hint={translate("available_balance", { amount: formattedBalance, amount_price: formattedBalanceInFiat })!}
-                        index={index}
-                        name="amount"
-                        suffix={
-                            <Button variant="text" onPress={() => changeToMaxBalance()}>
-                                {translate("max")!}
-                            </Button>
-                        }
-                        value={amount}
-                        onChange={setAmount}
-                        required
-                    />
-                    <Col gap={8}>
+            <Form onSubmit={handleSubmit} style={{ height: "100%" }}>
+                <Col flex={1}>
+                    <Col flex={1} gap={24}>
+                        <NEARAmountInput
+                            label={translate("enter_amount_want_to_stake")!}
+                            hint={translate("available_balance", { amount: formattedBalance, amount_price: formattedBalanceInFiat })!}
+                            index={index}
+                            name="amount"
+                            suffix={
+                                <Button variant="text" onPress={() => changeToMaxBalance()}>
+                                    {translate("max")!}
+                                </Button>
+                            }
+                            value={amount}
+                            onChange={setAmount}
+                            required
+                        />
                         <Button type="submit" fullWidth>
                             {translate("next")}
                         </Button>

@@ -220,5 +220,6 @@
     "pendingRelease": "Pending release",
     "totalAmountStaked": "Total amount staked",
     "rewardsEarned": "Rewards earned",
-    "availableForWithdrawal": "Available for withdrawal"
+    "availableForWithdrawal": "Available for withdrawal",
+    "fee": "fee"
 }

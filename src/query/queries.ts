@@ -4,6 +4,7 @@ enum Queries {
     COIN_PRICE = "coin-price",
     TOKENS_PRICE = "tokens-price",
     TOTAL_STAKING_BALANCE = "total-staking-balance",
+    ALL_VALIDATORS_STAKING = "all-validators-staking",
 }
 
 export default Queries;
