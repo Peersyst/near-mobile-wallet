@@ -1,15 +1,15 @@
 import { useState } from "react";
 
-export interface BaseUseModalWrapperReturn {
+export interface BaseUseModalStateReturn {
     showModal: () => void;
     hideModal: () => void;
 }
 
-export interface UseModalWrapperReturn extends BaseUseModalWrapperReturn {
+export interface UseModalStateReturn extends BaseUseModalStateReturn {
     open: boolean;
 }
 
-export function useModalWrapper(): UseModalWrapperReturn {
+export function useModalState(): UseModalStateReturn {
     const [open, setOpen] = useState(false);
     const showModal = () => setOpen(true);
     const hideModal = () => setOpen(false);
