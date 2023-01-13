@@ -208,5 +208,7 @@
     "rewardsEarned": "Recompensas obtenidas",
     "availableForWithdrawal": "Disponible para retirada",
     "your_current_validators": "Tus validadores actuales",
-    "fee": "Tasa"
+    "fee": "Tasa",
+    "active": "activo",
+    "inactive": "inactivo"
 }

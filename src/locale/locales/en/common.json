@@ -208,5 +208,7 @@
     "rewardsEarned": "Rewards earned",
     "availableForWithdrawal": "Available for withdrawal",
     "your_current_validators": "Your current validators",
-    "fee": "fee"
+    "fee": "fee",
+    "active": "active",
+    "inactive": "inactive"
 }

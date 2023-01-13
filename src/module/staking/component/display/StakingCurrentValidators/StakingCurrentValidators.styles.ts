@@ -6,4 +6,5 @@ export const StakingCurrentValidatorsRoot = styled(Col)(() => ({
     justifyContent: "center",
     paddingVertical: 16,
     paddingHorizontal: 20,
+    minHeight: 138,
 }));
