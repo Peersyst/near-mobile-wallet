@@ -1,5 +1,5 @@
 import { TextFieldProps } from "module/common/component/input/TextField/TextField.types";
-import { Asset } from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect.types";
+import { Asset } from "module/wallet/wallet.types";
 import { AssetType } from "module/wallet/wallet.types";
 import NEARAmountTextField from "./NEARAmountTextField/NEARAmountTextField";
 import NftAmountTextField from "./NftAmountTextField/NftAmountTextField";

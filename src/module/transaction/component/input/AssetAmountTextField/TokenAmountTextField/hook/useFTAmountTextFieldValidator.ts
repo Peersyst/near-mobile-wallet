@@ -41,13 +41,13 @@ export const useFTAmountTextFieldValidator = ({
     ];
 
     //Check the amount is greater than the minDecimal allowed by the definition of the token 1*10e-decimals
-    const formatedMinDecimal =
+    const formattedMinDecimal =
         "0." +
         Array(parseInt(decimals, 10) - 1)
             .fill(0)
             .join("") +
         "1";
-    const isGreaterThanMinDecimal = isTokenAmountGreaterOrEqualThanThreshold(amount, formatedMinDecimal, decimals);
+    const isGreaterThanMinDecimal = isTokenAmountGreaterOrEqualThanThreshold(amount, formattedMinDecimal, decimals);
     const finalMinAmountError: TextFieldProps["error"] = !isGreaterThanMinDecimal && [
         !isGreaterThanMinDecimal,
         translateError("invalid_number_gte", { n: "10^(-" + decimals + ") " + symbol }),

@@ -1,37 +1,16 @@
 import { Col, Row } from "@peersyst/react-native-components";
 import Container from "module/common/component/display/Container/Container";
-import Typography, { TypographyProps } from "module/common/component/display/Typography/Typography";
+import Typography from "module/common/component/display/Typography/Typography";
 import { useTranslate } from "module/common/hook/useTranslate";
 import Fee from "module/transaction/component/display/Fee/Fee";
-import Balance from "module/wallet/component/display/Balance/Balance";
-import useGetBalance from "module/wallet/query/useGetBalance";
-import { AssetType } from "module/wallet/wallet.types";
 import { TouchableWithoutFeedback } from "react-native";
 import { useAssetSelect } from "../hook/useAssetSelect";
 import { ChevronDownIcon } from "./AssetSelectDisplay.styles";
+import AssetValueDisplay from "./AssetValueDisplay";
 
 export interface AssetSelectDisplayProps {
     onPress: () => void;
 }
-
-export type AssetValueDisplayProps = Omit<TypographyProps, "children">;
-
-export const AssetValueDisplay = ({ ...rest }: AssetValueDisplayProps): JSX.Element => {
-    const { index, asset } = useAssetSelect();
-    const { data: { available } = { available: "0" } } = useGetBalance(index);
-    const { type, nft, ft } = asset ?? {};
-    return (
-        <>
-            {type === AssetType.NFT && (
-                <Typography numberOfLines={1} {...rest}>
-                    {nft?.metadata.title}
-                </Typography>
-            )}
-            {type === AssetType.FT && <Balance units={ft?.metadata.symbol} balance={ft?.balance ?? "0"} {...rest} />}
-            {type === AssetType.TOKEN && <Balance units="token" balance={available} {...rest} />}
-        </>
-    );
-};
 
 const AssetSelectDisplay = ({ onPress }: AssetSelectDisplayProps) => {
     const translate = useTranslate();

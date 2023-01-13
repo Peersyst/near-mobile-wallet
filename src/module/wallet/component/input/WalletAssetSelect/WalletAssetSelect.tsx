@@ -4,8 +4,9 @@ import { useModalState } from "module/common/hook/useModalState";
 import { useGetAllAssets } from "module/wallet/query/useGetAllAssets";
 import { AssetSelectProvider } from "./context/AssetSelectContext";
 import AssetSelectDisplay from "./AssetSelectDisplay/AssetSelectDisplay";
-import { Asset, WalletAssetSelectProps } from "./WalletAssetSelect.types";
+import { WalletAssetSelectProps } from "./WalletAssetSelect.types";
 import { WalletAssetSelectModal } from "./WalletAssetSelectModal/WalletAssetSelectModal";
+import { Asset } from "module/wallet/wallet.types";
 
 const WalletAssetSelect = ({ index, ...rest }: WalletAssetSelectProps) => {
     useGetAllAssets(index); //On mount start fetching all assets

@@ -41,13 +41,13 @@ export const useNEARAmountTextFieldValidator = ({
     ];
 
     //Check if the amount is at least the minimum amount available in NEAR. 1*10e-14 (1 yoctoNEAR)
-    const formatedMinDecimal =
+    const formattedMinDecimal =
         "0." +
         Array(24 - 1)
             .fill(0)
             .join("") +
         "1";
-    const isGreaterThanMinDecimal = isNEARAmountGreaterOrEqualThanThreshold(amount, formatedMinDecimal);
+    const isGreaterThanMinDecimal = isNEARAmountGreaterOrEqualThanThreshold(amount, formattedMinDecimal);
     const finalMinAmount: TextFieldProps["error"] = !isGreaterThanMinDecimal && [
         !isGreaterThanMinDecimal,
         translateError("invalid_number_gte", { n: "1 " + config.miniTokenUnit }),
