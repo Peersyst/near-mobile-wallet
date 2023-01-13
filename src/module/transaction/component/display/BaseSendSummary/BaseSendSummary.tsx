@@ -27,6 +27,7 @@ export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
 const BaseSendSummary = ({ amount, fee, children, showTotal, showFiat, style, token, nft }: BaseSendSummaryFullProps): JSX.Element => {
     const translate = useTranslate();
     const finalFee = fee ?? config.estimatedFee;
+    const feeDecimals = finalFee.split(".")[1]?.length ?? 0;
     return (
         <Container style={{ width: "100%", ...style }}>
             <Col gap="10%" alignItems="center">
@@ -53,10 +54,10 @@ const BaseSendSummary = ({ amount, fee, children, showTotal, showFiat, style, to
                                 {translate("total")}
                                 {" · "}
                                 <TotalText
-                                    options={{ minimumFractionDigits: finalFee.length }}
                                     as={Balance}
+                                    options={{ maximumFractionDigits: feeDecimals, minimumFractionDigits: feeDecimals }}
                                     light
-                                    balance={addNearAmounts(amount.toString(), fee ?? config.estimatedFee)}
+                                    balance={addNearAmounts(amount.toString(), finalFee).toString()}
                                     variant="body2Strong"
                                     units="token"
                                 />

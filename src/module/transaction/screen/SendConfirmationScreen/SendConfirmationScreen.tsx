@@ -41,7 +41,7 @@ const SendConfirmationScreen = (): JSX.Element => {
                         showTotal
                         senderAccount={senderName!}
                         receiverAccount={receiverAddress!}
-                        amount={"1"}
+                        amount={amount!}
                     />
                     <Typography variant="body3Regular" textAlign="center" light>
                         {translate("send_confirmation_text")}

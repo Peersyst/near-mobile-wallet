@@ -29,7 +29,7 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
         if (activeIndex === SendScreens.AMOUNT_AND_MESSAGE) {
             setSendState((oldState) => ({ ...oldState, amount: undefined, asset: { type: AssetType.TOKEN } }));
         }
-        if (activeIndex > 0) setActiveIndex((oldIndex) => oldIndex - 1);
+        setActiveIndex((oldIndex) => oldIndex - 1);
     };
 
     return (
@@ -37,7 +37,7 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
             navbar={{
                 back: true,
                 title: translate("send"),
-                onBack: handleOnBack,
+                onBack: activeIndex > 0 ? handleOnBack : undefined,
                 steps: {
                     length: 3,
                     index: activeIndex,

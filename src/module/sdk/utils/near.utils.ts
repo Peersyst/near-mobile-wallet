@@ -34,12 +34,7 @@ export function subtractNearAmounts(amount1: string, amount2: string): string {
  */
 export function addNearAmounts(amount1: string, amount2: string): string {
     const amount1InYocto = convertNearToYocto(amount1);
-    console.log("Amount1", amount1, amount1InYocto);
     const amount2InYocto = convertNearToYocto(amount2);
-    console.log("Amount2", amount2, amount2InYocto);
-    console.log("Summ", BalanceOperations.BNAdd(amount1InYocto, amount2InYocto));
-    console.log("Summ 2", BalanceOperations.BNAdd(amount1InYocto, amount2InYocto));
-    console.log("Near summ", convertYoctoToNear(BalanceOperations.BNAdd(amount1InYocto, amount2InYocto)));
     return convertYoctoToNear(BalanceOperations.BNAdd(amount1InYocto, amount2InYocto));
 }
 
