@@ -2,12 +2,12 @@ import { Spinner } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import NumericTextField, { NumericTextFieldProps } from "module/common/component/input/NumericTextField/NumericTextField";
 
-export type BaseAssetAmountInputProps = Omit<NumericTextFieldProps, "suffix"> & {
+export type BaseAssetAmountTextFieldProps = Omit<NumericTextFieldProps, "suffix"> & {
     loading?: boolean;
     units: string;
 };
 
-const BaseAssetAmountInput = ({ loading = false, units, disabled, ...rest }: BaseAssetAmountInputProps) => {
+const BaseAssetAmountTextField = ({ loading = false, units, disabled, ...rest }: BaseAssetAmountTextFieldProps) => {
     return (
         <NumericTextField
             disabled={loading || disabled}
@@ -17,4 +17,4 @@ const BaseAssetAmountInput = ({ loading = false, units, disabled, ...rest }: Bas
     );
 };
 
-export default BaseAssetAmountInput;
+export default BaseAssetAmountTextField;

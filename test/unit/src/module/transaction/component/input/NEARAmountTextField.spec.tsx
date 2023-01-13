@@ -1,13 +1,13 @@
 import { config } from "config";
-import NEARAmountInput from "module/transaction/component/input/AssetAmountInput/NEARAmountInput/NEARAmountInput";
+import NEARAmountTextField from "module/transaction/component/input/AssetAmountTextField/NEARAmountTextField/NEARAmountTextField";
 import { AccountBalanceMock, UseGetBalanceMock } from "test-mocks";
 import { fireEvent, render, screen, translate, waitFor } from "test-utils";
 
-describe("NEARAmountInput Test", () => {
+describe("NEARAmountTextField Test", () => {
     test("Renders and validates correctly", async () => {
         const balance = new AccountBalanceMock({ available: "10" });
         new UseGetBalanceMock({ balance });
-        render(<NEARAmountInput index={0} placeholder="Enter amount" />);
+        render(<NEARAmountTextField index={0} placeholder="Enter amount" />);
         //Wait untill the balance is loaded
         await waitFor(() => expect(screen.getByText(config.tokenName)).toBeDefined());
         const input = screen.getByPlaceholderText("Enter amount");

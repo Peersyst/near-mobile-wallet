@@ -1,9 +1,9 @@
-import NftAmountInput from "module/transaction/component/input/AssetAmountInput/NftAmountInput/NftAmountInput";
+import NftAmountTextField from "module/transaction/component/input/AssetAmountTextField/NftAmountTextField/NftAmountTextField";
 import { render, screen, translate } from "test-utils";
 
-describe("NftAmountInput Test", () => {
+describe("NftAmountTextField Test", () => {
     test("Renders correctly", () => {
-        render(<NftAmountInput placeholder="Enter amount" />);
+        render(<NftAmountTextField placeholder="Enter amount" />);
         const input = screen.getByPlaceholderText("Enter amount");
         expect(input).toBeDefined();
         expect(input.props.value).toBe("1");

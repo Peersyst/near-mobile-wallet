@@ -3,20 +3,23 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
 import { isTokenAmountGreaterThanThreshold, Token } from "near-peersyst-sdk";
 
-export interface UseFtAmountInputValidatorParams {
+export interface UseFtAmountTextFieldValidatorParams {
     amount: string;
-    ft: Token;
+    token: Token;
 }
-export interface UseFtAmountInputValidatorResult {
+export interface UseFtAmountTextFieldValidatorResult {
     error: TextFieldProps["error"];
 }
 
-export const useFTAmountInputValidator = ({ amount, ft }: UseFtAmountInputValidatorParams): UseFtAmountInputValidatorResult => {
+export const useFTAmountTextFieldValidator = ({
+    amount,
+    token,
+}: UseFtAmountTextFieldValidatorParams): UseFtAmountTextFieldValidatorResult => {
     const translateError = useTranslate("error");
     const {
         balance,
         metadata: { symbol, decimals },
-    } = ft;
+    } = token;
 
     //Check if amount is less than available balance
     const isGreaterThanMax = isTokenAmountGreaterThanThreshold(amount, balance, decimals);

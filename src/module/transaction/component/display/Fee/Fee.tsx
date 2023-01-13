@@ -4,16 +4,15 @@ import Typography, { TypographyProps } from "module/common/component/display/Typ
 import { useTranslate } from "module/common/hook/useTranslate";
 import Balance from "module/wallet/component/display/Balance/Balance";
 
-export interface FeeProps {
+export interface FeeProps extends Omit<TypographyProps, "variant"> {
     typographyVariant: TypographyVariant;
     fee?: string;
-    style?: TypographyProps["style"];
 }
 
-const Fee = ({ typographyVariant, fee, style }: FeeProps) => {
+const Fee = ({ typographyVariant, fee, ...rest }: FeeProps) => {
     const translate = useTranslate();
     return (
-        <Typography variant={`${typographyVariant}Regular`} light textAlign="center" style={style}>
+        <Typography variant={`${typographyVariant}Regular`} light textAlign="center" {...rest}>
             {translate("transaction_fee_label")}
             {" · "}
             <Balance
@@ -25,6 +24,7 @@ const Fee = ({ typographyVariant, fee, style }: FeeProps) => {
                     maximumFractionDigits: config.maxNumberOfDecimals,
                     minimumFractionDigits: config.maxNumberOfDecimals,
                 }}
+                {...rest}
             />
         </Typography>
     );

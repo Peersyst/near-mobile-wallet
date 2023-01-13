@@ -1,12 +1,12 @@
-import TokenAmountInput from "module/transaction/component/input/AssetAmountInput/TokenAmountInput/TokenAmountInput";
+import TokenAmountTextField from "module/transaction/component/input/AssetAmountTextField/TokenAmountTextField/TokenAmountTextField";
 import { TokenMetadataMock, TokenMock } from "test-mocks";
 import { render, screen, fireEvent, translate } from "test-utils";
 
-describe("TokenAmountInput Test", () => {
+describe("TokenAmountTextField Test", () => {
     test("Renders and validates correctly", () => {
         const metadata = new TokenMetadataMock({ symbol: "PUNKS" });
         const ft = new TokenMock({ balance: "10", metadata });
-        render(<TokenAmountInput placeholder="Enter amount" ft={ft} />);
+        render(<TokenAmountTextField placeholder="Enter amount" ft={ft} />);
         //Wait untill the balance is loaded
         expect(screen.getByText("PUNKS")).toBeDefined();
         const input = screen.getByPlaceholderText("Enter amount");

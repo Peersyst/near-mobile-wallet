@@ -5,15 +5,18 @@ import { useFormatBalance } from "module/wallet/component/display/Balance/hook/u
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { isNEARAmountGreaterThanThreshold, subtractNearAmounts } from "near-peersyst-sdk";
 
-export interface UseNEARAmountInputValidatorParams {
+export interface UseNEARAmountTextFieldValidatorParams {
     amount: string;
     index: number;
 }
-export interface UseNEARAmountInputValidatorResult {
+export interface UseNEARAmountTextFieldValidatorResult {
     error: TextFieldProps["error"];
 }
 
-export const useNEARAmountInputValidator = ({ amount, index }: UseNEARAmountInputValidatorParams): UseNEARAmountInputValidatorResult => {
+export const useNEARAmountTextFieldValidator = ({
+    amount,
+    index,
+}: UseNEARAmountTextFieldValidatorParams): UseNEARAmountTextFieldValidatorResult => {
     const translateError = useTranslate("error");
     const { data: { available } = { available: "0" } } = useGetBalance(index);
 
