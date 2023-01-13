@@ -57,7 +57,7 @@ const BaseSendSummary = ({ amount, fee, children, showTotal, showFiat, style, to
                                     as={Balance}
                                     options={{ maximumFractionDigits: feeDecimals, minimumFractionDigits: feeDecimals }}
                                     light
-                                    balance={addNearAmounts(amount.toString(), finalFee).toString()}
+                                    balance={addNearAmounts(amount.toString(), finalFee)}
                                     variant="body2Strong"
                                     units="token"
                                 />
