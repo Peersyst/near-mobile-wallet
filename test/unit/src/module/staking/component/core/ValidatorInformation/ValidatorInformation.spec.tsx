@@ -13,7 +13,7 @@ describe("Tests for ValidatorInformation", () => {
         render(<ValidatorInformation validator={mockedValidator} />);
 
         expect(screen.getByText(mockedValidator.accountId)).toBeDefined();
-        expect(screen.getByText("10% " + capitalize(translate("fee")) + " -")).toBeDefined();
+        expect(screen.getByText("10% " + capitalize(translate("fee")) + " - ")).toBeDefined();
         expect(screen.getByText(translate("active"))).toBeDefined();
         expect(screen.getByText(mockedValidator!.stakingBalance!.staked.toString() + " NEAR")).toBeDefined();
 
