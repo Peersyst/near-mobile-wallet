@@ -1,7 +1,7 @@
 import { TextFieldProps } from "module/common/component/input/TextField/TextField.types";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
-import { isTokenAmountGreaterThanThreshold, Token } from "near-peersyst-sdk";
+import { isTokenAmountGreaterOrEqualThanThreshold, isTokenAmountGreaterThanThreshold, Token } from "near-peersyst-sdk";
 
 export interface UseFtAmountTextFieldValidatorParams {
     amount: string;
@@ -30,7 +30,7 @@ export const useFTAmountTextFieldValidator = ({
     });
     const finalMaxAmountError: TextFieldProps["error"] = isGreaterThanMax && [
         isGreaterThanMax,
-        translateError("invalid_number_lt", { n: formattedMaxAvailable }),
+        translateError("invalid_number_lte", { n: formattedMaxAvailable }),
     ];
 
     //Check if the amount is greater than zero
@@ -40,22 +40,17 @@ export const useFTAmountTextFieldValidator = ({
         translateError("invalid_number_gt", { n: "0 " + symbol }),
     ];
 
-    //Check the amount is greater than the minDecimal
+    //Check the amount is greater than the minDecimal allowed by the definition of the token 1*10e-decimals
     const formatedMinDecimal =
         "0." +
         Array(parseInt(decimals, 10) - 1)
             .fill(0)
             .join("") +
         "1";
-    const isGreaterThanMinDecimal = isTokenAmountGreaterThanThreshold(amount, formatedMinDecimal, decimals);
-    const formattedMinDecimal = useFormatBalance(formatedMinDecimal, {
-        units: symbol,
-        unitsPosition: "right",
-        numberFormatOptions: { minimumFractionDigits: parseInt(decimals, 10) },
-    });
+    const isGreaterThanMinDecimal = isTokenAmountGreaterOrEqualThanThreshold(amount, formatedMinDecimal, decimals);
     const finalMinAmountError: TextFieldProps["error"] = !isGreaterThanMinDecimal && [
         !isGreaterThanMinDecimal,
-        translateError("invalid_number_gt", { n: formattedMinDecimal }),
+        translateError("invalid_number_gte", { n: "10^(-" + decimals + ") " + symbol }),
     ];
 
     const error = finalMaxAmountError || finalMinAmountGreaterThanZero || finalMinAmountError;

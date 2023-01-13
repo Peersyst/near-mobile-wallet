@@ -14,7 +14,7 @@ const AssetAmountTextField = ({ asset, index = 0, onChange, value, ...rest }: As
     return (
         <>
             {asset.type === AssetType.TOKEN && <NEARAmountTextField onChange={onChange} value={value} index={index} {...rest} />}
-            {asset.type === AssetType.FT && <TokenAmountTextField onChange={onChange} value={value} ft={asset.ft!} {...rest} />}
+            {asset.type === AssetType.FT && <TokenAmountTextField onChange={onChange} value={value} token={asset.ft!} {...rest} />}
             {asset.type === AssetType.NFT && <NftAmountTextField {...rest} />}
         </>
     );
