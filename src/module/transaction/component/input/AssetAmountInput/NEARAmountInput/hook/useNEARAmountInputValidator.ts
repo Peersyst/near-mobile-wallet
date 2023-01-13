@@ -44,9 +44,7 @@ export const useNEARAmountInputValidator = ({ amount, index }: UseNEARAmountInpu
         translateError("invalid_number_gt", { n: "0 " + config.tokenName }),
     ];
 
-    const error = finalHasEnoughBalanceError || finalMaxAmountError || finalMinAmountError;
-
     return {
-        error,
+        error: finalHasEnoughBalanceError || finalMaxAmountError || finalMinAmountError,
     };
 };
