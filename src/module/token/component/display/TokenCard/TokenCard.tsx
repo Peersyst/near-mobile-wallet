@@ -12,6 +12,7 @@ export interface TokenCardProps {
 
 const TokenCard = ({ token }: TokenCardProps): JSX.Element => {
     const { name, symbol } = token.metadata;
+
     return (
         <MainListCard alignItems="center" justifyContent="space-between">
             <Row alignItems="center" gap={16}>

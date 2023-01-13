@@ -22,7 +22,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     const senderWallet = wallets[senderWalletIndex!];
     const { account: senderName } = senderWallet;
 
-    async function handleConfirmation() {
+    async function handleSend() {
         await sendTransaction();
     }
 
@@ -31,7 +31,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     }
 
     return (
-        <SendTransactionModal onExited={closeModal} useMutationStatusResult={{ ...rest }} sendTransaction={handleConfirmation}>
+        <SendTransactionModal onExited={closeModal} useMutationStatusResult={{ ...rest }} sendTransaction={handleSend}>
             {({ showModal, isSuccess, isLoading }) => (
                 <Col gap={24} onStartShouldSetResponder={() => true}>
                     <SendSummary

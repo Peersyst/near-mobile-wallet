@@ -30,7 +30,7 @@ export function subtractNearAmounts(amount1: string, amount2: string): string {
 }
 
 /**
- * Add Near amount from another Near amount
+ * Add Near amounts. Both amount has to be in NEAR
  */
 export function addNearAmounts(amount1: string, amount2: string): string {
     const amount1InYocto = convertNearToYocto(amount1);
