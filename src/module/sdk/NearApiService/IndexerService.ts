@@ -17,10 +17,10 @@ import {
 } from "./NearApiService.types";
 
 export class IndexerService extends FetchService implements NearApiServiceInterface {
-    public endPoint: string;
+    public baseUrl: string;
     constructor(endpoint: string) {
         super();
-        this.endPoint = endpoint;
+        this.baseUrl = endpoint;
     }
     /**
      * Parsers
@@ -85,20 +85,20 @@ export class IndexerService extends FetchService implements NearApiServiceInterf
      * NearApiServiceInterface methods
      */
     async getAccountsFromPublicKey({ address }: NearApiServiceParams): Promise<string[]> {
-        return await this.handleFetch<string[]>(`${this.endPoint}/accounts/public-key/${address}`);
+        return await this.handleFetch<string[]>(`${this.baseUrl}/accounts/public-key/${address}`);
     }
     async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
-        return await this.handleFetch<StakingDeposit[]>(`${this.endPoint}/accounts/${address}/staking-deposits`);
+        return await this.handleFetch<StakingDeposit[]>(`${this.baseUrl}/accounts/${address}/staking-deposits`);
     }
     async getLikelyTokens({ address }: NearApiServiceParams): Promise<string[]> {
-        return await this.handleFetch<string[]>(`${this.endPoint}/accounts/${address}/likely-tokens?fromBlockTimestamp=0`);
+        return await this.handleFetch<string[]>(`${this.baseUrl}/accounts/${address}/likely-tokens?fromBlockTimestamp=0`);
     }
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
-        return await this.handleFetch<string[]>(`${this.endPoint}/accounts/${address}/likely-nfts?fromBlockTimestamp=0`);
+        return await this.handleFetch<string[]>(`${this.baseUrl}/accounts/${address}/likely-nfts?fromBlockTimestamp=0`);
     }
     async getActionsFromTransactions({ address, page = 0, pageSize = 15 }: NearApiServicePaginatedParams): Promise<Action[]> {
         const txsIndexerDto = await this.handleFetch<TransactionIndexerDto[]>(
-            `${this.endPoint}/transactions/?accountId=${address}&page=${page}&pageSize=${pageSize}`,
+            `${this.baseUrl}/transactions/?accountId=${address}&page=${page}&pageSize=${pageSize}`,
         );
         const actions: Action[] = [];
         txsIndexerDto.forEach((tx) => {

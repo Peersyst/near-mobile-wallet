@@ -7,12 +7,13 @@ package-lock.json
 openapi-spec.json
 /.git
 /.yarn
-/test/unit/__mocks__/file.mock.js
+/test/unit/**mocks**/file.mock.js
 /test/cypress/support/commands/utils.ts
 /.nyc_output/
 /src/module/api
 /src/module/common/icons
 /src/module/common/component/base/assets
+/src/module/common/component/utils/blockImage.js
 /src/script/iconGeneratorNative.js
 /src/script/imagesGenerator.js
 /ios
