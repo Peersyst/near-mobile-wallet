@@ -2,8 +2,8 @@ import { Col, Skeleton, Suspense } from "@peersyst/react-native-components";
 import { useGetAllAssets } from "module/wallet/query/useGetAllAssets";
 import { useAssetSelect } from "../hook/useAssetSelect";
 import NEARSelectItem from "./NEARSelectItem";
-import NftSelectItemList from "./NftSelectItemList";
-import TokenSelectItemlist from "./TokenSelectItemlist";
+import NftSelectItemList from "./NftSelectItemList/NftSelectItemList";
+import TokenSelectItemlist from "./TokenSelectItemList/TokenSelectItemlist";
 
 export const ASSET_SELECT_NUM_OF_SKELETONS = 2;
 
