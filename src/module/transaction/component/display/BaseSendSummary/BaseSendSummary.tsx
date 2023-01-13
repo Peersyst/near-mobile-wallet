@@ -5,7 +5,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import Typography from "module/common/component/display/Typography/Typography";
 import Container from "module/common/component/display/Container/Container";
 import { ViewStyle } from "react-native";
-import { addNearAmounts, BalanceOperations, NftToken, Token } from "near-peersyst-sdk";
+import { addNearAmounts, NftToken, Token } from "near-peersyst-sdk";
 import Fee, { FeeProps } from "../Fee/Fee";
 import FiatBalance from "module/wallet/component/display/FiatBalance/FiatBalance";
 import { TotalText } from "./BaseSendSummary.styles";
