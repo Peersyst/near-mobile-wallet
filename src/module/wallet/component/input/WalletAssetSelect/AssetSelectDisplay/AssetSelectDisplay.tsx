@@ -48,7 +48,7 @@ const AssetSelectDisplay = ({ onPress }: AssetSelectDisplayProps) => {
                         )}
                         <ChevronDownIcon />
                     </Row>
-                    <Fee tag="body2" />
+                    <Fee typographyVariant="body2" />
                 </Col>
             </Container>
         </TouchableWithoutFeedback>

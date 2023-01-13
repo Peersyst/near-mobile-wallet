@@ -1,10 +1,10 @@
 import { TextFieldProps, NumericInput as BaseNumericInput } from "@peersyst/react-native-components";
 import TextField from "../TextField/TextField";
 
-export type NumericInputProps = Omit<TextFieldProps, "input" | "keyboardType">;
+export type NumericTextFieldProps = Omit<TextFieldProps, "input" | "keyboardType">;
 
-const NumericInput = (props: NumericInputProps) => {
+const NumericTextField = (props: NumericTextFieldProps) => {
     return <TextField input={BaseNumericInput} {...props} />;
 };
 
-export default NumericInput;
+export default NumericTextField;
