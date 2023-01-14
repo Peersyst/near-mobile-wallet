@@ -20,6 +20,7 @@ describe("Tests for StakingDetails", () => {
 
         expect(screen.getAllByTestId("NearIcon")).toHaveLength(4);
         expect(screen.getByText("10 NEAR")).toBeDefined();
+        expect(screen.getByText("0 NEAR")).toBeDefined();
         expect(screen.getByText("5 NEAR")).toBeDefined();
         expect(screen.getByText("2 NEAR")).toBeDefined();
     });

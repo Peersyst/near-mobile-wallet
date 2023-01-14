@@ -507,14 +507,14 @@ export class NearSDKService {
         return Promise.all(validatorsProms);
     }
 
-    async getTotalStakingBalance(): Promise<StakingBalance> {
-        // TODO: Remove comments
-        // const stakingDeposits = await this.apiService.getStakingDeposits(this.getAddress(), this.baseApiUrl);
-        // const validatorsProms = stakingDeposits.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
-        // const validators = await Promise.all(validatorsProms);
+    async getCurrentValidators(): Promise<Validator[]> {
+        const stakingDeposits = await this.apiService.getStakingDeposits({ address: this.getAddress() });
+        const validatorsProms = stakingDeposits.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
+        return await Promise.all(validatorsProms);
+    }
 
-        // TODO: remove get all validators line
-        const validators = await this.getAllValidators();
+    async getTotalStakingBalance(): Promise<StakingBalance> {
+        const validators = await this.getCurrentValidators();
 
         const stakingBalance: StakingBalance = {
             staked: validators.reduce((ant, act) => ant + (act.stakingBalance?.staked || 0), 0),

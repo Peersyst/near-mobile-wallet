@@ -15,7 +15,7 @@ export default function (): UseGetStakingDetailsSectionReturn {
     const {
         state: { selectedWallet },
     } = useWalletState();
-    const { isLoading, data: { staked, rewardsEarned, pending, available } = { staked: 0, pending: 0, available: 0 } } =
+    const { isLoading, data: { staked, rewardsEarned, pending, available } = { staked: 0, pending: 0, available: 0, rewardsEarned: 0 } } =
         useGetTotalStaking(selectedWallet);
 
     const stakingDetailsSections: StakingDetailsSection[] = [
