@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import Typography from "module/common/component/display/Typography/Typography";
-import { ValidatorStatusTagProps } from "module/staking/component/core/ValidatorInformation/ValidatorInformation.types";
 import { Row } from "@peersyst/react-native-components";
+import { ValidatorStatusTagProps } from "module/staking/component/core/ValidatorInformation/ValidatorInformation.types";
 
 export const ValidatorRoot = styled(Row)(() => ({
     flex: 1,
@@ -12,5 +12,5 @@ export const ValidatorRoot = styled(Row)(() => ({
 }));
 
 export const ValidatorStatusTag = styled(Typography, { variant: "body4Strong" })<ValidatorStatusTagProps>(({ theme, status }) => ({
-    color: status === "active" ? theme.palette.blue : theme.palette.text,
+    color: status === "active" ? theme.palette.blue : theme.palette.red,
 }));

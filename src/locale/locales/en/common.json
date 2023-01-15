@@ -221,5 +221,8 @@
     "totalAmountStaked": "Total amount staked",
     "rewardsEarned": "Rewards earned",
     "availableForWithdrawal": "Available for withdrawal",
-    "fee": "fee"
+    "fee": "fee",
+    "your_current_validators": "Your current validators",
+    "active": "active",
+    "inactive": "inactive"
 }

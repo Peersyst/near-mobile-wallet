@@ -1,9 +1,7 @@
-import { Validator } from "module/sdk";
-
-export interface ValidatorStatusTagProps {
-    status: "active";
-}
+import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
 
 export interface ValidatorInformationProps {
-    validator: Validator;
+    validator: StakingValidator;
 }
+
+export type ValidatorStatusTagProps = Pick<StakingValidator, "status">;

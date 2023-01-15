@@ -1,5 +1,5 @@
 import StakingDetail from "module/staking/component/core/StakingDetail/StakingDetail";
-import { StakingDetailsRoot } from "module/staking/component/core/StakingDetails/StakingDetails.styles";
+import { StakingDetailsRoot } from "module/staking/component/display/StakingDetails/StakingDetails.styles";
 import { Col, Spinner, Suspense } from "@peersyst/react-native-components";
 import useGetStakingDetailsSections from "module/staking/hook/useGetStakingDetailsSections";
 

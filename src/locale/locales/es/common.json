@@ -221,5 +221,8 @@
     "totalAmountStaked": "Cantidad total stakeada",
     "rewardsEarned": "Recompensas obtenidas",
     "availableForWithdrawal": "Disponible para retirada",
-    "fee": "fee"
+    "your_current_validators": "Tus validadores actuales",
+    "fee": "Tasa",
+    "active": "activo",
+    "inactive": "inactivo"
 }
