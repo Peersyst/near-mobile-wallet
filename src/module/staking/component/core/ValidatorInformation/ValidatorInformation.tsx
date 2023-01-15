@@ -1,5 +1,5 @@
-import { Col, Row, useConfig } from "@peersyst/react-native-components";
 import { UserCheckIcon } from "icons";
+import { Col, Row } from "@peersyst/react-native-components";
 import { IconCircleWrapper } from "module/common/component/display/IconCircleWrapper/IconCircleWrapper.styles";
 import { useTheme } from "@peersyst/react-native-styled";
 import Typography from "module/common/component/display/Typography/Typography";
@@ -14,11 +14,13 @@ import { convertYoctoToNear } from "module/sdk";
 const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, status } }: ValidatorInformationProps): JSX.Element => {
     const theme = useTheme();
     const translate = useTranslate();
-    const tokenName = useConfig("tokenName");
+
     return (
         <ValidatorRoot justifyContent="space-between">
             <Row flex={1} alignItems="center" gap={10}>
-                <IconCircleWrapper size={44} backgroundColor={theme.palette.overlay["8%"]}></IconCircleWrapper>
+                <IconCircleWrapper size={44} backgroundColor={theme.palette.overlay["8%"]}>
+                    <UserCheckIcon />
+                </IconCircleWrapper>
                 <Col>
                     <Account address={accountId} variant="body3Strong" />
                     <Row>
