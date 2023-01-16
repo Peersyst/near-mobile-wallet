@@ -40,7 +40,7 @@ export const useNEARAmountTextFieldValidator = ({
         translateError("invalid_number_gt", { n: "0 " + config.tokenName }),
     ];
 
-    //Check if the amount is at least the minimum amount available in NEAR. 1*10e-14 (1 yoctoNEAR)
+    //Check if the amount is at least the minimum amount available in NEAR. 1*10e-24 (1 yoctoNEAR)
     const formattedMinDecimal =
         "0." +
         Array(24 - 1)

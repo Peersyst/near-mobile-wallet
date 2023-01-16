@@ -1,7 +1,7 @@
 import Typography from "module/common/component/display/Typography/Typography";
 import { AssetType } from "module/wallet/wallet.types";
 import { NftToken } from "near-peersyst-sdk";
-import BaseSelectItemCard from "../BaseSelectItemCard";
+import SelectItemCard from "../SelectItemCard";
 import { useAssetSelect } from "../../hook/useAssetSelect";
 import { NftSelectItemImage } from "./NftSelectItemImage";
 
@@ -22,11 +22,11 @@ export const NftSelectItem = ({ nft }: NftSelectItemProps) => {
         });
     };
     return (
-        <BaseSelectItemCard onPress={handleOnPress}>
+        <SelectItemCard onPress={handleOnPress}>
             <NftSelectItemImage uri={media_url} tokenId={token_id} />
             <Typography variant="body2Strong" numberOfLines={1}>
                 {title}
             </Typography>
-        </BaseSelectItemCard>
+        </SelectItemCard>
     );
 };

@@ -3,12 +3,12 @@ import MainListCard from "module/main/component/display/MainListCard/MainListCar
 import { ReactNode } from "react";
 import { TouchableHighlight } from "react-native";
 
-export interface BaseSelectItemCardProps {
+export interface SelectItemCardProps {
     children: ReactNode;
     onPress: () => void;
 }
 
-const BaseSelectItemCard = ({ children, onPress }: BaseSelectItemCardProps): JSX.Element => {
+const SelectItemCard = ({ children, onPress }: SelectItemCardProps): JSX.Element => {
     const { palette } = useTheme();
     return (
         <TouchableHighlight activeOpacity={1} underlayColor={palette.gray["100"]} onPress={onPress}>
@@ -19,4 +19,4 @@ const BaseSelectItemCard = ({ children, onPress }: BaseSelectItemCardProps): JSX
     );
 };
 
-export default BaseSelectItemCard;
+export default SelectItemCard;
