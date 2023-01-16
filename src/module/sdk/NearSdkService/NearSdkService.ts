@@ -52,13 +52,11 @@ import {
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "../utils/near.constants";
 import {
-    addNearAmounts,
     addYoctoAmounts,
     convertAccountBalanceToNear as convertAccountBalanceToNearUtil,
     convertNearToYocto,
     convertYoctoToNear,
     formatTokenAmount,
-    subtractNearAmounts,
     subtractYoctoAmounts,
 } from "../utils/near.utils";
 import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
