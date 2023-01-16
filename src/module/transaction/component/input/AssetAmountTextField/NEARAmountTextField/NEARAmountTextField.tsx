@@ -6,7 +6,7 @@ import { useNEARAmountTextFieldValidator } from "./hook/useNEARAmountTextFieldVa
 import { useAssetAmountState } from "../BaseAssetAmountTextField/hook/useAssetAmountState";
 
 export interface NEARAmountTextFieldProps extends Omit<NumericTextFieldProps, "validators"> {
-    index: number;
+    index?: number;
 }
 
 const NEARAmountTextField = ({ index, defaultValue = "", value, onChange, error: errorProp, ...rest }: NEARAmountTextFieldProps) => {

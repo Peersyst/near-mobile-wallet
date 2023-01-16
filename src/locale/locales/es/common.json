@@ -218,5 +218,5 @@
     "confirm_validator": "Confirmar Validador",
     "enter_amount_want_to_stake": "Ingrese el monto",
     "available_balance": "Disponible - {{amount}} NEAR ({{amount_price}})",
-    "max": "MAX"
+    "max": "Max"
 }

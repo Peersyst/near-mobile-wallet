@@ -1,49 +1,35 @@
-import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
-import { useState } from "react";
-import { useResetRecoilState } from "recoil";
-import sendState from "module/transaction/state/SendState";
-import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
+import { createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import SetAmountStakeScreen from "module/staking/screen/SetAmountStakeScreen/SetAmountStakeScreen";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { TransaltionResourceType } from "locale";
+import StakeModal from "../StakeModal/StakeModal";
+import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
 
 export enum SendScreens {
     SET_AMOUNT,
 }
 
-const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
-    const [activeIndex, setActiveIndex] = useState(SendScreens.SET_AMOUNT);
-    const resetSendState = useResetRecoilState(sendState);
-
-    const handleExited = () => {
-        onExited?.();
-        resetSendState();
-    };
-
+const AddStakeModal = createBackdrop((props: ExposedBackdropProps) => {
     const translate = useTranslate();
-    const ADD_STAKE_MODAL_TITLES: TransaltionResourceType[] = ["stake_your_near", "select_validator", "confirm_validator", "success"];
 
-    return (
-        <CardNavigatorModal
-            navbar={{
-                back: true,
-                title: translate(ADD_STAKE_MODAL_TITLES[Number(activeIndex)])!,
-                onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,
-                steps: {
-                    length: 4,
-                    index: activeIndex,
-                },
-            }}
-            onExited={handleExited}
-            {...rest}
-        >
-            <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
-                <TabPanel index={SendScreens.SET_AMOUNT}>
-                    <SetAmountStakeScreen />
-                </TabPanel>
-            </Tabs>
-        </CardNavigatorModal>
-    );
+    const tabs: MainTabItemType[] = [
+        {
+            item: <SetAmountStakeScreen />,
+            title: translate("stake_your_near"),
+        },
+        {
+            item: <></>,
+            title: translate("select_validator"),
+        },
+        {
+            item: <></>,
+            title: translate("confirm_validator"),
+        },
+        {
+            item: <></>,
+            title: translate("success"),
+        },
+    ];
+    return <StakeModal tabs={tabs} {...props} />;
 });
 
 export default AddStakeModal;

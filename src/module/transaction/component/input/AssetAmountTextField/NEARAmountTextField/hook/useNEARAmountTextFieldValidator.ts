@@ -7,7 +7,7 @@ import { isNEARAmountGreaterOrEqualThanThreshold, isNEARAmountGreaterThanThresho
 
 export interface UseNEARAmountTextFieldValidatorParams {
     amount: string;
-    index: number;
+    index?: number;
 }
 export interface UseNEARAmountTextFieldValidatorResult {
     error: TextFieldProps["error"];
