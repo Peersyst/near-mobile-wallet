@@ -25,7 +25,7 @@ describe("WalletSelectorGroup", () => {
         const { serviceInstance } = new UseServiceInstanceMock();
         const notEnoughtBalance = new AccountBalanceMock({ available: "0.09" });
         jest.spyOn(serviceInstance, "getAccountBalance").mockResolvedValue(notEnoughtBalance);
-        const screen = render(<WalletSelectorGroup />);
+        const screen = render(<WalletSelectorGroup minBalance={config.minBalanceToCreateAccount} />);
         expect(screen.getByText("Select funding account")).toBeDefined();
         await waitFor(() => expect(screen.getAllByText("0.09 " + config.tokenName)).toHaveLength(wallets.length));
         await waitFor(() => expect(screen.getByText(wallets[0].account)).toBeDefined());

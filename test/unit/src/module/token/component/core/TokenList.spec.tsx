@@ -1,10 +1,9 @@
 import TokensList from "module/token/component/core/TokensList/TokensList";
 import { render, translate, waitFor } from "test-utils";
-import { TokensMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { TokensMock, UseGetTokensMock, UseWalletStateMock } from "test-mocks";
 
 describe("Renders the token list properly", () => {
     new UseWalletStateMock();
-    const { serviceInstance } = new UseServiceInstanceMock();
 
     afterAll(() => {
         jest.restoreAllMocks();
@@ -12,13 +11,13 @@ describe("Renders the token list properly", () => {
 
     test("Renders correctly", async () => {
         const { tokens } = new TokensMock();
-        jest.spyOn(serviceInstance, "getAccountTokens").mockResolvedValue(tokens);
+        new UseGetTokensMock({ fts: tokens });
         const screen = render(<TokensList />);
         await waitFor(() => expect(screen.getAllByText("Bitcoin")));
     });
 
     test("Renders empty token list", async () => {
-        jest.spyOn(serviceInstance, "getAccountTokens").mockResolvedValue([]);
+        new UseGetTokensMock({ fts: [] });
         const screen = render(<TokensList />);
         await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show", { ns: "error" }))));
     });

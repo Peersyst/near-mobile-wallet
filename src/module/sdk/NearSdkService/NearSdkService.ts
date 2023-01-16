@@ -51,7 +51,7 @@ import {
     NFT_TOKEN_METADATA_METHOD,
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "../utils/near.constants";
-import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto, parseTokenAmount } from "../utils/near.utils";
+import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto, formatTokenAmount } from "../utils/near.utils";
 import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
 import { BalanceOperations } from "../utils";
 
@@ -213,12 +213,20 @@ export class NearSDKService {
         return accountId.length === 64 && NearSDKService.addressRegex.test(accountId);
     }
 
-    static nameIdIsValid(nameId: string): boolean {
+    static nameIdIsValid(nameId: string, network?: Chains): boolean {
+        if (network) {
+            const splittedNameId = nameId.split(".");
+            if (splittedNameId.length > 1) {
+                const suffix = splittedNameId.pop();
+                const validSuffix = network === Chains.MAINNET ? "near" : "testnet";
+                if (suffix !== validSuffix) return false;
+            }
+        }
         return nameId.length >= 2 && nameId.length <= 64 && NearSDKService.nameRegex.test(nameId);
     }
 
-    static isImplicitAddressOrNameValid(accoutOrNameId: string): boolean {
-        return NearSDKService.nameIdIsValid(accoutOrNameId) || NearSDKService.isImplicitAddress(accoutOrNameId);
+    static isImplicitAddressOrNameValid(accoutOrNameId: string, network?: Chains): boolean {
+        return NearSDKService.nameIdIsValid(accoutOrNameId, network) || NearSDKService.isImplicitAddress(accoutOrNameId);
     }
 
     static validateMnemonic(mnemonic: string): boolean {
@@ -690,7 +698,7 @@ export class NearSDKService {
             const [balance, metadata] = await Promise.all([this.getTokenBalance(contractId), this.getTokenMetadata(contractId)]);
             if (BalanceOperations.BNIsBigger(balance, "0")) {
                 tokens.push({
-                    balance: parseTokenAmount(balance, metadata.decimals.toString()),
+                    balance: formatTokenAmount(balance, metadata.decimals.toString()),
                     metadata,
                     contractId: contractId,
                 });

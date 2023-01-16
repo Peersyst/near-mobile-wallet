@@ -13,7 +13,7 @@ describe("Test for the BaseSendSummary", () => {
         expect(screen.getByText("1,000 tokenName")).toBeDefined();
         expect(screen.getByText(translate("transaction_fee_label") + " · ")).toBeDefined();
         //Fee
-        expect(screen.getByText(config.estimatedFee + " tokenName")).toBeDefined();
+        expect(screen.getByText(config.estimatedFee + " " + config.tokenName)).toBeDefined();
         //Total
         expect(screen.getByText(translate("total") + ":")).toBeDefined();
         expect(screen.getByText("1,000.00005 tokenName")).toBeDefined();

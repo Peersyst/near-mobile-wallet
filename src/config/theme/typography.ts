@@ -9,7 +9,9 @@ export const MANROPE: Record<FontWeight, string> = {
     strong: "Manrope_600SemiBold",
 };
 
-export const FONT_STYLE: Record<string, TextStyle> = {
+export type TypographyVariant = "h1" | "h2" | "h3" | "h4" | "body1" | "body2" | "body3" | "body4";
+
+export const FONT_STYLE: Record<TypographyVariant, TextStyle> = {
     h1: { fontSize: 48 },
     h2: { fontSize: 40 },
     h3: { fontSize: 32 },
@@ -20,9 +22,9 @@ export const FONT_STYLE: Record<string, TextStyle> = {
     body4: { fontSize: 12 },
 };
 
-export function createTypographyVariant(tag: keyof typeof FONT_STYLE, fontWeight: FontWeight, style: TextStyle = {}): TextStyle {
+export function createTypographyVariant(typographyVariant: TypographyVariant, fontWeight: FontWeight, style: TextStyle = {}): TextStyle {
     return {
-        ...FONT_STYLE[tag],
+        ...FONT_STYLE[typographyVariant],
         fontFamily: MANROPE[fontWeight],
         ...style,
     };

@@ -3,9 +3,8 @@ import Typography from "module/common/component/display/Typography/Typography";
 import { useTranslate } from "module/common/hook/useTranslate";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 import { TouchableWithoutFeedback } from "react-native";
-import { NftCardImage } from "./NftCard.styles";
 import { NftCardProps } from "./NftCard.types";
-import { placeholder_image } from "images";
+import NftImage from "../NftImage/NftImage";
 
 const NftCard = ({ nft }: NftCardProps): JSX.Element => {
     const t = useTranslate();
@@ -13,16 +12,13 @@ const NftCard = ({ nft }: NftCardProps): JSX.Element => {
         metadata: { title, media_url },
         collection_metadata,
         owner_id,
+        token_id,
     } = nft;
+
     return (
         <TouchableWithoutFeedback>
             <MainListCard gap="6.5%" alignItems="center">
-                <NftCardImage
-                    fallback={placeholder_image}
-                    source={{
-                        uri: media_url ?? placeholder_image,
-                    }}
-                />
+                <NftImage uri={media_url} tokenId={token_id} />
                 <Col flex={1} gap={12} justifyContent="center">
                     <Col gap={2} flex={1} justifyContent="center">
                         {title && (
