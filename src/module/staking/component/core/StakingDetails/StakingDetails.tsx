@@ -1,6 +1,4 @@
 import StakingDetail from "module/staking/component/core/StakingDetail/StakingDetail";
-import { StakingDetailsRoot } from "module/staking/component/core/StakingDetails/StakingDetails.styles";
-import { Col, List } from "@peersyst/react-native-components";
 import useGetStakingDetailsSections from "module/staking/hook/useGetStakingDetailsSections";
 import MainList from "module/main/component/display/MainList/MainList";
 
