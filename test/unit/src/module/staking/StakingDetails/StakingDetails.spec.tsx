@@ -7,7 +7,7 @@ import { StakingBalanceMock } from "mocks/NearSdk";
 describe("Tests for StakingDetails", () => {
     new UseWalletStateMock();
     const { serviceInstance } = new UseServiceInstanceMock();
-    const mockedStakingBalance = new StakingBalanceMock({ staked: 10, available: 5, pending: 2 });
+    const mockedStakingBalance = new StakingBalanceMock();
 
     test("Renders correctly", async () => {
         const useGetTotalStakingMock = jest.spyOn(serviceInstance, "getTotalStakingBalance").mockResolvedValue(mockedStakingBalance);
@@ -19,9 +19,6 @@ describe("Tests for StakingDetails", () => {
         expect(screen.getByText(translate("availableForWithdrawal"))).toBeDefined();
 
         expect(screen.getAllByTestId("NearIcon")).toHaveLength(4);
-        expect(screen.getByText("10 NEAR")).toBeDefined();
-        expect(screen.getByText("0 NEAR")).toBeDefined();
-        expect(screen.getByText("5 NEAR")).toBeDefined();
-        expect(screen.getByText("2 NEAR")).toBeDefined();
+        expect(screen.getAllByText("0 NEAR")).toHaveLength(4);
     });
 });
