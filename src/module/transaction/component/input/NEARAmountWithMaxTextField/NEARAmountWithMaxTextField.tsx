@@ -1,9 +1,7 @@
-import Button from "module/common/component/input/Button/Button";
 import { useRecoilValue } from "recoil";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
-import { useState } from "react";
 import { config } from "config";
 import useNativeTokenConversion from "module/common/hook/useNativeTokenConversion";
 import { subtractNearAmounts } from "near-peersyst-sdk";
@@ -45,7 +43,7 @@ const NEARAmountWithMaxTextField = ({ value, defaultValue = "", onChange, ...res
         <NEARAmountTextField
             hint={translate("available_balance", { amount: formattedBalance, amount_price: formattedBalanceInFiat })!}
             suffix={
-                <Typography variant="body2Strong" onPress={changeToMaxBalance} style={{ textTransform: "none" }}>
+                <Typography variant="body2Strong" onPress={changeToMaxBalance}>
                     {translate("max")!}
                 </Typography>
             }
