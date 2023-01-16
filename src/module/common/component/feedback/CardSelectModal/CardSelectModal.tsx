@@ -16,7 +16,6 @@ const CardSelectModal = ({ children, title, onClose, ...rest }: CardSelectModalP
                 header: (
                     <CardSelectModalNavbar>
                         <NavbarTitle title={title} />
-                        <NavbarTitle title={title} />
                         <ChevronUpIconRoot>
                             <ChevronUpIcon
                                 onPress={() => {
