@@ -1,4 +1,4 @@
-import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
+import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs, useToast } from "@peersyst/react-native-components";
 import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
 import { useState } from "react";
 import { useResetRecoilState, useSetRecoilState } from "recoil";
@@ -20,9 +20,11 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
     const setSendState = useSetRecoilState(sendState);
     const resetSendState = useResetRecoilState(sendState);
     const translate = useTranslate();
+    const { showToast } = useToast();
     const handleExited = () => {
         onExited?.();
         resetSendState();
+        showToast(translate("send_success"), { type: "success" });
     };
 
     const handleOnBack = () => {
