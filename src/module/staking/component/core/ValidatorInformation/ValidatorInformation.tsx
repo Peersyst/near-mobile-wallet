@@ -6,7 +6,7 @@ import Account from "module/wallet/component/display/Account/Account";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { ValidatorInformationProps } from "module/staking/component/core/ValidatorInformation/ValidatorInformation.types";
 import { capitalize } from "@peersyst/react-utils";
-import { convertYoctoToNear } from "module/sdk";
+import { convertYoctoToNear, TransactionActionKind } from "module/sdk";
 import ActionIcon from "module/transaction/component/display/ActionIcon/ActionIcon";
 
 const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, status } }: ValidatorInformationProps): JSX.Element => {
@@ -15,9 +15,9 @@ const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, sta
     return (
         <ValidatorRoot justifyContent="space-between">
             <Row flex={1} alignItems="center" gap={10}>
-                <ActionIcon actionKind="VALIDATOR" />
+                <ActionIcon actionKind={TransactionActionKind.VALIDATOR} />
                 <Col>
-                    <Account address={accountId} variant="body3Strong" />
+                    <Account style={{ width: 180 }} address={accountId} variant="body3Strong" />
                     <Row>
                         {fee && (
                             <Typography variant="body4Strong" light>
@@ -35,14 +35,12 @@ const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, sta
                     {translate("staking")}
                 </Typography>
                 {stakingBalance && (
-                    <Row>
-                        <Balance
-                            style={{ maxWidth: 84 }}
-                            balance={convertYoctoToNear(BigInt(stakingBalance!.staked).toString())}
-                            variant="body4Strong"
-                            units="token"
-                        />
-                    </Row>
+                    <Balance
+                        style={{ maxWidth: 84 }}
+                        balance={convertYoctoToNear(BigInt(stakingBalance!.staked).toString())}
+                        variant="body4Strong"
+                        units="token"
+                    />
                 )}
             </Col>
         </ValidatorRoot>

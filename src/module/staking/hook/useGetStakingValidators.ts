@@ -1,6 +1,6 @@
 import useGetCurrentValidators from "module/staking/query/useGetCurrentValidators";
 import useGetAllValidators from "module/staking/query/useGetAllValidators";
-import { Validator } from "module/sdk";
+import { Validator } from "near-peersyst-sdk";
 
 export interface StakingValidator extends Validator {
     status: "active" | "inactive";
@@ -8,11 +8,12 @@ export interface StakingValidator extends Validator {
 
 interface UseGetStakingValidatorsReturn {
     stakingValidators: StakingValidator[];
+    isLoading: boolean;
 }
 
 export default function (): UseGetStakingValidatorsReturn {
-    const { data: validators } = useGetCurrentValidators();
-    const { data: allValidators } = useGetAllValidators();
+    const { data: validators, isLoading: isLoadingCurrentValidators } = useGetCurrentValidators();
+    const { data: allValidators, isLoading: isLoadingAllValidators } = useGetAllValidators();
 
     const isCurrentValidatorActive = (validatorAccountId: string): boolean => {
         if (allValidators) return allValidators.filter(({ accountId }) => accountId === validatorAccountId).length > 0;
@@ -27,7 +28,7 @@ export default function (): UseGetStakingValidatorsReturn {
             };
             return stakingValidator;
         });
-        return { stakingValidators };
+        return { stakingValidators, isLoading: isLoadingCurrentValidators || isLoadingAllValidators };
     }
-    return { stakingValidators: [] };
+    return { stakingValidators: [], isLoading: isLoadingCurrentValidators || isLoadingAllValidators };
 }
