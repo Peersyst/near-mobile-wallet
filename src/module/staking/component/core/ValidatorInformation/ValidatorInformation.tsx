@@ -1,7 +1,4 @@
-import { UserCheckIcon } from "icons";
 import { Col, Row } from "@peersyst/react-native-components";
-import { IconCircleWrapper } from "module/common/component/display/IconCircleWrapper/IconCircleWrapper.styles";
-import { useTheme } from "@peersyst/react-native-styled";
 import Typography from "module/common/component/display/Typography/Typography";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { ValidatorRoot, ValidatorStatusTag } from "module/staking/component/core/ValidatorInformation/ValidatorInformation.styles";
@@ -10,17 +7,15 @@ import Balance from "module/wallet/component/display/Balance/Balance";
 import { ValidatorInformationProps } from "module/staking/component/core/ValidatorInformation/ValidatorInformation.types";
 import { capitalize } from "@peersyst/react-utils";
 import { convertYoctoToNear } from "module/sdk";
+import ActionIcon from "module/transaction/component/display/ActionIcon/ActionIcon";
 
 const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, status } }: ValidatorInformationProps): JSX.Element => {
-    const theme = useTheme();
     const translate = useTranslate();
 
     return (
         <ValidatorRoot justifyContent="space-between">
             <Row flex={1} alignItems="center" gap={10}>
-                <IconCircleWrapper size={44} backgroundColor={theme.palette.overlay["8%"]}>
-                    <UserCheckIcon />
-                </IconCircleWrapper>
+                <ActionIcon actionKind="VALIDATOR" />
                 <Col>
                     <Account address={accountId} variant="body3Strong" />
                     <Row>

@@ -1,7 +1,7 @@
 import StakingDetail from "module/staking/component/core/StakingDetail/StakingDetail";
-import { StakingDetailsRoot } from "module/staking/component/core/StakingDetails/StakingDetails.styles";
 import { Col, List } from "@peersyst/react-native-components";
 import useGetStakingDetailsSections from "module/staking/hook/useGetStakingDetailsSections";
+import { StakingDetailsRoot } from "module/staking/component/display/StakingDetails/StakingDetails.styles";
 
 const StakingDetails = (): JSX.Element => {
     const { isLoading, sections } = useGetStakingDetailsSections();
