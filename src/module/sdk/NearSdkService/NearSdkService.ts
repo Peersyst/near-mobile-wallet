@@ -442,7 +442,7 @@ export class NearSDKService {
         return +((resp.numerator * 100) / resp.denominator);
     }
 
-    private async getValidatorBalance(validatorId: string, validatorDeposit?: string): Promise<StakingBalance> {
+    private async getValidatorBalance(validatorId: string, validatorDeposit?: number): Promise<StakingBalance> {
         const account = await this.getAccount();
         const stakingBalance: StakingBalance = {
             staked: "0",
@@ -498,7 +498,7 @@ export class NearSDKService {
         return status.validators.map((validator: any) => validator.account_id);
     }
 
-    private async getValidatorDataFromId(validatorId: string, queryBalance: boolean, totalDeposits?: string): Promise<Validator> {
+    private async getValidatorDataFromId(validatorId: string, queryBalance: boolean, totalDeposits?: number): Promise<Validator> {
         let fee: number | null;
         let stakingBalance: StakingBalance | null;
 
@@ -523,9 +523,7 @@ export class NearSDKService {
 
     async getCurrentValidators(): Promise<Validator[]> {
         const stakingDeposits = await this.apiService.getStakingDeposits({ address: this.getAddress() });
-        const validatorsProms = stakingDeposits.map(({ validatorId, amount }) =>
-            this.getValidatorDataFromId(validatorId, true, amount.toString()),
-        );
+        const validatorsProms = stakingDeposits.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
         return await Promise.all(validatorsProms);
     }
 
