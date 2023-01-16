@@ -30,7 +30,7 @@ const StakingDetail = ({ title, amount = "0", stakeable, isLoading }: StakingDet
                         <Balance balance={amount} variant="body3Strong" units="token" />
                     </Skeleton>
                     <Skeleton loading={isLoading} width={100} height={20}>
-                        <FiatBalance balance={amount} variant="body3Strong" light />
+                        <FiatBalance balance={amount} variant="body4Strong" light />
                     </Skeleton>
                 </Col>
             </Row>
