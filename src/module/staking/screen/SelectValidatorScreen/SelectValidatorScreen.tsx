@@ -1,13 +1,11 @@
 import { Col, useSetTab } from "@peersyst/react-native-components";
-import stakeRecoilState from "module/staking/state/StakeState";
-import { useRecoilState } from "recoil";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { useState } from "react";
-import TextField from "module/common/component/input/TextField/TextField";
 import Typography from "module/common/component/display/Typography/Typography";
-import StakingList from "module/staking/component/core/StakingList/StakingList";
-import { SendScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
+import StakeValidatorSelect from "module/staking/component/input/StakeValidatorSelect/StakeValidatorSelect";
+import { useSetRecoilState } from "recoil";
+import stakeRecoilState from "module/staking/state/StakeState";
 import { Validator } from "near-peersyst-sdk";
+import { SendScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
 
 export interface SendForm {
     accountId: string;
@@ -15,13 +13,12 @@ export interface SendForm {
 
 const SelectValidatorScreen = () => {
     const translate = useTranslate();
-    const [accountId, setAccountId] = useState("");
-    const [, setStakeState] = useRecoilState(stakeRecoilState);
+    const setStakeState = useSetRecoilState(stakeRecoilState);
     const setTab = useSetTab();
 
     const onSelected = (validator: Validator) => {
         if (validator.accountId) {
-            setStakeState((oldState) => ({ ...oldState, accountId: validator.accountId }));
+            setStakeState(validator);
             setTab(SendScreens.CONFIRM_VALIDATOR);
         }
     };
@@ -31,17 +28,7 @@ const SelectValidatorScreen = () => {
             <Typography color={(palette) => palette.gray["300"]} textAlign="center" variant="body3Strong">
                 {translate("enter_new_validator")}
             </Typography>
-            <TextField
-                label={translate("enter_a_validator_account_id")!}
-                placeholder={translate("validator_name_near")!}
-                name="accountId"
-                value={accountId}
-                onChange={setAccountId}
-                autoCapitalize="none"
-                autoCorrect={false}
-            />
-            <Typography variant="body2Strong">{translate("or_select_a_validator")}</Typography>
-            <StakingList search={accountId} onSelected={onSelected} />
+            <StakeValidatorSelect onSelected={onSelected} />
         </Col>
     );
 };

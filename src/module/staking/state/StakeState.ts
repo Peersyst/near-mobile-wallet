@@ -1,15 +1,15 @@
+import { Validator } from "near-peersyst-sdk";
 import { atom } from "recoil";
 
 export interface StakeState {
-    amount?: string;
-    accountId: string;
+    validator: Validator;
 }
 
-const stakeState = atom<StakeState>({
+const stakeState = atom<Validator>({
     key: "stake",
     default: {
-        amount: "",
         accountId: "",
+        fee: null,
     },
 });
 
