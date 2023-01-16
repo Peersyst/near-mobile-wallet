@@ -3,7 +3,6 @@ import useWalletState from "module/wallet/hook/useWalletState";
 import { WalletSliderRoot } from "./WalletSlider.styles";
 import AddWalletCard from "module/wallet/component/display/AddWalletCard/AddWalletCard";
 import { Wallet } from "module/wallet/state/WalletState";
-import { InteractionManager } from "react-native";
 
 interface BaseWalletSliderProps {
     wallet: Wallet;
@@ -19,9 +18,7 @@ const WalletSlider = ({ Card }: WalletSliderProps): JSX.Element => {
         setSelectedWallet,
     } = useWalletState();
     const handleSelectedWallet = (page: number) => {
-        InteractionManager.runAfterInteractions(() => {
-            setSelectedWallet(page);
-        });
+        setSelectedWallet(page);
     };
     return (
         <DarkThemeProvider>
