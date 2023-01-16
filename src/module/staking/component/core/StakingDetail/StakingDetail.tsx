@@ -1,4 +1,4 @@
-import { Col, Row, useModal } from "@peersyst/react-native-components";
+import { Col, Row, Skeleton, useModal } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import Button from "module/common/component/input/Button/Button";
 import { useTranslate } from "module/common/hook/useTranslate";
@@ -15,9 +15,10 @@ export interface StakingDetailProps {
     title: string;
     amount: number | undefined;
     stakeable?: boolean;
+    loading: boolean;
 }
 
-const StakingDetail = ({ title, amount, stakeable }: StakingDetailProps): JSX.Element => {
+const StakingDetail = ({ title, amount, stakeable, loading }: StakingDetailProps): JSX.Element => {
     const translate = useTranslate();
     const { showModal } = useModal();
 
@@ -30,13 +31,17 @@ const StakingDetail = ({ title, amount, stakeable }: StakingDetailProps): JSX.El
                 <ActionIcon actionKind="STAKE" />
                 <Col>
                     <Typography variant="body3Regular">{title}</Typography>
-                    <Balance
-                        balance={convertYoctoToNear(BigInt(amount ?? 0).toString())}
-                        options={{ maximumFractionDigits: 3 }}
-                        variant="body3Strong"
-                        units="token"
-                    />
-                    <Balance balance={fiatValue} variant="body4Strong" units="usd" options={{ maximumFractionDigits: 2 }} light />
+                    <Skeleton loading={loading}>
+                        <Balance
+                            balance={convertYoctoToNear(BigInt(amount ?? 0).toString())}
+                            options={{ maximumFractionDigits: 3 }}
+                            variant="body3Strong"
+                            units="token"
+                        />
+                    </Skeleton>
+                    <Skeleton loading={loading}>
+                        <Balance balance={fiatValue} variant="body4Strong" units="usd" options={{ maximumFractionDigits: 2 }} light />
+                    </Skeleton>
                 </Col>
             </Row>
             {stakeable && (
