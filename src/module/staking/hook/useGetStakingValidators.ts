@@ -1,6 +1,7 @@
 import useGetCurrentValidators from "module/staking/query/useGetCurrentValidators";
 import useGetAllValidators from "module/staking/query/useGetAllValidators";
 import { Validator } from "near-peersyst-sdk";
+import { useMemo } from "react";
 
 export interface StakingValidator extends Validator {
     status: "active" | "inactive";
@@ -20,15 +21,17 @@ export default function (): UseGetStakingValidatorsReturn {
         return false;
     };
 
-    if (validators) {
-        const stakingValidators: StakingValidator[] = validators?.map((validator) => {
-            const stakingValidator: StakingValidator = {
-                status: isCurrentValidatorActive(validator.accountId) ? "active" : "inactive",
-                ...validator,
-            };
-            return stakingValidator;
-        });
-        return { stakingValidators, isLoading: isLoadingCurrentValidators || isLoadingAllValidators };
-    }
-    return { stakingValidators: [], isLoading: isLoadingCurrentValidators || isLoadingAllValidators };
+    return useMemo(() => {
+        if (validators) {
+            const stakingValidators: StakingValidator[] = validators?.map((validator) => {
+                const stakingValidator: StakingValidator = {
+                    status: isCurrentValidatorActive(validator.accountId) ? "active" : "inactive",
+                    ...validator,
+                };
+                return stakingValidator;
+            });
+            return { stakingValidators, isLoading: isLoadingCurrentValidators || isLoadingAllValidators };
+        }
+        return { stakingValidators: [], isLoading: isLoadingCurrentValidators || isLoadingAllValidators };
+    }, [validators, allValidators]);
 }
