@@ -28,6 +28,7 @@ const BaseSendSummary = ({ amount, fee, children, showTotal, showFiat, style, to
     const translate = useTranslate();
     const finalFee = fee ?? config.estimatedFee;
     const feeDecimals = finalFee.split(".")[1]?.length ?? 0;
+    const totalAmount = showTotal ? addNearAmounts(amount.toString(), finalFee) : "0";
     return (
         <Container style={{ width: "100%", ...style }}>
             <Col gap="10%" alignItems="center">
@@ -57,7 +58,7 @@ const BaseSendSummary = ({ amount, fee, children, showTotal, showFiat, style, to
                                     as={Balance}
                                     options={{ maximumFractionDigits: feeDecimals, minimumFractionDigits: feeDecimals }}
                                     light
-                                    balance={addNearAmounts(amount.toString(), finalFee)}
+                                    balance={totalAmount}
                                     variant="body2Strong"
                                     units="token"
                                 />

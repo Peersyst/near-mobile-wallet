@@ -11,11 +11,7 @@ function SendTransactionModal({ useMutationStatusResult, onExited, children, sen
     const { isLoading, isSuccess, isError } = useMutationStatusResult;
 
     function runAfterInteractions(cb?: () => void) {
-        if (cb) {
-            InteractionManager.runAfterInteractions(() => {
-                cb();
-            });
-        }
+        if (cb) InteractionManager.runAfterInteractions(cb);
     }
 
     const handleOnPinConfirmed = () => runAfterInteractions(sendTransaction);
