@@ -17,11 +17,11 @@ describe("BottomBar test", () => {
         expect(screen.getByText(translate("news"))).toBeDefined();
     });
     test("Navigate to Staking Screen", () => {
-        //const mockedNavigate = jest.fn();
-        //const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: mockedNavigate } as any} />);
-        //const newsButton = screen.getByTestId("DatabaseIcon");
-        //fireEvent.press(newsButton);
-        //expect(mockedNavigate).toHaveBeenCalledWith(MainBottomScreens.STAKING);
+        const mockedNavigate = jest.fn();
+        const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: mockedNavigate } as any} />);
+        const newsButton = screen.getByTestId("DatabaseIcon");
+        fireEvent.press(newsButton);
+        expect(mockedNavigate).toHaveBeenCalledWith(MainBottomScreens.STAKING);
     });
     test("Navigate to Home Screen", () => {
         const mockedNavigate = jest.fn();
