@@ -9,15 +9,21 @@ export type CardSelectModalProps = Omit<CardModalProps, "children"> & {
     title: string;
 };
 
-const CardSelectModal = ({ children, title, ...rest }: CardSelectModalProps) => {
+const CardSelectModal = ({ children, title, onClose, ...rest }: CardSelectModalProps) => {
     return (
-        <CardModal {...rest}>
-            {(_open, setOpen) => ({
+        <CardModal {...rest} onClose={onClose}>
+            {(open, setOpen) => ({
                 header: (
                     <CardSelectModalNavbar>
                         <NavbarTitle title={title} />
+                        <NavbarTitle title={title} />
                         <ChevronUpIconRoot>
-                            <ChevronUpIcon onPress={() => setOpen(false)} />
+                            <ChevronUpIcon
+                                onPress={() => {
+                                    setOpen(false);
+                                    if (open !== undefined) onClose?.();
+                                }}
+                            />
                         </ChevronUpIconRoot>
                     </CardSelectModalNavbar>
                 ),
