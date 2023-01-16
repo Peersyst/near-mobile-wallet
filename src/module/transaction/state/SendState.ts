@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 import { AssetType } from "module/wallet/wallet.types";
-import { Asset } from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect.types";
+import { Asset } from "module/wallet/wallet.types";
 
 export interface SendState {
     senderWalletIndex?: number;

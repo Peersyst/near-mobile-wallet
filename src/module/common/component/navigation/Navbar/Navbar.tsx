@@ -2,23 +2,11 @@ import { NavbarProps } from "./Navbar.types";
 import { NavbarRoot, BackIconRoot } from "./Navbar.styles";
 import { BackIcon } from "icons";
 import useNavigation from "module/common/hook/useNavigation";
-import { Col, Typography } from "@peersyst/react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import Steps from "module/common/component/display/Steps/Steps";
-import { TypographyProps } from "../../display/Typography/Typography";
+import { NavbarTitle } from "./NavbarTitle";
 
-export interface NavbarTitleProps extends Omit<TypographyProps, "variant" | "children"> {
-    title: string;
-}
-
-export const NavbarTitle = ({ title, ...rest }: NavbarTitleProps) => {
-    return (
-        <Typography variant="body1Strong" {...rest}>
-            {title}
-        </Typography>
-    );
-};
-
-const Navbar = ({ back, title, onBack, steps, children }: NavbarProps): JSX.Element => {
+const Navbar = ({ back, title, onBack, steps }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
 
     const goBack = () => {
@@ -26,7 +14,7 @@ const Navbar = ({ back, title, onBack, steps, children }: NavbarProps): JSX.Elem
             navigation.goBack();
         }
     };
-    if (children) return <NavbarRoot>{children}</NavbarRoot>;
+
     return (
         <NavbarRoot>
             {back && (
