@@ -1,82 +1,69 @@
-import { SendState } from "module/transaction/state/SendState";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { ReactElement } from "react";
 import { Col } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import Typography from "module/common/component/display/Typography/Typography";
 import Container from "module/common/component/display/Container/Container";
-import { config } from "config";
-import useNativeTokenConversion from "module/common/hook/useNativeTokenConversion";
-import { useRecoilValue } from "recoil";
-import settingsState from "module/settings/state/SettingsState";
 import { ViewStyle } from "react-native";
-import { BalanceOperations } from "near-peersyst-sdk";
+import { addNearAmounts, NftToken, Token } from "near-peersyst-sdk";
+import Fee, { FeeProps } from "../Fee/Fee";
+import FiatBalance from "module/wallet/component/display/FiatBalance/FiatBalance";
+import { TotalText } from "./BaseSendSummary.styles";
+import { config } from "config";
 
-export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee" | "token">> {
+export interface BaseSendSummaryFullProps {
     amount: string | number;
     children: ReactElement;
-    total?: boolean;
+    showTotal?: boolean;
     showFiat?: boolean;
     style?: ViewStyle;
+    fee?: FeeProps["fee"];
+    token?: Token;
+    nft?: NftToken;
 }
 
 export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
 
-const BaseSendSummary = ({ amount, fee, token, children, total, showFiat, style }: BaseSendSummaryFullProps): JSX.Element => {
+const BaseSendSummary = ({ amount, fee, children, showTotal, showFiat, style, token, nft }: BaseSendSummaryFullProps): JSX.Element => {
     const translate = useTranslate();
-    const { fiat } = useRecoilValue(settingsState);
-    const { value: fiatValue } = useNativeTokenConversion(fiat, amount);
-
+    const finalFee = fee ?? config.estimatedFee;
+    const feeDecimals = finalFee.split(".")[1]?.length ?? 0;
+    const totalAmount = showTotal ? addNearAmounts(amount.toString(), finalFee) : "0";
     return (
         <Container style={{ width: "100%", ...style }}>
             <Col gap="10%" alignItems="center">
                 <Col gap={2} alignItems="center" style={{ width: "100%" }}>
-                    <Typography variant="h4Strong" textAlign="center" numberOfLines={1}>
-                        <Balance
-                            balance={amount}
-                            variant="h4Strong"
-                            units={token}
-                            options={{ maximumFractionDigits: config.maxNumberOfDecimals }}
-                        />
-                        {showFiat && (
+                    {nft ? (
+                        <Typography variant="h4Strong" textAlign="center" numberOfLines={1}>
+                            {nft?.metadata.title}
+                        </Typography>
+                    ) : (
+                        <Typography variant="h4Strong" textAlign="center" numberOfLines={1}>
+                            <Balance balance={amount} variant="h4Strong" units={token?.metadata.symbol ?? "token"} />
+                            {showFiat && (
+                                <>
+                                    {" "}
+                                    <FiatBalance light balance={amount} variant="body2Regular" token={token} />
+                                </>
+                            )}
+                        </Typography>
+                    )}
+                    <Fee fee={fee} typographyVariant="body3" />
+                    {showTotal && token === undefined && nft === undefined && (
+                        <TotalText variant="body2Regular" textAlign="center" numberOfLines={1}>
                             <>
-                                {" "}
-                                <Balance
+                                {translate("total")}
+                                {" · "}
+                                <TotalText
+                                    as={Balance}
+                                    options={{ maximumFractionDigits: feeDecimals, minimumFractionDigits: feeDecimals }}
                                     light
-                                    balance={fiatValue}
-                                    variant="body2Regular"
-                                    action="round"
-                                    units={fiat}
-                                    options={{ maximumFractionDigits: 2 }}
+                                    balance={totalAmount}
+                                    variant="body2Strong"
+                                    units="token"
                                 />
                             </>
-                        )}
-                    </Typography>
-                    <Typography variant="body3Regular" light textAlign="center">
-                        {translate("transaction_fee_label")}
-                        {" · "}
-                        <Balance
-                            balance={fee}
-                            variant="body3Strong"
-                            units={token}
-                            light
-                            options={{
-                                maximumFractionDigits: config.maxNumberOfDecimals,
-                                minimumFractionDigits: config.maxNumberOfDecimals,
-                            }}
-                        />
-                    </Typography>
-                    {total && (
-                        <Typography variant="body2Regular" color={(palette) => palette.primary} textAlign="center">
-                            {translate("total")}:{" "}
-                            <Balance
-                                balance={BalanceOperations.add(amount, fee)}
-                                variant="body2Strong"
-                                units={token}
-                                color={(palette) => palette.primary}
-                                options={{ maximumFractionDigits: config.maxNumberOfDecimals }}
-                            />
-                        </Typography>
+                        </TotalText>
                     )}
                 </Col>
                 {children}

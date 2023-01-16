@@ -1,4 +1,4 @@
-import StakingSlider from "module/staking/component/core/StakingSlider/StakingSlider";
+import StakingSlider from "module/staking/component/display/StakingSlider/StakingSlider";
 import { render, translate } from "test-utils";
 import { UseServiceInstanceMock, UseWalletStateMock } from "mocks/common";
 import config from "config/config";

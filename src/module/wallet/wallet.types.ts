@@ -1,4 +1,17 @@
 import { NetworkType } from "module/settings/state/SettingsState";
+import { NftToken, Token } from "near-peersyst-sdk";
+
+export enum AssetType {
+    TOKEN = "token",
+    FT = "ft",
+    NFT = "nft",
+} //token refers as near token
+
+export interface Asset {
+    type: AssetType;
+    nft?: NftToken;
+    ft?: Token;
+}
 
 export interface BaseWallet {
     index: number;

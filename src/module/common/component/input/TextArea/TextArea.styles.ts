@@ -8,11 +8,11 @@ export const TextAreaRoot = styled(TextArea)(({ theme }) => ({
         color: theme.palette.text,
         borderWidth: 1,
         borderStyle: "solid",
-        borderColor: theme.palette.overlay["12%"],
+        borderColor: theme.palette.overlay["8%"],
         paddingHorizontal: 20,
         input: {
             ...theme.typography.body2Strong,
-            placeholderColor: theme.palette.overlay["12%"],
+            placeholderColor: theme.palette.overlay["8%"],
             highlightColor: theme.palette.primary,
         },
     },

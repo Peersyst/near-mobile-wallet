@@ -1,9 +1,10 @@
 import useWalletSelector, { UseWalletSelectorParams } from "module/wallet/hook/useWalletSelector";
+import { config } from "config";
 import { AccountBalanceMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
-import { renderHook, waitFor } from "test-utils";
+import { renderHook, translate, waitFor } from "test-utils";
 
-export const renderUseWalletSelector = () => {
-    return renderHook((params: UseWalletSelectorParams = {}) => {
+export const renderUseWalletSelector = (params: UseWalletSelectorParams = {}) => {
+    return renderHook(() => {
         const recoverWallets = useWalletSelector(params);
         return recoverWallets;
     }).result;
@@ -27,7 +28,8 @@ describe("useWalletSelector tests", () => {
             selectedWallet: wallets[0],
             setWalletIndex: expect.any(Function),
             wallets: wallets,
-            error: true,
+            error: undefined,
+            hideError: true,
         });
         await waitFor(() => expect(serviceInstance.getAccountBalance).toBeCalledTimes(1));
         expect(useWalletSelector.current).toEqual({
@@ -35,7 +37,8 @@ describe("useWalletSelector tests", () => {
             selectedWallet: wallets[0],
             setWalletIndex: expect.any(Function),
             wallets: wallets,
-            error: false,
+            error: undefined,
+            hideError: false,
         });
     });
 
@@ -46,13 +49,14 @@ describe("useWalletSelector tests", () => {
         const { serviceInstance } = new UseServiceInstanceMock();
         const accountBalance = new AccountBalanceMock({ available: "0.09" });
         jest.spyOn(serviceInstance, "getAccountBalance").mockResolvedValue(accountBalance);
-        const useWalletSelector = renderUseWalletSelector();
+        const useWalletSelector = renderUseWalletSelector({ minBalance: config.minBalanceToCreateAccount });
         expect(useWalletSelector.current).toEqual({
             selectedIndex: 0,
             selectedWallet: wallets[0],
             setWalletIndex: expect.any(Function),
             wallets: wallets,
-            error: true,
+            hideError: true,
+            error: [true, translate("invalid_seleccted_account", { ns: "error", amountInNEAR: config.minBalanceToCreateAccount })],
         });
         await waitFor(() => expect(serviceInstance.getAccountBalance).toBeCalledTimes(1));
         expect(useWalletSelector.current).toEqual({
@@ -60,7 +64,8 @@ describe("useWalletSelector tests", () => {
             selectedWallet: wallets[0],
             setWalletIndex: expect.any(Function),
             wallets: wallets,
-            error: true,
+            hideError: false,
+            error: [true, translate("invalid_seleccted_account", { ns: "error", amountInNEAR: config.minBalanceToCreateAccount })],
         });
     });
 });
