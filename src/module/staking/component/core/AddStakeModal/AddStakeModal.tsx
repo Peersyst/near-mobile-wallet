@@ -7,10 +7,12 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { TransaltionResourceType } from "locale";
 import SelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/SelectValidatorScreen";
 import { AddStakeModalRoot } from "./AddStakeModal.styles";
+import SuccessScreen from "module/staking/screen/SuccessScreen/SuccessScreen";
 
 export enum SendScreens {
     SET_AMOUNT,
     SELECT_VALIDATOR,
+    SUCCESS,
 }
 
 const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
@@ -45,6 +47,9 @@ const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProp
                 </TabPanel>
                 <TabPanel index={SendScreens.SELECT_VALIDATOR}>
                     <SelectValidatorScreen />
+                </TabPanel>
+                <TabPanel index={SendScreens.SUCCESS}>
+                    <SuccessScreen />
                 </TabPanel>
             </Tabs>
         </AddStakeModalRoot>
