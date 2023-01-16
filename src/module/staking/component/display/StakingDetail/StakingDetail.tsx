@@ -1,4 +1,4 @@
-import { Col, Row, useModal } from "@peersyst/react-native-components";
+import { Col, Row, Skeleton, useModal } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import Button from "module/common/component/input/Button/Button";
 import { useTranslate } from "module/common/hook/useTranslate";
@@ -13,9 +13,10 @@ export interface StakingDetailProps {
     title: string;
     amount: string | undefined;
     stakeable?: boolean;
+    isLoading?: boolean;
 }
 
-const StakingDetail = ({ title, amount = "0", stakeable }: StakingDetailProps): JSX.Element => {
+const StakingDetail = ({ title, amount = "0", stakeable, isLoading }: StakingDetailProps): JSX.Element => {
     const translate = useTranslate();
     const { showModal } = useModal();
 
@@ -23,10 +24,14 @@ const StakingDetail = ({ title, amount = "0", stakeable }: StakingDetailProps): 
         <StakingDetailRoot flex={1} gap={12} justifyContent="space-between" alignItems="center">
             <Row gap={12} alignItems="center">
                 <ActionIcon actionKind={TransactionActionKind.STAKE} />
-                <Col>
+                <Col gap={3}>
                     <Typography variant="body3Regular">{title}</Typography>
-                    <Balance balance={amount} options={{ maximumFractionDigits: 3 }} variant="body3Strong" units="token" />
-                    <FiatBalance balance={amount} variant="body3Strong" options={{ maximumFractionDigits: 2 }} light />
+                    <Skeleton loading={isLoading} width={100} height={20}>
+                        <Balance balance={amount} options={{ maximumFractionDigits: 3 }} variant="body3Strong" units="token" />
+                    </Skeleton>
+                    <Skeleton loading={isLoading} width={100} height={20}>
+                        <FiatBalance balance={amount} variant="body3Strong" options={{ maximumFractionDigits: 2 }} light />
+                    </Skeleton>
                 </Col>
             </Row>
             {stakeable && (
