@@ -1,6 +1,5 @@
 import { StakingCurrentValidatorsRoot } from "module/staking/component/display/StakingCurrentValidators/StakingCurrentValidators.styles";
 import Typography from "module/common/component/display/Typography/Typography";
-import { useTranslate } from "module/common/hook/useTranslate";
 import ValidatorInformation from "module/staking/component/core/ValidatorInformation/ValidatorInformation";
 import useGetStakingValidators from "module/staking/hook/useGetStakingValidators";
 import { Col, List } from "@peersyst/react-native-components";
