@@ -8,7 +8,7 @@ interface UseGetStakingDetailsSectionReturn {
     sections: StakingDetailsSection[];
 }
 
-type StakingDetailsSection = Omit<StakingDetailProps, "loading">;
+export type StakingDetailsSection = Omit<StakingDetailProps, "loading">;
 
 export default function (): UseGetStakingDetailsSectionReturn {
     const translate = useTranslate();
