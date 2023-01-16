@@ -51,7 +51,15 @@ import {
     NFT_TOKEN_METADATA_METHOD,
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "../utils/near.constants";
-import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto, formatTokenAmount } from "../utils/near.utils";
+import {
+    addNearAmounts,
+    addYoctoAmounts,
+    convertAccountBalanceToNear as convertAccountBalanceToNearUtil,
+    convertNearToYocto,
+    convertYoctoToNear,
+    formatTokenAmount,
+    subtractNearAmounts,
+} from "../utils/near.utils";
 import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
 import { BalanceOperations } from "../utils";
 
@@ -435,12 +443,12 @@ export class NearSDKService {
         return +((resp.numerator * 100) / resp.denominator);
     }
 
-    private async getValidatorBalance(validatorId: string, validatorDeposit?: number): Promise<StakingBalance> {
+    private async getValidatorBalance(validatorId: string, validatorDeposit?: string): Promise<StakingBalance> {
         const account = await this.getAccount();
         const stakingBalance: StakingBalance = {
-            staked: 0,
-            available: 0,
-            pending: 0,
+            staked: "0",
+            available: "0",
+            pending: "0",
         };
 
         const total = await account.viewFunction({
@@ -450,7 +458,7 @@ export class NearSDKService {
         });
 
         if (validatorDeposit) {
-            stakingBalance.rewardsEarned = total - validatorDeposit;
+            stakingBalance.rewardsEarned = subtractNearAmounts(total, validatorDeposit);
         }
 
         if (parseInt(total, 10) > 0) {
@@ -459,7 +467,7 @@ export class NearSDKService {
                 methodName: ACCOUNT_STAKED_BALANCE_METHOD,
                 args: { account_id: account.accountId },
             });
-            stakingBalance.staked = parseInt(stakedStr, 10);
+            stakingBalance.staked = stakedStr;
 
             const unstakedStr = await account.viewFunction({
                 contractId: validatorId,
@@ -475,9 +483,9 @@ export class NearSDKService {
                 });
 
                 if (isAvailable) {
-                    stakingBalance.available = parseInt(unstakedStr, 10);
+                    stakingBalance.available = unstakedStr;
                 } else {
-                    stakingBalance.pending = parseInt(unstakedStr, 10);
+                    stakingBalance.pending = unstakedStr;
                 }
             }
         }
@@ -491,7 +499,7 @@ export class NearSDKService {
         return status.validators.map((validator: any) => validator.account_id);
     }
 
-    private async getValidatorDataFromId(validatorId: string, queryBalance: boolean, totalDeposits?: number): Promise<Validator> {
+    private async getValidatorDataFromId(validatorId: string, queryBalance: boolean, totalDeposits?: string): Promise<Validator> {
         let fee: number | null;
         let stakingBalance: StakingBalance | null;
 
@@ -511,13 +519,14 @@ export class NearSDKService {
     async getAllValidators(): Promise<Validator[]> {
         const validators = await this.getAllValidatorIds();
         const validatorsProms = validators.map((validator) => this.getValidatorDataFromId(validator, false));
-
         return Promise.all(validatorsProms);
     }
 
     async getCurrentValidators(): Promise<Validator[]> {
         const stakingDeposits = await this.apiService.getStakingDeposits({ address: this.getAddress() });
-        const validatorsProms = stakingDeposits.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
+        const validatorsProms = stakingDeposits.map(({ validatorId, amount }) =>
+            this.getValidatorDataFromId(validatorId, true, amount.toString()),
+        );
         return await Promise.all(validatorsProms);
     }
 
@@ -530,20 +539,27 @@ export class NearSDKService {
         validators.forEach((validator) => {
             finalStakingBalance = this.addStakingBalances(finalStakingBalance, validator.stakingBalance);
         });
-        return finalStakingBalance;
+        const { staked, available, pending, rewardsEarned } = finalStakingBalance;
+        return {
+            staked: convertYoctoToNear(staked),
+            available: convertYoctoToNear(available),
+            pending: convertYoctoToNear(pending),
+            rewardsEarned: rewardsEarned ? convertYoctoToNear(rewardsEarned) : rewardsEarned,
+        };
     }
 
     private addStakingBalances(ant: StakingBalance, act?: StakingBalance): StakingBalance {
         return {
-            staked: ant.staked + (act?.rewardsEarned || 0),
-            available: ant.available + (act?.available || 0),
-            pending: ant.pending + (act?.pending || 0),
-            rewardsEarned: (ant.rewardsEarned ?? 0) + (act?.rewardsEarned ?? 0),
+            staked: act?.staked ? addYoctoAmounts(ant.staked, act.staked) : ant.staked,
+            available: act?.available ? addYoctoAmounts(ant.available, act.available) : ant.available,
+            pending: act?.pending ? addYoctoAmounts(ant.pending, act.pending) : ant.pending,
+            rewardsEarned: act?.rewardsEarned ? addYoctoAmounts(ant.rewardsEarned || "0", act.rewardsEarned) : ant.rewardsEarned,
         };
     }
 
     async getTotalStakingBalance(): Promise<StakingBalance> {
         const validators = await this.getCurrentValidators();
+        console.log(validators);
         return this.addStakingBalancesFromValidators(validators);
     }
 

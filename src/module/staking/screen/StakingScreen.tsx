@@ -1,4 +1,4 @@
-import StakingSlider from "module/staking/component/core/StakingSlider/StakingSlider";
+import StakingSlider from "module/staking/component/display/StakingSlider/StakingSlider";
 import MainGradientScreen from "module/main/component/layout/MainGradientScreen/MainGradientScreen";
 import StakingTabs from "module/staking/component/navigation/StakingTabs/StakingTabs";
 

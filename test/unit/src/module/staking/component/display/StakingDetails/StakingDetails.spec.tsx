@@ -1,5 +1,5 @@
 import { render, translate } from "test-utils";
-import StakingDetails from "module/staking/component/core/StakingDetails/StakingDetails";
+import StakingDetails from "module/staking/component/display/StakingDetails/StakingDetails";
 import { UseServiceInstanceMock, UseWalletStateMock } from "mocks/common";
 import { act, screen, waitFor } from "@testing-library/react-native";
 import { StakingBalanceMock } from "mocks/NearSdk";

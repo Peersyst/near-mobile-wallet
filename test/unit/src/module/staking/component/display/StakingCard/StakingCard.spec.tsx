@@ -1,8 +1,8 @@
 import { render, translate } from "test-utils";
-import StakingCard from "module/staking/component/core/StakingCard/StakingCard";
 import { UseServiceInstanceMock, UseWalletStateMock } from "mocks/common";
 import { StakingBalanceMock } from "mocks/NearSdk";
 import { waitFor } from "@testing-library/react-native";
+import StakingCard from "module/staking/component/display/StakingCard/StakingCard";
 
 describe("Test for StakingCard component", () => {
     const { state } = new UseWalletStateMock();

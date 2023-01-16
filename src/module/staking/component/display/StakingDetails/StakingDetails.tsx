@@ -1,7 +1,7 @@
-import StakingDetail from "module/staking/component/core/StakingDetail/StakingDetail";
 import useGetStakingDetailsSections from "module/staking/hook/useGetStakingDetailsSections";
 import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
+import StakingDetail from "../StakingDetail/StakingDetail";
 
 const StakingDetails = (): JSX.Element => {
     const { sections, isLoading } = useGetStakingDetailsSections();

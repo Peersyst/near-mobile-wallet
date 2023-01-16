@@ -1,10 +1,10 @@
-import StakingDetail from "module/staking/component/core/StakingDetail/StakingDetail";
 import { render, translate } from "test-utils";
 import { screen } from "@testing-library/react-native";
+import StakingDetail from "module/staking/component/display/StakingDetail/StakingDetail";
 
 describe("Tests for StakingDetails", () => {
     test("Renders correctly being stakeable", () => {
-        const mockStakingDetail = { title: "title", amount: 0 };
+        const mockStakingDetail = { title: "title", amount: "0" };
 
         render(<StakingDetail title={mockStakingDetail.title} amount={mockStakingDetail.amount} stakeable />);
 
@@ -14,7 +14,7 @@ describe("Tests for StakingDetails", () => {
     });
 
     test("Renders correctly not being stakeable", () => {
-        const mockStakingDetail = { title: "title", amount: 0 };
+        const mockStakingDetail = { title: "title", amount: "0" };
 
         render(<StakingDetail title={mockStakingDetail.title} amount={mockStakingDetail.amount} />);
 

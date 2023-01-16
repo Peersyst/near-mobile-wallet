@@ -1,10 +1,10 @@
-import StakingInfoLabel from "module/staking/component/core/StakingInfoLabel/StakingInfoLabel";
 import { SlashIcon } from "icons";
 import { Row } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useGetTotalStaking from "module/staking/query/useGetTotalStaking";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { Wallet } from "module/wallet/state/WalletState";
+import StakingInfoLabel from "../../StakingInfoLabel/StakingInfoLabel";
 
 interface StakingCardContentProps {
     wallet: Wallet;
