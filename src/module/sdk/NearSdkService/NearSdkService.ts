@@ -59,6 +59,7 @@ import {
     convertYoctoToNear,
     formatTokenAmount,
     subtractNearAmounts,
+    subtractYoctoAmounts,
 } from "../utils/near.utils";
 import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
 import { BalanceOperations } from "../utils";
@@ -458,7 +459,7 @@ export class NearSDKService {
         });
 
         if (validatorDeposit) {
-            stakingBalance.rewardsEarned = subtractNearAmounts(total, validatorDeposit);
+            stakingBalance.rewardsEarned = subtractYoctoAmounts(BigInt(total).toString(), BigInt(validatorDeposit).toString());
         }
 
         if (parseInt(total, 10) > 0) {
@@ -559,7 +560,6 @@ export class NearSDKService {
 
     async getTotalStakingBalance(): Promise<StakingBalance> {
         const validators = await this.getCurrentValidators();
-        console.log(validators);
         return this.addStakingBalancesFromValidators(validators);
     }
 

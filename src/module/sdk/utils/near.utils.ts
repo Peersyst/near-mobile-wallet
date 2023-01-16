@@ -26,7 +26,7 @@ export function convertYoctoToNear(amountInYocto: string, fracDigits?: number | 
 export function subtractNearAmounts(amount1: string, amount2: string): string {
     const amount1InYocto = convertNearToYocto(amount1);
     const amount2InYocto = convertNearToYocto(amount2);
-    return convertYoctoToNear(BalanceOperations.BNSubtract(amount1InYocto, amount2InYocto));
+    return convertYoctoToNear(subtractYoctoAmounts(amount1InYocto, amount2InYocto));
 }
 
 /**
@@ -40,6 +40,10 @@ export function addNearAmounts(amount1: string, amount2: string): string {
 
 export function addYoctoAmounts(amount1: string, amount2: string): string {
     return BalanceOperations.BNAdd(amount1, amount2);
+}
+
+export function subtractYoctoAmounts(amount1: string, amount2: string): string {
+    return BalanceOperations.BNSubtract(amount1, amount2);
 }
 
 /**
