@@ -513,16 +513,30 @@ export class NearSDKService {
         return await Promise.all(validatorsProms);
     }
 
+    private addStakingBalancesFromValidators(validators: Validator[]): StakingBalance {
+        let finalStakingBalance: StakingBalance = {
+            staked: "0",
+            available: "0",
+            pending: "0",
+        };
+        validators.forEach((validator) => {
+            finalStakingBalance = this.addStakingBalances(finalStakingBalance, validator.stakingBalance);
+        });
+        return finalStakingBalance;
+    }
+
+    private addStakingBalances(ant: StakingBalance, act?: StakingBalance): StakingBalance {
+        return {
+            staked: ant.staked + (act?.rewardsEarned || 0),
+            available: ant.available + (act?.available || 0),
+            pending: ant.pending + (act?.pending || 0),
+            rewardsEarned: (ant.rewardsEarned ?? 0) + (act?.rewardsEarned ?? 0),
+        };
+    }
+
     async getTotalStakingBalance(): Promise<StakingBalance> {
         const validators = await this.getCurrentValidators();
-
-        const stakingBalance: StakingBalance = {
-            staked: validators.reduce((ant, act) => ant + (act.stakingBalance?.staked || 0), 0),
-            available: validators.reduce((ant, act) => ant + (act.stakingBalance?.available || 0), 0),
-            pending: validators.reduce((ant, act) => ant + (act.stakingBalance?.pending || 0), 0),
-        };
-
-        return stakingBalance;
+        return this.addStakingBalancesFromValidators(validators);
     }
 
     // Amount is in near

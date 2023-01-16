@@ -58,10 +58,10 @@ export interface AccessKey {
  */
 
 export interface StakingBalance {
-    staked: number;
-    pending: number;
-    available: number;
-    rewardsEarned?: number;
+    staked: string;
+    pending: string;
+    available: string;
+    rewardsEarned?: string;
 }
 
 export interface Validator {
