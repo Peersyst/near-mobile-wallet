@@ -2,21 +2,20 @@ import StakingDetail from "module/staking/component/core/StakingDetail/StakingDe
 import { StakingDetailsRoot } from "module/staking/component/core/StakingDetails/StakingDetails.styles";
 import { Col, List } from "@peersyst/react-native-components";
 import useGetStakingDetailsSections from "module/staking/hook/useGetStakingDetailsSections";
+import MainList from "module/main/component/display/MainList/MainList";
 
 const StakingDetails = (): JSX.Element => {
-    const { isLoading, sections } = useGetStakingDetailsSections();
+    const { sections, isLoading } = useGetStakingDetailsSections();
 
     return (
-        <StakingDetailsRoot>
-            <Col flex={1}>
-                <List
-                    data={sections}
-                    renderItem={({ item: { title, amount, stakeable } }) => (
-                        <StakingDetail key={title} title={title} amount={amount} stakeable={stakeable} loading={isLoading} />
-                    )}
-                />
-            </Col>
-        </StakingDetailsRoot>
+        <MainList
+            loading={isLoading}
+            data={sections}
+            renderItem={({ item: { title, amount, stakeable } }) => (
+                <StakingDetail key={title} title={title} amount={amount} stakeable={stakeable} />
+            )}
+            keyExtractor={(_, index) => index.toString()}
+        />
     );
 };
 
