@@ -1,4 +1,5 @@
-import TokenSelectItemlist, { TokenSelectItem } from "module/wallet/component/input/WalletAssetSelect/InnerAssetSelect/TokenSelectItemlist";
+import { TokenSelectItem } from "module/wallet/component/input/WalletAssetSelect/InnerAssetSelect/TokenSelectItemList/TokenSelectItem";
+import TokenSelectItemlist from "module/wallet/component/input/WalletAssetSelect/InnerAssetSelect/TokenSelectItemList/TokenSelectItemlist";
 import { AssetType } from "module/wallet/wallet.types";
 import { TokenMock, UseAssetSelectMock, UseGetTokensMock } from "test-mocks";
 import { fireEvent, render, screen, translate, waitFor } from "test-utils";

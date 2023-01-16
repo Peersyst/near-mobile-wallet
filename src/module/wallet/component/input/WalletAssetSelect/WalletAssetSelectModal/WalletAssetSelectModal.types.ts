@@ -1,6 +1,3 @@
-import { CardNavigatorModalProps } from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
-import { UseModalWrapperReturn } from "module/common/hook/useModalWrapper";
+import { CardSelectModalProps } from "module/common/component/feedback/CardSelectModal/CardSelectModal";
 
-export type WalletAssetSelectModalProps = Omit<CardNavigatorModalProps, "children" | "navbar" | "defaultOpen"> & {
-    hideModal: UseModalWrapperReturn["hideModal"];
-};
+export type WalletAssetSelectModalProps = Omit<CardSelectModalProps, "children" | "title">;

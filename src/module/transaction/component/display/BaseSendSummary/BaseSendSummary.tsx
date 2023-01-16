@@ -53,7 +53,7 @@ const BaseSendSummary = ({ amount, fee, token, children, total, showFiat, style 
                             </>
                         )}
                     </Typography>
-                    <Fee fee={fee} tag="body3" />
+                    <Fee fee={fee} typographyVariant="body3" />
                     {total && (
                         <Typography variant="body2Regular" color={(palette) => palette.primary} textAlign="center">
                             {translate("total")}:{" "}

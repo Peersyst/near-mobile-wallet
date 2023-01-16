@@ -1,6 +1,6 @@
 import { TypographyProps as BaseTypographyProps, Typography as BaseTypography, Theme, useTheme } from "@peersyst/react-native-components";
 
-export interface TypographyProps extends BaseTypographyProps {
+export interface TypographyProps extends Omit<BaseTypographyProps, "fontWeight"> {
     color?: (theme: Theme["palette"]) => string;
 }
 
