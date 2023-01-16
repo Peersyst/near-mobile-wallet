@@ -1,8 +1,12 @@
 enum Queries {
     NAME_ID_AVAILABILITY = "name-id-availability",
     ACTIONS = "actions",
-    NATIVE_TOKEN_PRICE = "native-token-price",
-    TOKEN_PRICE = "token-price",
+    COIN_PRICE = "coin-price",
+    TOKENS_PRICE = "tokens-price",
+    TOTAL_STAKING_BALANCE = "total-staking-balance",
+    ALL_VALIDATORS_STAKING = "all-validators-staking",
+    GET_CURRENT_VALIDATORS = "current-validators",
+    GET_ALL_VALIDATOR_IDS = "validator-ids",
 }
 
 export default Queries;

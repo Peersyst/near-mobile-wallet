@@ -1,22 +1,23 @@
 import { ImageProps } from "@peersyst/react-native-components";
 import { placeholder_image } from "images";
-import { memo } from "react";
+import { toDataUrl } from "module/common/component/utils/blockImage";
 import { NftImageRoot } from "./NftImage.styles";
 
 export interface NftImageProps extends Omit<ImageProps, "source"> {
     uri?: string | null;
+    tokenId?: string;
 }
 
-// eslint-disable-next-line react/display-name
-const NftImage = memo(({ uri }: NftImageProps) => {
+const NftImage = ({ uri, tokenId = "", ...rest }: NftImageProps) => {
     return (
         <NftImageRoot
+            {...rest}
             fallback={placeholder_image}
             source={{
-                uri: uri ?? placeholder_image,
+                uri: uri ?? toDataUrl(tokenId),
             }}
         />
     );
-});
+};
 
 export default NftImage;

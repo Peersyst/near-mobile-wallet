@@ -1,6 +1,6 @@
 import { utils } from "near-api-js";
 import { AccountBalance } from "near-api-js/lib/account";
-import { MathOperations } from "./MathOperations";
+import { BalanceOperations } from "./BalanceOperations";
 
 /**
  * Convert Near amount to yocto
@@ -26,7 +26,7 @@ export function convertYoctoToNear(amountInYocto: string, fracDigits?: number | 
 export function subtractNearAmounts(amount1: string, amount2: string): string {
     const amount1InYocto = convertNearToYocto(amount1);
     const amount2InYocto = convertNearToYocto(amount2);
-    return convertYoctoToNear(MathOperations.BNSubtract(amount1InYocto, amount2InYocto));
+    return convertYoctoToNear(BalanceOperations.BNSubtract(amount1InYocto, amount2InYocto));
 }
 
 /**
@@ -38,7 +38,19 @@ export function subtractNearAmounts(amount1: string, amount2: string): string {
 export function isNEARAmountGreaterThanThreshold(amount: string, threshold: string): boolean {
     const amountInYocto = convertNearToYocto(amount);
     const thresholdInYocto = convertNearToYocto(threshold);
-    return MathOperations.BNIsBigger(amountInYocto, thresholdInYocto);
+    return BalanceOperations.BNIsBigger(amountInYocto, thresholdInYocto);
+}
+
+/**
+ *
+ * @param amount In NEAR
+ * @param threshold In NEAR
+ * @returns If amount is greater or equal than threshold
+ */
+export function isNEARAmountGreaterOrEqualThanThreshold(amount: string, threshold: string): boolean {
+    const amountInYocto = convertNearToYocto(amount);
+    const thresholdInYocto = convertNearToYocto(threshold);
+    return BalanceOperations.BNIsBiggerOrEqual(amountInYocto, thresholdInYocto);
 }
 
 /**
@@ -61,8 +73,8 @@ export function parseBlockTimestamp(blockTimestamp: string): string {
 }
 
 export function formatTokenAmount(amount: string, decimals: string, precision?: number): string {
-    const denominator = MathOperations.BNExp(10, parseInt(decimals, 10));
-    return MathOperations.BNDevide(amount, denominator).slice(0, precision ?? Number(decimals));
+    const denominator = BalanceOperations.BNExp(10, parseInt(decimals, 10));
+    return BalanceOperations.BNDevide(amount, denominator).slice(0, precision ?? Number(decimals));
 }
 
 /**
@@ -85,11 +97,11 @@ export function parseTokenAmount(amount: string, tokenDecimals: string): string 
         const finalDecimals = decimals.slice(0, Math.min(baseNumOfDecimals, finalTokenDecimals));
         const tempAmount = `${integer}${finalDecimals}`;
         const finalNumOfDecimals = finalTokenDecimals - finalDecimals.length;
-        const factor = MathOperations.BNExp(10, finalNumOfDecimals);
-        return removeLeftZeros(MathOperations.BNMultiply(tempAmount, factor));
+        const factor = BalanceOperations.BNExp(10, finalNumOfDecimals);
+        return removeLeftZeros(BalanceOperations.BNMultiply(tempAmount, factor));
     } else {
-        const factor = MathOperations.BNExp(10, finalTokenDecimals);
-        return MathOperations.BNMultiply(integer, factor);
+        const factor = BalanceOperations.BNExp(10, finalTokenDecimals);
+        return BalanceOperations.BNMultiply(integer, factor);
     }
 }
 
@@ -102,5 +114,17 @@ export function parseTokenAmount(amount: string, tokenDecimals: string): string 
 export function isTokenAmountGreaterThanThreshold(amount: string, threshold: string, decimals: string): boolean {
     const BNTokenAmount = parseTokenAmount(amount, decimals);
     const BNTokenThreshold = parseTokenAmount(threshold, decimals);
-    return MathOperations.BNIsBigger(BNTokenAmount, BNTokenThreshold);
+    return BalanceOperations.BNIsBigger(BNTokenAmount, BNTokenThreshold);
+}
+
+/**
+ *
+ * @param amount In Token as a Number (not BigInt)
+ * @param threshold n Token as a Number (not BigInt)
+ * @returns If amount is greater or equal than threshold
+ */
+export function isTokenAmountGreaterOrEqualThanThreshold(amount: string, threshold: string, decimals: string): boolean {
+    const BNTokenAmount = parseTokenAmount(amount, decimals);
+    const BNTokenThreshold = parseTokenAmount(threshold, decimals);
+    return BalanceOperations.BNIsBiggerOrEqual(BNTokenAmount, BNTokenThreshold);
 }

@@ -7,18 +7,22 @@ import { useRecoilValue } from "recoil";
 import { useRefetchQueries } from "../../../../../query/useRefetchQueries";
 import useWalletState from "module/wallet/hook/useWalletState";
 import Queries from "../../../../../query/queries";
+import { config } from "config";
 
 const TokensList = (): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
     const {
         state: { selectedWallet },
     } = useWalletState();
-    const { isLoading, data: tokens = [] } = useGetTokens(selectedWallet);
-    //   const tokenPriceUseQueries = useMemo(() => tokensList.map((token) => ["tokenPrice", fiat, token]), [fiat]);
+    const { isLoading, data: tokens = [], refetch: refetchTokens } = useGetTokens(selectedWallet);
     const refetch = useRefetchQueries();
 
     const handleRefetch = async () => {
-        await refetch([Queries.TOKEN_PRICE, fiat]);
+        await Promise.all([
+            refetchTokens(),
+            refetch([Queries.TOKENS_PRICE]),
+            refetch([Queries.COIN_PRICE, config.coingeckoUSDTApiId, fiat]),
+        ]);
     };
 
     return (

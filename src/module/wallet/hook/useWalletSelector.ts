@@ -2,7 +2,7 @@ import { useControlled } from "@peersyst/react-hooks";
 import { WalletSelectorProps } from "../component/input/WalletSelector/WalletSelector";
 import useGetBalance from "../query/useGetBalance";
 import { Wallet } from "../state/WalletState";
-import { MathOperations } from "near-peersyst-sdk";
+import { BalanceOperations } from "near-peersyst-sdk";
 import useWalletState from "./useWalletState";
 import { TextFieldProps } from "module/common/component/input/TextField/TextField.types";
 import { useTranslate } from "module/common/hook/useTranslate";
@@ -34,7 +34,7 @@ export default function useWalletSelector({
     const setWalletIndex = (i: number) => setSelectedIndex(i);
 
     const error: TextFieldProps["error"] = [
-        !MathOperations.isBigger(available, minBalance ?? "0"),
+        !BalanceOperations.isBigger(available, minBalance ?? "0"),
         translateError("invalid_seleccted_account", { amountInNEAR: minBalance }),
     ];
 

@@ -7,11 +7,12 @@ export interface ActionAmountProps extends Omit<BalanceProps, "action" | "balanc
     amount: BalanceProps["balance"];
 }
 
-//TODO: add support for FT
-export const ACTIONS_WITH_ADD: ActionKind[] = [EnhancedTransactionActionKind.TRANSFER_RECEIVE];
+function showAdd(actionKind: ActionKind) {
+    return actionKind === EnhancedTransactionActionKind.TRANSFER_RECEIVE;
+}
 
 const ActionAmount = ({ actionKind, amount, ...rest }: ActionAmountProps): JSX.Element => {
-    const action = ACTIONS_WITH_ADD.includes(actionKind) ? "add" : "display";
+    const action = showAdd(actionKind) ? "add" : "display";
     const isPrimary = action === "add";
     return <Balance action={action} balance={amount} color={(p) => p[isPrimary ? "primary" : "text"]} {...rest} />;
 };

@@ -8,7 +8,7 @@ describe("AuthSwitchScreen tests", () => {
     test("Renders correctly", () => {
         const screen = render(<AuthSwitchScreen />);
         expect(screen.getByText(translate("create_wallet")));
-        expect(screen.getByText(translate("importYourNearWallet")));
+        expect(screen.getByText(translate("import-your-near-wallet")));
     });
     test("Create wallet button onPress works correctly", () => {
         const setTab = jest.fn();
@@ -22,7 +22,7 @@ describe("AuthSwitchScreen tests", () => {
         const setTab = jest.fn();
         jest.spyOn(Genesys, "useTabs").mockReturnValue([0, setTab]);
         const screen = render(<AuthSwitchScreen />);
-        const button = screen.getByText(translate("importYourNearWallet"));
+        const button = screen.getByText(translate("import-your-near-wallet"));
         fireEvent.press(button);
         expect(setTab).toHaveBeenCalledWith(AuthScreens.IMPORT_WALLET);
     });

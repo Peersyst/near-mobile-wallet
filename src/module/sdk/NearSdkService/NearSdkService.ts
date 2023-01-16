@@ -53,7 +53,7 @@ import {
 } from "../utils/near.constants";
 import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto, formatTokenAmount } from "../utils/near.utils";
 import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
-import { MathOperations } from "../utils";
+import { BalanceOperations } from "../utils";
 
 export class NearSDKService {
     private connection?: Near;
@@ -511,18 +511,18 @@ export class NearSDKService {
     async getAllValidators(): Promise<Validator[]> {
         const validators = await this.getAllValidatorIds();
         const validatorsProms = validators.map((validator) => this.getValidatorDataFromId(validator, false));
+        return Promise.all(validatorsProms);
+    }
 
+    async getCurrentValidators(): Promise<Validator[]> {
+        const stakingDeposits = await this.apiService.getStakingDeposits({ address: this.getAddress() });
+        const validatorsProms = stakingDeposits.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
         return Promise.all(validatorsProms);
     }
 
     async getTotalStakingBalance(): Promise<StakingBalance> {
-        // TODO: Remove comments
-        // const stakingDeposits = await this.apiService.getStakingDeposits(this.getAddress(), this.baseApiUrl);
-        // const validatorsProms = stakingDeposits.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
-        // const validators = await Promise.all(validatorsProms);
-
         // TODO: remove get all validators line
-        const validators = await this.getAllValidators();
+        const validators = await this.getCurrentValidators();
 
         const stakingBalance: StakingBalance = {
             staked: validators.reduce((ant, act) => ant + (act.stakingBalance?.staked || 0), 0),
@@ -682,7 +682,7 @@ export class NearSDKService {
         const tokens: Token[] = [];
         for (const contractId of contractIds) {
             const [balance, metadata] = await Promise.all([this.getTokenBalance(contractId), this.getTokenMetadata(contractId)]);
-            if (MathOperations.BNIsBigger(balance, "0")) {
+            if (BalanceOperations.BNIsBigger(balance, "0")) {
                 tokens.push({
                     balance: formatTokenAmount(balance, metadata.decimals.toString()),
                     metadata,
