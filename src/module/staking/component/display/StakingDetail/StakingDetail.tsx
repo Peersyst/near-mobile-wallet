@@ -27,10 +27,10 @@ const StakingDetail = ({ title, amount = "0", stakeable, isLoading }: StakingDet
                 <Col gap={3}>
                     <Typography variant="body3Regular">{title}</Typography>
                     <Skeleton loading={isLoading} width={100} height={20}>
-                        <Balance balance={amount} options={{ maximumFractionDigits: 3 }} variant="body3Strong" units="token" />
+                        <Balance balance={amount} variant="body3Strong" units="token" />
                     </Skeleton>
                     <Skeleton loading={isLoading} width={100} height={20}>
-                        <FiatBalance balance={amount} variant="body3Strong" options={{ maximumFractionDigits: 2 }} light />
+                        <FiatBalance balance={amount} variant="body3Strong" light />
                     </Skeleton>
                 </Col>
             </Row>
