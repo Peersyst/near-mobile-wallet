@@ -5,10 +5,9 @@ import { useState } from "react";
 import { InteractionManager } from "react-native";
 import { SendTransactionModalProps } from "./SendTransactionModal.types";
 
-function SendTransactionModal({ onExited, children, sendTransaction, ...rest }: SendTransactionModalProps) {
+function SendTransactionModal({ onExited, children, sendTransaction, isLoading, isSuccess, isError }: SendTransactionModalProps) {
     const translate = useTranslate();
     const [showConfirmation, setShowConfirmation] = useState(false);
-    const { isLoading, isSuccess, isError } = rest;
 
     function runAfterInteractions(cb?: () => void) {
         if (cb) InteractionManager.runAfterInteractions(cb);
