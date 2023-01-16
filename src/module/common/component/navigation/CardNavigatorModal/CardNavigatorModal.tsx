@@ -13,7 +13,6 @@ export type CardNavigatorModalProps = ExposedBackdropProps & {
 const CardNavigatorModal = ({
     navbar: { back, onBack, ...restNavProps } = {},
     children,
-    style,
     open,
     closable = true,
     onClose,
