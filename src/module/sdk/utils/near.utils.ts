@@ -51,6 +51,18 @@ export function isNEARAmountGreaterThanThreshold(amount: string, threshold: stri
 }
 
 /**
+ *
+ * @param amount In NEAR
+ * @param threshold In NEAR
+ * @returns If amount is greater or equal than threshold
+ */
+export function isNEARAmountGreaterOrEqualThanThreshold(amount: string, threshold: string): boolean {
+    const amountInYocto = convertNearToYocto(amount);
+    const thresholdInYocto = convertNearToYocto(threshold);
+    return BalanceOperations.BNIsBiggerOrEqual(amountInYocto, thresholdInYocto);
+}
+
+/**
  * Convert AccountBalance in yocto to Near amount
  */
 export function convertAccountBalanceToNear(
@@ -118,4 +130,16 @@ export function isTokenAmountGreaterThanThreshold(amount: string, threshold: str
     const BNTokenAmount = parseTokenAmount(amount, decimals);
     const BNTokenThreshold = parseTokenAmount(threshold, decimals);
     return BalanceOperations.BNIsBigger(BNTokenAmount, BNTokenThreshold);
+}
+
+/**
+ *
+ * @param amount In Token as a Number (not BigInt)
+ * @param threshold n Token as a Number (not BigInt)
+ * @returns If amount is greater or equal than threshold
+ */
+export function isTokenAmountGreaterOrEqualThanThreshold(amount: string, threshold: string, decimals: string): boolean {
+    const BNTokenAmount = parseTokenAmount(amount, decimals);
+    const BNTokenThreshold = parseTokenAmount(threshold, decimals);
+    return BalanceOperations.BNIsBiggerOrEqual(BNTokenAmount, BNTokenThreshold);
 }

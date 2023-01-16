@@ -5,14 +5,14 @@ import backupWalletState, { BackUp } from "module/wallet/state/BackUpWalletState
 import Button from "module/common/component/input/Button/Button";
 import { ConfirmPinModalWrapper } from "module/settings/components/core/ConfirmPinModal/ConfirmPinModalWrapper";
 import Advise from "module/common/component/display/Advise/Advise";
-import { BaseUseModalWrapperReturn } from "module/common/hook/useModalWrapper";
+import { BaseUseModalStateReturn } from "module/common/hook/useModalState";
 
 export interface WalletsBackupAdvise {
     onSubmit: () => void;
 }
 
 export interface HandlePressParams {
-    showModal: BaseUseModalWrapperReturn["showModal"];
+    showModal: BaseUseModalStateReturn["showModal"];
     method: BackUp;
 }
 

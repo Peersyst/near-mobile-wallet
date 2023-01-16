@@ -47,7 +47,7 @@ const BaseSendSummary = ({ amount, fee, children, showTotal, showFiat, style, to
                             )}
                         </Typography>
                     )}
-                    <Fee fee={fee} tag="body3" />
+                    <Fee fee={fee} typographyVariant="body3" />
                     {showTotal && token === undefined && nft === undefined && (
                         <TotalText variant="body2Regular" textAlign="center" numberOfLines={1}>
                             <>

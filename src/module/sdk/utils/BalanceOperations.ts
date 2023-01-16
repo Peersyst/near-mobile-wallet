@@ -12,6 +12,9 @@ export class BalanceOperations {
     static BNIsBigger(a: string, b: string): boolean {
         return new BN(a).gt(new BN(b));
     }
+    static BNIsBiggerOrEqual(a: string, b: string): boolean {
+        return new BN(a).gte(new BN(b));
+    }
     static BNDevide(a: string, b: string): string {
         const numerator = BigInt(a);
         const denominator = BigInt(b);
