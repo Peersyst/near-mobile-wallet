@@ -6,3 +6,7 @@ export * from "./useWallet.mock";
 export * from "./walletController.mock";
 export * from "./useCreateWalletMock";
 export * from "./useWalletSelector.mock";
+export * from "./asset.mock";
+export * from "./useGetBalance.mock";
+export * from "./useAssetSelect.mock";
+export * from "./useGetAllAssets.mock";

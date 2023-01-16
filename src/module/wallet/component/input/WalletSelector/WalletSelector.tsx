@@ -7,16 +7,36 @@ import useWalletSelector from "module/wallet/hook/useWalletSelector";
 export type WalletSelectorProps = Omit<
     SelectProps<number>,
     "options" | "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple"
->;
+> & {
+    minBalance?: string;
+};
 
-const WalletSelector = ({ style, value, onChange, defaultValue, ...rest }: WalletSelectorProps): JSX.Element => {
+const WalletSelector = ({
+    style,
+    value,
+    onChange,
+    defaultValue,
+    error: errorProp,
+    hideError: hideErrorProp,
+    minBalance,
+    ...rest
+}: WalletSelectorProps): JSX.Element => {
     const translate = useTranslate();
 
-    const { selectedIndex, selectedWallet, setWalletIndex, wallets } = useWalletSelector({ value, onChange, defaultValue });
+    const {
+        selectedIndex = 0,
+        selectedWallet,
+        setWalletIndex,
+        wallets,
+        error,
+        hideError,
+    } = useWalletSelector({ value, onChange, defaultValue, minBalance });
 
     return (
         <Select
             value={selectedIndex}
+            error={errorProp || error}
+            hideError={hideErrorProp || hideError}
             onChange={setWalletIndex}
             style={style}
             title={translate("select_a_wallet")}

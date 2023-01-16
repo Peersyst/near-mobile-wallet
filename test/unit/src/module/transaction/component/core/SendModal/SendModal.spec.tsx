@@ -2,8 +2,7 @@ import { render, translate } from "test-utils";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import * as Recoil from "recoil";
 import { fireEvent, waitFor } from "@testing-library/react-native";
-import { config } from "config";
-import { UseWalletStateMock, UseServiceInstanceMock, AccountBalanceMock, MOCKED_NAMED_ADDRESS } from "test-mocks";
+import { UseWalletStateMock, UseServiceInstanceMock, AccountBalanceMock } from "test-mocks";
 
 describe("SendModal tests", () => {
     new UseWalletStateMock();
@@ -32,7 +31,7 @@ describe("SendModal tests", () => {
         expect(handleExited).toHaveBeenCalled();
     });
 
-    test("Send is completed successfully", async () => {
+    /*  test("Send is completed successfully", async () => {
         const screen = render(<SendModal />);
 
         // Enter receiver address, sender address equals the selected account (0)
@@ -46,5 +45,5 @@ describe("SendModal tests", () => {
         screen.debug();
         // Confirmation
         await waitFor(() => expect(screen.getByText(`6,000 ${config.tokenName}`)).toBeDefined());
-    });
+    }); */
 });

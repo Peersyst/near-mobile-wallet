@@ -6,6 +6,7 @@ export * from "./CameraIcon";
 export * from "./CheckIcon";
 export * from "./ChevronDownIcon";
 export * from "./ChevronRightIcon";
+export * from "./ChevronUpIcon";
 export * from "./CircleIcon";
 export * from "./CircleCheckIcon";
 export * from "./CodeIcon";

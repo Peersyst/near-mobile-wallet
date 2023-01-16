@@ -16,10 +16,10 @@ const WalletItem = ({ index }: WalletItemProps): JSX.Element => {
             <Typography numberOfLines={1} variant="body2Strong" style={{ maxWidth: "60%" }}>
                 {account}
             </Typography>
-            <Row>
+            <Row style={{ maxWidth: "40%" }}>
                 <Typography variant="body2Strong">{" · "}</Typography>
                 <Suspense isLoading={balanceIsLoading} activityIndicatorSize="small">
-                    <Balance balance={balance?.available || 0} variant="body2Strong" light />
+                    <Balance balance={balance?.available || 0} variant="body2Strong" light units="token" />
                 </Suspense>
             </Row>
         </Row>

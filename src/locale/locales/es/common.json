@@ -72,7 +72,7 @@
     "en": "Inglés",
     "es": "Español",
     "confirm": "Confirmar",
-    "transaction_fee_label": "Tarifa de la transacción",
+    "transaction_fee_label": "Comisión",
     "total": "Total",
     "from": "De",
     "to": "Para",
@@ -201,6 +201,10 @@
     "key_added": "Clave de acceso añadida",
     "key_deleted": "Clave de acceso borrada",
     "unknown_action": "Acción desconocida",
-    "recent_activity": "Últimos movimientos",
-    "collection": "Colección"
+    "recent_activity": "Actividad reciente",
+    "collection": "Colección",
+    "choose_what_to_send": "Elige que quieres enviar",
+    "select_asset": "Elige entre tus activos",
+    "send_only_one_nft": "Solo puedes enviar 1 Nft",
+    "select_the_amount_to_send": "Selecciona la cantidad a enviar"
 }
