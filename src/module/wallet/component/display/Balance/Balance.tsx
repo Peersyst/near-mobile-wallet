@@ -19,7 +19,6 @@ const Balance = ({
         unitsPosition,
         action,
     });
-
     return (
         <Suspense isLoading={isLoading} fallback={<Spinner {...spinnerProps} />}>
             <Typography numberOfLines={1} {...typographyProps}>

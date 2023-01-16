@@ -211,7 +211,7 @@
     "select_validator": "Seleccionar Validador",
     "confirm_validator": "Confirmar Validador",
     "enter_amount_want_to_stake": "Ingrese el monto",
-    "available_balance": "Disponible - {{amount}} NEAR (≈ {{amount_price}})",
+    "available_balance": "Disponible - {{amount}} NEAR ({{amount_price}})",
     "max": "MAX",
     "enter_a_validator_account_id": "Ingrese el Id del validador",
     "validator_name_near": "validator-name.near",
@@ -224,5 +224,8 @@
     "your_current_validators": "Tus validadores actuales",
     "fee": "Tasa",
     "active": "activo",
-    "inactive": "inactivo"
+    "inactive": "inactivo",
+    "confirm_new_staking_of" : "Confirmar Staking de",
+    "with" : "Con",
+    "edit" : "Editar"
 }

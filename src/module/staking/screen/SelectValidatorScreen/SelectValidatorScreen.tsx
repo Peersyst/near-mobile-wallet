@@ -4,8 +4,8 @@ import Typography from "module/common/component/display/Typography/Typography";
 import StakeValidatorSelect from "module/staking/component/input/StakeValidatorSelect/StakeValidatorSelect";
 import { useSetRecoilState } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
-import { Validator } from "near-peersyst-sdk";
-import { SendScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
+import { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
+import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
 
 export interface SendForm {
     accountId: string;
@@ -16,15 +16,20 @@ const SelectValidatorScreen = () => {
     const setStakeState = useSetRecoilState(stakeRecoilState);
     const setTab = useSetTab();
 
-    const onSelected = (validator: Validator) => {
+    const onSelected = (validator: StakingValidator) => {
         if (validator.accountId) {
-            setStakeState(validator);
-            setTab(SendScreens.CONFIRM_VALIDATOR);
+            setStakeState((state) => {
+                return {
+                    ...state,
+                    validator: validator,
+                };
+            });
+            setTab(AddStakeScreens.CONFIRM_VALIDATOR);
         }
     };
 
     return (
-        <Col flex={1} gap={24} style={{ height: "100%" }}>
+        <Col flex={1} gap={12} style={{ height: "100%" }}>
             <Typography color={(palette) => palette.gray["300"]} textAlign="center" variant="body3Strong">
                 {translate("enter_new_validator")}
             </Typography>

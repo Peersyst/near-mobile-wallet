@@ -7,15 +7,16 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { TransaltionResourceType } from "locale";
 import SelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/SelectValidatorScreen";
 import { AddStakeModalRoot } from "./AddStakeModal.styles";
+import ConfirmStakingScreen from "module/staking/screen/ConfirmStakingScreen/ConfirmStakingScreen";
 
-export enum SendScreens {
+export enum AddStakeScreens {
     SET_AMOUNT,
     SELECT_VALIDATOR,
     CONFIRM_VALIDATOR,
 }
 
 const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
-    const [activeIndex, setActiveIndex] = useState(SendScreens.SET_AMOUNT);
+    const [activeIndex, setActiveIndex] = useState(AddStakeScreens.SET_AMOUNT);
     const resetSendState = useResetRecoilState(sendState);
 
     const handleExited = () => {
@@ -33,7 +34,7 @@ const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProp
                 title: translate(ADD_STAKE_MODAL_TITLES[Number(activeIndex)])!,
                 onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,
                 steps: {
-                    length: 4,
+                    length: 3,
                     index: activeIndex,
                 },
             }}
@@ -41,14 +42,14 @@ const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProp
             {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
-                <TabPanel index={SendScreens.SET_AMOUNT}>
+                <TabPanel index={AddStakeScreens.SET_AMOUNT}>
                     <SetAmountStakeScreen />
                 </TabPanel>
-                <TabPanel index={SendScreens.SELECT_VALIDATOR}>
+                <TabPanel index={AddStakeScreens.SELECT_VALIDATOR}>
                     <SelectValidatorScreen />
                 </TabPanel>
-                <TabPanel index={SendScreens.CONFIRM_VALIDATOR}>
-                    <Label label={"confirm"}></Label>
+                <TabPanel index={AddStakeScreens.CONFIRM_VALIDATOR}>
+                    <ConfirmStakingScreen />
                 </TabPanel>
             </Tabs>
         </AddStakeModalRoot>

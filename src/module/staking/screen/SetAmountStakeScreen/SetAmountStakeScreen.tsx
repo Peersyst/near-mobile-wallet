@@ -13,6 +13,7 @@ import useNativeTokenConversion from "module/common/hook/useNativeTokenConversio
 import { subtractNearAmounts } from "near-peersyst-sdk";
 import settingsState from "module/settings/state/SettingsState";
 import NEARAmountTextField from "module/transaction/component/input/AssetAmountTextField/NEARAmountTextField/NEARAmountTextField";
+import { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
 
 export interface SendForm {
     amount: string;
@@ -29,7 +30,7 @@ const SetAmountStakeScreen = () => {
 
     const handleSubmit = ({ amount }: SendForm) => {
         setStakeState((oldState) => ({ ...oldState, amount: amount }));
-        setTab(SendScreens.AMOUNT_AND_MESSAGE);
+        setTab(AddStakeScreens.SELECT_VALIDATOR);
     };
 
     const maxBalance = subtractNearAmounts(available, config.estimatedFee);

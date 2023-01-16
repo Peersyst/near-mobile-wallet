@@ -15,15 +15,25 @@ import Fee from "../Fee/Fee";
 
 export interface BaseSendSummaryFullProps extends Required<Pick<SendState, "fee" | "token">> {
     amount: string | number;
-    children: ReactElement;
+    children?: ReactElement;
     total?: boolean;
     showFiat?: boolean;
+    showFee?: boolean;
     style?: ViewStyle;
 }
 
 export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
 
-const BaseSendSummary = ({ amount, fee, token, children, total, showFiat, style }: BaseSendSummaryFullProps): JSX.Element => {
+const BaseSendSummary = ({
+    amount,
+    fee,
+    token,
+    children,
+    total,
+    showFiat,
+    style,
+    showFee = true,
+}: BaseSendSummaryFullProps): JSX.Element => {
     const translate = useTranslate();
     const { fiat } = useRecoilValue(settingsState);
     const { value: fiatValue } = useNativeTokenConversion(fiat, amount);
@@ -53,7 +63,7 @@ const BaseSendSummary = ({ amount, fee, token, children, total, showFiat, style 
                             </>
                         )}
                     </Typography>
-                    <Fee fee={fee} typographyVariant="body3" />
+                    {showFee && <Fee fee={fee} typographyVariant="body3" />}
                     {total && (
                         <Typography variant="body2Regular" color={(palette) => palette.primary} textAlign="center">
                             {translate("total")}:{" "}

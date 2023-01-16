@@ -1,5 +1,6 @@
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import MainList from "module/main/component/display/MainList/MainList";
+import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
 import useGetAllValidators from "module/staking/query/useGetAllValidators";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import { Validator } from "near-peersyst-sdk";
@@ -8,7 +9,7 @@ import StakingListItem from "../StakingListItem/StakingListItem";
 
 export interface StakingListProps {
     search?: string;
-    onSelected: (validator: Validator) => void;
+    onSelected: (validator: StakingValidator) => void;
 }
 const StakingList = ({ search = "", onSelected }: StakingListProps): JSX.Element => {
     const { index } = useSelectedWallet();

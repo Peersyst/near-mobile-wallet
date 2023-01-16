@@ -1,5 +1,6 @@
 import { UserCheckIcon } from "icons";
 import { Col, Row } from "@peersyst/react-native-components";
+import Button from "module/common/component/input/Button/Button";
 import { IconCircleWrapper } from "module/common/component/display/IconCircleWrapper/IconCircleWrapper.styles";
 import { useTheme } from "@peersyst/react-native-styled";
 import Typography from "module/common/component/display/Typography/Typography";
@@ -11,7 +12,11 @@ import { ValidatorInformationProps } from "module/staking/component/core/Validat
 import { capitalize } from "@peersyst/react-utils";
 import { convertYoctoToNear } from "module/sdk";
 
-const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, status } }: ValidatorInformationProps): JSX.Element => {
+const ValidatorInformation = ({
+    validator: { accountId, stakingBalance, fee, status },
+    action,
+    onPressAction,
+}: ValidatorInformationProps): JSX.Element => {
     const theme = useTheme();
     const translate = useTranslate();
 
@@ -36,18 +41,26 @@ const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, sta
                 </Col>
             </Row>
             <Col>
-                <Typography textAlign="right" variant="body3Strong" light>
-                    {translate("staking")}
-                </Typography>
-                {stakingBalance && (
-                    <Row>
-                        <Balance
-                            style={{ maxWidth: 84 }}
-                            balance={convertYoctoToNear(BigInt(stakingBalance!.staked).toString())}
-                            variant="body4Strong"
-                            units="token"
-                        />
-                    </Row>
+                {action ? (
+                    <Button variant="outlined" size="sm" onPress={onPressAction}>
+                        {action}
+                    </Button>
+                ) : (
+                    <>
+                        <Typography textAlign="right" variant="body3Strong" light>
+                            {translate("staking")}
+                        </Typography>
+                        {stakingBalance && (
+                            <Row>
+                                <Balance
+                                    style={{ maxWidth: 84 }}
+                                    balance={convertYoctoToNear(BigInt(stakingBalance!.staked).toString())}
+                                    variant="body4Strong"
+                                    units="token"
+                                />
+                            </Row>
+                        )}
+                    </>
                 )}
             </Col>
         </ValidatorRoot>
