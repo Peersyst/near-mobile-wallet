@@ -7,16 +7,16 @@ import UnstakeModal from "module/staking/component/core/UnstakeModal/UnstakeModa
 import ActionIcon from "module/transaction/component/display/ActionIcon/ActionIcon";
 import { TransactionActionKind } from "near-peersyst-sdk";
 import FiatBalance from "module/wallet/component/display/FiatBalance/FiatBalance";
-import { StakingDetailRoot } from "./StakingDetail.styles";
+import { StakingDetailRoot } from "./StakingDetailCard.styles";
 
-export interface StakingDetailProps {
+export interface StakingDetailCardProps {
     title: string;
     amount: string | undefined;
     stakeable?: boolean;
     isLoading?: boolean;
 }
 
-const StakingDetail = ({ title, amount = "0", stakeable, isLoading }: StakingDetailProps): JSX.Element => {
+const StakingDetailCard = ({ title, amount = "0", stakeable, isLoading }: StakingDetailCardProps): JSX.Element => {
     const translate = useTranslate();
     const { showModal } = useModal();
 
@@ -45,4 +45,4 @@ const StakingDetail = ({ title, amount = "0", stakeable, isLoading }: StakingDet
     );
 };
 
-export default StakingDetail;
+export default StakingDetailCard;

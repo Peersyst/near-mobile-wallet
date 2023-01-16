@@ -1,14 +1,14 @@
 import useWalletState from "module/wallet/hook/useWalletState";
 import useGetTotalStaking from "module/staking/query/useGetTotalStaking";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { StakingDetailProps } from "../component/display/StakingDetail/StakingDetail";
+import { StakingDetailCardProps } from "../component/display/StakingDetailCard/StakingDetailCard";
 
 interface UseGetStakingDetailsSectionReturn {
     isLoading: boolean;
     sections: StakingDetailsSection[];
 }
 
-export type StakingDetailsSection = Omit<StakingDetailProps, "loading">;
+export type StakingDetailsSection = Omit<StakingDetailCardProps, "loading">;
 
 export default function (): UseGetStakingDetailsSectionReturn {
     const translate = useTranslate();

@@ -1,7 +1,7 @@
 import useGetStakingDetailsSections from "module/staking/hook/useGetStakingDetailsSections";
 import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
-import StakingDetail from "../StakingDetail/StakingDetail";
+import StakingDetailCard from "../StakingDetailCard/StakingDetailCard";
 
 const StakingDetails = (): JSX.Element => {
     const { sections, isLoading } = useGetStakingDetailsSections();
@@ -12,7 +12,7 @@ const StakingDetails = (): JSX.Element => {
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
             data={sections}
             renderItem={({ item: { title, amount, stakeable } }) => (
-                <StakingDetail key={title} title={title} amount={amount} stakeable={stakeable} isLoading={isLoading} />
+                <StakingDetailCard key={title} title={title} amount={amount} stakeable={stakeable} isLoading={isLoading} />
             )}
             keyExtractor={(_, index) => index.toString()}
         />
