@@ -224,5 +224,6 @@
     "your_current_validators": "Tus validadores actuales",
     "fee": "Tasa",
     "active": "activo",
-    "inactive": "inactivo"
+    "inactive": "inactivo",
+    "stakingSuccess": "Tu stake ha sido delegado con éxito al validador."
 }

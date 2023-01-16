@@ -7,6 +7,7 @@ enum Queries {
     ALL_VALIDATORS_STAKING = "all-validators-staking",
     GET_CURRENT_VALIDATORS = "current-validators",
     GET_ALL_VALIDATOR_IDS = "validator-ids",
+    GET_VALIDATOR_DATA = "validator-data",
 }
 
 export default Queries;
