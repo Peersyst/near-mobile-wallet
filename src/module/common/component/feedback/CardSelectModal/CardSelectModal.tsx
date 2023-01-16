@@ -1,8 +1,8 @@
-import { Row } from "@peersyst/react-native-components";
 import { ChevronUpIcon } from "icons";
 import { ReactElement } from "react";
 import { NavbarTitle } from "../../navigation/Navbar/NavbarTitle";
 import CardModal, { CardModalProps } from "../CardModal/CardModal";
+import { CardSelectModalNavbar, ChevronUpIconRoot } from "./CardSelectModal.styles";
 
 export type CardSelectModalProps = Omit<CardModalProps, "children"> & {
     children: ReactElement;
@@ -14,12 +14,12 @@ const CardSelectModal = ({ children, title, ...rest }: CardSelectModalProps) => 
         <CardModal {...rest}>
             {(_open, setOpen) => ({
                 header: (
-                    <Row flex={1} justifyContent="center">
+                    <CardSelectModalNavbar>
                         <NavbarTitle title={title} />
-                        <Row style={{ position: "absolute", right: 0, top: 0 }}>
+                        <ChevronUpIconRoot>
                             <ChevronUpIcon onPress={() => setOpen(false)} />
-                        </Row>
-                    </Row>
+                        </ChevronUpIconRoot>
+                    </CardSelectModalNavbar>
                 ),
                 body: children,
             })}
