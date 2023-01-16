@@ -8,7 +8,7 @@ export class TokenMetadataMock extends BaseMock implements TokenMetadata {
     icon: string;
     reference: string | null;
     reference_hash: string | null;
-    decimals: number;
+    decimals: string;
     constructor({ spec, name, symbol, icon, reference, reference_hash, decimals }: Partial<TokenMetadata> = {}) {
         super();
         this.spec = spec || "ft-1.0.0";
@@ -17,7 +17,7 @@ export class TokenMetadataMock extends BaseMock implements TokenMetadata {
         this.icon = icon || "https://example.com/icon.png";
         this.reference = reference || null;
         this.reference_hash = reference_hash || null;
-        this.decimals = decimals || 8;
+        this.decimals = decimals || "8";
     }
 }
 
@@ -27,10 +27,10 @@ export interface TokenMockType {
 }
 
 export class TokenMock extends BaseMock implements Token {
-    balance: number;
+    balance: string;
     metadata: TokenMetadataMock;
 
-    constructor({ metadata = new TokenMetadataMock(), balance = 200 }: Partial<TokenMockType> = {}) {
+    constructor({ metadata = new TokenMetadataMock(), balance = "200" }: Partial<TokenMockType> = {}) {
         super();
         this.metadata = metadata;
         this.balance = balance;

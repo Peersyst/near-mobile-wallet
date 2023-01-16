@@ -12,6 +12,7 @@
     "enableChangeNetwork": true,
     "tokenName": "NEAR",
     "coingeckoTokenApiId": "near",
+    "coingeckoUSDTApiId": "tether",
     "fetchPriceConversionInterval": 180000,
     "minBalanceToCreateAccount": "0.1",
     "estimatedFee": "0.00005",

@@ -4,22 +4,25 @@ import MainList from "module/main/component/display/MainList/MainList";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
-import { tokensList } from "module/token/mock/token";
 import { useRefetchQueries } from "../../../../../query/useRefetchQueries";
-import { useMemo } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
+import Queries from "../../../../../query/queries";
+import { config } from "config";
 
 const TokensList = (): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
     const {
         state: { selectedWallet },
     } = useWalletState();
-    const { isLoading, data: tokens = [] } = useGetTokens(selectedWallet);
-    const tokenPriceUseQueries = useMemo(() => tokensList.map((token) => ["tokenPrice", fiat, token]), [fiat]);
+    const { isLoading, data: tokens = [], refetch: refetchTokens } = useGetTokens(selectedWallet);
     const refetch = useRefetchQueries();
 
     const handleRefetch = async () => {
-        await refetch(tokenPriceUseQueries);
+        await Promise.all([
+            refetchTokens(),
+            refetch([Queries.TOKENS_PRICE]),
+            refetch([Queries.COIN_PRICE, config.coingeckoUSDTApiId, fiat]),
+        ]);
     };
 
     return (

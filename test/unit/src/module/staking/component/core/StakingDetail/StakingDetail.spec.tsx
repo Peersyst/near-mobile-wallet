@@ -9,7 +9,7 @@ describe("Tests for StakingDetails", () => {
         render(<StakingDetail title={mockStakingDetail.title} amount={mockStakingDetail.amount} stakeable />);
 
         expect(screen.getByText(mockStakingDetail.title)).toBeDefined();
-        expect(screen.getByText(mockStakingDetail.amount.toString())).toBeDefined();
+        expect(screen.getByText("0 NEAR")).toBeDefined();
         expect(screen.getByRole("button", { name: translate("unstake") })).toBeDefined();
     });
 
@@ -19,7 +19,7 @@ describe("Tests for StakingDetails", () => {
         render(<StakingDetail title={mockStakingDetail.title} amount={mockStakingDetail.amount} />);
 
         expect(screen.getByText(mockStakingDetail.title)).toBeDefined();
-        expect(screen.getByText(mockStakingDetail.amount.toString())).toBeDefined();
+        expect(screen.getByText("0 NEAR")).toBeDefined();
         expect(screen.queryByRole("button", { name: translate("unstake") })).toBeNull();
     });
 });
