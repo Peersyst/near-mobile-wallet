@@ -1,4 +1,5 @@
-import NftSelectItemList, { NftSelectItem } from "module/wallet/component/input/WalletAssetSelect/InnerAssetSelect/NftSelectItemList";
+import { NftSelectItem } from "module/wallet/component/input/WalletAssetSelect/InnerAssetSelect/NftSelectItemList/NftSelectItem";
+import NftSelectItemList from "module/wallet/component/input/WalletAssetSelect/InnerAssetSelect/NftSelectItemList/NftSelectItemList";
 import { AssetType } from "module/wallet/wallet.types";
 import { NftTokenMock, UseAssetSelectMock, UseGetNftsMock } from "test-mocks";
 import { fireEvent, render, screen, translate, waitFor } from "test-utils";

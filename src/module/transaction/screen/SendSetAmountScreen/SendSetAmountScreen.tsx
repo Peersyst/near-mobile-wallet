@@ -7,9 +7,9 @@ import { SendScreens } from "module/transaction/component/core/SendModal/SendMod
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
 import { useTranslate } from "module/common/hook/useTranslate";
 import WalletAssetSelect from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect";
-import AssetAmountInput from "module/transaction/component/input/AssetAmountInput/AssetAmountInput";
+import AssetAmountTextField from "module/transaction/component/input/AssetAmountTextField/AssetAmountTextField";
 import { useState } from "react";
-import { Asset } from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect.types";
+import { Asset } from "module/wallet/wallet.types";
 import { AssetType } from "module/wallet/wallet.types";
 
 export type SendAmountAndMessageResult = Pick<SendState, "amount" | "asset">;
@@ -23,6 +23,7 @@ const SendSetAmountScreen = (): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     /**
      * asset will never be undefined because by default sendRoilState has it defined
+     * (check the recoil defaultState of sendState)
      */
     const [asset, setAsset] = useState<Asset | undefined>(sendState.asset);
     const translate = useTranslate();
@@ -50,7 +51,7 @@ const SendSetAmountScreen = (): JSX.Element => {
                         index={senderWalletIndex}
                         name={SEND_SET_AMOUNT_FORM_KEYS.asset}
                     />
-                    <AssetAmountInput
+                    <AssetAmountTextField
                         label={translate("select_the_amount_to_send")}
                         asset={asset ?? { type: AssetType.TOKEN }}
                         placeholder={translate("enter_amount")}
