@@ -652,18 +652,17 @@ export class NearSDKService {
         return tx.transaction_outcome.id;
     }
 
-    async sendFungibleTokens(contractId: string, amount: number, receiverId: string, memo: string): Promise<string> {
+    async sendFungibleTokens(contractId: string, amount: string, receiverId: string, memo?: string): Promise<string> {
         const account = await this.getAccount();
 
         const storageAvailable = await this.isStorageBalanceAvailable(contractId, receiverId);
         if (!storageAvailable) {
             await this.transferStorageDeposit(contractId, receiverId);
         }
-
         const tx = await account.functionCall({
             contractId,
             methodName: FT_TRANSFER_METHOD,
-            args: { amount, memo, receiver_id: receiverId },
+            args: { amount, receiver_id: receiverId, memo },
             gas: FT_TRANSFER_GAS,
             attachedDeposit: TOKEN_TRANSFER_DEPOSIT,
         });
@@ -843,7 +842,9 @@ export class NearSDKService {
             if (contractNfts > 0) {
                 const collectionMetadata = await this.getNftMetadata(contractId);
                 const newNftTokens = await this.getNftTokens(contractId, collectionMetadata.base_uri);
-                nftTokens.push(...newNftTokens.map((token: NftToken) => ({ ...token, collection_metadata: collectionMetadata })));
+                nftTokens.push(
+                    ...newNftTokens.map((token: NftToken) => ({ ...token, collection_metadata: collectionMetadata, contractId })),
+                );
             }
         }
 
