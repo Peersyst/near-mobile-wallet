@@ -4,7 +4,6 @@ import stakeRecoilState from "module/staking/state/StakeState";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useTranslate } from "module/common/hook/useTranslate";
-import NEARAmountInput from "module/transaction/component/input/AssetAmountInput/NEARAmountInput/NEARAmountInput";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
@@ -13,6 +12,7 @@ import { config } from "config";
 import useNativeTokenConversion from "module/common/hook/useNativeTokenConversion";
 import { subtractNearAmounts } from "near-peersyst-sdk";
 import settingsState from "module/settings/state/SettingsState";
+import NEARAmountTextField from "module/transaction/component/input/AssetAmountTextField/NEARAmountTextField/NEARAmountTextField";
 
 export interface SendForm {
     amount: string;
@@ -54,7 +54,7 @@ const SetAmountStakeScreen = () => {
     return (
         <Form onSubmit={handleSubmit}>
             <Col gap={24}>
-                <NEARAmountInput
+                <NEARAmountTextField
                     label={translate("enter_amount_want_to_stake")!}
                     hint={translate("available_balance", { amount: formattedBalance, amount_price: formattedBalanceInFiat })!}
                     index={index}

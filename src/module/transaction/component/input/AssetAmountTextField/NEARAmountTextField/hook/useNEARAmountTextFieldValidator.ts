@@ -56,6 +56,6 @@ export const useNEARAmountTextFieldValidator = ({
     const error = finalMaxAmountError || finalNotGreaterThanZero || finalMinAmount;
 
     return {
-        error: finalHasEnoughBalanceError || finalMaxAmountError || finalMinAmountError,
+        error,
     };
 };

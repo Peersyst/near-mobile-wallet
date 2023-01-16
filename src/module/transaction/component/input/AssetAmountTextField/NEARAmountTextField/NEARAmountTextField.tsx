@@ -5,7 +5,7 @@ import { NumericTextFieldProps } from "module/common/component/input/NumericText
 import { useNEARAmountTextFieldValidator } from "./hook/useNEARAmountTextFieldValidator";
 import { useAssetAmountState } from "../BaseAssetAmountTextField/hook/useAssetAmountState";
 
-export interface NEARAmountTextFieldProps extends Omit<NumericTextFieldProps, "validators" | "suffix"> {
+export interface NEARAmountTextFieldProps extends Omit<NumericTextFieldProps, "validators"> {
     index: number;
 }
 
