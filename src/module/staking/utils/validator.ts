@@ -6,10 +6,10 @@ export const isCurrentValidatorActive = (validatorAccountId: string, allValidato
     return false;
 };
 
-export const getAllValidatorsWithStatus = (validators: Validator[]): StakingValidator[] => {
+export const getValidatorsWithStatus = (validators: Validator[], allValidators: Validator[]): StakingValidator[] => {
     return validators?.map((validator) => {
         const stakingValidator: StakingValidator = {
-            status: isCurrentValidatorActive(validator.accountId, validators) ? "active" : "inactive",
+            status: isCurrentValidatorActive(validator.accountId, allValidators) ? "active" : "inactive",
             ...validator,
         };
         return stakingValidator;

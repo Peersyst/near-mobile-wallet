@@ -38,8 +38,8 @@ const SelectValidatorScreen = () => {
             <Typography color={(palette) => palette.gray["300"]} textAlign="center" variant="body3Strong">
                 {translate("enter_new_validator")}
             </Typography>
-            <ValidatorSelectProvider value={{ validators: data, isLoading: isLoading }}>
-                <StakeValidatorSelect onSelected={onSelected} />
+            <ValidatorSelectProvider value={{ validators: data, isLoading: isLoading, onSelected: onSelected }}>
+                <StakeValidatorSelect />
             </ValidatorSelectProvider>
         </Col>
     );

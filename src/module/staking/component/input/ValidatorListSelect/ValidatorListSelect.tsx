@@ -3,15 +3,14 @@ import MainList from "module/main/component/display/MainList/MainList";
 import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
 import { useValidatorSelect } from "module/staking/hook/useValidatorSelect";
 import { useEffect, useState, useTransition } from "react";
-import StakingListItem from "../../core/StakingListItem/StakingListItem";
+import StakingListItemSelect from "../StakingListItemSelect/StakingListItemSelect";
 
 export interface StakingListProps {
     search?: string;
-    onSelected: (validator: StakingValidator) => void;
 }
-const StakingListSelect = ({ search = "", onSelected }: StakingListProps): JSX.Element => {
+const ValidatorListSelect = ({ search = "" }: StakingListProps): JSX.Element => {
     const [isPending, startTransition] = useTransition();
-    const { validators: data, isLoading } = useValidatorSelect();
+    const { validators: data, isLoading, onSelected } = useValidatorSelect();
     const [dataList, setDataList] = useState<StakingValidator[]>(data ? data : []);
 
     useEffect(() => {
@@ -27,15 +26,18 @@ const StakingListSelect = ({ search = "", onSelected }: StakingListProps): JSX.E
         });
     }, [search]);
 
+    const haveElementList = data && dataList.length ? true : false;
+    const showEmptyList = isLoading ? true : haveElementList ? false : true;
+
     return (
         <MainList
             loading={isLoading || isPending}
-            ListEmptyComponent={isLoading ? data && dataList.length < 1 ? <EmptyListComponent /> : undefined : <EmptyListComponent />}
+            ListEmptyComponent={showEmptyList ? <EmptyListComponent /> : undefined}
             data={dataList.length ? dataList : []}
-            renderItem={({ item: validator }) => <StakingListItem validator={validator} onSelected={onSelected} />}
+            renderItem={({ item: validator }) => <StakingListItemSelect validator={validator} onSelected={onSelected} />}
             keyExtractor={(item) => item.accountId}
         />
     );
 };
 
-export default StakingListSelect;
+export default ValidatorListSelect;
