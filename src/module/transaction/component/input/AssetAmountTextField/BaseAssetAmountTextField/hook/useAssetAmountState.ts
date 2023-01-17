@@ -2,9 +2,9 @@ import { useControlled } from "@peersyst/react-hooks";
 import { BaseAssetAmountTextFieldProps } from "../BaseAssetAmountTextField";
 
 export interface UseAssetAmountStateParams {
-    defaultValue: BaseAssetAmountTextFieldProps["defaultValue"];
-    value: BaseAssetAmountTextFieldProps["value"];
-    onChange: BaseAssetAmountTextFieldProps["onChange"];
+    defaultValue?: BaseAssetAmountTextFieldProps["defaultValue"];
+    value?: BaseAssetAmountTextFieldProps["value"];
+    onChange?: BaseAssetAmountTextFieldProps["onChange"];
     decimals: number | string;
 }
 
