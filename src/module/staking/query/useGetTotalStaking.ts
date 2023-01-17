@@ -5,10 +5,10 @@ import { QueryResult } from "query-utils";
 import Queries from "../../../query/queries";
 import useSameWallet from "module/wallet/hook/useSameWallet";
 
-export default function (index?: number, onlySingleWallet?: boolean): QueryResult<StakingBalance> {
+export default function (index?: number, onlySelectedWallet?: boolean): QueryResult<StakingBalance> {
     const { sameWallet } = useSameWallet();
     const { index: usedIndex, network, serviceInstance } = useServiceInstance(index);
-    const queryEnabled = !!serviceInstance && (onlySingleWallet ? sameWallet(index) : true);
+    const queryEnabled = !!serviceInstance && (onlySelectedWallet ? sameWallet(index) : true);
     return useQuery(
         [Queries.TOTAL_STAKING_BALANCE, usedIndex, network],
         async (): Promise<StakingBalance> => {
