@@ -1,4 +1,3 @@
-import { Col } from "@peersyst/react-native-components";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import MainList from "module/main/component/display/MainList/MainList";
 import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
