@@ -1,10 +1,10 @@
 import { TabPanel, Tabs } from "@peersyst/react-native-components";
 import { useState } from "react";
 import { useResetRecoilState } from "recoil";
-import sendState from "module/transaction/state/SendState";
 import { CardNavigatorModalProps } from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
 import { StakeModalRoot } from "./StakeModal.styles";
+import stakeState from "module/staking/state/StakeState";
 
 export enum SendScreens {
     SET_AMOUNT,
@@ -17,7 +17,7 @@ export interface StakeModalProps extends Omit<CardNavigatorModalProps, "navbar" 
 
 const StakeModal = ({ onExited, tabs, onBack, ...rest }: StakeModalProps) => {
     const [activeIndex, setActiveIndex] = useState(SendScreens.SET_AMOUNT);
-    const resetSendState = useResetRecoilState(sendState);
+    const resetSendState = useResetRecoilState(stakeState);
 
     const handleExited = () => {
         onExited?.();

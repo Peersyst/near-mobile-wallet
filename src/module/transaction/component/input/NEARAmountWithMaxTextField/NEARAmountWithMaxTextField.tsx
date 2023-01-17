@@ -1,6 +1,5 @@
 import { useRecoilValue } from "recoil";
 import { useTranslate } from "module/common/hook/useTranslate";
-import useGetBalance from "module/wallet/query/useGetBalance";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
 import { config } from "config";
 import useNativeTokenConversion from "module/common/hook/useNativeTokenConversion";
@@ -11,15 +10,28 @@ import NEARAmountTextField, {
 } from "module/transaction/component/input/AssetAmountTextField/NEARAmountTextField/NEARAmountTextField";
 import { useControlled } from "@peersyst/react-hooks";
 import Typography from "module/common/component/display/Typography/Typography";
+import useGetBalance from "module/wallet/query/useGetBalance";
+import { Spinner } from "@peersyst/react-native-components";
 
-export type NEARAmountWithMaxTextFieldProps = Omit<NEARAmountTextFieldProps, "suffix" | "hint">;
+export type BaseNEARAmountWithMaxTextFieldProps = Omit<NEARAmountTextFieldProps, "suffix" | "hint">;
 
-const NEARAmountWithMaxTextField = ({ value, defaultValue = "", onChange, ...rest }: NEARAmountWithMaxTextFieldProps) => {
+export type NEARAmountWithMaxTextFieldProps = BaseNEARAmountWithMaxTextFieldProps & {
+    available: string;
+    isLoading?: boolean;
+};
+
+const NEARAmountWithMaxTextField = ({
+    value,
+    defaultValue = "",
+    onChange,
+    available,
+    index,
+    isLoading: isLoadingProp,
+    ...rest
+}: NEARAmountWithMaxTextFieldProps) => {
     const translate = useTranslate();
     const [amount, setAmount] = useControlled(defaultValue, value, onChange);
-
-    const { data: { available } = { available: "0" } } = useGetBalance();
-
+    const { isLoading } = useGetBalance(index);
     const maxBalance = subtractNearAmounts(available, config.estimatedFee);
 
     const maxBalanceInFiat = useNativeTokenConversion(maxBalance);
@@ -41,11 +53,16 @@ const NEARAmountWithMaxTextField = ({ value, defaultValue = "", onChange, ...res
 
     return (
         <NEARAmountTextField
+            index={index}
             hint={translate("available_balance", { amount: formattedBalance, amount_price: formattedBalanceInFiat })!}
             suffix={
-                <Typography variant="body2Strong" onPress={changeToMaxBalance}>
-                    {translate("max")!}
-                </Typography>
+                isLoadingProp || isLoading ? (
+                    <Spinner size="small" />
+                ) : (
+                    <Typography variant="body2Strong" onPress={changeToMaxBalance}>
+                        {translate("max")!}
+                    </Typography>
+                )
             }
             value={amount}
             onChange={setAmount}

@@ -5,7 +5,7 @@ import { SendScreens } from "module/transaction/component/core/SendModal/SendMod
 import { useRecoilState } from "recoil";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
-import NEARAmountWithMaxTextField from "module/transaction/component/input/NEARAmountWithMaxTextField/NEARAmountWithMaxTextField";
+import NEARMaxAmountAvailableTextField from "module/transaction/component/input/NEARMaxAmountAvailableTextField/NEARMaxAmountAvailableTextField";
 
 export interface SendForm {
     amount: string;
@@ -26,7 +26,7 @@ const SetAmountStakeScreen = () => {
     return (
         <Form onSubmit={handleSubmit} style={{ flex: 1 }}>
             <Col gap={24} justifyContent="space-between" flex={1}>
-                <NEARAmountWithMaxTextField
+                <NEARMaxAmountAvailableTextField
                     defaultValue={stakeState.amount}
                     label={translate("enter_amount_want_to_stake")!}
                     index={index}
