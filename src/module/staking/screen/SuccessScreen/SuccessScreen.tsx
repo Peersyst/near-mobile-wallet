@@ -19,14 +19,14 @@ const SuccessScreen = ({ onClose, process }: SuccessScreenProps): JSX.Element =>
 
     return (
         <Col flex={1} justifyContent="space-between">
-            <Col>
+            <Col gap={24}>
                 <Alert
                     type="success"
-                    message={process ? translate("stakingSuccess") : translate("unstakingProcess", { token: "X " + tokenName })}
+                    message={process === "stake" ? translate("stakingSuccess") : translate("unstakingSuccess", { token: "X " + tokenName })}
                 />
                 <ValidatorInformation validator={validator} />
             </Col>
-            <Button variant="primary" fullWidth onPress={() => onClose}>
+            <Button variant="primary" fullWidth onPress={onClose}>
                 {translate("close")}
             </Button>
         </Col>
