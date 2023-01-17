@@ -20,6 +20,7 @@ const SuccessScreen = ({ onClose, process }: SuccessScreenProps): JSX.Element =>
     return (
         <Col flex={1} justifyContent="space-between">
             <Col gap={24}>
+                {/* Pending on step 3/3 of staking */}
                 <Alert
                     type="success"
                     message={process === "stake" ? translate("stakingSuccess") : translate("unstakingSuccess", { token: "X " + tokenName })}
