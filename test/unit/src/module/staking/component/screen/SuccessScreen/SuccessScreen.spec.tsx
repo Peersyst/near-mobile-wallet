@@ -8,7 +8,7 @@ describe("Tests for SuccessScreen component", () => {
     const mockStakingValidator = new StakingValidatorMock();
 
     test("Renders correctly on staking process", () => {
-        jest.spyOn(recoil, "useRecoilState").mockReturnValue([mockStakingValidator, jest.fn()]);
+        jest.spyOn(recoil, "useRecoilState").mockReturnValue([{ validator: mockStakingValidator, amount: 0 }, jest.fn()]);
 
         render(<SuccessScreen onClose={jest.fn} process="stake" />);
 
@@ -21,11 +21,11 @@ describe("Tests for SuccessScreen component", () => {
     });
 
     test("Renders correctly on unstaking process", () => {
-        jest.spyOn(recoil, "useRecoilState").mockReturnValue([mockStakingValidator, jest.fn()]);
+        jest.spyOn(recoil, "useRecoilState").mockReturnValue([{ validator: mockStakingValidator, amount: 0 }, jest.fn()]);
 
         render(<SuccessScreen onClose={jest.fn} process="unstake" />);
 
-        expect(screen.getByText(translate("unstakingSuccess", { token: "X NEAR" }))).toBeDefined();
+        expect(screen.getByText(translate("unstakingSuccess", { token: "0 NEAR" }))).toBeDefined();
         expect(screen.getByRole("button", { name: translate("close") })).toBeDefined();
 
         expect(screen.getByText(mockStakingValidator.accountId)).toBeDefined();
