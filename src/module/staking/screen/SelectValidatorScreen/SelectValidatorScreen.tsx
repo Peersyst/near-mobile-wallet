@@ -34,7 +34,7 @@ const SelectValidatorScreen = () => {
     };
 
     return (
-        <Col flex={1} gap={24} style={{ height: "100%" }}>
+        <Col flex={1} gap={24}>
             <Typography color={(palette) => palette.gray["300"]} textAlign="center" variant="body3Strong">
                 {translate("enter_new_validator")}
             </Typography>

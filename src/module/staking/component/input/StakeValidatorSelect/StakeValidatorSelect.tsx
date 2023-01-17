@@ -9,7 +9,7 @@ const StakeValidatorSelect = () => {
     const [accountId, setAccountId] = useState("");
 
     return (
-        <Col gap={12}>
+        <Col gap={12} flex={1} style={{ height: 200, overflow: "hidden", paddingBottom: 50 }}>
             <TextField
                 label={translate("enter_a_validator_account_id")!}
                 placeholder={translate("validator_name_near")!}
@@ -19,7 +19,7 @@ const StakeValidatorSelect = () => {
                 autoCapitalize="none"
                 autoCorrect={false}
             />
-            <Label variant="body2Strong" label={translate("or_select_a_validator")!}>
+            <Label variant="body2Strong" label={translate("or_select_a_validator")!} style={{ height: "90%" }}>
                 <ValidatorListSelect search={accountId} />
             </Label>
         </Col>
