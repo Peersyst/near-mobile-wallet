@@ -6,10 +6,15 @@ import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 
 const NftsList = (): JSX.Element => {
     const index = useSelectedWalletIndex();
-    const { data = [], isLoading } = useGetNfts(index);
+    const { data = [], isLoading, refetch: refetchNfts } = useGetNfts(index);
+
+    const handleRefetch = async () => {
+        await refetchNfts();
+    };
 
     return (
         <MainList
+            onRefresh={handleRefetch}
             loading={isLoading}
             data={data}
             renderItem={({ item: nft }) => <NftCard nft={nft} />}

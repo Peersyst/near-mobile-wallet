@@ -206,5 +206,11 @@
     "choose_what_to_send": "Choose what to send",
     "select_asset": "Select asset",
     "send_only_one_nft": "You can only send 1 Nft",
-    "select_the_amount_to_send": "Select the amount to send"
+    "select_the_amount_to_send": "Select the amount to send",
+    "send_success": "Sent successfully!",
+    "pendingRelease": "Pending release",
+    "totalAmountStaked": "Total amount staked",
+    "rewardsEarned": "Rewards earned",
+    "availableForWithdrawal": "Available for withdrawal",
+    "summary": "Summary"
 }

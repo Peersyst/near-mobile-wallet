@@ -51,7 +51,14 @@ import {
     NFT_TOKEN_METADATA_METHOD,
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "../utils/near.constants";
-import { convertAccountBalanceToNear as convertAccountBalanceToNearUtil, convertNearToYocto, formatTokenAmount } from "../utils/near.utils";
+import {
+    addYoctoAmounts,
+    convertAccountBalanceToNear as convertAccountBalanceToNearUtil,
+    convertNearToYocto,
+    convertYoctoToNear,
+    formatTokenAmount,
+    subtractYoctoAmounts,
+} from "../utils/near.utils";
 import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
 import { BalanceOperations } from "../utils";
 
@@ -438,9 +445,9 @@ export class NearSDKService {
     private async getValidatorBalance(validatorId: string, validatorDeposit?: number): Promise<StakingBalance> {
         const account = await this.getAccount();
         const stakingBalance: StakingBalance = {
-            staked: 0,
-            available: 0,
-            pending: 0,
+            staked: "0",
+            available: "0",
+            pending: "0",
         };
 
         const total = await account.viewFunction({
@@ -450,7 +457,7 @@ export class NearSDKService {
         });
 
         if (validatorDeposit) {
-            stakingBalance.rewardsEarned = total - validatorDeposit;
+            stakingBalance.rewardsEarned = subtractYoctoAmounts(BigInt(total).toString(), BigInt(validatorDeposit).toString());
         }
 
         if (parseInt(total, 10) > 0) {
@@ -459,7 +466,7 @@ export class NearSDKService {
                 methodName: ACCOUNT_STAKED_BALANCE_METHOD,
                 args: { account_id: account.accountId },
             });
-            stakingBalance.staked = parseInt(stakedStr, 10);
+            stakingBalance.staked = stakedStr;
 
             const unstakedStr = await account.viewFunction({
                 contractId: validatorId,
@@ -475,9 +482,9 @@ export class NearSDKService {
                 });
 
                 if (isAvailable) {
-                    stakingBalance.available = parseInt(unstakedStr, 10);
+                    stakingBalance.available = unstakedStr;
                 } else {
-                    stakingBalance.pending = parseInt(unstakedStr, 10);
+                    stakingBalance.pending = unstakedStr;
                 }
             }
         }
@@ -511,26 +518,45 @@ export class NearSDKService {
     async getAllValidators(): Promise<Validator[]> {
         const validators = await this.getAllValidatorIds();
         const validatorsProms = validators.map((validator) => this.getValidatorDataFromId(validator, false));
-
         return Promise.all(validatorsProms);
     }
 
-    async getTotalStakingBalance(): Promise<StakingBalance> {
-        // TODO: Remove comments
-        // const stakingDeposits = await this.apiService.getStakingDeposits(this.getAddress(), this.baseApiUrl);
-        // const validatorsProms = stakingDeposits.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
-        // const validators = await Promise.all(validatorsProms);
+    async getCurrentValidators(): Promise<Validator[]> {
+        const stakingDeposits = await this.apiService.getStakingDeposits({ address: this.getAddress() });
+        const validatorsProms = stakingDeposits.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
+        return await Promise.all(validatorsProms);
+    }
 
-        // TODO: remove get all validators line
-        const validators = await this.getAllValidators();
-
-        const stakingBalance: StakingBalance = {
-            staked: validators.reduce((ant, act) => ant + (act.stakingBalance?.staked || 0), 0),
-            available: validators.reduce((ant, act) => ant + (act.stakingBalance?.available || 0), 0),
-            pending: validators.reduce((ant, act) => ant + (act.stakingBalance?.pending || 0), 0),
+    private addStakingBalancesFromValidators(validators: Validator[]): StakingBalance {
+        let finalStakingBalance: StakingBalance = {
+            staked: "0",
+            available: "0",
+            pending: "0",
         };
+        validators.forEach((validator) => {
+            finalStakingBalance = this.addStakingBalances(finalStakingBalance, validator.stakingBalance);
+        });
+        const { staked, available, pending, rewardsEarned } = finalStakingBalance;
+        return {
+            staked: convertYoctoToNear(staked),
+            available: convertYoctoToNear(available),
+            pending: convertYoctoToNear(pending),
+            rewardsEarned: rewardsEarned ? convertYoctoToNear(rewardsEarned) : rewardsEarned,
+        };
+    }
 
-        return stakingBalance;
+    private addStakingBalances(ant: StakingBalance, act?: StakingBalance): StakingBalance {
+        return {
+            staked: act?.staked ? addYoctoAmounts(ant.staked, act.staked) : ant.staked,
+            available: act?.available ? addYoctoAmounts(ant.available, act.available) : ant.available,
+            pending: act?.pending ? addYoctoAmounts(ant.pending, act.pending) : ant.pending,
+            rewardsEarned: act?.rewardsEarned ? addYoctoAmounts(ant.rewardsEarned || "0", act.rewardsEarned) : ant.rewardsEarned,
+        };
+    }
+
+    async getTotalStakingBalance(): Promise<StakingBalance> {
+        const validators = await this.getCurrentValidators();
+        return this.addStakingBalancesFromValidators(validators);
     }
 
     // Amount is in near
@@ -638,18 +664,17 @@ export class NearSDKService {
         return tx.transaction_outcome.id;
     }
 
-    async sendFungibleTokens(contractId: string, amount: number, receiverId: string, memo: string): Promise<string> {
+    async sendFungibleTokens(contractId: string, amount: string, receiverId: string, memo?: string): Promise<string> {
         const account = await this.getAccount();
 
         const storageAvailable = await this.isStorageBalanceAvailable(contractId, receiverId);
         if (!storageAvailable) {
             await this.transferStorageDeposit(contractId, receiverId);
         }
-
         const tx = await account.functionCall({
             contractId,
             methodName: FT_TRANSFER_METHOD,
-            args: { amount, memo, receiver_id: receiverId },
+            args: { amount, receiver_id: receiverId, memo },
             gas: FT_TRANSFER_GAS,
             attachedDeposit: TOKEN_TRANSFER_DEPOSIT,
         });
@@ -829,7 +854,9 @@ export class NearSDKService {
             if (contractNfts > 0) {
                 const collectionMetadata = await this.getNftMetadata(contractId);
                 const newNftTokens = await this.getNftTokens(contractId, collectionMetadata.base_uri);
-                nftTokens.push(...newNftTokens.map((token: NftToken) => ({ ...token, collection_metadata: collectionMetadata })));
+                nftTokens.push(
+                    ...newNftTokens.map((token: NftToken) => ({ ...token, collection_metadata: collectionMetadata, contractId })),
+                );
             }
         }
 

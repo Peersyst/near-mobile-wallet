@@ -1,7 +1,7 @@
 import { WalletCardProps } from "module/wallet/component/core/WalletCard/WalletCard";
 import BaseWalletCard from "module/common/component/surface/BaseWalletCard/BaseWalletCard";
-import StakingCardContent from "module/staking/component/core/StakingCard/StakingCardContent/StakingCardContent";
-import StakingCardButtons from "module/staking/component/core/StakingCard/StakingCardButtons/StakingCardButtons";
+import StakingCardButtons from "./StakingCardButtons/StakingCardButtons";
+import StakingCardContent from "./StakingCardContent/StakingCardContent";
 
 const StakingCard = ({ wallet }: WalletCardProps): JSX.Element => {
     return (

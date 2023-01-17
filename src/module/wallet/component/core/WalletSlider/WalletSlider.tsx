@@ -17,12 +17,14 @@ const WalletSlider = ({ Card }: WalletSliderProps): JSX.Element => {
         state: { selectedWallet = 0, wallets },
         setSelectedWallet,
     } = useWalletState();
-
+    const handleSelectedWallet = (page: number) => {
+        setSelectedWallet(page);
+    };
     return (
         <DarkThemeProvider>
             <WalletSliderRoot
                 page={selectedWallet}
-                onPageSelected={(page) => setSelectedWallet(page)}
+                onPageSelected={handleSelectedWallet}
                 showPageIndicator={true}
                 gap={0}
                 pagePadding={{ horizontal: 20 }}
