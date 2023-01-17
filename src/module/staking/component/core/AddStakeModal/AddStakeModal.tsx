@@ -1,4 +1,4 @@
-import { createBackdrop, ExposedBackdropProps, Label, TabPanel, Tabs } from "@peersyst/react-native-components";
+import { createBackdrop, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
 import { useState } from "react";
 import { useResetRecoilState } from "recoil";
 import sendState from "module/transaction/state/SendState";

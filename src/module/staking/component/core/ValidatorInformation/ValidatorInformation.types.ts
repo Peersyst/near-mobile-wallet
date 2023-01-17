@@ -1,9 +1,8 @@
 import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
-import { ReactElement } from "react";
 
 export interface ValidatorInformationProps {
     validator: StakingValidator;
-    action?: ReactElement;
+    action?: string;
     onPressAction?: () => void;
 }
 
