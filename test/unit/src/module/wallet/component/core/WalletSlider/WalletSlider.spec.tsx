@@ -3,7 +3,7 @@ import { render, translate } from "test-utils";
 import { UseWalletStateMock } from "mocks/common";
 import WalletCard from "module/wallet/component/core/WalletCard/WalletCard";
 import { capitalize } from "@peersyst/react-utils";
-import StakingCard from "module/staking/component/core/StakingCard/StakingCard";
+import StakingCard from "module/staking/component/display/StakingCard/StakingCard";
 
 describe("Tests for WalletSlider component", () => {
     const { state } = new UseWalletStateMock();

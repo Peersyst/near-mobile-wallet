@@ -43,7 +43,6 @@ const CreateAccountConfirmationScreen = ({
                 receiverAccount={name!}
                 amount={config.minBalanceToCreateAccount}
                 fee={config.estimatedFee}
-                token="token"
                 showFiat
             />
             <Col style={{ width: "100%" }}>

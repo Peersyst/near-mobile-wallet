@@ -19,6 +19,7 @@ declare module "@peersyst/react-native-components" {
         maxNumberOfDecimals: number;
         enableChangeNetwork: boolean;
         tokenName: string;
+        miniTokenUnit: string;
         mainnetNodeUrl: string;
         testnetNodeUrl: string;
         coingeckoTokenApiId: string;
@@ -39,6 +40,7 @@ declare module "@peersyst/react-native-components" {
         maxNumberOfDecimals: number;
         enableChangeNetwork: boolean;
         tokenName: string;
+        miniTokenUnit: string;
         mainnetNodeUrl: string;
         testnetNodeUrl: string;
         coingeckoTokenApiId: string;

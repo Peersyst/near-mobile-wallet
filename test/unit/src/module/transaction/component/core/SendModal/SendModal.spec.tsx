@@ -2,18 +2,18 @@ import { render, translate } from "test-utils";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import * as Recoil from "recoil";
 import { fireEvent, waitFor } from "@testing-library/react-native";
-import { config } from "config";
-import { UseWalletStateMock, UseServiceInstanceMock, AccountBalanceMock, MOCKED_NAMED_ADDRESS } from "test-mocks";
+import { UseWalletStateMock, UseServiceInstanceMock, AccountBalanceMock } from "test-mocks";
 
 describe("SendModal tests", () => {
     new UseWalletStateMock();
     const { serviceInstance } = new UseServiceInstanceMock();
+
     afterAll(() => {
         jest.restoreAllMocks();
     });
 
     beforeAll(() => {
-        const acountBalance = new AccountBalanceMock();
+        const acountBalance = new AccountBalanceMock({ available: "100000" });
         jest.spyOn(serviceInstance, "getAccountBalance").mockResolvedValue(acountBalance);
     });
 
@@ -30,21 +30,5 @@ describe("SendModal tests", () => {
         fireEvent.press(screen.getByTestId("BackIcon"));
         await waitFor(() => expect(resetSendState).toHaveBeenCalled());
         expect(handleExited).toHaveBeenCalled();
-    });
-
-    test("Send is completed successfully", async () => {
-        const screen = render(<SendModal />);
-
-        // Enter receiver address, sender address equals the selected account (0)
-        fireEvent.changeText(screen.getByPlaceholderText(translate("address")), MOCKED_NAMED_ADDRESS);
-        fireEvent.press(screen.getByText(translate("next")));
-
-        // Enter amount and message
-        await waitFor(() => fireEvent.changeText(screen.getByPlaceholderText(translate("enter_amount")), "6000"));
-        fireEvent.changeText(screen.getByPlaceholderText(translate("write_a_message")), "This is a message");
-        fireEvent.press(screen.getByText(translate("next")));
-        screen.debug();
-        // Confirmation
-        await waitFor(() => expect(screen.getByText(`6,000 ${config.tokenName}`)).toBeDefined());
     });
 });

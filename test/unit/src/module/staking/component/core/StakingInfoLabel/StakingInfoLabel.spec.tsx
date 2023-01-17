@@ -1,6 +1,6 @@
-import StakingInfoLabel from "module/staking/component/core/StakingInfoLabel/StakingInfoLabel";
 import { render } from "test-utils";
 import config from "config/config";
+import StakingInfoLabel from "module/staking/component/display/StakingInfoLabel/StakingInfoLabel";
 
 describe("Test for StakingInfoLabel component", () => {
     test("Renders correctly with data", () => {

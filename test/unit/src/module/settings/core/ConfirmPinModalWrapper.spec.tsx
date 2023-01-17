@@ -6,7 +6,7 @@ describe("ConfirmPinModalWrapper", () => {
     test("should render correctly", () => {
         render(
             <ConfirmPinModalWrapper onPinConfirmed={jest.fn()}>
-                {({ showConfirmPinModal }) => <Button onPress={showConfirmPinModal}>Show</Button>}
+                {({ showModal }) => <Button onPress={showModal}>Show</Button>}
             </ConfirmPinModalWrapper>,
         );
 

@@ -11,6 +11,7 @@
     "maxNumberOfDecimals": 5,
     "enableChangeNetwork": true,
     "tokenName": "NEAR",
+    "miniTokenUnit": "yoctoNEAR",
     "coingeckoTokenApiId": "near",
     "coingeckoUSDTApiId": "tether",
     "fetchPriceConversionInterval": 180000,

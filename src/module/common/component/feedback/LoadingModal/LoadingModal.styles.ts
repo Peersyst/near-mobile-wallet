@@ -20,7 +20,7 @@ export const LoadingModalRoot = styled(GradientPage, { gradient: true })(() => (
 
 export const LoadingModalContent = styled(Col, { flex: 0.5, justifyContent: "space-between" })(({ safeAreaInsets }) => ({
     paddingHorizontal: 20,
-    paddingBottom: safeAreaInsets.bottom + 20,
+    paddingBottom: safeAreaInsets.bottom + 40,
 }));
 
 export const SuccessIcon = styled(CircleCheckIcon)(({ theme }) => ({
