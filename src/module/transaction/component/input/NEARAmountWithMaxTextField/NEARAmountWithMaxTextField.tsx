@@ -31,8 +31,11 @@ const NEARAmountWithMaxTextField = ({
 }: NEARAmountWithMaxTextFieldProps) => {
     const translate = useTranslate();
     const [amount, setAmount] = useControlled(defaultValue, value, onChange);
-    const { isLoading } = useGetBalance(index);
-    const maxBalance = subtractNearAmounts(available, config.estimatedFee);
+    const { isLoading, data: { available: availableBalance } = { available: "0" } } = useGetBalance(index);
+
+    const finalAvailable = available ? Math.min(Number(available), Number(availableBalance)).toString() : availableBalance;
+
+    const maxBalance = subtractNearAmounts(finalAvailable, config.estimatedFee);
 
     const maxBalanceInFiat = useNativeTokenConversion(maxBalance);
 
