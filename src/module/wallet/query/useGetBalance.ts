@@ -1,12 +1,9 @@
 import Queries from "../../../query/queries";
 import { useQuery } from "react-query";
 import useServiceInstance from "../hook/useServiceInstance";
-import useSameWallet from "module/wallet/hook/useSameWallet";
 
 const useGetBalance = (index?: number, onlySelectedWallet?: boolean) => {
-    const { sameWallet } = useSameWallet();
-    const { index: usedIndex, network, serviceInstance } = useServiceInstance(index);
-    const queryEnabled = !!serviceInstance && (onlySelectedWallet ? sameWallet(index) : true);
+    const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index, onlySelectedWallet);
     return useQuery([Queries.GET_BALANCE, usedIndex, network], async () => await serviceInstance.getAccountBalance(), {
         refetchInterval: 1500,
         enabled: queryEnabled,
