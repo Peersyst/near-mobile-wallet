@@ -225,5 +225,6 @@
     "fee": "Tasa",
     "active": "activo",
     "inactive": "inactivo",
-    "stakingSuccess": "Tu stake ha sido delegado con éxito al validador."
+    "stakingSuccess": "Tu stake ha sido delegado con éxito al validador.",
+    "unstakingSuccess": "{{token}} han sido retirados con éxito de este validador."
 }

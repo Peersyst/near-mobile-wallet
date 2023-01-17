@@ -3,10 +3,10 @@ import { useState } from "react";
 import TextField from "module/common/component/input/TextField/TextField";
 import Typography from "module/common/component/display/Typography/Typography";
 import StakingList from "module/staking/component/core/StakingList/StakingList";
-import { Validator } from "near-peersyst-sdk";
+import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
 
 export interface StakeValidatorSelectProps {
-    onSelected: (validator: Validator) => void;
+    onSelected: (validator: StakingValidator) => void;
 }
 
 const StakeValidatorSelect = ({ onSelected }: StakeValidatorSelectProps) => {

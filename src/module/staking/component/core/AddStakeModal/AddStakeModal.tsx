@@ -10,10 +10,10 @@ import { AddStakeModalRoot } from "./AddStakeModal.styles";
 import SuccessScreen from "module/staking/screen/SuccessScreen/SuccessScreen";
 
 export enum SendScreens {
-    SUCCESS,
     SET_AMOUNT,
     SELECT_VALIDATOR,
     CONFIRM_VALIDATOR,
+    SUCCESS,
 }
 
 const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
@@ -43,9 +43,6 @@ const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProp
             {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
-                <TabPanel index={SendScreens.SUCCESS}>
-                    <SuccessScreen onClose={onExited} />
-                </TabPanel>
                 <TabPanel index={SendScreens.SET_AMOUNT}>
                     <SetAmountStakeScreen />
                 </TabPanel>
@@ -54,6 +51,9 @@ const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProp
                 </TabPanel>
                 <TabPanel index={SendScreens.CONFIRM_VALIDATOR}>
                     <Label label={"confirm"}></Label>
+                </TabPanel>
+                <TabPanel index={SendScreens.SUCCESS}>
+                    <SuccessScreen onClose={onExited} process="stake" />
                 </TabPanel>
             </Tabs>
         </AddStakeModalRoot>

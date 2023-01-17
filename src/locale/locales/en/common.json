@@ -225,5 +225,6 @@
     "your_current_validators": "Your current validators",
     "active": "active",
     "inactive": "inactive",
-    "stakingSuccess": "Your stake has been succesfully delegated to the validator."
+    "stakingSuccess": "Your stake has been succesfully delegated to the validator.",
+    "unstakingSuccess": "{{token}} has successfully been unstaked from this validator."
 }

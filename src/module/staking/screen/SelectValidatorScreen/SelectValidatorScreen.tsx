@@ -4,8 +4,8 @@ import Typography from "module/common/component/display/Typography/Typography";
 import StakeValidatorSelect from "module/staking/component/input/StakeValidatorSelect/StakeValidatorSelect";
 import { useSetRecoilState } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
-import { Validator } from "near-peersyst-sdk";
 import { SendScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
+import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
 
 export interface SendForm {
     accountId: string;
@@ -16,7 +16,7 @@ const SelectValidatorScreen = () => {
     const setStakeState = useSetRecoilState(stakeRecoilState);
     const setTab = useSetTab();
 
-    const onSelected = (validator: Validator) => {
+    const onSelected = (validator: StakingValidator) => {
         if (validator.accountId) {
             setStakeState(validator);
             setTab(SendScreens.CONFIRM_VALIDATOR);
