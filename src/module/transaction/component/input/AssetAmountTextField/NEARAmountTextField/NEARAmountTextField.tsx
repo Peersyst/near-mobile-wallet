@@ -3,9 +3,9 @@ import { config } from "config";
 import BaseAssetAmountTextField from "../BaseAssetAmountTextField/BaseAssetAmountTextField";
 import { NumericTextFieldProps } from "module/common/component/input/NumericTextField/NumericTextField";
 import { useNEARAmountTextFieldValidator } from "./hook/useNEARAmountTextFieldValidator";
-import { useAssetAmountState } from "../BaseAssetAmountTextField/hook/useAssetAmountState";
+import { useControlled } from "@peersyst/react-hooks";
 
-export interface NEARAmountTextFieldProps extends Omit<NumericTextFieldProps, "validators"> {
+export interface NEARAmountTextFieldProps extends Omit<NumericTextFieldProps, "validators" | "maxDecimals"> {
     index?: number;
     maxAmount?: string; //in NEAR
 }
@@ -19,7 +19,7 @@ const NEARAmountTextField = ({
     maxAmount,
     ...rest
 }: NEARAmountTextFieldProps) => {
-    const [amount, setAmount] = useAssetAmountState({ defaultValue, value, onChange, decimals: "24" });
+    const [amount, setAmount] = useControlled(defaultValue, value, onChange);
     const { error } = useNEARAmountTextFieldValidator({ index, amount, maxAmount });
     const { isLoading } = useGetBalance(index);
 
@@ -27,6 +27,7 @@ const NEARAmountTextField = ({
         <BaseAssetAmountTextField
             error={errorProp || error}
             value={amount}
+            maxDecimals={24}
             onChange={setAmount}
             loading={isLoading}
             units={config.tokenName}

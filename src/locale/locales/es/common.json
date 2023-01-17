@@ -213,10 +213,10 @@
     "rewardsEarned": "Recompensas obtenidas",
     "availableForWithdrawal": "Disponible para retirada",
     "summary": "Resumen",
-    "stake_your_near": "STAKE tus tokens",
+    "stake_your_near": "Stake tus tokens",
     "select_validator": "Seleccionar Validador",
     "confirm_validator": "Confirmar Validador",
-    "enter_amount_want_to_stake": "Ingresa la cantidad",
+    "enter_amount_want_to_stake": "Ingresa la cantidad para hacer stake",
     "available_balance": "Disponible - {{amount}} NEAR ({{amount_price}})",
     "max": "Max"
 }

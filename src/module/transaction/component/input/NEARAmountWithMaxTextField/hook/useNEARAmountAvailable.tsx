@@ -19,9 +19,9 @@ export function useNEARAmountWithMaxTextFieldController({ index, maxAmount }: Us
     const finalAvailable = maxAmount ? maxAmount : availableBalance;
     const maxBalance = subtractNearAmounts(finalAvailable, config.estimatedFee);
 
-    const maxBalanceInFiat = useNativeTokenConversion(maxBalance);
+    const { value: maxBalanceInFiat } = useNativeTokenConversion(maxBalance);
     const { fiat } = useRecoilValue(settingsState);
-    const formattedBalanceInFiat = useFormatBalance(maxBalanceInFiat.value, {
+    const formattedBalanceInFiat = useFormatBalance(maxBalanceInFiat, {
         numberFormatOptions: { maximumFractionDigits: 2 },
         units: fiat,
         action: "round",
