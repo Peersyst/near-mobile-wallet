@@ -8,12 +8,16 @@ export interface useServiceInstanceReturn {
     index: number;
     network: NetworkType;
     serviceInstance: NearSDKService;
+    isSelectedWallet: boolean;
+    queryEnabled: boolean;
 }
 
-export default function useServiceInstance(index?: number): useServiceInstanceReturn {
+export default function useServiceInstance(index?: number, onlySelectedWallet = false): useServiceInstanceReturn {
     const network = useSelectedNetwork();
     const selectedWallet = useSelectedWalletIndex();
     const usedIndex = index !== undefined ? index : selectedWallet;
     const serviceInstance = ServiceInstances.getServiceInstance(network, usedIndex)!;
-    return { serviceInstance, network, index: usedIndex };
+    const isSelectedWallet = usedIndex === selectedWallet;
+    const queryEnabled = !!serviceInstance && (onlySelectedWallet ? isSelectedWallet : true);
+    return { serviceInstance, network, index: usedIndex, isSelectedWallet, queryEnabled };
 }
