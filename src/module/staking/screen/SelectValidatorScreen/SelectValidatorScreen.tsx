@@ -4,11 +4,11 @@ import Typography from "module/common/component/display/Typography/Typography";
 import StakeValidatorSelect from "module/staking/component/input/StakeValidatorSelect/StakeValidatorSelect";
 import { useSetRecoilState } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
-import { SendScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
 import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import useGetAllValidators from "module/staking/query/useGetAllValidators";
 import { ValidatorSelectProvider } from "module/staking/component/context/ValidatorSelectContext";
+import { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
 
 export interface SendForm {
     accountId: string;
@@ -29,7 +29,7 @@ const SelectValidatorScreen = () => {
                     validator: validator,
                 };
             });
-            setTab(SendScreens.CONFIRM_VALIDATOR);
+            setTab(AddStakeScreens.CONFIRM_VALIDATOR);
         }
     };
 

@@ -8,14 +8,14 @@ import { TransaltionResourceType } from "locale";
 import SelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/SelectValidatorScreen";
 import { AddStakeModalRoot } from "./AddStakeModal.styles";
 
-export enum SendScreens {
+export enum AddStakeScreens {
     SET_AMOUNT,
     SELECT_VALIDATOR,
     CONFIRM_VALIDATOR,
 }
 
 const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
-    const [activeIndex, setActiveIndex] = useState(SendScreens.SET_AMOUNT);
+    const [activeIndex, setActiveIndex] = useState(AddStakeScreens.SET_AMOUNT);
     const resetSendState = useResetRecoilState(sendState);
 
     const handleExited = () => {
@@ -41,13 +41,13 @@ const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProp
             {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
-                <TabPanel index={SendScreens.SET_AMOUNT}>
+                <TabPanel index={AddStakeScreens.SET_AMOUNT}>
                     <SetAmountStakeScreen />
                 </TabPanel>
-                <TabPanel index={SendScreens.SELECT_VALIDATOR}>
+                <TabPanel index={AddStakeScreens.SELECT_VALIDATOR}>
                     <SelectValidatorScreen />
                 </TabPanel>
-                <TabPanel index={SendScreens.CONFIRM_VALIDATOR}>
+                <TabPanel index={AddStakeScreens.CONFIRM_VALIDATOR}>
                     <Label label={"confirm"}></Label>
                 </TabPanel>
             </Tabs>
