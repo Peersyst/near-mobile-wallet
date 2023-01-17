@@ -1,35 +1,31 @@
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import MainList from "module/main/component/display/MainList/MainList";
-import useGetAllValidators from "module/staking/query/useGetAllValidators";
-import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
-import { Validator } from "near-peersyst-sdk";
+import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
+import { useValidatorSelect } from "module/staking/hook/useValidatorSelect";
 import { useEffect, useState, useTransition } from "react";
-import StakingListItem from "../StakingListItem/StakingListItem";
+import StakingListItem from "../../core/StakingListItem/StakingListItem";
 
 export interface StakingListProps {
     search?: string;
-    onSelected: (validator: Validator) => void;
+    onSelected: (validator: StakingValidator) => void;
 }
-const StakingList = ({ search = "", onSelected }: StakingListProps): JSX.Element => {
-    const { index } = useSelectedWallet();
+const StakingListSelect = ({ search = "", onSelected }: StakingListProps): JSX.Element => {
     const [isPending, startTransition] = useTransition();
-    const { isLoading, data } = useGetAllValidators(index);
-    const [dataList, setDataList] = useState<Validator[]>([]);
+    const { validators: data, isLoading } = useValidatorSelect();
+    const [dataList, setDataList] = useState<StakingValidator[]>(data ? data : []);
 
     useEffect(() => {
         startTransition(() => {
             if (search !== "" && data) {
                 const searchReg = new RegExp(search, "i");
                 setDataList(data.filter((item) => searchReg.test(item.accountId)));
+            } else {
+                if (data) {
+                    setDataList(data);
+                }
             }
         });
     }, [search]);
-
-    useEffect(() => {
-        if (data) {
-            setDataList(data);
-        }
-    }, [isLoading]);
 
     return (
         <MainList
@@ -42,4 +38,4 @@ const StakingList = ({ search = "", onSelected }: StakingListProps): JSX.Element
     );
 };
 
-export default StakingList;
+export default StakingListSelect;
