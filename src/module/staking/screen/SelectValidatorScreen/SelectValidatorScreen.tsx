@@ -2,7 +2,7 @@ import { Col, useSetTab } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import Typography from "module/common/component/display/Typography/Typography";
 import StakeValidatorSelect from "module/staking/component/input/StakeValidatorSelect/StakeValidatorSelect";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
 import { SendScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
 import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
@@ -13,12 +13,12 @@ export interface SendForm {
 
 const SelectValidatorScreen = () => {
     const translate = useTranslate();
-    const setStakeState = useSetRecoilState(stakeRecoilState);
+    const [{ amount }, setStakeState] = useRecoilState(stakeRecoilState);
     const setTab = useSetTab();
 
     const onSelected = (validator: StakingValidator) => {
         if (validator.accountId) {
-            setStakeState(validator);
+            setStakeState({ validator: validator, amount });
             setTab(SendScreens.CONFIRM_VALIDATOR);
         }
     };

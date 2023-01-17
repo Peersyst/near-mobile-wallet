@@ -3,14 +3,18 @@ import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
 
 export interface StakeState {
     validator: StakingValidator;
+    amount: string;
 }
 
-const stakeState = atom<StakingValidator>({
+const stakeState = atom<StakeState>({
     key: "stake",
     default: {
-        accountId: "",
-        fee: null,
-        status: "active",
+        validator: {
+            accountId: "",
+            fee: null,
+            status: "active",
+        },
+        amount: "",
     },
 });
 

@@ -15,15 +15,18 @@ const SuccessScreen = ({ onClose, process }: SuccessScreenProps): JSX.Element =>
     const translate = useTranslate();
     const tokenName = useConfig("tokenName");
 
-    const [validator] = useRecoilState(stakeState);
+    const [{ validator, amount }] = useRecoilState(stakeState);
 
     return (
         <Col flex={1} justifyContent="space-between">
             <Col gap={24}>
-                {/* Pending on step 3/3 of staking */}
                 <Alert
                     type="success"
-                    message={process === "stake" ? translate("stakingSuccess") : translate("unstakingSuccess", { token: "X " + tokenName })}
+                    message={
+                        process === "stake"
+                            ? translate("stakingSuccess")
+                            : translate("unstakingSuccess", { token: amount + " " + tokenName })
+                    }
                 />
                 <ValidatorInformation validator={validator} />
             </Col>
