@@ -19,7 +19,7 @@ const StakeValidatorSelect = () => {
                 autoCapitalize="none"
                 autoCorrect={false}
             />
-            <Label variant="body2Strong" label={translate("or_select_a_validator")}>
+            <Label variant="body2Strong" label={translate("or_select_a_validator")!}>
                 <ValidatorListSelect search={accountId} />
             </Label>
         </Col>
