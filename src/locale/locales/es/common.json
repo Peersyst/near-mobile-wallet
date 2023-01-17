@@ -216,7 +216,7 @@
     "stake_your_near": "STAKE tus tokens",
     "select_validator": "Seleccionar Validador",
     "confirm_validator": "Confirmar Validador",
-    "enter_amount_want_to_stake": "Ingrese el monto",
+    "enter_amount_want_to_stake": "Ingresa la cantidad",
     "available_balance": "Disponible - {{amount}} NEAR ({{amount_price}})",
     "max": "Max"
 }

@@ -7,11 +7,20 @@ import { useAssetAmountState } from "../BaseAssetAmountTextField/hook/useAssetAm
 
 export interface NEARAmountTextFieldProps extends Omit<NumericTextFieldProps, "validators"> {
     index?: number;
+    maxAmount?: string; //in NEAR
 }
 
-const NEARAmountTextField = ({ index, defaultValue = "", value, onChange, error: errorProp, ...rest }: NEARAmountTextFieldProps) => {
+const NEARAmountTextField = ({
+    index,
+    defaultValue = "",
+    value,
+    onChange,
+    error: errorProp,
+    maxAmount,
+    ...rest
+}: NEARAmountTextFieldProps) => {
     const [amount, setAmount] = useAssetAmountState({ defaultValue, value, onChange, decimals: "24" });
-    const { error } = useNEARAmountTextFieldValidator({ index, amount });
+    const { error } = useNEARAmountTextFieldValidator({ index, amount, maxAmount });
     const { isLoading } = useGetBalance(index);
 
     return (

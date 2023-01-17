@@ -8,6 +8,7 @@ import { isNEARAmountGreaterOrEqualThanThreshold, isNEARAmountGreaterThanThresho
 export interface UseNEARAmountTextFieldValidatorParams {
     amount: string;
     index?: number;
+    maxAmount?: string;
 }
 export interface UseNEARAmountTextFieldValidatorResult {
     error: TextFieldProps["error"];
@@ -16,12 +17,14 @@ export interface UseNEARAmountTextFieldValidatorResult {
 export const useNEARAmountTextFieldValidator = ({
     amount,
     index,
+    maxAmount,
 }: UseNEARAmountTextFieldValidatorParams): UseNEARAmountTextFieldValidatorResult => {
     const translateError = useTranslate("error");
     const { data: { available } = { available: "0" } } = useGetBalance(index);
 
     //Check if amount is less than available balance minus the fee
-    const finalAvailable = subtractNearAmounts(available, config.estimatedFee);
+    const finalMaxBalance = maxAmount || available;
+    const finalAvailable = subtractNearAmounts(finalMaxBalance, config.estimatedFee);
     const isGreaterThanMax = isNEARAmountGreaterThanThreshold(amount, finalAvailable);
     const formattedMaxAvailable = useFormatBalance(finalAvailable, {
         units: "token",

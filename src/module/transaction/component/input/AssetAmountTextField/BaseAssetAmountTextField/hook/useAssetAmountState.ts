@@ -8,7 +8,7 @@ export interface UseAssetAmountStateParams {
     decimals: number | string;
 }
 
-export type UseAssetAmountStateReturn = [string, UseAssetAmountStateParams["onChange"]];
+export type UseAssetAmountStateReturn = [string, (amount: string) => void];
 
 export const useAssetAmountState = ({
     value,
