@@ -13,7 +13,7 @@ export interface CardModalChildren {
 
 export type CardModalProps = ExposedBackdropProps & {
     style?: ViewStyle;
-    children: (open: boolean, setOpen: (value: boolean) => unknown) => CardModalChildren | CardModalChildren;
+    children: ((open: boolean, setOpen: (value: boolean) => unknown) => CardModalChildren) | CardModalChildren;
 };
 
 const CardModal = ({ children, style, open, closable = true, onClose, ...backdropProps }: CardModalProps): JSX.Element => {
