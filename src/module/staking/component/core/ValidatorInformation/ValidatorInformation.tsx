@@ -9,7 +9,7 @@ import { capitalize } from "@peersyst/react-utils";
 import { convertYoctoToNear } from "module/sdk";
 import ActionIcon from "module/transaction/component/display/ActionIcon/ActionIcon";
 
-const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, status } }: ValidatorInformationProps): JSX.Element => {
+const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, active } }: ValidatorInformationProps): JSX.Element => {
     const translate = useTranslate();
 
     return (
@@ -24,8 +24,8 @@ const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, sta
                                 {fee}% {capitalize(translate("fee"))} -{" "}
                             </Typography>
                         )}
-                        <ValidatorStatusTag variant="body4Strong" status={status}>
-                            {translate(status === "active" ? "active" : "inactive")}
+                        <ValidatorStatusTag variant="body4Strong" active={active}>
+                            {translate(active ? "active" : "inactive")}
                         </ValidatorStatusTag>
                     </Row>
                 </Col>
