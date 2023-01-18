@@ -1,6 +1,5 @@
-import { Asset } from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect.types";
-import { AssetType } from "module/wallet/wallet.types";
-import { UseMutationStatusResult } from "../component/feedback/SendTransactionModal/SendTransactionModal.types";
+import { Asset, AssetType } from "module/wallet/wallet.types";
+import { TransactionStatus } from "../component/feedback/SendTransactionModal/SendTransactionModal.types";
 import useSendFT from "../query/useSendFT";
 import useSendNEAR from "../query/useSendNEAR";
 import useSendNFT from "../query/useSendNFT";
@@ -13,7 +12,7 @@ export interface UseSendTransactionParams {
     receiverId: string;
 }
 
-export interface UseSendTransactionReturn extends UseMutationStatusResult {
+export interface UseSendTransactionReturn extends TransactionStatus {
     sendTransaction: () => void | Promise<unknown>;
 }
 
@@ -24,7 +23,7 @@ export function useSendTransaction({ senderWalletIndex = 0, asset, amount = "0",
 
     switch (asset.type) {
         case AssetType.FT: {
-            const { mutateAsync: sendFT, isError, isLoading, isSuccess } = sendFTMutationResult;
+            const { mutate: sendFT, isError, isLoading, isSuccess } = sendFTMutationResult;
             const sendTransaction = () =>
                 sendFT({
                     contractId: asset.ft?.contractId ?? "",
@@ -40,7 +39,7 @@ export function useSendTransaction({ senderWalletIndex = 0, asset, amount = "0",
             };
         }
         case AssetType.NFT: {
-            const { mutateAsync: sendNFT, isError, isLoading, isSuccess } = sendNFTsMutationResult;
+            const { mutate: sendNFT, isError, isLoading, isSuccess } = sendNFTsMutationResult;
             const sendTransaction = () =>
                 sendNFT({ tokenId: asset.nft?.token_id ?? "", contractId: asset.nft?.contractId ?? "", receiverId: receiverAddress! });
             return {
@@ -51,7 +50,7 @@ export function useSendTransaction({ senderWalletIndex = 0, asset, amount = "0",
             };
         }
         default: {
-            const { mutateAsync: sendMoney, isError, isLoading, isSuccess } = sendNearMutationResult;
+            const { mutate: sendMoney, isError, isLoading, isSuccess } = sendNearMutationResult;
             const sendTransaction = () => sendMoney({ to: receiverAddress!, amount });
             return {
                 sendTransaction,

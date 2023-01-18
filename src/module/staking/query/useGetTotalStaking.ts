@@ -4,15 +4,15 @@ import { StakingBalance } from "module/sdk";
 import { QueryResult } from "query-utils";
 import Queries from "../../../query/queries";
 
-export default function (index?: number): QueryResult<StakingBalance> {
-    const { index: usedIndex, network, serviceInstance } = useServiceInstance(index);
+export default function (index?: number, onlySelectedWallet?: boolean): QueryResult<StakingBalance> {
+    const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index, onlySelectedWallet);
     return useQuery(
         [Queries.TOTAL_STAKING_BALANCE, usedIndex, network],
         async (): Promise<StakingBalance> => {
             return await serviceInstance.getTotalStakingBalance();
         },
         {
-            enabled: !!serviceInstance,
+            enabled: queryEnabled,
         },
     );
 }
