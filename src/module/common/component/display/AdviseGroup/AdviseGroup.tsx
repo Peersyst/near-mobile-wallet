@@ -16,7 +16,7 @@ const AdviseGroup = ({ index: indexProp, onIndexChange, advises, onLastAdviseVis
         if (index === advises.length - 1) onLastAdviseVisited?.();
     }, [index === advises.length - 1]);
     return (
-        <PagerView page={index} onPageSelected={setIndex} showPageIndicator height={270} gap={24} onStartShouldSetResponder={() => true}>
+        <PagerView page={index} onPageSelected={setIndex} showPageIndicator height={300} gap={24} onStartShouldSetResponder={() => true}>
             {advises.map((advise, i) => {
                 return <Advise key={i} {...advise} />;
             })}

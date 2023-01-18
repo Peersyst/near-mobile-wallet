@@ -6,8 +6,7 @@ import * as ExpoHaptics from "expo-haptics";
 import { capitalize } from "@peersyst/react-utils";
 import { config } from "config";
 import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
-import { AccountBalanceMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
-import { UseNativeTokenConversionMock } from "mocks/common/wallet/useNativeTokenConversion";
+import { AccountBalanceMock, UseNativeTokenConversionMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("WalletCard tests", () => {
     const { state } = new UseWalletStateMock();

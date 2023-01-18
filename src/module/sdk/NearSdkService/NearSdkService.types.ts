@@ -58,10 +58,10 @@ export interface AccessKey {
  */
 
 export interface StakingBalance {
-    staked: number;
-    pending: number;
-    available: number;
-    rewardsEarned?: number;
+    staked: string;
+    pending: string;
+    available: string;
+    rewardsEarned?: string;
 }
 
 export interface Validator {
@@ -133,6 +133,7 @@ export interface NftToken {
     approved_account_ids?: any;
     royalty?: { [key: string]: number };
     collection_metadata?: NftMetadata;
+    contractId: string;
 }
 /**
  * TRANSACTION & ACTIONS

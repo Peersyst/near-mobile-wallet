@@ -8,15 +8,21 @@ export class UseServiceInstanceMock extends BaseMock implements useServiceInstan
     network: NetworkType;
     serviceInstance: NearSDKService;
     index: number;
+    isSelectedWallet: boolean;
+    queryEnabled: boolean;
     constructor({
         network = Chains.TESTNET,
         serviceInstance = new NearSdkServiceMock() as any as NearSDKService, //Delete this any as soon as the NearSdkServiceMock is finished
         index = 0,
+        queryEnabled = true,
+        isSelectedWallet = true,
     }: Partial<useServiceInstance.useServiceInstanceReturn> = {}) {
         super();
         this.network = network;
         this.serviceInstance = serviceInstance;
         this.index = index;
+        this.queryEnabled = queryEnabled;
+        this.isSelectedWallet = isSelectedWallet;
         this.mock = jest.spyOn(useServiceInstance, "default").mockReturnValue(this);
     }
 }

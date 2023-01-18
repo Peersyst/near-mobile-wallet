@@ -1,40 +1,39 @@
-import { createBackdrop, ExposedBackdropProps, useSetTab } from "@peersyst/react-native-components";
+import { createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
+import SetAmountStakeScreen from "module/staking/screen/SetAmountStakeScreen/SetAmountStakeScreen";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { TransaltionResourceType } from "locale";
-import SelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/SelectValidatorScreen";
-import StakeModal, { ModalTabs } from "module/staking/component/core/StakeModal/StakeModal";
-import useGetAllValidators from "module/staking/query/useGetAllValidators";
+import StakeModal, { ModalTabs } from "../StakeModal/StakeModal";
 
 export enum AddStakeScreens {
-    SELECT_VALIDATOR,
     SET_AMOUNT,
-    CONFIRM_VALIDATOR,
+    SELECT_VALIDATOR,
 }
 
-const AddStakeModal = createBackdrop(({ ...rest }: ExposedBackdropProps) => {
+const AddStakeModal = createBackdrop((props: ExposedBackdropProps) => {
     const translate = useTranslate();
-    const setTab = useSetTab();
-    const ADD_STAKE_MODAL_TITLES: TransaltionResourceType[] = ["stake_your_near", "select_validator", "confirm_validator", "success"];
 
-    const { data: validators, isLoading } = useGetAllValidators();
-
-    const addStakeModalTabs: ModalTabs[] = [
+    const tabs: ModalTabs[] = [
         {
+            tabContent: <SetAmountStakeScreen />,
+            title: translate("stake_your_near"),
+            tabIndex: AddStakeScreens.SET_AMOUNT,
+        },
+        {
+            tabContent: <></>,
             title: translate("select_validator"),
             tabIndex: AddStakeScreens.SELECT_VALIDATOR,
-            tabContent: (
-                <SelectValidatorScreen
-                    message={translate("enter_new_validator")!}
-                    validators={validators}
-                    loading={isLoading}
-                    onFinish={() => setTab(AddStakeScreens.SET_AMOUNT)}
-                    withSearch
-                />
-            ),
+        },
+        {
+            tabContent: <></>,
+            title: translate("confirm_validator"),
+            tabIndex: 2,
+        },
+        {
+            tabContent: <></>,
+            title: translate("success"),
+            tabIndex: 3,
         },
     ];
-
-    return <StakeModal tabs={addStakeModalTabs} {...rest} />;
+    return <StakeModal tabs={tabs} {...props} />;
 });
 
 export default AddStakeModal;

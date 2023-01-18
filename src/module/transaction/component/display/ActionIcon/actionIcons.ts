@@ -5,7 +5,7 @@ import { ActionIcon } from "./ActionIcon.types";
 export const ACTION_ICONS: ActionIcon = {
     [TransactionActionKind.STAKE]: {
         Icon: NearIcon,
-        active: false,
+        active: true,
     },
     [TransactionActionKind.CREATE_ACCOUNT]: {
         Icon: UserAddIcon,

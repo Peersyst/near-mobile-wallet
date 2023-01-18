@@ -1,22 +1,21 @@
-import StakingDetail from "module/staking/component/core/StakingDetail/StakingDetail";
-import { StakingDetailsRoot } from "module/staking/component/display/StakingDetails/StakingDetails.styles";
-import { Col, Spinner, Suspense } from "@peersyst/react-native-components";
 import useGetStakingDetailsSections from "module/staking/hook/useGetStakingDetailsSections";
+import MainList from "module/main/component/display/MainList/MainList";
+import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
+import StakingDetailCard from "../StakingDetailCard/StakingDetailCard";
 
 const StakingDetails = (): JSX.Element => {
-    const { isLoading, sections } = useGetStakingDetailsSections();
+    const { sections, isLoading } = useGetStakingDetailsSections();
 
     return (
-        <StakingDetailsRoot>
-            <Suspense isLoading={isLoading} fallback={<Spinner />}>
-                <Col flex={1}>
-                    {sections.map(
-                        ({ title, amount, stakeable }, index) =>
-                            amount !== undefined && <StakingDetail key={index} title={title} amount={amount} stakeable={stakeable} />,
-                    )}
-                </Col>
-            </Suspense>
-        </StakingDetailsRoot>
+        <MainList
+            loading={isLoading}
+            ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
+            data={sections}
+            renderItem={({ item: { title, amount, stakeable } }) => (
+                <StakingDetailCard key={title} title={title} amount={amount} stakeable={stakeable} isLoading={isLoading} />
+            )}
+            keyExtractor={(_, index) => index.toString()}
+        />
     );
 };
 

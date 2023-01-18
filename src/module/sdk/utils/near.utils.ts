@@ -23,10 +23,27 @@ export function convertYoctoToNear(amountInYocto: string, fracDigits?: number | 
 /**
  * Subtract Near amount from another Near amount
  */
-export function subtractNearAmounts(amount1: string, amount2: string): string {
+export function substractNearAmounts(amount1: string, amount2: string): string {
     const amount1InYocto = convertNearToYocto(amount1);
     const amount2InYocto = convertNearToYocto(amount2);
-    return convertYoctoToNear(BalanceOperations.BNSubtract(amount1InYocto, amount2InYocto));
+    return convertYoctoToNear(subtractYoctoAmounts(amount1InYocto, amount2InYocto));
+}
+
+/**
+ * Add Near amounts. Both amount has to be in NEAR
+ */
+export function addNearAmounts(amount1: string, amount2: string): string {
+    const amount1InYocto = convertNearToYocto(amount1);
+    const amount2InYocto = convertNearToYocto(amount2);
+    return convertYoctoToNear(addYoctoAmounts(amount1InYocto, amount2InYocto));
+}
+
+export function addYoctoAmounts(amount1: string, amount2: string): string {
+    return BalanceOperations.BNAdd(amount1, amount2);
+}
+
+export function subtractYoctoAmounts(amount1: string, amount2: string): string {
+    return BalanceOperations.BNSubtract(amount1, amount2);
 }
 
 /**
@@ -72,6 +89,9 @@ export function parseBlockTimestamp(blockTimestamp: string): string {
     return parseInt(blockTimestamp.toString().slice(0, 13), 10).toString();
 }
 
+/**
+ * @returns The number version of the balance (with decimals)
+ */
 export function formatTokenAmount(amount: string, decimals: string, precision?: number): string {
     const denominator = BalanceOperations.BNExp(10, parseInt(decimals, 10));
     return BalanceOperations.BNDevide(amount, denominator).slice(0, precision ?? Number(decimals));
@@ -89,6 +109,9 @@ export const removeTrailingZeros = (amount: string): string => amount.replace(/\
  */
 export const removeLeftZeros = (amount: string): string => amount.replace(/^0+/, "");
 
+/**
+ * @returns The bigint of the balance
+ */
 export function parseTokenAmount(amount: string, tokenDecimals: string): string {
     const [integer, decimals] = amount.split(".");
     const finalTokenDecimals = parseInt(tokenDecimals, 10);

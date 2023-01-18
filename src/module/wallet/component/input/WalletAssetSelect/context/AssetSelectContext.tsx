@@ -1,5 +1,5 @@
+import { Asset } from "module/wallet/wallet.types";
 import { createContext } from "react";
-import { Asset } from "../WalletAssetSelect.types";
 
 export interface AssetSelectContextInterface {
     index: number;

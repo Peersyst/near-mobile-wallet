@@ -3,5 +3,4 @@ import CardNavigatorModal from "module/common/component/navigation/CardNavigator
 
 export const StakeModalRoot = styled(CardNavigatorModal)(({ dimensions }) => ({
     height: dimensions.height * 0.9,
-    width: dimensions.width,
 }));
