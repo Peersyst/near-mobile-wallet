@@ -1,15 +1,16 @@
 import { render, translate } from "test-utils";
 import StakingCurrentValidators from "module/staking/component/display/StakingCurrentValidators/StakingCurrentValidators";
 import * as useGetStakingValidators from "module/staking/hook/useGetStakingValidators";
-import { StakingValidatorMock } from "mocks/common/staking/stakingValidator.mock";
 import { screen } from "@testing-library/react-native";
+import { ValidatorMock } from "mocks/NearSdk/validator.mock";
 
 describe("Tests for StakingCurrentValidators", () => {
     test("Renders with validators", () => {
-        const mockStakingValidator = new StakingValidatorMock({ status: "active" });
+        const mockStakingValidator = new ValidatorMock({ active: true });
         jest.spyOn(useGetStakingValidators, "default").mockReturnValue({
             stakingValidators: [mockStakingValidator, mockStakingValidator, mockStakingValidator],
             isLoading: false,
+            refetch: jest.fn(),
         });
 
         render(<StakingCurrentValidators />);
@@ -23,6 +24,7 @@ describe("Tests for StakingCurrentValidators", () => {
         jest.spyOn(useGetStakingValidators, "default").mockReturnValue({
             stakingValidators: [],
             isLoading: false,
+            refetch: jest.fn(),
         });
 
         render(<StakingCurrentValidators />);
