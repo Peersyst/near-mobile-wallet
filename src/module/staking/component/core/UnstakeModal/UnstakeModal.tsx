@@ -1,6 +1,6 @@
 import { createModal, ExposedBackdropProps } from "@peersyst/react-native-components";
 import SelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/SelectValidatorScreen";
-import StakeModal, { ModalTabs } from "module/staking/component/core/BaseStakeModal/BaseStakeModal";
+import StakeModal, { ModalTabs } from "module/staking/component/core/StakeModal/StakeModal";
 import { useTranslate } from "module/common/hook/useTranslate";
 
 export enum UnstakeModalScreens {

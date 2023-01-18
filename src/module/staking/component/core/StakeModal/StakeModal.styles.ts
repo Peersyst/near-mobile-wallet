@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 
-export const BaseStakeModalRoot = styled(CardNavigatorModal)(({ dimensions }) => ({
+export const StakeModalRoot = styled(CardNavigatorModal)(({ dimensions }) => ({
     minHeight: dimensions.height * 0.9,
 }));
