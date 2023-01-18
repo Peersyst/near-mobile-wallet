@@ -23,12 +23,7 @@ const BlockchainAddressCard = ({ onCopy, address, withCopyIcon, toastMessage, st
     return (
         <Container style={{ width: "100%", ...style }}>
             <Row gap={10} justifyContent="center" alignItems="center">
-                <Typography
-                    style={{ maxWidth: withCopyIcon ? "90%" : "100%" }}
-                    variant="body2Strong"
-                    textAlign="center"
-                    textTransform="uppercase"
-                >
+                <Typography style={{ maxWidth: withCopyIcon ? "90%" : "100%" }} variant="body2Strong" textAlign="center">
                     {address}
                 </Typography>
                 {withCopyIcon && (

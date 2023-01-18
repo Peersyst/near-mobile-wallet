@@ -227,5 +227,6 @@
     "inactive": "inactive",
     "confirm_new_staking_of": "Confirm new staking of",
     "with": "With",
-    "edit": "Edit"
+    "edit": "Edit",
+    "send_success": "Sent successfully!"
 }

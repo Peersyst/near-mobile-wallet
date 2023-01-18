@@ -72,6 +72,7 @@ export class NftMetadataMock extends BaseMock implements NftMetadata {
 export interface NftTokenMockType extends Omit<NftToken, "metadata" | "collection_metadata"> {
     metadata: NftTokenMetadataMock;
     collection_metadata?: NftMetadataMock;
+    contractId: string;
 }
 
 export class NftTokenMock extends BaseMock implements NftTokenMockType {
@@ -81,7 +82,16 @@ export class NftTokenMock extends BaseMock implements NftTokenMockType {
     approved_account_ids?: any;
     royalty?: { [key: string]: number };
     collection_metadata?: NftMetadataMock;
-    constructor({ token_id, owner_id, metadata, approved_account_ids, royalty, collection_metadata }: Partial<NftTokenMockType> = {}) {
+    contractId: string;
+    constructor({
+        token_id,
+        owner_id,
+        metadata,
+        approved_account_ids,
+        royalty,
+        collection_metadata,
+        contractId,
+    }: Partial<NftTokenMockType> = {}) {
         super();
         this.token_id = token_id || "token_id";
         this.owner_id = owner_id || "owner_id";
@@ -89,6 +99,7 @@ export class NftTokenMock extends BaseMock implements NftTokenMockType {
         this.approved_account_ids = approved_account_ids || undefined;
         this.royalty = royalty || undefined;
         this.collection_metadata = collection_metadata || new NftMetadataMock();
+        this.contractId = contractId || "contractId";
     }
 }
 
