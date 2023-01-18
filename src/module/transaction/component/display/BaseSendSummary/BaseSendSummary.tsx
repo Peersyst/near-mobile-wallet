@@ -61,8 +61,8 @@ const BaseSendSummary = ({
                         </Typography>
                     )}
                     {showFee && <Fee fee={fee} typographyVariant="body3" />}
-                    {showTotal && token === undefined && nft === undefined && (
-                        <>
+                    {showTotal && (
+                        <Typography variant="body2Regular" color={(palette) => palette.primary} textAlign="center">
                             {translate("total")}
                             {" · "}
                             <TotalText
@@ -73,7 +73,7 @@ const BaseSendSummary = ({
                                 variant="body2Strong"
                                 units="token"
                             />
-                        </>
+                        </Typography>
                     )}
                 </Col>
                 {children}
