@@ -13,7 +13,7 @@ describe("AddStakeModal tests", () => {
     test("Renders correctly", () => {
         render(<AddStakeModal />);
 
-        expect(screen.getByText(translate("select_validator"))).toBeDefined();
+        expect(screen.getByText(translate("stake_your_near"))).toBeDefined();
     });
 
     test("Resets send state on close", async () => {
