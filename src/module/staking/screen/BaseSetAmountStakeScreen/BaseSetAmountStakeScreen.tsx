@@ -33,7 +33,7 @@ const BaseSetAmountStakeScreen = ({ maxAmount, label, children, onSubmit }: Base
             <Col gap={24} flex={1}>
                 <Col flex={1} gap="2%">
                     <NEARAmountWithMaxTextField
-                        placeholder={translate("enter_amount")}
+                        placeholder={translate("enter_amount")!}
                         defaultValue={stakeState.amount}
                         label={label}
                         index={index}

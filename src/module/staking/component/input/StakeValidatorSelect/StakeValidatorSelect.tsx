@@ -17,29 +17,31 @@ const StakeValidatorSelect = ({ validators, loading, onSelected, withSearch = fa
     const translate = useTranslate();
     const [accountId, setAccountId] = useState("");
 
+    const ValidatorList = (
+        <Label
+            variant="body2Strong"
+            label={translate(withSearch ? "or_select_a_validator" : "select_validator")!}
+            style={{ height: "100%" }}
+        >
+            <ValidatorListSelect search={withSearch ? accountId : undefined} />
+        </Label>
+    );
+
     return (
         <ValidatorSelectProvider value={{ validators: validators, isLoading: loading, onSelected: onSelected }}>
             <Col flex={1}>
-                {withSearch ? (
-                    <Col gap={12}>
-                        <TextField
-                            label={translate("enter_a_validator_account_id")!}
-                            placeholder={translate("validator_name_near")!}
-                            name="accountId"
-                            value={accountId}
-                            onChange={setAccountId}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                        />
-                        <Label variant="body2Strong" label={translate("or_select_a_validator")!} style={{ height: "100%" }}>
-                            <ValidatorListSelect search={accountId} />
-                        </Label>
-                    </Col>
-                ) : (
-                    <Label variant="body2Strong" label={translate("select_validator")!} style={{ height: "100%" }}>
-                        <ValidatorListSelect />
-                    </Label>
-                )}
+                <Col gap={12}>
+                    <TextField
+                        label={translate("enter_a_validator_account_id")!}
+                        placeholder={translate("validator_name_near")!}
+                        name="accountId"
+                        value={accountId}
+                        onChange={setAccountId}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                    />
+                    {ValidatorList}
+                </Col>
             </Col>
         </ValidatorSelectProvider>
     );

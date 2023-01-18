@@ -3,6 +3,7 @@ import StakeModal, { ModalTabs } from "module/staking/component/core/StakeModal/
 import { useTranslate } from "module/common/hook/useTranslate";
 import SelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/SelectValidatorScreen";
 import useGetStakingValidators from "module/staking/hook/useGetStakingValidators";
+import SetAmountStakeScreen from "module/staking/screen/SetAmountStakeScreen/SetAmountStakeScreen";
 
 export enum UnstakeModalScreens {
     SELECT_VALIDATOR,
@@ -27,6 +28,11 @@ const UnstakeModal = createModal(({ ...rest }: ExposedBackdropProps): JSX.Elemen
                     onFinish={() => setTab(UnstakeModalScreens.SET_AMOUNT)}
                 />
             ),
+        },
+        {
+            title: translate("unstake_your_near"),
+            tabIndex: UnstakeModalScreens.SET_AMOUNT,
+            tabContent: <SetAmountStakeScreen />,
         },
     ];
 

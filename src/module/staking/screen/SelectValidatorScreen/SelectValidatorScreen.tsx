@@ -24,7 +24,7 @@ const SelectValidatorScreen = ({ message, validators, loading, onFinish, ...rest
                     validator: validator,
                 };
             });
-            onFinish(); //callback
+            onFinish();
         }
     };
 
