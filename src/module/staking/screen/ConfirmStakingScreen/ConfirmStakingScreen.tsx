@@ -8,34 +8,34 @@ import { config } from "config";
 import ValidatorInformation from "module/staking/component/core/ValidatorInformation/ValidatorInformation";
 import AddStakeModal, { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
 import Button from "module/common/component/input/Button/Button";
-import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
-import useAddStake from "module/staking/query/useAddStake";
 import SendTransactionModal from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
 
 const ConfirmStakingScreen = () => {
     const translate = useTranslate();
-    const { validator, amount } = useRecoilValue(stakeRecoilState);
+    const { validator, amount, sendTransaction, isLoading, isError, isSuccess, onExited, labelConfirm } = useRecoilValue(stakeRecoilState);
+
     const setTab = useSetTab();
     const { hideModal } = useModal();
-    const { index } = useSelectedWallet();
-    const { mutate: addStake, isLoading, isError, isSuccess } = useAddStake(index);
-
-    const handleAddStake = () => {
-        addStake({ validatorId: validator.accountId, amount: amount });
-    };
-
+    sendTransaction();
     return (
-        <SendTransactionModal sendTransaction={handleAddStake} isLoading={isLoading} isError={isError} isSuccess={isSuccess}>
+        <SendTransactionModal
+            onExited={onExited}
+            sendTransaction={() => sendTransaction()}
+            isLoading={isLoading}
+            isError={isError}
+            isSuccess={isSuccess}
+        >
             {({ showModal, isSuccess, isLoading }) => (
                 <Col flex={1} gap={12} style={{ height: "100%" }}>
                     <Col flex={1} gap={12}>
-                        <Typography variant="body2Strong">{translate("confirm_new_staking_of")}</Typography>
+                        <Typography variant="body2Strong">{labelConfirm}</Typography>
                         <BaseSendSummary
                             amount={amount}
                             fee={config.estimatedFee}
                             showFiat
                             showFee={false}
+                            showTotal={false}
                             style={{ paddingHorizontal: 16, paddingVertical: 20 }}
                         />
                         <Label variant="body2Strong" label={translate("with")!}>
