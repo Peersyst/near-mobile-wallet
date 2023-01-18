@@ -7,12 +7,13 @@ import MainList from "module/main/component/display/MainList/MainList";
 
 const StakingCurrentValidators = (): JSX.Element => {
     const translateError = useTranslate("error");
-    const { stakingValidators: validators, isLoading } = useGetStakingValidators();
+    const { stakingValidators: validators, isLoading, refetch } = useGetStakingValidators();
 
     return (
         <MainList
             loading={isLoading}
             data={validators}
+            onRefresh={refetch}
             renderItem={({ item: validator }) => <ValidatorInformation key={validator.accountId} validator={validator} />}
             ListEmptyComponent={
                 isLoading ? undefined : (

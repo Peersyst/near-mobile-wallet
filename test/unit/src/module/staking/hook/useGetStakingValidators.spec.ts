@@ -17,6 +17,6 @@ describe("useGetStakingValidators tests", () => {
 
         await waitFor(() => expect(mockGetCurrentValidators).toHaveBeenCalled());
         await waitFor(() => expect(mockGetAllValidators).toHaveBeenCalled());
-        expect(result.current).toEqual({ isLoading: false, stakingValidators: [{ status: "active", ...validator }] });
+        expect(result.current).toEqual({ isLoading: false, stakingValidators: [validator], refetch: expect.any(Function) });
     });
 });

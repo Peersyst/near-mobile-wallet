@@ -6,10 +6,12 @@ export class ValidatorMock extends BaseMock implements Validator {
     accountId: string;
     fee: number | null;
     stakingBalance: StakingBalance;
-    constructor({ accountId, fee, stakingBalance }: Partial<Validator> = {}) {
+    active: boolean;
+    constructor({ accountId, fee, stakingBalance, active }: Partial<Validator> = {}) {
         super();
         this.accountId = accountId || "account";
         this.fee = fee || null;
         this.stakingBalance = stakingBalance || new StakingBalanceMock();
+        this.active = active || false;
     }
 }

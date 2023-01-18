@@ -1,7 +1,7 @@
-import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
+import { Validator } from "near-peersyst-sdk";
 
 export interface ValidatorInformationProps {
-    validator: StakingValidator;
+    validator: Validator;
 }
 
-export type ValidatorStatusTagProps = Pick<StakingValidator, "status">;
+export type ValidatorStatusTagProps = Pick<Validator, "active">;
