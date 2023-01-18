@@ -13,7 +13,7 @@ import { config } from "config";
 
 export interface BaseSendSummaryFullProps {
     amount: string | number;
-    children: ReactElement;
+    children?: ReactElement;
     showTotal?: boolean;
     showFiat?: boolean;
     showFee?: boolean;
@@ -61,7 +61,7 @@ const BaseSendSummary = ({
                             )}
                         </Typography>
                     )}
-                    <Fee fee={fee} typographyVariant="body3" />
+                    {showFee && <Fee fee={fee} typographyVariant="body3" />}
                     {showTotal && token === undefined && nft === undefined && (
                         <>
                             {translate("total")}
