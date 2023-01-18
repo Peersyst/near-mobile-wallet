@@ -11,7 +11,7 @@ describe("Tests for SelectValidatorScreen", () => {
         const mockValidator = new ValidatorMock();
         const mockValidators = [mockValidator];
 
-        render(<SelectValidatorScreen message={mockMessage} validators={mockValidators} loading={false} onFinish={mockOnFinish} />);
+        render(<SelectValidatorScreen message={mockMessage} validators={mockValidators} loading={false} onSelect={mockOnFinish} />);
 
         expect(screen.getByText(mockMessage)).toBeDefined();
         expect(screen.getAllByText(mockValidator.accountId)).toHaveLength(mockValidators.length);
@@ -24,7 +24,7 @@ describe("Tests for SelectValidatorScreen", () => {
         const mockValidators = [mockValidator];
 
         render(
-            <SelectValidatorScreen message={mockMessage} validators={mockValidators} loading={false} onFinish={mockOnFinish} withSearch />,
+            <SelectValidatorScreen message={mockMessage} validators={mockValidators} loading={false} onSelect={mockOnFinish} withSearch />,
         );
 
         expect(screen.getByText(translate("enter_a_validator_account_id"))).toBeDefined();
