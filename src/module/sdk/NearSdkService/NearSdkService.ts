@@ -505,7 +505,14 @@ export class NearSDKService {
         try {
             fee = await this.getValidatorFee(validatorId);
             if (queryBalance) {
-                stakingBalance = await this.getValidatorBalance(validatorId, totalDeposits);
+                const balanceInYocto = await this.getValidatorBalance(validatorId, totalDeposits);
+                const balanceInNear = {
+                    staked: convertYoctoToNear(balanceInYocto.staked),
+                    available: convertYoctoToNear(balanceInYocto.available),
+                    pending: convertYoctoToNear(balanceInYocto.pending),
+                    ...(balanceInYocto.rewardsEarned && { rewardsEarned: convertYoctoToNear(balanceInYocto.rewardsEarned) }),
+                };
+                stakingBalance = balanceInNear;
                 return { accountId: validatorId, fee, stakingBalance };
             }
         } catch (e) {
