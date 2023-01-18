@@ -39,7 +39,7 @@ export const ACTION_ICONS: ActionIcon = {
         Icon: ArrowUpCircleIcon,
         active: false,
     },
-    [TransactionActionKind.VALIDATOR]: {
+    VALIDATOR: {
         Icon: UserCheckIcon,
         active: false,
     },

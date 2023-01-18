@@ -6,7 +6,7 @@ import Account from "module/wallet/component/display/Account/Account";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { ValidatorInformationProps } from "module/staking/component/core/ValidatorInformation/ValidatorInformation.types";
 import { capitalize } from "@peersyst/react-utils";
-import { convertYoctoToNear, TransactionActionKind } from "module/sdk";
+import { convertYoctoToNear } from "module/sdk";
 import ActionIcon from "module/transaction/component/display/ActionIcon/ActionIcon";
 
 const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, status } }: ValidatorInformationProps): JSX.Element => {
@@ -15,7 +15,7 @@ const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, sta
     return (
         <ValidatorRoot justifyContent="space-between">
             <Row flex={1} alignItems="center" gap={10}>
-                <ActionIcon actionKind={TransactionActionKind.VALIDATOR} />
+                <ActionIcon type={"VALIDATOR"} />
                 <Col>
                     <Account style={{ width: 180 }} address={accountId} variant="body3Strong" />
                     <Row>

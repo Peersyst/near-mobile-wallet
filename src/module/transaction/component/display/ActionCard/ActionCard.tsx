@@ -19,7 +19,7 @@ const ActionCard = ({ action }: ActionCardProps): JSX.Element => {
 
     return (
         <MainListCard gap="4%" alignItems="center">
-            <ActionIcon actionKind={actionKind} />
+            <ActionIcon type={actionKind} />
             <Col gap={2} flex={1}>
                 <Row justifyContent="space-between">
                     <Row style={{ maxWidth: amount ? "65%" : "100%" }}>

@@ -147,7 +147,6 @@ export enum TransactionActionKind {
     ADD_KEY = "ADD_KEY",
     DELETE_KEY = "DELETE_KEY",
     DELETE_ACCOUNT = "DELETE_ACCOUNT",
-    VALIDATOR = "VALIDATOR",
 }
 
 export enum TransactionStatus {
