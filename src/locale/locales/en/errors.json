@@ -27,6 +27,5 @@
     "invalid_name_ID": "Oh! {{nameID}} is not available. Maybe you have it in another account?",
     "invalid_seleccted_account": "You must select an account with a balance greater than {{amountInNEAR}} NEAR.",
     "error_creating_account": "Error creating account",
-    "insufficient_balance": "Insufficient balance",
-    "invalid_max_decimals": "The maximum number of decimals is {{maxDecimals}}"
+    "insufficient_balance": "Insufficient balance"
 }

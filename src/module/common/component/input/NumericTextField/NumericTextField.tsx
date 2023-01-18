@@ -5,8 +5,8 @@ export type NumericTextFieldProps = Omit<TextFieldProps, "input" | "keyboardType
     maxDecimals?: NumericInputProps["maxDecimals"];
 };
 
-const NumericTextField = (props: NumericTextFieldProps) => {
-    return <TextField {...props} input={NumericInput} />;
+const NumericTextField = ({ maxDecimals, ...props }: NumericTextFieldProps) => {
+    return <TextField {...props} input={NumericInput} inputProps={{ maxDecimals }} />;
 };
 
 export default NumericTextField;

@@ -54,7 +54,6 @@ declare module "@peersyst/react-native-components" {
     export interface ExtraValidators {
         address: Validator;
         privateKey: Validator;
-        decimals: Validator;
     }
 
     export interface BlockchainLinksTypesOverrides {
