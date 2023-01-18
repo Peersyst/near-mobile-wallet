@@ -3,11 +3,11 @@ import { QueryResult } from "query-utils";
 import Queries from "../../../query/queries";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import { getValidatorsWithStatus } from "../utils/validator";
-import { StakingValidator } from "../hook/useGetStakingValidators";
+import { Validator } from "near-peersyst-sdk";
 
-export default function (index?: number): QueryResult<StakingValidator[]> {
+export default function (index?: number): QueryResult<Validator[]> {
     const { index: usedIndex, network, serviceInstance } = useServiceInstance(index);
-    return useQuery([Queries.GET_ALL_VALIDATOR_IDS, usedIndex, network], async (): Promise<StakingValidator[]> => {
+    return useQuery([Queries.GET_ALL_VALIDATOR_IDS, usedIndex, network], async (): Promise<Validator[]> => {
         const allValidators = await serviceInstance.getAllValidators();
         return getValidatorsWithStatus(allValidators, allValidators);
     });

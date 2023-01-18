@@ -11,7 +11,7 @@ import { ValidatorInformationProps } from "module/staking/component/core/Validat
 import { capitalize } from "@peersyst/react-utils";
 import { convertYoctoToNear } from "module/sdk";
 
-const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, status } }: ValidatorInformationProps): JSX.Element => {
+const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, active } }: ValidatorInformationProps): JSX.Element => {
     const theme = useTheme();
     const translate = useTranslate();
 
@@ -29,8 +29,8 @@ const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, sta
                                 {fee}% {capitalize(translate("fee"))} -{" "}
                             </Typography>
                         )}
-                        <ValidatorStatusTag variant="body4Strong" status={status}>
-                            {translate(status === "active" ? "active" : "inactive")}
+                        <ValidatorStatusTag variant="body4Strong" active={active}>
+                            {translate(active ? "active" : "inactive")}
                         </ValidatorStatusTag>
                     </Row>
                 </Col>

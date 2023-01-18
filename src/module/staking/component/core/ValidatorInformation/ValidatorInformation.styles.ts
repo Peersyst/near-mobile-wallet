@@ -11,6 +11,6 @@ export const ValidatorRoot = styled(Row)(() => ({
     width: "100%",
 }));
 
-export const ValidatorStatusTag = styled(Typography, { variant: "body4Strong" })<ValidatorStatusTagProps>(({ theme, status }) => ({
-    color: status === "active" ? theme.palette.blue : theme.palette.red,
+export const ValidatorStatusTag = styled(Typography, { variant: "body4Strong" })<ValidatorStatusTagProps>(({ theme, active }) => ({
+    color: active ? theme.palette.blue : theme.palette.red,
 }));
