@@ -2041,13 +2041,13 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@peersyst/react-components-core@^1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-1.0.11.tgz#6e33cf74b338e5371e1c33f06ced2314f064a081"
-  integrity sha512-eLr3XUhLM/7Hkd2z4+/7lLWrYH7G3WQHgq4paMaPhOZJm3x/de4Q1hUDlWLgfeOvpX6vxkM6oo7vumEU8dbFGQ==
+"@peersyst/react-components-core@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-1.1.1.tgz#3277944b1f2ed15d80fd230ac0f4dd4ce9f1ef07"
+  integrity sha512-g4CKiPGPVZU49uKR3X07QyhCXRbssHbnKU14OKwzOqnC9cZTo/w9Wsig4r1ua8QdmqS8tat8sBts2PCvhJsJAg==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-hooks" "^2.0.4"
+    "@peersyst/react-hooks" "^2.2.0"
     "@peersyst/react-types" "^1.5.0"
     "@peersyst/react-utils" "^2.1.0"
     validator "^13.7.0"
@@ -2060,22 +2060,22 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^2.1.0"
 
-"@peersyst/react-hooks@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-2.0.4.tgz#7eaf9c2676766a94471684cc425d4578a82da377"
-  integrity sha512-XO6xHmBIrsVdCyf22YDqatNc1CLdTmMmBxTQU2BKW4t1I4rDfLd+5DYnLif4kb3JpDvdQws8iU8Iyf8RypbW8A==
+"@peersyst/react-hooks@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-2.2.0.tgz#4cc58494690dbe96d682a67307eb832bef44bb06"
+  integrity sha512-pJAg2ih0ecJ0t+jNK9SB03HfCoFCSlmC2C2iUjdoABOmkyIqy0962gYSznsYZkP/GjFZ0n3XAb5+zLA+MKrUyA==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^2.1.0"
 
-"@peersyst/react-native-components@^2.0.26":
-  version "2.0.26"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-2.0.26.tgz#f809156f759186cfa34a9f743679b8e84c68af91"
-  integrity sha512-+GJvmO2vmxNJbEsv4+Otaux7BSwHhmmgFBUm+XAiRVkbRAVgCkWb+scupOjKubOQ4l9kp2gcDydCl2CEd8Hv9g==
+"@peersyst/react-native-components@^2.0.31":
+  version "2.0.31"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-2.0.31.tgz#c912fbb1100114e4481cefd6a6ba8860b73b7e6b"
+  integrity sha512-Uqa8sPNoBw7kBFiMmvJFE/S+lhKU9jeK4hr85KZsjh0Q5vuSSRbShqyaDeIavpPh/c+6JN0NLJtKuoebfC/NOw==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-components-core" "^1.0.11"
-    "@peersyst/react-hooks" "^2.0.4"
+    "@peersyst/react-components-core" "^1.1.1"
+    "@peersyst/react-hooks" "^2.2.0"
     "@peersyst/react-native-styled" "^2.0.0"
     "@peersyst/react-native-utils" "^1.0.1"
     "@peersyst/react-types" "^1.5.0"
