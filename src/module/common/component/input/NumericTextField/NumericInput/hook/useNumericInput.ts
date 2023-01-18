@@ -19,7 +19,7 @@ export default function useNumericInput({
     maxDecimals,
 }: UseNumericInputParams): UseNumericInputResult {
     const [value, setValue] = useControlled(defaultValue, valueProp, onChangeProp);
-    const { locale: defaultLocale } = useRecoilValue(settingsState);
+    const { locale: defaultLocale = "en" } = useRecoilValue(settingsState);
     const finalLocale = locale || defaultLocale;
     const digitGroupingSeparator = getGroupSeparator(finalLocale);
     const decimalSeparator = getDecimalSeparator(finalLocale);
