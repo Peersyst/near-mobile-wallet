@@ -3,10 +3,6 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import BaseSetAmountStakeScreen from "../BaseSetAmountStakeScreen/BaseSetAmountStakeScreen";
 import { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
 
-export interface SendForm {
-    amount: string;
-}
-
 const SetAmountStakeScreen = () => {
     const translate = useTranslate();
 

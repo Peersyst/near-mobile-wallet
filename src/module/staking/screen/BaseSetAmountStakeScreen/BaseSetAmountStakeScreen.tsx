@@ -7,7 +7,7 @@ import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import NEARAmountWithMaxTextField from "module/transaction/component/input/NEARAmountWithMaxTextField/NEARAmountWithMaxTextField";
 import { ReactElement } from "react";
 
-export interface SendForm {
+export interface StakeForm {
     amount: string;
 }
 
@@ -23,7 +23,7 @@ const BaseSetAmountStakeScreen = ({ maxAmount, label, children, onSubmit }: Base
     const [stakeState, setStakeState] = useRecoilState(stakeRecoilState);
     const { index } = useSelectedWallet();
 
-    const handleSubmit = ({ amount }: SendForm) => {
+    const handleSubmit = ({ amount }: StakeForm) => {
         setStakeState((oldState) => ({ ...oldState, amount: amount }));
         onSubmit?.(amount);
     };

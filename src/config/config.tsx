@@ -12,6 +12,7 @@ import { PrivateKeyValidator } from "./validators/PrivateKeyValidator";
 import { RadioCheckedIcon } from "module/common/icons/RadioCheckedIcon";
 import { RadioUncheckedIcon } from "module/common/icons/RadioUncheckedIcon";
 import { EnvConfig } from "./config.declarations";
+import { DecimalsValidator } from "./validators/DecimalsValidator";
 
 export const envConfigs: Record<EnvConfig, CreateConfig> = {
     test: { ...baseConfig, ...devConfig },
@@ -78,6 +79,9 @@ const config = createConfig({
                 },
             },
         },
+        NumericInput: {
+            maxDecimals: 24,
+        },
     },
     themes: {
         default: lightTheme,
@@ -87,6 +91,7 @@ const config = createConfig({
     validators: {
         address: AddressValidator,
         privateKey: PrivateKeyValidator,
+        decimals: DecimalsValidator,
     },
     globalStyles,
 });
