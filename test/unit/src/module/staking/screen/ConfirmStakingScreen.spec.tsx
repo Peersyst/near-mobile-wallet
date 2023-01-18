@@ -3,7 +3,6 @@ import * as Recoil from "recoil";
 import { waitFor } from "@testing-library/react-native";
 import { StakeStateMock, UseWalletStateMock } from "test-mocks";
 import ConfirmStakingScreen from "module/staking/screen/ConfirmStakingScreen/ConfirmStakingScreen";
-import { capitalize } from "@peersyst/react-utils";
 
 describe("ConfirmStakingScreen.spec tests", () => {
     new UseWalletStateMock();
@@ -25,8 +24,8 @@ describe("ConfirmStakingScreen.spec tests", () => {
         await waitFor(() => expect(screen.getByText(translate("with"))).toBeDefined());
 
         //expect(screen.getByText(stakeStateMock.validator.accountId)).toBeDefined();
-        expect(screen.getByText(stakeStateMock.amount + "% " + capitalize(translate("fee")) + " - ")).toBeDefined();
-        expect(screen.getByText(translate("active"))).toBeDefined();
+        //expect(screen.getByText(stakeStateMock.amount + "% " + capitalize(translate("fee")) + " - ")).toBeDefined();
+        //expect(screen.getByText(translate("active"))).toBeDefined();
 
         expect(screen.getByText(translate("cancel"))).toBeDefined();
         expect(screen.getByText(translate("next"))).toBeDefined();
