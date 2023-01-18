@@ -1,6 +1,5 @@
 import { useControlled } from "@peersyst/react-hooks";
 import { CoreTextInputProps } from "@peersyst/react-components-core";
-
 import { getGroupSeparator, getDecimalSeparator, formatNumber } from "../utils";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
