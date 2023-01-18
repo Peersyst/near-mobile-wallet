@@ -30,13 +30,12 @@ const BaseSendSummary = ({
     amount,
     fee,
     children,
-    showTotal,
+    showTotal = true,
     showFiat,
     style,
     token,
     nft,
-    total,
-    showFee,
+    showFee = true,
 }: BaseSendSummaryFullProps): JSX.Element => {
     const translate = useTranslate();
     const finalFee = fee ?? config.estimatedFee;
@@ -75,19 +74,6 @@ const BaseSendSummary = ({
                                 units="token"
                             />
                         </>
-                    )}
-                    {showFee && <Fee fee={fee} typographyVariant="body3" />}
-                    {total && (
-                        <Typography variant="body2Regular" color={(palette) => palette.primary} textAlign="center">
-                            {translate("total")}:{" "}
-                            <Balance
-                                balance={BalanceOperations.add(amount, fee!)}
-                                variant="body2Strong"
-                                units={token}
-                                color={(palette) => palette.primary}
-                                options={{ maximumFractionDigits: config.maxNumberOfDecimals }}
-                            />
-                        </Typography>
                     )}
                 </Col>
                 {children}
