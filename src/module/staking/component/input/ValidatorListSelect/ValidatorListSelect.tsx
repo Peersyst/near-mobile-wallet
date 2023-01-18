@@ -1,9 +1,9 @@
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import MainList from "module/main/component/display/MainList/MainList";
-import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
 import { useValidatorSelect } from "module/staking/hook/useValidatorSelect";
 import { useEffect, useState, useTransition } from "react";
 import StakingListItemSelect from "../StakingListItemSelect/StakingListItemSelect";
+import { Validator } from "near-peersyst-sdk";
 
 export interface StakingListProps {
     search?: string;
@@ -11,7 +11,7 @@ export interface StakingListProps {
 const ValidatorListSelect = ({ search = "" }: StakingListProps): JSX.Element => {
     const [isPending, startTransition] = useTransition();
     const { validators: data, isLoading, onSelected } = useValidatorSelect();
-    const [dataList, setDataList] = useState<StakingValidator[]>(data ? data : []);
+    const [dataList, setDataList] = useState<Validator[]>(data ? data : []);
 
     useEffect(() => {
         startTransition(() => {

@@ -1,8 +1,8 @@
 import { atom } from "recoil";
-import { StakingValidator } from "../hook/useGetStakingValidators";
+import { Validator } from "near-peersyst-sdk";
 
 export interface StakeState {
-    validator: StakingValidator;
+    validator: Validator;
     amount: string;
 }
 
@@ -12,7 +12,7 @@ const stakeState = atom<StakeState>({
         validator: {
             accountId: "",
             fee: null,
-            status: "inactive",
+            active: false,
         },
         amount: "",
     },

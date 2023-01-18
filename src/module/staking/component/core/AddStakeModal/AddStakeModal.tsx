@@ -1,58 +1,40 @@
-import { createBackdrop, ExposedBackdropProps, Label, TabPanel, Tabs } from "@peersyst/react-native-components";
-import { useState } from "react";
-import { useResetRecoilState } from "recoil";
-import sendState from "module/transaction/state/SendState";
-import SetAmountStakeScreen from "module/staking/screen/SetAmountStakeScreen/SetAmountStakeScreen";
+import { createBackdrop, ExposedBackdropProps, useSetTab } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { TransaltionResourceType } from "locale";
 import SelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/SelectValidatorScreen";
-import { AddStakeModalRoot } from "./AddStakeModal.styles";
+import StakeModal, { ModalTabs } from "module/staking/component/core/StakeModal/StakeModal";
+import useGetAllValidators from "module/staking/query/useGetAllValidators";
 
 export enum AddStakeScreens {
-    SET_AMOUNT,
     SELECT_VALIDATOR,
+    SET_AMOUNT,
     CONFIRM_VALIDATOR,
 }
 
-const AddStakeModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
-    const [activeIndex, setActiveIndex] = useState(AddStakeScreens.SET_AMOUNT);
-    const resetSendState = useResetRecoilState(sendState);
-
-    const handleExited = () => {
-        onExited?.();
-        resetSendState();
-    };
-
+const AddStakeModal = createBackdrop(({ ...rest }: ExposedBackdropProps) => {
     const translate = useTranslate();
+    const setTab = useSetTab();
     const ADD_STAKE_MODAL_TITLES: TransaltionResourceType[] = ["stake_your_near", "select_validator", "confirm_validator", "success"];
 
-    return (
-        <AddStakeModalRoot
-            navbar={{
-                back: true,
-                title: translate(ADD_STAKE_MODAL_TITLES[Number(activeIndex)])!,
-                onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,
-                steps: {
-                    length: 4,
-                    index: activeIndex,
-                },
-            }}
-            onExited={handleExited}
-            {...rest}
-        >
-            <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
-                <TabPanel index={AddStakeScreens.SET_AMOUNT}>
-                    <SetAmountStakeScreen />
-                </TabPanel>
-                <TabPanel index={AddStakeScreens.SELECT_VALIDATOR}>
-                    <SelectValidatorScreen />
-                </TabPanel>
-                <TabPanel index={AddStakeScreens.CONFIRM_VALIDATOR}>
-                    <Label label={"confirm"}></Label>
-                </TabPanel>
-            </Tabs>
-        </AddStakeModalRoot>
-    );
+    const { data: validators, isLoading } = useGetAllValidators();
+
+    const addStakeModalTabs: ModalTabs[] = [
+        {
+            title: translate("select_validator"),
+            tabIndex: AddStakeScreens.SELECT_VALIDATOR,
+            tabContent: (
+                <SelectValidatorScreen
+                    message={translate("enter_new_validator")!}
+                    validators={validators}
+                    loading={isLoading}
+                    onFinish={() => setTab(AddStakeScreens.SET_AMOUNT)}
+                    withSearch
+                />
+            ),
+        },
+    ];
+
+    return <StakeModal tabs={addStakeModalTabs} {...rest} />;
 });
 
 export default AddStakeModal;

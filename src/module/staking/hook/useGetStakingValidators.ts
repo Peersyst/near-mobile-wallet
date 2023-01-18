@@ -1,13 +1,9 @@
 import useGetCurrentValidators from "module/staking/query/useGetCurrentValidators";
 import useGetAllValidators from "module/staking/query/useGetAllValidators";
-import { Validator } from "module/sdk";
-
-export interface StakingValidator extends Validator {
-    status: "active" | "inactive";
-}
+import { Validator } from "near-peersyst-sdk";
 
 interface UseGetStakingValidatorsReturn {
-    stakingValidators: StakingValidator[];
+    stakingValidators: Validator[];
 }
 
 export default function (): UseGetStakingValidatorsReturn {
@@ -15,14 +11,14 @@ export default function (): UseGetStakingValidatorsReturn {
     const { data: allValidators } = useGetAllValidators();
 
     const isCurrentValidatorActive = (validatorAccountId: string): boolean => {
-        if (allValidators) return allValidators.filter(({ accountId }) => accountId === validatorAccountId).length > 0;
+        if (allValidators) return allValidators.some(({ accountId }) => accountId === validatorAccountId);
         return false;
     };
 
     if (validators) {
-        const stakingValidators: StakingValidator[] = validators?.map((validator) => {
-            const stakingValidator: StakingValidator = {
-                status: isCurrentValidatorActive(validator.accountId) ? "active" : "inactive",
+        const stakingValidators: Validator[] = validators?.map((validator) => {
+            const stakingValidator: Validator = {
+                active: isCurrentValidatorActive(validator.accountId),
                 ...validator,
             };
             return stakingValidator;

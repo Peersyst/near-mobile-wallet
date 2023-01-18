@@ -3,11 +3,11 @@ import Typography from "module/common/component/display/Typography/Typography";
 import StakeValidatorSelect from "module/staking/component/input/StakeValidatorSelect/StakeValidatorSelect";
 import { useSetRecoilState } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
-import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
+import { Validator } from "near-peersyst-sdk";
 
 interface SelectValidatorScreenProps {
     message: string;
-    validators: StakingValidator[] | undefined;
+    validators: Validator[] | undefined;
     loading: boolean;
     onFinish: () => void;
     withSearch?: boolean;
@@ -16,7 +16,7 @@ interface SelectValidatorScreenProps {
 const SelectValidatorScreen = ({ message, validators, loading, onFinish, ...rest }: SelectValidatorScreenProps): JSX.Element => {
     const setStakeState = useSetRecoilState(stakeRecoilState);
 
-    const onSelected = (validator: StakingValidator) => {
+    const onSelected = (validator: Validator) => {
         if (validator.accountId) {
             setStakeState((state) => {
                 return {

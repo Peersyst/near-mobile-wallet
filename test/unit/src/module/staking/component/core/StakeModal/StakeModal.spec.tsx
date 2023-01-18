@@ -26,7 +26,7 @@ describe("StakeModal tests", () => {
         expect(screen.getByText(translate("next"))).toBeDefined();
     });
 
-    test("Resets send state on close", async () => {
+    test("Resets stake state on close", async () => {
         const handleExited = jest.fn();
         const resetStakeState = jest.fn();
         jest.spyOn(Recoil, "useResetRecoilState").mockReturnValue(resetStakeState);

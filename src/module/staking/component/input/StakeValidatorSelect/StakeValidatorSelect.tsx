@@ -3,13 +3,13 @@ import { useState } from "react";
 import TextField from "module/common/component/input/TextField/TextField";
 import ValidatorListSelect from "../ValidatorListSelect/ValidatorListSelect";
 import { Col, Label } from "@peersyst/react-native-components";
-import { StakingValidator } from "module/staking/hook/useGetStakingValidators";
 import { ValidatorSelectProvider } from "module/staking/component/context/ValidatorSelectContext";
+import { Validator } from "near-peersyst-sdk";
 
 interface StakeValidatorSelectProps {
-    validators: StakingValidator[] | undefined;
+    validators: Validator[] | undefined;
     loading: boolean;
-    onSelected: (validator: StakingValidator) => void;
+    onSelected: (validator: Validator) => void;
     withSearch?: boolean;
 }
 
