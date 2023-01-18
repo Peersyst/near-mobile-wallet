@@ -4,7 +4,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import settingsState from "module/settings/state/SettingsState";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
 import useGetBalance from "module/wallet/query/useGetBalance";
-import { subtractNearAmounts } from "near-peersyst-sdk";
+import { substractNearAmounts } from "near-peersyst-sdk";
 import { useRecoilValue } from "recoil";
 
 export interface UseNEARAmountWithMaxTextFieldControllerParams {
@@ -17,7 +17,7 @@ export function useNEARAmountWithMaxTextFieldController({ index, maxAmount }: Us
     const { data: { available: availableBalance } = { available: "0" } } = useGetBalance(index);
 
     const finalAvailable = maxAmount ? maxAmount : availableBalance;
-    const maxBalance = subtractNearAmounts(finalAvailable, config.estimatedFee);
+    const maxBalance = substractNearAmounts(finalAvailable, config.estimatedFee);
 
     const { value: maxBalanceInFiat } = useNativeTokenConversion(maxBalance);
     const { fiat } = useRecoilValue(settingsState);

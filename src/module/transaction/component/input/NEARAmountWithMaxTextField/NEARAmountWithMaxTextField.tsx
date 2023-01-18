@@ -6,7 +6,7 @@ import { useControlled } from "@peersyst/react-hooks";
 import Typography from "module/common/component/display/Typography/Typography";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { Spinner } from "@peersyst/react-native-components";
-import { useNEARAmountWithMaxTextFieldController } from "./hook/useNEARAmountAvailable";
+import { useNEARAmountWithMaxTextFieldController } from "./hook/useNEARAmountWithMaxTextFieldController";
 
 export type BaseNEARAmountWithMaxTextFieldProps = Omit<NEARAmountTextFieldProps, "suffix" | "hint">;
 

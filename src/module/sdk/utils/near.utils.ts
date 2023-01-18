@@ -23,7 +23,7 @@ export function convertYoctoToNear(amountInYocto: string, fracDigits?: number | 
 /**
  * Subtract Near amount from another Near amount
  */
-export function subtractNearAmounts(amount1: string, amount2: string): string {
+export function substractNearAmounts(amount1: string, amount2: string): string {
     const amount1InYocto = convertNearToYocto(amount1);
     const amount2InYocto = convertNearToYocto(amount2);
     return convertYoctoToNear(subtractYoctoAmounts(amount1InYocto, amount2InYocto));
