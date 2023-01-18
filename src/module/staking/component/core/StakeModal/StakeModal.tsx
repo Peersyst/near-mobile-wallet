@@ -1,22 +1,24 @@
 import { TabPanel, Tabs } from "@peersyst/react-native-components";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { useResetRecoilState } from "recoil";
 import { CardNavigatorModalProps } from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
-import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
 import { StakeModalRoot } from "./StakeModal.styles";
 import stakeState from "module/staking/state/StakeState";
+import { AddStakeScreens } from "../AddStakeModal/AddStakeModal";
 
-export enum SendScreens {
-    SET_AMOUNT,
+export interface ModalTabs {
+    title: string;
+    tabIndex: AddStakeScreens;
+    tabContent: ReactElement;
 }
 
 export interface StakeModalProps extends Omit<CardNavigatorModalProps, "navbar" | "children"> {
-    tabs: MainTabItemType[];
+    tabs: ModalTabs[];
     onBack?: () => void;
 }
 
 const StakeModal = ({ onExited, tabs, onBack, ...rest }: StakeModalProps) => {
-    const [activeIndex, setActiveIndex] = useState(SendScreens.SET_AMOUNT);
+    const [activeIndex, setActiveIndex] = useState(tabs[0].tabIndex);
     const resetSendState = useResetRecoilState(stakeState);
 
     const handleExited = () => {
@@ -36,7 +38,7 @@ const StakeModal = ({ onExited, tabs, onBack, ...rest }: StakeModalProps) => {
                 title: tabs[activeIndex].title,
                 onBack: activeIndex > 0 ? handleOnBack : undefined,
                 steps: {
-                    length: 4,
+                    length: tabs.length,
                     index: activeIndex,
                 },
             }}
@@ -44,15 +46,11 @@ const StakeModal = ({ onExited, tabs, onBack, ...rest }: StakeModalProps) => {
             {...rest}
         >
             <Tabs gap={0} index={activeIndex} onIndexChange={setActiveIndex} style={{ flex: 1 }}>
-                <>
-                    {tabs.map(({ item }, index) => {
-                        return (
-                            <TabPanel key={index} index={index}>
-                                {item}
-                            </TabPanel>
-                        );
-                    })}
-                </>
+                {tabs.map(({ tabIndex, tabContent }) => (
+                    <TabPanel key={tabIndex} index={tabIndex}>
+                        {tabContent}
+                    </TabPanel>
+                ))}
             </Tabs>
         </StakeModalRoot>
     );

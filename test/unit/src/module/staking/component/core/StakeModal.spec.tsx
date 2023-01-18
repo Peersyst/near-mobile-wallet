@@ -5,7 +5,7 @@ import { UseWalletStateMock } from "test-mocks";
 import StakeModal from "module/staking/component/core/StakeModal/StakeModal";
 import Button from "module/common/component/input/Button/Button";
 
-describe("AddStakeModal tests", () => {
+describe("StakeModal tests", () => {
     new UseWalletStateMock();
     afterAll(() => {
         jest.restoreAllMocks();
@@ -17,7 +17,8 @@ describe("AddStakeModal tests", () => {
                 tabs={[
                     {
                         title: "Stake",
-                        item: <Button>{translate("next")}</Button>,
+                        tabContent: <Button>{translate("next")}</Button>,
+                        tabIndex: 0,
                     },
                 ]}
             />,
@@ -35,7 +36,8 @@ describe("AddStakeModal tests", () => {
                 tabs={[
                     {
                         title: "Stake",
-                        item: <Button>{translate("next")}</Button>,
+                        tabContent: <Button>{translate("next")}</Button>,
+                        tabIndex: 0,
                     },
                 ]}
             />,
