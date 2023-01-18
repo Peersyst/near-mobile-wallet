@@ -6,14 +6,10 @@ export interface TxIcon {
     active: boolean;
 }
 
-export type ActionIconType = ActionKind | "VALIDATOR";
+export type ActionIconType = ActionKind;
 
 export interface ActionIconProps {
     type: ActionIconType;
-}
-
-export interface ActionIconCompponentProps {
-    active?: boolean;
 }
 
 export type ActionIcon = Record<ActionIconType, TxIcon>;

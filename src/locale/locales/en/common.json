@@ -147,7 +147,7 @@
     "testnet_warning": "This is a Testnet version. Do not send Mainnet NEAR to this account.",
     "dismiss": "Dismiss",
     "pending_transaction_text": "You have an uncommitted transaction. Please, wait until it is committed to send a new one.",
-    "staking": "Staking",
+    "staking": "staking",
     "staked": "staked",
     "stake_my_tokens": "Stake my tokens",
     "import-your-near-wallet": "Import your NEAR wallet",
@@ -213,7 +213,7 @@
     "rewardsEarned": "Rewards earned",
     "availableForWithdrawal": "Available for withdrawal",
     "summary": "Summary",
-    "your_current_validators": "Your current validators",
+    "your_current_validators": "Current Validators",
     "fee": "fee",
     "active": "active",
     "inactive": "inactive"

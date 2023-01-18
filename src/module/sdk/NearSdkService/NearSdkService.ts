@@ -52,6 +52,7 @@ import {
     NFT_OWNER_TOKENS_SET_METHOD,
 } from "../utils/near.constants";
 import {
+    addNearAmounts,
     addYoctoAmounts,
     convertAccountBalanceToNear as convertAccountBalanceToNearUtil,
     convertNearToYocto,
@@ -498,7 +499,12 @@ export class NearSDKService {
         return status.validators.map((validator: any) => validator.account_id);
     }
 
-    private async getValidatorDataFromId(validatorId: string, queryBalance: boolean, totalDeposits?: number): Promise<Validator> {
+    private async getValidatorDataFromId(
+        validatorId: string,
+        queryBalance: boolean,
+        totalDeposits?: number,
+        activeValidator?: boolean,
+    ): Promise<Validator> {
         let fee: number | null;
         let stakingBalance: StakingBalance | null;
 
@@ -513,7 +519,7 @@ export class NearSDKService {
                     ...(balanceInYocto.rewardsEarned && { rewardsEarned: convertYoctoToNear(balanceInYocto.rewardsEarned) }),
                 };
                 stakingBalance = balanceInNear;
-                return { accountId: validatorId, fee, stakingBalance };
+                return { accountId: validatorId, fee, stakingBalance, ...(activeValidator && { active: true }) };
             }
         } catch (e) {
             fee = null;
@@ -524,7 +530,7 @@ export class NearSDKService {
 
     async getAllValidators(): Promise<Validator[]> {
         const validators = await this.getAllValidatorIds();
-        const validatorsProms = validators.map((validator) => this.getValidatorDataFromId(validator, false));
+        const validatorsProms = validators.map((validator) => this.getValidatorDataFromId(validator, false, undefined, true));
         return Promise.all(validatorsProms);
     }
 
@@ -540,24 +546,20 @@ export class NearSDKService {
             available: "0",
             pending: "0",
         };
+
         validators.forEach((validator) => {
             finalStakingBalance = this.addStakingBalances(finalStakingBalance, validator.stakingBalance);
         });
-        const { staked, available, pending, rewardsEarned } = finalStakingBalance;
-        return {
-            staked: convertYoctoToNear(staked),
-            available: convertYoctoToNear(available),
-            pending: convertYoctoToNear(pending),
-            rewardsEarned: rewardsEarned ? convertYoctoToNear(rewardsEarned) : rewardsEarned,
-        };
+
+        return finalStakingBalance;
     }
 
     private addStakingBalances(ant: StakingBalance, act?: StakingBalance): StakingBalance {
         return {
-            staked: act?.staked ? addYoctoAmounts(ant.staked, act.staked) : ant.staked,
-            available: act?.available ? addYoctoAmounts(ant.available, act.available) : ant.available,
-            pending: act?.pending ? addYoctoAmounts(ant.pending, act.pending) : ant.pending,
-            rewardsEarned: act?.rewardsEarned ? addYoctoAmounts(ant.rewardsEarned || "0", act.rewardsEarned) : ant.rewardsEarned,
+            staked: act?.staked ? addNearAmounts(ant.staked, act.staked) : ant.staked,
+            available: act?.available ? addNearAmounts(ant.available, act.available) : ant.available,
+            pending: act?.pending ? addNearAmounts(ant.pending, act.pending) : ant.pending,
+            rewardsEarned: act?.rewardsEarned ? addNearAmounts(ant.rewardsEarned || "0", act.rewardsEarned) : ant.rewardsEarned,
         };
     }
 

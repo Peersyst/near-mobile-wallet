@@ -6,8 +6,8 @@ import Account from "module/wallet/component/display/Account/Account";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { ValidatorInformationProps } from "module/staking/component/core/ValidatorInformation/ValidatorInformation.types";
 import { capitalize } from "@peersyst/react-utils";
-import { convertYoctoToNear } from "module/sdk";
-import ActionIcon from "module/transaction/component/display/ActionIcon/ActionIcon";
+import CardIcon from "module/common/component/display/CardIcon/CardIcon";
+import { UserCheckIcon } from "icons";
 
 const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, active } }: ValidatorInformationProps): JSX.Element => {
     const translate = useTranslate();
@@ -15,7 +15,7 @@ const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, act
     return (
         <ValidatorRoot justifyContent="space-between">
             <Row flex={1} alignItems="center" gap={10}>
-                <ActionIcon type={"VALIDATOR"} />
+                <CardIcon active={false} Icon={UserCheckIcon} darkInactive />
                 <Col>
                     <Account style={{ width: 180 }} address={accountId} variant="body3Strong" />
                     <Row>
@@ -35,12 +35,7 @@ const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, act
                     {translate("staking")}
                 </Typography>
                 {stakingBalance && (
-                    <Balance
-                        style={{ maxWidth: 84 }}
-                        balance={convertYoctoToNear(BigInt(stakingBalance!.staked).toString())}
-                        variant="body4Strong"
-                        units="token"
-                    />
+                    <Balance style={{ maxWidth: 100 }} balance={stakingBalance.staked} variant="body3Strong" units="token" />
                 )}
             </Col>
         </ValidatorRoot>
