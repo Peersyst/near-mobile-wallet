@@ -53,7 +53,6 @@ import {
 } from "../utils/near.constants";
 import {
     addNearAmounts,
-    addYoctoAmounts,
     convertAccountBalanceToNear as convertAccountBalanceToNearUtil,
     convertNearToYocto,
     convertYoctoToNear,
