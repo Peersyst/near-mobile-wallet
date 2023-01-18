@@ -1,7 +1,7 @@
 import { config } from "config";
 import NEARAmountTextField from "module/transaction/component/input/AssetAmountTextField/NEARAmountTextField/NEARAmountTextField";
 import { AccountBalanceMock, UseGetBalanceMock } from "test-mocks";
-import { fireEvent, render, screen, translate, waitFor, wait } from "test-utils";
+import { fireEvent, render, screen, translate, waitFor } from "test-utils";
 
 describe("NEARAmountTextField Test", () => {
     test("Renders and validates correctly", async () => {
