@@ -11,6 +11,7 @@ const StakingCurrentValidators = (): JSX.Element => {
 
     return (
         <MainList
+            loading={isLoading}
             data={validators}
             renderItem={({ item: validator }) => <ValidatorInformation key={validator.accountId} validator={validator} />}
             ListEmptyComponent={

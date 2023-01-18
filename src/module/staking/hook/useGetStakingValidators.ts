@@ -3,29 +3,31 @@ import useGetAllValidators from "module/staking/query/useGetAllValidators";
 import { Validator } from "near-peersyst-sdk";
 import { useMemo } from "react";
 
-export interface StakingValidator extends Validator {
-    status: "active" | "inactive";
-}
-
 interface UseGetStakingValidatorsReturn {
-    stakingValidators: StakingValidator[];
+    stakingValidators: Validator[];
     isLoading: boolean;
+    refetch: () => void;
 }
 
 export default function (): UseGetStakingValidatorsReturn {
-    const { data: validators, isLoading: isLoadingCurrentValidators } = useGetCurrentValidators();
-    const { data: allValidators, isLoading: isLoadingAllValidators } = useGetAllValidators();
+    const { data: validators, isLoading: isLoadingCurrentValidators, refetch: refetchCurrentValidators } = useGetCurrentValidators();
+    const { data: allValidators, isLoading: isLoadingAllValidators, refetch: refetchAllValidators } = useGetAllValidators();
+
+    const handleRefetch = () => {
+        refetchCurrentValidators();
+        refetchAllValidators();
+    };
 
     const isCurrentValidatorActive = (validatorAccountId: string): boolean => {
-        if (allValidators) return allValidators.filter(({ accountId }) => accountId === validatorAccountId).length > 0;
+        if (allValidators) return allValidators.some(({ accountId }) => accountId === validatorAccountId);
         return false;
     };
 
-    return useMemo(() => {
+    const { stakingValidators, isLoading } = useMemo(() => {
         if (validators) {
-            const stakingValidators: StakingValidator[] = validators?.map((validator) => {
-                const stakingValidator: StakingValidator = {
-                    status: isCurrentValidatorActive(validator.accountId) ? "active" : "inactive",
+            const stakingValidators: Validator[] = validators?.map((validator) => {
+                const stakingValidator: Validator = {
+                    active: isCurrentValidatorActive(validator.accountId),
                     ...validator,
                 };
                 return stakingValidator;
@@ -34,4 +36,6 @@ export default function (): UseGetStakingValidatorsReturn {
         }
         return { stakingValidators: [], isLoading: isLoadingCurrentValidators || isLoadingAllValidators };
     }, [validators, allValidators]);
+
+    return { stakingValidators, isLoading, refetch: handleRefetch };
 }

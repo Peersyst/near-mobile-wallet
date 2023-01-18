@@ -68,6 +68,7 @@ export interface Validator {
     accountId: string;
     fee: number | null;
     stakingBalance?: StakingBalance;
+    active?: boolean;
 }
 
 export interface StakingDeposit {
