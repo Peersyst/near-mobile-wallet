@@ -3,6 +3,7 @@ import { NearSDKService } from "near-peersyst-sdk";
 import { AccountBalanceMock } from "./accountBalance.mock";
 import { TokensMock } from "./token.mock";
 import { StakingBalanceMock } from "mocks/NearSdk/stakingBalance.mock";
+import { ValidatorMock } from "mocks/NearSdk/validator.mock";
 
 interface NearSdkServiceMockType {
     getTransactions: MockFnType;
@@ -25,6 +26,8 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
     createNewAccountWithSameSecretKey: MockFnType;
     getRecentActivity: MockFnType;
     getTotalStakingBalance: MockFnType;
+    getCurrentValidators: MockFnType;
+    getAllValidators: MockFnType;
     //TODO: add here all the mock fn that are needed
 
     constructor() {
@@ -38,5 +41,7 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
         this.getRecentActivity = jest.fn().mockResolvedValue([]);
         this.createNewAccountWithSameSecretKey = jest.fn().mockResolvedValue(this as any as NearSDKService);
         this.getTotalStakingBalance = jest.fn().mockResolvedValue(new StakingBalanceMock());
+        this.getCurrentValidators = jest.fn().mockResolvedValue([new ValidatorMock()]);
+        this.getAllValidators = jest.fn().mockResolvedValue([new ValidatorMock()]);
     }
 }
