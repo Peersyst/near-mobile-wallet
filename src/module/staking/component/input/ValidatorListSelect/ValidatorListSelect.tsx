@@ -31,6 +31,7 @@ const ValidatorListSelect = ({ search = "" }: StakingListProps): JSX.Element => 
 
     return (
         <MainList
+            contentContainerStyle={{ padding: 0 }}
             loading={isLoading || isPending}
             ListEmptyComponent={showEmptyList ? <EmptyListComponent /> : undefined}
             data={dataList.length ? dataList : []}

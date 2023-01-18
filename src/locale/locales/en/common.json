@@ -225,5 +225,6 @@
     "fee": "fee",
     "your_current_validators": "Your current validators",
     "active": "active",
-    "inactive": "inactive"
+    "inactive": "inactive",
+    "select_unstake_validator": "Select the validator from which you want to unstake your NEAR."
 }

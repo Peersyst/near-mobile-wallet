@@ -225,5 +225,6 @@
     "your_current_validators": "Tus validadores actuales",
     "fee": "Tasa",
     "active": "activo",
-    "inactive": "inactivo"
+    "inactive": "inactivo",
+    "select_unstake_validator": "Selecciona el validador del que quieres retirar tus NEAR."
 }

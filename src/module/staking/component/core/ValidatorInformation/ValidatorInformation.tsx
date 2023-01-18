@@ -35,7 +35,7 @@ const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, sta
                     </Row>
                 </Col>
             </Row>
-            <Col>
+            <Col flex={1} alignItems="flex-end">
                 <Typography textAlign="right" variant="body3Strong" light>
                     {translate("staking")}
                 </Typography>
@@ -45,6 +45,7 @@ const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, sta
                             style={{ maxWidth: 84 }}
                             balance={convertYoctoToNear(BigInt(stakingBalance!.staked).toString())}
                             variant="body4Strong"
+                            textAlign="right"
                             units="token"
                         />
                     </Row>
