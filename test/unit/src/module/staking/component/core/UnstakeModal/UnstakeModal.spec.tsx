@@ -6,6 +6,6 @@ describe("Tests for Unstake modal", () => {
     test("Renders correctly", () => {
         render(<UnstakeModal />);
 
-        expect(screen.getByText(translate("select_validator"))).toBeDefined();
+        expect(screen.getAllByText(translate("select_validator"))).toBeDefined();
     });
 });

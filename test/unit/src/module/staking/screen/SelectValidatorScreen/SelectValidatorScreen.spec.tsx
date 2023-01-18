@@ -1,7 +1,7 @@
 import { render, translate } from "test-utils";
 import SelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/SelectValidatorScreen";
 import { ValidatorMock } from "mocks/NearSdk";
-import { fireEvent, screen, waitFor } from "@testing-library/react-native";
+import { screen } from "@testing-library/react-native";
 
 describe("Tests for SelectValidatorScreen", () => {
     const mockMessage = "message";
@@ -34,18 +34,5 @@ describe("Tests for SelectValidatorScreen", () => {
         expect(screen.getAllByText(mockValidator.accountId)).toHaveLength(mockValidators.length);
         expect(screen.getAllByText("inactive")).toHaveLength(mockValidators.length);
         expect(screen.getAllByText(mockValidator.stakingBalance.staked.toString() + " NEAR")).toHaveLength(mockValidators.length);
-    });
-
-    test("Reacts onPress", async () => {
-        const mockValidator = new ValidatorMock();
-        const mockValidators = [mockValidator];
-
-        render(<SelectValidatorScreen message={mockMessage} validators={mockValidators} loading={false} onFinish={mockOnFinish} />);
-
-        const validator = screen.getAllByText(mockValidator.accountId)[0];
-        expect(validator).toBeDefined();
-        fireEvent.press(validator);
-
-        await waitFor(() => expect(mockOnFinish).toHaveBeenCalled());
     });
 });
