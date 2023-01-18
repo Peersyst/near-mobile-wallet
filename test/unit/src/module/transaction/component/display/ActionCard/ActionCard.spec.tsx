@@ -1,9 +1,8 @@
-import { ActionMock } from "test-mocks";
+import { ActionMock, UseNativeTokenConversionMock } from "test-mocks";
 import { EnhancedTransactionActionKind, TransactionActionKind } from "near-peersyst-sdk";
 import { formatDate, render, screen, translate, waitFor } from "test-utils";
 import ActionCard from "module/transaction/component/display/ActionCard/ActionCard";
 import { config } from "config";
-import { UseNativeTokenConversionMock } from "mocks/common/wallet/useNativeTokenConversion";
 import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
 import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
 

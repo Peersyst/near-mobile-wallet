@@ -29,6 +29,7 @@ export function useNEARAmountWithMaxTextFieldController({ index, maxAmount }: Us
 
     const formattedBalance = useFormatBalance(maxBalance, {
         numberFormatOptions: { maximumFractionDigits: 2 },
+        units: config.tokenName,
     });
 
     return {

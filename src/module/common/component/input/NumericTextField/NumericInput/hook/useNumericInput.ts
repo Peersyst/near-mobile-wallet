@@ -2,6 +2,8 @@ import { useControlled } from "@peersyst/react-hooks";
 import { CoreTextInputProps } from "@peersyst/react-components-core";
 
 import { getGroupSeparator, getDecimalSeparator, formatNumber } from "../utils";
+import { useRecoilValue } from "recoil";
+import settingsState from "module/settings/state/SettingsState";
 
 export type UseNumericInputParams = Pick<CoreTextInputProps, "value" | "onChange" | "defaultValue"> & {
     locale?: string;
@@ -17,7 +19,7 @@ export default function useNumericInput({
     maxDecimals,
 }: UseNumericInputParams): UseNumericInputResult {
     const [value, setValue] = useControlled(defaultValue, valueProp, onChangeProp);
-    const defaultLocale = "en";
+    const { locale: defaultLocale } = useRecoilValue(settingsState);
     const finalLocale = locale || defaultLocale;
     const digitGroupingSeparator = getGroupSeparator(finalLocale);
     const decimalSeparator = getDecimalSeparator(finalLocale);

@@ -4,8 +4,9 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import StakeModal from "../StakeModal/StakeModal";
 import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
 
-export enum SendScreens {
+export enum AddStakeScreens {
     SET_AMOUNT,
+    SELECT_VALIDATOR,
 }
 
 const AddStakeModal = createBackdrop((props: ExposedBackdropProps) => {
