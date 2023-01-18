@@ -9,11 +9,11 @@ interface SelectValidatorScreenProps {
     message: string;
     validators: Validator[] | undefined;
     loading: boolean;
-    onFinish: () => void;
+    onSelect: () => void;
     withSearch?: boolean;
 }
 
-const SelectValidatorScreen = ({ message, validators, loading, onFinish, ...rest }: SelectValidatorScreenProps): JSX.Element => {
+const SelectValidatorScreen = ({ message, validators, loading, onSelect, ...rest }: SelectValidatorScreenProps): JSX.Element => {
     const setStakeState = useSetRecoilState(stakeRecoilState);
 
     const onSelected = (validator: Validator) => {
@@ -24,7 +24,7 @@ const SelectValidatorScreen = ({ message, validators, loading, onFinish, ...rest
                     validator: validator,
                 };
             });
-            onFinish();
+            onSelect();
         }
     };
 

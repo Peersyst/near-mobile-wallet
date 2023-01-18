@@ -27,7 +27,7 @@ const ValidatorListSelect = ({ search = "" }: StakingListProps): JSX.Element => 
     }, [search, data]);
 
     const haveElementList = data && dataList.length ? true : false;
-    const showEmptyList = isLoading ? true : haveElementList ? false : true;
+    const showEmptyList = isLoading ? false : haveElementList ? false : true;
 
     return (
         <MainList

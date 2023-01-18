@@ -30,18 +30,22 @@ const StakeValidatorSelect = ({ validators, loading, onSelected, withSearch = fa
     return (
         <ValidatorSelectProvider value={{ validators: validators, isLoading: loading, onSelected: onSelected }}>
             <Col flex={1}>
-                <Col gap={12}>
-                    <TextField
-                        label={translate("enter_a_validator_account_id")!}
-                        placeholder={translate("validator_name_near")!}
-                        name="accountId"
-                        value={accountId}
-                        onChange={setAccountId}
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                    />
-                    {ValidatorList}
-                </Col>
+                {withSearch ? (
+                    <Col gap={12}>
+                        <TextField
+                            label={translate("enter_a_validator_account_id")!}
+                            placeholder={translate("validator_name_near")!}
+                            name="accountId"
+                            value={accountId}
+                            onChange={setAccountId}
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                        />
+                        {ValidatorList}
+                    </Col>
+                ) : (
+                    ValidatorList
+                )}
             </Col>
         </ValidatorSelectProvider>
     );
