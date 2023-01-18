@@ -147,7 +147,7 @@
     "testnet_warning": "Esto es una versión de Testnet. No envíes NEAR de Mainnet a esta cuenta.",
     "dismiss": "Cerrar",
     "pending_transaction_text": "Tienes una transacción no cometida. Por favor, espera a que esté cometida para poder enviar una nueva.",
-    "staking": "Staking",
+    "staking": "staking",
     "staked": "staked",
     "stake_my_tokens": "Stakea mis tokens",
     "import-your-near-wallet": "Importa tu wallet de NEAR",
@@ -212,5 +212,9 @@
     "totalAmountStaked": "Cantidad total stakeada",
     "rewardsEarned": "Recompensas obtenidas",
     "availableForWithdrawal": "Disponible para retirada",
-    "summary": "Resumen"
+    "summary": "Mi staking",
+    "your_current_validators": "Validadores actuales",
+    "fee": "Comisión",
+    "active": "activo",
+    "inactive": "inactivo"
 }

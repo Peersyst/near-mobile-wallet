@@ -2,12 +2,13 @@ import BottomBar from "module/common/component/navigation/BottomBar/BottomBar";
 import { MainBottomScreens } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup";
 import { fireEvent, render, translate } from "test-utils";
 import mockedState from "./utils/mockedState";
+import { capitalize } from "@peersyst/react-utils";
 
 describe("BottomBar test", () => {
     test("Renders correctly", () => {
         const screen = render(<BottomBar state={{ ...mockedState, index: 0 } as any} navigation={{ navigate: jest.fn() } as any} />);
         //Staking
-        expect(screen.getByText(translate("staking"))).toBeDefined();
+        expect(screen.getByText(capitalize(translate("staking")))).toBeDefined();
         expect(screen.getByTestId("DatabaseIcon")).toBeDefined();
         //Wallet
         expect(screen.getByText(translate("wallet"))).toBeDefined();

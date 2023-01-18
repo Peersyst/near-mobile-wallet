@@ -23,7 +23,7 @@ const StakingDetailCard = ({ title, amount = "0", stakeable, isLoading }: Stakin
     return (
         <StakingDetailRoot flex={1} gap={12} justifyContent="space-between" alignItems="center">
             <Row gap={12} alignItems="center">
-                <ActionIcon actionKind={TransactionActionKind.STAKE} />
+                <ActionIcon type={TransactionActionKind.STAKE} />
                 <Col gap={3}>
                     <Typography variant="body3Regular">{title}</Typography>
                     <Skeleton loading={isLoading} width={100} height={20}>
