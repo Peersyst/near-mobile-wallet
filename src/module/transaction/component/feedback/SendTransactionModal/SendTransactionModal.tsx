@@ -5,16 +5,25 @@ import { useState } from "react";
 import { InteractionManager } from "react-native";
 import { SendTransactionModalProps } from "./SendTransactionModal.types";
 
-function SendTransactionModal({ useMutationStatusResult, onExited, children, sendTransaction }: SendTransactionModalProps) {
+function SendTransactionModal({ onExited, children, sendTransaction, isLoading, isSuccess, isError }: SendTransactionModalProps) {
     const translate = useTranslate();
     const [showConfirmation, setShowConfirmation] = useState(false);
-    const { isLoading, isSuccess, isError } = useMutationStatusResult;
 
     function runAfterInteractions(cb?: () => void) {
         if (cb) InteractionManager.runAfterInteractions(cb);
     }
 
-    const handleOnPinConfirmed = () => runAfterInteractions(sendTransaction);
+    const handleSendTransaction = async () => {
+        try {
+            if (sendTransaction["then" as keyof typeof SendTransactionModal] === "function") {
+                await sendTransaction();
+            } else {
+                sendTransaction();
+            }
+        } catch (e) {}
+    };
+
+    const handleOnPinConfirmed = () => runAfterInteractions(handleSendTransaction);
 
     const handleOnExited = () => runAfterInteractions(onExited);
 

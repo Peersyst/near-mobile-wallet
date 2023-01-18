@@ -1,4 +1,4 @@
-import { Col, Typography, useModal } from "@peersyst/react-native-components";
+import { Col, Typography, useModal, useToast } from "@peersyst/react-native-components";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
 import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
@@ -12,6 +12,7 @@ import { useSendTransaction } from "module/transaction/hook/useSendTransaction";
 const SendConfirmationScreen = (): JSX.Element => {
     const translate = useTranslate();
     const { hideModal } = useModal();
+    const { showToast } = useToast();
     const sendStateValue = useRecoilValue(sendState);
     const { sendTransaction, ...rest } = useSendTransaction(sendStateValue);
     const {
@@ -22,16 +23,13 @@ const SendConfirmationScreen = (): JSX.Element => {
     const senderWallet = wallets[senderWalletIndex!];
     const { account: senderName } = senderWallet;
 
-    async function handleSend() {
-        await sendTransaction();
-    }
-
     function closeModal() {
         hideModal(SendModal.id);
+        showToast(translate("send_success"), { type: "success" });
     }
 
     return (
-        <SendTransactionModal onExited={closeModal} useMutationStatusResult={{ ...rest }} sendTransaction={handleSend}>
+        <SendTransactionModal onExited={closeModal} sendTransaction={sendTransaction} {...rest}>
             {({ showModal, isSuccess, isLoading }) => (
                 <Col gap={24} onStartShouldSetResponder={() => true}>
                     <SendSummary
