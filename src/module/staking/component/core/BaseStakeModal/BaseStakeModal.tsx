@@ -7,21 +7,20 @@ import { useResetRecoilState } from "recoil";
 import stakeState from "module/staking/state/StakeState";
 import { CardNavigatorModalProps } from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { TabPanel, Tabs } from "@peersyst/react-native-components";
-import { TransaltionResourceType } from "locale";
 
-export interface ModalSteps {
-    title: TransaltionResourceType;
-    tabId: AddStakeScreens | UnstakeModalScreens;
+export interface ModalTabs {
+    title: string;
+    tabIndex: AddStakeScreens | UnstakeModalScreens;
     tabContent: ReactElement;
 }
 
 interface BaseStakeModalProps extends Omit<CardNavigatorModalProps, "children"> {
-    modalSteps: ModalSteps[];
+    tabs: ModalTabs[];
     onExited?: () => void;
 }
 
-const BaseStakeModal = ({ modalSteps, onExited, ...rest }: BaseStakeModalProps): JSX.Element => {
-    const [activeIndex, setActiveIndex] = useState(modalSteps[0].tabId);
+const StakeModal = ({ tabs, onExited, ...rest }: BaseStakeModalProps): JSX.Element => {
+    const [activeIndex, setActiveIndex] = useState(tabs[0].tabIndex);
     const translate = useTranslate();
 
     const resetStakeState = useResetRecoilState(stakeState);
@@ -35,10 +34,10 @@ const BaseStakeModal = ({ modalSteps, onExited, ...rest }: BaseStakeModalProps):
         <BaseStakeModalRoot
             navbar={{
                 back: true,
-                title: translate(modalSteps[Number(activeIndex)].title)!,
+                title: translate(tabs[Number(activeIndex)].title)!,
                 onBack: activeIndex > 0 ? () => setActiveIndex((oldIndex) => oldIndex - 1) : undefined,
                 steps: {
-                    length: modalSteps.length,
+                    length: tabs.length,
                     index: activeIndex,
                 },
             }}
@@ -46,8 +45,8 @@ const BaseStakeModal = ({ modalSteps, onExited, ...rest }: BaseStakeModalProps):
             {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
-                {modalSteps.map(({ tabId, tabContent }) => (
-                    <TabPanel key={tabId} index={tabId}>
+                {tabs.map(({ tabIndex, tabContent }) => (
+                    <TabPanel key={tabIndex} index={tabIndex}>
                         {tabContent}
                     </TabPanel>
                 ))}
@@ -56,4 +55,4 @@ const BaseStakeModal = ({ modalSteps, onExited, ...rest }: BaseStakeModalProps):
     );
 };
 
-export default BaseStakeModal;
+export default StakeModal;
