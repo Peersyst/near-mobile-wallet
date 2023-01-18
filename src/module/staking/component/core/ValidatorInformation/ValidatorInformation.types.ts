@@ -1,4 +1,4 @@
-import { Validator } from "module/sdk";
+import { Validator } from "near-peersyst-sdk";
 
 export interface ValidatorInformationProps {
     validator: Validator;

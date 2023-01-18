@@ -1,8 +1,9 @@
 import { render, translate } from "test-utils";
 import ValidatorInformation from "module/staking/component/core/ValidatorInformation/ValidatorInformation";
-import { ValidatorMock } from "mocks/NearSdk";
 import { screen } from "@testing-library/react-native";
+
 import { capitalize } from "@peersyst/react-utils";
+import { ValidatorMock } from "mocks/NearSdk/validator.mock";
 
 describe("Tests for ValidatorInformation", () => {
     test("Renders correctly with active validator", () => {
