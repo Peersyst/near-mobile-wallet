@@ -13,9 +13,10 @@ import { config } from "config";
 
 export interface BaseSendSummaryFullProps {
     amount: string | number;
-    children: ReactElement;
+    children?: ReactElement;
     showTotal?: boolean;
     showFiat?: boolean;
+    showFee?: boolean;
     style?: ViewStyle;
     fee?: FeeProps["fee"];
     token?: Token;
@@ -24,7 +25,17 @@ export interface BaseSendSummaryFullProps {
 
 export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
 
-const BaseSendSummary = ({ amount, fee, children, showTotal, showFiat, style, token, nft }: BaseSendSummaryFullProps): JSX.Element => {
+const BaseSendSummary = ({
+    amount,
+    fee,
+    children,
+    showTotal,
+    showFiat,
+    style,
+    token,
+    nft,
+    showFee = true,
+}: BaseSendSummaryFullProps): JSX.Element => {
     const translate = useTranslate();
     const finalFee = fee ?? config.estimatedFee;
     const feeDecimals = finalFee.split(".")[1]?.length ?? 0;
@@ -48,7 +59,7 @@ const BaseSendSummary = ({ amount, fee, children, showTotal, showFiat, style, to
                             )}
                         </Typography>
                     )}
-                    <Fee fee={fee} typographyVariant="body3" />
+                    {showFee && <Fee fee={fee} typographyVariant="body3" />}
                     {showTotal && token === undefined && nft === undefined && (
                         <TotalText variant="body2Regular" textAlign="center" numberOfLines={1}>
                             <>
