@@ -217,7 +217,6 @@
     "fee": "fee",
     "active": "active",
     "inactive": "inactive",
-    "summary": "My staking",
     "stake_your_near": "STAKE YOUR NEAR",
     "unstake_your_near": "UNSTAKE YOUR NEAR",
     "select_validator": "SELECT VALIDATOR",
