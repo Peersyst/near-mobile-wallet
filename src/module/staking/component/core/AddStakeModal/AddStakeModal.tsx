@@ -8,6 +8,7 @@ export enum AddStakeScreens {
     SET_AMOUNT,
     SELECT_VALIDATOR,
     CONFIRM_VALIDATOR,
+    SUCCESS,
 }
 
 const AddStakeModal = createBackdrop((props: ExposedBackdropProps) => {
@@ -32,7 +33,7 @@ const AddStakeModal = createBackdrop((props: ExposedBackdropProps) => {
         {
             tabContent: <></>,
             title: translate("success"),
-            tabIndex: 3,
+            tabIndex: AddStakeScreens.SUCCESS,
         },
     ];
     return <StakeModal tabs={tabs} {...props} />;

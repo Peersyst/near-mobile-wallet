@@ -1,7 +1,7 @@
 import { createModal, ExposedBackdropProps } from "@peersyst/react-native-components";
 import StakeModal, { ModalTabs } from "module/staking/component/core/StakeModal/StakeModal";
 import { useTranslate } from "module/common/hook/useTranslate";
-import UnstakeValidatorScreen from "module/staking/screen/SelectValidatorScreen/UnstakeSelectValidatorScreen/UnstakeSelectValidatorScreen";
+import UnstakeSelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/UnstakeSelectValidatorScreen/UnstakeSelectValidatorScreen";
 import UnstakeSetAmountScreen from "module/staking/screen/BaseSetAmountStakeScreen/UnstakeSetAmountScreen/UnstakeSetAmountScreen";
 
 export enum UnstakeModalScreens {
@@ -17,7 +17,7 @@ const UnstakeModal = createModal(({ ...rest }: ExposedBackdropProps): JSX.Elemen
         {
             title: translate("select_validator"),
             tabIndex: UnstakeModalScreens.SELECT_VALIDATOR,
-            tabContent: <UnstakeValidatorScreen />,
+            tabContent: <UnstakeSelectValidatorScreen />,
         },
         {
             title: translate("unstake_your_near"),

@@ -1,8 +1,5 @@
 import { useContext } from "react";
-import {
-    ValidatorSelectContext,
-    ValidatorSelectContextInterface,
-} from "../component/input/StakeValidatorSelect/context/ValidatorSelectContext";
+import { ValidatorSelectContextInterface, ValidatorSelectContext } from "../context/ValidatorSelectContext";
 
 export const useValidatorSelect = (): ValidatorSelectContextInterface => {
     return useContext(ValidatorSelectContext);
