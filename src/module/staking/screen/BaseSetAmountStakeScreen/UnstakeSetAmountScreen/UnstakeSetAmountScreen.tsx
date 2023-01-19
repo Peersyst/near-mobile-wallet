@@ -13,7 +13,7 @@ const UnstakeSetAmountScreen = (): JSX.Element => {
     const [{ validator }] = useRecoilState(stakeState);
     const resetStakeState = useResetRecoilState(stakeState);
 
-    const handleSubmit = () => setTab(UnstakeModalScreens.CONFIRM);
+    const handleSubmit = () => setTab(UnstakeModalScreens.CONFIRM_VALIDATOR);
     const onEditAction = () => {
         resetStakeState();
         setTab(UnstakeModalScreens.SELECT_VALIDATOR);
