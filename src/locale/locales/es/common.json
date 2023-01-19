@@ -227,5 +227,6 @@
     "or_select_a_validator": "O seleccione un Validador",
     "your_current_validators": "Tus validadores actuales",
     "active": "activo",
-    "inactive": "inactivo"
+    "inactive": "inactivo",
+    "edit": "Edita"
 }

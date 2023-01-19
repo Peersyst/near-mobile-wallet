@@ -38,7 +38,7 @@ const ValidatorInformation = ({
             <Col>
                 {action ? (
                     <Button variant="outlined" size="sm" onPress={onAction}>
-                        {translate("unstake")}
+                        {translate("edit")}
                     </Button>
                 ) : (
                     <ValidatorStakingBalance stakingBalance={stakingBalance} />

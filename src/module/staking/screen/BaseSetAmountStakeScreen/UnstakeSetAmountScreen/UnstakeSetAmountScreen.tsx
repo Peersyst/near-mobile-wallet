@@ -25,7 +25,7 @@ const UnstakeSetAmountScreen = (): JSX.Element => {
     return (
         <BaseSetAmountStakeScreen
             maxAmount={validatorData?.stakingBalance?.staked}
-            label={translate("enter_amount_you_want_to", { action: "unstake" })}
+            label={translate("enter_amount_want_to", { action: "unstake" })}
             onSubmit={handleSubmit}
         >
             <Col>

@@ -10,7 +10,7 @@ const AddStakeSetAmountScreen = () => {
 
     const handleSubmit = () => setTab(AddStakeScreens.SELECT_VALIDATOR);
 
-    return <BaseSetAmountStakeScreen label={translate("enter_amount_want_to_stake")!} onSubmit={handleSubmit} />;
+    return <BaseSetAmountStakeScreen label={translate("enter_amount_want_to", { action: "stake" })!} onSubmit={handleSubmit} />;
 };
 
 export default AddStakeSetAmountScreen;
