@@ -1,22 +1,18 @@
 import { Col } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
-import StakeValidatorSelect from "module/staking/component/input/StakeValidatorSelect/StakeValidatorSelect";
+import StakeValidatorSelect, { StakeValidatorSelectProps } from "module/staking/component/input/StakeValidatorSelect/StakeValidatorSelect";
 import { useSetRecoilState } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
 import { Validator } from "near-peersyst-sdk";
 
-interface SelectValidatorScreenProps {
+interface SelectValidatorScreenProps extends StakeValidatorSelectProps {
     message: string;
-    validators: Validator[] | undefined;
-    loading: boolean;
-    onSelect: () => void;
-    withSearch?: boolean;
 }
 
-const SelectValidatorScreen = ({ message, validators, loading, onSelect, ...rest }: SelectValidatorScreenProps): JSX.Element => {
+const SelectValidatorScreen = ({ message, onSelected, ...rest }: SelectValidatorScreenProps): JSX.Element => {
     const setStakeState = useSetRecoilState(stakeRecoilState);
 
-    const onSelected = (validator: Validator) => {
+    const handleOnSelected = (validator: Validator) => {
         if (validator.accountId) {
             setStakeState((state) => {
                 return {
@@ -24,7 +20,7 @@ const SelectValidatorScreen = ({ message, validators, loading, onSelect, ...rest
                     validator: validator,
                 };
             });
-            onSelect();
+            onSelected(validator);
         }
     };
 
@@ -33,7 +29,7 @@ const SelectValidatorScreen = ({ message, validators, loading, onSelect, ...rest
             <Typography color={(palette) => palette.gray["300"]} textAlign="center" variant="body3Strong">
                 {message}
             </Typography>
-            <StakeValidatorSelect validators={validators} loading={loading} onSelected={onSelected} {...rest} />
+            <StakeValidatorSelect onSelected={handleOnSelected} {...rest} />
         </Col>
     );
 };

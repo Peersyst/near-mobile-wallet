@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { Validator } from "near-peersyst-sdk";
 
 export interface ValidatorSelectContextInterface {
-    validators: Validator[] | undefined;
+    validators: Validator[];
     isLoading: boolean;
     onSelected: (validator: Validator) => void;
 }
@@ -10,7 +10,6 @@ export interface ValidatorSelectContextInterface {
 export const ValidatorSelectContext = createContext<ValidatorSelectContextInterface>({
     validators: [],
     isLoading: false,
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onSelected: () => {},
 });
 

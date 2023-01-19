@@ -1,13 +1,13 @@
 import { useTranslate } from "module/common/hook/useTranslate";
 import { useState } from "react";
 import TextField from "module/common/component/input/TextField/TextField";
-import ValidatorListSelect from "../ValidatorListSelect/ValidatorListSelect";
+import ValidatorListSelect from "./ValidatorListSelect/ValidatorListSelect";
 import { Col, Label } from "@peersyst/react-native-components";
-import { ValidatorSelectProvider } from "module/staking/component/context/ValidatorSelectContext";
 import { Validator } from "near-peersyst-sdk";
+import { ValidatorSelectProvider } from "./context/ValidatorSelectContext";
 
-interface StakeValidatorSelectProps {
-    validators: Validator[] | undefined;
+export interface StakeValidatorSelectProps {
+    validators: Validator[];
     loading: boolean;
     onSelected: (validator: Validator) => void;
     withSearch?: boolean;

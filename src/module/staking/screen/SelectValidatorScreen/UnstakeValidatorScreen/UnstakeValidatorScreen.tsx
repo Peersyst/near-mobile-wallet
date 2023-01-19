@@ -15,7 +15,7 @@ const UnstakeValidatorScreen = (): JSX.Element => {
             message={translate("select_unstake_validator")}
             validators={stakingValidators}
             loading={isLoading}
-            onSelect={() => setTab(UnstakeModalScreens.SET_AMOUNT)}
+            onSelected={() => setTab(UnstakeModalScreens.SET_AMOUNT)}
         />
     );
 };

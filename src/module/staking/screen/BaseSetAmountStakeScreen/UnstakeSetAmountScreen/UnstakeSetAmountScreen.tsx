@@ -12,6 +12,7 @@ const UnstakeSetAmountScreen = (): JSX.Element => {
     const setTab = useSetTab();
 
     const [{ validator }] = useRecoilState(stakeState);
+
     const resetStakeState = useResetRecoilState(stakeState);
 
     const { data: validatorData } = useGetValidatorDataFromId(validator.accountId);
