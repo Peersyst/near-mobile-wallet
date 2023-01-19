@@ -26,6 +26,7 @@ const SendSetAmountScreen = (): JSX.Element => {
      * (check the recoil defaultState of sendState)
      */
     const [asset, setAsset] = useState<Asset | undefined>(sendState.asset);
+    const [amount, setAmount] = useState<string | undefined>(sendState.amount?.toString() ?? undefined);
     const translate = useTranslate();
 
     const senderWalletIndex = sendState.senderWalletIndex!;
@@ -40,18 +41,26 @@ const SendSetAmountScreen = (): JSX.Element => {
         setTab(SendScreens.CONFIRMATION);
     };
 
+    const handleAssetChange = (asset: Asset): void => {
+        setAsset(asset);
+        setAmount("");
+    };
+
     return (
         <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
                 <Col gap={24}>
                     <WalletAssetSelect
                         label={translate("choose_what_to_send")}
-                        onChange={(asset) => setAsset(asset)}
+                        onChange={handleAssetChange}
                         value={asset}
                         index={senderWalletIndex}
                         name={SEND_SET_AMOUNT_FORM_KEYS.asset}
                     />
                     <AssetAmountTextField
+                        hideError={amount === ""}
+                        value={amount}
+                        onChange={(amount) => setAmount(amount)}
                         label={translate("select_the_amount_to_send")}
                         asset={asset ?? { type: AssetType.TOKEN }}
                         placeholder={translate("enter_amount")}

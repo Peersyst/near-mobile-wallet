@@ -1,10 +1,12 @@
-import { TextFieldProps, NumericInput as BaseNumericInput } from "@peersyst/react-native-components";
+import { NumericInput, NumericInputProps, TextFieldProps } from "@peersyst/react-native-components";
 import TextField from "../TextField/TextField";
 
-export type NumericTextFieldProps = Omit<TextFieldProps, "input" | "keyboardType">;
+export type NumericTextFieldProps = Omit<TextFieldProps, "input" | "keyboardType"> & {
+    maxDecimals?: NumericInputProps["maxDecimals"];
+};
 
-const NumericTextField = (props: NumericTextFieldProps) => {
-    return <TextField input={BaseNumericInput} {...props} />;
+const NumericTextField = ({ maxDecimals, ...props }: NumericTextFieldProps) => {
+    return <TextField {...props} input={NumericInput} inputProps={{ maxDecimals }} />;
 };
 
 export default NumericTextField;
