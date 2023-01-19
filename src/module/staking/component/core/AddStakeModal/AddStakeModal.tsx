@@ -7,6 +7,7 @@ import AddStakeValidatorScreen from "module/staking/screen/SelectValidatorScreen
 export enum AddStakeScreens {
     SET_AMOUNT,
     SELECT_VALIDATOR,
+    CONFIRM_VALIDATOR,
 }
 
 const AddStakeModal = createBackdrop((props: ExposedBackdropProps) => {
@@ -26,7 +27,7 @@ const AddStakeModal = createBackdrop((props: ExposedBackdropProps) => {
         {
             tabContent: <></>,
             title: translate("confirm_validator"),
-            tabIndex: 2,
+            tabIndex: AddStakeScreens.CONFIRM_VALIDATOR,
         },
         {
             tabContent: <></>,

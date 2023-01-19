@@ -10,23 +10,23 @@ export interface StakingListProps {
 }
 const ValidatorListSelect = ({ search = "" }: StakingListProps): JSX.Element => {
     const [isPending, startTransition] = useTransition();
-    const { validators: data, isLoading, onSelected } = useValidatorSelect();
-    const [dataList, setDataList] = useState<Validator[]>(data ? data : []);
+    const { validators: validators, isLoading, onSelected } = useValidatorSelect();
+    const [dataList, setDataList] = useState<Validator[]>(validators ? validators : []);
 
     useEffect(() => {
         startTransition(() => {
-            if (search !== "" && data) {
+            if (search !== "" && validators) {
                 const searchReg = new RegExp(search, "i");
-                setDataList(data.filter((item) => searchReg.test(item.accountId)));
+                setDataList(validators.filter((item) => searchReg.test(item.accountId)));
             } else {
-                if (data) {
-                    setDataList(data);
+                if (validators) {
+                    setDataList(validators);
                 }
             }
         });
-    }, [search, data]);
+    }, [search, validators]);
 
-    const haveElementList = data && dataList.length ? true : false;
+    const haveElementList = validators && dataList.length ? true : false;
     const showEmptyList = isLoading ? false : haveElementList ? false : true;
 
     return (
