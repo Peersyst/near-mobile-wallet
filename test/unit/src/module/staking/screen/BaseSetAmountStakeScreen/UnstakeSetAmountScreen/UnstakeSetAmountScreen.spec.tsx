@@ -42,6 +42,6 @@ describe("Test for SetAmountStakeScreen component", () => {
         await screen.findByText("Max");
         fireEvent.changeText(input, "100");
         fireEvent.press(btn);
-        await waitFor(() => expect(setTab).toHaveBeenCalledWith(UnstakeModalScreens.CONFIRM));
+        await waitFor(() => expect(setTab).toHaveBeenCalledWith(UnstakeModalScreens.CONFIRM_VALIDATOR));
     });
 });
