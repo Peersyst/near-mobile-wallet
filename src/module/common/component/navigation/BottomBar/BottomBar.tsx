@@ -6,6 +6,7 @@ import { BottomBarRoot } from "./BottomBar.styles";
 import BottomBarItem from "./BottomBarItem/BottomBarItem";
 import { DatabaseIcon } from "module/common/icons/DatabaseIcon";
 import { useTranslate } from "module/common/hook/useTranslate";
+import { capitalize } from "@peersyst/react-utils";
 
 type BottomBarProps = Pick<BottomTabBarProps, "state" | "navigation">;
 
@@ -23,7 +24,7 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
             <BottomBarItem
                 onPress={() => handleNavigation(MainBottomScreens.STAKING)}
                 isActive={activeTab === MainBottomScreens.STAKING}
-                label={translate("staking")}
+                label={capitalize(translate("staking"))}
                 Icon={<DatabaseIcon />}
             />
             <BottomBarItem

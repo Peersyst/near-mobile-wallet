@@ -44,5 +44,6 @@ export * from "./SunIcon";
 export * from "./TransactionReceivedIcon";
 export * from "./TransactionSentIcon";
 export * from "./UserAddIcon";
+export * from "./UserCheckIcon";
 export * from "./UserDeleteIcon";
 export * from "./WalletIcon";

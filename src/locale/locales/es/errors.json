@@ -27,5 +27,6 @@
     "invalid_name_ID": "¡Oh! {{nameID}} no está disponible. ¿Tal vez lo tienes en otra cuenta?",
     "invalid_seleccted_account": "Debes seleccionar una cuenta con un balance de almenos {{amountInNEAR}} NEAR.",
     "error_creating_account": "Error al crear la cuenta",
-    "insufficient_balance": "No tienes balance"
+    "insufficient_balance": "No tienes balance",
+    "not_using_validators": "No estás realizando stake en ningún validador."
 }

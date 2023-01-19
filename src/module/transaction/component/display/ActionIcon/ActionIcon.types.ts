@@ -6,12 +6,10 @@ export interface TxIcon {
     active: boolean;
 }
 
+export type ActionIconType = ActionKind;
+
 export interface ActionIconProps {
-    actionKind: ActionKind;
+    type: ActionIconType;
 }
 
-export interface ActionIconCompponentProps {
-    active?: boolean;
-}
-
-export type ActionIcon = Record<ActionKind, TxIcon>;
+export type ActionIcon = Record<ActionIconType, TxIcon>;
