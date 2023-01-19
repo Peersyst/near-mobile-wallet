@@ -4,6 +4,7 @@ import { Col, WithSkeleton, withSkeleton } from "@peersyst/react-native-componen
 import { formatNews } from "module/news/utils/formatNews";
 import { NewsDto } from "module/news/types";
 import useFormatDate from "module/common/hook/useFormatDate";
+import { placeholder_image } from "images";
 
 const SimpleNewsCard = ({ ...news }: WithSkeleton<NewsDto>): JSX.Element => {
     const { uri, title, imageUri, date } = formatNews(news);
@@ -13,10 +14,10 @@ const SimpleNewsCard = ({ ...news }: WithSkeleton<NewsDto>): JSX.Element => {
         <TouchableWithoutFeedback onPress={() => Linking.openURL(uri)}>
             <SimpleNewsCardRoot elevation={0}>
                 <Col gap={12} justifyContent="center">
-                    <NewsImage source={{ uri: imageUri }} />
+                    <NewsImage source={imageUri !== "" ? { uri: imageUri } : placeholder_image} />
                     <Col gap={2}>
                         <NewDate variant="body3Regular">{formatDate(date)}</NewDate>
-                        <NewTitle variant="body2Strong">{title}</NewTitle>
+                        <NewTitle variant="body3Strong">{title}</NewTitle>
                     </Col>
                 </Col>
             </SimpleNewsCardRoot>

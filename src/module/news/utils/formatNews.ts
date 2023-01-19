@@ -1,7 +1,6 @@
 import { formatHtmlEntities } from "utils/formatHtmlEntities";
 import { NewsDto, NewsType } from "../types";
 
-const defaultImageUri = "https://www.nervos.org/wp-content/uploads/2020/12/Group-22.jpg";
 const defaultUri = "https://twitter.com/NervosNetwork/";
 
 const formatTitle = (title: string): string => {
@@ -25,7 +24,7 @@ const formatTitle = (title: string): string => {
 export const formatNews = (News: NewsDto): NewsType => {
     const title = News.title ? formatTitle(News.title) : "New News from Nervos";
     const date = News.pubDate || new Date().toString();
-    const imageUri = News["content"]?.__url || defaultImageUri;
+    const imageUri = News["content"]?.__url || "";
     const uri = News.link || defaultUri;
     return { title, date, imageUri, uri };
 };
