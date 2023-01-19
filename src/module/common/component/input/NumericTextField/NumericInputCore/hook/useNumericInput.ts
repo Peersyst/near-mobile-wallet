@@ -26,10 +26,8 @@ export default function useNumericInput({
 
     const onChange = (newValue: string) => {
         const numberParsed = parseNumber(newValue, digitGroupingSeparator, decimalSeparator);
-        console.log(Number(numberParsed));
 
         if (newValue.endsWith(digitGroupingSeparator) || isNaN(Number(numberParsed))) {
-            console.log("return");
             return;
         } else if (newValue === "") {
             setValue?.("");
@@ -37,9 +35,7 @@ export default function useNumericInput({
             const [int, dec] = newValue.split(decimalSeparator);
             if (maxDecimals !== undefined && dec && dec.length > maxDecimals) return;
             const rawInt = replaceAll(int, digitGroupingSeparator, "");
-            console.log("rawInt", rawInt);
             const rawValue = rawInt + (newValue.includes(decimalSeparator) ? "." : "") + (dec || "");
-            console.log("rawValue", rawValue);
             setValue?.(rawValue);
         }
     };
