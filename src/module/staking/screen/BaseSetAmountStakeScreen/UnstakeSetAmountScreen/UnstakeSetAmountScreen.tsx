@@ -4,7 +4,7 @@ import { Col, Label, useSetTab } from "@peersyst/react-native-components";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import stakeState from "module/staking/state/StakeState";
 import useGetValidatorDataFromId from "module/staking/query/useGetValidatorDataFromId";
-import ValidatorInformation from "module/staking/component/core/ValidatorInformation/ValidatorInformation";
+import ValidatorInformation from "module/staking/component/display/ValidatorInformation/ValidatorInformation";
 import { UnstakeModalScreens } from "module/staking/component/core/UnstakeModal/UnstakeModal";
 
 const UnstakeSetAmountScreen = (): JSX.Element => {

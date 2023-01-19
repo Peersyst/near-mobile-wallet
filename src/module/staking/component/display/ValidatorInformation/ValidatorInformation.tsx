@@ -1,14 +1,14 @@
 import { Col, Row } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { ValidatorRoot, ValidatorStatusTag } from "module/staking/component/core/ValidatorInformation/ValidatorInformation.styles";
+import { ValidatorRoot, ValidatorStatusTag } from "module/staking/component/display/ValidatorInformation/ValidatorInformation.styles";
 import Account from "module/wallet/component/display/Account/Account";
-import { ValidatorInformationProps } from "module/staking/component/core/ValidatorInformation/ValidatorInformation.types";
+import { ValidatorInformationProps } from "module/staking/component/display/ValidatorInformation/ValidatorInformation.types";
 import { capitalize } from "@peersyst/react-utils";
 import CardIcon from "module/common/component/display/CardIcon/CardIcon";
 import { UserCheckIcon } from "icons";
 import Button from "module/common/component/input/Button/Button";
-import ValidatorStakingBalance from "module/staking/component/core/ValidatorInformation/ValidatorStakingBalance/ValidatorStakingBalance";
+import ValidatorStakingBalance from "module/staking/component/display/ValidatorInformation/ValidatorStakingBalance/ValidatorStakingBalance";
 
 const ValidatorInformation = ({
     validator: { accountId, stakingBalance, fee, active },

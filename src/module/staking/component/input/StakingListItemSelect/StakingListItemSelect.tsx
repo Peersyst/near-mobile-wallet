@@ -1,6 +1,6 @@
 import { useTheme } from "@peersyst/react-native-styled";
 import { TouchableHighlight } from "react-native";
-import ValidatorInformation from "../../core/ValidatorInformation/ValidatorInformation";
+import ValidatorInformation from "../../display/ValidatorInformation/ValidatorInformation";
 import { Validator } from "near-peersyst-sdk";
 
 export interface StakingListItemProps {
