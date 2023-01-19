@@ -10,26 +10,25 @@ import AddStakeModal, { AddStakeScreens } from "module/staking/component/core/Ad
 import Button from "module/common/component/input/Button/Button";
 import SendTransactionModal from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
+import { SendTransactionModalProps } from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal.types";
 
-const ConfirmStakingScreen = () => {
+export interface ConfirmStakingScreenProps extends Omit<SendTransactionModalProps, "children" | "onExited"> {
+    label: string;
+    onCancel?: () => void;
+    onEditValidator?: () => void;
+    onExited?: () => void;
+}
+
+const ConfirmStakingScreen = ({ label, onCancel, onEditValidator, ...rest }: ConfirmStakingScreenProps) => {
     const translate = useTranslate();
-    const { validator, amount, sendTransaction, isLoading, isError, isSuccess, onExited, labelConfirm } = useRecoilValue(stakeRecoilState);
+    const { validator, amount } = useRecoilValue(stakeRecoilState);
 
-    const setTab = useSetTab();
-    const { hideModal } = useModal();
-    sendTransaction();
     return (
-        <SendTransactionModal
-            onExited={onExited}
-            sendTransaction={() => sendTransaction()}
-            isLoading={isLoading}
-            isError={isError}
-            isSuccess={isSuccess}
-        >
+        <SendTransactionModal {...rest}>
             {({ showModal, isSuccess, isLoading }) => (
                 <Col flex={1} gap={12} style={{ height: "100%" }}>
                     <Col flex={1} gap={12}>
-                        <Typography variant="body2Strong">{labelConfirm}</Typography>
+                        <Typography variant="body2Strong">{label}</Typography>
                         <BaseSendSummary
                             amount={amount}
                             fee={config.estimatedFee}
@@ -39,15 +38,11 @@ const ConfirmStakingScreen = () => {
                             style={{ paddingHorizontal: 16, paddingVertical: 20 }}
                         />
                         <Label variant="body2Strong" label={translate("with")!}>
-                            <ValidatorInformation
-                                validator={validator}
-                                action={translate("edit")!}
-                                onPressAction={() => setTab(AddStakeScreens.SELECT_VALIDATOR)}
-                            />
+                            <ValidatorInformation validator={validator} action={translate("edit")!} onPressAction={onEditValidator} />
                         </Label>
                     </Col>
                     <Col gap={8}>
-                        <Button variant="text" fullWidth onPress={() => hideModal(AddStakeModal.id)}>
+                        <Button variant="text" fullWidth onPress={onCancel}>
                             {translate("cancel")}
                         </Button>
                         <CountdownButton loading={isLoading} disabled={isSuccess} seconds={5} fullWidth onPress={showModal}>

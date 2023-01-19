@@ -1,23 +1,21 @@
-import { useSetTab } from "@peersyst/react-native-components";
-import { useRecoilState } from "recoil";
+import { useModal, useSetTab } from "@peersyst/react-native-components";
+import { useRecoilValue } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import useAddStake from "module/staking/query/useAddStake";
 import ConfirmStakingScreen from "../ConfirmStakingScreen/ConfirmStakingScreen";
-import { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
+import AddStakeModal, { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { useEffect } from "react";
 
 const AddStakingScreen = () => {
-    const [stakeState, setStakeState] = useRecoilState(stakeRecoilState);
-    const { validator, amount } = stakeState;
+    const { amount, validator } = useRecoilValue(stakeRecoilState);
     const setTab = useSetTab();
     const { index } = useSelectedWallet();
     const { mutate: addStake, isLoading, isError, isSuccess } = useAddStake(index);
     const translate = useTranslate();
+    const { hideModal } = useModal();
 
     const handleAddStake = () => {
-        console.log("llege aca");
         addStake({ validatorId: validator.accountId, amount: amount });
     };
 
@@ -25,19 +23,18 @@ const AddStakingScreen = () => {
         setTab(AddStakeScreens.SUCCESS);
     };
 
-    useEffect(() => {
-        setStakeState((oldState) => ({
-            ...oldState,
-            handleSubmit: handleAddStake,
-            isError: isError,
-            isLoading: isLoading,
-            isSuccess: isSuccess,
-            onExited: onExited,
-            labelConfirm: translate("confirm_new_staking_of"),
-        }));
-    }, [amount]);
-
-    return <ConfirmStakingScreen></ConfirmStakingScreen>;
+    return (
+        <ConfirmStakingScreen
+            onExited={onExited}
+            sendTransaction={handleAddStake}
+            isLoading={isLoading}
+            isError={isError}
+            label={translate("confirm_new_staking_of")}
+            isSuccess={isSuccess}
+            onEditValidator={() => setTab(AddStakeScreens.SELECT_VALIDATOR)}
+            onCancel={() => hideModal(AddStakeModal.id)}
+        />
+    );
 };
 
 export default AddStakingScreen;
