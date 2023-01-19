@@ -2,10 +2,10 @@ import { render, translate } from "test-utils";
 import * as Recoil from "recoil";
 import { waitFor } from "@testing-library/react-native";
 import { StakeStateMock, StakingBalanceMock, UseWalletStateMock } from "test-mocks";
-import ConfirmStakingScreen from "module/staking/screen/ConfirmStakingScreen/ConfirmStakingScreen";
+import ConfirmAddStakeScreen from "module/staking/screen/ConfirmAddStakeScreeen/ConfirmAddStakeScreeen";
 import { capitalize } from "@peersyst/react-utils";
 
-describe("ConfirmStakingScreen.spec tests", () => {
+describe("ConfirmAddStakeScreen.spec tests", () => {
     new UseWalletStateMock();
     const stakingBalanceMock = new StakingBalanceMock();
 
@@ -27,7 +27,7 @@ describe("ConfirmStakingScreen.spec tests", () => {
         const handleExited = jest.fn();
 
         const screen = render(
-            <ConfirmStakingScreen
+            <ConfirmAddStakeScreen
                 label={translate("confirm_new_staking_of")}
                 onEditValidator={onEditValidator}
                 sendTransaction={sendTransaction}

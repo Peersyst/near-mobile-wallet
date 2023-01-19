@@ -3,7 +3,7 @@ import SetAmountStakeScreen from "module/staking/screen/BaseSetAmountStakeScreen
 import { useTranslate } from "module/common/hook/useTranslate";
 import StakeModal, { ModalTabs } from "../StakeModal/StakeModal";
 import AddStakeValidatorScreen from "module/staking/screen/SelectValidatorScreen/AddStakeValidatorScreen/AddStakeValidatorScreen";
-import AddStakingScreen from "module/staking/screen/AddStakingScreen/AddStakingScreen";
+import AddStakingScreen from "module/staking/screen/AddStakeScreen/AddStakeScreen";
 
 export enum AddStakeScreens {
     SET_AMOUNT,
