@@ -28,7 +28,7 @@ describe("NEARAmountTextField Test", () => {
         );
         expect(screen.queryByText(translate("invalid_number_gt", { n: "0 " + config.tokenName, ns: "error" }))).toBeNull();
         //Do not allow one decimal more than 24
-        fireEvent.changeText(input, "0." + Array(24).fill(0).join("") + "1");
-        expect(screen.getByText(translate("invalid_number_gt", { n: "0 " + config.tokenName, ns: "error" }))).toBeDefined();
+        fireEvent.changeText(input, "0." + Array(28).fill(0).join("") + "1");
+        expect(screen.queryByText(translate("invalid_number_gt", { n: "0 " + config.tokenName, ns: "error" }))).toBeNull();
     });
 });

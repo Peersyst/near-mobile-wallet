@@ -21,6 +21,8 @@ export const useFTAmountTextFieldValidator = ({
         metadata: { symbol, decimals },
     } = token;
 
+    const amountDecimals = amount.split(".")?.[1];
+    const isAmountDecimalsGreaterThanTokenDecimals = amountDecimals ? amountDecimals.length > parseInt(decimals, 10) : false;
     //Check if amount is less than available balance
     const isGreaterThanMax = isTokenAmountGreaterThanThreshold(amount, balance, decimals);
     const formattedMaxAvailable = useFormatBalance(balance, {
@@ -53,7 +55,7 @@ export const useFTAmountTextFieldValidator = ({
         translateError("invalid_number_gte", { n: "10^(-" + decimals + ") " + symbol }),
     ];
 
-    const error = finalMaxAmountError || finalMinAmountGreaterThanZero || finalMinAmountError;
+    const error = finalMaxAmountError || (isAmountDecimalsGreaterThanTokenDecimals ? finalMinAmountError : finalMinAmountGreaterThanZero);
 
     return {
         error,

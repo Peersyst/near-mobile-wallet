@@ -1,13 +1,13 @@
 import { Col, Row } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { ValidatorRoot, ValidatorStatusTag } from "module/staking/component/core/ValidatorInformation/ValidatorInformation.styles";
 import Account from "module/wallet/component/display/Account/Account";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { ValidatorInformationProps } from "module/staking/component/core/ValidatorInformation/ValidatorInformation.types";
 import { capitalize } from "@peersyst/react-utils";
 import CardIcon from "module/common/component/display/CardIcon/CardIcon";
 import { UserCheckIcon } from "icons";
+import { ValidatorInformationProps } from "./ValidatorInformation.types";
+import { ValidatorRoot, ValidatorStatusTag } from "./ValidatorInformation.styles";
 
 const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, active } }: ValidatorInformationProps): JSX.Element => {
     const translate = useTranslate();
