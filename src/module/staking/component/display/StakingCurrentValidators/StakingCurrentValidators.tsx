@@ -1,5 +1,5 @@
 import Typography from "module/common/component/display/Typography/Typography";
-import ValidatorInformation from "module/staking/component/core/ValidatorInformation/ValidatorInformation";
+import ValidatorInformation from "module/staking/component/display/ValidatorInformation/ValidatorInformation";
 import useGetStakingValidators from "module/staking/hook/useGetStakingValidators";
 import { Col } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
