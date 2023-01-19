@@ -1,4 +1,4 @@
-import { Col, Label, useModal, useSetTab } from "@peersyst/react-native-components";
+import { Col, Label } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import Typography from "module/common/component/display/Typography/Typography";
 import { useRecoilValue } from "recoil";
@@ -6,7 +6,6 @@ import stakeRecoilState from "module/staking/state/StakeState";
 import BaseSendSummary from "module/transaction/component/display/BaseSendSummary/BaseSendSummary";
 import { config } from "config";
 import ValidatorInformation from "module/staking/component/core/ValidatorInformation/ValidatorInformation";
-import AddStakeModal, { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
 import Button from "module/common/component/input/Button/Button";
 import SendTransactionModal from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
