@@ -5,5 +5,8 @@ export function getDecimalSeparator(locale?: string): string {
 
 export function getGroupSeparator(locale?: string): string {
     const value = (1000).toLocaleString(locale);
-    return value.length === 5 ? value.substring(1, 2) : "";
+    if (value.length === 5) return value.substring(1, 2);
+    else {
+        return getDecimalSeparator(locale) === "," ? "." : ",";
+    }
 }

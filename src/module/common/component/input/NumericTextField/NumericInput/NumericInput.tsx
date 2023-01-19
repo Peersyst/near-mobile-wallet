@@ -12,7 +12,6 @@ const NumericInput = (props: NumericInputProps): JSX.Element => {
         ...rest
     } = useMergeDefaultProps("NumericInput", props);
 
-    console.log("Entro aqui");
     const { value, onChange } = useNumericInput({
         defaultValue,
         value: valueProp,

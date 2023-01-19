@@ -1,8 +1,8 @@
 import { getDecimalSeparator, getGroupSeparator } from "./utils";
 
 const formatNumber = (value: string, locale: string) => {
-    const digitGroupingSeparator = getGroupSeparator(locale);
     const decimalSeparator = getDecimalSeparator(locale);
+    const digitGroupingSeparator = getGroupSeparator(locale);
     if (value.endsWith(",") || isNaN(Number(value))) return "NaN";
     else if (value === "") return "";
     else {
