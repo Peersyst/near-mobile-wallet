@@ -7,10 +7,14 @@ import { Validator } from "near-peersyst-sdk";
 
 export default function (index?: number): QueryResult<Validator[]> {
     const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index);
-    return useQuery([Queries.GET_ALL_VALIDATOR_IDS, usedIndex, network], async (): Promise<Validator[]> => {
-        const allValidators = await serviceInstance.getAllValidators();
-        return getValidatorsWithStatus(allValidators, allValidators);
-    },{
-        enabled: queryEnabled
-    });
+    return useQuery(
+        [Queries.GET_ALL_VALIDATOR_IDS, usedIndex, network],
+        async (): Promise<Validator[]> => {
+            const allValidators = await serviceInstance.getAllValidators();
+            return getValidatorsWithStatus(allValidators, allValidators);
+        },
+        {
+            enabled: queryEnabled,
+        },
+    );
 }
