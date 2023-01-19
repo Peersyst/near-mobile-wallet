@@ -10,6 +10,7 @@ export interface ValidatorSelectContextInterface {
 export const ValidatorSelectContext = createContext<ValidatorSelectContextInterface>({
     validators: [],
     isLoading: false,
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onSelected: () => {},
 });
 
