@@ -3,13 +3,18 @@ import Typography from "module/common/component/display/Typography/Typography";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { ValidatorRoot, ValidatorStatusTag } from "module/staking/component/core/ValidatorInformation/ValidatorInformation.styles";
 import Account from "module/wallet/component/display/Account/Account";
-import Balance from "module/wallet/component/display/Balance/Balance";
 import { ValidatorInformationProps } from "module/staking/component/core/ValidatorInformation/ValidatorInformation.types";
 import { capitalize } from "@peersyst/react-utils";
 import CardIcon from "module/common/component/display/CardIcon/CardIcon";
 import { UserCheckIcon } from "icons";
+import Button from "module/common/component/input/Button/Button";
+import ValidatorStakingBalance from "module/staking/component/core/ValidatorInformation/ValidatorStakingBalance/ValidatorStakingBalance";
 
-const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, active } }: ValidatorInformationProps): JSX.Element => {
+const ValidatorInformation = ({
+    validator: { accountId, stakingBalance, fee, active },
+    action,
+    onAction,
+}: ValidatorInformationProps): JSX.Element => {
     const translate = useTranslate();
 
     return (
@@ -31,11 +36,12 @@ const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, act
                 </Col>
             </Row>
             <Col>
-                <Typography textAlign="right" variant="body3Strong" light>
-                    {translate("staking")}
-                </Typography>
-                {stakingBalance && (
-                    <Balance style={{ maxWidth: 100 }} balance={stakingBalance.staked} variant="body3Strong" units="token" />
+                {action ? (
+                    <Button variant="outlined" size="sm" onPress={onAction}>
+                        {translate("unstake")}
+                    </Button>
+                ) : (
+                    <ValidatorStakingBalance stakingBalance={stakingBalance} />
                 )}
             </Col>
         </ValidatorRoot>

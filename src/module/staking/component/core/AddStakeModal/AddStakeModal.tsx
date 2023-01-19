@@ -1,5 +1,5 @@
 import { createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
-import SetAmountStakeScreen from "module/staking/screen/SetAmountStakeScreen/SetAmountStakeScreen";
+import SetAmountStakeScreen from "module/staking/screen/BaseSetAmountStakeScreen/AddStakeSetAmountScreen/SetAmountStakeScreen";
 import { useTranslate } from "module/common/hook/useTranslate";
 import StakeModal, { ModalTabs } from "../StakeModal/StakeModal";
 import AddStakeValidatorScreen from "module/staking/screen/SelectValidatorScreen/AddStakeValidatorScreen/AddStakeValidatorScreen";

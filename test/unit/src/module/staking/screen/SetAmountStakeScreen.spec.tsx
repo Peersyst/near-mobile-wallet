@@ -1,6 +1,6 @@
 import { config } from "config";
 import { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
-import SetAmountStakeScreen from "module/staking/screen/SetAmountStakeScreen/SetAmountStakeScreen";
+import SetAmountStakeScreen from "module/staking/screen/BaseSetAmountStakeScreen/AddStakeSetAmountScreen/SetAmountStakeScreen";
 import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
 import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
 import {

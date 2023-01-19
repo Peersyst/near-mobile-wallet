@@ -498,7 +498,7 @@ export class NearSDKService {
         return status.validators.map((validator: any) => validator.account_id);
     }
 
-    private async getValidatorDataFromId(
+    async getValidatorDataFromId(
         validatorId: string,
         queryBalance: boolean,
         totalDeposits?: number,

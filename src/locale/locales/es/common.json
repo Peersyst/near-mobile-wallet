@@ -218,7 +218,7 @@
     "unstake_your_near": "RETIRA TUS NEAR",
     "select_validator": "Seleccionar Validador",
     "confirm_validator": "Confirmar Validador",
-    "enter_amount_want_to_stake": "Ingresa la cantidad para hacer stake",
+    "enter_amount_want_to": "Ingresa la cantidad para hacer {{action}}",
     "available_balance": "Disponible - {{amount}} ({{amount_price}})",
     "max": "Max",
     "enter_a_validator_account_id": "Ingrese el Id del validador",
