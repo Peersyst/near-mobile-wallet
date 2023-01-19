@@ -22,6 +22,7 @@ describe("Test for SetAmountStakeScreen component", () => {
         new UseGetBalanceMock({ balance });
         render(<AddStakeSetAmountScreen />);
 
+        expect(screen.getByText(translate("enter_amount_want_to", { action: "stake" }))).toBeDefined();
         const available = await screen.findByText(
             translate("available_balance", {
                 amount: "1,500.55 " + config.tokenName,

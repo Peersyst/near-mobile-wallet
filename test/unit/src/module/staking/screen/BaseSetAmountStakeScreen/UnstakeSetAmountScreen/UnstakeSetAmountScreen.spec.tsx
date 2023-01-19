@@ -18,6 +18,7 @@ describe("Test for SetAmountStakeScreen component", () => {
 
         render(<UnstakeSetAmountScreen />);
 
+        expect(screen.getByText(translate("enter_amount_want_to", { action: "unstake" }))).toBeDefined();
         const available = await screen.findByText(
             translate("available_balance", {
                 amount: "1,500.55 " + config.tokenName,
