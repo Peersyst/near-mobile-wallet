@@ -3,6 +3,7 @@ import SetAmountStakeScreen from "module/staking/screen/BaseSetAmountStakeScreen
 import { useTranslate } from "module/common/hook/useTranslate";
 import StakeModal, { ModalTabs } from "../StakeModal/StakeModal";
 import AddStakeValidatorScreen from "module/staking/screen/SelectValidatorScreen/AddStakeSelectValidatorScreen/AddStakeSelectValidatorScreen";
+import AddStakingScreen from "module/staking/screen/AddStakeScreen/AddStakeScreen";
 
 export enum AddStakeScreens {
     SET_AMOUNT,
@@ -26,7 +27,7 @@ const AddStakeModal = createBackdrop((props: ExposedBackdropProps) => {
             tabContent: <AddStakeValidatorScreen />,
         },
         {
-            tabContent: <></>,
+            tabContent: <AddStakingScreen />,
             title: translate("confirm_validator"),
             tabIndex: AddStakeScreens.CONFIRM_VALIDATOR,
         },

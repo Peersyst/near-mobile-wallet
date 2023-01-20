@@ -229,5 +229,7 @@
     "enter_new_validator": "Introduce la cuenta de un validador o selecciona uno de la lista para empezar a hacer stake con tus NEAR",
     "or_select_a_validator": "O seleccione un Validador",
     "edit": "Edita",
-    "loading": "Cargando"
+    "loading": "Cargando",
+    "confirm_new_staking_of": "Confirmar Staking de",
+    "with": "Con"
 }
