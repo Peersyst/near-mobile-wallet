@@ -27,7 +27,7 @@ const UnstakeSetAmountScreen = (): JSX.Element => {
         >
             <Col>
                 <Label label={translate("from")!} />
-                <ValidatorInformation validator={validator} action="edit" onAction={onEditAction} />
+                <ValidatorInformation validator={validator} showEdit onEdit={onEditAction} />
             </Col>
         </BaseSetAmountStakeScreen>
     );

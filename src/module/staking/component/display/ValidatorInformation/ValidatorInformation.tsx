@@ -12,8 +12,8 @@ import ValidatorStakingBalance from "module/staking/component/display/ValidatorI
 
 const ValidatorInformation = ({
     validator: { accountId, stakingBalance, fee, active },
-    action,
-    onAction,
+    showEdit,
+    onEdit,
 }: ValidatorInformationProps): JSX.Element => {
     const translate = useTranslate();
 
@@ -36,8 +36,8 @@ const ValidatorInformation = ({
                 </Col>
             </Row>
             <Col>
-                {action ? (
-                    <Button variant="outlined" size="sm" onPress={onAction}>
+                {showEdit ? (
+                    <Button variant="outlined" size="sm" onPress={onEdit}>
                         {translate("edit")}
                     </Button>
                 ) : (

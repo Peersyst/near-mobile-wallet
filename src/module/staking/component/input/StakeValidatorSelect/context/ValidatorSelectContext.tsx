@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { Validator } from "near-peersyst-sdk";
 
 export interface ValidatorSelectContextInterface {
-    validators: Validator[];
+    validators: Validator[] | undefined;
     isLoading: boolean;
     onSelected: (validator: Validator) => void;
 }

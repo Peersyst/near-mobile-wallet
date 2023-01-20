@@ -4,7 +4,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { useSetTab } from "@peersyst/react-native-components";
 import useGetStakingValidators from "module/staking/hook/useGetStakingValidators";
 
-const UnstakeValidatorScreen = (): JSX.Element => {
+const UnstakeSelectValidatorScreen = (): JSX.Element => {
     const translate = useTranslate();
     const setTab = useSetTab();
 
@@ -20,4 +20,4 @@ const UnstakeValidatorScreen = (): JSX.Element => {
     );
 };
 
-export default UnstakeValidatorScreen;
+export default UnstakeSelectValidatorScreen;
