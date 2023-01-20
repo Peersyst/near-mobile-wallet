@@ -228,7 +228,7 @@
     "your_current_validators": "Tus validadores actuales",
     "active": "activo",
     "inactive": "inactivo",
-    "confirm_new_staking_of": "Confirmar Staking de",
+    "confirm_new_action_of": "Confirmar {{action}} de",
     "with": "Con",
     "edit": "Edita"
 }

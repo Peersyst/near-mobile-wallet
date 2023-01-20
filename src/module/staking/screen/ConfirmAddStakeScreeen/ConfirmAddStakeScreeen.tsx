@@ -4,7 +4,7 @@ import Typography from "module/common/component/display/Typography/Typography";
 import { useRecoilValue } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
 import { config } from "config";
-import ValidatorInformation from "module/staking/component/core/ValidatorInformation/ValidatorInformation";
+import ValidatorInformation from "module/staking/component/display/ValidatorInformation/ValidatorInformation";
 import Button from "module/common/component/input/Button/Button";
 import SendTransactionModal from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
@@ -37,7 +37,7 @@ const ConfirmAddStakeScreeen = ({ label, onCancel, onEditValidator, ...rest }: C
                             style={{ paddingHorizontal: 16, paddingVertical: 20 }}
                         />
                         <Label variant="body2Strong" label={translate("with")!}>
-                            <ValidatorInformation validator={validator} action={translate("edit")!} onAction={onEditValidator} />
+                            <ValidatorInformation validator={validator} showEdit onEdit={onEditValidator} />
                         </Label>
                     </Col>
                     <Col gap={8}>
