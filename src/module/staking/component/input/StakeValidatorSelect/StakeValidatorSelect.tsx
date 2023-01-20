@@ -24,7 +24,7 @@ const StakeValidatorSelect = ({ validators, loading, onSelected, withSearch = fa
             {isPending ? (
                 <Col style={{ paddingTop: "3%" }}>
                     <Typography light variant="body2Regular" textAlign="center">
-                        Loading...
+                        {translate("loading") + "..."}
                     </Typography>
                 </Col>
             ) : (
