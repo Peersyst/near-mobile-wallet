@@ -232,5 +232,8 @@
     "confirm_new_staking_of": "Confirm new staking of",
     "with": "With",
     "edit": "Edit",
-    "loading": "Loading"
+    "loading": "Loading",
+    "stake_success": "Your stake has been succesfully delegated to the validator.",
+    "unstake_success": "has successfully been unstaked from this validator.",
+    "unstake_withdraw_waiting_time": "Your tokens are pending release and will be made available within 52-65h (4 epochs)."
 }
