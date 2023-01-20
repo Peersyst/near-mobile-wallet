@@ -20,8 +20,8 @@ const SuccessUnstakeScreen = () => {
     return (
         <StakeSuccessScreen
             message={
-                <Typography variant="body3Regular">
-                    <Balance variant="body3Strong" balance={amount!} units="token" />
+                <Typography color={(p) => p.status.success} variant="body3Regular">
+                    <Balance color={(p) => p.status.success} variant="body3Strong" balance={amount!} units="token" />
                     {" " + translate("unstake_success")}
                 </Typography>
             }

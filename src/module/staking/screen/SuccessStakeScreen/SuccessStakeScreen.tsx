@@ -2,9 +2,11 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import Button from "module/common/component/input/Button/Button";
 import { useRecoilValue } from "recoil";
 import stakeState from "module/staking/state/StakeState";
-import { Alert, AlertProps, Col } from "@peersyst/react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import ValidatorInformation from "module/staking/component/display/ValidatorInformation/ValidatorInformation";
 import { ReactNode } from "react";
+import Alert from "module/common/component/feedback/Alert/Alert";
+import { AlertProps } from "module/common/component/feedback/Alert";
 
 interface SuccessStakeScreenProps {
     onClose: (() => void) | undefined;
