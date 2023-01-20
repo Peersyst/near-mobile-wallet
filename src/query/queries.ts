@@ -8,7 +8,7 @@ enum Queries {
     TOKENS_PRICE = "tokens-price",
     TOTAL_STAKING_BALANCE = "total-staking-balance",
     GET_CURRENT_VALIDATORS = "current-validators",
-    GET_ALL_VALIDATORS = "validator-ids",
+    GET_ALL_VALIDATORS = "get-all-validators",
     GET_NEWS = "get-news",
 }
 
