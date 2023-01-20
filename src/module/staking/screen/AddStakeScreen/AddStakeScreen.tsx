@@ -29,7 +29,7 @@ const AddStakeScreen = () => {
             sendTransaction={handleAddStake}
             isLoading={isLoading}
             isError={isError}
-            label={translate("confirm_new_staking_of")}
+            label={translate("confirm_new_action_of", { action: "staking" })}
             isSuccess={isSuccess}
             onEditValidator={() => setTab(AddStakeScreens.SELECT_VALIDATOR)}
             onCancel={() => hideModal(AddStakeModal.id)}

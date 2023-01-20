@@ -228,10 +228,11 @@
     "validator_name_near": "validator-name.near",
     "enter_new_validator": "Introduce la cuenta de un validador o selecciona uno de la lista para empezar a hacer stake con tus NEAR",
     "or_select_a_validator": "O seleccione un Validador",
-    "edit": "Edita",
     "loading": "Cargando",
-    "confirm_new_staking_of": "Confirmar Staking de",
+    "confirm_new_action_of": "Confirmar {{action}} de",
     "with": "Con",
+    "edit": "Edita",
+    "confirm_new_staking_of": "Confirmar Staking de",
     "stake_success": "Se han añadido tus NEAR para hacer stake correctamente en el validador.",
     "unstake_success": "han sido retirados del stake del validador correctamente.",
     "unstake_withdraw_waiting_time": "Tus tokens estarán disponibles para la retirada a tu cuenta en las próximas 52-65h (4 epochs)."
