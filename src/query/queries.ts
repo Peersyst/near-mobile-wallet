@@ -9,7 +9,7 @@ enum Queries {
     TOTAL_STAKING_BALANCE = "total-staking-balance",
     GET_CURRENT_VALIDATORS = "current-validators",
     GET_ALL_VALIDATOR_IDS = "validator-ids",
-    GET_VALIDATOR_DATA_ID = "validator-data-id",
+    GET_NEWS = "get-news",
 }
 
 export default Queries;
