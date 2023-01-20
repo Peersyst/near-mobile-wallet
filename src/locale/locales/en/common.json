@@ -229,5 +229,6 @@
     "enter_new_validator": "Enter a new validator or select one from the list to stake your NEAR.",
     "or_select_a_validator": "Or select a validator",
     "select_unstake_validator": "Select the validator from which you want to unstake your NEAR.",
-    "edit": "Edit"
+    "edit": "Edit",
+    "loading": "Loading"
 }

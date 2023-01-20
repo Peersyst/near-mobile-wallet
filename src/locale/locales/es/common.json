@@ -224,9 +224,10 @@
     "enter_amount_want_to": "Ingresa la cantidad para hacer {{action}}",
     "available_balance": "Disponible - {{amount}} ({{amount_price}})",
     "max": "Max",
-    "enter_a_validator_account_id": "Ingrese el Id del validador",
+    "enter_a_validator_account_id": "Introduce el Id del validador",
     "validator_name_near": "validator-name.near",
-    "enter_new_validator": "Ingrese un nuevo Id de validador o seleccione una de la lista de Stake de NEAR",
+    "enter_new_validator": "Introduce la cuenta de un validador o selecciona uno de la lista para empezar a hacer stake con tus NEAR",
     "or_select_a_validator": "O seleccione un Validador",
-    "edit": "Edita"
+    "edit": "Edita",
+    "loading": "Cargando"
 }

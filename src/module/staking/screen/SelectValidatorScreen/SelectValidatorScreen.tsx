@@ -25,7 +25,7 @@ const SelectValidatorScreen = ({ message, onSelected, ...rest }: SelectValidator
     };
 
     return (
-        <Col flex={1} gap={24} style={{ height: "100%" }}>
+        <Col flex={1} gap="8%" style={{ height: "100%" }}>
             <Typography color={(palette) => palette.gray["300"]} textAlign="center" variant="body3Strong">
                 {message}
             </Typography>
