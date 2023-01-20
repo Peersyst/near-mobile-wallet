@@ -1,5 +1,6 @@
-import { NumericInput, NumericInputProps, TextFieldProps } from "@peersyst/react-native-components";
 import TextField from "../TextField/TextField";
+import { TextFieldProps } from "module/common/component/input/TextField/TextField.types";
+import { NumericInput, NumericInputProps } from "@peersyst/react-native-components";
 
 export type NumericTextFieldProps = Omit<TextFieldProps, "input" | "keyboardType"> & {
     maxDecimals?: NumericInputProps["maxDecimals"];

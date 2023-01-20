@@ -7,7 +7,7 @@ import UnstakeSetAmountScreen from "module/staking/screen/BaseSetAmountStakeScre
 export enum UnstakeModalScreens {
     SELECT_VALIDATOR,
     SET_AMOUNT,
-    CONFIRM,
+    CONFIRM_VALIDATOR,
 }
 
 const UnstakeModal = createModal(({ ...rest }: ExposedBackdropProps): JSX.Element => {

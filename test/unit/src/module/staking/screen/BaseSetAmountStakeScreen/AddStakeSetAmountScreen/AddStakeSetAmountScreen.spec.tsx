@@ -1,6 +1,5 @@
 import { config } from "config";
 import { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
-import SetAmountStakeScreen from "module/staking/screen/BaseSetAmountStakeScreen/AddStakeSetAmountScreen/SetAmountStakeScreen";
 import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
 import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
 import {
@@ -12,6 +11,7 @@ import {
     UseWalletStateMock,
 } from "test-mocks";
 import { fireEvent, render, screen, translate, waitFor } from "test-utils";
+import AddStakeSetAmountScreen from "module/staking/screen/BaseSetAmountStakeScreen/AddStakeSetAmountScreen/AddStakeSetAmountScreen";
 
 describe("Test for SetAmountStakeScreen component", () => {
     test("Renders correctly", async () => {
@@ -20,8 +20,9 @@ describe("Test for SetAmountStakeScreen component", () => {
         new UseNativeTokenConversionMock({ value: "3000" });
         const balance = new AccountBalanceMock({ available: "1500.55" });
         new UseGetBalanceMock({ balance });
-        render(<SetAmountStakeScreen />);
+        render(<AddStakeSetAmountScreen />);
 
+        expect(screen.getByText(translate("enter_amount_want_to", { action: "stake" }))).toBeDefined();
         const available = await screen.findByText(
             translate("available_balance", {
                 amount: "1,500.55 " + config.tokenName,
@@ -37,7 +38,7 @@ describe("Test for SetAmountStakeScreen component", () => {
         new UseWalletStateMock();
         new UseNativeTokenConversionMock({ value: "3000" });
         new UseGetBalanceMock();
-        render(<SetAmountStakeScreen />);
+        render(<AddStakeSetAmountScreen />);
         const input = screen.getByPlaceholderText(translate("enter_amount"));
         const btn = screen.getByText(translate("next"));
         await screen.findByText("Max");
