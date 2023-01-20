@@ -1,13 +1,14 @@
 import { useTranslate } from "module/common/hook/useTranslate";
-import { useState } from "react";
 import TextField from "module/common/component/input/TextField/TextField";
-import ValidatorListSelect from "../ValidatorListSelect/ValidatorListSelect";
-import { Col, Label } from "@peersyst/react-native-components";
-import { ValidatorSelectProvider } from "module/staking/component/context/ValidatorSelectContext";
+import ValidatorListSelect from "./ValidatorListSelect/ValidatorListSelect";
+import { Col } from "@peersyst/react-native-components";
 import { Validator } from "near-peersyst-sdk";
+import { ValidatorSelectProvider } from "./context/ValidatorSelectContext";
+import Typography from "module/common/component/display/Typography/Typography";
+import useStakingValidatorController from "./hook/useStakingValidatorController";
 
-interface StakeValidatorSelectProps {
-    validators: Validator[] | undefined;
+export interface StakeValidatorSelectProps {
+    validators: Validator[];
     loading: boolean;
     onSelected: (validator: Validator) => void;
     withSearch?: boolean;
@@ -15,27 +16,31 @@ interface StakeValidatorSelectProps {
 
 const StakeValidatorSelect = ({ validators, loading, onSelected, withSearch = false }: StakeValidatorSelectProps): JSX.Element => {
     const translate = useTranslate();
-    const [accountId, setAccountId] = useState("");
+    const { queryValidators, setAccountId, accountId, isPending } = useStakingValidatorController(validators);
 
     const ValidatorList = (
-        <Label
-            variant="body2Strong"
-            label={translate(withSearch ? "or_select_a_validator" : "select_validator")!}
-            style={{ height: "100%" }}
-        >
-            <ValidatorListSelect search={withSearch ? accountId : undefined} />
-        </Label>
+        <Col style={{ height: "100%" }}>
+            <Typography variant="body2Strong">{translate(withSearch ? "or_select_a_validator" : "select_validator")!}</Typography>
+            {isPending ? (
+                <Col style={{ paddingTop: "3%" }}>
+                    <Typography light variant="body2Regular" textAlign="center">
+                        {translate("loading") + "..."}
+                    </Typography>
+                </Col>
+            ) : (
+                <ValidatorListSelect validators={queryValidators} isLoading={loading} />
+            )}
+        </Col>
     );
 
     return (
-        <ValidatorSelectProvider value={{ validators: validators, isLoading: loading, onSelected: onSelected }}>
+        <ValidatorSelectProvider value={{ setSelectedValidator: onSelected }}>
             <Col flex={1}>
                 {withSearch ? (
-                    <Col gap={12}>
+                    <Col gap="8%">
                         <TextField
                             label={translate("enter_a_validator_account_id")!}
                             placeholder={translate("validator_name_near")!}
-                            name="accountId"
                             value={accountId}
                             onChange={setAccountId}
                             autoCapitalize="none"

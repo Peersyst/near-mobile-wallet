@@ -1,7 +1,7 @@
 import { render, translate } from "test-utils";
 import { ValidatorMock } from "mocks/NearSdk";
 import { screen, waitFor } from "@testing-library/react-native";
-import UnstakeValidatorScreen from "module/staking/screen/SelectValidatorScreen/UnstakeValidatorScreen/UnstakeValidatorScreen";
+import UnstakeValidatorScreen from "module/staking/screen/SelectValidatorScreen/UnstakeSelectValidatorScreen/UnstakeSelectValidatorScreen";
 import * as useGetStakingValidators from "module/staking/hook/useGetStakingValidators";
 
 describe("Tests for UnstakeValidatorScreen", () => {

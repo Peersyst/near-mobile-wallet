@@ -214,6 +214,9 @@
     "availableForWithdrawal": "Available for withdrawal",
     "summary": "My staking",
     "your_current_validators": "Current Validators",
+    "fee": "fee",
+    "active": "active",
+    "inactive": "inactive",
     "stake_your_near": "STAKE YOUR NEAR",
     "unstake_your_near": "UNSTAKE YOUR NEAR",
     "select_validator": "SELECT VALIDATOR",
@@ -225,11 +228,9 @@
     "validator_name_near": "validator-name.near",
     "enter_new_validator": "Enter a new validator or select one from the list to stake your NEAR.",
     "or_select_a_validator": "Or select a validator",
-    "fee": "fee",
-    "active": "active",
-    "inactive": "inactive",
     "select_unstake_validator": "Select the validator from which you want to unstake your NEAR.",
     "confirm_new_staking_of": "Confirm new staking of",
     "with": "With",
-    "edit": "Edit"
+    "edit": "Edit",
+    "loading": "Loading"
 }

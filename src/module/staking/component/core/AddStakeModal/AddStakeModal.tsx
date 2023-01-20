@@ -1,8 +1,8 @@
 import { createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
-import SetAmountStakeScreen from "module/staking/screen/BaseSetAmountStakeScreen/AddStakeSetAmountScreen/SetAmountStakeScreen";
+import SetAmountStakeScreen from "module/staking/screen/BaseSetAmountStakeScreen/AddStakeSetAmountScreen/AddStakeSetAmountScreen";
 import { useTranslate } from "module/common/hook/useTranslate";
 import StakeModal, { ModalTabs } from "../StakeModal/StakeModal";
-import AddStakeValidatorScreen from "module/staking/screen/SelectValidatorScreen/AddStakeValidatorScreen/AddStakeValidatorScreen";
+import AddStakeValidatorScreen from "module/staking/screen/SelectValidatorScreen/AddStakeSelectValidatorScreen/AddStakeSelectValidatorScreen";
 import AddStakingScreen from "module/staking/screen/AddStakeScreen/AddStakeScreen";
 
 export enum AddStakeScreens {
@@ -34,7 +34,7 @@ const AddStakeModal = createBackdrop((props: ExposedBackdropProps) => {
         {
             tabContent: <></>,
             title: translate("success"),
-            tabIndex: 3,
+            tabIndex: AddStakeScreens.SUCCESS,
         },
     ];
     return <StakeModal tabs={tabs} {...props} />;
