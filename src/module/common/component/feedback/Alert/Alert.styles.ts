@@ -4,8 +4,9 @@ import { alpha } from "@peersyst/react-utils";
 
 export const AlertRoot = styled(Alert)<AlertProps>(({ theme: { palette }, type }) => {
     const statusColor = type && type !== "loading" ? palette.status[type] : palette.background;
+
     return {
-        color: statusColor,
         backgroundColor: alpha(statusColor, 0.12),
+        color: statusColor,
     };
 });
