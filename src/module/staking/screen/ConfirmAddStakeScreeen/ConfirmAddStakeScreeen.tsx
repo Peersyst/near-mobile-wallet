@@ -33,7 +33,6 @@ const ConfirmAddStakeScreeen = ({ label, onCancel, onEditValidator, ...rest }: C
                             fee={config.estimatedFee}
                             showFiat
                             showFee={false}
-                            showTotal={false}
                             style={{ paddingHorizontal: 16, paddingVertical: 20 }}
                         />
                         <Label variant="body2Strong" label={translate("with")!}>

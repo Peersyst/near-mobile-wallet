@@ -32,7 +32,7 @@ const AddStakeModal = createBackdrop((props: ExposedBackdropProps) => {
             tabIndex: AddStakeScreens.CONFIRM_VALIDATOR,
         },
         {
-            tabContent: <>{translate("success")}</>,
+            tabContent: <></>,
             title: translate("success"),
             tabIndex: AddStakeScreens.SUCCESS,
         },

@@ -8,7 +8,7 @@ export interface UseAddStakeParams {
     validatorId: string;
 }
 
-const useAddStake = (senderIndex: number) => {
+const useAddStake = (senderIndex?: number) => {
     const { serviceInstance } = useServiceInstance(senderIndex);
     const invalidateServiceInstanceQueries = useInvalidateServiceInstanceQueries(senderIndex);
 
