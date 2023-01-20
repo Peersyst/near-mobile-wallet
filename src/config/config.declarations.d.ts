@@ -28,6 +28,8 @@ declare module "@peersyst/react-native-components" {
         minBalanceToCreateAccount: string;
         estimatedFee: string;
         enableIndexer: boolean;
+        newsRSSUrl: string;
+        defaultTwitterAccount: string;
     }
 
     export interface CreateConfig {
@@ -49,6 +51,8 @@ declare module "@peersyst/react-native-components" {
         minBalanceToCreateAccount: string;
         estimatedFee: string;
         enableIndexer: boolean;
+        newsRSSUrl: string;
+        defaultTwitterAccount: string;
     }
 
     export interface ExtraValidators {
