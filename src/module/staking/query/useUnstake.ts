@@ -19,7 +19,6 @@ export default function (senderIndex: number) {
             onSuccess: () => {
                 queryClient.invalidateQueries([Queries.GET_CURRENT_VALIDATORS, usedIndex, network]);
                 queryClient.invalidateQueries([Queries.GET_ALL_VALIDATORS, usedIndex, network]);
-                queryClient.invalidateQueries([Queries.GET_CURRENT_VALIDATORS, usedIndex, network]);
                 queryClient.invalidateQueries([Queries.GET_BALANCE, usedIndex, network]);
             },
         },
