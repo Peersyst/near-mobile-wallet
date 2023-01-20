@@ -8,7 +8,7 @@ export interface UnstakeParams {
     validatorId: string;
 }
 
-export default function (senderIndex: number) {
+export default function (senderIndex?: number) {
     const { serviceInstance } = useServiceInstance(senderIndex);
     const invalidateServiceInstanceQueries = useInvalidateServiceInstanceQueries(senderIndex);
 
@@ -18,7 +18,11 @@ export default function (senderIndex: number) {
         },
         {
             onSuccess: async () => {
-                await invalidateServiceInstanceQueries([Queries.GET_CURRENT_VALIDATORS, Queries.GET_ALL_VALIDATORS, Queries.GET_BALANCE]);
+                await invalidateServiceInstanceQueries([
+                    Queries.GET_CURRENT_VALIDATORS,
+                    Queries.TOTAL_STAKING_BALANCE,
+                    Queries.GET_BALANCE,
+                ]);
             },
         },
     );

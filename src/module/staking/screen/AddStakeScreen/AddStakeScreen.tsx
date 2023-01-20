@@ -1,7 +1,6 @@
 import { useModal, useSetTab } from "@peersyst/react-native-components";
 import { useRecoilValue } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
-import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import AddStakeModal, { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useAddStake from "module/staking/query/useAddStake";
@@ -10,8 +9,7 @@ import ConfirmAddStakeScreeen from "../ConfirmAddStakeScreeen/ConfirmAddStakeScr
 const AddStakeScreen = () => {
     const { amount, validator } = useRecoilValue(stakeRecoilState);
     const setTab = useSetTab();
-    const { index } = useSelectedWallet();
-    const { mutate: addStake, isLoading, isError, isSuccess } = useAddStake(index);
+    const { mutate: addStake, isLoading, isError, isSuccess } = useAddStake();
     const translate = useTranslate();
     const { hideModal } = useModal();
 
