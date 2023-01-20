@@ -1,22 +1,31 @@
+import { useDebounce } from "@peersyst/react-hooks";
 import { Validator } from "near-peersyst-sdk";
-import { startTransition, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export interface UseFilterValidatorsReturn {
     accountId: string;
     setAccountId: (value: string) => void;
     queryValidators: Validator[];
+    isPending: boolean;
 }
 
+const QUERY_FILTER_DEBOUNCE = 250;
+
 export default function useStakingValidatorController(validators: Validator[]) {
-    const [accountId, setAccountId] = useState("");
-    const [query, setQuery] = useState(accountId);
-    const [queryValidators, setQueryValidators] = useState<Validator[]>(validators);
+    const {
+        value: accountId,
+        handleChange: setAccountId,
+        debouncedValue: query,
+        debouncing,
+    } = useDebounce("", undefined, QUERY_FILTER_DEBOUNCE);
+
+    const [queryValidators, setQueryValidators] = useState<Validator[]>(validators); //Final array of validators (filtered)
+
+    const [isFiltering, setIsFiltering] = useState<boolean>(false);
 
     const handleChange = (value: string) => {
+        setIsFiltering(true);
         setAccountId(value);
-        startTransition(() => {
-            setQuery(value);
-        });
     };
 
     useEffect(() => {
@@ -27,11 +36,13 @@ export default function useStakingValidatorController(validators: Validator[]) {
         } else {
             setQueryValidators(validators);
         }
+        setIsFiltering(false);
     }, [query, validators]);
 
     return {
         accountId,
         setAccountId: handleChange,
         queryValidators,
+        isPending: isFiltering || debouncing,
     };
 }

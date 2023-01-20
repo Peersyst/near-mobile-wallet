@@ -16,12 +16,20 @@ export interface StakeValidatorSelectProps {
 
 const StakeValidatorSelect = ({ validators, loading, onSelected, withSearch = false }: StakeValidatorSelectProps): JSX.Element => {
     const translate = useTranslate();
-    const { queryValidators, setAccountId, accountId } = useStakingValidatorController(validators);
+    const { queryValidators, setAccountId, accountId, isPending } = useStakingValidatorController(validators);
 
     const ValidatorList = (
         <Col style={{ height: "100%" }}>
             <Typography variant="body2Strong">{translate(withSearch ? "or_select_a_validator" : "select_validator")!}</Typography>
-            <ValidatorListSelect validators={queryValidators} isLoading={loading} />
+            {isPending ? (
+                <Col style={{ paddingTop: "3%" }}>
+                    <Typography light variant="body2Regular" textAlign="center">
+                        Loading...
+                    </Typography>
+                </Col>
+            ) : (
+                <ValidatorListSelect validators={queryValidators} isLoading={loading} />
+            )}
         </Col>
     );
 
