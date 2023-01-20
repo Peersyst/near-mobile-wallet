@@ -20,6 +20,11 @@ describe("StakeModal tests", () => {
                         tabContent: <Button>{translate("next")}</Button>,
                         tabIndex: 0,
                     },
+                    {
+                        title: "Stake",
+                        tabContent: <Button>{translate("next")}</Button>,
+                        tabIndex: 1,
+                    },
                 ]}
             />,
         );
@@ -38,6 +43,11 @@ describe("StakeModal tests", () => {
                         title: "Stake",
                         tabContent: <Button>{translate("next")}</Button>,
                         tabIndex: 0,
+                    },
+                    {
+                        title: "Stake",
+                        tabContent: <Button>{translate("next")}</Button>,
+                        tabIndex: 1,
                     },
                 ]}
             />,
