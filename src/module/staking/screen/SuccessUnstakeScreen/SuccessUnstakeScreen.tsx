@@ -3,7 +3,7 @@ import Typography from "module/common/component/display/Typography/Typography";
 import { useTranslate } from "module/common/hook/useTranslate";
 import stakeState from "module/staking/state/StakeState";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 import StakeSuccessScreen from "../SuccessStakeScreen/SuccessStakeScreen";
 import UnstakeModal from "module/staking/component/core/UnstakeModal/UnstakeModal";
 
@@ -12,7 +12,10 @@ const SuccessUnstakeScreen = () => {
     const { hideModal } = useModal();
 
     const { amount } = useRecoilValue(stakeState);
+    const resetStakeState = useResetRecoilState(stakeState);
+
     function handleOnClose() {
+        resetStakeState();
         hideModal(UnstakeModal.id);
     }
 
