@@ -8,7 +8,7 @@ export interface UnstakeParams {
 }
 
 export default function (senderIndex: number) {
-    const { serviceInstance } = useServiceInstance(senderIndex);
+    const { serviceInstance, index: usedIndex, network } = useServiceInstance(senderIndex);
     const queryClient = useQueryClient();
 
     return useMutation(
@@ -17,10 +17,10 @@ export default function (senderIndex: number) {
         },
         {
             onSuccess: () => {
-                queryClient.invalidateQueries([Queries.GET_CURRENT_VALIDATORS]);
-                queryClient.invalidateQueries([Queries.GET_ALL_VALIDATOR_IDS]);
-                queryClient.invalidateQueries([Queries.GET_CURRENT_VALIDATORS]);
-                queryClient.invalidateQueries([Queries.GET_BALANCE]);
+                queryClient.invalidateQueries([Queries.GET_CURRENT_VALIDATORS, usedIndex, network]);
+                queryClient.invalidateQueries([Queries.GET_ALL_VALIDATORS, usedIndex, network]);
+                queryClient.invalidateQueries([Queries.GET_CURRENT_VALIDATORS, usedIndex, network]);
+                queryClient.invalidateQueries([Queries.GET_BALANCE, usedIndex, network]);
             },
         },
     );
