@@ -1,4 +1,4 @@
-import AddStakeValidatorScreen from "module/staking/screen/SelectValidatorScreen/AddStakeValidatorScreen/AddStakeValidatorScreen";
+import AddStakeValidatorScreen from "module/staking/screen/SelectValidatorScreen/AddStakeSelectValidatorScreen/AddStakeSelectValidatorScreen";
 import { render, translate } from "test-utils";
 import { UseServiceInstanceMock } from "mocks/common";
 import { ValidatorMock } from "mocks/NearSdk";

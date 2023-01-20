@@ -7,7 +7,7 @@ import { Validator } from "near-peersyst-sdk";
 import { ValidatorSelectProvider } from "./context/ValidatorSelectContext";
 
 export interface StakeValidatorSelectProps {
-    validators: Validator[];
+    validators: Validator[] | undefined;
     loading: boolean;
     onSelected: (validator: Validator) => void;
     withSearch?: boolean;
