@@ -1,31 +1,29 @@
-import { useMutation } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
+import { useMutation } from "react-query";
 import Queries from "../../../query/queries";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
 
-export interface UseAddStakeParams {
+export interface UnstakeParams {
     amount: string;
     validatorId: string;
 }
 
-const useAddStake = (senderIndex?: number) => {
+export default function (senderIndex?: number) {
     const { serviceInstance } = useServiceInstance(senderIndex);
     const invalidateServiceInstanceQueries = useInvalidateServiceInstanceQueries(senderIndex);
 
     return useMutation(
-        async ({ amount, validatorId }: UseAddStakeParams) => {
-            await serviceInstance.depositAndStakeFromValidator(validatorId.toString(), amount.toString());
+        async ({ amount, validatorId }: UnstakeParams) => {
+            await serviceInstance.unstakeFromValidator(validatorId, amount);
         },
         {
             onSuccess: async () => {
                 await invalidateServiceInstanceQueries([
-                    Queries.GET_BALANCE,
-                    Queries.TOTAL_STAKING_BALANCE,
                     Queries.GET_CURRENT_VALIDATORS,
+                    Queries.TOTAL_STAKING_BALANCE,
+                    Queries.GET_BALANCE,
                 ]);
             },
         },
     );
-};
-
-export default useAddStake;
+}
