@@ -1,8 +1,7 @@
 import { Validator } from "near-peersyst-sdk";
 
 export const isCurrentValidatorActive = (validatorAccountId: string, allValidators: Validator[]): boolean => {
-    if (allValidators) return allValidators.some(({ accountId }) => accountId === validatorAccountId);
-    return false;
+    return allValidators ? allValidators.some(({ accountId }) => accountId === validatorAccountId) : false;
 };
 
 export const getValidatorsWithStatus = (validators: Validator[], allValidators: Validator[]): Validator[] => {

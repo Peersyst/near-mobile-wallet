@@ -34,7 +34,7 @@ const AddStakeModal = createBackdrop((props: ExposedBackdropProps) => {
         {
             tabContent: <>{translate("success")}</>,
             title: translate("success"),
-            tabIndex: 3,
+            tabIndex: AddStakeScreens.SUCCESS,
         },
     ];
     return <StakeModal tabs={tabs} {...props} />;
