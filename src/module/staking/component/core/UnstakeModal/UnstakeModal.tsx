@@ -4,6 +4,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import UnstakeSelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/UnstakeSelectValidatorScreen/UnstakeSelectValidatorScreen";
 import UnstakeSetAmountScreen from "module/staking/screen/BaseSetAmountStakeScreen/UnstakeSetAmountScreen/UnstakeSetAmountScreen";
 import ConfirmUnstakeScreen from "module/staking/screen/ConfirmUnstakeScreen/ConfirmUnstakeScreen";
+import SuccessUnstakeScreen from "module/staking/screen/SuccessUnstakeScreen/SuccessUnstakeScreen";
 
 export enum UnstakeModalScreens {
     SELECT_VALIDATOR,
@@ -34,7 +35,7 @@ const UnstakeModal = createModal(({ ...rest }: ExposedBackdropProps): JSX.Elemen
         {
             title: translate("success"),
             tabIndex: UnstakeModalScreens.SUCCESS,
-            tabContent: <></>,
+            tabContent: <SuccessUnstakeScreen />,
         },
     ];
 

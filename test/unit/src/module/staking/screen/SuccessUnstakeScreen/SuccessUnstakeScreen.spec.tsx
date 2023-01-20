@@ -1,4 +1,3 @@
-import Typography from "module/common/component/display/Typography/Typography";
 import SuccessUnstakeScreen from "module/staking/screen/SuccessUnstakeScreen/SuccessUnstakeScreen";
 import { StakeStateMock } from "test-mocks";
 
