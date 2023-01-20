@@ -1,15 +1,20 @@
 import { Col, Row } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import { useTranslate } from "module/common/hook/useTranslate";
+import { ValidatorRoot, ValidatorStatusTag } from "module/staking/component/display/ValidatorInformation/ValidatorInformation.styles";
 import Account from "module/wallet/component/display/Account/Account";
-import Balance from "module/wallet/component/display/Balance/Balance";
+import { ValidatorInformationProps } from "module/staking/component/display/ValidatorInformation/ValidatorInformation.types";
 import { capitalize } from "@peersyst/react-utils";
 import CardIcon from "module/common/component/display/CardIcon/CardIcon";
 import { UserCheckIcon } from "icons";
-import { ValidatorInformationProps } from "./ValidatorInformation.types";
-import { ValidatorRoot, ValidatorStatusTag } from "./ValidatorInformation.styles";
+import Button from "module/common/component/input/Button/Button";
+import ValidatorStakingBalance from "module/staking/component/display/ValidatorInformation/ValidatorStakingBalance/ValidatorStakingBalance";
 
-const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, active } }: ValidatorInformationProps): JSX.Element => {
+const ValidatorInformation = ({
+    validator: { accountId, stakingBalance, fee, active },
+    showEdit,
+    onEdit,
+}: ValidatorInformationProps): JSX.Element => {
     const translate = useTranslate();
 
     return (
@@ -31,11 +36,12 @@ const ValidatorInformation = ({ validator: { accountId, stakingBalance, fee, act
                 </Col>
             </Row>
             <Col>
-                <Typography textAlign="right" variant="body3Strong" light>
-                    {translate("staking")}
-                </Typography>
-                {stakingBalance && (
-                    <Balance style={{ maxWidth: 100 }} balance={stakingBalance.staked} variant="body3Strong" units="token" />
+                {showEdit ? (
+                    <Button variant="outlined" size="sm" onPress={onEdit}>
+                        {translate("edit")}
+                    </Button>
+                ) : (
+                    <ValidatorStakingBalance stakingBalance={stakingBalance} />
                 )}
             </Col>
         </ValidatorRoot>

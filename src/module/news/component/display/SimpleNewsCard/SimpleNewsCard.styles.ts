@@ -13,7 +13,7 @@ export const NewsImage = styled(Image)(({ theme, dimensions }) => ({
     borderRadius: theme.borderRadiusXs,
 }));
 
-export const NewTitle = styled(Typography, { numberOfLines: 2 })(({ theme }) => ({
+export const NewTitle = styled(Typography, { numberOfLines: 4 })(({ theme }) => ({
     color: theme.palette.gray[600],
 }));
 

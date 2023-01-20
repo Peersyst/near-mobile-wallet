@@ -30,17 +30,19 @@ const BaseSetAmountStakeScreen = ({ maxAmount, label, children, onSubmit }: Base
 
     return (
         <Form onSubmit={handleSubmit} style={{ flex: 1 }}>
-            <Col gap={24} flex={1}>
-                <Col flex={1} gap="2%">
-                    <NEARAmountWithMaxTextField
-                        placeholder={translate("enter_amount")}
-                        defaultValue={stakeState.amount}
-                        label={label}
-                        index={index}
-                        name="amount"
-                        required
-                        maxAmount={maxAmount}
-                    />
+            <Col flex={1} justifyContent="space-between">
+                <Col gap={24}>
+                    <Col flex={1} gap="2%">
+                        <NEARAmountWithMaxTextField
+                            placeholder={translate("enter_amount")!}
+                            defaultValue={stakeState.amount}
+                            label={label}
+                            index={index}
+                            name="amount"
+                            required
+                            maxAmount={maxAmount}
+                        />
+                    </Col>
                     {children}
                 </Col>
                 <Button type="submit" fullWidth>
