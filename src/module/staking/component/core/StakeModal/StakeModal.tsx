@@ -37,7 +37,7 @@ const StakeModal = ({ onExited, tabs, onBack, ...rest }: StakeModalProps) => {
             navbar={{
                 back: true,
                 title: tabs[activeIndex].title,
-                onBack: activeIndex > 0 ? handleOnBack : undefined,
+                onBack: activeIndex > 0 && activeIndex < tabs.length - 1 ? handleOnBack : undefined,
                 steps: {
                     length: tabs.length,
                     index: activeIndex,
