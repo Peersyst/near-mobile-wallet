@@ -217,10 +217,17 @@
     "fee": "Comisión",
     "active": "activo",
     "inactive": "inactivo",
-    "stake_your_near": "Stake tus tokens",
+    "stake_your_near": "STAKEA TUS NEAR",
+    "unstake_your_near": "RETIRA TUS NEAR",
     "select_validator": "Seleccionar Validador",
     "confirm_validator": "Confirmar Validador",
-    "enter_amount_want_to_stake": "Ingresa la cantidad para hacer stake",
+    "enter_amount_want_to": "Ingresa la cantidad para hacer {{action}}",
     "available_balance": "Disponible - {{amount}} ({{amount_price}})",
-    "max": "Max"
+    "max": "Max",
+    "enter_a_validator_account_id": "Introduce el Id del validador",
+    "validator_name_near": "validator-name.near",
+    "enter_new_validator": "Introduce la cuenta de un validador o selecciona uno de la lista para empezar a hacer stake con tus NEAR",
+    "or_select_a_validator": "O seleccione un Validador",
+    "edit": "Edita",
+    "loading": "Cargando"
 }
