@@ -11,9 +11,7 @@ const StakingDetails = (): JSX.Element => {
             loading={isLoading}
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
             data={sections}
-            renderItem={({ item: { title, amount, stakeable } }) => (
-                <StakingDetailCard key={title} title={title} amount={amount} stakeable={stakeable} isLoading={isLoading} />
-            )}
+            renderItem={({ item: { title, ...rest } }) => <StakingDetailCard key={title} title={title} isLoading={isLoading} {...rest} />}
             keyExtractor={(_, index) => index.toString()}
         />
     );

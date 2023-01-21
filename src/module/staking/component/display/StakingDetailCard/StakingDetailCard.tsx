@@ -1,9 +1,8 @@
-import { Col, Row, Skeleton, useModal } from "@peersyst/react-native-components";
+import { Col, Row, Skeleton } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import Button from "module/common/component/input/Button/Button";
 import { useTranslate } from "module/common/hook/useTranslate";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import UnstakeModal from "module/staking/component/core/UnstakeModal/UnstakeModal";
 import ActionIcon from "module/transaction/component/display/ActionIcon/ActionIcon";
 import { TransactionActionKind } from "near-peersyst-sdk";
 import FiatBalance from "module/wallet/component/display/FiatBalance/FiatBalance";
@@ -12,13 +11,13 @@ import { StakingDetailRoot } from "./StakingDetailCard.styles";
 export interface StakingDetailCardProps {
     title: string;
     amount: string | undefined;
-    stakeable?: boolean;
+    action?: "unstake" | "withdraw";
+    onAction?: () => void;
     isLoading?: boolean;
 }
 
-const StakingDetailCard = ({ title, amount = "0", stakeable, isLoading }: StakingDetailCardProps): JSX.Element => {
+const StakingDetailCard = ({ title, amount = "0", action, onAction, isLoading }: StakingDetailCardProps): JSX.Element => {
     const translate = useTranslate();
-    const { showModal } = useModal();
 
     return (
         <StakingDetailRoot flex={1} gap={12} justifyContent="space-between" alignItems="center">
@@ -34,10 +33,10 @@ const StakingDetailCard = ({ title, amount = "0", stakeable, isLoading }: Stakin
                     </Skeleton>
                 </Col>
             </Row>
-            {stakeable && (
+            {action && (
                 <Row alignItems="center">
-                    <Button variant="outlined" size="sm" onPress={() => showModal(UnstakeModal)}>
-                        {translate("unstake")}
+                    <Button variant="outlined" size="sm" onPress={onAction}>
+                        {translate(action)}
                     </Button>
                 </Row>
             )}

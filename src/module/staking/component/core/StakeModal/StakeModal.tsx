@@ -6,10 +6,11 @@ import { StakeModalRoot } from "./StakeModal.styles";
 import stakeState from "module/staking/state/StakeState";
 import { AddStakeScreens } from "../AddStakeModal/AddStakeModal";
 import { UnstakeModalScreens } from "module/staking/component/core/UnstakeModal/UnstakeModal";
+import { WithdrawModalScreens } from "module/staking/component/core/WithdrawModal/WithdrawModal";
 
 export interface ModalTabs {
     title: string;
-    tabIndex: AddStakeScreens | UnstakeModalScreens;
+    tabIndex: AddStakeScreens | UnstakeModalScreens | WithdrawModalScreens;
     tabContent: ReactElement;
 }
 
