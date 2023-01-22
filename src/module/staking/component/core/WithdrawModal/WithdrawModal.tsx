@@ -1,6 +1,7 @@
 import StakeModal, { ModalTabs } from "module/staking/component/core/StakeModal/StakeModal";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
+import WithdrawSelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/WithdrawSelectValidatorScreen/WithdrawSelectValidatorScreen";
 
 export enum WithdrawModalScreens {
     SELECT_VALIDATOR,
@@ -15,7 +16,7 @@ const WithdrawModal = createBackdrop(({ ...rest }: ExposedBackdropProps): JSX.El
         {
             title: translate("select_validator"),
             tabIndex: WithdrawModalScreens.SELECT_VALIDATOR,
-            tabContent: <></>,
+            tabContent: <WithdrawSelectValidatorScreen />,
         },
         {
             title: translate("confirm_validator"),

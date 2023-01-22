@@ -231,5 +231,6 @@
     "loading": "Cargando",
     "confirm_new_action_of": "Confirmar {{action}} de",
     "with": "Con",
-    "edit": "Edita"
+    "edit": "Edita",
+    "select_validator_withdrawal": "Selecciona el validador del que deseas retirar sus fondos."
 }

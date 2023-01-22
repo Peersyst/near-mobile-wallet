@@ -232,5 +232,6 @@
     "loading": "Loading",
     "confirm_new_action_of": "Confirm new {{action}} of",
     "with": "With",
-    "edit": "Edit"
+    "edit": "Edit",
+    "select_validator_withdrawal": "Select the validator pool from whhich you wish to withdraw your tokens."
 }
