@@ -11,14 +11,14 @@ export interface StakeForm {
     amount: string;
 }
 
-export interface SetAmountScreenProps {
+export interface StakingSetAmountScreenProps {
     maxAmount?: string; //without taking into consideration the fee
     label: string;
     children?: ReactElement;
     onSubmit?: (amount: string) => void;
 }
 
-const SetAmountScreen = ({ maxAmount, label, children, onSubmit }: SetAmountScreenProps) => {
+const StakingSetAmountScreen = ({ maxAmount, label, children, onSubmit }: StakingSetAmountScreenProps) => {
     const translate = useTranslate();
     const [stakeState, setStakeState] = useRecoilState(stakeRecoilState);
     const { index } = useSelectedWallet();
@@ -53,4 +53,4 @@ const SetAmountScreen = ({ maxAmount, label, children, onSubmit }: SetAmountScre
     );
 };
 
-export default SetAmountScreen;
+export default StakingSetAmountScreen;

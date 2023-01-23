@@ -1,9 +1,9 @@
 import { render, translate } from "test-utils";
-import SelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/SelectValidatorScreen";
 import { ValidatorMock } from "mocks/NearSdk";
 import { screen } from "@testing-library/react-native";
+import StakingSelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/StakingSelectValidatorScreen";
 
-describe("Tests for SelectValidatorScreen", () => {
+describe("Tests for StakingSelectValidatorScreen", () => {
     const mockMessage = "message";
     const mockOnFinish = jest.fn();
 
@@ -11,7 +11,9 @@ describe("Tests for SelectValidatorScreen", () => {
         const mockValidator = new ValidatorMock();
         const mockValidators = [mockValidator];
 
-        render(<SelectValidatorScreen message={mockMessage} validators={mockValidators} loading={false} onSelect={mockOnFinish} />);
+        render(
+            <StakingSelectValidatorScreen message={mockMessage} validators={mockValidators} loading={false} onSelected={mockOnFinish} />,
+        );
 
         expect(screen.getByText(mockMessage)).toBeDefined();
         expect(screen.getAllByText(mockValidator.accountId)).toHaveLength(mockValidators.length);
@@ -24,7 +26,13 @@ describe("Tests for SelectValidatorScreen", () => {
         const mockValidators = [mockValidator];
 
         render(
-            <SelectValidatorScreen message={mockMessage} validators={mockValidators} loading={false} onSelect={mockOnFinish} withSearch />,
+            <StakingSelectValidatorScreen
+                message={mockMessage}
+                validators={mockValidators}
+                loading={false}
+                onSelected={mockOnFinish}
+                withSearch
+            />,
         );
 
         expect(screen.getByText(translate("enter_a_validator_account_id"))).toBeDefined();

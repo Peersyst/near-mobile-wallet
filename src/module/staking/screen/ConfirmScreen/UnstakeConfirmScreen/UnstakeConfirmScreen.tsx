@@ -4,7 +4,7 @@ import stakeState from "module/staking/state/StakeState";
 import { useModal, useSetTab } from "@peersyst/react-native-components";
 import useUnstake from "module/staking/query/useUnstake";
 import UnstakeModal, { UnstakeModalScreens } from "module/staking/component/core/UnstakeModal/UnstakeModal";
-import ConfirmScreen from "../ConfirmScreen";
+import StakingConfirmScreen from "../StakingConfirmScreen";
 
 const UnstakeConfirmScreen = (): JSX.Element => {
     const translate = useTranslate();
@@ -30,7 +30,7 @@ const UnstakeConfirmScreen = (): JSX.Element => {
     }
 
     return (
-        <ConfirmScreen
+        <StakingConfirmScreen
             onExited={handleOnExited}
             sendTransaction={handleUnstake}
             isLoading={isLoading}

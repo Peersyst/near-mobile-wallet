@@ -7,13 +7,13 @@ import ValidatorInformation from "module/staking/component/display/ValidatorInfo
 import { ReactNode } from "react";
 import Alert from "module/common/component/feedback/Alert/Alert";
 
-interface SuccessScreenProps {
+interface StakingSuccessScreenScreenProps {
     onClose: (() => void) | undefined;
     message: AlertProps["content"];
     children?: ReactNode;
 }
 
-const SuccessScreen = ({ onClose, message, children }: SuccessScreenProps): JSX.Element => {
+const StakingSuccessScreen = ({ onClose, message, children }: StakingSuccessScreenScreenProps): JSX.Element => {
     const translate = useTranslate();
     const { validator } = useRecoilValue(stakeState);
 
@@ -31,4 +31,4 @@ const SuccessScreen = ({ onClose, message, children }: SuccessScreenProps): JSX.
     );
 };
 
-export default SuccessScreen;
+export default StakingSuccessScreen;

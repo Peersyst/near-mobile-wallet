@@ -4,7 +4,7 @@ import { useRecoilState, useResetRecoilState } from "recoil";
 import stakeState from "module/staking/state/StakeState";
 import ValidatorInformation from "module/staking/component/display/ValidatorInformation/ValidatorInformation";
 import { UnstakeModalScreens } from "module/staking/component/core/UnstakeModal/UnstakeModal";
-import SetAmountScreen from "../SetAmountScreen";
+import StakingSetAmountScreen from "../StakingSetAmountScreen";
 
 const UnstakeSetAmountScreen = (): JSX.Element => {
     const translate = useTranslate();
@@ -20,7 +20,7 @@ const UnstakeSetAmountScreen = (): JSX.Element => {
     };
 
     return (
-        <SetAmountScreen
+        <StakingSetAmountScreen
             maxAmount={validator?.stakingBalance?.staked}
             label={translate("enter_amount_want_to", { action: "unstake" })}
             onSubmit={handleSubmit}
@@ -29,7 +29,7 @@ const UnstakeSetAmountScreen = (): JSX.Element => {
                 <Label label={translate("from")!} />
                 <ValidatorInformation validator={validator} showEdit onEdit={onEditAction} />
             </Col>
-        </SetAmountScreen>
+        </StakingSetAmountScreen>
     );
 };
 
