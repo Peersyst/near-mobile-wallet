@@ -229,8 +229,11 @@
     "enter_new_validator": "Enter a new validator or select one from the list to stake your NEAR.",
     "or_select_a_validator": "Or select a validator",
     "select_unstake_validator": "Select the validator from which you want to unstake your NEAR.",
-    "loading": "Loading",
     "confirm_new_action_of": "Confirm new {{action}} of",
     "with": "With",
-    "edit": "Edit"
+    "edit": "Edit",
+    "loading": "Loading",
+    "stake_success": "Your stake has been succesfully delegated to the validator.",
+    "unstake_success": " has successfully been unstaked from this validator.",
+    "unstake_withdraw_waiting_time": "Your tokens are pending release and will be made available within 52-65h (4 epochs)."
 }
