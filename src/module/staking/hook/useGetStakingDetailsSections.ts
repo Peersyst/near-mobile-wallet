@@ -28,6 +28,7 @@ export default function (): UseGetStakingDetailsSectionReturn {
         {
             title: translate("totalAmountStaked"),
             amount: staked,
+            enabled: staked !== "0",
             action: "unstake",
             onAction: () => showModal(UnstakeModal),
         },
@@ -42,6 +43,7 @@ export default function (): UseGetStakingDetailsSectionReturn {
         {
             title: translate("availableForWithdrawal"),
             amount: available,
+            enabled: available !== "0",
             action: "withdraw",
             onAction: () => showModal(WithdrawModal),
         },

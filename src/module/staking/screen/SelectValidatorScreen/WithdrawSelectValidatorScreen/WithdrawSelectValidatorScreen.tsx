@@ -16,7 +16,7 @@ const WithdrawSelectValidatorScreen = (): JSX.Element => {
             validators={validators}
             loading={isLoading}
             onSelected={() => setTab(WithdrawModalScreens.CONFIRM_VALIDATOR)}
-            balanceType="available"
+            stakingBalanceType="available"
         />
     );
 };

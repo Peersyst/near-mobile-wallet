@@ -4,7 +4,7 @@ import ValidatorInformation from "../../../display/ValidatorInformation/Validato
 import { useValidatorSelect } from "../hook/useValidatorSelect";
 import { ValidatorInformationProps } from "module/staking/component/display/ValidatorInformation/ValidatorInformation.types";
 
-export type StakingListItemProps = Pick<ValidatorInformationProps, "validator" | "balanceType">;
+export type StakingListItemProps = Pick<ValidatorInformationProps, "validator" | "stakingBalanceType">;
 
 const StakingListItemSelect = ({ validator, ...rest }: StakingListItemProps): JSX.Element => {
     const { palette } = useTheme();

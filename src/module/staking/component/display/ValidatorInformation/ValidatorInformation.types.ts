@@ -1,8 +1,8 @@
-import { StakingBalance, Validator } from "near-peersyst-sdk";
+import { Validator } from "near-peersyst-sdk";
+import { ValidatorStakingBalanceProps } from "module/staking/component/display/ValidatorInformation/ValidatorStakingBalance/ValidatorStakingBalance";
 
-export interface ValidatorInformationProps {
+export interface ValidatorInformationProps extends Pick<ValidatorStakingBalanceProps, "stakingBalanceType"> {
     validator: Validator;
-    balanceType: keyof StakingBalance;
     showEdit?: boolean;
     onEdit?: () => void;
 }

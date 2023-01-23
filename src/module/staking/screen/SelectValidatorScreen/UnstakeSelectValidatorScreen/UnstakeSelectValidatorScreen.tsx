@@ -16,7 +16,7 @@ const UnstakeSelectValidatorScreen = (): JSX.Element => {
             validators={stakingValidators}
             loading={isLoading}
             onSelected={() => setTab(UnstakeModalScreens.SET_AMOUNT)}
-            balanceType="staked"
+            stakingBalanceType="staked"
         />
     );
 };

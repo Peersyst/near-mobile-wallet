@@ -3,12 +3,12 @@ import { StakingBalance } from "module/sdk";
 import Typography from "module/common/component/display/Typography/Typography";
 import { useTranslate } from "module/common/hook/useTranslate";
 
-interface ValidatorStakingBalanceProps {
+export interface ValidatorStakingBalanceProps {
     stakingBalance: StakingBalance | undefined;
-    balanceType: keyof StakingBalance;
+    stakingBalanceType: keyof StakingBalance;
 }
 
-const ValidatorStakingBalance = ({ stakingBalance, balanceType = "staked" }: ValidatorStakingBalanceProps): JSX.Element => {
+const ValidatorStakingBalance = ({ stakingBalance, stakingBalanceType = "staked" }: ValidatorStakingBalanceProps): JSX.Element => {
     const translate = useTranslate();
 
     return (
@@ -17,7 +17,7 @@ const ValidatorStakingBalance = ({ stakingBalance, balanceType = "staked" }: Val
                 {translate("staking")}
             </Typography>
             {stakingBalance && (
-                <Balance style={{ maxWidth: 100 }} balance={stakingBalance[balanceType]!} variant="body3Strong" units="token" />
+                <Balance style={{ maxWidth: 100 }} balance={stakingBalance[stakingBalanceType]!} variant="body3Strong" units="token" />
             )}
         </>
     );

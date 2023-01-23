@@ -11,12 +11,13 @@ import { StakingDetailRoot } from "./StakingDetailCard.styles";
 export interface StakingDetailCardProps {
     title: string;
     amount: string | undefined;
+    enabled?: boolean;
     action?: "unstake" | "withdraw";
     onAction?: () => void;
     isLoading?: boolean;
 }
 
-const StakingDetailCard = ({ title, amount = "0", action, onAction, isLoading }: StakingDetailCardProps): JSX.Element => {
+const StakingDetailCard = ({ title, amount = "0", enabled = false, action, onAction, isLoading }: StakingDetailCardProps): JSX.Element => {
     const translate = useTranslate();
 
     return (
@@ -33,7 +34,7 @@ const StakingDetailCard = ({ title, amount = "0", action, onAction, isLoading }:
                     </Skeleton>
                 </Col>
             </Row>
-            {action && (
+            {enabled && action && (
                 <Row alignItems="center">
                     <Button variant="outlined" size="sm" onPress={onAction}>
                         {translate(action)}

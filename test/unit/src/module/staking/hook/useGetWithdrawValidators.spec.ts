@@ -13,13 +13,14 @@ describe("useGetWithdrawValidators tests", () => {
         const goodValidator = new ValidatorMock({ stakingBalance: stakingBalanceMockWithAvailable });
         const badValidator = new ValidatorMock({ stakingBalance: stakingBalanceMockWithoutAvailable });
         const validators = [goodValidator, badValidator];
+        const mockRefetch = jest.fn();
         const mockGetStakingValidators = jest
             .spyOn(useGetStakingValidators, "default")
-            .mockReturnValue({ stakingValidators: validators, isLoading: false, refetch: jest.fn() });
+            .mockReturnValue({ stakingValidators: validators, isLoading: false, refetch: mockRefetch });
 
         const { result } = renderHook(() => useGetWithdrawValidators());
 
         await waitFor(() => expect(mockGetStakingValidators).toHaveBeenCalled());
-        expect(result.current).toEqual({ isLoading: false, validators: [goodValidator] });
+        expect(result.current).toStrictEqual({ validators: [goodValidator], isLoading: false, refetch: mockRefetch });
     });
 });

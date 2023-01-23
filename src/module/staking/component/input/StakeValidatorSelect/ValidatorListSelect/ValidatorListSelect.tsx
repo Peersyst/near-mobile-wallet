@@ -1,12 +1,12 @@
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import MainList from "module/main/component/display/MainList/MainList";
 import StakingListItemSelect from "../StakingListItemSelect/StakingListItemSelect";
-import { StakingBalance, Validator } from "near-peersyst-sdk";
+import { Validator } from "near-peersyst-sdk";
+import { ValidatorStakingBalanceProps } from "module/staking/component/display/ValidatorInformation/ValidatorStakingBalance/ValidatorStakingBalance";
 
-export interface StakingListProps {
+export interface StakingListProps extends Pick<ValidatorStakingBalanceProps, "stakingBalanceType"> {
     validators: Validator[]; //Validators to be displayed
     isLoading: boolean; //Loading state
-    balanceType: keyof StakingBalance;
 }
 const ValidatorListSelect = ({ validators, isLoading, ...rest }: StakingListProps): JSX.Element => {
     const haveElementList = validators.length > 0;
