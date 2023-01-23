@@ -29,6 +29,6 @@ describe("Tests for StakingCurrentValidators", () => {
 
         render(<MyCurrentValidatorsList />);
 
-        expect(screen.getByText(translate("nothingToShow", { ns: "error" })));
+        expect(screen.getByText(translate("nothing_to_show", { ns: "error" })));
     });
 });
