@@ -2,9 +2,9 @@ import { createModal, ExposedBackdropProps } from "@peersyst/react-native-compon
 import StakeModal, { ModalTabs } from "module/staking/component/core/StakeModal/StakeModal";
 import { useTranslate } from "module/common/hook/useTranslate";
 import UnstakeSelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/UnstakeSelectValidatorScreen/UnstakeSelectValidatorScreen";
-import UnstakeSetAmountScreen from "module/staking/screen/BaseSetAmountStakeScreen/UnstakeSetAmountScreen/UnstakeSetAmountScreen";
-import ConfirmUnstakeScreen from "module/staking/screen/ConfirmUnstakeScreen/ConfirmUnstakeScreen";
-import SuccessUnstakeScreen from "module/staking/screen/SuccessUnstakeScreen/SuccessUnstakeScreen";
+import UnstakeConfirmScreen from "module/staking/screen/ConfirmScreen/UnstakeConfirmScreen/UnstakeConfirmScreen";
+import UnstakeSuccessScreen from "module/staking/screen/SuccessScreen/UnstakeSuccessScreen/UnstakeSuccessScreen";
+import UnstakeSetAmountScreen from "module/staking/screen/SetAmountScreen/UnstakeSetAmountScreen/UnstakeSetAmountScreen";
 
 export enum UnstakeModalScreens {
     SELECT_VALIDATOR,
@@ -30,12 +30,12 @@ const UnstakeModal = createModal(({ ...rest }: ExposedBackdropProps): JSX.Elemen
         {
             title: translate("confirm_validator"),
             tabIndex: UnstakeModalScreens.CONFIRM_VALIDATOR,
-            tabContent: <ConfirmUnstakeScreen />,
+            tabContent: <UnstakeConfirmScreen />,
         },
         {
             title: translate("success"),
             tabIndex: UnstakeModalScreens.SUCCESS,
-            tabContent: <SuccessUnstakeScreen />,
+            tabContent: <UnstakeSuccessScreen />,
         },
     ];
 
