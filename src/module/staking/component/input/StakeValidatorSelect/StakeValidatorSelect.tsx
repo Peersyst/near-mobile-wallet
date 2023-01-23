@@ -2,7 +2,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import TextField from "module/common/component/input/TextField/TextField";
 import ValidatorListSelect from "./ValidatorListSelect/ValidatorListSelect";
 import { Col } from "@peersyst/react-native-components";
-import { Validator } from "near-peersyst-sdk";
+import { StakingBalance, Validator } from "near-peersyst-sdk";
 import { ValidatorSelectProvider } from "./context/ValidatorSelectContext";
 import Typography from "module/common/component/display/Typography/Typography";
 import useStakingValidatorController from "./hook/useStakingValidatorController";
@@ -12,9 +12,10 @@ export interface StakeValidatorSelectProps {
     loading: boolean;
     onSelected: (validator: Validator) => void;
     withSearch?: boolean;
+    balanceType: keyof StakingBalance;
 }
 
-const StakeValidatorSelect = ({ validators, loading, onSelected, withSearch = false }: StakeValidatorSelectProps): JSX.Element => {
+const StakeValidatorSelect = ({ validators, loading, onSelected, withSearch = false, ...rest }: StakeValidatorSelectProps): JSX.Element => {
     const translate = useTranslate();
     const { queryValidators, setAccountId, accountId, isPending } = useStakingValidatorController(validators);
 
@@ -28,7 +29,7 @@ const StakeValidatorSelect = ({ validators, loading, onSelected, withSearch = fa
                     </Typography>
                 </Col>
             ) : (
-                <ValidatorListSelect validators={queryValidators} isLoading={loading} />
+                <ValidatorListSelect validators={queryValidators} isLoading={loading} {...rest} />
             )}
         </Col>
     );
