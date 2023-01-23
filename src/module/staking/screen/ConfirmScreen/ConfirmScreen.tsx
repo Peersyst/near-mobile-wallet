@@ -11,14 +11,14 @@ import CountdownButton from "module/common/component/input/CountdownButton/Count
 import { SendTransactionModalProps } from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal.types";
 import BaseSendSummary from "module/transaction/component/display/BaseSendSummary/BaseSendSummary";
 
-export interface ConfirmAddStakeScreeenProps extends Omit<SendTransactionModalProps, "children" | "onExited"> {
+export interface ConfirmScreenProps extends Omit<SendTransactionModalProps, "children" | "onExited"> {
     label: string;
     onCancel?: () => void;
     onEditValidator?: () => void;
     onExited?: () => void;
 }
 
-const ConfirmAddStakeScreeen = ({ label, onCancel, onEditValidator, ...rest }: ConfirmAddStakeScreeenProps) => {
+const ConfirmScreen = ({ label, onCancel, onEditValidator, ...rest }: ConfirmScreenProps) => {
     const translate = useTranslate();
     const { validator, amount } = useRecoilValue(stakeRecoilState);
 
@@ -53,4 +53,4 @@ const ConfirmAddStakeScreeen = ({ label, onCancel, onEditValidator, ...rest }: C
     );
 };
 
-export default ConfirmAddStakeScreeen;
+export default ConfirmScreen;

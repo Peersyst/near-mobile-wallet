@@ -1,12 +1,12 @@
-import ConfirmAddStakeScreeen from "module/staking/screen/ConfirmAddStakeScreeen/ConfirmAddStakeScreeen";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { useRecoilValue } from "recoil";
 import stakeState from "module/staking/state/StakeState";
 import { useModal, useSetTab } from "@peersyst/react-native-components";
 import useUnstake from "module/staking/query/useUnstake";
 import UnstakeModal, { UnstakeModalScreens } from "module/staking/component/core/UnstakeModal/UnstakeModal";
+import ConfirmScreen from "../ConfirmScreen";
 
-const ConfirmUnstakeScreen = (): JSX.Element => {
+const UnstakeConfirmScreen = (): JSX.Element => {
     const translate = useTranslate();
     const { hideModal } = useModal();
 
@@ -30,7 +30,7 @@ const ConfirmUnstakeScreen = (): JSX.Element => {
     }
 
     return (
-        <ConfirmAddStakeScreeen
+        <ConfirmScreen
             onExited={handleOnExited}
             sendTransaction={handleUnstake}
             isLoading={isLoading}
@@ -43,4 +43,4 @@ const ConfirmUnstakeScreen = (): JSX.Element => {
     );
 };
 
-export default ConfirmUnstakeScreen;
+export default UnstakeConfirmScreen;

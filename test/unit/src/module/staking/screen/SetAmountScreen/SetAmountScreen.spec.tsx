@@ -1,11 +1,11 @@
 import { config } from "config";
 import Typography from "module/common/component/display/Typography/Typography";
-import BaseSetAmountStakeScreen from "module/staking/screen/BaseSetAmountStakeScreen/BaseSetAmountStakeScreen";
 import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
 import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
 import { StakeStateMock, UseGetBalanceMock, UseNativeTokenConversionMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 import { fireEvent, render, screen, translate, waitFor } from "test-utils";
 import * as Recoil from "recoil";
+import SetAmountScreen from "module/staking/screen/SetAmountScreen/SetAmountScreen";
 
 describe("Test for BaseSetAmountStakeScreen component", () => {
     test("Renders correctly", () => {
@@ -13,9 +13,9 @@ describe("Test for BaseSetAmountStakeScreen component", () => {
         new UseWalletStateMock();
         new UseNativeTokenConversionMock({ value: "3000" });
         render(
-            <BaseSetAmountStakeScreen label="Enter the amount" maxAmount="1000">
+            <SetAmountScreen label="Enter the amount" maxAmount="1000">
                 <Typography variant="body2Strong">Children</Typography>
-            </BaseSetAmountStakeScreen>,
+            </SetAmountScreen>,
         );
         expect(screen.getByText("Enter the amount")).toBeDefined();
         expect(screen.getByText("Children")).toBeDefined();
@@ -38,9 +38,9 @@ describe("Test for BaseSetAmountStakeScreen component", () => {
         const mockedSetStakeState = jest.fn();
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([new StakeStateMock(), mockedSetStakeState]);
         render(
-            <BaseSetAmountStakeScreen onSubmit={mockedOnSubmit} label="Enter the amount" maxAmount="1000">
+            <SetAmountScreen onSubmit={mockedOnSubmit} label="Enter the amount" maxAmount="1000">
                 <Typography variant="body2Strong">Children</Typography>
-            </BaseSetAmountStakeScreen>,
+            </SetAmountScreen>,
         );
         const input = screen.getByPlaceholderText(translate("enter_amount"));
         const btn = screen.getByText(translate("next"));

@@ -117,7 +117,7 @@
     "backup_wallet_advise_text": "Si continuas verás tu frase de recuperación o la clave privada para cada uno de tus cuentas. Si roban o pierdes tu dispositivo, solo podrás recuperar tus fondos con esta frase de recuperación o con las claves para cada cuenta.",
     "backup_wallet_advise_text_2": "Recuerda, que las cuentas con la etiqueta de importada solo podrán ser recuperadas con la clave correspondiente a esa cuenta.",
     "back_up_now": "Respaldar",
-    "close": "Cerrrar",
+    "close": "Cerrar",
     "mnemonic_for": "Mnemonic para {{name}}",
     "status": "Estado",
     "pending": "Pendiente",
@@ -232,5 +232,9 @@
     "confirm_new_action_of": "Confirmar {{action}} de",
     "with": "Con",
     "edit": "Edita",
+    "confirm_new_staking_of": "Confirmar Staking de",
+    "stake_success": "Se han añadido tus NEAR para hacer stake correctamente en el validador.",
+    "unstake_success": " han sido retirados del stake del validador correctamente.",
+    "unstake_withdraw_waiting_time": "Tus tokens estarán disponibles para la retirada a tu cuenta en las próximas 52-65h (4 epochs).",
     "select_validator_withdrawal": "Selecciona el validador del que deseas retirar sus fondos."
 }

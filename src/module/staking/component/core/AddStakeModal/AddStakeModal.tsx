@@ -1,10 +1,10 @@
 import { createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
-import SetAmountStakeScreen from "module/staking/screen/BaseSetAmountStakeScreen/AddStakeSetAmountScreen/AddStakeSetAmountScreen";
 import { useTranslate } from "module/common/hook/useTranslate";
 import StakeModal, { ModalTabs } from "../StakeModal/StakeModal";
 import AddStakeValidatorScreen from "module/staking/screen/SelectValidatorScreen/AddStakeSelectValidatorScreen/AddStakeSelectValidatorScreen";
-import AddStakingScreen from "module/staking/screen/AddStakeScreen/AddStakeScreen";
-
+import AddStakeSetAmountScreen from "module/staking/screen/SetAmountScreen/AddStakeSetAmountScreen/AddStakeSetAmountScreen";
+import AddStakeSuccessScreen from "module/staking/screen/SuccessScreen/AddStakeSuccessScreen/AddStakeSuccessScreen";
+import AddStakeConfirmScreen from "module/staking/screen/ConfirmScreen/AddStakeConfirmScreen/AddStakeConfirmScreen";
 export enum AddStakeScreens {
     SET_AMOUNT,
     SELECT_VALIDATOR,
@@ -19,7 +19,7 @@ const AddStakeModal = createBackdrop((props: ExposedBackdropProps) => {
         {
             title: translate("stake_your_near"),
             tabIndex: AddStakeScreens.SET_AMOUNT,
-            tabContent: <SetAmountStakeScreen />,
+            tabContent: <AddStakeSetAmountScreen />,
         },
         {
             title: translate("select_validator"),
@@ -27,12 +27,12 @@ const AddStakeModal = createBackdrop((props: ExposedBackdropProps) => {
             tabContent: <AddStakeValidatorScreen />,
         },
         {
-            tabContent: <AddStakingScreen />,
+            tabContent: <AddStakeConfirmScreen />,
             title: translate("confirm_validator"),
             tabIndex: AddStakeScreens.CONFIRM_VALIDATOR,
         },
         {
-            tabContent: <></>,
+            tabContent: <AddStakeSuccessScreen />,
             title: translate("success"),
             tabIndex: AddStakeScreens.SUCCESS,
         },
