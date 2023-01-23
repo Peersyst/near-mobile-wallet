@@ -1,8 +1,8 @@
 import { render, translate } from "test-utils";
-import StakingCurrentValidators from "module/staking/component/display/StakingCurrentValidators/StakingCurrentValidators";
 import * as useGetStakingValidators from "module/staking/hook/useGetStakingValidators";
 import { screen } from "@testing-library/react-native";
 import { ValidatorMock } from "mocks/NearSdk/validator.mock";
+import MyCurrentValidatorsList from "module/staking/component/display/MyCurrentValidatorsList/MyCurrentValidatorsList";
 
 describe("Tests for StakingCurrentValidators", () => {
     test("Renders with validators", () => {
@@ -13,7 +13,7 @@ describe("Tests for StakingCurrentValidators", () => {
             refetch: jest.fn(),
         });
 
-        render(<StakingCurrentValidators />);
+        render(<MyCurrentValidatorsList />);
 
         expect(screen.getAllByTestId("UserCheckIcon")).toHaveLength(3);
         expect(screen.getAllByText(translate("active"))).toHaveLength(3);
@@ -27,7 +27,7 @@ describe("Tests for StakingCurrentValidators", () => {
             refetch: jest.fn(),
         });
 
-        render(<StakingCurrentValidators />);
+        render(<MyCurrentValidatorsList />);
 
         expect(screen.getByText(translate("not_using_validators", { ns: "error" })));
     });

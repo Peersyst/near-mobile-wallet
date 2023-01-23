@@ -5,6 +5,7 @@ import { StakingDetailCardProps } from "../component/display/StakingDetailCard/S
 
 interface UseGetStakingDetailsSectionReturn {
     isLoading: boolean;
+    refetch: () => void;
     sections: StakingDetailsSection[];
 }
 
@@ -18,6 +19,7 @@ export default function (): UseGetStakingDetailsSectionReturn {
     const {
         isLoading,
         data: { staked, rewardsEarned, pending, available } = { staked: "0", pending: "0", available: "0", rewardsEarned: "0" },
+        refetch,
     } = useGetTotalStaking(selectedWallet);
 
     const stakingDetailsSections: StakingDetailsSection[] = [
@@ -40,5 +42,5 @@ export default function (): UseGetStakingDetailsSectionReturn {
         },
     ];
 
-    return { isLoading, sections: stakingDetailsSections };
+    return { isLoading, refetch, sections: stakingDetailsSections };
 }
