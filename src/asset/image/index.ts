@@ -9,7 +9,7 @@ export { default as key } from "./key.png";
 export { default as lock } from "./lock.png";
 export { default as nervos_coin } from "./nervos-coin.png";
 export { default as notes } from "./notes.png";
-export { default as placeholder_image } from "./placeholder_image.png";
+export { default as placeholder_image } from "./placeholder_image.jpg";
 export { default as pound_coin } from "./pound-coin.png";
 export { default as send } from "./send.png";
 export { default as wallet } from "./wallet.png";
