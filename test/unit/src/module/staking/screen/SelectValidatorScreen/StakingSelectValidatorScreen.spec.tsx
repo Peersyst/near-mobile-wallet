@@ -12,11 +12,11 @@ describe("Tests for StakingSelectValidatorScreen", () => {
         const mockValidators = [mockValidator];
 
         render(
-            <SelectValidatorScreen
+            <StakingSelectValidatorScreen
                 message={mockMessage}
                 validators={mockValidators}
                 loading={false}
-                balanceType="staked"
+                stakingBalanceType="staked"
                 onSelected={mockOnFinish}
             />,
         );
@@ -32,11 +32,11 @@ describe("Tests for StakingSelectValidatorScreen", () => {
         const mockValidators = [mockValidator];
 
         render(
-            <SelectValidatorScreen
+            <StakingSelectValidatorScreen
                 message={mockMessage}
                 validators={mockValidators}
                 loading={false}
-                balanceType="staked"
+                stakingBalanceType="staked"
                 onSelected={mockOnFinish}
                 withSearch
             />,
