@@ -8,7 +8,8 @@ export const useFormatBalance = (
 ) => {
     const unsignedBalance = balance.toString().replace(/-|,/g, "");
     const checkedBalance = balanceBelowMinimum(unsignedBalance) ? NEAR_LIMIT_DECIMAL : unsignedBalance;
-    numberFormatOptions!.maximumFractionDigits = numberFormatOptions!.maximumFractionDigits || getNearDecimals(checkedBalance);
+    if (numberFormatOptions)
+        numberFormatOptions.maximumFractionDigits = numberFormatOptions.maximumFractionDigits || getNearDecimals(checkedBalance);
     const formattedAction = balanceBelowMinimum(unsignedBalance) ? "round" : action;
     const formattedBalance = useFormatNumber(checkedBalance, numberFormatOptions);
     return formatBalance(formattedBalance, { action: formattedAction, units, unitsPosition });
