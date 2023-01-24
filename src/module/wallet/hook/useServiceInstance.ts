@@ -7,13 +7,15 @@ import useSelectedWalletIndex from "./useSelectedWalletIndex";
 export interface useServiceInstanceReturn {
     index: number;
     network: NetworkType;
-    serviceInstance: CKBSDKService;
+    serviceInstance: CKBSDKService | undefined;
+    queryEnabled: boolean;
 }
 
 export default function useServiceInstance(index?: number): useServiceInstanceReturn {
     const network = useSelectedNetwork();
     const selectedWallet = useSelectedWalletIndex();
     const usedIndex = index !== undefined ? index : selectedWallet;
-    const serviceInstance = serviceInstancesMap.get(index || selectedWallet)![network];
-    return { serviceInstance, network, index: usedIndex };
+    const serviceInstance = serviceInstancesMap.get(index || selectedWallet)?.[network]!;
+    const queryEnabled = !!serviceInstance;
+    return { serviceInstance, network, index: usedIndex, queryEnabled };
 }

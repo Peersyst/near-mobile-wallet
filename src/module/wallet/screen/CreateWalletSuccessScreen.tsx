@@ -21,7 +21,7 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
         const setStorage = async () => {
             await WalletStorage.setSecure({ pin: pin!, wallets: [{ name: name!, colorIndex: 0, mnemonic: mnemonic!, index: 0 }] });
             await SettingsStorage.set(defaultSettingsState);
-
+            setSettingsState(defaultSettingsState);
             setWalletState((state) => ({
                 ...state,
                 wallets: [{ name: name!, colorIndex: 0, index: 0 }],
@@ -29,7 +29,6 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
                 isAuthenticated: true,
                 selectedWallet: 0,
             }));
-            setSettingsState(defaultSettingsState);
 
             if (mnemonic) {
                 await createServiceInstance(0, mnemonic);

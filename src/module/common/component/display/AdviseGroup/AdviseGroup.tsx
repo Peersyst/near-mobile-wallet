@@ -12,7 +12,7 @@ const AdviseGroup = ({ index: indexProp, onIndexChange, advises }: AdviseGroupPr
     const [index, setIndex] = useControlled(0, indexProp, onIndexChange);
 
     return (
-        <PagerView page={index} onPageSelected={setIndex} showPageIndicator height={250} gap={24} onStartShouldSetResponder={() => true}>
+        <PagerView page={index} onPageSelected={setIndex} showPageIndicator height={280} gap={24} onStartShouldSetResponder={() => true}>
             {advises.map((advise, i) => {
                 return <Advise key={i} {...advise} />;
             })}

@@ -10,7 +10,7 @@ const useSendTransaction = (senderIndex: number) => {
 
     return useMutation(async (params: Omit<SendTransactionParams, "mnemonic">) => {
         const mnemonic = await WalletStorage.getMnemonic(senderIndex!);
-        const hash = await serviceInstance.sendTransaction({ ...params, mnemonic: mnemonic! });
+        const hash = await serviceInstance?.sendTransaction({ ...params, mnemonic: mnemonic! });
         if (hash) await addUncommittedTransaction(senderIndex, network, hash);
     });
 };

@@ -19,7 +19,7 @@
     "too_many_decimals": "必须包含{{decimals}}减去小数",
     "invalid_start": "必须以{{start}}开头",
     "invalid_end": "必须以{{end}}结尾",
-    "nothingToShow": "没有什么可以显示",
+    "nothing_to_show": "没有什么可以显示",
     "invalid_address": "地址无效",
     "incorrect_mnemonic": "您输入的助记词不正确"
 }

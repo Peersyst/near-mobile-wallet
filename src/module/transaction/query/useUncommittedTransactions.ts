@@ -27,7 +27,7 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
 
             for (const hash of uncommittedTransactionHashes) {
                 try {
-                    const tx = await serviceInstance.getTransaction(hash);
+                    const tx = await serviceInstance!.getTransaction(hash);
                     if (tx.status !== TransactionStatus.COMMITTED) {
                         uncommittedTransactions.push(tx);
                         updatedUncommittedTransactionHashes.push(hash);
@@ -48,7 +48,7 @@ const useUncommittedTransactions = (index?: number): QueryResult<FullTransaction
             }
             if (shouldSync) {
                 //Use another thread
-                await serviceInstance.synchronize();
+                await serviceInstance!.synchronize();
                 setWalletState((state) => ({
                     ...state,
                     wallets: state.wallets.map((w) => {

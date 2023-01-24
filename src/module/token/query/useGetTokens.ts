@@ -4,8 +4,10 @@ import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import { TokenAmount } from "../types";
 
 const useGetTokens = (index?: number): QueryResult<TokenAmount[]> => {
-    const { index: usedIndex, network, serviceInstance } = useServiceInstance(index);
-    return useQuery(["tokens", usedIndex, network], () => serviceInstance.getTokensBalance());
+    const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index);
+    return useQuery(["tokens", usedIndex, network], () => serviceInstance?.getTokensBalance(), {
+        enabled: queryEnabled,
+    });
 };
 
 export default useGetTokens;

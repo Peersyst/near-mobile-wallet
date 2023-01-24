@@ -10,7 +10,7 @@ const useWithdrawOrUnlock = (index: number) => {
 
     return useMutation(async (params: Omit<WithdrawOrUnlockParams, "mnemonic">) => {
         const mnemonic = await WalletStorage.getMnemonic(index);
-        const hash = await serviceInstance.withdrawOrUnlock({ ...params, mnemonic: mnemonic! });
+        const hash = await serviceInstance?.withdrawOrUnlock({ ...params, mnemonic: mnemonic! });
         if (hash) await addUncommittedTransaction(index, network, hash);
     });
 };
