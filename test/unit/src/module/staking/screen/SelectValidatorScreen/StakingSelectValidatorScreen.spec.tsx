@@ -16,7 +16,7 @@ describe("Tests for StakingSelectValidatorScreen", () => {
                 message={mockMessage}
                 validators={mockValidators}
                 loading={false}
-                balanceType="staked"
+                stakingBalanceType="staked"
                 onSelected={mockOnFinish}
             />,
         );
@@ -36,7 +36,7 @@ describe("Tests for StakingSelectValidatorScreen", () => {
                 message={mockMessage}
                 validators={mockValidators}
                 loading={false}
-                balanceType="staked"
+                stakingBalanceType="staked"
                 onSelected={mockOnFinish}
                 withSearch
             />,

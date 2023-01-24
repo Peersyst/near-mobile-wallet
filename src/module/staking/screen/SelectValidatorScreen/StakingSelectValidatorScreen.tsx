@@ -7,9 +7,15 @@ import { Validator } from "near-peersyst-sdk";
 
 interface StakingSelectValidatorScreenProps extends StakeValidatorSelectProps {
     message: string;
+    useAvailableToAmount?: boolean;
 }
 
-const StakingSelectValidatorScreen = ({ message, onSelected, ...rest }: StakingSelectValidatorScreenProps): JSX.Element => {
+const StakingSelectValidatorScreen = ({
+    message,
+    onSelected,
+    useAvailableToAmount = false,
+    ...rest
+}: StakingSelectValidatorScreenProps): JSX.Element => {
     const setStakeState = useSetRecoilState(stakeRecoilState);
 
     const handleOnSelected = (validator: Validator) => {
@@ -18,6 +24,8 @@ const StakingSelectValidatorScreen = ({ message, onSelected, ...rest }: StakingS
                 return {
                     ...state,
                     validator: validator,
+                    amount:
+                        useAvailableToAmount && validator.stakingBalance?.available ? validator.stakingBalance?.available : state.amount,
                 };
             });
             onSelected(validator);
