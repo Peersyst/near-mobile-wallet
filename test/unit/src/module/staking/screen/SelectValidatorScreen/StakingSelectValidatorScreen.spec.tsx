@@ -12,7 +12,13 @@ describe("Tests for StakingSelectValidatorScreen", () => {
         const mockValidators = [mockValidator];
 
         render(
-            <StakingSelectValidatorScreen message={mockMessage} validators={mockValidators} loading={false} onSelected={mockOnFinish} />,
+            <StakingSelectValidatorScreen
+                message={mockMessage}
+                validators={mockValidators}
+                loading={false}
+                balanceType="staked"
+                onSelected={mockOnFinish}
+            />,
         );
 
         expect(screen.getByText(mockMessage)).toBeDefined();
@@ -30,6 +36,7 @@ describe("Tests for StakingSelectValidatorScreen", () => {
                 message={mockMessage}
                 validators={mockValidators}
                 loading={false}
+                balanceType="staked"
                 onSelected={mockOnFinish}
                 withSearch
             />,

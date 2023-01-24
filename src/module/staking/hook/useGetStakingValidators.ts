@@ -32,9 +32,9 @@ export default function (): UseGetStakingValidatorsReturn {
                 };
                 return stakingValidator;
             });
-            return { stakingValidators, isLoading: isLoadingCurrentValidators || isLoadingAllValidators };
+            return { stakingValidators, isLoading: isLoadingCurrentValidators || isLoadingAllValidators, refetch: handleRefetch };
         }
-        return { stakingValidators: [], isLoading: isLoadingCurrentValidators || isLoadingAllValidators };
+        return { stakingValidators: [], isLoading: isLoadingCurrentValidators || isLoadingAllValidators, refetch: handleRefetch };
     }, [validators, allValidators]);
 
     return { stakingValidators, isLoading, refetch: handleRefetch };

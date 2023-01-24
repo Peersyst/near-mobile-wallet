@@ -14,6 +14,7 @@ const ValidatorInformation = ({
     validator: { accountId, stakingBalance, fee, active },
     showEdit,
     onEdit,
+    ...rest
 }: ValidatorInformationProps): JSX.Element => {
     const translate = useTranslate();
 
@@ -41,7 +42,7 @@ const ValidatorInformation = ({
                         {translate("edit")}
                     </Button>
                 ) : (
-                    <ValidatorStakingBalance stakingBalance={stakingBalance} />
+                    <ValidatorStakingBalance stakingBalance={stakingBalance} {...rest} />
                 )}
             </Col>
         </ValidatorRoot>
