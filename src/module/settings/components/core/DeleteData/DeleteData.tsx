@@ -35,13 +35,13 @@ const DeleteData = () => {
             onPress={() =>
                 showDialog({
                     title: translate("delete_data"),
-                    message: translate("delete_data_text"),
+                    content: translate("delete_data_text"),
                     buttons: [
                         { text: translate("cancel") },
                         {
                             text: translate("delete"),
                             type: "destructive",
-                            onPress: handleDelete,
+                            action: handleDelete,
                         },
                     ],
                 })

@@ -76,7 +76,7 @@ const DeleteOneWallet = () => {
             setTimeout(() => {
                 showDialog({
                     title: translate("delete_wallet", { walletName: walletToDelete.name }),
-                    message: translate(wallets.length === 1 ? "delete_only_wallet_text" : "delete_wallet_text", {
+                    content: translate(wallets.length === 1 ? "delete_only_wallet_text" : "delete_wallet_text", {
                         walletName: walletToDelete.name,
                     }),
                     buttons: [
@@ -84,7 +84,7 @@ const DeleteOneWallet = () => {
                         {
                             text: translate("delete_wallet", { walletName: walletToDelete.name }),
                             type: "destructive",
-                            onPress: () => handleDelete(index),
+                            action: () => handleDelete(index),
                         },
                     ],
                 });
