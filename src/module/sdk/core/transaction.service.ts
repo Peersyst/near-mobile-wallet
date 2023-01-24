@@ -56,8 +56,6 @@ export enum TransactionType {
     UNLOCK_DAO = "unlock_dao",
     SMART_CONTRACT_SEND = "smart_contract_send",
     SMART_CONTRACT_RECEIVE = "smart_contract_receive",
-    STAKE = "stake",
-    UNSTAKE = "unstake",
 }
 
 export enum FeeRate {

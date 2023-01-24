@@ -11,7 +11,7 @@ describe("BottomBar test", () => {
         expect(screen.getByTestId("DAOIcon")).toBeDefined();
         //Wallet
         expect(screen.getByText(translate("wallet"))).toBeDefined();
-        expect(screen.getByTestId("NearIcon")).toBeDefined();
+        expect(screen.getByTestId("WalletIcon")).toBeDefined();
         //News
         expect(screen.getByTestId("PinIcon")).toBeDefined();
         expect(screen.getByText(translate("news"))).toBeDefined();
@@ -26,7 +26,7 @@ describe("BottomBar test", () => {
     test("Navigate to Home Screen", () => {
         const mockedNavigate = jest.fn();
         const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: mockedNavigate } as any} />);
-        const nearIcon = screen.getByTestId("NearIcon");
+        const nearIcon = screen.getByTestId("WalletIcon");
         fireEvent.press(nearIcon);
         expect(mockedNavigate).toHaveBeenCalledWith(MainBottomScreens.HOME);
     });

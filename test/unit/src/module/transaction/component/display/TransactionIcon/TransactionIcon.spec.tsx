@@ -12,14 +12,4 @@ describe("TransactionIcon tests", () => {
         const screen = render(<TransactionIcon type={TransactionType.RECEIVE_NATIVE_TOKEN} />);
         expect(screen.getByTestId("ArrowDownCircleIcon")).toBeDefined();
     });
-
-    test("Renders StakeIcon", () => {
-        const screen = render(<TransactionIcon type={TransactionType.STAKE} />);
-        expect(screen.getByTestId("NearIcon")).toBeDefined();
-    });
-
-    test("Renders DAOWithdrawIcon", () => {
-        const screen = render(<TransactionIcon type={TransactionType.UNSTAKE} />);
-        expect(screen.getByTestId("NearIcon")).toBeDefined();
-    });
 });

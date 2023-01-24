@@ -1,5 +1,5 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { DAOIcon, NearIcon, PinIcon } from "icons";
+import { DAOIcon, PinIcon, WalletIcon } from "icons";
 import { MainBottomScreens } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup";
 import { MainStackParamsList } from "stack-navigator";
 import { BottomBarRoot } from "./BottomBar.styles";
@@ -28,7 +28,7 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
                 onPress={() => handleNavigation(MainBottomScreens.HOME)}
                 isActive={activeTab === MainBottomScreens.HOME}
                 label={translate("wallet")}
-                Icon={<NearIcon />}
+                Icon={<WalletIcon />}
             />
             <BottomBarItem
                 onPress={() => handleNavigation(MainBottomScreens.NEWS)}

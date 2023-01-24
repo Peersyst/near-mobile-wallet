@@ -25,7 +25,6 @@ export * from "./InfoIcon";
 export * from "./LockDAOIcon";
 export * from "./LogoIcon";
 export * from "./LogoColIcon";
-export * from "./NearIcon";
 export * from "./NewsIcon";
 export * from "./NotificationIcon";
 export * from "./PinIcon";
