@@ -12,7 +12,6 @@ export interface SettingsState {
     locale?: LocaleType;
     fiat: FiatCurrencyType;
     network: NetworkType;
-    fee: FeeType;
     loading?: boolean;
 }
 
@@ -20,7 +19,6 @@ export const defaultSettingsState: SettingsState = {
     locale: getDefaultLocale(),
     fiat: "usd",
     network: Chains.TESTNET,
-    fee: FeeRate.NORMAL,
 };
 
 const settingsState = atom<SettingsState>({
