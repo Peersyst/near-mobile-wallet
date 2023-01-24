@@ -5,6 +5,7 @@ import { StakingDetailCardProps } from "../component/display/StakingDetailCard/S
 import UnstakeModal from "module/staking/component/core/UnstakeModal/UnstakeModal";
 import { useModal } from "@peersyst/react-native-components";
 import WithdrawModal from "module/staking/component/core/WithdrawModal/WithdrawModal";
+import { BalanceOperations } from "near-peersyst-sdk";
 
 interface UseGetStakingDetailsSectionReturn {
     isLoading: boolean;
@@ -28,7 +29,7 @@ export default function (): UseGetStakingDetailsSectionReturn {
         {
             title: translate("totalAmountStaked"),
             amount: staked,
-            enabled: staked !== "0",
+            enabled: BalanceOperations.BNIsBigger(staked, "0"),
             action: "unstake",
             onAction: () => showModal(UnstakeModal),
         },
@@ -43,7 +44,7 @@ export default function (): UseGetStakingDetailsSectionReturn {
         {
             title: translate("availableForWithdrawal"),
             amount: available,
-            enabled: available !== "0",
+            enabled: BalanceOperations.BNIsBigger(available, "0"),
             action: "withdraw",
             onAction: () => showModal(WithdrawModal),
         },
