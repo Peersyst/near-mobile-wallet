@@ -6,17 +6,13 @@ import { config } from "config";
 import { MOCKED_ADDRESS, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 
 describe("DepositConfirmationScreen tests", () => {
-    afterEach(() => {
-        jest.restoreAllMocks();
-    });
-
     test("Renders correctly", () => {
         new UseServiceInstanceMock();
         const mockedWallet = new UseWalletStateMock().state.wallets[0];
 
-        jest.spyOn(Recoil, "useRecoilValue").mockReturnValueOnce({
-            amount: 1000,
-            fee: 0.001,
+        jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({
+            amount: "1000",
+            fee: "0.001",
             senderWalletIndex: mockedWallet.index,
         });
 

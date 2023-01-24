@@ -19,10 +19,12 @@ const DepositConfirmationScreen = (): JSX.Element => {
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [loading, setLoading] = useState(false);
     const { amount, fee: feeInCKB, senderWalletIndex } = useRecoilValue(sendState);
+
     const {
         state: { wallets },
     } = useWalletState();
     const senderWallet = wallets[senderWalletIndex!];
+
     const { name: senderName } = senderWallet;
     const { serviceInstance } = useServiceInstance(senderWalletIndex);
     const { fee: feeInShannons } = useRecoilValue(settingsState);

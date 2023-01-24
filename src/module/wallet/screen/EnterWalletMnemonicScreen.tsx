@@ -17,7 +17,7 @@ export interface EnterWalletMnemonicScreenProps {
 }
 
 const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonicScreenProps): JSX.Element => {
-    const translate = useTranslate();
+    const translateError = useTranslate("error");
     const { setMnemonic } = useCreateWallet();
     const [submitted, setSubmitted] = useState(false);
     const { showToast } = useToast();
@@ -37,7 +37,7 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonic
                 setSubmitted(true);
             } else {
                 notificationAsync(NotificationFeedbackType.Error);
-                showToast(translate("incorrect_mnemonic"), { type: "error" });
+                showToast(translateError("incorrect_mnemonic"), { type: "error" });
             }
         }
     };

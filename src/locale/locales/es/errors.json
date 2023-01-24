@@ -16,9 +16,11 @@
     "invalid_required": "El campo es obligatorio",
     "insufficient_chars": "El campo debe contener al menos {{chars}} carácteres",
     "too_many_chars": "El campo debe contener menos de {{chars}} carácteres",
+    "too_many_decimals": "Debe contener {{decimals}} o menos decimales",
     "invalid_start": "El campo debe empezar con {{start}}",
     "invalid_end": "El campo debe terminar con {{end}}",
     "nothingToShow": "No hay nada que mostrar",
-    "invalid_address": "Invalid address",
-    "copied_to_clipboard": "Copied to clipboard"
+    "invalid_address": "Dirección inválida",
+    "copied_to_clipboard": "Copied to clipboard",
+    "incorrect_mnemonic": "Mnemonic incorrecto"
 }

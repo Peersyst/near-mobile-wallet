@@ -16,9 +16,11 @@
     "invalid_required": "This field is required",
     "insufficient_chars": "The field must contain at least {{chars}} characters",
     "too_many_chars": "The field must contain less than {{chars}} characters",
+    "too_many_decimals": "Must contain {{decimals}} or less decimals",
     "invalid_start": "The field must start with {{start}}",
     "invalid_end": "The field must end with {{end}}",
     "nothing_to_show": "Nothing to show",
     "invalid_address": "Invalid address",
-    "copied_to_clipboard": "Copied to clipboard"
+    "copied_to_clipboard": "Copied to clipboard",
+    "incorrect_mnemonic": "Mnemonic is not correct"
 }
