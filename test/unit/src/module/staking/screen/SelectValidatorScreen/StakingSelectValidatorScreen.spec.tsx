@@ -1,9 +1,9 @@
 import { render, translate } from "test-utils";
-import SelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/SelectValidatorScreen";
 import { ValidatorMock } from "mocks/NearSdk";
 import { screen } from "@testing-library/react-native";
+import StakingSelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/StakingSelectValidatorScreen";
 
-describe("Tests for SelectValidatorScreen", () => {
+describe("Tests for StakingSelectValidatorScreen", () => {
     const mockMessage = "message";
     const mockOnFinish = jest.fn();
 

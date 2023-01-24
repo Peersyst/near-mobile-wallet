@@ -5,17 +5,17 @@ import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/cur
 import { StakeStateMock, UseGetBalanceMock, UseNativeTokenConversionMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 import { fireEvent, render, screen, translate, waitFor } from "test-utils";
 import * as Recoil from "recoil";
-import SetAmountScreen from "module/staking/screen/SetAmountScreen/SetAmountScreen";
+import StakingSetAmountScreen from "module/staking/screen/SetAmountScreen/StakingSetAmountScreen";
 
-describe("Test for BaseSetAmountStakeScreen component", () => {
+describe("Test for StakingSetAmountScreen component", () => {
     test("Renders correctly", () => {
         new UseServiceInstanceMock();
         new UseWalletStateMock();
         new UseNativeTokenConversionMock({ value: "3000" });
         render(
-            <SetAmountScreen label="Enter the amount" maxAmount="1000">
+            <StakingSetAmountScreen label="Enter the amount" maxAmount="1000">
                 <Typography variant="body2Strong">Children</Typography>
-            </SetAmountScreen>,
+            </StakingSetAmountScreen>,
         );
         expect(screen.getByText("Enter the amount")).toBeDefined();
         expect(screen.getByText("Children")).toBeDefined();
@@ -38,9 +38,9 @@ describe("Test for BaseSetAmountStakeScreen component", () => {
         const mockedSetStakeState = jest.fn();
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([new StakeStateMock(), mockedSetStakeState]);
         render(
-            <SetAmountScreen onSubmit={mockedOnSubmit} label="Enter the amount" maxAmount="1000">
+            <StakingSetAmountScreen onSubmit={mockedOnSubmit} label="Enter the amount" maxAmount="1000">
                 <Typography variant="body2Strong">Children</Typography>
-            </SetAmountScreen>,
+            </StakingSetAmountScreen>,
         );
         const input = screen.getByPlaceholderText(translate("enter_amount"));
         const btn = screen.getByText(translate("next"));

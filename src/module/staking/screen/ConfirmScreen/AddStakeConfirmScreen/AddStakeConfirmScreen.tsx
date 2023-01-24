@@ -4,7 +4,7 @@ import stakeRecoilState from "module/staking/state/StakeState";
 import AddStakeModal, { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useAddStake from "module/staking/query/useAddStake";
-import ConfirmScreen from "../ConfirmScreen";
+import StakingConfirmScreen from "../StakingConfirmScreen";
 
 const AddStakeConfirmScreen = () => {
     const { amount, validator } = useRecoilValue(stakeRecoilState);
@@ -22,7 +22,7 @@ const AddStakeConfirmScreen = () => {
     };
 
     return (
-        <ConfirmScreen
+        <StakingConfirmScreen
             onExited={onExited}
             sendTransaction={handleAddStake}
             isLoading={isLoading}

@@ -5,11 +5,11 @@ import { useSetRecoilState } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
 import { Validator } from "near-peersyst-sdk";
 
-interface SelectValidatorScreenProps extends StakeValidatorSelectProps {
+interface StakingSelectValidatorScreenProps extends StakeValidatorSelectProps {
     message: string;
 }
 
-const SelectValidatorScreen = ({ message, onSelected, ...rest }: SelectValidatorScreenProps): JSX.Element => {
+const StakingSelectValidatorScreen = ({ message, onSelected, ...rest }: StakingSelectValidatorScreenProps): JSX.Element => {
     const setStakeState = useSetRecoilState(stakeRecoilState);
 
     const handleOnSelected = (validator: Validator) => {
@@ -34,4 +34,4 @@ const SelectValidatorScreen = ({ message, onSelected, ...rest }: SelectValidator
     );
 };
 
-export default SelectValidatorScreen;
+export default StakingSelectValidatorScreen;

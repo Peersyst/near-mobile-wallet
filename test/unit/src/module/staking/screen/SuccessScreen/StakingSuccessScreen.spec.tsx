@@ -1,17 +1,17 @@
-import SuccessScreen from "module/staking/screen/SuccessScreen/SuccessScreen";
 import { UseModalMock } from "test-mocks";
 import { fireEvent, render, screen, translate, waitFor } from "test-utils";
 import Typography from "module/common/component/display/Typography/Typography";
+import StakingSuccessScreen from "module/staking/screen/SuccessScreen/StakingSuccessScreen";
 
-describe("SuccessScreen.spec", () => {
+describe("StakingSuccessScreen.spec", () => {
     test("renders correctly", async () => {
         const { hideModal } = new UseModalMock();
         const mockMessage = "message";
 
         render(
-            <SuccessScreen onClose={() => hideModal()} message={mockMessage}>
+            <StakingSuccessScreen onClose={() => hideModal()} message={mockMessage}>
                 <Typography variant="body2Strong">{translate("stake_success")}</Typography>
-            </SuccessScreen>,
+            </StakingSuccessScreen>,
         );
 
         expect(screen.getByText(translate("stake_success"))).toBeDefined();

@@ -5,7 +5,7 @@ import stakeState from "module/staking/state/StakeState";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { useRecoilValue } from "recoil";
 import UnstakeModal from "module/staking/component/core/UnstakeModal/UnstakeModal";
-import SuccessScreen from "../SuccessScreen";
+import StakingSuccessScreen from "../StakingSuccessScreen";
 
 const UnstakeSuccessScreen = () => {
     const translate = useTranslate();
@@ -18,7 +18,7 @@ const UnstakeSuccessScreen = () => {
     }
 
     return (
-        <SuccessScreen
+        <StakingSuccessScreen
             message={
                 <Typography color={(p) => p.status.success} variant="body3Regular">
                     <Balance color={(p) => p.status.success} variant="body3Strong" balance={amount!} units="token" />
@@ -30,7 +30,7 @@ const UnstakeSuccessScreen = () => {
             <Typography variant="body3Strong" light textAlign="center">
                 {translate("unstake_withdraw_waiting_time")}
             </Typography>
-        </SuccessScreen>
+        </StakingSuccessScreen>
     );
 };
 

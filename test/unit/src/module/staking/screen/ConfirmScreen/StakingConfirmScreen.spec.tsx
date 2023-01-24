@@ -3,9 +3,9 @@ import * as Recoil from "recoil";
 import { waitFor } from "@testing-library/react-native";
 import { StakeStateMock, StakingBalanceMock, UseWalletStateMock } from "test-mocks";
 import { capitalize } from "@peersyst/react-utils";
-import ConfirmScreen from "module/staking/screen/ConfirmScreen/ConfirmScreen";
+import StakingConfirmScreen from "module/staking/screen/ConfirmScreen/StakingConfirmScreen";
 
-describe("ConfirmScreen.spec tests", () => {
+describe("StakingConfirmScreen.spec tests", () => {
     new UseWalletStateMock();
     const stakingBalanceMock = new StakingBalanceMock();
 
@@ -24,7 +24,7 @@ describe("ConfirmScreen.spec tests", () => {
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue(stakeStateMock);
 
         const screen = render(
-            <ConfirmScreen
+            <StakingConfirmScreen
                 label={translate("confirm_new_staking_of")}
                 onEditValidator={onEditValidator}
                 sendTransaction={sendTransaction}
