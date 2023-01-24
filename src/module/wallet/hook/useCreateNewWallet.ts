@@ -17,7 +17,7 @@ export default function useCreateNewWallet() {
 
     const createWallet = async (network: NetworkType): Promise<Wallet | undefined> => {
         //Send transaction using the selected service instance
-        const newService = await serviceInstance.createNewAccountWithSameSecretKey(name!, config.minBalanceToCreateAccount);
+        const newService = await serviceInstance.createNewAccountWithNewSecretKey(name!, config.minBalanceToCreateAccount);
         if (!newService) return;
 
         //Set storage & set new service instance

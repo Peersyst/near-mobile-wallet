@@ -6,6 +6,6 @@ export const AddText = styled(Typography)(({ theme }) => ({
 }));
 
 export const ContentRoot = styled(Col, { justifyContent: "center", alignItems: "center", gap: 20 })(() => ({
-    height: "100%",
+    height: 270,
     width: "100%",
 }));
