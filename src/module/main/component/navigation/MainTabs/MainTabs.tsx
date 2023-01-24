@@ -8,13 +8,13 @@ import useWalletGradient from "module/wallet/hook/useWalletGradient";
 
 const MainTabs = ({ tabs }: MainTabsProps): JSX.Element => {
     const [index, setIndex] = useState(0);
-    const [startColor, endColor] = useWalletGradient();
+    const gradientColor = useWalletGradient();
 
     return (
         <Tabs gap={0} index={index} onIndexChange={setIndex} style={{ flex: 1 }}>
             <TabGroup
                 renderIndicator={true}
-                indicator={<LinearGradient start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} colors={[startColor, endColor]} />}
+                indicator={<LinearGradient start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} colors={gradientColor} />}
             >
                 {tabs.map(({ title }, index) => {
                     return (
