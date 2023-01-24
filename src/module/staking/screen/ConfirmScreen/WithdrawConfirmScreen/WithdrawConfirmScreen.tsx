@@ -14,8 +14,7 @@ const WithdrawConfirmScreen = () => {
     const { hideModal } = useModal();
 
     const handleWithdrawStake = () => {
-        //withdrawStake({ validatorId: validator.accountId });
-        setTab(WithdrawModalScreens.SUCCESS);
+        withdrawStake({ validatorId: validator.accountId });
     };
 
     const onExited = () => {
