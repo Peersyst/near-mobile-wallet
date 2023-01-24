@@ -1,11 +1,15 @@
 import { useFormatNumber } from "module/common/hook/useFormatNumber";
 import formatBalance, { FormatBalanceOptions } from "module/wallet/component/display/Balance/utils/formatBalance";
+import { balanceBelowMinimum, getNearDecimals, NEAR_LIMIT_DECIMAL } from "module/wallet/utils/treatNearDecimals";
 
 export const useFormatBalance = (
     balance: bigint | number | string,
     { numberFormatOptions, units, unitsPosition, action }: FormatBalanceOptions,
 ) => {
     const unsignedBalance = balance.toString().replace(/-|,/g, "");
-    const formattedBalance = useFormatNumber(unsignedBalance, numberFormatOptions);
-    return formatBalance(formattedBalance, { action, units, unitsPosition });
+    const checkedBalance = balanceBelowMinimum(unsignedBalance) ? NEAR_LIMIT_DECIMAL : unsignedBalance;
+    numberFormatOptions!.maximumFractionDigits = numberFormatOptions!.maximumFractionDigits || getNearDecimals(checkedBalance);
+    const formattedAction = balanceBelowMinimum(unsignedBalance) ? "round" : action;
+    const formattedBalance = useFormatNumber(checkedBalance, numberFormatOptions);
+    return formatBalance(formattedBalance, { action: formattedAction, units, unitsPosition });
 };
