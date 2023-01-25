@@ -3,18 +3,13 @@ import { DarkLoadingModalOverlay, LoadingModalRoot, SuccessIcon, LoadingModalCon
 import { useEffect, useState } from "react";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import { useTranslate } from "module/common/hook/useTranslate";
-import LinearLogo from "module/common/component/display/LinearBgLogo/LinearBgLogo";
-import { Backdrop, Col, useTheme } from "@peersyst/react-native-components";
+import { Backdrop, Col } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import Logo from "../../display/Logo/Logo";
 
 const LoadingModal = ({ loading, successMessage, error, success, ...backdropProps }: LoadingModalProps): JSX.Element => {
     const [open, setOpen] = useState(false);
     const translate = useTranslate();
-
-    const { palette } = useTheme();
-    const white = palette.white;
-    const logoGradient = palette.mode === "dark" ? palette.gradient.blueTurquoise : [white, white];
 
     useEffect(() => {
         if (!open) setOpen(loading || success || error);
