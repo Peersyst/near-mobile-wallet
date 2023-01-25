@@ -15,7 +15,7 @@ export const Logo = ({ style }: LogoProps): JSX.Element => {
     }
 
     return (
-        <Svg width="140" height="47" viewBox="0 0 140 47" fill={color} accessibilityRole="image">
+        <Svg width="140" height="47" viewBox="0 0 140 47" fill={color} accessibilityRole="image" testID="Logo">
             <G clipPath="url(#clip0_735_1146)">
                 <Path
                     fillRule="evenodd"
