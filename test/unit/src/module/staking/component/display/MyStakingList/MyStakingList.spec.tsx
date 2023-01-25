@@ -1,8 +1,8 @@
 import { render, translate } from "test-utils";
-import StakingDetails from "module/staking/component/display/StakingDetails/StakingDetails";
 import { UseServiceInstanceMock, UseWalletStateMock } from "mocks/common";
 import { act, screen, waitFor } from "@testing-library/react-native";
 import { StakingBalanceMock } from "mocks/NearSdk";
+import MyStakingList from "module/staking/component/display/MyStakingList/MyStakingList";
 
 describe("Tests for StakingDetails", () => {
     new UseWalletStateMock();
@@ -11,7 +11,7 @@ describe("Tests for StakingDetails", () => {
 
     test("Renders correctly", async () => {
         const useGetTotalStakingMock = jest.spyOn(serviceInstance, "getTotalStakingBalance").mockResolvedValue(mockedStakingBalance);
-        render(<StakingDetails />);
+        render(<MyStakingList />);
 
         await act(() => waitFor(() => expect(useGetTotalStakingMock).toHaveBeenCalled()));
         expect(screen.getByText(translate("totalAmountStaked"))).toBeDefined();
