@@ -27,7 +27,7 @@ const WithdrawConfirmScreen = () => {
             sendTransaction={handleWithdrawStake}
             isLoading={isLoading}
             isError={isError}
-            label={translate("confirm_new_action_of", { action: "withdraw" })}
+            label={translate("confirm_new_action_of", { action: translate("withdraw") })}
             isSuccess={isSuccess}
             onEditValidator={() => setTab(WithdrawModalScreens.SELECT_VALIDATOR)}
             onCancel={() => hideModal(WithdrawModal.id)}

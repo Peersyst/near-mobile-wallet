@@ -21,7 +21,7 @@ describe("WithdrawConfirmScreen.spec tests", () => {
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue(stakeStateMock);
         const screen = render(<WithdrawConfirmScreen />);
 
-        await waitFor(() => expect(screen.getByText(translate("confirm_new_action_of", { action: "withdraw" }))).toBeDefined());
+        await waitFor(() => expect(screen.getByText(translate("confirm_new_action_of", { action: translate("withdraw") }))).toBeDefined());
         expect(screen.getByText(translate("cancel"))).toBeDefined();
 
         expect(screen.getByText(translate("next"))).toBeDefined();
