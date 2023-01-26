@@ -235,5 +235,7 @@
     "confirm_new_staking_of": "Confirmar Staking de",
     "stake_success": "Se han añadido tus NEAR para hacer stake correctamente en el validador.",
     "unstake_success": " han sido retirados del stake del validador correctamente.",
-    "unstake_withdraw_waiting_time": "Tus tokens estarán disponibles para la retirada a tu cuenta en las próximas 52-65h (4 epochs)."
+    "unstake_withdraw_waiting_time": "Tus tokens estarán disponibles para la retirada a tu cuenta en las próximas 52-65h (4 epochs).",
+    "select_validator_withdrawal": "Selecciona el validador del que deseas retirar sus fondos.",
+    "withdraw_success": "Su retiro se ha realizado con éxito"
 }

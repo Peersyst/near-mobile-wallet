@@ -235,5 +235,7 @@
     "loading": "Loading",
     "stake_success": "Your stake has been succesfully delegated to the validator.",
     "unstake_success": " has successfully been unstaked from this validator.",
-    "unstake_withdraw_waiting_time": "Your tokens are pending release and will be made available within 52-65h (4 epochs)."
+    "unstake_withdraw_waiting_time": "Your tokens are pending release and will be made available within 52-65h (4 epochs).",
+    "select_validator_withdrawal": "Select the validator pool from whhich you wish to withdraw your tokens.",
+    "withdraw_success": "Your withdraw has been succesfully"
 }
