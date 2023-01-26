@@ -530,7 +530,8 @@ export class NearSDKService {
     async getAllValidators(): Promise<Validator[]> {
         const validators = await this.getAllValidatorIds();
         const validatorsProms = validators.map((validator) => this.getValidatorDataFromId(validator, false, undefined, true));
-        return Promise.all(validatorsProms);
+        const validatorsPromise = await Promise.all(validatorsProms);
+        return validatorsPromise.filter((validator: Validator) => (validator.fee ? validator.fee : 0 > 0));
     }
 
     async getCurrentValidators(): Promise<Validator[]> {
