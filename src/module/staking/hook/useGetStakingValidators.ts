@@ -3,7 +3,7 @@ import useGetAllValidators from "module/staking/query/useGetAllValidators";
 import { Validator } from "near-peersyst-sdk";
 import { useMemo } from "react";
 
-interface UseGetStakingValidatorsReturn {
+export interface UseGetStakingValidatorsReturn {
     stakingValidators: Validator[];
     isLoading: boolean;
     refetch: () => void;

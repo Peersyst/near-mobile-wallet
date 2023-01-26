@@ -2,7 +2,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { useSetTab } from "@peersyst/react-native-components";
 import { WithdrawModalScreens } from "module/staking/component/core/WithdrawModal/WithdrawModal";
 import useGetWithdrawValidators from "module/staking/hook/useGetWithdrawValidators";
-import StakingSelectValidatorScreen from "../StakingSelectValidatorScreen";
+import StakingSelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/StakingSelectValidatorScreen";
 
 const WithdrawSelectValidatorScreen = (): JSX.Element => {
     const translate = useTranslate();

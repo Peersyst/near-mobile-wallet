@@ -10,7 +10,7 @@ describe("Tests for WithdrawSelectValidatorScreen", () => {
         const validator = new ValidatorMock({ stakingBalance: mockStakingBalance });
         const mockUseGetWithdrawValidators = jest
             .spyOn(useGetWithdrawValidators, "default")
-            .mockReturnValue({ validators: [validator], isLoading: false });
+            .mockReturnValue({ validators: [validator], isLoading: false, refetch: jest.fn() });
         render(<WithdrawSelectValidatorScreen />);
 
         await waitFor(() => expect(mockUseGetWithdrawValidators).toHaveBeenCalled());
