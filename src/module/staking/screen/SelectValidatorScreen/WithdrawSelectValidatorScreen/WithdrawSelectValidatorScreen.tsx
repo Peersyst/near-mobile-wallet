@@ -7,7 +7,6 @@ import StakingSelectValidatorScreen from "module/staking/screen/SelectValidatorS
 const WithdrawSelectValidatorScreen = (): JSX.Element => {
     const translate = useTranslate();
     const setTab = useSetTab();
-
     const { validators, isLoading } = useGetWithdrawValidators();
 
     return (
@@ -16,6 +15,7 @@ const WithdrawSelectValidatorScreen = (): JSX.Element => {
             validators={validators}
             loading={isLoading}
             onSelected={() => setTab(WithdrawModalScreens.CONFIRM_VALIDATOR)}
+            setAvailableAsAmount={true}
             stakingBalanceType="available"
         />
     );
