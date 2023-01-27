@@ -1,8 +1,8 @@
 import { useTranslate } from "module/common/hook/useTranslate";
 import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
-import StakingDetails from "module/staking/component/display/StakingDetails/StakingDetails";
+import StakingDetails from "module/staking/component/display/MyStakingList/MyStakingList";
 import MainTabs from "module/main/component/navigation/MainTabs/MainTabs";
-import StakingCurrentValidators from "module/staking/component/display/StakingCurrentValidators/StakingCurrentValidators";
+import StakingCurrentValidators from "module/staking/component/display/MyCurrentValidatorsList/MyCurrentValidatorsList";
 
 const StakingTabs = (): JSX.Element => {
     const translate = useTranslate();

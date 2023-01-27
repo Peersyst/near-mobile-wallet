@@ -36,7 +36,7 @@ const StakingConfirmScreen = ({ label, onCancel, onEditValidator, ...rest }: Sta
                             style={{ paddingHorizontal: 16, paddingVertical: 20 }}
                         />
                         <Label variant="body2Strong" label={translate("with")!}>
-                            <ValidatorInformation validator={validator} showEdit onEdit={onEditValidator} />
+                            <ValidatorInformation validator={validator} showEdit onEdit={onEditValidator} stakingBalanceType="available" />
                         </Label>
                     </Col>
                     <Col gap={8}>

@@ -16,6 +16,7 @@ const AddStakeSelectValidatorScreen = (): JSX.Element => {
             loading={isLoading}
             message={translate("enter_new_validator")}
             onSelected={() => setTab(AddStakeScreens.CONFIRM_VALIDATOR)}
+            stakingBalanceType="staked"
             withSearch
         />
     );

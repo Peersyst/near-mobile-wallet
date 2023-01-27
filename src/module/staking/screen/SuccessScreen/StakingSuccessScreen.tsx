@@ -11,9 +11,10 @@ interface StakingSuccessScreenScreenProps {
     onClose: (() => void) | undefined;
     message: AlertProps["content"];
     children?: ReactNode;
+    showValidator?: boolean;
 }
 
-const StakingSuccessScreen = ({ onClose, message, children }: StakingSuccessScreenScreenProps): JSX.Element => {
+const StakingSuccessScreen = ({ onClose, message, showValidator = true, children }: StakingSuccessScreenScreenProps): JSX.Element => {
     const translate = useTranslate();
     const { validator } = useRecoilValue(stakeState);
 
@@ -21,7 +22,7 @@ const StakingSuccessScreen = ({ onClose, message, children }: StakingSuccessScre
         <Col flex={1} justifyContent="space-between">
             <Col gap={24}>
                 <Alert type="success" content={message} />
-                <ValidatorInformation validator={validator!} />
+                {showValidator && <ValidatorInformation validator={validator!} stakingBalanceType={"available"} />}
                 {children}
             </Col>
             <Button variant="primary" fullWidth onPress={onClose}>
