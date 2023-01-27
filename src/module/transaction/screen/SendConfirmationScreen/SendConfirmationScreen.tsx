@@ -44,7 +44,7 @@ const SendConfirmationScreen = (): JSX.Element => {
                     <Typography variant="body3Regular" textAlign="center" light>
                         {translate("send_confirmation_text")}
                     </Typography>
-                    <CountdownButton loading={isLoading} disabled={isSuccess} seconds={5} fullWidth onPress={showModal}>
+                    <CountdownButton loading={isLoading} disabled={isSuccess} seconds={3} fullWidth onPress={showModal}>
                         {translate("confirm")}
                     </CountdownButton>
                 </Col>

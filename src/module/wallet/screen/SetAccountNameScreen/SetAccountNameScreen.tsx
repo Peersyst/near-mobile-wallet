@@ -65,6 +65,7 @@ const SetAccountNameScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreen
                         label={translate("enter_your_custom_address")}
                         showValid={success}
                         required
+                        autoCapitalize="none"
                     />
                     <GuidelinesList allowed>{ALLOWED_INIDICATIONS.map((key) => translate(key))}</GuidelinesList>
                     <GuidelinesList allowed={false}>{NOT_ALLOWED_INIDICATIONS.map((key) => translate(key))}</GuidelinesList>

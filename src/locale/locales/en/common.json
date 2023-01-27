@@ -161,7 +161,7 @@
     "how_to_add_an_account": "How to add an account?",
     "add_a_wallet_txt": "You can add an account by importing a private key or a mnemonic. You can also create a new account from scratch.",
     "create": "Create",
-    "import": "Importar",
+    "import": "Import",
     "create_your_account": "Create your account",
     "welcome_to_near_mobile": "Welcome to NEAR Mobile",
     "import_with_mnemonic": "Import with mnemonic",
