@@ -257,26 +257,30 @@ export class NearSDKService {
         return NearSDKService.isImplicitAddress(accountId) || this.accountExists(accountId);
     }
 
-    private isNewAddressValid(nameId: string): boolean {
+    public isNewAddressValid(nameId: string): boolean {
         const nameParts = nameId.split(".").length;
         return nameParts === 2 && nameId.indexOf(`.${this.chain}`) !== -1;
     }
 
-    private isSubAddressValid(nameId: string): boolean {
+    public isSubAddressValid(nameId: string): boolean {
         const address = this.getAddress();
         const addressParts = address.split(".").length;
         const nameParts = nameId.split(".").length;
         return nameId.indexOf(address) !== -1 && nameParts === addressParts + 1;
     }
 
-    private nameIsValidSubAccount(nameId: string): boolean {
+    public nameIsValidSubAccount(nameId: string): boolean {
         return this.isNewAddressValid(nameId) || this.isSubAddressValid(nameId);
     }
 
+    //https://docs.near.org/concepts/basics/accounts/account-id#named-accounts
+    public nameCanBeCreated(nameId: string): boolean {
+        return NearSDKService.nameIdIsValid(nameId, this.chain) && this.nameIsValidSubAccount(nameId);
+    }
+
+    //https://docs.near.org/concepts/basics/accounts/account-id#named-accounts
     async nameIsChoosalbe(nameId: string): Promise<boolean> {
-        return (
-            NearSDKService.nameIdIsValid(nameId, this.chain) && this.nameIsValidSubAccount(nameId) && !(await this.accountExists(nameId))
-        );
+        return !(await this.accountExists(nameId));
     }
 
     // Amount is in near
@@ -327,11 +331,8 @@ export class NearSDKService {
         if (exists) {
             throw new Error("Account already exists");
         }
-        console.log("Creating new account with new secret key");
         const keyPair = KeyPairEd25519.fromRandom();
-        console.log("New key pair created", keyPair);
         await this.createNewAccount(nameId, keyPair.getPublicKey(), amount);
-        console.log("Account created");
         const service = new NearSDKService({
             chain: this.chain,
             nodeUrl: this.nearConfig.nodeUrl,
@@ -341,9 +342,7 @@ export class NearSDKService {
             nearDecimals,
             enableIndexer: this.enableIndexer,
         });
-        console.log("Service created");
         await service.connect();
-        console.log("Service connected");
         return service;
     }
 

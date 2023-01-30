@@ -28,5 +28,6 @@
     "invalid_seleccted_account": "You must select an account with a balance greater than {{amountInNEAR}} NEAR.",
     "error_creating_account": "Error creating account",
     "insufficient_balance": "Insufficient balance",
-    "not_using_validators": "You are not staking with any validators."
+    "not_using_validators": "You are not staking with any validators.",
+    "invalid_child_account": "You can not create {{nameID}} with your account {{currentAccount}}."
 }

@@ -10,7 +10,7 @@ const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { d
 
 export interface ConfirmPinScreenProps
     extends Omit<ExposedBackdropProps, "animationIn" | "animationOut" | "animationInTiming" | "animationOutTiming"> {
-    onPinConfirmed: () => any;
+    onPinConfirmed?: () => any;
     onConfirmedExited?: () => any;
 }
 
@@ -23,7 +23,7 @@ const ConfirmPinModal = createBackdrop(
         const handleSubmit = async (pin: string) => {
             const storedPin = await WalletStorage.getPin();
             if (pin === storedPin) {
-                onPinConfirmed();
+                onPinConfirmed?.();
                 setSuccess(true);
                 setOpen(false);
             } else {

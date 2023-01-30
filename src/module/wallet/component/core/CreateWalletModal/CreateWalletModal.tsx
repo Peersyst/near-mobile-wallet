@@ -11,16 +11,16 @@ import { useCreateWalletModal } from "./hook/useCreateWalletModal";
 
 export const LOCALE_MODAL_TITLES: TransaltionResourceType[] = [
     "add_a_custom_address",
-    "add_a_custom_address",
     "select_funding_acc",
+    "add_a_custom_address",
     "confirm",
     "success",
 ];
 
 export enum CreateWalletModalTabs {
     WARNING_TAB,
-    SET_ACCOUNT_NAME_TAB,
     SET_FUNDING_ACC_TAB,
+    SET_ACCOUNT_NAME_TAB,
     CONFIRM_TAB,
     SUCCESS_TAB,
 }
@@ -47,13 +47,13 @@ const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
         >
             <Tabs index={index} onIndexChange={setIndex}>
                 <TabPanel index={CreateWalletModalTabs.WARNING_TAB}>
-                    <AddCustomNameWarning onSubmit={() => setIndex(CreateWalletModalTabs.SET_ACCOUNT_NAME_TAB)} />
-                </TabPanel>
-                <TabPanel index={CreateWalletModalTabs.SET_ACCOUNT_NAME_TAB}>
-                    <SetAccountNameScreen onSubmit={() => setIndex(CreateWalletModalTabs.SET_FUNDING_ACC_TAB)} />
+                    <AddCustomNameWarning onSubmit={() => setIndex(CreateWalletModalTabs.SET_FUNDING_ACC_TAB)} />
                 </TabPanel>
                 <TabPanel index={CreateWalletModalTabs.SET_FUNDING_ACC_TAB}>
-                    <SelectFundingAccountScreen onSubmit={() => setIndex(CreateWalletModalTabs.CONFIRM_TAB)} />
+                    <SelectFundingAccountScreen onSubmit={() => setIndex(CreateWalletModalTabs.SET_ACCOUNT_NAME_TAB)} />
+                </TabPanel>
+                <TabPanel index={CreateWalletModalTabs.SET_ACCOUNT_NAME_TAB}>
+                    <SetAccountNameScreen onSubmit={() => setIndex(CreateWalletModalTabs.CONFIRM_TAB)} />
                 </TabPanel>
                 <TabPanel index={CreateWalletModalTabs.CONFIRM_TAB}>
                     <CreateAccountConfirmationScreen

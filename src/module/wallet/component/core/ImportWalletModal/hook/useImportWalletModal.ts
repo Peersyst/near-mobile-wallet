@@ -6,9 +6,9 @@ import { useModal, useToast } from "@peersyst/react-native-components";
 import ImportWalletModal from "../ImportWalletModal";
 import { useTranslate } from "module/common/hook/useTranslate";
 
-export const IMPORT_WALLET_MODAL_CLOSE_TIMEOUT = 500;
-
-export type UseImportWalletModalReturnType = () => Promise<void>;
+export type UseImportWalletModalReturnType = {
+    handleWalletCreation: () => Promise<void>;
+};
 
 export default function useImportWalletModal(): UseImportWalletModalReturnType {
     const importWallet = useImportWallets();
@@ -20,15 +20,18 @@ export default function useImportWalletModal(): UseImportWalletModalReturnType {
     async function handleWalletCreation() {
         //Close keyboard
         Keyboard.dismiss();
+
         //Import wallet/s
         const wallets = await importWallet(network);
 
+        //Close modal
+        hideModal(ImportWalletModal.id);
         setTimeout(() => {
-            hideModal(ImportWalletModal.id);
-            if (wallets.length === 1) {
-                showToast(translate("import_success" + (wallets.length === 1 ? "_one" : "_other")), { type: "success" });
-            }
-        }, IMPORT_WALLET_MODAL_CLOSE_TIMEOUT);
+            showToast(translate("import_success" + (wallets.length === 1 ? "_one" : "_other")), { type: "success" });
+        }, 1000);
     }
-    return handleWalletCreation;
+
+    return {
+        handleWalletCreation,
+    };
 }

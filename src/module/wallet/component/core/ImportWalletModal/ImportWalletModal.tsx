@@ -20,7 +20,7 @@ const ImportWalletModal = createModal((props: ExposedBackdropProps) => {
     } = useCreateWallet();
     const translate = useTranslate();
 
-    const handleWalletCreation = useImportWalletModal();
+    const { handleWalletCreation } = useImportWalletModal();
 
     return (
         <AddWalletModal
