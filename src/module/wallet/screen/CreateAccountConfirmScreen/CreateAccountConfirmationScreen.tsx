@@ -5,7 +5,6 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import SendTransactionModal from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal";
 import SendSummary from "module/transaction/screen/SendConfirmationScreen/SendSummary";
 import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
-import { useCreateWalletModal } from "module/wallet/component/core/CreateWalletModal/hook/useCreateWalletModal";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import useWallet from "module/wallet/hook/useWallet";
 import { useState } from "react";

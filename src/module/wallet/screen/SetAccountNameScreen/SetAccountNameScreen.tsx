@@ -7,7 +7,7 @@ import { TransaltionResourceType } from "locale";
 import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
 import NewAccountNameTextField from "module/wallet/component/input/NewAccountNameTextField/NewAccountNameTextField";
 import useGetSuffix from "module/wallet/hook/useGetSuffix";
-import { addSuffix } from "module/wallet/component/input/NewAccountNameTextField/util/AccountNameUtils";
+import { addSuffix } from "module/wallet/component/input/NewAccountNameTextField/util/accountNameUtils";
 
 interface SetWalletNameForm {
     walletName: string;
