@@ -21,7 +21,7 @@ export default function useCreateNewWallet() {
             if (!newService) return;
 
             //Add service to ServiceInstanceMap and wallet to the storage
-            const newWallet = await WalletController.createNewWallet(name!, fundingAccount!, newService, network);
+            const newWallet = await WalletController.createNewWallet(name!, newService, network);
             if (!newWallet) return;
 
             //Add new wallet to the wallet state

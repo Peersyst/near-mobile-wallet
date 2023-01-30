@@ -5,6 +5,7 @@ import { Keyboard } from "react-native";
 import { useModal, useToast } from "@peersyst/react-native-components";
 import ImportWalletModal from "../ImportWalletModal";
 import { useTranslate } from "module/common/hook/useTranslate";
+import { TransaltionResourceType } from "locale";
 
 export type UseImportWalletModalReturnType = {
     handleWalletCreation: () => Promise<void>;
@@ -26,9 +27,14 @@ export default function useImportWalletModal(): UseImportWalletModalReturnType {
 
         //Close modal
         hideModal(ImportWalletModal.id);
-        setTimeout(() => {
-            showToast(translate("import_success" + (wallets.length === 1 ? "_one" : "_other")), { type: "success" });
-        }, 1000);
+
+        if (wallets.length !== 0) {
+            setTimeout(() => {
+                showToast(translate(("import_success" + (wallets.length === 1 ? "_one" : "_other")) as TransaltionResourceType), {
+                    type: "success",
+                });
+            }, 1000);
+        }
     }
 
     return {

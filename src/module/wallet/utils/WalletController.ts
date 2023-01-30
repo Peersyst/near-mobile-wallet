@@ -49,6 +49,10 @@ export interface CheckWalletsReturn extends GetWalletsReturn {
 }
 
 export default new (class WalletController {
+    private isImported(secretKey1: string, secretKey2: string) {
+        return !NearSDKService.isSameSecretKey(secretKey1, secretKey2);
+    }
+
     /**
      * Import a wallet from a private key or a mnemonic
      * @returns Returns the new wallets (not the previous ones)
@@ -212,7 +216,7 @@ export default new (class WalletController {
 
             //Get all the accounts from the private key
             const accounts = await ServiceInstances.addServiceInstances({ network: network, privateKey: walletGroup.privateKey });
-            const imported = walletGroup.privateKey !== mainPrivateKey;
+            const imported = this.isImported(walletGroup.privateKey, mainPrivateKey);
             //Recover the old accounts and check if there are deleted accounts
             for (const walletId of walletGroup.walletIds) {
                 const wallet = WalletUtils.getWallet(walletId, storageWallets);
@@ -265,7 +269,7 @@ export default new (class WalletController {
             //Check if the walletGroup already exists (maybe had all their previous accounts deleted)
             const oldWalletGroup = updatedSecureWallets.find(({ privateKey }) => privateKey === walletGroup.privateKey);
             const finalIds: number[] = oldWalletGroup?.walletIds || [];
-            const imported = walletGroup.privateKey !== mainPrivateKey;
+            const imported = this.isImported(walletGroup.privateKey, mainPrivateKey);
             //Add new accounts
             for (const { account } of walletGroup.newWallets) {
                 const newIndex = updatedStorageWallets.length;
@@ -346,21 +350,18 @@ export default new (class WalletController {
      * - Set the new account with its pK in the storage
      * - Set a new service instance with the new account
      */
-    async createNewWallet(
-        newAccount: string,
-        oldWalletIndex: number,
-        newService: NearSDKService,
-        network: NetworkType,
-    ): Promise<Wallet | undefined> {
-        const [walletGroupAndImported, newIndex] = await Promise.all([
-            await WalletStorage.getSecureWalletGroupAndMainPrivateKey(oldWalletIndex, network),
+    async createNewWallet(newAccount: string, newService: NearSDKService, network: NetworkType): Promise<Wallet | undefined> {
+        const [newIndex, mainPrivateKey] = await Promise.all([
             await WalletStorage.addNewUnencryptedWallet({ account: newAccount }, network),
+            await WalletStorage.getMainPrivateKey(),
         ]);
 
-        if (newIndex === undefined || walletGroupAndImported?.walletGroup === undefined) return undefined;
-        const { walletGroup, imported } = walletGroupAndImported;
+        if (mainPrivateKey === undefined || newIndex === undefined) return undefined;
+        const imported = this.isImported(newService.getSecretKey(), mainPrivateKey);
 
-        await WalletStorage.setSecureWalletId(newIndex, walletGroup.privateKey, network);
+        const newSecret = newService.getSecretKey();
+
+        await WalletStorage.setSecureWalletId(newIndex, newSecret, network);
         ServiceInstances.addService({ service: newService, network });
 
         return {

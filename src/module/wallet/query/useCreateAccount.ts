@@ -4,6 +4,7 @@ import Queries from "../../../query/queries";
 import { config } from "config";
 import { NearSDKService } from "near-peersyst-sdk";
 import { useInvalidateServiceInstanceQueries } from "./useInvalidateServiceInstanceQueries";
+import { WalletStorage } from "../WalletStorage";
 
 export interface UseSendNEARParams {
     name: string;
@@ -15,7 +16,8 @@ const useCreateAccount = (senderIndex: number) => {
 
     return useMutation(
         async ({ name }: UseSendNEARParams): Promise<NearSDKService | undefined> => {
-            return await serviceInstance.createNewAccountWithSameSecretKey(name, config.minBalanceToCreateAccount);
+            const mnemonic = await WalletStorage.getMnemonic();
+            return await serviceInstance.createNewAccountWithSameSecretKey(name, config.minBalanceToCreateAccount, undefined, mnemonic);
         },
         {
             onSuccess: () => {

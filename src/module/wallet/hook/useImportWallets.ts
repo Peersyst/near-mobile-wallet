@@ -1,4 +1,5 @@
 import { useToast } from "@peersyst/react-native-components";
+import { ErrorResourceType } from "locale";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { NetworkType } from "module/settings/state/SettingsState";
 import { useSetRecoilState } from "recoil";
@@ -28,7 +29,7 @@ export default function useImportWallets() {
                 };
             });
         } else {
-            const localeKey = (parsedMnemonic ? "mnemonic" : "private_key") + "_already_exists";
+            const localeKey = ((parsedMnemonic ? "mnemonic" : "private_key") + "_already_exists") as ErrorResourceType;
             setTimeout(() => {
                 showToast(translateError(localeKey));
             }, 1000);
