@@ -10,7 +10,7 @@ const AnimatedBiometricsNumericPad = Animated.createAnimatedComponent.fade(Biome
 
 export interface ConfirmPinScreenProps
     extends Omit<ExposedBackdropProps, "animationIn" | "animationOut" | "animationInTiming" | "animationOutTiming"> {
-    onPinConfirmed: () => any;
+    onPinConfirmed?: () => any;
     onConfirmedExited?: () => any;
 }
 
@@ -23,7 +23,7 @@ const ConfirmPinModal = createBackdrop(
         const [success, setSuccess] = useState(false);
 
         const handleSuccess = () => {
-            onPinConfirmed();
+            onPinConfirmed?.();
             setSuccess(true);
             setOpen(false);
         };

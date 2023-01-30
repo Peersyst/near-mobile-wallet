@@ -16,14 +16,7 @@ export interface SelectAccountScreenProps {
     style?: ViewStyle;
 }
 
-const SelectAccountScreen = ({
-    name,
-    onSubmit,
-    children,
-    submitText,
-    style,
-    minBalance = config.minBalanceToCreateAccount,
-}: SelectAccountScreenProps) => {
+const SelectAccountScreen = ({ name, onSubmit, children, submitText, style, minBalance }: SelectAccountScreenProps) => {
     const translate = useTranslate();
     return (
         <Form onSubmit={onSubmit} style={{ flex: 1, ...style }}>
