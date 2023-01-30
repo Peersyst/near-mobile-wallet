@@ -1,5 +1,4 @@
 import { Col, Form, FormProps } from "@peersyst/react-native-components";
-import { config } from "config";
 import Button from "module/common/component/input/Button/Button";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { ReactNode } from "react";
