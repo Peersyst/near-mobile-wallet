@@ -30,6 +30,7 @@ declare module "@peersyst/react-native-components" {
         enableIndexer: boolean;
         newsRSSUrl: string;
         defaultTwitterAccount: string;
+        approveTxWaitTime: number; //In seconds
     }
 
     export interface CreateConfig {
@@ -53,6 +54,7 @@ declare module "@peersyst/react-native-components" {
         enableIndexer: boolean;
         newsRSSUrl: string;
         defaultTwitterAccount: string;
+        approveTxWaitTime: number; //In seconds
     }
 
     export interface ExtraValidators {

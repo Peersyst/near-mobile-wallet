@@ -34,7 +34,7 @@
     "usd": "usd",
     "send": "send",
     "receive": "receive",
-    "receive_info": "Neuron picks a new receiving address for better privacy. Please go to the Address Book if you want to use a previously used receiving address.",
+    "receive_info": "Send NEAR, tokens or nfts into this account to receive them in your wallet. You can copy the account or scan the QR code to get the account easily.",
     "copy": "Copy",
     "import_wallet": "Import wallet",
     "enter_mnemonic": "Enter mnemonic",
