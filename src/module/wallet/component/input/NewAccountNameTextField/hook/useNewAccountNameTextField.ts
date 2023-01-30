@@ -37,9 +37,11 @@ export default function useNewAccountNameTextField({
     const { network } = useRecoilValue(settingsState);
     const suffix = useGetSuffix();
     const {
-        state: { wallets, selectedWallet },
+        state: { wallets },
     } = useWalletState();
-    const currentWallet = WalletUtils.getWallet(walletIndex || selectedWallet, wallets);
+
+    const finalWalletIndex = walletIndex !== undefined ? walletIndex : 0;
+    const currentWallet = WalletUtils.getWallet(finalWalletIndex, wallets);
 
     //Debounced value in order to avoid making a request on each onChange of the TextField
     const name = defaultValue || "";
@@ -60,7 +62,7 @@ export default function useNewAccountNameTextField({
         : undefined;
 
     //Check if name is a valid child
-    const checkValidChild = useIsChildAccountValid(walletIndex);
+    const checkValidChild = useIsChildAccountValid(finalWalletIndex);
     const validChild = checkValidChild(finalName);
     const invalidChildError = !validChild;
     const finalValidChildError: TextFieldProps["error"] = invalidChildError

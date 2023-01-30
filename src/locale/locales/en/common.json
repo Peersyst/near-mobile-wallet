@@ -34,7 +34,7 @@
     "usd": "usd",
     "send": "send",
     "receive": "receive",
-    "receive_info": "Neuron picks a new receiving address for better privacy. Please go to the Address Book if you want to use a previously used receiving address.",
+    "receive_info": "Send NEAR, tokens or nfts into this account to receive them in your wallet. You can copy the account or scan the QR code to get the account easily.",
     "copy": "Copy",
     "import_wallet": "Import wallet",
     "enter_mnemonic": "Enter mnemonic",
@@ -161,7 +161,7 @@
     "how_to_add_an_account": "How to add an account?",
     "add_a_wallet_txt": "You can add an account by importing a private key or a mnemonic. You can also create a new account from scratch.",
     "create": "Create",
-    "import": "Importar",
+    "import": "Import",
     "create_your_account": "Create your account",
     "welcome_to_near_mobile": "Welcome to NEAR Mobile",
     "import_with_mnemonic": "Import with mnemonic",
@@ -237,5 +237,6 @@
     "unstake_success": " has successfully been unstaked from this validator.",
     "unstake_withdraw_waiting_time": "Your tokens are pending release and will be made available within 52-65h (4 epochs).",
     "select_validator_withdrawal": "Select the validator pool from whhich you wish to withdraw your tokens.",
-    "withdraw_success": "Your withdraw has been succesfully"
+    "withdraw_success": "Your withdraw has been succesfully",
+    "biometricAuthentication": "Biometric authentication"
 }

@@ -12,7 +12,7 @@ const NewAccountNameTextField = ({
     hideError: hideErrorProp,
     hint: hintProp,
     suffix: suffixProp,
-    walletIndex,
+    walletIndex = 0,
     showValid: showValidProp,
     ...rest
 }: NewAccountNameTextFieldProps) => {

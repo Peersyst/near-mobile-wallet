@@ -26,7 +26,7 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdvise): JSX.Element => 
     };
 
     return (
-        <ConfirmPinModalWrapper onPinConfirmed={onSubmit}>
+        <ConfirmPinModalWrapper onConfirmedExited={onSubmit}>
             {({ showModal }) => (
                 <Col gap="10%" flex={1}>
                     <Col flex={1} gap="3%">
