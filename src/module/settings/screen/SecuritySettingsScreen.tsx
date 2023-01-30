@@ -5,12 +5,14 @@ import WalletsBackup from "module/settings/components/core/WalletsBackup/Wallets
 import DeleteData from "module/settings/components/core/DeleteData/DeleteData";
 import DeleteOneWallet from "module/settings/components/core/DeleteOneWallet/DeleteOneWallet";
 import { useTranslate } from "module/common/hook/useTranslate";
+import BiometricsSwitch from "module/settings/components/core/BiometricsSwitch/BiometricsSwitch";
 
 const SecuritySettingsScreen = (): JSX.Element => {
     const translate = useTranslate();
     return (
         <BaseSecondaryScreen title={translate("security_settings")} back={true}>
             <Col gap={10}>
+                <BiometricsSwitch />
                 <ChangePasscode />
                 <WalletsBackup />
                 <DeleteOneWallet />

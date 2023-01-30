@@ -14,10 +14,13 @@ const NumericPad = ({
     style,
     onCancel,
     belowLogo = false,
+    optionalItem,
 }: NumericPadProps): JSX.Element => {
+    const translate = useTranslate();
+
     const [value, setValue] = useState<string>("");
     const [error, setError] = useState<boolean>(errorProp);
-    const translate = useTranslate();
+
     useEffect(() => {
         if (value.length > 3) {
             onSubmit(value)?.then(() => {
@@ -40,7 +43,7 @@ const NumericPad = ({
                 />
             </Row>
             <Col gap="3%" style={style}>
-                <Keyboard setValue={setValue} />
+                <Keyboard setValue={setValue} optionalItem={optionalItem} />
                 {onCancel && (
                     <Button variant="text" fullWidth onPress={onCancel}>
                         {translate("cancel")}
