@@ -24,7 +24,7 @@ const SelectAccountScreen = ({
     submitText,
     defaultWalletIndex = 0,
     style,
-    minBalance = config.minBalanceToCreateAccount,
+    minBalance,
 }: SelectAccountScreenProps) => {
     const translate = useTranslate();
     return (

@@ -278,9 +278,8 @@ export class NearSDKService {
         return NearSDKService.nameIdIsValid(nameId, this.chain) && this.nameIsValidSubAccount(nameId);
     }
 
-    //https://docs.near.org/concepts/basics/accounts/account-id#named-accounts
     async nameIsChoosalbe(nameId: string): Promise<boolean> {
-        return !(await this.accountExists(nameId));
+        return NearSDKService.nameIdIsValid(nameId, this.chain) && !(await this.accountExists(nameId));
     }
 
     // Amount is in near

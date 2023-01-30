@@ -28,6 +28,9 @@ const BASE_NEAR_SDK_PARAMS: Record<NetworkType, BaseNearSdkParams> = {
 };
 
 export default new (class ServiceInstances {
+    getAll(network: NetworkType) {
+        return serviceInstancesMap.get(network);
+    }
     getServiceInstance(network: NetworkType, index: number): NearSDKService | undefined {
         return serviceInstancesMap.get(network)?.[index];
     }
@@ -40,7 +43,7 @@ export default new (class ServiceInstances {
 
     addService({ network, service }: AddServiceParams) {
         const services = this.getServiceInstances(network);
-        services.push(service);
+        this.setServiceInstances({ network, services: [...services, service] });
     }
 
     getServiceInstances(network: NetworkType): NearSDKService[] {

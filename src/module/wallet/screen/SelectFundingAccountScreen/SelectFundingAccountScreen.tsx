@@ -22,7 +22,13 @@ const SelectFundingAccountScreen = ({ onSubmit, submitText }: BaseAddWalletModal
     };
 
     return (
-        <SelectAccountScreen defaultWalletIndex={fundingAccount} name="fundingAccount" onSubmit={handleSubmit} submitText={submitText}>
+        <SelectAccountScreen
+            minBalance={config.minBalanceToCreateAccount}
+            defaultWalletIndex={fundingAccount}
+            name="fundingAccount"
+            onSubmit={handleSubmit}
+            submitText={submitText}
+        >
             <Typography variant="body3Regular" light textAlign="center">
                 {translate("select_funding_acc_explanation_1")}
                 <Typography variant="body3Strong" light>

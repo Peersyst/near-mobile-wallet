@@ -14,13 +14,17 @@ export default function useCreateNewWallet() {
     const { mutateAsync } = useCreateAccount(fundingAccount!);
 
     const createWallet = async (network: NetworkType): Promise<Wallet | undefined> => {
-        //Send transaction using the selected service instance
         try {
+            //Send transaction using the selected service instance
+            //This will create a new service instance and will pay for the transaction
             const newService = await mutateAsync({ name: name! });
             if (!newService) return;
-            //Set storage & set new service instance
+
+            //Add service to ServiceInstanceMap and wallet to the storage
             const newWallet = await WalletController.createNewWallet(name!, fundingAccount!, newService, network);
             if (!newWallet) return;
+
+            //Add new wallet to the wallet state
             setWalletState((state) => ({
                 ...state,
                 wallets: [...state.wallets, newWallet],

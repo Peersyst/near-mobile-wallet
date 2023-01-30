@@ -360,6 +360,8 @@ export default new (class WalletController {
         const { walletGroup, imported } = walletGroupAndImported;
         await WalletStorage.setSecureWalletId(newIndex, walletGroup.privateKey, network);
         ServiceInstances.addService({ service: newService, network });
+        console.log(ServiceInstances.getAll(network)?.length);
+        console.log(await WalletStorage.getWallets(network));
         return {
             account: newAccount,
             index: newIndex,

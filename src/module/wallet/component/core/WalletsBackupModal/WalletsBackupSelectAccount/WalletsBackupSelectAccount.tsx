@@ -18,7 +18,7 @@ const WalletsBackupSelectAccount = ({ submitText, onSubmit }: BaseWalletWithForm
             onSubmit();
         }
     }, [walletIndex]);
-    return <SelectAccountScreen name="selectedAccount" onSubmit={handleSubmit} submitText={submitText} withBalanceError={false} />;
+    return <SelectAccountScreen name="selectedAccount" onSubmit={handleSubmit} submitText={submitText} />;
 };
 
 export default WalletsBackupSelectAccount;
