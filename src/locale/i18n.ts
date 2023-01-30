@@ -29,6 +29,7 @@ i18next
         react: {
             useSuspense: false,
         },
+        returnNull: false,
     });
 
 export default i18next;
