@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { config } from "config";
@@ -11,9 +11,7 @@ export interface UseSendNEARParams {
 
 const useCreateAccount = (senderIndex: number) => {
     const { serviceInstance } = useServiceInstance(senderIndex);
-
     const invalidateServiceInstanceQueries = useInvalidateServiceInstanceQueries(senderIndex);
-    const queryClient = useQueryClient();
 
     return useMutation(
         async ({ name }: UseSendNEARParams): Promise<NearSDKService | undefined> => {
@@ -22,7 +20,6 @@ const useCreateAccount = (senderIndex: number) => {
         {
             onSuccess: () => {
                 invalidateServiceInstanceQueries([Queries.GET_BALANCE, Queries.ACTIONS]);
-                queryClient.invalidateQueries(Queries.NAME_ID_AVAILABILITY);
             },
         },
     );

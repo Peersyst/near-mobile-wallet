@@ -41,7 +41,7 @@ export default function useNewAccountNameTextField({
     } = useWalletState();
     const currentWallet = WalletUtils.getWallet(walletIndex || selectedWallet, wallets);
 
-    //Debounced value in order a request on each on change
+    //Debounced value in order to avoid making a request on each onChange of the TextField
     const name = defaultValue || "";
     const [valueChanged, setValueChanged] = useState(false);
     const { value, handleChange, debouncedValue, debouncing } = useDebounce(removeSuffix(name, suffix));
