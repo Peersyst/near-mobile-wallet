@@ -10,7 +10,7 @@ export function ConfirmPinModalWrapper({ children, onPinConfirmed, onClose, ...r
 
     const handlePinConfirmed = () => {
         hideModal();
-        onPinConfirmed();
+        onPinConfirmed?.();
     };
 
     const handleOnClose = () => {

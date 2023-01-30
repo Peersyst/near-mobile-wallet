@@ -11,7 +11,10 @@ const ChangePasscode = () => {
         showModal(UpdatePinModal);
     };
     return (
-        <SettingsMenuItem text={translate("change_passcode")} onPress={() => showModal(ConfirmPinModal, { onPinConfirmed: updatePin })} />
+        <SettingsMenuItem
+            text={translate("change_passcode")}
+            onPress={() => showModal(ConfirmPinModal, { onConfirmedExited: updatePin })}
+        />
     );
 };
 

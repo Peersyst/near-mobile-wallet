@@ -1,5 +1,4 @@
 import { Col, Form, FormProps } from "@peersyst/react-native-components";
-import { config } from "config";
 import Button from "module/common/component/input/Button/Button";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { ReactNode } from "react";
@@ -16,14 +15,7 @@ export interface SelectAccountScreenProps {
     style?: ViewStyle;
 }
 
-const SelectAccountScreen = ({
-    name,
-    onSubmit,
-    children,
-    submitText,
-    style,
-    minBalance = config.minBalanceToCreateAccount,
-}: SelectAccountScreenProps) => {
+const SelectAccountScreen = ({ name, onSubmit, children, submitText, style, minBalance }: SelectAccountScreenProps) => {
     const translate = useTranslate();
     return (
         <Form onSubmit={onSubmit} style={{ flex: 1, ...style }}>
