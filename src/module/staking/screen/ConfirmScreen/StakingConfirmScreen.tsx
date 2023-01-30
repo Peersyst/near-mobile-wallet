@@ -43,7 +43,13 @@ const StakingConfirmScreen = ({ label, onCancel, onEditValidator, ...rest }: Sta
                         <Button variant="text" fullWidth onPress={onCancel}>
                             {translate("cancel")}
                         </Button>
-                        <CountdownButton loading={isLoading} disabled={isSuccess} seconds={5} fullWidth onPress={showModal}>
+                        <CountdownButton
+                            loading={isLoading}
+                            disabled={isSuccess}
+                            seconds={config.approveTxWaitTime}
+                            fullWidth
+                            onPress={showModal}
+                        >
                             {translate("next")}
                         </CountdownButton>
                     </Col>
