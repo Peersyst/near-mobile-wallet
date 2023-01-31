@@ -1,6 +1,6 @@
 import { render, translate, screen } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
-import { UseCreateWalletMock, UseServiceInstanceMock } from "test-mocks";
+import { UseCreateWalletMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 import SetAccountNameScreen from "module/wallet/screen/SetAccountNameScreen/SetAccountNameScreen";
 import * as Recoil from "recoil";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
@@ -13,16 +13,29 @@ describe("SetAccountNameScreen tests", () => {
     afterAll(() => {
         jest.resetAllMocks();
     });
+    new UseWalletStateMock();
+
+    const { serviceInstance } = new UseServiceInstanceMock();
+
     test("Renders correctly", () => {
         render(<SetAccountNameScreen onSubmit={() => undefined} submitText="Submit" />);
         expect(screen.getByText(translate("enter_your_custom_address"))).toBeDefined();
+        expect(screen.getByText(".near")).toBeDefined(); //Mainnet
         expect(screen.getByText("Submit")).toBeDefined();
+    });
+
+    test("Writes and invalid address: displays error correctly", async () => {
+        jest.spyOn(serviceInstance, "nameIsChoosalbe").mockResolvedValueOnce(false);
+        render(<SetAccountNameScreen onSubmit={() => undefined} submitText="Submit" />);
+        const nameInput = screen.getByPlaceholderText("mycoolid");
+        expect(nameInput).toBeDefined();
+        fireEvent.changeText(nameInput, "cacatuA");
+        await waitFor(() => expect(screen.getByText(translate("invalid_address", { ns: "error" }))).toBeDefined());
     });
 
     test("Sets name and navigates to set pin", async () => {
         const handleSubmit = jest.fn();
         const { setName } = new UseCreateWalletMock();
-        const { serviceInstance } = new UseServiceInstanceMock();
 
         render(<SetAccountNameScreen onSubmit={handleSubmit} submitText="Submit" />);
         const nameInput = screen.getByPlaceholderText("mycoolid");

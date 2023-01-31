@@ -12,3 +12,5 @@ export * from "./useAssetSelect.mock";
 export * from "./useGetAllAssets.mock";
 export * from "./useNativeTokenConversion.mock";
 export * from "./useWalletGradient.mock";
+export * from "./useCreateNewWallet.mock";
+export * from "./useImportWallets.mock";

@@ -1,6 +1,3 @@
-import { useToast } from "@peersyst/react-native-components";
-import { ErrorResourceType } from "locale";
-import { useTranslate } from "module/common/hook/useTranslate";
 import { NetworkType } from "module/settings/state/SettingsState";
 import { useSetRecoilState } from "recoil";
 import walletState, { Wallet } from "../state/WalletState";
@@ -12,8 +9,6 @@ export default function useImportWallets() {
         state: { mnemonic, pin, privateKey },
     } = useCreateWallet();
     const setWalletState = useSetRecoilState(walletState);
-    const { showToast } = useToast();
-    const translateError = useTranslate("error");
 
     const importWallets = async (network: NetworkType): Promise<Wallet[]> => {
         const parsedMnemonic = mnemonic?.join(" ");
@@ -28,11 +23,6 @@ export default function useImportWallets() {
                     isAuthenticated: true,
                 };
             });
-        } else {
-            const localeKey = ((parsedMnemonic ? "mnemonic" : "private_key") + "_already_exists") as ErrorResourceType;
-            setTimeout(() => {
-                showToast(translateError(localeKey));
-            }, 1000);
         }
         return wallets;
     };

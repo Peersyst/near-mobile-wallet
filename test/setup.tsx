@@ -28,6 +28,7 @@ jest.mock("react-native-reanimated", () => {
 });*/
 
 import "react-native-gesture-handler/jestSetup";
+import { getDefaultLocale } from "locale";
 
 // Silence the warning: Animated: `useNativeDriver` is not supported because the native animated module is missing
 jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
@@ -52,4 +53,18 @@ jest.mock("@peersyst/react-native-components", () => {
 
 jest.mock("module/settings/hook/useSelectedNetwork", () => {
     return () => "testnet";
+});
+
+//Mock language detector
+jest.mock("locale/pluguins/LanguageDetectorPlugin/LanguageDetectorPlugin", () => {
+    return {
+        __esModule: true,
+        default: {
+            type: "languageDetector",
+            async: true,
+            detect: () => "en",
+            init: () => {},
+            cacheUserLanguage: () => {},
+        },
+    };
 });
