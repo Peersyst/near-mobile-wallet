@@ -12,6 +12,8 @@ import { CameraIcon } from "icons";
 import QrScanner from "module/common/component/input/QrScanner/QrScanner";
 import settingsState from "module/settings/state/SettingsState";
 import { config } from "config";
+import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
+import useWalletState from "module/wallet/hook/useWalletState";
 
 export interface SendForm {
     sender: number;
@@ -20,13 +22,21 @@ export interface SendForm {
 
 const SendToAddressScreen = () => {
     const translate = useTranslate();
-    const [sendState, setSendState] = useRecoilState(sendRecoilState);
-    const { network } = useRecoilValue(settingsState);
-    const [receiverAddress, setReceiverAddress] = useState(sendState.receiverAddress || "");
-    const [scanQr, setScanQr] = useState(false);
+    const translateError = useTranslate("error");
     const { palette } = useTheme();
     const { showToast, hideToast } = useToast();
     const setTab = useSetTab();
+
+    const {
+        state: { wallets, selectedWallet },
+    } = useWalletState();
+    const [sendState, setSendState] = useRecoilState(sendRecoilState);
+    const defaultSenderWalletIndex = sendState.senderWalletIndex !== undefined ? sendState.senderWalletIndex : selectedWallet;
+    const [currentSenderWalletIndex, setCurrentSenderWalletIndex] = useState(defaultSenderWalletIndex);
+    const { account } = wallets[currentSenderWalletIndex];
+    const { network } = useRecoilValue(settingsState);
+    const [receiverAddress, setReceiverAddress] = useState(sendState.receiverAddress || "");
+    const [scanQr, setScanQr] = useState(false);
 
     const handleAddressScan = (data: string) => {
         setReceiverAddress(data);
@@ -51,11 +61,12 @@ const SendToAddressScreen = () => {
             <Form onSubmit={handleSubmit}>
                 <Col gap={24}>
                     <WalletSelector
+                        value={currentSenderWalletIndex}
+                        onChange={setCurrentSenderWalletIndex}
                         label={translate("select_a_wallet")}
                         required
                         name="sender"
                         minBalance={config.estimatedFee}
-                        defaultValue={sendState.senderWalletIndex}
                     />
                     <TextField
                         label={translate("send_to")}
@@ -66,7 +77,7 @@ const SendToAddressScreen = () => {
                             </IconButton>
                         }
                         name="receiver"
-                        validators={{ address: network }}
+                        validators={{ address: network, notEq: [account, translateError("invalid_send_same_account")] }}
                         value={receiverAddress}
                         onChange={setReceiverAddress}
                         autoCapitalize="none"

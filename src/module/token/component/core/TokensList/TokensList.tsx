@@ -8,22 +8,27 @@ import { useRefetchQueries } from "../../../../../query/useRefetchQueries";
 import useWalletState from "module/wallet/hook/useWalletState";
 import Queries from "../../../../../query/queries";
 import { config } from "config";
+import { useGetTokenPrice } from "module/token/hook/useGetTokenPrice";
+import useGetTokenPriceInUsd from "module/token/query/useGetTokenPriceInUsd";
 
 const TokensList = (): JSX.Element => {
-    const { fiat } = useRecoilValue(settingsState);
+    const { fiat, network } = useRecoilValue(settingsState);
     const {
         state: { selectedWallet },
     } = useWalletState();
-    const { isLoading, data: tokens = [], refetch: refetchTokens } = useGetTokens(selectedWallet);
+    const { isLoading: isLoadingTokens, data: tokens = [], refetch: refetchTokens } = useGetTokens(selectedWallet);
+    const { isLoading: isPriceLoading } = useGetTokenPriceInUsd();
     const refetch = useRefetchQueries();
 
     const handleRefetch = async () => {
         await Promise.all([
             refetchTokens(),
-            refetch([Queries.TOKENS_PRICE]),
+            refetch([Queries.TOKENS_PRICE, network]),
             refetch([Queries.COIN_PRICE, config.coingeckoUSDTApiId, fiat]),
         ]);
     };
+
+    const isLoading = isLoadingTokens || isPriceLoading;
 
     return (
         <MainList
@@ -32,7 +37,7 @@ const TokensList = (): JSX.Element => {
             ListEmptyComponent={isLoading ? undefined : <EmptyListComponent />}
             data={tokens}
             renderItem={({ item: token }) => <TokenCard token={token} />}
-            keyExtractor={(token) => token.metadata.symbol}
+            keyExtractor={(_, index) => index.toString()}
         />
     );
 };

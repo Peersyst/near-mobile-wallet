@@ -739,35 +739,59 @@ export class NearSDKService {
 
     async getTokenMetadata(contractId: string): Promise<TokenMetadata> {
         // TODO: Cache this call
-        const account = await this.getAccount();
-        return account.viewFunction({
-            contractId,
-            methodName: FT_METADATA_METHOD,
-            args: {},
-        });
+        try {
+            const account = await this.getAccount();
+            return account.viewFunction({
+                contractId,
+                methodName: FT_METADATA_METHOD,
+                args: {},
+            });
+        } catch (e) {
+            console.warn("Error in getTokenMetadata: ", e);
+            return {
+                spec: "ft-1.0.0",
+                name: "Unknown",
+                symbol: "Unknown",
+                icon: "null",
+                reference: null,
+                reference_hash: null,
+                decimals: "18",
+            };
+        }
     }
 
     async getTokenBalance(contractId: string): Promise<string> {
         // TODO: Cache this call
         const account = await this.getAccount();
-        return account.viewFunction({
-            contractId,
-            methodName: FT_BALANCE_METHOD,
-            args: { account_id: account.accountId },
-        });
+        try {
+            return account.viewFunction({
+                contractId,
+                methodName: FT_BALANCE_METHOD,
+                args: { account_id: account.accountId },
+            });
+        } catch (e: any) {
+            console.warn("Error in getTokenBalance: ", e);
+            return "0";
+        }
     }
 
     async getAccountTokens(): Promise<Token[]> {
-        const contractIds = await this.apiService.getLikelyTokens({ address: this.getAddress() });
+        const contractIds = (await this.apiService.getLikelyTokens({ address: this.getAddress() })).slice(0, 100);
         const tokens: Token[] = [];
+
         for (const contractId of contractIds) {
-            const [balance, metadata] = await Promise.all([this.getTokenBalance(contractId), this.getTokenMetadata(contractId)]);
-            if (BalanceOperations.BNIsBigger(balance, "0")) {
-                tokens.push({
-                    balance: formatTokenAmount(balance, metadata.decimals.toString()),
-                    metadata,
-                    contractId: contractId,
-                });
+            try {
+                const [balance, metadata] = await Promise.all([this.getTokenBalance(contractId), this.getTokenMetadata(contractId)]);
+                if (BalanceOperations.BNIsBigger(balance, "0")) {
+                    tokens.push({
+                        balance: formatTokenAmount(balance, metadata.decimals.toString()),
+                        metadata,
+                        contractId: contractId,
+                    });
+                }
+            } catch (e) {
+                console.warn("Error in getAccountTokens: ", contractId, e);
+                continue;
             }
         }
         return tokens;

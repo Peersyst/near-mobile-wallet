@@ -31,6 +31,9 @@ declare module "@peersyst/react-native-components" {
         newsRSSUrl: string;
         defaultTwitterAccount: string;
         approveTxWaitTime: number; //In seconds
+        tokenPriceInUsdUrl: string;
+        testnetTokenPriceUrl: string;
+        mainnetTokenPriceUrl: string;
     }
 
     export interface CreateConfig {
@@ -55,6 +58,8 @@ declare module "@peersyst/react-native-components" {
         newsRSSUrl: string;
         defaultTwitterAccount: string;
         approveTxWaitTime: number; //In seconds
+        testnetTokenPriceUrl: string;
+        mainnetTokenPriceUrl: string;
     }
 
     export interface ExtraValidators {

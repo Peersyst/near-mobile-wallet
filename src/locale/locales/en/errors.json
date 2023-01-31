@@ -8,6 +8,7 @@
     "invalid_email": "Invalid email",
     "invalid_password": "Password must contain 8 characters, a lowercase, an uppsercase and a special character",
     "invalid_equal": "Fields have to be equal",
+    "invalid_not_equal": "Fields must not be equal",
     "invalid_number_gt": "The number must be greater than {{n}}",
     "invalid_number_gte": "The number must be greater or equal than {{n}}",
     "invalid_number_eq": "The number must be equal to {{n}}",
@@ -29,5 +30,6 @@
     "error_creating_account": "Error creating account",
     "insufficient_balance": "Insufficient balance",
     "not_using_validators": "You are not staking with any validators.",
-    "invalid_child_account": "You can not create {{nameID}} with your account {{currentAccount}}."
+    "invalid_child_account": "You can not create {{nameID}} with your account {{currentAccount}}.",
+    "invalid_send_same_account": "You can not send to your own account."
 }

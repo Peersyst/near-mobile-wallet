@@ -10,4 +10,7 @@ export const SUPPORTED_TOKENS = {
     OCT: "https://pub-f313cac3edf54338910a8f6842fd0e9c.r2.dev/OCT.png",
     FLX: "https://pub-f313cac3edf54338910a8f6842fd0e9c.r2.dev/FLX.png",
     SWEAT: "https://pub-f313cac3edf54338910a8f6842fd0e9c.r2.dev/sweat.png",
+    DAI: "https://cryptologos.cc/logos/multi-collateral-dai-dai-logo.png",
+    WBTC: "https://cryptologos.cc/logos/wrapped-bitcoin-wbtc-logo.png",
+    ETH: "https://cryptologos.cc/logos/ethereum-eth-logo.png",
 };
