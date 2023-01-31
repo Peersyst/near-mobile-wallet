@@ -28,7 +28,6 @@ jest.mock("react-native-reanimated", () => {
 });*/
 
 import "react-native-gesture-handler/jestSetup";
-import { getDefaultLocale } from "locale";
 
 // Silence the warning: Animated: `useNativeDriver` is not supported because the native animated module is missing
 jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
@@ -63,7 +62,9 @@ jest.mock("locale/pluguins/LanguageDetectorPlugin/LanguageDetectorPlugin", () =>
             type: "languageDetector",
             async: true,
             detect: () => "en",
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             init: () => {},
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             cacheUserLanguage: () => {},
         },
     };
