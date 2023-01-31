@@ -2,6 +2,7 @@ import { BalanceProps } from "./Balance.types";
 import Typography from "module/common/component/display/Typography/Typography";
 import { Spinner, Suspense } from "@peersyst/react-native-components";
 import { useFormatBalance } from "./hook/useFormatBalance";
+import { Thresholds } from "module/wallet/component/display/Balance/BalanceThresholds";
 
 const Balance = ({
     balance,
@@ -14,10 +15,11 @@ const Balance = ({
     ...typographyProps
 }: BalanceProps): JSX.Element => {
     const formattedBalance = useFormatBalance(balance, {
-        numberFormatOptions: { maximumFractionDigits: 2, ...options },
+        numberFormatOptions: { ...options },
         units,
         unitsPosition,
         action,
+        thresholds: Thresholds,
     });
 
     return (

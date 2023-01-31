@@ -5,7 +5,12 @@ import { FiatCurrencyType } from "module/settings/state/SettingsState";
 
 export type AppCurrency = FiatCurrencyType | "token";
 
-export type BalanceAction = "display" | "add" | "round";
+export type BalanceAction = "display" | "add" | "round" | "less";
+
+export interface BalanceThreshold {
+    value: number;
+    decimal: number;
+}
 
 export interface BalanceProps extends Omit<TypographyProps, "children" | "numberOfLines"> {
     balance: FullNumber;
@@ -15,4 +20,5 @@ export interface BalanceProps extends Omit<TypographyProps, "children" | "number
     options?: Intl.NumberFormatOptions;
     isLoading?: boolean;
     spinnerProps?: SpinnerProps;
+    thresholds?: BalanceThreshold[];
 }
