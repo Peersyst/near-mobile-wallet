@@ -27,7 +27,6 @@
         "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0"
     },
     "dependencies": {
-        "@ckb-lumos/lumos": "^0.18.0-rc6",
         "@expo-google-fonts/manrope": "^0.2.2",
         "@expo/config-plugins": "^5.0.2",
         "@peersyst/react-hooks": "^2.0.2",
@@ -45,6 +44,7 @@
         "buffer": "^6.0.3",
         "core-js": "^3.26.0",
         "cross-fetch": "^3.1.5",
+        "events": "^3.3.0",
         "expo": "^47.0.0",
         "expo-asset": "~8.6.2",
         "expo-barcode-scanner": "~12.0.0",
