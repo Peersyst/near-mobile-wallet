@@ -3,7 +3,7 @@ import { ExpoConfig, ConfigContext } from "@expo/config";
 export default ({ config }: ConfigContext): ExpoConfig => ({
     ...config,
     name: "NEAR Mobile",
-    slug: "NEARMobile",
+    slug: "NEARMobileWallet",
     owner: "peersyst",
     version: "1.1.3",
     orientation: "portrait",
