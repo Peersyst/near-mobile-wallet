@@ -16,9 +16,10 @@ export interface StakingConfirmScreenProps extends Omit<SendTransactionModalProp
     onCancel?: () => void;
     onEditValidator?: () => void;
     onExited?: () => void;
+    displayFullDecimals?: boolean;
 }
 
-const StakingConfirmScreen = ({ label, onCancel, onEditValidator, ...rest }: StakingConfirmScreenProps) => {
+const StakingConfirmScreen = ({ label, onCancel, onEditValidator, displayFullDecimals, ...rest }: StakingConfirmScreenProps) => {
     const translate = useTranslate();
     const { validator, amount } = useRecoilValue(stakeRecoilState);
 
@@ -29,6 +30,7 @@ const StakingConfirmScreen = ({ label, onCancel, onEditValidator, ...rest }: Sta
                     <Col flex={1} gap={12}>
                         <Typography variant="body2Strong">{label}</Typography>
                         <BaseSendSummary
+                            displayFullDecimals={displayFullDecimals}
                             amount={amount}
                             fee={config.estimatedFee}
                             showFiat

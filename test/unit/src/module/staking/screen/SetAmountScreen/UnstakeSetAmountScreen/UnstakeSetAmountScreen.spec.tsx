@@ -2,11 +2,12 @@ import { UseGetBalanceMock, UseNativeTokenConversionMock, UseServiceInstanceMock
 import { AccountBalanceMock } from "mocks/NearSdk";
 import { fireEvent, render, screen, translate, waitFor } from "test-utils";
 import { config } from "config";
-import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
-import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
+
 import { UseSetTabMock } from "mocks/genesys";
 import { UnstakeModalScreens } from "module/staking/component/core/UnstakeModal/UnstakeModal";
 import UnstakeSetAmountScreen from "module/staking/screen/SetAmountScreen/UnstakeSetAmountScreen/UnstakeSetAmountScreen";
+import { ACTION_LABEL } from "module/wallet/component/display/Balance/constants/actionLabels";
+import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/constants/currencies";
 
 describe("Test for SetAmountStakeScreen component", () => {
     test("Renders correctly", async () => {

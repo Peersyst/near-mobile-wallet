@@ -10,6 +10,7 @@ import Fee, { FeeProps } from "../Fee/Fee";
 import FiatBalance from "module/wallet/component/display/FiatBalance/FiatBalance";
 import { TotalText } from "./BaseSendSummary.styles";
 import { config } from "config";
+import { BalanceActions } from "module/wallet/component/display/Balance/Balance.types";
 
 export interface BaseSendSummaryFullProps {
     amount: string | number;
@@ -21,6 +22,7 @@ export interface BaseSendSummaryFullProps {
     fee?: FeeProps["fee"];
     token?: Token;
     nft?: NftToken;
+    displayFullDecimals?: boolean;
 }
 
 export type BaseSendSummaryProps = Omit<BaseSendSummaryFullProps, "children">;
@@ -35,11 +37,13 @@ const BaseSendSummary = ({
     token,
     nft,
     showFee = true,
+    displayFullDecimals = false,
 }: BaseSendSummaryFullProps): JSX.Element => {
     const translate = useTranslate();
     const finalFee = fee ?? config.estimatedFee;
-    const feeDecimals = finalFee.split(".")[1]?.length ?? 0;
     const totalAmount = showTotal ? addNearAmounts(amount.toString(), finalFee) : "0";
+    const amountDecimals = amount.toString().split(".")[1]?.length;
+    const totalDecimals = totalAmount.split(".")[1]?.length;
     return (
         <Container style={{ width: "100%", ...style }}>
             <Col gap="10%" alignItems="center">
@@ -49,8 +53,19 @@ const BaseSendSummary = ({
                             {nft?.metadata.title}
                         </Typography>
                     ) : (
-                        <Typography variant="h4Strong" textAlign="center" numberOfLines={1}>
-                            <Balance balance={amount} variant="h4Strong" units={token?.metadata.symbol ?? "token"} />
+                        <Typography variant="h4Strong" textAlign="center" numberOfLines={2}>
+                            <Balance
+                                action={BalanceActions.DISPLAY}
+                                options={{
+                                    ...(displayFullDecimals && {
+                                        maximumFractionDigits: amountDecimals,
+                                        minimumFractionDigits: amountDecimals,
+                                    }),
+                                }}
+                                balance={amount}
+                                variant="h4Strong"
+                                units={token?.metadata.symbol ?? "token"}
+                            />
                             {showFiat && (
                                 <>
                                     {" "}
@@ -67,7 +82,10 @@ const BaseSendSummary = ({
                                 {" · "}
                                 <TotalText
                                     as={Balance}
-                                    options={{ maximumFractionDigits: feeDecimals, minimumFractionDigits: feeDecimals }}
+                                    options={{
+                                        maximumFractionDigits: totalDecimals,
+                                        minimumFractionDigits: totalDecimals,
+                                    }}
                                     light
                                     balance={totalAmount}
                                     variant="body2Strong"

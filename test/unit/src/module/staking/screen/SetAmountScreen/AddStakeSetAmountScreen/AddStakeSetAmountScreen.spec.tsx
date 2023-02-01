@@ -1,8 +1,9 @@
 import { config } from "config";
 import { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
 import AddStakeSetAmountScreen from "module/staking/screen/SetAmountScreen/AddStakeSetAmountScreen/AddStakeSetAmountScreen";
-import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
-import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
+import { ACTION_LABEL } from "module/wallet/component/display/Balance/constants/actionLabels";
+import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/constants/currencies";
+
 import {
     AccountBalanceMock,
     UseGetBalanceMock,

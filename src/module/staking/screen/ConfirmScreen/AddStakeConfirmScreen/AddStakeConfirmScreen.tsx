@@ -23,6 +23,7 @@ const AddStakeConfirmScreen = () => {
 
     return (
         <StakingConfirmScreen
+            displayFullDecimals
             onExited={onExited}
             sendTransaction={handleAddStake}
             isLoading={isLoading}

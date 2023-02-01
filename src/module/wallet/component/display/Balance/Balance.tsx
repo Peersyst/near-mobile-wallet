@@ -1,25 +1,29 @@
-import { BalanceProps } from "./Balance.types";
+import { BalanceActions, BalanceProps } from "./Balance.types";
 import Typography from "module/common/component/display/Typography/Typography";
 import { Spinner, Suspense } from "@peersyst/react-native-components";
 import { useFormatBalance } from "./hook/useFormatBalance";
-import { Thresholds } from "module/wallet/component/display/Balance/BalanceThresholds";
+import { THRESHOLDS } from "module/wallet/component/display/Balance/constants/balanceThresholds";
+import { memo } from "react";
 
 const Balance = ({
     balance,
     options,
     units,
     unitsPosition = "right",
-    action = "display",
+    action,
     isLoading = false,
+    minimumFallbackDisplay,
     spinnerProps,
+    thresholds = THRESHOLDS,
     ...typographyProps
 }: BalanceProps): JSX.Element => {
     const formattedBalance = useFormatBalance(balance, {
-        numberFormatOptions: { ...options },
+        numberFormatOptions: options,
         units,
         unitsPosition,
         action,
-        thresholds: Thresholds,
+        thresholds,
+        minimumFallbackDisplay,
     });
 
     return (

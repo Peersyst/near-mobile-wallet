@@ -22,11 +22,9 @@ const ActionCard = ({ action }: ActionCardProps): JSX.Element => {
             <ActionIcon type={actionKind} />
             <Col gap={2} flex={1}>
                 <Row justifyContent="space-between">
-                    <Row flex={1}>
-                        <ActionLabel variant="body3Strong" action={action} numberOfLines={amount ? 1 : 2} />
-                    </Row>
+                    <ActionLabel style={{ flex: 1 }} variant="body3Strong" action={action} numberOfLines={amount ? 1 : 2} />
                     {amount && (
-                        <Row style={{ maxWidth: "35%" }}>
+                        <Row style={{ minWidth: "34%" }} justifyContent="flex-end">
                             <ActionAmount variant="body3Strong" actionKind={actionKind} amount={amount} units={tokenName} />
                         </Row>
                     )}

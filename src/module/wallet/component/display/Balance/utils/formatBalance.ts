@@ -1,15 +1,6 @@
-import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
-import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
-import { AppCurrency, BalanceAction, BalanceProps, BalanceThreshold } from "module/wallet/component/display/Balance/Balance.types";
-
-export interface FormatBalanceOptions {
-    numberFormatOptions?: Omit<Intl.NumberFormatOptions, "useGrouping">;
-    units?: BalanceProps["units"];
-    unitsPosition?: BalanceProps["unitsPosition"];
-    action?: BalanceAction;
-    thresholds?: BalanceThreshold[];
-    minimumFallbackDisplay?: string | ((balance: number | string | bigint) => string);
-}
+import { AppCurrency, FormatBalanceOptions } from "module/wallet/component/display/Balance/Balance.types";
+import { ACTION_LABEL } from "../constants/actionLabels";
+import { CURRENCY_UNIT } from "../constants/currencies";
 
 export default function (formattedBalanceNumber: string, { action = "display", units, unitsPosition }: FormatBalanceOptions): string {
     const actionLabel = ACTION_LABEL[action];
