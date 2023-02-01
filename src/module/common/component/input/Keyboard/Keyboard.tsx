@@ -1,14 +1,20 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, ReactElement, SetStateAction } from "react";
 import { Row } from "@peersyst/react-native-components";
 import PadItem from "../PadItem/PadItem";
 import { PadItemType } from "../PadItem/PadItem.types";
 import { KeyboardRoot } from "./Keyboard.styles";
 
-export interface KeyboardProps {
-    setValue: Dispatch<SetStateAction<string>>;
+export interface KeyboardItem {
+    icon: ReactElement;
+    onPress: () => void;
 }
 
-const Keyboard = ({ setValue }: KeyboardProps): JSX.Element => {
+export interface KeyboardProps {
+    setValue: Dispatch<SetStateAction<string>>;
+    optionalItem?: KeyboardItem;
+}
+
+const Keyboard = ({ setValue, optionalItem }: KeyboardProps): JSX.Element => {
     const handlePress = async (item: PadItemType) => {
         switch (item) {
             case "X":
@@ -41,7 +47,11 @@ const Keyboard = ({ setValue }: KeyboardProps): JSX.Element => {
                 <PadItem item={"9"} onPress={() => handlePress("9")} />
             </Row>
             <Row gap="15%">
-                <PadItem item={"X"} onPress={() => handlePress("X")} />
+                {optionalItem ? (
+                    <PadItem item={optionalItem.icon} onPress={optionalItem.onPress} />
+                ) : (
+                    <PadItem item={"X"} onPress={() => handlePress("X")} />
+                )}
                 <PadItem item={"0"} onPress={() => handlePress("0")} />
                 <PadItem item={"<"} onPress={() => handlePress("<")} />
             </Row>

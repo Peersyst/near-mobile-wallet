@@ -1,4 +1,4 @@
-import { createModal, ExposedBackdropProps } from "@peersyst/react-native-components";
+import { createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import StakeModal, { ModalTabs } from "module/staking/component/core/StakeModal/StakeModal";
 import { useTranslate } from "module/common/hook/useTranslate";
 import UnstakeSelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/UnstakeSelectValidatorScreen/UnstakeSelectValidatorScreen";
@@ -13,7 +13,7 @@ export enum UnstakeModalScreens {
     SUCCESS,
 }
 
-const UnstakeModal = createModal(({ ...rest }: ExposedBackdropProps): JSX.Element => {
+const UnstakeModal = createBackdrop(({ ...rest }: ExposedBackdropProps): JSX.Element => {
     const translate = useTranslate();
 
     const unstakeModalTabs: ModalTabs[] = [

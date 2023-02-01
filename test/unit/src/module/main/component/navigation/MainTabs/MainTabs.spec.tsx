@@ -3,8 +3,19 @@ import MainTabs from "module/main/component/navigation/MainTabs/MainTabs";
 import { fireEvent } from "@testing-library/react-native";
 import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
 import { Typography } from "@peersyst/react-native-components";
+import { UseWalletGradientMock } from "mocks/common";
 
 describe("MainTabs tests", () => {
+    let useWalletGradientMock: UseWalletGradientMock;
+
+    beforeAll(() => {
+        useWalletGradientMock = new UseWalletGradientMock();
+    });
+
+    afterAll(() => {
+        useWalletGradientMock.clear();
+    });
+
     test("Renders correctly", () => {
         const Tabs: MainTabItemType[] = [
             {

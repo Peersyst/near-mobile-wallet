@@ -2,7 +2,7 @@ import { ExpoConfig, ConfigContext } from "@expo/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
     ...config,
-    name: "NEAR Mobile Wallet",
+    name: "NEAR Mobile",
     slug: "NEARMobileWallet",
     owner: "peersyst",
     version: "1.1.3",
@@ -29,13 +29,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         icon: "./assets/images/adaptive-icon.png",
         infoPlist: {
             NSCameraUsageDescription: "This app uses camera for QR code scanning.",
+            NSFaceIDUsageDescription: "This app uses biometrics to provide a higher level of security",
         },
         splash: { image: "./assets/images/splash.png", resizeMode: "cover", backgroundColor: "#5F8AFA" },
-    },
-    extra: {
-        eas: {
-            projectId: "1b97d88a-b249-45d2-8b0d-aa1724191c39",
-        },
     },
     get android(): ExpoConfig["android"] {
         return {

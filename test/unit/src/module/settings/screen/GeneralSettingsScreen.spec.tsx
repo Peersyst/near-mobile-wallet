@@ -15,10 +15,6 @@ describe("Test of the General Settings screen", () => {
         expect(screen.getByText(translate("network_name", { name: "Testnet" }))).toBeDefined();
         expect(screen.getAllByText(translate("network_name", { name: "Mainnet" }))).toBeDefined(); */
 
-        //Selector of the fee
-        expect(screen.getByText(translate("modify_default_fee"))).toBeDefined();
-        expect(screen.getByText(translate("average"))).toBeDefined();
-
         //Selector of the currency
         expect(screen.getByText(translate("default_currency"))).toBeDefined();
         expect(screen.getByText("USD")).toBeDefined();
