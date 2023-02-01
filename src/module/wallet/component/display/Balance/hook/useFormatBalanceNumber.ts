@@ -19,10 +19,10 @@ export function useFormatBalanceNumber() {
 
         const decimalsToSlice =
             numberFormatOptions?.maximumFractionDigits !== undefined ? numberFormatOptions.maximumFractionDigits : decimals;
-        decBalance =
-            decBalance && decimalsToSlice
-                ? decBalance.slice(0, Math.min(decimalsToSlice + 1, MAX_NUMBER_OF_SUPPORTED_DECIMALS))
-                : decBalance;
+
+        if (decBalance && decimalsToSlice) {
+            decBalance = decBalance.slice(0, Math.min(decimalsToSlice + 1, MAX_NUMBER_OF_SUPPORTED_DECIMALS));
+        }
 
         const showDecimals = decimals !== undefined && decBalance?.length > 0 && !isZero(decBalance);
         const finalDecimals = showDecimals ? Math.min(decBalance.length, decimals) : 0;
