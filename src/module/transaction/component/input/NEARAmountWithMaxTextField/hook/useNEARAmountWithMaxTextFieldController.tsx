@@ -3,8 +3,9 @@ import useNativeTokenConversion from "module/common/hook/useNativeTokenConversio
 import { useTranslate } from "module/common/hook/useTranslate";
 import settingsState from "module/settings/state/SettingsState";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
+import { FIAT_THRESHOLDS } from "module/wallet/component/display/FiatBalance/fiatThresholds";
 import useGetBalance from "module/wallet/query/useGetBalance";
-import { substractNearAmounts } from "near-peersyst-sdk";
+import { isNEARAmountGreaterThanThreshold, substractNearAmounts } from "near-peersyst-sdk";
 import { useRecoilValue } from "recoil";
 
 export interface UseNEARAmountWithMaxTextFieldControllerParams {
@@ -17,19 +18,22 @@ export function useNEARAmountWithMaxTextFieldController({ index, maxAmount }: Us
     const { data: { available: availableBalance } = { available: "0" } } = useGetBalance(index);
 
     const finalAvailable = maxAmount ? maxAmount : availableBalance;
-    const maxBalance = substractNearAmounts(finalAvailable, config.estimatedFee);
+    const hasEnoughBalance = isNEARAmountGreaterThanThreshold(finalAvailable, config.estimatedFee);
+    const maxBalance = hasEnoughBalance ? substractNearAmounts(finalAvailable, config.estimatedFee) : finalAvailable;
 
-    const { value: maxBalanceInFiat } = useNativeTokenConversion(maxBalance);
+    const { value: maxBalanceInFiat = "0" } = useNativeTokenConversion(maxBalance);
     const { fiat } = useRecoilValue(settingsState);
+
     const formattedBalanceInFiat = useFormatBalance(maxBalanceInFiat, {
-        numberFormatOptions: { maximumFractionDigits: 2 },
         units: fiat,
         action: "round",
+        thresholds: FIAT_THRESHOLDS,
+        minimumFallbackDisplay: "0.01",
     });
 
     const formattedBalance = useFormatBalance(maxBalance, {
-        numberFormatOptions: { maximumFractionDigits: 2 },
         units: config.tokenName,
+        action: "round",
     });
 
     return {

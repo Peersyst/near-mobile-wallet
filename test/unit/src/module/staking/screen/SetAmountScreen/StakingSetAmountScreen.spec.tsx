@@ -22,8 +22,8 @@ describe("Test for StakingSetAmountScreen component", () => {
         expect(
             screen.getByText(
                 translate("available_balance", {
-                    amount: "1,000.00 " + config.tokenName,
-                    amount_price: ACTION_LABEL["round"] + " 3,000 " + CURRENCY_UNIT["usd"],
+                    amount: ACTION_LABEL["round"] + "1,000.00 " + config.tokenName,
+                    amount_price: ACTION_LABEL["round"] + " 3,000.00 " + CURRENCY_UNIT["usd"],
                 }),
             ),
         ).toBeDefined();

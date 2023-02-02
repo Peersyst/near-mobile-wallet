@@ -2,6 +2,7 @@ import { CreateConfig, createConfig } from "@peersyst/react-native-components";
 import lightTheme from "./theme/lightTheme";
 import prodConfig from "./config.prod.json";
 import devConfig from "./config.dev.json";
+import testConfig from "./config.test.json";
 import stagingConfig from "./config.staging.json";
 import baseConfig from "./config.base.json";
 import globalStyles from "config/globalStyles";
@@ -14,7 +15,7 @@ import { RadioUncheckedIcon } from "module/common/icons/RadioUncheckedIcon";
 import { EnvConfig } from "./config.declarations";
 
 export const envConfigs: Record<EnvConfig, CreateConfig> = {
-    test: { ...baseConfig, ...devConfig },
+    test: { ...baseConfig, ...testConfig },
     development: { ...baseConfig, ...devConfig },
     production: { ...baseConfig, ...prodConfig },
     staging: { ...baseConfig, ...stagingConfig },

@@ -27,8 +27,8 @@ export interface BalanceProps extends Omit<TypographyProps, "children" | "number
     options?: Intl.NumberFormatOptions;
     isLoading?: boolean;
     spinnerProps?: SpinnerProps;
-    thresholds?: BalanceThreshold[];
-    minimumFallbackDisplay?: string | ((balance: number | string | bigint) => string);
+    thresholds?: UseFormatBalanceParams["thresholds"];
+    minimumFallbackDisplay?: UseFormatBalanceParams["minimumFallbackDisplay"];
 }
 
 export interface FormatBalanceOptions {
@@ -47,3 +47,5 @@ export interface UseFormatBalanceParams extends FormatBalanceOptions {
      */
     minimumFallbackDisplay?: string | ((balance: number | string | bigint) => string);
 }
+
+export type BalanceRootProps = Pick<BalanceProps, "variant">;

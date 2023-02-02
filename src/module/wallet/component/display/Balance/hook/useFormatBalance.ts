@@ -1,6 +1,6 @@
 import formatBalance from "module/wallet/component/display/Balance/utils/formatBalance";
-import { THRESHOLDS } from "module/wallet/component/display/Balance/constants/balanceThresholds";
-import { getDecimalsFromThreshold } from "../utils/getDecimalsFromThreshol";
+import { BALANCE_THRESHOLDS } from "module/wallet/component/display/Balance/constants/balanceThresholds";
+import { getDecimalsFromThreshold } from "../utils/getDecimalsFromThreshold";
 import { getAction } from "../utils/getAction";
 import { getTheMinimumThreshold, isZero } from "../utils/balance.utils";
 import { useFormatBalanceNumber } from "./useFormatBalanceNumber";
@@ -8,13 +8,15 @@ import { UseFormatBalanceParams } from "../Balance.types";
 
 export const useFormatBalance = (
     balance: bigint | number | string,
-    { numberFormatOptions, units, unitsPosition, action, thresholds = THRESHOLDS, minimumFallbackDisplay }: UseFormatBalanceParams,
+    { numberFormatOptions, units, unitsPosition, action, thresholds = BALANCE_THRESHOLDS, minimumFallbackDisplay }: UseFormatBalanceParams,
 ) => {
     const formatBalanceNumber = useFormatBalanceNumber();
 
-    //Clean the incoming balance (turn into a string representation of a number, remove the negative sign if it has one)
-    const unsignedBalance = balance.toString().replace(/-|,/g, "");
-    const isNegative = balance.toString()[0] === "-";
+    //Clean the incoming balance (turn into a string representation of a number and remove the negative sign)
+    const stringifiedBalance = balance.toString();
+    if (stringifiedBalance === "NaN") return "";
+    const unsignedBalance = stringifiedBalance.replace(/-|,/g, "");
+    const isNegative = stringifiedBalance[0] === "-";
     const isBalanceZero = isZero(unsignedBalance);
 
     //Get the number of decimals to use for the balance based on the thresholds

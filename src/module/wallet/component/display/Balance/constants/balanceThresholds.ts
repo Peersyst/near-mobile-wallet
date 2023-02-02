@@ -1,6 +1,6 @@
 import { BalanceThreshold } from "module/wallet/component/display/Balance/Balance.types";
 
-export const THRESHOLDS: BalanceThreshold[] = [
+export const BALANCE_THRESHOLDS: BalanceThreshold[] = [
     {
         value: 100000,
         decimals: 0,

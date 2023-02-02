@@ -29,6 +29,7 @@ const WalletCard = ({ wallet }: WalletCardProps): JSX.Element => {
             {{
                 content: (
                     <Balance
+                        adjustsFontSizeToFit
                         textAlign="center"
                         style={{ width: "100%" }}
                         isLoading={isLoading}

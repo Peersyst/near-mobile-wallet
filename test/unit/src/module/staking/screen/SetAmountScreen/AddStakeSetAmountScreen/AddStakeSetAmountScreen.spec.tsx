@@ -24,10 +24,11 @@ describe("Test for SetAmountStakeScreen component", () => {
         render(<AddStakeSetAmountScreen />);
 
         expect(screen.getByText(translate("enter_amount_want_to", { action: "stake" }))).toBeDefined();
+
         const available = await screen.findByText(
             translate("available_balance", {
-                amount: "1,500.55 " + config.tokenName,
-                amount_price: ACTION_LABEL["round"] + " 3,000 " + CURRENCY_UNIT["usd"],
+                amount: ACTION_LABEL["round"] + " 1,500.55 " + config.tokenName,
+                amount_price: ACTION_LABEL["round"] + " 3,000.00 " + CURRENCY_UNIT["usd"],
             }),
         );
         expect(available).toBeDefined();
