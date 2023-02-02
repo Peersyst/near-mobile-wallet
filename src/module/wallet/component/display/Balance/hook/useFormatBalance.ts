@@ -32,7 +32,7 @@ export const useFormatBalance = (
         return minimumFallbackDisplay(unsignedBalance);
     }
 
-    //If the balance is below the threshold, we will use the less action if is not specified
+    //If the balance is below the threshold, we will use the less action (e.g. 0.0000001 to "< 0.01")
     const finalAction = action || getAction(unsignedBalance, balanceDecimals);
 
     //If the balance is below the threshold, we will use the minimumFallbackDisplay
