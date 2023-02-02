@@ -1,6 +1,6 @@
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { ReactElement } from "react";
-import { Col } from "@peersyst/react-native-components";
+import { Col, Row } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import Typography from "module/common/component/display/Typography/Typography";
 import Container from "module/common/component/display/Container/Container";
@@ -54,24 +54,26 @@ const BaseSendSummary = ({
                         </Typography>
                     ) : (
                         <Typography variant="h4Strong" textAlign="center" numberOfLines={2}>
-                            <Balance
-                                action={BalanceActions.DISPLAY}
-                                options={{
-                                    ...(displayFullDecimals && {
-                                        maximumFractionDigits: amountDecimals,
-                                        minimumFractionDigits: amountDecimals,
-                                    }),
-                                }}
-                                balance={amount}
-                                variant="h4Strong"
-                                units={token?.metadata.symbol ?? "token"}
-                            />
-                            {showFiat && (
-                                <>
-                                    {" "}
-                                    <FiatBalance light balance={amount} variant="body2Regular" token={token} />
-                                </>
-                            )}
+                            <Row>
+                                <Balance
+                                    action={BalanceActions.DISPLAY}
+                                    options={{
+                                        ...(displayFullDecimals && {
+                                            maximumFractionDigits: amountDecimals,
+                                            minimumFractionDigits: amountDecimals,
+                                        }),
+                                    }}
+                                    balance={amount}
+                                    variant="h4Strong"
+                                    units={token?.metadata.symbol ?? "token"}
+                                />
+                                {showFiat && (
+                                    <>
+                                        {" "}
+                                        <FiatBalance light balance={amount} variant="body2Regular" token={token} />
+                                    </>
+                                )}
+                            </Row>
                         </Typography>
                     )}
                     {showFee && <Fee fee={fee} typographyVariant="body3" />}
