@@ -88,16 +88,6 @@ describe("Text for the Balance component", () => {
             expect(screen.getByText("100.23")).toBeDefined();
         });
 
-        test("Renders correctly with 2 decimals max rounds up", () => {
-            const screen = render(<Balance balance={"100.227"} variant={"body2Strong"} />);
-            expect(screen.getByText("100.23")).toBeDefined();
-        });
-
-        test("Renders correctly zero", () => {
-            const screen = render(<Balance balance={"0.0000"} variant={"body2Strong"} />);
-            expect(screen.getByText("0")).toBeDefined();
-        });
-
         test("Renders correctly zero", () => {
             const screen = render(<Balance balance={"0.0000"} variant={"body2Strong"} />);
             expect(screen.getByText("0")).toBeDefined();
