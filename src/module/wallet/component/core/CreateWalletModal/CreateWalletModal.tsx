@@ -28,20 +28,19 @@ export enum CreateWalletModalTabs {
 const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
     const translate = useTranslate();
     const { index, setIndex, handleOnBack, handleClose, handleWalletCreation } = useCreateWalletModal();
-
+    const showSteps = index !== 0 && index !== 4;
     return (
         <AddWalletModal
             navbar={{
                 back: index !== LOCALE_MODAL_TITLES.length - 1,
                 title: translate(LOCALE_MODAL_TITLES[index])!,
                 onBack: index > 0 ? handleOnBack : undefined,
-                steps:
-                    index !== 0 && index !== 4
-                        ? {
-                              index: index - 1,
-                              length: 3,
-                          }
-                        : undefined,
+                steps: showSteps
+                    ? {
+                          index: index - 1,
+                          length: 3,
+                      }
+                    : undefined,
             }}
             {...props}
         >

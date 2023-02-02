@@ -38,7 +38,7 @@ const SetAccountNameScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreen
                         walletIndex={fundingAccount}
                         name="walletName"
                         defaultValue={name}
-                        placeholder="mycoolid"
+                        placeholder={translate("my_cool_id")}
                         label={translate("enter_your_custom_address")}
                         required
                         autoCapitalize="none"
