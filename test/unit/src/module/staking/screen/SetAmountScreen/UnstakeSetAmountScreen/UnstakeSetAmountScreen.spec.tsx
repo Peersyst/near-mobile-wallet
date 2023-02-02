@@ -2,7 +2,6 @@ import { UseGetBalanceMock, UseNativeTokenConversionMock, UseServiceInstanceMock
 import { AccountBalanceMock } from "mocks/NearSdk";
 import { fireEvent, render, screen, translate, waitFor } from "test-utils";
 import { config } from "config";
-
 import { UseSetTabMock } from "mocks/genesys";
 import { UnstakeModalScreens } from "module/staking/component/core/UnstakeModal/UnstakeModal";
 import UnstakeSetAmountScreen from "module/staking/screen/SetAmountScreen/UnstakeSetAmountScreen/UnstakeSetAmountScreen";

@@ -12,8 +12,8 @@ interface StakingCardContentProps {
 
 const StakingCardContent = ({ wallet }: StakingCardContentProps): JSX.Element => {
     const translate = useTranslate();
-    const { isLoading: isStakingLoading, data: { staked } = { staked: "0" } } = useGetTotalStaking(wallet.index, true);
-    const { isLoading: isBalanceLoading, data: { available } = { available: "0" } } = useGetBalance(wallet.index, true);
+    const { isLoading: isStakingLoading, data: { staked } = { staked: "0" } } = useGetTotalStaking(wallet.index);
+    const { isLoading: isBalanceLoading, data: { available } = { available: "0" } } = useGetBalance(wallet.index);
     const availableLabel = translate("available");
     const stakedLabel = translate("staked");
 

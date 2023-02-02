@@ -13,7 +13,7 @@ describe("Test for the SendSummary component", () => {
         expect(screen.getByText(`2,400 ${config.tokenName}`)).toBeDefined();
         //Fee
         expect(screen.getByText(translate("transaction_fee_label") + " · ")).toBeDefined();
-        expect(screen.getByText(`0.00100 ${config.tokenName}`)).toBeDefined();
+        expect(screen.getByText(`0.001 ${config.tokenName}`)).toBeDefined();
         //Total
         expect(screen.getByText(translate("total") + " · ")).toBeDefined();
         expect(screen.getByText(`2,400.001 ${config.tokenName}`)).toBeDefined();

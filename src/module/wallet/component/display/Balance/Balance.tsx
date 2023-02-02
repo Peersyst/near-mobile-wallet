@@ -32,7 +32,7 @@ const Balance = ({
     const [textStyle, rootStyle] = extractTextStyles(style);
 
     return (
-        <BalanceRoot variant={variant} style={rootStyle} justifyContent="center">
+        <BalanceRoot variant={variant} style={rootStyle}>
             <Suspense isLoading={isLoading} fallback={<Spinner {...spinnerProps} />}>
                 <Typography style={textStyle} variant={variant} {...typographyProps}>
                     {formattedBalance}
