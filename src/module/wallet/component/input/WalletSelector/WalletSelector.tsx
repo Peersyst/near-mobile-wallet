@@ -32,11 +32,13 @@ const WalletSelector = ({
         hideError,
     } = useWalletSelector({ value, onChange, defaultValue, minBalance });
 
+    const finalHideError = hideErrorProp !== undefined ? hideErrorProp : hideError;
+
     return (
         <Select
             value={selectedIndex}
             error={errorProp || error}
-            hideError={hideErrorProp || hideError}
+            hideError={finalHideError}
             onChange={setWalletIndex}
             style={style}
             title={translate("select_a_wallet")}

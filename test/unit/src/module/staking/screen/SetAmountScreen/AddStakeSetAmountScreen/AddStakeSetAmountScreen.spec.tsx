@@ -28,7 +28,7 @@ describe("Test for SetAmountStakeScreen component", () => {
         const available = await screen.findByText(
             translate("available_balance", {
                 amount: ACTION_LABEL["round"] + " 1,500.55 " + config.tokenName,
-                amount_price: ACTION_LABEL["round"] + " 3,000.00 " + CURRENCY_UNIT["usd"],
+                amount_price: ACTION_LABEL["round"] + " 3,000 " + CURRENCY_UNIT["usd"],
             }),
         );
         expect(available).toBeDefined();

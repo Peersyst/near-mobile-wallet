@@ -23,7 +23,7 @@ describe("Test for StakingSetAmountScreen component", () => {
             screen.getByText(
                 translate("available_balance", {
                     amount: ACTION_LABEL["round"] + "1,000.00 " + config.tokenName,
-                    amount_price: ACTION_LABEL["round"] + " 3,000.00 " + CURRENCY_UNIT["usd"],
+                    amount_price: ACTION_LABEL["round"] + " 3,000 " + CURRENCY_UNIT["usd"],
                 }),
             ),
         ).toBeDefined();
