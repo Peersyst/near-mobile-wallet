@@ -1,9 +1,8 @@
-import { config } from "config";
 import { NetworkType } from "module/settings/state/SettingsState";
+import useCreateAccount from "../query/useCreateAccount";
 import { Wallet } from "../state/WalletState";
 import WalletController from "../utils/WalletController";
 import useCreateWallet from "./useCreateWallet";
-import useServiceInstance from "./useServiceInstance";
 import useWalletState from "./useWalletState";
 
 export default function useCreateNewWallet() {
@@ -12,24 +11,29 @@ export default function useCreateNewWallet() {
     } = useCreateWallet();
 
     const { setState: setWalletState } = useWalletState();
-
-    const { serviceInstance } = useServiceInstance(fundingAccount);
+    const { mutateAsync } = useCreateAccount(fundingAccount!);
 
     const createWallet = async (network: NetworkType): Promise<Wallet | undefined> => {
-        //Send transaction using the selected service instance
-        const newService = await serviceInstance.createNewAccountWithSameSecretKey(name!, config.minBalanceToCreateAccount);
-        if (!newService) return;
+        try {
+            //Send transaction using the selected service instance
+            //This will create a new service instance and will pay for the transaction
+            const newService = await mutateAsync({ name: name! });
+            if (!newService) return;
 
-        //Set storage & set new service instance
-        const newWallet = await WalletController.createNewWallet(name!, fundingAccount!, newService, network);
-        if (!newWallet) return;
+            //Add service to ServiceInstanceMap and wallet to the storage
+            const newWallet = await WalletController.createNewWallet(name!, newService, network);
+            if (!newWallet) return;
 
-        setWalletState((state) => ({
-            ...state,
-            wallets: [...state.wallets, newWallet],
-        }));
+            //Add new wallet to the wallet state
+            setWalletState((state) => ({
+                ...state,
+                wallets: [...state.wallets, newWallet],
+            }));
 
-        return newWallet;
+            return newWallet;
+        } catch (e) {
+            return;
+        }
     };
 
     return createWallet;

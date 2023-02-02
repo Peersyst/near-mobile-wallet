@@ -8,7 +8,7 @@ describe("SendTransactionModal tests", () => {
         const mockedSendTransaction = jest.fn().mockResolvedValue(true);
 
         render(
-            <SendTransactionModal useMutationStatusResult={mockedStatusState} sendTransaction={mockedSendTransaction}>
+            <SendTransactionModal {...mockedStatusState} sendTransaction={mockedSendTransaction}>
                 {({ showModal }) => <Button onPress={showModal}>showModal</Button>}
             </SendTransactionModal>,
         );

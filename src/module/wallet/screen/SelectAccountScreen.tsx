@@ -8,6 +8,7 @@ import { WalletSelectorProps } from "../component/input/WalletSelectorGroup/Wall
 
 export interface SelectAccountScreenProps {
     name: string;
+    defaultWalletIndex?: number;
     onSubmit: FormProps["onSubmit"];
     children?: ReactNode;
     submitText?: string;
@@ -15,14 +16,22 @@ export interface SelectAccountScreenProps {
     style?: ViewStyle;
 }
 
-const SelectAccountScreen = ({ name, onSubmit, children, submitText, style, minBalance }: SelectAccountScreenProps) => {
+const SelectAccountScreen = ({
+    name,
+    onSubmit,
+    children,
+    submitText,
+    defaultWalletIndex = 0,
+    style,
+    minBalance,
+}: SelectAccountScreenProps) => {
     const translate = useTranslate();
     return (
         <Form onSubmit={onSubmit} style={{ flex: 1, ...style }}>
             <Col gap="10%" flex={1}>
                 <Col flex={1} gap="6%">
                     {children}
-                    <WalletSelectorGroup name={name} defaultValue={0} minBalance={minBalance} />
+                    <WalletSelectorGroup name={name} defaultValue={defaultWalletIndex} minBalance={minBalance} />
                 </Col>
                 <Button fullWidth type="submit">
                     {submitText || translate("continue")}

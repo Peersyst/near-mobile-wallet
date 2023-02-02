@@ -3,4 +3,5 @@ import CardNavigatorModal from "module/common/component/navigation/CardNavigator
 
 export const AddWalletModalRoot = styled(CardNavigatorModal)(({ dimensions }) => ({
     minHeight: dimensions.height * 0.9,
+    height: "100%",
 }));

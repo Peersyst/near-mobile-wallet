@@ -1,5 +1,4 @@
 import { createModal, ExposedBackdropProps, TabPanel, Tabs } from "@peersyst/react-native-components";
-import { useState } from "react";
 import AddWalletModal from "module/wallet/component/core/AddWalletModal/AddWalletModal";
 import { useTranslate } from "module/common/hook/useTranslate";
 import AddCustomNameWarning from "module/wallet/screen/AddCustomNameWarning/AddCustomNameWarning";
@@ -8,70 +7,64 @@ import SelectFundingAccountScreen from "module/wallet/screen/SelectFundingAccoun
 import CreateAccountConfirmationScreen from "module/wallet/screen/CreateAccountConfirmScreen/CreateAccountConfirmationScreen";
 import CreateAccountSuccessScreen from "module/wallet/screen/CreateAccountSuccessScreen/CreateAccountSuccessScreen";
 import { TransaltionResourceType } from "locale";
+import { useCreateWalletModal } from "./hook/useCreateWalletModal";
 
 export const LOCALE_MODAL_TITLES: TransaltionResourceType[] = [
     "add_a_custom_address",
-    "add_a_custom_address",
     "select_funding_acc",
+    "add_a_custom_address",
     "confirm",
     "success",
 ];
 
 export enum CreateWalletModalTabs {
     WARNING_TAB,
-    SET_ACCOUNT_NAME_TAB,
     SET_FUNDING_ACC_TAB,
+    SET_ACCOUNT_NAME_TAB,
     CONFIRM_TAB,
     SUCCESS_TAB,
 }
 
 const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
-    const [index, setIndex] = useState(CreateWalletModalTabs.WARNING_TAB);
     const translate = useTranslate();
-    const handleOnBack = () => {
-        if (index !== 0) {
-            setIndex((i) => i - 1);
-        }
-    };
-
+    const { index, setIndex, handleOnBack, handleClose, handleWalletCreation } = useCreateWalletModal();
+    const showSteps = index !== 0 && index !== 4;
     return (
         <AddWalletModal
-            steps={
-                index !== 0 && index !== 4
+            navbar={{
+                back: index !== LOCALE_MODAL_TITLES.length - 1,
+                title: translate(LOCALE_MODAL_TITLES[index])!,
+                onBack: index > 0 ? handleOnBack : undefined,
+                steps: showSteps
                     ? {
                           index: index - 1,
                           length: 3,
                       }
-                    : undefined
-            }
-            title={translate(LOCALE_MODAL_TITLES[index])}
-            onBack={handleOnBack}
-            closeOnWalletCreation={false}
+                    : undefined,
+            }}
             {...props}
         >
-            {(handleWalletCreation, handleClose) => (
-                <Tabs index={index} onIndexChange={setIndex}>
-                    <TabPanel index={CreateWalletModalTabs.WARNING_TAB}>
-                        <AddCustomNameWarning onSubmit={() => setIndex(CreateWalletModalTabs.SET_ACCOUNT_NAME_TAB)} />
-                    </TabPanel>
-                    <TabPanel index={CreateWalletModalTabs.SET_ACCOUNT_NAME_TAB}>
-                        <SetAccountNameScreen onSubmit={() => setIndex(CreateWalletModalTabs.SET_FUNDING_ACC_TAB)} />
-                    </TabPanel>
-                    <TabPanel index={CreateWalletModalTabs.SET_FUNDING_ACC_TAB}>
-                        <SelectFundingAccountScreen onSubmit={() => setIndex(CreateWalletModalTabs.CONFIRM_TAB)} />
-                    </TabPanel>
-                    <TabPanel index={CreateWalletModalTabs.CONFIRM_TAB}>
-                        <CreateAccountConfirmationScreen
-                            onSubmit={handleWalletCreation}
-                            onSuccess={() => setIndex(CreateWalletModalTabs.SUCCESS_TAB)}
-                            onCancel={handleClose}
-                        />
-                    </TabPanel>
-                    <TabPanel index={CreateWalletModalTabs.SUCCESS_TAB}>
-                        <CreateAccountSuccessScreen onSubmit={handleClose} />
-                    </TabPanel>
-                </Tabs>
-            )}
+            <Tabs index={index} onIndexChange={setIndex}>
+                <TabPanel index={CreateWalletModalTabs.WARNING_TAB}>
+                    <AddCustomNameWarning onSubmit={() => setIndex(CreateWalletModalTabs.SET_FUNDING_ACC_TAB)} />
+                </TabPanel>
+                <TabPanel index={CreateWalletModalTabs.SET_FUNDING_ACC_TAB}>
+                    <SelectFundingAccountScreen onSubmit={() => setIndex(CreateWalletModalTabs.SET_ACCOUNT_NAME_TAB)} />
+                </TabPanel>
+                <TabPanel index={CreateWalletModalTabs.SET_ACCOUNT_NAME_TAB}>
+                    <SetAccountNameScreen onSubmit={() => setIndex(CreateWalletModalTabs.CONFIRM_TAB)} />
+                </TabPanel>
+                <TabPanel index={CreateWalletModalTabs.CONFIRM_TAB}>
+                    <CreateAccountConfirmationScreen
+                        onSubmit={handleWalletCreation}
+                        onSuccess={() => setIndex(CreateWalletModalTabs.SUCCESS_TAB)}
+                        onCancel={handleClose}
+                    />
+                </TabPanel>
+                <TabPanel index={CreateWalletModalTabs.SUCCESS_TAB}>
+                    <CreateAccountSuccessScreen onSubmit={handleClose} />
+                </TabPanel>
+            </Tabs>
         </AddWalletModal>
     );
 });

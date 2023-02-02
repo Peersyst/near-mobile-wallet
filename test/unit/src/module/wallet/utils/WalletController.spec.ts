@@ -30,14 +30,10 @@ describe("Test for the WalletController", () => {
 
         test("Create new wallet test", async () => {
             const service = new NearSdkServiceMock() as any as NearSDKService;
-            const { walletIds } = new WalletControllerMocks(3, privateKey);
-            jest.spyOn(WalletStorage, "getSecureWalletGroupAndMainPrivateKey").mockResolvedValue({
-                imported: false,
-                walletGroup: { privateKey, walletIds },
-            });
+            jest.spyOn(WalletStorage, "getMainPrivateKey").mockResolvedValue(privateKey);
             jest.spyOn(WalletStorage, "addNewUnencryptedWallet").mockResolvedValue(3);
             const mockedAddService = jest.spyOn(ServiceInstances, "addService");
-            const wallet = await WalletController.createNewWallet(newAcc, 2, service, network);
+            const wallet = await WalletController.createNewWallet(newAcc, service, network);
             expect(mockedAddService).toHaveBeenCalledWith({ service, network });
             expect(wallet).toEqual({ index: 3, account: newAcc, colorIndex: WalletUtils.getWalletColor(newAcc) });
         });

@@ -2,16 +2,12 @@ import { Col, Form } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useTranslate } from "module/common/hook/useTranslate";
-import Typography from "module/common/component/display/Typography/Typography";
-import { useDebounce } from "@peersyst/react-hooks";
-import useCheckNameAvailability from "../../query/useCheckNameIdAvailability";
 import GuidelinesList from "module/common/component/display/GuidelinesList/GuidelinesList";
 import { TransaltionResourceType } from "locale";
-import { AccountNameTextField } from "./SetAccountNameScreen.styles";
 import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
-import { useRecoilValue } from "recoil";
-import settingsState from "module/settings/state/SettingsState";
-import { Chains } from "near-peersyst-sdk";
+import NewAccountNameTextField from "module/wallet/component/input/NewAccountNameTextField/NewAccountNameTextField";
+import useGetSuffix from "module/wallet/hook/useGetSuffix";
+import { addSuffix } from "module/wallet/component/input/NewAccountNameTextField/util/accountNameUtils";
 
 interface SetWalletNameForm {
     walletName: string;
@@ -24,53 +20,33 @@ const NOT_ALLOWED_INIDICATIONS: TransaltionResourceType[] = ["not_allowed_chars"
 const SetAccountNameScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreenProps): JSX.Element => {
     const {
         setName,
-        state: { name = "" },
+        state: { name = "", fundingAccount },
     } = useCreateWallet();
     const translate = useTranslate();
-    const translateError = useTranslate("error");
-    const { network } = useRecoilValue(settingsState);
-    const suffix = network === Chains.MAINNET ? ".near" : ".testnet";
-    const { value, handleChange, debouncedValue, debouncing } = useDebounce(name.substring(0, name.length - suffix.length));
-    const finalName = debouncedValue + suffix;
-    const { data: available = false, isLoading: nameLoading } = useCheckNameAvailability(finalName);
+    const suffix = useGetSuffix();
 
     const handleSubmit = ({ walletName }: SetWalletNameForm) => {
-        setName(walletName + suffix);
+        setName(addSuffix(walletName, suffix));
         onSubmit();
     };
-
-    const finalLoding = debouncing || nameLoading;
-    const error = !available && debouncedValue.length > 0 && debouncedValue.length < 59;
-    const success = !finalLoding && available && finalName !== name;
 
     return (
         <Form onSubmit={handleSubmit} style={{ flex: 1 }}>
             <Col flex={1} gap={30}>
                 <Col gap="7%" flex={1}>
-                    <AccountNameTextField
-                        suffix={
-                            <Typography variant="body2Strong" style={{ fontSize: 16 }}>
-                                {suffix}
-                            </Typography>
-                        }
-                        hint={success ? translate("name_available", { name: finalName }) : undefined}
+                    <NewAccountNameTextField
+                        walletIndex={fundingAccount}
                         name="walletName"
-                        defaultValue={""}
-                        value={value}
-                        error={[error, translateError("invalid_name_ID", { nameID: finalName })]}
-                        onChange={handleChange}
-                        placeholder="mycoolid"
-                        hideError={finalLoding}
-                        validators={{ maxChars: 64, minChars: 2, address: true }}
+                        defaultValue={name}
+                        placeholder={translate("my_cool_id")}
                         label={translate("enter_your_custom_address")}
-                        showValid={success}
                         required
                         autoCapitalize="none"
                     />
                     <GuidelinesList allowed>{ALLOWED_INIDICATIONS.map((key) => translate(key))}</GuidelinesList>
                     <GuidelinesList allowed={false}>{NOT_ALLOWED_INIDICATIONS.map((key) => translate(key))}</GuidelinesList>
                 </Col>
-                <Button fullWidth type="submit" loading={finalLoding}>
+                <Button fullWidth type="submit">
                     {submitText || translate("continue")}
                 </Button>
             </Col>

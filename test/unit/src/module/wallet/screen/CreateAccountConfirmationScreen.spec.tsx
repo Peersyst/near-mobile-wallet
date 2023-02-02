@@ -10,6 +10,7 @@ describe("CreateAccountConfirmationScreen", () => {
         const handleCreateAccount = jest.fn().mockResolvedValue(true);
         new UseWalletMock({ account: "acc" });
         const { state } = new UseCreateWalletMock();
+
         render(<CreateAccountConfirmationScreen onCancel={handleOnCancel} onSubmit={handleCreateAccount} onSuccess={handleOnSubmit} />);
         //Send summary
         expect(screen.getByText(`0.1 ${config.tokenName}`)).toBeDefined();
@@ -30,10 +31,9 @@ describe("CreateAccountConfirmationScreen", () => {
         const btn2 = screen.getByText(translate("continue"));
         expect(btn2).toBeDefined();
         fireEvent.press(btn2);
-        expect(handleCreateAccount).toHaveBeenCalled();
 
         await waitFor(() => {
-            expect(handleOnSubmit).toHaveBeenCalled();
+            expect(screen.getByText(translate("confirm_your_pin"))).toBeDefined();
         });
     });
 });

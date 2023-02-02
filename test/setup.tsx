@@ -53,3 +53,19 @@ jest.mock("@peersyst/react-native-components", () => {
 jest.mock("module/settings/hook/useSelectedNetwork", () => {
     return () => "testnet";
 });
+
+//Mock language detector
+jest.mock("locale/pluguins/LanguageDetectorPlugin/LanguageDetectorPlugin", () => {
+    return {
+        __esModule: true,
+        default: {
+            type: "languageDetector",
+            async: true,
+            detect: () => "en",
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            init: () => {},
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            cacheUserLanguage: () => {},
+        },
+    };
+});

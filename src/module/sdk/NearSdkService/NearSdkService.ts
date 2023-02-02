@@ -195,6 +195,17 @@ export class NearSDKService {
         return this.keyPair.toString();
     }
 
+    getSecretKey(): string {
+        return this.keyPair.secretKey;
+    }
+
+    static isSameSecretKey(secretKey1: string, secretKey2: string): boolean {
+        const finalSecretKey1 = secretKey1.split(":").pop();
+        const finalSecretKey2 = secretKey2.split(":").pop();
+        if (!finalSecretKey1 || !finalSecretKey2) return false;
+        return finalSecretKey1 === finalSecretKey2;
+    }
+
     async accountExists(nameId: string): Promise<boolean> {
         // Could also be checked through our indexer api instead of rpc
 
@@ -257,9 +268,29 @@ export class NearSDKService {
         return NearSDKService.isImplicitAddress(accountId) || this.accountExists(accountId);
     }
 
+    public isNewAddressValid(nameId: string): boolean {
+        const nameParts = nameId.split(".").length;
+        return nameParts === 2 && nameId.indexOf(`.${this.chain}`) !== -1;
+    }
+
+    public isSubAddressValid(nameId: string): boolean {
+        const address = this.getAddress();
+        const addressParts = address.split(".").length;
+        const nameParts = nameId.split(".").length;
+        return nameId.indexOf(address) !== -1 && nameParts === addressParts + 1;
+    }
+
+    public nameIsValidSubAccount(nameId: string): boolean {
+        return this.isNewAddressValid(nameId) || this.isSubAddressValid(nameId);
+    }
+
+    //https://docs.near.org/concepts/basics/accounts/account-id#named-accounts
+    public nameCanBeCreated(nameId: string): boolean {
+        return NearSDKService.nameIdIsValid(nameId, this.chain) && this.nameIsValidSubAccount(nameId);
+    }
+
     async nameIsChoosalbe(nameId: string): Promise<boolean> {
-        const exist = await this.accountExists(nameId);
-        return !exist && NearSDKService.nameIdIsValid(nameId);
+        return NearSDKService.nameIdIsValid(nameId, this.chain) && !(await this.accountExists(nameId));
     }
 
     // Amount is in near
@@ -326,18 +357,33 @@ export class NearSDKService {
     }
 
     // Amount is in near
-    async createNewAccountWithSameSecretKey(nameId: string, amount: string, nearDecimals?: number): Promise<NearSDKService | undefined> {
+    async createNewAccountWithSameSecretKey(
+        nameId: string,
+        amount: string,
+        nearDecimals?: number,
+        mnemonic?: string,
+    ): Promise<NearSDKService | undefined> {
         const exists = await this.accountExists(nameId);
         if (exists) {
             throw new Error("Account already exists");
         }
         try {
-            await this.createNewAccount(nameId, this.keyPair.getPublicKey(), amount);
+            let publicKey;
+            let secretKey;
+            if (mnemonic) {
+                const { publicKey: PK, secretKey: SK } = parseSeedPhrase(mnemonic);
+                publicKey = PK;
+                secretKey = SK;
+            } else {
+                publicKey = this.keyPair.getPublicKey();
+                secretKey = this.keyPair.secretKey;
+            }
+            await this.createNewAccount(nameId, publicKey, amount);
             const service = new NearSDKService({
                 chain: this.chain,
                 nodeUrl: this.nearConfig.nodeUrl,
                 baseApiUrl: this.baseApiUrl,
-                secretKey: this.keyPair.secretKey,
+                secretKey,
                 nameId,
                 nearDecimals,
                 enableIndexer: this.enableIndexer,

@@ -28,6 +28,8 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
     getTotalStakingBalance: MockFnType;
     getCurrentValidators: MockFnType;
     getAllValidators: MockFnType;
+    getSecretKey: MockFnType;
+    nameIsValidSubAccount: MockFnType;
     //TODO: add here all the mock fn that are needed
 
     constructor() {
@@ -43,5 +45,7 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
         this.getTotalStakingBalance = jest.fn().mockResolvedValue(new StakingBalanceMock());
         this.getCurrentValidators = jest.fn().mockResolvedValue([new ValidatorMock()]);
         this.getAllValidators = jest.fn().mockResolvedValue([new ValidatorMock()]);
+        this.getSecretKey = jest.fn().mockReturnValue(MOCKED_PK);
+        this.nameIsValidSubAccount = jest.fn().mockReturnValue(true);
     }
 }

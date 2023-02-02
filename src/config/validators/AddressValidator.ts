@@ -1,7 +1,7 @@
 import { BaseValidator } from "@peersyst/react-native-components";
 import { TranslateFn } from "@peersyst/react-native-components";
 import { NetworkType } from "module/settings/state/SettingsState";
-import { NearSDKService } from "near-peersyst-sdk";
+import { isAccountValid } from "module/wallet/component/input/NewAccountNameTextField/util/isAccountValid";
 
 export class AddressValidator extends BaseValidator {
     private network: NetworkType;
@@ -11,6 +11,6 @@ export class AddressValidator extends BaseValidator {
     }
 
     validate(value: string): boolean {
-        return NearSDKService.isImplicitAddressOrNameValid(value, this.network);
+        return isAccountValid(value, this.network);
     }
 }

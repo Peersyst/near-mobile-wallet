@@ -3,10 +3,10 @@ import useServiceInstance from "../hook/useServiceInstance";
 
 export function useInvalidateServiceInstanceQueries(index?: number) {
     const { index: usedIndex, network } = useServiceInstance(index);
-    const refetchAllQueries = useInvalidateQueries();
+    const invalidateAllQueries = useInvalidateQueries();
     async function handleInvalidate(queryKeys: string[]) {
         const queries = queryKeys.map((key) => [key, usedIndex, network]);
-        await refetchAllQueries(queries);
+        await invalidateAllQueries(queries);
     }
     return handleInvalidate;
 }

@@ -3,7 +3,6 @@ import Typography from "module/common/component/display/Typography/Typography";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
-import { useEffect } from "react";
 import SelectAccountScreen from "../SelectAccountScreen";
 
 export interface SelectFundingAccountScreenForm {
@@ -13,26 +12,22 @@ export interface SelectFundingAccountScreenForm {
 const SelectFundingAccountScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreenProps) => {
     const translate = useTranslate();
     const {
-        state: { fundingAccount },
         setFundAccount,
+        state: { fundingAccount },
     } = useCreateWallet();
 
     const handleSubmit = ({ fundingAccount }: SelectFundingAccountScreenForm) => {
         setFundAccount(fundingAccount);
+        onSubmit?.();
     };
-
-    useEffect(() => {
-        if (fundingAccount !== undefined) {
-            onSubmit();
-        }
-    }, [fundingAccount]);
 
     return (
         <SelectAccountScreen
+            minBalance={config.minBalanceToCreateAccount}
+            defaultWalletIndex={fundingAccount}
             name="fundingAccount"
             onSubmit={handleSubmit}
             submitText={submitText}
-            minBalance={config.minBalanceToCreateAccount}
         >
             <Typography variant="body3Regular" light textAlign="center">
                 {translate("select_funding_acc_explanation_1")}

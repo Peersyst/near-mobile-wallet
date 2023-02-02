@@ -28,5 +28,6 @@
     "invalid_seleccted_account": "Debes seleccionar una cuenta con un balance de almenos {{amountInNEAR}} NEAR.",
     "error_creating_account": "Error al crear la cuenta",
     "insufficient_balance": "No tienes balance",
-    "not_using_validators": "No estás realizando stake en ningún validador."
+    "not_using_validators": "No estás realizando stake en ningún validador.",
+    "invalid_child_account": "No puedes crear {{nameID}} con tu cuenta {{currentAccount}}."
 }
