@@ -873,7 +873,7 @@ export class NearSDKService {
         return this.parseNftToken(token, contractId, baseUri || null);
     }
 
-    async getNftTokens(contractId: string, baseUri: string | null, limit = 10): Promise<NftToken[]> {
+    async getNftTokens(contractId: string, baseUri: string | null): Promise<NftToken[]> {
         const account = await this.getAccount();
         let tokens: NftToken[] = [];
         try {
@@ -888,13 +888,13 @@ export class NearSDKService {
                 metadata: await this.getNftTokenMetadata(contractId, tokenId.toString(), baseUri!),
             }));
         } catch (err: any) {
-            if (!err.toString().includes("FunctionCallError(MethodResolveError(MethodNotFound))")) {
+            if (!err.toString().includes("MethodResolveError(MethodNotFound)")) {
                 throw err;
             }
             tokens = await account.viewFunction({
                 contractId,
                 methodName: NFT_OWNER_TOKENS_METHOD,
-                args: { account_id: account.accountId, from_index: "0", limit },
+                args: { account_id: account.accountId },
             });
         }
         const parsedTokens = tokens.map((token: any) => this.parseNftToken(token, contractId, baseUri));
@@ -904,6 +904,7 @@ export class NearSDKService {
     async getNfts(): Promise<NftToken[]> {
         const contractIds = await this.apiService.getLikelyNfts({ address: this.getAddress() });
         const nftTokens: NftToken[] = [];
+
         for (const contractId of contractIds) {
             const contractNfts = await this.getNftTokensAmount(contractId);
             if (contractNfts > 0) {
