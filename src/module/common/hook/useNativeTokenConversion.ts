@@ -1,4 +1,3 @@
-import { config } from "config";
 import { FiatCurrencyType } from "module/settings/state/SettingsState";
 import { useGetNativeTokenPrice } from "../query/useGetNativeTokenPrice";
 
@@ -7,7 +6,7 @@ export default function useNativeTokenConversion(balance: string | number, curre
     const { data = 0 } = useGetNativeTokenPrice(currency);
 
     function convertBalance(balance: string | number): string {
-        return (Number(balance) * data).toFixed(config.maxNumberOfDecimals);
+        return (Number(balance) * data).toString();
     }
 
     return { value: convertBalance(balance), convertBalance };

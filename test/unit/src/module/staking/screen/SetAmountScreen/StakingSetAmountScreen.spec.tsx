@@ -1,11 +1,11 @@
 import { config } from "config";
 import Typography from "module/common/component/display/Typography/Typography";
-import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
-import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
 import { StakeStateMock, UseGetBalanceMock, UseNativeTokenConversionMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 import { fireEvent, render, screen, translate, waitFor } from "test-utils";
 import * as Recoil from "recoil";
 import StakingSetAmountScreen from "module/staking/screen/SetAmountScreen/StakingSetAmountScreen";
+import { ACTION_LABEL } from "module/wallet/component/display/Balance/constants/actionLabels";
+import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/constants/currencies";
 
 describe("Test for StakingSetAmountScreen component", () => {
     test("Renders correctly", () => {
@@ -22,7 +22,7 @@ describe("Test for StakingSetAmountScreen component", () => {
         expect(
             screen.getByText(
                 translate("available_balance", {
-                    amount: "1,000 " + config.tokenName,
+                    amount: ACTION_LABEL["round"] + "1,000.00 " + config.tokenName,
                     amount_price: ACTION_LABEL["round"] + " 3,000 " + CURRENCY_UNIT["usd"],
                 }),
             ),

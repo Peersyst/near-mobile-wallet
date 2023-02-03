@@ -5,8 +5,8 @@ import * as Recoil from "recoil";
 import * as ExpoHaptics from "expo-haptics";
 import { capitalize } from "@peersyst/react-utils";
 import { config } from "config";
-import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
 import { AccountBalanceMock, UseNativeTokenConversionMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/constants/currencies";
 
 describe("WalletCard tests", () => {
     const { state } = new UseWalletStateMock();
@@ -49,7 +49,7 @@ describe("WalletCard tests", () => {
         expect(balance).toBeDefined();
         fireEvent.press(balance);
 
-        await waitFor(() => expect(screen.getByText(CURRENCY_UNIT["eur"] + " 10")).toBeDefined());
+        await waitFor(() => expect(screen.getByText(CURRENCY_UNIT["eur"] + " 10.00")).toBeDefined());
         expect(mockedVibrate).toHaveBeenCalled();
     });
 });

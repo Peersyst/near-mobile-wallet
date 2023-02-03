@@ -2,9 +2,10 @@ import useNativeTokenConversion from "module/common/hook/useNativeTokenConversio
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
 import Balance from "../Balance/Balance";
-import { BalanceProps } from "../Balance/Balance.types";
-import { Token } from "near-peersyst-sdk";
+import { BalanceActions, BalanceProps } from "../Balance/Balance.types";
+import { BalanceOperations, Token } from "near-peersyst-sdk";
 import useTokenConversion from "module/token/hook/useTokenConversion";
+import { FIAT_THRESHOLDS } from "./fiatThresholds";
 
 export interface BaseFiatBalanceProps extends Omit<BalanceProps, "balance" | "action"> {
     balance: string | number;
@@ -19,17 +20,19 @@ export interface FiatBalanceProps extends Omit<BaseFiatBalanceProps, "units"> {
 
 const TokenBalanceInFiat = ({ balance, token, ...rest }: TokenBalanceInFiatProps) => {
     const { value } = useTokenConversion(balance, token.contractId);
-    return value ? <Balance balance={value} action="round" {...rest} /> : <></>;
+    const isBiggerThanMinThreshold = BalanceOperations.isBigger(balance, FIAT_THRESHOLDS[FIAT_THRESHOLDS.length - 1].value);
+    return value ? <Balance balance={value} {...(isBiggerThanMinThreshold && { action: BalanceActions.ROUND })} {...rest} /> : <></>;
 };
 
 const NearBalanceInFiat = ({ balance, ...rest }: BaseFiatBalanceProps) => {
     const { value: fiatValue } = useNativeTokenConversion(balance);
-    return <Balance balance={fiatValue} action="round" {...rest} />;
+    const isBiggerThanMinThreshold = BalanceOperations.isBigger(balance, FIAT_THRESHOLDS[FIAT_THRESHOLDS.length - 1].value);
+    return <Balance balance={fiatValue} {...(isBiggerThanMinThreshold && { action: BalanceActions.ROUND })} {...rest} />;
 };
 
-const FiatBalance = ({ token, options, ...rest }: FiatBalanceProps) => {
+const FiatBalance = ({ token, ...rest }: FiatBalanceProps) => {
     const { fiat } = useRecoilValue(settingsState);
-    const baseProps = { options: { maximumFractionDigits: 2, minimumFractionDigits: 2, ...options }, ...rest, units: fiat };
+    const baseProps = { ...rest, units: fiat, thresholds: FIAT_THRESHOLDS, minimumFallbackDisplay: "0.01" };
     return (
         <>
             {token === undefined && <NearBalanceInFiat {...baseProps} />}

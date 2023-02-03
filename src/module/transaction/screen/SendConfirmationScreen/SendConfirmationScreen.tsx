@@ -15,7 +15,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     const { hideModal } = useModal();
     const { showToast } = useToast();
     const sendStateValue = useRecoilValue(sendState);
-    const { sendTransaction, ...rest } = useSendTransaction(sendStateValue);
+    const { sendTransaction, isSuccess, ...rest } = useSendTransaction(sendStateValue);
     const {
         state: { wallets },
     } = useWalletState();
@@ -26,14 +26,15 @@ const SendConfirmationScreen = (): JSX.Element => {
 
     function closeModal() {
         hideModal(SendModal.id);
-        showToast(translate("send_success"), { type: "success" });
+        if (isSuccess) showToast(translate("send_success"), { type: "success" });
     }
 
     return (
-        <SendTransactionModal onExited={closeModal} sendTransaction={sendTransaction} {...rest}>
+        <SendTransactionModal isSuccess={isSuccess} onExited={closeModal} sendTransaction={sendTransaction} {...rest}>
             {({ showModal, isSuccess, isLoading }) => (
                 <Col gap={24} onStartShouldSetResponder={() => true}>
                     <SendSummary
+                        displayFullDecimals
                         nft={asset.nft}
                         token={asset.ft}
                         showFiat

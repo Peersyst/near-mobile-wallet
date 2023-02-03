@@ -21,6 +21,7 @@ export interface SendForm {
 const SendToAddressScreen = () => {
     const translate = useTranslate();
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
+    const [hasAddressChanged, setHasAddressChanged] = useState(false);
     const { network } = useRecoilValue(settingsState);
     const [receiverAddress, setReceiverAddress] = useState(sendState.receiverAddress || "");
     const [scanQr, setScanQr] = useState(false);
@@ -29,6 +30,7 @@ const SendToAddressScreen = () => {
     const setTab = useSetTab();
 
     const handleAddressScan = (data: string) => {
+        setHasAddressChanged(true);
         setReceiverAddress(data);
         showToast(translate("scanned_address", { address: data }), {
             type: "success",
@@ -39,6 +41,11 @@ const SendToAddressScreen = () => {
                 </PressableText>
             ),
         });
+    };
+
+    const handleAddressChange = (address: string) => {
+        setHasAddressChanged(true);
+        setReceiverAddress(address);
     };
 
     const handleSubmit = ({ sender, receiver }: SendForm) => {
@@ -54,6 +61,7 @@ const SendToAddressScreen = () => {
                         label={translate("select_a_wallet")}
                         required
                         name="sender"
+                        hideError={!hasAddressChanged}
                         minBalance={config.estimatedFee}
                         defaultValue={sendState.senderWalletIndex}
                     />
@@ -68,7 +76,7 @@ const SendToAddressScreen = () => {
                         name="receiver"
                         validators={{ address: network }}
                         value={receiverAddress}
-                        onChange={setReceiverAddress}
+                        onChange={handleAddressChange}
                         autoCapitalize="none"
                         autoCorrect={false}
                     />

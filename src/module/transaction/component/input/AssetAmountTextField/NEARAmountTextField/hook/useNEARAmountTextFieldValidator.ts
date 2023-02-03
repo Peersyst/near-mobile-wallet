@@ -34,6 +34,7 @@ export const useNEARAmountTextFieldValidator = ({
         unitsPosition: "right",
         numberFormatOptions: { maximumFractionDigits: 6 },
     });
+
     const finalMaxAmountError: TextFieldProps["error"] = isGreaterThanMax && [
         isGreaterThanMax,
         translateError("invalid_number_lte", { n: formattedMaxAvailable }),
