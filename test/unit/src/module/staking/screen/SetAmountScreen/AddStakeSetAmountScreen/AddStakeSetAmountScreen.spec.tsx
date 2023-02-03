@@ -1,8 +1,9 @@
 import { config } from "config";
 import { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
 import AddStakeSetAmountScreen from "module/staking/screen/SetAmountScreen/AddStakeSetAmountScreen/AddStakeSetAmountScreen";
-import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
-import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
+import { ACTION_LABEL } from "module/wallet/component/display/Balance/constants/actionLabels";
+import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/constants/currencies";
+
 import {
     AccountBalanceMock,
     UseGetBalanceMock,
@@ -23,9 +24,10 @@ describe("Test for SetAmountStakeScreen component", () => {
         render(<AddStakeSetAmountScreen />);
 
         expect(screen.getByText(translate("enter_amount_want_to", { action: "stake" }))).toBeDefined();
+
         const available = await screen.findByText(
             translate("available_balance", {
-                amount: "1,500.55 " + config.tokenName,
+                amount: ACTION_LABEL["round"] + " 1,500.55 " + config.tokenName,
                 amount_price: ACTION_LABEL["round"] + " 3,000 " + CURRENCY_UNIT["usd"],
             }),
         );

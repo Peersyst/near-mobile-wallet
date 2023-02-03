@@ -11,6 +11,7 @@ export interface FeeProps extends Omit<TypographyProps, "variant"> {
 
 const Fee = ({ typographyVariant, fee, ...rest }: FeeProps) => {
     const translate = useTranslate();
+    const feeDecimals = fee?.split(".")[1]?.length;
     return (
         <Typography variant={`${typographyVariant}Regular`} light textAlign="center" {...rest}>
             {translate("transaction_fee_label")}
@@ -21,8 +22,10 @@ const Fee = ({ typographyVariant, fee, ...rest }: FeeProps) => {
                 units="token"
                 light
                 options={{
-                    maximumFractionDigits: config.maxNumberOfDecimals,
-                    minimumFractionDigits: config.maxNumberOfDecimals,
+                    ...(feeDecimals !== undefined && {
+                        maximumFractionDigits: feeDecimals,
+                        minimumFractionDigits: feeDecimals,
+                    }),
                 }}
                 {...rest}
             />

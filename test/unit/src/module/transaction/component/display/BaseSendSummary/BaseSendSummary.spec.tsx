@@ -11,6 +11,7 @@ describe("Test for the BaseSendSummary", () => {
                 <Typography variant="body3Regular">Children</Typography>
             </BaseSendSummary>,
         );
+
         //Amount
         expect(screen.getByText("1,000 " + config.tokenName)).toBeDefined();
         //Fee

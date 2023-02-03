@@ -4,8 +4,8 @@ import useGetBalance from "../query/useGetBalance";
 import { Wallet } from "../state/WalletState";
 import { BalanceOperations } from "near-peersyst-sdk";
 import useWalletState from "./useWalletState";
-import { TextFieldProps } from "module/common/component/input/TextField/TextField.types";
 import { useTranslate } from "module/common/hook/useTranslate";
+import { TextFieldProps } from "module/common/component/input/TextField/TextField.types";
 
 export type UseWalletSelectorParams = Pick<WalletSelectorProps, "value" | "defaultValue" | "onChange" | "minBalance">;
 

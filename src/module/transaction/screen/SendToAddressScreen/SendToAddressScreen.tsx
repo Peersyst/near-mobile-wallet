@@ -12,7 +12,6 @@ import { CameraIcon } from "icons";
 import QrScanner from "module/common/component/input/QrScanner/QrScanner";
 import settingsState from "module/settings/state/SettingsState";
 import { config } from "config";
-import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import useWalletState from "module/wallet/hook/useWalletState";
 
 export interface SendForm {
@@ -51,6 +50,10 @@ const SendToAddressScreen = () => {
         });
     };
 
+    const handleAddressChange = (address: string) => {
+        setReceiverAddress(address);
+    };
+
     const handleSubmit = ({ sender, receiver }: SendForm) => {
         setSendState((oldState) => ({ ...oldState, senderWalletIndex: sender, receiverAddress: receiver }));
         setTab(SendScreens.AMOUNT_AND_MESSAGE);
@@ -79,7 +82,7 @@ const SendToAddressScreen = () => {
                         name="receiver"
                         validators={{ address: network, notEq: [account, translateError("invalid_send_same_account")] }}
                         value={receiverAddress}
-                        onChange={setReceiverAddress}
+                        onChange={handleAddressChange}
                         autoCapitalize="none"
                         autoCorrect={false}
                     />

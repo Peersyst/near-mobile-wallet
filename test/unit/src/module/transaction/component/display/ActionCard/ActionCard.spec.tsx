@@ -3,8 +3,8 @@ import { EnhancedTransactionActionKind, TransactionActionKind } from "near-peers
 import { formatDate, render, screen, translate, waitFor } from "test-utils";
 import ActionCard from "module/transaction/component/display/ActionCard/ActionCard";
 import { config } from "config";
-import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/utils/currencies";
-import { ACTION_LABEL } from "module/wallet/component/display/Balance/utils/actionLabels";
+import { ACTION_LABEL } from "module/wallet/component/display/Balance/constants/actionLabels";
+import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/constants/currencies";
 
 describe("ActionCard test", () => {
     test("Test shows receive", async () => {
@@ -18,7 +18,7 @@ describe("ActionCard test", () => {
         // Date
         expect(screen.getByText(formatDate(Number(action.transaction.blockTimestamp)))).toBeDefined();
         // Fiat amount
-        await waitFor(() => expect(screen.getByText(ACTION_LABEL["round"] + "10.00 " + CURRENCY_UNIT["usd"])).toBeDefined());
+        await waitFor(() => expect(screen.getByText(ACTION_LABEL["round"] + "10 " + CURRENCY_UNIT["usd"])).toBeDefined());
     });
     test("Test shows send", async () => {
         new UseNativeTokenConversionMock({ value: "10" });
@@ -31,7 +31,7 @@ describe("ActionCard test", () => {
         // Date
         expect(screen.getByText(formatDate(Number(action.transaction.blockTimestamp)))).toBeDefined();
         // Fiat amount
-        await waitFor(() => expect(screen.getByText(ACTION_LABEL["round"] + "10.00 " + CURRENCY_UNIT["usd"])).toBeDefined());
+        await waitFor(() => expect(screen.getByText(ACTION_LABEL["round"] + "10 " + CURRENCY_UNIT["usd"])).toBeDefined());
     });
     test("Test show smart contract", () => {
         const action = new ActionMock({ actionKind: TransactionActionKind.FUNCTION_CALL });

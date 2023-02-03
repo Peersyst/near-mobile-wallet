@@ -11,7 +11,7 @@ const AddWalletModal = ({ onExited, children, ...rest }: AddWalletModalProps): J
     };
 
     return (
-        <AddWalletModalRoot style={{ height: "100%" }} onExited={handleExited} {...rest}>
+        <AddWalletModalRoot onExited={handleExited} {...rest}>
             {children}
         </AddWalletModalRoot>
     );
