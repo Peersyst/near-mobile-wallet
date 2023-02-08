@@ -4,6 +4,7 @@ import Queries from "../../../query/queries";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import { getValidatorsWithStatus } from "../utils/validator";
 import { Validator } from "near-peersyst-sdk";
+import { config } from "config";
 
 export default function (): QueryResult<Validator[]> {
     const { network, serviceInstance, queryEnabled } = useServiceInstance(0);
@@ -15,6 +16,7 @@ export default function (): QueryResult<Validator[]> {
         },
         {
             enabled: queryEnabled,
+            refetchInterval: config.refetchIntervals.validators,
         },
     );
 }

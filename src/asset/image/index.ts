@@ -9,6 +9,7 @@ export { default as key } from "./key.png";
 export { default as lock } from "./lock.png";
 export { default as near_bg_0 } from "./near-bg-0.png";
 export { default as near_bg_1 } from "./near-bg-1.png";
+export { default as near_usn } from "./near-usn.png";
 export { default as nervos_coin } from "./nervos-coin.png";
 export { default as notes } from "./notes.png";
 export { default as placeholder_image } from "./placeholder_image.png";

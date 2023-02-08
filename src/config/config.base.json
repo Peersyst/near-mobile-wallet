@@ -14,7 +14,6 @@
     "miniTokenUnit": "yoctoNEAR",
     "coingeckoTokenApiId": "near",
     "coingeckoUSDTApiId": "tether",
-    "fetchPriceConversionInterval": 180000,
     "minBalanceToCreateAccount": "0.1",
     "estimatedFee": "0.005",
     "enableIndexer": false,
@@ -22,5 +21,15 @@
     "defaultTwitterAccount": "https://twitter.com/NEARProtocol",
     "approveTxWaitTime": 3,
     "testnetTokenPriceUrl": "https://testnet-indexer.ref-finance.com/list-token-price",
-    "mainnetTokenPriceUrl": "https://indexer.ref-finance.com/list-token-price"
+    "mainnetTokenPriceUrl": "https://indexer.ref-finance.com/list-token-price",
+    "refetchIntervals": {
+        "nfts": 60000,
+        "tokens": 60000,
+        "balance": 60000,
+        "transactions": 60000,
+        "fiatPrice": 180000,
+        "stakingBalance": 180000,
+        "news": 300000,
+        "validators": 180000
+    }
 }

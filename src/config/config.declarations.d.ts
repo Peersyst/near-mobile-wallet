@@ -4,6 +4,18 @@ import { TFunction } from "react-i18next";
 
 export type EnvConfig = "test" | "development" | "production" | "staging";
 
+export interface RefetchIntervals {
+    //In ms
+    nfts: number;
+    tokens: number;
+    balance: number;
+    transactions: number;
+    fiatPrice: number;
+    stakingBalance: number;
+    news: number;
+    validators: number;
+}
+
 declare module "@peersyst/react-native-components" {
     export interface ConfigTypes {
         TranslateFn: TFunction<"error">;
@@ -24,16 +36,15 @@ declare module "@peersyst/react-native-components" {
         testnetNodeUrl: string;
         coingeckoTokenApiId: string;
         coingeckoUSDTApiId: string;
-        fetchPriceConversionInterval: number;
         minBalanceToCreateAccount: string;
         estimatedFee: string;
         enableIndexer: boolean;
         newsRSSUrl: string;
         defaultTwitterAccount: string;
         approveTxWaitTime: number; //In seconds
-        tokenPriceInUsdUrl: string;
         testnetTokenPriceUrl: string;
         mainnetTokenPriceUrl: string;
+        refetchIntervals: RefetchIntervals;
     }
 
     export interface CreateConfig {
@@ -51,7 +62,6 @@ declare module "@peersyst/react-native-components" {
         testnetNodeUrl: string;
         coingeckoTokenApiId: string;
         coingeckoUSDTApiId: string;
-        fetchPriceConversionInterval: number;
         minBalanceToCreateAccount: string;
         estimatedFee: string;
         enableIndexer: boolean;
@@ -60,6 +70,7 @@ declare module "@peersyst/react-native-components" {
         approveTxWaitTime: number; //In seconds
         testnetTokenPriceUrl: string;
         mainnetTokenPriceUrl: string;
+        refetchIntervals: RefetchIntervals;
     }
 
     export interface ExtraValidators {

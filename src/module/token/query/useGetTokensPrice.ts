@@ -27,6 +27,6 @@ export const useGetTokensPrice = (): QueryResult<TokenPrices | undefined> => {
         async () => {
             return await (await fetch(url)).json();
         },
-        { refetchInterval: config.fetchPriceConversionInterval },
+        { refetchInterval: config.refetchIntervals.fiatPrice },
     );
 };
