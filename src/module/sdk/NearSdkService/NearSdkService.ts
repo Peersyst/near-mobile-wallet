@@ -747,6 +747,7 @@ export class NearSDKService {
                 args: {},
             });
         } catch (e) {
+            //eslint-disable-next-line no-console
             console.warn("Error in getTokenMetadata: ", e);
             return {
                 spec: "ft-1.0.0",
@@ -770,6 +771,7 @@ export class NearSDKService {
                 args: { account_id: account.accountId },
             });
         } catch (e: any) {
+            //eslint-disable-next-line no-console
             console.warn("Error in getTokenBalance: ", e);
             return "0";
         }
@@ -790,6 +792,7 @@ export class NearSDKService {
                     });
                 }
             } catch (e) {
+                //eslint-disable-next-line no-console
                 console.warn("Error in getAccountTokens: ", contractId, e);
                 continue;
             }

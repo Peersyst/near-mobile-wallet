@@ -8,7 +8,6 @@ import { useRefetchQueries } from "../../../../../query/useRefetchQueries";
 import useWalletState from "module/wallet/hook/useWalletState";
 import Queries from "../../../../../query/queries";
 import { config } from "config";
-import { useGetTokenPrice } from "module/token/hook/useGetTokenPrice";
 import useGetTokenPriceInUsd from "module/token/query/useGetTokenPriceInUsd";
 
 const TokensList = (): JSX.Element => {

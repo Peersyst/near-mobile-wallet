@@ -1,5 +1,4 @@
 import { useFormatNumber } from "module/common/hook/useFormatNumber";
-import { removeTrailingZeros } from "near-peersyst-sdk";
 import { isZero } from "../utils/balance.utils";
 
 export interface FormatBalanceNumberParams {
