@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
-import { useRefetchServiceInstanceQueries } from "module/wallet/query/useRefetchServiceInstanceQueries";
+import { GET_ACTION_REFETCH_DELAY } from "./useGetActions";
 
 export interface UseSendNFTParams {
     contractId: string;
@@ -13,7 +13,6 @@ export interface UseSendNFTParams {
 const useSendNFT = (senderIndex: number) => {
     const { serviceInstance } = useServiceInstance(senderIndex);
     const invalidateQueries = useInvalidateServiceInstanceQueries(senderIndex);
-    const refetchQueries = useRefetchServiceInstanceQueries(senderIndex);
 
     return useMutation(
         async ({ contractId, tokenId, receiverId }: UseSendNFTParams) => {
@@ -22,7 +21,9 @@ const useSendNFT = (senderIndex: number) => {
         {
             onSuccess: () => {
                 invalidateQueries([Queries.GET_BALANCE, Queries.GET_NFTS]);
-                refetchQueries([Queries.ACTIONS]);
+                setTimeout(() => {
+                    invalidateQueries([Queries.ACTIONS]);
+                }, GET_ACTION_REFETCH_DELAY);
             },
         },
     );

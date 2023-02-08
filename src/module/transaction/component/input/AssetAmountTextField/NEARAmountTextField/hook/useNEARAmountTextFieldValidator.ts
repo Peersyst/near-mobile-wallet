@@ -47,7 +47,7 @@ export const useNEARAmountTextFieldValidator = ({
     const formattedMaxAvailable = useFormatBalance(finalAvailable, {
         units: "token",
         unitsPosition: "right",
-        numberFormatOptions: { maximumFractionDigits: 6 },
+        numberFormatOptions: { maximumFractionDigits: 6, minimumFractionDigits: 6 },
     });
 
     const finalMaxAmountError: TextFieldProps["error"] = isGreaterThanMax && [

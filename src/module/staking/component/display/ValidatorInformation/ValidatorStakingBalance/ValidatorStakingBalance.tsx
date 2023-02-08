@@ -17,7 +17,7 @@ const ValidatorStakingBalance = ({ stakingBalance, stakingBalanceType = "staked"
                 {translate("staking")}
             </Typography>
             {stakingBalance && (
-                <Balance style={{ maxWidth: 100 }} balance={stakingBalance[stakingBalanceType]!} variant="body3Strong" units="token" />
+                <Balance adjustsFontSizeToFit balance={stakingBalance[stakingBalanceType]!} variant="body3Strong" units="token" />
             )}
         </>
     );

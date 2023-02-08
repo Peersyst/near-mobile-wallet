@@ -2,6 +2,7 @@ import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import { useMutation } from "react-query";
 import Queries from "../../../query/queries";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
+import { GET_ACTION_REFETCH_DELAY } from "module/transaction/query/useGetActions";
 
 export interface UnstakeParams {
     amount: string;
@@ -18,11 +19,10 @@ export default function (senderIndex?: number) {
         },
         {
             onSuccess: async () => {
-                await invalidateServiceInstanceQueries([
-                    Queries.GET_CURRENT_VALIDATORS,
-                    Queries.TOTAL_STAKING_BALANCE,
-                    Queries.GET_BALANCE,
-                ]);
+                await invalidateServiceInstanceQueries([Queries.TOTAL_STAKING_BALANCE]);
+                setTimeout(() => {
+                    invalidateServiceInstanceQueries([Queries.ACTIONS, Queries.GET_CURRENT_VALIDATORS]);
+                }, GET_ACTION_REFETCH_DELAY);
             },
         },
     );
