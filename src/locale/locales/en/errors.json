@@ -28,7 +28,7 @@
     "invalid_name_ID": "Oh! {{nameID}} is not available. Maybe you have it in another account?",
     "invalid_seleccted_account": "You must select an account with a balance greater than {{amountInNEAR}} NEAR.",
     "error_creating_account": "Error creating account",
-    "insufficient_balance": "Insufficient balance",
+    "insufficient_balance": "Insufficient balance. Minimum balance: {{minBalance}}",
     "not_using_validators": "You are not staking with any validators.",
     "invalid_child_account": "You can not create {{nameID}} with your account {{currentAccount}}.",
     "invalid_send_same_account": "You can not send to your own account."

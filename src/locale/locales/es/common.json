@@ -59,7 +59,6 @@
     "write_a_message": "Escribe un mensaje",
     "enter_amount": "Añade cantidad",
     "minimum_transaction_amount_text": "La cantidad mínima requerida es de {{amount}} {{token}}",
-    "insufficient_balance": "Balance insuficiente",
     "modify_default_fee": "Modifica la tarifa por defecto",
     "general_settings": "Ajustes generales",
     "security_settings": "Ajustes de seguridad",

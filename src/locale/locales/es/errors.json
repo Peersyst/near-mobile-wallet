@@ -8,7 +8,7 @@
     "invalid_email": "Correo inválido",
     "invalid_password": "La contraseña debe contener 8 carácteres, almenos 1 minúscula y una mayúscula y algún caracácter especial",
     "invalid_equal": "Los campos deben ser iguales",
-    "invalid_not_equal": "Fields must not be equal",
+    "invalid_not_equal": "Los campos deben ser distintos",
     "invalid_number_gt": "El número debe ser mayor a {{n}}",
     "invalid_number_gte": "El número debe ser mayor o igual a {{n}}",
     "invalid_number_eq": "El número debe de ser igual a {{n}}",
@@ -28,7 +28,7 @@
     "invalid_name_ID": "¡Oh! {{nameID}} no está disponible. ¿Tal vez lo tienes en otra cuenta?",
     "invalid_seleccted_account": "Debes seleccionar una cuenta con un balance de almenos {{amountInNEAR}} NEAR.",
     "error_creating_account": "Error al crear la cuenta",
-    "insufficient_balance": "No tienes balance",
+    "insufficient_balance": "No tienes balance suficiente. Balance mínimo: {{minBalance}}",
     "not_using_validators": "No estás realizando stake en ningún validador.",
     "invalid_child_account": "No puedes crear {{nameID}} con tu cuenta {{currentAccount}}.",
     "invalid_send_same_account": "No puedes mandarte a tu misma cuenta."

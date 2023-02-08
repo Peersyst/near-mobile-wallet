@@ -58,4 +58,27 @@ export class BalanceOperations {
             return "0";
         }
     }
+
+    //Create the multiply version
+    static multiply(a: string | number, b: string | number, returnBN = false): string {
+        try {
+            const finalA = convertNearToYocto(a.toString());
+            const finalB = convertNearToYocto(b.toString());
+            const bigRes = new BN(finalA).mul(new BN(finalB));
+            //We need to divide because if we convert the amount to yoctos, the exponents will be added
+            // 3 near = 3 * 10^24 yoctos
+            // 3 near = 3 * 10^24 yoctos
+            // 3 * 3 * 10^(24 + 24) = 9 * 10 ^ 48  yoctos
+            // 9 * 10^48 yoctos / 1 * 10^24 = 9 * 10^(48 - 24) = 9 * 10^24 near
+            const res = bigRes.div(new BN(convertNearToYocto("1")));
+            if (returnBN) return res;
+            else {
+                return convertYoctoToNear(res).toString();
+            }
+        } catch (e) {
+            // eslint-disable-next-line no-console
+            console.warn("Error adding", a, b, e);
+            return "0";
+        }
+    }
 }

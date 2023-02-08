@@ -59,7 +59,6 @@
     "write_a_message": "Write a message",
     "enter_amount": "Enter amount",
     "minimum_transaction_amount_text": "Minimum amount required is {{amount}} {{token}}",
-    "insufficient_balance": "Insufficient balance",
     "modify_default_fee": "Modify default fee",
     "general_settings": "General settings",
     "security_settings": "Security settings",
