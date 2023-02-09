@@ -31,5 +31,6 @@
         "stakingBalance": 180000,
         "news": 300000,
         "validators": 180000
-    }
+    },
+    "indexerEstimatedDelay": 30000
 }

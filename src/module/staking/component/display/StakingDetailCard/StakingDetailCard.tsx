@@ -19,6 +19,7 @@ export interface StakingDetailCardProps {
 
 const StakingDetailCard = ({ title, amount = "0", enabled = false, action, onAction, isLoading }: StakingDetailCardProps): JSX.Element => {
     const translate = useTranslate();
+
     return (
         <StakingDetailRoot flex={1} gap={12} justifyContent="space-between" alignItems="center">
             <Row gap={12} alignItems="center">
