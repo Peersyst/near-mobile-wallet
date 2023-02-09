@@ -767,7 +767,7 @@ export class NearSDKService {
                 spec: "ft-1.0.0",
                 name: "Unknown",
                 symbol: "Unknown",
-                icon: "null",
+                icon: "",
                 reference: null,
                 reference_hash: null,
                 decimals: "18",
@@ -792,7 +792,7 @@ export class NearSDKService {
     }
 
     async getAccountTokens(): Promise<Token[]> {
-        const contractIds = (await this.apiService.getLikelyTokens({ address: this.getAddress() })).slice(0, 100);
+        const contractIds = await this.apiService.getLikelyTokens({ address: this.getAddress() });
         const tokens: Token[] = [];
 
         for (const contractId of contractIds) {
