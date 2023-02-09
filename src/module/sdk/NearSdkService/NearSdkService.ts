@@ -206,6 +206,14 @@ export class NearSDKService {
         return finalSecretKey1 === finalSecretKey2;
     }
 
+    static parsePrivateKey(secretKey: string): string {
+        const parts = secretKey.split(":");
+        if (parts.length === 1) {
+            return "ed25519:" + secretKey;
+        }
+        return secretKey;
+    }
+
     async accountExists(nameId: string): Promise<boolean> {
         // Could also be checked through our indexer api instead of rpc
 
