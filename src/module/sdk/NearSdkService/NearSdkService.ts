@@ -846,7 +846,9 @@ export class NearSDKService {
         });
 
         if (!metadata.media && metadata.reference) {
-            metadata = await (await fetch(`${baseUri}/${metadata.reference}`)).json();
+            try {
+                metadata = await (await fetch(`${baseUri}/${metadata.reference}`)).json();
+            } catch {}
         }
 
         return metadata;
@@ -909,11 +911,13 @@ export class NearSDKService {
                 methodName: NFT_OWNER_TOKENS_SET_METHOD,
                 args: { account_id: account.accountId },
             });
-            tokens = tokenIds.map(async (tokenId: number | string) => ({
-                token_id: tokenId.toString(),
-                owner_id: account.accountId,
-                metadata: await this.getNftTokenMetadata(contractId, tokenId.toString(), baseUri!),
-            }));
+            tokens = await Promise.all(
+                tokenIds.map(async (tokenId: number | string) => ({
+                    token_id: tokenId.toString(),
+                    owner_id: account.accountId,
+                    metadata: await this.getNftTokenMetadata(contractId, tokenId.toString(), baseUri!),
+                })),
+            );
         } catch (err: any) {
             if (!err.toString().includes("MethodResolveError(MethodNotFound)")) {
                 throw err;
