@@ -59,7 +59,10 @@ export class BalanceOperations {
         }
     }
 
-    //Create the multiply version
+    /**
+     * Params a, b must be in nears.
+     * Max sensibility is 1 * 10^-24
+     */
     static multiply(a: string | number, b: string | number, returnBN = false): string {
         try {
             const finalA = convertNearToYocto(a.toString());
@@ -77,7 +80,7 @@ export class BalanceOperations {
             }
         } catch (e) {
             // eslint-disable-next-line no-console
-            console.warn("Error adding", a, b, e);
+            console.warn("Error multiplying", a, b, e);
             return "0";
         }
     }
