@@ -1,7 +1,7 @@
 import { NetworkType } from "module/settings/state/SettingsState";
 import { Chains, NearSDKService } from "near-peersyst-sdk";
 import ServiceInstances from "../state/ServiceInstances/ServiceInstances";
-import { CreateInstanceReturn } from "../state/ServiceInstances/ServiceInstances.types";
+import { RecoverInstancesReturn } from "../state/ServiceInstances/ServiceInstances.types";
 import { Wallet } from "../state/WalletState";
 import { SecureWalletInfo, UnencryptedWalletInfo } from "../wallet.types";
 import { WalletStorage } from "../WalletStorage";
@@ -14,7 +14,7 @@ export interface WalletControllerBaseReturn {
 export interface TempWalletGroup {
     deletedIds: number[];
     privateKey: string;
-    newWallets: CreateInstanceReturn[];
+    newWallets: RecoverInstancesReturn[];
 }
 
 export interface AddNewWalletsParams {
@@ -23,6 +23,7 @@ export interface AddNewWalletsParams {
     storageWallets: UnencryptedWalletInfo[];
     wallets: Wallet[];
     mainPrivateKey: string;
+    network: NetworkType;
 }
 
 export interface UpdateWalletsReturn {
@@ -78,7 +79,7 @@ export default new (class WalletController {
 
         if (
             (mnemonic && secureStorage?.mnemonic === mnemonic) ||
-            (!mnemonic && secureStorage?.[network].find((w) => privateKeyParam && this.isSameSecretKey(w.privateKey, privateKeyParam)))
+            (!mnemonic && privateKeyParam && secureStorage?.[network].find((w) => this.isSameSecretKey(w.privateKey, privateKeyParam)))
         ) {
             return { wallets: [] };
         }
@@ -89,7 +90,7 @@ export default new (class WalletController {
         const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets' ids to be added to the secure storage
         const imported = !mnemonic || !!secureStorage?.mnemonic;
         let privateKey = "";
-        let finalPrivateKeyParam = privateKeyParam ? this.parsePrivateKey(privateKeyParam) : undefined;
+        const finalPrivateKeyParam = privateKeyParam ? this.parsePrivateKey(privateKeyParam) : undefined;
         //Init serviceInstancesMap
         const accounts = await ServiceInstances.addServiceInstances({ network, privateKey: finalPrivateKeyParam, mnemonic });
 
@@ -198,6 +199,7 @@ export default new (class WalletController {
                     storageWallets: finalStorageWallets,
                     mainPrivateKey,
                     newWalletGroups,
+                    network,
                 });
                 finalWallets = [...updatedWallets];
                 finalWalletGroups = [...updatedSecureWallets];
@@ -224,7 +226,7 @@ export default new (class WalletController {
             const accountDeletedIds: number[] = [];
             const parsedPrivateKey = this.parsePrivateKey(walletGroup.privateKey);
             //Get all the accounts from the private key
-            const accounts = await ServiceInstances.addServiceInstances({ network: network, privateKey: parsedPrivateKey });
+            const accounts = await ServiceInstances.recoverServiceInstances({ network: network, privateKey: parsedPrivateKey });
             const imported = this.isImported(parsedPrivateKey, mainPrivateKey);
             //Recover the old accounts and check if there are deleted accounts
             for (const walletId of walletGroup.walletIds) {
@@ -234,21 +236,26 @@ export default new (class WalletController {
                     console.warn("Corrupted storage: Wallet not found. WalletId: ", walletId);
                     deletedIds.push(walletId);
                     accountDeletedIds.push(walletId);
-                } else if (accounts.find((a) => a.account === wallet.account)) {
-                    const newWallet = {
-                        ...wallet,
-                        colorIndex: WalletUtils.getWalletColor(wallet.account),
-                        ...(imported && { imported: true }),
-                    };
-                    newWallets[wallet.index] = newWallet;
-                    tempWallets.push(newWallet);
                 } else {
-                    deletedIds.push(walletId);
-                    accountDeletedIds.push(walletId);
+                    const account = accounts.find((a) => a.account === wallet.account);
+                    if (account) {
+                        const newWallet = {
+                            ...wallet,
+                            colorIndex: WalletUtils.getWalletColor(wallet.account),
+                            ...(imported && { imported: true }),
+                        };
+                        newWallets[wallet.index] = newWallet;
+                        tempWallets.push(newWallet);
+                        ServiceInstances.setService({ network, service: account.service, serviceIndex: wallet.index });
+                    } else {
+                        deletedIds.push(walletId);
+                        accountDeletedIds.push(walletId);
+                    }
                 }
             }
             const newTempAccounts = accounts.filter(({ account }) => !tempWallets.find((w) => w.account === account));
             if (newTempAccounts.length > 0) hasNewAccounts = true;
+
             newWalletGroups.push({ deletedIds: accountDeletedIds, newWallets: newTempAccounts, privateKey: parsedPrivateKey });
         }
 
@@ -268,6 +275,7 @@ export default new (class WalletController {
         secureWallets,
         storageWallets,
         wallets,
+        network,
         mainPrivateKey,
     }: AddNewWalletsParams): UpdateWalletsReturn {
         const updatedWallets: Wallet[] = [...wallets];
@@ -282,7 +290,7 @@ export default new (class WalletController {
             const finalIds: number[] = oldWalletGroup?.walletIds || [];
             const imported = this.isImported(parsedPrivateKey, mainPrivateKey);
             //Add new accounts
-            for (const { account } of walletGroup.newWallets) {
+            for (const { account, service } of walletGroup.newWallets) {
                 const newIndex = updatedStorageWallets.length;
                 const newBaseWallet: UnencryptedWalletInfo = { account, index: newIndex };
                 updatedStorageWallets.push(newBaseWallet);
@@ -292,7 +300,10 @@ export default new (class WalletController {
                     ...(imported && { imported }),
                 });
                 finalIds.push(newIndex);
+                //Add new service
+                ServiceInstances.addService({ service, network });
             }
+
             //Update the secure storage with the new accounts
             if (finalIds.length > 0) {
                 const newWalletGroup = { privateKey: parsedPrivateKey, walletIds: finalIds };

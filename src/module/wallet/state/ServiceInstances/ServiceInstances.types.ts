@@ -37,3 +37,7 @@ export interface CreateInstanceReturn {
     account: string;
     privateKey: string;
 }
+
+export interface RecoverInstancesReturn extends CreateInstanceReturn {
+    service: NearSDKService;
+}

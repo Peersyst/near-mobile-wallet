@@ -1,5 +1,5 @@
 import TokensList from "module/token/component/core/TokensList/TokensList";
-import { act, render, translate, wait, waitFor } from "test-utils";
+import { render, translate, wait, waitFor } from "test-utils";
 import { TokensMock, UseGetTokensMock, UseWalletStateMock } from "test-mocks";
 
 describe("Renders the token list properly", () => {

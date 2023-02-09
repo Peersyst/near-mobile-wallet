@@ -42,7 +42,11 @@ const SendToAddressScreen = () => {
                     name="sender"
                     minBalance={config.estimatedFee}
                 />
-                <AddressTextFieldWithQRScanner senderWalletIndex={currentSenderWalletIndex} name="receiver" />
+                <AddressTextFieldWithQRScanner
+                    defaultValue={sendState.receiverAddress}
+                    senderWalletIndex={currentSenderWalletIndex}
+                    name="receiver"
+                />
                 <Col gap={8}>
                     <Button type="submit" fullWidth>
                         {translate("next")}

@@ -20,7 +20,10 @@ export interface UseAddressTextFieldResult {
     hideError: TextFieldProps["hideError"];
 }
 
-export function useAddressTextField({ defaultValue = "", senderWalletIndex }: UseAddressTextFieldParams = {}): UseAddressTextFieldResult {
+export function useAddressTextField({
+    defaultValue = "",
+    senderWalletIndex = 0,
+}: UseAddressTextFieldParams = {}): UseAddressTextFieldResult {
     const translateError = useTranslate("error");
     const {
         state: { wallets, selectedWallet },
@@ -40,32 +43,31 @@ export function useAddressTextField({ defaultValue = "", senderWalletIndex }: Us
      * Invalid account
      */
     const isValid = isAccountValid(value, network);
-    const invalidAccountError: TextFieldProps["error"] = isValid ? undefined : [true, translateError("invalid_address")];
+
+    const invalidAccountError = [...(!isValid ? [true, translateError("invalid_address")] : [])];
 
     /**
      * Invalid same account
      */
     const isSameAccount = value === account;
-    const invalidSameAccountError: TextFieldProps["error"] = isSameAccount
-        ? [true, translateError("invalid_send_same_account")]
-        : undefined;
+    const invalidSameAccountError = [...(isSameAccount ? [true, translateError("invalid_send_same_account")] : [])];
 
     /**
      * Account does not exist
      */
-    const accountDoesNotExistError: TextFieldProps["error"] =
-        validReceiver === false ? [true, translateError("invalid_account_or_not_active")] : undefined;
+    const accountDoesNotExistError = [...(!validReceiver ? [true, translateError("invalid_account_or_not_active")] : [])];
 
     /**
      * Final error and final loading
      */
-    const error = invalidAccountError || invalidSameAccountError || accountDoesNotExistError;
+    //const error = invalidAccountError || invalidSameAccountError || accountDoesNotExistError;
+    const error = [...invalidAccountError, ...invalidSameAccountError, ...accountDoesNotExistError] as [boolean, string];
     const isLoading = debouncing || isLoadingNameValidity;
 
     return {
         value: value,
         onChange: handleChange,
-        error: error,
+        error: error.length > 0 ? error : undefined,
         isLoading,
         hideError: isLoading,
     };

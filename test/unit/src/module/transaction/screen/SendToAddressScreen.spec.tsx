@@ -1,10 +1,10 @@
-import { formatBalance, render, translate } from "test-utils";
+import { formatBalance, render, translate, wait } from "test-utils";
 import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/SendToAddressScreen";
 import * as Recoil from "recoil";
 import * as Genesys from "@peersyst/react-native-components";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
-import { MOCKED_NAMED_ADDRESS, UseGetBalanceMock, UseWalletStateMock } from "test-mocks";
+import { MOCKED_NAMED_ADDRESS, UseGetBalanceMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 import { config } from "config";
 
 describe("SendToAddressScreen tests", () => {
@@ -33,6 +33,8 @@ describe("SendToAddressScreen tests", () => {
     });
 
     test("Sets send state and advances to next tab", async () => {
+        const { serviceInstance } = new UseServiceInstanceMock();
+        jest.spyOn(serviceInstance, "acccountIsValidReceivingAccount").mockResolvedValue(true);
         const setSendState = jest.fn();
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue([{ senderWalletIndex: 1 }, setSendState]);
         const setTab = jest.fn();
@@ -42,6 +44,11 @@ describe("SendToAddressScreen tests", () => {
         await waitFor(() => expect(screen.getByText(formatBalance(available, { units: config.tokenName }))).toBeDefined());
         const input = screen.getByPlaceholderText(translate("address"));
         fireEvent.changeText(input, MOCKED_NAMED_ADDRESS);
+        expect(screen.getByTestId("ActivityIndicator")).toBeDefined();
+        await waitFor(() => {
+            expect(input.props.value).toBe(MOCKED_NAMED_ADDRESS);
+        });
+        await wait(700);
         fireEvent.press(screen.getByText(translate("next")));
         await waitFor(() => expect(setSendState).toHaveBeenCalled());
         expect(setTab).toHaveBeenCalledWith(SendScreens.AMOUNT_AND_MESSAGE);

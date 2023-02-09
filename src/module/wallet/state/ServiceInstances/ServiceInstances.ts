@@ -6,6 +6,7 @@ import {
     BaseNearSdkParams,
     CreateInstanceReturn,
     CreateServiceInstancesParams,
+    RecoverInstancesReturn,
     SetServiceParams,
     SetServicesParams,
 } from "./ServiceInstances.types";
@@ -86,6 +87,11 @@ export default new (class ServiceInstances {
         const services = await this.createServiceInstances({ network, ...rest });
         this.setServiceInstances({ network, services });
         return services.map((s) => ({ account: s.getAddress(), privateKey: s.getKeyPair() }));
+    }
+
+    async recoverServiceInstances({ network, ...rest }: CreateServiceInstancesParams): Promise<RecoverInstancesReturn[]> {
+        const services = await this.createServiceInstances({ network, ...rest });
+        return services.map((s) => ({ account: s.getAddress(), privateKey: s.getKeyPair(), service: s }));
     }
 
     /**

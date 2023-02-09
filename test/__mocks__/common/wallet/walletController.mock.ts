@@ -1,7 +1,9 @@
+import { NearSdkServiceMock } from "mocks/NearSdk";
 import { SecureWalletInfoMock, UnencryptedWalletInfoMock } from "mocks/storage";
-import { CreateInstanceReturn } from "module/wallet/state/ServiceInstances/ServiceInstances.types";
+import { RecoverInstancesReturn } from "module/wallet/state/ServiceInstances/ServiceInstances.types";
 import WalletController from "module/wallet/utils/WalletController";
 import { UnencryptedWalletInfo } from "module/wallet/wallet.types";
+import { NearSDKService } from "near-peersyst-sdk";
 import BaseMock, { MockFnType } from "../base.mock";
 import { WalletMock } from "./wallet.mock";
 
@@ -41,12 +43,13 @@ export class WalletControllerRecoverMock extends BaseMock implements WalletContr
 }
 
 export class WalletControllerMocks extends BaseMock {
-    accounts: CreateInstanceReturn[] = [];
+    accounts: RecoverInstancesReturn[] = [];
     walletIds: number[] = [];
     storageWallets: UnencryptedWalletInfo[] = [];
+
     constructor(length: number, privateKey: string, startIndex = 0) {
         super();
-        const accounts: CreateInstanceReturn[] = [];
+        const accounts: RecoverInstancesReturn[] = [];
         const walletIds: number[] = [];
         const storageWallets: UnencryptedWalletInfo[] = [];
         for (const [i] of [...Array(length)].entries()) {
@@ -55,6 +58,7 @@ export class WalletControllerMocks extends BaseMock {
             accounts.push({
                 privateKey,
                 account,
+                service: new NearSdkServiceMock() as any as NearSDKService,
             });
             walletIds.push(index);
             storageWallets.push({
