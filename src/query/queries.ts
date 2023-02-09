@@ -3,6 +3,7 @@ enum Queries {
     GET_FTS = "get-fts",
     GET_NFTS = "get-nfts",
     NAME_ID_AVAILABILITY = "name-id-availability",
+    ACCOUNT_VALID_RECEIVER = "account-valid-receiver",
     ACTIONS = "actions",
     COIN_PRICE = "coin-price",
     TOKENS_PRICE = "tokens-price",

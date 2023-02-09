@@ -70,7 +70,7 @@ export default function useNewAccountNameTextField({
         : undefined;
 
     //Check if name is available
-    const { data: available = false, isLoading: nameLoading } = useCheckNameAvailability(finalName);
+    const { data: available = false, isLoading: nameLoading } = useCheckNameAvailability(finalWalletIndex, finalName);
     const availableError = !available;
     const finalAvailableError: TextFieldProps["error"] = availableError
         ? [availableError, translateError("invalid_name_ID", { nameID: finalName })]

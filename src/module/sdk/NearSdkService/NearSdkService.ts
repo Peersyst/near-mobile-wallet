@@ -293,6 +293,12 @@ export class NearSDKService {
         return NearSDKService.nameIdIsValid(nameId, this.chain) && !(await this.accountExists(nameId));
     }
 
+    async acccountIsValidReceivingAccount(accountId: string): Promise<boolean> {
+        if (NearSDKService.isImplicitAddress(accountId)) return true;
+        if (!NearSDKService.nameIdIsValid(accountId, this.chain)) return false;
+        return await this.accountExists(accountId);
+    }
+
     // Amount is in near
     private async createNewAccount(nameId: string, publicKey: PublicKey, amount: string): Promise<string> {
         const account = await this.getAccount();

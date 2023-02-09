@@ -20,7 +20,7 @@
     "invalid_start": "El campo debe empezar con {{start}}",
     "invalid_end": "El campo debe terminar con {{end}}",
     "nothingToShow": "No hay nada que mostrar",
-    "invalid_address": "Dirección inválida",
+    "invalid_address": "Cuenta inválida",
     "copied_to_clipboard": "Copied to clipboard",
     "invalid_private_key": "Clave privada inválida",
     "private_key_already_exists": "Ya tenías la llave privada importada",
@@ -31,5 +31,6 @@
     "insufficient_balance": "No tienes balance suficiente. Balance mínimo: {{minBalance}}",
     "not_using_validators": "No estás realizando stake en ningún validador.",
     "invalid_child_account": "No puedes crear {{nameID}} con tu cuenta {{currentAccount}}.",
-    "invalid_send_same_account": "No puedes mandarte a tu misma cuenta."
+    "invalid_send_same_account": "No puedes mandarte a tu misma cuenta.",
+    "invalid_account_or_not_active": "La cuenta no es válida o no existe"
 }
