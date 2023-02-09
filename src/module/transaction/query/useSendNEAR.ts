@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
-import { GET_ACTION_REFETCH_DELAY } from "./useGetActions";
+import waitForIndexer from "../utils/waitForIndexer";
 
 export interface UseSendNEARParams {
     to: string;
@@ -16,13 +16,11 @@ const useSendNEAR = (senderIndex: number) => {
     return useMutation(
         async ({ to, amount }: UseSendNEARParams) => {
             await serviceInstance.sendTransaction(to, amount);
+            await waitForIndexer();
         },
         {
             onSuccess: () => {
-                invalidateQueries([Queries.GET_BALANCE]);
-                setTimeout(() => {
-                    invalidateQueries([Queries.ACTIONS]);
-                }, GET_ACTION_REFETCH_DELAY);
+                invalidateQueries([Queries.GET_BALANCE, Queries.ACTIONS]);
             },
         },
     );

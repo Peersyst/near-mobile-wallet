@@ -10,8 +10,6 @@ export interface UseGetActionsOptions {
     index?: number;
 }
 
-export const GET_ACTION_REFETCH_DELAY = 2500;
-
 const useGetActions = ({ index }: UseGetActionsOptions = {}) => {
     const { serviceInstance, index: usedIndex, network, queryEnabled } = useServiceInstance(index);
     return useQuery(

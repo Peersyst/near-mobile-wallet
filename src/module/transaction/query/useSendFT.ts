@@ -3,7 +3,6 @@ import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { parseTokenAmount } from "near-peersyst-sdk";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
-import { GET_ACTION_REFETCH_DELAY } from "./useGetActions";
 
 export interface UseSendTokensParams {
     contractId: string;
@@ -24,10 +23,7 @@ const useSendFT = (senderIndex: number) => {
         },
         {
             onSuccess: () => {
-                invalidateQueries([Queries.GET_BALANCE, Queries.GET_FTS]);
-                setTimeout(() => {
-                    invalidateQueries([Queries.ACTIONS]);
-                }, GET_ACTION_REFETCH_DELAY);
+                invalidateQueries([Queries.GET_BALANCE, Queries.GET_FTS, Queries.ACTIONS]);
             },
         },
     );
