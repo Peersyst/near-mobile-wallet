@@ -19,7 +19,7 @@
     "enableIndexer": false,
     "newsRSSUrl": "http://fetchrss.com/rss/6239aa2ceb62c371b8448ee2635938580dd00758d37f33a2.xml",
     "defaultTwitterAccount": "https://twitter.com/NEARProtocol",
-    "approveTxWaitTime": 3,
+    "approveTxWaitTime": 3000,
     "testnetTokenPriceUrl": "https://testnet-indexer.ref-finance.com/list-token-price",
     "mainnetTokenPriceUrl": "https://indexer.ref-finance.com/list-token-price",
     "refetchIntervals": {

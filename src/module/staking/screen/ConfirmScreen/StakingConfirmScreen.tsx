@@ -48,7 +48,7 @@ const StakingConfirmScreen = ({ label, onCancel, onEditValidator, displayFullDec
                         <CountdownButton
                             loading={isLoading}
                             disabled={isSuccess}
-                            seconds={config.approveTxWaitTime}
+                            countdownTime={config.approveTxWaitTime}
                             fullWidth
                             onPress={showModal}
                         >

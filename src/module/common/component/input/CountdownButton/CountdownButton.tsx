@@ -2,9 +2,10 @@ import { CountdownButtonProps } from "module/common/component/input/CountdownBut
 import { useEffect, useState } from "react";
 import Button from "module/common/component/input/Button/Button";
 import { Text } from "react-native";
+import { getDefaultSeconds } from "./getDefaultSeconds";
 
 const CountdownButton = ({
-    seconds: secondsProp,
+    countdownTime,
     disabled: disabledProp = false,
     children,
     style = {},
@@ -14,7 +15,7 @@ const CountdownButton = ({
     onCountdownEnd,
     ...buttonProps
 }: CountdownButtonProps): JSX.Element => {
-    const [seconds, setSeconds] = useState(secondsProp);
+    const [seconds, setSeconds] = useState(getDefaultSeconds(countdownTime));
     let timeout: NodeJS.Timeout;
 
     useEffect(() => {
