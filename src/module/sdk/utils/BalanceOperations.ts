@@ -43,15 +43,12 @@ export class BalanceOperations {
     /**
      * Params must be in nears
      */
-    static add(a: string | number, b: string | number, returnBN = false): string {
+    static add(a: string | number, b: string | number): string {
         try {
             const finalA = convertNearToYocto(a.toString());
             const finalB = convertNearToYocto(b.toString());
             const res = new BN(finalA).add(new BN(finalB));
-            if (returnBN) return res;
-            else {
-                return convertYoctoToNear(res).toString();
-            }
+            return convertYoctoToNear(res).toString();
         } catch (e) {
             // eslint-disable-next-line no-console
             console.warn("Error adding", a, b, e);
@@ -63,7 +60,7 @@ export class BalanceOperations {
      * Params a, b must be in nears.
      * Max sensibility is 1 * 10^-24
      */
-    static multiply(a: string | number, b: string | number, returnBN = false): string {
+    static multiply(a: string | number, b: string | number): string {
         try {
             const finalA = convertNearToYocto(a.toString());
             const finalB = convertNearToYocto(b.toString());
@@ -74,10 +71,7 @@ export class BalanceOperations {
             // 3 * 3 * 10^(24 + 24) = 9 * 10 ^ 48  yoctos
             // 9 * 10^48 yoctos / 1 * 10^24 = 9 * 10^(48 - 24) = 9 * 10^24 near
             const res = bigRes.div(new BN(convertNearToYocto("1")));
-            if (returnBN) return res;
-            else {
-                return convertYoctoToNear(res).toString();
-            }
+            return convertYoctoToNear(res).toString();
         } catch (e) {
             // eslint-disable-next-line no-console
             console.warn("Error multiplying", a, b, e);

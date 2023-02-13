@@ -5,11 +5,11 @@ import { useRef } from "react";
 import { ImageSourcePropType } from "react-native";
 import { SUPPORTED_TOKENS_URLS, SUPPORTED_TOKENS_IMAGES } from "../SupportedTokens";
 
-export function getSupportedTokenUri(symbol: string): string | undefined {
+function getSupportedTokenUri(symbol: string): string | undefined {
     return SUPPORTED_TOKENS_URLS[symbol as keyof typeof SUPPORTED_TOKENS_URLS];
 }
 
-export function getSupportedTokenImage(symbol = ""): ImageSourcePropType | undefined {
+function getSupportedTokenImage(symbol = ""): ImageSourcePropType | undefined {
     return SUPPORTED_TOKENS_IMAGES[symbol as keyof typeof SUPPORTED_TOKENS_IMAGES];
 }
 

@@ -18,6 +18,11 @@ export const useFormatNumber = () => {
             }),
             ...rest,
         });
+
+        /**
+         * In case of of a number like 4.000 or (4,000 in case of comma as decimal separator)
+         * Remove the trailing zeros and the decimal separator
+         */
         const decimalSeparator = translate("number", { val: 1.1 }).slice(1, 2);
         const [integerPart, decimalPart] = tempNumber.split(decimalSeparator);
 
