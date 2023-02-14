@@ -25,14 +25,29 @@ export const useNEARAmountTextFieldValidator = ({
     const amountDecimals = amount.split(".")?.[1];
     const isAmountDecimalsGreaterThanTokenDecimals = amountDecimals ? amountDecimals.length > 24 : false;
 
-    //Check if amount is less than available balance minus the fee
+    /**
+     * The max available balance is the available or the specified max amount (without taking into consideration the fee)
+     */
     const finalMaxBalance = maxAmount || available;
+
+    //Check if there is enough balance to pay the minimum fee
+    const isGreaterThanFee = isNEARAmountGreaterThanThreshold(finalMaxBalance, config.estimatedFee);
+    const formattedMinAvailable = useFormatBalance(config.estimatedFee, {
+        units: "token",
+        unitsPosition: "right",
+    });
+    const finalNotEnoughBalanceError: TextFieldProps["error"] = !isGreaterThanFee && [
+        !isGreaterThanFee,
+        translateError("insufficient_balance", { minBalance: formattedMinAvailable }),
+    ];
+
+    //Check if amount is less than available balance minus the fee (the maximum the user can send)
     const finalAvailable = substractNearAmounts(finalMaxBalance, config.estimatedFee);
     const isGreaterThanMax = isNEARAmountGreaterThanThreshold(amount, finalAvailable);
     const formattedMaxAvailable = useFormatBalance(finalAvailable, {
         units: "token",
         unitsPosition: "right",
-        numberFormatOptions: { maximumFractionDigits: 6 },
+        numberFormatOptions: { maximumFractionDigits: 6, minimumFractionDigits: 6 },
     });
 
     const finalMaxAmountError: TextFieldProps["error"] = isGreaterThanMax && [
@@ -60,7 +75,10 @@ export const useNEARAmountTextFieldValidator = ({
         translateError("invalid_number_gte", { n: "1 " + config.miniTokenUnit }),
     ];
 
-    const error = finalMaxAmountError || (isAmountDecimalsGreaterThanTokenDecimals ? finalMinAmountError : finalNotGreaterThanZeroError);
+    const error =
+        finalNotEnoughBalanceError ||
+        finalMaxAmountError ||
+        (isAmountDecimalsGreaterThanTokenDecimals ? finalMinAmountError : finalNotGreaterThanZeroError);
 
     return {
         error,

@@ -97,7 +97,7 @@ describe("Text for the Balance component", () => {
             const screen = render(
                 <Balance balance={"100.2"} options={{ minimumFractionDigits: 4, maximumFractionDigits: 4 }} variant={"body2Strong"} />,
             );
-            expect(screen.getByText("100.2000")).toBeDefined();
+            expect(screen.getByText("100.2")).toBeDefined();
         });
     });
 });

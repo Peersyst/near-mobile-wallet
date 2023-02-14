@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { StakingBalance } from "module/sdk";
 import { QueryResult } from "query-utils";
 import Queries from "../../../query/queries";
+import { config } from "config";
 
 export default function (index?: number): QueryResult<StakingBalance> {
     const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index);
@@ -13,6 +14,7 @@ export default function (index?: number): QueryResult<StakingBalance> {
         },
         {
             enabled: queryEnabled,
+            refetchInterval: config.refetchIntervals.stakingBalance,
         },
     );
 }

@@ -1,7 +1,7 @@
 import { Backdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import { useDimensions } from "@react-native-community/hooks";
 import { ReactNode, useState } from "react";
-import { LayoutChangeEvent, ViewStyle } from "react-native";
+import { Keyboard, LayoutChangeEvent, ViewStyle } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Divider from "../../display/Divider/Divider";
 import { CardModalBodyWrapper, CardModalContent, CardModalWrapper } from "./CardModal.styles";
@@ -26,8 +26,13 @@ const CardModal = ({ children, style, open, closable = true, onClose, ...backdro
         setKeyboardPaddingEnabled(e.nativeEvent.layout.height < height * 0.65);
     };
 
+    const handleOnClose = () => {
+        Keyboard.dismiss();
+        onClose?.();
+    };
+
     return (
-        <Backdrop closable={closable} onClose={onClose} {...backdropProps} open={open}>
+        <Backdrop closable={closable} onClose={handleOnClose} {...backdropProps} open={open}>
             {(open, setOpen) => {
                 const { header, body } = typeof children === "function" ? children(open, setOpen) : children;
                 return (

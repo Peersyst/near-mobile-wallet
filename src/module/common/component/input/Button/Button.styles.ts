@@ -22,8 +22,6 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
         sm: {
             ...theme.typography.body3Strong,
             height: 36,
-            paddingHorizontal: 16,
-            paddingVertical: 8,
         },
         //Variant Styles
         variant: {

@@ -31,7 +31,7 @@ export default function (): UseGetStakingDetailsSectionReturn {
         {
             title: translate("totalAmountStaked"),
             amount: staked,
-            enabled: BalanceOperations.BNIsBigger(staked, "0"),
+            enabled: BalanceOperations.isBigger(staked, "0"),
             action: "unstake",
             onAction: () => showModal(UnstakeModal),
         },
@@ -46,7 +46,7 @@ export default function (): UseGetStakingDetailsSectionReturn {
         {
             title: translate("availableForWithdrawal"),
             amount: available,
-            enabled: BalanceOperations.BNIsBigger(available, "0"),
+            enabled: BalanceOperations.isBigger(available, "0"),
             action: "withdraw",
             onAction: () => showModal(WithdrawModal),
         },

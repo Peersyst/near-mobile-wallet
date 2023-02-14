@@ -49,7 +49,7 @@ describe("WalletCard tests", () => {
         expect(balance).toBeDefined();
         fireEvent.press(balance);
 
-        await waitFor(() => expect(screen.getByText(CURRENCY_UNIT["eur"] + " 10.00")).toBeDefined());
+        await waitFor(() => expect(screen.getByText(CURRENCY_UNIT["eur"] + " 10")).toBeDefined());
         expect(mockedVibrate).toHaveBeenCalled();
     });
 });

@@ -8,11 +8,13 @@ export interface UseGetTokensMockType {
 
 export class UseGetTokensMock extends BaseMock {
     fts: TokenMock[];
+    serviceInstance: UseServiceInstanceMock["serviceInstance"];
     constructor({ fts }: Partial<UseGetTokensMockType> = {}) {
         super();
         const { serviceInstance } = new UseServiceInstanceMock();
         const { tokens: finalTokens } = new TokensMock({ length: 4, tokens: fts });
         this.fts = finalTokens;
+        this.serviceInstance = serviceInstance;
         this.mock = jest.spyOn(serviceInstance, "getAccountTokens").mockResolvedValue(this.fts);
     }
 }

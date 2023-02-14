@@ -36,7 +36,7 @@ const ValidatorInformation = ({
                     </Row>
                 </Col>
             </Row>
-            <Col>
+            <Col style={{ maxWidth: "35%" }}>
                 {showEdit ? (
                     <Button variant="outlined" size="sm" onPress={onEdit}>
                         {translate("edit")}

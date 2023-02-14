@@ -49,7 +49,7 @@ const SendConfirmationScreen = (): JSX.Element => {
                     <CountdownButton
                         loading={isLoading}
                         disabled={isSuccess}
-                        seconds={config.approveTxWaitTime}
+                        countdownTime={config.approveTxWaitTime}
                         fullWidth
                         onPress={showModal}
                     >

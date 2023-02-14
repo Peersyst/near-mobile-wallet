@@ -5,7 +5,14 @@ import WalletController from "module/wallet/utils/WalletController";
 import { WalletUtils } from "module/wallet/utils/WalletUtils";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { Chains, NearSDKService } from "near-peersyst-sdk";
-import { WalletControllerMocks, SecureWalletStorageTypeMock, MOCKED_PK, NearSdkServiceMock } from "test-mocks";
+import {
+    WalletControllerMocks,
+    SecureWalletStorageTypeMock,
+    MOCKED_PK,
+    NearSdkServiceMock,
+    MOCKED_SECOND_PRIVATE_KEY,
+    MOCKED_THIRD_PRIVATE_KEY,
+} from "test-mocks";
 
 describe("Test for the WalletController", () => {
     let network: NetworkType = Chains.TESTNET;
@@ -63,14 +70,14 @@ describe("Test for the WalletController", () => {
         test("Import wallets without pin and without mnemonic but with privateKey and with multiple account ", async () => {
             const length = 10;
             network = Chains.MAINNET;
-            const { accounts, walletIds, storageWallets } = new WalletControllerMocks(length, "newPk", undefined);
+            const { accounts, walletIds, storageWallets } = new WalletControllerMocks(length, MOCKED_SECOND_PRIVATE_KEY, undefined);
             jest.spyOn(ServiceInstances, "addServiceInstances").mockResolvedValue(accounts);
 
-            const { wallets } = await WalletController.importWallets(network, undefined, undefined, "newPk");
+            const { wallets } = await WalletController.importWallets(network, undefined, undefined, MOCKED_SECOND_PRIVATE_KEY);
             //Updates unencrypted storage
             expect(mockedSetUnencryptedWallets).toHaveBeenCalledWith(storageWallets, network);
             //Update encrypted storage
-            expect(mockedSetWalletIds).toHaveBeenCalledWith(walletIds, "newPk", network);
+            expect(mockedSetWalletIds).toHaveBeenCalledWith(walletIds, MOCKED_SECOND_PRIVATE_KEY, network);
             //Import the wallets
             expect(wallets).toHaveLength(length);
             expect(wallets[0].imported).toBe(true);
@@ -127,7 +134,7 @@ describe("Test for the WalletController", () => {
             jest.spyOn(WalletStorage, "getWallets").mockResolvedValue(storageWallets);
             new SecureWalletStorageTypeMock({ [network]: [{ privateKey, walletIds }] });
 
-            jest.spyOn(ServiceInstances, "addServiceInstances").mockResolvedValue(accounts);
+            jest.spyOn(ServiceInstances, "recoverServiceInstances").mockResolvedValue(accounts);
 
             const { wallets } = await WalletController.recoverWallets(network);
             //Do not save anything in storage
@@ -146,7 +153,7 @@ describe("Test for the WalletController", () => {
             jest.spyOn(WalletStorage, "getSecureWallets").mockResolvedValue([{ privateKey, walletIds }]);
             new SecureWalletStorageTypeMock({ [network]: [{ privateKey, walletIds }] });
 
-            jest.spyOn(ServiceInstances, "addServiceInstances").mockResolvedValue([...accounts, ...newAccounts]);
+            jest.spyOn(ServiceInstances, "recoverServiceInstances").mockResolvedValue([...accounts, ...newAccounts]);
 
             const { wallets } = await WalletController.recoverWallets(network);
             //Save with the walletIds
@@ -187,8 +194,8 @@ describe("Test for the WalletController", () => {
                 ],
             });
 
-            jest.spyOn(ServiceInstances, "addServiceInstances").mockResolvedValueOnce(accounts);
-            jest.spyOn(ServiceInstances, "addServiceInstances").mockResolvedValueOnce(accounts2);
+            jest.spyOn(ServiceInstances, "recoverServiceInstances").mockResolvedValueOnce(accounts);
+            jest.spyOn(ServiceInstances, "recoverServiceInstances").mockResolvedValueOnce(accounts2);
 
             const { wallets } = await WalletController.recoverWallets(network);
             //Do not save anything in the storage
@@ -215,7 +222,7 @@ describe("Test for the WalletController", () => {
             new SecureWalletStorageTypeMock({ [network]: [{ privateKey, walletIds }] });
 
             //Return one less account than in the storage
-            jest.spyOn(ServiceInstances, "addServiceInstances").mockResolvedValueOnce(accounts2);
+            jest.spyOn(ServiceInstances, "recoverServiceInstances").mockResolvedValueOnce(accounts2);
 
             const { wallets } = await WalletController.recoverWallets(network);
             //Save with the walletIds
@@ -247,7 +254,7 @@ describe("Test for the WalletController", () => {
             new SecureWalletStorageTypeMock({ [network]: [{ privateKey, walletIds }] });
 
             //Return one less account than in the storage
-            jest.spyOn(ServiceInstances, "addServiceInstances").mockResolvedValueOnce(accounts2);
+            jest.spyOn(ServiceInstances, "recoverServiceInstances").mockResolvedValueOnce(accounts2);
 
             const { wallets } = await WalletController.recoverWallets(network);
             //Save with the walletIds
@@ -281,35 +288,35 @@ describe("Test for the WalletController", () => {
 
             //Return 0 accounts
             const { walletIds, storageWallets } = new WalletControllerMocks(length0i, privateKey);
-            jest.spyOn(ServiceInstances, "addServiceInstances").mockResolvedValueOnce([]);
+            jest.spyOn(ServiceInstances, "recoverServiceInstances").mockResolvedValueOnce([]);
 
             //Return same accounts
             const {
                 accounts: accounts1,
                 walletIds: walletIds1,
                 storageWallets: storageWallets1,
-            } = new WalletControllerMocks(length1, "pk1", length0i);
-            jest.spyOn(ServiceInstances, "addServiceInstances").mockResolvedValueOnce(accounts1);
+            } = new WalletControllerMocks(length1, MOCKED_SECOND_PRIVATE_KEY, length0i);
+            jest.spyOn(ServiceInstances, "recoverServiceInstances").mockResolvedValueOnce(accounts1);
 
             //Add 2 accounts
             const { walletIds: walletIds2, storageWallets: storageWallets2 } = new WalletControllerMocks(
                 length2i,
-                "pk2",
+                MOCKED_THIRD_PRIVATE_KEY,
                 length0i + length1,
             );
             const { accounts: accounts2f, storageWallets: storageWallets2f } = new WalletControllerMocks(
                 length2f,
-                "pk2",
+                MOCKED_THIRD_PRIVATE_KEY,
                 length0i + length1,
             );
-            jest.spyOn(ServiceInstances, "addServiceInstances").mockResolvedValueOnce(accounts2f);
+            jest.spyOn(ServiceInstances, "recoverServiceInstances").mockResolvedValueOnce(accounts2f);
 
             jest.spyOn(WalletStorage, "getWallets").mockResolvedValue([...storageWallets, ...storageWallets1, ...storageWallets2]);
             new SecureWalletStorageTypeMock({
                 [network]: [
                     { privateKey: privateKey, walletIds },
-                    { privateKey: "pk1", walletIds: walletIds1 },
-                    { privateKey: "pk2", walletIds: walletIds2 },
+                    { privateKey: MOCKED_SECOND_PRIVATE_KEY, walletIds: walletIds1 },
+                    { privateKey: MOCKED_THIRD_PRIVATE_KEY, walletIds: walletIds2 },
                 ],
             });
 
@@ -317,8 +324,9 @@ describe("Test for the WalletController", () => {
             //Save with the walletIds
             expect(mockedSetSecureWallets).toHaveBeenCalledWith(
                 [
-                    { privateKey: "pk1", walletIds: [0, 1, 2] },
-                    { privateKey: "pk2", walletIds: [3, 4, 5, 6] },
+                    { privateKey: privateKey, walletIds: [] },
+                    { privateKey: MOCKED_SECOND_PRIVATE_KEY, walletIds: [0, 1, 2] },
+                    { privateKey: MOCKED_THIRD_PRIVATE_KEY, walletIds: [3, 4, 5, 6] },
                 ],
                 network,
             );

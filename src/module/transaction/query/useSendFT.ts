@@ -1,7 +1,8 @@
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { parseTokenAmount } from "near-peersyst-sdk";
+import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
 
 export interface UseSendTokensParams {
     contractId: string;
@@ -12,8 +13,9 @@ export interface UseSendTokensParams {
 }
 
 const useSendFT = (senderIndex: number) => {
-    const { serviceInstance, index, network } = useServiceInstance(senderIndex);
-    const queryClient = useQueryClient();
+    const { serviceInstance } = useServiceInstance(senderIndex);
+    const invalidateQueries = useInvalidateServiceInstanceQueries(senderIndex);
+
     return useMutation(
         async ({ contractId, amount, receiverId, memo, decimals }: UseSendTokensParams) => {
             const finalAmount = parseTokenAmount(amount, decimals);
@@ -21,8 +23,7 @@ const useSendFT = (senderIndex: number) => {
         },
         {
             onSuccess: () => {
-                queryClient.invalidateQueries([Queries.GET_BALANCE, index, network]);
-                queryClient.invalidateQueries([Queries.GET_FTS, index, network]);
+                invalidateQueries([Queries.GET_BALANCE, Queries.GET_FTS, Queries.ACTIONS]);
             },
         },
     );

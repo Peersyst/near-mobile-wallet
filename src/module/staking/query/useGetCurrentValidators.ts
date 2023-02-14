@@ -3,6 +3,7 @@ import { QueryResult } from "query-utils";
 import { useQuery } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
+import { config } from "config";
 
 export default function (index?: number): QueryResult<Validator[]> {
     const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index);
@@ -11,6 +12,6 @@ export default function (index?: number): QueryResult<Validator[]> {
         async (): Promise<Validator[]> => {
             return await serviceInstance.getCurrentValidators();
         },
-        { enabled: queryEnabled },
+        { enabled: queryEnabled, refetchInterval: config.refetchIntervals.validators },
     );
 }

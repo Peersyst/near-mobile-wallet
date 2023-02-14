@@ -206,6 +206,14 @@ export class NearSDKService {
         return finalSecretKey1 === finalSecretKey2;
     }
 
+    static parsePrivateKey(secretKey: string): string {
+        const parts = secretKey.split(":");
+        if (parts.length === 1) {
+            return "ed25519:" + secretKey;
+        }
+        return secretKey;
+    }
+
     async accountExists(nameId: string): Promise<boolean> {
         // Could also be checked through our indexer api instead of rpc
 
@@ -291,6 +299,12 @@ export class NearSDKService {
 
     async nameIsChoosalbe(nameId: string): Promise<boolean> {
         return NearSDKService.nameIdIsValid(nameId, this.chain) && !(await this.accountExists(nameId));
+    }
+
+    async acccountIsValidReceivingAccount(accountId: string): Promise<boolean> {
+        if (NearSDKService.isImplicitAddress(accountId)) return true;
+        if (!NearSDKService.nameIdIsValid(accountId, this.chain)) return false;
+        return await this.accountExists(accountId);
     }
 
     // Amount is in near
@@ -739,35 +753,62 @@ export class NearSDKService {
 
     async getTokenMetadata(contractId: string): Promise<TokenMetadata> {
         // TODO: Cache this call
-        const account = await this.getAccount();
-        return account.viewFunction({
-            contractId,
-            methodName: FT_METADATA_METHOD,
-            args: {},
-        });
+        try {
+            const account = await this.getAccount();
+            return account.viewFunction({
+                contractId,
+                methodName: FT_METADATA_METHOD,
+                args: {},
+            });
+        } catch (e) {
+            //eslint-disable-next-line no-console
+            console.warn("Error in getTokenMetadata: ", e);
+            return {
+                spec: "ft-1.0.0",
+                name: "Unknown",
+                symbol: "Unknown",
+                icon: "",
+                reference: null,
+                reference_hash: null,
+                decimals: "18",
+            };
+        }
     }
 
     async getTokenBalance(contractId: string): Promise<string> {
         // TODO: Cache this call
         const account = await this.getAccount();
-        return account.viewFunction({
-            contractId,
-            methodName: FT_BALANCE_METHOD,
-            args: { account_id: account.accountId },
-        });
+        try {
+            return account.viewFunction({
+                contractId,
+                methodName: FT_BALANCE_METHOD,
+                args: { account_id: account.accountId },
+            });
+        } catch (e: any) {
+            //eslint-disable-next-line no-console
+            console.warn("Error in getTokenBalance: ", e);
+            return "0";
+        }
     }
 
     async getAccountTokens(): Promise<Token[]> {
         const contractIds = await this.apiService.getLikelyTokens({ address: this.getAddress() });
         const tokens: Token[] = [];
+
         for (const contractId of contractIds) {
-            const [balance, metadata] = await Promise.all([this.getTokenBalance(contractId), this.getTokenMetadata(contractId)]);
-            if (BalanceOperations.BNIsBigger(balance, "0")) {
-                tokens.push({
-                    balance: formatTokenAmount(balance, metadata.decimals.toString()),
-                    metadata,
-                    contractId: contractId,
-                });
+            try {
+                const [balance, metadata] = await Promise.all([this.getTokenBalance(contractId), this.getTokenMetadata(contractId)]);
+                if (BalanceOperations.BNIsBigger(balance, "0")) {
+                    tokens.push({
+                        balance: formatTokenAmount(balance, metadata.decimals.toString()),
+                        metadata,
+                        contractId: contractId,
+                    });
+                }
+            } catch (e) {
+                //eslint-disable-next-line no-console
+                console.warn("Error in getAccountTokens: ", contractId, e);
+                continue;
             }
         }
         return tokens;

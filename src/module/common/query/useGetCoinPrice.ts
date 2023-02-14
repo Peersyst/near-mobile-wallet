@@ -24,7 +24,7 @@ export const useGetCoinPrice = (apiId?: string, fiatParam?: FiatCurrencyType): Q
             }
         },
         {
-            refetchInterval: config.fetchPriceConversionInterval,
+            refetchInterval: config.refetchIntervals.fiatPrice,
         },
     );
 };

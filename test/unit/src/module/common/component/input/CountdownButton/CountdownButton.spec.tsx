@@ -7,7 +7,7 @@ describe("CountdownButton tests", () => {
         const handleCountdownEnd = jest.fn();
         jest.useFakeTimers();
         const screen = render(
-            <CountdownButton seconds={2} onCountdownEnd={handleCountdownEnd}>
+            <CountdownButton countdownTime={2000} onCountdownEnd={handleCountdownEnd}>
                 Button content
             </CountdownButton>,
         );

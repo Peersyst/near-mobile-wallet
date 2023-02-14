@@ -15,6 +15,8 @@ interface NearSdkServiceMockType {
 export const MOCKED_ADDRESS = "3493c5193e78d5723246f9d109af668ba8b17d2128358a5dd0c4e777c1c5e6ee";
 export const MOCKED_NAMED_ADDRESS = "nearmobiletest.near";
 export const MOCKED_PK = "ed25519:5Esk1YZbtUCzptJeWWWC1BraF8UVrkDuiRLftQswAza2n3zctfCBEQ8vwBWcpvnmusxYH7svskm9HenEzuwrHD7h";
+export const MOCKED_SECOND_PRIVATE_KEY = "ed25519:s8Qn9KRW6xsK5B5sHJJeAuSEGmcJzJBzWhVCTUzo1JsTtSG2yidgc9oBUcofLyyXuUunBpECcDSNmdxpCUsQW1q";
+export const MOCKED_THIRD_PRIVATE_KEY = "ed25519:43r2aKMpatzbAYvgm67m49sYgXAZ9fLKLXRqC9gCsyzVPVGfbZ1nVqVgsZgBwqQLzzGvv132fCzUocNGPK638DpA";
 
 export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockType {
     getTransactions: MockFnType;
@@ -30,6 +32,7 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
     getAllValidators: MockFnType;
     getSecretKey: MockFnType;
     nameIsValidSubAccount: MockFnType;
+    acccountIsValidReceivingAccount: MockFnType;
     //TODO: add here all the mock fn that are needed
 
     constructor() {
@@ -47,5 +50,6 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
         this.getAllValidators = jest.fn().mockResolvedValue([new ValidatorMock()]);
         this.getSecretKey = jest.fn().mockReturnValue(MOCKED_PK);
         this.nameIsValidSubAccount = jest.fn().mockReturnValue(true);
+        this.acccountIsValidReceivingAccount = jest.fn().mockResolvedValue(true);
     }
 }

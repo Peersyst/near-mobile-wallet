@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
+import { config } from "config";
 
 export interface UseGetActionsOptions {
     /**
@@ -10,10 +11,17 @@ export interface UseGetActionsOptions {
 }
 
 const useGetActions = ({ index }: UseGetActionsOptions = {}) => {
-    const { serviceInstance, index: usedIndex, network } = useServiceInstance(index);
-    return useQuery([Queries.ACTIONS, usedIndex, network], async () => {
-        return await serviceInstance.getRecentActivity();
-    });
+    const { serviceInstance, index: usedIndex, network, queryEnabled } = useServiceInstance(index);
+    return useQuery(
+        [Queries.ACTIONS, usedIndex, network],
+        async () => {
+            return await serviceInstance.getRecentActivity();
+        },
+        {
+            enabled: queryEnabled,
+            refetchInterval: config.refetchIntervals.transactions,
+        },
+    );
 };
 
 export default useGetActions;
