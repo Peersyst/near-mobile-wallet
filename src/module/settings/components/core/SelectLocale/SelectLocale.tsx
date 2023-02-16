@@ -1,7 +1,6 @@
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
-import { LayoutAnimation } from "react-native";
 import { SelectOption } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { LocaleType } from "locale";
@@ -23,11 +22,9 @@ const SelectLocale = (): JSX.Element => {
     const [settings, setSettings] = useRecoilState(settingsState);
 
     const handleSelect = (value: LocaleType) => {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         i18n.changeLanguage(value);
         setSettings((s) => ({ ...s, locale: value }));
         SettingsStorage.set({ locale: value });
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     };
     return (
         <SettingsSelect
