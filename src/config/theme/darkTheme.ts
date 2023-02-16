@@ -36,10 +36,17 @@ const darkTheme = createTheme({
         text: gray[900],
         gray,
         overlay,
-        appbar: gray[0],
-        paper: gray[0],
         backdrop: overlay["60%"],
         altOverlay,
+        component: {
+            appbar: {
+                backgroundColor: gray[0],
+            },
+            navbar: {
+                borderColor: overlay["8%"],
+            },
+            paper: gray[0],
+        },
     },
 });
 

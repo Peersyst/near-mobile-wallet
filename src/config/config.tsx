@@ -13,6 +13,7 @@ import { PrivateKeyValidator } from "./validators/PrivateKeyValidator";
 import { RadioCheckedIcon } from "module/common/icons/RadioCheckedIcon";
 import { RadioUncheckedIcon } from "module/common/icons/RadioUncheckedIcon";
 import { EnvConfig } from "./config.declarations";
+import Button from "module/common/component/input/Button/Button";
 
 export const envConfigs: Record<EnvConfig, CreateConfig> = {
     test: { ...baseConfig, ...testConfig },
@@ -43,6 +44,21 @@ const config = createConfig({
             defaultProps: {
                 variant: "primary",
                 size: "lg",
+            },
+        },
+        Dialog: {
+            defaultProps: {
+                buttonsLayout: {
+                    direction: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 15,
+                },
+            },
+            actions: {
+                variant: "filled",
+                component: Button,
+                fullWidth: true,
             },
         },
         Label: {

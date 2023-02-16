@@ -32,8 +32,10 @@ export const MnemonicInput = (): JSX.Element => {
 
     return (
         <Col gap={24} flex={1}>
-            <Col gap={24} style={{ minHeight: 230 }}>
-                <Advise title={translate("mnemonic")} text={translate("mnemonic_input_text")} />
+            <Col flex={1} gap={24} style={{ minHeight: 230 }}>
+                <Col flex={1}>
+                    <Advise title={translate("mnemonic")} text={translate("mnemonic_input_text")} />
+                </Col>
                 <MnemonicList mnemonic={mnemonic} onPress={handleWordPress} />
             </Col>
             <TextField

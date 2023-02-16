@@ -17,8 +17,6 @@ declare module "@peersyst/react-native-components" {
     }
 
     export interface ThemePalette {
-        appbar: string;
-        paper: string;
         white: string;
         black: string;
         gray: {
@@ -66,6 +64,15 @@ declare module "@peersyst/react-native-components" {
             "20%": string;
             "12%": string;
             "8%": string;
+        };
+        component: {
+            appbar: {
+                backgroundColor: string;
+            };
+            navbar: {
+                borderColor: string;
+            };
+            paper: string;
         };
     }
 

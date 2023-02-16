@@ -1,6 +1,17 @@
 import { CreateGlobalStyles } from "@peersyst/react-native-components";
 
 const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography } }) => ({
+    Dialog: {
+        title: {
+            textAlign: "center",
+            paddingBottom: 10,
+        },
+        content: {
+            textAlign: "center",
+            paddingBottom: 20,
+            color: palette.gray[600],
+        },
+    },
     Divider: {
         backgroundColor: palette.overlay["8%"],
     },
@@ -35,7 +46,7 @@ const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography } }) =>
         },
     },
     Paper: {
-        backgroundColor: palette.paper,
+        backgroundColor: palette.component.paper,
     },
     Typography: {
         light: {
