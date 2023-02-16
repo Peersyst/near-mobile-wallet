@@ -8,4 +8,6 @@ export interface FullScreenModalRootProps {
     children?: ReactNode;
 }
 
-export type FullScreenModalProps = ExposedBackdropProps & Omit<NavbarProps, "onBack"> & FullScreenModalRootProps & { style?: ViewStyle };
+export type FullScreenModalProps = ExposedBackdropProps &
+    Omit<NavbarProps, "onBack" | "style"> &
+    FullScreenModalRootProps & { style?: ViewStyle };

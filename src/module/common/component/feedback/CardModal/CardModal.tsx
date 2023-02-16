@@ -3,7 +3,6 @@ import { useDimensions } from "@react-native-community/hooks";
 import { ReactNode, useState } from "react";
 import { Keyboard, LayoutChangeEvent, ViewStyle } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import Divider from "../../display/Divider/Divider";
 import { CardModalBodyWrapper, CardModalContent, CardModalWrapper } from "./CardModal.styles";
 
 export interface CardModalChildren {
@@ -39,7 +38,6 @@ const CardModal = ({ children, style, open, closable = true, onClose, ...backdro
                     <CardModalContent style={style} enabled={keyboardPaddingEnabled} behavior="padding">
                         <CardModalWrapper onLayout={handleLayout}>
                             {header}
-                            <Divider />
                             <KeyboardAwareScrollView
                                 style={{ flex: 1, height: "100%" }}
                                 keyboardShouldPersistTaps="handled"

@@ -1,30 +1,27 @@
-import { ChevronUpIcon } from "icons";
 import { ReactElement } from "react";
-import { NavbarTitle } from "../../navigation/Navbar/NavbarTitle";
+import ModalHeader from "../../navigation/ModalHeader/ModalHeader";
+import { ModalHeaderDismissal } from "../../navigation/ModalHeader/ModalHeader.types";
 import CardModal, { CardModalProps } from "../CardModal/CardModal";
-import { CardSelectModalNavbar, ChevronUpIconRoot } from "./CardSelectModal.styles";
 
 export type CardSelectModalProps = Omit<CardModalProps, "children"> & {
     children: ReactElement;
     title: string;
+    dismissal: ModalHeaderDismissal;
 };
 
-const CardSelectModal = ({ children, title, onClose, ...rest }: CardSelectModalProps) => {
+const CardSelectModal = ({ children, title, dismissal, onClose, ...rest }: CardSelectModalProps): JSX.Element => {
     return (
         <CardModal {...rest} onClose={onClose}>
             {(open, setOpen) => ({
                 header: (
-                    <CardSelectModalNavbar>
-                        <NavbarTitle title={title} />
-                        <ChevronUpIconRoot>
-                            <ChevronUpIcon
-                                onPress={() => {
-                                    setOpen(false);
-                                    if (open !== undefined) onClose?.();
-                                }}
-                            />
-                        </ChevronUpIconRoot>
-                    </CardSelectModalNavbar>
+                    <ModalHeader
+                        title={title}
+                        dismissal={dismissal}
+                        onDismiss={() => {
+                            setOpen(false);
+                            if (open !== undefined) onClose?.();
+                        }}
+                    />
                 ),
                 body: children,
             })}
