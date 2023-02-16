@@ -1934,10 +1934,10 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@peersyst/react-components-core@^1.2.4":
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-1.2.4.tgz#fcff056ad4cf165362e14052b90bcf9e72deec04"
-  integrity sha512-ERauFZJtx1xGHIxFjO7l4kJxg3pgUYQwsdHobA84Dp/0SFtg+zufpQEs8JGIBI0eYgNDqpeUXfmJG3C7qFujTQ==
+"@peersyst/react-components-core@^1.2.7":
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-components-core/-/react-components-core-1.2.7.tgz#e6699f511fd1a90efd920d4373adfa10fee63a82"
+  integrity sha512-ShrwGJ6/NYeH3rJ+eu6m6gq0kr64mnX/ahh6yAT1DLX7atGA/5dnTWRTtWKpU79P+Z6goiqDiqmeZGE4Gqke/A==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-hooks" "^2.2.0"
@@ -1961,13 +1961,13 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^2.1.0"
 
-"@peersyst/react-native-components@^2.1.7":
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-2.1.7.tgz#caaee0c1d8d7eb6c68ca414be23dc4e86c8dd839"
-  integrity sha512-+HPCP4HXI6h5tzAGnKvsnwCMI3Oy807Vueuqry/UbcTdgIhMKCw24VOrfBIssKcTHrp9Ja8GlPBgrZlGscMS0g==
+"@peersyst/react-native-components@^2.1.16":
+  version "2.1.16"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-2.1.16.tgz#e28b2af1911270e782f83c991eb2bf8c6d26f98b"
+  integrity sha512-i1jx+DUIIc8u0hML1kXa8TVyN4G2hjyC46+fEWEybKz5UQd0lHA6DF5Q++veWHnAkwIoJGDAzKNku0URlQdxFA==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@peersyst/react-components-core" "^1.2.4"
+    "@peersyst/react-components-core" "^1.2.7"
     "@peersyst/react-hooks" "^2.2.0"
     "@peersyst/react-native-styled" "^2.0.0"
     "@peersyst/react-native-utils" "^1.0.1"
@@ -1979,6 +1979,7 @@
     expo-camera "~12.1.2"
     expo-clipboard "~4.0.1"
     expo-constants "~13.0.2"
+    expo-linear-gradient "^12.0.1"
     expo-localization "~12.0.0"
     expo-status-bar "^1.2.0"
     react-native-gesture-handler "~2.1.0"
@@ -4941,7 +4942,7 @@ expo-keep-awake@~11.0.1:
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-11.0.1.tgz#ee354465892a94040ffe09901b85b469e7d54fb3"
   integrity sha512-44ZjgLE4lnce2d40Pv8xsjMVc6R5GvgHOwZfkLYtGmgYG9TYrEJeEj5UfSeweXPL3pBFhXKfFU8xpGYMaHdP0A==
 
-expo-linear-gradient@~12.0.1:
+expo-linear-gradient@^12.0.1, expo-linear-gradient@~12.0.1:
   version "12.0.1"
   resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-12.0.1.tgz#452f793b0463ddf313aad431552f23acc85f5d64"
   integrity sha512-TMl/wBTVQOliL4S3DS5Aa3UFfVySr0mdJEHLG6kfBdMCLkr+tfLI2rGyJ+scS7xgMsvhTIaurhf1+Z0sL3aLCg==
