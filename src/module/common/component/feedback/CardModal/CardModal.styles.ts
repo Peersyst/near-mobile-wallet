@@ -19,6 +19,6 @@ export const CardModalWrapper = styled(Col)(() => ({
 }));
 
 export const CardModalBodyWrapper = styled(Col)(({ safeAreaInsets }) => ({
-    paddingBottom: safeAreaInsets.bottom + 10,
     padding: CARD_NAVIGATOR_PADDING,
+    paddingBottom: safeAreaInsets.bottom + CARD_NAVIGATOR_PADDING,
 }));
