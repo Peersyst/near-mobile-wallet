@@ -1,4 +1,4 @@
-import { ScrollView, SelectorGroup } from "@peersyst/react-native-components";
+import { SelectorGroup } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useWalletSelector from "module/wallet/hook/useWalletSelector";
 import AccountSelector from "./AccountSelector";
@@ -18,23 +18,21 @@ const WalletSelectorGroup = ({
     const translate = useTranslate();
 
     return (
-        <ScrollView>
-            <SelectorGroup
-                hideError={hideErrorProp || hideError}
-                LabelProps={{ gap: "7%" }}
-                label={label || translate("select_funding_acc")}
-                gap="7%"
-                style={{ component: { width: "100%" } }}
-                value={selectedIndex}
-                error={errorProp || error}
-                onChange={setWalletIndex}
-                {...rest}
-            >
-                {wallets.map(({ index, account }, i) => (
-                    <AccountSelector key={i} index={index} account={account} />
-                ))}
-            </SelectorGroup>
-        </ScrollView>
+        <SelectorGroup
+            hideError={hideErrorProp || hideError}
+            LabelProps={{ gap: "7%" }}
+            label={label || translate("select_funding_acc")}
+            gap="7%"
+            style={{ component: { width: "100%" } }}
+            value={selectedIndex}
+            error={errorProp || error}
+            onChange={setWalletIndex}
+            {...rest}
+        >
+            {wallets.map(({ index, account }, i) => (
+                <AccountSelector key={i} index={index} account={account} />
+            ))}
+        </SelectorGroup>
     );
 };
 

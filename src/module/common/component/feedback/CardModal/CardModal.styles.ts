@@ -2,7 +2,7 @@ import styled from "@peersyst/react-native-styled";
 import { Col } from "@peersyst/react-native-components";
 import { KeyboardAvoidingView } from "react-native";
 
-export const CARD_NAVIGATOR_PADDING = 20;
+export const CARD_MODAL_PADDING = 20;
 
 export const CardModalContent = styled(KeyboardAvoidingView)(({ theme, dimensions }) => ({
     position: "absolute",
@@ -14,11 +14,11 @@ export const CardModalContent = styled(KeyboardAvoidingView)(({ theme, dimension
     backgroundColor: theme.palette.background,
 }));
 
-export const CardModalWrapper = styled(Col)(({ safeAreaInsets }) => ({
-    paddingBottom: safeAreaInsets.bottom + 10,
+export const CardModalWrapper = styled(Col)(() => ({
     height: "100%",
 }));
 
-export const CardModalBodyWrapper = styled(Col)(() => ({
-    padding: CARD_NAVIGATOR_PADDING,
+export const CardModalBodyWrapper = styled(Col)(({ safeAreaInsets }) => ({
+    padding: CARD_MODAL_PADDING,
+    paddingBottom: safeAreaInsets.bottom + CARD_MODAL_PADDING,
 }));
