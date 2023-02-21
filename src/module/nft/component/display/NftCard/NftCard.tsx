@@ -1,30 +1,51 @@
-import { Nft } from "ckb-peersyst-sdk";
-import { Col, Typography } from "react-native-components";
-import { NftCardImage, NftCardRoot } from "./NftCard.styles";
+import { Col } from "@peersyst/react-native-components";
+import Typography from "module/common/component/display/Typography/Typography";
+import { useTranslate } from "module/common/hook/useTranslate";
+import MainListCard from "module/main/component/display/MainListCard/MainListCard";
+import { TouchableWithoutFeedback } from "react-native";
+import { NftCardProps } from "./NftCard.types";
+import NftImage from "../NftImage/NftImage";
 
-export type NftCardProps = Nft;
+const NftCard = ({ nft }: NftCardProps): JSX.Element => {
+    const t = useTranslate();
+    const {
+        metadata: { title, media_url },
+        collection_metadata,
+        owner_id,
+        token_id,
+    } = nft;
 
-const NftCard = ({ nftName, tokenUri, tokenId, total, data: { description } }: NftCardProps): JSX.Element => (
-    <NftCardRoot>
-        <NftCardImage source={{ uri: tokenUri }} />
-        <Col flex={1} justifyContent="space-between" style={{ paddingVertical: 12 }}>
-            <Col gap={2}>
-                <Typography variant="body1" fontWeight="bold" numberOfLines={1}>
-                    {nftName}
-                </Typography>
-                <Typography variant="body1" numberOfLines={3}>
-                    {description}
-                </Typography>
-            </Col>
-            {tokenId && total && (
-                <Col alignItems="flex-end">
-                    <Typography variant="body1" fontWeight="bold">
-                        {`${tokenId}/${total}`}
-                    </Typography>
+    return (
+        <TouchableWithoutFeedback>
+            <MainListCard gap="6.5%" alignItems="center">
+                <NftImage uri={media_url} tokenId={token_id} />
+                <Col flex={1} gap={12} justifyContent="center">
+                    <Col gap={2} flex={1} justifyContent="center">
+                        {title && (
+                            <Typography variant="body1Strong" numberOfLines={1}>
+                                {title}
+                            </Typography>
+                        )}
+                        {owner_id && (
+                            <Typography variant="body3Strong" numberOfLines={1} color={(p) => p.primary}>
+                                {owner_id}
+                            </Typography>
+                        )}
+                    </Col>
+                    {collection_metadata && (
+                        <Col flex={1} gap={2}>
+                            <Typography variant="body4Strong" light numberOfLines={1}>
+                                {t("collection") + ":"}
+                            </Typography>
+                            <Typography variant="body4Strong" numberOfLines={1}>
+                                {collection_metadata.name}
+                            </Typography>
+                        </Col>
+                    )}
                 </Col>
-            )}
-        </Col>
-    </NftCardRoot>
-);
+            </MainListCard>
+        </TouchableWithoutFeedback>
+    );
+};
 
 export default NftCard;

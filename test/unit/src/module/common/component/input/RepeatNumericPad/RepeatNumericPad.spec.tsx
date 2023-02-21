@@ -1,5 +1,4 @@
-import { translate } from "locale";
-import { fireEvent, render } from "test-utils";
+import { fireEvent, render, translate } from "test-utils";
 import RepeatNumericPad from "module/common/component/input/RepeatNumericPad/RepeatNumericPad";
 
 describe("Test for the RepeatNumericPad component", () => {
@@ -9,7 +8,7 @@ describe("Test for the RepeatNumericPad component", () => {
 
     test("Renders correctly", () => {
         const screen = render(<RepeatNumericPad onCancel={jest.fn()} placeholder="placeholder" onSuccess={jest.fn()} />);
-        expect(screen.getByText("placeholder"));
+        expect(screen.getByText("PLACEHOLDER"));
         expect(screen.getAllByTestId("BackIcon"));
         expect(screen.getByText(translate("cancel")));
     });
@@ -19,7 +18,7 @@ describe("Test for the RepeatNumericPad component", () => {
         for (let i = 1; i < 5; i++) {
             fireEvent.press(screen.getByText(i.toString()));
         }
-        expect(screen.getByText(translate("repeat_pin"))).toBeDefined();
+        expect(screen.getByText(translate("repeat_pin").toUpperCase())).toBeDefined();
         for (let i = 1; i < 5; i++) {
             fireEvent.press(screen.getByText(i.toString()));
         }
@@ -31,7 +30,7 @@ describe("Test for the RepeatNumericPad component", () => {
         for (let i = 1; i < 5; i++) {
             fireEvent.press(screen.getByText(i.toString()));
         }
-        expect(screen.getByText(translate("repeat_pin"))).toBeDefined();
+        expect(screen.getByText(translate("repeat_pin").toUpperCase())).toBeDefined();
         for (let i = 5; i > 1; i--) {
             fireEvent.press(screen.getByText(i.toString()));
         }

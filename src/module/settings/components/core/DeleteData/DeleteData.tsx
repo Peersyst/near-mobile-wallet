@@ -1,19 +1,20 @@
-import { translate } from "locale";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { WalletStorage } from "module/wallet/WalletStorage";
-import walletState, { serviceInstancesMap } from "module/wallet/state/WalletState";
+import { serviceInstancesMap } from "module/wallet/state/ServiceInstances/ServiceInstances";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
-import { useDialog, useModal } from "react-native-components";
-import { useResetRecoilState, useSetRecoilState } from "recoil";
+import { useModal } from "@peersyst/react-native-components";
 import { useQueryClient } from "react-query";
+import { useTranslate } from "module/common/hook/useTranslate";
+import useWalletState from "module/wallet/hook/useWalletState";
+import useCancelableDialog from "module/common/hook/useCancelableDialog";
 
 const DeleteData = () => {
-    const resetWalletState = useResetRecoilState(walletState);
-    const setWalletState = useSetRecoilState(walletState);
+    const translate = useTranslate();
+    const { setState: setWalletState, reset: resetWalletState } = useWalletState();
     const queryClient = useQueryClient();
     const { showModal } = useModal();
-    const { showDialog } = useDialog();
+    const { showCancelableDialog } = useCancelableDialog();
 
     const handleDelete = () => {
         showModal(ConfirmPinModal, {
@@ -33,15 +34,14 @@ const DeleteData = () => {
             destructive
             text={translate("delete_data")}
             onPress={() =>
-                showDialog({
+                showCancelableDialog({
                     title: translate("delete_data"),
-                    message: translate("delete_data_text"),
+                    content: translate("delete_data_text")!,
                     buttons: [
-                        { text: translate("cancel") },
                         {
                             text: translate("delete"),
                             type: "destructive",
-                            onPress: handleDelete,
+                            action: handleDelete,
                         },
                     ],
                 })

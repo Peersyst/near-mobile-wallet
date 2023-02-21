@@ -1,15 +1,19 @@
 import { useQuery, UseQueryResult } from "react-query";
-import { Nft } from "module/nft/types";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
-import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
+import { NftToken } from "near-peersyst-sdk";
+import useServiceInstance from "module/wallet/hook/useServiceInstance";
+import Queries from "../../../query/queries";
+import { config } from "config";
 
-export default function (index?: number): UseQueryResult<Nft[]> {
-    const network = useSelectedNetwork();
-    const selectedWallet = useSelectedWalletIndex();
-    const usedIndex = index ?? selectedWallet;
-    return useQuery(["nfts", usedIndex, network], () => {
-        const serviceInstance = serviceInstancesMap.get(usedIndex)?.[network];
-        return serviceInstance?.getNfts();
-    });
+export default function (index?: number): UseQueryResult<NftToken[]> {
+    const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index);
+    return useQuery(
+        [Queries.GET_NFTS, usedIndex, network],
+        async (): Promise<NftToken[]> => {
+            return await serviceInstance.getNfts();
+        },
+        {
+            enabled: queryEnabled,
+            refetchInterval: config.refetchIntervals.nfts,
+        },
+    );
 }

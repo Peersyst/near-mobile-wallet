@@ -1,38 +1,25 @@
-import * as UseWalletState from "module/wallet/hook/useWalletState";
-import { render, SuccessApiCall } from "test-utils";
-import { nfts } from "mocks/nft";
+import { render, translate } from "test-utils";
 import NftsList from "module/nft/component/core/NftsList/NftsList";
 import { waitFor } from "@testing-library/react-native";
-import { translate } from "locale";
-import { mockedUseWallet } from "mocks/useWalletState";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
+import { NftTokensMock, UseGetNftsMock, UseWalletStateMock } from "test-mocks";
 
 describe("NftsList tests", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
+    new UseWalletStateMock();
 
-    afterEach(() => {
+    afterAll(() => {
         jest.restoreAllMocks();
     });
 
     test("Renders correctly", async () => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getNfts").mockReturnValue(SuccessApiCall(nfts));
-
+        const { nfts } = new NftTokensMock();
+        new UseGetNftsMock({ nfts });
         const screen = render(<NftsList />);
-
-        await waitFor(() => expect(screen.getByText("NFT0")));
-        expect(screen.getByText("NFT1"));
-        expect(screen.getByText("NFT2"));
+        await waitFor(() => expect(screen.getByText(nfts[0].metadata.title!)));
     });
 
     test("Renders correctly without transactions", async () => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getNfts").mockReturnValue(SuccessApiCall([]));
+        new UseGetNftsMock({ nfts: [] });
         const screen = render(<NftsList />);
-        await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show"))));
+        await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show", { ns: "error" }))));
     });
 });

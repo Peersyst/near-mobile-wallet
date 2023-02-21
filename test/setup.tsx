@@ -1,11 +1,7 @@
 import "core-js";
-// Load localization for translated assertions
-import { loadTestLocalization } from "./__mocks__/loadTestLocalization";
-loadTestLocalization();
 
-// Mock AsynStorage
-import mockAsyncStorage from "@react-native-async-storage/async-storage/jest/async-storage-mock";
-jest.mock("@react-native-async-storage/async-storage", () => mockAsyncStorage);
+// Mock AsyncStorage
+jest.mock("@react-native-async-storage/async-storage", () => require("@react-native-async-storage/async-storage/jest/async-storage-mock"));
 
 // Turn off network queries error logging
 /* eslint-disable no-console  */
@@ -47,20 +43,29 @@ jest.mock("expo-localization", () => ({
     decimalSeparator: ".",
 }));
 
-import { BackdropProps } from "react-native-components";
-jest.mock("../src/module/common/component/base/feedback/Backdrop/Backdrop", () => {
-    const MockBackdrop = ({ children, onOpen, onClose, onExited, onEntered }: BackdropProps) => {
-        const handleClose = () => {
-            onClose?.();
-            onExited?.();
-        };
-        onOpen?.();
-        onEntered?.();
-        return <>{typeof children === "function" ? children(true, jest.fn(handleClose)) : children}</>;
+jest.mock("@peersyst/react-native-components", () => {
+    return {
+        __esModule: true,
+        ...jest.requireActual("@peersyst/react-native-components"),
     };
-    return MockBackdrop;
 });
 
 jest.mock("module/settings/hook/useSelectedNetwork", () => {
     return () => "testnet";
+});
+
+//Mock language detector
+jest.mock("locale/pluguins/LanguageDetectorPlugin/LanguageDetectorPlugin", () => {
+    return {
+        __esModule: true,
+        default: {
+            type: "languageDetector",
+            async: true,
+            detect: () => "en",
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            init: () => {},
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            cacheUserLanguage: () => {},
+        },
+    };
 });

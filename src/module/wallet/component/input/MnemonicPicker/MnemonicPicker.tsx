@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
 
 export interface MnemonicPickerProps {
@@ -29,10 +29,10 @@ const MnemonicPicker = ({ mnemonic: mnemonicProp, onSuccess, onError }: Mnemonic
     }, [mnemonic, mnemonicProp]);
 
     return (
-        <Col gap={60}>
+        <Col gap={24}>
             <MnemonicList
                 mnemonic={mnemonic}
-                appearance="dark"
+                variant="filled"
                 onPress={(word) => setMnemonic((oldMnemonic) => oldMnemonic.filter((w) => w !== word))}
             />
             <MnemonicList

@@ -1,41 +1,46 @@
-import { translate } from "locale";
-import SelectGroup, { optionType } from "module/common/component/input/SelectGroup/SelectGroup";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { FiatCurrencyType } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
+import { SelectOption } from "@peersyst/react-native-components";
+import { useTranslate } from "module/common/hook/useTranslate";
+import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
+
+const fiatOptions: SelectOption<FiatCurrencyType>[] = [
+    {
+        label: "USD",
+        value: "usd",
+    },
+    {
+        label: "EUR",
+        value: "eur",
+    },
+    {
+        label: "GBP",
+        value: "gbp",
+    },
+    {
+        label: "JPY",
+        value: "jpy",
+    },
+    {
+        label: "CNY",
+        value: "cny",
+    },
+];
 
 const SelectFiat = (): JSX.Element => {
-    const fiatOptions: optionType[] = [
-        {
-            label: "USD",
-            value: "usd",
-        },
-        {
-            label: "EUR",
-            value: "eur",
-        },
-        {
-            label: "GBP",
-            value: "gbp",
-        },
-        {
-            label: "JPY",
-            value: "jpy",
-        },
-        {
-            label: "CNY",
-            value: "cny",
-        },
-    ];
+    const translate = useTranslate();
+
     const [settings, setSettings] = useRecoilState(settingsState);
-    const handleSelect = async (value: FiatCurrencyType) => {
-        setSettings((s) => ({ ...s, fiat: value }));
-        SettingsStorage.set({ fiat: value });
+    const handleSelect = (fiat: FiatCurrencyType) => {
+        setSettings((s) => ({ ...s, fiat }));
+        SettingsStorage.set({ fiat });
     };
+
     return (
-        <SelectGroup
+        <SettingsSelect
             value={settings.fiat}
-            onChange={(value) => handleSelect(value as FiatCurrencyType)}
+            onChange={(value) => handleSelect(value)}
             options={fiatOptions}
             label={translate("default_currency")}
         />

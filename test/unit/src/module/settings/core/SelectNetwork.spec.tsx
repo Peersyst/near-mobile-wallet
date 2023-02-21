@@ -1,35 +1,33 @@
 import SelectNetwork from "module/settings/components/core/SelectNetwork/SelectNetwork";
-import { fireEvent, render } from "test-utils";
+import { fireEvent, render, translate } from "test-utils";
 import * as Recoil from "recoil";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
-import { translate } from "locale";
 import { SettingsStorage } from "module/settings/SettingsStorage";
+import { Chains } from "near-peersyst-sdk";
+import { capitalize } from "@peersyst/react-utils";
+import { UseConfigMock } from "mocks/genesys/useConfig/useConfig.mock";
 
 describe("Test for the select network", () => {
     afterAll(() => {
         jest.restoreAllMocks();
     });
     test("Returns correctly", () => {
-        const setSettingsState = jest.fn();
-        const mockedRecoilState = [defaultSettingsState, setSettingsState];
-        jest.spyOn(Recoil, "useRecoilState").mockReturnValue(mockedRecoilState as any);
         const screen = render(<SelectNetwork />);
-        expect(screen.getAllByText(translate("select_your_network"))).toHaveLength(2);
-        expect(screen.getByText(translate("network_name", { name: "Mainnet" }))).toBeDefined();
-        expect(screen.getAllByText(translate("network_name", { name: "Testnet" }))).toHaveLength(2);
+        expect(screen.getByText(translate("select_your_network"))).toBeDefined();
+        expect(screen.getByText(translate("network_name", { name: capitalize(defaultSettingsState.network) }))).toBeDefined();
     });
-    test("Change the network correctly", () => {
-        jest.useFakeTimers();
+    test("Change the network correctly", async () => {
+        new UseConfigMock({ config: { enableChangeNetwork: true } });
         const setSettingsState = jest.fn();
-        const mockedRecoilState = [defaultSettingsState, setSettingsState];
+        const mockedRecoilState = [{ ...defaultSettingsState, network: Chains.MAINNET }, setSettingsState];
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue(mockedRecoilState as any);
-        const setSettingsStorage = jest.spyOn(SettingsStorage, "set").mockImplementation(() => new Promise((resolve) => resolve()));
+        const setSettingsStorage = jest.spyOn(SettingsStorage, "set").mockResolvedValue();
         const screen = render(<SelectNetwork />);
-        const item = screen.getByText(translate("network_name", { name: "Mainnet" }));
-        fireEvent.press(item);
-        jest.runAllTimers();
-        expect(setSettingsStorage).toHaveBeenCalledWith({ network: "mainnet" });
+        const defaultItem = screen.getByText(translate("network_name", { name: "Mainnet" }));
+        fireEvent.press(defaultItem); //open modal
+        const newNetworkItem = await screen.findByText(translate("network_name", { name: "Testnet" }));
+        fireEvent.press(newNetworkItem); //select the mainnet
+        expect(setSettingsStorage).toHaveBeenCalledWith({ network: "testnet" });
         expect(setSettingsState).toHaveBeenCalled();
-        jest.useRealTimers();
     });
 });

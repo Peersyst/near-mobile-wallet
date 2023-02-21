@@ -1,5 +1,5 @@
-import { MainTabContent, MainTabRoot } from "./MainTab.styles";
-import { Typography, useTab } from "react-native-components";
+import { MainTabRoot } from "./MainTab.styles";
+import { Typography, useTab } from "@peersyst/react-native-components";
 
 export interface MainTabProps {
     index: number;
@@ -12,11 +12,9 @@ const MainTab = ({ children, index }: MainTabProps): JSX.Element => {
 
     return (
         <MainTabRoot index={index}>
-            <MainTabContent active={active}>
-                <Typography variant="body2" textAlign="center" light={!active}>
-                    {children}
-                </Typography>
-            </MainTabContent>
+            <Typography variant="body3Strong" textAlign="center" light={!active}>
+                {children}
+            </Typography>
         </MainTabRoot>
     );
 };

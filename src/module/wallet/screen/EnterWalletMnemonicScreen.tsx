@@ -1,57 +1,53 @@
-import { Col, Form, useToast } from "react-native-components";
+import { Col, Form, useToast } from "@peersyst/react-native-components";
 import MnemonicInput from "module/wallet/component/input/MnemonicInput/MnemonicInput";
 import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useEffect, useState } from "react";
-import { WalletService } from "ckb-peersyst-sdk";
-import { translate } from "locale";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
+import { useTranslate } from "module/common/hook/useTranslate";
+import { NearSDKService } from "near-peersyst-sdk";
+import { BaseAddWalletModalScreenProps } from "../component/core/AddWalletModal/AddWalletModal.types";
 
 export interface MnemonicForm {
     mnemonic: string[];
 }
 
-export interface EnterWalletMnemonicScreenProps {
-    onSubmit: () => void;
-    submitText: string;
-}
+const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: BaseAddWalletModalScreenProps): JSX.Element => {
+    const translate = useTranslate();
+    const {
+        setMnemonic,
+        state: { mnemonic },
+    } = useCreateWallet();
+    const [loading, setLoading] = useState(false);
 
-const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: EnterWalletMnemonicScreenProps): JSX.Element => {
-    const { setMnemonic } = useCreateWallet();
-    const [submitted, setSubmitted] = useState(false);
     const { showToast } = useToast();
 
     useEffect(() => {
-        if (submitted) {
-            setSubmitted(false);
-            onSubmit();
+        if (mnemonic) {
+            onSubmit?.();
+            setLoading(true);
         }
-    }, [submitted]);
+    }, [mnemonic]);
 
-    const handleSubmit = ({ mnemonic }: MnemonicForm) => {
-        if (!submitted) {
-            const valid = WalletService.validateMnemonic(mnemonic.join(" "));
-            if (valid) {
-                setMnemonic(mnemonic);
-                setSubmitted(true);
-            } else {
-                notificationAsync(NotificationFeedbackType.Error);
-                showToast(translate("incorrect_mnemonic"), { type: "error" });
-            }
+    const handleSubmit = ({ mnemonic: mnemonicParam }: MnemonicForm) => {
+        const valid = NearSDKService.validateMnemonic(mnemonicParam.join(" "));
+        if (valid) {
+            setMnemonic(mnemonicParam);
+        } else {
+            notificationAsync(NotificationFeedbackType.Error);
+            showToast(translate("incorrect_mnemonic"), { type: "error" });
         }
     };
 
     return (
-        <Col justifyContent="flex-end" flex={1}>
-            <Form onSubmit={handleSubmit}>
-                <Col gap={20}>
-                    <MnemonicInput />
-                    <Button fullWidth variant="outlined" style={{ marginHorizontal: 20 }}>
-                        {submitText}
-                    </Button>
-                </Col>
-            </Form>
-        </Col>
+        <Form onSubmit={handleSubmit} style={{ flex: 1 }}>
+            <Col flex={1} gap={24}>
+                <MnemonicInput />
+                <Button type="submit" fullWidth loading={loading}>
+                    {submitText}
+                </Button>
+            </Col>
+        </Form>
     );
 };
 

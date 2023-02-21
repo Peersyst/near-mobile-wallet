@@ -1,38 +1,72 @@
-import { Col, Row, Typography } from "react-native-components";
-import Card from "module/common/component/surface/Card/Card";
-import { translate } from "locale";
-import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
-import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
-import { useState } from "react";
-import { WalletsBackupAdviseImage } from "module/wallet/component/core/WalletsBackupModal/WalletsBackupAdvise/WalletBackupAdvise.styles";
-import { image } from "asset/image";
+import { Col, Typography } from "@peersyst/react-native-components";
+import { useTranslate } from "module/common/hook/useTranslate";
+import { useSetRecoilState } from "recoil";
+import backupWalletState, { BackUp } from "module/wallet/state/BackUpWalletState";
+import Button from "module/common/component/input/Button/Button";
+import { ConfirmPinModalWrapper } from "module/settings/components/core/ConfirmPinModal/ConfirmPinModalWrapper";
+import Advise from "module/common/component/display/Advise/Advise";
+import { BaseUseModalStateReturn } from "module/common/hook/useModalState";
 
 export interface WalletsBackupAdvise {
-    onWalletSelected: (index: number) => void;
+    onSubmit: () => void;
 }
 
-const WalletsBackupAdvise = ({ onWalletSelected }: WalletsBackupAdvise): JSX.Element => {
-    const [selectorEnabled, setSelectorEnabled] = useState(false);
+export interface HandlePressParams {
+    showModal: BaseUseModalStateReturn["showModal"];
+    method: BackUp;
+}
+
+const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdvise): JSX.Element => {
+    const translate = useTranslate();
+    const setState = useSetRecoilState(backupWalletState);
+
+    const handlePress = ({ method, showModal }: HandlePressParams) => {
+        setState({ method });
+        showModal();
+    };
 
     return (
-        <Col gap={40} justifyContent="flex-end" flex={1}>
-            <Row flex={1} justifyContent="center" alignItems="center">
-                <WalletsBackupAdviseImage source={image.notes} />
-            </Row>
-            <Card>
-                <Typography variant="body1">{translate("backup_wallet_advise_text")}</Typography>
-            </Card>
-            <WalletSelector
-                disabled={!selectorEnabled}
-                display={
-                    <CountdownButton seconds={5} onCountdownEnd={() => setSelectorEnabled(true)} fullWidth>
-                        {translate("back_up_now")}
-                    </CountdownButton>
-                }
-                onChange={(index) => onWalletSelected(index as number)}
-                value={-1}
-            />
-        </Col>
+        <ConfirmPinModalWrapper onConfirmedExited={onSubmit}>
+            {({ showModal }) => (
+                <Col gap="10%" flex={1}>
+                    <Col flex={1} gap="3%">
+                        <Advise title={translate("keep_this_safe")} />
+                        <Col gap="3%">
+                            <Typography variant="body3Regular" textAlign="center">
+                                {translate("backup_wallet_advise_text") + " "}
+                            </Typography>
+                            <Typography variant="body3Strong" textAlign="center">
+                                {translate("backup_wallet_advise_text_2")}
+                            </Typography>
+                        </Col>
+                    </Col>
+                    <Col gap="4%">
+                        <Button
+                            fullWidth
+                            onPress={() =>
+                                handlePress({
+                                    method: "mnemonic",
+                                    showModal,
+                                })
+                            }
+                        >
+                            {translate("export_mnemonic")}
+                        </Button>
+                        <Button
+                            fullWidth
+                            onPress={() =>
+                                handlePress({
+                                    method: "privateKey",
+                                    showModal,
+                                })
+                            }
+                        >
+                            {translate("export_private_key")}
+                        </Button>
+                    </Col>
+                </Col>
+            )}
+        </ConfirmPinModalWrapper>
     );
 };
 

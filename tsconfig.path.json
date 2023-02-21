@@ -3,16 +3,19 @@
         "baseUrl": "./src",
         "paths": {
             "locale": ["locale"],
-            "asset": ["asset"],
+            "locale/*": ["locale/*"],
+            "config": ["config"],
+            "config/*": ["config/*"],
+            "images": ["asset/image"],
             "icons": ["module/common/icons"],
-            "ckb-peersyst-sdk": ["module/sdk"],
+            "near-peersyst-sdk": ["module/sdk"],
             "module/*": ["module/*"],
             "utils/*": ["utils/*"],
             "stack-navigator": ["Stack.ts"],
             "query-utils": ["query/react-query-overrides.ts"],
             "test-utils": ["../test/utils/test-utils"],
-            "mocks/*": ["../test/__mocks__/*"],
-            "react-native-components": ["module/common/component/base"]
+            "test-mocks": ["../test/__mocks__"],
+            "mocks/*": ["../test/__mocks__/*"]
         }
     }
 }

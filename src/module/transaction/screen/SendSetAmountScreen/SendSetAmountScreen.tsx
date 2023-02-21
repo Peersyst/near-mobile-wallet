@@ -1,72 +1,78 @@
-import { Col, Form, Typography, useSetTab } from "react-native-components";
-import { translate } from "locale";
-import TextArea from "module/common/component/input/TextArea/TextArea";
+import { Col, Form, useSetTab, Suspense } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
-import { useRecoilState, useRecoilValue } from "recoil";
-import sendRecoilState from "module/transaction/state/SendState";
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import sendRecoilState, { SendState } from "module/transaction/state/SendState";
 import useGetBalance from "module/wallet/query/useGetBalance";
-import settingsState from "module/settings/state/SettingsState";
 import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
-import CKBAmountInput from "../../component/input/CKBAmountInput/CKBAmountInput";
-import { CKBAmountInputContainer } from "./SendSetAmountScreen.styles";
-import Card from "module/common/component/surface/Card/Card";
-import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
-import { DepositScreens } from "module/dao/component/core/DepositModal/DepositModal";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
-import { MINIMUM_DAO_DEPOSIT } from "@env";
-import { convertShannonsToCKB } from "module/wallet/utils/convertShannonsToCKB";
+import { useTranslate } from "module/common/hook/useTranslate";
+import WalletAssetSelect from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect";
+import AssetAmountTextField from "module/transaction/component/input/AssetAmountTextField/AssetAmountTextField";
+import { useState } from "react";
+import { Asset } from "module/wallet/wallet.types";
+import { AssetType } from "module/wallet/wallet.types";
 
-export interface SendAmountAndMessageResult {
-    amount: string;
-    message: string;
-}
+export type SendAmountAndMessageResult = Pick<SendState, "amount" | "asset">;
 
-export interface SendSetAmountScreenProps {
-    type?: "dao" | "send";
-}
+export const SEND_SET_AMOUNT_FORM_KEYS: Partial<Record<keyof SendState, keyof SendState>> = {
+    asset: "asset",
+    amount: "amount",
+};
 
-const SendSetAmountScreen = ({ type = "send" }: SendSetAmountScreenProps): JSX.Element => {
+const SendSetAmountScreen = (): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
-    const [amount, setAmount] = useState(sendState.amount || "");
-    const { fee: feeInShannons } = useRecoilValue(settingsState);
-    const feeInCKB = convertShannonsToCKB(feeInShannons);
-    const { data: balance, isLoading: balanceIsLoading } = useGetBalance(sendState.senderWalletIndex || 0);
+    /**
+     * asset will never be undefined because by default sendRoilState has it defined
+     * (check the recoil defaultState of sendState)
+     */
+    const [asset, setAsset] = useState<Asset | undefined>(sendState.asset);
+    const [amount, setAmount] = useState<string | undefined>(sendState.amount?.toString() ?? undefined);
+    const translate = useTranslate();
+
+    const senderWalletIndex = sendState.senderWalletIndex!;
+    const { isLoading: balanceIsLoading } = useGetBalance(senderWalletIndex);
     const setTab = useSetTab();
 
-    const handleSubmit = ({ amount, message }: SendAmountAndMessageResult): void => {
-        setSendState((oldState) => ({ ...oldState, amount, message, fee: feeInCKB.toString() }));
-        setTab(type === "send" ? SendScreens.CONFIRMATION : DepositScreens.CONFIRMATION);
+    const handleSubmit = (res: SendAmountAndMessageResult): void => {
+        setSendState((oldState) => ({
+            ...oldState,
+            ...res,
+        }));
+        setTab(SendScreens.CONFIRMATION);
+    };
+
+    const handleAssetChange = (asset: Asset): void => {
+        setAsset(asset);
+        setAmount("");
     };
 
     return (
-        <ControlledSuspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
+        <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
-                <Col gap="15%">
-                    <CKBAmountInputContainer>
-                        <CKBAmountInput
-                            type={type}
-                            fee={feeInCKB}
-                            amount={amount}
-                            setAmount={setAmount}
-                            freeBalance={balance?.freeBalance ?? 0}
-                        />
-                    </CKBAmountInputContainer>
-                    {type === "dao" ? (
-                        <Card>
-                            <Typography variant="body1" textAlign="center">
-                                {translate("deposit_warning", { dao_min_deposit: MINIMUM_DAO_DEPOSIT })}
-                            </Typography>
-                        </Card>
-                    ) : (
-                        <TextArea name="message" placeholder={translate("write_a_message")} numberOfLines={7} />
-                    )}
-                    <Button variant="outlined" fullWidth>
+                <Col gap={24}>
+                    <WalletAssetSelect
+                        label={translate("choose_what_to_send")}
+                        onChange={handleAssetChange}
+                        value={asset}
+                        index={senderWalletIndex}
+                        name={SEND_SET_AMOUNT_FORM_KEYS.asset}
+                    />
+                    <AssetAmountTextField
+                        hideError={amount === ""}
+                        value={amount}
+                        onChange={(amount) => setAmount(amount)}
+                        label={translate("select_the_amount_to_send")}
+                        asset={asset ?? { type: AssetType.TOKEN }}
+                        placeholder={translate("enter_amount")}
+                        name={SEND_SET_AMOUNT_FORM_KEYS.amount}
+                        index={sendState.senderWalletIndex}
+                    />
+                    <Button type="submit" fullWidth>
                         {translate("next")}
                     </Button>
                 </Col>
             </Form>
-        </ControlledSuspense>
+        </Suspense>
     );
 };
 

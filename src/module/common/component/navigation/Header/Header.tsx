@@ -1,37 +1,24 @@
-import { HeaderRoot } from "./Header.styles";
-import Toolbar from "../../layout/Toolbar/Toolbar";
-import LogoRow from "module/common/component/display/Logos/LogoRow/LogoRow";
-import { IconButton, Row } from "react-native-components";
 import { SettingsIcon } from "icons";
-import useNavigation from "../../../hook/useNavigation";
-import FaucetButton from "module/wallet/component/input/FaucetButton/FaucetButton";
-import { useRecoilValue } from "recoil";
-import settingsState from "module/settings/state/SettingsState";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import LinearLogo from "../../display/LinearBgLogo/LinearBgLogo";
+import { HeaderRoot, HeaderSettingsButton } from "./Header.styles";
+import { Row } from "@peersyst/react-native-components";
+import useNavigation from "module/common/hook/useNavigation";
+import { MainScreens } from "../MainNavigatorGroup/MainScreens";
+import useWalletGradient from "module/wallet/hook/useWalletGradient";
 
-export interface HeaderProps {
-    showIcons?: boolean;
-}
-
-const Header = ({ showIcons = true }: HeaderProps): JSX.Element => {
+const Header = (): JSX.Element => {
     const navigation = useNavigation();
-    const { network } = useRecoilValue(settingsState);
-    const { top } = useSafeAreaInsets();
+    const [startColor, endColor] = useWalletGradient();
     return (
-        <HeaderRoot elevation={6} square style={{ paddingTop: top }}>
-            <Toolbar>
-                <Row alignItems="center" justifyContent="space-between" flex={1}>
-                    <LogoRow />
-                    {showIcons && (
-                        <Row gap={16}>
-                            {network === "testnet" && <FaucetButton />}
-                            <IconButton onPress={() => navigation.navigate("Settings")}>
-                                <SettingsIcon />
-                            </IconButton>
-                        </Row>
-                    )}
+        <HeaderRoot>
+            <Row alignItems="center" justifyContent="center" flex={1}>
+                <LinearLogo startColor={startColor} endColor={endColor} />
+                <Row style={{ position: "absolute", right: 8 }}>
+                    <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.SETTINGS)}>
+                        <SettingsIcon />
+                    </HeaderSettingsButton>
                 </Row>
-            </Toolbar>
+            </Row>
         </HeaderRoot>
     );
 };

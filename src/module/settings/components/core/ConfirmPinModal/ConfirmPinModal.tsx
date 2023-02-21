@@ -1,31 +1,37 @@
-import { translate } from "locale";
-import NumericPad from "module/common/component/input/NumericPad/NumericPad";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { useState } from "react";
-import { Animated, createBackdrop, ExposedBackdropProps } from "react-native-components";
+import { Animated, createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import BaseSettingsModalScreen from "../../layout/BaseSettingsModal/BaseSettingsModal";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
+import { useTranslate } from "module/common/hook/useTranslate";
+import BiometricNumericPad from "module/common/component/input/BiometricNumericPad/BiometricNumericPad";
 
-const AnimatedNumericPad = Animated.createAnimatedComponent.fade(NumericPad, { duration: 200, appear: true });
+const AnimatedBiometricsNumericPad = Animated.createAnimatedComponent.fade(BiometricNumericPad, { duration: 200, appear: true });
 
-interface ConfirmPinScreenProps
+export interface ConfirmPinScreenProps
     extends Omit<ExposedBackdropProps, "animationIn" | "animationOut" | "animationInTiming" | "animationOutTiming"> {
-    onPinConfirmed: () => any;
+    onPinConfirmed?: () => any;
     onConfirmedExited?: () => any;
 }
 
 const ConfirmPinModal = createBackdrop(
     ({ open: openProp, onPinConfirmed, onConfirmedExited, onExited, ...rest }: ConfirmPinScreenProps) => {
+        const translate = useTranslate();
+
         const [error, setError] = useState<boolean>(false);
         const [open, setOpen] = useState(true);
         const [success, setSuccess] = useState(false);
 
+        const handleSuccess = () => {
+            onPinConfirmed?.();
+            setSuccess(true);
+            setOpen(false);
+        };
+
         const handleSubmit = async (pin: string) => {
             const storedPin = await WalletStorage.getPin();
             if (pin === storedPin) {
-                onPinConfirmed();
-                setSuccess(true);
-                setOpen(false);
+                handleSuccess();
             } else {
                 setError(true);
                 notificationAsync(NotificationFeedbackType.Error);
@@ -45,7 +51,13 @@ const ConfirmPinModal = createBackdrop(
                 onExited={handleExited}
                 {...rest}
             >
-                <AnimatedNumericPad error={error} placeholder={translate("enter_your_pin")} onSubmit={handleSubmit} in={true} />
+                <AnimatedBiometricsNumericPad
+                    error={error}
+                    placeholder={translate("enter_your_pin")}
+                    onSubmit={handleSubmit}
+                    onBiometricsSuccess={handleSuccess}
+                    in={true}
+                />
             </BaseSettingsModalScreen>
         );
     },

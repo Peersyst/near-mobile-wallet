@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
-import { Divider } from "react-native-components";
+import { Divider } from "@peersyst/react-native-components";
 
 export const DividerRoot = styled(Divider)(({ theme }) => ({
-    backgroundColor: theme.palette.darkLightGray,
+    backgroundColor: theme.palette.overlay["8%"],
     marginVertical: 1,
 }));

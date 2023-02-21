@@ -4,12 +4,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 export type MainStackParamsList = {
     //Main
     Main: undefined;
-    Home: undefined;
     Settings: undefined;
+    Home: undefined;
+    News: undefined;
+    Staking: undefined;
+};
+export type SettingsStackParamsList = {
+    //Settings
+    SettingsMenu: undefined;
     GeneralSettings: undefined;
     SecuritySettings: undefined;
-    DAO: undefined;
-    News: undefined;
 };
 export type RootStackParamsList = {
     //Auth
@@ -17,8 +21,10 @@ export type RootStackParamsList = {
     AuthSwitch: undefined;
     CreateWallet: undefined;
     ImportWallet: undefined;
-} & MainStackParamsList;
+} & MainStackParamsList &
+    SettingsStackParamsList;
 
 export const BottomTab = createBottomTabNavigator<MainStackParamsList>();
+export const SettingTab = createNativeStackNavigator<SettingsStackParamsList>();
 
 export default createNativeStackNavigator<RootStackParamsList>();

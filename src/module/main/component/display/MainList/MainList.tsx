@@ -1,29 +1,10 @@
-import Divider from "module/common/component/display/Divider/Divider";
-import { List } from "react-native-components";
-import { ListProps } from "module/common/component/base/display/List/List";
-import useCkbSync from "module/wallet/hook/useCkbSync";
+import { List } from "@peersyst/react-native-components";
+import { ListProps } from "@peersyst/react-native-components";
 
 export type MainListProps = Omit<ListProps, "ItemSeparatorComponent" | "style">;
 
-const MainList = ({ indicatorStyle, loading, onRefresh, ...rest }: MainListProps): JSX.Element => {
-    const { synchronizing, synchronize } = useCkbSync();
-
-    const handleRefresh = async () => {
-        await synchronize();
-        onRefresh?.();
-    };
-
-    return (
-        <List
-            ItemSeparatorComponent={() => <Divider width="full-width" />}
-            style={{ paddingHorizontal: "5%" }}
-            refreshControlProps={{ tintColor: "black" }}
-            indicatorStyle={indicatorStyle || "black"}
-            loading={synchronizing || loading}
-            onRefresh={handleRefresh}
-            {...rest}
-        />
-    );
+const MainList = ({ ...rest }: MainListProps): JSX.Element => {
+    return <List contentContainerStyle={{ paddingHorizontal: "6%", paddingVertical: 12 }} {...rest} />;
 };
 
 export default MainList;

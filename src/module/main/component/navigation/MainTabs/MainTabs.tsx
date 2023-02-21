@@ -1,14 +1,21 @@
-import { MainTabsContent } from "./MainTabs.styles";
-import { TabGroup, TabPanel, Tabs } from "react-native-components";
+import { Col, TabPanel, Tabs } from "@peersyst/react-native-components";
 import MainTab from "module/main/component/navigation/MainTabs/MainTab/MainTab";
 import { useState } from "react";
+import { TabGroup } from "./MainTabs.styles";
 import { MainTabsType as MainTabsProps } from "./MainTabs.types";
+import { LinearGradient } from "expo-linear-gradient";
+import useWalletGradient from "module/wallet/hook/useWalletGradient";
 
 const MainTabs = ({ tabs }: MainTabsProps): JSX.Element => {
     const [index, setIndex] = useState(0);
+    const gradientColor = useWalletGradient();
+
     return (
-        <Tabs gap={0} index={index} onIndexChange={setIndex}>
-            <TabGroup renderIndicator={false} style={{ justifyContent: "space-between", zIndex: 1 }}>
+        <Tabs gap={0} index={index} onIndexChange={setIndex} style={{ flex: 1 }}>
+            <TabGroup
+                renderIndicator={true}
+                indicator={<LinearGradient start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} colors={gradientColor} />}
+            >
                 {tabs.map(({ title }, index) => {
                     return (
                         <MainTab key={index} index={index}>
@@ -17,7 +24,7 @@ const MainTabs = ({ tabs }: MainTabsProps): JSX.Element => {
                     );
                 })}
             </TabGroup>
-            <MainTabsContent numberOfTabs={tabs.length} activeIndex={index}>
+            <Col flex={1}>
                 {tabs.map(({ item }, index) => {
                     return (
                         <TabPanel key={index} index={index}>
@@ -25,7 +32,7 @@ const MainTabs = ({ tabs }: MainTabsProps): JSX.Element => {
                         </TabPanel>
                     );
                 })}
-            </MainTabsContent>
+            </Col>
         </Tabs>
     );
 };

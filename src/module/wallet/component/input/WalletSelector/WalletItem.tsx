@@ -1,30 +1,26 @@
-import { Row, Typography } from "react-native-components";
+import { Row, Typography, Suspense } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import useWallet from "module/wallet/hook/useWallet";
-import ControlledSuspense from "module/common/component/base/feedback/ControlledSuspense/ControlledSuspense";
 
 export interface WalletItemProps {
     index: number;
-    color?: string;
 }
 
-const WalletItem = ({ index, color = "#000000" }: WalletItemProps): JSX.Element => {
-    const { name } = useWallet(index);
+const WalletItem = ({ index }: WalletItemProps): JSX.Element => {
+    const { account } = useWallet(index);
     const { data: balance, isLoading: balanceIsLoading } = useGetBalance(index);
 
     return (
         <Row alignItems="center" style={{ overflow: "hidden" }}>
-            <Typography numberOfLines={1} variant="body1" fontWeight="bold" style={{ color, maxWidth: "60%" }}>
-                {name}
+            <Typography numberOfLines={1} variant="body2Strong" style={{ maxWidth: "60%" }}>
+                {account}
             </Typography>
-            <Row>
-                <Typography variant="body1" style={{ color }}>
-                    {" - "}
-                </Typography>
-                <ControlledSuspense isLoading={balanceIsLoading} activityIndicatorColor={color} activityIndicatorSize="small">
-                    <Balance balance={balance?.freeBalance || 0} units={"CKB"} variant="body1" boldUnits style={{ color }} />
-                </ControlledSuspense>
+            <Row style={{ maxWidth: "40%" }}>
+                <Typography variant="body2Strong">{" · "}</Typography>
+                <Suspense isLoading={balanceIsLoading} activityIndicatorSize="small">
+                    <Balance balance={balance?.available || 0} variant="body2Strong" light units="token" />
+                </Suspense>
             </Row>
         </Row>
     );

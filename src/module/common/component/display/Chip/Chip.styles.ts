@@ -1,27 +1,49 @@
-import { ChipRootProps } from "./Chip.types";
+import { ChipRootProps, ChipSize, ChipTextProps } from "./Chip.types";
 import styled from "@peersyst/react-native-styled";
-import { View, Text } from "react-native";
-import { AppearanceProps } from "module/common/types";
+import { View, Text, ViewStyle } from "react-native";
 
-export const ChipRoot = styled(View)<ChipRootProps>(({ theme, appearance, fullWidth }) => ({
-    height: 30,
-    paddingHorizontal: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: theme.borderRadius,
-    shadowColor: theme.palette.fullBlack,
-    shadowOffset: {
-        width: 0,
-        height: 2,
+const CHIP_ROOT_STYLES: Record<ChipSize, ViewStyle> = {
+    md: {
+        paddingHorizontal: 12,
+        paddingVertical: 6,
     },
-    shadowOpacity: 0.4,
-    shadowRadius: 10,
-    elevation: 6,
-    alignSelf: fullWidth ? undefined : "flex-start",
-    backgroundColor: appearance === "light" ? theme.palette.lighterGray : theme.palette.black,
-}));
+    sm: {
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+    },
+};
 
-export const ChipText = styled(Text)<AppearanceProps>(({ theme, appearance }) => ({
-    fontSize: 14,
-    color: appearance === "light" ? theme.palette.darkFont : theme.palette.white,
+export const ChipRoot = styled(View)<ChipRootProps>(({ theme, variant, fullWidth, size = "md" }) => {
+    return {
+        ...CHIP_ROOT_STYLES[size],
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 100, //Rounded
+        alignSelf: fullWidth ? undefined : "flex-start",
+        ...(variant === "outlined" && {
+            borderWidth: 2,
+            borderStyle: "solid",
+            borderColor: theme.palette.overlay["8%"],
+            backgroundColor: "transparent",
+        }),
+        ...(variant === "glass" && {
+            backgroundColor: theme.palette.overlay["20%"],
+        }),
+        ...(variant === "filled" && {
+            backgroundColor: theme.palette.gray["900"],
+        }),
+    };
+});
+
+export const ChipText = styled(Text)<ChipTextProps>(({ theme, variant = "filled", size }) => ({
+    ...theme.typography[size === "sm" ? "body4Strong" : "body3Strong"],
+    ...(variant === "outlined" && {
+        color: theme.palette.overlay["60%"],
+    }),
+    ...(variant === "glass" && {
+        color: theme.palette.white,
+    }),
+    ...(variant === "filled" && {
+        color: theme.palette.gray[0],
+    }),
 }));

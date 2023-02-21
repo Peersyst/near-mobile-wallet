@@ -1,13 +1,15 @@
-import { LocaleType, translate } from "locale";
-import SelectGroup, { optionType } from "module/common/component/input/SelectGroup/SelectGroup";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
-import i18n from "i18n-js";
-import { LayoutAnimation } from "react-native";
+import { SelectOption } from "@peersyst/react-native-components";
+import { useTranslate } from "module/common/hook/useTranslate";
+import { LocaleType } from "locale";
+import i18n from "locale/i18n";
+import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
 
 const SelectLocale = (): JSX.Element => {
-    const localeOptions: optionType[] = [
+    const translate = useTranslate();
+    const localeOptions: SelectOption<LocaleType>[] = [
         {
             label: translate("es"),
             value: "es",
@@ -16,27 +18,20 @@ const SelectLocale = (): JSX.Element => {
             label: translate("en"),
             value: "en",
         },
-        {
-            label: translate("zh"),
-            value: "zh",
-        },
     ];
     const [settings, setSettings] = useRecoilState(settingsState);
 
-    const handleSelect = async (value: LocaleType) => {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-        setSettings((s) => ({ ...s, loading: true }));
-        i18n.locale = value;
-        await SettingsStorage.set({ locale: value });
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-        setTimeout(() => setSettings((s) => ({ ...s, locale: value, loading: false })), 1000);
+    const handleSelect = (value: LocaleType) => {
+        i18n.changeLanguage(value);
+        setSettings((s) => ({ ...s, locale: value }));
+        SettingsStorage.set({ locale: value });
     };
     return (
-        <SelectGroup
+        <SettingsSelect
             options={localeOptions}
             value={settings.locale}
             label={translate("select_locale")}
-            onChange={(value) => handleSelect(value as LocaleType)}
+            onChange={(value) => handleSelect(value)}
         />
     );
 };

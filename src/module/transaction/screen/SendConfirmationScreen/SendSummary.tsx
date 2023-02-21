@@ -1,24 +1,25 @@
-import { formatAddress } from "@peersyst/react-utils";
-import { translate } from "locale";
-import { SendState } from "module/transaction/state/SendState";
-import { Col } from "react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import BaseSendSummary, { BaseSendSummaryProps } from "../../component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../component/display/SummaryField/SummaryField";
+import { useTranslate } from "module/common/hook/useTranslate";
+import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
 
 export interface SendSummaryProps extends BaseSendSummaryProps {
-    senderName: string;
-    senderAddress: string;
-    receiverAddress: SendState["receiverAddress"];
-    message: SendState["message"];
+    senderAccount: string;
+    receiverAccount: string;
 }
 
-const SendSummary = ({ amount, fee, receiverAddress, message, senderName, senderAddress }: SendSummaryProps): JSX.Element => {
+const SendSummary = ({ senderAccount, receiverAccount, ...rest }: SendSummaryProps): JSX.Element => {
+    const translate = useTranslate();
     return (
-        <BaseSendSummary amount={amount} fee={fee}>
-            <Col gap="3%" style={{ alignSelf: "flex-start" }}>
-                <SummaryField label={translate("from")}>{senderName + " - " + formatAddress(senderAddress, "middle", 3)}</SummaryField>
-                <SummaryField label={translate("to")}>{formatAddress(receiverAddress!, "middle", 3)}</SummaryField>
-                <SummaryField label={translate("message")}>{message || "-"}</SummaryField>
+        <BaseSendSummary {...rest}>
+            <Col gap="8%" style={{ alignSelf: "flex-start" }}>
+                <SummaryField label={translate("from")}>
+                    <BlockchainAddress type="address" variant="body2Strong" address={senderAccount} />
+                </SummaryField>
+                <SummaryField label={translate("to")}>
+                    <BlockchainAddress type="address" variant="body2Strong" address={receiverAccount} />
+                </SummaryField>
             </Col>
         </BaseSendSummary>
     );

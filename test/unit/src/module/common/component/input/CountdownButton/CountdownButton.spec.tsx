@@ -7,15 +7,15 @@ describe("CountdownButton tests", () => {
         const handleCountdownEnd = jest.fn();
         jest.useFakeTimers();
         const screen = render(
-            <CountdownButton seconds={2} onCountdownEnd={handleCountdownEnd}>
+            <CountdownButton countdownTime={2000} onCountdownEnd={handleCountdownEnd}>
                 Button content
             </CountdownButton>,
         );
-        expect(screen.getByText("... 2s")).toBeDefined();
+        expect(screen.getByText("2s")).toBeDefined();
         act(() => jest.runOnlyPendingTimers());
-        expect(screen.getByText("... 1s")).toBeDefined();
+        expect(screen.getByText("1s")).toBeDefined();
         act(() => jest.runOnlyPendingTimers());
-        expect(screen.queryByText("... 1s")).toBeNull();
+        expect(screen.queryByText("1s")).toBeNull();
         expect(screen.getByText("Button content")).toBeDefined();
         expect(handleCountdownEnd).toHaveBeenCalled();
         jest.useRealTimers();

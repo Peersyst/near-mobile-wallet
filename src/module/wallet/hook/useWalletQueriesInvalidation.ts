@@ -9,8 +9,6 @@ const useWalletQueriesInvalidation = (): ((index: number, chain: NetworkType) =>
             queryClient.invalidateQueries(["tokens", index, chain], { refetchInactive: true, exact: true }),
             queryClient.invalidateQueries(["nfts", index, chain], { refetchInactive: true, exact: true }),
             queryClient.invalidateQueries(["balance", index, chain], { refetchInactive: true, exact: true }),
-            queryClient.invalidateQueries(["daoBalance", index, chain], { refetchInactive: true, exact: true }),
-            queryClient.invalidateQueries(["daoUnlockableAmounts", index, chain], { refetchInactive: true, exact: true }),
         ]);
     };
 };

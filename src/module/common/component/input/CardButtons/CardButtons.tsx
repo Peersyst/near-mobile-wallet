@@ -1,4 +1,4 @@
-import { Row } from "react-native-components";
+import { Row } from "@peersyst/react-native-components";
 import { CardButton, Separator } from "./CardButtons.styles";
 import { ReactElement } from "react";
 

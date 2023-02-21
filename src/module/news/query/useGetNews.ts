@@ -2,12 +2,12 @@ import { XMLParser } from "fast-xml-parser";
 import { QueryResult } from "query-utils";
 import { useQuery } from "react-query";
 import { NewsDto } from "../types";
-
-const rrssUriProvider = "https://fetchrss.com/rss/6239aa2ceb62c371b8448ee26239aa120841546894777912.xml";
+import { config } from "config";
+import Queries from "../../../query/queries";
 
 const useGetNews = (): QueryResult<NewsDto[]> =>
-    useQuery(["news"], async () => {
-        const res: Response = await fetch(rrssUriProvider);
+    useQuery([Queries.GET_NEWS], async () => {
+        const res: Response = await fetch(config.newsRSSUrl);
         const data = await res.text();
         const options = {
             ignoreDeclaration: true,
@@ -16,8 +16,7 @@ const useGetNews = (): QueryResult<NewsDto[]> =>
             removeNSPrefix: true,
         };
         const parser = new XMLParser(options);
-        const jsonObj = parser.parse(data)["rss"]["channel"]["item"];
-        return jsonObj;
+        return parser.parse(data)["rss"]["channel"]["item"];
     });
 
 export default useGetNews;

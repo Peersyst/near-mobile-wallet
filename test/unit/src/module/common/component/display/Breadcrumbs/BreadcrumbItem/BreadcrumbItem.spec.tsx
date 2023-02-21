@@ -1,6 +1,6 @@
 import BreadcrumbItem from "module/common/component/display/Breadcrumbs/BreadcrumbItem/BreadcrumbItem";
-import { theme } from "module/common/style/theme";
 import { render } from "test-utils";
+import lightTheme from "config/theme/lightTheme";
 
 describe("Test for the BreadcrumbItem", () => {
     test("Renders correctly not active", () => {
@@ -12,6 +12,6 @@ describe("Test for the BreadcrumbItem", () => {
         const screen = render(<BreadcrumbItem number={1} active={true} />);
         const number = screen.getByText("1");
         expect(number).toBeDefined();
-        expect(number.props.style.color).toEqual(theme.palette.white);
+        expect(number.props.style.color).toEqual(lightTheme.palette.white);
     });
 });

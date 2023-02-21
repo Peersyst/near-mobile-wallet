@@ -1,40 +1,53 @@
 import Select, { SelectProps } from "module/common/component/input/Select/Select";
-import { getLuminance } from "@peersyst/react-utils";
-import { translate } from "locale";
-import { useTheme } from "@peersyst/react-native-styled";
-import useWalletState from "module/wallet/hook/useWalletState";
 import WalletItem from "./WalletItem";
 import WalletSelectorItem from "./WalletSelectorItem";
-import { useControlled } from "@peersyst/react-hooks";
+import { useTranslate } from "module/common/hook/useTranslate";
+import useWalletSelector from "module/wallet/hook/useWalletSelector";
 
-export type WalletSelectorProps = Omit<SelectProps, "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple">;
+export type WalletSelectorProps = Omit<
+    SelectProps<number>,
+    "options" | "children" | "renderValue" | "icon" | "placeholder" | "title" | "multiple"
+> & {
+    minBalance?: string;
+};
 
-const WalletSelector = ({ style, value, onChange, defaultValue, ...rest }: WalletSelectorProps): JSX.Element => {
+const WalletSelector = ({
+    style,
+    value,
+    onChange,
+    defaultValue,
+    error: errorProp,
+    hideError: hideErrorProp,
+    minBalance,
+    ...rest
+}: WalletSelectorProps): JSX.Element => {
+    const translate = useTranslate();
+
     const {
-        state: { wallets, selectedWallet: defaultAccount = 0 },
-    } = useWalletState();
-    const { palette } = useTheme();
-    const [selectedIndex, setSelectedIndex] = useControlled((defaultValue as number) ?? defaultAccount, value as number, onChange);
-    const selectedWallet = selectedIndex !== undefined ? wallets[selectedIndex] : undefined;
-    const backgroundColor = selectedWallet ? palette.wallet[selectedWallet.colorIndex] : undefined;
-    const textColor = getLuminance(backgroundColor || "#FFFFFF") < 0.5 ? "#FFFFFF" : "#000000";
+        selectedIndex = 0,
+        selectedWallet,
+        setWalletIndex,
+        wallets,
+        error,
+        hideError,
+    } = useWalletSelector({ value, onChange, defaultValue, minBalance });
 
-    const handleItemChange = (i: unknown) => {
-        setSelectedIndex(i as number);
-    };
+    const finalHideError = hideErrorProp !== undefined ? hideErrorProp : hideError;
 
     return (
         <Select
             value={selectedIndex}
-            onChange={handleItemChange}
-            style={{ display: { color: textColor, ...(backgroundColor && { backgroundColor }) }, ...style }}
+            error={errorProp || error}
+            hideError={finalHideError}
+            onChange={setWalletIndex}
+            style={style}
             title={translate("select_a_wallet")}
             placeholder={translate("no_account_selected")}
-            renderValue={() => (selectedWallet !== undefined ? <WalletItem index={selectedWallet.index} color={textColor} /> : undefined)}
+            renderValue={() => (selectedWallet !== undefined ? <WalletItem index={selectedIndex} /> : undefined)}
             {...rest}
         >
-            {wallets.map(({ index: walletIndex }, index) => (
-                <WalletSelectorItem walletIndex={walletIndex} index={index} key={walletIndex} />
+            {wallets.map((_, index) => (
+                <WalletSelectorItem index={index} key={index} />
             ))}
         </Select>
     );

@@ -1,18 +1,18 @@
-import { translate } from "locale";
 import BaseSecondaryScreen from "module/common/component/layout/BaseSecondaryScreen/BaseSecondaryScreen";
-import { BottomTabScreenNavigatonProps } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup.types";
-import { Col } from "react-native-components";
-import SelectFee from "../components/core/SelectFee/SelectFee";
+import { Col } from "@peersyst/react-native-components";
 import SelectFiat from "../components/core/SelectFiat/SelectFiat";
 import SelectLocale from "../components/core/SelectLocale/SelectLocale";
 import SelectNetwork from "../components/core/SelectNetwork/SelectNetwork";
+import { useTranslate } from "module/common/hook/useTranslate";
+import SwitchTheme from "../components/core/SwitchTheme/SwitchTheme";
 
-const GeneralSettingsScreen = ({ navigation }: BottomTabScreenNavigatonProps): JSX.Element => {
+const GeneralSettingsScreen = (): JSX.Element => {
+    const translate = useTranslate();
     return (
-        <BaseSecondaryScreen navigation={navigation} title={translate("general_settings")} back={true}>
-            <Col gap={20}>
+        <BaseSecondaryScreen title={translate("general_settings")} back>
+            <Col gap={10}>
+                <SwitchTheme />
                 <SelectNetwork />
-                <SelectFee />
                 <SelectFiat />
                 <SelectLocale />
             </Col>

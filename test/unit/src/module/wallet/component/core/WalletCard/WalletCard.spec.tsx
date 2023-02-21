@@ -1,63 +1,55 @@
-import { translate } from "locale";
-import { render } from "test-utils";
+import { formatBalance, render, translate } from "test-utils";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import WalletCard from "module/wallet/component/core/WalletCard/WalletCard";
-import * as UseWalletState from "module/wallet/hook/useWalletState";
-import { mockedUseWallet } from "mocks/useWalletState";
-import { wallet } from "mocks/wallet";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import { MnemonicMocked } from "mocks/MnemonicMocked";
-import * as useCkbConversion from "module/common/hook/useCkbConversion";
 import * as Recoil from "recoil";
-import * as ExpoHapits from "expo-haptics";
+import * as ExpoHaptics from "expo-haptics";
+import { capitalize } from "@peersyst/react-utils";
+import { config } from "config";
+import { AccountBalanceMock, UseNativeTokenConversionMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
+import { CURRENCY_UNIT } from "module/wallet/component/display/Balance/constants/currencies";
 
 describe("WalletCard tests", () => {
-    const sdkInstance = new CKBSDKService("testnet", MnemonicMocked);
+    const { state } = new UseWalletStateMock();
+    const wallet = state.wallets[0];
+    const { serviceInstance } = new UseServiceInstanceMock();
+    const accountBalance = new AccountBalanceMock();
+    jest.spyOn(serviceInstance, "getAccountBalance").mockResolvedValue(accountBalance);
 
-    afterEach(() => {
+    afterAll(() => {
         jest.restoreAllMocks();
-    });
-
-    beforeEach(() => {
-        jest.spyOn(UseWalletState, "default").mockReturnValue(mockedUseWallet);
-        jest.spyOn(serviceInstancesMap, "get").mockReturnValue({ testnet: sdkInstance, mainnet: sdkInstance });
-        jest.spyOn(sdkInstance, "getCKBBalance").mockReturnValue({
-            totalBalance: 20000,
-            occupiedBalance: 9600,
-            freeBalance: 10400,
-        });
     });
 
     test("Renders correctly", async () => {
         const screen = render(<WalletCard wallet={wallet} />);
         /**Account header */
-        expect(screen.getByText(mockedUseWallet.state.wallets[0].name)).toBeDefined();
-        expect(screen.getByTestId("EditIcon")).toBeDefined();
-        expect(screen.getByTestId("CopyIcon")).toBeDefined();
+        expect(screen.getByText(wallet.account)).toBeDefined();
 
         /**Account Balance */
-        await waitFor(() => expect(screen.getByText("10,400")).toBeDefined());
-        expect(screen.getByText("000000")).toBeDefined();
+        const balance = await screen.findByText(formatBalance(accountBalance.available, { units: config.tokenName }));
+        expect(balance).toBeDefined();
 
         /**Account Buttons */
-        expect(screen.getByText(translate("send"))).toBeDefined();
-        expect(screen.getByTestId("ReceiveIcon")).toBeDefined();
-        expect(screen.getByTestId("SendIcon")).toBeDefined();
-        expect(screen.getByText(translate("receive"))).toBeDefined();
+        expect(screen.getByText(capitalize(translate("send")))).toBeDefined();
+        expect(screen.getByText(capitalize(translate("receive")))).toBeDefined();
+    });
+
+    test("Display imported tag", () => {
+        const screen = render(<WalletCard wallet={{ ...wallet, imported: true }} />);
+        expect(screen.getByText(translate("imported").toUpperCase())).toBeDefined();
     });
 
     test("Change the currency when the user clicks on the balance", async () => {
         jest.spyOn(Recoil, "useRecoilValue").mockReturnValue({ fiat: "eur" });
-        jest.spyOn(useCkbConversion, "default").mockReturnValue({ value: 10, convertBalance: jest.fn() });
+        new UseNativeTokenConversionMock({ value: "10" });
         const mockedVibrate = jest.fn();
-        jest.spyOn(ExpoHapits, "impactAsync").mockImplementation(mockedVibrate);
+        jest.spyOn(ExpoHaptics, "impactAsync").mockImplementation(mockedVibrate);
         const screen = render(<WalletCard wallet={wallet} />);
         /**Account Balance */
-        await waitFor(() => expect(screen.getByText("10,400")).toBeDefined());
-        const text = screen.getByText("10,400");
-        fireEvent.press(text);
-        await waitFor(() => expect(screen.getByText("10")).toBeDefined());
+        const balance = await screen.findByText(formatBalance(accountBalance.available, { units: config.tokenName }));
+        expect(balance).toBeDefined();
+        fireEvent.press(balance);
+
+        await waitFor(() => expect(screen.getByText(CURRENCY_UNIT["eur"] + " 10")).toBeDefined());
         expect(mockedVibrate).toHaveBeenCalled();
     });
 });

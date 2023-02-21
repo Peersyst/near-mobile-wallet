@@ -1,91 +1,63 @@
-import { Col, Typography, useModal } from "react-native-components";
+import { Col, Typography, useModal, useToast } from "@peersyst/react-native-components";
 import CountdownButton from "module/common/component/input/CountdownButton/CountdownButton";
-import { translate } from "locale";
 import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
-import useSendTransaction from "../../query/useSendTransaction";
-import SendModal from "module/transaction/component/core/SendModal/SendModal";
-import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import useWalletState from "module/wallet/hook/useWalletState";
-import { WalletStorage } from "module/wallet/WalletStorage";
 import SendSummary from "./SendSummary";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import settingsState from "module/settings/state/SettingsState";
-import { convertCKBToShannons } from "module/wallet/utils/convertCKBToShannons";
-import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
-import { useState } from "react";
-import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
+import { useTranslate } from "module/common/hook/useTranslate";
+import SendTransactionModal from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal";
+import SendModal from "module/transaction/component/core/SendModal/SendModal";
+import { useSendTransaction } from "module/transaction/hook/useSendTransaction";
+import { config } from "config";
 
 const SendConfirmationScreen = (): JSX.Element => {
-    const [showConfirmation, setShowConfirmation] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const network = useSelectedNetwork();
-    const { amount, fee: feeInCKB, senderWalletIndex, receiverAddress, message } = useRecoilValue(sendState);
-    const { fee: feeInShannons } = useRecoilValue(settingsState);
+    const translate = useTranslate();
+    const { hideModal } = useModal();
+    const { showToast } = useToast();
+    const sendStateValue = useRecoilValue(sendState);
+    const { sendTransaction, isSuccess, ...rest } = useSendTransaction(sendStateValue);
     const {
         state: { wallets },
     } = useWalletState();
-    const senderWallet = wallets[senderWalletIndex!];
-    const { name: senderName, index } = senderWallet;
-    const serviceInstance = serviceInstancesMap.get(index)?.[network];
-    const { mutate: sendTransaction, isLoading, isSuccess, isError } = useSendTransaction();
-    const { hideModal } = useModal();
 
-    const handleConfirmation = async () => {
-        const mnemonic = await WalletStorage.getMnemonic(senderWalletIndex!);
-        sendTransaction(
-            {
-                amount: convertCKBToShannons(amount!),
-                message: message!,
-                to: receiverAddress!,
-                mnemonic: mnemonic!,
-                feeRate: feeInShannons,
-            },
-            {
-                onSettled: () => setLoading(false),
-            },
-        );
-    };
+    const { asset, amount, receiverAddress, senderWalletIndex } = sendStateValue;
+    const senderWallet = wallets[senderWalletIndex!];
+    const { account: senderName } = senderWallet;
+
+    function closeModal() {
+        hideModal(SendModal.id);
+        if (isSuccess) showToast(translate("send_success"), { type: "success" });
+    }
 
     return (
-        <>
-            <Col gap={"5%"}>
-                <SendSummary
-                    amount={amount!}
-                    receiverAddress={receiverAddress!}
-                    fee={feeInCKB!}
-                    message={message!}
-                    senderName={senderName}
-                    senderAddress={serviceInstance?.getAddress() || ""}
-                />
-                <Typography variant="caption" textAlign="center">
-                    {translate("send_confirmation_text")}
-                </Typography>
-                <CountdownButton
-                    loading={loading}
-                    disabled={isSuccess}
-                    variant="outlined"
-                    seconds={5}
-                    fullWidth
-                    onPress={() => setShowConfirmation(true)}
-                >
-                    {translate("confirm")}
-                </CountdownButton>
-            </Col>
-            <ConfirmPinModal
-                open={showConfirmation}
-                onClose={() => setShowConfirmation(false)}
-                onPinConfirmed={() => setLoading(true)}
-                onConfirmedExited={handleConfirmation}
-            />
-            <LoadingModal
-                loading={isLoading}
-                success={isSuccess}
-                error={isError}
-                onExited={() => hideModal(SendModal.id)}
-                successMessage={translate("transaction_completed")}
-            />
-        </>
+        <SendTransactionModal isSuccess={isSuccess} onExited={closeModal} sendTransaction={sendTransaction} {...rest}>
+            {({ showModal, isSuccess, isLoading }) => (
+                <Col gap={24} onStartShouldSetResponder={() => true}>
+                    <SendSummary
+                        displayFullDecimals
+                        nft={asset.nft}
+                        token={asset.ft}
+                        showFiat
+                        showTotal
+                        senderAccount={senderName!}
+                        receiverAccount={receiverAddress!}
+                        amount={amount!}
+                    />
+                    <Typography variant="body3Regular" textAlign="center" light>
+                        {translate("send_confirmation_text")}
+                    </Typography>
+                    <CountdownButton
+                        loading={isLoading}
+                        disabled={isSuccess}
+                        countdownTime={config.approveTxWaitTime}
+                        fullWidth
+                        onPress={showModal}
+                    >
+                        {translate("confirm")}
+                    </CountdownButton>
+                </Col>
+            )}
+        </SendTransactionModal>
     );
 };
 

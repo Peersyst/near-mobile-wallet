@@ -1,17 +1,29 @@
-import * as UseSelectedWallet from "module/wallet/hook/useSelectedWallet";
-import { render } from "test-utils";
+import { fireEvent, render, translate } from "test-utils";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
-import { translate } from "locale";
-import { wallet } from "mocks/wallet";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
+import { MOCKED_ADDRESS, UseServiceInstanceMock, WalletStateMock } from "test-mocks";
+import * as UseCopyToClipboard from "module/common/hook/useCopyToClipboard";
 
-describe("ReceiveModal tests", () => {
+describe("Test for the receive Modal", () => {
+    beforeEach(() => {
+        new UseServiceInstanceMock();
+        new WalletStateMock();
+    });
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
     test("Renders correctly", () => {
-        jest.spyOn(UseSelectedWallet, "default").mockReturnValue(wallet);
-        jest.spyOn(CKBSDKService.prototype, "getAddress").mockReturnValue("0xMockedAddress");
         const screen = render(<ReceiveModal />);
-        expect(screen.getByText(translate("receive"))).toBeDefined();
-        expect(screen.getByTestId("QRCode")).toBeDefined();
-        expect(screen.getByText(translate("receive_info"))).toBeDefined();
+        expect(screen.getByText(MOCKED_ADDRESS)).toBeDefined();
+    });
+    test("Copies address correctly", () => {
+        const mockedCopy = jest.fn();
+        jest.spyOn(UseCopyToClipboard, "useCopyToClipboard").mockReturnValue(mockedCopy);
+        const screen = render(<ReceiveModal />);
+        const button = screen.getByText(translate("copy"));
+        expect(button).toBeDefined();
+        fireEvent.press(button);
+        expect(mockedCopy).toHaveBeenCalledWith({ message: MOCKED_ADDRESS, toastMessage: translate("address_copied") });
     });
 });

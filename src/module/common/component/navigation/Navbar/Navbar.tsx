@@ -1,25 +1,31 @@
 import { NavbarProps } from "./Navbar.types";
-import { NavbarRoot, BackIconRoot, Title } from "./Navbar.styles";
-import LogoRow from "../../display/Logos/LogoRow/LogoRow";
+import { NavbarRoot, BackIconRoot } from "./Navbar.styles";
 import { BackIcon } from "icons";
-import useNavigation from "../../../hook/useNavigation";
+import useNavigation from "module/common/hook/useNavigation";
+import { Col } from "@peersyst/react-native-components";
+import Steps from "module/common/component/display/Steps/Steps";
+import { NavbarTitle } from "./NavbarTitle";
 
-const Navbar = ({ back, title, logo = false, onBack }: NavbarProps): JSX.Element => {
+const Navbar = ({ back, title, onBack, steps, style }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
+
     const goBack = () => {
         if (navigation.canGoBack()) {
             navigation.goBack();
         }
     };
+
     return (
-        <NavbarRoot>
+        <NavbarRoot style={style}>
             {back && (
                 <BackIconRoot onPress={onBack || goBack}>
                     <BackIcon />
                 </BackIconRoot>
             )}
-            {logo && <LogoRow />}
-            {title && <Title variant="h2">{title}</Title>}
+            <Col alignItems="center">
+                {title && <NavbarTitle title={title} textTransform="uppercase" />}
+                {steps && <Steps index={steps.index} length={steps.length} />}
+            </Col>
         </NavbarRoot>
     );
 };

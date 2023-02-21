@@ -1,32 +1,24 @@
-import { formatAddress } from "@peersyst/react-utils";
-import { translate } from "locale";
-import { CKBSDKService } from "module/common/service/CkbSdkService";
 import SendSummary from "module/transaction/screen/SendConfirmationScreen/SendSummary";
-import { render } from "test-utils";
+import { render, translate } from "test-utils";
+import { config } from "config";
+import { UseServiceInstanceMock } from "test-mocks";
 
 describe("Test for the SendSummary component", () => {
     test("Renders correctly", () => {
-        jest.spyOn(CKBSDKService.prototype, "getAddress").mockReturnValue("0xMockedAddress");
+        new UseServiceInstanceMock();
         const screen = render(
-            <SendSummary
-                senderAddress="0xMockedAddress"
-                amount={2400}
-                fee={"0.001"}
-                receiverAddress={"0xRx"}
-                message={"hola"}
-                senderName={"Antonia"}
-            />,
+            <SendSummary showTotal senderAccount="0xMockedAddress" amount={"2400"} fee={"0.001"} receiverAccount={"0xRx"} />,
         );
         //Base summary
-        expect(screen.getByText("2,400")).toBeDefined();
-        expect(screen.getByText(translate("transaction_fee_label") + ":")).toBeDefined();
-        expect(screen.getByText("0")).toBeDefined();
-        expect(screen.getByText("001")).toBeDefined();
+        expect(screen.getByText(`2,400 ${config.tokenName}`)).toBeDefined();
+        //Fee
+        expect(screen.getByText(translate("transaction_fee_label") + " · ")).toBeDefined();
+        expect(screen.getByText(`0.001 ${config.tokenName}`)).toBeDefined();
+        //Total
+        expect(screen.getByText(translate("total") + " · ")).toBeDefined();
+        expect(screen.getByText(`2,400.001 ${config.tokenName}`)).toBeDefined();
         //From
-        expect(screen.getByText(translate("from") + ":"));
-        expect("Antonia" + " - " + formatAddress("0xMockedAddress", "middle", 3)).toBeDefined();
-        //Message
-        expect(screen.getByText(translate("message") + ":")).toBeDefined();
-        expect(screen.getByText("hola")).toBeDefined();
+        expect(screen.getByText(translate("from")));
+        expect(screen.getByText("0xMockedAddress")).toBeDefined();
     });
 });

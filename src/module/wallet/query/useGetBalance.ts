@@ -1,14 +1,13 @@
+import Queries from "../../../query/queries";
 import { useQuery } from "react-query";
-import { serviceInstancesMap } from "module/wallet/state/WalletState";
-import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
-import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
+import useServiceInstance from "../hook/useServiceInstance";
+import { config } from "config";
 
 const useGetBalance = (index?: number) => {
-    const network = useSelectedNetwork();
-    const selectedWallet = useSelectedWalletIndex();
-    const usedIndex = index ?? selectedWallet;
-    return useQuery(["balance", usedIndex, network], () => serviceInstancesMap.get(usedIndex)?.[network]?.getCKBBalance(), {
-        refetchInterval: 1500,
+    const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index);
+    return useQuery([Queries.GET_BALANCE, usedIndex, network], async () => await serviceInstance.getAccountBalance(), {
+        enabled: queryEnabled,
+        refetchInterval: config.refetchIntervals.balance,
     });
 };
 
