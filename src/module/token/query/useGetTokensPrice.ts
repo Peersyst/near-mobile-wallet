@@ -25,7 +25,12 @@ export const useGetTokensPrice = (): QueryResult<TokenPrices | undefined> => {
     return useQuery(
         [Queries.TOKENS_PRICE, network],
         async () => {
-            return await (await fetch(url)).json();
+            try {
+                return await (await fetch(url)).json();
+            } catch (e) {
+                console.warn("Error fetching price", JSON.stringify(e));
+                return undefined;
+            }
         },
         { refetchInterval: config.refetchIntervals.fiatPrice },
     );
