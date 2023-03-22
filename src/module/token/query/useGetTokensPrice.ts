@@ -28,6 +28,7 @@ export const useGetTokensPrice = (): QueryResult<TokenPrices | undefined> => {
             try {
                 return await (await fetch(url)).json();
             } catch (e) {
+                // eslint-disable-next-line no-console
                 console.warn("Error fetching price", JSON.stringify(e));
                 return undefined;
             }
