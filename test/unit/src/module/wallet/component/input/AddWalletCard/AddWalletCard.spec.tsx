@@ -1,10 +1,11 @@
 import { render, translate, screen, fireEvent } from "test-utils";
 import AddWalletCard from "module/wallet/component/display/AddWalletCard/AddWalletCard";
-import { UseModalMock } from "test-mocks";
+import { UseModalMock, UseWalletStateMock } from "test-mocks";
 import ImportWalletModal from "module/wallet/component/core/ImportWalletModal/ImportWalletModal";
 import CreateWalletModal from "module/wallet/component/core/CreateWalletModal/CreateWalletModal";
 
 describe("AddWalletCard tests", () => {
+    new UseWalletStateMock();
     test("Renders correctly", () => {
         render(<AddWalletCard />);
         expect(screen.getByText(translate("create_your_account"))).toBeDefined();

@@ -238,5 +238,7 @@
     "select_validator_withdrawal": "Selecciona el validador del que deseas retirar sus fondos.",
     "withdraw_success": "Su retiro se ha realizado con éxito",
     "biometricAuthentication": "Autenticación Biométrica",
-    "my_cool_id": "mycoolid"
+    "my_cool_id": "mycoolid",
+    "network_changed": "Red cambiada correctamente",
+    "recovering_accounts": "Recuperando tus cuentas..."
 }

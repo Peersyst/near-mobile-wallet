@@ -17,6 +17,6 @@ describe("WalletAdvisesScreen tests", () => {
 
         const generateMnemonicButton = screen.getByText("Next Screen");
         fireEvent.press(generateMnemonicButton);
-        expect(handleNextScreen).not.toHaveBeenCalled();
+        expect(handleNextScreen).toHaveBeenCalled();
     });
 });

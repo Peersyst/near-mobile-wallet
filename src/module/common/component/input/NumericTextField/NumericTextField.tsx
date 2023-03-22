@@ -9,7 +9,7 @@ export type NumericTextFieldProps = Omit<TextFieldProps, "input" | "keyboardType
 const NumericTextField = ({ maxDecimals, ...props }: NumericTextFieldProps) => {
     const { format, parse } = useNumericInput({ maxDecimals });
 
-    return <TextField format={format} parse={parse} {...props} />;
+    return <TextField format={format} parse={parse} {...props} keyboardType="numeric" />;
 };
 
 export default NumericTextField;

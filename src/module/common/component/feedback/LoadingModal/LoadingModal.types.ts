@@ -4,5 +4,6 @@ export interface LoadingModalProps extends Omit<ExposedBackdropProps, "closable"
     loading: boolean;
     success: boolean;
     successMessage?: string;
+    processingMessage?: string;
     error: boolean;
 }
