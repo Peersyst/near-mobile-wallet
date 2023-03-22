@@ -1,7 +1,7 @@
-import { useTheme } from "@peersyst/react-native-styled";
 import { PaletteGradient } from "config/theme/theme.declarations";
 import { WalletUtils } from "../utils/WalletUtils";
 import useWalletState from "./useWalletState";
+import { useTheme } from "@peersyst/react-native-components";
 
 export default function (index?: number): PaletteGradient {
     const {
