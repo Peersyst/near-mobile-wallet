@@ -7,7 +7,7 @@ import { Backdrop, Col } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import Logo from "../../display/Logo/Logo";
 
-const LoadingModal = ({ loading, successMessage, error, success, ...backdropProps }: LoadingModalProps): JSX.Element => {
+const LoadingModal = ({ loading, successMessage, error, success, processingMessage, ...backdropProps }: LoadingModalProps): JSX.Element => {
     const [open, setOpen] = useState(false);
     const translate = useTranslate();
 
@@ -56,7 +56,7 @@ const LoadingModal = ({ loading, successMessage, error, success, ...backdropProp
                         <Col alignItems="center" gap={14}>
                             <Logo />
                             <LoadingModalMessage textAlign="center" variant="body2Strong">
-                                {translate("processing")}
+                                {processingMessage || translate("processing")}
                             </LoadingModalMessage>
                         </Col>
                     )}

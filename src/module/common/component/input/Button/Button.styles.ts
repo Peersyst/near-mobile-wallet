@@ -24,43 +24,40 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             height: 36,
         },
         //Variant Styles
-        variant: {
-            primary: {
-                backgroundColor: theme.palette.primary,
-                color: "#FFFFFF",
-            },
-            secondary: {
-                backgroundColor: "#FFFFFF",
-                color: "#000000",
-            },
-            tertiary: {
-                backgroundColor: theme.palette.overlay["12%"],
-                color: "#ffffff",
-            },
-            outlined: {
-                borderColor: theme.palette.text,
-                color: theme.palette.text,
-                borderWidth: 1,
-            },
-            text: {
-                color: theme.palette.text,
-            },
+        primary: {
+            backgroundColor: theme.palette.primary,
+            color: "#FFFFFF",
         },
+        secondary: {
+            backgroundColor: "#FFFFFF",
+            color: "#000000",
+        },
+        tertiary: {
+            backgroundColor: theme.palette.overlay["12%"],
+            color: "#ffffff",
+        },
+        outlined: {
+            borderColor: theme.palette.text,
+            color: theme.palette.text,
+            borderWidth: 1,
+        },
+        text: {
+            color: theme.palette.text,
+        },
+
         //State Styles
         pressed: {
-            variant: {
-                primary: {
-                    backgroundColor: emphasize(theme.palette.primary, 0.15),
-                },
-                secondary: {
-                    backgroundColor: emphasize("#FFFFFF", 0.02),
-                },
-                tertiary: {
-                    backgroundColor: theme.palette.overlay["20%"],
-                },
-                outlined: {
-                    backgroundColor: theme.palette.overlay["8%"],
-                },
+            primary: {
+                backgroundColor: emphasize(theme.palette.primary, 0.15),
+            },
+            secondary: {
+                backgroundColor: emphasize("#FFFFFF", 0.02),
+            },
+            tertiary: {
+                backgroundColor: theme.palette.overlay["20%"],
+            },
+            outlined: {
+                backgroundColor: theme.palette.overlay["8%"],
             },
         },
         disabled: {

@@ -17,6 +17,7 @@ const WalletSlider = ({ Card }: WalletSliderProps): JSX.Element => {
         state: { selectedWallet = 0, wallets },
         setSelectedWallet,
     } = useWalletState();
+
     const handleSelectedWallet = (page: number) => {
         setSelectedWallet(page);
     };
