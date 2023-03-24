@@ -32,5 +32,12 @@
     "not_using_validators": "No estás realizando stake en ningún validador.",
     "invalid_child_account": "No puedes crear {{nameID}} con tu cuenta {{currentAccount}}.",
     "invalid_send_same_account": "No puedes mandarte a tu misma cuenta.",
-    "invalid_account_or_not_active": "La cuenta no es válida o no existe"
+    "invalid_account_or_not_active": "La cuenta no es válida o no existe",
+    "no_transactions": "No hay transacciones",
+    "no_nfts": "No hay NFTs",
+    "no_tokens": "No hay tokens",
+    "no_news_now": "Sin noticias nuevas por ahora",
+    "no_news_text": "Lo sentimos, actualmente no hay artículos de noticias para mostrar. Por favor, vuelva más tarde para ver las nuevas actualizaciones",
+    "no_validators": "Sin validadores",
+    "you_are_not_staking": "Actualmente no estas haciendo staking con ningún validador."
 }

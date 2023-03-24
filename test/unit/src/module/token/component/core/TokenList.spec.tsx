@@ -20,7 +20,6 @@ describe("Renders the token list properly", () => {
         const { serviceInstance } = new UseGetTokensMock({ fts: [] });
         const screen = render(<TokensList />);
         await waitFor(() => expect(serviceInstance.getAccountTokens).toBeCalled());
-        await wait(1000);
-        await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show", { ns: "error" }))));
+        await waitFor(() => expect(screen.getAllByText(translate("no_tokens", { ns: "error" }))));
     });
 });

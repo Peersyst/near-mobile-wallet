@@ -6,7 +6,6 @@ import QueryClientProvider from "./query/QueryClientProvider";
 import { ConfigProvider } from "./config";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./locale/i18n";
-import WalletColorProvider from "module/wallet/component/core/WalletColorProvider/WalletColorProvider";
 
 const Providers = ({ children }: PropsWithChildren<unknown>): JSX.Element => (
     <RecoilRoot>
@@ -15,10 +14,8 @@ const Providers = ({ children }: PropsWithChildren<unknown>): JSX.Element => (
                 <ConfigProvider>
                     <ToastProvider>
                         <QueryClientProvider>
-                            <WalletColorProvider>
-                                {children}
-                                {/*{process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}*/}
-                            </WalletColorProvider>
+                            {children}
+                            {/*{process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}*/}
                         </QueryClientProvider>
                     </ToastProvider>
                 </ConfigProvider>

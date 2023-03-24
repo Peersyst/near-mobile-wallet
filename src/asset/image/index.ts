@@ -1,5 +1,4 @@
 //@ts-nocheck
-export { default as empty_folder } from "./EmptyFolder.png";
 export { default as animation } from "./animation.webp";
 export { default as colored_background } from "./coloredBackground.png";
 export { default as deposit } from "./deposit.png";

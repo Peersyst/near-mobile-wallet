@@ -10,4 +10,10 @@ describe("Test for the acctions list component", () => {
         render(<ActionsList />);
         await waitFor(() => expect(screen.getByText(`${translate("from")} ${action.transaction.signerAccountId}`)));
     });
+
+    test("Renders correctly without txs", async () => {
+        new UseGetActionsMock({ actions: [] });
+        render(<ActionsList />);
+        await waitFor(() => expect(screen.getByText(translate("no_transactions", { ns: "error" }))));
+    });
 });
