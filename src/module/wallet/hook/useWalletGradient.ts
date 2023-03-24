@@ -5,7 +5,7 @@ import { useTheme } from "@peersyst/react-native-components";
 
 export default function (index?: number): PaletteGradient {
     const {
-        state: { wallets, selectedWallet = 0, isAuthenticated },
+        state: { wallets = [], selectedWallet = 0, isAuthenticated },
     } = useWalletState();
     const {
         palette: { wallet: walletColors },
