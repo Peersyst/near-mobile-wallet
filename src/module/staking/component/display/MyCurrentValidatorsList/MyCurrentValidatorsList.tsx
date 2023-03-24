@@ -7,6 +7,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 const MyCurrentValidatorsList = (): JSX.Element => {
     const { stakingValidators: validators, isLoading, refetch } = useGetStakingValidators();
     const translate = useTranslate("error");
+
     return (
         <MainList
             loading={isLoading}

@@ -6,6 +6,7 @@ import StakingSelectValidatorScreen from "../StakingSelectValidatorScreen";
 
 const AddStakeSelectValidatorScreen = (): JSX.Element => {
     const translate = useTranslate();
+    const translateError = useTranslate("error");
     const setTab = useSetTab();
 
     const { data: validators = [], isLoading } = useGetAllValidators();
@@ -18,6 +19,7 @@ const AddStakeSelectValidatorScreen = (): JSX.Element => {
             onSelected={() => setTab(AddStakeScreens.CONFIRM_VALIDATOR)}
             stakingBalanceType="staked"
             withSearch
+            emptyListMessage={translateError("no_validators_available")}
         />
     );
 };

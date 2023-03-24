@@ -13,11 +13,21 @@ export interface StakeValidatorSelectProps extends Pick<ValidatorStakingBalanceP
     loading: boolean;
     onSelected: (validator: Validator) => void;
     withSearch?: boolean;
+    emptyListMessage?: string;
 }
 
-const StakeValidatorSelect = ({ validators, loading, onSelected, withSearch = false, ...rest }: StakeValidatorSelectProps): JSX.Element => {
+const StakeValidatorSelect = ({
+    validators,
+    loading,
+    onSelected,
+    withSearch = false,
+    emptyListMessage,
+    ...rest
+}: StakeValidatorSelectProps): JSX.Element => {
     const translate = useTranslate();
+    const translateError = useTranslate("error");
     const { queryValidators, setAccountId, accountId, isPending } = useStakingValidatorController(validators);
+    const finalEmptyListMessage = validators.length > 0 ? translateError("no_validators_found", { accountId }) : emptyListMessage;
 
     return (
         <ValidatorSelectProvider value={{ setSelectedValidator: onSelected }}>
@@ -41,7 +51,12 @@ const StakeValidatorSelect = ({ validators, loading, onSelected, withSearch = fa
                             </Typography>
                         </Col>
                     ) : (
-                        <ValidatorListSelect validators={queryValidators} isLoading={loading} {...rest} />
+                        <ValidatorListSelect
+                            validators={queryValidators}
+                            emptyListMessage={finalEmptyListMessage}
+                            isLoading={loading}
+                            {...rest}
+                        />
                     )}
                 </Col>
             </Col>

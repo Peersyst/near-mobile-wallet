@@ -39,5 +39,7 @@
     "no_news_now": "Sin noticias nuevas por ahora",
     "no_news_text": "Lo sentimos, actualmente no hay artículos de noticias para mostrar. Por favor, vuelva más tarde para ver las nuevas actualizaciones",
     "no_validators": "Sin validadores",
-    "you_are_not_staking": "Actualmente no estás haciendo staking con ningún validador."
+    "you_are_not_staking": "Actualmente no estás haciendo staking con ningún validador.",
+    "no_validators_available": "Actualmente no hay ningún validador disponible",
+    "no_validators_found": "No se han encontrado validadores para esta búsqueda ({{accountId}})"
 }
