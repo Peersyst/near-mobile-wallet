@@ -1,6 +1,5 @@
 import { Animated } from "react-native";
 import { GradientPageProps } from "module/common/component/layout/GradientPage/GradientPage.types";
-import { useTheme } from "@peersyst/react-native-styled";
 import { useDimensions } from "@react-native-community/hooks";
 import { useEffect, useRef } from "react";
 import { GradientPageGradient, GradientPageRoot } from "module/common/component/layout/GradientPage/GradientPage.styles";

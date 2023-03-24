@@ -18,7 +18,7 @@ const NewsScreen = (): JSX.Element => {
                 refreshControlProps={{ tintColor: "black" }}
                 onRefresh={refetch}
                 keyExtractor={(_, index) => index.toString()}
-                data={isLoading ? new Array(5).fill({}) : []}
+                data={isLoading ? new Array(5).fill({}) : data}
                 ItemSeparatorComponent={() => <NewsSpacer />}
                 ListFooterComponent={() => <NewsSpacer style={{ paddingTop: 40 }} />}
                 ListEmptyComponent={isLoading ? undefined : <EmptyNewsList />}
