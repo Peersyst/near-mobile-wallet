@@ -14,9 +14,11 @@ const AccountSelector = ({ index, account }: AccountSelectorProps) => {
     const decimals = BalanceOperations.isBigger(available, config.minBalanceToCreateAccount) ? 1 : 3;
     return (
         <Row alignItems="center" justifyContent="space-between" style={{ maxWidth: "100%", width: "100%" }}>
-            <Selector value={index} label={account} />
+            <Row style={{ flex: 1 }}>
+                <Selector value={index} label={account} />
+            </Row>
             <Balance
-                style={{ width: "25%" }}
+                style={{ maxWidth: "30%" }}
                 balance={available}
                 options={{ maximumFractionDigits: decimals, minimumFractionDigits: decimals }}
                 key={index}
