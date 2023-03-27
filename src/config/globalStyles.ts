@@ -42,7 +42,6 @@ const globalStyles: CreateGlobalStyles = ({ theme: { palette, typography } }) =>
     Label: {
         label: {
             ...typography.body3Strong,
-            maxWidth: "60%",
         },
     },
     Paper: {
