@@ -102,7 +102,7 @@
     "smart_contract": "Smart Contract",
     "copied_to_clipboard": "Copiado al portapapeles",
     "receiver": "Receptor",
-    "senders": "Remitentes",
+    "sender": "Remitente",
     "hash": "Hash",
     "unknown": "Desconocido",
     "select_deposit": "Selecciona un depósito",
@@ -240,5 +240,8 @@
     "biometricAuthentication": "Autenticación Biométrica",
     "my_cool_id": "mycoolid",
     "network_changed": "Red cambiada correctamente",
-    "recovering_accounts": "Recuperando tus cuentas..."
+    "recovering_accounts": "Recuperando tus cuentas...",
+    "start_receiving_nfts": "Para empezar a ver NFTs, primero mándalos a la dirección de tu cuenta",
+    "start_receiving_tokens": "Para empezar a ver tokens, primero mándalos a la dirección de tu cuenta",
+    "start_making_transactions": "Para empezar a utilizar NEAR Mobile, envíe NEARs, tokens o NFTs a la dirección de su cuenta y destapa el poder de NEAR."
 }

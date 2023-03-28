@@ -103,7 +103,7 @@
     "wallet": "Wallet",
     "copied_to_clipboard": "Copied to clipboard",
     "receiver": "Receiver",
-    "senders": "Senders",
+    "sender": "Sender",
     "hash": "Hash",
     "unknown": "Unknown",
     "select_deposit": "Select a deposit",
@@ -240,5 +240,8 @@
     "biometricAuthentication": "Biometric authentication",
     "my_cool_id": "mycoolid",
     "network_changed": "Network changed succesfully",
-    "recovering_accounts": "Recovering your accounts..."
+    "recovering_accounts": "Recovering your accounts...",
+    "start_receiving_nfts": "To start seeing NFTs, send NFTs to your account's address.",
+    "start_receiving_tokens": "To start seeing tokens, send tokens to your account's address.",
+    "start_making_transactions": "To start using NEAR Mobile, send NEARs, tokens or NFTs to your account's address and unleash the power of NEAR."
 }
