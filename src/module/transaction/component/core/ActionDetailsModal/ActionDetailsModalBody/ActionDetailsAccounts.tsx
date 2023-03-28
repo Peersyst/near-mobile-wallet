@@ -13,12 +13,28 @@ const ActionDetailsAccounts = ({ action }: ActionDetailsAccountsProps): JSX.Elem
     const { transaction } = action;
     return (
         <Col gap={20} flex={1}>
-            <ActionDetail title={translate("sender")}>
-                <BlockchainAddress address={transaction.signerAccountId} type="address" variant="body3Regular" length={8} />
-            </ActionDetail>
-            <ActionDetail title={translate("receiver")}>
-                <BlockchainAddress address={transaction.receiverAccountId} type="address" variant="body3Regular" length={8} />
-            </ActionDetail>
+            {transaction.signerAccountId && (
+                <ActionDetail title={translate("sender")}>
+                    <BlockchainAddress
+                        showCopyIcon
+                        action="link"
+                        address={transaction.signerAccountId}
+                        type="address"
+                        variant="body3Regular"
+                    />
+                </ActionDetail>
+            )}
+            {transaction.receiverAccountId && (
+                <ActionDetail title={translate("receiver")}>
+                    <BlockchainAddress
+                        showCopyIcon
+                        action="link"
+                        address={transaction.receiverAccountId}
+                        type="address"
+                        variant="body3Regular"
+                    />
+                </ActionDetail>
+            )}
         </Col>
     );
 };

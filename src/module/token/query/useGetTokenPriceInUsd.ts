@@ -11,6 +11,7 @@ export interface UseGetTokenPriceInUsdReturn extends Omit<QueryResult<string | u
 
 export default function useGetTokenPriceInUsd(contractId?: string): UseGetTokenPriceInUsdReturn {
     const { data, refetch, ...rest } = useGetTokensPrice();
+
     function getPriceFromContract(prices?: TokenPrices) {
         if (!contractId) return undefined;
         return prices?.[contractId]?.price;

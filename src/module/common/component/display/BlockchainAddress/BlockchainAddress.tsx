@@ -18,7 +18,7 @@ const BlockchainAddress = ({ type: typeProp, ...rest }: BlockchainAddressProps):
         else return typeProp === "address" ? "mainnetAddress" : "mainnetTx";
     })();
 
-    return <BaseBlockchainAddress type={type} {...rest} />;
+    return <BaseBlockchainAddress type={type} {...rest} ellipsizeMode="middle" />;
 };
 
 export default BlockchainAddress;
