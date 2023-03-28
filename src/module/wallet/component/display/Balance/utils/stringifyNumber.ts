@@ -5,7 +5,6 @@ function isCientificNotation(num: string | number) {
 /**
  * Converts a number in cientific notation to a string representation
  * Example: 1.23e-3 => 0.00123
- * @returns
  */
 function parseCientificNotation(num: string | number) {
     const [base, exp] = num.toString().split(/[eE]/);
