@@ -1,9 +1,9 @@
 import { Animated } from "react-native";
 import { GradientPageProps } from "module/common/component/layout/GradientPage/GradientPage.types";
-import { useTheme } from "@peersyst/react-native-styled";
 import { useDimensions } from "@react-native-community/hooks";
 import { useEffect, useRef } from "react";
 import { GradientPageGradient, GradientPageRoot } from "module/common/component/layout/GradientPage/GradientPage.styles";
+import useWalletGradient from "module/wallet/hook/useWalletGradient";
 
 const GradientPage = ({
     gradient,
@@ -11,7 +11,7 @@ const GradientPage = ({
     children,
     ...rest
 }: GradientPageProps): JSX.Element => {
-    const { palette } = useTheme();
+    const walletGradient = useWalletGradient();
 
     const {
         screen: { width },
@@ -27,8 +27,8 @@ const GradientPage = ({
         }).start();
     }, [gradient]);
 
-    const backgroundColor = backgroundColorStyle || palette.gradient.blueTurquoise[0];
-    const secondaryBackgroundColor = secondaryBackgroundColorStyle || palette.gradient.blueTurquoise[1];
+    const backgroundColor = backgroundColorStyle || walletGradient[0];
+    const secondaryBackgroundColor = secondaryBackgroundColorStyle || walletGradient[1];
 
     return (
         <GradientPageRoot style={{ backgroundColor, ...style }} {...rest}>
