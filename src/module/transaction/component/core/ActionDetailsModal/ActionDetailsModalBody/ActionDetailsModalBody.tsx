@@ -3,7 +3,7 @@ import BlockchainAddress from "module/common/component/display/BlockchainAddress
 import { useTranslate } from "module/common/hook/useTranslate";
 import { Action } from "near-peersyst-sdk";
 import ActionDetailsAccounts from "./ActionDetailsAccounts";
-import ActionDetail from "./TransactionDetail";
+import ActionDetail from "./ActionDetail";
 
 export interface ActionDetailsModalBodyProps {
     action: Action;
