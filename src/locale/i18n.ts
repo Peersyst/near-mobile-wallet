@@ -12,11 +12,6 @@ import "intl/locale-data/jsonp/it";
 import "intl/locale-data/jsonp/ru";
 import "intl/locale-data/jsonp/uk";
 
-import "intl/locale-data/jsonp/it";
-import "intl/locale-data/jsonp/id";
-import "intl/locale-data/jsonp/ru";
-import "intl/locale-data/jsonp/uk";
-
 import LanguageDetectorPlugin from "./pluguins/LanguageDetectorPlugin/LanguageDetectorPlugin";
 
 export const resources = {
@@ -25,10 +20,6 @@ export const resources = {
     it,
     id,
     fr,
-    ru,
-    fr,
-    id,
-    it,
     ru,
     uk,
 } as const;
