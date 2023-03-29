@@ -21,7 +21,7 @@
     "defaultTwitterAccount": "https://twitter.com/NEARProtocol",
     "approveTxWaitTime": 3000,
     "testnetTokenPriceUrl": "https://testnet-indexer.ref-finance.com/list-token-price",
-    "mainnetTokenPriceUrl": "https://indexer.ref-finance.com/list-token-price",
+    "mainnetTokenPriceUrl": "https://indexer.ref.finance/list-token-price",
     "refetchIntervals": {
         "nfts": 60000,
         "tokens": 60000,

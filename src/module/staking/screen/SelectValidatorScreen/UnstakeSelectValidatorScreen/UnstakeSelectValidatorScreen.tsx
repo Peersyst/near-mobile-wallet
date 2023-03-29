@@ -7,6 +7,7 @@ import StakingSelectValidatorScreen from "../StakingSelectValidatorScreen";
 const UnstakeSelectValidatorScreen = (): JSX.Element => {
     const translate = useTranslate();
     const setTab = useSetTab();
+    const translateError = useTranslate("error");
 
     const { stakingValidators, isLoading } = useGetStakingValidators();
 
@@ -17,6 +18,7 @@ const UnstakeSelectValidatorScreen = (): JSX.Element => {
             loading={isLoading}
             onSelected={() => setTab(UnstakeModalScreens.SET_AMOUNT)}
             stakingBalanceType="staked"
+            emptyListMessage={translateError("you_are_not_staking")}
         />
     );
 };

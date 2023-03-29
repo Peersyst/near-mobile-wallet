@@ -41,7 +41,7 @@ const SendSetAmountScreen = (): JSX.Element => {
         setTab(SendScreens.CONFIRMATION);
     };
 
-    const handleAssetChange = (asset: Asset): void => {
+    const handleAssetChange = (asset: Asset | undefined): void => {
         setAsset(asset);
         setAmount("");
     };

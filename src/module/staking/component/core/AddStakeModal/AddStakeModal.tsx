@@ -5,6 +5,7 @@ import AddStakeValidatorScreen from "module/staking/screen/SelectValidatorScreen
 import AddStakeSetAmountScreen from "module/staking/screen/SetAmountScreen/AddStakeSetAmountScreen/AddStakeSetAmountScreen";
 import AddStakeSuccessScreen from "module/staking/screen/SuccessScreen/AddStakeSuccessScreen/AddStakeSuccessScreen";
 import AddStakeConfirmScreen from "module/staking/screen/ConfirmScreen/AddStakeConfirmScreen/AddStakeConfirmScreen";
+
 export enum AddStakeScreens {
     SET_AMOUNT,
     SELECT_VALIDATOR,

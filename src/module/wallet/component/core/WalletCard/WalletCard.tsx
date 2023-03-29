@@ -34,7 +34,7 @@ const WalletCard = ({ wallet }: WalletCardProps): JSX.Element => {
                         style={{ width: "100%" }}
                         isLoading={isLoading}
                         options={{ ...(showFiat ? { maximumFractionDigits: 2, minimumFractionDigits: 2 } : {}) }}
-                        spinnerProps={{ color: (p) => p.white, size: 42 }}
+                        spinnerProps={{ color: "white", size: 42 }}
                         onPress={changeCurrencyMode}
                         balance={showFiat ? fiatValue : available}
                         variant="h3Strong"

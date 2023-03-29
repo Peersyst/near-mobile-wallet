@@ -5,6 +5,7 @@ import { getAction } from "../utils/getAction";
 import { getTheMinimumThreshold, isZero } from "../utils/balance.utils";
 import { useFormatBalanceNumber } from "./useFormatBalanceNumber";
 import { UseFormatBalanceParams } from "../Balance.types";
+import { stringifyNumber } from "../utils/stringifyNumber";
 
 export const useFormatBalance = (
     balance: bigint | number | string,
@@ -13,7 +14,7 @@ export const useFormatBalance = (
     const formatBalanceNumber = useFormatBalanceNumber();
 
     //Clean the incoming balance (turn into a string representation of a number and remove the negative sign)
-    const stringifiedBalance = balance.toString();
+    const stringifiedBalance = stringifyNumber(balance.toString());
     if (stringifiedBalance === "NaN") return "";
     const unsignedBalance = stringifiedBalance.replace(/-|,/g, "");
     const isNegative = stringifiedBalance[0] === "-";

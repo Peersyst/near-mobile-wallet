@@ -17,7 +17,7 @@ export interface SettingsState {
 export const defaultSettingsState: SettingsState = {
     locale: getDefaultLocale(),
     fiat: "usd",
-    network: Chains.TESTNET,
+    network: Chains.MAINNET,
     biometrics: true,
 };
 
