@@ -56,7 +56,7 @@ describe("useWalletSelector tests", () => {
             setWalletIndex: expect.any(Function),
             wallets: wallets,
             hideError: true,
-            error: [true, translate("invalid_seleccted_account", { ns: "error", amountInNEAR: config.minBalanceToCreateAccount })],
+            error: [true, translate("invalid_selected_account", { ns: "error", amountInNEAR: config.minBalanceToCreateAccount })],
         });
         await waitFor(() => expect(serviceInstance.getAccountBalance).toBeCalledTimes(1));
         expect(useWalletSelector.current).toEqual({
@@ -65,7 +65,7 @@ describe("useWalletSelector tests", () => {
             setWalletIndex: expect.any(Function),
             wallets: wallets,
             hideError: false,
-            error: [true, translate("invalid_seleccted_account", { ns: "error", amountInNEAR: config.minBalanceToCreateAccount })],
+            error: [true, translate("invalid_selected_account", { ns: "error", amountInNEAR: config.minBalanceToCreateAccount })],
         });
     });
 });

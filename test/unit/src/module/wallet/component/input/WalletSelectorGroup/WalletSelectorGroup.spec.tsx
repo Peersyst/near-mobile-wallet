@@ -33,12 +33,12 @@ describe("WalletSelectorGroup", () => {
         await waitFor(() => expect(screen.getByTestId("RadioCheckedIcon")).toBeDefined());
         //By default do not display error
         expect(
-            screen.queryByText(translate("invalid_seleccted_account", { amountInNEAR: config.minBalanceToCreateAccount, ns: "error" })),
+            screen.queryByText(translate("invalid_selected_account", { amountInNEAR: config.minBalanceToCreateAccount, ns: "error" })),
         ).toBeNull();
         fireEvent.press(screen.getByTestId("RadioUncheckedIcon"));
         //Display error
         expect(
-            screen.getByText(translate("invalid_seleccted_account", { amountInNEAR: config.minBalanceToCreateAccount, ns: "error" })),
+            screen.getByText(translate("invalid_selected_account", { amountInNEAR: config.minBalanceToCreateAccount, ns: "error" })),
         ).toBeDefined();
     });
 });

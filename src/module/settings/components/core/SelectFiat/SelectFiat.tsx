@@ -26,6 +26,18 @@ const fiatOptions: SelectOption<FiatCurrencyType>[] = [
         label: "CNY",
         value: "cny",
     },
+    {
+        label: "RUB",
+        value: "rub",
+    },
+    {
+        label: "UAH",
+        value: "uah",
+    },
+    {
+        label: "IDR",
+        value: "idr",
+    },
 ];
 
 const SelectFiat = (): JSX.Element => {

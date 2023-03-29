@@ -68,8 +68,6 @@
     "network_name": "{{name}} network",
     "default_currency": "Default currency",
     "select_locale": "Select your language",
-    "en": "English",
-    "es": "Spanish",
     "confirm": "Confirm",
     "transaction_fee_label": "Transaction fee",
     "total": "Total",

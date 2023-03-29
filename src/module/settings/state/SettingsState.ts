@@ -2,7 +2,7 @@ import { atom } from "recoil";
 import { getDefaultLocale, LocaleType } from "locale";
 import { Chains } from "near-peersyst-sdk";
 
-export type FiatCurrencyType = "cny" | "usd" | "eur" | "jpy" | "gbp";
+export type FiatCurrencyType = "cny" | "usd" | "eur" | "jpy" | "gbp" | "rub" | "uah" | "idr";
 
 export type NetworkType = Chains.TESTNET | Chains.MAINNET;
 
