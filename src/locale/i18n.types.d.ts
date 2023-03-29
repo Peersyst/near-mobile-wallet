@@ -1,7 +1,17 @@
 import "i18next";
 import { defaultNS, resources } from "./i18n";
 
-export type LocaleType = "es" | "en" | "fr" | "id" | "it" | "ru" | "uk";
+/**
+ * https://www.localeplanet.com/icu/iso3166.html
+ * en: English
+ * es: Spanish
+ * fr: French
+ * id: Indonesian
+ * it: Italian
+ * ru: Russian
+ * uk: Ukrainian
+ */
+export type LocaleType = "en" | "es" | "fr" | "id" | "it" | "ru" | "uk";
 export type NameSpacesType = "translation" | "error";
 export type ResourceType = typeof resources["en"];
 export type ErrorResourceType = keyof ResourceType["error"];
