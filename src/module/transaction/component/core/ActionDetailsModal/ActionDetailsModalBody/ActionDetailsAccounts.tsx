@@ -2,7 +2,7 @@ import { Col } from "@peersyst/react-native-components";
 import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { Action } from "near-peersyst-sdk";
-import ActionDetail from "./TransactionDetail";
+import ActionDetail from "./ActionDetail";
 
 export interface ActionDetailsAccountsProps {
     action: Action;
