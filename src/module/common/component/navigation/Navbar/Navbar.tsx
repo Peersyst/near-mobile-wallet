@@ -23,7 +23,7 @@ const Navbar = ({ back, title, onBack, steps, style }: NavbarProps): JSX.Element
                 </BackIconRoot>
             )}
             <Col alignItems="center">
-                {title && <NavbarTitle title={title} textTransform="uppercase" />}
+                {title && <NavbarTitle title={title} textTransform="uppercase" textAlign="center" />}
                 {steps && <Steps index={steps.index} length={steps.length} />}
             </Col>
         </NavbarRoot>
