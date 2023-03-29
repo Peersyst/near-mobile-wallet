@@ -19,7 +19,7 @@ export const useGetCoinPrice = (apiId?: string, fiatParam?: FiatCurrencyType): Q
                 return data?.market_data?.current_price[finalCurrency];
             } catch (e) {
                 // eslint-disable-next-line no-console
-                console.warn("Error loading token price", JSON.stringify(e));
+                console.warn("Error loading coingecko price", JSON.stringify(e));
                 return 0;
             }
         },

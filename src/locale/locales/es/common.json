@@ -102,7 +102,7 @@
     "smart_contract": "Smart Contract",
     "copied_to_clipboard": "Copiado al portapapeles",
     "receiver": "Receptor",
-    "senders": "Remitentes",
+    "sender": "Remitente",
     "hash": "Hash",
     "unknown": "Desconocido",
     "select_deposit": "Selecciona un depósito",
