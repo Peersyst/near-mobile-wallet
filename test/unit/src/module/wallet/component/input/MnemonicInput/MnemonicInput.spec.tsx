@@ -19,8 +19,7 @@ describe("MnemonicInput tests", () => {
         fireEvent(input, "submitEditing", { nativeEvent: { text: "pizza" } });
         expect(screen.getByPlaceholderText(translate("add_a_word"))).toBeDefined();
 
-        fireEvent.changeText(input, "pineapple");
-        fireEvent.changeText(input, " ");
+        fireEvent.changeText(input, "pineapple ");
         expect(screen.getByPlaceholderText(translate("add_a_word"))).toBeDefined();
         screen.getByText("pineapple");
 
