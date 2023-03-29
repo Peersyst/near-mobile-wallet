@@ -8,15 +8,37 @@ import i18n from "locale/i18n";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
 
 const SelectLocale = (): JSX.Element => {
+    const translateLang = useTranslate("langs");
     const translate = useTranslate();
+
     const localeOptions: SelectOption<LocaleType>[] = [
         {
-            label: translate("es"),
+            label: translateLang("en"),
+            value: "en",
+        },
+        {
+            label: translateLang("es"),
             value: "es",
         },
         {
-            label: translate("en"),
-            value: "en",
+            label: translateLang("fr"),
+            value: "fr",
+        },
+        {
+            label: translateLang("id"),
+            value: "id",
+        },
+        {
+            label: translateLang("it"),
+            value: "it",
+        },
+        {
+            label: translateLang("ru"),
+            value: "ru",
+        },
+        {
+            label: translateLang("uk"),
+            value: "uk",
         },
     ];
     const [settings, setSettings] = useRecoilState(settingsState);

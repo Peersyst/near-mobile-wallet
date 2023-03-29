@@ -8,7 +8,7 @@ describe("Test for the select locale component", () => {
     test("Renders correctly", () => {
         const screen = render(<SelectLocale />);
         expect(screen.getByText(translate("select_locale"))).toBeDefined();
-        expect(screen.getByText(translate("en"))).toBeDefined();
+        expect(screen.getByText(translate("en", { ns: "langs" }))).toBeDefined();
     });
     test("Change the locale correctly", () => {
         const setSettingsState = jest.fn();
@@ -16,9 +16,9 @@ describe("Test for the select locale component", () => {
         jest.spyOn(Recoil, "useRecoilState").mockReturnValue(mockedRecoilState as any);
         const setSettingsStorage = jest.spyOn(SettingsStorage, "set").mockResolvedValue();
         const screen = render(<SelectLocale />);
-        const enItem = screen.getByText(translate("en"));
+        const enItem = screen.getByText(translate("en", { ns: "langs" }));
         fireEvent.press(enItem); //open the modal
-        const esItem = screen.getByText(translate("es"));
+        const esItem = screen.getByText(translate("es", { ns: "langs" }));
         fireEvent.press(esItem); //select the es locale
         expect(setSettingsStorage).toHaveBeenCalledWith({ locale: "es" });
         expect(setSettingsState).toHaveBeenCalled();
