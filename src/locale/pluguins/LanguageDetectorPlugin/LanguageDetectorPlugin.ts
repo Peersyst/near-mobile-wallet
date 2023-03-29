@@ -5,10 +5,9 @@ import { LocaleType } from "locale";
 
 //https://www.localeplanet.com/icu/iso3166.html
 export function getDefaultLocale(): LocaleType {
-    const locales: LocaleType[] = ["en", "es", "fr", "id", "it", "ru", "uk"];
-    const locale = Localization.getLocales()[0]?.languageCode || Localization?.locale || "en";
-    const systemLocaleEnd = locale.slice(-2).toLowerCase();
-    const systemLocaleStart = locale.slice(0, 2).toLowerCase();
+    const locales: LocaleType[] = ["en", "es"];
+    const systemLocaleEnd = Localization.locale.slice(-2).toLowerCase();
+    const systemLocaleStart = Localization.locale.slice(0, 2).toLowerCase();
     return locales.find((l) => systemLocaleStart === l || systemLocaleEnd === l) ?? "en";
 }
 
@@ -28,7 +27,14 @@ const LanguageDetectorPlugin: LanguageDetectorAsyncModule = {
     async: true,
     /* eslint-disable @typescript-eslint/no-empty-function */
     init: () => {},
-    detect,
+    detect: async function (callback: (lang: string) => void) {
+        try {
+            callback(await detect());
+        } catch (error) {
+            /* eslint-disable no-console */
+            console.log("Error reading language", error);
+        }
+    },
     /* eslint-disable @typescript-eslint/no-empty-function */
     cacheUserLanguage: () => {},
 };

@@ -11,8 +11,9 @@ import "intl/locale-data/jsonp/id";
 import "intl/locale-data/jsonp/it";
 import "intl/locale-data/jsonp/ru";
 import "intl/locale-data/jsonp/uk";
-
 import LanguageDetectorPlugin from "./pluguins/LanguageDetectorPlugin/LanguageDetectorPlugin";
+
+export const defaultNS = "translation";
 
 export const resources = {
     en,
@@ -23,8 +24,6 @@ export const resources = {
     ru,
     uk,
 } as const;
-
-export const defaultNS = "translation";
 
 i18next
     .use(initReactI18next)
