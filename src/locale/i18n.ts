@@ -1,6 +1,6 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
-import { en, es, ru, uk, it, id } from "./locales";
+import { en, es, fr, id, it, ru, uk } from "./locales";
 
 // Polyfill Intl as it is not included in RN
 import "intl";
@@ -18,10 +18,11 @@ export const defaultNS = "translation";
 export const resources = {
     en,
     es,
+    fr,
+    id,
+    it,
     ru,
     uk,
-    it,
-    id,
 } as const;
 
 i18next
@@ -39,10 +40,6 @@ i18next
             useSuspense: false,
         },
         returnNull: false,
-    })
-    .then(() => {
-        // eslint-disable-next-line no-console
-        console.log("i18next initialized");
     });
 
 export default i18next;

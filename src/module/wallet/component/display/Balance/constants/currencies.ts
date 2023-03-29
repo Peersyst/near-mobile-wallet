@@ -8,4 +8,7 @@ export const CURRENCY_UNIT: Record<AppCurrency, string> = {
     eur: "€",
     jpy: "¥",
     gbp: "£",
+    rub: "₽",
+    uah: "₴",
+    idr: "Rp",
 };
