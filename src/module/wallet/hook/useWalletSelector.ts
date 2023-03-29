@@ -35,7 +35,7 @@ export default function useWalletSelector({
 
     const error: TextFieldProps["error"] = [
         !BalanceOperations.isBigger(available, minBalance ?? "0"),
-        translateError("invalid_seleccted_account", { amountInNEAR: minBalance }),
+        translateError("invalid_selected_account", { amountInNEAR: minBalance }),
     ];
 
     return {

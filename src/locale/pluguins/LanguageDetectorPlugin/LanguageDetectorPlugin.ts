@@ -3,9 +3,15 @@ import { LanguageDetectorAsyncModule } from "i18next";
 import { LocaleType } from "locale";
 import { getDefaultLocale } from "locale/utils/getDefaultLocale";
 
-export async function initLang(): Promise<LocaleType> {
-    const storedLocale = await SettingsStorage?.getLocale();
-    return storedLocale || getDefaultLocale();
+export async function detect(): Promise<LocaleType> {
+    try {
+        const storedLocale = await SettingsStorage?.getLocale();
+        return storedLocale || getDefaultLocale();
+    } catch (error) {
+        /* eslint-disable no-console */
+        console.warn("Error reading language", error);
+        return "en";
+    }
 }
 
 const LanguageDetectorPlugin: LanguageDetectorAsyncModule = {
@@ -15,7 +21,7 @@ const LanguageDetectorPlugin: LanguageDetectorAsyncModule = {
     init: () => {},
     detect: async function (callback: (lang: string) => void) {
         try {
-            callback(await initLang());
+            callback(await detect());
         } catch (error) {
             /* eslint-disable no-console */
             console.log("Error reading language", error);
