@@ -101,7 +101,7 @@
     "wallet": "Гаманець",
     "copied_to_clipboard": "Скопійовано в буфер обміну",
     "receiver": "Одержувач",
-    "senders": "Відправники",
+    "sender": "Відправник",
     "hash": "Хеш",
     "unknown": "Невідомо",
     "select_deposit": "Виберіть депозит",

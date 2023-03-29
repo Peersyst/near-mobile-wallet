@@ -22,12 +22,15 @@ describe("Test for the locales", () => {
                 /*All keys of error */
                 const translationValues = translation[namespace as keyof typeof translation];
                 Object.keys(translationValues).forEach((key, line) => {
+                    //eslint-disable-next-line no-prototype-builtins
                     const hasError = !values.hasOwnProperty(key);
                     if (hasError) {
                         throw new TestError(
-                            `Error in locale ${langNames[index]} in namespace ${namespace} with key ${key} in line ${
-                                line + 2
-                            }\nExpected key: '${Object.keys(values)[line]}' but received key: '${key}'
+                            `Error in locale ${langNames[index]} in ${
+                                namespace === "translation" ? "common" : namespace
+                            }.json with key ${key} in line ${line + 2}\nExpected key: '${
+                                Object.keys(values)[line]
+                            }' but received key: '${key}'
                         `,
                             "LocaleError",
                         );
