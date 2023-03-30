@@ -4,40 +4,37 @@ import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import useRecoverWallets from "module/wallet/hook/useRecoverWallets";
 import { Chains } from "near-peersyst-sdk";
-import useInitWallets from "module/wallet/component/core/ChangeNetworkModal/hook/useInitWallets";
 import WalletController from "module/wallet/utils/WalletController";
+import { FlagsStorage } from "module/settings/FlagsStorage";
+import { WalletStorage } from "module/wallet/WalletStorage";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
     const setSettingsState = useSetRecoilState(settingsState);
     const recoverWallets = useRecoverWallets();
-    const initWallets = useInitWallets();
 
     useEffect(() => {
         const getStorage = async () => {
             const hasMnemonic = await WalletController.hasMnemonic();
+            const flags = await FlagsStorage.get();
+            const settings = { ...defaultSettingsState, ...((await SettingsStorage.getAllSettings()) || {}) };
 
-            if (!hasMnemonic) {
-                await SettingsStorage.set({ network: Chains.MAINNET, forcedMainnet: true });
-            } else {
-                const settings = { ...defaultSettingsState, ...((await SettingsStorage.getAllSettings()) || {}) };
-
-                if (settings.network === Chains.MAINNET) {
-                    if (!settings.forcedMainnet) {
-                        await SettingsStorage.set({ network: Chains.MAINNET, forcedMainnet: true });
+            if (!hasMnemonic) await SettingsStorage.set(settings);
+            else {
+                // [MAINNET RELEASE]: Removes wallets and forces network to MAINNET when upgrading
+                if (!flags.forcedMainnet) {
+                    if (settings.network !== Chains.MAINNET) {
+                        settings.network = Chains.MAINNET;
+                        await SettingsStorage.set({ network: Chains.MAINNET });
                     }
-                } else if (!settings.forcedMainnet) {
-                    settings.network = Chains.MAINNET;
-
-                    await SettingsStorage.set({ network: Chains.MAINNET, forcedMainnet: true });
-
-                    await initWallets(Chains.MAINNET);
+                    await Promise.all([WalletStorage.clearAll(), FlagsStorage.set({ forcedMainnet: true })]);
+                } else {
+                    // If already forced to MAINNET and hasWallet = true, recover wallets
+                    await recoverWallets(settings.network);
                 }
-
-                await recoverWallets(settings.network);
-
-                setSettingsState(settings);
             }
+
+            setSettingsState(settings);
 
             setLoading(false);
         };

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useResetRecoilState } from "recoil";
-import { SettingsStorage } from "module/settings/SettingsStorage";
 import { defaultSettingsState } from "module/settings/state/SettingsState";
 import createWalletState from "module/wallet/state/CreateWalletState";
 import useImportWallets from "../hook/useImportWallets";
@@ -13,7 +12,6 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
 
     useEffect(() => {
         const setStorage = async () => {
-            await SettingsStorage.set(defaultSettingsState);
             await importWallets(defaultSettingsState.network);
             //After all clean createWalletState
             resetCreateWalletState();
