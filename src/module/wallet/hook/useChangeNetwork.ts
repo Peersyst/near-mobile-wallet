@@ -23,6 +23,7 @@ export default (): UseChangeNetworkResult => {
 
     async function changeNetwork(network: NetworkType): Promise<void> {
         setIsLoading(true);
+        await new Promise((resolve) => setTimeout(resolve, 500));
         const hasWallets = await recoverWallets(network);
         if (!hasWallets) {
             const wallets = await initWallets(network);
