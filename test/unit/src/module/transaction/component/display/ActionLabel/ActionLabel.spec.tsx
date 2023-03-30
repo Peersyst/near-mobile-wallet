@@ -7,7 +7,7 @@ describe("Action label test", () => {
     test("Test sends", () => {
         const action = new ActionMock({ actionKind: EnhancedTransactionActionKind.TRANSFER_SEND });
         render(<ActionLabel action={action} variant={"h1Strong"} />);
-        expect(screen.getByText(`${translate("send_to")} ${action.transaction.receiverAccountId}`));
+        expect(screen.getByText(`${translate("sentTo")} ${action.transaction.receiverAccountId}`));
     });
     test("Test receive", () => {
         const action = new ActionMock({ actionKind: EnhancedTransactionActionKind.TRANSFER_RECEIVE });
