@@ -12,7 +12,7 @@ export function useLoad(): boolean {
     useEffect(() => {
         const getStorage = async () => {
             const settings = { ...defaultSettingsState, ...((await SettingsStorage.getAllSettings()) || {}) };
-            let hasPreviousWallet = await recoverWallets(settings.network);
+            const hasPreviousWallet = await recoverWallets(settings.network);
             if (hasPreviousWallet) setSettingsState(settings);
             setLoading(false);
         };
