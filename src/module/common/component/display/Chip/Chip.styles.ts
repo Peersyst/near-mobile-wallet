@@ -1,3 +1,4 @@
+import { TypographyProps } from "@peersyst/react-native-components";
 import { ChipRootProps, ChipSize, ChipTextProps } from "./Chip.types";
 import styled from "@peersyst/react-native-styled";
 import { View, Text, ViewStyle } from "react-native";
@@ -11,6 +12,16 @@ const CHIP_ROOT_STYLES: Record<ChipSize, ViewStyle> = {
         paddingHorizontal: 10,
         paddingVertical: 4,
     },
+    xs: {
+        paddingHorizontal: 6,
+        paddingVertical: 2,
+    },
+};
+
+const CHIP_TEXT_VARIANT: Record<ChipSize, TypographyProps["variant"]> = {
+    md: "body3Strong",
+    sm: "body4Strong",
+    xs: "captionStrong",
 };
 
 export const ChipRoot = styled(View)<ChipRootProps>(({ theme, variant, fullWidth, size = "md" }) => {
@@ -35,8 +46,8 @@ export const ChipRoot = styled(View)<ChipRootProps>(({ theme, variant, fullWidth
     };
 });
 
-export const ChipText = styled(Text)<ChipTextProps>(({ theme, variant = "filled", size }) => ({
-    ...theme.typography[size === "sm" ? "body4Strong" : "body3Strong"],
+export const ChipText = styled(Text)<ChipTextProps>(({ theme, variant = "filled", size = "md" }) => ({
+    ...theme.typography[CHIP_TEXT_VARIANT[size]],
     ...(variant === "outlined" && {
         color: theme.palette.overlay["60%"],
     }),

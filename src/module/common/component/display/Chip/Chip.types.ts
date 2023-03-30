@@ -4,7 +4,7 @@ export type ChipStyle = ViewStyle & TextStyle;
 
 export type ChipVariant = "filled" | "outlined" | "glass";
 
-export type ChipSize = "sm" | "md";
+export type ChipSize = "xs" | "sm" | "md";
 
 export interface ChipProps {
     onPress?: () => unknown;

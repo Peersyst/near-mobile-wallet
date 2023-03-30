@@ -9,7 +9,7 @@ const Chip = ({ label, variant = "outlined", size = "md", style, fullWidth, onPr
     return (
         <TouchableWithoutFeedback onPress={onPress} accessibilityRole={onPress ? "button" : "text"}>
             <ChipRoot variant={variant} fullWidth={fullWidth} testID="chipRoot" style={rootStyles} size={size}>
-                <ChipText variant={variant} style={textStyles}>
+                <ChipText variant={variant} style={textStyles} size={size}>
                     {label}
                 </ChipText>
             </ChipRoot>
