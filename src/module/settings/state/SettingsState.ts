@@ -12,6 +12,7 @@ export interface SettingsState {
     network: NetworkType;
     loading?: boolean;
     biometrics: boolean;
+    forcedMainnet?: boolean;
 }
 
 export const defaultSettingsState: SettingsState = {

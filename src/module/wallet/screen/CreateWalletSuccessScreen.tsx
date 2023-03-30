@@ -1,21 +1,20 @@
 import { useEffect } from "react";
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useResetRecoilState } from "recoil";
 import { SettingsStorage } from "module/settings/SettingsStorage";
-import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
+import { defaultSettingsState } from "module/settings/state/SettingsState";
 import createWalletState from "module/wallet/state/CreateWalletState";
 import useImportWallets from "../hook/useImportWallets";
 import { InteractionManager } from "react-native";
 import { Col, Spinner } from "@peersyst/react-native-components";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
-    const [{ network }] = useRecoilState(settingsState);
     const resetCreateWalletState = useResetRecoilState(createWalletState);
     const importWallets = useImportWallets();
 
     useEffect(() => {
         const setStorage = async () => {
             await SettingsStorage.set(defaultSettingsState);
-            await importWallets(network);
+            await importWallets(defaultSettingsState.network);
             //After all clean createWalletState
             resetCreateWalletState();
         };

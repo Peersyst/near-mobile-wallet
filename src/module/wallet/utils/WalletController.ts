@@ -225,6 +225,26 @@ export default new (class WalletController {
     }
 
     /**
+     * Checks if there are wallets for the given network
+     * @returns A boolean indicating if there are wallets for the given network
+     */
+    public async hasWallets(network: NetworkType): Promise<boolean> {
+        const { wallets } = await this.recoverWallets(network);
+
+        return wallets.length > 0;
+    }
+
+    /**
+     * Checks if there is a mnemonic
+     * @returns A boolean indicating if there is a mnemonic
+     */
+    public async hasMnemonic(): Promise<boolean> {
+        const mnemonic = await WalletStorage.getMnemonic();
+
+        return !!mnemonic;
+    }
+
+    /**
      * Get all the wallets. Check if has deleted wallets and if some new wallets has been created outside the app
      */
     private async checkWallets({ network, walletGroups, mainPrivateKey, storageWallets }: GetWalletsParams): Promise<CheckWalletsReturn> {
