@@ -4,9 +4,11 @@ import walletState from "module/wallet/state/WalletState";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import { useEffect, useState } from "react";
+import useInitWallets from "./useInitWallets";
 
 export default () => {
     const recoverWallets = useRecoverWallets();
+    const initWallets = useInitWallets();
     const setWalletState = useSetRecoilState(walletState);
     const [settings] = useRecoilState(settingsState);
     const [success, setSuccess] = useState(false);
@@ -15,8 +17,8 @@ export default () => {
     async function changeNetwork(network: NetworkType) {
         const hasWallets = await recoverWallets(network);
         if (!hasWallets) {
-            await new Promise((resolve) => setTimeout(resolve, 1500));
-            setWalletState((state) => ({ ...state, wallets: [], hasWallets: true }));
+            const wallets = await initWallets(network);
+            setWalletState((state) => ({ ...state, wallets, hasWallets: true }));
         }
         await SettingsStorage.set({ network });
         setSuccess(true);

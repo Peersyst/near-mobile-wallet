@@ -58,7 +58,7 @@ const LoadingModal = ({ loading, successMessage, error, success, processingMessa
                             <LoadingModalMessage textAlign="center" variant="body2Strong">
                                 {processingMessage || translate("processing")}
                             </LoadingModalMessage>
-                            <Spinner size="large" />
+                            <Spinner size="large" color="white" />
                         </Col>
                     )}
                 </LoadingModalContent>

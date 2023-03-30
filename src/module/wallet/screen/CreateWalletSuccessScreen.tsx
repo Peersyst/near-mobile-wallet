@@ -5,11 +5,15 @@ import settingsState, { defaultSettingsState } from "module/settings/state/Setti
 import createWalletState from "module/wallet/state/CreateWalletState";
 import useImportWallets from "../hook/useImportWallets";
 import { InteractionManager } from "react-native";
+import { Col, Spinner, Typography } from "@peersyst/react-native-components";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 const CreateWalletSuccessScreen = (): JSX.Element => {
     const [{ network }] = useRecoilState(settingsState);
     const resetCreateWalletState = useResetRecoilState(createWalletState);
     const importWallets = useImportWallets();
+    const translate = useTranslate();
+
     useEffect(() => {
         const setStorage = async () => {
             await SettingsStorage.set(defaultSettingsState);
@@ -24,7 +28,14 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
         }, 500);
     }, []);
 
-    return <></>;
+    return (
+        <Col flex={1} alignItems="center" justifyContent="center" gap="5%">
+            <Typography variant="body2Strong" textAlign="center">
+                {translate("recovering_accounts")}
+            </Typography>
+            <Spinner size="large" color="white" />
+        </Col>
+    );
 };
 
 export default CreateWalletSuccessScreen;

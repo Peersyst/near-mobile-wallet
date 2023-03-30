@@ -28,7 +28,7 @@ const ImportWalletNavigatorGroup = () => {
     const [showGlass, setShowGlass] = useState(true);
     const [showPin, setShowPin] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
-    useLogoPageFlex(showSuccess ? 1 : 0.4);
+    useLogoPageFlex(0.4);
     useLogoPageGradient(false);
     const resetCreateWalletState = useResetRecoilState(createWalletState);
     useBackHandler(() => {
