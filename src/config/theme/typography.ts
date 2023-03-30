@@ -9,7 +9,7 @@ export const MANROPE: Record<FontWeight, string> = {
     strong: "Manrope_600SemiBold",
 };
 
-export type TypographyVariant = "h1" | "h2" | "h3" | "h4" | "body1" | "body2" | "body3" | "body4";
+export type TypographyVariant = "h1" | "h2" | "h3" | "h4" | "body1" | "body2" | "body3" | "body4" | "caption";
 
 export const FONT_STYLE: Record<TypographyVariant, TextStyle> = {
     h1: { fontSize: 48 },
@@ -20,6 +20,7 @@ export const FONT_STYLE: Record<TypographyVariant, TextStyle> = {
     body2: { fontSize: 16 },
     body3: { fontSize: 14 },
     body4: { fontSize: 12 },
+    caption: { fontSize: 10 },
 };
 
 export function createTypographyVariant(typographyVariant: TypographyVariant, fontWeight: FontWeight, style: TextStyle = {}): TextStyle {
@@ -55,6 +56,9 @@ const typography: CreateTheme["typography"] = {
     body4Strong: createTypographyVariant("body4", "strong"),
     body4Regular: createTypographyVariant("body4", "regular"),
     body4Light: createTypographyVariant("body4", "light"),
+    captionStrong: createTypographyVariant("caption", "strong"),
+    captionRegular: createTypographyVariant("caption", "regular"),
+    captionLight: createTypographyVariant("caption", "light"),
 };
 
 export default typography;

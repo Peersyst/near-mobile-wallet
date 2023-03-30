@@ -54,8 +54,8 @@ export default new (class WalletController {
         return NearSDKService.isSameSecretKey(secretKey1, secretKey2);
     }
 
-    private isImported(secretKey1: string, secretKey2: string) {
-        return !this.isSameSecretKey(secretKey1, secretKey2);
+    private isImported(secretKey1?: string, secretKey2?: string) {
+        return !!secretKey1 && !!secretKey2 && !this.isSameSecretKey(secretKey1, secretKey2);
     }
 
     private parsePrivateKey(privateKey: string) {
@@ -88,9 +88,13 @@ export default new (class WalletController {
         const numOfPrevWallets = storageWallets.length;
         const newWallets: Wallet[] = [];
         const walletIds: SecureWalletInfo["walletIds"] = []; //Wallets' ids to be added to the secure storage
-        const imported = !mnemonic || !!secureStorage?.mnemonic;
         let privateKey = "";
         const finalPrivateKeyParam = privateKeyParam ? this.parsePrivateKey(privateKeyParam) : undefined;
+
+        const imported: boolean =
+            (!!mnemonic && !!secureStorage?.mnemonic) ||
+            (!!secureStorage?.mainPrivateKey && this.isImported(secureStorage.mainPrivateKey, finalPrivateKeyParam));
+
         //Init serviceInstancesMap
         const accounts = await ServiceInstances.addServiceInstances({ network, privateKey: finalPrivateKeyParam, mnemonic });
 
@@ -139,6 +143,14 @@ export default new (class WalletController {
         await WalletStorage.setUnencryptedWallets(storageWallets, network);
 
         return { wallets: newWallets };
+    }
+
+    /**
+     *
+     */
+    async getMainPrivateKey(): Promise<string | undefined> {
+        const secureStorage = await WalletStorage.getSecure();
+        return secureStorage?.mainPrivateKey;
     }
 
     /**
@@ -210,6 +222,26 @@ export default new (class WalletController {
             await WalletStorage.setUnencryptedWallets(finalStorageWallets, network);
             return { wallets: finalWallets };
         }
+    }
+
+    /**
+     * Checks if there are wallets for the given network
+     * @returns A boolean indicating if there are wallets for the given network
+     */
+    public async hasWallets(network: NetworkType): Promise<boolean> {
+        const { wallets } = await this.recoverWallets(network);
+
+        return wallets.length > 0;
+    }
+
+    /**
+     * Checks if there is a mnemonic
+     * @returns A boolean indicating if there is a mnemonic
+     */
+    public async hasMnemonic(): Promise<boolean> {
+        const mnemonic = await WalletStorage.getMnemonic();
+
+        return !!mnemonic;
     }
 
     /**

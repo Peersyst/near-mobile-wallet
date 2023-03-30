@@ -113,6 +113,9 @@ declare module "@peersyst/react-native-components" {
         body4Strong: true;
         body4Regular: true;
         body4Light: true;
+        captionStrong: true;
+        captionRegular: true;
+        captionLight: true;
     }
 }
 
