@@ -11,16 +11,21 @@ export const MnemonicInput = (): JSX.Element => {
     const [word, setWord] = useState("");
     useFormNotification("mnemonic", mnemonic, mnemonic.length === 12);
 
-    const handleSubmit = (): void => {
-        if (word.length > 0) {
-            setMnemonic((m) => [...m, word]);
+    const handleSubmit = (value: string): void => {
+        if (value.length > 0) {
+            const newWords = value.split(" ");
+            if (newWords.length + mnemonic.length <= 12) {
+                setMnemonic((m) => [...m, ...newWords]);
+            } else if (newWords.length === 12) {
+                setMnemonic(newWords);
+            } //Otherwise, clean input mnemonic length exceeds 12
             setWord("");
         }
     };
 
     const handleChange = (value: string) => {
         if (value.includes(" ")) {
-            handleSubmit();
+            handleSubmit(value.trim());
         } else {
             setWord(value);
         }
@@ -44,7 +49,7 @@ export const MnemonicInput = (): JSX.Element => {
                 blurOnSubmit={false}
                 value={word}
                 onChange={handleChange}
-                onSubmitEditing={handleSubmit}
+                onSubmitEditing={() => handleSubmit(word)}
                 placeholder={translate("add_a_word")}
                 disabled={mnemonic.length > 11}
             />

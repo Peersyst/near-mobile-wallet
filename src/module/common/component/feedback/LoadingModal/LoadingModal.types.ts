@@ -2,7 +2,8 @@ import { ExposedBackdropProps } from "@peersyst/react-native-components";
 
 export interface LoadingModalProps extends Omit<ExposedBackdropProps, "closable" | "animationIn" | "animationOut"> {
     loading: boolean;
-    success: boolean;
+    success?: boolean;
     successMessage?: string;
-    error: boolean;
+    processingMessage?: string;
+    error?: boolean;
 }

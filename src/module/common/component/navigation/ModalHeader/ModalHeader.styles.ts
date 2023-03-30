@@ -8,7 +8,6 @@ export const ModalHeaderRoot = styled(View)(({ theme }) => ({
     padding: 20,
     borderBottomWidth: 1,
     borderBottomColor: theme.palette.component.navbar.borderColor,
-    backgroundColor: theme.palette.component.paper,
 }));
 
 export const BackIconButton = styled(IconButton)(({ theme }) => ({

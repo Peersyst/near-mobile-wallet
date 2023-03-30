@@ -8,6 +8,7 @@ import SwitchTheme from "../components/core/SwitchTheme/SwitchTheme";
 
 const GeneralSettingsScreen = (): JSX.Element => {
     const translate = useTranslate();
+
     return (
         <BaseSecondaryScreen title={translate("general_settings")} back>
             <Col gap={10}>

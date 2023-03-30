@@ -14,7 +14,7 @@ const BaseWalletCard = ({ wallet: { account, imported }, children: { content, fo
     return (
         <BaseWalletCardRoot gap={gap}>
             <Col style={{ width: "100%" }} alignItems="center" gap={10} justifyContent="center">
-                <Account imported={imported} address={account} variant="body2Strong" />
+                <Account action="copy" imported={imported} address={account} variant="body2Strong" />
                 {content}
             </Col>
             <Row justifyContent="center">{footer}</Row>

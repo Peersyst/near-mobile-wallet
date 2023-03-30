@@ -17,7 +17,7 @@ export function convertNearToYocto(amountInNear: string): string {
  * @returns The amount in Near
  */
 export function convertYoctoToNear(amountInYocto: string, fracDigits?: number | undefined): string {
-    return utils.format.formatNearAmount(amountInYocto, fracDigits);
+    return utils.format.formatNearAmount(amountInYocto, fracDigits).replace(/,/g, "");
 }
 
 /**

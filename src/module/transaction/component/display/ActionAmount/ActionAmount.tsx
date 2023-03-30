@@ -12,7 +12,7 @@ function showAdd(actionKind: ActionKind) {
 }
 
 const ActionAmount = ({ actionKind, amount, ...rest }: ActionAmountProps): JSX.Element => {
-    const action = showAdd(actionKind) ? "add" : "display";
+    const action = showAdd(actionKind) ? "add" : undefined;
     const isPrimary = action === "add";
     return <Balance action={action} balance={amount} color={(p) => p[isPrimary ? "primary" : "text"]} {...rest} />;
 };

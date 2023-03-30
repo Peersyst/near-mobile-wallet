@@ -3,11 +3,19 @@ import { DarkLoadingModalOverlay, LoadingModalRoot, SuccessIcon, LoadingModalCon
 import { useEffect, useState } from "react";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { Backdrop, Col } from "@peersyst/react-native-components";
+import { Backdrop, Col, Spinner } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import Logo from "../../display/Logo/Logo";
 
-const LoadingModal = ({ loading, successMessage, error, success, ...backdropProps }: LoadingModalProps): JSX.Element => {
+const LoadingModal = ({
+    loading,
+    successMessage,
+    error = false,
+    success = false,
+    processingMessage,
+    onClose,
+    ...backdropProps
+}: LoadingModalProps): JSX.Element => {
     const [open, setOpen] = useState(false);
     const translate = useTranslate();
 
@@ -24,6 +32,7 @@ const LoadingModal = ({ loading, successMessage, error, success, ...backdropProp
 
     const handleClose = () => {
         setOpen(false);
+        onClose?.();
     };
 
     return (
@@ -56,8 +65,9 @@ const LoadingModal = ({ loading, successMessage, error, success, ...backdropProp
                         <Col alignItems="center" gap={14}>
                             <Logo />
                             <LoadingModalMessage textAlign="center" variant="body2Strong">
-                                {translate("processing")}
+                                {processingMessage || translate("processing")}
                             </LoadingModalMessage>
+                            <Spinner size="large" color="white" />
                         </Col>
                     )}
                 </LoadingModalContent>

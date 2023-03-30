@@ -20,11 +20,11 @@ declare module "@peersyst/react-native-components" {
         white: string;
         black: string;
         gray: {
-            0: string;
-            100: string;
-            300: string;
-            600: string;
-            900: string;
+            "0": string;
+            "100": string;
+            "300": string;
+            "600": string;
+            "900": string;
         };
         blue: string;
         green: string;
@@ -113,6 +113,9 @@ declare module "@peersyst/react-native-components" {
         body4Strong: true;
         body4Regular: true;
         body4Light: true;
+        captionStrong: true;
+        captionRegular: true;
+        captionLight: true;
     }
 }
 

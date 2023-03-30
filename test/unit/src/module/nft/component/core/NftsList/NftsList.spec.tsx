@@ -17,9 +17,9 @@ describe("NftsList tests", () => {
         await waitFor(() => expect(screen.getByText(nfts[0].metadata.title!)));
     });
 
-    test("Renders correctly without transactions", async () => {
+    test("Renders correctly without nfts", async () => {
         new UseGetNftsMock({ nfts: [] });
         const screen = render(<NftsList />);
-        await waitFor(() => expect(screen.getAllByText(translate("nothing_to_show", { ns: "error" }))));
+        await waitFor(() => expect(screen.getAllByText(translate("no_nfts", { ns: "error" }))));
     });
 });

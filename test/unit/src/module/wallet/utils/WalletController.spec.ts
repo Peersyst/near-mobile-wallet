@@ -70,6 +70,13 @@ describe("Test for the WalletController", () => {
         test("Import wallets without pin and without mnemonic but with privateKey and with multiple account ", async () => {
             const length = 10;
             network = Chains.MAINNET;
+            jest.spyOn(WalletStorage, "getSecure").mockResolvedValue({
+                mnemonic,
+                testnet: [],
+                mainnet: [],
+                pin: "1234",
+                mainPrivateKey: privateKey,
+            });
             const { accounts, walletIds, storageWallets } = new WalletControllerMocks(length, MOCKED_SECOND_PRIVATE_KEY, undefined);
             jest.spyOn(ServiceInstances, "addServiceInstances").mockResolvedValue(accounts);
 

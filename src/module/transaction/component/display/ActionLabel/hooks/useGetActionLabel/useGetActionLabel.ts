@@ -32,7 +32,7 @@ export const useGetActionLabel = ({
             return `${translate("key_deleted")}: ${publicKey}`;
         }
         case EnhancedTransactionActionKind.TRANSFER_SEND: {
-            return `${translate("send_to")} ${receiverAccountId}`;
+            return `${translate("sentTo")} ${receiverAccountId}`;
         }
         case EnhancedTransactionActionKind.TRANSFER_RECEIVE: {
             return `${translate("from")} ${signerAccountId}`;

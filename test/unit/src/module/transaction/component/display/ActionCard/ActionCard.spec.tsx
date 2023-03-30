@@ -25,7 +25,7 @@ describe("ActionCard test", () => {
         const action = new ActionMock({ actionKind: EnhancedTransactionActionKind.TRANSFER_SEND, deposit: "1" });
         render(<ActionCard action={action} />);
         // Label
-        expect(screen.getByText(`${translate("send_to")} ${action.transaction.receiverAccountId}`));
+        expect(screen.getByText(`${translate("sentTo")} ${action.transaction.receiverAccountId}`));
         // Amount
         expect(screen.getByText("1 " + config.tokenName)).toBeDefined();
         // Date
