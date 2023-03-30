@@ -13,7 +13,7 @@ export const FlagsStorage = new (class extends BaseStorageService<undefined, Fla
     }
 
     async get(): Promise<Flags> {
-        const storedValues = await this.get();
+        const storedValues = await super.get();
         return storedValues || defaultFlags;
     }
 
