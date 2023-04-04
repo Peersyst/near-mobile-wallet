@@ -278,7 +278,7 @@ export class NearSDKService {
 
     public isNewAddressValid(nameId: string): boolean {
         const nameParts = nameId.split(".").length;
-        return nameParts === 2 && nameId.indexOf(`.${this.chain}`) !== -1;
+        return nameParts === 2 && nameId.indexOf(`.${this.masterAccount}`) !== -1;
     }
 
     public isSubAddressValid(nameId: string): boolean {
