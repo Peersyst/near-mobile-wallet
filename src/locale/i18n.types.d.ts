@@ -11,7 +11,7 @@ import { defaultNS, resources } from "./i18n";
  * ru: Russian
  * uk: Ukrainian
  */
-export type LocaleType = "en" | "es" | "fr" | "id" | "it" | "ru" | "uk";
+export type LocaleType = "en" | "es" | "fr" | "id" | "it" | "ru" | "uk" | "pt";
 export type NameSpacesType = "translation" | "error";
 export type ResourceType = typeof resources["en"];
 export type ErrorResourceType = keyof ResourceType["error"];
