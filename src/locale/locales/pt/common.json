@@ -101,7 +101,7 @@
     "wallet": "Carteira",
     "copied_to_clipboard": "Copiado para a área de transferência",
     "receiver": "Destinatário",
-    "senders": "Remetentes",
+    "sender": "Remetente",
     "hash": "Hash",
     "unknown": "Desconhecido",
     "select_deposit": "Selecione um depósito",

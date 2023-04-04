@@ -26,7 +26,7 @@
     "private_key_already_exists": "Você já importou a chave privada",
     "mnemonic_already_exists": "Você já importou o mnemônico",
     "invalid_name_ID": "Ops! {{nameID}} não está disponível. Talvez você tenha em outra conta?",
-    "invalid_seleccted_account": "Você deve selecionar uma conta com um saldo superior a {{amountInNEAR}} NEAR.",
+    "invalid_selected_account": "Você deve selecionar uma conta com um saldo superior a {{amountInNEAR}} NEAR.",
     "error_creating_account": "Erro ao criar conta",
     "insufficient_balance": "Saldo insuficiente. Saldo mínimo: {{minBalance}}",
     "not_using_validators": "Você não está apostando com nenhum validador.",
