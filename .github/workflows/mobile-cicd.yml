@@ -1,0 +1,44 @@
+name: "Mobile CI / CD"
+
+on:
+  pull_request:
+    types: [opened, synchronize, closed]
+  push:
+    branches:
+      - 'main'
+      - 'prod'
+
+jobs:
+  mobile:
+    name: "Mobile"
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.action != 'closed'
+    steps:
+      -   name: Checkout
+          uses: actions/checkout@v2
+      -   name: Set up QEMU
+          uses: docker/setup-qemu-action@v2
+
+      -   name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v2
+
+      - name: Sets env vars for pull request
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "PROFILE=development" >> $GITHUB_ENV
+          echo "TARGET=base" >> $GITHUB_ENV
+      - name: Sets env vars for main push
+        if: github.event_name != 'pull_request' && github.ref != 'refs/heads/prod'
+        run: |
+          echo "PROFILE=development" >> $GITHUB_ENV
+          echo "TARGET=build" >> $GITHUB_ENV
+      - name: Sets env vars for prod push
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/prod'
+        run: |
+          echo "PROFILE=production" >> $GITHUB_ENV
+          echo "TARGET=build" >> $GITHUB_ENV
+
+      # Build
+      -   name: Build mobile image
+          run: |
+            docker build --build-arg PROFILE=${{ env.PROFILE }} --build-arg BUILD_NUMBER=${{ github.run_number }} --build-arg EXPO_TOKEN=${{ secrets.EXPO_TOKEN }} --target ${{ env.TARGET }} .
