@@ -22,7 +22,5 @@ WORKDIR /app
 COPY --from=base /app .
 RUN sed -i -e "s/__BUILD_NUMBER__/$BUILD_NUMBER/" eas.json
 
-RUN cat eas.json
-
-RUN npx eas-cli build --platform=ios --profile=$PROFILE --non-interactive --no-wait
+RUN npx eas-cli build --platform=ios --auto-submit --profile=$PROFILE --non-interactive --no-wait
 RUN npx eas-cli build --platform=android --profile=$PROFILE --non-interactive --no-wait
