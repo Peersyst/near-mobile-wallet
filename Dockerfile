@@ -1,4 +1,4 @@
-FROM node:14.18.3 as base
+FROM node:18.15.0 as base
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ RUN yarn lint
 
 RUN yarn test:unit:ci
 
-FROM node:14.18.3 as build
+FROM node:18.15.0 as build
 
 ARG PROFILE=development
 ARG BUILD_NUMBER=1
