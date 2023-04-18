@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - 'main'
-      - 'prod'
+      - 'dev'
 
 jobs:
   mobile:
@@ -27,13 +27,13 @@ jobs:
         run: |
           echo "PROFILE=development" >> $GITHUB_ENV
           echo "TARGET=base" >> $GITHUB_ENV
-      - name: Sets env vars for main push
-        if: github.event_name != 'pull_request' && github.ref != 'refs/heads/prod'
+      - name: Sets env vars for dev push
+        if: github.event_name != 'pull_request' && github.ref != 'refs/heads/main'
         run: |
           echo "PROFILE=development" >> $GITHUB_ENV
           echo "TARGET=build" >> $GITHUB_ENV
-      - name: Sets env vars for prod push
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/prod'
+      - name: Sets env vars for main push
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
           echo "PROFILE=production" >> $GITHUB_ENV
           echo "TARGET=build" >> $GITHUB_ENV
