@@ -16,7 +16,7 @@ describe("NEARAmountWithMaxTextField Test", () => {
 
         const available = await screen.findByText(
             translate("available_balance", {
-                amount: ACTION_LABEL["round"] + " 0.99995 " + config.tokenName,
+                amount: ACTION_LABEL["round"] + " 0.995 " + config.tokenName,
                 amount_price: ACTION_LABEL["round"] + " 100 " + CURRENCY_UNIT["usd"],
             }),
         );

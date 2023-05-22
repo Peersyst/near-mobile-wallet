@@ -13,12 +13,14 @@ export interface StakeForm {
 
 export interface StakingSetAmountScreenProps {
     maxAmount?: string; //without taking into consideration the fee
+    fee?: string;
     label: string;
     children?: ReactElement;
     onSubmit?: (amount: string) => void;
+    disabled?: boolean;
 }
 
-const StakingSetAmountScreen = ({ maxAmount, label, children, onSubmit }: StakingSetAmountScreenProps) => {
+const StakingSetAmountScreen = ({ maxAmount, label, children, onSubmit, fee, disabled }: StakingSetAmountScreenProps) => {
     const translate = useTranslate();
     const [stakeState, setStakeState] = useRecoilState(stakeRecoilState);
     const { index } = useSelectedWallet();
@@ -30,9 +32,9 @@ const StakingSetAmountScreen = ({ maxAmount, label, children, onSubmit }: Stakin
 
     return (
         <Form onSubmit={handleSubmit} style={{ flex: 1 }}>
-            <Col flex={1} justifyContent="space-between">
-                <Col gap={24}>
-                    <Col flex={1} gap="2%">
+            <Col flex={1} gap={24}>
+                <Col gap={24} flex={1}>
+                    <Col gap="2%">
                         <NEARAmountWithMaxTextField
                             placeholder={translate("enter_amount")!}
                             defaultValue={stakeState.amount}
@@ -40,12 +42,13 @@ const StakingSetAmountScreen = ({ maxAmount, label, children, onSubmit }: Stakin
                             index={index}
                             name="amount"
                             required
+                            fee={fee}
                             maxAmount={maxAmount}
                         />
                     </Col>
                     {children}
                 </Col>
-                <Button type="submit" fullWidth>
+                <Button type="submit" fullWidth disabled={disabled}>
                     {translate("next")}
                 </Button>
             </Col>

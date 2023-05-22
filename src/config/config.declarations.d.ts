@@ -37,7 +37,7 @@ declare module "@peersyst/react-native-components" {
         coingeckoTokenApiId: string;
         coingeckoUSDTApiId: string;
         minBalanceToCreateAccount: string;
-        estimatedFee: string;
+        estimatedFee: string; //In NEAR
         enableIndexer: boolean;
         newsRSSUrl: string;
         defaultTwitterAccount: string;

@@ -12,9 +12,9 @@ describe("NEARAmountTextField Test", () => {
         await waitFor(() => expect(screen.getByText(config.tokenName)).toBeDefined());
         const input = screen.getByPlaceholderText("Enter amount");
         fireEvent.changeText(input, "11");
-        expect(screen.getByText(translate("invalid_number_lte", { n: "9.99995 NEAR", ns: "error" }))).toBeDefined();
-        fireEvent.changeText(input, "9.99995");
-        expect(screen.queryByText(translate("invalid_number_lt", { n: "9.99995 NEAR", ns: "error" }))).toBeNull();
+        expect(screen.getByText(translate("invalid_number_lte", { n: "9.995 NEAR", ns: "error" }))).toBeDefined();
+        fireEvent.changeText(input, "10");
+        expect(screen.queryByText(translate("invalid_number_lt", { n: "9.995 NEAR", ns: "error" }))).toBeNull();
         fireEvent.changeText(input, "0");
         expect(screen.getByText(translate("invalid_number_gt", { n: "0 " + config.tokenName, ns: "error" }))).toBeDefined();
         //Allow min amount in NEAR
@@ -30,6 +30,21 @@ describe("NEARAmountTextField Test", () => {
         expect(screen.queryByText(translate("invalid_number_gt", { n: "0 " + config.tokenName, ns: "error" }))).toBeNull();
         //Do not allow one decimal more than 24
         fireEvent.changeText(input, "0." + Array(28).fill(0).join("") + "1");
+        expect(screen.getByText(translate("invalid_number_gt", { n: "0 " + config.tokenName, ns: "error" }))).toBeDefined();
+    });
+
+    test("Renders and validates correctly without fee", async () => {
+        const balance = new AccountBalanceMock({ available: "10" });
+        new UseGetBalanceMock({ balance });
+        render(<NEARAmountTextField index={0} placeholder="Enter amount" fee={"0"} />);
+        //Wait untill the balance is loaded
+        await waitFor(() => expect(screen.getByText(config.tokenName)).toBeDefined());
+        const input = screen.getByPlaceholderText("Enter amount");
+        fireEvent.changeText(input, "11");
+        expect(screen.getByText(translate("invalid_number_lte", { n: "10 NEAR", ns: "error" }))).toBeDefined();
+        fireEvent.changeText(input, "10");
+        expect(screen.queryByText(translate("invalid_number_lt", { n: "10 NEAR", ns: "error" }))).toBeNull();
+        fireEvent.changeText(input, "0");
         expect(screen.getByText(translate("invalid_number_gt", { n: "0 " + config.tokenName, ns: "error" }))).toBeDefined();
     });
 });

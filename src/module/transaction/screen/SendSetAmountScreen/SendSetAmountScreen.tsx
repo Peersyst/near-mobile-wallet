@@ -22,7 +22,7 @@ export const SEND_SET_AMOUNT_FORM_KEYS: Partial<Record<keyof SendState, keyof Se
 const SendSetAmountScreen = (): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     /**
-     * asset will never be undefined because by default sendRoilState has it defined
+     * asset will never be undefined because by default sendRecoilState has it defined
      * (check the recoil defaultState of sendState)
      */
     const [asset, setAsset] = useState<Asset | undefined>(sendState.asset);
