@@ -46,6 +46,7 @@ declare module "@peersyst/react-native-components" {
         mainnetTokenPriceUrl: string;
         refetchIntervals: RefetchIntervals;
         indexerEstimatedDelay: number;
+        enableBuy: boolean;
     }
 
     export interface CreateConfig {
@@ -73,6 +74,7 @@ declare module "@peersyst/react-native-components" {
         mainnetTokenPriceUrl: string;
         refetchIntervals: RefetchIntervals;
         indexerEstimatedDelay: number;
+        enableBuy: boolean;
     }
 
     export interface ExtraValidators {
