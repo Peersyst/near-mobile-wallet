@@ -47,6 +47,7 @@ declare module "@peersyst/react-native-components" {
         refetchIntervals: RefetchIntervals;
         indexerEstimatedDelay: number;
         nearMobileUrl: string;
+        enableBuy: boolean;
     }
 
     export interface CreateConfig {
@@ -75,6 +76,7 @@ declare module "@peersyst/react-native-components" {
         refetchIntervals: RefetchIntervals;
         indexerEstimatedDelay: number;
         nearMobileUrl: string;
+        enableBuy: boolean;
     }
 
     export interface ExtraValidators {
