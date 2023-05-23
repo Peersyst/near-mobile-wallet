@@ -32,5 +32,6 @@
         "news": 300000,
         "validators": 180000
     },
-    "indexerEstimatedDelay": 30000
+    "indexerEstimatedDelay": 30000,
+    "nearMobileUrl": "https://nearmobile.app/"
 }

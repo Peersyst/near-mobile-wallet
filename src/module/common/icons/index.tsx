@@ -38,6 +38,7 @@ export * from "./RefreshIcon";
 export * from "./ScanIcon";
 export * from "./SendIcon";
 export * from "./SettingsIcon";
+export * from "./ShareIcon";
 export * from "./SlashIcon";
 export * from "./SmartContractIcon";
 export * from "./StarIcon";

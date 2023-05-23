@@ -1,20 +1,24 @@
-import { useWindowDimensions, View, ViewProps } from "react-native";
+import { useWindowDimensions, View, ViewStyle } from "react-native";
 import QRCodeBase from "react-native-qrcode-svg";
 import { useTheme } from "@peersyst/react-native-components";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
+export type QRCodeStyle = ViewStyle & {
+    color?: string | undefined;
+};
+
 export interface QRCodeProps {
-    style?: ViewProps & { color?: string };
+    style?: QRCodeStyle;
 }
 
-const QRCode = ({ style: { color, ...style } = {} }: QRCodeProps): JSX.Element => {
+const QRCode = ({ style: { color, ...restStyle } = {} }: QRCodeProps): JSX.Element => {
     const { serviceInstance } = useServiceInstance();
     const { palette } = useTheme();
     const { height: screenHeight } = useWindowDimensions();
     const height = screenHeight * 0.25;
 
     return (
-        <View testID="QRCode" style={style}>
+        <View testID="QRCode" style={restStyle}>
             <QRCodeBase
                 color={color || palette.gray[900]}
                 backgroundColor={palette.background}

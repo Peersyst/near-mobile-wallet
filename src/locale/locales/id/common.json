@@ -241,5 +241,8 @@
     "recovering_accounts": "Memulihkan akun Anda...",
     "start_receiving_nfts": "Untuk mulai melihat NFT, kirimkan NFT ke alamat akun Anda.",
     "start_receiving_tokens": "Untuk mulai melihat token, kirim token ke alamat akun Anda.",
-    "start_making_transactions": "Untuk mulai menggunakan NEAR Mobile, kirim NEAR, token, atau NFT ke alamat akun Anda dan gunakan kekuatan NEAR."
+    "start_making_transactions": "Untuk mulai menggunakan NEAR Mobile, kirim NEAR, token, atau NFT ke alamat akun Anda dan gunakan kekuatan NEAR.",
+    "share": "Bagikan",
+    "shareYourNearAddress": "Bagikan alamat NEAR Anda",
+    "shareYourNearAddressMessage": "Ini adalah alamat saya di jaringan NEAR menggunakan dompet seluler NEAR:\n\n{{address}}"
 }
