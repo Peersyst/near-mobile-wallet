@@ -8,6 +8,7 @@ import { useControlled } from "@peersyst/react-hooks";
 export interface NEARAmountTextFieldProps extends Omit<NumericTextFieldProps, "validators" | "maxDecimals"> {
     index?: number;
     maxAmount?: string; //in NEAR
+    fee?: string; //in NEAR
 }
 
 const NEARAmountTextField = ({
@@ -17,10 +18,11 @@ const NEARAmountTextField = ({
     onChange,
     error: errorProp,
     maxAmount,
+    fee,
     ...rest
 }: NEARAmountTextFieldProps) => {
     const [amount, setAmount] = useControlled(defaultValue, value, onChange);
-    const { error } = useNEARAmountTextFieldValidator({ index, amount, maxAmount });
+    const { error } = useNEARAmountTextFieldValidator({ index, amount, maxAmount, fee });
     const { isLoading } = useGetBalance(index);
 
     return (

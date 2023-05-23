@@ -220,7 +220,7 @@
     "confirm_validator": "CONFIRMAR VALIDADOR",
     "enter_amount_want_to": "Digite o valor que deseja {{action}}",
     "available_balance": "Disponível - {{amount}} ({{amount_price}})",
-    "max": "Máximo",
+    "max": "Max",
     "enter_a_validator_account_id": "Insira um endereço de conta de um validador",
     "validator_name_near": "nome-do-validador.near",
     "enter_new_validator": "Insira um novo validador ou selecione um da lista para fazer o stake de NEAR.",
