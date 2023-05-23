@@ -46,6 +46,7 @@ declare module "@peersyst/react-native-components" {
         mainnetTokenPriceUrl: string;
         refetchIntervals: RefetchIntervals;
         indexerEstimatedDelay: number;
+        nearMobileUrl: string;
         enableBuy: boolean;
     }
 
@@ -74,6 +75,7 @@ declare module "@peersyst/react-native-components" {
         mainnetTokenPriceUrl: string;
         refetchIntervals: RefetchIntervals;
         indexerEstimatedDelay: number;
+        nearMobileUrl: string;
         enableBuy: boolean;
     }
 
