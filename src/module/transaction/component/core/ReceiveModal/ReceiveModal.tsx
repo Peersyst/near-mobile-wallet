@@ -1,4 +1,4 @@
-import { Col, createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
+import { createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { useTranslate } from "module/common/hook/useTranslate";
 import QRCode from "module/transaction/component/display/QRCode/QRCode";
@@ -8,6 +8,7 @@ import { useControlled } from "@peersyst/react-hooks";
 import BlockchainAddressCard from "module/wallet/component/input/BlockchainAddressCard/BlockchainAddressCard";
 import ShareButton from "module/common/component/input/ShareButton/ShareButton";
 import useReceiveShareContent from "./useReceiveShareContent/useReceiveShareContent";
+import { ReceiveModalWrapper } from "./ReceiveModal.styles";
 
 const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ open: openProp, onClose, defaultOpen = true, ...rest }) => {
     const translate = useTranslate();
@@ -24,14 +25,14 @@ const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ open: openProp, onC
             navbar={{ back: true, title: translate("receive")! }}
             {...rest}
         >
-            <Col gap={24} flex={1} alignItems="center" justifyContent="flex-end">
-                <QRCode />
+            <ReceiveModalWrapper gap={24}>
+                <QRCode style={{ padding: 24 }} />
                 <Typography textAlign="center" variant="body3Regular" color={(palette) => palette.overlay["60%"]}>
                     {translate("receive_info")}
                 </Typography>
                 <BlockchainAddressCard address={address} showCopyIcon />
                 <ShareButton fullWidth shareContent={shareContent} />
-            </Col>
+            </ReceiveModalWrapper>
         </CardNavigatorModal>
     );
 });
