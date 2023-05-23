@@ -21,7 +21,7 @@ const WalletCardButtons = (): JSX.Element => {
             </WalletCardButton>
             {enableBuy && (
                 <WalletCardButton enableBuy={enableBuy} onPress={() => showModal(BuyModal)}>
-                    {capitalize(translate("receive"))}
+                    {capitalize(translate("buy"))}
                 </WalletCardButton>
             )}
         </Row>

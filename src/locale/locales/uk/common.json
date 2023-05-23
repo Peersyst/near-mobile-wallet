@@ -244,5 +244,6 @@
     "start_making_transactions": "Щоб почати користуватися NEAR Mobile, надішліть NEAR, токени або NFT на адресу свого облікового запису та розкрийте можливості NEAR.",
     "share": "Поділитися",
     "shareYourNearAddress": "Поділіться своєю адресою NEAR",
-    "shareYourNearAddressMessage": "Ось моя адреса в мережі NEAR за допомогою мобільного гаманця NEAR:\n\n{{address}}"
+    "shareYourNearAddressMessage": "Ось моя адреса в мережі NEAR за допомогою мобільного гаманця NEAR:\n\n{{address}}",
+    "buy": "Купити"
 }

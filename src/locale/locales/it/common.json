@@ -244,5 +244,6 @@
     "start_making_transactions": "Per iniziare a usare NEAR Mobile, inviate NEAR, token o NFT all'indirizzo del vostro conto e liberate la potenza di NEAR",
     "share": "Condividi",
     "shareYourNearAddress": "Condividi il tuo indirizzo NEAR",
-    "shareYourNearAddressMessage": "Questo è il mio indirizzo nella rete NEAR utilizzando il portafoglio mobile NEAR:\n\n{{address}}"
+    "shareYourNearAddressMessage": "Questo è il mio indirizzo nella rete NEAR utilizzando il portafoglio mobile NEAR:\n\n{{address}}",
+    "buy": "Acquista"
 }

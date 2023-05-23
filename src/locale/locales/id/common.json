@@ -244,5 +244,6 @@
     "start_making_transactions": "Untuk mulai menggunakan NEAR Mobile, kirim NEAR, token, atau NFT ke alamat akun Anda dan gunakan kekuatan NEAR.",
     "share": "Bagikan",
     "shareYourNearAddress": "Bagikan alamat NEAR Anda",
-    "shareYourNearAddressMessage": "Ini adalah alamat saya di jaringan NEAR menggunakan dompet seluler NEAR:\n\n{{address}}"
+    "shareYourNearAddressMessage": "Ini adalah alamat saya di jaringan NEAR menggunakan dompet seluler NEAR:\n\n{{address}}",
+    "buy": "Beli"
 }
