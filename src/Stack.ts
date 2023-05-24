@@ -5,6 +5,7 @@ export type MainStackParamsList = {
     //Main
     Main: undefined;
     Settings: undefined;
+    FiatOrders: undefined;
     Home: undefined;
     News: undefined;
     Staking: undefined;
@@ -15,16 +16,22 @@ export type SettingsStackParamsList = {
     GeneralSettings: undefined;
     SecuritySettings: undefined;
 };
-export type RootStackParamsList = {
+export type FiatOrdersStackParamsList = {
+    //BuyCrypto
+    Buy: undefined;
+};
+
+export type AuthStackParamsList = {
     //Auth
     Login: undefined;
     AuthSwitch: undefined;
     CreateWallet: undefined;
     ImportWallet: undefined;
-} & MainStackParamsList &
-    SettingsStackParamsList;
+};
+export type RootStackParamsList = AuthStackParamsList & MainStackParamsList & SettingsStackParamsList & FiatOrdersStackParamsList;
 
 export const BottomTab = createBottomTabNavigator<MainStackParamsList>();
 export const SettingTab = createNativeStackNavigator<SettingsStackParamsList>();
+export const FiatOrderTab = createNativeStackNavigator<FiatOrdersStackParamsList>();
 
 export default createNativeStackNavigator<RootStackParamsList>();
