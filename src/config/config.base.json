@@ -34,5 +34,13 @@
     },
     "indexerEstimatedDelay": 30000,
     "nearMobileUrl": "https://nearmobile.app/",
-    "enableBuy": false
+    "enableBuy": false,
+    "transak": {
+        "apiKey": "4a3f3484-0df6-41af-b865-6da3bc82ccd9",
+        "environment": "STAGING",
+        "defaultCryptoCurrency": "NEAR",
+        "networks": "mainnet",
+        "cryptoCurrencyList": "NEAR",
+        "isFeeCalculationHidden": true
+    }
 }

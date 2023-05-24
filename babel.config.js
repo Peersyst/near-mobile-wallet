@@ -13,6 +13,7 @@ module.exports = function (api) {
                         images: "./src/asset/image",
                         icons: "./src/module/common/icons",
                         "near-peersyst-sdk": "./src/module/sdk",
+                        "@peersyst/react-native-transak-sdk": "./src/module/transak",
                         module: "./src/module",
                         utils: "./src/utils",
                         "stack-navigator": "./src/Stack.ts",

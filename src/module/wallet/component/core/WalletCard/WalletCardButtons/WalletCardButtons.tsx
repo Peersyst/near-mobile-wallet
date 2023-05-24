@@ -6,7 +6,6 @@ import { capitalize } from "@peersyst/react-utils";
 import { WalletCardButton } from "./WalletCardButtons.styles";
 import useIsMainnet from "module/settings/hook/useIsMainnet";
 import useNavigation from "module/common/hook/useNavigation";
-import { FiatOrderScreens } from "module/fiatorders/components/navigation/FiatOrdersNavigatorGroup/FiatOrdersNavigatorGroup";
 import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
 
 const WalletCardButtons = (): JSX.Element => {

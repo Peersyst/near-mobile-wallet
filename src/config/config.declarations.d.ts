@@ -1,5 +1,6 @@
 import "@peersyst/react-native-components";
 import { Validator } from "@peersyst/react-native-components";
+import { TransakOnRampQueryParams } from "module/transak";
 import { TFunction } from "react-i18next";
 
 export type EnvConfig = "test" | "development" | "production" | "staging";
@@ -48,6 +49,7 @@ declare module "@peersyst/react-native-components" {
         indexerEstimatedDelay: number;
         nearMobileUrl: string;
         enableBuy: boolean;
+        transak: TransakOnRampQueryParams;
     }
 
     export interface CreateConfig {
@@ -77,6 +79,7 @@ declare module "@peersyst/react-native-components" {
         indexerEstimatedDelay: number;
         nearMobileUrl: string;
         enableBuy: boolean;
+        transak: TransakOnRampQueryParams;
     }
 
     export interface ExtraValidators {
