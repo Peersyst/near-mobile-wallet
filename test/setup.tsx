@@ -54,6 +54,12 @@ jest.mock("module/settings/hook/useSelectedNetwork", () => {
     return () => "testnet";
 });
 
+jest.mock("@transak/react-native-sdk", () => {
+    return {
+        default: <></>,
+    };
+});
+
 //Mock language detector
 jest.mock("locale/pluguins/LanguageDetectorPlugin/LanguageDetectorPlugin", () => {
     return {

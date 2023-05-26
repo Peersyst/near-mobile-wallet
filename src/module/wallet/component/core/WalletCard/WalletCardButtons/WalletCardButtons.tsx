@@ -14,17 +14,18 @@ const WalletCardButtons = (): JSX.Element => {
     const navigate = useNavigation();
     const enableBuy = useConfig("enableBuy");
     const isMainnet = useIsMainnet();
+    const showBuyButton = enableBuy && isMainnet;
 
     return (
         <Row gap={8}>
-            <WalletCardButton enableBuy={enableBuy} onPress={() => showModal(SendModal)}>
+            <WalletCardButton enableBuy={showBuyButton} onPress={() => showModal(SendModal)}>
                 {capitalize(translate("send"))}
             </WalletCardButton>
-            <WalletCardButton enableBuy={enableBuy} onPress={() => showModal(ReceiveModal)}>
+            <WalletCardButton enableBuy={showBuyButton} onPress={() => showModal(ReceiveModal)}>
                 {capitalize(translate("receive"))}
             </WalletCardButton>
-            {enableBuy && isMainnet && (
-                <WalletCardButton enableBuy={enableBuy} onPress={() => navigate.navigate(MainScreens.FIAT_ORDERS)}>
+            {showBuyButton && (
+                <WalletCardButton enableBuy={showBuyButton} onPress={() => navigate.navigate(MainScreens.FIAT_ORDERS)}>
                     {capitalize(translate("buy"))}
                 </WalletCardButton>
             )}
