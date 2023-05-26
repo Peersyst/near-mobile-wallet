@@ -33,5 +33,14 @@
         "validators": 180000
     },
     "indexerEstimatedDelay": 30000,
-    "nearMobileUrl": "https://nearmobile.app/"
+    "nearMobileUrl": "https://nearmobile.app/",
+    "enableBuy": false,
+    "transak": {
+        "apiKey": "4a3f3484-0df6-41af-b865-6da3bc82ccd9",
+        "defaultCryptoCurrency": "NEAR",
+        "networks": "mainnet",
+        "cryptoCurrencyList": "NEAR",
+        "isFeeCalculationHidden": true,
+        "environment": "STAGING"
+    }
 }

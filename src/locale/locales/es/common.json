@@ -244,5 +244,8 @@
     "start_making_transactions": "Para empezar a utilizar NEAR Mobile, envíe NEARs, tokens o NFTs a la dirección de su cuenta y destapa el poder de NEAR.",
     "share": "Compartir",
     "shareYourNearAddress": "Comparte tu dirección de NEAR",
-    "shareYourNearAddressMessage": "Esta es mi dirección de la red de NEAR usando NEAR Mobile Wallet:\n\n{{address}}"
+    "shareYourNearAddressMessage": "Esta es mi dirección de la red de NEAR usando NEAR Mobile Wallet:\n\n{{address}}",
+    "buy": "Comprar",
+    "cryptoWithFiatPurchaseCompleted": "¡Compra completada!",
+    "cryptoWithFiatPurchaseCompletedMessage": "Recuerda que tomará unos minutos para que el saldo de tu cuenta refleje el nuevo monto."
 }

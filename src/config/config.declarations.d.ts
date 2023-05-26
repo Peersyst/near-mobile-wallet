@@ -1,5 +1,6 @@
 import "@peersyst/react-native-components";
 import { Validator } from "@peersyst/react-native-components";
+import { TransakOnRampQueryParams } from "module/transak";
 import { TFunction } from "react-i18next";
 
 export type EnvConfig = "test" | "development" | "production" | "staging";
@@ -14,6 +15,10 @@ export interface RefetchIntervals {
     stakingBalance: number;
     news: number;
     validators: number;
+}
+
+export interface TransakConfig extends Omit<TransakOnRampQueryParams, "environment"> {
+    environment: string;
 }
 
 declare module "@peersyst/react-native-components" {
@@ -47,6 +52,8 @@ declare module "@peersyst/react-native-components" {
         refetchIntervals: RefetchIntervals;
         indexerEstimatedDelay: number;
         nearMobileUrl: string;
+        enableBuy: boolean;
+        transak: TransakConfig;
     }
 
     export interface CreateConfig {
@@ -75,6 +82,8 @@ declare module "@peersyst/react-native-components" {
         refetchIntervals: RefetchIntervals;
         indexerEstimatedDelay: number;
         nearMobileUrl: string;
+        enableBuy: boolean;
+        transak: TransakConfig;
     }
 
     export interface ExtraValidators {
