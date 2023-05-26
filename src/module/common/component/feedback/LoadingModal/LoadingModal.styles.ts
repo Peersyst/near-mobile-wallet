@@ -4,6 +4,7 @@ import GradientPage from "module/common/component/layout/GradientPage/GradientPa
 import { View } from "react-native";
 import { CircleCheckIcon } from "icons";
 import Typography from "module/common/component/display/Typography/Typography";
+import BasePage from "../../layout/BasePage/BasePage";
 
 export const DarkLoadingModalOverlay = styled(View)(({ theme }) => ({
     position: "absolute",
@@ -12,10 +13,11 @@ export const DarkLoadingModalOverlay = styled(View)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? theme.palette.altOverlay["80%"] : "transparent",
 }));
 
-export const LoadingModalRoot = styled(GradientPage, { gradient: true })(() => ({
+export const LoadingModalRoot = styled(BasePage)(({ theme }) => ({
     width: "100%",
     height: "100%",
     justifyContent: "flex-end",
+    backgroundColor: theme.palette.primary,
 }));
 
 export const LoadingModalContent = styled(Col, { flex: 0.5, justifyContent: "space-between" })(({ safeAreaInsets }) => ({
