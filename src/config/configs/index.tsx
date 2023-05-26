@@ -12,6 +12,7 @@ const typedBaseConfig: CreateConfig = {
     ...baseConfig,
     transak: {
         ...baseConfig.transak,
+        environment: "STAGING",
         disablePaymentMethods: Platform.OS !== "ios" ? SupportedPaymentMethods.APPLE_PAY : undefined,
     },
 };
