@@ -17,6 +17,10 @@ export interface RefetchIntervals {
     validators: number;
 }
 
+export interface TransakConfig extends Omit<TransakOnRampQueryParams, "environment"> {
+    environment: string;
+}
+
 declare module "@peersyst/react-native-components" {
     export interface ConfigTypes {
         TranslateFn: TFunction<"error">;
@@ -49,7 +53,7 @@ declare module "@peersyst/react-native-components" {
         indexerEstimatedDelay: number;
         nearMobileUrl: string;
         enableBuy: boolean;
-        transak: TransakOnRampQueryParams;
+        transak: TransakConfig;
     }
 
     export interface CreateConfig {
@@ -79,7 +83,7 @@ declare module "@peersyst/react-native-components" {
         indexerEstimatedDelay: number;
         nearMobileUrl: string;
         enableBuy: boolean;
-        transak: TransakOnRampQueryParams;
+        transak: TransakConfig;
     }
 
     export interface ExtraValidators {

@@ -1,6 +1,7 @@
 import { useConfig, useTheme } from "@peersyst/react-native-components";
-import { TransakOnRampQueryParams } from "@peersyst/react-native-transak-sdk";
+import { SupportedPaymentMethods, TransakEnviroment, TransakOnRampQueryParams } from "@peersyst/react-native-transak-sdk";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
+import { Platform } from "react-native";
 
 export default function useTransakOnRampQueryParams(): TransakOnRampQueryParams {
     const { account } = useSelectedWallet();
@@ -9,7 +10,9 @@ export default function useTransakOnRampQueryParams(): TransakOnRampQueryParams 
 
     return {
         walletAddress: account,
-        themeColor: palette.blue,
+        themeColor: palette.primary,
         ...transakConfig,
+        environment: transakConfig.environment as TransakEnviroment,
+        disablePaymentMethods: Platform.OS !== "ios" ? SupportedPaymentMethods.APPLE_PAY : undefined,
     };
 }
