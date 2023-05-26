@@ -41,7 +41,7 @@ export const baseTheme: Partial<Theme["palette"]> = {
     gradient,
     status: {
         info: "#0288D1",
-        success: "#388E3C",
+        success: "#3CDF69",
         warning: "#F57C00",
         error: "#D32F2F",
     },

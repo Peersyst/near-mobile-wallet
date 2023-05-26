@@ -245,5 +245,7 @@
     "share": "Поділитися",
     "shareYourNearAddress": "Поділіться своєю адресою NEAR",
     "shareYourNearAddressMessage": "Ось моя адреса в мережі NEAR за допомогою мобільного гаманця NEAR:\n\n{{address}}",
-    "buy": "Купити"
+    "buy": "Купити",
+    "cryptoWithFiatPurchaseCompleted": "Покупка завершена!",
+    "cryptoWithFiatPurchaseCompletedMessage": "Пам'ятайте, що займе кілька хвилин, щоб ваш баланс рахунку відобразив нову суму."
 }

@@ -9,7 +9,7 @@ export default function useTransakOnRampQueryParams(): TransakOnRampQueryParams 
 
     return {
         walletAddress: account,
-        themeColor: palette.primary,
+        themeColor: palette.blue,
         ...transakConfig,
     };
 }

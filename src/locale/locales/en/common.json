@@ -245,5 +245,7 @@
     "share": "Share",
     "shareYourNearAddress": "Share your NEAR Address",
     "shareYourNearAddressMessage": "This is my address in the NEAR network using the NEAR Mobile wallet:\n\n{{address}}.",
-    "buy": "Buy"
+    "buy": "Buy",
+    "cryptoWithFiatPurchaseCompleted": "Purchase completed!",
+    "cryptoWithFiatPurchaseCompletedMessage": "Remember that it will take a few minutes for your account balance to reflect the new amount."
 }

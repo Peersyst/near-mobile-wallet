@@ -19,6 +19,7 @@ export type SettingsStackParamsList = {
 export type FiatOrdersStackParamsList = {
     //BuyCrypto
     Buy: undefined;
+    BuySuccess: undefined;
 };
 
 export type AuthStackParamsList = {
