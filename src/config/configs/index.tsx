@@ -3,7 +3,7 @@ import devConfig from "./config.dev.json";
 import testConfig from "./config.test.json";
 import stagingConfig from "./config.staging.json";
 import baseConfig from "./config.base.json";
-import { SupportedPaymentMethods, TransakEnviroment } from "module/transak";
+import { SupportedPaymentMethods } from "module/transak";
 import { Platform } from "react-native";
 import { CreateConfig } from "@peersyst/react-native-components";
 import { EnvConfig } from "config/config.declarations";
@@ -11,7 +11,7 @@ import { EnvConfig } from "config/config.declarations";
 const typedBaseConfig: CreateConfig = {
     ...baseConfig,
     transak: {
-        ...(baseConfig.transak as CreateConfig["transak"]),
+        ...baseConfig.transak,
         disablePaymentMethods: Platform.OS !== "ios" ? SupportedPaymentMethods.APPLE_PAY : undefined,
     },
 };
@@ -26,7 +26,7 @@ export const envConfigs: Record<EnvConfig, CreateConfig> = {
         transak: {
             ...typedBaseConfig.transak,
             apiKey: "d0f7c7f7-7f4a-4f4a-8b0a-4f4a7f4a7f4a",
-            environment: TransakEnviroment.PRODUCTION,
+            environment: "PRODUCTION",
         },
     },
 };

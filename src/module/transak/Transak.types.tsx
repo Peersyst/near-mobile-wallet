@@ -46,7 +46,7 @@ export interface TransakSellQueryParams {
 
 export interface BaseTransakQueryParams {
     apiKey: string;
-    environment?: TransakEnviroment;
+    environment?: "STAGING" | "PRODUCTION";
     cryptoCurrencyCode?: string; //DAI
     defaultCryptoCurrency?: string; //DAI
     cryptoCurrencyList?: string; //ETH,DAI,USDT

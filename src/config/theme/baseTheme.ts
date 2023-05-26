@@ -40,10 +40,10 @@ export const baseTheme: Partial<Theme["palette"]> = {
     orange,
     gradient,
     status: {
-        info: "#0288D1",
+        info: blue,
         success: "#3CDF69",
-        warning: "#F57C00",
-        error: "#D32F2F",
+        warning: "#FFC860",
+        error: "#FF7966",
     },
     wallet: [
         gradient.blueTurquoise,
