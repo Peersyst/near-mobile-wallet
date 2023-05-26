@@ -1,10 +1,5 @@
-import { CreateConfig, createConfig } from "@peersyst/react-native-components";
+import { createConfig } from "@peersyst/react-native-components";
 import lightTheme from "./theme/lightTheme";
-import prodConfig from "./config.prod.json";
-import devConfig from "./config.dev.json";
-import testConfig from "./config.test.json";
-import stagingConfig from "./config.staging.json";
-import baseConfig from "./config.base.json";
 import globalStyles from "config/globalStyles";
 import { ChevronDownIcon } from "icons";
 import darkTheme from "config/theme/darkTheme";
@@ -14,13 +9,7 @@ import { RadioCheckedIcon } from "module/common/icons/RadioCheckedIcon";
 import { RadioUncheckedIcon } from "module/common/icons/RadioUncheckedIcon";
 import { EnvConfig } from "./config.declarations";
 import Button from "module/common/component/input/Button/Button";
-
-export const envConfigs: Record<EnvConfig, CreateConfig> = {
-    test: { ...baseConfig, ...testConfig },
-    development: { ...baseConfig, ...devConfig },
-    production: { ...baseConfig, ...prodConfig },
-    staging: { ...baseConfig, ...stagingConfig },
-};
+import { envConfigs } from "./configs";
 
 const environment = process.env;
 const envKey = environment.REACT_APP_ENV_CONFIG || environment.NODE_ENV!;
