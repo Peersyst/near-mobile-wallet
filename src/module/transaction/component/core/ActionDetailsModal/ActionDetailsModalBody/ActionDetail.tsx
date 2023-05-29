@@ -7,8 +7,10 @@ export interface ActionDetailProps {
 }
 
 const ActionDetail = ({ title, children }: ActionDetailProps): JSX.Element => (
-    <Col gap={5}>
-        <Typography variant="body2Strong">{title}</Typography>
+    <Col>
+        <Typography variant="body3Strong" light>
+            {title}
+        </Typography>
         {children}
     </Col>
 );

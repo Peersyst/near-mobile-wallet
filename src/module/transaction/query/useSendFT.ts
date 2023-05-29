@@ -3,6 +3,8 @@ import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { parseTokenAmount } from "near-peersyst-sdk";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
+import { useSetRecoilState } from "recoil";
+import sendState from "../state/SendState";
 
 export interface UseSendTokensParams {
     contractId: string;
@@ -15,11 +17,13 @@ export interface UseSendTokensParams {
 const useSendFT = (senderIndex: number) => {
     const { serviceInstance } = useServiceInstance(senderIndex);
     const invalidateQueries = useInvalidateServiceInstanceQueries(senderIndex);
+    const setSendState = useSetRecoilState(sendState);
 
     return useMutation(
         async ({ contractId, amount, receiverId, memo, decimals }: UseSendTokensParams) => {
             const finalAmount = parseTokenAmount(amount, decimals);
-            await serviceInstance.sendFungibleTokens(contractId, finalAmount, receiverId, memo);
+            const txHash = await serviceInstance.sendFungibleTokens(contractId, finalAmount, receiverId, memo);
+            setSendState((oldState) => ({ ...oldState, txHash }));
         },
         {
             onSuccess: () => {

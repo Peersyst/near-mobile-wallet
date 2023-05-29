@@ -8,7 +8,7 @@ describe("Test for the ShareButton component", () => {
         message: "Hello world",
     };
     test("Renders correctly", () => {
-        render(<ShareButton shareContent={shareContent} />);
+        render(<ShareButton shareContent={shareContent} showIcon />);
         //Button
         expect(screen.getByRole("button")).toBeDefined();
         //Share icon

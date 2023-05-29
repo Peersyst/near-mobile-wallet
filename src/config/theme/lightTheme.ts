@@ -17,6 +17,7 @@ const overlay: Theme["palette"]["overlay"] = {
     "20%": "#26262633",
     "12%": "#2626261F",
     "8%": "#26262614",
+    "4%": "#2626260A",
 };
 const altOverlay: Theme["palette"]["altOverlay"] = {
     "80%": "#FFFFFFCC",
@@ -25,6 +26,7 @@ const altOverlay: Theme["palette"]["altOverlay"] = {
     "20%": "#FFFFFF33",
     "12%": "#FFFFFF1F",
     "8%": "#FFFFFF14",
+    "4%": "#FFFFFF0A",
 };
 
 const lightTheme = createTheme({

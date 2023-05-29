@@ -247,5 +247,9 @@
     "shareYourNearAddressMessage": "Ini adalah alamat saya di jaringan NEAR menggunakan dompet seluler NEAR:\n\n{{address}}",
     "buy": "Beli",
     "cryptoWithFiatPurchaseCompleted": "Pembelian selesai!",
-    "cryptoWithFiatPurchaseCompletedMessage": "Ingat bahwa akan membutuhkan beberapa menit agar saldo akun Anda mencerminkan jumlah baru."
+    "cryptoWithFiatPurchaseCompletedMessage": "Ingat bahwa akan membutuhkan beberapa menit agar saldo akun Anda mencerminkan jumlah baru.",
+    "seeInExplorer": "Lihat di explorer",
+    "actionDetails": "Detail tindakan",
+    "explorer": "Penjelajah",
+    "transaction": "Transaksi"
 }
