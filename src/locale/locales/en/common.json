@@ -1,6 +1,6 @@
 {
     "number": "{{val, number}}",
-    "date": "{{val, datetime}}",
+    "formatDate": "{{val, datetime}}",
     "welcome": "Hello",
     "welcome_back": "Welcome back",
     "confirm_your_pin": "Confirm your PIN",
@@ -249,7 +249,9 @@
     "cryptoWithFiatPurchaseCompleted": "Purchase completed!",
     "cryptoWithFiatPurchaseCompletedMessage": "Remember that it will take a few minutes for your account balance to reflect the new amount.",
     "seeInExplorer": "See in Explorer",
-    "actionDetails": "Action details",
+    "transactionDetails": "Transaction details",
     "explorer": "Explorer",
-    "transaction": "Transaction"
+    "transaction": "Transaction",
+    "date": "Date",
+    "shareTxText": "Check the transaction I just made in the NEAR network using the NEAR Mobile wallet in the block explorer: {{link}}"
 }

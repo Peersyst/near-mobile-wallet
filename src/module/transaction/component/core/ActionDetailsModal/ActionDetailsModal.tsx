@@ -20,8 +20,9 @@ const ActionDetailsModal = createModal(({ action, defaultOpen, open: openProp, o
         <CardNavigatorModal
             navbar={{
                 back: true,
-                title: translate("actionDetails"),
+                title: translate("transactionDetails"),
                 onBack: () => setOpen(false),
+                upperCase: false,
             }}
             open={open}
             onClose={() => setOpen(false)}

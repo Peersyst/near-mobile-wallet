@@ -1,6 +1,6 @@
 {
     "number": "{{val, number}}",
-    "date": "{{val, datetime}}",
+    "formatDate": "{{val, datetime}}",
     "welcome": "Halo",
     "welcome_back": "Selamat Datang kembali",
     "confirm_your_pin": "Konfirmasi PIN Anda",
@@ -249,7 +249,9 @@
     "cryptoWithFiatPurchaseCompleted": "Pembelian selesai!",
     "cryptoWithFiatPurchaseCompletedMessage": "Ingat bahwa akan membutuhkan beberapa menit agar saldo akun Anda mencerminkan jumlah baru.",
     "seeInExplorer": "Lihat di explorer",
-    "actionDetails": "Detail tindakan",
+    "transactionDetails": "Rincian transaksi",
     "explorer": "Penjelajah",
-    "transaction": "Transaksi"
+    "transaction": "Transaksi",
+    "date": "Tanggal",
+    "shareTxText": "Periksa transaksi yang baru saja saya lakukan di jaringan NEAR menggunakan NEAR Mobile wallet di eksplorer: {{link}}"
 }
