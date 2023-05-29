@@ -8,7 +8,7 @@ export interface LoadingModalProps extends Omit<ExposedBackdropProps, "closable"
     processingMessage?: string;
     error?: boolean;
     /**
-     * Children only passed when loading finishes
+     * Children only displayed when loading finishes
      */
     children?: ReactElement;
 }

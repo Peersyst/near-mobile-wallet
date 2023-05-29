@@ -5,7 +5,7 @@ import getAmountAndTokenNameFromAction from "../../../display/ActionCard/utils/g
 import ActionAmount from "../../../display/ActionAmount/ActionAmount";
 import FiatBalance from "module/wallet/component/display/FiatBalance/FiatBalance";
 import { useMemo } from "react";
-import { ACTIVE_ACTIONS } from "module/transaction/utils/isActionActive";
+import { ACTIVE_ACTIONS } from "module/transaction/utils/activeActions";
 import { ActionDetailsModalHeaderProps } from "./ActionDetailsModalHeader.types";
 import { ActionDetailsModalHeaderRoot } from "./ActionDetailsModalHeader.styles";
 

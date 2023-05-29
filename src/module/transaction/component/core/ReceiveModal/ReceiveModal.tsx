@@ -31,7 +31,7 @@ const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ open: openProp, onC
                     {translate("receive_info")}
                 </Typography>
                 <BlockchainAddressCard address={address} showCopyIcon />
-                <ShareButton fullWidth shareContent={shareContent} showButton />
+                <ShareButton fullWidth shareContent={shareContent} showIcon />
             </ReceiveModalWrapper>
         </CardNavigatorModal>
     );

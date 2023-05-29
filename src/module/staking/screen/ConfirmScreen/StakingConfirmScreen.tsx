@@ -21,10 +21,10 @@ export interface StakingConfirmScreenProps extends Omit<SendTransactionModalProp
 
 const StakingConfirmScreen = ({ label, onCancel, onEditValidator, displayFullDecimals, ...rest }: StakingConfirmScreenProps) => {
     const translate = useTranslate();
-    const { validator, amount } = useRecoilValue(stakeRecoilState);
+    const { validator, amount, txHash } = useRecoilValue(stakeRecoilState);
 
     return (
-        <SendTransactionModal {...rest}>
+        <SendTransactionModal {...rest} txHash={txHash}>
             {({ showModal, isSuccess, isLoading }) => (
                 <Col flex={1} gap={12} style={{ height: "100%" }}>
                     <Col flex={1} gap={12}>

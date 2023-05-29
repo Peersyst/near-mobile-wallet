@@ -2,18 +2,22 @@ import { useMutation } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
+import { useSetRecoilState } from "recoil";
+import stakeState from "../state/StakeState";
 
 export interface UseWithdrawParams {
     validatorId: string;
 }
 
 const UseWithdraw = (senderIndex?: number) => {
+    const setStateState = useSetRecoilState(stakeState);
     const { serviceInstance } = useServiceInstance(senderIndex);
     const invalidateServiceInstanceQueries = useInvalidateServiceInstanceQueries(senderIndex);
 
     return useMutation(
         async ({ validatorId }: UseWithdrawParams) => {
-            await serviceInstance.withdrawAllFromValidator(validatorId.toString());
+            const txHash = await serviceInstance.withdrawAllFromValidator(validatorId.toString());
+            setStateState((oldState) => ({ ...oldState, txHash }));
         },
         {
             onSuccess: async () => {
