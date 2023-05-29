@@ -250,5 +250,6 @@
     "cryptoWithFiatPurchaseCompletedMessage": "Lembre-se de que levará alguns minutos para que o saldo da sua conta reflita o novo valor.",
     "seeInExplorer": "Ver no explorador",
     "actionDetails": "Detalhes da ação",
-    "explorer": "Explorador"
+    "explorer": "Explorador",
+    "transaction": "Transação"
 }

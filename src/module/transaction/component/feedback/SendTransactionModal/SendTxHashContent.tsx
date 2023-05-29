@@ -2,6 +2,7 @@ import { Col, ColProps, Label } from "@peersyst/react-native-components";
 import ExplorerButton from "../../input/ExplorerButton/ExplorerButton";
 import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
 import ShareButton from "module/common/component/input/ShareButton/ShareButton";
+import { useTranslate } from "module/common/hook/useTranslate";
 
 export interface SendTxHashContentProps {
     txHash: string;
@@ -9,9 +10,11 @@ export interface SendTxHashContentProps {
 }
 
 const SendTxHashContent = ({ style, txHash }: SendTxHashContentProps) => {
+    const translate = useTranslate();
+
     return (
         <Col style={style} gap={40}>
-            <Label label={"Transaction"} variant="body2Strong" alignment={"center"} color="white">
+            <Label label={translate("transaction")} variant="body2Strong" alignment={"center"} color="white">
                 <BlockchainAddress
                     variant="body3Regular"
                     action="copy"

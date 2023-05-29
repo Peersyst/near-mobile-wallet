@@ -1,5 +1,6 @@
 import { act, render, translate } from "test-utils";
 import { useEffect, useState } from "react";
+import { Text } from "react-native";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 
 const SuccessLoadingModal = (): JSX.Element => {
@@ -13,7 +14,11 @@ const SuccessLoadingModal = (): JSX.Element => {
         }, 1000);
     }, []);
 
-    return <LoadingModal loading={loading} success={success} error={false} />;
+    return (
+        <LoadingModal loading={loading} success={success} error={false}>
+            <Text>Hello</Text>
+        </LoadingModal>
+    );
 };
 
 const ErrorLoadingModal = (): JSX.Element => {
@@ -27,7 +32,11 @@ const ErrorLoadingModal = (): JSX.Element => {
         }, 1000);
     }, []);
 
-    return <LoadingModal loading={loading} success={false} error={error} />;
+    return (
+        <LoadingModal loading={loading} success={false} error={error}>
+            <Text>Hello</Text>
+        </LoadingModal>
+    );
 };
 
 describe("LoadingModal tests", () => {
@@ -40,6 +49,7 @@ describe("LoadingModal tests", () => {
         act(() => jest.runAllTimers());
         expect(screen.getByTestId("CircleCheckIcon")).toBeDefined();
         act(() => jest.runAllTimers());
+        expect(screen.getByText("Hello")).toBeDefined();
         jest.useRealTimers();
     });
 
@@ -52,6 +62,8 @@ describe("LoadingModal tests", () => {
         expect(screen.queryByTestId("CircleCheckIcon")).toBeNull();
         expect(screen.getByTestId("Logo")).toBeDefined();
         act(() => jest.runAllTimers());
+        //Modal has been closed
+        expect(screen.queryByText("Hello")).toBeNull();
         jest.useRealTimers();
     });
 });

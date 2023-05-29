@@ -250,5 +250,6 @@
     "cryptoWithFiatPurchaseCompletedMessage": "Помните, что потребуется несколько минут, чтобы баланс вашего аккаунта отразил новую сумму.",
     "seeInExplorer": "Просмотреть в проводнике",
     "actionDetails": "Детали действия",
-    "explorer": "Проводник"
+    "explorer": "Проводник",
+    "transaction": "Транзакция"
 }

@@ -250,5 +250,6 @@
     "cryptoWithFiatPurchaseCompletedMessage": "Remember that it will take a few minutes for your account balance to reflect the new amount.",
     "seeInExplorer": "See in Explorer",
     "actionDetails": "Action details",
-    "explorer": "Explorer"
+    "explorer": "Explorer",
+    "transaction": "Transaction"
 }
