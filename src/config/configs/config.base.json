@@ -41,6 +41,6 @@
         "networks": "mainnet",
         "cryptoCurrencyList": "NEAR",
         "isFeeCalculationHidden": true,
-        "environment": "STAGING"
+        "environment": "PRODUCTION"
     }
 }
