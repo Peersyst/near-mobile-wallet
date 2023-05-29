@@ -248,5 +248,7 @@
     "buy": "Beli",
     "cryptoWithFiatPurchaseCompleted": "Pembelian selesai!",
     "cryptoWithFiatPurchaseCompletedMessage": "Ingat bahwa akan membutuhkan beberapa menit agar saldo akun Anda mencerminkan jumlah baru.",
-    "openInExplorer": "Buka di explorer"
+    "seeInExplorer": "Lihat di explorer",
+    "actionDetails": "Detail tindakan",
+    "explorer": "Penjelajah"
 }

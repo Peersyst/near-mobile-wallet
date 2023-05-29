@@ -23,8 +23,8 @@ const SendTxHashContent = ({ style, txHash }: SendTxHashContentProps) => {
                 />
             </Label>
             <Col gap={12}>
-                <ShareButton variant="tertiary" fullWidth shareContent={{ message: txHash }} />
-                <ExplorerButton type="tx" address={txHash} variant="tertiary" fullWidth />
+                <ShareButton variant="tertiary" fullWidth shareContent={{ message: txHash }} showIcon />
+                <ExplorerButton type="tx" address={txHash} variant="tertiary" fullWidth showIcon />
             </Col>
         </Col>
     );

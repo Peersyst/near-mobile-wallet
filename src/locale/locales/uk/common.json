@@ -248,5 +248,7 @@
     "buy": "Купити",
     "cryptoWithFiatPurchaseCompleted": "Покупка завершена!",
     "cryptoWithFiatPurchaseCompletedMessage": "Пам'ятайте, що займе кілька хвилин, щоб ваш баланс рахунку відобразив нову суму.",
-    "openInExplorer": "Відкрити у провіднику"
+    "seeInExplorer": "Переглянути у провіднику",
+    "actionDetails": "Деталі дії",
+    "explorer": "Провідник"
 }

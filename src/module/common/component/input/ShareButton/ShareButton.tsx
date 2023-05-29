@@ -6,9 +6,10 @@ import { SharePayload, useShare } from "@peersyst/react-native-components";
 
 export interface ShareButtonProps extends Omit<ButtonProps, "children" | "onPress">, SharePayload {
     label?: string;
+    showIcon?: boolean;
 }
 
-function ShareButton({ label, shareContent, options, ...rest }: ShareButtonProps) {
+function ShareButton({ label, shareContent, options, showIcon, ...rest }: ShareButtonProps) {
     const translate = useTranslate();
     const { share } = useShare();
 
@@ -17,7 +18,7 @@ function ShareButton({ label, shareContent, options, ...rest }: ShareButtonProps
     }
 
     return (
-        <Button {...rest} onPress={handlePress} leftIcon={<ShareIcon style={{ fontSize: 24 }} />}>
+        <Button {...rest} onPress={handlePress} leftIcon={showIcon ? <ShareIcon style={{ fontSize: 24 }} /> : undefined}>
             {label || translate("share")}
         </Button>
     );

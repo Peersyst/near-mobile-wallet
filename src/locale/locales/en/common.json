@@ -248,5 +248,7 @@
     "buy": "Buy",
     "cryptoWithFiatPurchaseCompleted": "Purchase completed!",
     "cryptoWithFiatPurchaseCompletedMessage": "Remember that it will take a few minutes for your account balance to reflect the new amount.",
-    "openInExplorer": "Open in explorer"
+    "seeInExplorer": "See in Explorer",
+    "actionDetails": "Action details",
+    "explorer": "Explorer"
 }

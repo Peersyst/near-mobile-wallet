@@ -13,7 +13,7 @@ function ExplorerButton({ label, type, address, ...rest }: ExplorerButtonProps) 
     const translate = useTranslate();
     const { url } = useExplorerButton({ type, address });
 
-    return <ExternalLinkButton label={label || translate("openInExplorer")} url={url} {...rest} />;
+    return <ExternalLinkButton label={label || translate("seeInExplorer")} url={url} {...rest} />;
 }
 
 export default ExplorerButton;

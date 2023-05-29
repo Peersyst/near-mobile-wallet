@@ -248,5 +248,7 @@
     "buy": "Acheter",
     "cryptoWithFiatPurchaseCompleted": "Achat terminé!",
     "cryptoWithFiatPurchaseCompletedMessage": "N'oubliez pas qu'il faudra quelques minutes pour que votre solde de compte reflète le nouveau montant.",
-    "openInExplorer": "Ouvrir dans l'explorateur"
+    "seeInExplorer": "Voir dans l'explorateur",
+    "actionDetails": "Détails de l'action",
+    "explorer": "Explorateur"
 }
