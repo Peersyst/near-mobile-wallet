@@ -12,4 +12,5 @@ export interface SendTransactionModalProps extends TransactionStatus {
     onExited?: () => unknown;
     sendTransaction: () => void | Promise<unknown>;
     children: (props: SendTransactionModalChildrenProps) => JSX.Element;
+    txHash?: string;
 }

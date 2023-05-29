@@ -14,6 +14,7 @@ const LoadingModal = ({
     success = false,
     processingMessage,
     onClose,
+    children,
     ...backdropProps
 }: LoadingModalProps): JSX.Element => {
     const [open, setOpen] = useState(false);
@@ -51,18 +52,21 @@ const LoadingModal = ({
                 <LoadingModalContent>
                     {success ? (
                         <>
-                            <Col alignItems="center" gap={14}>
-                                <SuccessIcon />
-                                <LoadingModalMessage textAlign="center" variant="body2Strong">
-                                    {successMessage}
-                                </LoadingModalMessage>
+                            <Col gap={40} flex={1} justifyContent="center">
+                                <Col alignItems="center" gap={14}>
+                                    <SuccessIcon />
+                                    <LoadingModalMessage textAlign="center" variant="body2Strong">
+                                        {successMessage}
+                                    </LoadingModalMessage>
+                                </Col>
+                                {children}
                             </Col>
                             <Button fullWidth variant="secondary" onPress={handleClose}>
                                 {translate("continue")}
                             </Button>
                         </>
                     ) : (
-                        <Col alignItems="center" gap={14}>
+                        <Col alignItems="center" gap={14} flex={1} justifyContent="center">
                             <Logo />
                             <LoadingModalMessage textAlign="center" variant="body2Strong">
                                 {processingMessage || translate("processing")}

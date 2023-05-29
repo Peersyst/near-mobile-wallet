@@ -14,6 +14,7 @@ export * from "./CopyIcon";
 export * from "./CrossIcon";
 export * from "./DatabaseIcon";
 export * from "./EditIcon";
+export * from "./ExternalLinkIcon";
 export * from "./FaceIdIcon";
 export * from "./FaucetIcon";
 export * from "./FilledCircleIcon";

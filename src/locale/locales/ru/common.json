@@ -247,5 +247,6 @@
     "shareYourNearAddressMessage": "Это мой адрес в сети NEAR с использованием мобильного кошелька NEAR:\n\n{{address}}",
     "buy": "Купить",
     "cryptoWithFiatPurchaseCompleted": "Покупка завершена!",
-    "cryptoWithFiatPurchaseCompletedMessage": "Помните, что потребуется несколько минут, чтобы баланс вашего аккаунта отразил новую сумму."
+    "cryptoWithFiatPurchaseCompletedMessage": "Помните, что потребуется несколько минут, чтобы баланс вашего аккаунта отразил новую сумму.",
+    "openInExplorer": "Открыть в проводнике"
 }

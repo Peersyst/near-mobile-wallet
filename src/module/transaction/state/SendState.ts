@@ -6,6 +6,7 @@ export interface SendState {
     senderWalletIndex?: number;
     receiverAddress?: string;
     amount?: string;
+    txHash?: string;
     asset: Asset;
 }
 

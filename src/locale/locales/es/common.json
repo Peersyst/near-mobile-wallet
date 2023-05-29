@@ -247,5 +247,6 @@
     "shareYourNearAddressMessage": "Esta es mi dirección de la red de NEAR usando NEAR Mobile Wallet:\n\n{{address}}",
     "buy": "Comprar",
     "cryptoWithFiatPurchaseCompleted": "¡Compra completada!",
-    "cryptoWithFiatPurchaseCompletedMessage": "Recuerda que tomará unos minutos para que el saldo de tu cuenta refleje el nuevo monto."
+    "cryptoWithFiatPurchaseCompletedMessage": "Recuerda que tomará unos minutos para que el saldo de tu cuenta refleje el nuevo monto.",
+    "openInExplorer": "Abrir en el explorador"
 }
