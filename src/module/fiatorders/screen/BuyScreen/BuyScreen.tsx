@@ -6,7 +6,7 @@ import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMain
 const BuyScreen = (): JSX.Element => {
     const translate = useTranslate();
     return (
-        <BaseMainScreen title={translate("buy") + " " + config.tokenName} back>
+        <BaseMainScreen title={translate("buy").toLocaleUpperCase() + " " + config.tokenName} back>
             <BuyWithTransak />
         </BaseMainScreen>
     );

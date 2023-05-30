@@ -22,7 +22,7 @@ const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ open: openProp, onC
             open={open}
             onClose={() => setOpen(false)}
             closable
-            navbar={{ back: true, title: translate("receive")! }}
+            navbar={{ back: true, title: translate("receive").toUpperCase() }}
             {...rest}
         >
             <ReceiveModalWrapper gap={24}>

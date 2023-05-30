@@ -6,7 +6,7 @@ import { Col } from "@peersyst/react-native-components";
 import Steps from "module/common/component/display/Steps/Steps";
 import { NavbarTitle } from "./NavbarTitle";
 
-const Navbar = ({ back, title, onBack, steps, upperCase = true, style }: NavbarProps): JSX.Element => {
+const Navbar = ({ back, title, onBack, steps, style }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
 
     const goBack = () => {
@@ -23,7 +23,7 @@ const Navbar = ({ back, title, onBack, steps, upperCase = true, style }: NavbarP
                 </BackIconRoot>
             )}
             <Col alignItems="center">
-                {title && <NavbarTitle title={title} textTransform={upperCase ? "uppercase" : "none"} textAlign="center" />}
+                {title && <NavbarTitle title={title} textAlign="center" />}
                 {steps && <Steps index={steps.index} length={steps.length} />}
             </Col>
         </NavbarRoot>

@@ -8,8 +8,4 @@ export interface NavbarProps {
     title?: string;
     steps?: StepsProps;
     style?: ViewStyle;
-    /**
-     * Display the title in uppercase
-     */
-    upperCase?: boolean;
 }

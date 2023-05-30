@@ -33,7 +33,7 @@ const CreateWalletModal = createModal((props: ExposedBackdropProps) => {
         <AddWalletModal
             navbar={{
                 back: index !== LOCALE_MODAL_TITLES.length - 1,
-                title: translate(LOCALE_MODAL_TITLES[index])!,
+                title: translate(LOCALE_MODAL_TITLES[index])!.toLocaleUpperCase(),
                 onBack: index > 0 ? handleOnBack : undefined,
                 steps: showSteps
                     ? {

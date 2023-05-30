@@ -37,7 +37,7 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
         <CardNavigatorModal
             navbar={{
                 back: true,
-                title: translate("send"),
+                title: translate("send").toUpperCase(),
                 onBack: activeIndex > 0 ? handleOnBack : undefined,
                 steps: {
                     length: 3,
