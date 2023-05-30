@@ -1,6 +1,5 @@
 {
     "number": "{{val, number}}",
-    "formatDate": "{{val, datetime}}",
     "welcome": "Bonjour",
     "welcome_back": "Bienvenue à nouveau",
     "confirm_your_pin": "Confirmez votre code PIN",
