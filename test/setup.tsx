@@ -54,9 +54,9 @@ jest.mock("module/settings/hook/useSelectedNetwork", () => {
     return () => "testnet";
 });
 
-jest.mock("@transak/react-native-sdk", () => {
+jest.mock("react-native-webview", () => {
     return {
-        default: <></>,
+        WebView: <></>,
     };
 });
 
