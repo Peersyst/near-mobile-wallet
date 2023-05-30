@@ -37,7 +37,7 @@ const StakeModal = ({ onExited, tabs, onBack, ...rest }: StakeModalProps) => {
         <StakeModalRoot
             navbar={{
                 back: activeIndex !== tabs.length - 1,
-                title: tabs[activeIndex].title,
+                title: tabs[activeIndex].title.toUpperCase(),
                 onBack: activeIndex > 0 ? handleOnBack : undefined,
                 steps: {
                     length: tabs.length,

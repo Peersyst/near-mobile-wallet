@@ -12,7 +12,7 @@ const BuySuccessScreen = (): JSX.Element => {
     const navigate = useNavigation().navigate;
 
     return (
-        <BaseMainScreen title={translate("buy") + " " + config.tokenName} back>
+        <BaseMainScreen title={translate("buy").toLocaleUpperCase() + " " + config.tokenName} back>
             <Col flex={1} justifyContent="space-between" style={{ padding: 20 }}>
                 <OrderSuccess
                     title={translate("cryptoWithFiatPurchaseCompleted")}

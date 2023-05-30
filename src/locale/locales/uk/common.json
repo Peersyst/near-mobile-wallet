@@ -1,6 +1,5 @@
 {
     "number": "{{val, number}}",
-    "date": "{{val, datetime}}",
     "welcome": "Привіт",
     "welcome_back": "З поверненням",
     "confirm_your_pin": "Підтвердіть ваш PIN",
@@ -249,7 +248,9 @@
     "cryptoWithFiatPurchaseCompleted": "Покупка завершена!",
     "cryptoWithFiatPurchaseCompletedMessage": "Пам'ятайте, що займе кілька хвилин, щоб ваш баланс рахунку відобразив нову суму.",
     "seeInExplorer": "Переглянути у провіднику",
-    "actionDetails": "Деталі дії",
+    "transactionDetails": "Деталі транзакції",
     "explorer": "Провідник",
-    "transaction": "Транзакція"
+    "transaction": "Транзакція",
+    "date": "Дата",
+    "shareTxText": "Перевірте транзакцію, яку я щойно здійснив у мережі NEAR, використовуючи NEAR Mobile wallet у провіднику: {{link}}"
 }

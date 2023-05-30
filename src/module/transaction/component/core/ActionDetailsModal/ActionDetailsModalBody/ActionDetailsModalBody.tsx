@@ -19,13 +19,14 @@ const ActionDetailsModalBody = ({ action }: ActionDetailsModalBodyProps): JSX.El
     return (
         <Col gap={24} flex={1} style={{ maxWidth: "85%" }}>
             {transaction.signerAccountId && (
-                <ActionDetail title={translate("from")}>
+                <ActionDetail title={translate("date")}>
                     <Typography variant="body3Strong">{formattedDate}</Typography>
                 </ActionDetail>
             )}
             {transaction.signerAccountId && (
                 <ActionDetail title={translate("sender")}>
                     <BlockchainAddress
+                        gap={6}
                         showCopyIcon
                         action="link"
                         address={transaction.signerAccountId}
@@ -37,6 +38,7 @@ const ActionDetailsModalBody = ({ action }: ActionDetailsModalBodyProps): JSX.El
             {transaction.receiverAccountId && (
                 <ActionDetail title={translate("receiver")}>
                     <BlockchainAddress
+                        gap={6}
                         showCopyIcon
                         action="link"
                         address={transaction.receiverAccountId}
@@ -46,7 +48,7 @@ const ActionDetailsModalBody = ({ action }: ActionDetailsModalBodyProps): JSX.El
                 </ActionDetail>
             )}
             <ActionDetail title={translate("hash")}>
-                <BlockchainAddress address={action.transactionHash} type="tx" variant="body3Strong" action="link" showCopyIcon />
+                <BlockchainAddress gap={6} address={action.transactionHash} type="tx" variant="body3Strong" action="link" showCopyIcon />
             </ActionDetail>
         </Col>
     );

@@ -1,8 +1,8 @@
 import { Col, ColProps, Label } from "@peersyst/react-native-components";
 import ExplorerButton from "../../input/ExplorerButton/ExplorerButton";
 import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
-import ShareButton from "module/common/component/input/ShareButton/ShareButton";
 import { useTranslate } from "module/common/hook/useTranslate";
+import ShareTxHashButton from "../../input/ShareTxHashButton/ShareTxHashButton";
 
 export interface SendTxHashContentProps {
     txHash: string;
@@ -26,7 +26,7 @@ const SendTxHashContent = ({ style, txHash }: SendTxHashContentProps) => {
                 />
             </Label>
             <Col gap={12}>
-                <ShareButton variant="tertiary" fullWidth shareContent={{ message: txHash }} showIcon />
+                <ShareTxHashButton variant="tertiary" fullWidth txHash={txHash} showIcon />
                 <ExplorerButton type="tx" address={txHash} variant="tertiary" fullWidth showIcon />
             </Col>
         </Col>

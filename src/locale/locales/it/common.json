@@ -1,6 +1,5 @@
 {
     "number": "{{val, number}}",
-    "date": "{{val, datetime}}",
     "welcome": "Ciao",
     "welcome_back": "Bentornato",
     "confirm_your_pin": "Conferma il tuo PIN",
@@ -249,7 +248,9 @@
     "cryptoWithFiatPurchaseCompleted": "Acquisto completato!",
     "cryptoWithFiatPurchaseCompletedMessage": "Ricorda che ci vorranno alcuni minuti affinché il saldo del tuo account rifletta la nuova cifra.",
     "seeInExplorer": "Vedi nell'esploratore",
-    "actionDetails": "Dettagli dell'azione",
+    "transactionDetails": "Dettagli della transazione",
     "explorer": "Esploratore",
-    "transaction": "Transazione"
+    "transaction": "Transazione",
+    "date": "Data",
+    "shareTxText": "Verifica la transazione che ho appena effettuato nella rete NEAR utilizzando il NEAR Mobile wallet nell'esploratore: {{link}}"
 }
