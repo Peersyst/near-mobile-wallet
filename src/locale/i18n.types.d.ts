@@ -8,10 +8,12 @@ import { defaultNS, resources } from "./i18n";
  * fr: French
  * id: Indonesian
  * it: Italian
+ * pt: Portuguese
  * ru: Russian
  * uk: Ukrainian
+ * vi: Vietnamese
  */
-export type LocaleType = "en" | "es" | "fr" | "id" | "it" | "ru" | "uk" | "pt";
+export type LocaleType = "en" | "es" | "fr" | "id" | "it" | "pt" | "ru" | "uk" | "vi";
 export type NameSpacesType = "translation" | "error";
 export type ResourceType = typeof resources["en"];
 export type ErrorResourceType = keyof ResourceType["error"];
