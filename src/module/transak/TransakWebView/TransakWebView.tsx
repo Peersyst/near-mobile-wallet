@@ -1,4 +1,4 @@
-import { WebView, WebViewNavigation } from "react-native-webview";
+import { WebView } from "react-native-webview";
 import { TransakWebViewProps } from "./TransakWebView.types";
 import { memo, useMemo } from "react";
 import parseQueryParams from "./utils/parseQueryParams";
