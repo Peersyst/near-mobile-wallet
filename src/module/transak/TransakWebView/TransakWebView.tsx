@@ -4,9 +4,8 @@ import { memo, useMemo } from "react";
 import parseQueryParams from "./utils/parseQueryParams";
 import { Platform } from "react-native";
 
-function TransakWebView({ queryParams, onTransakEventHandler, ...rest }: TransakWebViewProps): JSX.Element {
+function TransakWebView({ queryParams, ...rest }: TransakWebViewProps): JSX.Element {
     const uri = useMemo(() => parseQueryParams(queryParams), [queryParams]);
-    //TODO: onTransakEventHandler
     return (
         <WebView
             source={{ uri }}
