@@ -14,5 +14,4 @@ export type TransakEventHandler = (event: TransakEvent, data: any) => void;
 
 export interface TransakWebViewProps extends WebViewPropsSupportedByTransakWebView {
     queryParams: TransakQueryParams;
-    onTransakEventHandler?: TransakEventHandler;
 }
