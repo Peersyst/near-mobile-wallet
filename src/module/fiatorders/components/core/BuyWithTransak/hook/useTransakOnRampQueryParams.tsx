@@ -9,10 +9,10 @@ export default function useTransakOnRampQueryParams(): TransakOnRampQueryParams 
     const transakConfig = useConfig("transak");
 
     return {
-        walletAddress: account,
-        themeColor: palette.primary,
         ...transakConfig,
         environment: transakConfig.environment as TransakEnviroment,
-        disablePaymentMethods: Platform.OS !== "ios" ? SupportedPaymentMethods.APPLE_PAY : undefined,
+        walletAddress: account,
+        themeColor: palette.primary.replace("#", ""),
+        ...(Platform.OS !== "ios" && { disablePaymentMethods: SupportedPaymentMethods.APPLE_PAY }),
     };
 }

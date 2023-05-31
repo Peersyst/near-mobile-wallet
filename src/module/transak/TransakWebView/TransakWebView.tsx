@@ -1,15 +1,19 @@
-import { WebView } from "react-native-webview";
+import { WebView, WebViewNavigation } from "react-native-webview";
 import { TransakWebViewProps } from "./TransakWebView.types";
-import { memo } from "react";
+import { memo, useMemo } from "react";
+import parseQueryParams from "./utils/parseQueryParams";
+import { Platform } from "react-native";
 
-function TransakWebView(props: TransakWebViewProps): JSX.Element {
-    //TODO: Remove this hardcoded uri
+function TransakWebView({ queryParams, onTransakEventHandler, ...rest }: TransakWebViewProps): JSX.Element {
+    const uri = useMemo(() => parseQueryParams(queryParams), [queryParams]);
+    //TODO: onTransakEventHandler
     return (
         <WebView
-            source={{
-                uri: "https://global.transak.com/?apiKey=f2d9a722-cac0-4bea-bdfc-2560d65f1a1e&defaultCryptoCurrency=NEAR&networks=mainnet&cryptoCurrencyList=NEAR",
-            }}
-            {...props}
+            source={{ uri }}
+            enableApplePay={Platform.OS === "ios"}
+            allowInlineMediaPlayback
+            mediaPlaybackRequiresUserAction={false}
+            {...rest}
         />
     );
 }
