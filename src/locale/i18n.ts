@@ -1,8 +1,8 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
-import { en, es, fr, id, it, ru, uk, pt } from "./locales";
+import { en, es, fr, id, it, ru, uk, pt, vi } from "./locales";
 
-// Polyfill Intl as it is not included in RN
+// Polyfill Intl as it is not included in RN (needed for number formatting)
 import "intl";
 import "intl/locale-data/jsonp/en";
 import "intl/locale-data/jsonp/es";
@@ -12,6 +12,7 @@ import "intl/locale-data/jsonp/it";
 import "intl/locale-data/jsonp/pt";
 import "intl/locale-data/jsonp/ru";
 import "intl/locale-data/jsonp/uk";
+import "intl/locale-data/jsonp/vi";
 import LanguageDetectorPlugin from "./pluguins/LanguageDetectorPlugin/LanguageDetectorPlugin";
 
 export const defaultNS = "translation";
@@ -19,12 +20,13 @@ export const defaultNS = "translation";
 export const resources = {
     en,
     es,
-    it,
-    id,
     fr,
+    id,
+    it,
     pt,
     ru,
     uk,
+    vi,
 } as const;
 
 i18next

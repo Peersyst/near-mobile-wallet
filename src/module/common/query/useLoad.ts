@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import useRecoverWallets from "module/wallet/hook/useRecoverWallets";
+import WalletController from "module/wallet/utils/WalletController";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
@@ -11,11 +12,11 @@ export function useLoad(): boolean {
 
     useEffect(() => {
         const getStorage = async () => {
+            const hasMnemonic = await WalletController.hasMnemonic();
             const settings = { ...defaultSettingsState, ...((await SettingsStorage.getAllSettings()) || {}) };
 
-            const hasWallets = await recoverWallets(settings.network);
-
-            if (!hasWallets) await SettingsStorage.set(settings);
+            if (!hasMnemonic) await SettingsStorage.set(settings);
+            else await recoverWallets(settings.network);
 
             setSettingsState(settings);
 
