@@ -23,7 +23,7 @@ describe("SendConfirmationScreen tests", () => {
         expect(screen.getByText(`${config.estimatedFee} ${config.tokenName}`)).toBeDefined();
         //Total
         expect(screen.getByText(translate("total") + " · ")).toBeDefined();
-        expect(screen.getByText("1,000.00005 " + config.tokenName)).toBeDefined();
+        expect(screen.getByText("1,000.005 " + config.tokenName)).toBeDefined();
         //From
         expect(screen.getByText(translate("from"))).toBeDefined();
         expect(screen.getByText(state.wallets[0].account)).toBeDefined();

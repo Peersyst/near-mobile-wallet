@@ -2,7 +2,8 @@ import { useMutation } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
-import waitForIndexer from "../utils/waitForIndexer";
+import { useSetRecoilState } from "recoil";
+import sendState from "../state/SendState";
 
 export interface UseSendNEARParams {
     to: string;
@@ -12,11 +13,12 @@ export interface UseSendNEARParams {
 const useSendNEAR = (senderIndex: number) => {
     const { serviceInstance } = useServiceInstance(senderIndex);
     const invalidateQueries = useInvalidateServiceInstanceQueries(senderIndex);
+    const setSendState = useSetRecoilState(sendState);
 
     return useMutation(
         async ({ to, amount }: UseSendNEARParams) => {
-            await serviceInstance.sendTransaction(to, amount);
-            await waitForIndexer();
+            const txHash = await serviceInstance.sendTransaction(to, amount);
+            setSendState((oldState) => ({ ...oldState, txHash }));
         },
         {
             onSuccess: () => {

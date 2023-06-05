@@ -1,7 +1,6 @@
-import { fireEvent, render, translate } from "test-utils";
+import { fireEvent, render, screen, translate } from "test-utils";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
-import { MOCKED_ADDRESS, UseServiceInstanceMock, WalletStateMock } from "test-mocks";
-import * as UseCopyToClipboard from "module/common/hook/useCopyToClipboard";
+import { MOCKED_ADDRESS, UseServiceInstanceMock, UseShareMock, WalletStateMock } from "test-mocks";
 
 describe("Test for the receive Modal", () => {
     beforeEach(() => {
@@ -14,16 +13,19 @@ describe("Test for the receive Modal", () => {
     });
 
     test("Renders correctly", () => {
-        const screen = render(<ReceiveModal />);
+        render(<ReceiveModal />);
+        //Address
         expect(screen.getByText(MOCKED_ADDRESS)).toBeDefined();
+        //Share btn
+        expect(screen.getByRole("button", { name: translate("share") })).toBeDefined();
     });
-    test("Copies address correctly", () => {
-        const mockedCopy = jest.fn();
-        jest.spyOn(UseCopyToClipboard, "useCopyToClipboard").mockReturnValue(mockedCopy);
-        const screen = render(<ReceiveModal />);
-        const button = screen.getByText(translate("copy"));
-        expect(button).toBeDefined();
-        fireEvent.press(button);
-        expect(mockedCopy).toHaveBeenCalledWith({ message: MOCKED_ADDRESS, toastMessage: translate("address_copied") });
+
+    test("Calls share correctly", () => {
+        const { share } = new UseShareMock();
+        render(<ReceiveModal />);
+        const btn = screen.getByRole("button", { name: translate("share") });
+        expect(btn).toBeDefined();
+        fireEvent.press(btn);
+        expect(share).toHaveBeenCalled();
     });
 });

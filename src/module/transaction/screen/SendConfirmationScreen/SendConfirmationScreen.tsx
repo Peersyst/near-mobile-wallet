@@ -20,7 +20,7 @@ const SendConfirmationScreen = (): JSX.Element => {
         state: { wallets },
     } = useWalletState();
 
-    const { asset, amount, receiverAddress, senderWalletIndex } = sendStateValue;
+    const { asset, amount, receiverAddress, senderWalletIndex, txHash } = sendStateValue;
     const senderWallet = wallets[senderWalletIndex!];
     const { account: senderName } = senderWallet;
 
@@ -30,7 +30,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     }
 
     return (
-        <SendTransactionModal isSuccess={isSuccess} onExited={closeModal} sendTransaction={sendTransaction} {...rest}>
+        <SendTransactionModal txHash={txHash} isSuccess={isSuccess} onExited={closeModal} sendTransaction={sendTransaction} {...rest}>
             {({ showModal, isSuccess, isLoading }) => (
                 <Col gap={24} onStartShouldSetResponder={() => true}>
                     <SendSummary

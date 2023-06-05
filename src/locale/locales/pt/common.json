@@ -1,6 +1,5 @@
 {
     "number": "{{val, number}}",
-    "date": "{{val, datetime}}",
     "welcome": "Olá",
     "welcome_back": "Bem vindo de volta",
     "confirm_your_pin": "Confirme seu PIN",
@@ -220,7 +219,7 @@
     "confirm_validator": "CONFIRMAR VALIDADOR",
     "enter_amount_want_to": "Digite o valor que deseja {{action}}",
     "available_balance": "Disponível - {{amount}} ({{amount_price}})",
-    "max": "Máximo",
+    "max": "Max",
     "enter_a_validator_account_id": "Insira um endereço de conta de um validador",
     "validator_name_near": "nome-do-validador.near",
     "enter_new_validator": "Insira um novo validador ou selecione um da lista para fazer o stake de NEAR.",
@@ -241,5 +240,17 @@
     "recovering_accounts": "Recuperando suas contas...",
     "start_receiving_nfts": "Para começar a ver as NFT, envie as NFT para o endereço da sua conta.",
     "start_receiving_tokens": "Para começar a ver as fichas, envie fichas para o endereço da sua conta.",
-    "start_making_transactions": "Para começar a utilizar o NEAR Mobile, envie NEARs, fichas ou NFTs para o endereço da sua conta e liberte o poder do NEAR."
+    "start_making_transactions": "Para começar a utilizar o NEAR Mobile, envie NEARs, fichas ou NFTs para o endereço da sua conta e liberte o poder do NEAR.",
+    "share": "Compartilhar",
+    "shareYourNearAddress": "Compartilhe seu endereço NEAR",
+    "shareYourNearAddressMessage": "Este é o meu endereço na rede NEAR usando a carteira móvel NEAR:\n\n{{address}}",
+    "buy": "Comprar",
+    "cryptoWithFiatPurchaseCompleted": "Compra concluída!",
+    "cryptoWithFiatPurchaseCompletedMessage": "Lembre-se de que levará alguns minutos para que o saldo da sua conta reflita o novo valor.",
+    "seeInExplorer": "Ver no explorador",
+    "transactionDetails": "Detalhes da transação",
+    "explorer": "Explorador",
+    "transaction": "Transação",
+    "date": "Data",
+    "shareTxText": "Verifica la transazione che ho appena effettuato nella rete NEAR utilizzando il NEAR Mobile wallet nell'esploratore: {{link}}"
 }

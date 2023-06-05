@@ -74,7 +74,12 @@ const ImportWalletNavigatorGroup = () => {
                     onClose={() => setShowGlass(false)}
                     open={showGlass}
                     onExited={handleGlassExit}
-                    navbar={{ back: true, title: translate("import_wallet"), onBack: handleBack, steps: { index: activeTab, length: 2 } }}
+                    navbar={{
+                        back: true,
+                        title: translate("import_wallet").toUpperCase(),
+                        onBack: handleBack,
+                        steps: { index: activeTab, length: 2 },
+                    }}
                 >
                     <TabPanel index={ImportWalletScreens.WALLET_ADVISES}>
                         <WalletAdvisesScreen

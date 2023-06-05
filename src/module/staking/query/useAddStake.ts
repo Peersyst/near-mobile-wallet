@@ -2,7 +2,8 @@ import { useMutation } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
-import waitForIndexer from "module/transaction/utils/waitForIndexer";
+import { useSetRecoilState } from "recoil";
+import stakeState from "../state/StakeState";
 
 export interface UseAddStakeParams {
     amount: string;
@@ -10,13 +11,14 @@ export interface UseAddStakeParams {
 }
 
 const useAddStake = (senderIndex?: number) => {
+    const setStateState = useSetRecoilState(stakeState);
     const { serviceInstance } = useServiceInstance(senderIndex);
     const invalidateServiceInstanceQueries = useInvalidateServiceInstanceQueries(senderIndex);
 
     return useMutation(
         async ({ amount, validatorId }: UseAddStakeParams) => {
-            await serviceInstance.depositAndStakeFromValidator(validatorId.toString(), amount.toString());
-            await waitForIndexer();
+            const txHash = await serviceInstance.depositAndStakeFromValidator(validatorId.toString(), amount.toString());
+            setStateState((oldState) => ({ ...oldState, txHash }));
         },
         {
             onSuccess: () => {

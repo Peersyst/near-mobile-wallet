@@ -9,6 +9,7 @@ export interface UseNEARAmountTextFieldValidatorParams {
     amount: string;
     index?: number;
     maxAmount?: string;
+    fee?: string;
 }
 export interface UseNEARAmountTextFieldValidatorResult {
     error: TextFieldProps["error"];
@@ -18,6 +19,7 @@ export const useNEARAmountTextFieldValidator = ({
     amount,
     index,
     maxAmount,
+    fee = config.estimatedFee,
 }: UseNEARAmountTextFieldValidatorParams): UseNEARAmountTextFieldValidatorResult => {
     const translateError = useTranslate("error");
     const { data: { available } = { available: "0" } } = useGetBalance(index);
@@ -31,8 +33,8 @@ export const useNEARAmountTextFieldValidator = ({
     const finalMaxBalance = maxAmount || available;
 
     //Check if there is enough balance to pay the minimum fee
-    const isGreaterThanFee = isNEARAmountGreaterThanThreshold(finalMaxBalance, config.estimatedFee);
-    const formattedMinAvailable = useFormatBalance(config.estimatedFee, {
+    const isGreaterThanFee = isNEARAmountGreaterThanThreshold(finalMaxBalance, fee);
+    const formattedMinAvailable = useFormatBalance(fee, {
         units: "token",
         unitsPosition: "right",
     });
@@ -42,7 +44,7 @@ export const useNEARAmountTextFieldValidator = ({
     ];
 
     //Check if amount is less than available balance minus the fee (the maximum the user can send)
-    const finalAvailable = substractNearAmounts(finalMaxBalance, config.estimatedFee);
+    const finalAvailable = substractNearAmounts(finalMaxBalance, fee);
     const isGreaterThanMax = isNEARAmountGreaterThanThreshold(amount, finalAvailable);
     const formattedMaxAvailable = useFormatBalance(finalAvailable, {
         units: "token",

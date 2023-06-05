@@ -1,36 +1,13 @@
-import { IconButton, Row } from "@peersyst/react-native-components";
 import Container from "module/common/component/display/Container/Container";
-import Typography from "module/common/component/display/Typography/Typography";
-import { CopyIcon } from "module/common/icons/CopyIcon";
-import { useCopyToClipboard } from "module/common/hook/useCopyToClipboard";
-import { ViewStyle } from "react-native";
+import { BlockchainAddressCardProps } from "./BlockchainAddressCard.types";
+import { CenteredBlockchainAddress } from "./BlockchainAddressCard.styles";
+import { Row } from "@peersyst/react-native-components";
 
-export interface BlockchainAddressCardProps {
-    address: string;
-    onCopy?: () => void;
-    toastMessage?: string;
-    withCopyIcon?: boolean;
-    style?: ViewStyle;
-}
-const BlockchainAddressCard = ({ onCopy, address, withCopyIcon, toastMessage, style }: BlockchainAddressCardProps) => {
-    const copyToClipboard = useCopyToClipboard();
-
-    const handlePress = () => {
-        copyToClipboard({ message: address, toastMessage });
-        onCopy?.();
-    };
-
+const BlockchainAddressCard = ({ style, ...rest }: BlockchainAddressCardProps) => {
     return (
         <Container style={{ width: "100%", ...style }}>
-            <Row gap={10} justifyContent="center" alignItems="center">
-                <Typography style={{ maxWidth: withCopyIcon ? "90%" : "100%" }} variant="body2Strong" textAlign="center">
-                    {address}
-                </Typography>
-                {withCopyIcon && (
-                    <IconButton onPress={handlePress}>
-                        <CopyIcon></CopyIcon>
-                    </IconButton>
-                )}
+            <Row flex={1} justifyContent="center">
+                <CenteredBlockchainAddress type="address" variant="body2Strong" {...rest} />
             </Row>
         </Container>
     );

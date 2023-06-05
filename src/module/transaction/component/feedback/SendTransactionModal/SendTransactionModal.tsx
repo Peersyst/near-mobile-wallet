@@ -3,8 +3,9 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { useState } from "react";
 import { SendTransactionModalProps } from "./SendTransactionModal.types";
+import SendTxHashContent from "./SendTxHashContent";
 
-function SendTransactionModal({ onExited, children, sendTransaction, isLoading, isSuccess, isError }: SendTransactionModalProps) {
+function SendTransactionModal({ onExited, children, sendTransaction, isLoading, isSuccess, isError, txHash }: SendTransactionModalProps) {
     const translate = useTranslate();
     const [showConfirmation, setShowConfirmation] = useState(false);
 
@@ -28,7 +29,9 @@ function SendTransactionModal({ onExited, children, sendTransaction, isLoading, 
                 error={isError}
                 onExited={onExited}
                 successMessage={translate("transaction_completed")}
-            />
+            >
+                <>{txHash && <SendTxHashContent txHash={txHash} />}</>
+            </LoadingModal>
         </>
     );
 }

@@ -54,6 +54,12 @@ jest.mock("module/settings/hook/useSelectedNetwork", () => {
     return () => "testnet";
 });
 
+jest.mock("react-native-webview", () => {
+    return {
+        WebView: <></>,
+    };
+});
+
 //Mock language detector
 jest.mock("locale/pluguins/LanguageDetectorPlugin/LanguageDetectorPlugin", () => {
     return {

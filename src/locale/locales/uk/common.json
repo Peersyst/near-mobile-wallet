@@ -1,6 +1,5 @@
 {
     "number": "{{val, number}}",
-    "date": "{{val, datetime}}",
     "welcome": "Привіт",
     "welcome_back": "З поверненням",
     "confirm_your_pin": "Підтвердіть ваш PIN",
@@ -241,5 +240,17 @@
     "recovering_accounts": "Відновлення вашого облікового запису...",
     "start_receiving_nfts": "Щоб почати бачити NFT, надішліть NFT на адресу вашого облікового запису.",
     "start_receiving_tokens": "Щоб почати бачити токени, відправте токени на адресу вашого облікового запису.",
-    "start_making_transactions": "Щоб почати користуватися NEAR Mobile, надішліть NEAR, токени або NFT на адресу свого облікового запису та розкрийте можливості NEAR."
+    "start_making_transactions": "Щоб почати користуватися NEAR Mobile, надішліть NEAR, токени або NFT на адресу свого облікового запису та розкрийте можливості NEAR.",
+    "share": "Поділитися",
+    "shareYourNearAddress": "Поділіться своєю адресою NEAR",
+    "shareYourNearAddressMessage": "Ось моя адреса в мережі NEAR за допомогою мобільного гаманця NEAR:\n\n{{address}}",
+    "buy": "Купити",
+    "cryptoWithFiatPurchaseCompleted": "Покупка завершена!",
+    "cryptoWithFiatPurchaseCompletedMessage": "Пам'ятайте, що займе кілька хвилин, щоб ваш баланс рахунку відобразив нову суму.",
+    "seeInExplorer": "Переглянути у провіднику",
+    "transactionDetails": "Деталі транзакції",
+    "explorer": "Провідник",
+    "transaction": "Транзакція",
+    "date": "Дата",
+    "shareTxText": "Перевірте транзакцію, яку я щойно здійснив у мережі NEAR, використовуючи NEAR Mobile wallet у провіднику: {{link}}"
 }

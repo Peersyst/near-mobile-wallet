@@ -21,12 +21,13 @@ const NEARAmountWithMaxTextField = ({
     maxAmount,
     index,
     isLoading: isLoadingProp,
+    fee,
     ...rest
 }: NEARAmountWithMaxTextFieldProps) => {
     const translate = useTranslate();
     const [amount, setAmount] = useControlled(defaultValue, value, onChange);
     const { isLoading } = useGetBalance(index);
-    const { hint, maxBalance } = useNEARAmountWithMaxTextFieldController({ index, maxAmount });
+    const { hint, maxBalance } = useNEARAmountWithMaxTextFieldController({ index, maxAmount, fee });
 
     const changeToMaxBalance = () => {
         setAmount(maxBalance);
@@ -35,6 +36,7 @@ const NEARAmountWithMaxTextField = ({
     return (
         <NEARAmountTextField
             index={index}
+            fee={fee}
             hint={hint}
             suffix={
                 isLoadingProp || isLoading ? (

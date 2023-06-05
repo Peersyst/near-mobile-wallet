@@ -2,7 +2,8 @@ import { useMutation } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
-import waitForIndexer from "../utils/waitForIndexer";
+import { useSetRecoilState } from "recoil";
+import sendState from "../state/SendState";
 
 export interface UseSendNFTParams {
     contractId: string;
@@ -13,11 +14,12 @@ export interface UseSendNFTParams {
 const useSendNFT = (senderIndex: number) => {
     const { serviceInstance } = useServiceInstance(senderIndex);
     const invalidateQueries = useInvalidateServiceInstanceQueries(senderIndex);
+    const setSendState = useSetRecoilState(sendState);
 
     return useMutation(
         async ({ contractId, tokenId, receiverId }: UseSendNFTParams) => {
-            await serviceInstance.sendNFT(contractId, tokenId, receiverId);
-            await waitForIndexer();
+            const txHash = await serviceInstance.sendNFT(contractId, tokenId, receiverId);
+            setSendState((oldState) => ({ ...oldState, txHash }));
         },
         {
             onSuccess: () => {

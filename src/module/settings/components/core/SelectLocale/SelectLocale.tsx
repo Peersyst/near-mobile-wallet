@@ -33,6 +33,10 @@ const SelectLocale = (): JSX.Element => {
             value: "it",
         },
         {
+            label: translateLang("pt"),
+            value: "pt",
+        },
+        {
             label: translateLang("ru"),
             value: "ru",
         },
@@ -41,8 +45,8 @@ const SelectLocale = (): JSX.Element => {
             value: "uk",
         },
         {
-            label: translateLang("pt"),
-            value: "pt",
+            label: translateLang("vi"),
+            value: "vi",
         },
     ];
     const [settings, setSettings] = useRecoilState(settingsState);

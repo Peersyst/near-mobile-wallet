@@ -25,7 +25,7 @@ const ImportWalletModal = createModal((props: ExposedBackdropProps) => {
     return (
         <AddWalletModal
             navbar={{
-                title: translate("import_wallet")!,
+                title: translate("import_wallet")!.toLocaleUpperCase(),
                 onBack: index !== 0 ? () => setIndex((i) => i - 1) : undefined,
                 back: true,
             }}

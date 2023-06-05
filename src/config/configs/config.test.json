@@ -1,0 +1,12 @@
+{
+    "enableChangeNetwork": false,
+    "enableBuy": true,
+    "transak": {
+        "apiKey": "4a3f3484-0df6-41af-b865-6da3bc82ccd9",
+        "defaultCryptoCurrency": "NEAR",
+        "networks": "mainnet",
+        "cryptoCurrencyList": "NEAR",
+        "isFeeCalculationHidden": true,
+        "environment": "STAGING"
+    }
+}

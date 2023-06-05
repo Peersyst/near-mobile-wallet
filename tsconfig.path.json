@@ -9,6 +9,7 @@
             "images": ["asset/image"],
             "icons": ["module/common/icons"],
             "near-peersyst-sdk": ["module/sdk"],
+            "@peersyst/react-native-transak-sdk": ["module/transak"],
             "module/*": ["module/*"],
             "utils/*": ["utils/*"],
             "stack-navigator": ["Stack.ts"],

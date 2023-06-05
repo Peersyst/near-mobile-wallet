@@ -56,6 +56,7 @@ declare module "@peersyst/react-native-components" {
             "20%": string;
             "12%": string;
             "8%": string;
+            "4%": string;
         };
         altOverlay: {
             "80%": string;
@@ -64,6 +65,7 @@ declare module "@peersyst/react-native-components" {
             "20%": string;
             "12%": string;
             "8%": string;
+            "4%": string;
         };
         component: {
             appbar: {

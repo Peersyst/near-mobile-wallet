@@ -1,6 +1,5 @@
 {
     "number": "{{val, number}}",
-    "date": "{{val, datetime}}",
     "welcome": "Halo",
     "welcome_back": "Selamat Datang kembali",
     "confirm_your_pin": "Konfirmasi PIN Anda",
@@ -241,5 +240,17 @@
     "recovering_accounts": "Memulihkan akun Anda...",
     "start_receiving_nfts": "Untuk mulai melihat NFT, kirimkan NFT ke alamat akun Anda.",
     "start_receiving_tokens": "Untuk mulai melihat token, kirim token ke alamat akun Anda.",
-    "start_making_transactions": "Untuk mulai menggunakan NEAR Mobile, kirim NEAR, token, atau NFT ke alamat akun Anda dan gunakan kekuatan NEAR."
+    "start_making_transactions": "Untuk mulai menggunakan NEAR Mobile, kirim NEAR, token, atau NFT ke alamat akun Anda dan gunakan kekuatan NEAR.",
+    "share": "Bagikan",
+    "shareYourNearAddress": "Bagikan alamat NEAR Anda",
+    "shareYourNearAddressMessage": "Ini adalah alamat saya di jaringan NEAR menggunakan dompet seluler NEAR:\n\n{{address}}",
+    "buy": "Beli",
+    "cryptoWithFiatPurchaseCompleted": "Pembelian selesai!",
+    "cryptoWithFiatPurchaseCompletedMessage": "Ingat bahwa akan membutuhkan beberapa menit agar saldo akun Anda mencerminkan jumlah baru.",
+    "seeInExplorer": "Lihat di explorer",
+    "transactionDetails": "Rincian transaksi",
+    "explorer": "Penjelajah",
+    "transaction": "Transaksi",
+    "date": "Tanggal",
+    "shareTxText": "Periksa transaksi yang baru saja saya lakukan di jaringan NEAR menggunakan NEAR Mobile wallet di eksplorer: {{link}}"
 }

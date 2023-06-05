@@ -11,15 +11,20 @@ import { useRecoilValue } from "recoil";
 export interface UseNEARAmountWithMaxTextFieldControllerParams {
     index?: number;
     maxAmount?: string;
+    fee?: string;
 }
 
-export function useNEARAmountWithMaxTextFieldController({ index, maxAmount }: UseNEARAmountWithMaxTextFieldControllerParams) {
+export function useNEARAmountWithMaxTextFieldController({
+    index,
+    maxAmount,
+    fee = config.estimatedFee,
+}: UseNEARAmountWithMaxTextFieldControllerParams) {
     const translate = useTranslate();
     const { data: { available: availableBalance } = { available: "0" } } = useGetBalance(index);
 
     const finalAvailable = maxAmount ? maxAmount : availableBalance;
-    const hasEnoughBalance = isNEARAmountGreaterThanThreshold(finalAvailable, config.estimatedFee);
-    const maxBalance = hasEnoughBalance ? substractNearAmounts(finalAvailable, config.estimatedFee) : finalAvailable;
+    const hasEnoughBalance = isNEARAmountGreaterThanThreshold(finalAvailable, fee);
+    const maxBalance = hasEnoughBalance ? substractNearAmounts(finalAvailable, fee) : finalAvailable;
 
     const { value: maxBalanceInFiat = "0" } = useNativeTokenConversion(maxBalance);
     const { fiat } = useRecoilValue(settingsState);

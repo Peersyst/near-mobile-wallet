@@ -1,6 +1,5 @@
 {
     "number": "{{val, number}}",
-    "date": "{{val, datetime}}",
     "welcome": "Hello",
     "welcome_back": "Welcome back",
     "confirm_your_pin": "Confirm your PIN",
@@ -241,5 +240,17 @@
     "recovering_accounts": "Recovering your accounts...",
     "start_receiving_nfts": "To start seeing NFTs, send NFTs to your account's address.",
     "start_receiving_tokens": "To start seeing tokens, send tokens to your account's address.",
-    "start_making_transactions": "To start using NEAR Mobile, send NEARs, tokens or NFTs to your account's address and unleash the power of NEAR."
+    "start_making_transactions": "To start using NEAR Mobile, send NEARs, tokens or NFTs to your account's address and unleash the power of NEAR.",
+    "share": "Share",
+    "shareYourNearAddress": "Share your NEAR Address",
+    "shareYourNearAddressMessage": "This is my address in the NEAR network using the NEAR Mobile wallet:\n\n{{address}}.",
+    "buy": "Buy",
+    "cryptoWithFiatPurchaseCompleted": "Purchase completed!",
+    "cryptoWithFiatPurchaseCompletedMessage": "Remember that it will take a few minutes for your account balance to reflect the new amount.",
+    "seeInExplorer": "See in Explorer",
+    "transactionDetails": "Transaction details",
+    "explorer": "Explorer",
+    "transaction": "Transaction",
+    "date": "Date",
+    "shareTxText": "Check the transaction I just made in the NEAR network using the NEAR Mobile wallet in the block explorer: {{link}}"
 }

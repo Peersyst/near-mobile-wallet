@@ -4,6 +4,7 @@ import { Validator } from "near-peersyst-sdk";
 export interface StakeState {
     validator: Validator;
     amount: string;
+    txHash?: string;
 }
 
 const stakeState = atom<StakeState>({

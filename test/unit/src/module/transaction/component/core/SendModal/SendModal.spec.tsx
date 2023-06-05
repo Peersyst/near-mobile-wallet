@@ -19,7 +19,7 @@ describe("SendModal tests", () => {
 
     test("Renders correctly", () => {
         const screen = render(<SendModal />);
-        expect(screen.getByText(translate("send"))).toBeDefined();
+        expect(screen.getByText(translate("send").toUpperCase())).toBeDefined();
     });
 
     test("Resets send state on close", async () => {

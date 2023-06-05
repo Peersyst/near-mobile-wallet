@@ -1,6 +1,5 @@
 {
     "number": "{{val, number}}",
-    "date": "{{val, datetime}}",
     "welcome": "Bonjour",
     "welcome_back": "Bienvenue à nouveau",
     "confirm_your_pin": "Confirmez votre code PIN",
@@ -241,5 +240,17 @@
     "recovering_accounts": "Récupération de vos comptes...",
     "start_receiving_nfts": "Pour commencer à recevoir des NFT, envoyez des NFT à l'adresse de votre compte",
     "start_receiving_tokens": "Pour commencer à voir des jetons, envoyez des jetons à l'adresse de votre compte",
-    "start_making_transactions": "Pour commencer à utiliser NEAR Mobile, envoyez des NEARs, des tokens ou des NFTs à l'adresse de votre compte et libérez la puissance de NEAR."
+    "start_making_transactions": "Pour commencer à utiliser NEAR Mobile, envoyez des NEARs, des tokens ou des NFTs à l'adresse de votre compte et libérez la puissance de NEAR.",
+    "share": "Partager",
+    "shareYourNearAddress": "Partagez votre adresse NEAR",
+    "shareYourNearAddressMessage": "Voici mon adresse dans le réseau NEAR en utilisant le portefeuille mobile NEAR:\n\n{{address}}",
+    "buy": "Acheter",
+    "cryptoWithFiatPurchaseCompleted": "Achat terminé!",
+    "cryptoWithFiatPurchaseCompletedMessage": "N'oubliez pas qu'il faudra quelques minutes pour que votre solde de compte reflète le nouveau montant.",
+    "seeInExplorer": "Voir dans l'explorateur",
+    "transactionDetails": "Détails de la transaction",
+    "explorer": "Explorateur",
+    "transaction": "Transaction",
+    "date": "Date",
+    "shareTxText": "Vérifiez la transaction que je viens de faire dans le réseau NEAR en utilisant le NEAR Mobile wallet dans l'explorateur : {{link}}"
 }
