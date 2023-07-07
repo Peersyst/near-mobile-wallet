@@ -5,6 +5,7 @@ import MainListCard from "module/main/component/display/MainListCard/MainListCar
 import { TouchableWithoutFeedback } from "react-native";
 import { NftCardProps } from "./NftCard.types";
 import NftImage from "../NftImage/NftImage";
+import { memo } from "react";
 
 const NftCard = ({ nft }: NftCardProps): JSX.Element => {
     const t = useTranslate();
@@ -48,4 +49,4 @@ const NftCard = ({ nft }: NftCardProps): JSX.Element => {
     );
 };
 
-export default NftCard;
+export default memo(NftCard);
