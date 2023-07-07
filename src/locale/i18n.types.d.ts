@@ -12,8 +12,10 @@ import { defaultNS, resources } from "./i18n";
  * ru: Russian
  * uk: Ukrainian
  * vi: Vietnamese
+ * zh-CN: Chinese (Simplified)
+ * zh-TW: Chinese (Traditional)
  */
-export type LocaleType = "en" | "es" | "fr" | "id" | "it" | "pt" | "ru" | "uk" | "vi";
+export type LocaleType = "en" | "es" | "fr" | "id" | "it" | "pt" | "ru" | "uk" | "vi" | "zh-CN" | "zh-TW";
 export type NameSpacesType = "translation" | "error";
 export type ResourceType = typeof resources["en"];
 export type ErrorResourceType = keyof ResourceType["error"];
