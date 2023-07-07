@@ -90,12 +90,24 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
         };
     }
 
+    private parseNearAccount(accountId: string): string {
+        if (accountId.endsWith(".mainnet")) {
+            return accountId.replace(".mainnet", ".near");
+        }
+        return accountId;
+    }
+
+    private parseNearAccounts(accounts: string[]): string[] {
+        return accounts.map((account) => this.parseNearAccount(account));
+    }
+
     /**
      * NearApiServiceInterface methods
      */
 
     async getAccountsFromPublicKey({ address }: NearApiServiceParams): Promise<string[]> {
-        return await this.handleFetch<string[]>(`${this.baseUrl}/publicKey/${address}/accounts`);
+        const accounts = await this.handleFetch<string[]>(`${this.baseUrl}/publicKey/${address}/accounts`);
+        return this.parseNearAccounts(accounts);
     }
 
     async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
@@ -104,14 +116,17 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     async getLikelyTokens({ address }: NearApiServiceParams): Promise<string[]> {
-        return (
+        const accounts = (
             await this.handleFetch<LikelyResponseApiDto>(`${this.baseUrl}/account/${address}/likelyTokensFromBlock?fromBlockTimestamp=0`)
         ).list;
+        return this.parseNearAccounts(accounts);
     }
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
-        return (await this.handleFetch<LikelyResponseApiDto>(`${this.baseUrl}/account/${address}/likelyNFTsFromBlock?fromBlockTimestamp=0`))
-            .list;
+        const accounts = (
+            await this.handleFetch<LikelyResponseApiDto>(`${this.baseUrl}/account/${address}/likelyNFTsFromBlock?fromBlockTimestamp=0`)
+        ).list;
+        return this.parseNearAccounts(accounts);
     }
 
     async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
