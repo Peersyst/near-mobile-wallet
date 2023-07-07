@@ -12,7 +12,6 @@ export function getDefaultLocale(): LocaleType {
     }
 
     const locales: LocaleType[] = ["en", "es", "fr", "id", "it", "pt", "ru", "uk", "vi"];
-    const systemLocaleEnd = systemLocale.slice(-2);
-    const systemLocaleStart = systemLocale.slice(0, 2);
-    return locales.find((l) => systemLocaleStart === l || systemLocaleEnd === l) ?? "en";
+    const parts = systemLocale.split("-");
+    return locales.find((l) => parts.includes(l)) ?? "en";
 }
