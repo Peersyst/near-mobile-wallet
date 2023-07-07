@@ -91,8 +91,8 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     private parseNearAccount(accountId: string): string {
-        if (accountId.endsWith("mainnet")) {
-            return accountId.replace("mainnet", "near");
+        if (accountId.endsWith(".mainnet")) {
+            return accountId.replace(".mainnet", ".near");
         }
         return accountId;
     }
