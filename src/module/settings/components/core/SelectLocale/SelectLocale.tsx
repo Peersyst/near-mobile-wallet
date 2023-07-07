@@ -48,6 +48,14 @@ const SelectLocale = (): JSX.Element => {
             label: translateLang("vi"),
             value: "vi",
         },
+        {
+            label: translateLang("zh-CN"),
+            value: "zh-CN",
+        },
+        {
+            label: translateLang("zh-TW"),
+            value: "zh-TW",
+        },
     ];
     const [settings, setSettings] = useRecoilState(settingsState);
 
