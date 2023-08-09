@@ -9,7 +9,11 @@ export const BasePageRoot = styled(View)(({ theme }) => ({
     backgroundColor: theme.palette.background,
 }));
 
-export const BasePageContent = styled(View)<BasePageContentProps>(({ header }) => ({
-    flex: 1,
-    paddingTop: header ? Constants.statusBarHeight + TOOLBAR_HEIGHT : Constants.statusBarHeight,
-}));
+export const BasePageContent = styled(View)<BasePageContentProps>(({ header, watchStatusBar }) => {
+    const statusBarHeight = watchStatusBar ? Constants.statusBarHeight : 0;
+
+    return {
+        flex: 1,
+        paddingTop: header ? statusBarHeight + TOOLBAR_HEIGHT : statusBarHeight,
+    };
+});

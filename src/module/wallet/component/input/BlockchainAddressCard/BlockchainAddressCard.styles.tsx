@@ -3,4 +3,5 @@ import BlockchainAddress from "module/common/component/display/BlockchainAddress
 
 export const CenteredBlockchainAddress = styled(BlockchainAddress)(() => ({
     justifyContent: "center",
+    width: "95%",
 }));

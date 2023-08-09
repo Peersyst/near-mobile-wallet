@@ -5,7 +5,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     name: "NEAR Mobile",
     slug: "NEARMobileWallet",
     owner: "peersyst",
-    version: "1.2.0",
+    version: "1.2.1",
     orientation: "portrait",
     icon: "./assets/images/near-icon.png",
     scheme: "myapp",
@@ -34,13 +34,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         splash: { image: "./assets/images/splash.png", resizeMode: "cover", backgroundColor: "#5F8AFA" },
     },
     get android(): ExpoConfig["android"] {
+        const versionString = (this.version || "").replace(/\./g, "");
+        const versionCodeString = `${versionString}${process.env.BUILD_NUMBER}`.padEnd(8, "0");
         return {
             package: "com.peersyst.nearmobilewallet",
             adaptiveIcon: {
                 foregroundImage: "./assets/images/adaptive-icon.png",
                 backgroundColor: "#5F8AFA",
             },
-            versionCode: Number((this.version || "").replace(/\./g, "") + process.env.BUILD_NUMBER) || 0,
+            versionCode: Number(versionCodeString) || 0,
             softwareKeyboardLayoutMode: "resize",
             splash: {
                 image: "./assets/images/splash.png",

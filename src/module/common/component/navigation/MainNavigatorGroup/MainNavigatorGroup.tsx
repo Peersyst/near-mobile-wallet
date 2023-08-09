@@ -9,7 +9,11 @@ const MainNavigator = () => {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name={MainScreens.MAIN} component={MainBottomNavigatorGroup} />
             <Stack.Screen name={MainScreens.SETTINGS} component={SettingsNavigatorGroup} />
-            <Stack.Screen name={MainScreens.FIAT_ORDERS} component={FiatOrdersNavigationGroup} />
+            <Stack.Screen
+                name={MainScreens.FIAT_ORDERS}
+                component={FiatOrdersNavigationGroup}
+                options={{ presentation: "modal", animation: "slide_from_bottom" }}
+            />
         </Stack.Navigator>
     );
 };

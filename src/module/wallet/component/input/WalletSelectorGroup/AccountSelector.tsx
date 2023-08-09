@@ -3,6 +3,7 @@ import Balance from "module/wallet/component/display/Balance/Balance";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { BalanceOperations } from "near-peersyst-sdk";
 import { config } from "config";
+import { formatHash } from "@peersyst/react-utils";
 
 export interface AccountSelectorProps {
     index: number;
@@ -14,11 +15,11 @@ const AccountSelector = ({ index, account }: AccountSelectorProps) => {
     const decimals = BalanceOperations.isBigger(available, config.minBalanceToCreateAccount) ? 1 : 3;
     return (
         <Row alignItems="center" justifyContent="space-between" style={{ maxWidth: "100%", width: "100%" }}>
-            <Row style={{ flex: 1 }}>
-                <Selector value={index} label={account} />
+            <Row style={{ width: "75%", overflow: "hidden" }}>
+                <Selector value={index} label={formatHash(account, "middle", 11)} />
             </Row>
             <Balance
-                style={{ maxWidth: "30%" }}
+                style={{ width: "20%" }}
                 balance={available}
                 options={{ maximumFractionDigits: decimals, minimumFractionDigits: decimals }}
                 key={index}

@@ -7,8 +7,10 @@ export interface BasePageProps {
     showIcons?: boolean;
     gradient?: boolean;
     style?: ViewStyle;
+    watchStatusBar?: boolean;
 }
 
 export interface BasePageContentProps {
     header: boolean;
+    watchStatusBar: boolean;
 }
