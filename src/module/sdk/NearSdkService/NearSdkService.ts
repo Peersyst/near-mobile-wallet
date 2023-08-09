@@ -956,7 +956,6 @@ export class NearSDKService {
                 contractNfts = await this.getNftTokensAmount(contractId);
             } catch {
                 console.warn("Error getting nft amount for contract", contractId);
-                return nftTokens;
             }
 
             if (contractNfts > 0) {
