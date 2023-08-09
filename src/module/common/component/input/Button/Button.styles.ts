@@ -36,6 +36,10 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             backgroundColor: theme.palette.overlay["12%"],
             color: "#ffffff",
         },
+        contrast: {
+            backgroundColor: theme.palette.gray["900"],
+            color: theme.palette.red,
+        },
         outlined: {
             borderColor: theme.palette.text,
             color: theme.palette.text,
@@ -58,6 +62,9 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             },
             outlined: {
                 backgroundColor: theme.palette.overlay["8%"],
+            },
+            contrast: {
+                backgroundColor: emphasize(theme.palette.gray["900"], 0.15),
             },
         },
         disabled: {

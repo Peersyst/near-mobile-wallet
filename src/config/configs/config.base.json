@@ -33,5 +33,6 @@
         "validators": 180000
     },
     "indexerEstimatedDelay": 30000,
-    "nearMobileUrl": "https://nearmobile.app/"
+    "nearMobileUrl": "https://nearmobile.app/",
+    "signerFeature": false
 }
