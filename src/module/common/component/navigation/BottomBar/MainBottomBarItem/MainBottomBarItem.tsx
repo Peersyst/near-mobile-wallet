@@ -17,7 +17,7 @@ const MainBottomBarItem = ({ Icon, label, ...rest }: MainBottomBarItemProps): JS
     const textColor = mode === "light" ? theme.palette.background : theme.palette.text;
 
     return (
-        <MainBottomBarItemRoot variant="contrast" size="lg" {...rest}>
+        <MainBottomBarItemRoot variant="contrast" size="lg" {...rest} testID="MainBottomBarItem">
             <Col flex={1} justifyContent="center" alignItems="center">
                 <Icon style={{ color: textColor }} />
                 {label && (
