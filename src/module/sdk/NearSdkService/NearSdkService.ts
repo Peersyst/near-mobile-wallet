@@ -955,6 +955,7 @@ export class NearSDKService {
             try {
                 contractNfts = await this.getNftTokensAmount(contractId);
             } catch {
+                // eslint-disable-next-line no-console
                 console.warn("Error getting nft amount for contract", contractId);
             }
 
@@ -966,6 +967,7 @@ export class NearSDKService {
                         ...newNftTokens.map((token: NftToken) => ({ ...token, collection_metadata: collectionMetadata, contractId })),
                     );
                 } catch {
+                    // eslint-disable-next-line no-console
                     console.warn("Error getting nft tokens for contract", contractId);
                 }
             }
