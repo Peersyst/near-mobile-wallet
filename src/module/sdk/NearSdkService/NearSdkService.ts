@@ -951,13 +951,25 @@ export class NearSDKService {
         const nftTokens: NftToken[] = [];
 
         for (const contractId of contractIds) {
-            const contractNfts = await this.getNftTokensAmount(contractId);
+            let contractNfts = 0;
+            try {
+                contractNfts = await this.getNftTokensAmount(contractId);
+            } catch {
+                // eslint-disable-next-line no-console
+                console.warn("Error getting nft amount for contract", contractId);
+            }
+
             if (contractNfts > 0) {
-                const collectionMetadata = await this.getNftMetadata(contractId);
-                const newNftTokens = await this.getNftTokens(contractId, collectionMetadata.base_uri);
-                nftTokens.push(
-                    ...newNftTokens.map((token: NftToken) => ({ ...token, collection_metadata: collectionMetadata, contractId })),
-                );
+                try {
+                    const collectionMetadata = await this.getNftMetadata(contractId);
+                    const newNftTokens = await this.getNftTokens(contractId, collectionMetadata.base_uri);
+                    nftTokens.push(
+                        ...newNftTokens.map((token: NftToken) => ({ ...token, collection_metadata: collectionMetadata, contractId })),
+                    );
+                } catch {
+                    // eslint-disable-next-line no-console
+                    console.warn("Error getting nft tokens for contract", contractId);
+                }
             }
         }
 
