@@ -255,5 +255,6 @@
     "shareTxText": "Verifica la transazione che ho appena effettuato nella rete NEAR utilizzando il NEAR Mobile wallet nell'esploratore: {{link}}",
     "dapps": "dApps",
     "scan": "Scan",
-    "connectedSites": "Connected sites"
+    "connectedSites": "Connected sites",
+    "disconnect": "Disconnect"
 }

@@ -41,5 +41,7 @@
     "no_validators": "There are no validators",
     "you_are_not_staking": "You are not currently staking with any validator.",
     "no_validators_available": "There is currently no validator available for staking.",
-    "no_validators_found": "No validators found for this search ({{accountId}})"
+    "no_validators_found": "No validators found for this search ({{accountId}})",
+    "noConnectedSites": "No connected sites",
+    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account."
 }
