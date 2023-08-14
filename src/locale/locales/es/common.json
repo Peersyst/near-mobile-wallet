@@ -256,5 +256,6 @@
     "dapps": "dApps",
     "scan": "Scan",
     "connectedSites": "Sitios conectados",
-    "disconnect": "Disconnect"
+    "disconnect": "Disconnect",
+    "unknownAccount": "Cuenta desconocida"
 }

@@ -1,4 +1,4 @@
-import { Col } from "@peersyst/react-native-components";
+import { Col, Hash } from "@peersyst/react-native-components";
 import { ConnectedSiteProps } from "./ConnectedSite.types";
 import CardIcon from "module/common/component/display/CardIcon/CardIcon";
 import { LaptopIcon } from "icons";
@@ -12,8 +12,8 @@ const ConnectedSite = ({ site: { name, publicKey } }: ConnectedSiteProps) => {
             <ConnectedSiteRoot flex={1} gap={12}>
                 <CardIcon Icon={LaptopIcon} active={true} />
                 <Col flex={1}>
-                    <Typography variant="body3Strong">{name}</Typography>
-                    <Typography variant="body4Regular">{publicKey}</Typography>
+                    {name && <Typography variant="body3Strong">{name}</Typography>}
+                    <Hash variant="body4Regular" hash={publicKey.slice(8)} ellipsis="middle" length={9} />
                 </Col>
             </ConnectedSiteRoot>
         </TouchableWithoutFeedback>

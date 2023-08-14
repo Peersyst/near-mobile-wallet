@@ -1,10 +1,10 @@
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
-import { ConnectedSitesListProps } from "./ConnectedSitesList.types";
+import { ActionableConnectedSitesListProps } from "./ConnectedSitesList.types";
 import { useTranslate } from "module/common/hook/useTranslate";
 import ActionableConnectedSite from "../ActionableConnectedSite/ActionableConnectedSite";
 import { List } from "@peersyst/react-native-components";
 
-const ConnectedSitesList = ({ sites }: ConnectedSitesListProps): JSX.Element => {
+const ActionableConnectedSitesList = ({ sites }: ActionableConnectedSitesListProps): JSX.Element => {
     const transalteError = useTranslate("error");
 
     return (
@@ -20,4 +20,4 @@ const ConnectedSitesList = ({ sites }: ConnectedSitesListProps): JSX.Element => 
     );
 };
 
-export default ConnectedSitesList;
+export default ActionableConnectedSitesList;

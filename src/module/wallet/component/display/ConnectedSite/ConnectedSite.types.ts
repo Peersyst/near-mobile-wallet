@@ -1,6 +1,6 @@
 export interface ConnectedSite {
-    name: string;
     publicKey: string;
+    name?: string;
 }
 
 export interface ConnectedSiteProps {
