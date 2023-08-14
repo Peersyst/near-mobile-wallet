@@ -10,16 +10,6 @@ const ConnectedSitesModal = createModal((props): JSX.Element => {
 
     const { data: sites, isLoading, refetch } = useGetAccountAccessKeys();
 
-    // const mockData: ConnectedSiteType[] = [
-    //     { name: "social.near", publicKey: "verylongaccesskey1234" },
-    //     { name: "social.near", publicKey: "verylongaccesskey1234" },
-    //     { name: "social.near", publicKey: "verylongaccesskey1234" },
-    //     { name: "social.near", publicKey: "verylongaccesskey1234" },
-    //     { name: "social.near", publicKey: "verylongaccesskey1234" },
-    //     { name: "social.near", publicKey: "verylongaccesskey1234" },
-    //     { name: "social.near", publicKey: "verylongaccesskey1234" },
-    // ];
-
     return (
         <CardSelectModal title={translate("connectedSites")} dismissal="hide" {...props} style={{ height: "60%" }}>
             <View style={{ flex: 1 }}>
