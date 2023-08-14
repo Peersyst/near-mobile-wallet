@@ -1,16 +1,7 @@
-import { Col, RowProps } from "@peersyst/react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import { ActionableRoot } from "./Actionable.styles";
-import { ButtonProps } from "../../input/Button/Button.types";
 import Button from "../../input/Button/Button";
-
-type ActionablePosition = "left" | "right";
-
-export interface ActionableProps extends RowProps {
-    onAction: () => void;
-    actionText: string;
-    actionProps?: ButtonProps;
-    position?: ActionablePosition;
-}
+import { ActionableProps } from "./Actionable.types";
 
 const Actionable = ({ actionText, onAction, position = "right", actionProps, children, ...rest }: ActionableProps): JSX.Element => {
     const action: JSX.Element = (
@@ -26,7 +17,7 @@ const Actionable = ({ actionText, onAction, position = "right", actionProps, chi
     return (
         <ActionableRoot {...rest}>
             {firstItem}
-            <Col justifyContent="center">{secondItem}</Col>
+            {secondItem}
         </ActionableRoot>
     );
 };

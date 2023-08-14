@@ -3,19 +3,14 @@ import Actionable from "module/common/component/feedback/Actionable/Actionable";
 import { ConnectedSiteProps } from "../../display/ConnectedSite/ConnectedSite.types";
 import { useTranslate } from "module/common/hook/useTranslate";
 
-import { useState } from "react";
-import { Dialog } from "@peersyst/react-native-components";
-import Typography from "module/common/component/display/Typography/Typography";
-
 export type ActionableConnectedSiteProps = Pick<ConnectedSiteProps, "site">;
 
 const ActionableConnectedSite = ({ site }: ActionableConnectedSiteProps) => {
     const translate = useTranslate();
     const [openDialog, setOpenDialog] = useState(false);
 
-    const handleAction = () => {
-        setOpenDialog(true);
-    };
+    // TODO: Implement handleAction with disconnecting site feature (next PR)
+    const handleAction = () => undefined;
 
     return (
         <Actionable onAction={handleAction} actionText={translate("disconnect")} actionProps={{ size: "sm", variant: "outlined" }} gap={12}>
