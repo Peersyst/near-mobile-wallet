@@ -254,5 +254,6 @@
     "date": "Ngày",
     "shareTxText": "Kiểm tra giao dịch tôi vừa thực hiện trong mạng NEAR bằng ví di động NEAR trong trình khám phá khối: {{link}}",
     "dapps": "dApps",
-    "scan": "Scan"
+    "scan": "Scan",
+    "connectedSites": "Connected sites"
 }
