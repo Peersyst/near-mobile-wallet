@@ -972,4 +972,11 @@ export class NearSDKService {
     getPublicKey(): PublicKey {
         return this.keyPair.getPublicKey();
     }
+
+    async deleteAccessKey(publicKey: string): Promise<string> {
+        const account = await this.getAccount();
+        if (publicKey === this.keyPair.getPublicKey().toString()) throw new Error("Cannot delete main key");
+        const tx = await account.deleteKey(publicKey);
+        return tx.transaction_outcome.id;
+    }
 }

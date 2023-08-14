@@ -257,5 +257,8 @@
     "scan": "Scan",
     "connectedSites": "Connected sites",
     "disconnect": "Disconnect",
-    "unknownAccount": "Unknown account"
+    "unknownAccount": "Unknown account",
+    "disconnectSuccessfully": "Disconnected successfully!",
+    "disconnectFailed": "Disconnect failed. Please try again.",
+    "deleteKeyConfirmation": "Are your sure you want to remove access keys from {{name}}?"
 }
