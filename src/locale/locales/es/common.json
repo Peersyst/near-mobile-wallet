@@ -254,5 +254,6 @@
     "date": "Fecha",
     "shareTxText": "Verifica la transacción que acabo de realizar en la red de NEAR utilizando la NEAR Mobile wallet en el explorador: {{link}}",
     "dapps": "dApps",
-    "scan": "Scan"
+    "scan": "Scan",
+    "connectedSites": "Sitios conectados"
 }
