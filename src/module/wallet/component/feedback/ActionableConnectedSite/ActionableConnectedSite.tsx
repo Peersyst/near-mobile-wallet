@@ -8,6 +8,7 @@ export type ActionableConnectedSiteProps = Pick<ConnectedSiteProps, "site">;
 const ActionableConnectedSite = ({ site }: ActionableConnectedSiteProps) => {
     const translate = useTranslate();
 
+    // TODO: Implement handleAction with disconnecting site feature (next PR)
     const handleAction = () => undefined;
 
     return (

@@ -12,7 +12,7 @@ const ConnectedSite = ({ site: { name, publicKey } }: ConnectedSiteProps) => {
             <ConnectedSiteRoot flex={1} gap={12}>
                 <CardIcon Icon={LaptopIcon} active={true} />
                 <Col flex={1}>
-                    {name && <Typography variant="body3Strong">{name}</Typography>}
+                    <Typography variant="body3Strong">{name}</Typography>
                     <Hash variant="body4Regular" hash={publicKey.slice(8)} ellipsis="middle" length={9} />
                 </Col>
             </ConnectedSiteRoot>
