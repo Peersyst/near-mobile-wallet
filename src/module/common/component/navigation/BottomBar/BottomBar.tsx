@@ -35,8 +35,8 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
                 label={translate("wallet")}
                 Icon={<NearIcon />}
             />
-            {config.signerFeature && <BottomBarQRScanner />}
-            {config.signerFeature && (
+            {config.signerFeature.enabled && <BottomBarQRScanner />}
+            {config.signerFeature.enabled && (
                 <BottomBarItem
                     onPress={() => handleNavigation(MainBottomScreens.DAPPS)}
                     isActive={activeTab === MainBottomScreens.DAPPS}

@@ -11,6 +11,8 @@ enum Queries {
     GET_CURRENT_VALIDATORS = "current-validators",
     GET_ALL_VALIDATORS = "get-all-validators",
     GET_NEWS = "get-news",
+    GET_SIGN_MESSAGE_REQUEST = "GET_SIGN_MESSAGE_REQUEST",
+    GET_SIGNER_REQUEST = "GET_SIGNER_REQUEST",
 }
 
 export default Queries;

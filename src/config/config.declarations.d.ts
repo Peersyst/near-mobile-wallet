@@ -5,6 +5,11 @@ import { TFunction } from "react-i18next";
 
 export type EnvConfig = "test" | "development" | "production" | "staging";
 
+export interface SignerFeatureConfig {
+    enabled: boolean;
+    backendUrl: string;
+}
+
 export interface RefetchIntervals {
     //In ms
     nfts: number;
@@ -54,7 +59,7 @@ declare module "@peersyst/react-native-components" {
         nearMobileUrl: string;
         enableBuy: boolean;
         transak: TransakConfig;
-        signerFeature: boolean;
+        signerFeature: SignerFeatureConfig;
     }
 
     export interface CreateConfig {

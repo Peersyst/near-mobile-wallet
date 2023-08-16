@@ -1,13 +1,17 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $ApiException = {
+export const $SignMessageRequestPayload = {
     properties: {
-        statusCode: {
-            type: 'number',
+        accountId: {
+            type: 'string',
             isRequired: true,
         },
-        message: {
+        signature: {
+            type: 'string',
+            isRequired: true,
+        },
+        publicKey: {
             type: 'string',
             isRequired: true,
         },

@@ -1,18 +1,18 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $UserDto = {
+export const $CreateSignMessageRequest = {
     properties: {
-        id: {
-            type: 'number',
+        network: {
+            type: 'Enum',
             isRequired: true,
         },
-        email: {
+        message: {
             type: 'string',
             isRequired: true,
         },
-        type: {
-            type: 'Enum',
+        receiver: {
+            type: 'string',
             isRequired: true,
         },
     },

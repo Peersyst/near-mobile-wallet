@@ -1,10 +1,14 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $AuthCredentialsDto = {
+export const $SignerRequestStatusDto = {
     properties: {
-        access_token: {
+        id: {
             type: 'string',
+            isRequired: true,
+        },
+        status: {
+            type: 'Enum',
             isRequired: true,
         },
     },

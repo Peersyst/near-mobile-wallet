@@ -34,5 +34,8 @@
     },
     "indexerEstimatedDelay": 30000,
     "nearMobileUrl": "https://nearmobile.app/",
-    "signerFeature": false
+    "signerFeature": {
+        "enabled": false,
+        "backendUrl": ""
+    }
 }
