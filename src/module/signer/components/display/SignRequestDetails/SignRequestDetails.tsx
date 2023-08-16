@@ -1,21 +1,12 @@
+import ActionsSlider from "../ActionsSlider/ActionsSlider";
 import { SignRequestDetailsProps } from "./SignRequestDetails.types";
-import { Action } from "./actions/actions.types";
-import { ActionDetails } from "./actions/actions";
+import { Action } from "./actions.types";
 
 const SignRequestDetails = ({ request }: SignRequestDetailsProps): JSX.Element => {
     const requests = request.requests;
     const actions = requests[0].actions as Action[];
 
-    /**
-     * AddKey: FullAccess & FunctionCall details
-     *
-     */
-
-    const { type, params } = actions[0];
-
-    const ActionDetailsCard = ActionDetails[type];
-
-    return <ActionDetailsCard params={params} />;
+    return <ActionsSlider actions={actions} />;
 };
 
 export default SignRequestDetails;

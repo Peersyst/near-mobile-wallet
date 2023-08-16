@@ -1,7 +1,7 @@
 import { JSXElementConstructor } from "react";
-import AddKeyDetails from "./AddKeyDetails";
+import AddKeyDetails from "./actions/AddKeyDetails";
 import { ActionType } from "./actions.types";
-import { ActionDetailsProps } from "../SignRequestDetails.types";
+import { ActionDetailsProps } from "./SignRequestDetails.types";
 
 const Empty = () => null;
 

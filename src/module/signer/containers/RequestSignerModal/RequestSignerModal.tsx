@@ -23,7 +23,7 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
     const handleReject = () => close();
 
     return (
-        <CardSelectModal {...modalProps} title="Sign request" dismissal="close">
+        <CardSelectModal {...modalProps} title="Sign request" dismissal="close" style={{ height: "60%" }}>
             {!matchingNetwork ? (
                 // TODO: Add Error component here
                 <Typography variant="body2Strong">This request is for a different network</Typography>
