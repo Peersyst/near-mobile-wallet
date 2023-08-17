@@ -7,5 +7,5 @@ export const BottomBarRoot = styled(Row, { justifyContent: "space-around", align
     borderTopColor: theme.palette.overlay["8%"],
     paddingHorizontal: 32,
     paddingBottom: safeAreaInsets.bottom + 10,
-    paddingTop: 13,
+    paddingTop: 0,
 }));
