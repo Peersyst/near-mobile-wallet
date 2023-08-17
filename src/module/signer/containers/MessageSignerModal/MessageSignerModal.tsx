@@ -1,4 +1,4 @@
-import { Typography, createModal, useModal } from "@peersyst/react-native-components";
+import { Skeleton, createModal, useModal } from "@peersyst/react-native-components";
 import CardSelectModal from "module/common/component/feedback/CardSelectModal/CardSelectModal";
 import SignModalScaffold from "module/signer/components/layout/SignModalScaffold/SignModalScaffold";
 import SignMessageDetails from "module/signer/components/display/SignMessageDetails/SignMessageDetails";
@@ -17,14 +17,12 @@ const MessageSignerModal = createModal(({ id, ...props }: SignerModalProps): JSX
     const handleReject = () => close();
 
     return (
-        <CardSelectModal {...props} title="Sign message" dismissal="close" style={{ minHeight: "60%" }}>
-            <SignModalScaffold onSign={handleSign} onReject={handleReject}>
-                {!isLoading ? (
+        <CardSelectModal {...props} title="Sign message" dismissal="close" style={{ height: "60%" }}>
+            <Skeleton loading={isLoading}>
+                <SignModalScaffold onSign={handleSign} onReject={handleReject}>
                     <SignMessageDetails receiver={signMessageRequest.receiver} message={signMessageRequest.message} />
-                ) : (
-                    <Typography variant="body2Strong">Loading...</Typography>
-                )}
-            </SignModalScaffold>
+                </SignModalScaffold>
+            </Skeleton>
         </CardSelectModal>
     );
 });

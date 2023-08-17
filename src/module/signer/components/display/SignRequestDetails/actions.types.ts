@@ -20,7 +20,7 @@ export interface DeployContractAction {
 /**
  * FunctionCallAction
  */
-interface FunctionCallActionParams {
+export interface FunctionCallActionParams {
     methodName: string;
     args: object;
     gas: string;

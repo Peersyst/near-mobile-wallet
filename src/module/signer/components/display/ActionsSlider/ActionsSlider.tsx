@@ -7,14 +7,12 @@ export interface ActionsSliderProps {
 }
 
 const ActionsSlider = ({ actions }: ActionsSliderProps) => {
-    const renderActionDetails = ({ type, params }: Action, index: number) => {
-        const ActionComponent = ActionDetails[type];
-        return <ActionComponent key={index} params={params} />;
-    };
-
     return (
         <PagerView gap={0} showPageIndicator={actions.length > 1} style={{ flex: 1 }}>
-            {actions.map((action, index) => renderActionDetails(action, index))}
+            {actions.map(({ type, params }, index) => {
+                const ActionComponent = ActionDetails[type];
+                return <ActionComponent key={index} params={params} />;
+            })}
         </PagerView>
     );
 };

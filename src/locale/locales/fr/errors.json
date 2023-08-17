@@ -41,5 +41,7 @@
     "no_validators": "Il n'y a pas de validateurs",
     "you_are_not_staking": "Vous n'êtes pas en train de miser avec un validateur",
     "no_validators_available": "Il n'y a actuellement aucun validateur disponible pour le jalonnement",
-    "no_validators_found": "Aucun validateur n'a été trouvé pour cette recherche ({{accountId}})"
+    "no_validators_found": "Aucun validateur n'a été trouvé pour cette recherche ({{accountId}})",
+    "networkMismatch": "Network mismatch",
+    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details."
 }

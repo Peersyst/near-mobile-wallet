@@ -9,6 +9,7 @@ export * from "./ChevronRightIcon";
 export * from "./ChevronUpIcon";
 export * from "./CircleIcon";
 export * from "./CircleCheckIcon";
+export * from "./CircleErrorIcon";
 export * from "./CodeIcon";
 export * from "./CopyIcon";
 export * from "./CrossIcon";

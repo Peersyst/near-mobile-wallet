@@ -1,4 +1,4 @@
-import { createModal, Typography, useModal } from "@peersyst/react-native-components";
+import { Col, createModal, Skeleton, Typography, useModal } from "@peersyst/react-native-components";
 import CardSelectModal from "module/common/component/feedback/CardSelectModal/CardSelectModal";
 
 import SignRequestDetails from "module/signer/components/display/SignRequestDetails/SignRequestDetails";
@@ -6,6 +6,7 @@ import { SignerModalProps } from "module/signer/hooks/useSignerModal";
 import useGetSignerRequest from "module/signer/queries/useGetSignerRequest";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import SignModalScaffold from "module/signer/components/layout/SignModalScaffold/SignModalScaffold";
+import Error from "module/common/component/display/Error/Error";
 
 const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps): JSX.Element => {
     const { hideModal } = useModal();
@@ -25,16 +26,17 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
     return (
         <CardSelectModal {...modalProps} title="Sign request" dismissal="close" style={{ height: "60%" }}>
             {!matchingNetwork ? (
-                // TODO: Add Error component here
-                <Typography variant="body2Strong">This request is for a different network</Typography>
-            ) : !isLoading ? (
-                <SignModalScaffold onSign={handleSign} onReject={handleReject}>
-                    <SignRequestDetails request={signerRequest!} />
-                </SignModalScaffold>
+                <Error
+                    title="Network mismatch"
+                    description="This request is expecting a different network. Change the current network to another one to view request details."
+                />
             ) : (
-                <Typography variant="body2Strong">Loading...</Typography>
+                <Skeleton loading={isLoading}>
+                    <SignModalScaffold onSign={handleSign} onReject={handleReject}>
+                        <SignRequestDetails request={signerRequest!} />
+                    </SignModalScaffold>
+                </Skeleton>
             )}
-            {}
         </CardSelectModal>
     );
 });

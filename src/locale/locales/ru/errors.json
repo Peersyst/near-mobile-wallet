@@ -41,5 +41,7 @@
     "no_validators": "Валидаторов нет",
     "you_are_not_staking": "В настоящее время вы не делаете ставки ни с одним валидатором",
     "no_validators_available": "В настоящее время нет ни одного валидатора, доступного для ставок",
-    "no_validators_found": "Для этого поиска ({{accountId}}) валидаторы не найдены"
+    "no_validators_found": "Для этого поиска ({{accountId}}) валидаторы не найдены",
+    "networkMismatch": "Network mismatch",
+    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details."
 }

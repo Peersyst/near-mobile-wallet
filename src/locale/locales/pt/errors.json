@@ -41,5 +41,7 @@
     "no_validators": "Não há validadores",
     "you_are_not_staking": "Não está actualmente a apostar com nenhum validador.",
     "no_validators_available": "Não existe actualmente nenhum validador disponível para a piquetagem.",
-    "no_validators_found": "Não foram encontrados validadores para esta pesquisa ({{accountId}})"
+    "no_validators_found": "Não foram encontrados validadores para esta pesquisa ({{accountId}})",
+    "networkMismatch": "Network mismatch",
+    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details."
 }
