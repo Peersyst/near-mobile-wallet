@@ -257,6 +257,8 @@
     "scan": "Scan",
     "sign": "Sign",
     "reject": "Reject",
+    "signMessage": "Sign message",
+    "signRequest": "Sign request",
     "signDAppMessage": "The dApp <dapp>test</dapp> is requesting you to sign the following message:",
     "addFullAccessKey": "Add FullAccess key",
     "addFullAccessKeyDescription": "By approving this request, third party dapp will have a <b>complete access</b> to your account. Please, consider carefully before approving.",
