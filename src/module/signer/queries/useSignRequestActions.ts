@@ -14,16 +14,16 @@ export default function useSignRequestActions() {
 
     const addKeyAction = useAddKeyAction();
 
-    const signAction = (action: Action) => {
+    const signAction = async (action: Action) => {
         switch (action.type) {
             case "AddKey": {
-                addKeyAction.mutate(action);
+                await addKeyAction.mutateAsync(action);
             }
         }
     };
 
     return useMutation(async ({ id, actions }: UseSignRequestActionsParams) => {
-        actions.map((action) => signAction(action));
-        SignerRequestService.approveSignerRequest(id, { signerAccountId: serviceInstance.getAddress() });
+        actions.map(async (action) => await signAction(action));
+        return await SignerRequestService.approveSignerRequest(id, { signerAccountId: serviceInstance.getAddress() });
     });
 }
