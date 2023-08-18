@@ -8,6 +8,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import NetworkMismatchError from "module/signer/components/feedback/NetworkMismatchError/NetworkMismatchError";
 import useSignMessage from "module/signer/queries/useSignMessage";
+import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 
 const MessageSignerModal = createModal(({ id, ...props }: SignerModalProps): JSX.Element => {
     const translate = useTranslate();
@@ -18,7 +19,7 @@ const MessageSignerModal = createModal(({ id, ...props }: SignerModalProps): JSX
     const network = useSelectedNetwork();
     const matchingNetwork = network === signMessageRequest?.network;
 
-    const { mutate: signMessage } = useSignMessage();
+    const { mutate: signMessage, isLoading: isSigning, isError, isSuccess } = useSignMessage();
 
     const close = () => hideModal(MessageSignerModal.id);
 
@@ -36,6 +37,13 @@ const MessageSignerModal = createModal(({ id, ...props }: SignerModalProps): JSX
                         <SignModalScaffold onSign={handleSign} onReject={handleReject}>
                             <SignMessageDetails receiver={signMessageRequest!.receiver} message={signMessageRequest!.message} />
                         </SignModalScaffold>
+                        <LoadingModal
+                            loading={isSigning}
+                            success={isSuccess}
+                            error={isError}
+                            successMessage={translate("messageSignedSuccessfully")}
+                            onExited={close}
+                        />
                     </>
                 )}
             </Skeleton>

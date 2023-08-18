@@ -40,7 +40,7 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
                             loading={isSigning}
                             success={isSuccess}
                             error={isError}
-                            successMessage="Request signed!"
+                            successMessage={translate("requestSignedSuccessfully")}
                             onExited={close}
                         />
                     </>
