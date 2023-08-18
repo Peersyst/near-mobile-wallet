@@ -43,5 +43,7 @@
     "no_validators_available": "Il n'y a actuellement aucun validateur disponible pour le jalonnement",
     "no_validators_found": "Aucun validateur n'a été trouvé pour cette recherche ({{accountId}})",
     "networkMismatch": "Network mismatch",
-    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details."
+    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details.",
+    "noConnectedSites": "No connected sites",
+    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account."
 }

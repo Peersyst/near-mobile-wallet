@@ -264,5 +264,11 @@
     "allowedGas": "Allowed gas",
     "methodNames": "Method names",
     "allMethods": "All methods",
-    "callSmartContract": "Call smart contract"
+    "callSmartContract": "Call smart contract",
+    "connectedSites": "Connected sites",
+    "disconnect": "Disconnect",
+    "unknownAccount": "Unknown account",
+    "disconnectSuccessfully": "Disconnected successfully!",
+    "disconnectFailed": "Disconnect failed. Please try again.",
+    "deleteKeyConfirmation": "Are your sure you want to remove access keys from {{name}}?"
 }
