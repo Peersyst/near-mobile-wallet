@@ -6,6 +6,7 @@ import useGetSignerRequest from "module/signer/queries/useGetSignerRequest";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import SignModalScaffold from "module/signer/components/layout/SignModalScaffold/SignModalScaffold";
 import NetworkMismatchError from "module/signer/components/feedback/NetworkMismatchError/NetworkMismatchError";
+import useSignRequestActions from "module/signer/queries/useSignRequestActions";
 
 const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps): JSX.Element => {
     const { hideModal } = useModal();
@@ -13,24 +14,26 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
 
     const { data: signerRequest, isLoading } = useGetSignerRequest(id);
 
+    const { mutate: signRequest, isLoading: isSigning } = useSignRequestActions();
+
     const matchingNetwork = network === signerRequest?.network;
 
     const close = () => hideModal(RequestSignerModal.id);
 
-    const handleSign = () => close();
+    const handleSign = () => signRequest({ id, actions: signerRequest?.requests[0].actions }, { onSuccess: close });
     const handleReject = () => close();
 
     return (
         <CardSelectModal {...modalProps} title="Sign request" dismissal="close" style={{ height: "60%" }}>
-            {!matchingNetwork ? (
-                <NetworkMismatchError />
-            ) : (
-                <Skeleton loading={isLoading}>
-                    <SignModalScaffold onSign={handleSign} onReject={handleReject}>
+            <Skeleton loading={isLoading}>
+                {!matchingNetwork ? (
+                    <NetworkMismatchError />
+                ) : (
+                    <SignModalScaffold onSign={handleSign} onReject={handleReject} sign={{ loading: isSigning }}>
                         <SignRequestDetails request={signerRequest!} />
                     </SignModalScaffold>
-                </Skeleton>
-            )}
+                )}
+            </Skeleton>
         </CardSelectModal>
     );
 });

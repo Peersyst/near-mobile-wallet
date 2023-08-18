@@ -963,4 +963,20 @@ export class NearSDKService {
 
         return nftTokens;
     }
+
+    /**
+     * @section SIGNER METHODS
+     */
+
+    async addAccessKey(publicKey: string, contractId?: string, methodName?: string[] | string, allowance?: string): Promise<string> {
+        const account = await this.getAccount();
+        const publicKeyObj = PublicKey.fromString(publicKey);
+        const result = await account.addKey(publicKeyObj, contractId, methodName, allowance);
+        return result.transaction_outcome.id;
+    }
+
+    async getAccountId(): Promise<string> {
+        const account = await this.getAccount();
+        return account.accountId;
+    }
 }

@@ -7,6 +7,7 @@ import type { SignerRequestDto } from '../models/SignerRequestDto';
 import type { SignerRequestStatusDto } from '../models/SignerRequestStatusDto';
 import type { SignMessageRequestDto } from '../models/SignMessageRequestDto';
 import type { SignMessageRequestPayload } from '../models/SignMessageRequestPayload';
+import type { SignRequest } from '../models/SignRequest';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -52,11 +53,13 @@ export class SignerRequestService {
     /**
      * Approve signer request
      * @param id
+     * @param requestBody
      * @returns SignerRequestDto
      * @throws ApiError
      */
     public static approveSignerRequest(
         id: string,
+        requestBody: SignRequest,
     ): CancelablePromise<SignerRequestDto> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -64,6 +67,8 @@ export class SignerRequestService {
             path: {
                 'id': id,
             },
+            body: requestBody,
+            mediaType: 'application/json',
         });
     }
 
