@@ -4,6 +4,7 @@ import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/pr
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
+import { sha256 } from "js-sha256";
 
 const bip39 = require("bip39-light");
 import {
@@ -962,5 +963,16 @@ export class NearSDKService {
         }
 
         return nftTokens;
+    }
+
+    public signMessage(message: string, receiver?: string): string {
+        let messageToSign = message;
+        if (receiver) messageToSign = `NEP0413:${JSON.stringify({ receiver, message })}`;
+        const formatMessage = new Uint8Array(sha256.digest(Buffer.from(messageToSign)));
+        return decode(encode(this.keyPair.sign(formatMessage).signature)).toString("base64");
+    }
+
+    public getPublicKey(): string {
+        return this.keyPair.getPublicKey().toString();
     }
 }

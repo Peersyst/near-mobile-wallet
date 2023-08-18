@@ -257,6 +257,8 @@
     "scan": "Scan",
     "sign": "Firmar",
     "reject": "Rechazar",
+    "signMessage": "Firmar mensaje",
+    "signRequest": "Firmar petición",
     "signDAppMessage": "La dApp <dapp>{{receiver}}</dapp> ha solicitado la firma del siguiente mensaje:",
     "addFullAccessKey": "Añadir llave FullAccess",
     "addFullAccessKeyDescription": "Si aprueba esta petición, esta dApp dispondrá de <b>accesso completo</b> sobre tu cuenta. Porfavor, téngalo en cuenta antes de aceptar.",
