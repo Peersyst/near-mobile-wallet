@@ -22,15 +22,15 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
 
     return (
         <CardSelectModal {...modalProps} title="Sign request" dismissal="close" style={{ height: "60%" }}>
-            {!matchingNetwork ? (
-                <NetworkMismatchError />
-            ) : (
-                <Skeleton loading={isLoading}>
+            <Skeleton loading={isLoading}>
+                {!matchingNetwork ? (
+                    <NetworkMismatchError />
+                ) : (
                     <SignModalScaffold onSign={handleSign} onReject={handleReject}>
                         <SignRequestDetails request={signerRequest!} />
                     </SignModalScaffold>
-                </Skeleton>
-            )}
+                )}
+            </Skeleton>
         </CardSelectModal>
     );
 });
