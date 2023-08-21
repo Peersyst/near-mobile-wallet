@@ -4,6 +4,7 @@ import { AccessKeyInfoView, AccountView, FinalExecutionOutcome } from "near-api-
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
+import { sha256 } from "js-sha256";
 
 const bip39 = require("bip39-light");
 import {
@@ -985,14 +986,20 @@ export class NearSDKService {
         return account.getAccessKeys();
     }
 
-    getPublicKey(): PublicKey {
-        return this.keyPair.getPublicKey();
-    }
-
     async deleteAccessKey(publicKey: string): Promise<string> {
         const account = await this.getAccount();
         if (publicKey === this.keyPair.getPublicKey().toString()) throw new Error("Cannot delete main key");
         const tx = await account.deleteKey(publicKey);
         return tx.transaction_outcome.id;
+    }
+    public signMessage(message: string, receiver?: string): string {
+        let messageToSign = message;
+        if (receiver) messageToSign = `NEP0413:${JSON.stringify({ receiver, message })}`;
+        const formatMessage = new Uint8Array(sha256.digest(Buffer.from(messageToSign)));
+        return decode(encode(this.keyPair.sign(formatMessage).signature)).toString("base64");
+    }
+
+    public getPublicKey(): string {
+        return this.keyPair.getPublicKey().toString();
     }
 }
