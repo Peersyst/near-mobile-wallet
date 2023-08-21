@@ -33,7 +33,12 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
                     <NetworkMismatchError />
                 ) : (
                     <>
-                        <SignModalScaffold onSign={handleSign} onReject={handleReject}>
+                        <SignModalScaffold
+                            onSign={handleSign}
+                            onReject={handleReject}
+                            sign={{ loading: isSigning, disabled: isSuccess || isError }}
+                            reject={{ loading: isSigning, disabled: isSuccess || isError }}
+                        >
                             <SignRequestDetails request={signerRequest!} />
                         </SignModalScaffold>
                         <LoadingModal
