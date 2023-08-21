@@ -4,6 +4,7 @@ import useAddKeyAction from "./useAddKeyAction";
 import { SignerRequestService } from "module/api/service";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
+import useDeleteAccessKey from "./useDeleteAccessKey";
 
 interface UseSignRequestActionsParams {
     id: string;
@@ -15,11 +16,16 @@ export default function useSignRequestActions() {
     const queryClient = useQueryClient();
 
     const addKeyAction = useAddKeyAction();
+    const deleteAccessKeyAction = useDeleteAccessKey();
 
     const signAction = async (action: Action) => {
         switch (action.type) {
             case "AddKey": {
                 await addKeyAction.mutateAsync(action);
+                break;
+            }
+            case "DeleteKey": {
+                await deleteAccessKeyAction.mutateAsync(action);
             }
         }
     };
