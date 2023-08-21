@@ -25,8 +25,6 @@ const ActionableConnectedSite = ({ site }: ActionableConnectedSiteProps) => {
 
     const { mutate: deleteSite, isLoading } = useDeleteKey({ onSuccess: handleSuccess });
 
-    // Are your sure you want to remove access keys from Other site?
-
     return (
         <Actionable onAction={handleAction} actionText={translate("disconnect")} actionProps={{ size: "sm", variant: "outlined" }} gap={12}>
             <ConnectedSite site={site} />
@@ -42,13 +40,12 @@ const ActionableConnectedSite = ({ site }: ActionableConnectedSiteProps) => {
                         {
                             type: "destructive",
                             text: translate("disconnect"),
-                            onPress: () => deleteSite(site.publicKey),
+                            action: () => deleteSite(site.publicKey),
                             loading: isLoading,
                         },
                         {
                             variant: "text",
                             text: translate("cancel"),
-                            onPress: closeDialog,
                         },
                     ]}
                 />
