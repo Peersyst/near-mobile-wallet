@@ -13,6 +13,7 @@ enum Queries {
     GET_NEWS = "get-news",
     GET_SIGN_MESSAGE_REQUEST = "GET_SIGN_MESSAGE_REQUEST",
     GET_SIGNER_REQUEST = "GET_SIGNER_REQUEST",
+    GET_ACCOUNT_ACCESS_KEYS = "get-account-access-keys",
 }
 
 export default Queries;

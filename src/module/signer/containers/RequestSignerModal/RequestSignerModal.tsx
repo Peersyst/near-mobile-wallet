@@ -6,6 +6,7 @@ import useGetSignerRequest from "module/signer/queries/useGetSignerRequest";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import SignModalScaffold from "module/signer/components/layout/SignModalScaffold/SignModalScaffold";
 import NetworkMismatchError from "module/signer/components/feedback/NetworkMismatchError/NetworkMismatchError";
+import useSignRequestActions from "module/signer/queries/useSignRequestActions";
 import { useTranslate } from "module/common/hook/useTranslate";
 
 const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps): JSX.Element => {
@@ -14,12 +15,14 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
 
     const { data: signerRequest, isLoading } = useGetSignerRequest(id);
 
+    const { mutate: signRequest, isLoading: isSigning } = useSignRequestActions();
+
     const network = useSelectedNetwork();
     const matchingNetwork = network === signerRequest?.network;
 
     const close = () => hideModal(RequestSignerModal.id);
 
-    const handleSign = () => close();
+    const handleSign = () => signRequest({ id, actions: signerRequest?.requests[0].actions }, { onSuccess: close });
     const handleReject = () => close();
 
     return (
@@ -28,7 +31,7 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
                 {!matchingNetwork ? (
                     <NetworkMismatchError />
                 ) : (
-                    <SignModalScaffold onSign={handleSign} onReject={handleReject}>
+                    <SignModalScaffold onSign={handleSign} onReject={handleReject} sign={{ loading: isSigning }}>
                         <SignRequestDetails request={signerRequest!} />
                     </SignModalScaffold>
                 )}

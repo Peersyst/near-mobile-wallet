@@ -13,6 +13,7 @@ export type { SignerRequestStatusDto } from './models/SignerRequestStatusDto';
 export type { SignerTransactionDto } from './models/SignerTransactionDto';
 export type { SignMessageRequestDto } from './models/SignMessageRequestDto';
 export type { SignMessageRequestPayload } from './models/SignMessageRequestPayload';
+export type { SignRequest } from './models/SignRequest';
 
 export { $CreateSignerRequest } from './schemas/$CreateSignerRequest';
 export { $CreateSignMessageRequest } from './schemas/$CreateSignMessageRequest';
@@ -21,5 +22,6 @@ export { $SignerRequestStatusDto } from './schemas/$SignerRequestStatusDto';
 export { $SignerTransactionDto } from './schemas/$SignerTransactionDto';
 export { $SignMessageRequestDto } from './schemas/$SignMessageRequestDto';
 export { $SignMessageRequestPayload } from './schemas/$SignMessageRequestPayload';
+export { $SignRequest } from './schemas/$SignRequest';
 
 export { SignerRequestService } from './services/SignerRequestService';

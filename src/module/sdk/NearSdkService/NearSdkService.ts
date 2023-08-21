@@ -1,6 +1,6 @@
 import { connect, keyStores, Near, ConnectConfig, Account } from "near-api-js";
 import { AccountBalance } from "near-api-js/lib/account";
-import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
+import { AccessKeyInfoView, AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
@@ -965,6 +965,33 @@ export class NearSDKService {
         return nftTokens;
     }
 
+    /**
+     * @section SIGNER METHODS
+     */
+
+    async addAccessKey(publicKey: string, contractId?: string, methodName?: string[] | string, allowance?: string): Promise<string> {
+        const account = await this.getAccount();
+        const publicKeyObj = PublicKey.fromString(publicKey);
+        const result = await account.addKey(publicKeyObj, contractId, methodName, allowance);
+        return result.transaction_outcome.id;
+    }
+
+    async getAccountId(): Promise<string> {
+        const account = await this.getAccount();
+        return account.accountId;
+    }
+
+    async getAccessKeys(): Promise<AccessKeyInfoView[]> {
+        const account = await this.getAccount();
+        return account.getAccessKeys();
+    }
+
+    async deleteAccessKey(publicKey: string): Promise<string> {
+        const account = await this.getAccount();
+        if (publicKey === this.keyPair.getPublicKey().toString()) throw new Error("Cannot delete main key");
+        const tx = await account.deleteKey(publicKey);
+        return tx.transaction_outcome.id;
+    }
     public signMessage(message: string, receiver?: string): string {
         let messageToSign = message;
         if (receiver) messageToSign = `NEP0413:${JSON.stringify({ receiver, message })}`;

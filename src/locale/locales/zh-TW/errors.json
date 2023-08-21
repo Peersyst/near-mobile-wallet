@@ -43,5 +43,7 @@
     "no_validators_available": "當前沒有可用的驗證者",
     "no_validators_found": "未找到此搜索條件（{{accountId}}）的驗證者 ",
     "networkMismatch": "Network mismatch",
-    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details."
+    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details.",
+    "noConnectedSites": "No connected sites",
+    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account."
 }
