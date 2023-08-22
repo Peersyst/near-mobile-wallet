@@ -1,5 +1,5 @@
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
-import Queries from "query/queries";
+import Queries from "../../../query/queries";
 import { useMutation, useQueryClient } from "react-query";
 import { Action, DeleteKeyActionParams } from "../components/display/SignRequestDetails/actions.types";
 
