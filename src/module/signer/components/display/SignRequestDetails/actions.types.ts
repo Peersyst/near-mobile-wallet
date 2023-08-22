@@ -35,7 +35,7 @@ export interface FunctionCallAction {
 /**
  * TransferAction
  */
-interface TransferActionParams {
+export interface TransferActionParams {
     deposit: string;
 }
 export interface TransferAction {

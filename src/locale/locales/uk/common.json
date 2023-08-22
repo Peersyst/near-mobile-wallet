@@ -272,5 +272,7 @@
     "unknownAccount": "Unknown account",
     "disconnectSuccessfully": "Disconnected successfully!",
     "disconnectFailed": "Disconnect failed. Please try again.",
-    "deleteKeyConfirmation": "Are your sure you want to remove access keys from {{name}}?"
+    "deleteKeyConfirmation": "Are your sure you want to remove access keys from {{name}}?",
+    "transferAction": "Transfer request",
+    "transferActionDescription": "By approving this request, you are accepting to send the following amount of NEAR to {{receiverId}}."
 }
