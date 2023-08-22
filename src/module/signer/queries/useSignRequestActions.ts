@@ -4,6 +4,7 @@ import useAddKeyAction from "./useAddKeyAction";
 import { SignerRequestService } from "module/api/service";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
+import useDeployContractAction from "./useDeployContractAction";
 
 interface UseSignRequestActionsParams {
     id: string;
@@ -15,11 +16,17 @@ export default function useSignRequestActions() {
     const queryClient = useQueryClient();
 
     const addKeyAction = useAddKeyAction();
+    const deployContractAction = useDeployContractAction();
 
     const signAction = async (action: Action) => {
         switch (action.type) {
             case "AddKey": {
                 await addKeyAction.mutateAsync(action);
+                break;
+            }
+            case "DeployContract": {
+                await deployContractAction.mutateAsync(action);
+                break;
             }
         }
     };

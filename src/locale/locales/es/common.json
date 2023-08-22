@@ -272,5 +272,7 @@
     "unknownAccount": "Cuenta desconocida",
     "disconnectSuccessfully": "Desconectado satisfactoriamente!",
     "disconnectFailed": "Error al desconectarse. Por favor, inténtelo de nuevo.",
-    "deleteKeyConfirmation": "Estas seguro de querer eliminar las llaves de acceso a {{name}}?"
+    "deleteKeyConfirmation": "Estas seguro de querer eliminar las llaves de acceso a {{name}}?",
+    "deployContract": "Petición de despliegue de smart contract",
+    "deployContractDescription": "Al aprobar esta solicitud, se desplegará el contrato inteligente compilado."
 }

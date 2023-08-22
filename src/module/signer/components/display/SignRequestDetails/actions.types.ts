@@ -8,7 +8,7 @@ export interface CreateAccountAction {
 /**
  * DeployContractAction
  */
-interface DeployContractActionParams {
+export interface DeployContractActionParams {
     code: Uint8Array;
 }
 
