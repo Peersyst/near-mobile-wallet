@@ -8,5 +8,6 @@
         "cryptoCurrencyList": "NEAR",
         "isFeeCalculationHidden": true,
         "environment": "STAGING"
-    }
+    },
+    "signerFeature": true
 }

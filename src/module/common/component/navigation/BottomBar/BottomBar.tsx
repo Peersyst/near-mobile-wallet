@@ -1,5 +1,5 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { NearIcon, PinIcon } from "icons";
+import { LaptopIcon, NearIcon, PinIcon } from "icons";
 import { MainBottomScreens } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup";
 import { MainStackParamsList } from "stack-navigator";
 import { BottomBarRoot } from "./BottomBar.styles";
@@ -7,6 +7,8 @@ import BottomBarItem from "./BottomBarItem/BottomBarItem";
 import { DatabaseIcon } from "module/common/icons/DatabaseIcon";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { capitalize } from "@peersyst/react-utils";
+import { config } from "config";
+import BottomBarQRScanner from "./BottomBarQRScanner/BottomBarQRScanner";
 
 type BottomBarProps = Pick<BottomTabBarProps, "state" | "navigation">;
 
@@ -33,6 +35,15 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
                 label={translate("wallet")}
                 Icon={<NearIcon />}
             />
+            {config.signerFeature && <BottomBarQRScanner />}
+            {config.signerFeature && (
+                <BottomBarItem
+                    onPress={() => handleNavigation(MainBottomScreens.DAPPS)}
+                    isActive={activeTab === MainBottomScreens.DAPPS}
+                    label={translate("dapps")}
+                    Icon={<LaptopIcon />}
+                />
+            )}
             <BottomBarItem
                 onPress={() => handleNavigation(MainBottomScreens.NEWS)}
                 isActive={activeTab === MainBottomScreens.NEWS}

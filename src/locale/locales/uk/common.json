@@ -252,5 +252,7 @@
     "explorer": "Провідник",
     "transaction": "Транзакція",
     "date": "Дата",
-    "shareTxText": "Перевірте транзакцію, яку я щойно здійснив у мережі NEAR, використовуючи NEAR Mobile wallet у провіднику: {{link}}"
+    "shareTxText": "Перевірте транзакцію, яку я щойно здійснив у мережі NEAR, використовуючи NEAR Mobile wallet у провіднику: {{link}}",
+    "dapps": "dApps",
+    "scan": "Scan"
 }

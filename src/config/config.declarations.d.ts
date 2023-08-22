@@ -54,6 +54,7 @@ declare module "@peersyst/react-native-components" {
         nearMobileUrl: string;
         enableBuy: boolean;
         transak: TransakConfig;
+        signerFeature: boolean;
     }
 
     export interface CreateConfig {

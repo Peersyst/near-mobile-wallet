@@ -252,5 +252,7 @@
     "explorer": "Explorer",
     "transaction": "Transaction",
     "date": "Date",
-    "shareTxText": "Check the transaction I just made in the NEAR network using the NEAR Mobile wallet in the block explorer: {{link}}"
+    "shareTxText": "Check the transaction I just made in the NEAR network using the NEAR Mobile wallet in the block explorer: {{link}}",
+    "dapps": "dApps",
+    "scan": "Scan"
 }
