@@ -67,7 +67,6 @@ declare module "@peersyst/react-native-components" {
             "8%": string;
             "4%": string;
         };
-        surf;
         component: {
             appbar: {
                 backgroundColor: string;
