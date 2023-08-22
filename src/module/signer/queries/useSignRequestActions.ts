@@ -4,30 +4,41 @@ import useAddKeyAction from "./useAddKeyAction";
 import { SignerRequestService } from "module/api/service";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
+import useTransferAction from "./useTransferAction";
+import { SignerErrorCodes } from "../errors/SignerErrorCodes";
 
 interface UseSignRequestActionsParams {
     id: string;
     actions: Action[];
+    receiverId?: string;
 }
 
 export default function useSignRequestActions() {
     const { serviceInstance, index, network } = useServiceInstance();
     const queryClient = useQueryClient();
 
+    /* All type of calls */
     const addKeyAction = useAddKeyAction();
+    const transferAction = useTransferAction();
 
-    const signAction = async (action: Action) => {
+    const signAction = async (action: Action, receiverId?: string) => {
         switch (action.type) {
             case "AddKey": {
                 await addKeyAction.mutateAsync(action);
+                break;
+            }
+            case "Transfer": {
+                if (!receiverId) throw new Error(SignerErrorCodes.RECEIVER_ID_REQUIRED);
+                else await transferAction.mutateAsync({ action, receiverId });
+                break;
             }
         }
     };
 
     return useMutation(
-        async ({ id, actions }: UseSignRequestActionsParams) => {
+        async ({ id, actions, receiverId }: UseSignRequestActionsParams) => {
             for (const action of actions) {
-                await signAction(action);
+                await signAction(action, receiverId);
             }
             return await SignerRequestService.approveSignerRequest(id, { signerAccountId: serviceInstance.getAddress() });
         },

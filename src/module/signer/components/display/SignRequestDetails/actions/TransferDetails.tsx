@@ -12,12 +12,16 @@ const TransferDetails = ({ params, receiverId }: ActionDetailsProps): JSX.Elemen
     const translate = useTranslate();
 
     return (
-        <Col flex={1} gap={24}>
-            <Typography variant="h4Strong">{translate("transferAction")}</Typography>
+        <Col flex={1} gap={24} alignItems="center">
+            <Typography variant="h4Strong" textAlign="center">
+                {translate("transferAction")}
+            </Typography>
             <Col gap={12}>
-                <Typography variant="body2Regular">{translate("transferActionDescription", { receiverId })}</Typography>
+                <Typography variant="body2Regular" textAlign="center">
+                    {translate("transferActionDescription", { receiverId })}
+                </Typography>
                 <Container>
-                    <Balance variant="body2Strong" units="token" balance={deposit} />
+                    <Balance variant="body2Strong" units="token" balance={deposit} textAlign="center" />
                 </Container>
             </Col>
         </Col>
