@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "react-query";
 import { Action, TransferActionParams } from "../components/display/SignRequestDetails/actions.types";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
-import Queries from "query/queries";
+import Queries from "../../../query/queries";
 
 export interface UseTransferActionParams {
     action: Action;

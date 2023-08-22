@@ -1,7 +1,7 @@
 import TransferDetails from "module/signer/components/display/SignRequestDetails/actions/TransferDetails";
 import { render, translate, screen } from "test-utils";
 
-describe("TransferActionDetails", () => {
+describe("TransferDetails", () => {
     test("Renders correctly", () => {
         const mockDeposit = "100000000";
         const mockReceiverId = "receiverId.testnet";
