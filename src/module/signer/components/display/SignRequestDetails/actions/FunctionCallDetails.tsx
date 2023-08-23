@@ -6,6 +6,7 @@ import Container from "module/common/component/display/Container/Container";
 import ActionDetail from "module/transaction/component/core/ActionDetailsModal/ActionDetailsModalBody/ActionDetail";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { TFuncKey } from "i18next";
+import ActionDetailsScaffold from "module/signer/components/layout/ActionDetailsScaffold/ActionDetailsScaffold";
 
 const FunctionCallDetails = ({ params }: ActionDetailsProps): JSX.Element => {
     const functionCallParams = params as FunctionCallActionParams;
@@ -13,8 +14,7 @@ const FunctionCallDetails = ({ params }: ActionDetailsProps): JSX.Element => {
     const translate = useTranslate();
 
     return (
-        <Col flex={1}>
-            <Typography variant="h4Strong">{translate("callSmartContract")}</Typography>
+        <ActionDetailsScaffold header={translate("callSmartContract")}>
             <Container>
                 <Col flex={1} gap={20}>
                     {Object.entries(functionCallParams).map(([key, value]) => (
@@ -24,7 +24,7 @@ const FunctionCallDetails = ({ params }: ActionDetailsProps): JSX.Element => {
                     ))}
                 </Col>
             </Container>
-        </Col>
+        </ActionDetailsScaffold>
     );
 };
 
