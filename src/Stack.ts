@@ -9,7 +9,7 @@ export type MainStackParamsList = {
     Home: undefined;
     News: undefined;
     Staking: undefined;
-    dApps: undefined;
+    DApps: undefined;
 };
 export type SettingsStackParamsList = {
     //Settings
