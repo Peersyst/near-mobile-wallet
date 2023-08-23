@@ -16,15 +16,11 @@ export default function useParsedConnectedSites() {
             return access_key.permission.FunctionCall.receiver_id;
         };
 
-        const connectedSites = accessKeys
-            .map((accessKey: AccessKeyInfoView) => {
-                if (accessKey.public_key === publicKey.toString()) return undefined;
-                return {
-                    publicKey: accessKey.public_key,
-                    name: parseAccessKeyName(accessKey),
-                };
-            })
-            .filter((site) => site !== undefined) as ConnectedSite[];
+        const connectedSites = accessKeys.reduce((acc, cur) => {
+            if (cur.public_key === publicKey.toString()) acc.push({ publicKey: cur.public_key, name: parseAccessKeyName(cur) });
+            return acc;
+        }, [] as ConnectedSite[]);
+
         return connectedSites;
     };
 
