@@ -46,7 +46,7 @@ export interface TransferAction {
 /**
  * StakeAction
  */
-interface StakeActionParams {
+export interface StakeActionParams {
     stake: string;
     publicKey: string;
 }

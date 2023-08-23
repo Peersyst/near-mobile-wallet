@@ -1,5 +1,5 @@
 import { SignerRequestDto } from "module/api/service";
-import { ActionParams } from "./actions/actions.types";
+import { ActionParams } from "./actions.types";
 
 export interface SignRequestDetailsProps {
     request: SignerRequestDto;
