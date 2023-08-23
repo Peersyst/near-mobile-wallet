@@ -1,7 +1,9 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { Action } from "../components/display/SignRequestDetails/actions.types";
+import useAddKeyAction from "./useAddKeyAction";
 import { SignerRequestService } from "module/api/service";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
+import Queries from "../../../query/queries";
 
 interface UseSignRequestActionsParams {
     id: string;
@@ -9,11 +11,30 @@ interface UseSignRequestActionsParams {
 }
 
 export default function useSignRequestActions() {
-    const { serviceInstance } = useServiceInstance();
+    const { serviceInstance, index, network } = useServiceInstance();
+    const queryClient = useQueryClient();
 
-    return useMutation(async ({ id }: UseSignRequestActionsParams) => {
-        // TODO: sign actions before approving
+    const addKeyAction = useAddKeyAction();
 
-        return await SignerRequestService.approveSignerRequest(id, { signerAccountId: serviceInstance.getAddress() });
-    });
+    const signAction = async (action: Action) => {
+        switch (action.type) {
+            case "AddKey": {
+                await addKeyAction.mutateAsync(action);
+            }
+        }
+    };
+
+    return useMutation(
+        async ({ id, actions }: UseSignRequestActionsParams) => {
+            for (const action of actions) {
+                await signAction(action);
+            }
+            return await SignerRequestService.approveSignerRequest(id, { signerAccountId: serviceInstance.getAddress() });
+        },
+        {
+            onSuccess: async () => {
+                await queryClient.invalidateQueries([Queries.ACTIONS, index, network]);
+            },
+        },
+    );
 }

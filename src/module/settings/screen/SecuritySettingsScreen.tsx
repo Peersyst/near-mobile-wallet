@@ -5,6 +5,7 @@ import WalletsBackup from "module/settings/components/core/WalletsBackup/Wallets
 import DeleteData from "module/settings/components/core/DeleteData/DeleteData";
 import { useTranslate } from "module/common/hook/useTranslate";
 import BiometricsSwitch from "module/settings/components/core/BiometricsSwitch/BiometricsSwitch";
+import ConnectedSites from "../components/core/ConnectedSites/ConnectedSites";
 
 const SecuritySettingsScreen = (): JSX.Element => {
     const translate = useTranslate();
@@ -13,6 +14,7 @@ const SecuritySettingsScreen = (): JSX.Element => {
             <Col gap={10}>
                 <BiometricsSwitch />
                 <ChangePasscode />
+                <ConnectedSites />
                 <WalletsBackup />
                 <DeleteData />
             </Col>
