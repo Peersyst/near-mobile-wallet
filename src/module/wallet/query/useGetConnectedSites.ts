@@ -9,5 +9,5 @@ export default function useGetConnectedSites() {
 
     return useMemo(() => {
         return { sites: accessKeys ? parseConnectedSites(accessKeys) : accessKeys, ...queryRest };
-    }, [accessKeys]);
+    }, [accessKeys, parseConnectedSites]);
 }
