@@ -273,5 +273,7 @@
     "unknownAccount": "Unknown account",
     "disconnectSuccessfully": "Disconnected successfully!",
     "disconnectFailed": "Disconnect failed. Please try again.",
-    "deleteKeyConfirmation": "Are your sure you want to remove access keys from {{name}}?"
+    "deleteKeyConfirmation": "Are your sure you want to remove access keys from {{name}}?",
+    "stakeAction": "Stake details",
+    "stakeActionDescription": "By approving this request, you will be able to staking your NEAR tokens on your behalf."
 }

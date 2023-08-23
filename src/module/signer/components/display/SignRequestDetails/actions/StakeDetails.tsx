@@ -6,7 +6,7 @@ import Container from "module/common/component/display/Container/Container";
 import Balance from "module/wallet/component/display/Balance/Balance";
 
 const StakeDetails = ({ params }: ActionDetailsProps): JSX.Element => {
-    const { stake, publicKey } = params as StakeActionParams;
+    const { stake } = params as StakeActionParams;
     const translate = useTranslate();
 
     return (
