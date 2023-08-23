@@ -257,5 +257,8 @@
     "scan": "Scan",
     "connectedSites": "Sitios conectados",
     "disconnect": "Disconnect",
-    "unknownAccount": "Cuenta desconocida"
+    "unknownAccount": "Cuenta desconocida",
+    "disconnectSuccessfully": "Desconectado satisfactoriamente!",
+    "disconnectFailed": "Error al desconectarse. Por favor, inténtelo de nuevo.",
+    "deleteKeyConfirmation": "Estas seguro de querer eliminar las llaves de acceso a {{name}}?"
 }
