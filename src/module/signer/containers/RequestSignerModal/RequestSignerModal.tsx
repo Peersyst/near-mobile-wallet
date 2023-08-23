@@ -7,6 +7,7 @@ import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import SignModalScaffold from "module/signer/components/layout/SignModalScaffold/SignModalScaffold";
 import NetworkMismatchError from "module/signer/components/feedback/NetworkMismatchError/NetworkMismatchError";
 import useSignRequestActions from "module/signer/queries/useSignRequestActions";
+import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useTranslate } from "module/common/hook/useTranslate";
 
 const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps): JSX.Element => {
@@ -15,14 +16,14 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
 
     const { data: signerRequest, isLoading } = useGetSignerRequest(id);
 
-    const { mutate: signRequest, isLoading: isSigning } = useSignRequestActions();
-
     const network = useSelectedNetwork();
     const matchingNetwork = network === signerRequest?.network;
 
     const close = () => hideModal(RequestSignerModal.id);
 
-    const handleSign = () => signRequest({ id, actions: signerRequest?.requests[0].actions }, { onSuccess: close });
+    const { mutate: signRequest, isLoading: isSigning, isError, isSuccess } = useSignRequestActions();
+
+    const handleSign = () => signRequest({ id, actions: signerRequest?.requests[0].actions });
     const handleReject = () => close();
 
     return (
@@ -31,9 +32,23 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
                 {!matchingNetwork ? (
                     <NetworkMismatchError />
                 ) : (
-                    <SignModalScaffold onSign={handleSign} onReject={handleReject} sign={{ loading: isSigning }}>
-                        <SignRequestDetails request={signerRequest!} />
-                    </SignModalScaffold>
+                    <>
+                        <SignModalScaffold
+                            onSign={handleSign}
+                            onReject={handleReject}
+                            sign={{ loading: isSigning, disabled: isSuccess || isError }}
+                            reject={{ loading: isSigning, disabled: isSuccess || isError }}
+                        >
+                            <SignRequestDetails request={signerRequest!} />
+                        </SignModalScaffold>
+                        <LoadingModal
+                            loading={isSigning}
+                            success={isSuccess}
+                            error={isError}
+                            successMessage={translate("requestSignedSuccessfully")}
+                            onExited={close}
+                        />
+                    </>
                 )}
             </Skeleton>
         </CardSelectModal>
