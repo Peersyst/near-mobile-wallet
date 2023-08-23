@@ -1,9 +1,10 @@
-import { Col } from "@peersyst/react-native-components";
 import { ActionDetailsProps } from "../SignRequestDetails.types";
 import { DeployContractActionParams } from "../actions.types";
-import Typography from "module/common/component/display/Typography/Typography";
 import Container from "module/common/component/display/Container/Container";
 import { useTranslate } from "module/common/hook/useTranslate";
+import ActionDetailsScaffold from "module/signer/components/layout/ActionDetailsScaffold/ActionDetailsScaffold";
+import { decode, encode } from "bs58";
+import { Hash } from "@peersyst/react-native-components";
 
 const DeployContractDetails = ({ params }: ActionDetailsProps): JSX.Element => {
     const { code } = params as DeployContractActionParams;
@@ -11,21 +12,11 @@ const DeployContractDetails = ({ params }: ActionDetailsProps): JSX.Element => {
     const translate = useTranslate();
 
     return (
-        <Col flex={1} gap={24} alignItems="center">
-            <Typography variant="h4Strong" textAlign="center">
-                {translate("deployContract")}
-            </Typography>
-            <Col flex={1} gap={12}>
-                <Typography variant="body2Regular" textAlign="center">
-                    {translate("deployContractDescription")}
-                </Typography>
-                <Container>
-                    <Typography variant="body2Regular" textAlign="center">
-                        {code}
-                    </Typography>
-                </Container>
-            </Col>
-        </Col>
+        <ActionDetailsScaffold header={translate("deployContract")} description={translate("deployContractDescription")}>
+            <Container>
+                <Hash variant="body2Strong" hash={decode(encode(code)).toString("base64")} length={6} />
+            </Container>
+        </ActionDetailsScaffold>
     );
 };
 

@@ -11,6 +11,6 @@
     },
     "signerFeature": {
         "enabled": true,
-        "backendUrl": "http://172.10.10.10:3001"
+        "backendUrl": "http://localhost:3001"
     }
 }
