@@ -254,5 +254,8 @@
     "date": "Дата",
     "shareTxText": "Перевірте транзакцію, яку я щойно здійснив у мережі NEAR, використовуючи NEAR Mobile wallet у провіднику: {{link}}",
     "dapps": "dApps",
-    "scan": "Scan"
+    "scan": "Scan",
+    "connectedSites": "Connected sites",
+    "disconnect": "Disconnect",
+    "unknownAccount": "Unknown account"
 }

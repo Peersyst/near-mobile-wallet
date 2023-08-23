@@ -41,5 +41,7 @@
     "no_validators": "没有验证者",
     "you_are_not_staking": "您当前没有与任何验证者进行质押。",
     "no_validators_available": "当前没有可用的验证者",
-    "no_validators_found": "未找到此搜索条件（{{accountId}}）的验证者 "
+    "no_validators_found": "未找到此搜索条件（{{accountId}}）的验证者 ",
+    "noConnectedSites": "No connected sites",
+    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account."
 }

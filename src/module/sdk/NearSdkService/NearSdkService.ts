@@ -1,6 +1,6 @@
 import { connect, keyStores, Near, ConnectConfig, Account } from "near-api-js";
 import { AccountBalance } from "near-api-js/lib/account";
-import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
+import { AccessKeyInfoView, AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
@@ -974,5 +974,14 @@ export class NearSDKService {
         }
 
         return nftTokens;
+    }
+
+    async getAccessKeys(): Promise<AccessKeyInfoView[]> {
+        const account = await this.getAccount();
+        return account.getAccessKeys();
+    }
+
+    getPublicKey(): PublicKey {
+        return this.keyPair.getPublicKey();
     }
 }

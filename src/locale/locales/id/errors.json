@@ -41,5 +41,7 @@
     "no_validators": "Tidak ada validator",
     "you_are_not_staking": "Anda saat ini tidak sedang melakukan staking dengan validator mana pun.",
     "no_validators_available": "Saat ini tidak ada validator yang tersedia untuk staking.",
-    "no_validators_found": "Tidak ada validator yang ditemukan untuk pencarian ini ({{accountId}})"
+    "no_validators_found": "Tidak ada validator yang ditemukan untuk pencarian ini ({{accountId}})",
+    "noConnectedSites": "No connected sites",
+    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account."
 }

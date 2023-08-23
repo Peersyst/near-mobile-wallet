@@ -41,5 +41,7 @@
     "no_validators": "Валідаторів немає",
     "you_are_not_staking": "Наразі ви не робите стейкінг з жодним валідатором.",
     "no_validators_available": "Наразі немає жодного валідатора, доступного для стейкінгу.",
-    "no_validators_found": "Не знайдено валідаторів для цього пошуку ({{accountId}})"
+    "no_validators_found": "Не знайдено валідаторів для цього пошуку ({{accountId}})",
+    "noConnectedSites": "No connected sites",
+    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account."
 }

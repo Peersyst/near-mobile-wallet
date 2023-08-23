@@ -41,5 +41,7 @@
     "no_validators": "Không có trình xác nhận",
     "you_are_not_staking": "Bạn hiện không đặt cược với bất kỳ trình xác thực nào.",
     "no_validators_available": "Hiện tại không có trình xác thực nào để đặt cược.",
-    "no_validators_found": "Không tìm thấy trình xác thực nào cho tìm kiếm này ({{accountId}})"
+    "no_validators_found": "Không tìm thấy trình xác thực nào cho tìm kiếm này ({{accountId}})",
+    "noConnectedSites": "No connected sites",
+    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account."
 }

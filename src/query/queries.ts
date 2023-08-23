@@ -11,6 +11,7 @@ enum Queries {
     GET_CURRENT_VALIDATORS = "current-validators",
     GET_ALL_VALIDATORS = "get-all-validators",
     GET_NEWS = "get-news",
+    GET_ACCOUNT_ACCESS_KEYS = "get-account-access-keys",
 }
 
 export default Queries;

@@ -254,5 +254,8 @@
     "date": "日期",
     "shareTxText": "请验证我在NEAR网络上使用NEAR Mobile钱包刚刚完成的交易，您可以在浏览器中查看： {{link}}",
     "dapps": "dApps",
-    "scan": "Scan"
+    "scan": "Scan",
+    "connectedSites": "Connected sites",
+    "disconnect": "Disconnect",
+    "unknownAccount": "Unknown account"
 }
