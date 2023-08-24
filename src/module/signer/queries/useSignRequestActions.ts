@@ -18,9 +18,9 @@ export default function useSignRequestActions() {
     const queryClient = useQueryClient();
 
     /* All type of calls */
-    const transferAction = useTransferAction();
     const { action: addKeyAction, queriesToInvalidate: addKeyQueries } = useAddKeyAction();
     const { action: deleteAccessKey, queriesToInvalidate: deleteAccessKeyQueries } = useDeleteAccessKey();
+    const { action: transferAction, queriesToInvalidate: transferActionQueries } = useTransferAction();
 
     const signAction = async (action: Action, receiverId?: string) => {
         switch (action.type) {
@@ -31,7 +31,10 @@ export default function useSignRequestActions() {
             }
             case "Transfer": {
                 if (!receiverId) throw new Error(SignerErrorCodes.RECEIVER_ID_REQUIRED);
-                else await transferAction.mutateAsync({ action, receiverId });
+                else {
+                    await transferAction({ action, receiverId });
+                    await queryClient.invalidateQueries(transferActionQueries);
+                }
                 break;
             }
             case "DeleteKey": {
@@ -42,9 +45,9 @@ export default function useSignRequestActions() {
         }
     };
 
-    return useMutation(async ({ id, actions }: UseSignRequestActionsParams) => {
+    return useMutation(async ({ id, actions, receiverId }: UseSignRequestActionsParams) => {
         for (const action of actions) {
-            await signAction(action);
+            await signAction(action, receiverId);
         }
         return await SignerRequestService.approveSignerRequest(id, { signerAccountId: serviceInstance.getAddress() });
     });
