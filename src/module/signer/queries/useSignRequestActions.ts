@@ -3,7 +3,6 @@ import { Action } from "../components/display/SignRequestDetails/actions.types";
 import useAddKeyAction from "./useAddKeyAction";
 import { SignerRequestService } from "module/api/service";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
-import Queries from "../../../query/queries";
 import useStakeAction from "./useStakeAction";
 import useDeployContractAction from "./useDeployContractAction";
 import useTransferAction from "./useTransferAction";
@@ -32,7 +31,7 @@ export default function useSignRequestActions() {
                 break;
             }
             case "Stake": {
-                await stakeAction.mutateAsync(action);
+                await stakeAction(action);
                 break;
             }
             case "Transfer": {

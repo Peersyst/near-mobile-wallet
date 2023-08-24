@@ -1,13 +1,18 @@
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
-import { useMutation } from "react-query";
+import { useQueryClient } from "react-query";
 import { Action, StakeActionParams } from "../components/display/SignRequestDetails/actions.types";
+import Queries from "../../../query/queries";
 
 export default function useStakeAction() {
-    const { serviceInstance } = useServiceInstance();
+    const { serviceInstance, index, network } = useServiceInstance();
+    const queryClient = useQueryClient();
 
-    return useMutation((action: Action) => {
+    const stakeAction = async (action: Action) => {
         const { stake: amountToStake } = action.params as StakeActionParams;
 
-        return serviceInstance.stake(amountToStake);
-    });
+        await serviceInstance.stake(amountToStake);
+        await queryClient.invalidateQueries([Queries.ACTIONS, index, network]);
+    };
+
+    return stakeAction;
 }

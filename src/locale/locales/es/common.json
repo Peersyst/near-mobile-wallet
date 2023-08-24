@@ -281,5 +281,7 @@
     "transferAction": "Petición de transferencia",
     "transferActionDescription": "Al aceptar esta petición, enviarás la siguiente cantidad de NEAR a {{receiverId}}.",
     "deleteAccessKey": "Eliminar clave de acceso",
-    "deleteAccessKeyDescription": "Si aprueba esta petición, la siguiente clave de acceso será eliminada de su cuenta."
+    "deleteAccessKeyDescription": "Si aprueba esta petición, la siguiente clave de acceso será eliminada de su cuenta.",
+    "stakeAction": "Detalles de stake",
+    "stakeActionDescription": "Al aprobar esta solicitud, podrá apostar sus fichas NEAR en su nombre."
 }
