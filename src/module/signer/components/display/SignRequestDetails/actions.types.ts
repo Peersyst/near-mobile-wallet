@@ -35,7 +35,7 @@ export interface FunctionCallAction {
 /**
  * TransferAction
  */
-interface TransferActionParams {
+export interface TransferActionParams {
     deposit: string;
 }
 export interface TransferAction {
@@ -85,7 +85,7 @@ export interface AddKeyAction {
 /**
  * DeleteKeyAction
  */
-interface DeleteKeyActionParams {
+export interface DeleteKeyActionParams {
     publicKey: string;
 }
 
