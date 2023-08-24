@@ -275,7 +275,9 @@
     "unknownAccount": "Cuenta desconocida",
     "disconnectSuccessfully": "Desconectado satisfactoriamente!",
     "disconnectFailed": "Error al desconectarse. Por favor, inténtelo de nuevo.",
-    "deleteKeyConfirmation": "Estas seguro de querer eliminar las clave de acceso a {{name}}?",
+    "deleteKeyConfirmation": "Estas seguro de querer eliminar las llaves de acceso a {{name}}?",
+    "transferAction": "Petición de transferencia",
+    "transferActionDescription": "Al aceptar esta petición, enviarás la siguiente cantidad de NEAR a {{receiverId}}.",
     "deleteAccessKey": "Eliminar clave de acceso",
     "deleteAccessKeyDescription": "Si aprueba esta petición, la siguiente clave de acceso será eliminada de su cuenta."
 }
