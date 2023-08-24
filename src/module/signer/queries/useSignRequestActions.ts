@@ -3,7 +3,6 @@ import { Action } from "../components/display/SignRequestDetails/actions.types";
 import useAddKeyAction from "./useAddKeyAction";
 import { SignerRequestService } from "module/api/service";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
-import useStakeAction from "./useStakeAction";
 import useDeployContractAction from "./useDeployContractAction";
 import useTransferAction from "./useTransferAction";
 import useDeleteAccessKey from "./useDeleteAccessKey";
@@ -19,7 +18,6 @@ export default function useSignRequestActions() {
 
     /* All type of calls */
     const addKeyAction = useAddKeyAction();
-    const stakeAction = useStakeAction();
     const deleteAccessKey = useDeleteAccessKey();
     const transferAction = useTransferAction();
     const deployContractAction = useDeployContractAction();
@@ -28,10 +26,6 @@ export default function useSignRequestActions() {
         switch (action.type) {
             case "AddKey": {
                 await addKeyAction(action);
-                break;
-            }
-            case "Stake": {
-                await stakeAction(action);
                 break;
             }
             case "Transfer": {
