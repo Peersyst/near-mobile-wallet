@@ -268,6 +268,8 @@
     "methodNames": "Llamadas",
     "allMethods": "Todas",
     "callSmartContract": "Llamada de smart contract",
+    "requestSignedSuccessfully": "Petición firmada con éxito!",
+    "messageSignedSuccessfully": "Mensaje firmado con éxito!",
     "connectedSites": "Sitios conectados",
     "disconnect": "Disconnect",
     "unknownAccount": "Cuenta desconocida",
@@ -275,5 +277,7 @@
     "disconnectFailed": "Error al desconectarse. Por favor, inténtelo de nuevo.",
     "deleteKeyConfirmation": "Estas seguro de querer eliminar las llaves de acceso a {{name}}?",
     "transferAction": "Petición de transferencia",
-    "transferActionDescription": "Al aceptar esta petición, enviarás la siguiente cantidad de NEAR a {{receiverId}}."
+    "transferActionDescription": "Al aceptar esta petición, enviarás la siguiente cantidad de NEAR a {{receiverId}}.",
+    "deleteAccessKey": "Eliminar clave de acceso",
+    "deleteAccessKeyDescription": "Si aprueba esta petición, la siguiente clave de acceso será eliminada de su cuenta."
 }

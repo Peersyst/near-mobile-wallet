@@ -3,9 +3,9 @@ import { Action } from "../components/display/SignRequestDetails/actions.types";
 import useAddKeyAction from "./useAddKeyAction";
 import { SignerRequestService } from "module/api/service";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
-import Queries from "../../../query/queries";
 import useTransferAction from "./useTransferAction";
 import { SignerErrorCodes } from "../errors/SignerErrorCodes";
+import useDeleteAccessKey from "./useDeleteAccessKey";
 
 interface UseSignRequestActionsParams {
     id: string;
@@ -14,17 +14,19 @@ interface UseSignRequestActionsParams {
 }
 
 export default function useSignRequestActions() {
-    const { serviceInstance, index, network } = useServiceInstance();
+    const { serviceInstance } = useServiceInstance();
     const queryClient = useQueryClient();
 
     /* All type of calls */
-    const addKeyAction = useAddKeyAction();
     const transferAction = useTransferAction();
+    const { action: addKeyAction, queriesToInvalidate: addKeyQueries } = useAddKeyAction();
+    const { action: deleteAccessKey, queriesToInvalidate: deleteAccessKeyQueries } = useDeleteAccessKey();
 
     const signAction = async (action: Action, receiverId?: string) => {
         switch (action.type) {
             case "AddKey": {
-                await addKeyAction.mutateAsync(action);
+                await addKeyAction(action);
+                await queryClient.invalidateQueries([...addKeyQueries]);
                 break;
             }
             case "Transfer": {
@@ -32,20 +34,18 @@ export default function useSignRequestActions() {
                 else await transferAction.mutateAsync({ action, receiverId });
                 break;
             }
+            case "DeleteKey": {
+                await deleteAccessKey(action);
+                await queryClient.invalidateQueries([...deleteAccessKeyQueries]);
+                break;
+            }
         }
     };
 
-    return useMutation(
-        async ({ id, actions, receiverId }: UseSignRequestActionsParams) => {
-            for (const action of actions) {
-                await signAction(action, receiverId);
-            }
-            return await SignerRequestService.approveSignerRequest(id, { signerAccountId: serviceInstance.getAddress() });
-        },
-        {
-            onSuccess: async () => {
-                await queryClient.invalidateQueries([Queries.ACTIONS, index, network]);
-            },
-        },
-    );
+    return useMutation(async ({ id, actions }: UseSignRequestActionsParams) => {
+        for (const action of actions) {
+            await signAction(action);
+        }
+        return await SignerRequestService.approveSignerRequest(id, { signerAccountId: serviceInstance.getAddress() });
+    });
 }
