@@ -1002,4 +1002,10 @@ export class NearSDKService {
     public getPublicKey(): string {
         return this.keyPair.getPublicKey().toString();
     }
+
+    public async deployContract(code: Uint8Array): Promise<string> {
+        const account = await this.getAccount();
+        const tx = await account.deployContract(code);
+        return tx.transaction_outcome.id;
+    }
 }
