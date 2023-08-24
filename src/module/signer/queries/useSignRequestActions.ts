@@ -3,7 +3,6 @@ import { Action } from "../components/display/SignRequestDetails/actions.types";
 import useAddKeyAction from "./useAddKeyAction";
 import { SignerRequestService } from "module/api/service";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
-import Queries from "../../../query/queries";
 import useDeployContractAction from "./useDeployContractAction";
 import useTransferAction from "./useTransferAction";
 import { SignerErrorCodes } from "../errors/SignerErrorCodes";
@@ -19,17 +18,17 @@ export default function useSignRequestActions() {
     const { serviceInstance } = useServiceInstance();
     const queryClient = useQueryClient();
 
-    const deployContractAction = useDeployContractAction();
     /* All type of calls */
     const { action: addKeyAction, queriesToInvalidate: addKeyQueries } = useAddKeyAction();
     const { action: deleteAccessKey, queriesToInvalidate: deleteAccessKeyQueries } = useDeleteAccessKey();
     const { action: transferAction, queriesToInvalidate: transferActionQueries } = useTransferAction();
+    const deployContractAction = useDeployContractAction();
 
     const signAction = async (action: Action, receiverId?: string) => {
         switch (action.type) {
             case "AddKey": {
                 await addKeyAction(action);
-                await queryClient.invalidateQueries([...addKeyQueries]);
+                await queryClient.invalidateQueries(addKeyQueries);
                 break;
             }
             case "Transfer": {
@@ -42,11 +41,11 @@ export default function useSignRequestActions() {
             }
             case "DeleteKey": {
                 await deleteAccessKey(action);
-                await queryClient.invalidateQueries([...deleteAccessKeyQueries]);
+                await queryClient.invalidateQueries(deleteAccessKeyQueries);
                 break;
             }
             case "DeployContract": {
-                await deployContractAction.mutateAsync(action);
+                await deployContractAction(action);
                 break;
             }
         }
