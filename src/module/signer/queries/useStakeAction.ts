@@ -12,6 +12,7 @@ export default function useStakeAction() {
 
         await serviceInstance.stake(amountToStake);
         await queryClient.invalidateQueries([Queries.ACTIONS, index, network]);
+        await queryClient.invalidateQueries([Queries.GET_BALANCE, index, network]);
     };
 
     return stakeAction;
