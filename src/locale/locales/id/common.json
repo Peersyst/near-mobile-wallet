@@ -281,5 +281,7 @@
     "transferAction": "Transfer request",
     "transferActionDescription": "By approving this request, you are accepting to send the following amount of NEAR to {{receiverId}}.",
     "deleteAccessKey": "Delete access key",
-    "deleteAccessKeyDescription": "By approving this request, the following access key will be deleted from your account."
+    "deleteAccessKeyDescription": "By approving this request, the following access key will be deleted from your account.",
+    "stakeAction": "Stake details",
+    "stakeActionDescription": "By approving this request, you will be able to staking your NEAR tokens on your behalf."
 }
