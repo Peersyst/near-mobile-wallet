@@ -1,11 +1,10 @@
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import { Action } from "../components/display/SignRequestDetails/actions.types";
 import useAddKeyAction from "./useAddKeyAction";
 import { SignerRequestService } from "module/api/service";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import useDeployContractAction from "./useDeployContractAction";
 import useTransferAction from "./useTransferAction";
-import { SignerErrorCodes } from "../errors/SignerErrorCodes";
 import useDeleteAccessKey from "./useDeleteAccessKey";
 
 interface UseSignRequestActionsParams {
@@ -16,32 +15,25 @@ interface UseSignRequestActionsParams {
 
 export default function useSignRequestActions() {
     const { serviceInstance } = useServiceInstance();
-    const queryClient = useQueryClient();
 
     /* All type of calls */
-    const { action: addKeyAction, queriesToInvalidate: addKeyQueries } = useAddKeyAction();
-    const { action: deleteAccessKey, queriesToInvalidate: deleteAccessKeyQueries } = useDeleteAccessKey();
-    const { action: transferAction, queriesToInvalidate: transferActionQueries } = useTransferAction();
+    const addKeyAction = useAddKeyAction();
+    const deleteAccessKey = useDeleteAccessKey();
+    const transferAction = useTransferAction();
     const deployContractAction = useDeployContractAction();
 
     const signAction = async (action: Action, receiverId?: string) => {
         switch (action.type) {
             case "AddKey": {
                 await addKeyAction(action);
-                await queryClient.invalidateQueries(addKeyQueries);
                 break;
             }
             case "Transfer": {
-                if (!receiverId) throw new Error(SignerErrorCodes.RECEIVER_ID_REQUIRED);
-                else {
-                    await transferAction({ action, receiverId });
-                    await queryClient.invalidateQueries(transferActionQueries);
-                }
+                await transferAction({ action, receiverId });
                 break;
             }
             case "DeleteKey": {
                 await deleteAccessKey(action);
-                await queryClient.invalidateQueries(deleteAccessKeyQueries);
                 break;
             }
             case "DeployContract": {

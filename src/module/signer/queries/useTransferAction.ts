@@ -1,25 +1,27 @@
 import { Action, TransferActionParams } from "../components/display/SignRequestDetails/actions.types";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
+import { useQueryClient } from "react-query";
+import { SignerErrorCodes } from "../errors/SignerErrorCodes";
 
 export interface UseTransferActionParams {
     action: Action;
-    receiverId: string;
+    receiverId?: string;
 }
 
 export default function useTransferAction() {
     const { serviceInstance, index, network } = useServiceInstance();
+    const queryClient = useQueryClient();
 
     const transferAction = async ({ action, receiverId }: UseTransferActionParams) => {
         const { deposit } = action.params as TransferActionParams;
+
+        if (!receiverId) throw new Error(SignerErrorCodes.RECEIVER_ID_REQUIRED);
+
         await serviceInstance.sendTransaction(receiverId, deposit);
+        await queryClient.invalidateQueries([Queries.ACTIONS, index, network]);
+        await queryClient.invalidateQueries([Queries.GET_BALANCE, index, network]);
     };
 
-    return {
-        action: transferAction,
-        queriesToInvalidate: [
-            [Queries.GET_BALANCE, index, network],
-            [Queries.ACTIONS, index, network],
-        ],
-    };
+    return transferAction;
 }
