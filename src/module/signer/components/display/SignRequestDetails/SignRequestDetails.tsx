@@ -6,7 +6,7 @@ const SignRequestDetails = ({ request }: SignRequestDetailsProps): JSX.Element =
     const requests = request.requests;
     const actions = requests[0].actions as Action[];
 
-    return <ActionsSlider actions={actions} />;
+    return <ActionsSlider actions={actions} receiverId={requests[0].receiverId} />;
 };
 
 export default SignRequestDetails;

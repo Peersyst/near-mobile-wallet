@@ -268,10 +268,18 @@
     "methodNames": "Method names",
     "allMethods": "All methods",
     "callSmartContract": "Call smart contract",
+    "requestSignedSuccessfully": "Request signed successfully!",
+    "messageSignedSuccessfully": "Message signed successfully!",
     "connectedSites": "Connected sites",
     "disconnect": "Disconnect",
     "unknownAccount": "Unknown account",
     "disconnectSuccessfully": "Disconnected successfully!",
     "disconnectFailed": "Disconnect failed. Please try again.",
-    "deleteKeyConfirmation": "Are your sure you want to remove access keys from {{name}}?"
+    "deleteKeyConfirmation": "Are your sure you want to remove access keys from {{name}}?",
+    "deployContract": "Deploy contract request",
+    "deployContractDescription": "By approving this request, the compiled smart contract will be deployed.",
+    "transferAction": "Transfer request",
+    "transferActionDescription": "By approving this request, you are accepting to send the following amount of NEAR to {{receiverId}}.",
+    "deleteAccessKey": "Delete access key",
+    "deleteAccessKeyDescription": "By approving this request, the following access key will be deleted from your account."
 }

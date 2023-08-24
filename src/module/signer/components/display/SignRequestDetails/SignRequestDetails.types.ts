@@ -7,4 +7,5 @@ export interface SignRequestDetailsProps {
 
 export interface ActionDetailsProps {
     params: ActionParams;
+    receiverId?: string;
 }
