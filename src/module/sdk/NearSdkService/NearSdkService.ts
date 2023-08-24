@@ -1008,4 +1008,10 @@ export class NearSDKService {
         const tx = await account.deployContract(code);
         return tx.transaction_outcome.id;
     }
+
+    public async signAndSendFunctionCall(contractId: string, methodName: string, deposit: string, args: object, gas: string) {
+        const account = await this.getAccount();
+        const tx = await account.functionCall({ contractId, methodName, args, attachedDeposit: deposit, gas });
+        return tx;
+    }
 }

@@ -20,6 +20,7 @@ export default function useAddKeyAction() {
         // FullAccessKey
         else await serviceInstance.addAccessKey(publicKey);
         await queryClient.invalidateQueries([Queries.ACTIONS, index, network]);
+        await queryClient.invalidateQueries([Queries.GET_ACCOUNT_ACCESS_KEYS, index, network]);
     };
 
     return addKeyAction;

@@ -283,5 +283,8 @@
     "deleteAccessKey": "Delete access key",
     "deleteAccessKeyDescription": "By approving this request, the following access key will be deleted from your account.",
     "stakeAction": "Stake details",
-    "stakeActionDescription": "By approving this request, you will be able to staking your NEAR tokens on your behalf."
+    "stakeActionDescription": "By approving this request, you will be able to staking your NEAR tokens on your behalf.",
+    "gas": "Gas",
+    "args": "Args",
+    "methodName": "Method name"
 }

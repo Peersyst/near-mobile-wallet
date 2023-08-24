@@ -4,7 +4,7 @@ import Typography from "module/common/component/display/Typography/Typography";
 
 const ActionDetailsScaffold = ({ header, description, children }: ActionDetailsScaffoldProps): JSX.Element => {
     return (
-        <Col flex={1} gap={24} alignItems="center">
+        <Col flex={1} gap={12} style={{ width: "100%" }}>
             <Typography variant="h4Strong" textAlign="center">
                 {header}
             </Typography>

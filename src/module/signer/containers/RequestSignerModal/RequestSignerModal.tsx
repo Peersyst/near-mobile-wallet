@@ -23,11 +23,12 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
 
     const { mutate: signRequest, isLoading: isSigning, isError, isSuccess } = useSignRequestActions();
 
-    const handleSign = () => signRequest({ id, actions: signerRequest?.requests[0].actions });
+    const handleSign = () =>
+        signRequest({ id, actions: signerRequest?.requests[0].actions, receiverId: signerRequest?.requests[0].receiverId });
     const handleReject = () => close();
 
     return (
-        <CardSelectModal {...modalProps} title={translate("signRequest")} dismissal="close" style={{ height: "60%" }}>
+        <CardSelectModal {...modalProps} title={translate("signRequest")} dismissal="close" style={{ height: "80%" }}>
             <Skeleton loading={isLoading}>
                 {!matchingNetwork ? (
                     <NetworkMismatchError />
@@ -46,7 +47,7 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
                             success={isSuccess}
                             error={isError}
                             successMessage={translate("requestSignedSuccessfully")}
-                            onExited={close}
+                            onClose={close}
                         />
                     </>
                 )}

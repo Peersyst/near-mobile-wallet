@@ -7,6 +7,8 @@ import useStakeAction from "./useStakeAction";
 import useDeployContractAction from "./useDeployContractAction";
 import useTransferAction from "./useTransferAction";
 import useDeleteAccessKey from "./useDeleteAccessKey";
+import useFunctionCallAction from "./useFunctionCallAction";
+import { SignerErrorCodes } from "../errors/SignerErrorCodes";
 
 interface UseSignRequestActionsParams {
     id: string;
@@ -23,6 +25,7 @@ export default function useSignRequestActions() {
     const deleteAccessKey = useDeleteAccessKey();
     const transferAction = useTransferAction();
     const deployContractAction = useDeployContractAction();
+    const functionCallAction = useFunctionCallAction();
 
     const signAction = async (action: Action, receiverId?: string) => {
         switch (action.type) {
@@ -46,6 +49,12 @@ export default function useSignRequestActions() {
                 await deployContractAction(action);
                 break;
             }
+            case "FunctionCall": {
+                await functionCallAction(action, receiverId);
+                break;
+            }
+            default:
+                throw new Error(SignerErrorCodes.ACTION_NOT_SUPPORTED);
         }
     };
 

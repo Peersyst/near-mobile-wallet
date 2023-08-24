@@ -283,5 +283,8 @@
     "deleteAccessKey": "Eliminar clave de acceso",
     "deleteAccessKeyDescription": "Si aprueba esta petición, la siguiente clave de acceso será eliminada de su cuenta.",
     "stakeAction": "Detalles de stake",
-    "stakeActionDescription": "Al aprobar esta solicitud, podrá apostar sus fichas NEAR en su nombre."
+    "stakeActionDescription": "Al aprobar esta solicitud, podrá apostar sus fichas NEAR en su nombre.",
+    "gas": "Gas",
+    "args": "Args",
+    "methodName": "Método"
 }
