@@ -85,7 +85,7 @@ export interface AddKeyAction {
 /**
  * DeleteKeyAction
  */
-interface DeleteKeyActionParams {
+export interface DeleteKeyActionParams {
     publicKey: string;
 }
 

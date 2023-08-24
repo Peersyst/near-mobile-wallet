@@ -275,5 +275,7 @@
     "unknownAccount": "Unknown account",
     "disconnectSuccessfully": "Disconnected successfully!",
     "disconnectFailed": "Disconnect failed. Please try again.",
-    "deleteKeyConfirmation": "Are your sure you want to remove access keys from {{name}}?"
+    "deleteKeyConfirmation": "Are your sure you want to remove access keys from {{name}}?",
+    "deleteAccessKey": "Delete access key",
+    "deleteAccessKeyDescription": "By approving this request, the following access key will be deleted from your account."
 }
