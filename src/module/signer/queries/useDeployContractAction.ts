@@ -1,6 +1,6 @@
 import { Action, DeployContractActionParams } from "../components/display/SignRequestDetails/actions.types";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
-import Queries from "query/queries";
+import Queries from "../../../query/queries";
 import { useQueryClient } from "react-query";
 
 export default function useDeployContractAction() {
