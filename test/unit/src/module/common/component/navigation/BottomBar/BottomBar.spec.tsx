@@ -17,7 +17,7 @@ describe("BottomBar test", () => {
         expect(screen.getByTestId("PinIcon")).toBeDefined();
         expect(screen.getByText(translate("news"))).toBeDefined();
         //Dapps
-        expect(screen.getByTestId("LaptopIcon")).toBeDefined();
+        expect(screen.getByTestId("GridIcon")).toBeDefined();
         expect(screen.getByText(translate("dapps"))).toBeDefined();
         //Scan
         expect(screen.getByTestId("QRCodeIcon")).toBeDefined();
@@ -49,7 +49,7 @@ describe("BottomBar test", () => {
         const mockedNavigate = jest.fn();
         const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: mockedNavigate } as any} />);
 
-        const newsButton = screen.getByTestId("LaptopIcon");
+        const newsButton = screen.getByTestId("GridIcon");
         fireEvent.press(newsButton);
         expect(mockedNavigate).toHaveBeenCalledWith(MainBottomScreens.DAPPS);
     });
