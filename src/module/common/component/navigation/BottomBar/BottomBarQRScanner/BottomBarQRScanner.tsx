@@ -22,7 +22,7 @@ const BottomBarQRScanner = (): JSX.Element => {
     return (
         <>
             <MainBottomBarItem Icon={QRCodeIcon} label={translate("scan")} style={{ marginTop: -10 }} onPress={handleOpen} />
-            {open && <QrScanner onClose={() => setOpen(false)} onScan={({ data }) => handleScan(data)} />}
+            <QrScanner open={open} onClose={() => setOpen(false)} onScan={handleScan} />
         </>
     );
 };

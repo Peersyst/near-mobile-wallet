@@ -5,7 +5,5 @@ export const MainBottomBarItemRoot = styled(Button)(() => ({
     lg: {
         width: 66,
         height: 66,
-        paddingVertical: 0,
-        paddingHorizontal: 12,
     },
 }));

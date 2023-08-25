@@ -28,28 +28,27 @@ const ActionableConnectedSite = ({ site }: ActionableConnectedSiteProps) => {
     return (
         <Actionable onAction={handleAction} actionText={translate("disconnect")} actionProps={{ size: "sm", variant: "outlined" }} gap={12}>
             <ConnectedSite site={site} />
-            {openDialog && (
-                <Dialog
-                    content={
-                        <Typography variant="body2Strong" textAlign="center" style={{ marginBottom: 24 }}>
-                            {translate("deleteKeyConfirmation", { name: site.name })}
-                        </Typography>
-                    }
-                    onExited={closeDialog}
-                    buttons={[
-                        {
-                            type: "destructive",
-                            text: translate("disconnect"),
-                            action: () => deleteSite(site.publicKey),
-                            loading: isLoading,
-                        },
-                        {
-                            variant: "text",
-                            text: translate("cancel"),
-                        },
-                    ]}
-                />
-            )}
+            <Dialog
+                open={openDialog}
+                content={
+                    <Typography variant="body2Strong" textAlign="center" style={{ marginBottom: 24 }}>
+                        {translate("deleteKeyConfirmation", { name: site.name })}
+                    </Typography>
+                }
+                onExited={closeDialog}
+                buttons={[
+                    {
+                        type: "destructive",
+                        text: translate("disconnect"),
+                        action: () => deleteSite(site.publicKey),
+                        loading: isLoading,
+                    },
+                    {
+                        variant: "text",
+                        text: translate("cancel"),
+                    },
+                ]}
+            />
         </Actionable>
     );
 };

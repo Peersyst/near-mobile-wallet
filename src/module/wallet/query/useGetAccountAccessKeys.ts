@@ -1,15 +1,12 @@
 import { UseQueryResult, useQuery } from "react-query";
 import useServiceInstance from "../hook/useServiceInstance";
 import Queries from "../../../query/queries";
-import { ConnectedSite } from "../component/display/ConnectedSite/ConnectedSite.types";
-import useParsedConnectedSites from "../hook/useParseConnectedSites";
+import { AccessKeyInfoView } from "near-api-js/lib/providers/provider";
 
-export default function useGetAccountAccessKeys(): UseQueryResult<ConnectedSite[], unknown> {
+export default function useGetAccountAccessKeys(): UseQueryResult<AccessKeyInfoView[], unknown> {
     const { index, network, serviceInstance } = useServiceInstance();
-    const parseConnectedSites = useParsedConnectedSites();
 
     return useQuery([Queries.GET_ACCOUNT_ACCESS_KEYS, index, network], () => serviceInstance!.getAccessKeys(), {
         enabled: !!serviceInstance,
-        select: (data) => parseConnectedSites(data),
     });
 }
