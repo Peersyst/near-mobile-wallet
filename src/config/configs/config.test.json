@@ -9,5 +9,8 @@
         "isFeeCalculationHidden": true,
         "environment": "STAGING"
     },
-    "signerFeature": true
+    "signerFeature": {
+        "enabled": true,
+        "backendUrl": ""
+    }
 }
