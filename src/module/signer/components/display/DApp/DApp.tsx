@@ -1,8 +1,7 @@
 import { DAppProps } from "./DApp.types";
-import { DAppRoot, DAppLogo, DAppTag } from "./DApp.styles";
-import { Col, IconButton, Row, Typography } from "@peersyst/react-native-components";
+import { DAppRoot, DAppLogo, DAppTag, DAppLinkIcon } from "./DApp.styles";
+import { Col, Row, Typography } from "@peersyst/react-native-components";
 import DAppStatus from "../DAppStatus/DAppStatus";
-import { ExternalLinkIcon } from "icons";
 import { Linking } from "react-native";
 
 const DApp = ({ dapp, connected = false }: DAppProps): JSX.Element => {
@@ -13,9 +12,7 @@ const DApp = ({ dapp, connected = false }: DAppProps): JSX.Element => {
             <DAppLogo source={{ uri: logoUrl }} />
             <Col flex={1}>
                 <Row justifyContent="center" alignItems="center">
-                    <IconButton style={{ fontSize: 16 }} onPress={() => Linking.openURL(url)}>
-                        <ExternalLinkIcon />
-                    </IconButton>
+                    <DAppLinkIcon onPress={() => Linking.openURL(url)} />
                     <Typography variant="body2Strong" style={{ flex: 1 }}>
                         {name}
                     </Typography>
