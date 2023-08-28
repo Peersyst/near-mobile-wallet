@@ -5,6 +5,7 @@ export const DAppRoot = styled(Row)(({ theme }) => ({
     backgroundColor: theme.palette.background,
     borderRadius: theme.borderRadiusMd,
     padding: 12,
+    alignItems: "center",
 }));
 
 export const DAppLogo = styled(Image)(({ theme }) => ({
