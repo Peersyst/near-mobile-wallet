@@ -5,7 +5,9 @@ import DAppStatus from "../DAppStatus/DAppStatus";
 import { ExternalLinkIcon } from "icons";
 import { Linking } from "react-native";
 
-const DApp = ({ name, description, connected = false, logoUrl, url, tag }: DAppProps): JSX.Element => {
+const DApp = ({ dapp, connected = false }: DAppProps): JSX.Element => {
+    const { name, description, logoUrl, url, tag } = dapp;
+
     return (
         <DAppRoot gap={16}>
             <DAppLogo source={{ uri: logoUrl }} />

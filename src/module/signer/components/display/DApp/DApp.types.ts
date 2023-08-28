@@ -8,11 +8,15 @@ export enum DAppTag {
     NFT_MARKETPLACE = "nftMarketplace",
 }
 
-export interface DAppProps {
+export interface DApp {
     name: string;
     description: string;
     url: string;
     logoUrl: string;
     tag: DAppTag;
+}
+
+export interface DAppProps {
+    dapp: DApp;
     connected?: boolean;
 }
