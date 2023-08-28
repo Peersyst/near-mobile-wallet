@@ -36,6 +36,7 @@
     "nearMobileUrl": "https://nearmobile.app/",
     "signerFeature": {
         "enabled": false,
-        "backendUrl": ""
+        "backendUrl": "",
+        "recommendedDApps": []
     }
 }
