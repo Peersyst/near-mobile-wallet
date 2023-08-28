@@ -286,5 +286,7 @@
     "stakeActionDescription": "Al aprobar esta solicitud, podrá apostar sus fichas NEAR en su nombre.",
     "gas": "Gas",
     "args": "Args",
-    "methodName": "Método"
+    "methodName": "Método",
+    "connected": "Conectado",
+    "notConnected": "Desconectado"
 }
