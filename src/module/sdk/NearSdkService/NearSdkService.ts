@@ -1036,4 +1036,16 @@ export class NearSDKService {
             return false;
         });
     }
+
+    public async disconnectSmartContract(contractId: string): Promise<string> {
+        const account = await this.getAccount();
+        const accessKeys = await this.getAccessKeys();
+        const contractAccessKey = accessKeys.find(
+            ({ access_key: { permission } }) => typeof permission === "object" && permission.FunctionCall.receiver_id === contractId,
+        );
+
+        if (!contractAccessKey) throw new Error("Contract not connected");
+        const tx = await account.deleteKey(contractAccessKey.public_key);
+        return tx.transaction_outcome.id;
+    }
 }

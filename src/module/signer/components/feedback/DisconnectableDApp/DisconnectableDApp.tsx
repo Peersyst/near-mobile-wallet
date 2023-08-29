@@ -2,26 +2,33 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import DApp from "../../display/DApp/DApp";
 import { DisconnectableDAppProps } from "./DisconnectableDApp.types";
 import useCancelableDialog from "module/common/hook/useCancelableDialog";
-import { Alert } from "react-native";
 import { DisconnectableDAppRoot } from "./DisconnectableDApp.styles";
 import useIsDAppConnected from "module/signer/queries/useIsDAppConnected";
+import useDisconnectSmartContract from "module/signer/queries/useDisconnectSmartContract";
 
 const DisconnectableDApp = ({ dapp }: DisconnectableDAppProps): JSX.Element => {
     const translate = useTranslate();
 
-    // TODO: When smart contracts loaded, check if dApp is connected
     const { data: connected, isLoading } = useIsDAppConnected(dapp.contractId);
 
-    const { showCancelableDialog } = useCancelableDialog();
+    const { mutate: disconnectSmartContract, isLoading: isDeleting } = useDisconnectSmartContract();
+
+    const { showCancelableDialog, hideDialog } = useCancelableDialog();
+
+    const handleDisconnect = () => {
+        disconnectSmartContract(dapp.contractId);
+        hideDialog();
+    };
 
     const handleSwipeAction = () => {
         showCancelableDialog({
             title: translate("disconnect"),
             buttons: [
                 {
-                    action: () => Alert.alert("Should remove access keys from dApp's contract"),
+                    action: handleDisconnect,
                     text: translate("disconnect"),
                     type: "destructive",
+                    loading: isDeleting,
                 },
             ],
         });
