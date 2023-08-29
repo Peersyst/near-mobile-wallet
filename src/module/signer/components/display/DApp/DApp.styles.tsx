@@ -1,5 +1,6 @@
-import { Row, Image, Typography } from "@peersyst/react-native-components";
+import { Row, Image, Typography, IconButton } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
+import { ExternalLinkIcon } from "icons";
 
 export const DAppRoot = styled(Row)(({ theme }) => ({
     backgroundColor: theme.palette.background,
@@ -16,4 +17,9 @@ export const DAppLogo = styled(Image)(({ theme }) => ({
 
 export const DAppTag = styled(Typography)(({ theme }) => ({
     color: theme.palette.blue,
+}));
+
+export const DAppLinkIcon = styled(IconButton, { children: <ExternalLinkIcon /> })(({ theme }) => ({
+    fontSize: 16,
+    color: theme.palette.gray[300],
 }));

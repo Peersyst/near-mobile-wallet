@@ -1,14 +1,12 @@
-import AnimatedActionable from "module/common/component/feedback/AnimatedActionable/AnimatedActionable";
 import { useTranslate } from "module/common/hook/useTranslate";
 import DApp from "../../display/DApp/DApp";
 import { DisconnectableDAppProps } from "./DisconnectableDApp.types";
 import useCancelableDialog from "module/common/hook/useCancelableDialog";
-import useDisconnectableDAppProps from "./hooks/useDisconnectableDAppStyles";
 import { Alert } from "react-native";
+import { DisconnectableDAppRoot } from "./DisconnectableDApp.styles";
 
 const DisconnectableDApp = ({ dapp }: DisconnectableDAppProps): JSX.Element => {
     const translate = useTranslate();
-    const { actionableProps, swipeActionProps } = useDisconnectableDAppProps();
 
     // TODO: When smart contracts loaded, check if dApp is connected
     const dAppConnected = true;
@@ -29,15 +27,9 @@ const DisconnectableDApp = ({ dapp }: DisconnectableDAppProps): JSX.Element => {
     };
 
     return (
-        <AnimatedActionable
-            onSwipedAction={handleSwipeAction}
-            swipedAction={translate("disconnect")}
-            swipedActionProps={swipeActionProps}
-            enabled={dAppConnected}
-            {...actionableProps}
-        >
+        <DisconnectableDAppRoot onSwipedRightAction={handleSwipeAction} swipedRightAction={translate("disconnect")} enabled={dAppConnected}>
             <DApp dapp={dapp} connected={dAppConnected} />
-        </AnimatedActionable>
+        </DisconnectableDAppRoot>
     );
 };
 

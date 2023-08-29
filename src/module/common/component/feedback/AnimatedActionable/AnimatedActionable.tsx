@@ -1,38 +1,46 @@
 import { Swipeable } from "react-native-gesture-handler";
 import { AnimatedActionableProps } from "./AnimatedActionable.types";
-import { Animated, TouchableOpacity } from "react-native";
-import { AnimatedActionableRoot, ActionableLabel } from "./AnimatedActionable.styles";
+import { TouchableOpacity } from "react-native";
+import { AnimatedActionableRoot, ActionableLabel, ActionRoot } from "./AnimatedActionable.styles";
+import { TypographyStyle } from "@peersyst/react-native-components";
 
 const AnimatedActionable = ({
-    onSwipedAction,
-    swipedAction,
+    swipedRightAction,
+    onSwipedRightAction,
+    swipedLeftAction,
+    onSwipedLeftAction,
     children,
-    swipeDirection = "right",
-    swipedActionProps = {},
     enabled = true,
+    style = {},
     ...rest
 }: AnimatedActionableProps): JSX.Element => {
-    const { labelProps, ...props } = swipedActionProps;
+    const { rootStyle, swipedLeftActionStyle, swipedRightActionStyle } = style;
 
-    const renderAction = () => {
+    const renderAction = (swipedAction: string, onSwipedAction: () => void, swipedActionStyle: TypographyStyle = {}) => {
         return (
             <TouchableOpacity onPress={onSwipedAction}>
-                <Animated.View {...props}>
-                    <ActionableLabel variant="body3Strong" {...labelProps}>
+                <ActionRoot>
+                    <ActionableLabel variant="body3Strong" style={swipedActionStyle}>
                         {swipedAction}
                     </ActionableLabel>
-                </Animated.View>
+                </ActionRoot>
             </TouchableOpacity>
         );
     };
 
     const swipeableProps = {
-        renderLeftActions: swipeDirection === "left" && enabled ? renderAction : undefined,
-        renderRightActions: swipeDirection === "right" && enabled ? renderAction : undefined,
+        renderLeftActions:
+            enabled && swipedLeftAction && onSwipedLeftAction
+                ? () => renderAction(swipedLeftAction, onSwipedLeftAction, swipedLeftActionStyle)
+                : undefined,
+        renderRightActions:
+            enabled && swipedRightAction && onSwipedRightAction
+                ? () => renderAction(swipedRightAction, onSwipedRightAction, swipedRightActionStyle)
+                : undefined,
     };
 
     return (
-        <AnimatedActionableRoot {...rest}>
+        <AnimatedActionableRoot style={rootStyle} {...rest}>
             <Swipeable {...swipeableProps}>{children}</Swipeable>
         </AnimatedActionableRoot>
     );
