@@ -291,5 +291,7 @@
     "notConnected": "Desconectado",
     "noDApps": "No hay dApps disponibles",
     "noDAppsDescription": "Parece que no hay ninguna dApp disponible actualmente. Porfavor, inténtelo de nuevo más tarde.",
-    "search": "Buscar"
+    "search": "Buscar",
+    "all": "Todas",
+    "dAppCategories": "Categorías de dApps"
 }
