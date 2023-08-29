@@ -293,5 +293,6 @@
     "noDAppsDescription": "Parece que no hay ninguna dApp disponible actualmente. Porfavor, inténtelo de nuevo más tarde.",
     "search": "Buscar",
     "all": "Todas",
-    "dAppCategories": "Categorías de dApps"
+    "dAppCategories": "Categorías de dApps",
+    "disconnectDApp": "Para confirmar la desconexión de la dApp, por favor, pulse el botón de desconectar."
 }
