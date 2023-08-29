@@ -1,7 +1,7 @@
-import { useConfig } from "@peersyst/react-native-components";
+import { config } from "config";
 
 export default function useRecommendedDApps() {
-    const { recommendedDApps } = useConfig("signerFeature");
+    const { recommendedDApps } = config.signerFeature;
 
     return recommendedDApps;
 }
