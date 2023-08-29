@@ -1,7 +1,7 @@
 import { SelectOption } from "@peersyst/react-native-components";
-import { DAppTag } from "../../../display/DApp/DApp.types";
 import { DAppTagOption } from "../DAppTagSelect.types";
 import { useTranslate } from "module/common/hook/useTranslate";
+import { DAppTag } from "module/signer/types";
 
 export default function useDAppTagSelectOptions(): SelectOption<DAppTagOption>[] {
     const translate = useTranslate();
