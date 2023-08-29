@@ -1,4 +1,4 @@
-import { DApp } from "../../display/DApp/DApp.types";
+import { DApp } from "module/signer/types";
 
 export interface DisconnectableDAppProps {
     dapp: DApp;

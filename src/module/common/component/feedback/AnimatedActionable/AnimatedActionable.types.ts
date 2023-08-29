@@ -1,15 +1,16 @@
-import { RowProps } from "@peersyst/react-native-components";
-import { TypographyProps } from "../../display/Typography/Typography";
-import { ViewProps } from "react-native";
+import { ColProps, RowProps, TypographyStyle } from "@peersyst/react-native-components";
 
-export interface SwipedActionProps extends ViewProps {
-    labelProps?: TypographyProps;
+export interface AnimatedActionableStyle {
+    rootStyle?: RowProps["style"];
+    swipedRightActionStyle?: TypographyStyle;
+    swipedLeftActionStyle?: TypographyStyle;
 }
 
-export interface AnimatedActionableProps extends RowProps {
-    swipedAction: string;
-    onSwipedAction: () => void;
-    swipedActionProps?: SwipedActionProps;
-    swipeDirection?: "left" | "right";
+export interface AnimatedActionableProps extends Omit<ColProps, "style"> {
+    swipedRightAction?: string;
+    swipedLeftAction?: string;
+    onSwipedRightAction?: () => void;
+    onSwipedLeftAction?: () => void;
     enabled?: boolean;
+    style?: AnimatedActionableStyle;
 }

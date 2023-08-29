@@ -1,6 +1,7 @@
 import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
-import { DAppTag } from "module/signer/components/display/DApp/DApp.types";
+
 import DisconnectableDApp from "module/signer/components/feedback/DisconnectableDApp/DisconnectableDApp";
+import { DAppTag } from "module/signer/types";
 
 const DAppsScreen = (): JSX.Element => {
     return (

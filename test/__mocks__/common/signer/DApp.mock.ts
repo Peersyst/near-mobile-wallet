@@ -1,4 +1,4 @@
-import { DApp, DAppTag } from "module/signer/components/display/DApp/DApp.types";
+import { DApp, DAppTag } from "module/signer/types";
 
 export class DAppMock implements DApp {
     name: string;
