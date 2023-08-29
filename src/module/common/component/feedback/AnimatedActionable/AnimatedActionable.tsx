@@ -30,18 +30,18 @@ const AnimatedActionable = ({
 
     const swipeableProps = {
         renderLeftActions:
-            enabled && swipedLeftAction && onSwipedLeftAction
+            swipedLeftAction && onSwipedLeftAction
                 ? () => renderAction(swipedLeftAction, onSwipedLeftAction, swipedLeftActionStyle)
                 : undefined,
         renderRightActions:
-            enabled && swipedRightAction && onSwipedRightAction
+            swipedRightAction && onSwipedRightAction
                 ? () => renderAction(swipedRightAction, onSwipedRightAction, swipedRightActionStyle)
                 : undefined,
     };
 
     return (
         <AnimatedActionableRoot style={rootStyle} {...rest}>
-            <Swipeable {...swipeableProps}>{children}</Swipeable>
+            {enabled ? <Swipeable {...swipeableProps}>{children}</Swipeable> : children}
         </AnimatedActionableRoot>
     );
 };

@@ -14,7 +14,7 @@ const DApp = ({ dapp, connected = false, loading = false }: DAppProps): JSX.Elem
                 <Skeleton loading={loading}>
                     <Row justifyContent="center" alignItems="center">
                         <DAppLinkIcon onPress={() => Linking.openURL(url)} />
-                        <Typography variant="body2Strong" style={{ flex: 1 }}>
+                        <Typography variant="body2Strong" numberOfLines={1} style={{ flex: 1 }}>
                             {name}
                         </Typography>
                         <DAppStatus connected={connected} />
