@@ -1,22 +1,18 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $CreateSignMessageRequest = {
+export const $DAppMetadataDto = {
     properties: {
-        network: {
-            type: 'Enum',
-            isRequired: true,
-        },
-        message: {
+        name: {
             type: 'string',
             isRequired: true,
         },
-        receiver: {
+        logoUrl: {
             type: 'string',
             isRequired: true,
         },
-        receiverMetadata: {
-            type: 'DAppMetadatRequest',
+        url: {
+            type: 'string',
         },
     },
 } as const;

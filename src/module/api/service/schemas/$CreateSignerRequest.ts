@@ -17,5 +17,8 @@ export const $CreateSignerRequest = {
             },
             isRequired: true,
         },
+        dAppMetadata: {
+            type: 'DAppMetadatRequest',
+        },
     },
 } as const;

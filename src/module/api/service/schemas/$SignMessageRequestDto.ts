@@ -24,5 +24,8 @@ export const $SignMessageRequestDto = {
             },
             isRequired: true,
         },
+        receiverMetadata: {
+            type: 'DAppMetadataDto',
+        },
     },
 } as const;

@@ -19,7 +19,6 @@ interface UseSignRequestActionsParams {
 export default function useSignRequestActions() {
     const { serviceInstance } = useServiceInstance();
 
-    /* All type of calls */
     const addKeyAction = useAddKeyAction();
     const stakeAction = useStakeAction();
     const deleteAccessKey = useDeleteAccessKey();
