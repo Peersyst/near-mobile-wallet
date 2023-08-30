@@ -288,5 +288,7 @@
     "args": "Args",
     "methodName": "Method name",
     "connected": "Connected",
-    "notConnected": "Not connected"
+    "notConnected": "Not connected",
+    "noDApps": "There are no dApps to list",
+    "noDAppsDescription": "Seems like there are no dApps currently available. Please, try again later."
 }

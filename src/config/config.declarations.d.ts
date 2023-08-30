@@ -1,5 +1,6 @@
 import "@peersyst/react-native-components";
 import { Validator } from "@peersyst/react-native-components";
+import { DApp } from "module/signer/components/display/DApp/DApp.types";
 import { TransakOnRampQueryParams } from "module/transak";
 import { TFunction } from "react-i18next";
 
@@ -8,6 +9,7 @@ export type EnvConfig = "test" | "development" | "production" | "staging";
 export interface SignerFeatureConfig {
     enabled: boolean;
     backendUrl: string;
+    recommendedDApps: DApp[];
 }
 
 export interface RefetchIntervals {
