@@ -4,8 +4,6 @@ import { Action, AddKeyActionParams } from "../components/display/SignRequestDet
 import Queries from "../../../query/queries";
 
 export default function useAddKeyAction(indexProp?: number) {
-    console.log("useAddKeyAction", indexProp);
-
     const { serviceInstance, index, network } = useServiceInstance(indexProp);
     const queryClient = useQueryClient();
 

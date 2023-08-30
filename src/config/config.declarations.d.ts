@@ -11,6 +11,7 @@ export interface SignerFeatureConfig {
     backendUrl: string;
     recommendedDApps: DApp[];
     nearMobileLogoUrl: string;
+    dAppLogoFallback: string;
 }
 
 export interface RefetchIntervals {

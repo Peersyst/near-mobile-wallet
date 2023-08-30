@@ -37,6 +37,7 @@
     "signerFeature": {
         "enabled": false,
         "backendUrl": "",
+        "dAppLogoFallback": "",
         "recommendedDApps": [
             {
                 "name": "Ref Finance",

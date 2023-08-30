@@ -10,7 +10,7 @@ const ActionPreview = ({ logoUrl, Icon }: ActionPreviewProps): JSX.Element => {
             {logoUrl && Icon && (
                 <Row gap={12} justifyContent="center" alignItems="center">
                     <ActionPreviewIcon as={Icon} />
-                    <PreviewLogo source={{ uri: logoUrl }} />
+                    <PreviewLogo source={{ uri: logoUrl }} fallback={{ uri: config.signerFeature.dAppLogoFallback }} />
                 </Row>
             )}
         </ActionPreviewRoot>
