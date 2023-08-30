@@ -11,6 +11,6 @@ export const ActionPreviewRoot = styled(Row)(() => ({
 }));
 
 export const ActionPreviewIcon = styledWithAs(Icon)(({ theme }) => ({
-    color: theme.palette.gray[300],
+    color: theme.palette.altOverlay["20%"],
     fontSize: 32,
 }));
