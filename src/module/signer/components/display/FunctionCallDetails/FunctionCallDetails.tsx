@@ -4,16 +4,21 @@ import { FunctionCallDetailsProps } from "./FunctionCallDetails.types";
 import Container from "module/common/component/display/Container/Container";
 import useFunctionCallPermissions from "./hooks/useFunctionCallPermissions";
 import ActionDetailField from "../ActionDetailField/ActionDetailField";
-import { ClipboardListIcon } from "icons";
+import { ClipboardListIcon, DatabaseIcon } from "icons";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { convertYoctoToNear } from "near-peersyst-sdk";
+import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
+import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
 
-const FunctionCallDetails = ({ permission: { allowance: allowanceInYocto, receiverId } }: FunctionCallDetailsProps): JSX.Element => {
+const FunctionCallDetails = ({ permission: { allowance: allowanceInYocto = "", receiverId } }: FunctionCallDetailsProps): JSX.Element => {
     const translate = useTranslate();
     const permissions = useFunctionCallPermissions();
 
-    const allowanceInNEAR = allowanceInYocto && convertYoctoToNear(allowanceInYocto);
+    const allowanceInNEAR = convertYoctoToNear(allowanceInYocto);
+
+    const balanceProps: Partial<BalanceProps> = { units: "token" };
+    const formatedAllowance = useFormatBalance(allowanceInNEAR, balanceProps);
 
     return (
         <Col gap={16}>
@@ -21,14 +26,14 @@ const FunctionCallDetails = ({ permission: { allowance: allowanceInYocto, receiv
                 <PermissionField key={index} {...permission} />
             ))}
             <Container>
-                <Col alignItems="center" justifyContent="center">
+                <Col gap={16} alignItems="center" justifyContent="center">
                     <ActionDetailField label={translate("contract")} content={receiverId} leftIcon={ClipboardListIcon} />
-                    {allowanceInNEAR && (
+                    {!!allowanceInNEAR && (
                         <ActionDetailField
                             label={translate("networkFeeAllowance")}
-                            content={<Balance variant="body2Strong" balance={allowanceInNEAR} units="token" />}
-                            description={translate("networkFeeAllowanceDescription", { amount: allowanceInNEAR })}
-                            leftIcon={ClipboardListIcon}
+                            content={<Balance variant="body2Strong" balance={allowanceInNEAR} {...balanceProps} />}
+                            description={translate("networkFeeAllowanceDescription", { amount: formatedAllowance })}
+                            leftIcon={DatabaseIcon}
                         />
                     )}
                 </Col>

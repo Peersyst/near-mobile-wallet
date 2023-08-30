@@ -14,7 +14,7 @@ const SignerWalletSelector = (): JSX.Element => {
 
     const handleWalletChange = (index: number) => {
         setSelectedWalletIndex(index);
-        setSignRequestState((prevState) => ({ ...prevState, signerWalletIndex: index }));
+        setSignRequestState((prevState) => ({ ...prevState, signerWalletIndexw: index }));
     };
 
     return <WalletSelector label={translate("signWith")} value={selectedWalletIndex} onChange={handleWalletChange} />;

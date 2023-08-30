@@ -31,7 +31,7 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
     const handleReject = () => close();
 
     return (
-        <CardSelectModal {...modalProps} title={translate("signRequest")} dismissal="close" style={{ height: "90%" }}>
+        <CardSelectModal {...modalProps} title={translate("signRequest")} dismissal="close" style={{ height: "95%" }}>
             <Skeleton loading={isLoading}>
                 {!matchingNetwork ? (
                     <NetworkMismatchError />

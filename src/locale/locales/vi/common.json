@@ -297,7 +297,7 @@
     "notTransferTokensPermission": "Does not allow the app to transfer tokens",
     "contract": "Contract",
     "networkFeeAllowance": "Network fee allowance",
-    "networkFeeAllowanceDescription": "The application will be given permission to spend up to {{amount}} NEAR towards network fees incurred during use.",
+    "networkFeeAllowanceDescription": "The application will be given permission to spend up to {{amount}} towards network fees incurred during use.",
     "signWith": "Sign with",
     "rejectConnection": "Reject connection",
     "slideToAccept": "Slide to accept"

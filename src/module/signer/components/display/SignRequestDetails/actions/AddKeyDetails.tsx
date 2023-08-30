@@ -18,12 +18,11 @@ const AddKeyDetails = ({ params, metadata }: ActionDetailsProps): JSX.Element =>
 
     return (
         <ActionDetailsScaffold
-            header={translate("confirmConnectionWith", { dapp: metadata?.name })}
-            description={translate("confirmConnectionWithDescription")}
+            header={translate("confirmConnectionWith")}
+            description={translate("confirmConnectionWithDescription", { name: metadata?.name })}
             showPreview
             previewProps={{ logoUrl: metadata?.logoUrl, Icon: ConnectIcon }}
         >
-            {/* TODO: Create FullAccessDetails component */}
             {isFullAccess ? <PermissionField type="critical" label="" /> : <FunctionCallDetails permission={permission} />}
             <SignerWalletSelector />
         </ActionDetailsScaffold>
