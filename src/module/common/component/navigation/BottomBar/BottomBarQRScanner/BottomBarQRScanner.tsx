@@ -15,14 +15,14 @@ const BottomBarQRScanner = (): JSX.Element => {
 
     const handleScan = (data: string) => {
         const { type, id } = JSON.parse(data);
-        showSignerModal(type, id);
         setOpen(false);
+        showSignerModal(type, id);
     };
 
     return (
         <>
             <MainBottomBarItem Icon={QRCodeIcon} label={translate("scan")} style={{ marginTop: -10 }} onPress={handleOpen} />
-            <QrScanner open={open} onClose={() => setOpen(false)} onScan={({ data }) => handleScan(data)} />
+            {open && <QrScanner open={open} onClose={() => setOpen(false)} onScan={({ data }) => handleScan(data)} />}
         </>
     );
 };

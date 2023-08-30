@@ -9,6 +9,8 @@ import NetworkMismatchError from "module/signer/components/feedback/NetworkMisma
 import useSignRequestActions from "module/signer/queries/useSignRequestActions";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useTranslate } from "module/common/hook/useTranslate";
+import { useRecoilValue } from "recoil";
+import signRequestState from "module/signer/state/SignRequestState";
 
 const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps): JSX.Element => {
     const translate = useTranslate();
@@ -19,16 +21,17 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
     const network = useSelectedNetwork();
     const matchingNetwork = network === signerRequest?.network;
 
+    const { signerWalletIndex } = useRecoilValue(signRequestState);
+
+    const { mutate: signRequest, isLoading: isSigning, isError, isSuccess } = useSignRequestActions(signerWalletIndex);
+
     const close = () => hideModal(RequestSignerModal.id);
-
-    const { mutate: signRequest, isLoading: isSigning, isError, isSuccess } = useSignRequestActions();
-
     const handleSign = () =>
         signRequest({ id, actions: signerRequest?.requests[0].actions, receiverId: signerRequest?.requests[0].receiverId });
     const handleReject = () => close();
 
     return (
-        <CardSelectModal {...modalProps} title={translate("signRequest")} dismissal="close" style={{ height: "80%" }}>
+        <CardSelectModal {...modalProps} title={translate("signRequest")} dismissal="close" style={{ height: "90%" }}>
             <Skeleton loading={isLoading}>
                 {!matchingNetwork ? (
                     <NetworkMismatchError />

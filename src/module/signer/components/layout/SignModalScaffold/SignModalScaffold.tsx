@@ -22,7 +22,7 @@ const SignModalScaffold = ({ children, onSign, onReject, sign, reject }: SignMod
     return (
         <Col flex={1} justifyContent="space-between">
             <Col flex={1}>{children}</Col>
-            <Col gap={12}>
+            <Col gap={12} style={{ marginTop: 24 }}>
                 <Button {...reject} variant="text" onPress={onReject} fullWidth>
                     {translate("reject")}
                 </Button>
