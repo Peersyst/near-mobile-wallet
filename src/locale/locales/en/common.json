@@ -261,7 +261,7 @@
     "signRequest": "Sign request",
     "signDAppMessage": "The dApp <dapp>{{receiver}}</dapp> is requesting you to sign the following message:",
     "addFullAccessKey": "Add FullAccess key",
-    "addFullAccessKeyDescription": "By approving this request, third party dapp will have a <b>complete access</b> to your account. Please, consider carefully before approving.",
+    "addFullAccessKeyDescription": "Complete access to your account",
     "confirmConnectionWith": "Confirm connection with",
     "confirmConnectionWithDescription": "Once connected, {{name}} will have the following permissions:",
     "allowedGas": "Allowed gas",

@@ -23,7 +23,11 @@ const AddKeyDetails = ({ params, metadata }: ActionDetailsProps): JSX.Element =>
             showPreview
             previewProps={{ logoUrl: metadata?.logoUrl, Icon: ConnectIcon }}
         >
-            {isFullAccess ? <PermissionField type="critical" label="" /> : <FunctionCallDetails permission={permission} />}
+            {isFullAccess ? (
+                <PermissionField type="critical" label={translate("addFullAccessKeyDescription")} />
+            ) : (
+                <FunctionCallDetails permission={permission} />
+            )}
             <SignerWalletSelector />
         </ActionDetailsScaffold>
     );
