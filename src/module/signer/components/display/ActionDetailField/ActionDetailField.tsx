@@ -18,7 +18,7 @@ const ActionDetailField = ({ label, content: contentProp, description, leftIcon,
                 {rightIcon && <ActionDetailIcon as={rightIcon} />}
             </Row>
             {description && (
-                <Typography variant="body3Regular" style={{ paddingLeft: 36 }} light>
+                <Typography variant="body3Regular" style={{ paddingLeft: leftIcon ? 36 : 0 }} light>
                     {description}
                 </Typography>
             )}

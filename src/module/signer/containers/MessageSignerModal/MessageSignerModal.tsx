@@ -28,7 +28,7 @@ const MessageSignerModal = createModal(({ id, ...props }: SignerModalProps): JSX
     const handleReject = () => close();
 
     return (
-        <CardSelectModal {...props} title={translate("signMessage")} dismissal="close" style={{ height: "60%" }}>
+        <CardSelectModal {...props} title={translate("signMessage")} dismissal="close" style={{ height: "90%" }}>
             <Skeleton loading={isLoading}>
                 {!matchingNetwork ? (
                     <NetworkMismatchError />
@@ -40,7 +40,11 @@ const MessageSignerModal = createModal(({ id, ...props }: SignerModalProps): JSX
                             sign={{ loading: isSigning, disabled: isSuccess || isError }}
                             reject={{ loading: isSigning, disabled: isSuccess || isError }}
                         >
-                            <SignMessageDetails receiver={signMessageRequest!.receiver} message={signMessageRequest!.message} />
+                            <SignMessageDetails
+                                receiver={signMessageRequest!.receiver}
+                                message={signMessageRequest!.message}
+                                metadata={signMessageRequest.receiverMetadata}
+                            />
                         </SignModalScaffold>
                         <LoadingModal
                             loading={isSigning}
