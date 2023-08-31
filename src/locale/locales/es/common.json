@@ -300,5 +300,6 @@
     "networkFeeAllowanceDescription": "La aplicación tendrá permiso para gastar hasta {{amount}} NEAR en gastos de red incurridos durante su uso.",
     "signWith": "Firmar con",
     "rejectConnection": "Rechazar conexión",
-    "slideToAccept": "Deslizar para aceptar"
+    "slideToAccept": "Deslizar para aceptar",
+    "callSmartContractDescription": "Al aprovar esta petición, {{contract}} realizará la siguiente llamada."
 }
