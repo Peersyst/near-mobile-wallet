@@ -11,6 +11,7 @@ export default function useDeleteAccessKey(indexProp?: number) {
         const { publicKey } = action.params as DeleteKeyActionParams;
         await serviceInstance.deleteAccessKey(publicKey);
         await queryClient.invalidateQueries([Queries.ACTIONS, index, network]);
+        await queryClient.invalidateQueries([Queries.GET_ACCOUNT_ACCESS_KEYS, index, network]);
     };
 
     return deleteAccessKey;
