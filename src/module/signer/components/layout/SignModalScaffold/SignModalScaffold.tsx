@@ -2,6 +2,7 @@ import { Col } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { SignModalScaffoldProps } from "./SignModalScaffold.types";
+import SwipeButton from "module/common/component/feedback/SwipeButton/SwipeButton";
 
 const SignModalScaffold = ({ children, onSign, onReject, sign, reject }: SignModalScaffoldProps): JSX.Element => {
     const translate = useTranslate();
@@ -13,9 +14,9 @@ const SignModalScaffold = ({ children, onSign, onReject, sign, reject }: SignMod
                 <Button {...reject} variant="text" onPress={onReject} fullWidth>
                     {translate("reject")}
                 </Button>
-                <Button {...sign} onPress={onSign} fullWidth>
+                <SwipeButton {...sign} onSwipe={onSign} fullWidth>
                     {translate("slideToAccept")}
-                </Button>
+                </SwipeButton>
             </Col>
         </Col>
     );
