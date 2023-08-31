@@ -1,6 +1,6 @@
 import { Col } from "@peersyst/react-native-components";
 import DisconnectableDAppList from "module/signer/components/display/DisconnectableDAppList/DisconnectableDAppList";
-import useRecommendedDApps from "module/signer/hooks/useRecommendedDApps";
+import useRecommendedDApps from "module/signer/queries/useRecommendedDApps";
 import { Filters, DAppTagFilter } from "./RecommendedDApps.styles";
 import useRecommendedDAppsFilters from "./hooks/useRecommendedDAppsFilters";
 import SearchBar from "module/common/component/input/SearchBar/SearchBar";

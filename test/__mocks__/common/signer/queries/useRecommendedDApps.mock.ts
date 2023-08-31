@@ -1,7 +1,7 @@
 import { DAppMock } from "../DApp.mock";
 import BaseMock from "mocks/common/base.mock";
 import { DApp } from "module/signer/types";
-import * as useRecommendedDApps from "module/signer/hooks/useRecommendedDApps";
+import * as useRecommendedDApps from "module/signer/queries/useRecommendedDApps";
 import { UseQueryResult } from "react-query";
 
 export interface UseRecommendedDAppsMockType {
