@@ -13,7 +13,7 @@ const DisconnectableDApp = ({ dapp }: DisconnectableDAppProps): JSX.Element => {
 
     const { mutate: disconnectSmartContract, isLoading: isDeleting } = useDisconnectSmartContract();
 
-    const { showCancelableDialog, hideDialog } = useCancelableDialog();
+    const { showCancelableDialog, hideCancelableDialog: hideDialog } = useCancelableDialog();
 
     const handleDisconnect = () => {
         disconnectSmartContract(dapp.contractId);
