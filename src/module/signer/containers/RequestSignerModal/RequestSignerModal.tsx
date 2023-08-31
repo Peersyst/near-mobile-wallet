@@ -4,7 +4,7 @@ import SignRequestDetails from "module/signer/components/display/SignRequestDeta
 import { SignerModalProps } from "module/signer/hooks/useSignerModal";
 import useGetSignerRequest from "module/signer/queries/useGetSignerRequest";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
-import SignModalScaffold from "module/signer/components/layout/SignModalScaffold/SignModalScaffold";
+import SignatureScaffold from "module/signer/components/layout/SignModalScaffold/SignModalScaffold";
 import NetworkMismatchError from "module/signer/components/feedback/NetworkMismatchError/NetworkMismatchError";
 import useSignRequestActions from "module/signer/queries/useSignRequestActions";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
@@ -37,14 +37,14 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
                     <NetworkMismatchError />
                 ) : (
                     <>
-                        <SignModalScaffold
+                        <SignatureScaffold
                             onSign={handleSign}
                             onReject={handleReject}
                             sign={{ loading: isSigning, disabled: isSuccess || isError }}
                             reject={{ loading: isSigning, disabled: isSuccess || isError }}
                         >
                             <SignRequestDetails request={signerRequest!} />
-                        </SignModalScaffold>
+                        </SignatureScaffold>
                         <LoadingModal
                             loading={isSigning}
                             success={isSuccess}

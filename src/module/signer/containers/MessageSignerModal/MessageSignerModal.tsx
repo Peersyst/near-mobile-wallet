@@ -1,6 +1,6 @@
 import { Skeleton, createModal, useModal } from "@peersyst/react-native-components";
 import CardSelectModal from "module/common/component/feedback/CardSelectModal/CardSelectModal";
-import SignModalScaffold from "module/signer/components/layout/SignModalScaffold/SignModalScaffold";
+import SignatureScaffold from "module/signer/components/layout/SignModalScaffold/SignModalScaffold";
 import SignMessageDetails from "module/signer/components/display/SignMessageDetails/SignMessageDetails";
 import { SignerModalProps } from "module/signer/hooks/useSignerModal";
 import useGetSignMessageRequest from "module/signer/queries/useGetSignMessageRequest";
@@ -34,14 +34,14 @@ const MessageSignerModal = createModal(({ id, ...props }: SignerModalProps): JSX
                     <NetworkMismatchError />
                 ) : (
                     <>
-                        <SignModalScaffold
+                        <SignatureScaffold
                             onSign={handleSign}
                             onReject={handleReject}
                             sign={{ loading: isSigning, disabled: isSuccess || isError }}
                             reject={{ loading: isSigning, disabled: isSuccess || isError }}
                         >
                             <SignMessageDetails receiver={signMessageRequest!.receiver} message={signMessageRequest!.message} />
-                        </SignModalScaffold>
+                        </SignatureScaffold>
                         <LoadingModal
                             loading={isSigning}
                             success={isSuccess}

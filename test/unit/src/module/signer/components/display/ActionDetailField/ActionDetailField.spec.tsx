@@ -5,7 +5,7 @@ import { render, screen } from "test-utils";
 
 describe("ActionDetailField", () => {
     test("Renders correctly", () => {
-        render(<ActionDetailField label="label" content="content" leftIcon={ChevronLeftIcon} rightIcon={ChevronRightIcon} />);
+        render(<ActionDetailField label="label" content="content" LeftIcon={ChevronLeftIcon} RightIcon={ChevronRightIcon} />);
 
         expect(screen.getByText("label")).toBeDefined();
         expect(screen.getByText("content")).toBeDefined();
