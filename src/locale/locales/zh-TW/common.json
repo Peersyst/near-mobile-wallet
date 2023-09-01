@@ -301,7 +301,9 @@
     "signWith": "Sign with",
     "rejectConnection": "Reject connection",
     "slideToAccept": "Slide to accept",
+
     "search": "Search",
     "all": "All",
-    "dAppCategories": "dApp categories"
+    "dAppCategories": "dApp categories",
+    "disconnectDApp": "To confirm that you want to disconnect the dApp, please press the Disconnect button again."
 }
