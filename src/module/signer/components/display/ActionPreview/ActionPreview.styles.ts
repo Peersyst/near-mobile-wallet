@@ -1,5 +1,5 @@
-import { Icon, Image, Row } from "@peersyst/react-native-components";
-import styled, { styledWithAs } from "@peersyst/react-native-styled";
+import { ElementStyler, Image, Row } from "@peersyst/react-native-components";
+import styled from "@peersyst/react-native-styled";
 
 export const PreviewLogo = styled(Image)(() => ({
     width: 76,
@@ -10,7 +10,7 @@ export const ActionPreviewRoot = styled(Row)(() => ({
     paddingVertical: 8,
 }));
 
-export const ActionPreviewIcon = styledWithAs(Icon)(({ theme }) => ({
+export const ActionPreviewIcon = styled(ElementStyler)(({ theme }) => ({
     color: theme.palette.overlay["20%"],
     fontSize: 32,
 }));
