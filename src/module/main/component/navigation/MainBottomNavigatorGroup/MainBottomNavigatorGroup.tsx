@@ -10,7 +10,7 @@ export enum MainBottomScreens {
     HOME = "Home",
     STAKING = "Staking",
     NEWS = "News",
-    DAPPS = "dApps",
+    DAPPS = "DApps",
 }
 
 const MainBottomNavigatorGroup = () => (

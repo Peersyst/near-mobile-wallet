@@ -11,6 +11,15 @@
     },
     "signerFeature": {
         "enabled": true,
-        "backendUrl": ""
+        "backendUrl": "",
+        "recommendedDApps": [
+            {
+                "name": "name",
+                "description": "description",
+                "url": "url",
+                "logoUrl": "logoUrl",
+                "tag": "dex"
+            }
+        ]
     }
 }

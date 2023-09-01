@@ -286,5 +286,12 @@
     "stakeActionDescription": "Al aprobar esta solicitud, podrá apostar sus fichas NEAR en su nombre.",
     "gas": "Gas",
     "args": "Args",
-    "methodName": "Método"
+    "methodName": "Método",
+    "connected": "Conectado",
+    "notConnected": "Desconectado",
+    "noDApps": "No hay dApps disponibles",
+    "noDAppsDescription": "Parece que no hay ninguna dApp disponible actualmente. Porfavor, inténtelo de nuevo más tarde.",
+    "search": "Buscar",
+    "all": "Todas",
+    "dAppCategories": "Categorías de dApps"
 }

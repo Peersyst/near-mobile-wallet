@@ -286,5 +286,10 @@
     "stakeActionDescription": "By approving this request, you will be able to staking your NEAR tokens on your behalf.",
     "gas": "Gas",
     "args": "Args",
-    "methodName": "Method name"
+    "methodName": "Method name",
+    "connected": "Connected",
+    "notConnected": "Not connected",
+    "noDApps": "There are no dApps to list",
+    "noDAppsDescription": "Seems like there are no dApps currently available. Please, try again later.",
+    "search": "Search"
 }

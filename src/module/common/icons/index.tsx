@@ -39,6 +39,7 @@ export * from "./RadioUncheckedIcon";
 export * from "./ReceiveIcon";
 export * from "./RefreshIcon";
 export * from "./ScanIcon";
+export * from "./SearchIcon";
 export * from "./SendIcon";
 export * from "./SettingsIcon";
 export * from "./ShareIcon";
