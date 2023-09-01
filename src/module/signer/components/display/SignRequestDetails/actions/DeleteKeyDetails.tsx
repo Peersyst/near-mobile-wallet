@@ -10,7 +10,7 @@ import { formatPublicKey } from "module/signer/utils/formatPublicKey";
 const DeleteKeyDetails = ({ params, metadata }: ActionDetailsProps): JSX.Element => {
     const { publicKey } = params as DeleteKeyActionParams;
 
-    const previewProps = metadata ? { logoUrl: metadata.logoUrl, Icon: CircleErrorIcon } : undefined;
+    const previewProps = metadata ? { dAppPreview: { logoUrl: metadata.logoUrl, Icon: CircleErrorIcon } } : undefined;
 
     const translate = useTranslate();
 
@@ -25,7 +25,7 @@ const DeleteKeyDetails = ({ params, metadata }: ActionDetailsProps): JSX.Element
                 <ActionDetailField
                     label={translate("accessKey")}
                     content={formatPublicKey(publicKey, { digits: 12 })}
-                    leftIcon={LockIcon}
+                    LeftIcon={LockIcon}
                 />
             </Container>
         </ActionDetailsScaffold>
