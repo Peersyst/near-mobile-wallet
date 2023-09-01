@@ -1,9 +1,17 @@
 import "@peersyst/react-native-components";
 import { Validator } from "@peersyst/react-native-components";
+import { DApp } from "module/signer/components/display/DApp/DApp.types";
 import { TransakOnRampQueryParams } from "module/transak";
 import { TFunction } from "react-i18next";
 
 export type EnvConfig = "test" | "development" | "production" | "staging";
+
+export interface SignerFeatureConfig {
+    enabled: boolean;
+    backendUrl: string;
+    recommendedDApps: DApp[];
+    dAppLogoFallback: string;
+}
 
 export interface RefetchIntervals {
     //In ms
@@ -54,7 +62,7 @@ declare module "@peersyst/react-native-components" {
         nearMobileUrl: string;
         enableBuy: boolean;
         transak: TransakConfig;
-        signerFeature: boolean;
+        signerFeature: SignerFeatureConfig;
     }
 
     export interface CreateConfig {

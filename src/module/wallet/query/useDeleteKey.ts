@@ -13,6 +13,7 @@ export default function useDeleteKey({
     return useMutation(async (publicKey: string) => await serviceInstance.deleteAccessKey(publicKey), {
         onSuccess: async (...args) => {
             await queryClient.invalidateQueries([Queries.GET_ACCOUNT_ACCESS_KEYS, index, network]);
+            await queryClient.invalidateQueries([Queries.ACTIONS, index, network]);
             onSuccess?.(...args);
         },
         ...options,

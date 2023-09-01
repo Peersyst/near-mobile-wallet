@@ -34,5 +34,91 @@
     },
     "indexerEstimatedDelay": 30000,
     "nearMobileUrl": "https://nearmobile.app/",
-    "signerFeature": false
+    "signerFeature": {
+        "enabled": false,
+        "backendUrl": "",
+        "dAppLogoFallback": "",
+        "recommendedDApps": [
+            {
+                "name": "Ref Finance",
+                "description": "Ref Finance is a community-led, multi-purpose Decentralized Finance (DeFi) platform built on NEAR Protocol.",
+                "url": "https://www.ref.finance/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/525f6f41-b6a1-46bd-94ef-23f64f09b4a2.png",
+                "tag": "dex",
+                "contractId": "asset-manager.orderly-network.near"
+            },
+            {
+                "name": "Rainbow Bridge",
+                "description": "The Rainbow Bridge allows developers to utilize Ethereum assets and smart contracts on NEAR—a fast, scalable, and low-cost environment.",
+                "url": "https://rainbowbridge.app/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/908e2c26-5fc0-48da-9281-e4b931d8c73d.png",
+                "tag": "bridge",
+                "contractId": ""
+            },
+            {
+                "name": "Learn NEAR Club",
+                "description": "Learn how to use and build on NEAR and Earn NEAR.",
+                "url": "https://learnnear.club/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/b23431ac-4ff4-41ed-95f9-522c2f185e0f.png",
+                "tag": "learning",
+                "contractId": "login.learnclub.near"
+            },
+            {
+                "name": "Near Social",
+                "description": "Decentralized Composable Frontends and Social Data Protocol for NEAR.",
+                "url": "https://near.social/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/9e615abb-f211-488e-9e96-e476da76df35.webp",
+                "tag": "social",
+                "contractId": "social.near"
+            },
+            {
+                "name": "Burrow",
+                "description": "Supply and borrow interest-bearing assets (stNEAR, stETH, aUSDC) on NEAR Protocol.",
+                "url": "https://app.burrow.cash/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/fde1877b-7c77-4073-b46e-eabfe91bcedf.webp",
+                "tag": "lending",
+                "contractId": "contract.main.burrow.near"
+            },
+            {
+                "name": "Paras",
+                "description": "NFT Marketplace | Expanding the endgame of NFTs on $NEAR $ASTR $DOT.",
+                "url": "https://paras.id/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/ac160f09-693a-4555-956a-fba67a7f8c62.png",
+                "tag": "nftMarketplace",
+                "contractId": "marketplace.paras.near"
+            },
+            {
+                "name": "Linear",
+                "description": "Highest Yield, Instant Liquidity. Your Journey of DeFi on NEAR Starts Here.",
+                "url": "https://linearprotocol.org/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/64b43e0c-ae59-4f78-bbba-ffdbe54b6ae1.png",
+                "tag": "liquidStaking",
+                "contractId": "linear-protocol.near"
+            },
+            {
+                "name": "Mintbase",
+                "description": "Mint, Sell, Trade NFTs on your own smart contract.",
+                "url": "https://www.mintbase.xyz/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/de27c900-818a-4faf-a856-df225fed1e57.webp",
+                "tag": "nftMarketplace",
+                "contractId": "mintbase1.near"
+            },
+            {
+                "name": "Jumbo",
+                "description": "Jumbo provides Ecosystem-Wide Liquidity for users and projects.",
+                "url": "https://jumbo.exchange/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/915c1657-8485-4c92-80a0-c455b6f45057.png",
+                "tag": "dex",
+                "contractId": "v1.jumbo_exchange.near"
+            },
+            {
+                "name": "Jump Defi",
+                "description": "The only one-stop decentralized finance platform on NEAR Protocol.",
+                "url": "https://www.jumpdefi.xyz/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/b6391251-9b81-446d-bf54-7b5da892cd51.webp",
+                "tag": "dex",
+                "contractId": ""
+            }
+        ]
+    }
 }

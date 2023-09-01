@@ -7,6 +7,8 @@ import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { Platform, UIManager } from "react-native";
 
+import "module/api/OpenApiConfig";
+
 if (typeof BigInt === "undefined") global.BigInt = require("big-integer");
 
 if (Platform.OS === "android") {

@@ -9,5 +9,17 @@
         "isFeeCalculationHidden": true,
         "environment": "STAGING"
     },
-    "signerFeature": true
+    "signerFeature": {
+        "enabled": true,
+        "backendUrl": "",
+        "recommendedDApps": [
+            {
+                "name": "name",
+                "description": "description",
+                "url": "url",
+                "logoUrl": "logoUrl",
+                "tag": "dex"
+            }
+        ]
+    }
 }

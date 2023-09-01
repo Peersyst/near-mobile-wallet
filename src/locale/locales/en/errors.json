@@ -42,6 +42,8 @@
     "you_are_not_staking": "You are not currently staking with any validator.",
     "no_validators_available": "There is currently no validator available for staking.",
     "no_validators_found": "No validators found for this search ({{accountId}})",
+    "networkMismatch": "Network mismatch",
+    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details.",
     "noConnectedSites": "No connected sites",
     "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account."
 }
