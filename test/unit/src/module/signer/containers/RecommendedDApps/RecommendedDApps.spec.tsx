@@ -1,8 +1,11 @@
+import { UseRecommendedDAppsMock } from "mocks/common/signer/queries/useRecommendedDApps.mock";
 import RecommendedDApps from "module/signer/containers/RecommendedDApps/RecommendedDApps";
 import { render, screen, translate } from "test-utils";
 
 describe("RecommendedDApps", () => {
     test("Renders correctly", () => {
+        new UseRecommendedDAppsMock();
+
         render(<RecommendedDApps />);
 
         expect(screen.getAllByText("name")).toHaveLength(1);

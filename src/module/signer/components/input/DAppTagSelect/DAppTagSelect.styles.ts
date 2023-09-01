@@ -2,9 +2,6 @@ import styled from "@peersyst/react-native-styled";
 import Select from "module/common/component/input/Select/Select";
 
 export const DAppTagSelectRoot = styled(Select)(() => ({
-    minWidth: "33%",
-    maxWidth: "33%",
-    flex: 1,
     component: {
         display: {
             height: "100%",

@@ -15,6 +15,7 @@ enum Queries {
     GET_SIGNER_REQUEST = "GET_SIGNER_REQUEST",
     GET_ACCOUNT_ACCESS_KEYS = "get-account-access-keys",
     IS_DAPP_CONNECTED = "is-dapp-connected",
+    RECOMMENDED_DAPPS = "recommended-dapps",
 }
 
 export default Queries;
