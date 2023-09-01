@@ -259,7 +259,7 @@
     "reject": "Reject",
     "signMessage": "Sign message",
     "signRequest": "Sign request",
-    "signDAppMessage": "The dApp <dapp>test</dapp> is requesting you to sign the following message:",
+    "signMessageDescription": "The dApp {{receiver}} is requesting you to sign the following message:",
     "addFullAccessKey": "Add FullAccess key",
     "addFullAccessKeyDescription": "Complete access to your account",
     "confirmConnectionWith": "Confirm connection with",

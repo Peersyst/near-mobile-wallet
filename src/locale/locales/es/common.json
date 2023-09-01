@@ -259,7 +259,7 @@
     "reject": "Rechazar",
     "signMessage": "Firmar mensaje",
     "signRequest": "Firmar petición",
-    "signDAppMessage": "La dApp <dapp>{{receiver}}</dapp> ha solicitado la firma del siguiente mensaje:",
+    "signMessageDescription": "La dApp {{receiver}} ha solicitado la firma del siguiente mensaje:",
     "addFullAccessKey": "Añadir llave FullAccess",
     "addFullAccessKeyDescription": "Accesso completo sobre tu cuenta",
     "confirmConnectionWith": "Confirmar conexión con",

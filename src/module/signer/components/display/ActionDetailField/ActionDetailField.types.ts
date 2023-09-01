@@ -4,7 +4,7 @@ import { JSXElementConstructor } from "react";
 
 export interface ActionDetailFieldProps {
     label: string;
-    content: ReactChild;
+    content?: ReactChild;
     LeftIcon?: JSXElementConstructor<SvgIconProps>;
     RightIcon?: JSXElementConstructor<SvgIconProps>;
     description?: string;
