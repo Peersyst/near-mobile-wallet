@@ -1,25 +1,25 @@
-import { Col, Typography } from "@peersyst/react-native-components";
-import Container from "module/common/component/display/Container/Container";
-import { Trans } from "react-i18next";
-import { DApp } from "./SignMessageDetails.styles";
 import { SignMessageDetailsProps } from "./SignMessageDetails.types";
+import ActionDetailsScaffold from "../../layout/ActionDetailsScaffold/ActionDetailsScaffold";
+import { ConnectIcon } from "icons";
+import ActionDetailField from "../ActionDetailField/ActionDetailField";
+import Container from "module/common/component/display/Container/Container";
+import { useTranslate } from "module/common/hook/useTranslate";
 
-const SignMessageDetails = ({ receiver, message }: SignMessageDetailsProps): JSX.Element => {
+const SignMessageDetails = ({ receiver, message, metadata }: SignMessageDetailsProps): JSX.Element => {
+    const previewProps = metadata ? { logoUrl: metadata.logoUrl, Icon: ConnectIcon } : undefined;
+    const translate = useTranslate();
+
     return (
-        <Col flex={1} alignItems="center" gap={24}>
-            <Typography variant="body2Regular" textAlign="center">
-                <Trans
-                    i18nKey="signDAppMessage"
-                    values={{ receiver }}
-                    components={{
-                        dapp: <DApp variant="body2Strong" />,
-                    }}
-                />
-            </Typography>
+        <ActionDetailsScaffold
+            header={translate("signMessage")}
+            description={translate("signMessageDescription", { receiver })}
+            showPreview
+            previewProps={previewProps}
+        >
             <Container>
-                <Typography variant="body2Strong">{message}</Typography>
+                <ActionDetailField label={translate("message")} description={message} />
             </Container>
-        </Col>
+        </ActionDetailsScaffold>
     );
 };
 

@@ -259,7 +259,7 @@
     "reject": "Rechazar",
     "signMessage": "Firmar mensaje",
     "signRequest": "Firmar petición",
-    "signDAppMessage": "La dApp <dapp>{{receiver}}</dapp> ha solicitado la firma del siguiente mensaje:",
+    "signMessageDescription": "La dApp {{receiver}} ha solicitado la firma del siguiente mensaje:",
     "addFullAccessKey": "Añadir llave FullAccess",
     "addFullAccessKeyDescription": "Accesso completo sobre tu cuenta",
     "confirmConnectionWith": "Confirmar conexión con",
@@ -280,8 +280,8 @@
     "deployContractDescription": "Al aprobar esta solicitud, se desplegará el contrato inteligente compilado.",
     "transferAction": "Petición de transferencia",
     "transferActionDescription": "Al aceptar esta petición, enviarás la siguiente cantidad de NEAR a {{receiverId}}.",
-    "deleteAccessKey": "Eliminar clave de acceso",
-    "deleteAccessKeyDescription": "Si aprueba esta petición, la siguiente clave de acceso será eliminada de su cuenta.",
+    "confirmDisconnect": "Confirmar desconexión",
+    "confirmDisconnectDescription": "Si aprueba esta petición, la siguiente clave de acceso será eliminada de su cuenta.",
     "stakeAction": "Detalles de stake",
     "stakeActionDescription": "Al aprobar esta solicitud, podrá apostar sus fichas NEAR en su nombre.",
     "gas": "Gas",
@@ -301,5 +301,10 @@
     "signWith": "Firmar con",
     "rejectConnection": "Rechazar conexión",
     "slideToAccept": "Deslizar para aceptar",
-    "callSmartContractDescription": "Al aprovar esta petición, {{contract}} realizará la siguiente llamada."
+    "callSmartContractDescription": "Al aprovar esta petición, {{contract}} realizará la siguiente llamada.",
+    "accessKey": "Llave de acceso",
+    "search": "Buscar",
+    "all": "Todas",
+    "dAppCategories": "Categorías de dApps",
+    "disconnectDApp": "Para confirmar la desconexión de la dApp, por favor, pulse el botón de desconectar."
 }

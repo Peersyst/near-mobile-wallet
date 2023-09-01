@@ -1,23 +1,18 @@
 import { useTranslate } from "module/common/hook/useTranslate";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import signRequestState from "module/signer/state/SignRequestState";
-import { useState } from "react";
+
+import { useSignerWalletIndex } from "../SignerRequestModal/SignerRequestModalContext";
 
 const SignerWalletSelector = (): JSX.Element => {
     const translate = useTranslate();
 
-    const setSignRequestState = useSetRecoilState(signRequestState);
-    const { signerWalletIndex } = useRecoilValue(signRequestState);
-
-    const [selectedWalletIndex, setSelectedWalletIndex] = useState(signerWalletIndex);
+    const [signerWalletIndex, setSignerWalletIndex] = useSignerWalletIndex();
 
     const handleWalletChange = (index: number) => {
-        setSelectedWalletIndex(index);
-        setSignRequestState((prevState) => ({ ...prevState, signerWalletIndexw: index }));
+        setSignerWalletIndex(index);
     };
 
-    return <WalletSelector label={translate("signWith")} value={selectedWalletIndex} onChange={handleWalletChange} />;
+    return <WalletSelector label={translate("signWith")} value={signerWalletIndex} onChange={handleWalletChange} />;
 };
 
 export default SignerWalletSelector;
