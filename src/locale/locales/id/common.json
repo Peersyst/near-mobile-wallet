@@ -290,5 +290,8 @@
     "connected": "Connected",
     "notConnected": "Not connected",
     "noDApps": "There are no dApps to list",
-    "noDAppsDescription": "Seems like there are no dApps currently available. Please, try again later."
+    "noDAppsDescription": "Seems like there are no dApps currently available. Please, try again later.",
+    "search": "Search",
+    "all": "All",
+    "dAppCategories": "dApp categories"
 }
