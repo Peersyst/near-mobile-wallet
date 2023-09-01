@@ -14,4 +14,6 @@ export interface DApp {
     url: string;
     logoUrl: string;
     tag: DAppTag;
+    /* Smart contract account id */
+    contractId: string;
 }

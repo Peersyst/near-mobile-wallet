@@ -291,5 +291,8 @@
     "notConnected": "Not connected",
     "noDApps": "There are no dApps to list",
     "noDAppsDescription": "Seems like there are no dApps currently available. Please, try again later.",
-    "search": "Search"
+    "search": "Search",
+    "all": "All",
+    "dAppCategories": "dApp categories",
+    "disconnectDApp": "To confirm that you want to disconnect the dApp, please press the Disconnect button again."
 }
