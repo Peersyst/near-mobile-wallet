@@ -9,8 +9,8 @@ export interface UseTransferActionParams {
     receiverId?: string;
 }
 
-export default function useTransferAction() {
-    const { serviceInstance, index, network } = useServiceInstance();
+export default function useTransferAction(indexProp?: number) {
+    const { serviceInstance, index, network } = useServiceInstance(indexProp);
     const queryClient = useQueryClient();
 
     const transferAction = async ({ action, receiverId }: UseTransferActionParams) => {

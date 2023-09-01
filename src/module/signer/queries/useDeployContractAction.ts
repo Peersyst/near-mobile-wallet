@@ -3,8 +3,8 @@ import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { useQueryClient } from "react-query";
 
-export default function useDeployContractAction() {
-    const { serviceInstance, index, network } = useServiceInstance();
+export default function useDeployContractAction(indexProp?: number) {
+    const { serviceInstance, index, network } = useServiceInstance(indexProp);
     const queryClient = useQueryClient();
 
     const deployContractAction = async (action: Action) => {

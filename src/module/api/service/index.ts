@@ -8,6 +8,8 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { CreateSignerRequest } from './models/CreateSignerRequest';
 export type { CreateSignMessageRequest } from './models/CreateSignMessageRequest';
+export type { DAppMetadataDto } from './models/DAppMetadataDto';
+export type { DAppMetadatRequest } from './models/DAppMetadatRequest';
 export type { SignerRequestDto } from './models/SignerRequestDto';
 export type { SignerRequestStatusDto } from './models/SignerRequestStatusDto';
 export type { SignerTransactionDto } from './models/SignerTransactionDto';
@@ -17,6 +19,8 @@ export type { SignRequest } from './models/SignRequest';
 
 export { $CreateSignerRequest } from './schemas/$CreateSignerRequest';
 export { $CreateSignMessageRequest } from './schemas/$CreateSignMessageRequest';
+export { $DAppMetadataDto } from './schemas/$DAppMetadataDto';
+export { $DAppMetadatRequest } from './schemas/$DAppMetadatRequest';
 export { $SignerRequestDto } from './schemas/$SignerRequestDto';
 export { $SignerRequestStatusDto } from './schemas/$SignerRequestStatusDto';
 export { $SignerTransactionDto } from './schemas/$SignerTransactionDto';

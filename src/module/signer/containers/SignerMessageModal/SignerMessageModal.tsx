@@ -1,6 +1,6 @@
 import { Skeleton, createModal, useModal } from "@peersyst/react-native-components";
 import CardSelectModal from "module/common/component/feedback/CardSelectModal/CardSelectModal";
-import SignModalScaffold from "module/signer/components/layout/SignModalScaffold/SignModalScaffold";
+import SignatureScaffold from "module/signer/components/layout/SignatureScaffold/SignatureScaffold";
 import SignMessageDetails from "module/signer/components/display/SignMessageDetails/SignMessageDetails";
 import { SignerModalProps } from "module/signer/hooks/useSignerModal";
 import useGetSignMessageRequest from "module/signer/queries/useGetSignMessageRequest";
@@ -10,7 +10,7 @@ import NetworkMismatchError from "module/signer/components/feedback/NetworkMisma
 import useSignMessage from "module/signer/queries/useSignMessage";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 
-const MessageSignerModal = createModal(({ id, ...props }: SignerModalProps): JSX.Element => {
+const SignerMessageModal = createModal(({ id, ...props }: SignerModalProps): JSX.Element => {
     const translate = useTranslate();
     const { hideModal } = useModal();
 
@@ -21,7 +21,7 @@ const MessageSignerModal = createModal(({ id, ...props }: SignerModalProps): JSX
 
     const { mutate: signMessage, isLoading: isSigning, isError, isSuccess } = useSignMessage();
 
-    const close = () => hideModal(MessageSignerModal.id);
+    const close = () => hideModal(SignerMessageModal.id);
 
     const handleSign = () =>
         signMessage({ id: signMessageRequest!.id, message: signMessageRequest!.message, receiver: signMessageRequest!.receiver });
@@ -34,14 +34,14 @@ const MessageSignerModal = createModal(({ id, ...props }: SignerModalProps): JSX
                     <NetworkMismatchError />
                 ) : (
                     <>
-                        <SignModalScaffold
+                        <SignatureScaffold
                             onSign={handleSign}
                             onReject={handleReject}
                             sign={{ loading: isSigning, disabled: isSuccess || isError }}
                             reject={{ loading: isSigning, disabled: isSuccess || isError }}
                         >
                             <SignMessageDetails receiver={signMessageRequest!.receiver} message={signMessageRequest!.message} />
-                        </SignModalScaffold>
+                        </SignatureScaffold>
                         <LoadingModal
                             loading={isSigning}
                             success={isSuccess}
@@ -56,4 +56,4 @@ const MessageSignerModal = createModal(({ id, ...props }: SignerModalProps): JSX
     );
 });
 
-export default MessageSignerModal;
+export default SignerMessageModal;

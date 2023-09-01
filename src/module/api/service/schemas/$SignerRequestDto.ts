@@ -27,6 +27,9 @@ export const $SignerRequestDto = {
             },
             isRequired: true,
         },
+        dAppMetadata: {
+            type: 'DAppMetadataDto',
+        },
         createdAt: {
             type: 'string',
             isRequired: true,

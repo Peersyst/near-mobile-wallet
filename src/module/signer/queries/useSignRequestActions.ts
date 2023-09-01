@@ -16,16 +16,15 @@ interface UseSignRequestActionsParams {
     receiverId?: string;
 }
 
-export default function useSignRequestActions() {
-    const { serviceInstance } = useServiceInstance();
+export default function useSignRequestActions(index?: number) {
+    const { serviceInstance } = useServiceInstance(index);
 
-    /* All type of calls */
-    const addKeyAction = useAddKeyAction();
-    const stakeAction = useStakeAction();
-    const deleteAccessKey = useDeleteAccessKey();
-    const transferAction = useTransferAction();
-    const deployContractAction = useDeployContractAction();
-    const functionCallAction = useFunctionCallAction();
+    const addKeyAction = useAddKeyAction(index);
+    const stakeAction = useStakeAction(index);
+    const deleteAccessKey = useDeleteAccessKey(index);
+    const transferAction = useTransferAction(index);
+    const deployContractAction = useDeployContractAction(index);
+    const functionCallAction = useFunctionCallAction(index);
 
     const signAction = async (action: Action, receiverId?: string) => {
         switch (action.type) {

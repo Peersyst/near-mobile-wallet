@@ -3,8 +3,8 @@ import { Action, DeleteKeyActionParams } from "../components/display/SignRequest
 import Queries from "../../../query/queries";
 import { useQueryClient } from "react-query";
 
-export default function useDeleteAccessKey() {
-    const { serviceInstance, index, network } = useServiceInstance();
+export default function useDeleteAccessKey(indexProp?: number) {
+    const { serviceInstance, index, network } = useServiceInstance(indexProp);
     const queryClient = useQueryClient();
 
     const deleteAccessKey = async (action: Action) => {

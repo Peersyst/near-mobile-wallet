@@ -3,8 +3,8 @@ import { useQueryClient } from "react-query";
 import { Action, StakeActionParams } from "../components/display/SignRequestDetails/actions.types";
 import Queries from "../../../query/queries";
 
-export default function useStakeAction() {
-    const { serviceInstance, index, network } = useServiceInstance();
+export default function useStakeAction(indexProp?: number) {
+    const { serviceInstance, index, network } = useServiceInstance(indexProp);
     const queryClient = useQueryClient();
 
     const stakeAction = async (action: Action) => {
