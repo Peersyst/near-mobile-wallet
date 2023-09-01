@@ -3,7 +3,7 @@ import { AddKeyActionParams } from "../actions.types";
 import { useTranslate } from "module/common/hook/useTranslate";
 import ActionDetailsScaffold from "module/signer/components/layout/ActionDetailsScaffold/ActionDetailsScaffold";
 import { ConnectIcon } from "icons";
-import FunctionCallDetails from "../../FunctionCallDetails/FunctionCallDetails";
+import FunctionCallPermissions from "../../FunctionCallPermissions/FunctionCallPermissions";
 import SignerWalletSelector from "module/signer/containers/SignerWalletSelector/SignerWalletSelector";
 import PermissionField from "../../PermissionField/PermissionField";
 
@@ -16,17 +16,19 @@ const AddKeyDetails = ({ params, metadata }: ActionDetailsProps): JSX.Element =>
 
     const isFullAccess = permission === "FullAccess";
 
+    const previewProps = metadata ? { dAppPreview: { logoUrl: metadata!.logoUrl, Icon: ConnectIcon } } : undefined;
+
     return (
         <ActionDetailsScaffold
             header={translate("confirmConnectionWith")}
             description={translate("confirmConnectionWithDescription", { name: metadata?.name })}
             showPreview
-            previewProps={{ logoUrl: metadata?.logoUrl, Icon: ConnectIcon }}
+            previewProps={previewProps}
         >
             {isFullAccess ? (
                 <PermissionField type="critical" label={translate("addFullAccessKeyDescription")} />
             ) : (
-                <FunctionCallDetails permission={permission} />
+                <FunctionCallPermissions permission={permission} />
             )}
             <SignerWalletSelector />
         </ActionDetailsScaffold>

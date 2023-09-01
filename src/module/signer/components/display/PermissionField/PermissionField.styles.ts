@@ -1,8 +1,7 @@
-import { WarningIcon } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
-import { CircleCheckIcon, CircleErrorIcon } from "icons";
+import { CircleCheckIcon, CircleErrorIcon, CircleWarningIcon } from "icons";
 
-export const InfoIcon = styled(CircleCheckIcon)(({ theme }) => ({
+export const AllowedIcon = styled(CircleCheckIcon)(({ theme }) => ({
     color: theme.palette.primary,
     fontSize: 28,
 }));
@@ -12,7 +11,7 @@ export const ForbiddenIcon = styled(CircleErrorIcon)(({ theme }) => ({
     fontSize: 28,
 }));
 
-export const CriticalIcon = styled(WarningIcon)(({ theme }) => ({
+export const CriticalIcon = styled(CircleWarningIcon)(({ theme }) => ({
     color: theme.palette.status.error,
     fontSize: 28,
 }));

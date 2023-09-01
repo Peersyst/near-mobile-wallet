@@ -3,10 +3,11 @@ import { useTranslate } from "module/common/hook/useTranslate";
 
 interface UseCancelableDialogReturn {
     showCancelableDialog: (props: DialogProps) => void;
+    hideCancelableDialog: () => void;
 }
 
 export default function (): UseCancelableDialogReturn {
-    const { showDialog, ...restDialog } = useDialog();
+    const { showDialog, hideDialog, ...restDialog } = useDialog();
     const translate = useTranslate();
 
     const showCancelableDialog = ({ buttons, ...rest }: DialogProps) => {
@@ -18,5 +19,5 @@ export default function (): UseCancelableDialogReturn {
             buttons: cancelableButtons,
         });
     };
-    return { showCancelableDialog, ...restDialog };
+    return { showCancelableDialog, hideCancelableDialog: hideDialog, ...restDialog };
 }

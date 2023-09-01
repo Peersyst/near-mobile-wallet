@@ -1,5 +1,5 @@
 import { FunctionCallPermission } from "../SignRequestDetails/actions.types";
 
-export interface FunctionCallDetailsProps {
+export interface FunctionCallPermissionsProps {
     permission: FunctionCallPermission;
 }

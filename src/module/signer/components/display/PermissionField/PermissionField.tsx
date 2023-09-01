@@ -1,6 +1,7 @@
 import { Row } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
-import { PermissionFieldProps, PermissionIcons } from "./PermissionField.types";
+import { PermissionFieldProps } from "./PermissionField.types";
+import { PermissionIcons } from "./PermissionIcons";
 
 const PermissionField = ({ label, type }: PermissionFieldProps): JSX.Element => {
     return (

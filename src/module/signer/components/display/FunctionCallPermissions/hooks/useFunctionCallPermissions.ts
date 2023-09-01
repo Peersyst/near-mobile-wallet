@@ -7,15 +7,15 @@ export default function useFunctionCallPermissions() {
     const permissions: PermissionFieldProps[] = [
         {
             label: translate("viewAddressPermission"),
-            type: "info",
+            type: "allowed",
         },
         {
             label: translate("viewBalancePermission"),
-            type: "info",
+            type: "allowed",
         },
         {
             label: translate("callMethodsPermission"),
-            type: "info",
+            type: "allowed",
         },
         {
             label: translate("notTransferTokensPermission"),
