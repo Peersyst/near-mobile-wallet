@@ -300,5 +300,8 @@
     "networkFeeAllowanceDescription": "La aplicación tendrá permiso para gastar hasta {{amount}} NEAR en gastos de red incurridos durante su uso.",
     "signWith": "Firmar con",
     "rejectConnection": "Rechazar conexión",
-    "slideToAccept": "Deslizar para aceptar"
+    "slideToAccept": "Deslizar para aceptar",
+    "search": "Buscar",
+    "all": "Todas",
+    "dAppCategories": "Categorías de dApps"
 }

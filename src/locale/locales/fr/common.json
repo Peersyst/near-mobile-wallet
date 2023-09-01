@@ -300,5 +300,8 @@
     "networkFeeAllowanceDescription": "The application will be given permission to spend up to {{amount}} towards network fees incurred during use.",
     "signWith": "Sign with",
     "rejectConnection": "Reject connection",
-    "slideToAccept": "Slide to accept"
+    "slideToAccept": "Slide to accept",
+    "search": "Search",
+    "all": "All",
+    "dAppCategories": "dApp categories"
 }
