@@ -15,5 +15,8 @@ export const $CreateSignMessageRequest = {
             type: 'string',
             isRequired: true,
         },
+        receiverMetadata: {
+            type: 'DAppMetadatRequest',
+        },
     },
 } as const;

@@ -10,6 +10,7 @@ export interface SignerFeatureConfig {
     enabled: boolean;
     backendUrl: string;
     recommendedDApps: DApp[];
+    dAppLogoFallback: string;
 }
 
 export interface RefetchIntervals {

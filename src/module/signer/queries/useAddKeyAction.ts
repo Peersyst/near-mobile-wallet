@@ -3,8 +3,8 @@ import { useQueryClient } from "react-query";
 import { Action, AddKeyActionParams } from "../components/display/SignRequestDetails/actions.types";
 import Queries from "../../../query/queries";
 
-export default function useAddKeyAction() {
-    const { serviceInstance, index, network } = useServiceInstance();
+export default function useAddKeyAction(indexProp?: number) {
+    const { serviceInstance, index, network } = useServiceInstance(indexProp);
     const queryClient = useQueryClient();
 
     const addKeyAction = async (action: Action) => {

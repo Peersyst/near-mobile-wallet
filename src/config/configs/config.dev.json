@@ -93,6 +93,7 @@
                 "tag": "dex",
                 "contractId": ""
             }
-        ]
+        ],
+        "dAppLogoFallback": ""
     }
 }

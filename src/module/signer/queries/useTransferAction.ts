@@ -3,22 +3,23 @@ import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { useQueryClient } from "react-query";
 import { SignerErrorCodes } from "../errors/SignerErrorCodes";
+import { convertYoctoToNear } from "near-peersyst-sdk";
 
 export interface UseTransferActionParams {
     action: Action;
     receiverId?: string;
 }
 
-export default function useTransferAction() {
-    const { serviceInstance, index, network } = useServiceInstance();
+export default function useTransferAction(indexProp?: number) {
+    const { serviceInstance, index, network } = useServiceInstance(indexProp);
     const queryClient = useQueryClient();
 
     const transferAction = async ({ action, receiverId }: UseTransferActionParams) => {
-        const { deposit } = action.params as TransferActionParams;
+        const { deposit: depositInYocto } = action.params as TransferActionParams;
 
         if (!receiverId) throw new Error(SignerErrorCodes.RECEIVER_ID_REQUIRED);
 
-        await serviceInstance.sendTransaction(receiverId, deposit);
+        await serviceInstance.sendTransaction(receiverId, convertYoctoToNear(depositInYocto));
         await queryClient.invalidateQueries([Queries.ACTIONS, index, network]);
         await queryClient.invalidateQueries([Queries.GET_BALANCE, index, network]);
     };

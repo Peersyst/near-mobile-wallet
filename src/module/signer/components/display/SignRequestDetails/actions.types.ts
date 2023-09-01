@@ -59,13 +59,13 @@ export interface StakeAction {
 /**
  * AddKeyPermission
  */
-export type AddKeyPermission =
-    | "FullAccess"
-    | {
-          receiverId: string;
-          allowance?: string;
-          methodNames?: Array<string>;
-      };
+export type FunctionCallPermission = {
+    receiverId: string;
+    allowance?: string;
+    methodNames?: Array<string>;
+};
+
+export type AddKeyPermission = "FullAccess" | FunctionCallPermission;
 
 /**
  * AddKeyAction

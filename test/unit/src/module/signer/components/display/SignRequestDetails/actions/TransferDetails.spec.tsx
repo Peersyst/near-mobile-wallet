@@ -10,5 +10,8 @@ describe("TransferDetails", () => {
 
         expect(screen.getByText(translate("transferAction"))).toBeDefined();
         expect(screen.getByText(translate("transferActionDescription", { receiverId: mockReceiverId }))).toBeDefined();
+
+        expect(screen.getByText(translate("receiver"))).toBeDefined();
+        expect(screen.getByText(translate("deposit"))).toBeDefined();
     });
 });
