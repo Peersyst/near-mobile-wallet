@@ -301,6 +301,7 @@
     "signWith": "Sign with",
     "rejectConnection": "Reject connection",
     "slideToAccept": "Slide to accept",
+    "callSmartContractDescription": "By approving this request, {{contract}} will make the following call.",
     "accessKey": "Access key",
     "search": "Search",
     "all": "All",

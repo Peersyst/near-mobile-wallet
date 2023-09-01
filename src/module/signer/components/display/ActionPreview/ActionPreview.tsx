@@ -2,13 +2,14 @@ import { Row } from "@peersyst/react-native-components";
 import { config } from "config";
 import { ActionPreviewProps } from "./ActionPreview.types";
 import { PreviewLogo, ActionPreviewRoot, ActionPreviewIcon } from "./ActionPreview.styles";
+import NearMobileLogo from "../NearMobileLogo/NearMobileLogo";
 
 const ActionPreview = (props: ActionPreviewProps): JSX.Element => {
     const { dAppPreview } = props;
 
     return (
         <ActionPreviewRoot gap={12} justifyContent="center" alignItems="center">
-            <PreviewLogo source={{ uri: config.signerFeature.nearMobileLogoUrl }} />
+            <NearMobileLogo />
             {dAppPreview && (
                 <Row gap={12} justifyContent="center" alignItems="center">
                     <ActionPreviewIcon>

@@ -301,6 +301,7 @@
     "signWith": "Firmar con",
     "rejectConnection": "Rechazar conexión",
     "slideToAccept": "Deslizar para aceptar",
+    "callSmartContractDescription": "Al aprovar esta petición, {{contract}} realizará la siguiente llamada.",
     "accessKey": "Llave de acceso",
     "search": "Buscar",
     "all": "Todas",
