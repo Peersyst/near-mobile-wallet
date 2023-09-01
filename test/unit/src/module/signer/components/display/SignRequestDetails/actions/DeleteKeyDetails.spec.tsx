@@ -24,6 +24,6 @@ describe("DeleteKeyDetails", () => {
         expect(screen.getByText(translate("accessKey"))).toBeDefined();
         expect(screen.getByText(formatPublicKey(mockPublicKey, { digits: 12 }))).toBeDefined();
 
-        expect(screen.getByTestId("CircleErrorIcon")).toBeDefined();
+        expect(screen.getByTestId("LockIcon")).toBeDefined();
     });
 });
