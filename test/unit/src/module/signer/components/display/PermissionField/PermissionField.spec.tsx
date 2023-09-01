@@ -2,8 +2,8 @@ import PermissionField from "module/signer/components/display/PermissionField/Pe
 import { render, screen } from "test-utils";
 
 describe("PermissionField", () => {
-    test("Renders correctly info type", () => {
-        render(<PermissionField type="info" label="label" />);
+    test("Renders correctly allowed type", () => {
+        render(<PermissionField type="allowed" label="label" />);
 
         expect(screen.getByText("label")).toBeDefined();
         expect(screen.getByTestId("CircleCheckIcon")).toBeDefined();
@@ -20,6 +20,6 @@ describe("PermissionField", () => {
         render(<PermissionField type="critical" label="label" />);
 
         expect(screen.getByText("label")).toBeDefined();
-        expect(screen.getByTestId("WarningIcon")).toBeDefined();
+        expect(screen.getByTestId("CircleWarningIcon")).toBeDefined();
     });
 });

@@ -301,5 +301,9 @@
     "signWith": "Firmar con",
     "rejectConnection": "Rechazar conexión",
     "slideToAccept": "Deslizar para aceptar",
-    "callSmartContractDescription": "Al aprovar esta petición, {{contract}} realizará la siguiente llamada."
+    "callSmartContractDescription": "Al aprovar esta petición, {{contract}} realizará la siguiente llamada.",
+    "search": "Buscar",
+    "all": "Todas",
+    "dAppCategories": "Categorías de dApps",
+    "disconnectDApp": "Para confirmar la desconexión de la dApp, por favor, pulse el botón de desconectar."
 }

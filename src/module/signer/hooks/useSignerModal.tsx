@@ -1,7 +1,7 @@
 import { CommonModalComponentProps, ModalProps, useModal } from "@peersyst/react-native-components";
 import { ComponentType } from "react";
-import MessageSignerModal from "../containers/MessageSignerModal/MessageSignerModal";
-import RequestSignerModal from "../containers/RequestSignerModal/RequestSignerModal";
+import SignerMessageModal from "../containers/SignerMessageModal/SignerMessageModal";
+import SignerRequestModal from "../containers/SignerRequestModal/SignerRequestModal";
 
 type ModalWithId<T extends CommonModalComponentProps = CommonModalComponentProps> = ComponentType<T> & {
     id: string;
@@ -17,8 +17,8 @@ export interface SignerModalProps extends ModalProps {
 }
 
 export const SignerModals: Record<SignerModalType, ModalWithId<SignerModalProps>> = {
-    [SignerModalType.MESSAGE]: MessageSignerModal,
-    [SignerModalType.REQUEST]: RequestSignerModal,
+    [SignerModalType.MESSAGE]: SignerMessageModal,
+    [SignerModalType.REQUEST]: SignerRequestModal,
 };
 
 export interface UseSignerModalReturn {
