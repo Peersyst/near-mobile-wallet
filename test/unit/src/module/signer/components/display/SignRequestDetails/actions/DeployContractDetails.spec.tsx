@@ -9,5 +9,8 @@ describe("DeployContractDetails", () => {
 
         expect(screen.getByText(translate("deployContract"))).toBeDefined();
         expect(screen.getByText(translate("deployContractDescription"))).toBeDefined();
+
+        expect(screen.getByText(translate("smart_contract"))).toBeDefined();
+        expect(screen.getByTestId("ClipboardListIcon")).toBeDefined();
     });
 });
