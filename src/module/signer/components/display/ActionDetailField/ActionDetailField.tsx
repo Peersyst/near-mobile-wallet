@@ -3,9 +3,15 @@ import { ActionDetailContent, ActionDetailIcon } from "./ActionDetailField.style
 import { ActionDetailFieldProps } from "./ActionDetailField.types";
 import Typography from "module/common/component/display/Typography/Typography";
 
-const ActionDetailField = ({ label, content: contentProp, description, LeftIcon, RightIcon }: ActionDetailFieldProps): JSX.Element => {
+const ActionDetailField = ({ label, content: contentProp = "", description, LeftIcon, RightIcon }: ActionDetailFieldProps): JSX.Element => {
     const content =
-        typeof contentProp === "object" ? contentProp : <ActionDetailContent variant="body2Strong">{contentProp}</ActionDetailContent>;
+        typeof contentProp === "object" ? (
+            contentProp
+        ) : (
+            <Typography variant="body2Strong" numberOfLines={1}>
+                {contentProp}
+            </Typography>
+        );
 
     return (
         <Col gap={4} style={{ width: "100%" }}>
@@ -18,7 +24,7 @@ const ActionDetailField = ({ label, content: contentProp, description, LeftIcon,
                 <Typography variant="body2Strong" numberOfLines={1} style={{ flex: 1 }}>
                     {label}
                 </Typography>
-                {content}
+                {content && <ActionDetailContent>{content}</ActionDetailContent>}
                 {RightIcon && (
                     <ActionDetailIcon>
                         <RightIcon />

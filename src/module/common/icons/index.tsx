@@ -53,6 +53,7 @@ export * from "./SuccessIcon";
 export * from "./SunIcon";
 export * from "./TransactionReceivedIcon";
 export * from "./TransactionSentIcon";
+export * from "./UserIcon";
 export * from "./UserAddIcon";
 export * from "./UserCheckIcon";
 export * from "./UserDeleteIcon";

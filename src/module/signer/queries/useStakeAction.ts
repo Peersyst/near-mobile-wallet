@@ -10,6 +10,7 @@ export default function useStakeAction(indexProp?: number) {
     const stakeAction = async (action: Action) => {
         const { stake: amountToStake } = action.params as StakeActionParams;
 
+        // TODO: Decide about not support Stake actions (staking with validators is done via function calls)
         await serviceInstance.stake(amountToStake);
         await queryClient.invalidateQueries([Queries.ACTIONS, index, network]);
         await queryClient.invalidateQueries([Queries.GET_BALANCE, index, network]);
