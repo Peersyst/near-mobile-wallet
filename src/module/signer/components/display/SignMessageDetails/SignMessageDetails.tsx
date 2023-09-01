@@ -6,7 +6,7 @@ import Container from "module/common/component/display/Container/Container";
 import { useTranslate } from "module/common/hook/useTranslate";
 
 const SignMessageDetails = ({ receiver, message, metadata }: SignMessageDetailsProps): JSX.Element => {
-    const previewProps = metadata ? { logoUrl: metadata.logoUrl, Icon: ConnectIcon } : undefined;
+    const previewProps = metadata ? { dAppPreview: { logoUrl: metadata.logoUrl, Icon: ConnectIcon } } : undefined;
     const translate = useTranslate();
 
     return (
