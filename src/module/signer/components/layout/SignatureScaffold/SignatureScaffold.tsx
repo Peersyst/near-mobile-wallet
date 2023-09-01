@@ -1,7 +1,7 @@
 import { Col } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { SignatureScaffoldProps } from "./SignModalScaffold.types";
+import { SignatureScaffoldProps } from "./SignatureScaffold.types";
 import SwipeButton from "module/common/component/feedback/SwipeButton/SwipeButton";
 
 const SignatureScaffold = ({ children, onSign, onReject, sign, reject }: SignatureScaffoldProps): JSX.Element => {

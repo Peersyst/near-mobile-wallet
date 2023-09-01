@@ -1,4 +1,4 @@
-import SignatureScaffold from "module/signer/components/layout/SignModalScaffold/SignModalScaffold";
+import SignatureScaffold from "module/signer/components/layout/SignatureScaffold/SignatureScaffold";
 import { fireEvent, render, screen, translate } from "test-utils";
 
 describe("SignModalScaffold", () => {

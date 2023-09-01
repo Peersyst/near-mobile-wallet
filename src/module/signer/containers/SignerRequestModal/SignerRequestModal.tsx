@@ -4,15 +4,15 @@ import SignRequestDetails from "module/signer/components/display/SignRequestDeta
 import { SignerModalProps } from "module/signer/hooks/useSignerModal";
 import useGetSignerRequest from "module/signer/queries/useGetSignerRequest";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
-import SignatureScaffold from "module/signer/components/layout/SignModalScaffold/SignModalScaffold";
+import SignatureScaffold from "module/signer/components/layout/SignatureScaffold/SignatureScaffold";
 import NetworkMismatchError from "module/signer/components/feedback/NetworkMismatchError/NetworkMismatchError";
 import useSignRequestActions from "module/signer/queries/useSignRequestActions";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { useRecoilValue } from "recoil";
-import signRequestState from "module/signer/state/SignRequestState";
+import { SignerRequestModalProvider } from "./SignerRequestModalContext";
+import { useState } from "react";
 
-const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps): JSX.Element => {
+const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps): JSX.Element => {
     const translate = useTranslate();
     const { hideModal } = useModal();
 
@@ -21,11 +21,12 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
     const network = useSelectedNetwork();
     const matchingNetwork = network === signerRequest?.network;
 
-    const { signerWalletIndex } = useRecoilValue(signRequestState);
+    const [signerWalletIndex, setSignerWalletIndex] = useState<number>();
 
     const { mutate: signRequest, isLoading: isSigning, isError, isSuccess } = useSignRequestActions(signerWalletIndex);
 
-    const close = () => hideModal(RequestSignerModal.id);
+    const close = () => hideModal(SignerRequestModal.id);
+
     const handleSign = () =>
         signRequest({ id, actions: signerRequest?.requests[0].actions, receiverId: signerRequest?.requests[0].receiverId });
     const handleReject = () => close();
@@ -36,7 +37,7 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
                 {!matchingNetwork ? (
                     <NetworkMismatchError />
                 ) : (
-                    <>
+                    <SignerRequestModalProvider value={{ signerWalletIndex, setSignerWalletIndex }}>
                         <SignatureScaffold
                             onSign={handleSign}
                             onReject={handleReject}
@@ -52,11 +53,11 @@ const RequestSignerModal = createModal(({ id, ...modalProps }: SignerModalProps)
                             successMessage={translate("requestSignedSuccessfully")}
                             onClose={close}
                         />
-                    </>
+                    </SignerRequestModalProvider>
                 )}
             </Skeleton>
         </CardSelectModal>
     );
 });
 
-export default RequestSignerModal;
+export default SignerRequestModal;
