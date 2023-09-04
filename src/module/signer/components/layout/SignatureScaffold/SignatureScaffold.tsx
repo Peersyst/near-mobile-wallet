@@ -2,6 +2,7 @@ import { Col } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { SignatureScaffoldProps } from "./SignatureScaffold.types";
+import SwipeButton from "module/common/component/feedback/SwipeButton/SwipeButton";
 
 const SignatureScaffold = ({ children, onSign, onReject, sign, reject }: SignatureScaffoldProps): JSX.Element => {
     const translate = useTranslate();
@@ -13,9 +14,9 @@ const SignatureScaffold = ({ children, onSign, onReject, sign, reject }: Signatu
                 <Button {...reject} variant="text" onPress={onReject} fullWidth>
                     {translate("reject")}
                 </Button>
-                <Button {...sign} onPress={onSign} fullWidth>
+                <SwipeButton {...sign} onSwipe={onSign} fullWidth>
                     {translate("slideToAccept")}
-                </Button>
+                </SwipeButton>
             </Col>
         </Col>
     );
