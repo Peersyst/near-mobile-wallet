@@ -16,7 +16,7 @@ const AddKeyDetails = ({ params, metadata }: ActionDetailsProps): JSX.Element =>
 
     const isFullAccess = permission === "FullAccess";
 
-    const previewProps = metadata ? { dAppPreview: { logoUrl: metadata?.logoUrl, Icon: ConnectIcon } } : undefined;
+    const previewProps = { dAppPreview: { logoUrl: metadata?.logoUrl || "", Icon: ConnectIcon } };
 
     return (
         <ActionDetailsScaffold
