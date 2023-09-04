@@ -12,6 +12,7 @@
     "signerFeature": {
         "enabled": true,
         "backendUrl": "http://192.168.1.55:3001",
+        "dAppLogoFallback": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/d57a615b-b77f-487d-95ee-714e659cb8a3.png",
         "recommendedDApps": [
             {
                 "name": "Ref Finance",
@@ -93,7 +94,6 @@
                 "tag": "dex",
                 "contractId": ""
             }
-        ],
-        "dAppLogoFallback": ""
+        ]
     }
 }
