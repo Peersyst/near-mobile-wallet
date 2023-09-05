@@ -16,6 +16,7 @@ enum Queries {
     GET_ACCOUNT_ACCESS_KEYS = "get-account-access-keys",
     IS_DAPP_CONNECTED = "is-dapp-connected",
     RECOMMENDED_DAPPS = "recommended-dapps",
+    GET_CONNECTED_SITE_LOGO = "get-connected-site-logo",
 }
 
 export default Queries;

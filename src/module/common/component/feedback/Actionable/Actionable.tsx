@@ -1,14 +1,13 @@
 import { Col } from "@peersyst/react-native-components";
-import { ActionableRoot } from "./Actionable.styles";
-import Button from "../../input/Button/Button";
+import { ActionableRoot, ActionableIcon } from "./Actionable.styles";
 import { ActionableProps } from "./Actionable.types";
 
-const Actionable = ({ actionText, onAction, position = "right", actionProps, children, ...rest }: ActionableProps): JSX.Element => {
+const Actionable = ({ Action, onAction, position = "right", actionProps, children, ...rest }: ActionableProps): JSX.Element => {
     const action: JSX.Element = (
         <Col justifyContent="center">
-            <Button onPress={onAction} {...actionProps}>
-                {actionText}
-            </Button>
+            <ActionableIcon onPress={onAction} {...actionProps}>
+                <Action />
+            </ActionableIcon>
         </Col>
     );
 

@@ -1,11 +1,11 @@
-import { RowProps } from "@peersyst/react-native-components";
-import { ButtonProps } from "../../input/Button/Button.types";
+import { IconButtonProps, RowProps, SvgIconProps } from "@peersyst/react-native-components";
+import { JSXElementConstructor } from "react";
 
 type ActionablePosition = "left" | "right";
 
 export interface ActionableProps extends RowProps {
+    Action: JSXElementConstructor<SvgIconProps>;
     onAction: () => void;
-    actionText: string;
-    actionProps?: ButtonProps;
+    actionProps?: Omit<IconButtonProps, "onPress">;
     position?: ActionablePosition;
 }

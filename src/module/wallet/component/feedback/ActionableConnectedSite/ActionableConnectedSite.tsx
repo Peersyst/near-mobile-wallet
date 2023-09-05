@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Dialog, useToast } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import useDeleteKey from "module/wallet/query/useDeleteKey";
+import { ChevronRightIcon } from "icons";
 
 export type ActionableConnectedSiteProps = Pick<ConnectedSiteProps, "site">;
 
@@ -26,7 +27,7 @@ const ActionableConnectedSite = ({ site }: ActionableConnectedSiteProps) => {
     const { mutate: deleteSite, isLoading } = useDeleteKey({ onSuccess: handleSuccess });
 
     return (
-        <Actionable onAction={handleAction} actionText={translate("disconnect")} actionProps={{ size: "sm", variant: "outlined" }} gap={12}>
+        <Actionable Action={ChevronRightIcon} onAction={handleAction} gap={12}>
             <ConnectedSite site={site} />
             <Dialog
                 open={openDialog}
@@ -45,6 +46,7 @@ const ActionableConnectedSite = ({ site }: ActionableConnectedSiteProps) => {
                     },
                     {
                         variant: "text",
+                        action: closeDialog,
                         text: translate("cancel"),
                     },
                 ]}
