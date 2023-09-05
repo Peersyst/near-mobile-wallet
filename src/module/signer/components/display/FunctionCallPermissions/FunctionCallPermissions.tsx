@@ -10,6 +10,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { convertYoctoToNear } from "near-peersyst-sdk";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
+import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
 
 const FunctionCallPermissions = ({
     permission: { allowance: allowanceInYocto = "", receiverId },
@@ -29,7 +30,11 @@ const FunctionCallPermissions = ({
             ))}
             <Container>
                 <Col gap={16} alignItems="center" justifyContent="center">
-                    <ActionDetailField label={translate("contract")} content={receiverId} LeftIcon={ClipboardListIcon} />
+                    <ActionDetailField
+                        label={translate("contract")}
+                        content={<BlockchainAddress variant="body2Strong" type="address" address={receiverId} action="link" />}
+                        LeftIcon={ClipboardListIcon}
+                    />
                     {!!allowanceInNEAR && (
                         <ActionDetailField
                             label={translate("networkFeeAllowance")}

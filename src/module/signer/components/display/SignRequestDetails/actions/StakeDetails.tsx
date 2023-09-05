@@ -4,6 +4,8 @@ import { StakeActionParams } from "../actions.types";
 import { useTranslate } from "module/common/hook/useTranslate";
 import Container from "module/common/component/display/Container/Container";
 import Balance from "module/wallet/component/display/Balance/Balance";
+import ActionDetailField from "../../ActionDetailField/ActionDetailField";
+import { NearIcon } from "icons";
 
 const StakeDetails = ({ params }: ActionDetailsProps): JSX.Element => {
     const { stake } = params as StakeActionParams;
@@ -12,7 +14,11 @@ const StakeDetails = ({ params }: ActionDetailsProps): JSX.Element => {
     return (
         <ActionDetailsScaffold header={translate("stakeAction")} description={translate("stakeActionDescription")}>
             <Container>
-                <Balance variant="body2Strong" balance={stake} units="token" />
+                <ActionDetailField
+                    label={translate("deposit")}
+                    content={<Balance variant="body2Strong" balance={stake} units="token" />}
+                    LeftIcon={NearIcon}
+                />
             </Container>
         </ActionDetailsScaffold>
     );
