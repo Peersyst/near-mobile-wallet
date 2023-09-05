@@ -1,9 +1,11 @@
 import { ElementStyler, Image, Row } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
 
-export const PreviewLogo = styled(Image)(() => ({
+export const PreviewLogo = styled(Image)(({ theme }) => ({
     width: 76,
     aspectRatio: 1,
+    borderRadius: theme.borderRadiusSm,
+    backgroundColor: theme.palette.overlay["8%"],
 }));
 
 export const ActionPreviewRoot = styled(Row)(() => ({
