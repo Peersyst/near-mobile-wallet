@@ -1,7 +1,7 @@
-import { PagerView } from "@peersyst/react-native-components";
 import { Action } from "../SignRequestDetails/actions.types";
 import { ActionDetails } from "../SignRequestDetails/actions";
 import { DAppMetadataDto } from "module/api/service";
+import { ActionsSliderRoot } from "./ActionsSlider.styles";
 
 export interface ActionsSliderProps {
     actions: Action[];
@@ -11,12 +11,12 @@ export interface ActionsSliderProps {
 
 const ActionsSlider = ({ actions, ...rest }: ActionsSliderProps) => {
     return (
-        <PagerView gap={0} showPageIndicator={actions.length > 1} style={{ flex: 1 }}>
+        <ActionsSliderRoot gap={0} showPageIndicator={actions.length > 1} style={{ flex: 1 }}>
             {actions.map(({ type, params }, index) => {
                 const ActionComponent = ActionDetails[type];
                 return <ActionComponent key={index} params={params} {...rest} />;
             })}
-        </PagerView>
+        </ActionsSliderRoot>
     );
 };
 

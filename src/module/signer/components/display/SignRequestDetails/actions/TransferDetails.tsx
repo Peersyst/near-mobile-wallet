@@ -22,12 +22,12 @@ const TransferDetails = ({ params, receiverId }: ActionDetailsProps): JSX.Elemen
                     <ActionDetailField
                         label={translate("receiver")}
                         content={<BlockchainAddress variant="body2Strong" address={receiverId!} type="address" />}
-                        leftIcon={UserIcon}
+                        LeftIcon={UserIcon}
                     />
                     <ActionDetailField
                         label={translate("deposit")}
                         content={<Balance variant="body2Strong" units="token" balance={convertYoctoToNear(deposit)} textAlign="center" />}
-                        leftIcon={NearIcon}
+                        LeftIcon={NearIcon}
                     />
                 </Col>
             </Container>
