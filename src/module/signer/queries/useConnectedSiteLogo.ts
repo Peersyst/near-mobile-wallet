@@ -1,5 +1,5 @@
 import { config } from "config";
-import Queries from "query/queries";
+import Queries from "../../../query/queries";
 import { UseQueryResult, useQuery } from "react-query";
 
 export default function useConnectedSiteLogo(contractId: string): UseQueryResult<string, unknown> {
