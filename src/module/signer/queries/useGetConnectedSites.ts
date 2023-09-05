@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import useParsedConnectedSites from "../hook/useParseConnectedSites";
-import useGetAccountAccessKeys from "./useGetAccountAccessKeys";
+import useParsedConnectedSites from "../hooks/useParseConnectedSites";
+import useGetAccountAccessKeys from "../../wallet/query/useGetAccountAccessKeys";
 
 export default function useGetConnectedSites() {
     const parseConnectedSites = useParsedConnectedSites();

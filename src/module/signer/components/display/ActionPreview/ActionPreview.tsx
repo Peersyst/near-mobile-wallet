@@ -5,11 +5,15 @@ import { PreviewLogo, ActionPreviewRoot, ActionPreviewIcon } from "./ActionPrevi
 import NearMobileLogo from "../NearMobileLogo/NearMobileLogo";
 
 const ActionPreview = (props: ActionPreviewProps): JSX.Element => {
-    const { dAppPreview } = props;
+    const { dAppPreview, logoUrl } = props;
 
     return (
         <ActionPreviewRoot gap={12} justifyContent="center" alignItems="center">
-            <NearMobileLogo />
+            {logoUrl ? (
+                <PreviewLogo source={{ uri: logoUrl }} fallback={{ uri: config.signerFeature.dAppLogoFallback }} />
+            ) : (
+                <NearMobileLogo />
+            )}
             {dAppPreview && (
                 <Row gap={12} justifyContent="center" alignItems="center">
                     <ActionPreviewIcon>

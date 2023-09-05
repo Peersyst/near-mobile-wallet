@@ -1,7 +1,7 @@
 import { Col, ExposedBackdropProps, createModal } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
 import ActionableConnectedSitesList from "../ConnectedSitesList/ConnectedSitesList";
-import useGetConnectedSites from "module/wallet/query/useGetConnectedSites";
+import useGetConnectedSites from "module/signer/queries/useGetConnectedSites";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { useControlled } from "@peersyst/react-hooks";
 
