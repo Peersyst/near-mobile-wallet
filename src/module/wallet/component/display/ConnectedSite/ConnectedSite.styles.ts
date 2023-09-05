@@ -3,7 +3,7 @@ import styled from "@peersyst/react-native-styled";
 import { config } from "config";
 
 export const ConnectedSiteRoot = styled(Row)(() => ({
-    height: 76,
+    height: 100,
     alignItems: "center",
 }));
 
