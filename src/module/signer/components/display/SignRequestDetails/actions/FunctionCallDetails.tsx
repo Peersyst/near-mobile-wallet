@@ -8,6 +8,7 @@ import { ClipboardListIcon, ConnectIcon, NearIcon } from "icons";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { convertYoctoToNear } from "near-peersyst-sdk";
 import { Col } from "@peersyst/react-native-components";
+import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
 
 const FunctionCallDetails = ({ params, metadata, receiverId }: ActionDetailsProps): JSX.Element => {
     const { methodName, deposit, gas } = params as FunctionCallActionParams;
@@ -24,7 +25,13 @@ const FunctionCallDetails = ({ params, metadata, receiverId }: ActionDetailsProp
         >
             <Container>
                 <Col gap={16}>
-                    {receiverId && <ActionDetailField label={translate("contract")} content={receiverId} LeftIcon={ClipboardListIcon} />}
+                    {receiverId && (
+                        <ActionDetailField
+                            label={translate("contract")}
+                            content={<BlockchainAddress variant="body2Strong" action="link" address={receiverId} type="address" />}
+                            LeftIcon={ClipboardListIcon}
+                        />
+                    )}
                     <ActionDetailField label={translate("methodName")} content={methodName} LeftIcon={ClipboardListIcon} />
                     <ActionDetailField
                         label={translate("gas")}
