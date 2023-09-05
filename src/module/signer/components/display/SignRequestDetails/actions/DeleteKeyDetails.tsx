@@ -10,7 +10,7 @@ import { formatPublicKey } from "module/signer/utils/formatPublicKey";
 const DeleteKeyDetails = ({ params, metadata }: ActionDetailsProps): JSX.Element => {
     const { publicKey } = params as DeleteKeyActionParams;
 
-    const previewProps = metadata ? { dAppPreview: { logoUrl: metadata.logoUrl, Icon: CircleErrorIcon } } : undefined;
+    const previewProps = { dAppPreview: { logoUrl: metadata?.logoUrl || "", Icon: CircleErrorIcon } };
 
     const translate = useTranslate();
 
