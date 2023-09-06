@@ -45,5 +45,7 @@
     "networkMismatch": "Network mismatch",
     "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details.",
     "noConnectedSites": "No connected sites",
-    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account."
+    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account.",
+    "invalidSigner": "Invalid signer account",
+    "invalidSignerDescription": "You have not selected the expected account to sign this request"
 }

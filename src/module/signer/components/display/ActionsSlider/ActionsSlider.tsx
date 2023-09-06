@@ -5,6 +5,7 @@ import { ActionsSliderRoot } from "./ActionsSlider.styles";
 
 export interface ActionsSliderProps {
     actions: Action[];
+    signerId?: string;
     receiverId?: string;
     metadata?: DAppMetadataDto;
 }

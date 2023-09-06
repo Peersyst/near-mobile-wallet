@@ -6,9 +6,9 @@ import { SignerModalProps } from "module/signer/hooks/useSignerModal";
 import useGetSignMessageRequest from "module/signer/queries/useGetSignMessageRequest";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
-import NetworkMismatchError from "module/signer/components/feedback/NetworkMismatchError/NetworkMismatchError";
 import useSignMessage from "module/signer/queries/useSignMessage";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
+import NetworkMismatchError from "module/signer/components/feedback/NetworkMismatchError/NetworkMismatchError";
 
 const SignerMessageModal = createModal(({ id, ...props }: SignerModalProps): JSX.Element => {
     const translate = useTranslate();
