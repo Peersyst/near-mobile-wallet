@@ -22,7 +22,7 @@ export default function useParsedConnectedSites() {
                 .map((accessKey: AccessKeyInfoView) => {
                     if (accessKey.public_key === publicKey.toString()) return undefined;
                     return {
-                        publicKey: accessKey.public_key,
+                        accessKey: accessKey,
                         name: parseAccessKeyName(accessKey),
                     };
                 })

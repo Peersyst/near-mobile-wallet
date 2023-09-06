@@ -1,22 +1,25 @@
 import { Col, Hash } from "@peersyst/react-native-components";
 import { ConnectedSiteProps } from "./ConnectedSite.types";
-import CardIcon from "module/common/component/display/CardIcon/CardIcon";
-import { LaptopIcon } from "icons";
 import Typography from "module/common/component/display/Typography/Typography";
-import { ConnectedSiteRoot } from "./ConnectedSite.styles";
-import { TouchableWithoutFeedback } from "react-native";
+import { ConnectedSiteRoot, ConnectedSiteLogo } from "./ConnectedSite.styles";
+import useConnectedSiteLogo from "module/signer/queries/useConnectedSiteLogo";
 
-const ConnectedSite = ({ site: { name, publicKey } }: ConnectedSiteProps) => {
+const ConnectedSite = ({
+    site: {
+        name,
+        accessKey: { public_key },
+    },
+}: ConnectedSiteProps) => {
+    const { data: siteLogo, isLoading } = useConnectedSiteLogo(name);
+
     return (
-        <TouchableWithoutFeedback>
-            <ConnectedSiteRoot flex={1} gap={12}>
-                <CardIcon Icon={LaptopIcon} active={true} />
-                <Col flex={1}>
-                    <Typography variant="body3Strong">{name}</Typography>
-                    <Hash variant="body4Regular" hash={publicKey.slice(8)} ellipsis="middle" length={9} />
-                </Col>
-            </ConnectedSiteRoot>
-        </TouchableWithoutFeedback>
+        <ConnectedSiteRoot flex={1} gap={12}>
+            <ConnectedSiteLogo loading={isLoading} source={{ uri: siteLogo }} />
+            <Col flex={1}>
+                <Typography variant="body3Strong">{name}</Typography>
+                <Hash variant="body4Regular" hash={public_key.slice(8)} ellipsis="middle" />
+            </Col>
+        </ConnectedSiteRoot>
     );
 };
 
