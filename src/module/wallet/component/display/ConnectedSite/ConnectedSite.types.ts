@@ -1,6 +1,8 @@
+import { AccessKeyInfoView } from "near-api-js/lib/providers/provider";
+
 export interface ConnectedSite {
-    publicKey: string;
     name: string;
+    accessKey: AccessKeyInfoView;
 }
 
 export interface ConnectedSiteProps {

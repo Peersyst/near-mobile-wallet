@@ -1,6 +1,6 @@
 import "@peersyst/react-native-components";
 import { Validator } from "@peersyst/react-native-components";
-import { DApp } from "module/signer/components/display/DApp/DApp.types";
+import { DApp } from "module/signer/types";
 import { TransakOnRampQueryParams } from "module/transak";
 import { TFunction } from "react-i18next";
 
