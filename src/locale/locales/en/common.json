@@ -258,7 +258,7 @@
     "sign": "Sign",
     "reject": "Reject",
     "signMessage": "Sign message",
-    "signRequest": "Sign request",
+    "reviewRequest": "Review request",
     "signMessageDescription": "The dApp {{receiver}} is requesting you to sign the following message:",
     "addFullAccessKey": "Add FullAccess key",
     "addFullAccessKeyDescription": "Complete access to your account",

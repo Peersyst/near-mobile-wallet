@@ -258,7 +258,7 @@
     "sign": "Firmar",
     "reject": "Rechazar",
     "signMessage": "Firmar mensaje",
-    "signRequest": "Firmar petición",
+    "reviewRequest": "Revisar petición",
     "signMessageDescription": "La dApp {{receiver}} ha solicitado la firma del siguiente mensaje:",
     "addFullAccessKey": "Añadir llave FullAccess",
     "addFullAccessKeyDescription": "Accesso completo sobre tu cuenta",
