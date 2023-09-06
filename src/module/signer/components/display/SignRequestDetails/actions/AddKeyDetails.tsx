@@ -21,6 +21,7 @@ const AddKeyDetails = ({ params, metadata }: ActionDetailsProps): JSX.Element =>
             description={translate("confirmConnectionWithDescription", { name: metadata?.name })}
             showPreview
             previewProps={previewProps}
+            scrollable
         >
             <ActionPermissionDetails permission={permission} />
             <SignerWalletSelector />

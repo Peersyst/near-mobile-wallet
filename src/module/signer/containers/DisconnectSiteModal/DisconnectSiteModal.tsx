@@ -1,4 +1,4 @@
-import { Col, Dialog, createModal } from "@peersyst/react-native-components";
+import { Col, Dialog, ScrollView, createModal } from "@peersyst/react-native-components";
 import { DisconnectSiteModalProps } from "./DisconnectSiteModal.types";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { useControlled } from "@peersyst/react-hooks";
@@ -30,21 +30,29 @@ const DisconnectSiteModal = createModal(
         return (
             <CardNavigatorModal
                 open={open}
-                navbar={{ back: true, onBack: () => setOpen(false), title: translate("connectedWith", { name: site.name }).toUpperCase() }}
+                navbar={{
+                    back: true,
+                    onBack: () => setOpen(false),
+                    title: translate("connectedWith", { name: site.name }).toUpperCase(),
+                }}
                 style={{ height: "90%" }}
                 {...modalProps}
             >
-                <Col flex={1} justifyContent="space-between">
-                    <Col flex={1}>
-                        <DisconnectSiteDetails site={site} />
-                    </Col>
-                    <Col gap={16} flex={1}>
-                        <Button variant="text" fullWidth onPress={handleClose}>
-                            {translate("cancel")}
-                        </Button>
-                        <Button variant="destructive" fullWidth onPress={handleDisconnect}>
-                            {translate("disconnect")}
-                        </Button>
+                <Col flex={1}>
+                    <Col style={{ position: "absolute", height: "100%", width: "100%" }}>
+                        <ScrollView>
+                            <Col gap={28}>
+                                <DisconnectSiteDetails site={site} />
+                                <Col gap={16}>
+                                    <Button variant="text" fullWidth onPress={handleClose}>
+                                        {translate("cancel")}
+                                    </Button>
+                                    <Button variant="destructive" fullWidth onPress={handleDisconnect}>
+                                        {translate("disconnect")}
+                                    </Button>
+                                </Col>
+                            </Col>
+                        </ScrollView>
                     </Col>
                 </Col>
                 <Dialog
@@ -64,6 +72,7 @@ const DisconnectSiteModal = createModal(
                         },
                         {
                             variant: "text",
+                            action: closeDialog,
                             text: translate("cancel"),
                         },
                     ]}

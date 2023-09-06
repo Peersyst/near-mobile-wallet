@@ -1,10 +1,10 @@
 import { useTranslate } from "module/common/hook/useTranslate";
-import ActionDetailsScaffold from "../../layout/ActionDetailsScaffold/ActionDetailsScaffold";
 import { DisconnectSiteDetailsProps } from "./DisconnectSiteDetails.types";
-import ActionPermissionDetails from "../ActionPermissionDetails/ActionPermissionDetails";
+import ActionDetailsScaffold from "../../layout/ActionDetailsScaffold/ActionDetailsScaffold";
 import useConnectedSiteLogo from "module/signer/queries/useConnectedSiteLogo";
+import ActionPermissionDetails from "../ActionPermissionDetails/ActionPermissionDetails";
 
-const DisconnectSiteDetails = ({ site }: DisconnectSiteDetailsProps) => {
+const DisconnectSiteDetails = ({ site }: DisconnectSiteDetailsProps): JSX.Element => {
     const translate = useTranslate();
 
     const {
@@ -17,9 +17,9 @@ const DisconnectSiteDetails = ({ site }: DisconnectSiteDetailsProps) => {
         permission === "FullAccess"
             ? "FullAccess"
             : {
-                  allowance: permission.FunctionCall.allowance,
                   receiverId: permission.FunctionCall.receiver_id,
-                  methodNames: permission.FunctionCall.method_names,
+                  allowance: permission.FunctionCall.allowance || undefined,
+                  methodNames: permission.FunctionCall.method_names || undefined,
               };
 
     const { data: siteLogo } = useConnectedSiteLogo(site.name);

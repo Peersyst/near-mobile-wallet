@@ -16,7 +16,11 @@ const TransferDetails = ({ params, receiverId }: ActionDetailsProps): JSX.Elemen
     const translate = useTranslate();
 
     return (
-        <ActionDetailsScaffold header={translate("transferAction")} description={translate("transferActionDescription", { receiverId })}>
+        <ActionDetailsScaffold
+            header={translate("transferAction")}
+            description={translate("transferActionDescription", { receiverId })}
+            showPreview
+        >
             <Container>
                 <Col gap={16}>
                     <ActionDetailField

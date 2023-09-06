@@ -22,6 +22,7 @@ const FunctionCallDetails = ({ params, metadata, receiverId }: ActionDetailsProp
             description={translate("callSmartContractDescription", { contract: receiverId })}
             showPreview
             previewProps={previewProps}
+            scrollable
         >
             <Container>
                 <Col gap={16}>
