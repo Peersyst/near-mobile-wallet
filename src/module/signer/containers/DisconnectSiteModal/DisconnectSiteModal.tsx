@@ -31,6 +31,7 @@ const DisconnectSiteModal = createModal(
             <CardNavigatorModal
                 open={open}
                 navbar={{ back: true, onBack: () => setOpen(false), title: translate("connectedWith", { name: site.name }).toUpperCase() }}
+                style={{ height: "90%" }}
                 {...modalProps}
             >
                 <Col flex={1} justifyContent="space-between">
