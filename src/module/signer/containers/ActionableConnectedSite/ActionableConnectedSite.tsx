@@ -14,7 +14,7 @@ const ActionableConnectedSite = ({ site }: ActionableConnectedSiteProps) => {
     const closeDisconnectModal = () => setOpenDisconnectModal(false);
 
     return (
-        <Actionable Action={ChevronRightIcon} onAction={handleAction} gap={12}>
+        <Actionable action={<ChevronRightIcon />} onAction={handleAction} gap={12}>
             <ConnectedSite site={site} />
             <DisconnectSiteModal site={site} open={openDisconnectModal} onClose={closeDisconnectModal} />
         </Actionable>
