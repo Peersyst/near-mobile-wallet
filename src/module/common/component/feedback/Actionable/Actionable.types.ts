@@ -5,5 +5,6 @@ type ActionablePosition = "left" | "right";
 
 export interface ActionableProps extends RowProps {
     action: ReactElement;
+    onAction: () => void;
     position?: ActionablePosition;
 }
