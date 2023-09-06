@@ -10,7 +10,12 @@ interface SignerRequestError {
     condition: boolean;
 }
 
-export default function useHandleSignerRequestError(signerRequest: SignerRequestDto | undefined) {
+interface useHandleSignerRequestErrorReturn {
+    signerRequestError: JSX.Element | undefined;
+    isSignerRequestError: boolean;
+}
+
+export default function useHandleSignerRequestError(signerRequest: SignerRequestDto | undefined): useHandleSignerRequestErrorReturn {
     const translateError = useTranslate("error");
     const { serviceInstance } = useServiceInstance();
     const network = useSelectedNetwork();
@@ -36,7 +41,7 @@ export default function useHandleSignerRequestError(signerRequest: SignerRequest
     const isError = errors.find((error) => error.condition);
 
     return {
-        error: isError ? <Error title={isError?.title} description={isError?.description} /> : undefined,
-        isError: !!isError,
+        signerRequestError: isError ? <Error title={isError?.title} description={isError?.description} /> : undefined,
+        isSignerRequestError: !!isError,
     };
 }
