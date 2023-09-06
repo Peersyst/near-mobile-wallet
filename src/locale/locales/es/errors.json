@@ -45,5 +45,7 @@
     "networkMismatch": "Diferente red",
     "networkMismatchDescription": "Esta petición requiere de otra red. Cambia a otra red para poder ver el contenido de la petición.",
     "noConnectedSites": "No estás conectado a ningún dapp con esta cuenta.",
-    "noConnectedSitesDescription": "Parece que no te has conectado aun a ninguna dapp con esta cuenta."
+    "noConnectedSitesDescription": "Parece que no te has conectado aun a ninguna dapp con esta cuenta.",
+    "invalidSigner": "Cuenta inválida",
+    "invalidSignerDescription": "No tienes permisos para realizar esta acción. Por favor, cambia de cuenta."
 }

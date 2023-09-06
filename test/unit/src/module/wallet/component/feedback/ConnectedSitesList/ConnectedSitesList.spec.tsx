@@ -1,13 +1,11 @@
+import { ConnectedSite } from "module/wallet/component/display/ConnectedSite/ConnectedSite.types";
 import ConnectedSitesList from "module/wallet/component/feedback/ConnectedSitesList/ConnectedSitesList";
 import { render, screen, translate } from "test-utils";
 
 describe("ConnectedSitesList", () => {
     test("Renders correctly", () => {
-        const mockSites = [
-            { name: "test", publicKey: "test" },
-            { name: "test", publicKey: "test" },
-            { name: "test", publicKey: "test" },
-        ];
+        const mockConnectedSite = { name: "test", accessKey: { public_key: "publicKey" } } as ConnectedSite;
+        const mockSites: ConnectedSite[] = [mockConnectedSite, mockConnectedSite, mockConnectedSite];
 
         render(<ConnectedSitesList sites={mockSites} />);
 

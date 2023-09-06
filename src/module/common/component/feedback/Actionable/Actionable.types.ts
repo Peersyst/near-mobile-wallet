@@ -1,11 +1,10 @@
 import { RowProps } from "@peersyst/react-native-components";
-import { ButtonProps } from "../../input/Button/Button.types";
+import { ReactElement } from "react";
 
 type ActionablePosition = "left" | "right";
 
 export interface ActionableProps extends RowProps {
+    action: ReactElement;
     onAction: () => void;
-    actionText: string;
-    actionProps?: ButtonProps;
     position?: ActionablePosition;
 }
