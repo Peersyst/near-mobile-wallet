@@ -263,7 +263,7 @@
     "addFullAccessKey": "Añadir llave FullAccess",
     "addFullAccessKeyDescription": "Accesso completo sobre tu cuenta",
     "confirmConnectionWith": "Confirmar conexión con",
-    "confirmConnectionWithDescription": "Una vez conectado, {{dapp}} tendrá los siguientes permisos:",
+    "confirmConnectionWithDescription": "Una vez conectado, {{name}} tendrá los siguientes permisos:",
     "allowedGas": "Gas permitido",
     "methodNames": "Llamadas",
     "allMethods": "Todas",
