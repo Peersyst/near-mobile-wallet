@@ -12,7 +12,7 @@ const StakeDetails = ({ params }: ActionDetailsProps): JSX.Element => {
     const translate = useTranslate();
 
     return (
-        <ActionDetailsScaffold header={translate("stakeAction")} description={translate("stakeActionDescription")}>
+        <ActionDetailsScaffold header={translate("stakeAction")} description={translate("stakeActionDescription")} scrollable>
             <Container>
                 <ActionDetailField
                     label={translate("deposit")}

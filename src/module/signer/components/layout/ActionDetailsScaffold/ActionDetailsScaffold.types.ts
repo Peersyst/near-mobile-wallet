@@ -7,4 +7,5 @@ export interface ActionDetailsScaffoldProps extends PropsWithChildren {
     description?: ReactChild;
     showPreview?: boolean;
     previewProps?: ActionPreviewProps;
+    scrollable?: boolean;
 }

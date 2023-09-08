@@ -14,7 +14,12 @@ const DeployContractDetails = ({ params }: ActionDetailsProps): JSX.Element => {
     const translate = useTranslate();
 
     return (
-        <ActionDetailsScaffold header={translate("deployContract")} description={translate("deployContractDescription")} showPreview>
+        <ActionDetailsScaffold
+            header={translate("deployContract")}
+            description={translate("deployContractDescription")}
+            showPreview
+            scrollable
+        >
             <Container>
                 <ActionDetailField
                     label={translate("smart_contract")}

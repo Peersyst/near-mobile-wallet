@@ -307,5 +307,6 @@
     "all": "All",
     "dAppCategories": "dApp categories",
     "disconnectDApp": "To confirm that you want to disconnect the dApp, please press the Disconnect button again.",
-    "connectedWith": "Connected with {{name}}:"
+    "connectedWith": "Connected with {{name}}:",
+    "withPermissions": "With permissions:"
 }

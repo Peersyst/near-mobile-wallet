@@ -1,6 +1,6 @@
 import { AccessKeyInfoView } from "near-api-js/lib/providers/provider";
-import { ConnectedSite } from "../component/display/ConnectedSite/ConnectedSite.types";
-import useServiceInstance from "./useServiceInstance";
+import { ConnectedSite } from "../components/display/ConnectedSite/ConnectedSite.types";
+import useServiceInstance from "../../wallet/hook/useServiceInstance";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { useCallback } from "react";
 

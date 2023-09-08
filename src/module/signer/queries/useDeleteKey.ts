@@ -1,7 +1,8 @@
 import { UseMutationResult, useMutation, useQueryClient } from "react-query";
-import useServiceInstance from "../hook/useServiceInstance";
+
 import Queries from "../../../query/queries";
 import { MutationOptions } from "../../../query/react-query-overrides";
+import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 export default function useDeleteKey({
     onSuccess,

@@ -1,5 +1,5 @@
-import { ConnectedSite } from "module/wallet/component/display/ConnectedSite/ConnectedSite.types";
-import ActionableConnectedSite from "module/wallet/component/feedback/ActionableConnectedSite/ActionableConnectedSite";
+import { ConnectedSite } from "module/signer/components/display/ConnectedSite/ConnectedSite.types";
+import ActionableConnectedSite from "module/signer/containers/ActionableConnectedSite/ActionableConnectedSite";
 import { render, screen } from "test-utils";
 
 describe("ActionableConnectedSite", () => {
