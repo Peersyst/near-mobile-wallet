@@ -9,20 +9,25 @@ const ActionDetailsScaffold = ({
     children,
     showPreview = false,
     previewProps,
+    scrollable = false,
 }: ActionDetailsScaffoldProps): JSX.Element => {
     return (
-        <ScrollView>
+        <ScrollView scrollEnabled={scrollable}>
             <Col flex={1} gap={12} style={{ width: "100%" }}>
                 <Col gap={4}>
-                    <Typography variant="body3Strong" textAlign="center">
-                        {header}
-                    </Typography>
+                    {header && (
+                        <Typography variant="body3Strong" textAlign="center">
+                            {header}
+                        </Typography>
+                    )}
                     {showPreview && <ActionPreview {...previewProps} />}
                 </Col>
                 <Col flex={1} gap={16}>
-                    <Typography variant="body2Regular" light>
-                        {description}
-                    </Typography>
+                    {description && (
+                        <Typography variant="body2Regular" light>
+                            {description}
+                        </Typography>
+                    )}
                     {children}
                 </Col>
             </Col>

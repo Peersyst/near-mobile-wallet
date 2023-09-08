@@ -49,6 +49,10 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
         text: {
             color: theme.palette.text,
         },
+        destructive: {
+            color: theme.palette.white,
+            backgroundColor: theme.palette.status.error,
+        },
 
         //State Styles
         pressed: {
@@ -66,6 +70,9 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             },
             contrast: {
                 backgroundColor: emphasize(theme.palette.gray[themeMode === "light" ? "600" : "900"], 0.15),
+            },
+            destructive: {
+                backgroundColor: emphasize(theme.palette.status.error, 0.15),
             },
         },
         disabled: {

@@ -7,5 +7,6 @@ export type DAppPreview = {
 };
 
 export interface ActionPreviewProps {
+    logoUrl?: string;
     dAppPreview?: DAppPreview;
 }

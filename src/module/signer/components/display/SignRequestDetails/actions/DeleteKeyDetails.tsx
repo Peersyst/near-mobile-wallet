@@ -20,6 +20,7 @@ const DeleteKeyDetails = ({ params, metadata }: ActionDetailsProps): JSX.Element
             description={translate("confirmDisconnectDescription")}
             showPreview
             previewProps={previewProps}
+            scrollable
         >
             <Container>
                 <ActionDetailField

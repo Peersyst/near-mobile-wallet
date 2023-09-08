@@ -9,7 +9,11 @@ const ActionPreview = (props: ActionPreviewProps): JSX.Element => {
 
     return (
         <ActionPreviewRoot gap={12} justifyContent="center" alignItems="center">
-            <NearMobileLogo />
+            {"logoUrl" in props ? (
+                <PreviewLogo source={{ uri: props.logoUrl }} fallback={{ uri: config.signerFeature.dAppLogoFallback }} />
+            ) : (
+                <NearMobileLogo />
+            )}
             {dAppPreview && (
                 <Row gap={12} justifyContent="center" alignItems="center">
                     <ActionPreviewIcon>

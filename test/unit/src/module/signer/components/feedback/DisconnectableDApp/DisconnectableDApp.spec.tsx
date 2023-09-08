@@ -1,4 +1,4 @@
-import { DAppMock } from "mocks/common/signer/DApp.mock";
+import { DAppMock } from "mocks/common/signer";
 import DisconnectableDApp from "module/signer/components/feedback/DisconnectableDApp/DisconnectableDApp";
 import { render, screen, translate } from "test-utils";
 

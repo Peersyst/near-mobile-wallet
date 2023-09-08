@@ -1,5 +1,6 @@
-import { ConnectedSite } from "module/wallet/component/display/ConnectedSite/ConnectedSite.types";
-import ConnectedSitesList from "module/wallet/component/feedback/ConnectedSitesList/ConnectedSitesList";
+import { ConnectedSite } from "module/signer/components/display/ConnectedSite/ConnectedSite.types";
+import ConnectedSitesList from "module/signer/containers/ConnectedSitesList/ConnectedSitesList";
+
 import { render, screen, translate } from "test-utils";
 
 describe("ConnectedSitesList", () => {
