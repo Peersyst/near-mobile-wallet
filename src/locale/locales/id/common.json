@@ -263,7 +263,7 @@
     "addFullAccessKey": "Add FullAccess key",
     "addFullAccessKeyDescription": "Complete access to your account",
     "confirmConnectionWith": "Confirm connection with",
-    "confirmConnectionWithDescription": "Once connected, {{dapp}} will have the following permissions:",
+    "confirmConnectionWithDescription": "Once connected, {{name}} will have the following permissions:",
     "allowedGas": "Allowed gas",
     "methodNames": "Method names",
     "allMethods": "All methods",

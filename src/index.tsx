@@ -1,5 +1,5 @@
 import Providers from "./Providers";
-import Navigator from "./Navigator";
+import Navigator from "./navigation/Navigator";
 import { useLoad } from "module/common/query/useLoad";
 import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
 import { Suspense } from "@peersyst/react-native-components";

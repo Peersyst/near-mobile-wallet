@@ -47,5 +47,6 @@
     "noConnectedSites": "No estás conectado a ningún dapp con esta cuenta.",
     "noConnectedSitesDescription": "Parece que no te has conectado aun a ninguna dapp con esta cuenta.",
     "invalidSigner": "Cuenta inválida",
-    "invalidSignerDescription": "No tienes permisos para realizar esta acción. Por favor, cambia de cuenta."
+    "invalidSignerDescription": "No tienes permisos para realizar esta acción. Por favor, cambia de cuenta.",
+    "invalidSignerRequest": "Petición de firma inválida"
 }

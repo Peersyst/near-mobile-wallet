@@ -5,27 +5,21 @@ import NewsScreen from "module/news/screen/NewsScreen";
 import BasePage from "module/common/component/layout/BasePage/BasePage";
 import StakingScreen from "module/staking/screen/StakingScreen";
 import DAppsScreen from "module/dapp/screen/DappsScreen/DAppsScreen";
+import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
 
-export enum MainBottomScreens {
-    HOME = "Home",
-    STAKING = "Staking",
-    NEWS = "News",
-    DAPPS = "DApps",
-}
-
-const MainBottomNavigatorGroup = () => (
+export const MainBottomNavigatorGroup = () => (
     <BasePage>
         <BottomTab.Navigator
-            initialRouteName={MainBottomScreens.HOME}
+            initialRouteName={MainScreens.HOME}
             tabBar={(props) => <BottomBar {...props} />}
             screenOptions={{ headerShown: false }}
             sceneContainerStyle={{ backgroundColor: "transparent" }}
             backBehavior="history"
         >
-            <BottomTab.Screen name={MainBottomScreens.HOME} component={HomeScreen} />
-            <BottomTab.Screen name={MainBottomScreens.NEWS} component={NewsScreen} />
-            <BottomTab.Screen name={MainBottomScreens.STAKING} component={StakingScreen} />
-            <BottomTab.Screen name={MainBottomScreens.DAPPS} component={DAppsScreen} />
+            <BottomTab.Screen name={MainScreens.HOME} component={HomeScreen} />
+            <BottomTab.Screen name={MainScreens.NEWS} component={NewsScreen} />
+            <BottomTab.Screen name={MainScreens.STAKING} component={StakingScreen} />
+            <BottomTab.Screen name={MainScreens.DAPPS} component={DAppsScreen} />
         </BottomTab.Navigator>
     </BasePage>
 );

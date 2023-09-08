@@ -47,5 +47,6 @@
     "noConnectedSites": "No connected sites",
     "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account.",
     "invalidSigner": "Invalid signer account",
-    "invalidSignerDescription": "You have not selected the expected account to sign this request"
+    "invalidSignerDescription": "You have not selected the expected account to sign this request",
+    "invalidSignerRequest": "Invalid signer request"
 }

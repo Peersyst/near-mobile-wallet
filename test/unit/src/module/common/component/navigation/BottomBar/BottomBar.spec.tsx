@@ -1,8 +1,9 @@
 import BottomBar from "module/common/component/navigation/BottomBar/BottomBar";
-import { MainBottomScreens } from "module/main/component/navigation/MainBottomNavigatorGroup/MainBottomNavigatorGroup";
+
 import { fireEvent, render, translate } from "test-utils";
 import mockedState from "./utils/mockedState";
 import { capitalize } from "@peersyst/react-utils";
+import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
 
 describe("BottomBar test", () => {
     test("Renders correctly", () => {
@@ -28,21 +29,21 @@ describe("BottomBar test", () => {
         const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: mockedNavigate } as any} />);
         const newsButton = screen.getByTestId("DatabaseIcon");
         fireEvent.press(newsButton);
-        expect(mockedNavigate).toHaveBeenCalledWith(MainBottomScreens.STAKING);
+        expect(mockedNavigate).toHaveBeenCalledWith(MainScreens.STAKING);
     });
     test("Navigate to Home Screen", () => {
         const mockedNavigate = jest.fn();
         const screen = render(<BottomBar state={mockedState as any} navigation={{ navigate: mockedNavigate } as any} />);
         const newsButton = screen.getByTestId("NearIcon");
         fireEvent.press(newsButton);
-        expect(mockedNavigate).toHaveBeenCalledWith(MainBottomScreens.HOME);
+        expect(mockedNavigate).toHaveBeenCalledWith(MainScreens.HOME);
     });
     test("Navigate to News Screen", () => {
         const mockedNavigate = jest.fn();
         const screen = render(<BottomBar state={{ ...mockedState, index: 0 } as any} navigation={{ navigate: mockedNavigate } as any} />);
         const newsButton = screen.getByTestId("PinIcon");
         fireEvent.press(newsButton);
-        expect(mockedNavigate).toHaveBeenCalledWith(MainBottomScreens.NEWS);
+        expect(mockedNavigate).toHaveBeenCalledWith(MainScreens.NEWS);
     });
 
     test("Navigates to Dapps Screen", () => {
@@ -51,7 +52,7 @@ describe("BottomBar test", () => {
 
         const newsButton = screen.getByTestId("GridIcon");
         fireEvent.press(newsButton);
-        expect(mockedNavigate).toHaveBeenCalledWith(MainBottomScreens.DAPPS);
+        expect(mockedNavigate).toHaveBeenCalledWith(MainScreens.DAPPS);
     });
 
     test("Dont't navigate to news because it is in the news screen. index 2 in the routes -> see mockedState", () => {
