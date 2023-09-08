@@ -1,3 +1,4 @@
 export * from "./DApp.mock";
-export * from "./queries";
 export * from "./hooks";
+export * from "./ConnectedSite.mock";
+export * from "./queries";

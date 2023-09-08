@@ -1,6 +1,6 @@
-import ConnectedSite from "../../display/ConnectedSite/ConnectedSite";
+import ConnectedSite from "../../components/display/ConnectedSite/ConnectedSite";
 import Actionable from "module/common/component/feedback/Actionable/Actionable";
-import { ConnectedSiteProps } from "../../display/ConnectedSite/ConnectedSite.types";
+import { ConnectedSiteProps } from "../../components/display/ConnectedSite/ConnectedSite.types";
 import { useState } from "react";
 import { ChevronRightIcon } from "icons";
 import DisconnectSiteModal from "../DisconnectSiteModal/DisconnectSiteModal";

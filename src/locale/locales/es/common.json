@@ -258,7 +258,7 @@
     "sign": "Firmar",
     "reject": "Rechazar",
     "signMessage": "Firmar mensaje",
-    "signRequest": "Firmar petición",
+    "reviewRequest": "Revisar petición",
     "signMessageDescription": "La dApp {{receiver}} ha solicitado la firma del siguiente mensaje:",
     "addFullAccessKey": "Añadir llave FullAccess",
     "addFullAccessKeyDescription": "Accesso completo sobre tu cuenta",
@@ -307,5 +307,6 @@
     "all": "Todas",
     "dAppCategories": "Categorías de dApps",
     "disconnectDApp": "Para confirmar la desconexión de la dApp, por favor, pulse el botón de desconectar.",
-    "connectedWith": "Conectado con {{name}}:"
+    "connectedWith": "Conectado con {{name}}:",
+    "withPermissions": "With permissions:"
 }

@@ -1,5 +1,5 @@
-import ConnectedSite from "module/wallet/component/display/ConnectedSite/ConnectedSite";
-import { ConnectedSite as ConnectedSiteType } from "module/wallet/component/display/ConnectedSite/ConnectedSite.types";
+import ConnectedSite from "module/signer/components/display/ConnectedSite/ConnectedSite";
+import { ConnectedSite as ConnectedSiteType } from "module/signer/components/display/ConnectedSite/ConnectedSite.types";
 import { render, screen } from "test-utils";
 
 describe("ConnectedSite", () => {
