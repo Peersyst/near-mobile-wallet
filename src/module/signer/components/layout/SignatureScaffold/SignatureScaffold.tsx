@@ -3,7 +3,7 @@ import Button from "module/common/component/input/Button/Button";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { SignatureScaffoldProps } from "./SignatureScaffold.types";
 import Typography from "module/common/component/display/Typography/Typography";
-import { useSignerWalletIndex } from "module/signer/containers/SignerRequestModal/SignerRequestModalContext";
+import { useSignerWalletIndex } from "module/signer/context/SignerModalContext";
 import useIsAccountActive from "module/signer/queries/useIsActiveAccount";
 
 const SignatureScaffold = ({ children, onSign, onReject, sign = {}, reject = {} }: SignatureScaffoldProps): JSX.Element => {

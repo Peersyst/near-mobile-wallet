@@ -7,7 +7,7 @@ import SignatureScaffold from "module/signer/components/layout/SignatureScaffold
 import useSignRequestActions from "module/signer/queries/useSignRequestActions";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { SignerRequestModalProvider } from "./SignerRequestModalContext";
+import { SignerModalProvider } from "../../context/SignerModalContext";
 import { useState } from "react";
 import useHandleSignerRequestError from "./hooks/useHandleSigneRequestError";
 
@@ -35,7 +35,7 @@ const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps)
                 {isSignerRequestError ? (
                     signerRequestError
                 ) : (
-                    <SignerRequestModalProvider value={{ signerWalletIndex, setSignerWalletIndex }}>
+                    <SignerModalProvider value={{ signerWalletIndex, setSignerWalletIndex }}>
                         <SignatureScaffold
                             onSign={handleSign}
                             onReject={handleReject}
@@ -54,7 +54,7 @@ const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps)
                             successMessage={translate("requestSignedSuccessfully")}
                             onClose={close}
                         />
-                    </SignerRequestModalProvider>
+                    </SignerModalProvider>
                 )}
             </Skeleton>
         </CardSelectModal>

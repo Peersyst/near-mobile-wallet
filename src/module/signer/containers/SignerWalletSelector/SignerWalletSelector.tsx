@@ -1,7 +1,7 @@
 import { useTranslate } from "module/common/hook/useTranslate";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 
-import { useSignerWalletIndex } from "../SignerRequestModal/SignerRequestModalContext";
+import { useSignerWalletIndex } from "../../context/SignerModalContext";
 
 const SignerWalletSelector = (): JSX.Element => {
     const translate = useTranslate();

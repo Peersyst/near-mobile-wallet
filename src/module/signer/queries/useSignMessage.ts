@@ -8,8 +8,8 @@ interface UseSignMessageParams {
     receiver: string;
 }
 
-export default function useSignMessage() {
-    const { serviceInstance } = useServiceInstance();
+export default function useSignMessage(walletIndex?: number) {
+    const { serviceInstance } = useServiceInstance(walletIndex);
 
     return useMutation(({ id, message, receiver }: UseSignMessageParams) =>
         SignerRequestService.signMessageRequest(id, {
