@@ -13,6 +13,8 @@ export default function useIsAccountActive(walletIndex?: number) {
         },
         {
             enabled: !!serviceInstance,
+            cacheTime: 0,
+            staleTime: 0,
         },
     );
 }
