@@ -17,7 +17,7 @@ const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps)
 
     const { data: signerRequest, isLoading } = useGetSignerRequest(id);
 
-    const { error, isError } = useHandleSignerRequestError(signerRequest);
+    const { signerRequestError, isSignerRequestError } = useHandleSignerRequestError(signerRequest);
 
     const [signerWalletIndex, setSignerWalletIndex] = useState<number>();
 
@@ -32,8 +32,8 @@ const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps)
     return (
         <CardSelectModal {...modalProps} title={translate("reviewRequest")} dismissal="close" style={{ height: "95%" }}>
             <Skeleton loading={isLoading}>
-                {isError ? (
-                    error
+                {isSignerRequestError ? (
+                    signerRequestError
                 ) : (
                     <SignerRequestModalProvider value={{ signerWalletIndex, setSignerWalletIndex }}>
                         <SignatureScaffold

@@ -4,19 +4,24 @@ import { QRCodeIcon } from "icons";
 import { useTranslate } from "module/common/hook/useTranslate";
 import QrScanner from "module/common/component/input/QrScanner/QrScanner";
 import useSignerModal from "module/signer/hooks/useSignerModal";
+import { parseSignerDeepLinkData } from "module/signer/utils/parseSignerDeepLinkData";
+import { useToast } from "@peersyst/react-native-components";
 
 const BottomBarQRScanner = (): JSX.Element => {
     const translate = useTranslate();
+    const translateError = useTranslate("error");
     const { showSignerModal } = useSignerModal();
+    const { showToast } = useToast();
 
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => setOpen(true);
 
     const handleScan = (data: string) => {
-        const { type, id } = JSON.parse(data);
         setOpen(false);
-        showSignerModal(type, id);
+        const signerData = parseSignerDeepLinkData(data);
+        if (!signerData) showToast(translateError("invalidSignerRequest"), { type: "error" });
+        showSignerModal(signerData!.type, signerData!.id);
     };
 
     return (
