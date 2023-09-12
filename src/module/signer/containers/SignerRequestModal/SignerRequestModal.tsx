@@ -40,7 +40,10 @@ const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps)
                             onSign={handleSign}
                             onReject={handleReject}
                             sign={{ loading: isSigning, disabled: isSuccess || isSignError }}
-                            reject={{ loading: isSigning, disabled: isSuccess || isSignError }}
+                            reject={{
+                                loading: isSigning,
+                                disabled: isSuccess || isSignError,
+                            }}
                         >
                             <SignRequestDetails request={signerRequest!} />
                         </SignatureScaffold>

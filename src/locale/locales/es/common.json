@@ -308,5 +308,6 @@
     "dAppCategories": "Categorías de dApps",
     "disconnectDApp": "Para confirmar la desconexión de la dApp, por favor, pulse el botón de desconectar.",
     "connectedWith": "Conectado con {{name}}:",
-    "withPermissions": "With permissions:"
+    "withPermissions": "Con permisos:",
+    "signerChangeAccount": "No puede firmar esta solicitud con la cuenta seleccionada porque no está activada. Por favor, seleccione otra cuenta."
 }
