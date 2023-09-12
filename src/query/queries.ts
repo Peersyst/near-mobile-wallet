@@ -17,6 +17,7 @@ enum Queries {
     IS_DAPP_CONNECTED = "is-dapp-connected",
     RECOMMENDED_DAPPS = "recommended-dapps",
     GET_CONNECTED_SITE_LOGO = "get-connected-site-logo",
+    ACCOUNT_IS_ACTIVE = "account-is-active",
 }
 
 export default Queries;

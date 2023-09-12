@@ -9,17 +9,21 @@ import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import useSignMessage from "module/signer/queries/useSignMessage";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import NetworkMismatchError from "module/signer/components/feedback/NetworkMismatchError/NetworkMismatchError";
+import { SignerModalProvider } from "../../context/SignerModalContext";
+import { useState } from "react";
 
 const SignerMessageModal = createModal(({ id, ...props }: SignerModalProps): JSX.Element => {
     const translate = useTranslate();
     const { hideModal } = useModal();
+
+    const [signerWalletIndex, setSignerWalletIndex] = useState<number>();
 
     const { data: signMessageRequest, isLoading } = useGetSignMessageRequest(id);
 
     const network = useSelectedNetwork();
     const matchingNetwork = network === signMessageRequest?.network;
 
-    const { mutate: signMessage, isLoading: isSigning, isError, isSuccess } = useSignMessage();
+    const { mutate: signMessage, isLoading: isSigning, isError, isSuccess } = useSignMessage(signerWalletIndex);
 
     const close = () => hideModal(SignerMessageModal.id);
 
@@ -33,7 +37,7 @@ const SignerMessageModal = createModal(({ id, ...props }: SignerModalProps): JSX
                 {!matchingNetwork ? (
                     <NetworkMismatchError />
                 ) : (
-                    <>
+                    <SignerModalProvider value={{ signerWalletIndex, setSignerWalletIndex }}>
                         <SignatureScaffold
                             onSign={handleSign}
                             onReject={handleReject}
@@ -53,7 +57,7 @@ const SignerMessageModal = createModal(({ id, ...props }: SignerModalProps): JSX
                             successMessage={translate("messageSignedSuccessfully")}
                             onExited={close}
                         />
-                    </>
+                    </SignerModalProvider>
                 )}
             </Skeleton>
         </CardSelectModal>
