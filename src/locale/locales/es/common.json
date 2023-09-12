@@ -297,7 +297,7 @@
     "notTransferTokensPermission": "No permite que la aplicación transfiera tokens",
     "contract": "Contracto",
     "networkFeeAllowance": "Comisión de red",
-    "networkFeeAllowanceDescription": "La aplicación tendrá permiso para gastar hasta {{amount}} NEAR en gastos de red incurridos durante su uso.",
+    "networkFeeAllowanceDescription": "La aplicación tendrá permiso para gastar hasta {{amount}} en gastos de red incurridos durante su uso.",
     "signWith": "Firmar con",
     "rejectConnection": "Rechazar conexión",
     "slideToAccept": "Deslizar para aceptar",
