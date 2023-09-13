@@ -1,9 +1,10 @@
 import { connect, keyStores, Near, ConnectConfig, Account } from "near-api-js";
 import { AccountBalance } from "near-api-js/lib/account";
-import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
+import { AccessKeyInfoView, AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
+import { sha256 } from "js-sha256";
 
 const bip39 = require("bip39-light");
 import {
@@ -974,5 +975,77 @@ export class NearSDKService {
         }
 
         return nftTokens;
+    }
+
+    /**
+     * @section SIGNER METHODS
+     */
+
+    async addAccessKey(publicKey: string, contractId?: string, methodName?: string[] | string, allowance?: string): Promise<string> {
+        const account = await this.getAccount();
+        const publicKeyObj = PublicKey.fromString(publicKey);
+        const result = await account.addKey(publicKeyObj, contractId, methodName, allowance);
+        return result.transaction_outcome.id;
+    }
+
+    async getAccountId(): Promise<string> {
+        const account = await this.getAccount();
+        return account.accountId;
+    }
+
+    async getAccessKeys(): Promise<AccessKeyInfoView[]> {
+        const account = await this.getAccount();
+        return account.getAccessKeys();
+    }
+
+    async deleteAccessKey(publicKey: string): Promise<string> {
+        const account = await this.getAccount();
+        if (publicKey === this.keyPair.getPublicKey().toString()) throw new Error("Cannot delete main key");
+        const tx = await account.deleteKey(publicKey);
+        return tx.transaction_outcome.id;
+    }
+    public signMessage(message: string, receiver?: string): string {
+        let messageToSign = message;
+        if (receiver) messageToSign = `NEP0413:${JSON.stringify({ receiver, message })}`;
+        const formatMessage = new Uint8Array(sha256.digest(Buffer.from(messageToSign)));
+        return decode(encode(this.keyPair.sign(formatMessage).signature)).toString("base64");
+    }
+
+    public getPublicKey(): string {
+        return this.keyPair.getPublicKey().toString();
+    }
+
+    public async deployContract(code: Uint8Array): Promise<string> {
+        const account = await this.getAccount();
+        const tx = await account.deployContract(code);
+        return tx.transaction_outcome.id;
+    }
+
+    public async signAndSendFunctionCall(contractId: string, methodName: string, deposit: string, args: object, gas: string) {
+        const account = await this.getAccount();
+        const tx = await account.functionCall({ contractId, methodName, args, attachedDeposit: deposit, gas });
+        return tx;
+    }
+
+    public async isAccountConnected(contractId: string) {
+        const accessKeys = await this.getAccessKeys();
+        return accessKeys.some((key) => {
+            if (typeof key.access_key.permission === "object") {
+                return key.access_key.permission.FunctionCall && key.access_key.permission.FunctionCall.receiver_id === contractId;
+            }
+            return false;
+        });
+    }
+
+    public async disconnectSmartContract(contractId: string): Promise<string> {
+        const account = await this.getAccount();
+        const accessKeys = await this.getAccessKeys();
+        const contractAccessKey = accessKeys.find(
+            ({ access_key: { permission } }) => typeof permission === "object" && permission.FunctionCall.receiver_id === contractId,
+        );
+
+        if (!contractAccessKey) throw new Error("Contract not connected");
+        const tx = await account.deleteKey(contractAccessKey.public_key);
+        return tx.transaction_outcome.id;
     }
 }

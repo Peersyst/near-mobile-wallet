@@ -8,5 +8,18 @@
         "cryptoCurrencyList": "NEAR",
         "isFeeCalculationHidden": true,
         "environment": "STAGING"
+    },
+    "signerFeature": {
+        "enabled": true,
+        "backendUrl": "",
+        "recommendedDApps": [
+            {
+                "name": "name",
+                "description": "description",
+                "url": "url",
+                "logoUrl": "logoUrl",
+                "tag": "dex"
+            }
+        ]
     }
 }

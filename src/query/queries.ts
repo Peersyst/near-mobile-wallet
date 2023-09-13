@@ -11,6 +11,13 @@ enum Queries {
     GET_CURRENT_VALIDATORS = "current-validators",
     GET_ALL_VALIDATORS = "get-all-validators",
     GET_NEWS = "get-news",
+    GET_SIGN_MESSAGE_REQUEST = "GET_SIGN_MESSAGE_REQUEST",
+    GET_SIGNER_REQUEST = "GET_SIGNER_REQUEST",
+    GET_ACCOUNT_ACCESS_KEYS = "get-account-access-keys",
+    IS_DAPP_CONNECTED = "is-dapp-connected",
+    RECOMMENDED_DAPPS = "recommended-dapps",
+    GET_CONNECTED_SITE_LOGO = "get-connected-site-logo",
+    ACCOUNT_IS_ACTIVE = "account-is-active",
 }
 
 export default Queries;
