@@ -20,7 +20,7 @@ export default function useHandleSignerRequestError(signerRequest: SignerRequest
     const { serviceInstance } = useServiceInstance();
     const network = useSelectedNetwork();
 
-    const matchingNetwork = network === signerRequest?.network;
+    const matchingNetwork = !!signerRequest?.network && network === signerRequest?.network;
 
     const address = serviceInstance?.getAddress();
     const isValidSigner = signerRequest?.requests[0]?.signerId === address || signerRequest?.requests[0]?.signerId === undefined;

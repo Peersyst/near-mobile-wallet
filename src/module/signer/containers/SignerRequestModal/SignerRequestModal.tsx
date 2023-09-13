@@ -2,7 +2,6 @@ import { createModal, Skeleton, useModal } from "@peersyst/react-native-componen
 import CardSelectModal from "module/common/component/feedback/CardSelectModal/CardSelectModal";
 import SignRequestDetails from "module/signer/components/display/SignRequestDetails/SignRequestDetails";
 import { SignerModalProps } from "module/signer/hooks/useSignerModal";
-import useGetSignerRequest from "module/signer/queries/useGetSignerRequest";
 import SignatureScaffold from "module/signer/components/layout/SignatureScaffold/SignatureScaffold";
 import useSignRequestActions from "module/signer/queries/useSignRequestActions";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
@@ -10,12 +9,13 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { SignerModalProvider } from "../../context/SignerModalContext";
 import { useState } from "react";
 import useHandleSignerRequestError from "./hooks/useHandleSigneRequestError";
+import useSignerRequest from "module/signer/hooks/useSignerRequest";
 
 const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps): JSX.Element => {
     const translate = useTranslate();
     const { hideModal } = useModal();
 
-    const { data: signerRequest, isLoading } = useGetSignerRequest(id);
+    const { signerRequest, isLoading } = useSignerRequest(id);
 
     const { signerRequestError, isSignerRequestError } = useHandleSignerRequestError(signerRequest);
 
