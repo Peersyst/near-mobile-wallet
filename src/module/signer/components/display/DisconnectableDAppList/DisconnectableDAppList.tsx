@@ -5,7 +5,7 @@ import { List } from "@peersyst/react-native-components";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import { useTranslate } from "module/common/hook/useTranslate";
 
-const DisconnectableDAppList = ({ dapps, loading = false }: DisconnectableDAppListProps): JSX.Element => {
+const DisconnectableDAppList = ({ dapps, loading = false, ...rest }: DisconnectableDAppListProps): JSX.Element => {
     const translate = useTranslate();
 
     return (
@@ -17,6 +17,7 @@ const DisconnectableDAppList = ({ dapps, loading = false }: DisconnectableDAppLi
             ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
             keyExtractor={(_, index) => index.toString()}
             ListEmptyComponent={<EmptyListComponent title={translate("noDApps")} text={translate("noDAppsDescription")} />}
+            {...rest}
         />
     );
 };

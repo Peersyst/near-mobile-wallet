@@ -16,7 +16,8 @@ export default function useDisconnectSmartContract({
 
     return useMutation((contractId: string) => serviceInstance.disconnectSmartContract(contractId), {
         onSuccess: async (contractId, ...args) => {
-            await queryClient.invalidateQueries([Queries.IS_DAPP_CONNECTED, index, network, contractId]);
+            await queryClient.invalidateQueries([Queries.IS_DAPP_CONNECTED, index, network]);
+            await queryClient.invalidateQueries([Queries.RECOMMENDED_DAPPS]);
             showToast(translate("disconnectSuccessfully"), { type: "success" });
             onSuccess?.(contractId, ...args);
         },

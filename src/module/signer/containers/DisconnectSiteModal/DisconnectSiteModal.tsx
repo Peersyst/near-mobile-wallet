@@ -40,8 +40,8 @@ const DisconnectSiteModal = createModal(
             >
                 <Col flex={1}>
                     <Col style={{ position: "absolute", height: "100%", width: "100%" }}>
-                        <ScrollView>
-                            <Col gap={28}>
+                        <ScrollView style={{ height: "100%" }}>
+                            <Col gap={28} justifyContent="space-between" style={{ backgroundColor: "red" }}>
                                 <DisconnectSiteDetails site={site} />
                                 <Col gap={16}>
                                     <Button variant="text" fullWidth onPress={handleClose}>

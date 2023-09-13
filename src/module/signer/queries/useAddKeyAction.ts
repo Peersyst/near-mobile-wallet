@@ -21,6 +21,7 @@ export default function useAddKeyAction(indexProp?: number) {
         else await serviceInstance.addAccessKey(publicKey);
         await queryClient.invalidateQueries([Queries.ACTIONS, index, network]);
         await queryClient.invalidateQueries([Queries.GET_ACCOUNT_ACCESS_KEYS, index, network]);
+        await queryClient.invalidateQueries([Queries.IS_DAPP_CONNECTED, index, network]);
     };
 
     return addKeyAction;
