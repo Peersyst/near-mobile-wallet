@@ -1,18 +1,18 @@
 import { createContext, useContext } from "react";
 
-export interface SignRequestState {
+export interface SignState {
     signerWalletIndex: number | undefined;
     setSignerWalletIndex: (index: number) => void;
 }
 
-export const SignerRequestModalContext = createContext<SignRequestState>({
+export const SignerModalContext = createContext<SignState>({
     signerWalletIndex: undefined,
     setSignerWalletIndex: () => undefined,
 });
-export const SignerRequestModalProvider = SignerRequestModalContext.Provider;
-export const SignerRequestModalConsumer = SignerRequestModalContext.Consumer;
+export const SignerModalProvider = SignerModalContext.Provider;
+export const SignerModalConsumer = SignerModalContext.Consumer;
 
 export const useSignerWalletIndex = (): [number | undefined, (index: number) => void] => {
-    const { signerWalletIndex, setSignerWalletIndex } = useContext(SignerRequestModalContext);
+    const { signerWalletIndex, setSignerWalletIndex } = useContext(SignerModalContext);
     return [signerWalletIndex, setSignerWalletIndex];
 };
