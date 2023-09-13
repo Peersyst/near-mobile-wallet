@@ -9,7 +9,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { SignerModalProvider } from "../../context/SignerModalContext";
 import { useState } from "react";
 import useHandleSignerRequestError from "./hooks/useHandleSigneRequestError";
-import useSignerRequest from "module/signer/hooks/useSignerWallet";
+import useSignerRequest from "module/signer/hooks/useSignerRequest";
 
 const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps): JSX.Element => {
     const translate = useTranslate();
