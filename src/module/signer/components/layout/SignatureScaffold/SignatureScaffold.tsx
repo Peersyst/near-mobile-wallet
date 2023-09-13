@@ -5,6 +5,7 @@ import { SignatureScaffoldProps } from "./SignatureScaffold.types";
 import Typography from "module/common/component/display/Typography/Typography";
 import { useSignerWalletIndex } from "module/signer/context/SignerModalContext";
 import useIsAccountActive from "module/signer/queries/useIsActiveAccount";
+import SwipeButton from "module/common/component/feedback/SwipeButton/SwipeButton";
 
 const SignatureScaffold = ({ children, onSign, onReject, sign = {}, reject = {} }: SignatureScaffoldProps): JSX.Element => {
     const { disabled: isSigningDisabled, ...restSign } = sign;
@@ -29,9 +30,14 @@ const SignatureScaffold = ({ children, onSign, onReject, sign = {}, reject = {} 
                 >
                     {translate("reject")}
                 </Button>
-                <Button {...restSign} onPress={onSign} fullWidth disabled={isSigningDisabled || isActiveAccountLoading || !isActiveAccount}>
+                <SwipeButton
+                    {...restSign}
+                    onSwipe={onSign}
+                    fullWidth
+                    disabled={isSigningDisabled || isActiveAccountLoading || !isActiveAccount}
+                >
                     {translate("slideToAccept")}
-                </Button>
+                </SwipeButton>
                 {!isActiveAccount && (
                     <Typography variant="body4Regular" textAlign="center">
                         {translate("signerChangeAccount")}
