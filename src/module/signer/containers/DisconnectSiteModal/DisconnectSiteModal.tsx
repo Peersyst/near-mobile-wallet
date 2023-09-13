@@ -1,4 +1,4 @@
-import { Col, Dialog, ScrollView, createModal } from "@peersyst/react-native-components";
+import { Col, Dialog, createModal } from "@peersyst/react-native-components";
 import { DisconnectSiteModalProps } from "./DisconnectSiteModal.types";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { useControlled } from "@peersyst/react-hooks";
@@ -40,19 +40,17 @@ const DisconnectSiteModal = createModal(
             >
                 <Col flex={1}>
                     <Col style={{ position: "absolute", height: "100%", width: "100%" }}>
-                        <ScrollView style={{ height: "100%" }}>
-                            <Col gap={28} justifyContent="space-between" style={{ backgroundColor: "red" }}>
-                                <DisconnectSiteDetails site={site} />
-                                <Col gap={16}>
-                                    <Button variant="text" fullWidth onPress={handleClose}>
-                                        {translate("cancel")}
-                                    </Button>
-                                    <Button variant="destructive" fullWidth onPress={handleDisconnect}>
-                                        {translate("disconnect")}
-                                    </Button>
-                                </Col>
+                        <Col flex={1} gap={28} justifyContent="space-between">
+                            <DisconnectSiteDetails site={site} />
+                            <Col gap={16}>
+                                <Button variant="text" fullWidth onPress={handleClose}>
+                                    {translate("cancel")}
+                                </Button>
+                                <Button variant="destructive" fullWidth onPress={handleDisconnect}>
+                                    {translate("disconnect")}
+                                </Button>
                             </Col>
-                        </ScrollView>
+                        </Col>
                     </Col>
                 </Col>
                 <Dialog

@@ -8,7 +8,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 export default function useDisconnectSmartContract({
     onSuccess,
     ...options
-}: MutationOptions<string, unknown, string> = {}): UseMutationResult<string, unknown, string> {
+}: MutationOptions<string[], unknown, string> = {}): UseMutationResult<string[], unknown, string> {
     const { serviceInstance, index, network } = useServiceInstance();
     const queryClient = useQueryClient();
     const translate = useTranslate();
