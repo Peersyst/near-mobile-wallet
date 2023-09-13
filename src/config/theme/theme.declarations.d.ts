@@ -7,11 +7,13 @@ export type PaletteGradient = [string, string];
 // Custom components theme
 declare module "@peersyst/react-native-components" {
     export interface Theme {
+        borderRadiusMd: number;
         borderRadiusSm: number;
         borderRadiusXs: number;
     }
 
     export interface CreateTheme {
+        borderRadiusMd?: number;
         borderRadiusSm?: number;
         borderRadiusXs?: number;
     }

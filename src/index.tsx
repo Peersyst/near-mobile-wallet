@@ -1,11 +1,13 @@
 import Providers from "./Providers";
-import Navigator from "./Navigator";
+import Navigator from "./navigation/Navigator";
 import { useLoad } from "module/common/query/useLoad";
 import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
 import { Suspense } from "@peersyst/react-native-components";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { Platform, UIManager } from "react-native";
+
+import "module/api/OpenApiConfig";
 
 if (typeof BigInt === "undefined") global.BigInt = require("big-integer");
 

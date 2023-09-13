@@ -4,6 +4,7 @@ import { ButtonProps } from "./Button.types";
 import { emphasize } from "@peersyst/react-utils";
 
 export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }) => {
+    const themeMode = theme.palette.mode;
     return {
         borderRadius: rounded ? 10000 : undefined,
         //Size Styles
@@ -36,6 +37,10 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             backgroundColor: theme.palette.overlay["12%"],
             color: "#ffffff",
         },
+        contrast: {
+            backgroundColor: theme.palette.gray[themeMode === "light" ? "600" : "900"],
+            color: theme.palette.red,
+        },
         outlined: {
             borderColor: theme.palette.text,
             color: theme.palette.text,
@@ -43,6 +48,10 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
         },
         text: {
             color: theme.palette.text,
+        },
+        destructive: {
+            color: theme.palette.white,
+            backgroundColor: theme.palette.status.error,
         },
 
         //State Styles
@@ -58,6 +67,12 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             },
             outlined: {
                 backgroundColor: theme.palette.overlay["8%"],
+            },
+            contrast: {
+                backgroundColor: emphasize(theme.palette.gray[themeMode === "light" ? "600" : "900"], 0.15),
+            },
+            destructive: {
+                backgroundColor: emphasize(theme.palette.status.error, 0.15),
             },
         },
         disabled: {

@@ -41,5 +41,12 @@
     "no_validators": "Валидаторов нет",
     "you_are_not_staking": "В настоящее время вы не делаете ставки ни с одним валидатором",
     "no_validators_available": "В настоящее время нет ни одного валидатора, доступного для ставок",
-    "no_validators_found": "Для этого поиска ({{accountId}}) валидаторы не найдены"
+    "no_validators_found": "Для этого поиска ({{accountId}}) валидаторы не найдены",
+    "networkMismatch": "Network mismatch",
+    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details.",
+    "noConnectedSites": "No connected sites",
+    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account.",
+    "invalidSigner": "Invalid signer account",
+    "invalidSignerDescription": "You have not selected the expected account to sign this request",
+    "invalidSignerRequest": "Invalid signer request"
 }

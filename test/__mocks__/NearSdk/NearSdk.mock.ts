@@ -10,6 +10,7 @@ interface NearSdkServiceMockType {
     getAddress: MockFnType;
     getNfts: MockFnType;
     getAccountTokens: MockFnType;
+    isAccountConnected: MockFnType;
 }
 
 export const MOCKED_ADDRESS = "3493c5193e78d5723246f9d109af668ba8b17d2128358a5dd0c4e777c1c5e6ee";
@@ -33,6 +34,7 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
     getSecretKey: MockFnType;
     nameIsValidSubAccount: MockFnType;
     acccountIsValidReceivingAccount: MockFnType;
+    isAccountConnected: MockFnType;
     //TODO: add here all the mock fn that are needed
 
     constructor() {
@@ -51,5 +53,6 @@ export class NearSdkServiceMock extends BaseMock implements NearSdkServiceMockTy
         this.getSecretKey = jest.fn().mockReturnValue(MOCKED_PK);
         this.nameIsValidSubAccount = jest.fn().mockReturnValue(true);
         this.acccountIsValidReceivingAccount = jest.fn().mockResolvedValue(true);
+        this.isAccountConnected = jest.fn().mockResolvedValue(true);
     }
 }

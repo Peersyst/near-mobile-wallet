@@ -1,3 +1,4 @@
+import { config } from "config";
 import { OpenAPI } from "./service";
 
-OpenAPI.BASE = "";
+OpenAPI.BASE = config.signerFeature.backendUrl;
