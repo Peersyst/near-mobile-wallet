@@ -1,12 +1,14 @@
-import { Row, Image, Typography, IconButton } from "@peersyst/react-native-components";
+import { Image, Typography, Col } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
 import { ExternalLinkIcon } from "icons";
 
-export const DAppRoot = styled(Row)(({ theme }) => ({
+/**
+ * Needed to hide red background from actionable
+ */
+export const DAppRoot = styled(Col)(({ theme }) => ({
     backgroundColor: theme.palette.background,
     borderRadius: theme.borderRadiusMd,
     padding: 12,
-    alignItems: "center",
 }));
 
 export const DAppLogo = styled(Image)(({ theme }) => ({
@@ -19,7 +21,7 @@ export const DAppTag = styled(Typography)(({ theme }) => ({
     color: theme.palette.blue,
 }));
 
-export const DAppLinkIcon = styled(IconButton, { children: <ExternalLinkIcon /> })(({ theme }) => ({
+export const DAppLinkIcon = styled(ExternalLinkIcon)(({ theme }) => ({
     fontSize: 16,
     color: theme.palette.gray[300],
 }));

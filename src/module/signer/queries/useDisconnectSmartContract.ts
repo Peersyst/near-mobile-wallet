@@ -8,7 +8,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 export default function useDisconnectSmartContract({
     onSuccess,
     ...options
-}: MutationOptions<string, unknown, string> = {}): UseMutationResult<string, unknown, string> {
+}: MutationOptions<string[], unknown, string> = {}): UseMutationResult<string[], unknown, string> {
     const { serviceInstance, index, network } = useServiceInstance();
     const queryClient = useQueryClient();
     const translate = useTranslate();
@@ -16,7 +16,8 @@ export default function useDisconnectSmartContract({
 
     return useMutation((contractId: string) => serviceInstance.disconnectSmartContract(contractId), {
         onSuccess: async (contractId, ...args) => {
-            await queryClient.invalidateQueries([Queries.IS_DAPP_CONNECTED, index, network, contractId]);
+            await queryClient.invalidateQueries([Queries.IS_DAPP_CONNECTED, index, network]);
+            await queryClient.invalidateQueries([Queries.RECOMMENDED_DAPPS]);
             showToast(translate("disconnectSuccessfully"), { type: "success" });
             onSuccess?.(contractId, ...args);
         },

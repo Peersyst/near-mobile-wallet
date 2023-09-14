@@ -7,7 +7,7 @@ import SearchBar from "module/common/component/input/SearchBar/SearchBar";
 
 const RecommendedDApps = (): JSX.Element => {
     const { filters, handleQueryChange, handleTagChange } = useRecommendedDAppsFilters();
-    const { data: dapps, isLoading } = useRecommendedDApps(filters);
+    const { data: dapps, isLoading, refetch } = useRecommendedDApps(filters);
 
     return (
         <Col flex={1} style={{ width: "100%" }}>
@@ -15,7 +15,7 @@ const RecommendedDApps = (): JSX.Element => {
                 <SearchBar onChange={handleQueryChange} style={{ flex: 1 }} />
                 <DAppTagFilter value={filters.tag} onChange={handleTagChange} />
             </Filters>
-            <DisconnectableDAppList dapps={dapps} loading={isLoading} />
+            <DisconnectableDAppList dapps={dapps} loading={isLoading} onRefresh={refetch} />
         </Col>
     );
 };

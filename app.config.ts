@@ -8,7 +8,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     version: "1.2.2",
     orientation: "portrait",
     icon: "./assets/images/near-icon.png",
-    scheme: "myapp",
+    scheme: "near-mobile-wallet",
     userInterfaceStyle: "automatic",
     splash: {
         image: "./assets/images/splash.png",
