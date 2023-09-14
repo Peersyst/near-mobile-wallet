@@ -983,13 +983,6 @@ export class NearSDKService {
      * @section SIGNER METHODS
      */
 
-    async addAccessKey(publicKey: string, contractId?: string, methodName?: string[] | string, allowance?: string): Promise<string> {
-        const account = await this.getAccount();
-        const publicKeyObj = PublicKey.fromString(publicKey);
-        const result = await account.addKey(publicKeyObj, contractId, methodName, allowance ? new BN(allowance) : undefined);
-        return result.transaction_outcome.id;
-    }
-
     async getAccountId(): Promise<string> {
         const account = await this.getAccount();
         return account.accountId;
@@ -1015,18 +1008,6 @@ export class NearSDKService {
 
     public getPublicKey(): string {
         return this.keyPair.getPublicKey().toString();
-    }
-
-    public async deployContract(code: Uint8Array): Promise<string> {
-        const account = await this.getAccount();
-        const tx = await account.deployContract(code);
-        return tx.transaction_outcome.id;
-    }
-
-    public async signAndSendFunctionCall(contractId: string, methodName: string, deposit: string, args: object, gas: string) {
-        const account = await this.getAccount();
-        const tx = await account.functionCall({ contractId, methodName, args, attachedDeposit: new BN(deposit), gas: new BN(gas) });
-        return tx.transaction_outcome.id;
     }
 
     public async isAccountConnected(contractId: string) {
