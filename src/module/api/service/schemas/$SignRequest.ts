@@ -7,5 +7,9 @@ export const $SignRequest = {
             type: 'string',
             isRequired: true,
         },
+        txHash: {
+            type: 'string',
+            isRequired: true,
+        },
     },
 } as const;
