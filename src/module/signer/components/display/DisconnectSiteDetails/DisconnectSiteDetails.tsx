@@ -25,7 +25,7 @@ const DisconnectSiteDetails = ({ site }: DisconnectSiteDetailsProps): JSX.Elemen
     const { data: siteLogo } = useConnectedSiteLogo(site.name);
 
     return (
-        <ActionDetailsScaffold description={translate("withPermissions")} showPreview previewProps={{ logoUrl: siteLogo }}>
+        <ActionDetailsScaffold description={translate("withPermissions")} showPreview previewProps={{ logoUrl: siteLogo }} scrollable>
             <ActionPermissionDetails permission={formattedPermission} />
         </ActionDetailsScaffold>
     );
