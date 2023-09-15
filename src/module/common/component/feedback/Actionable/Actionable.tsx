@@ -4,17 +4,19 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { ActionRoot } from "./Actionable.styles";
 
 const Actionable = ({ action: actionProp, onAction, position = "right", children, ...rest }: ActionableProps): JSX.Element => {
-    const action: JSX.Element = <ActionRoot>{actionProp}</ActionRoot>;
+    const action: JSX.Element = (
+        <TouchableOpacity activeOpacity={0.6} onPress={onAction}>
+            <ActionRoot>{actionProp}</ActionRoot>
+        </TouchableOpacity>
+    );
 
     const [firstItem, secondItem] = position === "left" ? [action, children] : [children, action];
 
     return (
-        <TouchableOpacity activeOpacity={0.6} onPress={onAction}>
-            <Row justifyContent="center" alignItems="center" {...rest}>
-                {firstItem}
-                {secondItem}
-            </Row>
-        </TouchableOpacity>
+        <Row justifyContent="center" alignItems="center" {...rest}>
+            {firstItem}
+            {secondItem}
+        </Row>
     );
 };
 
