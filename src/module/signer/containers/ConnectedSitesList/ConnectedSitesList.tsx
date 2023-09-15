@@ -12,6 +12,7 @@ const ActionableConnectedSitesList = ({ sites }: ActionableConnectedSitesListPro
             data={sites}
             renderItem={({ item }) => <ActionableConnectedSite site={item} />}
             keyExtractor={(_, index) => index.toString()}
+            scrollEnabled
             ListEmptyComponent={
                 <EmptyListComponent title={transalteError("noConnectedSites")} text={transalteError("noConnectedSitesDescription")} />
             }
