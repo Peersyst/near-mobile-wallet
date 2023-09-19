@@ -12,7 +12,8 @@ import Button from "module/common/component/input/Button/Button";
 import { envConfigs } from "./configs";
 
 const environment = process.env;
-const envKey = environment.REACT_APP_ENV_CONFIG || environment.NODE_ENV!;
+
+const envKey = process.env.CONFIG_ENV || environment.NODE_ENV!;
 
 if (!(envKey in envConfigs)) throw new Error(`${envKey} is not a valid env config`);
 
