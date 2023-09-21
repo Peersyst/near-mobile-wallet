@@ -4,13 +4,15 @@ import MainGradientScreen from "module/main/component/layout/MainGradientScreen/
 import useShowSignerRequest from "module/signer/hooks/useShowSignerRequest";
 
 import { useEffect } from "react";
+import { useAppState } from "@react-native-community/hooks";
 
 const HomeScreen = (): JSX.Element => {
+    const appState = useAppState();
     const showSignerRequest = useShowSignerRequest();
 
     useEffect(() => {
-        showSignerRequest();
-    }, []);
+        if (appState === "active") showSignerRequest();
+    }, [appState]);
 
     return (
         <MainGradientScreen>
