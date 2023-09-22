@@ -33,6 +33,7 @@ export * from "./LogoIcon";
 export * from "./LogoColIcon";
 export * from "./MoonIcon";
 export * from "./NearIcon";
+export * from "./NearMobileIcon";
 export * from "./NewsIcon";
 export * from "./NotificationIcon";
 export * from "./PinIcon";
