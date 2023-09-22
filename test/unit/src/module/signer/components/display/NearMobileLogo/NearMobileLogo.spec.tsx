@@ -5,6 +5,6 @@ describe("NearMobileLogo", () => {
     test("Renders correctly", () => {
         render(<NearMobileLogo />);
 
-        expect(screen.getByTestId("NearIcon")).toBeDefined();
+        expect(screen.getByTestId("NearMobileIcon")).toBeDefined();
     });
 });

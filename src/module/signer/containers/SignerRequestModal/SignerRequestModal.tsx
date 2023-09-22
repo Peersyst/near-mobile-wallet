@@ -6,8 +6,6 @@ import SignatureScaffold from "module/signer/components/layout/SignatureScaffold
 import useSignRequestActions from "module/signer/queries/useSignRequestActions";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { SignerModalProvider } from "../../context/SignerModalContext";
-import { useState } from "react";
 import useHandleSignerRequestError from "./hooks/useHandleSigneRequestError";
 import useSignerRequest from "module/signer/hooks/useSignerRequest";
 
@@ -19,9 +17,7 @@ const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps)
 
     const { signerRequestError, isSignerRequestError } = useHandleSignerRequestError(signerRequest);
 
-    const [signerWalletIndex, setSignerWalletIndex] = useState<number>();
-
-    const { mutate: signRequest, isLoading: isSigning, isError: isSignError, isSuccess } = useSignRequestActions(signerWalletIndex);
+    const { mutate: signRequest, isLoading: isSigning, isError: isSignError, isSuccess } = useSignRequestActions();
 
     const close = () => hideModal(SignerRequestModal.id);
 
@@ -35,7 +31,7 @@ const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps)
                 {isSignerRequestError ? (
                     signerRequestError
                 ) : (
-                    <SignerModalProvider value={{ signerWalletIndex, setSignerWalletIndex }}>
+                    <>
                         <SignatureScaffold
                             onSign={handleSign}
                             onReject={handleReject}
@@ -54,7 +50,7 @@ const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps)
                             successMessage={translate("requestSignedSuccessfully")}
                             onClose={close}
                         />
-                    </SignerModalProvider>
+                    </>
                 )}
             </Skeleton>
         </CardSelectModal>
