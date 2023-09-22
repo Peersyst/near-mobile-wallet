@@ -41,5 +41,12 @@
     "no_validators": "Sin validadores",
     "you_are_not_staking": "Actualmente no estás haciendo staking con ningún validador.",
     "no_validators_available": "Actualmente no hay ningún validador disponible",
-    "no_validators_found": "No se han encontrado validadores para esta búsqueda ({{accountId}})"
+    "no_validators_found": "No se han encontrado validadores para esta búsqueda ({{accountId}})",
+    "networkMismatch": "Diferente red",
+    "networkMismatchDescription": "Esta petición requiere de otra red. Cambia a otra red para poder ver el contenido de la petición.",
+    "noConnectedSites": "No estás conectado a ningún dapp con esta cuenta.",
+    "noConnectedSitesDescription": "Parece que no te has conectado aun a ninguna dapp con esta cuenta.",
+    "invalidSigner": "Cuenta inválida",
+    "invalidSignerDescription": "No tienes permisos para realizar esta acción. Por favor, cambia de cuenta.",
+    "invalidSignerRequest": "Petición de firma inválida"
 }

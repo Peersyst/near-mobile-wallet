@@ -1,9 +1,12 @@
 import { connect, keyStores, Near, ConnectConfig, Account } from "near-api-js";
+import { Action as NearAction } from "near-api-js/lib/transaction";
 import { AccountBalance } from "near-api-js/lib/account";
-import { AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
+import { AccessKeyInfoView, AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
+import { sha256 } from "js-sha256";
+import BN from "bn.js";
 
 const bip39 = require("bip39-light");
 import {
@@ -312,7 +315,7 @@ export class NearSDKService {
         const account = await this.getAccount();
 
         if (nameId.includes(account.accountId)) {
-            const tx = await account.createAccount(nameId, publicKey, this.parseNearAmount(amount));
+            const tx = await account.createAccount(nameId, publicKey, new BN(this.parseNearAmount(amount)));
             return tx.transaction_outcome.id;
         }
 
@@ -320,7 +323,7 @@ export class NearSDKService {
             contractId: this.masterAccount,
             methodName: "create_account",
             args: { new_account_id: nameId, new_public_key: publicKey.toString() },
-            attachedDeposit: this.parseNearAmount(amount),
+            attachedDeposit: new BN(this.parseNearAmount(amount)),
         });
         return tx.transaction_outcome.id;
     }
@@ -459,7 +462,7 @@ export class NearSDKService {
         const account = await this.getAccount();
         const amountInYocto = this.parseNearAmount(amount);
 
-        const tx = await account.sendMoney(to, amountInYocto);
+        const tx = await account.sendMoney(to, new BN(amountInYocto));
         return tx.transaction_outcome.id;
     }
 
@@ -483,7 +486,7 @@ export class NearSDKService {
         const account = await this.getAccount();
         const amountInYocto = this.parseNearAmount(amount);
 
-        const tx = await account.stake(this.keyPair.getPublicKey(), amountInYocto);
+        const tx = await account.stake(this.keyPair.getPublicKey(), new BN(amountInYocto));
         return tx.transaction_outcome.id;
     }
 
@@ -491,7 +494,7 @@ export class NearSDKService {
     async unstake(): Promise<string> {
         const account = await this.getAccount();
 
-        const tx = await account.stake(this.keyPair.getPublicKey(), 0);
+        const tx = await account.stake(this.keyPair.getPublicKey(), new BN(0));
         return tx.transaction_outcome.id;
     }
 
@@ -637,7 +640,7 @@ export class NearSDKService {
             contractId: validatorId,
             methodName: DEPOSIT_STAKE_METHOD,
             args: {},
-            attachedDeposit: amountInYocto,
+            attachedDeposit: new BN(amountInYocto),
         });
         return tx.transaction_outcome.id;
     }
@@ -713,8 +716,8 @@ export class NearSDKService {
                 contractId,
                 methodName: STORAGE_DEPOSIT_METHOD,
                 args: { account_id: receiverId, registration_only: true },
-                gas: FT_STORAGE_DEPOSIT_GAS,
-                attachedDeposit: FT_MINIMUM_STORAGE_BALANCE,
+                gas: new BN(FT_STORAGE_DEPOSIT_GAS),
+                attachedDeposit: new BN(FT_MINIMUM_STORAGE_BALANCE),
             });
         } catch (e: any) {
             if (e.message.includes("attached deposit is less than")) {
@@ -722,8 +725,8 @@ export class NearSDKService {
                     contractId,
                     methodName: STORAGE_DEPOSIT_METHOD,
                     args: { account_id: receiverId, registration_only: true },
-                    gas: FT_STORAGE_DEPOSIT_GAS,
-                    attachedDeposit: FT_MINIMUM_STORAGE_BALANCE_LARGE,
+                    gas: new BN(FT_STORAGE_DEPOSIT_GAS),
+                    attachedDeposit: new BN(FT_MINIMUM_STORAGE_BALANCE_LARGE),
                 });
             } else {
                 throw e;
@@ -744,8 +747,8 @@ export class NearSDKService {
             contractId,
             methodName: FT_TRANSFER_METHOD,
             args: { amount, receiver_id: receiverId, memo },
-            gas: FT_TRANSFER_GAS,
-            attachedDeposit: TOKEN_TRANSFER_DEPOSIT,
+            gas: new BN(FT_TRANSFER_GAS),
+            attachedDeposit: new BN(TOKEN_TRANSFER_DEPOSIT),
         });
 
         return tx.transaction_outcome.id;
@@ -824,8 +827,8 @@ export class NearSDKService {
             contractId,
             methodName: NFT_TRANSFER_METHOD,
             args: { receiver_id: receiverId, token_id: tokenId },
-            gas: NFT_TRANSFER_GAS,
-            attachedDeposit: TOKEN_TRANSFER_DEPOSIT,
+            gas: new BN(NFT_TRANSFER_GAS),
+            attachedDeposit: new BN(TOKEN_TRANSFER_DEPOSIT),
         });
 
         return tx.transaction_outcome.id;
@@ -974,5 +977,69 @@ export class NearSDKService {
         }
 
         return nftTokens;
+    }
+
+    /**
+     * @section SIGNER METHODS
+     */
+
+    async getAccountId(): Promise<string> {
+        const account = await this.getAccount();
+        return account.accountId;
+    }
+
+    async getAccessKeys(): Promise<AccessKeyInfoView[]> {
+        const account = await this.getAccount();
+        return account.getAccessKeys();
+    }
+
+    async deleteAccessKey(publicKey: string): Promise<string> {
+        const account = await this.getAccount();
+        if (publicKey === this.keyPair.getPublicKey().toString()) throw new Error("Cannot delete main key");
+        const tx = await account.deleteKey(publicKey);
+        return tx.transaction_outcome.id;
+    }
+    public signMessage(message: string, receiver?: string): string {
+        let messageToSign = message;
+        if (receiver) messageToSign = `NEP0413:${JSON.stringify({ receiver, message })}`;
+        const formatMessage = new Uint8Array(sha256.digest(Buffer.from(messageToSign)));
+        return decode(encode(this.keyPair.sign(formatMessage).signature)).toString("base64");
+    }
+
+    public getPublicKey(): string {
+        return this.keyPair.getPublicKey().toString();
+    }
+
+    public async isAccountConnected(contractId: string) {
+        const accessKeys = await this.getAccessKeys();
+        return accessKeys.some((key) => {
+            if (typeof key.access_key.permission === "object") {
+                return key.access_key.permission.FunctionCall && key.access_key.permission.FunctionCall.receiver_id === contractId;
+            }
+            return false;
+        });
+    }
+
+    public async disconnectSmartContract(contractId: string): Promise<string[]> {
+        const account = await this.getAccount();
+
+        const accessKeys = await this.getAccessKeys();
+        const contractAccessKey = accessKeys.filter(
+            ({ access_key: { permission } }) => typeof permission === "object" && permission.FunctionCall.receiver_id === contractId,
+        );
+
+        if (!contractAccessKey) throw new Error("Contract not connected");
+        const txs: string[] = [];
+        for (const key of contractAccessKey) {
+            const tx = await account.deleteKey(key.public_key);
+            txs.push(tx.transaction_outcome.id);
+        }
+        return txs;
+    }
+
+    public async signAndSendTransactions(receiver: string, actions: NearAction[]): Promise<FinalExecutionOutcome> {
+        const account = await this.getAccount();
+        // @ts-ignore
+        return account.signAndSendTransaction({ receiverId: receiver, actions });
     }
 }

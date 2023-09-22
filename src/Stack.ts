@@ -1,14 +1,17 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
+import { HomeScreenParams } from "module/home/screen/HomeScreen.types";
 
 export type MainStackParamsList = {
     //Main
-    Main: undefined;
-    Settings: undefined;
-    FiatOrders: undefined;
-    Home: undefined;
-    News: undefined;
-    Staking: undefined;
+    [MainScreens.MAIN]: undefined;
+    [MainScreens.SETTINGS]: undefined;
+    [MainScreens.FIAT_ORDERS]: undefined;
+    [MainScreens.HOME]: HomeScreenParams;
+    [MainScreens.NEWS]: undefined;
+    [MainScreens.STAKING]: undefined;
+    [MainScreens.DAPPS]: undefined;
 };
 export type SettingsStackParamsList = {
     //Settings

@@ -5,10 +5,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     name: "NEAR Mobile",
     slug: "NEARMobileWallet",
     owner: "peersyst",
-    version: "1.2.2",
+    version: "1.3.0",
     orientation: "portrait",
     icon: "./assets/images/near-icon.png",
-    scheme: "myapp",
+    scheme: "near-mobile-wallet",
     userInterfaceStyle: "automatic",
     splash: {
         image: "./assets/images/splash.png",
