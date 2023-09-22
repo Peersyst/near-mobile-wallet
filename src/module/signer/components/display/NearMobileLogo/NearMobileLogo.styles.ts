@@ -2,7 +2,7 @@ import styled from "@peersyst/react-native-styled";
 import { Animated } from "react-native";
 import { classify } from "@peersyst/react-utils";
 import { LinearGradient } from "expo-linear-gradient";
-import { NearIcon } from "icons";
+import { NearMobileIcon } from "icons";
 
 export const NearMobileLogoRoot = styled(Animated.createAnimatedComponent(classify(LinearGradient)))(({ theme }) => ({
     width: 76,
@@ -12,7 +12,7 @@ export const NearMobileLogoRoot = styled(Animated.createAnimatedComponent(classi
     borderRadius: theme.borderRadiusSm,
 }));
 
-export const NearLogo = styled(NearIcon)(({ theme }) => ({
+export const NearLogo = styled(NearMobileIcon)(({ theme }) => ({
     color: theme.palette.white,
     fontSize: 44,
 }));
