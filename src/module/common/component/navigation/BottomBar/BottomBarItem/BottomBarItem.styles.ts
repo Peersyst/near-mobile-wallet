@@ -12,6 +12,4 @@ export const LinkItemIcon = styled(Icon)<LinkItemIconProps>(({ theme, isActive }
     fontSize: 20,
 }));
 
-export const BottomBarItemRoot = styled(Pressable)(() => ({
-    width: "22%",
-}));
+export const BottomBarItemRoot = styled(Pressable)(() => ({}));
