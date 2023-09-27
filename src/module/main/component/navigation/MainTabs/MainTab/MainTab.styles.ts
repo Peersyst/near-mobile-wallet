@@ -3,5 +3,5 @@ import { Tab } from "@peersyst/react-native-components";
 
 export const MainTabRoot = styled(Tab)(() => ({
     paddingVertical: 20,
-    marginHorizontal: 8,
+    paddingHorizontal: 20,
 }));

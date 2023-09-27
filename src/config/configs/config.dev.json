@@ -77,6 +77,14 @@
                 "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/915c1657-8485-4c92-80a0-c455b6f45057.png",
                 "tag": "dex",
                 "contractId": "v1.jumbo_exchange.near"
+            },
+            {
+                "name": "SPIN",
+                "description": "DeFi derivatives infrastructure built on NEAR Protocol",
+                "url": "https://spin.fi/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/b40cf856-6cb8-4fc0-8bd6-50a1f4e0014d.png",
+                "tag": "dex",
+                "contractId": "v1.vault.spin-fi.near"
             }
         ]
     }
