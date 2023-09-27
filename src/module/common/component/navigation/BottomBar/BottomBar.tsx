@@ -24,16 +24,16 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
     return (
         <BottomBarRoot>
             <BottomBarItem
-                onPress={() => handleNavigation(MainScreens.STAKING)}
-                isActive={activeTab === MainScreens.STAKING}
-                label={capitalize(translate("staking"))}
-                Icon={<DatabaseIcon />}
-            />
-            <BottomBarItem
                 onPress={() => handleNavigation(MainScreens.HOME)}
                 isActive={activeTab === MainScreens.HOME}
                 label={translate("wallet")}
                 Icon={<NearIcon />}
+            />
+            <BottomBarItem
+                onPress={() => handleNavigation(MainScreens.STAKING)}
+                isActive={activeTab === MainScreens.STAKING}
+                label={capitalize(translate("staking"))}
+                Icon={<DatabaseIcon />}
             />
             {config.signerFeature.enabled && <BottomBarQRScanner />}
             {config.signerFeature.enabled && (
