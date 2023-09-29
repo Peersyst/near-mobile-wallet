@@ -54,6 +54,17 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     web: {
         favicon: "./assets/images/favicon.png",
     },
+    plugins: [
+        [
+            "expo-build-properties",
+            {
+                "android": {
+                    "compileSdkVersion": 33,
+                    "targetSdkVersion": 33,
+                },
+            }
+        ],
+    ],
     extra: {
         eas: {
             projectId: "1b97d88a-b249-45d2-8b0d-aa1724191c39",
