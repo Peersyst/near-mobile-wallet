@@ -42,7 +42,6 @@
         "@react-navigation/native-stack": "^6.5.0",
         "@types/color": "^3.0.3",
         "big-integer": "^1.6.51",
-        "bn.js": "^5.2.1",
         "buffer": "^6.0.3",
         "color": "^4.2.3",
         "core-js": "^3.26.0",
