@@ -21,7 +21,7 @@ const BottomBarQRScanner = (): JSX.Element => {
         setOpen(false);
         const signerData = parseSignerDeepLinkData(data);
         if (!signerData) showToast(translateError("invalidSignerRequest"), { type: "error" });
-        showSignerModal(signerData!.type, signerData!.id);
+        else showSignerModal(signerData!.type, signerData!.id);
     };
 
     return (

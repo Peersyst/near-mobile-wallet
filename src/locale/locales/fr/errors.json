@@ -48,5 +48,6 @@
     "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account.",
     "invalidSigner": "Invalid signer account",
     "invalidSignerDescription": "You have not selected the expected account to sign this request",
-    "invalidSignerRequest": "Invalid signer request"
+    "invalidSignerRequest": "Invalid signer request",
+    "invalidSignerRequestDescription": "The request does not exists. Try creating a different one."
 }

@@ -27,6 +27,11 @@ export default function useHandleSignerRequestError(signerRequest: SignerRequest
 
     const errors: SignerRequestError[] = [
         {
+            title: translateError("invalidSignerRequest"),
+            description: translateError("invalidSignerRequestDescription"),
+            condition: !signerRequest,
+        },
+        {
             title: translateError("networkMismatch"),
             description: translateError("networkMismatchDescription"),
             condition: !matchingNetwork,
