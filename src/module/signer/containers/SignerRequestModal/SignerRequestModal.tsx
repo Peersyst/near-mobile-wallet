@@ -6,7 +6,7 @@ import SignatureScaffold from "module/signer/components/layout/SignatureScaffold
 import useSignRequestActions from "module/signer/queries/useSignRequestActions";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useTranslate } from "module/common/hook/useTranslate";
-import useHandleSignerRequestError from "./hooks/useHandleSigneRequestError";
+import useHandleSignerRequestError from "./hooks/useHandleSignerRequestError";
 import useSignerRequest from "module/signer/hooks/useSignerRequest";
 
 const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps): JSX.Element => {
