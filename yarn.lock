@@ -5056,6 +5056,11 @@ expo-constants@~14.0.0, expo-constants@~14.0.2:
     "@expo/config" "~7.0.2"
     uuid "^3.3.2"
 
+expo-eas-client@~0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/expo-eas-client/-/expo-eas-client-0.8.0.tgz#fb19d343eb4841ec99bae90fc7d5eda570866c3b"
+  integrity sha512-GHhmxuQ8jTg3++4qgcp7GblBgqJYQVrln9R6n75iLK++joJR+k3f4/EpdfDg0sgckKt6Bh0th65C31h+q4BA4A==
+
 expo-error-recovery@~4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/expo-error-recovery/-/expo-error-recovery-4.0.1.tgz#3e3333e134c992c234539d3773fe78915c883755"
@@ -5089,6 +5094,13 @@ expo-image-loader@~4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/expo-image-loader/-/expo-image-loader-4.0.0.tgz#a17e5f95a4c1671791168dd5dfc221bf2f88480c"
   integrity sha512-hVMhXagsO1cSng5s70IEjuJAuHy2hX/inu5MM3T0ecJMf7L/7detKf22molQBRymerbk6Tzu+20h11eU0n/3jQ==
+
+expo-insights@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/expo-insights/-/expo-insights-0.4.0.tgz#5961bf019c151ddbfd3258974d492ebebe647566"
+  integrity sha512-8TtFfgHj5iuuV76qsMTNOlwZ1SwU6/3wTXbLXkZcxJ15RNxg6A8lRJCRbF80s31zIuAQPRqewsTYagyXtVyGDg==
+  dependencies:
+    expo-eas-client "~0.8.0"
 
 expo-keep-awake@~11.0.1:
   version "11.0.1"
