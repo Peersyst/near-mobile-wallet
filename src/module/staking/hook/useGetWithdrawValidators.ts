@@ -14,7 +14,7 @@ export default function (): UseGetWithdrawValidatorReturn {
     return useMemo(() => {
         if (stakingValidators) {
             return {
-                validators: stakingValidators.filter(({ stakingBalance }) => BalanceOperations.BNIsBigger(stakingBalance!.available, "0")),
+                validators: stakingValidators.filter(({ stakingBalance }) => BalanceOperations.isBigger(stakingBalance!.available, "0")),
                 isLoading,
                 ...rest,
             };
