@@ -2,8 +2,7 @@ import { DAppProps } from "./DApp.types";
 import { DAppRoot, DAppLogo, DAppTag, DAppLinkIcon } from "./DApp.styles";
 import { Col, Row, Skeleton, Typography } from "@peersyst/react-native-components";
 import DAppStatus from "../DAppStatus/DAppStatus";
-import { Linking } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { Linking, TouchableOpacity } from "react-native";
 
 const DApp = ({ dapp, connected = false, loading = false }: DAppProps): JSX.Element => {
     const { name, description, logoUrl, url, tag } = dapp;
