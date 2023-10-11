@@ -5,9 +5,9 @@ import { AccessKeyInfoView, AccountView, FinalExecutionOutcome } from "near-api-
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
-import * as Borsh from "@dao-xyz/borsh";
+import * as Borsh from "borsh";
 import BN from "bn.js";
-const js_sha256 = require("js-sha256");
+const JSsha256 = require("js-sha256");
 
 const bip39 = require("bip39-light");
 import {
@@ -65,7 +65,7 @@ import {
 } from "../utils/near.utils";
 import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
 import { BalanceOperations } from "../utils";
-import { SignerPayload } from "../utils/SignerPayload";
+import { Payload } from "../utils/SignerPayload";
 
 export class NearSDKService {
     private connection?: Near;
@@ -1049,9 +1049,20 @@ export class NearSDKService {
         }
 
         // Create the payload and sign it
-        const payload = new SignerPayload({ tag: 2147484061, message, nonce: Array.from(nonce), recipient, callbackUrl });
-        const borshPayload = Borsh.serialize(payload);
-        const hashedPayload = js_sha256.sha256.array(borshPayload);
+        const payload = new Payload({ message, nonce, recipient, callbackUrl });
+        const borshPayload = Borsh.serialize(
+            {
+                struct: {
+                    prefix: "u32",
+                    message: "string",
+                    nonce: { array: { type: "u8", len: 32 } },
+                    recipient: "string",
+                    callbackUrl: { option: { struct: { callbackUrl: "string" } } },
+                },
+            },
+            payload,
+        );
+        const hashedPayload = JSsha256.sha256.array(borshPayload);
         const { signature } = Key.sign(Uint8Array.from(hashedPayload));
 
         const encoded: string = Buffer.from(signature).toString("base64");
