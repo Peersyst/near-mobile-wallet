@@ -9,6 +9,8 @@
         "allowSyntheticDefaultImports": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
+        "strictPropertyInitialization": false,
+        "experimentalDecorators": true,
         "noFallthroughCasesInSwitch": true,
         "module": "esnext",
         "moduleResolution": "node",

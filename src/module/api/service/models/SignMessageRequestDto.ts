@@ -8,6 +8,8 @@ export type SignMessageRequestDto = {
     id: string;
     message: string;
     receiver: string;
+    nonce: Array<number>;
+    callbackUrl?: string;
     network: 'mainnet' | 'testnet';
     response: any;
     receiverMetadata?: DAppMetadataDto;

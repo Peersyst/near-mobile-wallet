@@ -1209,6 +1209,14 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@dao-xyz/borsh@^5.1.8":
+  version "5.1.8"
+  resolved "https://registry.yarnpkg.com/@dao-xyz/borsh/-/borsh-5.1.8.tgz#74b1bd54a40fc312daa6d9cd3b705858a75f340a"
+  integrity sha512-JGQDfRgTNmy4z8xVteUry3NrclkEb1R0nM5ZoWiZy53TmCb0LaEvSs5MQj1LElafaq/9NpPbPQvoaVtXpBrA3g==
+  dependencies:
+    "@protobufjs/float" "^1.0.2"
+    "@protobufjs/utf8" "^1.1.0"
+
 "@egjs/hammerjs@^2.0.17":
   version "2.0.17"
   resolved "https://registry.yarnpkg.com/@egjs/hammerjs/-/hammerjs-2.0.17.tgz#5dc02af75a6a06e4c2db0202cae38c9263895124"
@@ -2136,6 +2144,16 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-types" "^1.5.3"
     validate-color "^2.2.1"
+
+"@protobufjs/float@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@protobufjs/float/-/float-1.0.2.tgz#5e9e1abdcb73fc0a7cb8b291df78c8cbd97b87d1"
+  integrity sha512-Ddb+kVXlXst9d+R9PfTIxh1EdNkgoRe5tOX6t01f1lYWOvJnSPDBlG241QLzcyPdoNTsblLUdujGSE4RzrTZGQ==
+
+"@protobufjs/utf8@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
+  integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
 "@rather-labs/nrc-721-sdk@0.0.16":
   version "0.0.16"

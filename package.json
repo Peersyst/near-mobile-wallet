@@ -27,6 +27,7 @@
         "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0"
     },
     "dependencies": {
+        "@dao-xyz/borsh": "^5.1.8",
         "@expo-google-fonts/manrope": "^0.2.2",
         "@expo/config-plugins": "^5.0.2",
         "@peersyst/react-hooks": "^2.2.7",

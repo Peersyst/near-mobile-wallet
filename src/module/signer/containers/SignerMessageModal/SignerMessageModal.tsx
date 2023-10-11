@@ -24,7 +24,13 @@ const SignerMessageModal = createModal(({ id, ...props }: SignerModalProps): JSX
     const close = () => hideModal(SignerMessageModal.id);
 
     const handleSign = () =>
-        signMessage({ id: signMessageRequest!.id, message: signMessageRequest!.message, receiver: signMessageRequest!.receiver });
+        signMessage({
+            id: signMessageRequest!.id,
+            message: signMessageRequest!.message,
+            receiver: signMessageRequest!.receiver,
+            nonce: Buffer.from(signMessageRequest!.nonce),
+            callbackUrl: signMessageRequest!.callbackUrl,
+        });
     const handleReject = () => close();
 
     return (
