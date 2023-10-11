@@ -29,7 +29,7 @@ const SignerMessageModal = createModal(({ id, ...props }: SignerModalProps): JSX
             message: signMessageRequest!.message,
             receiver: signMessageRequest!.receiver,
             nonce: Buffer.from(signMessageRequest!.nonce),
-            callbackUrl: signMessageRequest!.callbackUrl,
+            callbackUrl: signMessageRequest?.callbackUrl,
         });
     const handleReject = () => close();
 
