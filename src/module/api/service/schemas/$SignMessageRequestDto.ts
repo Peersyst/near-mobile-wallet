@@ -15,6 +15,16 @@ export const $SignMessageRequestDto = {
             type: 'string',
             isRequired: true,
         },
+        nonce: {
+            type: 'array',
+            contains: {
+                type: 'number',
+            },
+            isRequired: true,
+        },
+        callbackUrl: {
+            type: 'string',
+        },
         network: {
             type: 'Enum',
             isRequired: true,

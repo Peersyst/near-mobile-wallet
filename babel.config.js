@@ -23,8 +23,8 @@ module.exports = function (api) {
                 },
             ],
             ["@babel/plugin-proposal-async-generator-functions"],
-            "react-native-reanimated/plugin",
-            "transform-inline-environment-variables"
+            "transform-inline-environment-variables",
+            "react-native-reanimated/plugin"
         ],
     };
 };

@@ -5,8 +5,9 @@ import { AccessKeyInfoView, AccountView, FinalExecutionOutcome } from "near-api-
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
 import { decode, encode } from "bs58";
-import { sha256 } from "js-sha256";
+import * as Borsh from "borsh";
 import BN from "bn.js";
+const JSsha256 = require("js-sha256");
 
 const bip39 = require("bip39-light");
 import {
@@ -64,6 +65,7 @@ import {
 } from "../utils/near.utils";
 import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
 import { BalanceOperations } from "../utils";
+import { Payload } from "../utils/SignerPayload";
 
 export class NearSDKService {
     private connection?: Near;
@@ -999,12 +1001,6 @@ export class NearSDKService {
         const tx = await account.deleteKey(publicKey);
         return tx.transaction_outcome.id;
     }
-    public signMessage(message: string, receiver?: string): string {
-        let messageToSign = message;
-        if (receiver) messageToSign = `NEP0413:${JSON.stringify({ receiver, message })}`;
-        const formatMessage = new Uint8Array(sha256.digest(Buffer.from(messageToSign)));
-        return decode(encode(this.keyPair.sign(formatMessage).signature)).toString("base64");
-    }
 
     public getPublicKey(): string {
         return this.keyPair.getPublicKey().toString();
@@ -1041,5 +1037,37 @@ export class NearSDKService {
         const account = await this.getAccount();
         // @ts-ignore
         return account.signAndSendTransaction({ receiverId: receiver, actions });
+    }
+
+    async signMessage(message: string, recipient: string, nonce: Buffer, callbackUrl?: string) {
+        // Get key from the wallet
+        const Key = this.keyPair;
+
+        // Check the nonce is a 32bytes array
+        if (nonce.byteLength != 32) {
+            throw Error("Expected nonce to be a 32 bytes buffer");
+        }
+
+        // Create the payload and sign it
+        const payload = new Payload({ message, nonce, recipient, callbackUrl });
+        const borshPayload = Borsh.serialize(
+            {
+                struct: {
+                    prefix: "u32",
+                    message: "string",
+                    nonce: { array: { type: "u8", len: 32 } },
+                    recipient: "string",
+                    callbackUrl: { option: { struct: { callbackUrl: "string" } } },
+                },
+            },
+            payload,
+        );
+        const hashedPayload = JSsha256.sha256.array(borshPayload);
+        const { signature } = Key.sign(Uint8Array.from(hashedPayload));
+
+        const encoded: string = Buffer.from(signature).toString("base64");
+
+        // Return the AuthenticationToken
+        return { accountId: this.getAddress(), publicKey: this.getPublicKey(), signature: encoded };
     }
 }

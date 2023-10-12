@@ -1,6 +1,6 @@
 import { Row } from "@peersyst/react-native-components";
 import { ActionableProps } from "./Actionable.types";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
 import { ActionRoot } from "./Actionable.styles";
 
 const Actionable = ({ action: actionProp, onAction, position = "right", children, ...rest }: ActionableProps): JSX.Element => {
