@@ -4,5 +4,5 @@
 
 export type SignRequest = {
     signerAccountId: string;
-    txHash: string;
+    txHash: Array<string>;
 };

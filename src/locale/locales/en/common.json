@@ -309,5 +309,6 @@
     "disconnectDApp": "To confirm that you want to disconnect the dApp, please press the Disconnect button again.",
     "connectedWith": "Connected with {{name}}:",
     "withPermissions": "With permissions:",
-    "signerChangeAccount": "You cannot sign this request with the selected account because it is not activated. Please, select another account."
+    "signerChangeAccount": "You cannot sign this request with the selected account because it is not activated. Please, select another account.",
+    "rejectRequestSuccessfully": "Request rejected successfully!"
 }

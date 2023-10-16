@@ -11,7 +11,7 @@ export type SignerRequestDto = {
     signerAccountId: string;
     requests: Array<any>;
     dAppMetadata?: DAppMetadataDto;
-    txHash?: string;
+    txHash?: Array<string>;
     createdAt: string;
     updatedAt: string;
 };

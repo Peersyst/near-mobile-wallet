@@ -164,4 +164,21 @@ export class SignerRequestService {
         });
     }
 
+    /**
+     * @param id
+     * @returns SignMessageRequestDto
+     * @throws ApiError
+     */
+    public static rejectMessageRequest(
+        id: string,
+    ): CancelablePromise<SignMessageRequestDto> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/signer-request/message/{id}/reject',
+            path: {
+                'id': id,
+            },
+        });
+    }
+
 }

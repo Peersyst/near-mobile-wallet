@@ -31,7 +31,10 @@ export const $SignerRequestDto = {
             type: 'DAppMetadataDto',
         },
         txHash: {
-            type: 'string',
+            type: 'array',
+            contains: {
+                type: 'string',
+            },
         },
         createdAt: {
             type: 'string',
