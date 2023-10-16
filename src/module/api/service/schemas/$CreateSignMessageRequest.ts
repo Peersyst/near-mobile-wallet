@@ -15,6 +15,16 @@ export const $CreateSignMessageRequest = {
             type: 'string',
             isRequired: true,
         },
+        nonce: {
+            type: 'array',
+            contains: {
+                type: 'number',
+            },
+            isRequired: true,
+        },
+        callbackUrl: {
+            type: 'string',
+        },
         receiverMetadata: {
             type: 'DAppMetadatRequest',
         },
