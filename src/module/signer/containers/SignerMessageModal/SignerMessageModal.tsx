@@ -9,6 +9,7 @@ import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import useSignMessage from "module/signer/queries/useSignMessage";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import NetworkMismatchError from "module/signer/components/feedback/NetworkMismatchError/NetworkMismatchError";
+import useRejectMessageRequest from "module/signer/queries/useRejectMessageRequest";
 
 const SignerMessageModal = createModal(({ id, ...props }: SignerModalProps): JSX.Element => {
     const translate = useTranslate();
@@ -19,9 +20,10 @@ const SignerMessageModal = createModal(({ id, ...props }: SignerModalProps): JSX
     const network = useSelectedNetwork();
     const matchingNetwork = network === signMessageRequest?.network;
 
-    const { mutate: signMessage, isLoading: isSigning, isError, isSuccess } = useSignMessage();
-
     const close = () => hideModal(SignerMessageModal.id);
+
+    const { mutate: signMessage, isLoading: isSigning, isError, isSuccess } = useSignMessage();
+    const { mutate: rejectMessage, isLoading: isRejecting, isError: isRejectError } = useRejectMessageRequest({ onSuccess: close });
 
     const handleSign = () =>
         signMessage({
@@ -31,7 +33,7 @@ const SignerMessageModal = createModal(({ id, ...props }: SignerModalProps): JSX
             nonce: Buffer.from(signMessageRequest!.nonce),
             callbackUrl: signMessageRequest?.callbackUrl,
         });
-    const handleReject = () => close();
+    const handleReject = () => rejectMessage(id);
 
     return (
         <CardSelectModal {...props} title={translate("signMessage")} dismissal="close" style={{ height: "90%" }}>
@@ -43,8 +45,8 @@ const SignerMessageModal = createModal(({ id, ...props }: SignerModalProps): JSX
                         <SignatureScaffold
                             onSign={handleSign}
                             onReject={handleReject}
-                            sign={{ loading: isSigning, disabled: isSuccess || isError }}
-                            reject={{ loading: isSigning, disabled: isSuccess || isError }}
+                            sign={{ loading: isSigning, disabled: isSuccess || isError || isRejecting || isRejectError }}
+                            reject={{ loading: isRejecting, disabled: isSuccess || isError || isSigning || isRejectError }}
                         >
                             <SignMessageDetails
                                 receiver={signMessageRequest!.receiver}

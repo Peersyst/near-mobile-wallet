@@ -13,4 +13,5 @@ export type SignMessageRequestDto = {
     network: 'mainnet' | 'testnet';
     response: any;
     receiverMetadata?: DAppMetadataDto;
+    status: 'pending' | 'approved' | 'rejected';
 };
