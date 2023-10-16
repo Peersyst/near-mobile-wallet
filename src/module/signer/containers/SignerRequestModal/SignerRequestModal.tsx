@@ -22,8 +22,7 @@ const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps)
     const { mutate: signRequest, isLoading: isSigning, isError: isSignError, isSuccess } = useSignRequestActions();
     const { mutate: rejectRequest, isLoading: isRejecting, isError: isRejectError } = useRejectSignerRequest({ onSuccess: close });
 
-    const handleSign = () =>
-        signRequest({ id, actions: signerRequest?.requests[0].actions, receiverId: signerRequest?.requests[0].receiverId });
+    const handleSign = () => signRequest({ id, transactions: signerRequest!.requests });
     const handleReject = () => rejectRequest(id);
 
     return (

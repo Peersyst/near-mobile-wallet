@@ -8,7 +8,10 @@ export const $SignRequest = {
             isRequired: true,
         },
         txHash: {
-            type: 'string',
+            type: 'array',
+            contains: {
+                type: 'string',
+            },
             isRequired: true,
         },
     },
