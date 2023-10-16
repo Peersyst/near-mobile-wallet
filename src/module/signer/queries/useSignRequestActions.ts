@@ -1,14 +1,13 @@
 import { useMutation, useQueryClient } from "react-query";
 import { Action } from "../components/display/SignRequestDetails/actions.types";
-import { SignerRequestService } from "module/api/service";
+import { SignerRequestDto, SignerRequestService } from "module/api/service";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { createAction } from "module/signer/utils/near.transactions";
 
 interface UseSignRequestActionsParams {
     id: string;
-    actions: Action[];
-    receiverId?: string;
+    transactions: SignerRequestDto["requests"];
 }
 
 export default function useSignRequestActions(indexProp?: number) {
@@ -16,13 +15,18 @@ export default function useSignRequestActions(indexProp?: number) {
     const queryClient = useQueryClient();
 
     return useMutation(
-        async ({ id, actions, receiverId }: UseSignRequestActionsParams) => {
-            const actionsMapped = actions.map((action) => createAction(action));
-            const tx = await serviceInstance.signAndSendTransactions(receiverId ?? serviceInstance.getAddress(), actionsMapped);
+        async ({ id, transactions }: UseSignRequestActionsParams) => {
+            const txHashes = [];
+
+            for (const { actions, receiverId } of transactions) {
+                const actionsMapped = actions.map((action: Action) => createAction(action));
+                const tx = await serviceInstance.signAndSendTransaction(receiverId ?? serviceInstance.getAddress(), actionsMapped);
+                txHashes.push(tx.transaction_outcome.id);
+            }
 
             return await SignerRequestService.approveSignerRequest(id, {
                 signerAccountId: serviceInstance.getAddress(),
-                txHash: tx.transaction_outcome.id,
+                txHash: txHashes,
             });
         },
         {

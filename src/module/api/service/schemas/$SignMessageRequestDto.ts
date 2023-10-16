@@ -37,5 +37,9 @@ export const $SignMessageRequestDto = {
         receiverMetadata: {
             type: 'DAppMetadataDto',
         },
+        status: {
+            type: 'Enum',
+            isRequired: true,
+        },
     },
 } as const;

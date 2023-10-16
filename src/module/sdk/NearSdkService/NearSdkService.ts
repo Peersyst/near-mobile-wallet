@@ -1033,7 +1033,7 @@ export class NearSDKService {
         return txs;
     }
 
-    public async signAndSendTransactions(receiver: string, actions: NearAction[]): Promise<FinalExecutionOutcome> {
+    public async signAndSendTransaction(receiver: string, actions: NearAction[]): Promise<FinalExecutionOutcome> {
         const account = await this.getAccount();
         // @ts-ignore
         return account.signAndSendTransaction({ receiverId: receiver, actions });
