@@ -309,5 +309,6 @@
     "disconnectDApp": "Para confirmar la desconexión de la dApp, por favor, pulse el botón de desconectar.",
     "connectedWith": "Conectado con {{name}}:",
     "withPermissions": "Con permisos:",
-    "signerChangeAccount": "No puede firmar esta solicitud con la cuenta seleccionada porque no está activada. Por favor, seleccione otra cuenta."
+    "signerChangeAccount": "No puede firmar esta solicitud con la cuenta seleccionada porque no está activada. Por favor, seleccione otra cuenta.",
+    "rejectRequestSuccessfully": "Petición rechazada con éxito!"
 }

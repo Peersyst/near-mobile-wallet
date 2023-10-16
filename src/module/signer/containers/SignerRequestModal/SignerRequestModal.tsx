@@ -8,6 +8,7 @@ import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingM
 import { useTranslate } from "module/common/hook/useTranslate";
 import useHandleSignerRequestError from "./hooks/useHandleSignerRequestError";
 import useSignerRequest from "module/signer/hooks/useSignerRequest";
+import useRejectSignerRequest from "module/signer/queries/useRejectSignerRequest";
 
 const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps): JSX.Element => {
     const translate = useTranslate();
@@ -16,14 +17,14 @@ const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps)
     const { signerRequest, isLoading } = useSignerRequest(id);
 
     const { signerRequestError, isSignerRequestError } = useHandleSignerRequestError(signerRequest);
+    const close = () => hideModal(SignerRequestModal.id);
 
     const { mutate: signRequest, isLoading: isSigning, isError: isSignError, isSuccess } = useSignRequestActions();
-
-    const close = () => hideModal(SignerRequestModal.id);
+    const { mutate: rejectRequest, isLoading: isRejecting, isError: isRejectError } = useRejectSignerRequest({ onSuccess: close });
 
     const handleSign = () =>
         signRequest({ id, actions: signerRequest?.requests[0].actions, receiverId: signerRequest?.requests[0].receiverId });
-    const handleReject = () => close();
+    const handleReject = () => rejectRequest(id);
 
     return (
         <CardSelectModal {...modalProps} title={translate("reviewRequest")} dismissal="close" style={{ height: "95%" }}>
@@ -35,10 +36,10 @@ const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps)
                         <SignatureScaffold
                             onSign={handleSign}
                             onReject={handleReject}
-                            sign={{ loading: isSigning, disabled: isSuccess || isSignError }}
+                            sign={{ loading: isSigning, disabled: isSuccess || isSignError || isRejecting || isRejectError }}
                             reject={{
-                                loading: isSigning,
-                                disabled: isSuccess || isSignError,
+                                loading: isRejecting,
+                                disabled: isSuccess || isSignError || isRejectError,
                             }}
                         >
                             <SignRequestDetails request={signerRequest!} />
