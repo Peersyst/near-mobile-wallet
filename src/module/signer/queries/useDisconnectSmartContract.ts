@@ -18,6 +18,7 @@ export default function useDisconnectSmartContract({
         onSuccess: async (contractId, ...args) => {
             await queryClient.invalidateQueries([Queries.IS_DAPP_CONNECTED, index, network]);
             await queryClient.invalidateQueries([Queries.RECOMMENDED_DAPPS]);
+            await queryClient.invalidateQueries([Queries.GET_ACCOUNT_ACCESS_KEYS, index, network]);
             showToast(translate("disconnectSuccessfully"), { type: "success" });
             onSuccess?.(contractId, ...args);
         },
