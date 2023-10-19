@@ -15,6 +15,7 @@ export default function useDeleteKey({
         onSuccess: async (...args) => {
             await queryClient.invalidateQueries([Queries.GET_ACCOUNT_ACCESS_KEYS, index, network]);
             await queryClient.invalidateQueries([Queries.ACTIONS, index, network]);
+            await queryClient.invalidateQueries([Queries.IS_DAPP_CONNECTED, index, network]);
             onSuccess?.(...args);
         },
         ...options,
