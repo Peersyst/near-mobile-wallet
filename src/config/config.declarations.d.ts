@@ -25,6 +25,11 @@ export interface RefetchIntervals {
     validators: number;
 }
 
+export interface AnalyticsConfig {
+    apiKey: string;
+    host: string;
+}
+
 export interface TransakConfig extends Omit<TransakOnRampQueryParams, "environment"> {
     environment: string;
 }
@@ -63,6 +68,7 @@ declare module "@peersyst/react-native-components" {
         enableBuy: boolean;
         transak: TransakConfig;
         signerFeature: SignerFeatureConfig;
+        analytics: AnalyticsConfig;
     }
 
     export interface CreateConfig {
@@ -93,6 +99,7 @@ declare module "@peersyst/react-native-components" {
         nearMobileUrl: string;
         enableBuy: boolean;
         transak: TransakConfig;
+        analytics: AnalyticsConfig;
     }
 
     export interface ExtraValidators {

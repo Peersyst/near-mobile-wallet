@@ -104,5 +104,9 @@
                 "contractId": "v1.jumbo_exchange.near"
             }
         ]
+    },
+    "analytics": {
+        "host": "https://eu.posthog.com",
+        "apiKey": "phc_oVIWlo74LoeuEcRZrFYNGpnG6tQridziKDUsNKCPKLc"
     }
 }
