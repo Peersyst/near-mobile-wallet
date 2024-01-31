@@ -15,10 +15,11 @@ import { defaultNS, resources } from "./i18n";
  * zh-CN: Chinese (Simplified)
  * zh-TW: Chinese (Traditional)
  */
-export type LocaleType = "en" | "es" | "fr" | "id" | "it" | "pt" | "ru" | "uk" | "vi" | "zh-CN" | "zh-TW";
+export type LocaleType = "en" | "es" | "fr" | "id" | "it" | "pt" | "ru" | "sw" | "uk" | "vi" | "zh-CN" | "zh-TW";
 export type NameSpacesType = "translation" | "error";
 export type ResourceType = typeof resources["en"];
 export type ErrorResourceType = keyof ResourceType["error"];
+export type LocaleResourceType = keyof ResourceType["langs"];
 export type TransaltionResourceType = keyof ResourceType["translation"];
 
 declare module "i18next" {

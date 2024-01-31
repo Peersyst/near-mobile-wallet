@@ -11,7 +11,8 @@ export function getDefaultLocale(): LocaleType {
         return "zh-CN";
     }
 
-    const locales: LocaleType[] = ["en", "es", "fr", "id", "it", "pt", "ru", "uk", "vi"];
+    //Do not use `APP_LOCALES` from `src/locale/i18n.ts` as it wont't available in this context
+    const locales: LocaleType[] = ["en", "es", "fr", "id", "it", "pt", "ru", "sw", "uk", "vi"];
     const parts = systemLocale.split("-");
     return locales.find((l) => parts.includes(l)) ?? "en";
 }

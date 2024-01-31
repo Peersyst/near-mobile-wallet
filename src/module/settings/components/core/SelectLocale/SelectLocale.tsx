@@ -1,62 +1,24 @@
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
-import { SelectOption } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { LocaleType } from "locale";
-import i18n from "locale/i18n";
+import { LocaleResourceType, LocaleType } from "locale";
+import i18n, { APP_LOCALES } from "locale/i18n";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
+import { useMemo } from "react";
 
 const SelectLocale = (): JSX.Element => {
     const translateLang = useTranslate("langs");
     const translate = useTranslate();
 
-    const localeOptions: SelectOption<LocaleType>[] = [
-        {
-            label: translateLang("en"),
-            value: "en",
-        },
-        {
-            label: translateLang("es"),
-            value: "es",
-        },
-        {
-            label: translateLang("fr"),
-            value: "fr",
-        },
-        {
-            label: translateLang("id"),
-            value: "id",
-        },
-        {
-            label: translateLang("it"),
-            value: "it",
-        },
-        {
-            label: translateLang("pt"),
-            value: "pt",
-        },
-        {
-            label: translateLang("ru"),
-            value: "ru",
-        },
-        {
-            label: translateLang("uk"),
-            value: "uk",
-        },
-        {
-            label: translateLang("vi"),
-            value: "vi",
-        },
-        {
-            label: translateLang("zh-CN"),
-            value: "zh-CN",
-        },
-        {
-            label: translateLang("zh-TW"),
-            value: "zh-TW",
-        },
-    ];
+    const localeOptions = useMemo(() => {
+        return APP_LOCALES.map((locale) => {
+            return {
+                label: translateLang(locale as LocaleResourceType),
+                value: locale,
+            };
+        });
+    }, []);
     const [settings, setSettings] = useRecoilState(settingsState);
 
     const handleSelect = (value: LocaleType) => {
