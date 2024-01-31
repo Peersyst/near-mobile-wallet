@@ -193,6 +193,7 @@ export enum FeeRate {
 export enum EnhancedTransactionActionKind {
     TRANSFER_RECEIVE = "TRANSFER_RECEIVE",
     TRANSFER_SEND = "TRANSFER_SEND",
+    DELEGATE_CALL = "DELEGATE_ACTION",
 }
 
 export type ActionKind = Exclude<keyof typeof TransactionActionKind, "TRANSFER"> | EnhancedTransactionActionKind;
