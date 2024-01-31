@@ -310,5 +310,6 @@
     "connectedWith": "Imeunganishwa na {{name}}:",
     "withPermissions": "Yenye ruhusa:",
     "signerChangeAccount": "Huwezi kusaini ombi hili na akaunti iliochaguliwa kwa sababu haijafunguliwa, Tafadhali chagua akaunti nyingine.",
-    "rejectRequestSuccessfully": "Ombi limefanikiwa kukataliwa!"
+    "rejectRequestSuccessfully": "Ombi limefanikiwa kukataliwa!",
+    "delegateCall": "Delegate call to"
 }
