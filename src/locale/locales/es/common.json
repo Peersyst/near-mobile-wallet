@@ -310,5 +310,6 @@
     "connectedWith": "Conectado con {{name}}:",
     "withPermissions": "Con permisos:",
     "signerChangeAccount": "No puede firmar esta solicitud con la cuenta seleccionada porque no está activada. Por favor, seleccione otra cuenta.",
-    "rejectRequestSuccessfully": "Petición rechazada con éxito!"
+    "rejectRequestSuccessfully": "Petición rechazada con éxito!",
+    "delegateCall": "Delegate call to"
 }

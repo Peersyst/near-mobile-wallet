@@ -39,4 +39,8 @@ export const ACTION_ICONS: ActionIcon = {
         Icon: ArrowUpCircleIcon,
         active: false,
     },
+    [EnhancedTransactionActionKind.DELEGATE_CALL]: {
+        Icon: NearIcon,
+        active: false,
+    },
 };
