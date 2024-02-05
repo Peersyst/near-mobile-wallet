@@ -2,7 +2,10 @@ import { DAppProps } from "./DApp.types";
 import { DAppRoot, DAppLogo, DAppTag, DAppLinkIcon } from "./DApp.styles";
 import { Col, Row, Skeleton, Typography } from "@peersyst/react-native-components";
 import DAppStatus from "../DAppStatus/DAppStatus";
-import { Linking, TouchableOpacity } from "react-native";
+import { Linking } from "react-native";
+// TouchableOpacity from react-native-gesture-handler handles touches with Swipeable.
+// Otherwise, Swipeable triggers the `onPress`
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const DApp = ({ dapp, connected = false, loading = false }: DAppProps): JSX.Element => {
     const { name, description, logoUrl, url, tag } = dapp;
