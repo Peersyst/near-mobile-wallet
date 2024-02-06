@@ -249,8 +249,8 @@ export class NearSDKService {
             const splittedNameId = nameId.split(".");
             if (splittedNameId.length > 1) {
                 const suffix = splittedNameId.pop();
-                const validSuffix = network === Chains.MAINNET ? "near" : "testnet";
-                if (suffix !== validSuffix) return false;
+                const invalidSuffix = network === Chains.MAINNET ? "testnet" : "near";
+                if (suffix === invalidSuffix) return false;
             }
         }
         return nameId.length >= 2 && nameId.length <= 64 && NearSDKService.nameRegex.test(nameId);
