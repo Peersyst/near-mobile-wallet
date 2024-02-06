@@ -7,3 +7,4 @@ export type SignMessageRequestPayload = {
     signature: string;
     publicKey: string;
 };
+

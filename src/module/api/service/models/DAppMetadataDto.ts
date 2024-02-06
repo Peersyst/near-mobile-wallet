@@ -7,3 +7,4 @@ export type DAppMetadataDto = {
     logoUrl: string;
     url?: string;
 };
+

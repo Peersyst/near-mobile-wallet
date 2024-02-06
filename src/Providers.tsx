@@ -10,7 +10,7 @@ import WalletColorProvider from "module/wallet/component/core/WalletColorProvide
 
 const Providers = ({ children }: PropsWithChildren<unknown>): JSX.Element => (
     <RecoilRoot>
-        <SafeAreaProvider initialSafeAreaInsets={{ top: 0, left: 0, right: 0, bottom: 0 }}>
+        <SafeAreaProvider>
             <I18nextProvider i18n={i18n}>
                 <ConfigProvider>
                     <ToastProvider>

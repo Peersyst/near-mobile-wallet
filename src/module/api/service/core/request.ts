@@ -123,7 +123,7 @@ const getFormData = (options: ApiRequestOptions): FormData | undefined => {
 
         return formData;
     }
-    return;
+    return undefined;
 };
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
@@ -186,7 +186,7 @@ const getRequestBody = (options: ApiRequestOptions): any => {
             return JSON.stringify(options.body);
         }
     }
-    return;
+    return undefined;
 };
 
 export const sendRequest = async (
@@ -223,7 +223,7 @@ const getResponseHeader = (response: Response, responseHeader?: string): string 
             return content;
         }
     }
-    return;
+    return undefined;
 };
 
 const getResponseBody = async (response: Response): Promise<any> => {
@@ -242,7 +242,7 @@ const getResponseBody = async (response: Response): Promise<any> => {
             console.error(error);
         }
     }
-    return;
+    return undefined;
 };
 
 const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): void => {
@@ -259,11 +259,11 @@ const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): void =>
 
     const error = errors[result.status];
     if (error) {
-        throw new ApiError(result, error);
+        throw new ApiError(options, result, error);
     }
 
     if (!result.ok) {
-        throw new ApiError(result, 'Generic Error');
+        throw new ApiError(options, result, 'Generic Error');
     }
 };
 
