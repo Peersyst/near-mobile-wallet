@@ -45,7 +45,7 @@
                 "url": "https://near.org/",
                 "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/ea2d8bdc-c47a-423c-933a-b242a6e525cf.jpg",
                 "tag": "social",
-                "contractId": ""
+                "contractId": "social.near"
             },
             {
                 "name": "Ref Finance",
