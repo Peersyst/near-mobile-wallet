@@ -19,7 +19,12 @@ config.resolver = {
         "test-utils": path.resolve(__dirname, "test/utils/test-utils"),
         "test-mocks": path.resolve(__dirname, "test/__mocks__"),
         mocks: path.resolve(__dirname, "test/__mocks__"),
+        crypto: path.resolve(__dirname, "src/polyfills/Crypto"),
+        https: require.resolve("https-browserify"),
+        stream: require.resolve("stream-browserify"),
+        http: require.resolve("stream-http"),
+        url: require.resolve("url"),
     },
 };
 
-module.exports = getDefaultConfig(__dirname);
+module.exports = config;

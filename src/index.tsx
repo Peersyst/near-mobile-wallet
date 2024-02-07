@@ -1,7 +1,9 @@
+// Always import the module where the polyfills are defined.
+import "./polyfills";
+
 import "./module/api/OpenApiConfig";
 
 import useCachedResources from "module/common/hook/useCachedResources";
-import { Button, ConfigProvider, defaultConfig } from "@peersyst/react-native-components";
 
 import Navigator from "./navigation/Navigator";
 import { useLoad } from "module/common/query/useLoad";
@@ -9,11 +11,12 @@ import LogoPage from "module/common/component/layout/LogoPage/LogoPage";
 import { Suspense } from "@peersyst/react-native-components";
 
 import settingsState from "module/settings/state/SettingsState";
-import { LogBox, Platform, Text, UIManager, View } from "react-native";
+import { LogBox, Platform, UIManager } from "react-native";
 import Providers from "./providers/Providers";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useEffect, useState } from "react";
 import { i18nextInitializationPromise } from "locale";
+import { useRecoilValue } from "recoil";
 
 if (typeof BigInt === "undefined") global.BigInt = require("big-integer");
 
@@ -28,21 +31,17 @@ LogBox.ignoreLogs(["Require cycle:"]); // Consider refactoring to remove the nee
 LogBox.ignoreLogs(["new NativeEventEmitter"]); // Warning from expo-clipboard (React 18)
 LogBox.ignoreLogs(["Require cycles"]);
 
-// function App(): JSX.Element {
-//     const loading = useLoad();
+function App(): JSX.Element {
+    const loading = useLoad();
 
-//     // const { loading: loadingSettings = false } = useRecoilValue(settingsState);
+    const { loading: loadingSettings = false } = useRecoilValue(settingsState);
 
-//     return (
-//         // <Suspense fallback={<LogoPage />} isLoading={loading || loadingSettings}>
-//         //     <Navigator />
-//         //     {/* <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-//         //         <Text>NEAR MOBILE</Text>
-//         //     </View> */}
-//         // </Suspense>
-//         <View></View>
-//     );
-// }
+    return (
+        <Suspense fallback={<LogoPage />} isLoading={loading || loadingSettings}>
+            <Navigator />
+        </Suspense>
+    );
+}
 
 export default function Root(): JSX.Element | null {
     const isLoadingComplete = useCachedResources();
@@ -60,14 +59,7 @@ export default function Root(): JSX.Element | null {
         isLoadingComplete && loaded ? (
             <GestureHandlerRootView style={{ flex: 1 }}>
                 <Providers>
-                    <ConfigProvider config={defaultConfig}>
-                        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                            <Text>NEAR MOBILE</Text>
-                            <Button>
-                                <Text>CLICK ME!</Text>
-                            </Button>
-                        </View>
-                    </ConfigProvider>
+                    <App />
                 </Providers>
             </GestureHandlerRootView>
         ) : null

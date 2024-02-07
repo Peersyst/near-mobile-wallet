@@ -1,8 +1,5 @@
-console.log("BEFORE IMPORTS");
-
 import { createConfig } from "@peersyst/react-native-components";
 import lightTheme from "./theme/lightTheme";
-import globalStyles from "./globalStyles";
 import { ChevronDownIcon } from "icons";
 import darkTheme from "./theme/darkTheme";
 import { AddressValidator } from "./validators/AddressValidator";
@@ -13,19 +10,13 @@ import { EnvConfig } from "./config.declarations";
 import Button from "../module/common/component/input/Button/Button";
 import { envConfigs } from "./configs";
 
-console.log("AFTER IMPORTS");
-
 const environment = process.env;
 
 const envKey = process.env.CONFIG_ENV || environment.NODE_ENV!;
 
 if (!(envKey in envConfigs)) throw new Error(`${envKey} is not a valid env config`);
 
-console.log("envKey", envKey);
-
 const envConfig = envConfigs[envKey as EnvConfig];
-
-console.log("BEFORE CREATE CONFIG", envConfig);
 
 const config = createConfig({
     ...envConfig,
@@ -103,9 +94,7 @@ const config = createConfig({
         address: AddressValidator,
         privateKey: PrivateKeyValidator,
     },
-    globalStyles,
+    //globalStyles,
 });
 
-console.log("AFTER CREATE CONFIG");
-
-export default {};
+export default config;

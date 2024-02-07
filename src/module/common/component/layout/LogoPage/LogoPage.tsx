@@ -1,9 +1,8 @@
 import { LogoPageIconRoot } from "./LogoPage.styles";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { LogoPageProvider } from "module/common/component/layout/LogoPage/LogoPageContext";
-import { Animated } from "react-native";
+import { Animated, useWindowDimensions } from "react-native";
 import Logo from "module/common/component/display/Logo/Logo";
-import { useDimensions } from "@react-native-community/hooks";
 import GradientPage from "module/common/component/layout/GradientPage/GradientPage";
 import { ThemeProvider } from "@peersyst/react-native-styled";
 import darkTheme from "config/theme/darkTheme";
@@ -17,9 +16,7 @@ const LogoPage = ({ children }: LogoPageProps): JSX.Element => {
     const [gradient, setGradient] = useState(true);
 
     const logoAnim = useRef(new Animated.Value(1)).current;
-    const {
-        screen: { height },
-    } = useDimensions();
+    const { height } = useWindowDimensions();
 
     useEffect(() => {
         Animated.timing(logoAnim, {
