@@ -59,4 +59,5 @@ export * from "./UserIcon";
 export * from "./UserAddIcon";
 export * from "./UserCheckIcon";
 export * from "./UserDeleteIcon";
+export * from "./UsersIcon";
 export * from "./WalletIcon";
