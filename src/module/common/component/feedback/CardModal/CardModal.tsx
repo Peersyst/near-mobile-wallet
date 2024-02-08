@@ -38,7 +38,6 @@ const CardModal = ({ children, style, open, closable = true, onClose, ...backdro
                             <KeyboardAwareScrollView
                                 style={{ flex: 1, height: "100%" }}
                                 keyboardShouldPersistTaps="handled"
-                                enableOnAndroid={true}
                                 contentContainerStyle={{ flexGrow: 1 }}
                                 alwaysBounceVertical={false}
                                 enableAutomaticScroll={!keyboardPaddingEnabled}

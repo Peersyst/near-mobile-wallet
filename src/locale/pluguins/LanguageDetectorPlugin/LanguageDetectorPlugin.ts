@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { LanguageDetectorAsyncModule } from "i18next";
+import { getDefaultLocale } from "locale/utils";
+import { SettingsStorage } from "module/settings/SettingsStorage";
 
 export async function detect(): Promise<any> {
     try {
-        return "en";
+        const storedLocale = await SettingsStorage?.getLocale();
+        return storedLocale || getDefaultLocale();
     } catch (error) {
         /* eslint-disable no-console */
         console.warn("Error reading language", error);

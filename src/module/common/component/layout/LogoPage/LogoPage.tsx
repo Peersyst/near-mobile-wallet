@@ -11,6 +11,8 @@ export interface LogoPageProps {
     children?: ReactNode;
 }
 
+const AnimatedLogoPageIconRoot = Animated.createAnimatedComponent(LogoPageIconRoot);
+
 const LogoPage = ({ children }: LogoPageProps): JSX.Element => {
     const [logoFlex, setLogoFlex] = useState(1);
     const [gradient, setGradient] = useState(true);
@@ -29,9 +31,9 @@ const LogoPage = ({ children }: LogoPageProps): JSX.Element => {
     return (
         <ThemeProvider theme={darkTheme}>
             <GradientPage gradient={gradient}>
-                <LogoPageIconRoot style={{ height: logoAnim.interpolate({ inputRange: [0, 1], outputRange: [0, height] }) }}>
+                <AnimatedLogoPageIconRoot style={{ height: logoAnim.interpolate({ inputRange: [0, 1], outputRange: [0, height] }) }}>
                     <Logo />
-                </LogoPageIconRoot>
+                </AnimatedLogoPageIconRoot>
                 <LogoPageProvider value={{ setLogoFlex, setGradient }}>{children}</LogoPageProvider>
             </GradientPage>
         </ThemeProvider>

@@ -3,6 +3,8 @@ import "./polyfills";
 
 import "./module/api/OpenApiConfig";
 
+import "locale/i18n";
+
 import useCachedResources from "module/common/hook/useCachedResources";
 
 import Navigator from "./navigation/Navigator";
@@ -14,11 +16,7 @@ import settingsState from "module/settings/state/SettingsState";
 import { LogBox, Platform, UIManager } from "react-native";
 import Providers from "./providers/Providers";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { useEffect, useState } from "react";
-import { i18nextInitializationPromise } from "locale";
 import { useRecoilValue } from "recoil";
-
-if (typeof BigInt === "undefined") global.BigInt = require("big-integer");
 
 if (Platform.OS === "android") {
     if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -33,35 +31,25 @@ LogBox.ignoreLogs(["Require cycles"]);
 
 function App(): JSX.Element {
     const loading = useLoad();
+    const cachedResourceLoaded = useCachedResources();
 
     const { loading: loadingSettings = false } = useRecoilValue(settingsState);
 
     return (
-        <Suspense fallback={<LogoPage />} isLoading={loading || loadingSettings}>
+        <Suspense fallback={<LogoPage />} isLoading={loading || loadingSettings || !cachedResourceLoaded}>
             <Navigator />
         </Suspense>
     );
 }
 
 export default function Root(): JSX.Element | null {
-    const isLoadingComplete = useCachedResources();
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-        i18nextInitializationPromise.then(() => {
-            setLoaded(true);
-        });
-    }, []);
-
     return (
         // `GestureHandlerRootView` enables all `react-native-gesture-handler` features.
         // For example, `Swipeable` from `react-native-gesture-handler` will not trigger `Touchable`'s `onPress`.
-        isLoadingComplete && loaded ? (
-            <GestureHandlerRootView style={{ flex: 1 }}>
-                <Providers>
-                    <App />
-                </Providers>
-            </GestureHandlerRootView>
-        ) : null
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <Providers>
+                <App />
+            </Providers>
+        </GestureHandlerRootView>
     );
 }
