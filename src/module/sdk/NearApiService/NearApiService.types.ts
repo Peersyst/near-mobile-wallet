@@ -1,4 +1,4 @@
-import { Action, StakingDeposit, TransactionActionKind, TransactionStatus } from "../NearSdkService";
+import { Action, Chains, StakingDeposit, TransactionActionKind, TransactionStatus } from "../NearSdkService";
 
 export interface NearApiServiceInterface {
     baseUrl: string;
@@ -16,6 +16,7 @@ export interface NearApiServiceInterface {
 
 export interface NearApiServiceParams {
     address: string;
+    chain?: Chains;
 }
 
 export interface NearApiServicePaginatedParams extends NearApiServiceParams {

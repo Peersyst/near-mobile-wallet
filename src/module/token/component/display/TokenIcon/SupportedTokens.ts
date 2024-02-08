@@ -15,8 +15,6 @@ export const SUPPORTED_TOKENS_URLS = {
     DAI: "https://cryptologos.cc/logos/multi-collateral-dai-dai-logo.png",
     WBTC: "https://cryptologos.cc/logos/wrapped-bitcoin-wbtc-logo.png",
     ETH: "https://cryptologos.cc/logos/ethereum-eth-logo.png",
-};
-
-export const SUPPORTED_TOKENS_IMAGES = {
-    USN: near_usn,
+    HOT: "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/2e5963a5-228f-40fb-a599-07d6c0bb32f5.png",
+    USN: "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/7a99d25a-d712-4a55-a981-08e16fbf14eb.png",
 };

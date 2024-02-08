@@ -797,7 +797,7 @@ export class NearSDKService {
     }
 
     async getAccountTokens(): Promise<Token[]> {
-        const contractIds = await this.apiService.getLikelyTokens({ address: this.getAddress() });
+        const contractIds = await this.apiService.getLikelyTokens({ address: this.getAddress(), chain: this.chain });
         const tokens: Token[] = [];
 
         for (const contractId of contractIds) {
