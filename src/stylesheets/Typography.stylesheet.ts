@@ -4,6 +4,6 @@ import { stylesheet } from "@peersyst/react-native-styled";
 export const typographyStylesheet = stylesheet(Typography)(({ fromTheme }) => ({
     light: {
         opacity: 1,
-        color: fromTheme("palette.gray[300]"),
+        color: fromTheme("palette.gray.300"),
     },
 }));
