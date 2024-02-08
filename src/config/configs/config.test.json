@@ -70,30 +70,6 @@
                 "contractId": "login.learnclub.near"
             },
             {
-                "name": "Paras",
-                "description": "NFT Marketplace | Expanding the endgame of NFTs on $NEAR $ASTR $DOT.",
-                "url": "https://paras.id/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/ac160f09-693a-4555-956a-fba67a7f8c62.png",
-                "tag": "nftMarketplace",
-                "contractId": "marketplace.paras.near"
-            },
-            {
-                "name": "Linear",
-                "description": "Highest Yield, Instant Liquidity. Your Journey of DeFi on NEAR Starts Here.",
-                "url": "https://linearprotocol.org/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/64b43e0c-ae59-4f78-bbba-ffdbe54b6ae1.png",
-                "tag": "liquidStaking",
-                "contractId": "linear-protocol.near"
-            },
-            {
-                "name": "Mintbase",
-                "description": "Mint, Sell, Trade NFTs on your own smart contract.",
-                "url": "https://www.mintbase.xyz/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/de27c900-818a-4faf-a856-df225fed1e57.webp",
-                "tag": "nftMarketplace",
-                "contractId": "mintbase1.near"
-            },
-            {
                 "name": "Jumbo",
                 "description": "Jumbo provides Ecosystem-Wide Liquidity for users and projects.",
                 "url": "https://jumbo.exchange/",
