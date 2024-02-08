@@ -94,7 +94,6 @@ const config = createConfig({
         address: AddressValidator,
         privateKey: PrivateKeyValidator,
     },
-    //globalStyles,
 });
 
 export default config;
