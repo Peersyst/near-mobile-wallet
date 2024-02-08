@@ -1,5 +1,3 @@
-import { near_usn } from "images";
-
 export const SUPPORTED_TOKENS_URLS = {
     USDC: "https://s3.coinmarketcap.com/static-gravity/image/5a8229787b5e4c809b5914eef709b59a.png",
     "USDT.e": "https://img.icons8.com/color/512/tether--v2.png",
