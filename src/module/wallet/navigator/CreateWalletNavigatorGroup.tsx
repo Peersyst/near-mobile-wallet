@@ -1,7 +1,7 @@
 import { useLogoPageFlex, useLogoPageGradient } from "module/common/component/layout/LogoPage/LogoPageContext";
 import { TabPanel, Tabs, useTabs } from "@peersyst/react-native-components";
 import { useState } from "react";
-import { AuthScreens } from "module/auth/AuthNavigatorGroup";
+import { AuthScreens } from "module/auth/AuthNavigatorGroup.types";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
 import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";

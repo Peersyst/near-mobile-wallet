@@ -3,9 +3,9 @@ import { fireEvent, waitFor } from "@testing-library/react-native";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 import * as Recoil from "recoil";
 import * as Genesys from "@peersyst/react-native-components";
-import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import { config } from "config";
 import { AccountBalanceMock, SendStateMock, UseGetAllAssetsMock, UseGetBalanceMock, UseWalletStateMock } from "test-mocks";
+import { SendScreens } from "module/transaction/screen/SendScreens.types";
 
 describe("SendAmountAndMessageScreen tests", () => {
     new UseWalletStateMock();

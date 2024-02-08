@@ -8,12 +8,7 @@ import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/S
 import { useTranslate } from "module/common/hook/useTranslate";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { AssetType } from "module/wallet/wallet.types";
-
-export enum SendScreens {
-    SEND_TO_ADDRESS,
-    AMOUNT_AND_MESSAGE,
-    CONFIRMATION,
-}
+import { SendScreens } from "module/transaction/screen/SendScreens.types";
 
 const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
     const [activeIndex, setActiveIndex] = useState(SendScreens.SEND_TO_ADDRESS);

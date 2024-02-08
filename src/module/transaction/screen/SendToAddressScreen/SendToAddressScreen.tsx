@@ -2,13 +2,14 @@ import { Col, Form, useSetTab } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import sendRecoilState from "module/transaction/state/SendState";
 import { useState } from "react";
-import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
+
 import { useRecoilState } from "recoil";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { config } from "config";
 import useWalletState from "module/wallet/hook/useWalletState";
 import AddressTextFieldWithQRScanner from "module/transaction/component/input/AddressTextFieldWithQRScanner/AddressTextFieldWithQRScanner";
+import { SendScreens } from "../SendScreens.types";
 
 export interface SendForm {
     sender: number;

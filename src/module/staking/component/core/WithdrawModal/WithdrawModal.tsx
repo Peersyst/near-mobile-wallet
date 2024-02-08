@@ -4,12 +4,7 @@ import { createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-com
 import WithdrawSelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/WithdrawSelectValidatorScreen/WithdrawSelectValidatorScreen";
 import WithdrawConfirmScreen from "module/staking/screen/ConfirmScreen/WithdrawConfirmScreen/WithdrawConfirmScreen";
 import WithdrawSuccessScreen from "module/staking/screen/SuccessScreen/WithdrawSuccessScreen/WithdrawSuccessScreen";
-
-export enum WithdrawModalScreens {
-    SELECT_VALIDATOR,
-    CONFIRM_VALIDATOR,
-    SUCCESS,
-}
+import { WithdrawModalScreens } from "./WithdrawModal.types";
 
 const WithdrawModal = createBackdrop(({ ...rest }: ExposedBackdropProps): JSX.Element => {
     const translate = useTranslate();
