@@ -23,6 +23,7 @@
         "test:unit:ci": "jest --runInBand --coverage ./test/unit",
         "test:integration": "jest --maxWorkers=30% --coverage ./test/integration",
         "test:debug": "jest --coverage --no-cache --runInBand || true",
+        "check-types": "tsc --noemit",
         "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0"
     },
     "dependencies": {
