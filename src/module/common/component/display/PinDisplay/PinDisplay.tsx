@@ -1,9 +1,7 @@
 import PinItem from "./PinItem/PinItem";
-import { PinDisplayRoot } from "./PinDisplay.styles";
-import Typography from "../Typography/Typography";
+import { PinDisplayRoot, Placeholder } from "./PinDisplay.styles";
 import { useEffect, useRef } from "react";
 import { Animated, Easing } from "react-native";
-import { alpha } from "@peersyst/react-utils";
 
 export interface PinDisplayProps {
     length: number;
@@ -44,9 +42,7 @@ const PinDisplay = ({ length, error, placeholder }: PinDisplayProps): JSX.Elemen
             {length || !placeholder ? (
                 [...Array(4)].map((_, i) => <PinItem key={i} active={i < length} />)
             ) : (
-                <Typography variant="body2Strong" color={(palette) => alpha(palette.white, 0.6)}>
-                    {placeholder}
-                </Typography>
+                <Placeholder variant="body2Strong">{placeholder}</Placeholder>
             )}
         </PinDisplayRoot>
     );

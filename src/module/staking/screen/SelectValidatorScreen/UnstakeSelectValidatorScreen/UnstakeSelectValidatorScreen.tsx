@@ -1,5 +1,5 @@
 import { UnstakeModalScreens } from "module/staking/component/core/UnstakeModal/UnstakeModal";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { useSetTab } from "@peersyst/react-native-components";
 import useGetStakingValidators from "module/staking/hook/useGetStakingValidators";
 import StakingSelectValidatorScreen from "../StakingSelectValidatorScreen";

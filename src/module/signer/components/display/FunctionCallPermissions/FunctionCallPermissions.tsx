@@ -6,7 +6,7 @@ import useFunctionCallPermissions from "./hooks/useFunctionCallPermissions";
 import ActionDetailField from "../ActionDetailField/ActionDetailField";
 import { ClipboardListIcon, DatabaseIcon } from "icons";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { convertYoctoToNear } from "near-peersyst-sdk";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
 import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";

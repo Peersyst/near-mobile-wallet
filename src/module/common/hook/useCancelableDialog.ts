@@ -1,5 +1,5 @@
 import { DialogProps, useDialog } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 
 interface UseCancelableDialogReturn {
     showCancelableDialog: (props: DialogProps) => void;

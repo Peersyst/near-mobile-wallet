@@ -3,7 +3,7 @@ import Queries from "../../../query/queries";
 import { UseMutationResult, useMutation, useQueryClient } from "react-query";
 import { MutationOptions } from "../../../query/react-query-overrides";
 import { useToast } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 
 export default function useDisconnectSmartContract({
     onSuccess,

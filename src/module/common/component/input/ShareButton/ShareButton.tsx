@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import Button from "../Button/Button";
 import { ButtonProps } from "../Button/Button.types";
 import { ShareIcon } from "module/common/icons/ShareIcon";

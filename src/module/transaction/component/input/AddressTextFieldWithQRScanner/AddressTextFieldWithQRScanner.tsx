@@ -1,6 +1,6 @@
 import { IconButton, PressableText, useTheme, useToast } from "@peersyst/react-native-components";
 import { useState } from "react";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { CameraIcon } from "icons";
 import QrScanner from "module/common/component/input/QrScanner/QrScanner";
 import AddressTextField, { AddressTextFieldProps } from "../AddressTextField/AddressTextField";

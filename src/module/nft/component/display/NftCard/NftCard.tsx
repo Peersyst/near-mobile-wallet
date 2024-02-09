@@ -1,11 +1,11 @@
 import { Col } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
-import { useTranslate } from "module/common/hook/useTranslate";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 import { TouchableWithoutFeedback } from "react-native";
 import { NftCardProps } from "./NftCard.types";
 import NftImage from "../NftImage/NftImage";
 import { memo } from "react";
+import useTranslate from "module/common/hook/useTranslate";
 
 const NftCard = ({ nft }: NftCardProps): JSX.Element => {
     const t = useTranslate();
@@ -28,7 +28,7 @@ const NftCard = ({ nft }: NftCardProps): JSX.Element => {
                             </Typography>
                         )}
                         {owner_id && (
-                            <Typography variant="body3Strong" numberOfLines={1} color={(p) => p.primary}>
+                            <Typography variant="body3Strong" numberOfLines={1} color="primary">
                                 {owner_id}
                             </Typography>
                         )}

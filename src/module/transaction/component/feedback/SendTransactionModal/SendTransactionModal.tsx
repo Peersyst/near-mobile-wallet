@@ -1,5 +1,5 @@
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { useState } from "react";
 import { SendTransactionModalProps } from "./SendTransactionModal.types";

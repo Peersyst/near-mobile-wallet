@@ -1,6 +1,6 @@
 import { Col } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
 import Advise, { AdviseProps } from "../Advise/Advise";
+import useTranslate from "module/common/hook/useTranslate";
 
 export type EmptyListComponentProps = Pick<AdviseProps, "title" | "text">;
 

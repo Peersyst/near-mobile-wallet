@@ -1,5 +1,5 @@
 import { useModal } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import WithdrawModal from "module/staking/component/core/WithdrawModal/WithdrawModal";
 import StakingSuccessScreen from "../StakingSuccessScreen";
 

@@ -1,4 +1,4 @@
-import { Nft } from "near-peersyst-sdk";
+import { Nft } from "../types";
 
 export const nft: Nft = {
     tokenId: "1",

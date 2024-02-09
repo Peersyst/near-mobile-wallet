@@ -1,7 +1,7 @@
 import { Col } from "@peersyst/react-native-components";
 import { config } from "config";
 import Button from "module/common/component/input/Button/Button";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import SendTransactionModal from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal";
 import SendSummary from "module/transaction/screen/SendConfirmationScreen/SendSummary";
 import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";

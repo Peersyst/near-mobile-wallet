@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MainBottomBarItem from "../MainBottomBarItem/MainBottomBarItem";
 import { QRCodeIcon } from "icons";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import QrScanner from "module/common/component/input/QrScanner/QrScanner";
 import useSignerModal from "module/signer/hooks/useSignerModal";
 import { parseSignerDeepLinkData } from "module/signer/utils/parseSignerDeepLinkData";

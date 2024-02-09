@@ -1,6 +1,6 @@
 import { useModal } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import stakeState from "module/staking/state/StakeState";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { useRecoilValue } from "recoil";
@@ -20,8 +20,8 @@ const UnstakeSuccessScreen = () => {
     return (
         <StakingSuccessScreen
             message={
-                <Typography color={(p) => p.status.success} variant="body3Regular">
-                    <Balance color={(p) => p.status.success} variant="body3Strong" balance={amount!} units="token" />
+                <Typography color="status.success" variant="body3Regular">
+                    <Balance color="status.success" variant="body3Strong" balance={amount!} units="token" />
                     {" " + translate("unstake_success")}
                 </Typography>
             }

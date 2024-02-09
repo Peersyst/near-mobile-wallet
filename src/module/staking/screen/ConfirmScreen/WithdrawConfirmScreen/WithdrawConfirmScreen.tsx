@@ -1,7 +1,7 @@
 import { useModal, useSetTab } from "@peersyst/react-native-components";
 import { useRecoilValue } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import StakingConfirmScreen from "../StakingConfirmScreen";
 import UseWithdraw from "module/staking/query/useWithdraw";
 import WithdrawModal from "module/staking/component/core/WithdrawModal/WithdrawModal";
