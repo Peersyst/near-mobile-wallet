@@ -15,9 +15,9 @@ describe("AddressTextField Test", () => {
         expect(screen.getByTestId("ActivityIndicator")).toBeDefined();
 
         //Update the input because of an invalid name
-        fireEvent.changeText(input, "manolo.testnut");
+        fireEvent.changeText(input, "m");
         expect(screen.getByTestId("ActivityIndicator")).toBeDefined();
-        expect(input.props.value).toBe("manolo.testnut");
+        expect(input.props.value).toBe("m");
         await waitFor(() => {
             screen.getByText(translate("invalid_address", { ns: "error" }));
         });

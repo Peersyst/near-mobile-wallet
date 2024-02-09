@@ -9,6 +9,7 @@ export const useGetActionLabel = ({
     transaction: { receiverAccountId, signerAccountId },
 }: Action): string => {
     const translate = useTranslate();
+
     switch (actionKind) {
         case TransactionActionKind.STAKE: {
             return translate("stake_added");
@@ -36,6 +37,9 @@ export const useGetActionLabel = ({
         }
         case EnhancedTransactionActionKind.TRANSFER_RECEIVE: {
             return `${translate("from")} ${signerAccountId}`;
+        }
+        case EnhancedTransactionActionKind.DELEGATE_CALL: {
+            return `${translate("delegateCall")} ${receiverAccountId}`;
         }
         default: {
             return translate("unknown_action"); //assert (maybe in the future there are new actions)

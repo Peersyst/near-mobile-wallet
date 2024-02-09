@@ -40,28 +40,28 @@
         "dAppLogoFallback": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/d57a615b-b77f-487d-95ee-714e659cb8a3.png",
         "recommendedDApps": [
             {
+                "name": "NEAR",
+                "description": "The OS for an Open Web.",
+                "url": "https://near.org/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/ea2d8bdc-c47a-423c-933a-b242a6e525cf.jpg",
+                "tag": "social",
+                "contractId": "social.near"
+            },
+            {
                 "name": "Ref Finance",
                 "description": "Ref Finance is a community-led, multi-purpose Decentralized Finance (DeFi) platform built on NEAR Protocol.",
-                "url": "https://www.ref.finance/",
+                "url": "https://app.ref.finance/",
                 "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/525f6f41-b6a1-46bd-94ef-23f64f09b4a2.png",
                 "tag": "dex",
                 "contractId": "asset-manager.orderly-network.near"
             },
             {
-                "name": "Learn NEAR Club",
-                "description": "Learn how to use and build on NEAR and Earn NEAR.",
-                "url": "https://learnnear.club/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/b23431ac-4ff4-41ed-95f9-522c2f185e0f.png",
-                "tag": "learning",
-                "contractId": "login.learnclub.near"
-            },
-            {
-                "name": "Near Social",
-                "description": "Decentralized Composable Frontends and Social Data Protocol for NEAR.",
-                "url": "https://near.social/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/9e615abb-f211-488e-9e96-e476da76df35.webp",
-                "tag": "social",
-                "contractId": "social.near"
+                "name": "Meta Pool",
+                "description": "Stake NEAR. Receive a liquid token to simultaneously accrue staking rewards and unlock liquidity to participate in DeFi activities",
+                "url": "https://metapool.app/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/647377ad-d8a3-4497-9ca6-2a41154664bc.png",
+                "tag": "liquidStaking",
+                "contractId": "meta-pool.near"
             },
             {
                 "name": "Burrow",
@@ -72,28 +72,28 @@
                 "contractId": "contract.main.burrow.near"
             },
             {
-                "name": "Paras",
-                "description": "NFT Marketplace | Expanding the endgame of NFTs on $NEAR $ASTR $DOT.",
-                "url": "https://paras.id/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/ac160f09-693a-4555-956a-fba67a7f8c62.png",
-                "tag": "nftMarketplace",
-                "contractId": "marketplace.paras.near"
+                "name": "Popula",
+                "description": "Onchain tools empowering communities to OWN, CONTROL and MONETISE their social data.",
+                "url": "https://popula.io/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/7047b4cb-2467-4396-a436-d14627ead2ab.jpg",
+                "tag": "social",
+                "contractId": "app.popula.near"
             },
             {
-                "name": "Linear",
-                "description": "Highest Yield, Instant Liquidity. Your Journey of DeFi on NEAR Starts Here.",
-                "url": "https://linearprotocol.org/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/64b43e0c-ae59-4f78-bbba-ffdbe54b6ae1.png",
-                "tag": "liquidStaking",
-                "contractId": "linear-protocol.near"
+                "name": "Near Social",
+                "description": "Decentralized Composable Frontends and Social Data Protocol for NEAR.",
+                "url": "https://near.social/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/9e615abb-f211-488e-9e96-e476da76df35.webp",
+                "tag": "social",
+                "contractId": "social.near"
             },
             {
-                "name": "Mintbase",
-                "description": "Mint, Sell, Trade NFTs on your own smart contract.",
-                "url": "https://www.mintbase.xyz/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/de27c900-818a-4faf-a856-df225fed1e57.webp",
-                "tag": "nftMarketplace",
-                "contractId": "mintbase1.near"
+                "name": "Learn NEAR Club",
+                "description": "Learn how to use and build on NEAR and Earn NEAR.",
+                "url": "https://learnnear.club/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/b23431ac-4ff4-41ed-95f9-522c2f185e0f.png",
+                "tag": "learning",
+                "contractId": "login.learnclub.near"
             },
             {
                 "name": "Jumbo",

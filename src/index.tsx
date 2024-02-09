@@ -6,6 +6,7 @@ import { Suspense } from "@peersyst/react-native-components";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { Platform, UIManager } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import "module/api/OpenApiConfig";
 
@@ -30,8 +31,12 @@ const App = (): JSX.Element => {
 
 export default function Root(): JSX.Element {
     return (
-        <Providers>
-            <App />
-        </Providers>
+        // `GestureHandlerRootView` enables all `react-native-gesture-handler` features.
+        // For example, `Swipeable` from `react-native-gesture-handler` will not trigger `Touchable`'s `onPress`.
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <Providers>
+                <App />
+            </Providers>
+        </GestureHandlerRootView>
     );
 }

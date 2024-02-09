@@ -1,5 +1,5 @@
 import { EnhancedTransactionActionKind, TransactionActionKind } from "near-peersyst-sdk";
-import { ArrowDownCircleIcon, ArrowUpCircleIcon, NearIcon, UserAddIcon, UserDeleteIcon, CodeIcon, LockIcon } from "icons";
+import { ArrowDownCircleIcon, ArrowUpCircleIcon, NearIcon, UserAddIcon, UserDeleteIcon, CodeIcon, LockIcon, UsersIcon } from "icons";
 import { ActionIcon } from "./ActionIcon.types";
 
 export const ACTION_ICONS: ActionIcon = {
@@ -37,6 +37,10 @@ export const ACTION_ICONS: ActionIcon = {
     },
     [EnhancedTransactionActionKind.TRANSFER_SEND]: {
         Icon: ArrowUpCircleIcon,
+        active: false,
+    },
+    [EnhancedTransactionActionKind.DELEGATE_CALL]: {
+        Icon: UsersIcon,
         active: false,
     },
 };
