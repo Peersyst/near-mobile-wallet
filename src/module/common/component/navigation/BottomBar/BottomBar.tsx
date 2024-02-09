@@ -6,7 +6,7 @@ import BottomBarItem from "./BottomBarItem/BottomBarItem";
 import { DatabaseIcon } from "module/common/icons/DatabaseIcon";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { capitalize } from "@peersyst/react-utils";
-import { config } from "config";
+import { config } from "refactor/common/config";
 import BottomBarQRScanner from "./BottomBarQRScanner/BottomBarQRScanner";
 import { MainScreens } from "../MainNavigatorGroup/MainScreens";
 

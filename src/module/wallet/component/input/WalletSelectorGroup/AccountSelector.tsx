@@ -2,7 +2,7 @@ import { Row, Selector } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { BalanceOperations } from "near-peersyst-sdk";
-import { config } from "config";
+import { config } from "refactor/common/config";
 import { formatHash } from "@peersyst/react-utils";
 
 export interface AccountSelectorProps {

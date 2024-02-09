@@ -1,4 +1,4 @@
-import { DAppMetadataDto } from "module/api/service";
+import { DAppMetadataDto } from "refactor/data-access/api/service";
 
 export interface SignMessageDetailsProps {
     receiver: string;

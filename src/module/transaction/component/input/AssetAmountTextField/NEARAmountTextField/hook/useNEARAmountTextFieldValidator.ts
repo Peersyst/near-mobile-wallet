@@ -1,4 +1,4 @@
-import { config } from "config";
+import { config } from "refactor/common/config";
 import { TextFieldProps } from "module/common/component/input/TextField/TextField.types";
 import { useTranslate } from "module/common/hook/useTranslate";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";

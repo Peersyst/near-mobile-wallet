@@ -1,5 +1,5 @@
 import { en } from "locale/locales/en/en";
-import { ApiError } from "module/api/service";
+import { ApiError } from "refactor/data-access/api/service";
 import { TFunction } from "react-i18next";
 
 export interface HandleApiErrorMessageResult {

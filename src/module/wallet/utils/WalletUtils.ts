@@ -1,4 +1,4 @@
-import { WALLET_GRADIENT_LENGTH } from "config/theme/baseTheme";
+import { WALLET_GRADIENT_LENGTH } from "refactor/ui/config/theme/baseTheme";
 import { BaseWallet, SecureWalletInfo, UnencryptedWalletInfo } from "../wallet.types";
 
 export class WalletUtils {

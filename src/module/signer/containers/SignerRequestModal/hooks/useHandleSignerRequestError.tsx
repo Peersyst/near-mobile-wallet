@@ -1,4 +1,4 @@
-import { SignerRequestDto } from "module/api/service";
+import { SignerRequestDto } from "refactor/data-access/api/service";
 import { useTranslate } from "module/common/hook/useTranslate";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";

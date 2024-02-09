@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { QueryResult } from "query-utils";
 import Queries from "../../../query/queries";
-import { config } from "config";
+import { config } from "refactor/common/config";
 import { useRecoilValue } from "recoil";
 import settingsState, { NetworkType } from "module/settings/state/SettingsState";
 import { Chains } from "near-peersyst-sdk";

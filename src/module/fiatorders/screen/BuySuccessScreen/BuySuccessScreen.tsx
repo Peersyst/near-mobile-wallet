@@ -1,5 +1,5 @@
 import { Col } from "@peersyst/react-native-components";
-import { config } from "config";
+import { config } from "refactor/common/config";
 import Button from "module/common/component/input/Button/Button";
 import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
 import useNavigation from "module/common/hook/useNavigation";

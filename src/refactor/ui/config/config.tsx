@@ -4,29 +4,29 @@ import { ChevronDownIcon } from "icons";
 import darkTheme from "./theme/darkTheme";
 import { AddressValidator } from "./validators/AddressValidator";
 import { PrivateKeyValidator } from "./validators/PrivateKeyValidator";
-import { RadioCheckedIcon } from "../module/common/icons/RadioCheckedIcon";
+import { RadioCheckedIcon } from "../../../module/common/icons/RadioCheckedIcon";
 import { RadioUncheckedIcon } from "module/common/icons/RadioUncheckedIcon";
-import { EnvConfig } from "./config.declarations";
-import Button from "../module/common/component/input/Button/Button";
-import { envConfigs } from "./configs";
+import Button from "../../../module/common/component/input/Button/Button";
+import { config } from "refactor/common/config";
 
-const environment = process.env;
-
-const envKey = process.env.CONFIG_ENV || environment.NODE_ENV!;
-
-if (!(envKey in envConfigs)) throw new Error(`${envKey} is not a valid env config`);
-
-const envConfig = envConfigs[envKey as EnvConfig];
-
-const config = createConfig({
-    ...envConfig,
+const uiConfig = createConfig({
+    projectName: config.projectName,
+    themes: {
+        default: lightTheme,
+        light: lightTheme,
+        dark: darkTheme,
+    },
+    validators: {
+        address: AddressValidator,
+        privateKey: PrivateKeyValidator,
+    },
     components: {
         BlockchainAddress: {
             blockchainLinks: {
-                mainnetAddress: envConfig.mainnetExplorerLink + "/accounts/",
-                mainnetTx: envConfig.mainnetExplorerLink + "/transactions/",
-                testnetAddress: envConfig.testnetExplorerLink + "/accounts/",
-                testnetTx: envConfig.testnetExplorerLink + "/transactions/",
+                mainnetAddress: config.mainnetExplorerLink + "/accounts/",
+                mainnetTx: config.mainnetExplorerLink + "/transactions/",
+                testnetAddress: config.testnetExplorerLink + "/accounts/",
+                testnetTx: config.testnetExplorerLink + "/transactions/",
             },
         },
         Button: {
@@ -85,15 +85,6 @@ const config = createConfig({
             },
         },
     },
-    themes: {
-        default: lightTheme,
-        light: lightTheme,
-        dark: darkTheme,
-    },
-    validators: {
-        address: AddressValidator,
-        privateKey: PrivateKeyValidator,
-    },
 });
 
-export default config;
+export default uiConfig;

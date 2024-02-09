@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
 import { Action } from "../components/display/SignRequestDetails/actions.types";
-import { SignerRequestDto, SignerRequestService } from "module/api/service";
+import { SignerRequestDto, SignerRequestService } from "refactor/data-access/api/service";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Queries from "../../../query/queries";
 import { createAction } from "module/signer/utils/near.transactions";

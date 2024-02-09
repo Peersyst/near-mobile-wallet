@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { StakingBalance } from "module/sdk";
 import { QueryResult } from "query-utils";
 import Queries from "../../../query/queries";
-import { config } from "config";
+import { config } from "refactor/common/config";
 
 export default function (index?: number): QueryResult<StakingBalance> {
     const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index);

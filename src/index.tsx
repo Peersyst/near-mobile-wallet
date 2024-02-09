@@ -1,8 +1,6 @@
 // Always import the module where the polyfills are defined.
-import "./polyfills";
-
-import "./module/api/OpenApiConfig";
-
+import "./refactor/common/polyfills";
+import "./refactor/data-access/api/OpenApiConfig";
 import "locale/i18n";
 
 import useCachedResources from "module/common/hook/useCachedResources";

@@ -1,4 +1,4 @@
-import { config } from "config";
+import { config } from "refactor/common/config";
 import { RecommendedDAppsFilters } from "../containers/RecommendedDApps/RecommendedDApps.types";
 import { useQuery } from "react-query";
 import Queries from "../../../query/queries";

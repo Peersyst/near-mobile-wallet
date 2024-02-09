@@ -12,13 +12,15 @@
     "signerFeature": {
         "enabled": true,
         "backendUrl": "",
+        "dAppLogoFallback": "",
         "recommendedDApps": [
             {
                 "name": "name",
                 "description": "description",
                 "url": "url",
                 "logoUrl": "logoUrl",
-                "tag": "dex"
+                "tag": "dex",
+                "contractId": "contractId"
             }
         ]
     }

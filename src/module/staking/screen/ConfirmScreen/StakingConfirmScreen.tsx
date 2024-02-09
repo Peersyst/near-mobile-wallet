@@ -3,7 +3,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import Typography from "module/common/component/display/Typography/Typography";
 import { useRecoilValue } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
-import { config } from "config";
+import { config } from "refactor/common/config";
 import ValidatorInformation from "module/staking/component/display/ValidatorInformation/ValidatorInformation";
 import Button from "module/common/component/input/Button/Button";
 import SendTransactionModal from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal";

@@ -1,5 +1,5 @@
-import { config } from "config";
-import { SignerRequestService } from "module/api/service";
+import { config } from "refactor/common/config";
+import { SignerRequestService } from "refactor/data-access/api/service";
 import Queries from "../../../query/queries";
 import { useQuery } from "react-query";
 

@@ -1,4 +1,4 @@
-import { PaletteGradient } from "config/theme/theme.declarations";
+import { PaletteGradient } from "refactor/ui/config/theme/theme.declarations";
 import { WalletUtils } from "../utils/WalletUtils";
 import useWalletState from "./useWalletState";
 import { useTheme } from "@peersyst/react-native-components";

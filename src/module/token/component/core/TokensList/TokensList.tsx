@@ -6,7 +6,7 @@ import { useRecoilValue } from "recoil";
 import { useRefetchQueries } from "../../../../../query/useRefetchQueries";
 import useWalletState from "module/wallet/hook/useWalletState";
 import Queries from "../../../../../query/queries";
-import { config } from "config";
+import { config } from "refactor/common/config";
 import useGetTokenPriceInUsd from "module/token/query/useGetTokenPriceInUsd";
 import EmptyTokenList from "../../feedback/EmptyTokenList/EmptyTokenList";
 

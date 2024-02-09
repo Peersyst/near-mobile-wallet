@@ -1,5 +1,5 @@
 import { QueryResult } from "query-utils";
-import { config } from "config";
+import { config } from "refactor/common/config";
 import { FiatCurrencyType } from "module/settings/state/SettingsState";
 import { useGetCoinPrice } from "./useGetCoinPrice";
 

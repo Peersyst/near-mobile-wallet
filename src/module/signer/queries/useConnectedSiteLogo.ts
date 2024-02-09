@@ -1,4 +1,4 @@
-import { config } from "config";
+import { config } from "refactor/common/config";
 import Queries from "../../../query/queries";
 import { UseQueryResult, useQuery } from "react-query";
 

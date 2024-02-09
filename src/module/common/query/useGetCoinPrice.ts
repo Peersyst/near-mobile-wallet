@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { QueryResult } from "query-utils";
-import { config } from "config";
+import { config } from "refactor/common/config";
 import Queries from "../../../query/queries";
 import { useRecoilValue } from "recoil";
 import settingsState, { FiatCurrencyType } from "module/settings/state/SettingsState";

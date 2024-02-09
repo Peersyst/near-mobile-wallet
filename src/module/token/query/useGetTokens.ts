@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import { Token } from "near-peersyst-sdk";
 import Queries from "../../../query/queries";
-import { config } from "config";
+import { config } from "refactor/common/config";
 
 const useGetTokens = (index?: number): QueryResult<Token[]> => {
     const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index);

@@ -1,7 +1,7 @@
 import Queries from "../../../query/queries";
 import { useQuery } from "react-query";
 import useServiceInstance from "../hook/useServiceInstance";
-import { config } from "config";
+import { config } from "refactor/common/config";
 
 const useGetBalance = (index?: number) => {
     const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index);
