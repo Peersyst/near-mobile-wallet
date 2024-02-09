@@ -3,9 +3,14 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import { Manrope_300Light, Manrope_400Regular, Manrope_600SemiBold } from "@expo-google-fonts/manrope";
 import { i18nextInitializationPromise } from "locale";
+import { useInitFactories } from "refactor/ui/common/hooks/useInitFactories";
+import { useLoadFactories } from "refactor/ui/common/hooks/useLoadFactories";
 
 export default function useCachedResources(): boolean {
     const [isLoadingComplete, setLoadingComplete] = useState(false);
+
+    const areFactoriesInitialized = useInitFactories();
+    useLoadFactories(areFactoriesInitialized);
 
     // Load any resources or data that we need prior to rendering the app
     useEffect(() => {
