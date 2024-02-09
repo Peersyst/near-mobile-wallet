@@ -37,7 +37,6 @@
         "@react-navigation/native-stack": "^6.3.16",
         "assert": "^2.1.0",
         "big-integer": "^1.6.51",
-        "bip39": "^3.1.0",
         "borsh": "^1.0.0",
         "buffer": "^6.0.3",
         "color": "^4.2.3",
