@@ -3,7 +3,7 @@ import DisconnectableDApp from "../../feedback/DisconnectableDApp/Disconnectable
 import { DisconnectableDAppListProps } from "./DisconnectableDAppList.types";
 import { List } from "@peersyst/react-native-components";
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 
 const DisconnectableDAppList = ({ dapps, loading = false, ...rest }: DisconnectableDAppListProps): JSX.Element => {
     const translate = useTranslate();

@@ -1,7 +1,7 @@
 import { Col, ColProps, Label } from "@peersyst/react-native-components";
 import ExplorerButton from "../../input/ExplorerButton/ExplorerButton";
 import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import ShareTxHashButton from "../../input/ShareTxHashButton/ShareTxHashButton";
 
 export interface SendTxHashContentProps {

@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import settingsState from "module/settings/state/SettingsState";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { useDebounce } from "@peersyst/react-hooks";

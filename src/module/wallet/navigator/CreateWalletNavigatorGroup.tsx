@@ -11,7 +11,7 @@ import { useBackHandler } from "@react-native-community/hooks";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { useResetRecoilState } from "recoil";
 import createWalletState from "module/wallet/state/CreateWalletState";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import LightThemeProvider from "module/common/component/util/ThemeProvider/LightThemeProvider";
 import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 

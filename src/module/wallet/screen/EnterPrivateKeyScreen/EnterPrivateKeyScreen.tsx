@@ -1,6 +1,6 @@
 import { Col, Form } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import TextField from "module/common/component/input/TextField/TextField";
 import { useEffect, useState } from "react";

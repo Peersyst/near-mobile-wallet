@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import walletState from "module/wallet/state/WalletState";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 import BiometricNumericPad from "module/common/component/input/BiometricNumericPad/BiometricNumericPad";
 

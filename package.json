@@ -19,9 +19,7 @@
         "eject": "expo eject",
         "test": "jest --maxWorkers=30%",
         "test:only": "jest --maxWorkers=30% --",
-        "test:unit": "jest --maxWorkers=30% ./test/unit",
-        "test:unit:ci": "jest --runInBand ./test/unit",
-        "test:integration": "jest --maxWorkers=30% ./test/integration",
+        "test:ci": "jest --runInBand",
         "test:debug": "jest --no-cache --runInBand || true",
         "check-types": "tsc --noemit",
         "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0"

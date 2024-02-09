@@ -1,6 +1,6 @@
 import { Col, Row } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { ValidatorRoot, ValidatorStatusTag } from "module/staking/component/display/ValidatorInformation/ValidatorInformation.styles";
 import Account from "module/wallet/component/display/Account/Account";
 import { ValidatorInformationProps } from "module/staking/component/display/ValidatorInformation/ValidatorInformation.types";

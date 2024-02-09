@@ -1,7 +1,7 @@
 import { Spinner } from "@peersyst/react-native-components";
 import TextField from "module/common/component/input/TextField/TextField";
 import { TextFieldProps } from "module/common/component/input/TextField/TextField.types";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { useAddressTextField } from "./hooks/useAddressTextField";
 
 export type AddressTextFieldProps = Omit<TextFieldProps, "value" | "onChange" | "autoCapitalize" | "autoCorrect"> & {

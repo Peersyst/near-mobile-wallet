@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import useWalletState from "module/wallet/hook/useWalletState";
 

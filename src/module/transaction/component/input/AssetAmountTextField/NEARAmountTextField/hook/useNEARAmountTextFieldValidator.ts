@@ -1,6 +1,6 @@
 import { config } from "config";
 import { TextFieldProps } from "module/common/component/input/TextField/TextField.types";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { isNEARAmountGreaterOrEqualThanThreshold, isNEARAmountGreaterThanThreshold, substractNearAmounts } from "near-peersyst-sdk";

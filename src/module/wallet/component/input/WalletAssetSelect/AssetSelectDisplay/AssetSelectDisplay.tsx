@@ -1,7 +1,7 @@
 import { Col, Row } from "@peersyst/react-native-components";
 import Container from "module/common/component/display/Container/Container";
 import Typography from "module/common/component/display/Typography/Typography";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import Fee from "module/transaction/component/display/Fee/Fee";
 import { TouchableWithoutFeedback } from "react-native";
 import { useAssetSelect } from "../hook/useAssetSelect";

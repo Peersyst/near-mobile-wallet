@@ -1,7 +1,7 @@
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import { Row, useConfig, useModal } from "@peersyst/react-native-components";
 import ReceiveModal from "module/transaction/component/core/ReceiveModal/ReceiveModal";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { capitalize } from "@peersyst/react-utils";
 import { WalletCardButton } from "./WalletCardButtons.styles";
 import useIsMainnet from "module/settings/hook/useIsMainnet";

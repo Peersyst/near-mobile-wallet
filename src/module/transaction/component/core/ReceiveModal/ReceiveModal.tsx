@@ -1,6 +1,6 @@
 import { createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import QRCode from "module/transaction/component/display/QRCode/QRCode";
 import Typography from "module/common/component/display/Typography/Typography";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
@@ -27,7 +27,7 @@ const ReceiveModal = createBackdrop<ExposedBackdropProps>(({ open: openProp, onC
         >
             <ReceiveModalWrapper gap={24}>
                 <QRCode style={{ padding: 24 }} />
-                <Typography textAlign="center" variant="body3Regular" color={(palette) => palette.overlay["60%"]}>
+                <Typography textAlign="center" variant="body3Regular" color="overlay.60%">
                     {translate("receive_info")}
                 </Typography>
                 <BlockchainAddressCard address={address} showCopyIcon />

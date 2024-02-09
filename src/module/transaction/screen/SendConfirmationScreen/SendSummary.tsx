@@ -1,7 +1,7 @@
 import { Col } from "@peersyst/react-native-components";
 import BaseSendSummary, { BaseSendSummaryProps } from "../../component/display/BaseSendSummary/BaseSendSummary";
 import SummaryField from "../../component/display/SummaryField/SummaryField";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
 
 export interface SendSummaryProps extends BaseSendSummaryProps {

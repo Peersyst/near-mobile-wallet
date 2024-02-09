@@ -5,7 +5,7 @@ import { useResetRecoilState, useSetRecoilState } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import SendConfirmationScreen from "module/transaction/screen/SendConfirmationScreen/SendConfirmationScreen";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { AssetType } from "module/wallet/wallet.types";
 import { SendScreens } from "module/transaction/screen/SendScreens.types";

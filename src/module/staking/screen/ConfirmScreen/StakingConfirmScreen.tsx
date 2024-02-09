@@ -1,5 +1,5 @@
 import { Col, Label } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import Typography from "module/common/component/display/Typography/Typography";
 import { useRecoilValue } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";

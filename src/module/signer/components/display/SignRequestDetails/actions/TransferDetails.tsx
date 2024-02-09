@@ -1,5 +1,5 @@
 import { ActionDetailsProps } from "../SignRequestDetails.types";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { TransferActionParams } from "../actions.types";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import Container from "module/common/component/display/Container/Container";

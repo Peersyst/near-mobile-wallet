@@ -1,6 +1,6 @@
 import { Col } from "@peersyst/react-native-components";
 import Advise from "module/common/component/display/Advise/Advise";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { Bubble } from "./Bubble/Bubble";
 
