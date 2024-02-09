@@ -4,7 +4,8 @@ import stakeRecoilState from "module/staking/state/StakeState";
 import { useTranslate } from "module/common/hook/useTranslate";
 import StakingConfirmScreen from "../StakingConfirmScreen";
 import UseWithdraw from "module/staking/query/useWithdraw";
-import WithdrawModal, { WithdrawModalScreens } from "module/staking/component/core/WithdrawModal/WithdrawModal";
+import WithdrawModal from "module/staking/component/core/WithdrawModal/WithdrawModal";
+import { WithdrawModalScreens } from "module/staking/component/core/WithdrawModal/WithdrawModal.types";
 
 const WithdrawConfirmScreen = () => {
     const { validator } = useRecoilValue(stakeRecoilState);

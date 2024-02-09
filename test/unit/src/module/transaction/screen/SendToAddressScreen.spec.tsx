@@ -3,9 +3,9 @@ import SendToAddressScreen from "module/transaction/screen/SendToAddressScreen/S
 import * as Recoil from "recoil";
 import * as Genesys from "@peersyst/react-native-components";
 import { fireEvent, waitFor } from "@testing-library/react-native";
-import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import { MOCKED_NAMED_ADDRESS, UseGetBalanceMock, UseServiceInstanceMock, UseWalletStateMock } from "test-mocks";
 import { config } from "config";
+import { SendScreens } from "module/transaction/screen/SendScreens.types";
 
 describe("SendToAddressScreen tests", () => {
     const {
