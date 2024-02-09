@@ -2,6 +2,7 @@ import {
     AccessKey,
     Action,
     ActionKind,
+    Chains,
     EnhancedTransactionActionKind,
     StakingDeposit,
     TransactionActionKind,
@@ -115,18 +116,23 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
         return apiDeposits.map(this.parseStakingDepositApiDtoDto);
     }
 
-    async getLikelyTokens({ address }: NearApiServiceParams): Promise<string[]> {
-        const accounts = (
+    async getLikelyTokens({ address, chain }: NearApiServiceParams): Promise<string[]> {
+        const contractIds = (
             await this.handleFetch<LikelyResponseApiDto>(`${this.baseUrl}/account/${address}/likelyTokensFromBlock?fromBlockTimestamp=0`)
         ).list;
-        return this.parseNearAccounts(accounts);
+        if (chain === Chains.MAINNET) {
+            if (!contractIds.includes("game.hot.tg")) {
+                contractIds.push("game.hot.tg");
+            }
+        }
+        return this.parseNearAccounts(contractIds);
     }
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
-        const accounts = (
+        const contractIds = (
             await this.handleFetch<LikelyResponseApiDto>(`${this.baseUrl}/account/${address}/likelyNFTsFromBlock?fromBlockTimestamp=0`)
         ).list;
-        return this.parseNearAccounts(accounts);
+        return this.parseNearAccounts(contractIds);
     }
 
     async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
