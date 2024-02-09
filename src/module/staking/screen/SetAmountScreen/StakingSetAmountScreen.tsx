@@ -2,7 +2,7 @@ import { Col, Form } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import stakeRecoilState from "module/staking/state/StakeState";
 import { useRecoilState } from "recoil";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import NEARAmountWithMaxTextField from "module/transaction/component/input/NEARAmountWithMaxTextField/NEARAmountWithMaxTextField";
 import { ReactElement } from "react";

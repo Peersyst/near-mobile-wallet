@@ -5,7 +5,7 @@ import { SignerModalProps } from "module/signer/hooks/useSignerModal";
 import SignatureScaffold from "module/signer/components/layout/SignatureScaffold/SignatureScaffold";
 import useSignRequestActions from "module/signer/queries/useSignRequestActions";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import useHandleSignerRequestError from "./hooks/useHandleSignerRequestError";
 import useSignerRequest from "module/signer/hooks/useSignerRequest";
 import useRejectSignerRequest from "module/signer/queries/useRejectSignerRequest";

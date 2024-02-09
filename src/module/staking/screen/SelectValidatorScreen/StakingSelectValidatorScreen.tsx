@@ -33,7 +33,7 @@ const StakingSelectValidatorScreen = ({
 
     return (
         <Col flex={1} style={{ position: "absolute", height: "100%", width: "100%" }} gap="8%">
-            <Typography color={(palette) => palette.gray["300"]} textAlign="center" variant="body3Strong">
+            <Typography color="gray.300" textAlign="center" variant="body3Strong">
                 {message}
             </Typography>
             <StakeValidatorSelect onSelected={handleOnSelected} {...rest} />

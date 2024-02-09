@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { Action, EnhancedTransactionActionKind, TransactionActionKind } from "near-peersyst-sdk";
 
 export const useGetActionLabel = ({

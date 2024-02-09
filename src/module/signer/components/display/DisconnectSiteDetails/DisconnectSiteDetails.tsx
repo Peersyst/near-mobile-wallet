@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { DisconnectSiteDetailsProps } from "./DisconnectSiteDetails.types";
 import ActionDetailsScaffold from "../../layout/ActionDetailsScaffold/ActionDetailsScaffold";
 import useConnectedSiteLogo from "module/signer/queries/useConnectedSiteLogo";

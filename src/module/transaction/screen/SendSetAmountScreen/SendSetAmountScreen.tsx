@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import sendRecoilState, { SendState } from "module/transaction/state/SendState";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import WalletAssetSelect from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect";
 import AssetAmountTextField from "module/transaction/component/input/AssetAmountTextField/AssetAmountTextField";
 import { useState } from "react";

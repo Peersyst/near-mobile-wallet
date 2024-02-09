@@ -1,9 +1,10 @@
-import { DefaultNamespace, useTranslation, UseTranslationOptions, UseTranslationResponse } from "react-i18next";
-import { KeyPrefix, Namespace } from "i18next";
+import { FallbackNs, useTranslation, UseTranslationOptions, UseTranslationResponse } from "react-i18next";
+import { KeyPrefix, FlatNamespace } from "i18next";
+import { $Tuple } from "react-i18next/helpers";
 
-export function useTranslate<N extends Namespace = DefaultNamespace, TKPrefix extends KeyPrefix<N> = undefined>(
-    ns?: N | Readonly<N>,
-    options?: UseTranslationOptions<TKPrefix>,
-): UseTranslationResponse<N, TKPrefix>["t"] {
-    return useTranslation<N, TKPrefix>(ns, options).t;
+export default function useTranslate<
+    Ns extends FlatNamespace | $Tuple<FlatNamespace> | undefined = undefined,
+    TKPrefix extends KeyPrefix<FallbackNs<Ns>> = undefined,
+>(ns?: Ns | Readonly<Ns>, options?: UseTranslationOptions<TKPrefix>): UseTranslationResponse<FallbackNs<Ns>, TKPrefix>["t"] {
+    return useTranslation<Ns, TKPrefix>(ns, options).t;
 }

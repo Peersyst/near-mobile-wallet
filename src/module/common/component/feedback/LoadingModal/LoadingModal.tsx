@@ -2,7 +2,7 @@ import { LoadingModalProps } from "./LoadingModal.types";
 import { DarkLoadingModalOverlay, LoadingModalRoot, SuccessIcon, LoadingModalContent, LoadingModalMessage } from "./LoadingModal.styles";
 import { useEffect, useState } from "react";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { Backdrop, Col, Spinner } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import Logo from "../../display/Logo/Logo";

@@ -1,6 +1,6 @@
 import { useToast } from "@peersyst/react-native-components";
 import * as Clipboard from "expo-clipboard";
-import { useTranslate } from "./useTranslate";
+import useTranslate from "./useTranslate";
 
 export interface UseCopyToClipboardParams {
     message?: string;

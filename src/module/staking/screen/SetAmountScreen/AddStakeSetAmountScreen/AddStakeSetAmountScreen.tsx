@@ -1,5 +1,5 @@
 import { useSetTab } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import StakingSetAmountScreen from "../StakingSetAmountScreen";
 import { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal.types";
 

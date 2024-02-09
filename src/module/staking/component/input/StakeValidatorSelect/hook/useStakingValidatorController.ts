@@ -17,7 +17,7 @@ export default function useStakingValidatorController(validators: Validator[]) {
         handleChange: setAccountId,
         debouncedValue: query,
         debouncing,
-    } = useDebounce("", undefined, QUERY_FILTER_DEBOUNCE);
+    } = useDebounce("", { delay: QUERY_FILTER_DEBOUNCE });
 
     const [queryValidators, setQueryValidators] = useState<Validator[]>(validators); //Final array of validators (filtered)
 

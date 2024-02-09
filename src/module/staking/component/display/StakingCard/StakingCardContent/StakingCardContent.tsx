@@ -1,6 +1,6 @@
 import { SlashIcon } from "icons";
 import { Row } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import useGetTotalStaking from "module/staking/query/useGetTotalStaking";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { Wallet } from "module/wallet/state/WalletState";

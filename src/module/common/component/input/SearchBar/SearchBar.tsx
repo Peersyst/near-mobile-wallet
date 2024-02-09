@@ -1,7 +1,7 @@
 import { Spinner } from "@peersyst/react-native-components";
 import { SearchBarProps } from "./SearchBar.types";
 import { useDebounce } from "@peersyst/react-hooks";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { SearchBarIcon, SearchBarRoot, SearchBarSuffix } from "./SearchBar.styles";
 
 const SearchBar = ({
