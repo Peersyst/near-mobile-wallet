@@ -47,6 +47,7 @@ const SendToAddressScreen = () => {
                     defaultValue={sendState.receiverAddress}
                     senderWalletIndex={currentSenderWalletIndex}
                     name="receiver"
+                    required
                 />
                 <Col gap={8}>
                     <Button type="submit" fullWidth>

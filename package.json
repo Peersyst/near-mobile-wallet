@@ -30,7 +30,7 @@
         "@expo-google-fonts/manrope": "^0.2.2",
         "@expo/config-plugins": "~7.2.2",
         "@peersyst/react-hooks": "^2.2.10",
-        "@peersyst/react-native-components": "3.5.0-alpha.0",
+        "@peersyst/react-native-components": "^3.5.0-alpha.1",
         "@peersyst/react-native-styled": "^3.2.3",
         "@peersyst/react-types": "^1.6.2",
         "@peersyst/react-utils": "^2.4.1",
