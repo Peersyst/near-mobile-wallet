@@ -12,6 +12,7 @@ export class WalletUtils {
     static getWallet<W extends BaseWallet>(index: number, wallets: W[] | undefined): W | undefined {
         if (!wallets || index > wallets.length) return undefined;
         const wallet = wallets[index];
+        if (!wallet) return undefined;
         if (wallet.index === index) return wallet; //Avoid filtering if they are in order
         return wallets.find((wallet) => wallet.index === index);
     }
