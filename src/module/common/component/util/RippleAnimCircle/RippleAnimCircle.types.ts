@@ -1,9 +1,9 @@
-import { ScaleTransform, NativeSyntheticEvent, NativeTouchEvent } from "react-native";
+import { NativeSyntheticEvent, NativeTouchEvent } from "react-native";
 
 export type RippleFunctionType = (param?: any, ev?: NativeSyntheticEvent<NativeTouchEvent>) => void;
 
 export interface RippleAnimCircleProps {
-    scaleStart?: ScaleTransform["scale"];
+    scaleStart?: number;
     size?: number;
     zIndex?: number;
     color1?: string;

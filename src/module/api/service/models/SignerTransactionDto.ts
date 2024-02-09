@@ -7,3 +7,4 @@ export type SignerTransactionDto = {
     receiverId?: string;
     actions: Array<any>;
 };
+

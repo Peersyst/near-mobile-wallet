@@ -6,3 +6,4 @@ export type SignerRequestStatusDto = {
     id: string;
     status: 'pending' | 'approved' | 'rejected';
 };
+

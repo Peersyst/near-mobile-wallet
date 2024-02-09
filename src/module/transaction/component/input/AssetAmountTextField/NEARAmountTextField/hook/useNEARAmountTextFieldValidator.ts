@@ -78,9 +78,10 @@ export const useNEARAmountTextFieldValidator = ({
     ];
 
     const error =
-        finalNotEnoughBalanceError ||
-        finalMaxAmountError ||
-        (isAmountDecimalsGreaterThanTokenDecimals ? finalMinAmountError : finalNotGreaterThanZeroError);
+        amount !== "" &&
+        (finalNotEnoughBalanceError ||
+            finalMaxAmountError ||
+            (isAmountDecimalsGreaterThanTokenDecimals ? finalMinAmountError : finalNotGreaterThanZeroError));
 
     return {
         error,

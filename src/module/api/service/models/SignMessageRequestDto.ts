@@ -15,3 +15,4 @@ export type SignMessageRequestDto = {
     receiverMetadata?: DAppMetadataDto;
     status: 'pending' | 'approved' | 'rejected';
 };
+
