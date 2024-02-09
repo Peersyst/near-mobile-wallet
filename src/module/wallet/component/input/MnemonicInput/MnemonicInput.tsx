@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Col, useFormNotification } from "@peersyst/react-native-components";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
 import TextField from "module/common/component/input/TextField/TextField";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import Advise from "module/common/component/display/Advise/Advise";
 
 export const MnemonicInput = (): JSX.Element => {

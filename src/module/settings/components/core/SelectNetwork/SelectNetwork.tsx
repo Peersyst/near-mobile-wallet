@@ -1,7 +1,7 @@
 import settingsState, { NetworkType } from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
 import { SelectOption, useConfig } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
 import { Chains } from "near-peersyst-sdk";
 import useChangeNetworkModal from "../../../../wallet/hook/useChangeNetwork";

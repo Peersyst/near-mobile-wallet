@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { BlockchainAddressProps } from "module/common/component/display/BlockchainAddress/BlockchainAddress";
 import useExplorerButton from "./useExplorerButton/useExplorerButton";
 import ExternalLinkButton, { ExternalLinkButtonProps } from "module/common/component/input/ExternalLinkButton/ExternalLinkButton";

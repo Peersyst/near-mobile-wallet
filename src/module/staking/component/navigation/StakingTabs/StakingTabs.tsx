@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
 import StakingDetails from "module/staking/component/display/MyStakingList/MyStakingList";
 import MainTabs from "module/main/component/navigation/MainTabs/MainTabs";

@@ -18,10 +18,7 @@ export default function Providers({ children }: PropsWithChildren<unknown>): JSX
                         <StylesheetProvider>
                             <ToastProvider>
                                 <QueryClientProvider>
-                                    <WalletColorProvider>
-                                        {children}
-                                        {/*{process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}*/}
-                                    </WalletColorProvider>
+                                    <WalletColorProvider>{children}</WalletColorProvider>
                                 </QueryClientProvider>
                             </ToastProvider>
                         </StylesheetProvider>

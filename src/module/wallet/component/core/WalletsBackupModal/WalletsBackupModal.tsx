@@ -2,7 +2,7 @@ import { createModal, TabPanel, Tabs } from "@peersyst/react-native-components";
 import WalletsBackupAdvise from "module/wallet/component/core/WalletsBackupModal/WalletsBackupAdvise/WalletsBackupAdvise";
 import { useState } from "react";
 import WalletMnemonicBackup from "module/wallet/component/core/WalletsBackupModal/WalletMnemonicBackup/WalletMnemonicBackup";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { WalletBackupModalRoot } from "./WalletsBackupModal.styles";
 import { useRecoilValue } from "recoil";
 import backupWalletState from "module/wallet/state/BackUpWalletState";

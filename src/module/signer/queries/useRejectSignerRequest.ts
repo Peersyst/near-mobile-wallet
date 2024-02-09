@@ -1,6 +1,6 @@
 import { useToast } from "@peersyst/react-native-components";
 import { SignerRequestDto, SignerRequestService } from "refactor/data-access/api/service";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { MutationOptions } from "query-utils";
 import { UseMutationResult, useMutation } from "react-query";
 

@@ -1,6 +1,6 @@
 import { useToast } from "@peersyst/react-native-components";
 import { SignerRequestService } from "refactor/data-access/api/service";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { MutationOptions, UseMutationResult, useMutation } from "query-utils";
 
 export default function useRejectMessageRequest({

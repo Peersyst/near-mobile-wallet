@@ -3,7 +3,7 @@ import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import MnemonicList from "module/wallet/component/display/MnemonicList/MnemonicList";
 import { useMemo } from "react";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import Advise from "module/common/component/display/Advise/Advise";
 import { NearSDKService } from "near-peersyst-sdk";
 

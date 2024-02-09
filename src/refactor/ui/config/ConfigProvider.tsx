@@ -1,5 +1,5 @@
 import { Config, ConfigProvider as GenesysConfigProvider } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import settingsState from "module/settings/state/SettingsState";
 import { ReactNode, useMemo } from "react";
 import { useRecoilValue } from "recoil";
@@ -21,7 +21,11 @@ const ConfigProvider = ({ children }: ConfigProviderProps): JSX.Element => {
         };
     }, [translate, locale]);
 
-    return <GenesysConfigProvider config={config}>{children}</GenesysConfigProvider>;
+    return (
+        <GenesysConfigProvider config={config} storeTheme>
+            {children}
+        </GenesysConfigProvider>
+    );
 };
 
 export default ConfigProvider;

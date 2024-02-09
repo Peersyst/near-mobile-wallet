@@ -3,7 +3,7 @@ import { config } from "refactor/common/config";
 import Button from "module/common/component/input/Button/Button";
 import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
 import useNavigation from "module/common/hook/useNavigation";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import OrderSuccess from "module/fiatorders/components/feedback/OrderSuccess/OrderSuccess";
 import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
 

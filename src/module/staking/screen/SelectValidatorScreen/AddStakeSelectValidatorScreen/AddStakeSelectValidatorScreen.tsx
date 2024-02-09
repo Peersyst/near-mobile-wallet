@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import useGetAllValidators from "module/staking/query/useGetAllValidators";
 import { useSetTab } from "@peersyst/react-native-components";
 import StakingSelectValidatorScreen from "../StakingSelectValidatorScreen";

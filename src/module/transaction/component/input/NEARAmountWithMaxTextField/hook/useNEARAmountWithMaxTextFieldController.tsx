@@ -1,6 +1,6 @@
 import { config } from "refactor/common/config";
 import useNativeTokenConversion from "module/common/hook/useNativeTokenConversion";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import settingsState from "module/settings/state/SettingsState";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
 import { FIAT_THRESHOLDS } from "module/wallet/component/display/FiatBalance/fiatThresholds";

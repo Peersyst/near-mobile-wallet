@@ -1,6 +1,6 @@
 import { createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import StakeModal, { ModalTabs } from "module/staking/component/core/StakeModal/StakeModal";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import UnstakeSelectValidatorScreen from "module/staking/screen/SelectValidatorScreen/UnstakeSelectValidatorScreen/UnstakeSelectValidatorScreen";
 import UnstakeConfirmScreen from "module/staking/screen/ConfirmScreen/UnstakeConfirmScreen/UnstakeConfirmScreen";
 import UnstakeSuccessScreen from "module/staking/screen/SuccessScreen/UnstakeSuccessScreen/UnstakeSuccessScreen";

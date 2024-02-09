@@ -1,7 +1,7 @@
 import { config } from "refactor/common/config";
 import { TypographyVariant } from "refactor/ui/config/theme/typography";
 import Typography, { TypographyProps } from "module/common/component/display/Typography/Typography";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import Balance from "module/wallet/component/display/Balance/Balance";
 
 export interface FeeProps extends Omit<TypographyProps, "variant"> {

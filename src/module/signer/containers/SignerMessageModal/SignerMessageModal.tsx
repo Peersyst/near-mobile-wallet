@@ -4,7 +4,7 @@ import SignatureScaffold from "module/signer/components/layout/SignatureScaffold
 import SignMessageDetails from "module/signer/components/display/SignMessageDetails/SignMessageDetails";
 import { SignerModalProps } from "module/signer/hooks/useSignerModal";
 import useGetSignMessageRequest from "module/signer/queries/useGetSignMessageRequest";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import useSignMessage from "module/signer/queries/useSignMessage";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
