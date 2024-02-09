@@ -1,3 +1,4 @@
+/* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -12,7 +13,10 @@ export const $SignerTransactionDto = {
         actions: {
             type: 'array',
             contains: {
-                properties: {
+                type: 'dictionary',
+                contains: {
+                    properties: {
+                    },
                 },
             },
             isRequired: true,
