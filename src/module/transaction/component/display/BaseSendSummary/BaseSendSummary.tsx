@@ -80,8 +80,7 @@ const BaseSendSummary = ({
                             <>
                                 {translate("total")}
                                 {" · "}
-                                <TotalText
-                                    as={Balance}
+                                <Balance
                                     options={{
                                         maximumFractionDigits: totalDecimals,
                                         minimumFractionDigits: totalDecimals,
