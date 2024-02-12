@@ -13,7 +13,7 @@
         "web:fresh": "yarn start:fresh --web",
         "generate": "yarn generate:openapi && yarn generate:icons && yarn generate:images",
         "generate:icons": "node ./src/script/iconGeneratorNative.js ./src/refactor/ui/assets/icons/ ./src/refactor/ui/common/icons/ && prettier --write ./src/refactor/ui/common/icons/",
-        "generate:images": "node ./src/script/imagesGenerator.js ./src/refactor/assets/images/",
+        "generate:images": "node ./src/script/imagesGenerator.js ./src/refactor/ui/assets/images/",
         "generate-react-native-components-icons": "node ./src/script/iconGeneratorNative.js ./src/module/common/component/base/assets/svgs/ ./src/module/common/component/base/assets/icons/ && prettier --write ./src/module/common/component/base/assets/icons/",
         "generate:openapi": "openapi -i openapi-spec.json -o src/module/api/service --exportSchemas=true --useUnionTypes",
         "eject": "expo eject",
