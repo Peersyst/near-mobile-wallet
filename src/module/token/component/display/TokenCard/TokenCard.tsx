@@ -17,7 +17,7 @@ const TokenCard = ({ token }: TokenCardProps): JSX.Element => {
         <MainListCard alignItems="center" justifyContent="space-between">
             <Row alignItems="center" gap={16}>
                 <TokenIcon token={token} />
-                <Typography variant="body3Strong" numberOfLines={1} style={{ maxWidth: "70%" }}>
+                <Typography variant="body3Strong" numberOfLines={1} style={{ flex: 0.6 }}>
                     {name}
                 </Typography>
             </Row>
