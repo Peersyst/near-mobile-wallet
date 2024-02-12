@@ -10,7 +10,6 @@ export interface SettingsState {
     locale?: LocaleType;
     fiat: FiatCurrencyType;
     network: NetworkType;
-    loading?: boolean;
     biometrics: boolean;
 }
 
