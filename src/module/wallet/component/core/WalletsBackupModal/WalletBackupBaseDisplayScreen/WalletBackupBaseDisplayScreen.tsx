@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Col, Spinner } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import Advise from "module/common/component/display/Advise/Advise";
 
 export interface WalletBackupBaseDisplayProps {

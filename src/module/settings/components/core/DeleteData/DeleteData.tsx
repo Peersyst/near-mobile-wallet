@@ -4,7 +4,7 @@ import { serviceInstancesMap } from "module/wallet/state/ServiceInstances/Servic
 import { SettingsStorage } from "module/settings/SettingsStorage";
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
 import { useQueryClient } from "react-query";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import useWalletState from "module/wallet/hook/useWalletState";
 import useCancelableDialog from "module/common/hook/useCancelableDialog";
 import { useState } from "react";

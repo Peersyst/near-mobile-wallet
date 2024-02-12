@@ -1,3 +1,4 @@
+/* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -8,13 +9,10 @@ import type { SignerRequestStatusDto } from '../models/SignerRequestStatusDto';
 import type { SignMessageRequestDto } from '../models/SignMessageRequestDto';
 import type { SignMessageRequestPayload } from '../models/SignMessageRequestPayload';
 import type { SignRequest } from '../models/SignRequest';
-
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
-
 export class SignerRequestService {
-
     /**
      * Create signer request
      * @param requestBody
@@ -31,7 +29,6 @@ export class SignerRequestService {
             mediaType: 'application/json',
         });
     }
-
     /**
      * Get signer request status
      * @param id
@@ -49,7 +46,6 @@ export class SignerRequestService {
             },
         });
     }
-
     /**
      * Approve signer request
      * @param id
@@ -71,7 +67,6 @@ export class SignerRequestService {
             mediaType: 'application/json',
         });
     }
-
     /**
      * Reject signer request
      * @param id
@@ -89,7 +84,6 @@ export class SignerRequestService {
             },
         });
     }
-
     /**
      * Get signer request
      * @param id
@@ -107,7 +101,6 @@ export class SignerRequestService {
             },
         });
     }
-
     /**
      * Send message to signer
      * @param requestBody
@@ -124,7 +117,6 @@ export class SignerRequestService {
             mediaType: 'application/json',
         });
     }
-
     /**
      * Get signer message request
      * @param id
@@ -142,7 +134,6 @@ export class SignerRequestService {
             },
         });
     }
-
     /**
      * @param id
      * @param requestBody
@@ -163,7 +154,6 @@ export class SignerRequestService {
             mediaType: 'application/json',
         });
     }
-
     /**
      * @param id
      * @returns SignMessageRequestDto
@@ -180,5 +170,4 @@ export class SignerRequestService {
             },
         });
     }
-
 }

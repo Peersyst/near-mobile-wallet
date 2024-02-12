@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import useWalletState from "module/wallet/hook/useWalletState";
 import SendSummary from "./SendSummary";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import SendTransactionModal from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import { useSendTransaction } from "module/transaction/hook/useSendTransaction";

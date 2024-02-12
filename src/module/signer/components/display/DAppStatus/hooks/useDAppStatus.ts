@@ -1,7 +1,6 @@
-import { useTheme } from "@peersyst/react-native-styled";
 import { alpha } from "@peersyst/react-utils";
 import { TypographyProps } from "module/common/component/display/Typography/Typography";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { ViewStyle } from "react-native";
 
 export interface useDAppStatusReturn {
@@ -12,12 +11,11 @@ export interface useDAppStatusReturn {
 
 export default function useDAppStatus(connected: boolean) {
     const translate = useTranslate();
-    const theme = useTheme();
 
-    const selectedColor = connected ? theme.palette.green : theme.palette.gray[600];
+    const selectedColor = connected ? "green" : "gray.600";
 
     const label = translate(connected ? "connected" : "notConnected");
-    const labelStyles: Omit<TypographyProps, "variant"> = { color: () => selectedColor };
+    const labelStyles: Omit<TypographyProps, "variant"> = { color: selectedColor };
     const rootStyles: ViewStyle = { backgroundColor: alpha(selectedColor, 0.12) };
 
     return { label, labelStyles, rootStyles };

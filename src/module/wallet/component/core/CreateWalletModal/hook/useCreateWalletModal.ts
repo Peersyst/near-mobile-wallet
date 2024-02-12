@@ -1,6 +1,6 @@
 import { useModal, useToast } from "@peersyst/react-native-components";
 import { useState } from "react";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import useCreateNewWallet from "module/wallet/hook/useCreateNewWallet";

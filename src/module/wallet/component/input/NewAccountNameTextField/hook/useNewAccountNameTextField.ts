@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { useDebounce } from "@peersyst/react-hooks";
 import useCheckNameAvailability from "module/wallet/query/useCheckNameIdAvailability";
 import { TextFieldProps } from "module/common/component/input/TextField/TextField.types";

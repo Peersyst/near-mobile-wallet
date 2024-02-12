@@ -4,7 +4,7 @@ import { MainStackParamsList } from "stack-navigator";
 import { BottomBarRoot } from "./BottomBar.styles";
 import BottomBarItem from "./BottomBarItem/BottomBarItem";
 import { DatabaseIcon } from "module/common/icons/DatabaseIcon";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { capitalize } from "@peersyst/react-utils";
 import { config } from "config";
 import BottomBarQRScanner from "./BottomBarQRScanner/BottomBarQRScanner";

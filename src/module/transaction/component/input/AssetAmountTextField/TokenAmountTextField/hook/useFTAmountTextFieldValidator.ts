@@ -1,5 +1,5 @@
 import { TextFieldProps } from "module/common/component/input/TextField/TextField.types";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { useFormatBalance } from "module/wallet/component/display/Balance/hook/useFormatBalance";
 import { isTokenAmountGreaterOrEqualThanThreshold, isTokenAmountGreaterThanThreshold, Token } from "near-peersyst-sdk";
 

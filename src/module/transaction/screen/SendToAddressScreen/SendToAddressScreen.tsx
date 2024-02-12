@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { useRecoilState } from "recoil";
 import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { config } from "config";
 import useWalletState from "module/wallet/hook/useWalletState";
 import AddressTextFieldWithQRScanner from "module/transaction/component/input/AddressTextFieldWithQRScanner/AddressTextFieldWithQRScanner";
@@ -47,6 +47,7 @@ const SendToAddressScreen = () => {
                     defaultValue={sendState.receiverAddress}
                     senderWalletIndex={currentSenderWalletIndex}
                     name="receiver"
+                    required
                 />
                 <Col gap={8}>
                     <Button type="submit" fullWidth>

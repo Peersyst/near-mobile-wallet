@@ -1,6 +1,6 @@
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
 import { ActionableConnectedSitesListProps } from "./ConnectedSitesList.types";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import ActionableConnectedSite from "../ActionableConnectedSite/ActionableConnectedSite";
 import { List } from "@peersyst/react-native-components";
 

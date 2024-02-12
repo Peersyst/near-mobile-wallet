@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import NEARAmountTextField, {
     NEARAmountTextFieldProps,
 } from "module/transaction/component/input/AssetAmountTextField/NEARAmountTextField/NEARAmountTextField";

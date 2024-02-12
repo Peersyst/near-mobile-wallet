@@ -1,7 +1,7 @@
 import BaseSecondaryScreen from "module/common/component/layout/BaseSecondaryScreen/BaseSecondaryScreen";
 import { Col } from "@peersyst/react-native-components";
 import SettingsMenu from "module/settings/components/input/SettingsMenu/SettingsMenu";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { SettingsScreens } from "../components/navigation/SettingsNavigatorGroup/SettingsNavigatorGroup";
 
 const SettingsScreen = (): JSX.Element => {

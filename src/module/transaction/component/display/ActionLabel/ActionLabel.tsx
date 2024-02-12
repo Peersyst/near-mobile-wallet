@@ -9,7 +9,7 @@ export interface ActionLabelProps extends Omit<TypographyProps, "children"> {
 const ActionLabel = ({ action, ...typographyProps }: ActionLabelProps): JSX.Element => {
     const label = useGetActionLabel(action);
     return (
-        <Typography {...typographyProps} color={(p) => p.gray[600]}>
+        <Typography {...typographyProps} color="gray.600">
             {label}
         </Typography>
     );

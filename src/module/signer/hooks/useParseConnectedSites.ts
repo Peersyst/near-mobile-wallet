@@ -1,7 +1,7 @@
 import { AccessKeyInfoView } from "near-api-js/lib/providers/provider";
 import { ConnectedSite } from "../components/display/ConnectedSite/ConnectedSite.types";
 import useServiceInstance from "../../wallet/hook/useServiceInstance";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { useCallback } from "react";
 
 export default function useParsedConnectedSites() {

@@ -1,5 +1,5 @@
 import { Row, RowProps } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import ExplorerButton from "module/transaction/component/input/ExplorerButton/ExplorerButton";
 import ShareTxHashButton from "module/transaction/component/input/ShareTxHashButton/ShareTxHashButton";
 import { Action } from "near-peersyst-sdk";

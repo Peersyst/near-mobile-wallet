@@ -1,5 +1,5 @@
 import EmptyListComponent, { EmptyListComponentProps } from "module/common/component/display/EmptyListComponent/EmptyListComponent";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 
 export type EmptyValidatorListProps = Pick<EmptyListComponentProps, "text">;
 

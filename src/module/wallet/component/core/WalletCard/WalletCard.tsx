@@ -38,7 +38,7 @@ const WalletCard = ({ wallet }: WalletCardProps): JSX.Element => {
                         onPress={changeCurrencyMode}
                         balance={showFiat ? fiatValue : available}
                         variant="h3Strong"
-                        color={(p) => p.white}
+                        color="white"
                         units={showFiat ? fiat : "token"}
                         unitsPosition={showFiat ? "left" : "right"}
                     />

@@ -2,7 +2,7 @@ import { Col } from "@peersyst/react-native-components";
 import StatusIcon from "module/common/component/display/StatusIcon/StatusIcons";
 import Typography from "module/common/component/display/Typography/Typography";
 import Button from "module/common/component/input/Button/Button";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
 
 const CreateAccountSuccessScreen = ({ submitText, onSubmit }: BaseAddWalletModalScreenProps) => {

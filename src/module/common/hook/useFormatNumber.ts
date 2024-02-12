@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { removeTrailingZeros } from "near-peersyst-sdk";
 
 export const MAX_NUMBER_OF_SUPPORTED_DECIMALS = 18; //i18next

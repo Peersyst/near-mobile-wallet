@@ -3,7 +3,7 @@ import { WalletStorage } from "module/wallet/WalletStorage";
 import { useState } from "react";
 import { createBackdrop, ExposedBackdropProps, useToast } from "@peersyst/react-native-components";
 import BaseSettingsModal from "../../layout/BaseSettingsModal/BaseSettingsModal";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 
 const UpdatePinModal = createBackdrop(
     ({ onExited, ...rest }: Omit<ExposedBackdropProps, "animationIn" | "animationOut" | "animationInTiming" | "animationOutTiming">) => {

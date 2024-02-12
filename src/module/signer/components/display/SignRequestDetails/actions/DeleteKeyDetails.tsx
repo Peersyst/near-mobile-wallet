@@ -1,7 +1,7 @@
 import { ActionDetailsProps } from "../SignRequestDetails.types";
 import { DeleteKeyActionParams } from "../actions.types";
 import Container from "module/common/component/display/Container/Container";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import ActionDetailsScaffold from "module/signer/components/layout/ActionDetailsScaffold/ActionDetailsScaffold";
 import ActionDetailField from "../../ActionDetailField/ActionDetailField";
 import { CircleErrorIcon, LockIcon } from "icons";
