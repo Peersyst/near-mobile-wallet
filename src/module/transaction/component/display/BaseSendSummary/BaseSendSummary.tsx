@@ -80,16 +80,15 @@ const BaseSendSummary = ({
                             <>
                                 {translate("total")}
                                 {" · "}
-                                <TotalText
-                                    as={Balance}
+                                <Balance
                                     options={{
                                         maximumFractionDigits: totalDecimals,
                                         minimumFractionDigits: totalDecimals,
                                     }}
-                                    light
                                     balance={totalAmount}
                                     variant="body2Strong"
                                     units="token"
+                                    color="primary"
                                 />
                             </>
                         </TotalText>
