@@ -8,14 +8,14 @@ export default function useRecoverWallets() {
     const recoverWallets = async (network: NetworkType): Promise<boolean> => {
         const { wallets } = await WalletController.recoverWallets(network);
         const hasWallets = wallets.length !== 0;
-        if (hasWallets) {
-            setWalletState((state) => ({
-                ...state,
-                selectedWallet: 0,
-                hasWallet: true,
-                wallets: wallets,
-            }));
-        }
+
+        setWalletState((state) => ({
+            ...state,
+            selectedWallet: 0,
+            hasWallet: true,
+            wallets: wallets,
+        }));
+
         return hasWallets;
     };
     return recoverWallets;

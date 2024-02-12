@@ -14,11 +14,68 @@
         "backendUrl": "",
         "recommendedDApps": [
             {
-                "name": "name",
-                "description": "description",
-                "url": "url",
-                "logoUrl": "logoUrl",
-                "tag": "dex"
+                "name": "NEAR",
+                "description": "The OS for an Open Web.",
+                "url": "https://near.org/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/ea2d8bdc-c47a-423c-933a-b242a6e525cf.jpg",
+                "tag": "social",
+                "contractId": "social.near"
+            },
+            {
+                "name": "Ref Finance",
+                "description": "Ref Finance is a community-led, multi-purpose Decentralized Finance (DeFi) platform built on NEAR Protocol.",
+                "url": "https://app.ref.finance/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/525f6f41-b6a1-46bd-94ef-23f64f09b4a2.png",
+                "tag": "dex",
+                "contractId": "asset-manager.orderly-network.near"
+            },
+            {
+                "name": "Meta Pool",
+                "description": "Stake NEAR. Receive a liquid token to simultaneously accrue staking rewards and unlock liquidity to participate in DeFi activities",
+                "url": "https://metapool.app/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/647377ad-d8a3-4497-9ca6-2a41154664bc.png",
+                "tag": "liquidStaking",
+                "contractId": "meta-pool.near"
+            },
+            {
+                "name": "Burrow",
+                "description": "Supply and borrow interest-bearing assets (stNEAR, stETH, aUSDC) on NEAR Protocol.",
+                "url": "https://app.burrow.finance/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/fde1877b-7c77-4073-b46e-eabfe91bcedf.webp",
+                "tag": "lending",
+                "contractId": "contract.main.burrow.near"
+            },
+            {
+                "name": "Popula",
+                "description": "Onchain tools empowering communities to OWN, CONTROL and MONETISE their social data.",
+                "url": "https://popula.io/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/7047b4cb-2467-4396-a436-d14627ead2ab.jpg",
+                "tag": "social",
+                "contractId": "app.popula.near"
+            },
+            {
+                "name": "Near Social",
+                "description": "Decentralized Composable Frontends and Social Data Protocol for NEAR.",
+                "url": "https://near.social/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/9e615abb-f211-488e-9e96-e476da76df35.webp",
+                "tag": "social",
+                "contractId": "social.near"
+            },
+            {
+                "name": "Learn NEAR Club",
+                "description": "Learn how to use and build on NEAR and Earn NEAR.",
+                "url": "https://learnnear.club/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/b23431ac-4ff4-41ed-95f9-522c2f185e0f.png",
+                "tag": "learning",
+                "contractId": "login.learnclub.near"
+            },
+            {
+                "name": "Jumbo",
+                "description": "Jumbo provides Ecosystem-Wide Liquidity for users and projects.",
+                "url": "https://jumbo.exchange/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/915c1657-8485-4c92-80a0-c455b6f45057.png",
+                "tag": "dex",
+                "contractId": "v1.jumbo_exchange.near"
             }
         ]
     }
