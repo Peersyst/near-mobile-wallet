@@ -1,4 +1,4 @@
-import { en } from "locale/locales/en/en";
+import { en } from "refactor/ui/locale/locales/en/en";
 import { ApiError } from "refactor/data-access/api/service";
 import { TFunction } from "i18next";
 

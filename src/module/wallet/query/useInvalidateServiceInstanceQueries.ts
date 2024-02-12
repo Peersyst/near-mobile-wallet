@@ -1,4 +1,4 @@
-import { useInvalidateQueries } from "../../../query/useInvalidateQueries";
+import { useInvalidateQueries } from "../../../refactor/ui/common/query/useInvalidateQueries";
 import useServiceInstance from "../hook/useServiceInstance";
 
 export function useInvalidateServiceInstanceQueries(index?: number) {

@@ -1,6 +1,6 @@
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import { useMutation } from "react-query";
-import Queries from "../../../query/queries";
+import Queries from "../../../refactor/ui/common/query/queries";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
 import { useSetRecoilState } from "recoil";
 import stakeState from "../state/StakeState";

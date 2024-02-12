@@ -3,7 +3,7 @@ import Button from "module/common/component/input/Button/Button";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import useTranslate from "module/common/hook/useTranslate";
 import GuidelinesList from "module/common/component/display/GuidelinesList/GuidelinesList";
-import { TransaltionResourceType } from "locale";
+import { TransaltionResourceType } from "refactor/ui/locale";
 import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
 import NewAccountNameTextField from "module/wallet/component/input/NewAccountNameTextField/NewAccountNameTextField";
 import useGetSuffix from "module/wallet/hook/useGetSuffix";

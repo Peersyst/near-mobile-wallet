@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { QueryResult } from "query-utils";
-import Queries from "../../../query/queries";
+import { QueryResult } from "refactor/ui/common/query/react-query-overrides";
+import Queries from "../../../refactor/ui/common/query/queries";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import { getValidatorsWithStatus } from "../utils/validator";
 import { Validator } from "near-peersyst-sdk";

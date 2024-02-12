@@ -1,4 +1,4 @@
-import { LocaleType } from "locale";
+import { LocaleType } from "refactor/ui/locale";
 import { BaseStorageService } from "module/common/service/BaseStorageService";
 import { defaultSettingsState, FiatCurrencyType, NetworkType, SettingsState } from "./state/SettingsState";
 

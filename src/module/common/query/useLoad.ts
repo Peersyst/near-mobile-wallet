@@ -9,7 +9,7 @@ import { useLoadFactories } from "refactor/ui/common/hooks/useLoadFactories";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { Manrope_300Light, Manrope_400Regular, Manrope_600SemiBold } from "@expo-google-fonts/manrope";
-import { i18nextInitializationPromise } from "locale";
+import { i18nextInitializationPromise } from "refactor/ui/locale";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);

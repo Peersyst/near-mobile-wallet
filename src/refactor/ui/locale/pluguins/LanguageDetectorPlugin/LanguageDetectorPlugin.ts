@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { LanguageDetectorAsyncModule } from "i18next";
-import { getDefaultLocale } from "locale/utils";
+import { getDefaultLocale } from "refactor/ui/locale/utils";
 import { SettingsStorage } from "module/settings/SettingsStorage";
 
 export async function detect(): Promise<any> {

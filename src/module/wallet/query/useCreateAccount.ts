@@ -1,6 +1,6 @@
 import { useMutation } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
-import Queries from "../../../query/queries";
+import Queries from "../../../refactor/ui/common/query/queries";
 import { config } from "refactor/common/config";
 import { NearSDKService } from "near-peersyst-sdk";
 import { useInvalidateServiceInstanceQueries } from "./useInvalidateServiceInstanceQueries";

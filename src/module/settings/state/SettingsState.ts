@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { getDefaultLocale, LocaleType } from "locale";
+import { getDefaultLocale, LocaleType } from "refactor/ui/locale";
 import { Chains } from "near-peersyst-sdk";
 
 export type FiatCurrencyType = "cny" | "usd" | "eur" | "jpy" | "gbp" | "rub" | "uah" | "idr";

@@ -1,6 +1,6 @@
 import { config } from "refactor/common/config";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
-import Queries from "../../../query/queries";
+import Queries from "../../../refactor/ui/common/query/queries";
 import { useQuery } from "react-query";
 
 export default function useIsDAppConnected(contractId: string) {

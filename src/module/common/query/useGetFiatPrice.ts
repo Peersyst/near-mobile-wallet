@@ -1,4 +1,4 @@
-import { QueryResult } from "query-utils";
+import { QueryResult } from "refactor/ui/common/query/react-query-overrides";
 import { config } from "refactor/common/config";
 import { FiatCurrencyType } from "module/settings/state/SettingsState";
 import { useGetCoinPrice } from "./useGetCoinPrice";
