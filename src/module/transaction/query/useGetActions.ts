@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
-import Queries from "../../../query/queries";
-import { config } from "config";
+import Queries from "../../../refactor/ui/common/query/queries";
+import { config } from "refactor/common/config";
 
 export interface UseGetActionsOptions {
     /**

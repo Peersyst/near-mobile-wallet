@@ -2,7 +2,7 @@ import { GlassRoot } from "./Glass.styles";
 import { ThemeProvider } from "@peersyst/react-native-styled";
 import { ReactNode } from "react";
 import { ViewStyle } from "react-native";
-import lightTheme from "config/theme/lightTheme";
+import lightTheme from "refactor/ui/config/theme/lightTheme";
 
 export interface GlassProps {
     style?: ViewStyle;

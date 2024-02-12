@@ -2382,6 +2382,11 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
+"@swisstype/essential@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@swisstype/essential/-/essential-0.0.5.tgz#dccc39c6692b32bce7f8faa52f2a2ce5e1c62d8b"
+  integrity sha512-tM5Z+Dbib2MLBNe3BcxTkiQ14gkglWLnXR4loCn/JmGFBDkbe3FSIGMp6jcwbkXZBhKbFBMtI5UZW7rGTtt17w==
+
 "@testing-library/jest-native@^5.1.2":
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/@testing-library/jest-native/-/jest-native-5.4.3.tgz#9334c68eaf45db9eb20d0876728cc5d7fc2c3ea2"

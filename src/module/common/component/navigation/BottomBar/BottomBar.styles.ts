@@ -1,6 +1,6 @@
 import styled from "@peersyst/react-native-styled";
 import { Row } from "@peersyst/react-native-components";
-import config from "config/config";
+import { config } from "refactor/common/config";
 
 export const BottomBarRoot = styled(Row, { justifyContent: "space-between", alignItems: "center" })(({ theme, safeAreaInsets }) => ({
     backgroundColor: theme.palette.background,

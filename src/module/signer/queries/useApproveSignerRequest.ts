@@ -1,4 +1,4 @@
-import { SignerRequestService } from "module/api/service";
+import { SignerRequestService } from "refactor/data-access/api/service";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import { useMutation } from "react-query";
 

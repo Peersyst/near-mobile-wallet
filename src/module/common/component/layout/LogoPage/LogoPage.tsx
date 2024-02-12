@@ -5,7 +5,7 @@ import { Animated, useWindowDimensions } from "react-native";
 import Logo from "module/common/component/display/Logo/Logo";
 import GradientPage from "module/common/component/layout/GradientPage/GradientPage";
 import { ThemeProvider } from "@peersyst/react-native-styled";
-import darkTheme from "config/theme/darkTheme";
+import darkTheme from "refactor/ui/config/theme/darkTheme";
 
 export interface LogoPageProps {
     children?: ReactNode;

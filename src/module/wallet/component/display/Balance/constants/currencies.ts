@@ -1,5 +1,5 @@
 import { AppCurrency } from "../Balance.types";
-import { config } from "config";
+import { config } from "refactor/common/config";
 
 export const CURRENCY_UNIT: Record<AppCurrency, string> = {
     token: config.tokenName,

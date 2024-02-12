@@ -1,5 +1,5 @@
 import { Row } from "@peersyst/react-native-components";
-import { config } from "config";
+import { config } from "refactor/common/config";
 import { ActionPreviewProps } from "./ActionPreview.types";
 import { PreviewLogo, ActionPreviewRoot, ActionPreviewIcon } from "./ActionPreview.styles";
 import NearMobileLogo from "../NearMobileLogo/NearMobileLogo";

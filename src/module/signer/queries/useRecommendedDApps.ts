@@ -1,7 +1,7 @@
-import { config } from "config";
+import { config } from "refactor/common/config";
 import { RecommendedDAppsFilters } from "../containers/RecommendedDApps/RecommendedDApps.types";
 import { useQuery } from "react-query";
-import Queries from "../../../query/queries";
+import Queries from "../../../refactor/ui/common/query/queries";
 import { DApp } from "../types";
 
 export default function useRecommendedDApps(props: RecommendedDAppsFilters) {

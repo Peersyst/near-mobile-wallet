@@ -1,8 +1,8 @@
 import { useQuery, UseQueryResult } from "react-query";
 import { NftToken } from "near-peersyst-sdk";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
-import Queries from "../../../query/queries";
-import { config } from "config";
+import Queries from "../../../refactor/ui/common/query/queries";
+import { config } from "refactor/common/config";
 
 export default function (index?: number): UseQueryResult<NftToken[]> {
     const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index);

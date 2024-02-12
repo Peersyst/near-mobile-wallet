@@ -16,7 +16,8 @@
             "query-utils": ["query/react-query-overrides.ts"],
             "test-utils": ["../test/utils/test-utils"],
             "test-mocks": ["../test/__mocks__"],
-            "mocks/*": ["../test/__mocks__/*"]
+            "mocks/*": ["../test/__mocks__/*"],
+            "refactor/*": ["refactor/*"]
         }
     }
 }

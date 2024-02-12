@@ -2,8 +2,8 @@ import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import useTranslate from "module/common/hook/useTranslate";
-import { LocaleResourceType, LocaleType } from "locale";
-import i18n, { APP_LOCALES } from "locale/i18n";
+import { LocaleResourceType, LocaleType } from "refactor/ui/locale";
+import i18n, { APP_LOCALES } from "refactor/ui/locale/i18n";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
 import { useMemo } from "react";
 

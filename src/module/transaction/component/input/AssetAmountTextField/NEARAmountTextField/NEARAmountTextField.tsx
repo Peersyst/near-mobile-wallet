@@ -1,5 +1,5 @@
 import useGetBalance from "module/wallet/query/useGetBalance";
-import { config } from "config";
+import { config } from "refactor/common/config";
 import BaseAssetAmountTextField from "../BaseAssetAmountTextField/BaseAssetAmountTextField";
 import { NumericTextFieldProps } from "module/common/component/input/NumericTextField/NumericTextField";
 import { useNEARAmountTextFieldValidator } from "./hook/useNEARAmountTextFieldValidator";

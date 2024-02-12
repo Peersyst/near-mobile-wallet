@@ -1,4 +1,4 @@
-import { config } from "config";
+import { config } from "refactor/common/config";
 import useNativeTokenConversion from "module/common/hook/useNativeTokenConversion";
 import useTranslate from "module/common/hook/useTranslate";
 import settingsState from "module/settings/state/SettingsState";

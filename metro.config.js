@@ -6,11 +6,12 @@ const config = getDefaultConfig(__dirname);
 
 config.resolver = {
     extraNodeModules: {
-        crypto: path.resolve(__dirname, "src/polyfills/Crypto"),
+        crypto: path.resolve(__dirname, "src/refactor/common/polyfills/Crypto"),
         https: require.resolve("https-browserify"),
         stream: require.resolve("stream-browserify"),
         http: require.resolve("stream-http"),
         url: require.resolve("url"),
+        refactor: path.resolve(__dirname, "src/refactor"),
     },
 };
 

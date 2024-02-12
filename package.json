@@ -12,8 +12,8 @@
         "web": "yarn start --web",
         "web:fresh": "yarn start:fresh --web",
         "generate": "yarn generate:openapi && yarn generate:icons && yarn generate:images",
-        "generate:icons": "node ./src/script/iconGeneratorNative.js ./src/asset/icon/ ./src/module/common/icons/ && prettier --write ./src/module/common/icons/",
-        "generate:images": "node ./src/script/imagesGenerator.js ./src/asset/image/",
+        "generate:icons": "node ./src/script/iconGeneratorNative.js ./src/refactor/ui/assets/icons/ ./src/refactor/ui/common/icons/ && prettier --write ./src/refactor/ui/common/icons/",
+        "generate:images": "node ./src/script/imagesGenerator.js ./src/refactor/ui/assets/images/",
         "generate-react-native-components-icons": "node ./src/script/iconGeneratorNative.js ./src/module/common/component/base/assets/svgs/ ./src/module/common/component/base/assets/icons/ && prettier --write ./src/module/common/component/base/assets/icons/",
         "generate:openapi": "openapi -i openapi-spec.json -o src/module/api/service --exportSchemas=true --useUnionTypes",
         "eject": "expo eject",
@@ -22,7 +22,7 @@
         "test:ci": "jest --runInBand",
         "test:debug": "jest --no-cache --runInBand || true",
         "check-types": "tsc --noemit",
-        "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0"
+        "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0 && yarn check-types"
     },
     "dependencies": {
         "@expo-google-fonts/manrope": "^0.2.2",
@@ -35,6 +35,7 @@
         "@react-navigation/bottom-tabs": "^6.5.7",
         "@react-navigation/native": "^6.1.6",
         "@react-navigation/native-stack": "^6.3.16",
+        "@swisstype/essential": "^0.0.5",
         "assert": "^2.1.0",
         "big-integer": "^1.6.51",
         "borsh": "^1.0.0",
