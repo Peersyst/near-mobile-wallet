@@ -1,4 +1,4 @@
-import Queries from "../../../query/queries";
+import Queries from "../../../refactor/ui/common/query/queries";
 import { useQuery } from "react-query";
 import useServiceInstance from "../hook/useServiceInstance";
 import { config } from "refactor/common/config";

@@ -85,10 +85,10 @@ const BaseSendSummary = ({
                                         maximumFractionDigits: totalDecimals,
                                         minimumFractionDigits: totalDecimals,
                                     }}
-                                    light
                                     balance={totalAmount}
                                     variant="body2Strong"
                                     units="token"
+                                    color="primary"
                                 />
                             </>
                         </TotalText>

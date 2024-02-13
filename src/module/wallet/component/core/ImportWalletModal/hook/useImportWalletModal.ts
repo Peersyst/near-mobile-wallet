@@ -5,7 +5,7 @@ import { Keyboard } from "react-native";
 import { useModal, useToast } from "@peersyst/react-native-components";
 import ImportWalletModal from "../ImportWalletModal";
 import useTranslate from "module/common/hook/useTranslate";
-import { ErrorResourceType, TransaltionResourceType } from "locale";
+import { ErrorResourceType, TransaltionResourceType } from "refactor/ui/locale";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 
 export type UseImportWalletModalReturnType = {

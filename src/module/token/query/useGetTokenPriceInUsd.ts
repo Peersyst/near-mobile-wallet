@@ -1,4 +1,4 @@
-import { QueryResult } from "query-utils";
+import { QueryResult } from "refactor/ui/common/query/react-query-overrides";
 import { TokenPrices, useGetTokensPrice } from "./useGetTokensPrice";
 
 export interface GetTokenPriceReturn {
