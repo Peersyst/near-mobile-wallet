@@ -1,3 +1,5 @@
+import AuthErrorCodes from "../auth/AuthErrorCodes";
+
 export enum GenericErrorCodes {
     UNKNOWN_ERROR = "UNKNOWN_ERROR",
 }
@@ -5,6 +7,7 @@ export enum GenericErrorCodes {
 // Merge all module error codes here
 const DomainErrorCodes = {
     ...GenericErrorCodes,
+    ...AuthErrorCodes,
 };
 
 export type DomainErrorCode = keyof typeof DomainErrorCodes;

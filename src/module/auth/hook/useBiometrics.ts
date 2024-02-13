@@ -7,6 +7,22 @@ import {
 } from "expo-local-authentication";
 import { useEffect, useState } from "react";
 
+export type BiometricsPreferences = {
+    enabled: boolean;
+};
+export enum BiometricsType {
+    FINGERPRINT = "fingerprint",
+    FACIAL_RECOGNITION = "facial-recognition",
+    IRIS = "iris",
+}
+
+export type BiometricsAuthenticationOptions = {
+    cancelLabel?: string;
+    disableDeviceFallback?: boolean;
+    fallbackLabel?: string;
+    promptMessage?: string;
+};
+
 export interface UseBiometricsResult {
     isLoading: boolean;
     isEnrolled: boolean;
