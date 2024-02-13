@@ -8,6 +8,7 @@ import useTranslate from "module/common/hook/useTranslate";
 import useWalletState from "module/wallet/hook/useWalletState";
 import useCancelableDialog from "module/common/hook/useCancelableDialog";
 import { useState } from "react";
+import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
 
 const DeleteData = () => {
     const translate = useTranslate();
@@ -15,7 +16,7 @@ const DeleteData = () => {
     const queryClient = useQueryClient();
     const { showCancelableDialog, hideCancelableDialog } = useCancelableDialog();
     const [openConfirmPin, setOpenConfirmPin] = useState(false);
-
+    
     const handleDelete = () => {
         setOpenConfirmPin(true);
         hideCancelableDialog();
@@ -29,6 +30,7 @@ const DeleteData = () => {
         await SettingsStorage.clear();
         await queryClient.invalidateQueries();
         resetWalletState();
+        await ControllerFactory.authController.logout();
     };
 
     return (

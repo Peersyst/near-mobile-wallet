@@ -1,14 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigatorGroup from "module/auth/AuthNavigatorGroup";
-import { useRecoilValue } from "recoil";
-import walletState from "module/wallet/state/WalletState";
 import MainNavigator from "module/common/component/navigation/MainNavigatorGroup/MainNavigatorGroup";
 import { ModalProvider } from "@peersyst/react-native-components";
 import linking from "./Navigator.linking";
 import { AnalyticsProvider } from "../refactor/ui/analytics/AnalyticsProvider";
+import useAuthState from "refactor/ui/adapter/state/useAuthState";
 
 const Navigator = (): JSX.Element => {
-    const { isAuthenticated } = useRecoilValue(walletState);
+    const { isAuthenticated } = useAuthState();
 
     return (
         <NavigationContainer linking={linking}>

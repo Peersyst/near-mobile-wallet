@@ -7,7 +7,7 @@ export default class PinController implements IPinController {
     constructor(private readonly pinRepository: IPinRepository) {}
 
     /**
-     * Sets thePIN
+     * Sets the PIN.
      * @param pin
      */
     setPin(pin: string): Promise<void> {
