@@ -16,7 +16,7 @@ const DeleteData = () => {
     const queryClient = useQueryClient();
     const { showCancelableDialog, hideCancelableDialog } = useCancelableDialog();
     const [openConfirmPin, setOpenConfirmPin] = useState(false);
-    
+
     const handleDelete = () => {
         setOpenConfirmPin(true);
         hideCancelableDialog();
