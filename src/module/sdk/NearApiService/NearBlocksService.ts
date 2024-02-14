@@ -1,8 +1,8 @@
 /**
- * Do not `import {config} from "config"` in this file 
+ * Do not `import {config} from "config"` in this file
  * because it will cause a circular dependency with SettingsState
  */
-import config from "../../../config/config"; 
+import config from "../../../config/config";
 import { Chains } from "../NearSdkService";
 import { FetchService } from "./FetchService";
 import { NearApiServiceParams, NearblocksAccessKeyResponseDto } from "./NearApiService.types";
