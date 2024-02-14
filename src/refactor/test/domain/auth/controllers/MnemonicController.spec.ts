@@ -1,5 +1,6 @@
 import MnemonicController from "refactor/domain/auth/controller/MnemonicController";
 import MnemonicRepositoryMock from "refactor/test/mocks/auth/mnemonic/MnemonicRepository.mock";
+// @ts-ignore
 import bip39 from "bip39-light";
 describe("MnemonicController", () => {
     let mnemonicController: MnemonicController;
