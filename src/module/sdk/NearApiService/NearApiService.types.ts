@@ -105,3 +105,21 @@ export interface StakingDepositApiDto {
     validator_id: string;
     deposit: string;
 }
+
+export interface NearblocksAccessKeyResponseDto {
+    keys: NearblocksAccessKeyDto[];
+}
+
+export interface NearblocksAccessKeyDto {
+    public_key: string;
+    account_id: string;
+    permission_kind: "FULL_ACCESS" | "FUNCTION_CALL";
+    created: {
+        transaction_hash: string;
+        block_timestamp: number;
+    };
+    deleted: {
+        transaction_hash: null | string;
+        block_timestamp: null | number;
+    };
+}

@@ -9,7 +9,7 @@ import {
     TransactionWithoutActions,
 } from "../NearSdkService";
 import { convertYoctoToNear, parseBlockTimestamp } from "../utils";
-import { FetchService } from "./FetchService";
+import { FetchService, HttpError } from "./FetchService";
 import {
     AccessKeyApiDto,
     LikelyResponseApiDto,
@@ -19,12 +19,16 @@ import {
     StakingDepositApiDto,
     ActionApiDto,
 } from "./NearApiService.types";
+import { NearBlocksService } from "./NearBlocksService";
 
 export class ApiService extends FetchService implements NearApiServiceInterface {
     public baseUrl: string;
-    constructor(endpoint: string) {
+    nearblocksService: NearBlocksService;
+
+    constructor(endpoint: string, chain: Chains) {
         super();
         this.baseUrl = endpoint;
+        this.nearblocksService = new NearBlocksService(chain);
     }
 
     /**
@@ -107,7 +111,14 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
      */
 
     async getAccountsFromPublicKey({ address }: NearApiServiceParams): Promise<string[]> {
-        const accounts = await this.handleFetch<string[]>(`${this.baseUrl}/publicKey/${address}/accounts`);
+        let accounts: string[] = [];
+        try {
+            accounts = await this.nearblocksService.getAccountsFromPublicKey({ address });
+        } catch (error: unknown) {
+            if (error instanceof HttpError && error.code === 429) {
+                accounts = await this.handleFetch<string[]>(`${this.baseUrl}/publicKey/${address}/accounts`);
+            }
+        }
         return this.parseNearAccounts(accounts);
     }
 

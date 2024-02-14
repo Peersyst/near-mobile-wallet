@@ -42,7 +42,9 @@ declare module "@peersyst/react-native-components" {
     export interface Config {
         minimumTransactionAmount: number;
         indexerTestnetUrl: string;
+        nearblocksTesnetApiUrl: string;
         indexerMainnetUrl: string;
+        nearblocksMainnetApiUrl: string;
         mainnetExplorerLink: string;
         testnetExplorerLink: string;
         faucetUrl: string;
@@ -74,7 +76,9 @@ declare module "@peersyst/react-native-components" {
     export interface CreateConfig {
         minimumTransactionAmount: number;
         indexerTestnetUrl: string;
+        nearblocksTesnetApiUrl: string;
         indexerMainnetUrl: string;
+        nearblocksMainnetApiUrl: string;
         mainnetExplorerLink: string;
         testnetExplorerLink: string;
         faucetUrl: string;
