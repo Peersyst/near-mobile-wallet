@@ -1,33 +1,32 @@
 import { convertNearToYocto, convertYoctoToNear } from "./near.utils";
-const BN = require("bn.js");
+import BigNumber from "bignumber.js";
+import BN from "bn.js";
 
 export class BalanceOperations {
     //Big number operations
     static BNToString(bn: string): string {
-        return new BN(bn).toString();
+        return BigNumber(bn).toString();
     }
     static BNExp(base: number, exponent: number): string {
-        return new BN(base).pow(new BN(exponent)).toString();
+        return new BigNumber(base).pow(BigNumber(exponent)).toString();
     }
     static BNIsBigger(a: string, b: string): boolean {
-        return new BN(a).gt(new BN(b));
+        return BigNumber(a).gt(BigNumber(b));
     }
     static BNIsBiggerOrEqual(a: string, b: string): boolean {
-        return new BN(a).gte(new BN(b));
+        return BigNumber(a).gte(BigNumber(b));
     }
-    static BNDevide(a: string, b: string): string {
-        const numerator = parseFloat(a);
-        const denominator = parseFloat(b);
-        return (numerator / denominator).toString();
+    static BNDivide(a: string, b: string): string {
+        return BigNumber(a).dividedBy(BigNumber(b)).toString();
     }
     static BNMultiply(a: string, b: string): string {
-        return new BN(a).mul(new BN(b)).toString();
+        return BigNumber(a).multipliedBy(BigNumber(b)).toString();
     }
     static BNSubtract(a: string, b: string): string {
-        return new BN(a).sub(new BN(b)).toString();
+        return BigNumber(a).minus(BigNumber(b)).toString();
     }
     static BNAdd(a: string, b: string): string {
-        return new BN(a).add(new BN(b)).toString();
+        return BigNumber(a).plus(BigNumber(b)).toString();
     }
 
     // Number operations
@@ -47,7 +46,7 @@ export class BalanceOperations {
         try {
             const finalA = convertNearToYocto(a.toString());
             const finalB = convertNearToYocto(b.toString());
-            const res = new BN(finalA).add(new BN(finalB));
+            const res = new BN(finalA).add(new BN(finalB)).toString();
             return convertYoctoToNear(res).toString();
         } catch (e) {
             // eslint-disable-next-line no-console
@@ -70,7 +69,7 @@ export class BalanceOperations {
             // 3 near = 3 * 10^24 yoctos
             // 3 * 3 * 10^(24 + 24) = 9 * 10 ^ 48  yoctos
             // 9 * 10^48 yoctos / 1 * 10^24 = 9 * 10^(48 - 24) = 9 * 10^24 near
-            const res = bigRes.div(new BN(convertNearToYocto("1")));
+            const res = bigRes.div(new BN(convertNearToYocto("1"))).toString();
             return convertYoctoToNear(res).toString();
         } catch (e) {
             // eslint-disable-next-line no-console
