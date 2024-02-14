@@ -16,8 +16,8 @@ export class BalanceOperations {
         return new BN(a).gte(new BN(b));
     }
     static BNDevide(a: string, b: string): string {
-        const numerator = BigInt(a);
-        const denominator = BigInt(b);
+        const numerator = parseFloat(a);
+        const denominator = parseFloat(b);
         return (numerator / denominator).toString();
     }
     static BNMultiply(a: string, b: string): string {
