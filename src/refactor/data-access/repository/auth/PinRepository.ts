@@ -2,7 +2,6 @@ import { config } from "refactor/common/config";
 import SecureStorageRepository from "../common/SecureStorageRepository";
 import { IPinRepository } from "refactor/domain/adapter/repository/IPinRepository";
 
-
 export default class PinRepository extends SecureStorageRepository<string> implements IPinRepository {
     constructor() {
         super(`${config.projectName}-pin`);

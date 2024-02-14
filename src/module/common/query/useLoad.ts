@@ -10,7 +10,6 @@ import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { Manrope_300Light, Manrope_400Regular, Manrope_600SemiBold } from "@expo-google-fonts/manrope";
 import { i18nextInitializationPromise } from "refactor/ui/locale";
-import { WalletStorage } from "module/wallet/WalletStorage";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);

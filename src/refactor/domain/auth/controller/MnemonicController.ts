@@ -22,7 +22,6 @@ export default class MnemonicController implements IMnemonicController {
      */
     async validateMnemonic(mnemonic: string): Promise<boolean> {
         if (!mnemonic) throw new DomainError(AuthErrorCodes.MNEMONIC_IS_NOT_SET);
-
         return bip39.validateMnemonic(mnemonic);
     }
 }

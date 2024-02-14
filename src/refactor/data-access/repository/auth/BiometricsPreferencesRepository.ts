@@ -3,7 +3,6 @@ import StorageRepository from "../common/StorageRepository";
 import { IBiometricsPreferencesRepository } from "refactor/domain/adapter/repository/IBiometricsPreferencesRepository";
 import { config } from "refactor/common/config";
 
-
 export default class BiometricsPreferencesRepository
     extends StorageRepository<BiometricsPreferences>
     implements IBiometricsPreferencesRepository

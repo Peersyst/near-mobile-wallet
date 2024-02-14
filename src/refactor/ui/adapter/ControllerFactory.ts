@@ -15,7 +15,7 @@ export interface IControllerFactory {
 }
 
 export default Factory<IControllerFactory>({
-    authController: (resolve) => new AuthController(authState, resolve.pinController),
+    authController: (resolve) => new AuthController(authState, resolve.pinController, resolve.mnemonicController),
     pinController: () => new PinController(RepositoryFactory.pinRepository),
     mnemonicController: () => new MnemonicController(RepositoryFactory.mnemonicRepository),
 });
