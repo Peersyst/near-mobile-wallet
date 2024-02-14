@@ -93,8 +93,7 @@ export function parseBlockTimestamp(blockTimestamp: string): string {
  * @returns Return number version of token amount
  */
 export function formatTokenAmount(amount: string, decimals: string, precision?: number): string {
-    const denominator = BalanceOperations.BNExp(10, parseInt(decimals, 10));
-    return BalanceOperations.BNDivide(amount, denominator).slice(0, precision ?? Number(decimals));
+    return BalanceOperations.BNShift(amount, -(precision ?? Number(decimals)));
 }
 
 /**

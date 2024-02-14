@@ -28,6 +28,9 @@ export class BalanceOperations {
     static BNAdd(a: string, b: string): string {
         return BigNumber(a).plus(BigNumber(b)).toString();
     }
+    static BNShift(a: string, b: number): string {
+        return BigNumber(a).shiftedBy(b).toString();
+    }
 
     // Number operations
     /**
