@@ -1,6 +1,7 @@
 import { utils } from "near-api-js";
 import { AccountBalance } from "near-api-js/lib/account";
 import { BalanceOperations } from "./BalanceOperations";
+import BigNumber from "bignumber.js";
 
 /**
  * Convert Near amount to yocto
@@ -93,7 +94,9 @@ export function parseBlockTimestamp(blockTimestamp: string): string {
  * @returns Return number version of token amount
  */
 export function formatTokenAmount(amount: string, decimals: string, precision?: number): string {
-    return BalanceOperations.BNShift(amount, -(precision ?? Number(decimals)));
+    return BigNumber(amount)
+        .shiftedBy(-(precision ?? Number(decimals)))
+        .toString();
 }
 
 /**
