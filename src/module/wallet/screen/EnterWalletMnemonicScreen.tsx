@@ -5,8 +5,8 @@ import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { useEffect, useState } from "react";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import useTranslate from "module/common/hook/useTranslate";
-import { NearSDKService } from "near-peersyst-sdk";
 import { BaseAddWalletModalScreenProps } from "../component/core/AddWalletModal/AddWalletModal.types";
+import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
 
 export interface MnemonicForm {
     mnemonic: string[];
@@ -29,10 +29,11 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: BaseAddWalletModalS
         }
     }, [mnemonic]);
 
-    const handleSubmit = ({ mnemonic: mnemonicParam }: MnemonicForm) => {
-        const valid = NearSDKService.validateMnemonic(mnemonicParam.join(" "));
+    const handleSubmit = async ({ mnemonic: mnemonicParam }: MnemonicForm) => {
+        const valid = await ControllerFactory.mnemonicController.validateMnemonic(mnemonicParam.join(" "));
         if (valid) {
             setMnemonic(mnemonicParam);
+            await ControllerFactory.mnemonicController.setMnemonic(mnemonicParam.join(" "));
         } else {
             notificationAsync(NotificationFeedbackType.Error);
             showToast(translate("incorrect_mnemonic"), { type: "error" });

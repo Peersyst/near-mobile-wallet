@@ -17,9 +17,8 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
 
     useEffect(() => {
         const setStorage = async () => {
-            
             await importWallets(defaultSettingsState.network);
-            if(mnemonic && pin) {
+            if (mnemonic && pin) {
                 await ControllerFactory.authController.signUp(mnemonic, pin);
             }
             //After all clean createWalletState
@@ -29,7 +28,6 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
             InteractionManager.runAfterInteractions(() => {
                 setStorage();
             });
-            
         }, 500);
     }, []);
 

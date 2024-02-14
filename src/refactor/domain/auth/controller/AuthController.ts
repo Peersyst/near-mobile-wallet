@@ -2,13 +2,19 @@ import { IAuthController } from "refactor/ui/adapter/controllers/IAuthController
 import State from "refactor/domain/common/State";
 import { IAuthState } from "../state/authState";
 import { IPinController } from "refactor/ui/adapter/controllers/IPinController";
+import { IMnemonicController } from "refactor/ui/adapter/controllers/IMnemonicController";
+import DomainError from "refactor/domain/error/DomainError";
+import AuthErrorCodes from "../AuthErrorCodes";
 
 export default class AuthController implements IAuthController {
-    constructor(public readonly authState: State<IAuthState>, public readonly pinController: IPinController) {}
+    constructor(
+        public readonly authState: State<IAuthState>,
+        public readonly pinController: IPinController,
+        public readonly mnemonicController: IMnemonicController,
+    ) {}
 
     async signUp(mnemonic: string[], pin: string): Promise<void> {
-        //TODO:Save the mnemonic into the storage
-
+        await this.mnemonicController.setMnemonic(mnemonic.join(" "));
         //Save the pin into the storage
         await this.pinController.setPin(pin);
         //TODO:Create the wallets with the WalletController
@@ -17,12 +23,17 @@ export default class AuthController implements IAuthController {
     }
 
     async recover(mnemonic: string[], pin: string): Promise<void> {
-        //TODO: todo
-        //Check if the mnemonic is valid
-        //Save the mnemonic into the storage
-        //Save the pin into the storage
+        const isValidMnemonic = await this.mnemonicController.validateMnemonic(mnemonic.join(" "));
+
+        if (!isValidMnemonic) {
+            throw new DomainError(AuthErrorCodes.MNEMONIC_IS_INVALID);
+        }
+
+        await this.mnemonicController.setMnemonic(mnemonic.join(" "));
+        await this.pinController.setPin(pin);
+        this.authState.setState({ isAuthenticated: true });
+
         //Recover the wallets with the WalletController
-        //Set the isAuthenticated to true
     }
 
     async login(pin: string): Promise<void> {
@@ -30,7 +41,6 @@ export default class AuthController implements IAuthController {
         await this.pinController.checkPin(pin);
         //Recover the wallets with the WalletController?
         //TODO
-        //Set the isAuthenticated to true
         this.authState.setState({ isAuthenticated: true });
     }
 
