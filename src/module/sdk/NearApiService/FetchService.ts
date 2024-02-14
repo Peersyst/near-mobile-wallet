@@ -6,20 +6,20 @@ export class FetchService {
                 case 200:
                     return (await response.json()) as Promise<T>;
                 case 429:
-                    throw new HttpError(429, "Too many requests");
+                    throw new FetchError(429, "Too many requests");
                 default:
-                    throw new HttpError(response.status, response.statusText);
+                    throw new FetchError(response.status, response.statusText);
             }
         } catch (error: unknown) {
             if (error instanceof Error) {
-                throw new HttpError(500, error.message);
+                throw new FetchError(500, error.message);
             }
-            throw new HttpError(500, "Unknown error");
+            throw new FetchError(500, "Unknown error");
         }
     }
 }
 
-export class HttpError extends Error {
+export class FetchError extends Error {
     code: number;
     constructor(code: number, message: string) {
         super(message);

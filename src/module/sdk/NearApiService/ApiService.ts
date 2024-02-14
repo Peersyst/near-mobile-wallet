@@ -9,7 +9,7 @@ import {
     TransactionWithoutActions,
 } from "../NearSdkService";
 import { convertYoctoToNear, parseBlockTimestamp } from "../utils";
-import { FetchService, HttpError } from "./FetchService";
+import { FetchService, FetchError } from "./FetchService";
 import {
     AccessKeyApiDto,
     LikelyResponseApiDto,
@@ -115,7 +115,7 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
         try {
             accounts = await this.nearblocksService.getAccountsFromPublicKey({ address });
         } catch (error: unknown) {
-            if (error instanceof HttpError && error.code === 429) {
+            if (error instanceof FetchError && error.code === 429) {
                 accounts = await this.handleFetch<string[]>(`${this.baseUrl}/publicKey/${address}/accounts`);
             }
         }
