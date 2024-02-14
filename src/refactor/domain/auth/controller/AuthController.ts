@@ -36,9 +36,13 @@ export default class AuthController implements IAuthController {
         //Recover the wallets with the WalletController
     }
 
-    async login(pin: string): Promise<void> {
+    async login(pin?: string): Promise<void> {
         //Check if the pin is valid
-        await this.pinController.checkPin(pin);
+        if (pin) {
+            const isPinValid = await this.pinController.checkPin(pin);
+            if (!isPinValid) throw new DomainError(AuthErrorCodes.PIN_IS_NOT_SET);
+        }
+
         //Recover the wallets with the WalletController?
         //TODO
         this.authState.setState({ isAuthenticated: true });

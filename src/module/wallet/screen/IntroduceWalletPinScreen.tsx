@@ -20,7 +20,7 @@ const SetWalletPinScreen = (): JSX.Element => {
     useLogoPageFlex(0.4);
     useLogoPageGradient(false);
 
-    const handleSuccess = async (pin: string) => {
+    const handleSuccess = async (pin?: string) => {
         ControllerFactory.authController.login(pin);
         setWalletState((state) => ({ ...state, isAuthenticated: true }));
     };
@@ -49,7 +49,7 @@ const SetWalletPinScreen = (): JSX.Element => {
                 error={error}
                 onSubmit={handlePinSubmit}
                 //TODO: Handle biometrics
-                onBiometricsSuccess={() => ""}
+                onBiometricsSuccess={handleSuccess}
                 placeholder={translate("enter_your_pin")}
             />
         </DarkThemeProvider>
