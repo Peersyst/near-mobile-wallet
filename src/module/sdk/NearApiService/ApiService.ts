@@ -9,7 +9,7 @@ import {
     TransactionWithoutActions,
 } from "../NearSdkService";
 import { convertYoctoToNear, parseBlockTimestamp } from "../utils";
-import { FetchService, FetchError } from "./FetchService";
+import { FetchService } from "./FetchService";
 import {
     AccessKeyApiDto,
     LikelyResponseApiDto,
