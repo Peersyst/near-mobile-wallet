@@ -9,7 +9,7 @@ import {
     TransactionWithoutActions,
 } from "../NearSdkService";
 import { convertYoctoToNear, parseBlockTimestamp } from "../utils";
-import { FetchService, FetchError } from "./FetchService";
+import { FetchService } from "./FetchService";
 import {
     AccessKeyApiDto,
     LikelyResponseApiDto,
@@ -111,15 +111,17 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
      */
 
     async getAccountsFromPublicKey({ address }: NearApiServiceParams): Promise<string[]> {
-        let accounts: string[] = [];
+        let newAccounts: string[] = [];
         try {
-            accounts = await this.nearblocksService.getAccountsFromPublicKey({ address });
-        } catch (error: unknown) {
-            if (error instanceof FetchError && error.code === 429) {
-                accounts = await this.handleFetch<string[]>(`${this.baseUrl}/publicKey/${address}/accounts`);
-            }
-        }
-        return this.parseNearAccounts(accounts);
+            newAccounts = await this.nearblocksService.getAccountsFromPublicKey({ address });
+        } catch (error: unknown) {}
+
+        let oldAccounts: string[] = [];
+        try {
+            oldAccounts = await this.handleFetch<string[]>(`${this.baseUrl}/publicKey/${address}/accounts`);
+        } catch (error: unknown) {}
+        const accounts = new Set([...oldAccounts, ...newAccounts]);
+        return Array.from(accounts).map((account) => this.parseNearAccount(account));
     }
 
     async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
