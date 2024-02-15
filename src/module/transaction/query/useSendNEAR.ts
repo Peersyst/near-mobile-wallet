@@ -25,13 +25,15 @@ const useSendNEAR = (senderIndex: number) => {
         {
             onSuccess: (_data, variables) => {
                 invalidateQueries([Queries.GET_BALANCE, Queries.ACTIONS]);
-                posthog?.capture("send", {
-                    asset: "NEAR",
-                    wallet_address: serviceInstance.getAddress(),
-                    destination_address: variables.to,
-                    amount: variables.amount,
-                    chain: network,
-                });
+                try {
+                    posthog?.capture("send", {
+                        asset: "NEAR",
+                        wallet_address: serviceInstance.getAddress(),
+                        destination_address: variables.to,
+                        amount: variables.amount,
+                        chain: network,
+                    });
+                } catch (error) {}
             },
         },
     );

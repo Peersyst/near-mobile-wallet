@@ -26,10 +26,13 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdviseProps): JSX.Elemen
 
     const handlePress = ({ method, showModal }: HandlePressParams) => {
         setState({ method });
-        posthog?.capture("backup", {
-            action_type: method,
-            chain: network,
-        });
+        try {
+            posthog?.capture("backup", {
+                action_type: method,
+                chain: network,
+            });
+        } catch (error) {}
+
         showModal();
     };
 

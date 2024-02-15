@@ -18,12 +18,14 @@ const useGetTokens = (index?: number): QueryResult<Token[]> => {
             const walletAddress = serviceInstance.getAddress();
 
             for (const token of accountTokens) {
-                posthog?.capture("load_wallet_tokens", {
-                    wallet_address: walletAddress,
-                    contract_id: token.contractId,
-                    balance: token.balance,
-                    chain: network,
-                });
+                try {
+                    posthog?.capture("load_wallet_tokens", {
+                        wallet_address: walletAddress,
+                        contract_id: token.contractId,
+                        balance: token.balance,
+                        chain: network,
+                    });
+                } catch (error) {}
             }
 
             return accountTokens;

@@ -20,12 +20,15 @@ const DApp = ({ dapp, connected = false, loading = false }: DAppProps): JSX.Elem
     const posthog = usePostHog();
 
     function handleOnPress(): void {
-        posthog?.capture("dapp_click", {
-            wallet_address: wallets[selectedWallet].account,
-            dapp_url: url,
-            dapp_name: name,
-            chain: network,
-        });
+        try {
+            posthog?.capture("dapp_click", {
+                wallet_address: wallets[selectedWallet].account,
+                dapp_url: url,
+                dapp_name: name,
+                chain: network,
+            });
+        } catch (error) {}
+
         Linking.openURL(url);
     }
     return (

@@ -15,13 +15,15 @@ export default function (index?: number): QueryResult<StakingBalance> {
         async (): Promise<StakingBalance> => {
             const totalStakingBalance = await serviceInstance.getTotalStakingBalance();
 
-            posthog?.capture("load_staking_info", {
-                wallet_address: serviceInstance.getAddress(),
-                total_amount_staked: totalStakingBalance.staked,
-                rewards_earned: totalStakingBalance.rewardsEarned,
-                pending_release: totalStakingBalance.pending,
-                chain: network,
-            });
+            try {
+                posthog?.capture("load_staking_info", {
+                    wallet_address: serviceInstance.getAddress(),
+                    total_amount_staked: totalStakingBalance.staked,
+                    rewards_earned: totalStakingBalance.rewardsEarned,
+                    pending_release: totalStakingBalance.pending,
+                    chain: network,
+                });
+            } catch (error) {}
 
             return totalStakingBalance;
         },

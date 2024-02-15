@@ -26,14 +26,16 @@ const useSendNFT = (senderIndex: number) => {
         {
             onSuccess: (_data, variables) => {
                 invalidateQueries([Queries.GET_BALANCE, Queries.GET_NFTS, Queries.ACTIONS]);
-                posthog?.capture("send", {
-                    asset: "NFT",
-                    wallet_address: serviceInstance.getAddress(),
-                    destination_address: variables.receiverId,
-                    amount: "1",
-                    contract_id: variables.contractId,
-                    chain: network,
-                });
+                try {
+                    posthog?.capture("send", {
+                        asset: "NFT",
+                        wallet_address: serviceInstance.getAddress(),
+                        destination_address: variables.receiverId,
+                        amount: "1",
+                        contract_id: variables.contractId,
+                        chain: network,
+                    });
+                } catch (error) {}
             },
         },
     );

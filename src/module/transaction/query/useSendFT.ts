@@ -30,14 +30,17 @@ const useSendFT = (senderIndex: number) => {
         {
             onSuccess: (_data, variables) => {
                 invalidateQueries([Queries.GET_BALANCE, Queries.GET_FTS, Queries.ACTIONS]);
-                posthog?.capture("send", {
-                    asset: "FT",
-                    wallet_address: serviceInstance.getAddress(),
-                    destination_address: variables.receiverId,
-                    amount: variables.amount,
-                    contract_id: variables.contractId,
-                    chain: network,
-                });
+
+                try {
+                    posthog?.capture("send", {
+                        asset: "FT",
+                        wallet_address: serviceInstance.getAddress(),
+                        destination_address: variables.receiverId,
+                        amount: variables.amount,
+                        contract_id: variables.contractId,
+                        chain: network,
+                    });
+                } catch (error) {}
             },
         },
     );

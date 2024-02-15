@@ -13,11 +13,13 @@ const useGetBalance = (index?: number) => {
         async () => {
             const balance = await serviceInstance.getAccountBalance();
 
-            posthog?.capture("load_wallet_info", {
-                wallet_address: serviceInstance.getAddress(),
-                balance: balance.available,
-                chain: network,
-            });
+            try {
+                posthog?.capture("load_wallet_info", {
+                    wallet_address: serviceInstance.getAddress(),
+                    balance: balance.available,
+                    chain: network,
+                });
+            } catch (error) {}
 
             return balance;
         },

@@ -14,11 +14,13 @@ export default function (index?: number): UseQueryResult<NftToken[]> {
         async (): Promise<NftToken[]> => {
             const nfts = await serviceInstance.getNfts();
 
-            posthog?.capture("load_wallet_nfts", {
-                wallet_address: serviceInstance.getAddress(),
-                nft_count: nfts.length,
-                chain: network,
-            });
+            try {
+                posthog?.capture("load_wallet_nfts", {
+                    wallet_address: serviceInstance.getAddress(),
+                    nft_count: nfts.length,
+                    chain: network,
+                });
+            } catch (error) {}
 
             return nfts;
         },
