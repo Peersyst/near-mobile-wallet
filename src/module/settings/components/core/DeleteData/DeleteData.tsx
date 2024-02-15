@@ -25,7 +25,7 @@ const DeleteData = () => {
     const handlePinConfirmed = async () => {
         hideCancelableDialog();
         await WalletStorage.clearAll();
-        setWalletState((state) => ({ ...state, isAuthenticated: false, hasWallet: false }));
+        setWalletState((state) => ({ ...state, hasWallet: false }));
         serviceInstancesMap.clear();
         await SettingsStorage.clear();
         await queryClient.invalidateQueries();

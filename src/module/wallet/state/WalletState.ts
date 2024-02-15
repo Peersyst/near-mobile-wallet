@@ -8,7 +8,6 @@ export type Wallet = StorageWallet & {
 
 export interface WalletState {
     hasWallet: boolean;
-    isAuthenticated: boolean;
     /**
      * They can be tesnet or mainnet wallets, but only one network type at a time
      * They are setted in useLoad from the information in the storage
@@ -20,7 +19,7 @@ export interface WalletState {
 
 const walletState = atom<WalletState>({
     key: "wallet",
-    default: { hasWallet: false, isAuthenticated: false, wallets: [], selectedWallet: 0 },
+    default: { hasWallet: false, wallets: [], selectedWallet: 0 },
 });
 
 export default walletState;

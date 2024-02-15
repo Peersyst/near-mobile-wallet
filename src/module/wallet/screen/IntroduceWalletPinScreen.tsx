@@ -22,7 +22,7 @@ const SetWalletPinScreen = (): JSX.Element => {
 
     const handleSuccess = async (pin?: string) => {
         ControllerFactory.authController.login(pin);
-        setWalletState((state) => ({ ...state, isAuthenticated: true }));
+        setWalletState((state) => ({ ...state }));
     };
 
     const handlePinSubmit = async (pin: string) => {
