@@ -42,12 +42,12 @@
     "you_are_not_staking": "您當前沒有與任何驗證者進行质押。",
     "no_validators_available": "當前沒有可用的驗證者",
     "no_validators_found": "未找到此搜索條件（{{accountId}}）的驗證者 ",
-    "networkMismatch": "Network mismatch",
-    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details.",
-    "noConnectedSites": "No connected sites",
-    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account.",
-    "invalidSigner": "Invalid signer account",
-    "invalidSignerDescription": "You have not selected the expected account to sign this request",
-    "invalidSignerRequest": "Invalid signer request",
-    "invalidSignerRequestDescription": "The request does not exists. Try creating a different one."
+    "networkMismatch": "网络不匹配",
+    "networkMismatchDescription": "此请求期望连接到不同的网络。请切换到其他网络以查看请求详情。",
+    "noConnectedSites": "无连接站点",
+    "noConnectedSitesDescription": "看起来您未连接到此帐户的任何 DApp。",
+    "invalidSigner": "无效签名账户",
+    "invalidSignerDescription": "您未选择预期的帐户来签署此请求。",
+    "invalidSignerRequest": "无效签名请求",
+    "invalidSignerRequestDescription": "该请求不存在。请尝试创建另一个。"
 }

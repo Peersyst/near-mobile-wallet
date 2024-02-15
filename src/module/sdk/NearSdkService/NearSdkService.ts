@@ -88,7 +88,7 @@ export class NearSDKService {
         this.nameId = nameId;
         this.mnemonic = mnemonic;
         this.baseApiUrl = baseApiUrl;
-        this.apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer);
+        this.apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer, chain);
         this.nearDecimals = nearDecimals;
         this.enableIndexer = enableIndexer;
         // Create KeyPairEd25519
@@ -111,8 +111,8 @@ export class NearSDKService {
         return decode(encode(publicKey.data)).toString("hex");
     }
 
-    static createApiService(baseApiUrl: string, enableIndexer: boolean): NearApiServiceInterface {
-        return enableIndexer ? new IndexerService(baseApiUrl) : new ApiService(baseApiUrl);
+    static createApiService(baseApiUrl: string, enableIndexer: boolean, chain: Chains): NearApiServiceInterface {
+        return enableIndexer ? new IndexerService(baseApiUrl) : new ApiService(baseApiUrl, chain);
     }
 
     static async createAndConnect(params: BaseCreateNearSdkParams): Promise<NearSDKService> {
@@ -127,16 +127,17 @@ export class NearSDKService {
         mnemonic,
         baseApiUrl,
         enableIndexer,
+        chain,
         ...rest
     }: CreateNearSdkWithMnemonicParams): Promise<NearSDKService[]> {
         const { secretKey, publicKey } = parseSeedPhrase(mnemonic);
-        const apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer);
+        const apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer, chain);
         const nameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
         }
         const services = nameIds.map(async (nameId) => {
-            const service = new NearSDKService({ baseApiUrl, secretKey, nameId, mnemonic, enableIndexer, ...rest });
+            const service = new NearSDKService({ baseApiUrl, secretKey, nameId, mnemonic, enableIndexer, chain, ...rest });
             await service.connect();
             return service;
         });
@@ -147,17 +148,18 @@ export class NearSDKService {
         secretKey,
         baseApiUrl,
         enableIndexer,
+        chain,
         ...rest
     }: CreateNearSdkWithSecretKeyParams): Promise<NearSDKService[]> {
         const secret = secretKey.split(":").pop();
         const publicKey = new KeyPairEd25519(secret!).getPublicKey().toString();
-        const apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer);
+        const apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer, chain);
         const nameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
         }
         const services = nameIds.map(async (nameId) => {
-            const service = new NearSDKService({ ...rest, baseApiUrl, secretKey, nameId, enableIndexer });
+            const service = new NearSDKService({ ...rest, baseApiUrl, secretKey, nameId, enableIndexer, chain });
             await service.connect();
             return service;
         });
@@ -476,7 +478,14 @@ export class NearSDKService {
 
     async getRecentActivity(): Promise<Action[]> {
         this.getConnection();
-        return await this.apiService.getRecentActivity({ address: this.getAddress() });
+        let actions: Action[] = [];
+        try {
+            actions = await this.apiService.getRecentActivity({ address: this.getAddress() });
+        } catch (e: any) {
+            //eslint-disable-next-line no-console
+            console.warn("Error getting recent activity: ", e);
+        }
+        return actions;
     }
 
     // --------------------------------------------------------------
@@ -593,16 +602,32 @@ export class NearSDKService {
     }
 
     async getAllValidators(): Promise<Validator[]> {
-        const validators = await this.getAllValidatorIds();
-        const validatorsProms = validators.map((validator) => this.getValidatorDataFromId(validator, false, undefined, true));
-        const validatorsPromise = await Promise.all(validatorsProms);
-        return validatorsPromise.filter((validator: Validator) => (validator.fee ? validator.fee : 0 > 0));
+        let availableValidatorsList: Validator[] = [];
+        try {
+            const validators = await this.getAllValidatorIds();
+            const validatorsProms = validators.map((validator) => this.getValidatorDataFromId(validator, false, undefined, true));
+            const validatorsPromise = await Promise.all(validatorsProms);
+            availableValidatorsList = validatorsPromise.filter((validator: Validator) => (validator.fee ? validator.fee : 0 > 0));
+        } catch (e) {
+            //eslint-disable-next-line no-console
+            console.warn("Error in getAllValidators: ", e);
+        }
+        return availableValidatorsList;
     }
 
     async getCurrentValidators(): Promise<Validator[]> {
-        const stakingDeposits = await this.apiService.getStakingDeposits({ address: this.getAddress() });
-        const validatorsProms = stakingDeposits.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
-        return await Promise.all(validatorsProms);
+        let validators: Validator[] = [];
+        try {
+            const stakingDeposits = await this.apiService.getStakingDeposits({ address: this.getAddress() });
+            const validatorsProms = stakingDeposits.map(({ validatorId, amount }) =>
+                this.getValidatorDataFromId(validatorId, true, amount),
+            );
+            validators = await Promise.all(validatorsProms);
+        } catch (e) {
+            //eslint-disable-next-line no-console
+            console.warn("Error in getCurrentValidators: ", e);
+        }
+        return validators;
     }
 
     private addStakingBalancesFromValidators(validators: Validator[]): StakingBalance {

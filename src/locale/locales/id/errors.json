@@ -42,12 +42,12 @@
     "you_are_not_staking": "Anda saat ini tidak sedang melakukan staking dengan validator mana pun.",
     "no_validators_available": "Saat ini tidak ada validator yang tersedia untuk staking.",
     "no_validators_found": "Tidak ada validator yang ditemukan untuk pencarian ini ({{accountId}})",
-    "networkMismatch": "Network mismatch",
-    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details.",
-    "noConnectedSites": "No connected sites",
-    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account.",
-    "invalidSigner": "Invalid signer account",
-    "invalidSignerDescription": "You have not selected the expected account to sign this request",
-    "invalidSignerRequest": "Invalid signer request",
-    "invalidSignerRequestDescription": "The request does not exists. Try creating a different one."
+    "networkMismatch": "Kesalahan jaringan",
+    "networkMismatchDescription": "Permintaan ini mengharapkan jaringan yang berbeda. Ganti jaringan saat ini ke yang lain untuk melihat detail permintaan.",
+    "noConnectedSites": "Tidak ada situs terhubung",
+    "noConnectedSitesDescription": "Sepertinya Anda tidak terhubung ke aplikasi terdesentralisasi dengan akun ini.",
+    "invalidSigner": "Akun penanda tangan tidak valid",
+    "invalidSignerDescription": "Anda belum memilih akun yang diharapkan untuk menandatangani permintaan ini",
+    "invalidSignerRequest": "Permintaan penanda tangan tidak valid",
+    "invalidSignerRequestDescription": "Permintaan tidak ada. Coba buat yang lain."
 }

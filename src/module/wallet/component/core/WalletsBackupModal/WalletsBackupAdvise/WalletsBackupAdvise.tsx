@@ -1,13 +1,15 @@
 import { Col, Typography } from "@peersyst/react-native-components";
 import { useTranslate } from "module/common/hook/useTranslate";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import backupWalletState, { BackUp } from "module/wallet/state/BackUpWalletState";
 import Button from "module/common/component/input/Button/Button";
 import { ConfirmPinModalWrapper } from "module/settings/components/core/ConfirmPinModal/ConfirmPinModalWrapper";
 import Advise from "module/common/component/display/Advise/Advise";
 import { BaseUseModalStateReturn } from "module/common/hook/useModalState";
+import { usePostHog } from "posthog-react-native";
+import settingsState from "module/settings/state/SettingsState";
 
-export interface WalletsBackupAdvise {
+export interface WalletsBackupAdviseProps {
     onSubmit: () => void;
 }
 
@@ -16,12 +18,21 @@ export interface HandlePressParams {
     method: BackUp;
 }
 
-const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdvise): JSX.Element => {
+const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdviseProps): JSX.Element => {
     const translate = useTranslate();
     const setState = useSetRecoilState(backupWalletState);
+    const posthog = usePostHog();
+    const { network } = useRecoilValue(settingsState);
 
     const handlePress = ({ method, showModal }: HandlePressParams) => {
         setState({ method });
+        try {
+            posthog?.capture("backup", {
+                action_type: method,
+                chain: network,
+            });
+        } catch (error) {}
+
         showModal();
     };
 

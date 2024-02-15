@@ -167,9 +167,6 @@ export default new (class WalletController {
         //Has all the privateKeys and walletIds that point into the oldStorageWallets
         const walletGroups = secureStorage?.[network] || [];
 
-        //Does not have any previous wallet
-        if (storageWallets.length === 0 || walletGroups.length === 0) return { wallets: [] };
-
         const mainPrivateKey = this.parsePrivateKey(secureStorage?.mainPrivateKey || ""); //If has previous wallets, it has a mainPrivateKey
 
         const { newWallets, newWalletGroups, deletedIds, hasNewAccounts } = await this.checkWallets({

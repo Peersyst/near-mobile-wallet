@@ -19,12 +19,16 @@ import {
     StakingDepositApiDto,
     ActionApiDto,
 } from "./NearApiService.types";
+import { NearBlocksService } from "./NearBlocksService";
 
 export class ApiService extends FetchService implements NearApiServiceInterface {
     public baseUrl: string;
-    constructor(endpoint: string) {
+    nearblocksService: NearBlocksService;
+
+    constructor(endpoint: string, chain: Chains) {
         super();
         this.baseUrl = endpoint;
+        this.nearblocksService = new NearBlocksService(chain);
     }
 
     /**
@@ -107,8 +111,17 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
      */
 
     async getAccountsFromPublicKey({ address }: NearApiServiceParams): Promise<string[]> {
-        const accounts = await this.handleFetch<string[]>(`${this.baseUrl}/publicKey/${address}/accounts`);
-        return this.parseNearAccounts(accounts);
+        let newAccounts: string[] = [];
+        try {
+            newAccounts = await this.nearblocksService.getAccountsFromPublicKey({ address });
+        } catch (error: unknown) {}
+
+        let oldAccounts: string[] = [];
+        try {
+            oldAccounts = await this.handleFetch<string[]>(`${this.baseUrl}/publicKey/${address}/accounts`);
+        } catch (error: unknown) {}
+        const accounts = new Set([...oldAccounts, ...newAccounts]);
+        return Array.from(accounts).map((account) => this.parseNearAccount(account));
     }
 
     async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {

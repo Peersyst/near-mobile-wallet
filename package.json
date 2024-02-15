@@ -42,6 +42,7 @@
         "@react-navigation/native-stack": "^6.5.0",
         "@types/color": "^3.0.3",
         "big-integer": "^1.6.51",
+        "bignumber.js": "^9.1.2",
         "borsh": "^1.0.0",
         "buffer": "^6.0.3",
         "color": "^4.2.3",
