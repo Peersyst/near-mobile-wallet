@@ -5,6 +5,7 @@ import { parseTokenAmount } from "near-peersyst-sdk";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
 import { useSetRecoilState } from "recoil";
 import sendState from "../state/SendState";
+import { usePostHog } from "posthog-react-native";
 
 export interface UseSendTokensParams {
     contractId: string;
@@ -15,9 +16,10 @@ export interface UseSendTokensParams {
 }
 
 const useSendFT = (senderIndex: number) => {
-    const { serviceInstance } = useServiceInstance(senderIndex);
+    const { serviceInstance, network } = useServiceInstance(senderIndex);
     const invalidateQueries = useInvalidateServiceInstanceQueries(senderIndex);
     const setSendState = useSetRecoilState(sendState);
+    const posthog = usePostHog();
 
     return useMutation(
         async ({ contractId, amount, receiverId, memo, decimals }: UseSendTokensParams) => {
@@ -26,8 +28,16 @@ const useSendFT = (senderIndex: number) => {
             setSendState((oldState) => ({ ...oldState, txHash }));
         },
         {
-            onSuccess: () => {
+            onSuccess: (_data, variables) => {
                 invalidateQueries([Queries.GET_BALANCE, Queries.GET_FTS, Queries.ACTIONS]);
+                posthog?.capture("send", {
+                    asset: "FT",
+                    wallet_address: serviceInstance.getAddress(),
+                    destination_address: variables.receiverId,
+                    amount: variables.amount,
+                    contract_id: variables.contractId,
+                    chain: network,
+                });
             },
         },
     );

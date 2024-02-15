@@ -6,13 +6,31 @@ import { Linking } from "react-native";
 // TouchableOpacity from react-native-gesture-handler handles touches with Swipeable.
 // Otherwise, Swipeable triggers the `onPress`
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useRecoilValue } from "recoil";
+import settingsState from "module/settings/state/SettingsState";
+import useWalletState from "module/wallet/hook/useWalletState";
+import { usePostHog } from "posthog-react-native";
 
 const DApp = ({ dapp, connected = false, loading = false }: DAppProps): JSX.Element => {
     const { name, description, logoUrl, url, tag } = dapp;
+    const {
+        state: { selectedWallet, wallets },
+    } = useWalletState();
+    const { network } = useRecoilValue(settingsState);
+    const posthog = usePostHog();
 
+    function handleOnPress(): void {
+        posthog?.capture("dapp_click", {
+            wallet_address: wallets[selectedWallet].account,
+            dapp_url: url,
+            dapp_name: name,
+            chain: network,
+        });
+        Linking.openURL(url);
+    }
     return (
         <DAppRoot gap={16}>
-            <TouchableOpacity activeOpacity={0.6} onPress={() => Linking.openURL(url)}>
+            <TouchableOpacity activeOpacity={0.6} onPress={handleOnPress}>
                 <Row gap={16} alignItems="center">
                     <DAppLogo source={{ uri: logoUrl }} />
                     <Col flex={1}>
