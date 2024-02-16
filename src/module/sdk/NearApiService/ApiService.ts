@@ -147,7 +147,7 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
-        return this.nearblocksService.getRecentActivity({ address });
+        return await this.nearblocksService.getRecentActivity({ address });
     }
 
     async getActionsFromTransactions({ address }: NearApiServicePaginatedParams): Promise<Action[]> {
