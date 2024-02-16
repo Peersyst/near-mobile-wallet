@@ -1,11 +1,7 @@
 import { useTranslate } from "module/common/hook/useTranslate";
 import { Action, EnhancedTransactionActionKind, TransactionActionKind } from "near-peersyst-sdk";
 
-export const useGetActionLabel = ({
-    actionKind,
-    methodName,
-    transaction: { receiverAccountId, signerAccountId },
-}: Action): string => {
+export const useGetActionLabel = ({ actionKind, methodName, transaction: { receiverAccountId, signerAccountId } }: Action): string => {
     const translate = useTranslate();
 
     switch (actionKind) {

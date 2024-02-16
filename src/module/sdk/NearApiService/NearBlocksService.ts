@@ -4,11 +4,11 @@
  */
 import config from "../../../config/config";
 import {
-    AccessKey,
-    Action, ActionKind,
-    Chains, EnhancedTransactionActionKind, TransactionAction,
+    Action,
+    ActionKind,
+    Chains,
+    EnhancedTransactionActionKind,
     TransactionActionKind,
-    TransactionStatus,
     TransactionWithoutActions,
 } from "../NearSdkService";
 import { DEPOSIT_STAKE_METHOD, parseBlockTimestamp } from "../utils";
@@ -18,7 +18,7 @@ import {
     NearBlocsTransactionResponseDto,
     NearblocksAccessKeyResponseDto,
     NearblocksTokenResponseDto,
-    StakingDepositApiDto, ActionApiDto,
+    StakingDepositApiDto,
 } from "./NearApiService.types";
 
 export class NearBlocksService extends FetchService {
