@@ -5,6 +5,7 @@ import { Token } from "near-peersyst-sdk";
 import Queries from "../../../query/queries";
 import { config } from "config";
 import { usePostHog } from "posthog-react-native";
+import BigNumber from "bignumber.js";
 
 const useGetTokens = (index?: number): QueryResult<Token[]> => {
     const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index);
@@ -22,7 +23,7 @@ const useGetTokens = (index?: number): QueryResult<Token[]> => {
                     posthog?.capture("load_wallet_tokens", {
                         wallet_address: walletAddress,
                         contract_id: token.contractId,
-                        balance: token.balance,
+                        balance: BigNumber(token.balance).toNumber(),
                         chain: network,
                     });
                 } catch (error) {}

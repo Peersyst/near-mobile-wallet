@@ -5,6 +5,7 @@ import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInva
 import { useSetRecoilState } from "recoil";
 import sendState from "../state/SendState";
 import { usePostHog } from "posthog-react-native";
+import BigNumber from "bignumber.js";
 
 export interface UseSendNEARParams {
     to: string;
@@ -30,7 +31,7 @@ const useSendNEAR = (senderIndex: number) => {
                         asset: "NEAR",
                         wallet_address: serviceInstance.getAddress(),
                         destination_address: variables.to,
-                        amount: variables.amount,
+                        amount: BigNumber(variables.amount).toNumber(),
                         chain: network,
                     });
                 } catch (error) {}

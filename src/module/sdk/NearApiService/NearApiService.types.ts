@@ -123,3 +123,37 @@ export interface NearblocksAccessKeyDto {
         block_timestamp: null | number;
     };
 }
+
+export interface NearBlocsTransactionResponseDto {
+    txns: NearBlocsTransactionDto[];
+}
+
+export interface NearBlocsTransactionDto {
+    receipt_id: string;
+    predecessor_account_id: string; //system or account.near
+    receiver_account_id: string;
+    transaction_hash: string;
+    included_in_block_hash: string;
+    block_timestamp: string;
+    block: {
+        block_height: number;
+    };
+    actions: NearblocksActionDto[];
+    actions_agg: { deposit: number };
+    outcomes: {
+        status: boolean;
+    };
+    outcomes_agg: {
+        transaction_fee: number;
+    };
+    logs: string[];
+}
+
+export interface NearblocksActionDto {
+    action: TransactionActionKind;
+    method: string | null;
+}
+
+export interface NearblocksTokenResponseDto {
+    tokens: { fts: string[]; nfts: string[] };
+}

@@ -3,8 +3,6 @@ import { Action, EnhancedTransactionActionKind, TransactionActionKind } from "ne
 
 export const useGetActionLabel = ({
     actionKind,
-    publicKey,
-    codeSha256,
     methodName,
     transaction: { receiverAccountId, signerAccountId },
 }: Action): string => {
@@ -18,19 +16,19 @@ export const useGetActionLabel = ({
             return `${translate("new_account_created")}: ${receiverAccountId}`;
         }
         case TransactionActionKind.DELETE_ACCOUNT: {
-            return `${translate("account_deleted")}: ${publicKey}`;
+            return `${translate("account_deleted")}`;
         }
         case TransactionActionKind.DEPLOY_CONTRACT: {
-            return `${translate("contract_deployed")}: ${codeSha256}`;
+            return `${translate("contract_deployed")}`;
         }
         case TransactionActionKind.FUNCTION_CALL: {
             return `${translate("called")} ${methodName} ${translate("method_in")} ${receiverAccountId}`;
         }
         case TransactionActionKind.ADD_KEY: {
-            return `${translate("key_added")}: ${publicKey}`;
+            return `${translate("key_added")}`;
         }
         case TransactionActionKind.DELETE_KEY: {
-            return `${translate("key_deleted")}: ${publicKey}`;
+            return `${translate("key_deleted")}`;
         }
         case EnhancedTransactionActionKind.TRANSFER_SEND: {
             return `${translate("sentTo")} ${receiverAccountId}`;

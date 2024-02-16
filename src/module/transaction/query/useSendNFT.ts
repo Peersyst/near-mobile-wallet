@@ -31,7 +31,7 @@ const useSendNFT = (senderIndex: number) => {
                         asset: "NFT",
                         wallet_address: serviceInstance.getAddress(),
                         destination_address: variables.receiverId,
-                        amount: "1",
+                        amount: 1,
                         contract_id: variables.contractId,
                         chain: network,
                     });

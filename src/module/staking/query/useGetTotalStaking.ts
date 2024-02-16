@@ -5,6 +5,7 @@ import { QueryResult } from "query-utils";
 import Queries from "../../../query/queries";
 import { config } from "config";
 import { usePostHog } from "posthog-react-native";
+import BigNumber from "bignumber.js";
 
 export default function (index?: number): QueryResult<StakingBalance> {
     const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index);
@@ -18,9 +19,9 @@ export default function (index?: number): QueryResult<StakingBalance> {
             try {
                 posthog?.capture("load_staking_info", {
                     wallet_address: serviceInstance.getAddress(),
-                    total_amount_staked: totalStakingBalance.staked,
-                    rewards_earned: totalStakingBalance.rewardsEarned,
-                    pending_release: totalStakingBalance.pending,
+                    total_amount_staked: BigNumber(totalStakingBalance.staked).toNumber(),
+                    rewards_earned: totalStakingBalance.rewardsEarned ? BigNumber(totalStakingBalance.rewardsEarned).toNumber() : 0,
+                    pending_release: BigNumber(totalStakingBalance.pending).toNumber(),
                     chain: network,
                 });
             } catch (error) {}
