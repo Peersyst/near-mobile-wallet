@@ -115,13 +115,7 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
         try {
             newAccounts = await this.nearblocksService.getAccountsFromPublicKey({ address });
         } catch (error: unknown) {}
-
-        let oldAccounts: string[] = [];
-        try {
-            oldAccounts = await this.handleFetch<string[]>(`${this.baseUrl}/publicKey/${address}/accounts`);
-        } catch (error: unknown) {}
-        const accounts = new Set([...oldAccounts, ...newAccounts]);
-        return Array.from(accounts).map((account) => this.parseNearAccount(account));
+        return newAccounts.map((account) => this.parseNearAccount(account));
     }
 
     async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
@@ -130,9 +124,7 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     async getLikelyTokens({ address, chain }: NearApiServiceParams): Promise<string[]> {
-        const contractIds = (
-            await this.handleFetch<LikelyResponseApiDto>(`${this.baseUrl}/account/${address}/likelyTokensFromBlock?fromBlockTimestamp=0`)
-        ).list;
+        const contractIds = await this.nearblocksService.getLikelyTokens({ address });
         if (chain === Chains.MAINNET) {
             if (!contractIds.includes("game.hot.tg")) {
                 contractIds.push("game.hot.tg");

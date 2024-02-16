@@ -5,7 +5,7 @@
 import config from "../../../config/config";
 import { Chains } from "../NearSdkService";
 import { FetchService } from "./FetchService";
-import { NearApiServiceParams, NearblocksAccessKeyResponseDto } from "./NearApiService.types";
+import { NearApiServiceParams, NearblocksAccessKeyResponseDto, NearblocksTokenResponseDto } from "./NearApiService.types";
 
 export class NearBlocksService extends FetchService {
     public chain: Chains;
@@ -36,5 +36,17 @@ export class NearBlocksService extends FetchService {
             }
         }
         return accounts;
+    }
+
+    private async getAccountTokens({ address }: NearApiServiceParams): Promise<NearblocksTokenResponseDto> {
+        return await this.fetch<NearblocksTokenResponseDto>(`/account/${address}/tokens`);
+    }
+
+    async getLikelyTokens({ address }: NearApiServiceParams): Promise<string[]> {
+        return (await this.getAccountTokens({ address })).tokens.fts;
+    }
+
+    async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
+        return (await this.getAccountTokens({ address })).tokens.nfts;
     }
 }
