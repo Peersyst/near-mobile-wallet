@@ -123,3 +123,7 @@ export interface NearblocksAccessKeyDto {
         block_timestamp: null | number;
     };
 }
+
+export interface NearblocksTokenResponseDto {
+    tokens: { fts: string[]; nfts: string[] };
+}
