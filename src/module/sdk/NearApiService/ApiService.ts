@@ -12,7 +12,6 @@ import { convertYoctoToNear, parseBlockTimestamp } from "../utils";
 import { FetchService } from "./FetchService";
 import {
     AccessKeyApiDto,
-    LikelyResponseApiDto,
     NearApiServiceInterface,
     NearApiServicePaginatedParams,
     NearApiServiceParams,
