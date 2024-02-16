@@ -3,7 +3,7 @@ import DomainError from "refactor/domain/error/DomainError";
 import { IMnemonicController } from "refactor/ui/adapter/controllers/IMnemonicController";
 import AuthErrorCodes from "../AuthErrorCodes";
 // @ts-ignore
-import bip39 from "bip39-light";
+import * as bip39 from "bip39";
 
 export default class MnemonicController implements IMnemonicController {
     constructor(private readonly mnemonicRepository: IMnemonicRepository) {}
@@ -14,6 +14,14 @@ export default class MnemonicController implements IMnemonicController {
      */
     setMnemonic(mnemonic: string): Promise<void> {
         return this.mnemonicRepository.setMnemonic(mnemonic);
+    }
+
+    /**
+     * get the Mnemonic.
+     * @param Mnemonic
+     */
+    getMnemonic(): Promise<string | undefined> {
+        return this.mnemonicRepository.getMnemonic();
     }
 
     /**

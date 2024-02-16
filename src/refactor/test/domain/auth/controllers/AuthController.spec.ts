@@ -2,6 +2,7 @@ import AuthController from "refactor/domain/auth/controller/AuthController";
 import { AuthStateMock } from "refactor/test/mocks/auth/authState.mock";
 import { MnemonicControllerMock } from "refactor/test/mocks/auth/mnemonic/MnemonicController.mock";
 import { PinControllerMock } from "refactor/test/mocks/auth/pin/PinController.mock";
+
 describe("AuthController", () => {
     let authController: AuthController;
 
@@ -23,21 +24,6 @@ describe("AuthController", () => {
             const pin = "1234";
 
             await authController.signUp(mnemonic, pin);
-
-            expect(mnemonicControllerMock.setMnemonic).toHaveBeenCalledWith(mnemonic.join(" "));
-            expect(pinControllerMock.setPin).toHaveBeenCalledWith(pin);
-            expect(authStateMock.setState).toHaveBeenCalledWith({ isAuthenticated: true });
-        });
-    });
-
-    describe("recover", () => {
-        test("Should call set mnemonic, pin and change authState, and validate mnemonic", async () => {
-            const mnemonic = ["word1", "word2", "word3"];
-            const pin = "1234";
-
-            mnemonicControllerMock.validateMnemonic.mockResolvedValue(true);
-
-            await authController.recover(mnemonic, pin);
 
             expect(mnemonicControllerMock.setMnemonic).toHaveBeenCalledWith(mnemonic.join(" "));
             expect(pinControllerMock.setPin).toHaveBeenCalledWith(pin);

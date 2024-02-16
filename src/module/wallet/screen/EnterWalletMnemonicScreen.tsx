@@ -33,7 +33,6 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: BaseAddWalletModalS
         const valid = await ControllerFactory.mnemonicController.validateMnemonic(mnemonicParam.join(" "));
         if (valid) {
             setMnemonic(mnemonicParam);
-            await ControllerFactory.mnemonicController.setMnemonic(mnemonicParam.join(" "));
         } else {
             notificationAsync(NotificationFeedbackType.Error);
             showToast(translate("incorrect_mnemonic"), { type: "error" });
