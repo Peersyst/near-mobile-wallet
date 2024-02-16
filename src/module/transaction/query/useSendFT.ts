@@ -6,6 +6,7 @@ import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInva
 import { useSetRecoilState } from "recoil";
 import sendState from "../state/SendState";
 import { usePostHog } from "posthog-react-native";
+import BigNumber from "bignumber.js";
 
 export interface UseSendTokensParams {
     contractId: string;
@@ -36,7 +37,7 @@ const useSendFT = (senderIndex: number) => {
                         asset: "FT",
                         wallet_address: serviceInstance.getAddress(),
                         destination_address: variables.receiverId,
-                        amount: variables.amount,
+                        amount: BigNumber(variables.amount).toNumber(),
                         contract_id: variables.contractId,
                         chain: network,
                     });
