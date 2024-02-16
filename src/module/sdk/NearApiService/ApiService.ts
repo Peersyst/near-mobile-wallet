@@ -12,7 +12,6 @@ import { convertYoctoToNear, parseBlockTimestamp } from "../utils";
 import { FetchService } from "./FetchService";
 import {
     AccessKeyApiDto,
-    LikelyResponseApiDto,
     NearApiServiceInterface,
     NearApiServicePaginatedParams,
     NearApiServiceParams,
@@ -134,9 +133,7 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
-        const contractIds = (
-            await this.handleFetch<LikelyResponseApiDto>(`${this.baseUrl}/account/${address}/likelyNFTsFromBlock?fromBlockTimestamp=0`)
-        ).list;
+        const contractIds = await this.nearblocksService.getLikelyNfts({ address });
         return this.parseNearAccounts(contractIds);
     }
 
