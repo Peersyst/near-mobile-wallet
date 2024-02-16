@@ -118,7 +118,16 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
-        const apiDeposits = await this.handleFetch<StakingDepositApiDto[]>(`${this.baseUrl}/staking-deposits/${address}`);
+        let apiDeposits: StakingDepositApiDto[] = [];
+        try {
+            apiDeposits = await this.nearblocksService.getAccountDeposits({ address });
+        } catch (error: unknown) {
+            try {
+                // Hope for kitwallet magic
+                apiDeposits = await this.handleFetch<StakingDepositApiDto[]>(`${this.baseUrl}/staking-deposits/${address}`);
+            } catch (error: unknown) {}
+        }
+
         return apiDeposits.map(this.parseStakingDepositApiDtoDto);
     }
 
@@ -138,8 +147,7 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
-        const txs = await this.handleFetch<ActionApiDto[]>(`${this.baseUrl}/account/${address}/activity`);
-        return txs.map((tx) => this.parseActionApiDto(tx, address));
+        return await this.nearblocksService.getRecentActivity({ address });
     }
 
     async getActionsFromTransactions({ address }: NearApiServicePaginatedParams): Promise<Action[]> {
