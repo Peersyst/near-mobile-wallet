@@ -3,9 +3,16 @@
  * because it will cause a circular dependency with SettingsState
  */
 import config from "../../../config/config";
-import { Chains } from "../NearSdkService";
+import { Action, Chains } from "../NearSdkService";
+import { DEPOSIT_STAKE_METHOD } from "../utils";
 import { FetchService } from "./FetchService";
-import { NearApiServiceParams, NearblocksAccessKeyResponseDto, NearblocksTokenResponseDto } from "./NearApiService.types";
+import {
+    NearApiServiceParams,
+    NearBlocsTransactionResponseDto,
+    NearblocksAccessKeyResponseDto,
+    NearblocksTokenResponseDto,
+    StakingDepositApiDto,
+} from "./NearApiService.types";
 
 export class NearBlocksService extends FetchService {
     public chain: Chains;
@@ -25,6 +32,48 @@ export class NearBlocksService extends FetchService {
         const nearBlocksApi = this.getNearblocksApiUrlFromChain();
         return this.handleFetch<T>(`${nearBlocksApi}${path}`);
     }
+
+    async getAccountDeposits({ address }: NearApiServiceParams): Promise<StakingDepositApiDto[]> {
+        const deposits: StakingDepositApiDto[] = [];
+        const pageSize = 25;
+        const method = DEPOSIT_STAKE_METHOD;
+        const order = "asc";
+
+        let page = 1;
+        let { txns } = await this.fetch<NearBlocsTransactionResponseDto>(
+            `/txns/?from=${address}&method=${method}&page=${page}&per_page=${pageSize}&order=${order}`,
+        );
+        deposits.push(...txns.map((tx) => ({ validator_id: tx.receiver_account_id, deposit: tx.actions_agg.deposit.toString() })));
+
+        while (txns.length === pageSize) {
+            page += 1;
+            ({ txns } = await this.fetch<NearBlocsTransactionResponseDto>(
+                `/txns/?from=${address}&method=${method}&page=${page}&per_page=${pageSize}&order=${order}`,
+            ));
+            deposits.push(...txns.map((tx) => ({ validator_id: tx.receiver_account_id, deposit: tx.actions_agg.deposit.toString() })));
+        }
+
+        return deposits;
+    }
+
+    /*    private async getAccountTransactions({ address }: NearApiServiceParams): Promise<Action[]> {
+        const baseTxs = await this.fetch<NearBlocsTransactionResponseDto>(`/account/${address}/txns?page=1&per_page=10&order=desc`);
+
+        const txs: Action[] = baseTxs.txns.map((tx) => {
+            const baseTransaction: TransactionWithoutActions = {
+                transactionHash: tx.transaction_hash,
+                includedInBlockHash: tx.included_in_block_hash,
+                blockTimestamp: tx.block_timestamp,
+                signerAccountId: tx.predecessor_account_id,
+                nonce: 2,
+                receiverAccountId: tx.receiver_account_id,
+            };
+            return {
+                transaction: baseTransaction,
+            };
+        });
+        return [];
+    } */
 
     async getAccountsFromPublicKey({ address }: NearApiServiceParams): Promise<string[]> {
         const accounts: string[] = [];
@@ -48,5 +97,9 @@ export class NearBlocksService extends FetchService {
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
         return (await this.getAccountTokens({ address })).tokens.nfts;
+    }
+
+    async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
+        return [] as any;
     }
 }
