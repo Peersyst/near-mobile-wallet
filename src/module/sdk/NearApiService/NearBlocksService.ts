@@ -99,6 +99,7 @@ export class NearBlocksService extends FetchService {
         return (await this.getAccountTokens({ address })).tokens.nfts;
     }
 
+    // eslint-disable-next-line  @typescript-eslint/no-unused-vars
     async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
         return [] as any;
     }
