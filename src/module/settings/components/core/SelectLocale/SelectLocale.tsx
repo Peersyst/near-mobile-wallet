@@ -1,4 +1,3 @@
-import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import useTranslate from "module/common/hook/useTranslate";
@@ -6,6 +5,7 @@ import { LocaleResourceType, LocaleType } from "refactor/ui/locale";
 import i18n, { APP_LOCALES } from "refactor/ui/locale/i18n";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
 import { useMemo } from "react";
+import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
 
 const SelectLocale = (): JSX.Element => {
     const translateLang = useTranslate("langs");
@@ -24,7 +24,7 @@ const SelectLocale = (): JSX.Element => {
     const handleSelect = (value: LocaleType) => {
         i18n.changeLanguage(value);
         setSettings((s) => ({ ...s, locale: value }));
-        SettingsStorage.set({ locale: value });
+        ControllerFactory.settingsController.set({ locale: value });
     };
     return (
         <SettingsSelect

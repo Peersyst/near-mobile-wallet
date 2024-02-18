@@ -1,8 +1,8 @@
 import { useRecoilState } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
-import { SettingsStorage } from "module/settings/SettingsStorage";
 import SettingsSwitch from "module/settings/components/input/SetttingsSwitch/SettingsSwitch";
 import useTranslate from "module/common/hook/useTranslate";
+import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
 
 const BiometricsSwitch = (): JSX.Element => {
     const translate = useTranslate();
@@ -11,7 +11,7 @@ const BiometricsSwitch = (): JSX.Element => {
 
     const handleChange = (biometrics: boolean) => {
         setSettings((s) => ({ ...s, biometrics }));
-        SettingsStorage.set({ biometrics });
+        ControllerFactory.settingsController.set({ biometrics });
     };
 
     return <SettingsSwitch value={settings.biometrics} onChange={handleChange} label={translate("biometricAuthentication")} />;

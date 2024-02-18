@@ -1,6 +1,5 @@
 import { useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
-import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import useRecoverWallets from "module/wallet/hook/useRecoverWallets";
 import WalletController from "module/wallet/utils/WalletController";
@@ -10,6 +9,7 @@ import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { Manrope_300Light, Manrope_400Regular, Manrope_600SemiBold } from "@expo-google-fonts/manrope";
 import { i18nextInitializationPromise } from "refactor/ui/locale";
+import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
 
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
@@ -34,9 +34,10 @@ export function useLoad(): boolean {
             ]);
 
             const hasMnemonic = await WalletController.hasMnemonic();
-            const settings = { ...defaultSettingsState, ...((await SettingsStorage.getAllSettings()) || {}) };
+            const allSettingsStored = await ControllerFactory.settingsController.getAllSettings();
+            const settings = { ...defaultSettingsState, ...(allSettingsStored || {}) };
 
-            if (!hasMnemonic) await SettingsStorage.set(settings);
+            if (!hasMnemonic) await ControllerFactory.settingsController.set(settings);
             else await recoverWallets(settings.network);
 
             setSettingsState(settings);

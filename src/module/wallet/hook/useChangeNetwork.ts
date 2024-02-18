@@ -2,9 +2,9 @@ import settingsState, { NetworkType } from "module/settings/state/SettingsState"
 import useRecoverWallets from "module/wallet/hook/useRecoverWallets";
 import walletState from "module/wallet/state/WalletState";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { SettingsStorage } from "module/settings/SettingsStorage";
 import { useState } from "react";
 import useInitWallets from "./useInitWallets";
+import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
 
 export interface UseChangeNetworkResult {
     isLoading: boolean;
@@ -30,7 +30,7 @@ export default (): UseChangeNetworkResult => {
             setWalletState((state) => ({ ...state, selectedWallet: 0, wallets, hasWallets: true }));
         }
 
-        await Promise.all([SettingsStorage.set({ network }), new Promise((resolve) => setTimeout(resolve, 2000))]);
+        await Promise.all([ControllerFactory.settingsController.set({ network }), new Promise((resolve) => setTimeout(resolve, 2000))]);
 
         setSettings({ ...settings, network });
 
