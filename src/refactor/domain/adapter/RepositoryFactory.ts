@@ -2,9 +2,9 @@ import Factory from "refactor/common/utils/Factory";
 import { IBiometricsPreferencesRepository } from "./repository/IBiometricsPreferencesRepository";
 import { IPinRepository } from "./repository/IPinRepository";
 import { IMnemonicRepository } from "./repository/IMnemonicRepository";
-import MnemonicRepository from "refactor/data-access/repository/wallet/MnemonicRepository/MnemonicRepository";
 import BiometricsPreferencesRepository from "refactor/data-access/repository/auth/BiometricsPreferencesRepository/BiometricsPreferencesRepository";
 import PinRepository from "refactor/data-access/repository/auth/PinRepository/PinRepository";
+import MnemonicRepository from "refactor/data-access/repository/wallet/MnemonicRepository";
 
 export interface IRepositoryFactory {
     pinRepository: IPinRepository;
