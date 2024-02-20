@@ -1,5 +1,5 @@
-import AuthErrorCodes from "refactor/domain/auth/AuthErrorCodes";
-import PinController from "refactor/domain/auth/controller/PinController";
+import PinErrorCodes from "refactor/domain/auth/errors/PinErrorCodes";
+import PinController from "refactor/domain/auth/pin/PinController";
 import DomainError from "refactor/domain/error/DomainError";
 import PinRepositoryMock from "refactor/test/mocks/auth/pin/PinRepository.mock";
 
@@ -45,7 +45,7 @@ describe("PinController", () => {
         test("Throws PIN_IS_NOT_SET error", async () => {
             pinRepositoryMock.getPin.mockResolvedValue(undefined);
 
-            await expect(pinController.checkPin("123456")).rejects.toThrowError(new DomainError(AuthErrorCodes.PIN_IS_NOT_SET));
+            await expect(pinController.checkPin("123456")).rejects.toThrowError(new DomainError(PinErrorCodes.PIN_IS_NOT_SET));
         });
     });
 

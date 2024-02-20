@@ -1,4 +1,4 @@
-import BiometricsController from "refactor/domain/auth/controller/BiometricsController";
+import BiometricsController from "refactor/domain/auth/biometrics/BiometricsController";
 import { BiometricsAuthenticationOptions, BiometricsType } from "refactor/common/models";
 import { BiometricsServiceMock } from "refactor/test/mocks/auth/biometrics/BiometricsService.mock";
 import { BiometricsPreferencesRepositoryMock } from "refactor/test/mocks/auth/biometrics/BiometricsPreferencesRepository.globalMock";

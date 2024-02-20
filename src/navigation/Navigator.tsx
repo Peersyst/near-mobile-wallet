@@ -7,7 +7,9 @@ import { AnalyticsProvider } from "../refactor/ui/analytics/AnalyticsProvider";
 import useAuthState from "refactor/ui/adapter/state/useAuthState";
 
 const Navigator = (): JSX.Element => {
+    // <<< refactor
     const { isAuthenticated } = useAuthState();
+    // refactor >>>
 
     return (
         <NavigationContainer linking={linking}>

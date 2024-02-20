@@ -30,7 +30,9 @@ const DeleteData = () => {
         await SettingsStorage.clear();
         await queryClient.invalidateQueries();
         resetWalletState();
+        // <<< refactor
         await ControllerFactory.authController.logout();
+        // refactor >>>
     };
 
     return (

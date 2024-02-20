@@ -30,7 +30,9 @@ const EnterWalletMnemonicScreen = ({ onSubmit, submitText }: BaseAddWalletModalS
     }, [mnemonic]);
 
     const handleSubmit = async ({ mnemonic: mnemonicParam }: MnemonicForm) => {
+        // <<< refactor
         const valid = await ControllerFactory.mnemonicController.validateMnemonic(mnemonicParam.join(" "));
+        // refactor >>>
         if (valid) {
             setMnemonic(mnemonicParam);
         } else {

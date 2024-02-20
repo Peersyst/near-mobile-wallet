@@ -4,40 +4,42 @@ import { IAuthState } from "../state/authState";
 import { IPinController } from "refactor/ui/adapter/controllers/IPinController";
 import { IMnemonicController } from "refactor/ui/adapter/controllers/IMnemonicController";
 import DomainError from "refactor/domain/error/DomainError";
-import AuthErrorCodes from "../AuthErrorCodes";
+import AuthEventEmitter from "../events/AuthEventEmitter";
+import PinErrorCodes from "../errors/PinErrorCodes";
+import { IWalletController } from "refactor/ui/adapter/controllers/IWalletController";
 
 export default class AuthController implements IAuthController {
+    private readonly authEventEmitter = AuthEventEmitter;
+
     constructor(
         public readonly authState: State<IAuthState>,
         public readonly pinController: IPinController,
         public readonly mnemonicController: IMnemonicController,
+        public readonly walletController: IWalletController,
     ) {}
 
     async signUp(mnemonic: string[], pin: string): Promise<void> {
-        // TODO : cuando cree el wallet controller, se deberia de setear el mnemonic
-        await this.mnemonicController.setMnemonic(mnemonic.join(" "));
-        //Save the pin into the storage
         await this.pinController.setPin(pin);
-        //TODO:Create the wallets with the WalletController
-        //Set the isAuthenticated to true
-        this.authState.setState({ isAuthenticated: true });
+        await this.walletController.createWallets(mnemonic);
+        this.setIsLoggedIn();
     }
 
     async login(pin?: string): Promise<void> {
-        //Check if the pin is valid
         if (pin) {
             const isPinValid = await this.pinController.checkPin(pin);
-            if (!isPinValid) throw new DomainError(AuthErrorCodes.PIN_IS_NOT_SET);
+            if (!isPinValid) throw new DomainError(PinErrorCodes.PIN_IS_INVALID);
         }
-        // TODO: revisar biometrics como lo tiene cbcd, de momento, funciona por que es el callback de onBiometricsSuccess
-        //Recover the wallets with the WalletController?
-        //TODO
-        this.authState.setState({ isAuthenticated: true });
+        this.walletController.recoverWallets();
+        this.setIsLoggedIn();
     }
 
     async logout(): Promise<void> {
-        //Set the isAuthenticated to false
-        //TODO: borrar el pin, mnemmonic y lo que sea necesario...
         this.authState.setState({ isAuthenticated: false });
+        this.authEventEmitter.emit("logout");
+    }
+
+    private async setIsLoggedIn(): Promise<void> {
+        this.authState.setState({ isAuthenticated: true });
+        this.authEventEmitter.emit("login");
     }
 }
