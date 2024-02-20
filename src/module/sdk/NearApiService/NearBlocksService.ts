@@ -87,7 +87,6 @@ export class NearBlocksService extends FetchService {
         return (await this.getAccountTokens({ address })).tokens.nfts;
     }
 
-    // eslint-disable-next-line  @typescript-eslint/no-unused-vars
     async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
         const baseTxs = await this.fetch<NearBlocsTransactionResponseDto>(`/account/${address}/txns?page=1&per_page=10&order=desc`);
 
