@@ -120,7 +120,7 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
         let apiDeposits: StakingDepositApiDto[] = [];
         try {
-            apiDeposits = await this.nearblocksService.getAccountDeposits({ address });
+            return this.nearblocksService.getAccountDeposits({ address });
         } catch (error: unknown) {
             try {
                 // Hope for kitwallet magic
