@@ -1,7 +1,6 @@
-import AuthController from "refactor/domain/auth/auth/AuthController";
+import AuthController from "refactor/domain/auth/AuthController";
 import { AuthStateMock } from "refactor/test/mocks/auth/authState.mock";
 import { PinControllerMock } from "refactor/test/mocks/auth/pin/PinController.mock";
-import { MnemonicControllerMock } from "refactor/test/mocks/wallet/mnemonic/MnemonicController.mock";
 import { WalletControllerMock } from "refactor/test/mocks/wallet/wallet/WalletController.mock";
 
 describe("AuthController", () => {
@@ -9,14 +8,13 @@ describe("AuthController", () => {
 
     const authStateMock = new AuthStateMock();
     const pinControllerMock = new PinControllerMock();
-    const mnemonicControllerMock = new MnemonicControllerMock();
     const walletControllerMock = new WalletControllerMock();
 
     beforeEach(() => {
-        authController = new AuthController(authStateMock, pinControllerMock, mnemonicControllerMock, walletControllerMock);
+        authController = new AuthController(authStateMock, pinControllerMock, walletControllerMock);
 
         pinControllerMock.clearMocks();
-        mnemonicControllerMock.clearMocks();
+        walletControllerMock.clearMocks();
         authStateMock.clearMocks();
     });
 
@@ -24,8 +22,6 @@ describe("AuthController", () => {
         test("Should call set mnemonic, pin and change authState", async () => {
             const mnemonic = ["word1", "word2", "word3"];
             const pin = "1234";
-
-            mnemonicControllerMock.validateMnemonic.mockResolvedValue(true);
 
             await authController.signUp(mnemonic, pin);
 

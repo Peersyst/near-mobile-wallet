@@ -1,5 +1,5 @@
 import { config } from "refactor/common/config";
-import SecureStorageRepository from "../../common/SecureStorageRepository";
+import SecureStorageRepository from "../common/SecureStorageRepository";
 import { IMnemonicRepository } from "refactor/domain/adapter/repository/IMnemonicRepository";
 
 export default class MnemonicRepository extends SecureStorageRepository<string> implements IMnemonicRepository {

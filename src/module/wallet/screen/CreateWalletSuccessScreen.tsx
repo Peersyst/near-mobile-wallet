@@ -19,7 +19,9 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
         const setStorage = async () => {
             await importWallets(defaultSettingsState.network);
             if (mnemonic && pin) {
+                // <<< refactor
                 await ControllerFactory.authController.signUp(mnemonic, pin);
+                // refactor >>>
             }
             //After all clean createWalletState
             resetCreateWalletState();

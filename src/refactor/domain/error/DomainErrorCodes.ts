@@ -1,5 +1,6 @@
-import MnemonicErrorCodes from "../wallet/errors/MnemonicErrorCodes";
 import PinErrorCodes from "../auth/errors/PinErrorCodes";
+import AuthErrorCodes from "../auth/errors/AuthErrorCodes";
+import WalletErrorCodes from "../wallet/errors/WalletErrorCodes";
 
 export enum GenericErrorCodes {
     UNKNOWN_ERROR = "UNKNOWN_ERROR",
@@ -9,7 +10,8 @@ export enum GenericErrorCodes {
 const DomainErrorCodes = {
     ...GenericErrorCodes,
     ...PinErrorCodes,
-    ...MnemonicErrorCodes,
+    ...WalletErrorCodes,
+    ...AuthErrorCodes,
 };
 
 export type DomainErrorCode = keyof typeof DomainErrorCodes;
