@@ -1,5 +1,5 @@
-import PinErrorCodes from "refactor/domain/auth/errors/PinErrorCodes";
 import PinController from "refactor/domain/auth/pin/PinController";
+import PinErrorCodes from "refactor/domain/auth/pin/PinErrorCodes";
 import DomainError from "refactor/domain/error/DomainError";
 import PinRepositoryMock from "refactor/test/mocks/auth/pin/PinRepository.mock";
 

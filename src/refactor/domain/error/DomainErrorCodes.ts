@@ -1,5 +1,5 @@
-import PinErrorCodes from "../auth/errors/PinErrorCodes";
-import AuthErrorCodes from "../auth/errors/AuthErrorCodes";
+import PinErrorCodes from "../auth/pin/PinErrorCodes";
+import AuthErrorCodes from "../auth/AuthErrorCodes";
 import WalletErrorCodes from "../wallet/errors/WalletErrorCodes";
 
 export enum GenericErrorCodes {

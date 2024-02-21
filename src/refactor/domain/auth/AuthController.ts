@@ -5,7 +5,7 @@ import { IPinController } from "refactor/ui/adapter/controllers/IPinController";
 import DomainError from "refactor/domain/error/DomainError";
 import AuthEventEmitter from "./events/AuthEventEmitter";
 import { IWalletController } from "refactor/ui/adapter/controllers/IWalletController";
-import AuthErrorCodes from "./errors/AuthErrorCodes";
+import AuthErrorCodes from "./AuthErrorCodes";
 
 export default class AuthController implements IAuthController {
     private readonly authEventEmitter = AuthEventEmitter;

@@ -2,7 +2,7 @@ import DomainError from "refactor/domain/error/DomainError";
 import { IPinRepository } from "refactor/domain/adapter/repository/IPinRepository";
 import { IPinController } from "refactor/ui/adapter/controllers/IPinController";
 import DomainEvents from "refactor/domain/events";
-import PinErrorCodes from "../errors/PinErrorCodes";
+import PinErrorCodes from "./PinErrorCodes";
 
 export default class PinController implements IPinController {
     constructor(private readonly pinRepository: IPinRepository) {}
