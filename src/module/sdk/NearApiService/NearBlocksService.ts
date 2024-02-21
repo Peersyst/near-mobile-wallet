@@ -12,17 +12,7 @@ import {
     TransactionActionKind,
     TransactionWithoutActions,
 } from "../NearSdkService";
-import {
-    parseBlockTimestamp,
-    DEPOSIT_METHOD,
-    DEPOSIT_STAKE_METHOD,
-    STAKE_METHOD,
-    STAKE_ALL_METHOD,
-    UNSTAKE_METHOD,
-    UNSTAKE_ALL_METHOD,
-    WITHDRAW_METHOD,
-    WITHDRAW_ALL_METHOD,
-} from "../utils";
+import { parseBlockTimestamp, DEPOSIT_METHOD, DEPOSIT_STAKE_METHOD, WITHDRAW_METHOD, WITHDRAW_ALL_METHOD } from "../utils";
 import { FetchService } from "./FetchService";
 import {
     NearApiServiceParams,
@@ -55,38 +45,23 @@ export class NearBlocksService extends FetchService {
         for (let i = 0; i < txs.txns.length; i += 1) {
             const tx = txs.txns[i];
             if (!valAmounts[tx.receiver_account_id]) {
-                valAmounts[tx.receiver_account_id] = { staked: 0, available: 0 };
+                valAmounts[tx.receiver_account_id] = 0;
             }
 
             if (DEPOSIT_STAKE_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id].staked += tx.actions_agg.deposit;
+                valAmounts[tx.receiver_account_id] += tx.actions_agg.deposit;
             } else if (DEPOSIT_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id].available += tx.actions_agg.deposit;
-            } else if (STAKE_METHOD === tx.actions[0].method) {
-                if (tx.logs[0]) {
-                    const amount = parseInt(tx.logs[0].split(" ")[2].slice(0, -1), 10);
-                    valAmounts[tx.receiver_account_id].available -= amount;
-                    valAmounts[tx.receiver_account_id].staked += amount;
-                }
-            } else if (STAKE_ALL_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id].staked += valAmounts[tx.receiver_account_id].available;
-                valAmounts[tx.receiver_account_id].available = 0;
-            } else if (UNSTAKE_ALL_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id].available += valAmounts[tx.receiver_account_id].staked;
-                valAmounts[tx.receiver_account_id].staked = 0;
-            } else if (UNSTAKE_METHOD === tx.actions[0].method) {
-                if (tx.logs[0]) {
-                    const amount = parseInt(tx.logs[0].split(" ")[2].slice(0, -1), 10);
-                    valAmounts[tx.receiver_account_id].available += amount;
-                    valAmounts[tx.receiver_account_id].staked -= amount;
-                }
+                valAmounts[tx.receiver_account_id] += tx.actions_agg.deposit;
             } else if (WITHDRAW_METHOD === tx.actions[0].method) {
                 if (tx.logs[0]) {
                     const amount = parseInt(tx.logs[0].split(" ")[2].slice(0, -1), 10);
-                    valAmounts[tx.receiver_account_id].available -= amount;
+                    valAmounts[tx.receiver_account_id] -= amount;
                 }
             } else if (WITHDRAW_ALL_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id].available = 0;
+                if (tx.logs[0]) {
+                    const amount = parseInt(tx.logs[0].split(" ")[2].slice(0, -1), 10);
+                    valAmounts[tx.receiver_account_id] -= amount;
+                }
             }
         }
 
@@ -115,7 +90,9 @@ export class NearBlocksService extends FetchService {
         }
 
         for (const key of Object.keys(validatorAmounts)) {
-            deposits.push({ validatorId: key, amount: validatorAmounts[key].staked + validatorAmounts[key].available });
+            if (validatorAmounts[key] > 0) {
+                deposits.push({ validatorId: key, amount: validatorAmounts[key] });
+            }
         }
 
         return deposits;

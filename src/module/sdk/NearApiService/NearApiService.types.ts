@@ -159,5 +159,5 @@ export interface NearBlocksTokenResponseDto {
 }
 
 export interface ValidatorAmount {
-    [validatorId: string]: { staked: number; available: number };
+    [validatorId: string]: number;
 }
