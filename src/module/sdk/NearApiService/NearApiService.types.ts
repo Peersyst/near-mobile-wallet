@@ -124,11 +124,11 @@ export interface NearblocksAccessKeyDto {
     };
 }
 
-export interface NearBlocsTransactionResponseDto {
-    txns: NearBlocsTransactionDto[];
+export interface NearBlocksTransactionResponseDto {
+    txns: NearBlocksTransactionDto[];
 }
 
-export interface NearBlocsTransactionDto {
+export interface NearBlocksTransactionDto {
     receipt_id: string;
     predecessor_account_id: string; //system or account.near
     receiver_account_id: string;
@@ -138,7 +138,7 @@ export interface NearBlocsTransactionDto {
     block: {
         block_height: number;
     };
-    actions: NearblocksActionDto[];
+    actions: NearBlocksActionDto[];
     actions_agg: { deposit: number };
     outcomes: {
         status: boolean;
@@ -149,11 +149,15 @@ export interface NearBlocsTransactionDto {
     logs: string[];
 }
 
-export interface NearblocksActionDto {
+export interface NearBlocksActionDto {
     action: TransactionActionKind;
     method: string | null;
 }
 
-export interface NearblocksTokenResponseDto {
+export interface NearBlocksTokenResponseDto {
     tokens: { fts: string[]; nfts: string[] };
+}
+
+export interface ValidatorAmount {
+    [validatorId: string]: number;
 }
