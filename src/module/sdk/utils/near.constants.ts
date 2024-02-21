@@ -2,7 +2,10 @@ export const MINIMUM_UNSTAKED = 100;
 export const BASE_NEAR_DECIMALS = 5;
 //Smart contracts methods
 //Staking acctions
+export const DEPOSIT_METHOD = "deposit";
 export const DEPOSIT_STAKE_METHOD = "deposit_and_stake";
+export const STAKE_METHOD = "stake";
+export const STAKE_ALL_METHOD = "stake_all";
 export const UNSTAKE_METHOD = "unstake";
 export const UNSTAKE_ALL_METHOD = "unstake_all";
 export const WITHDRAW_METHOD = "withdraw";
