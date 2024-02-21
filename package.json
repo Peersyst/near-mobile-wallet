@@ -85,7 +85,8 @@
         "recoil": "^0.7.7",
         "stream-browserify": "^3.0.0",
         "stream-http": "^3.2.0",
-        "url": "^0.11.3"
+        "url": "^0.11.3",
+        "zustand": "^4.5.0"
     },
     "devDependencies": {
         "@babel/core": "^7.21.3",

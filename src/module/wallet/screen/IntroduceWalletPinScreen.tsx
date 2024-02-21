@@ -8,6 +8,7 @@ import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import useTranslate from "module/common/hook/useTranslate";
 import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 import BiometricNumericPad from "module/common/component/input/BiometricNumericPad/BiometricNumericPad";
+import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
 
 const AnimatedBiometricsNumericPad = Animated.createAnimatedComponent.fade(BiometricNumericPad, { duration: 200, delay: 400 });
 
@@ -19,12 +20,17 @@ const SetWalletPinScreen = (): JSX.Element => {
     useLogoPageFlex(0.4);
     useLogoPageGradient(false);
 
-    const handleSuccess = () => setWalletState((state) => ({ ...state, isAuthenticated: true }));
+    const handleSuccess = (pin?: string) => {
+        // <<< refactor
+        ControllerFactory.authController.login(pin);
+        // refactor >>>
+        setWalletState((state) => ({ ...state, isAuthenticated: true }));
+    };
 
     const handlePinSubmit = async (pin: string) => {
         const storedPin = await WalletStorage.getPin();
         if (storedPin === pin) {
-            handleSuccess();
+            handleSuccess(pin);
         } else {
             setError(true);
             notificationAsync(NotificationFeedbackType.Error);

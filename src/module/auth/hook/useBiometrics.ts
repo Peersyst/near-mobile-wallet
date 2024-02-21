@@ -7,6 +7,10 @@ import {
 } from "expo-local-authentication";
 import { useEffect, useState } from "react";
 
+export type BiometricsPreferences = {
+    enabled: boolean;
+};
+
 export interface UseBiometricsResult {
     isLoading: boolean;
     isEnrolled: boolean;
