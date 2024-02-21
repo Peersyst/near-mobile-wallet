@@ -11,6 +11,7 @@ export default function useRecoverWallets() {
 
         setWalletState((state) => ({
             ...state,
+            loading: false,
             selectedWallet: 0,
             hasWallet: true,
             wallets: wallets,

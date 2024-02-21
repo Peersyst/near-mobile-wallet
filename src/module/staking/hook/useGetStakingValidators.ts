@@ -5,13 +5,24 @@ import { useMemo } from "react";
 
 export interface UseGetStakingValidatorsReturn {
     stakingValidators: Validator[];
+    isIdle: boolean;
     isLoading: boolean;
     refetch: () => void;
 }
 
 export default function (): UseGetStakingValidatorsReturn {
-    const { data: validators, isLoading: isLoadingCurrentValidators, refetch: refetchCurrentValidators } = useGetCurrentValidators();
-    const { data: allValidators, isLoading: isLoadingAllValidators, refetch: refetchAllValidators } = useGetAllValidators();
+    const {
+        data: validators,
+        isIdle: isIdleCurrentValidators,
+        isLoading: isLoadingCurrentValidators,
+        refetch: refetchCurrentValidators,
+    } = useGetCurrentValidators();
+    const {
+        data: allValidators,
+        isIdle: isIdleAllValidators,
+        isLoading: isLoadingAllValidators,
+        refetch: refetchAllValidators,
+    } = useGetAllValidators();
 
     const handleRefetch = () => {
         refetchCurrentValidators();
@@ -23,7 +34,7 @@ export default function (): UseGetStakingValidatorsReturn {
         return false;
     };
 
-    const { stakingValidators, isLoading } = useMemo(() => {
+    const { stakingValidators, isIdle, isLoading } = useMemo(() => {
         if (validators) {
             const stakingValidators: Validator[] = validators?.map((validator) => {
                 const stakingValidator: Validator = {
@@ -32,10 +43,20 @@ export default function (): UseGetStakingValidatorsReturn {
                 };
                 return stakingValidator;
             });
-            return { stakingValidators, isLoading: isLoadingCurrentValidators || isLoadingAllValidators, refetch: handleRefetch };
+            return {
+                stakingValidators,
+                isIdle: isIdleCurrentValidators || isIdleAllValidators,
+                isLoading: isLoadingCurrentValidators || isLoadingAllValidators,
+                refetch: handleRefetch,
+            };
         }
-        return { stakingValidators: [], isLoading: isLoadingCurrentValidators || isLoadingAllValidators, refetch: handleRefetch };
+        return {
+            stakingValidators: [],
+            isIdle: isIdleCurrentValidators || isIdleAllValidators,
+            isLoading: isLoadingCurrentValidators || isLoadingAllValidators,
+            refetch: handleRefetch,
+        };
     }, [validators, allValidators]);
 
-    return { stakingValidators, isLoading, refetch: handleRefetch };
+    return { stakingValidators, isIdle, isLoading, refetch: handleRefetch };
 }
