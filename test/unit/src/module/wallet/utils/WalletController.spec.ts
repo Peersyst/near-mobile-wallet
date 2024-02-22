@@ -127,6 +127,7 @@ describe("Test for the WalletController", () => {
     });
 
     describe("Recover wallets test", () => {
+        jest.spyOn(WalletStorage, "getAccountsFromPrivateKey").mockResolvedValue([]);
         test("Recovers without accounts", async () => {
             jest.spyOn(WalletStorage, "getWallets").mockResolvedValue([]);
             new SecureWalletStorageTypeMock();
@@ -184,6 +185,7 @@ describe("Test for the WalletController", () => {
         });
 
         test("Recovers some wallets with differents keys. No accounts created/deleted outside the app", async () => {
+            jest.clearAllMocks();
             const length1 = 3;
             const length2 = 8;
             const { accounts, walletIds, storageWallets } = new WalletControllerMocks(length1, privateKey);

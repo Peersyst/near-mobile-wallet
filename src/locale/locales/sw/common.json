@@ -314,6 +314,5 @@
     "delegateCall": "Delegate call to",
     "importAccountManually": "Leta akaunti mwenyewe",
     "importAccountManuallyDescription": "Ikiwa unafikiri kuwa una akaunti ambayo haionekani, unaweza kuiingiza wewe mwenyewe. Ingiza tu akaunti unayotaka kuingiza.",
-    "enterTheAccount": "Ingiza akaunti",
-    "cantImportAccount": "Haiwezi kuingiza akaunti"
+    "enterTheAccount": "Ingiza akaunti"
 }
