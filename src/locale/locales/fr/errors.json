@@ -50,5 +50,6 @@
     "invalidSignerDescription": "Vous n'avez pas sélectionné le compte attendu pour signer cette demande.",
     "invalidSignerRequest": "Demande de signataire invalide",
     "invalidSignerRequestDescription": "La demande n'existe pas. Essayez d'en créer une différente.",
-    "cantImportAccount": "Impossible d'importer le compte"
+    "cantImportAccount": "Impossible d'importer le compte",
+    "accountAlreadyExists": "Le compte existe déjà"
 }

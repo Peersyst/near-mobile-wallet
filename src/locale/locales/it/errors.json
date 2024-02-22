@@ -50,5 +50,6 @@
     "invalidSignerDescription": "Non hai selezionato l'account previsto per firmare questa richiesta",
     "invalidSignerRequest": "Richiesta firmataria non valida",
     "invalidSignerRequestDescription": "La richiesta non esiste. Prova a crearne una diversa.",
-    "cantImportAccount": "Impossibile importare l'account"
+    "cantImportAccount": "Impossibile importare l'account",
+    "accountAlreadyExists": "L'account esiste già"
 }

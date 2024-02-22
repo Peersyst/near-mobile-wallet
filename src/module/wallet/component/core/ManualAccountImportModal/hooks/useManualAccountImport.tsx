@@ -9,7 +9,7 @@ export default function useManualAccountImport(
     const { serviceInstance, network } = useServiceInstance(0);
 
     return useMutation(async (account: string) => {
-        const accessKeys = await serviceInstance.getAccountFullAccessKeys(account);
+        const accessKeys = await serviceInstance.getAccountFullAccessPublicKeys(account);
         return await WalletController.importAccountManually(account, accessKeys, network);
     }, options);
 }

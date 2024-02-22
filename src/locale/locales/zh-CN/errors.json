@@ -50,5 +50,6 @@
     "invalidSignerDescription": "您尚未选择预期的帐户来签署此请求。",
     "invalidSignerRequest": "无效签名请求",
     "invalidSignerRequestDescription": "该请求不存在。请尝试创建另一个。",
-    "cantImportAccount": "无法导入帐户"
+    "cantImportAccount": "无法导入帐户",
+    "accountAlreadyExists": "该帐户已存在"
 }

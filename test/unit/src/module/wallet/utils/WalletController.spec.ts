@@ -185,7 +185,6 @@ describe("Test for the WalletController", () => {
         });
 
         test("Recovers some wallets with differents keys. No accounts created/deleted outside the app", async () => {
-            jest.clearAllMocks();
             const length1 = 3;
             const length2 = 8;
             const { accounts, walletIds, storageWallets } = new WalletControllerMocks(length1, privateKey);

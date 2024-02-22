@@ -50,5 +50,6 @@
     "invalidSignerDescription": "Bạn chưa chọn tài khoản dự kiến để ký yêu cầu này",
     "invalidSignerRequest": "Yêu cầu ký không hợp lệ",
     "invalidSignerRequestDescription": "Yêu cầu không tồn tại. Hãy thử tạo một yêu cầu khác.",
-    "cantImportAccount": "Không thể nhập tài khoản"
+    "cantImportAccount": "Không thể nhập tài khoản",
+    "accountAlreadyExists": "Tài khoản đã tồn tại"
 }

@@ -50,5 +50,6 @@
     "invalidSignerDescription": "Hujachaugua akaunti inayotakiwa isaini ombi hili",
     "invalidSignerRequest": "Ombi la mwenye saini sio sahihi",
     "invalidSignerRequestDescription": "Ombi halipo. Jaribu lingine",
-    "cantImportAccount": "Haiwezi kuingiza akaunti"
+    "cantImportAccount": "Haiwezi kuingiza akaunti",
+    "accountAlreadyExists": "Akaunti tayari ipo"
 }

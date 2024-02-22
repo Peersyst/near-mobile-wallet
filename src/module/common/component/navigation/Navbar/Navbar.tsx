@@ -22,7 +22,7 @@ const Navbar = ({ back, title, onBack, steps, style }: NavbarProps): JSX.Element
                     <BackIcon />
                 </BackIconRoot>
             )}
-            <Col alignItems="center">
+            <Col alignItems="center" style={{ ...(back && { paddingHorizontal: 20 }) }}>
                 {title && <NavbarTitle title={title} textAlign="center" />}
                 {steps && <Steps index={steps.index} length={steps.length} />}
             </Col>

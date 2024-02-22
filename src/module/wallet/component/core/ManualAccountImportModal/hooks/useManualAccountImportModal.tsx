@@ -32,10 +32,10 @@ export default function useManualAccountImportModal({
             showToast(translateError("cantImportAccount"), { type: "warning" });
         }
     }
-    const { mutate, isLoading } = useManualAccountImport({ onSuccess: handleOnSuccess });
+    const { mutate: handleImportAccountManually, isLoading } = useManualAccountImport({ onSuccess: handleOnSuccess });
 
     function handleSubmit({ account }: { account: string }) {
-        mutate(account);
+        handleImportAccountManually(account);
     }
 
     function handleOnBack() {

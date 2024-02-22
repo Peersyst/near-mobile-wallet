@@ -1111,7 +1111,7 @@ export class NearSDKService {
         return { accountId: this.getAddress(), publicKey: this.getPublicKey(), signature: encoded };
     }
 
-    public async getAccountFullAccessKeys(accountId: string): Promise<string[]> {
+    public async getAccountFullAccessPublicKeys(accountId: string): Promise<string[]> {
         const connection = this.getConnection();
         const account = await connection.account(accountId);
         const accessKeys = await account.getAccessKeys();

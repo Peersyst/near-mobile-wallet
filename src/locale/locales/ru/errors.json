@@ -50,5 +50,6 @@
     "invalidSignerDescription": "Вы не выбрали ожидаемый аккаунт для подписи этого запроса",
     "invalidSignerRequest": "Неверный запрос подписанта",
     "invalidSignerRequestDescription": "Запрос не существует. Попробуйте создать другой.",
-    "cantImportAccount": "Невозможно импортировать аккаунт"
+    "cantImportAccount": "Невозможно импортировать аккаунт",
+    "accountAlreadyExists": "Учетная запись уже существует"
 }

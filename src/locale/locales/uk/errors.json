@@ -50,5 +50,6 @@
     "invalidSignerDescription": "Ви не вибрали очікуваний обліковий запис для підписання цього запиту",
     "invalidSignerRequest": "Недійсний запит підписанта",
     "invalidSignerRequestDescription": "Запит не існує. Спробуйте створити інший.",
-    "cantImportAccount": "Не вдається імпортувати обліковий запис"
+    "cantImportAccount": "Не вдається імпортувати обліковий запис",
+    "accountAlreadyExists": "Обліковий запис уже існує"
 }

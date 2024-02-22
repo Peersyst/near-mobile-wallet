@@ -107,9 +107,9 @@ export default new (class ServiceInstances {
         const { nodeUrl, indexerUrl } = BASE_NEAR_SDK_PARAMS[network];
         const service = await NearSDKService.createFromSecretKey({
             chain: network,
-            nodeUrl: nodeUrl,
+            nodeUrl,
             baseApiUrl: indexerUrl,
-            secretKey: secretKey,
+            secretKey,
             enableIndexer: config.enableIndexer,
             nameId: accountId,
         });

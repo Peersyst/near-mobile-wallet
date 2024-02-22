@@ -50,5 +50,6 @@
     "invalidSignerDescription": "Anda belum memilih akun yang diharapkan untuk menandatangani permintaan ini",
     "invalidSignerRequest": "Permintaan penanda tangan tidak valid",
     "invalidSignerRequestDescription": "Permintaan tidak ada. Coba buat yang lain.",
-    "cantImportAccount": "Tidak dapat mengimpor akun"
+    "cantImportAccount": "Tidak dapat mengimpor akun",
+    "accountAlreadyExists": "Akun sudah ada"
 }

@@ -50,6 +50,6 @@
     "invalidSignerDescription": "You have not selected the expected account to sign this request",
     "invalidSignerRequest": "Invalid signer request",
     "invalidSignerRequestDescription": "The request does not exists. Try creating a different one.",
-    "accountAlreadyExists": "The account already exists",
-    "cantImportAccount": "Can't import account"
+    "cantImportAccount": "Can't import account",
+    "accountAlreadyExists": "The account already exists"
 }

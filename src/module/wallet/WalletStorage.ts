@@ -155,8 +155,9 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         if (!walletGroup) return accounts;
 
         const wallets = await this.getUnencryptedWallets(network);
-        for (const wallet of wallets) {
-            if (walletGroup.walletIds.includes(wallet.index)) accounts.push(wallet.account);
+        for (const walletId of walletGroup.walletIds) {
+            const wallet = WalletUtils.getWallet(walletId, wallets);
+            if (wallet) accounts.push(wallet.account);
         }
         return accounts;
     }

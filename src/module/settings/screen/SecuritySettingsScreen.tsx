@@ -16,8 +16,8 @@ const SecuritySettingsScreen = (): JSX.Element => {
                 <BiometricsSwitch />
                 <ChangePasscode />
                 <ConnectedSites />
-                <ManualAccountImport />
                 <WalletsBackup />
+                <ManualAccountImport />
                 <DeleteData />
             </Col>
         </BaseSecondaryScreen>
