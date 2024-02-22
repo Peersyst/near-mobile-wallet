@@ -1115,7 +1115,7 @@ export class NearSDKService {
         const connection = this.getConnection();
         const account = await connection.account(accountId);
         const accessKeys = await account.getAccessKeys();
-        let keys: string[] = [];
+        const keys: string[] = [];
 
         for (const key of accessKeys) {
             if (key.access_key.permission === "FullAccess") keys.push(key.public_key);

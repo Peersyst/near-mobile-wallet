@@ -149,7 +149,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
     }
 
     async getAccountsFromPrivateKey(privateKey: string, network: NetworkType): Promise<string[]> {
-        let accounts: string[] = [];
+        const accounts: string[] = [];
 
         const walletGroup = await this.getSecureWalletGroup(privateKey, network);
         if (!walletGroup) return accounts;
