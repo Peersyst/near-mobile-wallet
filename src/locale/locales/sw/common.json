@@ -311,5 +311,9 @@
     "withPermissions": "Yenye ruhusa:",
     "signerChangeAccount": "Huwezi kusaini ombi hili na akaunti iliochaguliwa kwa sababu haijafunguliwa, Tafadhali chagua akaunti nyingine.",
     "rejectRequestSuccessfully": "Ombi limefanikiwa kukataliwa!",
-    "delegateCall": "Delegate call to"
+    "delegateCall": "Delegate call to",
+    "importAccountManually": "Leta akaunti mwenyewe",
+    "importAccountManuallyDescription": "Ikiwa unafikiri kuwa una akaunti ambayo haionekani, unaweza kuiingiza wewe mwenyewe. Ingiza tu akaunti unayotaka kuingiza.",
+    "enterTheAccount": "Ingiza akaunti",
+    "cantImportAccount": "Haiwezi kuingiza akaunti"
 }

@@ -311,5 +311,8 @@
     "withPermissions": "Com permissões:",
     "signerChangeAccount": "Você não pode assinar esta solicitação com a conta selecionada porque ela não está ativada. Por favor, selecione outra conta.",
     "rejectRequestSuccessfully": "Solicitação rejeitada com sucesso!",
-    "delegateCall": "Delegar chamada para"
+    "delegateCall": "Delegar chamada para",
+    "importAccountManually": "Importar conta manualmente",
+    "importAccountManuallyDescription": "Se você acha que tem uma conta que não está aparecendo, você pode importá-la manualmente. Basta inserir a conta que deseja importar.",
+    "enterTheAccount": "Insira a conta"
 }

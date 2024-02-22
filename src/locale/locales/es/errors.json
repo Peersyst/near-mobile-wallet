@@ -49,5 +49,6 @@
     "invalidSigner": "Cuenta inválida",
     "invalidSignerDescription": "No tienes permisos para realizar esta acción. Por favor, cambia de cuenta.",
     "invalidSignerRequest": "Petición de firma inválida",
-    "invalidSignerRequestDescription": "La petición no existe. Prueba a crear una nueva petición."
+    "invalidSignerRequestDescription": "La petición no existe. Prueba a crear una nueva petición.",
+    "cantImportAccount": "No se puede importar la cuenta"
 }

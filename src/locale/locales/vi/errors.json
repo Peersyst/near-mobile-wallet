@@ -49,5 +49,6 @@
     "invalidSigner": "Tài khoản ký không hợp lệ",
     "invalidSignerDescription": "Bạn chưa chọn tài khoản dự kiến để ký yêu cầu này",
     "invalidSignerRequest": "Yêu cầu ký không hợp lệ",
-    "invalidSignerRequestDescription": "Yêu cầu không tồn tại. Hãy thử tạo một yêu cầu khác."
+    "invalidSignerRequestDescription": "Yêu cầu không tồn tại. Hãy thử tạo một yêu cầu khác.",
+    "cantImportAccount": "Không thể nhập tài khoản"
 }

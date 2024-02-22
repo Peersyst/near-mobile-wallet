@@ -49,5 +49,6 @@
     "invalidSigner": "Conta de assinante inválida",
     "invalidSignerDescription": "Você não selecionou a conta esperada para assinar esta solicitação.",
     "invalidSignerRequest": "Solicitação de assinante inválida",
-    "invalidSignerRequestDescription": "A solicitação não existe. Tente criar uma diferente."
+    "invalidSignerRequestDescription": "A solicitação não existe. Tente criar uma diferente.",
+    "cantImportAccount": "Não é possível importar a conta"
 }
