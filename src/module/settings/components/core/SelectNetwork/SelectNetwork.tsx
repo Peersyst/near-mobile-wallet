@@ -7,9 +7,13 @@ import { Chains } from "near-peersyst-sdk";
 import useChangeNetworkModal from "../../../../wallet/hook/useChangeNetwork";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useState } from "react";
+import useWalletState from "module/wallet/hook/useWalletState";
 
 const SelectNetwork = (): JSX.Element => {
     const translate = useTranslate();
+    const {
+        state: { loading },
+    } = useWalletState();
     const { reset, isSuccess, changeNetwork } = useChangeNetworkModal();
     const [openLoading, setOpenLoading] = useState(false);
     const [openSelect, setOpenSelect] = useState(false);
@@ -50,7 +54,7 @@ const SelectNetwork = (): JSX.Element => {
     return (
         <>
             <SettingsSelect
-                disabled={!enableChangeNetwork}
+                disabled={!enableChangeNetwork || loading}
                 options={networkOptions}
                 value={settings.network}
                 label={translate("select_your_network")}
