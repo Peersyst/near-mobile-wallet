@@ -123,16 +123,24 @@ export class NearSDKService {
         return service;
     }
 
+    static async createFromSecretKey(params: BaseCreateNearSdkParams & { secretKey: string; nameId: string }): Promise<NearSDKService> {
+        const service = new NearSDKService(params);
+        await service.connect();
+        return service;
+    }
+
     static async importFromMnemonic({
         mnemonic,
         baseApiUrl,
         enableIndexer,
         chain,
+        likelyNameIds = [],
         ...rest
     }: CreateNearSdkWithMnemonicParams): Promise<NearSDKService[]> {
         const { secretKey, publicKey } = parseSeedPhrase(mnemonic);
         const apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer, chain);
-        const nameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
+        const apiNameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
+        const nameIds = [...new Set([...apiNameIds, ...likelyNameIds])];
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
         }
@@ -144,17 +152,24 @@ export class NearSDKService {
         return Promise.all(services);
     }
 
+    static getPublicKeyFromSecretKey(secretKey: string): string {
+        const keyPair = KeyPairEd25519.fromString(secretKey);
+        return keyPair.getPublicKey().toString();
+    }
+
     static async importFromSecretKey({
         secretKey,
         baseApiUrl,
         enableIndexer,
         chain,
+        likelyNameIds = [],
         ...rest
     }: CreateNearSdkWithSecretKeyParams): Promise<NearSDKService[]> {
         const secret = secretKey.split(":").pop();
         const publicKey = new KeyPairEd25519(secret!).getPublicKey().toString();
         const apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer, chain);
-        const nameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
+        const apiNameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
+        const nameIds = [...new Set([...apiNameIds, ...likelyNameIds])];
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
         }
@@ -1094,5 +1109,18 @@ export class NearSDKService {
 
         // Return the AuthenticationToken
         return { accountId: this.getAddress(), publicKey: this.getPublicKey(), signature: encoded };
+    }
+
+    public async getAccountFullAccessKeys(accountId: string): Promise<string[]> {
+        const connection = this.getConnection();
+        const account = await connection.account(accountId);
+        const accessKeys = await account.getAccessKeys();
+        let keys: string[] = [];
+
+        for (const key of accessKeys) {
+            if (key.access_key.permission === "FullAccess") keys.push(key.public_key);
+        }
+
+        return keys;
     }
 }

@@ -6,6 +6,7 @@ import DeleteData from "module/settings/components/core/DeleteData/DeleteData";
 import { useTranslate } from "module/common/hook/useTranslate";
 import BiometricsSwitch from "module/settings/components/core/BiometricsSwitch/BiometricsSwitch";
 import ConnectedSites from "../components/core/ConnectedSites/ConnectedSites";
+import ManualAccountImport from "../components/core/ManualAccountImport/ManualAccountImport";
 
 const SecuritySettingsScreen = (): JSX.Element => {
     const translate = useTranslate();
@@ -15,6 +16,7 @@ const SecuritySettingsScreen = (): JSX.Element => {
                 <BiometricsSwitch />
                 <ChangePasscode />
                 <ConnectedSites />
+                <ManualAccountImport />
                 <WalletsBackup />
                 <DeleteData />
             </Col>
