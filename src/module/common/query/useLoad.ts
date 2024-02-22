@@ -16,17 +16,19 @@ export function useLoad(): boolean {
         const getStorage = async () => {
             const hasMnemonic = await WalletController.hasMnemonic();
 
-            setWalletState((state) => ({
-                ...state,
-                loading: true,
-                hasWallet: true,
-            }));
-
             const settings = { ...defaultSettingsState, ...((await SettingsStorage.getAllSettings()) || {}) };
 
             if (!hasMnemonic) await SettingsStorage.set(settings);
             // Do not await this so the user can enter the app instantly with a loading state
-            else recoverWallets(settings.network);
+            else {
+                setWalletState((state) => ({
+                    ...state,
+                    loading: true,
+                    hasWallet: true,
+                }));
+
+                recoverWallets(settings.network);
+            }
 
             setSettingsState(settings);
 
