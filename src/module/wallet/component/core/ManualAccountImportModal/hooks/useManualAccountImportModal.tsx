@@ -5,6 +5,7 @@ import { useTranslate } from "module/common/hook/useTranslate";
 import { useControlled } from "@peersyst/react-hooks";
 import { useSetRecoilState } from "recoil";
 import walletState from "module/wallet/state/WalletState";
+import useWalletState from "module/wallet/hook/useWalletState";
 
 export default function useManualAccountImportModal({
     defaultOpen,
@@ -14,6 +15,9 @@ export default function useManualAccountImportModal({
     const translate = useTranslate();
     const translateError = useTranslate("error");
     const { showToast } = useToast();
+    const {
+        state: { loading: disabled },
+    } = useWalletState();
     const [open, setOpen] = useControlled(defaultOpen, openProp, onClose);
 
     const setWalletState = useSetRecoilState(walletState);
@@ -47,5 +51,6 @@ export default function useManualAccountImportModal({
         open,
         handleOnBack,
         isLoading,
+        disabled,
     };
 }

@@ -7,7 +7,7 @@ import Typography from "module/common/component/display/Typography/Typography";
 import useManualAccountImportModal from "./hooks/useManualAccountImportModal";
 
 const ManualAccountImport = createModal(({ defaultOpen, open: openProp, onClose, ...props }: ExposedBackdropProps): JSX.Element => {
-    const { open, handleSubmit, handleOnBack, isLoading } = useManualAccountImportModal({ defaultOpen, open: openProp, onClose });
+    const { open, handleSubmit, handleOnBack, isLoading, disabled } = useManualAccountImportModal({ defaultOpen, open: openProp, onClose });
     const translate = useTranslate();
 
     return (
@@ -22,7 +22,7 @@ const ManualAccountImport = createModal(({ defaultOpen, open: openProp, onClose,
                         {translate("importAccountManuallyDescription")}
                     </Typography>
                     <AddressTextField senderWalletIndex={0} name="account" label={translate("enterTheAccount")} />
-                    <Button type="submit" fullWidth loading={isLoading}>
+                    <Button type="submit" fullWidth loading={isLoading} disabled={disabled}>
                         {translate("import")}
                     </Button>
                 </Col>
