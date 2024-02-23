@@ -1,7 +1,6 @@
 import { atom } from "recoil";
 import { getDefaultLocale, LocaleType } from "refactor/ui/locale";
-import { Chains } from "near-peersyst-sdk";
-import { FiatCurrencyType, NetworkType } from "module/common/types";
+import { Chains, FiatCurrencyType, NetworkType } from "module/common/types";
 
 export interface SettingsState {
     locale?: LocaleType;

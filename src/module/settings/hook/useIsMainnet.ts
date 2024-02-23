@@ -1,4 +1,4 @@
-import { Chains } from "near-peersyst-sdk";
+import { Chains } from "module/common/types";
 import useSelectedNetwork from "./useSelectedNetwork";
 
 export default function (): boolean {
