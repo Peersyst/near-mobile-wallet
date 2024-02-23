@@ -23,7 +23,6 @@ const CreateWalletSuccessScreen = (): JSX.Element => {
                 ...state,
                 loading: true,
                 hasWallet: true,
-                isAuthenticated: true,
             }));
 
             // Do not await so the user can enter the app directly with a loading state

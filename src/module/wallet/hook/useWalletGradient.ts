@@ -2,11 +2,15 @@ import { PaletteGradient } from "refactor/ui/config/theme/theme.declarations";
 import { WalletUtils } from "../utils/WalletUtils";
 import useWalletState from "./useWalletState";
 import { useTheme } from "@peersyst/react-native-components";
+import useAuthState from "refactor/ui/adapter/state/useAuthState";
 
 export default function (index?: number): PaletteGradient {
     const {
-        state: { wallets = [], selectedWallet = 0, isAuthenticated },
+        state: { wallets = [], selectedWallet = 0 },
     } = useWalletState();
+
+    const { isAuthenticated } = useAuthState();
+
     const {
         palette: { wallet: walletColors },
     } = useTheme();
