@@ -1,4 +1,4 @@
-import settingsState, { NetworkType } from "module/settings/state/SettingsState";
+import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
 import { SelectOption } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
@@ -9,6 +9,7 @@ import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingM
 import { useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { config } from "refactor/common/config";
+import { NetworkType } from "module/common/types";
 
 const SelectNetwork = (): JSX.Element => {
     const translate = useTranslate();

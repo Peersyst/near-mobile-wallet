@@ -1,4 +1,3 @@
-import { NetworkType } from "module/settings/state/SettingsState";
 import { Chains, NearSDKService } from "near-peersyst-sdk";
 import ServiceInstances from "../state/ServiceInstances/ServiceInstances";
 import { RecoverInstancesReturn } from "../state/ServiceInstances/ServiceInstances.types";
@@ -6,6 +5,7 @@ import { Wallet } from "../state/WalletState";
 import { SecureWalletInfo, UnencryptedWalletInfo } from "../wallet.types";
 import { WalletStorage } from "../WalletStorage";
 import { WalletUtils } from "./WalletUtils";
+import { NetworkType } from "module/common/types";
 
 export interface WalletControllerBaseReturn {
     wallets: Wallet[];

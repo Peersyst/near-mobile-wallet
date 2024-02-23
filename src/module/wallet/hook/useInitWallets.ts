@@ -1,4 +1,4 @@
-import { NetworkType } from "module/settings/state/SettingsState";
+import { NetworkType } from "module/common/types";
 import WalletController from "module/wallet/utils/WalletController";
 
 export default function useInitWallets() {

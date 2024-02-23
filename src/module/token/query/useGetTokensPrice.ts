@@ -3,8 +3,9 @@ import { QueryResult } from "refactor/ui/common/query/react-query-overrides";
 import Queries from "../../../refactor/ui/common/query/queries";
 import { config } from "refactor/common/config";
 import { useRecoilValue } from "recoil";
-import settingsState, { NetworkType } from "module/settings/state/SettingsState";
+import settingsState from "module/settings/state/SettingsState";
 import { Chains } from "near-peersyst-sdk";
+import { NetworkType } from "module/common/types";
 
 export interface TokenPriceInfo {
     price: string;

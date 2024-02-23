@@ -1,4 +1,4 @@
-import { NetworkType } from "module/settings/state/SettingsState";
+import { NetworkType } from "module/common/types";
 import useCreateAccount from "../query/useCreateAccount";
 import { Wallet } from "../state/WalletState";
 import WalletController from "../utils/WalletController";

@@ -1,10 +1,11 @@
-import settingsState, { NetworkType } from "module/settings/state/SettingsState";
+import settingsState from "module/settings/state/SettingsState";
 import useRecoverWallets from "module/wallet/hook/useRecoverWallets";
 import walletState from "module/wallet/state/WalletState";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { useState } from "react";
 import useInitWallets from "./useInitWallets";
 import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
+import { NetworkType } from "module/common/types";
 
 export interface UseChangeNetworkResult {
     isLoading: boolean;
