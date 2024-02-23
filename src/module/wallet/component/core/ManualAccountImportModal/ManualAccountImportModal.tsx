@@ -1,10 +1,10 @@
 import { Col, ExposedBackdropProps, Form, createModal } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import AddressTextField from "module/transaction/component/input/AddressTextField/AddressTextField";
 import Button from "module/common/component/input/Button/Button";
 import Typography from "module/common/component/display/Typography/Typography";
 import useManualAccountImportModal from "./hooks/useManualAccountImportModal";
+import useTranslate from "module/common/hook/useTranslate";
 
 const ManualAccountImport = createModal(({ defaultOpen, open: openProp, onClose, ...props }: ExposedBackdropProps): JSX.Element => {
     const { open, handleSubmit, handleOnBack, isLoading, disabled } = useManualAccountImportModal({ defaultOpen, open: openProp, onClose });
