@@ -1,13 +1,12 @@
-import { config } from "refactor/common/config";
 import { ISettingsRepository } from "refactor/domain/adapter/repository/ISettingsRepository";
 import { LocaleType } from "refactor/ui/locale";
-import SecureStorageRepository from "../common/SecureStorageRepository";
 import { ISettingsState, defaultSettingsState } from "refactor/domain/settings/state/settingsState";
 import { FiatCurrencyType, NetworkType } from "module/common/types";
+import StorageRepository from "../common/StorageRepository";
 
-export default class SettingRepository extends SecureStorageRepository<ISettingsState> implements ISettingsRepository {
+export default class SettingRepository extends StorageRepository<ISettingsState> implements ISettingsRepository {
     constructor() {
-        super(`${config.projectName}-settings`);
+        super(`settings`);
     }
 
     public async getLocale(): Promise<LocaleType | undefined> {
