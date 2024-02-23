@@ -1,8 +1,8 @@
-import { NetworkType } from "module/settings/state/SettingsState";
 import { useSetRecoilState } from "recoil";
 import walletState, { Wallet } from "../state/WalletState";
 import WalletController from "../utils/WalletController";
 import useCreateWallet from "./useCreateWallet";
+import { NetworkType } from "module/common/types";
 
 export default function useImportWallets() {
     const {

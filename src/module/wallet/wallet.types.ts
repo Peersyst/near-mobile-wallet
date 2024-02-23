@@ -1,4 +1,4 @@
-import { NetworkType } from "module/settings/state/SettingsState";
+import { NetworkType } from "module/common/types";
 import { NftToken, Token } from "near-peersyst-sdk";
 
 export enum AssetType {

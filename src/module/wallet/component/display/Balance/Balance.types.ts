@@ -1,7 +1,6 @@
 import { SpinnerProps } from "@peersyst/react-native-components";
 import { TypographyProps } from "module/common/component/display/Typography/Typography";
-import { FullNumber } from "module/common/types";
-import { FiatCurrencyType } from "module/settings/state/SettingsState";
+import { FiatCurrencyType, FullNumber } from "module/common/types";
 
 export type AppCurrency = FiatCurrencyType | "token";
 

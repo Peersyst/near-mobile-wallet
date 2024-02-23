@@ -1,14 +1,14 @@
-import settingsState, { NetworkType } from "module/settings/state/SettingsState";
+import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
 import { SelectOption } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
-import { Chains } from "near-peersyst-sdk";
 import useChangeNetworkModal from "../../../../wallet/hook/useChangeNetwork";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { config } from "refactor/common/config";
+import { Chains, NetworkType } from "module/common/types";
 
 const SelectNetwork = (): JSX.Element => {
     const translate = useTranslate();

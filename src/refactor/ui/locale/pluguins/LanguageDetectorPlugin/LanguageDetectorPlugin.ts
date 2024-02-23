@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { LanguageDetectorAsyncModule } from "i18next";
 import { getDefaultLocale } from "refactor/ui/locale/utils";
-import { SettingsStorage } from "module/settings/SettingsStorage";
+import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
 
 export async function detect(): Promise<any> {
     try {
-        const storedLocale = await SettingsStorage?.getLocale();
+        // <<< refactor
+        const storedLocale = await ControllerFactory.settingsController?.getLocale();
+        // refactor >>>
         return storedLocale || getDefaultLocale();
     } catch (error) {
         /* eslint-disable no-console */

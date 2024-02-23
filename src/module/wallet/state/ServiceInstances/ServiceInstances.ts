@@ -1,6 +1,5 @@
 import { config } from "refactor/common/config";
-import { Chains, NearSDKService } from "near-peersyst-sdk";
-import { NetworkType } from "module/settings/state/SettingsState";
+import { NearSDKService } from "near-peersyst-sdk";
 import {
     AddManualServiceInstanceParams,
     AddServiceParams,
@@ -11,6 +10,7 @@ import {
     SetServiceParams,
     SetServicesParams,
 } from "./ServiceInstances.types";
+import { Chains, NetworkType } from "module/common/types";
 
 export const serviceInstancesMap = new Map<NetworkType, NearSDKService[]>();
 

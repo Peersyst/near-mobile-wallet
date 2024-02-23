@@ -1,7 +1,6 @@
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import { serviceInstancesMap } from "module/wallet/state/ServiceInstances/ServiceInstances";
-import { SettingsStorage } from "module/settings/SettingsStorage";
 import SettingsMenuItem from "module/settings/components/navigation/SettingsMenuItem/SettingsMenuItem";
 import { useQueryClient } from "react-query";
 import useTranslate from "module/common/hook/useTranslate";
@@ -27,7 +26,10 @@ const DeleteData = () => {
         await WalletStorage.clearAll();
         setWalletState((state) => ({ ...state, hasWallet: false }));
         serviceInstancesMap.clear();
-        await SettingsStorage.clear();
+        // <<< refactor
+        await ControllerFactory.settingsController.clear();
+        // refactor >>>
+
         queryClient.removeQueries();
         resetWalletState();
         // <<< refactor

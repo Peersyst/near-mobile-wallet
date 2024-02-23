@@ -1,5 +1,5 @@
+import { NetworkType } from "module/common/types";
 import { useQueryClient } from "react-query";
-import { NetworkType } from "module/settings/state/SettingsState";
 
 const useWalletQueriesInvalidation = (): ((index: number, chain: NetworkType) => Promise<void>) => {
     const queryClient = useQueryClient();

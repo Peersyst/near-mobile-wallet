@@ -1,9 +1,10 @@
-import { SettingsStorage } from "module/settings/SettingsStorage";
-import settingsState, { FiatCurrencyType } from "module/settings/state/SettingsState";
+import settingsState from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import { SelectOption } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
+import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
+import { FiatCurrencyType } from "module/common/types";
 
 const fiatOptions: SelectOption<FiatCurrencyType>[] = [
     {
@@ -44,9 +45,12 @@ const SelectFiat = (): JSX.Element => {
     const translate = useTranslate();
 
     const [settings, setSettings] = useRecoilState(settingsState);
+
     const handleSelect = (fiat: FiatCurrencyType) => {
         setSettings((s) => ({ ...s, fiat }));
-        SettingsStorage.set({ fiat });
+        // <<< refactor
+        ControllerFactory.settingsController.set({ fiat });
+        // refactor >>>
     };
 
     return (

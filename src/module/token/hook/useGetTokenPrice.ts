@@ -1,6 +1,6 @@
 import { useGetFiatPrice } from "module/common/query/useGetFiatPrice";
-import { FiatCurrencyType } from "module/settings/state/SettingsState";
 import useGetTokenPriceInUsd from "../query/useGetTokenPriceInUsd";
+import { FiatCurrencyType } from "module/common/types";
 
 export interface UseGetTokenPriceReturn {
     price: number | undefined;

@@ -1,5 +1,4 @@
 import { BaseStorageService } from "module/common/service/BaseStorageService";
-import { NetworkType } from "module/settings/state/SettingsState";
 import { WalletUtils } from "./utils/WalletUtils";
 import {
     SecureWalletStorageType,
@@ -10,6 +9,7 @@ import {
     SetWalletsParams,
     WalletStorageType,
 } from "./wallet.types";
+import { NetworkType } from "module/common/types";
 
 export const WalletStorage = new (class extends BaseStorageService<SecureWalletStorageType, UnsecureWalletStorageType> {
     constructor() {

@@ -1,8 +1,8 @@
 import { NearSDKService } from "near-peersyst-sdk";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
-import { NetworkType } from "module/settings/state/SettingsState";
 import useSelectedWalletIndex from "./useSelectedWalletIndex";
 import ServiceInstances from "../state/ServiceInstances/ServiceInstances";
+import { NetworkType } from "module/common/types";
 
 export interface useServiceInstanceReturn {
     index: number;
