@@ -1,4 +1,5 @@
-import { FiatCurrencyType, ISettingsState, NetworkType } from "refactor/domain/settings/state/settingsState";
+import { FiatCurrencyType, NetworkType } from "module/common/types";
+import { ISettingsState } from "refactor/domain/settings/state/settingsState";
 import { LocaleType } from "refactor/ui/locale";
 
 export interface ISettingsRepository {

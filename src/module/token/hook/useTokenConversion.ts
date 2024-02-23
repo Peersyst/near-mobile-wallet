@@ -1,6 +1,6 @@
 import { config } from "refactor/common/config";
-import { FiatCurrencyType } from "module/settings/state/SettingsState";
 import { useGetTokenPrice } from "./useGetTokenPrice";
+import { FiatCurrencyType } from "module/common/types";
 
 export interface UseNativeTokenConversionReturn {
     value: string | undefined;

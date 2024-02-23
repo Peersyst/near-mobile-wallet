@@ -26,7 +26,10 @@ const DeleteData = () => {
         await WalletStorage.clearAll();
         setWalletState((state) => ({ ...state, hasWallet: false }));
         serviceInstancesMap.clear();
-        ControllerFactory.settingsController.clear();
+        // <<< refactor
+        await ControllerFactory.settingsController.clear();
+        // refactor >>>
+
         queryClient.removeQueries();
         resetWalletState();
         // <<< refactor

@@ -1,7 +1,8 @@
 import { ISettingsController } from "refactor/ui/adapter/controllers/ISettingsController";
 import { ISettingsRepository } from "refactor/domain/adapter/repository/ISettingsRepository";
 import { LocaleType } from "refactor/ui/locale/i18n.types";
-import { FiatCurrencyType, ISettingsState, NetworkType } from "../state/settingsState";
+import { ISettingsState } from "../state/settingsState";
+import { FiatCurrencyType, NetworkType } from "module/common/types";
 
 export default class SettingsController implements ISettingsController {
     constructor(private readonly settingsRepository: ISettingsRepository) {}

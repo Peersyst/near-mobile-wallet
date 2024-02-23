@@ -36,11 +36,15 @@ export function useLoad(): boolean {
             ]);
 
             const hasMnemonic = await WalletController.hasMnemonic();
+            // <<< refactor
             const storedSettings = await ControllerFactory.settingsController.getAllSettings();
+            // refactor >>>
 
             const settings = { ...defaultSettingsState, ...(storedSettings || {}) };
 
+            // <<< refactor
             if (!hasMnemonic) await ControllerFactory.settingsController.set(settings);
+            // refactor >>>
             // Do not await this so the user can enter the app instantly with a loading state
             else {
                 setWalletState((state) => ({

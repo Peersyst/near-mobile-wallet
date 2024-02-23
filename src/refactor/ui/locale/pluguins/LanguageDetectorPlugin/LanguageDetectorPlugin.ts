@@ -5,7 +5,9 @@ import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
 
 export async function detect(): Promise<any> {
     try {
+        // <<< refactor
         const storedLocale = await ControllerFactory.settingsController?.getLocale();
+        // refactor >>>
         return storedLocale || getDefaultLocale();
     } catch (error) {
         /* eslint-disable no-console */

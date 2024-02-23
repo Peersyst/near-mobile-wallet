@@ -1,6 +1,7 @@
 import SettingsController from "refactor/domain/settings/controller/SettingsController";
 import { ISettingsState } from "refactor/domain/settings/state/settingsState";
 import SettingsRepositoryMock from "refactor/test/mocks/settings/SettingsRepository.mock";
+import SettingsMock from "refactor/test/mocks/settings/settings.mock";
 
 describe("SettingsController", () => {
     let settingsController: SettingsController;
@@ -46,13 +47,7 @@ describe("SettingsController", () => {
 
     describe("getAllSettings", () => {
         it("should return all settings", async () => {
-            const settings = {
-                locale: "en",
-                fiat: "usd",
-                biometrics: true,
-                network: "mainnet",
-            };
-
+            const settings = new SettingsMock();
             const result = await settingsController.getAllSettings();
             expect(result).toEqual(settings);
         });
@@ -67,12 +62,7 @@ describe("SettingsController", () => {
 
     describe("set", () => {
         it("should set the settings", async () => {
-            const settings = {
-                locale: "en",
-                fiat: "usd",
-                biometrics: true,
-                network: "mainnet",
-            } as ISettingsState;
+            const settings: Partial<ISettingsState> = new SettingsMock();
 
             await settingsController.set(settings);
             expect(settingsRepositoryMock.set).toBeCalledTimes(1);

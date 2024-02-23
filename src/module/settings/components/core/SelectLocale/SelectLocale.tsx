@@ -24,7 +24,9 @@ const SelectLocale = (): JSX.Element => {
     const handleSelect = (value: LocaleType) => {
         i18n.changeLanguage(value);
         setSettings((s) => ({ ...s, locale: value }));
+        // <<< refactor
         ControllerFactory.settingsController.set({ locale: value });
+        // refactor >>>
     };
     return (
         <SettingsSelect

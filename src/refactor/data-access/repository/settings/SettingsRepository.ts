@@ -2,7 +2,8 @@ import { config } from "refactor/common/config";
 import { ISettingsRepository } from "refactor/domain/adapter/repository/ISettingsRepository";
 import { LocaleType } from "refactor/ui/locale";
 import SecureStorageRepository from "../common/SecureStorageRepository";
-import { FiatCurrencyType, ISettingsState, NetworkType, defaultSettingsState } from "refactor/domain/settings/state/settingsState";
+import { ISettingsState, defaultSettingsState } from "refactor/domain/settings/state/settingsState";
+import { FiatCurrencyType, NetworkType } from "module/common/types";
 
 export default class SettingRepository extends SecureStorageRepository<ISettingsState> implements ISettingsRepository {
     constructor() {

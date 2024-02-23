@@ -3,7 +3,8 @@ import { QueryResult } from "refactor/ui/common/query/react-query-overrides";
 import { config } from "refactor/common/config";
 import Queries from "../../../refactor/ui/common/query/queries";
 import { useRecoilValue } from "recoil";
-import settingsState, { FiatCurrencyType } from "module/settings/state/SettingsState";
+import settingsState from "module/settings/state/SettingsState";
+import { FiatCurrencyType } from "../types";
 
 export type CoinPrice = Record<string, number>;
 

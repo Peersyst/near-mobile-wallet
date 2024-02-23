@@ -11,7 +11,9 @@ const BiometricsSwitch = (): JSX.Element => {
 
     const handleChange = (biometrics: boolean) => {
         setSettings((s) => ({ ...s, biometrics }));
+        // <<< refactor
         ControllerFactory.settingsController.set({ biometrics });
+        // refactor >>>
     };
 
     return <SettingsSwitch value={settings.biometrics} onChange={handleChange} label={translate("biometricAuthentication")} />;

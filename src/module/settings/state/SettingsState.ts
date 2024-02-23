@@ -1,10 +1,7 @@
 import { atom } from "recoil";
 import { getDefaultLocale, LocaleType } from "refactor/ui/locale";
 import { Chains } from "near-peersyst-sdk";
-
-export type FiatCurrencyType = "cny" | "usd" | "eur" | "jpy" | "gbp" | "rub" | "uah" | "idr";
-
-export type NetworkType = Chains.TESTNET | Chains.MAINNET;
+import { FiatCurrencyType, NetworkType } from "module/common/types";
 
 export interface SettingsState {
     locale?: LocaleType;

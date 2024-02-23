@@ -30,7 +30,9 @@ export default (): UseChangeNetworkResult => {
             setWalletState((state) => ({ ...state, selectedWallet: 0, wallets, hasWallets: true }));
         }
 
+        // <<< refactor
         await Promise.all([ControllerFactory.settingsController.set({ network }), new Promise((resolve) => setTimeout(resolve, 2000))]);
+        // refactor >>>
 
         setSettings({ ...settings, network });
 

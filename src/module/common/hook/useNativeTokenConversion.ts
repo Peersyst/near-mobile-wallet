@@ -1,6 +1,6 @@
-import { FiatCurrencyType } from "module/settings/state/SettingsState";
 import { BalanceOperations } from "near-peersyst-sdk";
 import { useGetNativeTokenPrice } from "../query/useGetNativeTokenPrice";
+import { FiatCurrencyType } from "../types";
 
 //balance has to be in NEAR
 export default function useNativeTokenConversion(balance: string | number, currency?: FiatCurrencyType) {
