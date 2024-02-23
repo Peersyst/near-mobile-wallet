@@ -148,6 +148,20 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         return WalletUtils.getWallet(index, wallets);
     }
 
+    async getAccountsFromPrivateKey(privateKey: string, network: NetworkType): Promise<string[]> {
+        const accounts: string[] = [];
+
+        const walletGroup = await this.getSecureWalletGroup(privateKey, network);
+        if (!walletGroup) return accounts;
+
+        const wallets = await this.getUnencryptedWallets(network);
+        for (const walletId of walletGroup.walletIds) {
+            const wallet = WalletUtils.getWallet(walletId, wallets);
+            if (wallet) accounts.push(wallet.account);
+        }
+        return accounts;
+    }
+
     async setUnencryptedWallets(
         wallets: UnencryptedWalletInfo[],
         network: NetworkType,

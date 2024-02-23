@@ -42,12 +42,14 @@
     "you_are_not_staking": "Наразі ви не робите стейкінг з жодним валідатором.",
     "no_validators_available": "Наразі немає жодного валідатора, доступного для стейкінгу.",
     "no_validators_found": "Не знайдено валідаторів для цього пошуку ({{accountId}})",
-    "networkMismatch": "Network mismatch",
-    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details.",
-    "noConnectedSites": "No connected sites",
-    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account.",
-    "invalidSigner": "Invalid signer account",
-    "invalidSignerDescription": "You have not selected the expected account to sign this request",
-    "invalidSignerRequest": "Invalid signer request",
-    "invalidSignerRequestDescription": "The request does not exists. Try creating a different one."
+    "networkMismatch": "Невідповідність мережі",
+    "networkMismatchDescription": "Цей запит очікує іншу мережу. Змініть поточну мережу на іншу, щоб переглянути деталі запиту.",
+    "noConnectedSites": "Немає підключених сайтів",
+    "noConnectedSitesDescription": "Здається, ви не підключені до жодного додатку з цим обліковим записом.",
+    "invalidSigner": "Недійсний обліковий запис підписанта",
+    "invalidSignerDescription": "Ви не вибрали очікуваний обліковий запис для підписання цього запиту",
+    "invalidSignerRequest": "Недійсний запит підписанта",
+    "invalidSignerRequestDescription": "Запит не існує. Спробуйте створити інший.",
+    "cantImportAccount": "Не вдається імпортувати обліковий запис",
+    "accountAlreadyExists": "Обліковий запис уже існує"
 }

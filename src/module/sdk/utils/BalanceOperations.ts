@@ -1,5 +1,5 @@
 import { convertNearToYocto, convertYoctoToNear } from "./near.utils";
-const BN = require("bn.js");
+import BN from "bn.js";
 
 export class BalanceOperations {
     //Big number operations
@@ -15,7 +15,7 @@ export class BalanceOperations {
     static BNIsBiggerOrEqual(a: string, b: string): boolean {
         return new BN(a).gte(new BN(b));
     }
-    static BNDevide(a: string, b: string): string {
+    static BNDivide(a: string, b: string): string {
         const numerator = BigInt(a);
         const denominator = BigInt(b);
         return (numerator / denominator).toString();
@@ -47,7 +47,7 @@ export class BalanceOperations {
         try {
             const finalA = convertNearToYocto(a.toString());
             const finalB = convertNearToYocto(b.toString());
-            const res = new BN(finalA).add(new BN(finalB));
+            const res = new BN(finalA).add(new BN(finalB)).toString();
             return convertYoctoToNear(res).toString();
         } catch (e) {
             // eslint-disable-next-line no-console
@@ -70,7 +70,7 @@ export class BalanceOperations {
             // 3 near = 3 * 10^24 yoctos
             // 3 * 3 * 10^(24 + 24) = 9 * 10 ^ 48  yoctos
             // 9 * 10^48 yoctos / 1 * 10^24 = 9 * 10^(48 - 24) = 9 * 10^24 near
-            const res = bigRes.div(new BN(convertNearToYocto("1")));
+            const res = bigRes.div(new BN(convertNearToYocto("1"))).toString();
             return convertYoctoToNear(res).toString();
         } catch (e) {
             // eslint-disable-next-line no-console

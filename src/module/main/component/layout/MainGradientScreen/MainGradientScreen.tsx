@@ -11,13 +11,13 @@ interface MainGradientScreenProps {
 
 const MainGradientScreen = ({ children: { slider, content } }: MainGradientScreenProps): JSX.Element => {
     const {
-        state: { selectedWallet = 0, wallets },
+        state: { loading, selectedWallet = 0, wallets },
     } = useWalletState();
     return (
         <BaseMainGradientScreen>
             <Col flex={1}>
                 {slider}
-                <MainContentCard>{selectedWallet < wallets.length ? content : <AddWallet />}</MainContentCard>
+                <MainContentCard>{loading || selectedWallet < wallets.length ? content : <AddWallet />}</MainContentCard>
             </Col>
         </BaseMainGradientScreen>
     );

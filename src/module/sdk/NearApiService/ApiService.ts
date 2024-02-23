@@ -12,19 +12,22 @@ import { convertYoctoToNear, parseBlockTimestamp } from "../utils";
 import { FetchService } from "./FetchService";
 import {
     AccessKeyApiDto,
-    LikelyResponseApiDto,
     NearApiServiceInterface,
     NearApiServicePaginatedParams,
     NearApiServiceParams,
     StakingDepositApiDto,
     ActionApiDto,
 } from "./NearApiService.types";
+import { NearBlocksService } from "./NearBlocksService";
 
 export class ApiService extends FetchService implements NearApiServiceInterface {
     public baseUrl: string;
-    constructor(endpoint: string) {
+    nearblocksService: NearBlocksService;
+
+    constructor(endpoint: string, chain: Chains) {
         super();
         this.baseUrl = endpoint;
+        this.nearblocksService = new NearBlocksService(chain);
     }
 
     /**
@@ -107,19 +110,29 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
      */
 
     async getAccountsFromPublicKey({ address }: NearApiServiceParams): Promise<string[]> {
-        const accounts = await this.handleFetch<string[]>(`${this.baseUrl}/publicKey/${address}/accounts`);
-        return this.parseNearAccounts(accounts);
+        let newAccounts: string[] = [];
+        try {
+            newAccounts = await this.nearblocksService.getAccountsFromPublicKey({ address });
+        } catch (error: unknown) {}
+        return newAccounts.map((account) => this.parseNearAccount(account));
     }
 
     async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
-        const apiDeposits = await this.handleFetch<StakingDepositApiDto[]>(`${this.baseUrl}/staking-deposits/${address}`);
+        let apiDeposits: StakingDepositApiDto[] = [];
+        try {
+            return this.nearblocksService.getAccountDeposits({ address });
+        } catch (error: unknown) {
+            try {
+                // Hope for kitwallet magic
+                apiDeposits = await this.handleFetch<StakingDepositApiDto[]>(`${this.baseUrl}/staking-deposits/${address}`);
+            } catch (error: unknown) {}
+        }
+
         return apiDeposits.map(this.parseStakingDepositApiDtoDto);
     }
 
     async getLikelyTokens({ address, chain }: NearApiServiceParams): Promise<string[]> {
-        const contractIds = (
-            await this.handleFetch<LikelyResponseApiDto>(`${this.baseUrl}/account/${address}/likelyTokensFromBlock?fromBlockTimestamp=0`)
-        ).list;
+        const contractIds = await this.nearblocksService.getLikelyTokens({ address });
         if (chain === Chains.MAINNET) {
             if (!contractIds.includes("game.hot.tg")) {
                 contractIds.push("game.hot.tg");
@@ -129,15 +142,12 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
-        const contractIds = (
-            await this.handleFetch<LikelyResponseApiDto>(`${this.baseUrl}/account/${address}/likelyNFTsFromBlock?fromBlockTimestamp=0`)
-        ).list;
+        const contractIds = await this.nearblocksService.getLikelyNfts({ address });
         return this.parseNearAccounts(contractIds);
     }
 
     async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
-        const txs = await this.handleFetch<ActionApiDto[]>(`${this.baseUrl}/account/${address}/activity`);
-        return txs.map((tx) => this.parseActionApiDto(tx, address));
+        return await this.nearblocksService.getRecentActivity({ address });
     }
 
     async getActionsFromTransactions({ address }: NearApiServicePaginatedParams): Promise<Action[]> {

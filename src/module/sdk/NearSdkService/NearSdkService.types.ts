@@ -13,10 +13,12 @@ export interface BaseCreateNearSdkParams {
 
 export interface CreateNearSdkWithMnemonicParams extends BaseCreateNearSdkParams {
     mnemonic: string;
+    likelyNameIds?: string[];
 }
 
 export interface CreateNearSdkWithSecretKeyParams extends BaseCreateNearSdkParams {
     secretKey: string;
+    likelyNameIds?: string[];
 }
 
 export interface CreateNearSdkParams extends BaseCreateNearSdkParams {

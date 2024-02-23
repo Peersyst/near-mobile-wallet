@@ -14,16 +14,16 @@ export default function useImportWallets() {
         const parsedMnemonic = mnemonic?.join(" ");
         const { wallets } = await WalletController.importWallets(network, pin, parsedMnemonic, privateKey);
 
-        if (wallets.length > 0) {
-            setWalletState((state) => {
-                return {
-                    ...state,
-                    wallets: [...state.wallets, ...wallets],
-                    hasWallet: true,
-                    isAuthenticated: true,
-                };
-            });
-        }
+        setWalletState((state) => {
+            return {
+                ...state,
+                wallets: [...state.wallets, ...wallets],
+                hasWallet: true,
+                isAuthenticated: true,
+                loading: false,
+            };
+        });
+
         return wallets;
     };
     return importWallets;

@@ -84,6 +84,11 @@ const config = createConfig({
                 },
             },
         },
+        Skeleton: {
+            defaultProps: {
+                children: <></>,
+            },
+        },
     },
     themes: {
         default: lightTheme,
