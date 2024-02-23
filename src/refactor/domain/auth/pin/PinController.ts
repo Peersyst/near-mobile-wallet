@@ -1,10 +1,18 @@
 import DomainError from "refactor/domain/error/DomainError";
-import AuthErrorCodes from "../AuthErrorCodes";
 import { IPinRepository } from "refactor/domain/adapter/repository/IPinRepository";
 import { IPinController } from "refactor/ui/adapter/controllers/IPinController";
+import DomainEvents from "refactor/domain/events";
+import PinErrorCodes from "./PinErrorCodes";
 
 export default class PinController implements IPinController {
     constructor(private readonly pinRepository: IPinRepository) {}
+
+    onInit(): void {
+        // Listen for logout event to remove the Mnemonic
+        DomainEvents.auth.on("logout", () => {
+            this.removePin();
+        });
+    }
 
     /**
      * Sets the PIN.
@@ -21,7 +29,7 @@ export default class PinController implements IPinController {
     async checkPin(pin: string): Promise<boolean> {
         const storedPin = await this.pinRepository.getPin();
 
-        if (!storedPin) throw new DomainError(AuthErrorCodes.PIN_IS_NOT_SET);
+        if (!storedPin) throw new DomainError(PinErrorCodes.PIN_IS_NOT_SET);
 
         return storedPin === pin;
     }

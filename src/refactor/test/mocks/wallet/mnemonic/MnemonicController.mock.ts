@@ -5,4 +5,5 @@ import { IMnemonicController } from "refactor/ui/adapter/controllers/IMnemonicCo
 export const MnemonicControllerMock = createMock<IMnemonicController>({
     setMnemonic: new MethodMock("mockResolvedValue"),
     validateMnemonic: new MethodMock("mockResolvedValue", true),
+    getMnemonic: new MethodMock("mockResolvedValue", "word1 word2 word3"),
 });

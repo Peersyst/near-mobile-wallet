@@ -20,15 +20,17 @@ const SetWalletPinScreen = (): JSX.Element => {
     useLogoPageFlex(0.4);
     useLogoPageGradient(false);
 
-    const handleSuccess = async (pin?: string) => {
+    const handleSuccess = (pin?: string) => {
+        // <<< refactor
         ControllerFactory.authController.login(pin);
-        setWalletState((state) => ({ ...state }));
+        // refactor >>>
+        setWalletState((state) => ({ ...state, isAuthenticated: true }));
     };
 
     const handlePinSubmit = async (pin: string) => {
         const storedPin = await WalletStorage.getPin();
         if (storedPin === pin) {
-            await handleSuccess(pin);
+            handleSuccess(pin);
         } else {
             setError(true);
             notificationAsync(NotificationFeedbackType.Error);
@@ -48,7 +50,6 @@ const SetWalletPinScreen = (): JSX.Element => {
                 in={animateNumericPad}
                 error={error}
                 onSubmit={handlePinSubmit}
-                //TODO: Handle biometrics
                 onBiometricsSuccess={handleSuccess}
                 placeholder={translate("enter_your_pin")}
             />

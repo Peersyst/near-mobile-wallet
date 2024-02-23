@@ -1,19 +1,20 @@
-import AuthController from "refactor/domain/auth/controller/AuthController";
+import AuthController from "refactor/domain/auth/AuthController";
 import { AuthStateMock } from "refactor/test/mocks/auth/authState.mock";
-import { MnemonicControllerMock } from "refactor/test/mocks/auth/mnemonic/MnemonicController.mock";
 import { PinControllerMock } from "refactor/test/mocks/auth/pin/PinController.mock";
+import { WalletControllerMock } from "refactor/test/mocks/wallet/wallet/WalletController.mock";
+
 describe("AuthController", () => {
     let authController: AuthController;
 
     const authStateMock = new AuthStateMock();
     const pinControllerMock = new PinControllerMock();
-    const mnemonicControllerMock = new MnemonicControllerMock();
+    const walletControllerMock = new WalletControllerMock();
 
     beforeEach(() => {
-        authController = new AuthController(authStateMock, pinControllerMock, mnemonicControllerMock);
+        authController = new AuthController(authStateMock, pinControllerMock, walletControllerMock);
 
         pinControllerMock.clearMocks();
-        mnemonicControllerMock.clearMocks();
+        walletControllerMock.clearMocks();
         authStateMock.clearMocks();
     });
 
@@ -24,24 +25,17 @@ describe("AuthController", () => {
 
             await authController.signUp(mnemonic, pin);
 
-            expect(mnemonicControllerMock.setMnemonic).toHaveBeenCalledWith(mnemonic.join(" "));
             expect(pinControllerMock.setPin).toHaveBeenCalledWith(pin);
             expect(authStateMock.setState).toHaveBeenCalledWith({ isAuthenticated: true });
         });
-    });
 
-    describe("recover", () => {
-        test("Should call set mnemonic, pin and change authState, and validate mnemonic", async () => {
+        test("Should throw error if mnemonic is invalid", async () => {
             const mnemonic = ["word1", "word2", "word3"];
             const pin = "1234";
 
-            mnemonicControllerMock.validateMnemonic.mockResolvedValue(true);
+            walletControllerMock.createWallets.mockRejectedValue(new Error("Error"));
 
-            await authController.recover(mnemonic, pin);
-
-            expect(mnemonicControllerMock.setMnemonic).toHaveBeenCalledWith(mnemonic.join(" "));
-            expect(pinControllerMock.setPin).toHaveBeenCalledWith(pin);
-            expect(authStateMock.setState).toHaveBeenCalledWith({ isAuthenticated: true });
+            await expect(authController.signUp(mnemonic, pin)).rejects.toThrow();
         });
     });
 
@@ -53,6 +47,13 @@ describe("AuthController", () => {
 
             expect(pinControllerMock.checkPin).toHaveBeenCalledWith(pin);
             expect(authStateMock.setState).toHaveBeenCalledWith({ isAuthenticated: true });
+        });
+        test("Should call set pin invalid", async () => {
+            const pin = "1234";
+
+            pinControllerMock.checkPin.mockResolvedValue(false);
+
+            await expect(authController.login(pin)).rejects.toThrow();
         });
     });
 

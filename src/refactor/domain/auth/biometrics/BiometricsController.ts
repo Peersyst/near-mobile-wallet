@@ -1,4 +1,4 @@
-import { BiometricsAuthenticationOptions, BiometricsType } from "module/auth/hook/useBiometrics";
+import { BiometricsAuthenticationOptions, BiometricsType } from "refactor/common/models/auth/biometrics";
 import { IBiometricsPreferencesRepository } from "refactor/domain/adapter/repository/IBiometricsPreferencesRepository";
 import { IBiometricsService } from "refactor/domain/adapter/service/IBiometricsService";
 import { IBiometricsController } from "refactor/ui/adapter/controllers/IBiometricsController";
