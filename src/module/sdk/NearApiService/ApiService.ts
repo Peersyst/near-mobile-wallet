@@ -1,3 +1,4 @@
+import { timeoutPromise } from "@peersyst/react-utils";
 import {
     AccessKey,
     Action,
@@ -17,6 +18,7 @@ import {
     NearApiServiceParams,
     StakingDepositApiDto,
     ActionApiDto,
+    LikelyResponseApiDto,
 } from "./NearApiService.types";
 import { NearBlocksService } from "./NearBlocksService";
 
@@ -114,7 +116,15 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
         try {
             newAccounts = await this.nearblocksService.getAccountsFromPublicKey({ address });
         } catch (error: unknown) {}
-        return newAccounts.map((account) => this.parseNearAccount(account));
+        let oldAccounts: string[] = [];
+        try {
+            // Hope for kitwallet magic but with a timeout
+            const oldAccountsPromise = this.handleFetch<string[]>(`${this.baseUrl}/publicKey/${address}/accounts`);
+            oldAccounts = await timeoutPromise(oldAccountsPromise, 3000);
+        } catch (error: unknown) {}
+        const accounts = [...new Set([...newAccounts, ...oldAccounts])];
+
+        return accounts.map((account) => this.parseNearAccount(account));
     }
 
     async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
@@ -132,7 +142,19 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     async getLikelyTokens({ address, chain }: NearApiServiceParams): Promise<string[]> {
-        const contractIds = await this.nearblocksService.getLikelyTokens({ address });
+        let contractIds: string[] = [];
+        try {
+            contractIds = await this.nearblocksService.getLikelyTokens({ address });
+        } catch (error: unknown) {
+            try {
+                // Hope for kitwallet magic
+                contractIds = (
+                    await this.handleFetch<LikelyResponseApiDto>(
+                        `${this.baseUrl}/account/${address}/likelyTokensFromBlock?fromBlockTimestamp=0`,
+                    )
+                ).list;
+            } catch (error: unknown) {}
+        }
         if (chain === Chains.MAINNET) {
             if (!contractIds.includes("game.hot.tg")) {
                 contractIds.push("game.hot.tg");
@@ -142,12 +164,34 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
-        const contractIds = await this.nearblocksService.getLikelyNfts({ address });
+        let contractIds: string[] = [];
+        try {
+            contractIds = await this.nearblocksService.getLikelyNfts({ address });
+        } catch (error: unknown) {
+            try {
+                // Hope for kitwallet magic
+                contractIds = (
+                    await this.handleFetch<LikelyResponseApiDto>(
+                        `${this.baseUrl}/account/${address}/likelyNFTsFromBlock?fromBlockTimestamp=0`,
+                    )
+                ).list;
+            } catch (error: unknown) {}
+        }
         return this.parseNearAccounts(contractIds);
     }
 
     async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
-        return await this.nearblocksService.getRecentActivity({ address });
+        let actions: Action[] = [];
+        try {
+            actions = await this.nearblocksService.getRecentActivity({ address });
+        } catch (error: unknown) {
+            try {
+                // Hope for kitwallet magic
+                const txs = await this.handleFetch<ActionApiDto[]>(`${this.baseUrl}/account/${address}/activity`);
+                actions = txs.map((tx) => this.parseActionApiDto(tx, address));
+            } catch (error: unknown) {}
+        }
+        return actions;
     }
 
     async getActionsFromTransactions({ address }: NearApiServicePaginatedParams): Promise<Action[]> {
