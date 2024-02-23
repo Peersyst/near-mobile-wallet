@@ -311,5 +311,8 @@
     "withPermissions": "Dengan izin:",
     "signerChangeAccount": "Anda tidak dapat menandatangani permintaan ini dengan akun yang dipilih karena tidak diaktifkan. Silakan pilih akun lain.",
     "rejectRequestSuccessfully": "Permintaan berhasil ditolak!",
-    "delegateCall": "Delegasi panggilan ke"
+    "delegateCall": "Delegasi panggilan ke",
+    "importAccountManually": "Impor akun secara manual",
+    "importAccountManuallyDescription": "Jika Anda merasa memiliki akun yang tidak muncul, Anda dapat mengimpornya secara manual. Cukup masukkan akun yang ingin Anda impor.",
+    "enterTheAccount": "Masukkan akun"
 }
