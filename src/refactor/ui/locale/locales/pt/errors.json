@@ -42,12 +42,14 @@
     "you_are_not_staking": "Não está actualmente a apostar com nenhum validador.",
     "no_validators_available": "Não existe actualmente nenhum validador disponível para a piquetagem.",
     "no_validators_found": "Não foram encontrados validadores para esta pesquisa ({{accountId}})",
-    "networkMismatch": "Network mismatch",
-    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details.",
-    "noConnectedSites": "No connected sites",
-    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account.",
-    "invalidSigner": "Invalid signer account",
-    "invalidSignerDescription": "You have not selected the expected account to sign this request",
-    "invalidSignerRequest": "Invalid signer request",
-    "invalidSignerRequestDescription": "The request does not exists. Try creating a different one."
+    "networkMismatch": "Incompatibilidade de rede",
+    "networkMismatchDescription": "Esta solicitação está esperando uma rede diferente. Altere a rede atual para outra para ver os detalhes da solicitação.",
+    "noConnectedSites": "Nenhum site conectado",
+    "noConnectedSitesDescription": "Parece que você não está conectado a nenhum dapp com esta conta.",
+    "invalidSigner": "Conta de assinante inválida",
+    "invalidSignerDescription": "Você não selecionou a conta esperada para assinar esta solicitação.",
+    "invalidSignerRequest": "Solicitação de assinante inválida",
+    "invalidSignerRequestDescription": "A solicitação não existe. Tente criar uma diferente.",
+    "cantImportAccount": "Não é possível importar a conta",
+    "accountAlreadyExists": "A conta já existe"
 }

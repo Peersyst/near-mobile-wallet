@@ -17,12 +17,12 @@ const TokenCard = ({ token }: TokenCardProps): JSX.Element => {
         <MainListCard alignItems="center" justifyContent="space-between">
             <Row alignItems="center" gap={16}>
                 <TokenIcon token={token} />
-                <Typography variant="body3Strong" numberOfLines={1} style={{ maxWidth: "70%" }}>
+                <Typography variant="body3Strong" numberOfLines={1} style={{ flex: 0.6 }}>
                     {name}
                 </Typography>
             </Row>
-            <Col alignItems="flex-end" justifyContent="center" gap={2}>
-                <Balance balance={token.balance} variant="body3Strong" units={symbol} />
+            <Col alignItems="flex-end" justifyContent="center" gap={2} flex={1}>
+                <Balance balance={token.balance} variant="body3Strong" textAlign="right" units={symbol} numberOfLines={undefined} />
                 <FiatBalance light balance={token.balance} token={token} variant="body4Strong" />
             </Col>
         </MainListCard>

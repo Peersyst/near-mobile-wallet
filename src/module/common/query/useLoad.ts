@@ -4,6 +4,7 @@ import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import useRecoverWallets from "module/wallet/hook/useRecoverWallets";
 import WalletController from "module/wallet/utils/WalletController";
+import walletState from "../../wallet/state/WalletState";
 import { useInitFactories } from "refactor/ui/common/hooks/useInitFactories";
 import { useLoadFactories } from "refactor/ui/common/hooks/useLoadFactories";
 import * as Font from "expo-font";
@@ -14,6 +15,7 @@ import { i18nextInitializationPromise } from "refactor/ui/locale";
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
     const setSettingsState = useSetRecoilState(settingsState);
+    const setWalletState = useSetRecoilState(walletState);
     const recoverWallets = useRecoverWallets();
 
     const areFactoriesInitialized = useInitFactories();
@@ -34,10 +36,20 @@ export function useLoad(): boolean {
             ]);
 
             const hasMnemonic = await WalletController.hasMnemonic();
+
             const settings = { ...defaultSettingsState, ...((await SettingsStorage.getAllSettings()) || {}) };
 
             if (!hasMnemonic) await SettingsStorage.set(settings);
-            else await recoverWallets(settings.network);
+            // Do not await this so the user can enter the app instantly with a loading state
+            else {
+                setWalletState((state) => ({
+                    ...state,
+                    loading: true,
+                    hasWallet: true,
+                }));
+
+                recoverWallets(settings.network);
+            }
 
             setSettingsState(settings);
         } catch (e) {

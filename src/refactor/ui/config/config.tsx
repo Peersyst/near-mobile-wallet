@@ -84,6 +84,11 @@ const uiConfig = createConfig({
                 },
             },
         },
+        Skeleton: {
+            defaultProps: {
+                children: <></>,
+            },
+        },
     },
 });
 
