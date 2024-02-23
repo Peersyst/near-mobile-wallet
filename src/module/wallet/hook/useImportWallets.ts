@@ -19,7 +19,6 @@ export default function useImportWallets() {
                 ...state,
                 wallets: [...state.wallets, ...wallets],
                 hasWallet: true,
-                isAuthenticated: true,
                 loading: false,
             };
         });

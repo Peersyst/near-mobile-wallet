@@ -64,7 +64,7 @@ import {
     woo,
     xref,
     zml,
-} from "images";
+} from "refactor/ui/assets/images";
 
 export const SUPPORTED_TOKENS_IMAGES = {
     "USDT.e": usdte,

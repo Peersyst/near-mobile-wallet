@@ -1,11 +1,11 @@
 import { ImportAccountManuallyReturn } from "module/wallet/utils/WalletController";
 import useManualAccountImport from "./useManualAccountImport";
 import { ExposedBackdropProps, useToast } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
 import { useControlled } from "@peersyst/react-hooks";
 import { useSetRecoilState } from "recoil";
 import walletState from "module/wallet/state/WalletState";
 import useWalletState from "module/wallet/hook/useWalletState";
+import useTranslate from "module/common/hook/useTranslate";
 
 export default function useManualAccountImportModal({
     defaultOpen,

@@ -1,4 +1,4 @@
-import { DAppMetadataDto, SignerRequestDto } from "module/api/service";
+import { DAppMetadataDto, SignerRequestDto } from "refactor/data-access/api/service";
 import { ActionParams } from "./actions.types";
 
 export interface SignRequestDetailsProps {

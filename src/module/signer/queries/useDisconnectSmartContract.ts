@@ -1,7 +1,7 @@
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
-import Queries from "../../../query/queries";
+import Queries from "../../../refactor/ui/common/query/queries";
 import { UseMutationResult, useMutation, useQueryClient } from "react-query";
-import { MutationOptions } from "../../../query/react-query-overrides";
+import { MutationOptions } from "../../../refactor/ui/common/query/react-query-overrides";
 import { useToast } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 

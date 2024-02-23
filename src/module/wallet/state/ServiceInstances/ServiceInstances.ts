@@ -1,4 +1,4 @@
-import { config } from "config";
+import { config } from "refactor/common/config";
 import { Chains, NearSDKService } from "near-peersyst-sdk";
 import { NetworkType } from "module/settings/state/SettingsState";
 import {

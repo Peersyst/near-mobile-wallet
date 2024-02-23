@@ -1,4 +1,4 @@
-import { LocaleType } from "locale";
+import { LocaleType } from "refactor/ui/locale";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
 

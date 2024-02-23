@@ -2,7 +2,7 @@
  * Do not `import {config} from "config"` in this file
  * because it will cause a circular dependency with SettingsState
  */
-import config from "../../../config/config";
+import { config } from "refactor/common/config";
 import {
     Action,
     ActionKind,

@@ -1,7 +1,7 @@
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import WalletController, { ImportAccountManuallyReturn } from "module/wallet/utils/WalletController";
-import { MutationOptions } from "query-utils";
 import { UseMutationResult, useMutation } from "react-query";
+import { MutationOptions } from "refactor/ui/common/query/react-query-overrides";
 
 export default function useManualAccountImport(
     options: MutationOptions<ImportAccountManuallyReturn, unknown, string> = {},

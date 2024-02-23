@@ -4,7 +4,7 @@ import { Col, WithSkeleton, withSkeleton } from "@peersyst/react-native-componen
 import { formatNews } from "module/news/utils/formatNews";
 import { NewsDto } from "module/news/types";
 import useFormatDate from "module/common/hook/useFormatDate";
-import { near_bg_0, near_bg_1 } from "images";
+import { near_bg_0, near_bg_1 } from "refactor/ui/assets/images";
 import { useRef } from "react";
 
 export const NEWS_BG_IMAGES = [near_bg_0, near_bg_1];

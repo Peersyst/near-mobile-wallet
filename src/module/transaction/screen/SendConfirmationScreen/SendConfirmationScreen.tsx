@@ -8,7 +8,7 @@ import useTranslate from "module/common/hook/useTranslate";
 import SendTransactionModal from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import { useSendTransaction } from "module/transaction/hook/useSendTransaction";
-import { config } from "config";
+import { config } from "refactor/common/config";
 
 const SendConfirmationScreen = (): JSX.Element => {
     const translate = useTranslate();

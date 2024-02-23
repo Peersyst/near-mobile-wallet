@@ -6,7 +6,7 @@ import SetAccountNameScreen from "module/wallet/screen/SetAccountNameScreen/SetA
 import SelectFundingAccountScreen from "module/wallet/screen/SelectFundingAccountScreen/SelectFundingAccountScreen";
 import CreateAccountConfirmationScreen from "module/wallet/screen/CreateAccountConfirmScreen/CreateAccountConfirmationScreen";
 import CreateAccountSuccessScreen from "module/wallet/screen/CreateAccountSuccessScreen/CreateAccountSuccessScreen";
-import { TransaltionResourceType } from "locale";
+import { TransaltionResourceType } from "refactor/ui/locale";
 import { useCreateWalletModal } from "./hook/useCreateWalletModal";
 
 export const LOCALE_MODAL_TITLES: TransaltionResourceType[] = [

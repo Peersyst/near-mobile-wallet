@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from "react-query";
 import useServiceInstance from "../hook/useServiceInstance";
-import Queries from "../../../query/queries";
+import Queries from "../../../refactor/ui/common/query/queries";
 import useGetSuffix from "../hook/useGetSuffix";
 
 const useCheckAccountIsValidReceiver = (walletIndex: number, account: string): UseQueryResult<boolean> => {

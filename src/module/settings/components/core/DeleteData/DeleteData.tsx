@@ -8,6 +8,7 @@ import useTranslate from "module/common/hook/useTranslate";
 import useWalletState from "module/wallet/hook/useWalletState";
 import useCancelableDialog from "module/common/hook/useCancelableDialog";
 import { useState } from "react";
+import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
 
 const DeleteData = () => {
     const translate = useTranslate();
@@ -24,11 +25,14 @@ const DeleteData = () => {
     const handlePinConfirmed = async () => {
         hideCancelableDialog();
         await WalletStorage.clearAll();
-        setWalletState((state) => ({ ...state, isAuthenticated: false, hasWallet: false }));
+        setWalletState((state) => ({ ...state, hasWallet: false }));
         serviceInstancesMap.clear();
         await SettingsStorage.clear();
         queryClient.removeQueries();
         resetWalletState();
+        // <<< refactor
+        await ControllerFactory.authController.logout();
+        // refactor >>>
     };
 
     return (

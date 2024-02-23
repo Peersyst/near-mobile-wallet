@@ -1,6 +1,6 @@
 import settingsState, { NetworkType } from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
-import { SelectOption, useConfig } from "@peersyst/react-native-components";
+import { SelectOption } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
 import { Chains } from "near-peersyst-sdk";
@@ -8,6 +8,7 @@ import useChangeNetworkModal from "../../../../wallet/hook/useChangeNetwork";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
+import { config } from "refactor/common/config";
 
 const SelectNetwork = (): JSX.Element => {
     const translate = useTranslate();
@@ -31,8 +32,6 @@ const SelectNetwork = (): JSX.Element => {
     ];
     const settings = useRecoilValue(settingsState);
 
-    const enableChangeNetwork = useConfig("enableChangeNetwork");
-
     const handleSelectNetwork = (network: NetworkType) => {
         changeNetwork(network);
         hasSelected = true;
@@ -54,7 +53,7 @@ const SelectNetwork = (): JSX.Element => {
     return (
         <>
             <SettingsSelect
-                disabled={!enableChangeNetwork || loading}
+                disabled={!config.enableChangeNetwork || loading}
                 options={networkOptions}
                 value={settings.network}
                 label={translate("select_your_network")}

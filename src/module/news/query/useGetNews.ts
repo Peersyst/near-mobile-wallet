@@ -1,9 +1,9 @@
 import { XMLParser } from "fast-xml-parser";
-import { QueryResult } from "query-utils";
+import { QueryResult } from "refactor/ui/common/query/react-query-overrides";
 import { useQuery } from "react-query";
 import { NewsDto } from "../types";
-import { config } from "config";
-import Queries from "../../../query/queries";
+import { config } from "refactor/common/config";
+import Queries from "../../../refactor/ui/common/query/queries";
 
 const useGetNews = (): QueryResult<NewsDto[]> =>
     useQuery([Queries.GET_NEWS], async () => {

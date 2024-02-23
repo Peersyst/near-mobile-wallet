@@ -4,7 +4,7 @@ import { Col, SvgIconProps } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import { JSXElementConstructor } from "react";
 import useThemeMode from "module/common/hook/useThemeMode";
-import { theme } from "config/theme/theme";
+import { theme } from "refactor/ui/config/theme/theme";
 
 export interface MainBottomBarItemProps extends ButtonProps {
     Icon: JSXElementConstructor<SvgIconProps>;

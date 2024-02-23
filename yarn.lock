@@ -2382,6 +2382,11 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
+"@swisstype/essential@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@swisstype/essential/-/essential-0.0.5.tgz#dccc39c6692b32bce7f8faa52f2a2ce5e1c62d8b"
+  integrity sha512-tM5Z+Dbib2MLBNe3BcxTkiQ14gkglWLnXR4loCn/JmGFBDkbe3FSIGMp6jcwbkXZBhKbFBMtI5UZW7rGTtt17w==
+
 "@testing-library/jest-native@^5.1.2":
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/@testing-library/jest-native/-/jest-native-5.4.3.tgz#9334c68eaf45db9eb20d0876728cc5d7fc2c3ea2"
@@ -2460,6 +2465,18 @@
   dependencies:
     "@types/node" "*"
     base-x "^3.0.6"
+
+"@types/color-convert@*":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@types/color-convert/-/color-convert-2.0.3.tgz#e93f5c991eda87a945058b47044f5f0008b0dce9"
+  integrity sha512-2Q6wzrNiuEvYxVQqhh7sXM2mhIhvZR/Paq4FdsQkOMgWsCIkKvSGj8Le1/XalulrmgOzPMqNa0ix+ePY4hTrfg==
+  dependencies:
+    "@types/color-name" "*"
+
+"@types/color-name@*":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.3.tgz#c488ac2e519c9795faa0d54e8156d54e66adc4e6"
+  integrity sha512-87W6MJCKZYDhLAx/J1ikW8niMvmGRyY+rpUxWpL1cO7F8Uu5CHuQoFv+R0/L5pgNdW4jTyda42kv60uwVIPjLw==
 
 "@types/color@^3.0.6":
   version "3.0.6"
@@ -10017,7 +10034,7 @@ use-latest-callback@^0.1.7:
   resolved "https://registry.yarnpkg.com/use-latest-callback/-/use-latest-callback-0.1.9.tgz#10191dc54257e65a8e52322127643a8940271e2a"
   integrity sha512-CL/29uS74AwreI/f2oz2hLTW7ZqVeV5+gxFeGudzQrgkCytrHw33G4KbnQOrRlAEzzAFXi7dDLMC9zhWcVpzmw==
 
-use-sync-external-store@^1.0.0:
+use-sync-external-store@1.2.0, use-sync-external-store@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
   integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
@@ -10441,3 +10458,10 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+zustand@^4.5.0:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.5.1.tgz#2088956ee454759fb8b866ca335a2373e76736c5"
+  integrity sha512-XlauQmH64xXSC1qGYNv00ODaQ3B+tNPoy22jv2diYiP4eoDKr9LA+Bh5Bc3gplTrFdb6JVI+N4kc1DZ/tbtfPg==
+  dependencies:
+    use-sync-external-store "1.2.0"

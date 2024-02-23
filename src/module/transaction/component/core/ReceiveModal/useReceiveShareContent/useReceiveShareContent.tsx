@@ -1,4 +1,4 @@
-import { config } from "config";
+import { config } from "refactor/common/config";
 import useTranslate from "module/common/hook/useTranslate";
 import { ShareContent } from "react-native";
 

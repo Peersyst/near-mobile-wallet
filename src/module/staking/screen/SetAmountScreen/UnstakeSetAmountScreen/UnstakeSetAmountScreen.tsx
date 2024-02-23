@@ -7,7 +7,7 @@ import { UnstakeModalScreens } from "module/staking/component/core/UnstakeModal/
 import StakingSetAmountScreen from "../StakingSetAmountScreen";
 import Alert from "module/common/component/feedback/Alert/Alert";
 import useCanPayNearAmount from "module/wallet/query/useCanPayNearAmount";
-import { config } from "config";
+import { config } from "refactor/common/config";
 
 const UnstakeSetAmountScreen = (): JSX.Element => {
     const translate = useTranslate();

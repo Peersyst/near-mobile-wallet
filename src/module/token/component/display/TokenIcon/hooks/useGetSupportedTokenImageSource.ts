@@ -1,4 +1,4 @@
-import { default_token, placeholder_image } from "images";
+import { default_token, placeholder_image } from "refactor/ui/assets/images";
 import { Token } from "near-peersyst-sdk";
 import { ImageSourcePropType } from "react-native";
 import { SUPPORTED_TOKENS_IMAGES } from "../SupportedTokens";

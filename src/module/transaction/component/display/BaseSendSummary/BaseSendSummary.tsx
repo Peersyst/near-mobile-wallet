@@ -9,7 +9,7 @@ import { addNearAmounts, NftToken, Token } from "near-peersyst-sdk";
 import Fee, { FeeProps } from "../Fee/Fee";
 import FiatBalance from "module/wallet/component/display/FiatBalance/FiatBalance";
 import { TotalText } from "./BaseSendSummary.styles";
-import { config } from "config";
+import { config } from "refactor/common/config";
 import { BalanceActions } from "module/wallet/component/display/Balance/Balance.types";
 
 export interface BaseSendSummaryFullProps {

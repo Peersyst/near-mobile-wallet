@@ -1,6 +1,6 @@
 import { Action } from "../SignRequestDetails/actions.types";
 import { ActionDetails } from "../SignRequestDetails/actions";
-import { DAppMetadataDto } from "module/api/service";
+import { DAppMetadataDto } from "refactor/data-access/api/service";
 import { ActionsSliderRoot } from "./ActionsSlider.styles";
 
 export interface ActionsSliderProps {

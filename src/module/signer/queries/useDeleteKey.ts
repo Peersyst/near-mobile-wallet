@@ -1,7 +1,7 @@
 import { UseMutationResult, useMutation, useQueryClient } from "react-query";
 
-import Queries from "../../../query/queries";
-import { MutationOptions } from "../../../query/react-query-overrides";
+import Queries from "../../../refactor/ui/common/query/queries";
+import { MutationOptions } from "../../../refactor/ui/common/query/react-query-overrides";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 
 export default function useDeleteKey({

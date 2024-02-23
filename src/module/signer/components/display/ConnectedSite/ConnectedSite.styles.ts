@@ -1,6 +1,6 @@
 import { Row, Image } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
-import { config } from "config";
+import { config } from "refactor/common/config";
 
 export const ConnectedSiteRoot = styled(Row)(() => ({
     height: 100,

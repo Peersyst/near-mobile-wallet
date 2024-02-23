@@ -1,5 +1,5 @@
 import { ImageProps } from "@peersyst/react-native-components";
-import { placeholder_image } from "images";
+import { placeholder_image } from "refactor/ui/assets/images";
 import { toDataUrl } from "module/common/component/utils/blockImage";
 import { NftImageRoot } from "./NftImage.styles";
 

@@ -1,4 +1,4 @@
-import { config } from "config";
+import { config } from "refactor/common/config";
 import { FiatCurrencyType } from "module/settings/state/SettingsState";
 import { useGetTokenPrice } from "./useGetTokenPrice";
 

@@ -1,6 +1,6 @@
 import { Col } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
-import config from "config/config";
+import { config } from "refactor/common/config";
 import { StakingInfoLabelLightText } from "./StakingInfoLabel.styles";
 
 interface StakingInfoLabelProps {
