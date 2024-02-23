@@ -24,12 +24,14 @@ const DeleteData = () => {
     const handlePinConfirmed = async () => {
         hideCancelableDialog();
         await WalletStorage.clearAll();
-        setWalletState((state) => ({ ...state, isAuthenticated: false, hasWallet: false }));
+        setWalletState((state) => ({ ...state, hasWallet: false }));
         serviceInstancesMap.clear();
         ControllerFactory.settingsController.clear();
-        await queryClient.invalidateQueries();
+        queryClient.removeQueries();
         resetWalletState();
+        // <<< refactor
         await ControllerFactory.authController.logout();
+        // refactor >>>
     };
 
     return (

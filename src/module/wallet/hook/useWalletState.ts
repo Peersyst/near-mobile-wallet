@@ -4,7 +4,6 @@ import walletState, { Wallet, WalletState } from "module/wallet/state/WalletStat
 export interface UseWalletStateResult {
     state: WalletState;
     setState: SetterOrUpdater<WalletState>;
-    setAuthenticated: (isAuthenticated: boolean) => void;
     setWallets: (wallets: Wallet[]) => void;
     setSelectedWallet: (account: number) => void;
     reset: () => void;
@@ -17,7 +16,6 @@ const useWalletState = (): UseWalletStateResult => {
     return {
         state,
         setState,
-        setAuthenticated: (isAuthenticated: boolean) => setState((s) => ({ ...s, isAuthenticated })),
         setWallets: (wallets: Wallet[]) => setState((s) => ({ ...s, wallets })),
         setSelectedWallet: (selectedWallet: number) => setState((s) => ({ ...s, selectedWallet })),
         reset,

@@ -1,4 +1,4 @@
-import { BiometricsAuthenticationOptions, BiometricsType } from "module/auth/hook/useBiometrics";
+import { BiometricsAuthenticationOptions, BiometricsType } from "refactor/common/models/auth/biometrics";
 
 export interface IBiometricsService {
     authenticate(options: BiometricsAuthenticationOptions): Promise<boolean>;

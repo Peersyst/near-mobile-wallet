@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
 import useRecoverWallets from "module/wallet/hook/useRecoverWallets";
 import WalletController from "module/wallet/utils/WalletController";
+import walletState from "../../wallet/state/WalletState";
 import { useInitFactories } from "refactor/ui/common/hooks/useInitFactories";
 import { useLoadFactories } from "refactor/ui/common/hooks/useLoadFactories";
 import * as Font from "expo-font";
@@ -14,6 +15,7 @@ import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
 export function useLoad(): boolean {
     const [loading, setLoading] = useState(true);
     const setSettingsState = useSetRecoilState(settingsState);
+    const setWalletState = useSetRecoilState(walletState);
     const recoverWallets = useRecoverWallets();
 
     const areFactoriesInitialized = useInitFactories();
@@ -34,11 +36,21 @@ export function useLoad(): boolean {
             ]);
 
             const hasMnemonic = await WalletController.hasMnemonic();
-            const allSettingsStored = await ControllerFactory.settingsController.getAllSettings();
-            const settings = { ...defaultSettingsState, ...(allSettingsStored || {}) };
+            const storedSettings = await ControllerFactory.settingsController.getAllSettings();
+
+            const settings = { ...defaultSettingsState, ...(storedSettings || {}) };
 
             if (!hasMnemonic) await ControllerFactory.settingsController.set(settings);
-            else await recoverWallets(settings.network);
+            // Do not await this so the user can enter the app instantly with a loading state
+            else {
+                setWalletState((state) => ({
+                    ...state,
+                    loading: true,
+                    hasWallet: true,
+                }));
+
+                recoverWallets(settings.network);
+            }
 
             setSettingsState(settings);
         } catch (e) {

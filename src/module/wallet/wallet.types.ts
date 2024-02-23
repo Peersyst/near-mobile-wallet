@@ -25,7 +25,7 @@ export interface UnencryptedWalletInfo extends BaseWallet {
 }
 
 export interface UnsecureWalletStorageType {
-    testnet: [];
+    testnet: UnencryptedWalletInfo[];
     mainnet: UnencryptedWalletInfo[];
 }
 
