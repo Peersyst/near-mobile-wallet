@@ -33,7 +33,9 @@ export interface Config {
     projectName: string;
     minimumTransactionAmount: number;
     indexerTestnetUrl: string;
+    nearblocksTesnetApiUrl: string;
     indexerMainnetUrl: string;
+    nearblocksMainnetApiUrl: string;
     mainnetExplorerLink: string;
     testnetExplorerLink: string;
     faucetUrl: string;

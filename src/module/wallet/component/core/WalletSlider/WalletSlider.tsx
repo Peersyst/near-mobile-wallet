@@ -10,17 +10,19 @@ interface BaseWalletSliderProps {
 
 interface WalletSliderProps {
     Card: (props: BaseWalletSliderProps) => JSX.Element;
+    Skeleton?: () => JSX.Element;
 }
 
-const WalletSlider = ({ Card }: WalletSliderProps): JSX.Element => {
+const WalletSlider = ({ Card, Skeleton }: WalletSliderProps): JSX.Element => {
     const {
-        state: { selectedWallet = 0, wallets },
+        state: { loading, selectedWallet = 0, wallets },
         setSelectedWallet,
     } = useWalletState();
 
     const handleSelectedWallet = (page: number) => {
         setSelectedWallet(page);
     };
+
     return (
         <DarkThemeProvider>
             <WalletSliderRoot
@@ -30,10 +32,11 @@ const WalletSlider = ({ Card }: WalletSliderProps): JSX.Element => {
                 gap={0}
                 pagePadding={{ horizontal: 20 }}
             >
-                {wallets.map((wallet) => (
-                    <Card wallet={wallet} key={wallet.account} />
-                ))}
-                <AddWalletCard />
+                {loading && Skeleton ? (
+                    <Skeleton />
+                ) : (
+                    [wallets.map((wallet) => <Card wallet={wallet} key={wallet.account} />), <AddWalletCard key="add-wallet-card" />]
+                )}
             </WalletSliderRoot>
         </DarkThemeProvider>
     );

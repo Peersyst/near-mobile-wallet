@@ -311,5 +311,8 @@
     "withPermissions": "With permissions:",
     "signerChangeAccount": "You cannot sign this request with the selected account because it is not activated. Please, select another account.",
     "rejectRequestSuccessfully": "Request rejected successfully!",
-    "delegateCall": "Delegate call to"
+    "delegateCall": "Delegate call to",
+    "importAccountManually": "Import account manually",
+    "importAccountManuallyDescription": "If you think you have an account that is not showing up, you can import it manually. Just enter the account you want to import.",
+    "enterTheAccount": "Enter the account"
 }

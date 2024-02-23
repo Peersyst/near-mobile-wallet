@@ -2,6 +2,7 @@ import { config } from "refactor/common/config";
 import { Chains, NearSDKService } from "near-peersyst-sdk";
 import { NetworkType } from "module/settings/state/SettingsState";
 import {
+    AddManualServiceInstanceParams,
     AddServiceParams,
     BaseNearSdkParams,
     CreateInstanceReturn,
@@ -56,6 +57,7 @@ export default new (class ServiceInstances {
         privateKey,
         network,
         mnemonic,
+        likelyNameIds,
     }: Omit<CreateServiceInstancesParams, "serviceIndex">): Promise<NearSDKService[]> {
         let services: NearSDKService[] = [];
         const { nodeUrl, indexerUrl } = BASE_NEAR_SDK_PARAMS[network];
@@ -66,6 +68,7 @@ export default new (class ServiceInstances {
                 baseApiUrl: indexerUrl,
                 mnemonic,
                 enableIndexer: config.enableIndexer,
+                likelyNameIds,
             });
         } else if (privateKey) {
             services = await NearSDKService.importFromSecretKey({
@@ -74,6 +77,7 @@ export default new (class ServiceInstances {
                 baseApiUrl: indexerUrl,
                 secretKey: privateKey,
                 enableIndexer: config.enableIndexer,
+                likelyNameIds,
             });
         } else {
             /* eslint-disable no-console */
@@ -81,12 +85,6 @@ export default new (class ServiceInstances {
             return services;
         }
         return services;
-    }
-
-    async initializeServiceInstances({ network, ...rest }: CreateServiceInstancesParams): Promise<CreateInstanceReturn[]> {
-        const services = await this.createServiceInstances({ network, ...rest });
-        this.setServiceInstances({ network, services });
-        return services.map((s) => ({ account: s.getAddress(), privateKey: s.getKeyPair() }));
     }
 
     async recoverServiceInstances({ network, ...rest }: CreateServiceInstancesParams): Promise<RecoverInstancesReturn[]> {
@@ -103,5 +101,19 @@ export default new (class ServiceInstances {
         const currentServices = this.getServiceInstances(network);
         this.setServiceInstances({ network, services: [...currentServices, ...services] });
         return services.map((s) => ({ account: s.getAddress(), privateKey: s.getKeyPair() }));
+    }
+
+    async addManualServiceInstance({ network, secretKey, accountId }: AddManualServiceInstanceParams): Promise<NearSDKService> {
+        const { nodeUrl, indexerUrl } = BASE_NEAR_SDK_PARAMS[network];
+        const service = await NearSDKService.createFromSecretKey({
+            chain: network,
+            nodeUrl,
+            baseApiUrl: indexerUrl,
+            secretKey,
+            enableIndexer: config.enableIndexer,
+            nameId: accountId,
+        });
+        this.addService({ network, service });
+        return service;
     }
 })();

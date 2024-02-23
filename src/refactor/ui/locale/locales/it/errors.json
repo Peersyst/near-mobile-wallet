@@ -42,12 +42,14 @@
     "you_are_not_staking": "Al momento non stai puntando con nessun validatore",
     "no_validators_available": "Al momento non c'è nessun validatore disponibile per lo staking",
     "no_validators_found": "Nessun validatore trovato per questa ricerca ({{accountId}})",
-    "networkMismatch": "Network mismatch",
-    "networkMismatchDescription": "This request is expecting a different network. Change the current network to another one to view request details.",
-    "noConnectedSites": "No connected sites",
-    "noConnectedSitesDescription": "It seems that you are not connected to any dapp with this account.",
-    "invalidSigner": "Invalid signer account",
-    "invalidSignerDescription": "You have not selected the expected account to sign this request",
-    "invalidSignerRequest": "Invalid signer request",
-    "invalidSignerRequestDescription": "The request does not exists. Try creating a different one."
+    "networkMismatch": "Disallineamento di rete",
+    "networkMismatchDescription": "Questa richiesta si aspetta una rete diversa. Cambia la rete attuale per visualizzare i dettagli della richiesta.",
+    "noConnectedSites": "Nessun sito connesso",
+    "noConnectedSitesDescription": "Sembra che tu non sia connesso a nessuna dapp con questo account.",
+    "invalidSigner": "Account firmatario non valido",
+    "invalidSignerDescription": "Non hai selezionato l'account previsto per firmare questa richiesta",
+    "invalidSignerRequest": "Richiesta firmataria non valida",
+    "invalidSignerRequestDescription": "La richiesta non esiste. Prova a crearne una diversa.",
+    "cantImportAccount": "Impossibile importare l'account",
+    "accountAlreadyExists": "L'account esiste già"
 }

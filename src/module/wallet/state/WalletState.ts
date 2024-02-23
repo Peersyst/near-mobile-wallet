@@ -7,6 +7,7 @@ export type Wallet = StorageWallet & {
 };
 
 export interface WalletState {
+    loading: boolean;
     hasWallet: boolean;
     /**
      * They can be tesnet or mainnet wallets, but only one network type at a time
@@ -19,7 +20,7 @@ export interface WalletState {
 
 const walletState = atom<WalletState>({
     key: "wallet",
-    default: { hasWallet: false, wallets: [], selectedWallet: 0 },
+    default: { loading: false, hasWallet: false, wallets: [], selectedWallet: 0 },
 });
 
 export default walletState;
