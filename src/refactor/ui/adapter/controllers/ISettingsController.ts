@@ -1,13 +1,12 @@
-import { FiatCurrencyType, NetworkType } from "module/common/types";
-import { ISettingsState } from "refactor/domain/settings/state/settingsState";
-import { LocaleType } from "refactor/ui/locale";
+import { FiatCurrency, Locale, Network, Settings } from "refactor/common/models";
 
 export interface ISettingsController {
-    getLocale(): Promise<LocaleType | undefined>;
-    getFiat(): Promise<FiatCurrencyType | undefined>;
-    getNetwork(): Promise<NetworkType | undefined>;
+    getLocale(): Promise<Locale>;
+    getFiat(): Promise<FiatCurrency | undefined>;
+    getNetwork(): Promise<Network | undefined>;
     getBiometrics(): Promise<boolean | undefined>;
-    getAllSettings(): Promise<ISettingsState | undefined>;
-    set(values: Partial<ISettingsState>): Promise<void>;
+    getAllSettings(): Promise<Settings | undefined>;
+    set(values: Partial<Settings>): Promise<void>;
+    init(): Promise<Settings>;
     clear(): Promise<void>;
 }

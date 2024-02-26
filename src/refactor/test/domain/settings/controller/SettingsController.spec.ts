@@ -1,16 +1,19 @@
 import SettingsController from "refactor/domain/settings/controller/SettingsController";
-import { ISettingsState } from "refactor/domain/settings/state/settingsState";
-import SettingsRepositoryMock from "refactor/test/mocks/settings/SettingsRepository.mock";
 import SettingsMock from "refactor/test/mocks/settings/settings.mock";
+import LocalizationServiceMock from "../../mocks/settings/localization/LocalizationService.mock";
+import { Settings } from "refactor/common/models";
+import SettingsRepositoryMock from "../../mocks/settings/repository/SettingsRepository.mock";
 
 describe("SettingsController", () => {
     let settingsController: SettingsController;
 
     const settingsRepositoryMock = new SettingsRepositoryMock();
+    const localizationServiceMock = new LocalizationServiceMock();
 
     beforeEach(() => {
         settingsRepositoryMock.clearMocks();
-        settingsController = new SettingsController(settingsRepositoryMock);
+        localizationServiceMock.clearMocks();
+        settingsController = new SettingsController(settingsRepositoryMock, localizationServiceMock);
     });
 
     describe("getLocale", () => {
@@ -62,7 +65,7 @@ describe("SettingsController", () => {
 
     describe("set", () => {
         it("should set the settings", async () => {
-            const settings: Partial<ISettingsState> = new SettingsMock();
+            const settings: Partial<Settings> = new SettingsMock();
 
             await settingsController.set(settings);
             expect(settingsRepositoryMock.set).toBeCalledTimes(1);

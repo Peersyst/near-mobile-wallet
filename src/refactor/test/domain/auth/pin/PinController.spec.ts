@@ -1,7 +1,7 @@
 import PinController from "refactor/domain/auth/pin/PinController";
 import PinErrorCodes from "refactor/domain/auth/pin/PinErrorCodes";
 import DomainError from "refactor/domain/error/DomainError";
-import PinRepositoryMock from "refactor/test/mocks/auth/pin/PinRepository.mock";
+import PinRepositoryMock from "../../mocks/auth/pin/PinRepository.mock";
 
 describe("PinController", () => {
     let pinController: PinController;

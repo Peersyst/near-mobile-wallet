@@ -15,6 +15,13 @@ export default class MnemonicController implements IMnemonicController {
     }
 
     /**
+     * Generate a new Mnemonic.
+     */
+    generateMnemonic(): string {
+        return bip39.generateMnemonic();
+    }
+
+    /**
      * Set the Mnemonic.
      * @param Mnemonic
      */

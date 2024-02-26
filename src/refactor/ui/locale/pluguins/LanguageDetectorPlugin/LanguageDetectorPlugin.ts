@@ -1,14 +1,12 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { LanguageDetectorAsyncModule } from "i18next";
-import { getDefaultLocale } from "refactor/ui/locale/utils";
 import ControllerFactory from "refactor/ui/adapter/ControllerFactory";
+import { Locale } from "refactor/common/models";
 
-export async function detect(): Promise<any> {
+export async function detect(): Promise<Locale> {
     try {
         // <<< refactor
-        const storedLocale = await ControllerFactory.settingsController?.getLocale();
+        return await ControllerFactory.settingsController?.getLocale();
         // refactor >>>
-        return storedLocale || getDefaultLocale();
     } catch (error) {
         /* eslint-disable no-console */
         console.warn("Error reading language", error);
@@ -19,8 +17,10 @@ export async function detect(): Promise<any> {
 const LanguageDetectorPlugin: LanguageDetectorAsyncModule = {
     type: "languageDetector",
     async: true,
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     init: () => {},
     detect,
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     cacheUserLanguage: () => {},
 };
 

@@ -21,6 +21,7 @@
         "test:only": "jest --maxWorkers=30% --",
         "test:ci": "jest --runInBand",
         "test:debug": "jest --no-cache --runInBand || true",
+        "test:data-access": "yarn test ./test/data-access",
         "check-types": "tsc --noemit",
         "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0 && yarn check-types"
     },

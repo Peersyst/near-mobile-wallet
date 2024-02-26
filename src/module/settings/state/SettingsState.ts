@@ -1,11 +1,11 @@
 import { atom } from "recoil";
-import { getDefaultLocale, LocaleType } from "refactor/ui/locale";
-import { Chains, FiatCurrencyType, NetworkType } from "module/common/types";
+import { Chains, FiatCurrency, Locale, Network } from "refactor/common/models";
+import { getDefaultLocale } from "refactor/ui/locale";
 
 export interface SettingsState {
-    locale?: LocaleType;
-    fiat: FiatCurrencyType;
-    network: NetworkType;
+    locale?: Locale;
+    fiat: FiatCurrency;
+    network: Network;
     biometrics: boolean;
 }
 

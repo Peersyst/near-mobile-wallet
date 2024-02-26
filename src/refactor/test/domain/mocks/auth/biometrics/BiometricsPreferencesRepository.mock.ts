@@ -1,7 +1,7 @@
 import { IBiometricsPreferencesRepository } from "refactor/domain/adapter/repository/IBiometricsPreferencesRepository";
 import createMock from "refactor/test/utils/createMock";
 import MethodMock from "refactor/test/utils/MethodMock";
-import { BiometricsPreferencesMock } from "./BiometricsPreferences.mock";
+import { BiometricsPreferencesMock } from "../../../../mocks/auth/biometrics/BiometricsPreferences.mock";
 
 export const BiometricsPreferencesRepositoryMock = createMock<IBiometricsPreferencesRepository>({
     getBiometricsPreferences: new MethodMock("mockResolvedValue", new BiometricsPreferencesMock()),

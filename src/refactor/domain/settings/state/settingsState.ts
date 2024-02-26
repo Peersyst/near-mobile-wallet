@@ -1,21 +1,10 @@
 import { createStore } from "zustand";
-import { getDefaultLocale, LocaleType } from "refactor/ui/locale";
-import { Chains, FiatCurrencyType, NetworkType } from "module/common/types";
+import { Settings } from "refactor/common/models";
 
-export interface ISettingsState {
-    locale?: LocaleType;
-    fiat: FiatCurrencyType;
-    network: NetworkType;
-    biometrics: boolean;
-}
+export type SettingsState = Settings;
 
-export const defaultSettingsState: ISettingsState = {
-    locale: getDefaultLocale(),
-    fiat: "usd",
-    network: Chains.MAINNET,
-    biometrics: true,
-};
+export const defaultSettingsState: SettingsState = {};
 
-const settingsState = createStore<ISettingsState>(() => defaultSettingsState);
+const settingsState = createStore<SettingsState>(() => defaultSettingsState);
 
 export default settingsState;

@@ -4,13 +4,13 @@ export enum BiometricsType {
     IRIS = "iris",
 }
 
-export type BiometricsAuthenticationOptions = {
+export interface BiometricsAuthenticationOptions {
     cancelLabel?: string;
     disableDeviceFallback?: boolean;
     fallbackLabel?: string;
     promptMessage?: string;
-};
+}
 
-export type BiometricsPreferences = {
+export interface BiometricsPreferences {
     enabled: boolean;
-};
+}

@@ -1,21 +1,34 @@
 import { ISettingsController } from "refactor/ui/adapter/controllers/ISettingsController";
 import { ISettingsRepository } from "refactor/domain/adapter/repository/ISettingsRepository";
-import { LocaleType } from "refactor/ui/locale/i18n.types";
-import { ISettingsState } from "../state/settingsState";
-import { FiatCurrencyType, NetworkType } from "module/common/types";
+import { Chains, FiatCurrency, Locale, Network, Settings } from "refactor/common/models";
+import { ILocalizationService } from "refactor/domain/adapter/service/ILocalizationService";
+import { SUPPORTED_LOCALES } from "refactor/common/utils/constants";
 
 export default class SettingsController implements ISettingsController {
-    constructor(private readonly settingsRepository: ISettingsRepository) {}
+    constructor(
+        private readonly settingsRepository: ISettingsRepository,
+        private readonly localizationService: ILocalizationService,
+    ) {}
 
-    public async getLocale(): Promise<LocaleType | undefined> {
-        return this.settingsRepository.getLocale();
+    //TODO: add `onInit` method
+    async onInit(): Promise<void> {
+        await this.init();
     }
 
-    public async getFiat(): Promise<FiatCurrencyType | undefined> {
+    public async getLocale(): Promise<Locale> {
+        let locale: string | undefined = await this.settingsRepository.getLocale();
+        if (!locale) locale = this.localizationService.getLocale();
+
+        const systemLocaleEnd = locale.slice(-2).toLowerCase();
+        const systemLocaleStart = locale.slice(0, 2).toLowerCase();
+        return SUPPORTED_LOCALES.find((l) => systemLocaleStart === l || systemLocaleEnd === l) ?? "en";
+    }
+
+    public async getFiat(): Promise<FiatCurrency | undefined> {
         return this.settingsRepository.getFiat();
     }
 
-    public async getNetwork(): Promise<NetworkType | undefined> {
+    public async getNetwork(): Promise<Network | undefined> {
         return this.settingsRepository.getNetwork();
     }
 
@@ -23,12 +36,22 @@ export default class SettingsController implements ISettingsController {
         return this.settingsRepository.getBiometrics();
     }
 
-    public async getAllSettings(): Promise<ISettingsState | undefined> {
+    public async getAllSettings(): Promise<Settings | undefined> {
         return this.settingsRepository.getAllSettings();
     }
 
-    public async set(values: Partial<ISettingsState>): Promise<void> {
+    public async set(values: Partial<Settings>): Promise<void> {
         this.settingsRepository.set(values);
+    }
+
+    private async getDefaultSettings(): Promise<Settings> {
+        return { locale: await this.getLocale(), fiat: "usd", network: Chains.MAINNET, biometrics: true };
+    }
+
+    public async init(): Promise<Settings> {
+        const defaultSettings: Settings = await this.getDefaultSettings();
+        await this.set(defaultSettings);
+        return defaultSettings;
     }
 
     public async clear(): Promise<void> {

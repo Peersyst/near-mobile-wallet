@@ -11,4 +11,5 @@ export const SettingsControllerMock = createMock<ISettingsController>({
     getAllSettings: new MethodMock("mockResolvedValue", defaultSettingsState),
     clear: new MethodMock("mockResolvedValue"),
     set: new MethodMock("mockResolvedValue"),
+    init: new MethodMock("mockResolvedValue"),
 });

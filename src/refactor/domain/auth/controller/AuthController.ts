@@ -1,11 +1,11 @@
 import { IAuthController } from "refactor/ui/adapter/controllers/IAuthController";
 import State from "refactor/domain/common/State";
-import { IAuthState } from "./state/authState";
+import { IAuthState } from "../state/authState";
 import { IPinController } from "refactor/ui/adapter/controllers/IPinController";
 import DomainError from "refactor/domain/error/DomainError";
-import AuthEventEmitter from "./events/AuthEventEmitter";
+import AuthEventEmitter from "../events/AuthEventEmitter";
 import { IWalletController } from "refactor/ui/adapter/controllers/IWalletController";
-import AuthErrorCodes from "./AuthErrorCodes";
+import AuthErrorCodes from "../errors/AuthErrorCodes";
 
 export default class AuthController implements IAuthController {
     private readonly authEventEmitter = AuthEventEmitter;
