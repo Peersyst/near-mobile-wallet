@@ -3,7 +3,7 @@ import StorageRepositoryGlobalMock from "../../mocks/repository/StorageRepositor
 import SettingsMock from "refactor/test/mocks/settings/settings.mock";
 import { Chains } from "refactor/common/models";
 
-describe("MnemonicRepository", () => {
+describe("SettingsRepository", () => {
     const storageRepositoryGlobalMock = new StorageRepositoryGlobalMock();
     let settingsRepository: SettingRepository;
 
