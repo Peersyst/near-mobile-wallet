@@ -1,6 +1,6 @@
 import { useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
-import settingsState, { defaultSettingsState } from "module/settings/state/SettingsState";
+import settingsState, { SettingsState } from "module/settings/state/SettingsState";
 import useRecoverWallets from "module/wallet/hook/useRecoverWallets";
 import WalletController from "module/wallet/utils/WalletController";
 import walletState from "../../wallet/state/WalletState";
@@ -37,26 +37,28 @@ export function useLoad(): boolean {
 
             const hasMnemonic = await WalletController.hasMnemonic();
             // <<< refactor
-            const storedSettings = await ControllerFactory.settingsController.getAllSettings();
-            // refactor >>>
+            let settings = await ControllerFactory.settingsController.getAllSettings();
 
-            const settings = { ...defaultSettingsState, ...(storedSettings || {}) };
-
-            // <<< refactor
-            if (!hasMnemonic) await ControllerFactory.settingsController.set(settings);
+            if (!hasMnemonic) {
+                settings = await ControllerFactory.settingsController.init();
+            }
             // refactor >>>
             // Do not await this so the user can enter the app instantly with a loading state
             else {
+                // <<< refactor @removestate The wallet state should be managed by the `WalletController`.
                 setWalletState((state) => ({
                     ...state,
                     loading: true,
                     hasWallet: true,
                 }));
-
-                recoverWallets(settings.network);
+                // refactor >>>
+                // <<< refactor TODO: remove this. `recoverWallets` will be called by the `AuthController`.
+                recoverWallets(settings!.network!);
+                // refactor >>>
             }
-
-            setSettingsState(settings);
+            // <<< refactor @removestate
+            setSettingsState(settings as SettingsState);
+            // refactor >>>
         } catch (e) {
             // We might want to provide this error information to an error reporting service
             // eslint-disable-next-line no-console

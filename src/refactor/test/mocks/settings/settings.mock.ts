@@ -1,16 +1,15 @@
-import { FiatCurrencyType, NetworkType } from "module/common/types";
-import { LocaleType } from "refactor/ui/locale";
+import { FiatCurrency, Locale, Network, Settings } from "refactor/common/models";
 
-export default class SettingsMock {
-    public locale: LocaleType;
-    public fiat: FiatCurrencyType;
-    public biometrics: boolean;
-    public network: NetworkType;
+export default class SettingsMock implements Settings {
+    locale?: Locale;
+    fiat?: FiatCurrency;
+    network?: Network;
+    biometrics?: boolean;
 
-    constructor({ locale = "en", fiat = "usd", biometrics = true, network = "mainnet" } = {}) {
-        this.locale = locale as LocaleType;
-        this.fiat = fiat as FiatCurrencyType;
+    constructor({ locale, fiat, network, biometrics }: Partial<Settings> = {}) {
+        this.locale = locale;
+        this.fiat = fiat;
         this.biometrics = biometrics;
-        this.network = network as NetworkType;
+        this.network = network;
     }
 }

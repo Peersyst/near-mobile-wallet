@@ -1,7 +1,7 @@
-import AuthController from "refactor/domain/auth/AuthController";
-import { AuthStateMock } from "refactor/test/mocks/auth/authState.mock";
-import { PinControllerMock } from "refactor/test/mocks/auth/pin/PinController.mock";
-import { WalletControllerMock } from "refactor/test/mocks/wallet/wallet/WalletController.mock";
+import AuthController from "refactor/domain/auth/controller/AuthController";
+import { PinControllerMock } from "../../mocks/auth/pin/PinController.mock";
+import { AuthStateMock } from "../../mocks/auth/state/authState.mock";
+import { WalletControllerMock } from "../../mocks/wallet/controllers/WalletController.mock";
 
 describe("AuthController", () => {
     let authController: AuthController;

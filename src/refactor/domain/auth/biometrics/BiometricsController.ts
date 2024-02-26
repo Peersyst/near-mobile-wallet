@@ -13,21 +13,21 @@ export default class BiometricsController implements IBiometricsController {
      * Authenticates using biometrics
      * @param options
      */
-    authenticate(options: BiometricsAuthenticationOptions = {}): Promise<boolean> {
+    async authenticate(options: BiometricsAuthenticationOptions = {}): Promise<boolean> {
         return this.biometricsService.authenticate({ disableDeviceFallback: true, fallbackLabel: "", ...options });
     }
 
     /**
      * Checks if biometrics is available
      */
-    isBiometricsAvailable(): Promise<boolean> {
+    async isBiometricsAvailable(): Promise<boolean> {
         return this.biometricsService.isBiometricsAvailable();
     }
 
     /**
      * Gets the supported biometric
      */
-    getSupportedBiometric(): Promise<BiometricsType | undefined> {
+    async getSupportedBiometric(): Promise<BiometricsType | undefined> {
         return this.biometricsService.getSupportedBiometric();
     }
 
@@ -49,7 +49,7 @@ export default class BiometricsController implements IBiometricsController {
     /**
      * Removes biometrics preferences
      */
-    removeBiometricsPreferences(): Promise<void> {
+    async removeBiometricsPreferences(): Promise<void> {
         return this.biometricsPreferencesRepository.removeBiometricsPreferences();
     }
 }

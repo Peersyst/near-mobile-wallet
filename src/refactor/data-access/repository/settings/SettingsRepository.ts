@@ -1,25 +1,26 @@
 import { ISettingsRepository } from "refactor/domain/adapter/repository/ISettingsRepository";
-import { LocaleType } from "refactor/ui/locale";
-import { ISettingsState, defaultSettingsState } from "refactor/domain/settings/state/settingsState";
-import { FiatCurrencyType, NetworkType } from "module/common/types";
 import StorageRepository from "../common/StorageRepository";
+import { config } from "refactor/common/config";
+import { FiatCurrency, Locale, Network, Settings } from "refactor/common/models";
 
-export default class SettingRepository extends StorageRepository<ISettingsState> implements ISettingsRepository {
+export default class SettingsRepository extends StorageRepository<Settings> implements ISettingsRepository {
     constructor() {
-        super(`settings`);
+        //<<< refactor @needsmigration
+        super(`${config.projectName}-settings`);
+        // refactor >>>
     }
 
-    public async getLocale(): Promise<LocaleType | undefined> {
+    public async getLocale(): Promise<Locale | undefined> {
         const settings = await this.get();
-        return settings?.locale as LocaleType;
+        return settings?.locale;
     }
 
-    public async getFiat(): Promise<FiatCurrencyType | undefined> {
+    public async getFiat(): Promise<FiatCurrency | undefined> {
         const settings = await this.get();
         return settings?.fiat;
     }
 
-    public async getNetwork(): Promise<NetworkType | undefined> {
+    public async getNetwork(): Promise<Network | undefined> {
         const settings = await this.get();
         return settings?.network;
     }
@@ -29,13 +30,13 @@ export default class SettingRepository extends StorageRepository<ISettingsState>
         return settings?.biometrics;
     }
 
-    public async getAllSettings(): Promise<ISettingsState | undefined> {
+    public async getAllSettings(): Promise<Settings | undefined> {
         return this.get();
     }
 
-    public async set(values: Partial<ISettingsState>): Promise<void> {
+    public async set(newSettings: Partial<Settings>): Promise<void> {
         const settings = await this.get();
-        await super.set({ ...(settings || defaultSettingsState), ...values });
+        await super.set({ ...settings, ...newSettings });
     }
 
     public async clear(): Promise<void> {

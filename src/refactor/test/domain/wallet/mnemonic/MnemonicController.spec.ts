@@ -1,15 +1,26 @@
-import MnemonicRepositoryMock from "refactor/test/mocks/wallet/mnemonic/MnemonicRepository.mock";
-// @ts-ignore
-import * as bip39 from "bip39";
+import MnemonicRepositoryMock from "refactor/test/domain/mocks/wallet/mnemonic/MnemonicRepository.mock";
 import MnemonicController from "refactor/domain/wallet/mnemonic/MnemonicController";
+import { Bip39GlobalMock } from "refactor/test/mocks/auth/bip39/Bip39.globalMock";
+
 describe("MnemonicController", () => {
     let mnemonicController: MnemonicController;
+    const bip39GlobalMock = new Bip39GlobalMock();
 
     const mnemonicRepositoryMock = new MnemonicRepositoryMock();
 
     beforeEach(() => {
+        bip39GlobalMock.clearMocks();
         mnemonicRepositoryMock.clearMocks();
         mnemonicController = new MnemonicController(mnemonicRepositoryMock);
+    });
+
+    describe("generateMnemonic", () => {
+        test("Generates mnemonic", async () => {
+            const mnemonicMock = "word1 word2 word3";
+            bip39GlobalMock.generateMnemonic.mockReturnValue(mnemonicMock);
+            const result = mnemonicController.generateMnemonic();
+            expect(result).toEqual(mnemonicMock);
+        });
     });
 
     describe("setMnemonic", () => {
@@ -41,7 +52,7 @@ describe("MnemonicController", () => {
         test("Pin is correct", async () => {
             const mnemonicMock = "word1 word2 word3";
             mnemonicRepositoryMock.getMnemonic.mockResolvedValue(mnemonicMock);
-            jest.spyOn(bip39, "validateMnemonic").mockReturnValue(true);
+            bip39GlobalMock.validateMnemonic.mockReturnValue(true);
             const result = await mnemonicController.validateMnemonic(mnemonicMock);
 
             expect(result).toEqual(true);
@@ -50,7 +61,7 @@ describe("MnemonicController", () => {
         test("Pin is incorrect", async () => {
             const mnemonicMock = "word1 word2 word3";
             mnemonicRepositoryMock.getMnemonic.mockResolvedValue(mnemonicMock);
-            jest.spyOn(bip39, "validateMnemonic").mockReturnValue(false);
+            bip39GlobalMock.validateMnemonic.mockReturnValue(false);
             const result = await mnemonicController.validateMnemonic(mnemonicMock);
 
             expect(result).toEqual(false);

@@ -4,7 +4,9 @@ import { IPinRepository } from "refactor/domain/adapter/repository/IPinRepositor
 
 export default class PinRepository extends SecureStorageRepository<string> implements IPinRepository {
     constructor() {
+        //<<< refactor @needsmigration
         super(`${config.projectName}-pin`);
+        // refactor >>>
     }
 
     /**
