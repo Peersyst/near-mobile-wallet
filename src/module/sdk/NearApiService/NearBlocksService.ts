@@ -2,6 +2,7 @@
  * Do not `import {config} from "config"` in this file
  * because it will cause a circular dependency with SettingsState
  */
+import { formatNearAmount } from "near-api-js/lib/utils/format";
 import config from "../../../config/config";
 import {
     Action,
@@ -12,7 +13,14 @@ import {
     TransactionActionKind,
     TransactionWithoutActions,
 } from "../NearSdkService";
-import { parseBlockTimestamp, DEPOSIT_METHOD, DEPOSIT_STAKE_METHOD, WITHDRAW_METHOD, WITHDRAW_ALL_METHOD } from "../utils";
+import {
+    parseBlockTimestamp,
+    DEPOSIT_METHOD,
+    DEPOSIT_STAKE_METHOD,
+    WITHDRAW_METHOD,
+    WITHDRAW_ALL_METHOD,
+    convertYoctoToNear,
+} from "../utils";
 import { FetchService } from "./FetchService";
 import {
     NearApiServiceParams,
@@ -136,15 +144,24 @@ export class NearBlocksService extends FetchService {
                     nonce: 0,
                     receiverAccountId: tx.receiver_account_id,
                 };
+
                 for (const [i, action] of tx.actions.entries()) {
+                    const actionKind = this.parseActionKindApiDto(action.action as TransactionActionKind, tx.receiver_account_id, address);
+                    if (action.action === "FUNCTION_CALL" && action.method === "ft_transfer") {
+                        const res = this.parseTransactionLogs(tx.logs);
+                    }
+                    console.log("Action Kind: " + actionKind);
                     txs.push({
                         transaction: baseTransaction,
-                        actionKind: this.parseActionKindApiDto(action.action as TransactionActionKind, tx.receiver_account_id, address),
+                        actionKind,
                         transactionHash: tx.transaction_hash,
                         indexInTransaction: i,
                         // codeSha256: "", // For DEPLOY_CONTRACT kind
                         gas: tx.outcomes_agg.transaction_fee, // For FUNCTION_CALL kind
-                        // deposit: "", // For FUNCTION_CALL, TRANSFER kind
+
+                        ...(tx.actions_agg.deposit && {
+                            deposit: this.parseTransactionDeposit(actionKind, tx.actions_agg.deposit), // For FUNCTION_CALL, TRANSFER kind
+                        }),
                         // argsBase64: "", // For FUNCTION_CALL kind
                         // argsJson: "", // For FUNCTION_CALL kind
                         methodName: action.method || undefined,
@@ -167,5 +184,28 @@ export class NearBlocksService extends FetchService {
                 ? EnhancedTransactionActionKind.TRANSFER_RECEIVE
                 : EnhancedTransactionActionKind.TRANSFER_SEND
             : (actionKind as ActionKind);
+    }
+
+    private parseTransactionDeposit(action: ActionKind, deposit: number): string | undefined {
+        switch (action) {
+            case "TRANSFER_SEND":
+            case "TRANSFER_RECEIVE":
+                return convertYoctoToNear(deposit.toString());
+        }
+    }
+
+    private parseTransactionLogs(logs: string[]): any {
+        for (const log of logs) {
+            this.parseTransactionLog(log);
+        }
+    }
+
+    private parseTransactionLog(log: string): any {
+        try {
+            let jsonString = log.replaceAll("\\", "");
+            console.log("JSON String: " + jsonString);
+            const json = JSON.parse(jsonString.replaceAll("\\", "").slice(1, 12));
+            console.log("JSON: " + json);
+        } catch (e) {}
     }
 }
