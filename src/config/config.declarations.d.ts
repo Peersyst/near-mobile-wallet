@@ -71,6 +71,8 @@ declare module "@peersyst/react-native-components" {
         transak: TransakConfig;
         signerFeature: SignerFeatureConfig;
         analytics: AnalyticsConfig;
+        enableManualImport: boolean;
+        kitWalletTimeout: number;
     }
 
     export interface CreateConfig {
@@ -104,6 +106,8 @@ declare module "@peersyst/react-native-components" {
         enableBuy: boolean;
         transak: TransakConfig;
         analytics: AnalyticsConfig;
+        enableManualImport: boolean;
+        kitWalletTimeout: number;
     }
 
     export interface ExtraValidators {
