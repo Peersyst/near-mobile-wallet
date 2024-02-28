@@ -11,7 +11,9 @@ export class FetchService {
                     throw new FetchError(response.status, response.statusText);
             }
         } catch (error: unknown) {
-            if (error instanceof Error) {
+            if (error instanceof FetchError) {
+                throw error;
+            } else if (error instanceof Error) {
                 throw new FetchError(500, error.message);
             }
             throw new FetchError(500, "Unknown error");

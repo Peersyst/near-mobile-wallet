@@ -2,8 +2,7 @@
  * Do not `import {config} from "config"` in this file
  * because it will cause a circular dependency with SettingsState
  */
-import { formatNearAmount } from "near-api-js/lib/utils/format";
-import config from "../../../config/config";
+import config from "../../../../config/config";
 import {
     Action,
     ActionKind,
@@ -12,7 +11,7 @@ import {
     StakingDeposit,
     TransactionActionKind,
     TransactionWithoutActions,
-} from "../NearSdkService";
+} from "../../NearSdkService";
 import {
     parseBlockTimestamp,
     DEPOSIT_METHOD,
@@ -20,15 +19,16 @@ import {
     WITHDRAW_METHOD,
     WITHDRAW_ALL_METHOD,
     convertYoctoToNear,
-} from "../utils";
-import { FetchService } from "./FetchService";
+} from "../../utils";
+import { FetchService } from "../FetchService";
+import { NearApiServiceParams } from "../NearApiService.types";
 import {
-    NearApiServiceParams,
     NearBlocksTransactionResponseDto,
     NearblocksAccessKeyResponseDto,
     NearBlocksTokenResponseDto,
     ValidatorAmount,
-} from "./NearApiService.types";
+    NearBlocksTransactionDto,
+} from "./NearBlocksService.types";
 
 export class NearBlocksService extends FetchService {
     public chain: Chains;
@@ -47,6 +47,51 @@ export class NearBlocksService extends FetchService {
     private fetch<T>(path: string): Promise<T> {
         const nearBlocksApi = this.getNearblocksApiUrlFromChain();
         return this.handleFetch<T>(`${nearBlocksApi}${path}`);
+    }
+
+    private getActionsFromTxs(txs: NearBlocksTransactionDto[], address: string): Action[] {
+        const actions: Action[] = [];
+        for (const tx of txs) {
+            if (tx.predecessor_account_id !== "system") {
+                const baseTransaction: TransactionWithoutActions = {
+                    transactionHash: tx.transaction_hash,
+                    includedInBlockHash: tx.included_in_block_hash,
+                    blockTimestamp: parseBlockTimestamp(tx.block_timestamp),
+                    signerAccountId: tx.predecessor_account_id,
+                    nonce: 0,
+                    receiverAccountId: tx.receiver_account_id,
+                };
+
+                for (const [i, action] of tx.actions.entries()) {
+                    try {
+                        const actionKind = this.parseActionKindApiDto(
+                            action.action as TransactionActionKind,
+                            tx.receiver_account_id,
+                            address,
+                        );
+                        actions.push({
+                            transaction: baseTransaction,
+                            actionKind,
+                            transactionHash: tx.transaction_hash,
+                            indexInTransaction: i,
+                            // codeSha256: "", // For DEPLOY_CONTRACT kind
+                            gas: tx.outcomes_agg.transaction_fee, // For FUNCTION_CALL kind
+                            ...(tx.actions_agg.deposit && {
+                                deposit: this.parseTransactionDeposit(actionKind, tx?.actions_agg.deposit), // For FUNCTION_CALL, TRANSFER kind
+                            }),
+                            // argsBase64: "", // For FUNCTION_CALL kind
+                            // argsJson: "", // For FUNCTION_CALL kind
+                            methodName: action.method || undefined,
+                            // stake: "", // For STAKE kind
+                            // publicKey: baseTransaction.receiverAccountId, // For STAKE, ADD_KEY, DELETE_KEY kind
+                            // accessKey: "", // For ADD_KEY kind
+                            // beneficiaryId: "", // For DELETE_ACCOUNT kind
+                        });
+                    } catch (e) {}
+                }
+            }
+        }
+        return actions;
     }
 
     private addValidatorAmountsFromTxs(txs: NearBlocksTransactionResponseDto, valAmounts: ValidatorAmount): ValidatorAmount {
@@ -131,49 +176,18 @@ export class NearBlocksService extends FetchService {
     }
 
     async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
-        const baseTxs = await this.fetch<NearBlocksTransactionResponseDto>(`/account/${address}/txns?page=1&per_page=10&order=desc`);
-
-        const txs: Action[] = [];
-        for (const tx of baseTxs.txns) {
-            if (tx.predecessor_account_id !== "system") {
-                const baseTransaction: TransactionWithoutActions = {
-                    transactionHash: tx.transaction_hash,
-                    includedInBlockHash: tx.included_in_block_hash,
-                    blockTimestamp: parseBlockTimestamp(tx.block_timestamp),
-                    signerAccountId: tx.predecessor_account_id,
-                    nonce: 0,
-                    receiverAccountId: tx.receiver_account_id,
-                };
-
-                for (const [i, action] of tx.actions.entries()) {
-                    const actionKind = this.parseActionKindApiDto(action.action as TransactionActionKind, tx.receiver_account_id, address);
-                    if (action.action === "FUNCTION_CALL" && action.method === "ft_transfer") {
-                        const res = this.parseTransactionLogs(tx.logs);
-                    }
-                    console.log("Action Kind: " + actionKind);
-                    txs.push({
-                        transaction: baseTransaction,
-                        actionKind,
-                        transactionHash: tx.transaction_hash,
-                        indexInTransaction: i,
-                        // codeSha256: "", // For DEPLOY_CONTRACT kind
-                        gas: tx.outcomes_agg.transaction_fee, // For FUNCTION_CALL kind
-
-                        ...(tx.actions_agg.deposit && {
-                            deposit: this.parseTransactionDeposit(actionKind, tx.actions_agg.deposit), // For FUNCTION_CALL, TRANSFER kind
-                        }),
-                        // argsBase64: "", // For FUNCTION_CALL kind
-                        // argsJson: "", // For FUNCTION_CALL kind
-                        methodName: action.method || undefined,
-                        // stake: "", // For STAKE kind
-                        // publicKey: baseTransaction.receiverAccountId, // For STAKE, ADD_KEY, DELETE_KEY kind
-                        // accessKey: "", // For ADD_KEY kind
-                        // beneficiaryId: "", // For DELETE_ACCOUNT kind
-                    });
-                }
-            }
-        }
-        return txs;
+        const actions = [];
+        let page = 1;
+        const pageSize = 10;
+        let txns: NearBlocksTransactionDto[] = [];
+        do {
+            txns = (
+                await this.fetch<NearBlocksTransactionResponseDto>(`/account/${address}/txns?page=${page}&per_page=${pageSize}&order=desc`)
+            ).txns;
+            actions.push(...this.getActionsFromTxs(txns, address));
+            page += 1;
+        } while (actions.length < 10 && txns.length === pageSize);
+        return actions;
     }
 
     private parseActionKindApiDto(actionKind: TransactionActionKind, receiverId: string, account: string): ActionKind {
@@ -187,25 +201,14 @@ export class NearBlocksService extends FetchService {
     }
 
     private parseTransactionDeposit(action: ActionKind, deposit: number): string | undefined {
-        switch (action) {
-            case "TRANSFER_SEND":
-            case "TRANSFER_RECEIVE":
-                return convertYoctoToNear(deposit.toString());
-        }
-    }
-
-    private parseTransactionLogs(logs: string[]): any {
-        for (const log of logs) {
-            this.parseTransactionLog(log);
-        }
-    }
-
-    private parseTransactionLog(log: string): any {
         try {
-            let jsonString = log.replaceAll("\\", "");
-            console.log("JSON String: " + jsonString);
-            const json = JSON.parse(jsonString.replaceAll("\\", "").slice(1, 12));
-            console.log("JSON: " + json);
-        } catch (e) {}
+            switch (action) {
+                case "TRANSFER_SEND":
+                case "TRANSFER_RECEIVE":
+                    return convertYoctoToNear(BigInt(deposit).toString());
+            }
+        } catch (e) {
+            return undefined;
+        }
     }
 }
