@@ -311,5 +311,8 @@
     "withPermissions": "擁有權限：",
     "signerChangeAccount": "您無法使用所選帳戶簽署此請求，因為該帳戶尚未啟動。請選擇其他帳戶。",
     "rejectRequestSuccessfully": "成功拒絕請求！",
-    "delegateCall": "委派呼叫至"
+    "delegateCall": "委派呼叫至",
+    "importAccountManually": "手動導入帳戶",
+    "importAccountManuallyDescription": "如果您認為您有帳戶未顯示，您可以手動匯入。只需輸入您要匯入的帳戶即可。",
+    "enterTheAccount": "輸入帳戶"
 }

@@ -52,6 +52,6 @@ describe("useWalletState tests", () => {
             ],
         });
         act(() => result.current.reset());
-        expect(result.current.state).toEqual({ hasWallet: false, isAuthenticated: false, wallets: [], selectedWallet: 0 });
+        expect(result.current.state).toEqual({ hasWallet: false, isAuthenticated: false, wallets: [], selectedWallet: 0, loading: false });
     });
 });

@@ -28,7 +28,7 @@ export function useAddressTextField({
     const {
         state: { wallets, selectedWallet },
     } = useWalletState();
-    const finalSenderWalletIndex = senderWalletIndex || selectedWallet;
+    const finalSenderWalletIndex = senderWalletIndex ?? selectedWallet;
     const { account } = wallets[finalSenderWalletIndex];
 
     const { network } = useRecoilValue(settingsState);

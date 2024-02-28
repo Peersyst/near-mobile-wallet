@@ -35,7 +35,9 @@
         "validators": 180000
     },
     "indexerEstimatedDelay": 30000,
+    "kitWalletTimeout": 2000,
     "nearMobileUrl": "https://nearmobile.app/",
+    "enableManualImport": true,
     "signerFeature": {
         "enabled": false,
         "backendUrl": "",

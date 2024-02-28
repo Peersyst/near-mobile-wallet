@@ -311,5 +311,8 @@
     "withPermissions": "Với các quyền:",
     "signerChangeAccount": "Bạn không thể ký yêu cầu này bằng tài khoản được chọn vì nó chưa được kích hoạt. Vui lòng chọn tài khoản khác.",
     "rejectRequestSuccessfully": "Yêu cầu đã từ chối thành công!",
-    "delegateCall": "Ủy quyền cuộc gọi tới"
+    "delegateCall": "Ủy quyền cuộc gọi tới",
+    "importAccountManually": "Nhập tài khoản theo cách thủ công",
+    "importAccountManuallyDescription": "Nếu bạn cho rằng mình có tài khoản không hiển thị, bạn có thể nhập tài khoản đó theo cách thủ công. Chỉ cần nhập tài khoản bạn muốn nhập.",
+    "enterTheAccount": "Nhập tài khoản"
 }

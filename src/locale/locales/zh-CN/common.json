@@ -311,5 +311,8 @@
     "withPermissions": "权限为：",
     "signerChangeAccount": "您不能使用所选账户签署此请求，因为它尚未激活。请选择另一个账户。",
     "rejectRequestSuccessfully": "请求成功拒绝！",
-    "delegateCall": "委托调用至"
+    "delegateCall": "委托调用至",
+    "importAccountManually": "手动导入账户",
+    "importAccountManuallyDescription": "如果您认为您有帐户未显示，您可以手动导入。只需输入您要导入的帐户即可。",
+    "enterTheAccount": "输入帐户"
 }
