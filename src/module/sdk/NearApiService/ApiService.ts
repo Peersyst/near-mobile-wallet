@@ -1,19 +1,17 @@
 import { Action, Chains, StakingDeposit } from "../NearSdkService";
-import { FetchService } from "./FetchService";
+import { FetchService } from "./common/FetchService";
 import { NearApiServiceInterface, NearApiServicePaginatedParams, NearApiServiceParams } from "./NearApiService.types";
 import { NearBlocksService } from "./NearBlocks/NearBlocksService";
-import { KitWalletService } from "./KitWallet/KitWalletService";
+import { FastNearService } from "./FastNear/FastNearService";
 
 export class ApiService extends FetchService implements NearApiServiceInterface {
-    baseUrl: string;
     nearblocksService: NearBlocksService;
-    kitWalletService: KitWalletService;
+    fastNearService: FastNearService;
 
-    constructor(endpoint: string, chain: Chains) {
+    constructor(chain: Chains) {
         super();
-        this.baseUrl = endpoint;
         this.nearblocksService = new NearBlocksService(chain);
-        this.kitWalletService = new KitWalletService(endpoint);
+        this.fastNearService = new FastNearService(chain);
     }
 
     private parseNearAccount(accountId: string): string {
@@ -38,8 +36,7 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
         } catch (error: unknown) {}
         let oldAccounts: string[] = [];
         try {
-            // Hope for kitwallet magic but with a timeout
-            oldAccounts = await this.kitWalletService.getAccountsFromPublicKey({ address });
+            oldAccounts = await this.fastNearService.getAccountsFromPublicKey({ address });
         } catch (error: unknown) {}
         const accounts = [...new Set([...newAccounts, ...oldAccounts])];
 
@@ -48,27 +45,23 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
 
     async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
         try {
-            return await this.nearblocksService.getAccountDeposits({ address });
+            return await this.nearblocksService.getStakingDeposits({ address });
         } catch (error: unknown) {
-            try {
-                // Hope for kitwallet magic
-                return await this.kitWalletService.getStakingDeposits({ address });
-            } catch (error: unknown) {
-                return [];
-            }
+            return [];
         }
     }
 
     async getLikelyTokens({ address, chain }: NearApiServiceParams): Promise<string[]> {
-        let contractIds: string[] = [];
+        let newContractIds: string[] = [];
         try {
-            contractIds = await this.nearblocksService.getLikelyTokens({ address });
-        } catch (error: unknown) {
-            try {
-                // Hope for kitwallet magic
-                contractIds = await this.kitWalletService.getLikelyTokens({ address });
-            } catch (error: unknown) {}
-        }
+            newContractIds = await this.nearblocksService.getLikelyTokens({ address });
+        } catch (error: unknown) {}
+        let oldContractIds: string[] = [];
+        try {
+            oldContractIds = await this.fastNearService.getLikelyTokens({ address });
+        } catch (e) {}
+        const contractIds = [...new Set([...newContractIds, ...oldContractIds])];
+
         if (chain === Chains.MAINNET) {
             if (!contractIds.includes("game.hot.tg")) {
                 contractIds.push("game.hot.tg");
@@ -78,15 +71,16 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
     }
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
-        let contractIds: string[] = [];
+        let newContractIds: string[] = [];
         try {
-            contractIds = await this.nearblocksService.getLikelyNfts({ address });
-        } catch (error: unknown) {
-            try {
-                // Hope for kitwallet magic
-                contractIds = await this.kitWalletService.getLikelyNfts({ address });
-            } catch (error: unknown) {}
-        }
+            newContractIds = await this.nearblocksService.getLikelyNfts({ address });
+        } catch (error: unknown) {}
+        let oldContractIds: string[] = [];
+        try {
+            oldContractIds = await this.fastNearService.getLikelyNfts({ address });
+        } catch (error: unknown) {}
+        const contractIds = [...new Set([...newContractIds, ...oldContractIds])];
+
         return this.parseNearAccounts(contractIds);
     }
 
@@ -94,12 +88,7 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
         try {
             return await this.nearblocksService.getRecentActivity({ address });
         } catch (error: unknown) {
-            try {
-                // Hope for kitwallet magic
-                return await this.kitWalletService.getRecentActivity({ address });
-            } catch (error: unknown) {
-                return [];
-            }
+            return [];
         }
     }
 

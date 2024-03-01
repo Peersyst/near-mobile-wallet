@@ -20,8 +20,8 @@ import {
     WITHDRAW_ALL_METHOD,
     convertYoctoToNear,
 } from "../../utils";
-import { FetchService } from "../FetchService";
-import { NearApiServiceParams } from "../NearApiService.types";
+import { FetchService } from "../common/FetchService";
+import { NearApiServiceInterface, NearApiServicePaginatedParams, NearApiServiceParams } from "../NearApiService.types";
 import {
     NearBlocksTransactionResponseDto,
     NearblocksAccessKeyResponseDto,
@@ -30,7 +30,7 @@ import {
     NearBlocksTransactionDto,
 } from "./NearBlocksService.types";
 
-export class NearBlocksService extends FetchService {
+export class NearBlocksService extends FetchService implements NearApiServiceInterface {
     public chain: Chains;
     public testnetUrl = config.nearblocksTesnetApiUrl;
     public mainnetUrl = config.nearblocksMainnetApiUrl;
@@ -121,7 +121,7 @@ export class NearBlocksService extends FetchService {
         return valAmounts;
     }
 
-    async getAccountDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
+    async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
         const deposits: StakingDeposit[] = [];
         let validatorAmounts: ValidatorAmount = {};
         const pageSize = 25;
@@ -188,6 +188,10 @@ export class NearBlocksService extends FetchService {
             page += 1;
         } while (actions.length < 10 && txns.length === pageSize);
         return actions;
+    }
+
+    async getActionsFromTransactions(params: NearApiServicePaginatedParams): Promise<Action[]> {
+        return this.getRecentActivity(params);
     }
 
     private parseActionKindApiDto(actionKind: TransactionActionKind, receiverId: string, account: string): ActionKind {
