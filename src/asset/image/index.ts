@@ -20,6 +20,7 @@ export { default as dai } from "./tokens/dai.png";
 export { default as dbio } from "./tokens/dbio.png";
 export { default as deip } from "./tokens/deip.png";
 export { default as disc } from "./tokens/disc.png";
+export { default as drip } from "./tokens/drip.png";
 export { default as eth } from "./tokens/eth.png";
 export { default as flx } from "./tokens/flx.png";
 export { default as gear } from "./tokens/gear.png";
