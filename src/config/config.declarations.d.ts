@@ -41,9 +41,7 @@ declare module "@peersyst/react-native-components" {
 
     export interface Config {
         minimumTransactionAmount: number;
-        indexerTestnetUrl: string;
         nearblocksTesnetApiUrl: string;
-        indexerMainnetUrl: string;
         nearblocksMainnetApiUrl: string;
         mainnetExplorerLink: string;
         testnetExplorerLink: string;
@@ -58,7 +56,6 @@ declare module "@peersyst/react-native-components" {
         coingeckoUSDTApiId: string;
         minBalanceToCreateAccount: string;
         estimatedFee: string; //In NEAR
-        enableIndexer: boolean;
         newsRSSUrl: string;
         defaultTwitterAccount: string;
         approveTxWaitTime: number; //In seconds
@@ -72,14 +69,13 @@ declare module "@peersyst/react-native-components" {
         signerFeature: SignerFeatureConfig;
         analytics: AnalyticsConfig;
         enableManualImport: boolean;
-        kitWalletTimeout: number;
+        apiRequestTimeout: number;
+        fastMainnetNearApiUrl: string;
     }
 
     export interface CreateConfig {
         minimumTransactionAmount: number;
-        indexerTestnetUrl: string;
         nearblocksTesnetApiUrl: string;
-        indexerMainnetUrl: string;
         nearblocksMainnetApiUrl: string;
         mainnetExplorerLink: string;
         testnetExplorerLink: string;
@@ -94,7 +90,6 @@ declare module "@peersyst/react-native-components" {
         coingeckoUSDTApiId: string;
         minBalanceToCreateAccount: string;
         estimatedFee: string;
-        enableIndexer: boolean;
         newsRSSUrl: string;
         defaultTwitterAccount: string;
         approveTxWaitTime: number; //In seconds
@@ -107,7 +102,8 @@ declare module "@peersyst/react-native-components" {
         transak: TransakConfig;
         analytics: AnalyticsConfig;
         enableManualImport: boolean;
-        kitWalletTimeout: number;
+        apiRequestTimeout: number;
+        fastMainnetNearApiUrl: string;
     }
 
     export interface ExtraValidators {
