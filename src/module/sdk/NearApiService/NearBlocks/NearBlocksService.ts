@@ -116,6 +116,11 @@ export class NearBlocksService extends FetchService {
                     valAmounts[tx.receiver_account_id] -= amount;
                 }
             }
+
+            // If is negative, start again
+            if (valAmounts[tx.receiver_account_id] < 0) {
+                valAmounts[tx.receiver_account_id] = 0;
+            }
         }
 
         return valAmounts;
