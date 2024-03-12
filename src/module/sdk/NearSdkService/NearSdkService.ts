@@ -544,6 +544,10 @@ export class NearSDKService {
             methodName: ACCOUNT_TOTAL_BALANCE_METHOD,
             args: { account_id: account.accountId },
         });
+        if (total === "0") {
+            // It is not truly a validator
+            return stakingBalance;
+        }
 
         if (validatorDeposit) {
             stakingBalance.rewardsEarned = subtractYoctoAmounts(BigInt(total).toString(), BigInt(validatorDeposit).toString());
