@@ -160,9 +160,7 @@ export class NearBlocksService extends FetchService {
         }
 
         for (const key of Object.keys(validatorAmounts)) {
-            if (validatorAmounts[key] > 0) {
-                deposits.push({ validatorId: key, amount: validatorAmounts[key] });
-            }
+            deposits.push({ validatorId: key, amount: validatorAmounts[key] });
         }
 
         return deposits;

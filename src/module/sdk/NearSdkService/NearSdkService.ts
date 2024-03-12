@@ -640,6 +640,10 @@ export class NearSDKService {
                 this.getValidatorDataFromId(validatorId, true, amount),
             );
             validators = await Promise.all(validatorsProms);
+            // Remove validators that no longer have any amount in it
+            validators = validators.filter(
+                ({ stakingBalance: sb }) => sb && (sb.staked !== "0" || sb.available !== "0" || sb.pending !== "0"),
+            );
         } catch (e) {
             //eslint-disable-next-line no-console
             console.warn("Error in getCurrentValidators: ", e);
