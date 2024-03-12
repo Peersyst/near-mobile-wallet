@@ -544,42 +544,40 @@ export class NearSDKService {
             methodName: ACCOUNT_TOTAL_BALANCE_METHOD,
             args: { account_id: account.accountId },
         });
-        if (total === "0") {
+        if (parseInt(total, 10) <= 0 || Number.isNaN(parseInt(total, 10))) {
             // It is not truly a validator
             return stakingBalance;
         }
 
-        if (validatorDeposit) {
-            stakingBalance.rewardsEarned = subtractYoctoAmounts(BigInt(total).toString(), BigInt(validatorDeposit).toString());
+        const stakedStr = await account.viewFunction({
+            contractId: validatorId,
+            methodName: ACCOUNT_STAKED_BALANCE_METHOD,
+            args: { account_id: account.accountId },
+        });
+        stakingBalance.staked = stakedStr;
+
+        const unstakedStr = await account.viewFunction({
+            contractId: validatorId,
+            methodName: ACCOUNT_UNSTAKED_BALANCE_METHOD,
+            args: { account_id: account.accountId },
+        });
+
+        if (parseInt(unstakedStr, 10) > MINIMUM_UNSTAKED) {
+            const isAvailable = await account.viewFunction({
+                contractId: validatorId,
+                methodName: IS_ACCOUNT_UNSTAKED_BALANCE_AVAILABLE_METHOD,
+                args: { account_id: account.accountId },
+            });
+
+            if (isAvailable) {
+                stakingBalance.available = unstakedStr;
+            } else {
+                stakingBalance.pending = unstakedStr;
+            }
         }
 
-        if (parseInt(total, 10) > 0) {
-            const stakedStr = await account.viewFunction({
-                contractId: validatorId,
-                methodName: ACCOUNT_STAKED_BALANCE_METHOD,
-                args: { account_id: account.accountId },
-            });
-            stakingBalance.staked = stakedStr;
-
-            const unstakedStr = await account.viewFunction({
-                contractId: validatorId,
-                methodName: ACCOUNT_UNSTAKED_BALANCE_METHOD,
-                args: { account_id: account.accountId },
-            });
-
-            if (parseInt(unstakedStr, 10) > MINIMUM_UNSTAKED) {
-                const isAvailable = await account.viewFunction({
-                    contractId: validatorId,
-                    methodName: IS_ACCOUNT_UNSTAKED_BALANCE_AVAILABLE_METHOD,
-                    args: { account_id: account.accountId },
-                });
-
-                if (isAvailable) {
-                    stakingBalance.available = unstakedStr;
-                } else {
-                    stakingBalance.pending = unstakedStr;
-                }
-            }
+        if (validatorDeposit) {
+            stakingBalance.rewardsEarned = subtractYoctoAmounts(BigInt(total).toString(), BigInt(validatorDeposit).toString());
         }
 
         return stakingBalance;
