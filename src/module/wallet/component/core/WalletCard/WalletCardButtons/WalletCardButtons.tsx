@@ -7,6 +7,8 @@ import { WalletCardButton } from "./WalletCardButtons.styles";
 import useIsMainnet from "module/settings/hook/useIsMainnet";
 import useNavigation from "module/common/hook/useNavigation";
 import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
+import { Linking } from "react-native";
+import { config } from "config";
 
 const WalletCardButtons = (): JSX.Element => {
     const { showModal } = useModal();
@@ -15,9 +17,9 @@ const WalletCardButtons = (): JSX.Element => {
     const enableBuy = useConfig("enableBuy");
     const isMainnet = useIsMainnet();
     const showBuyButton = enableBuy && isMainnet;
-
+    const uriSwap = isMainnet ? config.mainnetSwapUrl : config.testnetSwapUrl;
     return (
-        <Row gap={8}>
+        <Row gap={4}>
             <WalletCardButton enableBuy={showBuyButton} onPress={() => showModal(SendModal)}>
                 {capitalize(translate("send"))}
             </WalletCardButton>
@@ -29,6 +31,9 @@ const WalletCardButtons = (): JSX.Element => {
                     {capitalize(translate("buy"))}
                 </WalletCardButton>
             )}
+            <WalletCardButton enableBuy={showBuyButton} onPress={() => Linking.openURL(uriSwap)}>
+                {capitalize(translate("swap"))}
+            </WalletCardButton>
         </Row>
     );
 };

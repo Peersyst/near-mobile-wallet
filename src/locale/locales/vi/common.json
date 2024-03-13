@@ -314,5 +314,6 @@
     "delegateCall": "Ủy quyền cuộc gọi tới",
     "importAccountManually": "Nhập tài khoản theo cách thủ công",
     "importAccountManuallyDescription": "Nếu bạn cho rằng mình có tài khoản không hiển thị, bạn có thể nhập tài khoản đó theo cách thủ công. Chỉ cần nhập tài khoản bạn muốn nhập.",
-    "enterTheAccount": "Nhập tài khoản"
+    "enterTheAccount": "Nhập tài khoản",
+    "swap": "Đổi"
 }
