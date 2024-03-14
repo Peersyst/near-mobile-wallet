@@ -8,8 +8,15 @@ import useChangeNetworkModal from "../../../../wallet/hook/useChangeNetwork";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
+import { useControlled } from "@peersyst/react-hooks";
 
-const SelectNetwork = (): JSX.Element => {
+export interface SelectNetworkI {
+    isOpenExternal?: boolean;
+    style?: any;
+    setOpenExternal?: (open: boolean) => void;
+}
+
+const SelectNetwork = ({ isOpenExternal = false, style, setOpenExternal }: SelectNetworkI): JSX.Element => {
     const translate = useTranslate();
     const {
         state: { loading },
@@ -17,6 +24,7 @@ const SelectNetwork = (): JSX.Element => {
     const { reset, isSuccess, changeNetwork } = useChangeNetworkModal();
     const [openLoading, setOpenLoading] = useState(false);
     const [openSelect, setOpenSelect] = useState(false);
+    const [isOpen, setIsOpen] = useControlled(false, isOpenExternal, setOpenExternal);
     let hasSelected = false;
 
     const networkOptions: SelectOption<NetworkType>[] = [
@@ -40,6 +48,7 @@ const SelectNetwork = (): JSX.Element => {
 
     const handleCloseSelect = () => {
         setOpenSelect(false);
+        setIsOpen(false);
         setTimeout(() => {
             if (hasSelected) setOpenLoading(true);
         }, 400);
@@ -61,7 +70,8 @@ const SelectNetwork = (): JSX.Element => {
                 onChange={handleSelectNetwork}
                 onClose={handleCloseSelect}
                 onOpen={() => setOpenSelect(true)}
-                open={openSelect}
+                open={openSelect || isOpen}
+                style={style}
             />
             <LoadingModal
                 processingMessage={translate("recovering_accounts")}
