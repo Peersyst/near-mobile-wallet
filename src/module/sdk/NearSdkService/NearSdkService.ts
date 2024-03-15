@@ -621,10 +621,11 @@ export class NearSDKService {
     async getAllValidators(): Promise<Validator[]> {
         let availableValidatorsList: Validator[] = [];
         try {
-            const validators = await this.getAllValidatorIds();
-            const validatorsProms = validators.map((validator) => this.getValidatorDataFromId(validator, false, undefined, true));
-            const validatorsPromise = await Promise.all(validatorsProms);
-            availableValidatorsList = validatorsPromise.filter((validator: Validator) => (validator.fee ? validator.fee : 0 > 0));
+            const validatorsIds = await this.getAllValidatorIds();
+            const getValidatorsDataPromise = validatorsIds.map((validator) =>
+                this.getValidatorDataFromId(validator, false, undefined, true),
+            );
+            availableValidatorsList = await Promise.all(getValidatorsDataPromise);
         } catch (e) {
             //eslint-disable-next-line no-console
             console.warn("Error in getAllValidators: ", e);
