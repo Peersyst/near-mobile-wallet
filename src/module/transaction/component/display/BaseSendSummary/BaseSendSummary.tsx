@@ -1,7 +1,7 @@
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { ReactElement } from "react";
 import { Col } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import Typography from "module/common/component/display/Typography/Typography";
 import Container from "module/common/component/display/Container/Container";
 import { ViewStyle } from "react-native";
@@ -80,16 +80,15 @@ const BaseSendSummary = ({
                             <>
                                 {translate("total")}
                                 {" · "}
-                                <TotalText
-                                    as={Balance}
+                                <Balance
                                     options={{
                                         maximumFractionDigits: totalDecimals,
                                         minimumFractionDigits: totalDecimals,
                                     }}
-                                    light
                                     balance={totalAmount}
                                     variant="body2Strong"
                                     units="token"
+                                    color="primary"
                                 />
                             </>
                         </TotalText>

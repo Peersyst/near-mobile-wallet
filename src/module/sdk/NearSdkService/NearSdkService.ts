@@ -3,13 +3,15 @@ import { Action as NearAction } from "near-api-js/lib/transaction";
 import { AccountBalance } from "near-api-js/lib/account";
 import { AccessKeyInfoView, AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
 import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
-const { parseSeedPhrase, generateSeedPhrase } = require("near-seed-phrase");
+// @ts-ignore
+import { parseSeedPhrase, generateSeedPhrase } from "near-seed-phrase";
 import { decode, encode } from "bs58";
 import * as Borsh from "borsh";
 import BN from "bn.js";
-const JSsha256 = require("js-sha256");
+import JSsha256 from "js-sha256";
+// @ts-ignore
+import bip39 from "bip39-light";
 
-const bip39 = require("bip39-light");
 import {
     Chains,
     StakingBalance,
@@ -414,7 +416,7 @@ export class NearSDKService {
                 publicKey = this.keyPair.getPublicKey();
                 secretKey = this.keyPair.secretKey;
             }
-            await this.createNewAccount(nameId, publicKey, amount);
+            await this.createNewAccount(nameId, publicKey as any, amount);
             const service = new NearSDKService({
                 chain: this.chain,
                 nodeUrl: this.nearConfig.nodeUrl,

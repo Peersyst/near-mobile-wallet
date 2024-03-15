@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 import { Keyboard } from "react-native";
 import { useModal, useToast } from "@peersyst/react-native-components";
 import ImportWalletModal from "../ImportWalletModal";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { ErrorResourceType, TransaltionResourceType } from "locale";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 

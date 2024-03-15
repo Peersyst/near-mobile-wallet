@@ -1,11 +1,11 @@
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { StakingBalance } from "module/sdk";
 import Typography from "module/common/component/display/Typography/Typography";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 
 export interface ValidatorStakingBalanceProps {
     stakingBalance: StakingBalance | undefined;
-    stakingBalanceType: keyof StakingBalance;
+    stakingBalanceType?: keyof StakingBalance;
 }
 
 const ValidatorStakingBalance = ({ stakingBalance, stakingBalanceType = "staked" }: ValidatorStakingBalanceProps): JSX.Element => {

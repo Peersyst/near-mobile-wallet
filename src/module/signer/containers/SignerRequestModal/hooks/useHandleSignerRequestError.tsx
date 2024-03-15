@@ -1,5 +1,5 @@
 import { SignerRequestDto } from "module/api/service";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
 import Error from "module/common/component/display/Error/Error";

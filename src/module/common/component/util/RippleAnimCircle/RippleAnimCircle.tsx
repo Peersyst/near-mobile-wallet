@@ -3,6 +3,8 @@ import { useRef } from "react";
 import { RippleAnimCircleProps } from "./RippleAnimCircle.types";
 import { RippleAnimCircleRoot, Ripple } from "./RippleAnimCircle.styles";
 
+const AnimatedRipple = Animated.createAnimatedComponent(Ripple);
+
 const RippleAnimCircle = ({
     onPress,
     onPressIn,
@@ -51,13 +53,13 @@ const RippleAnimCircle = ({
     return (
         <RippleAnimCircleRoot
             testID="rippleAnim"
-            onPressIn={(e) => showAnim(e)}
+            onPressIn={(e: any) => showAnim(e)}
             onPressOut={onPressOut}
             onPress={onPress}
             size={size}
             zIndex={zIndex}
         >
-            <Ripple
+            <AnimatedRipple
                 color={color1}
                 size={size}
                 style={{
@@ -65,7 +67,7 @@ const RippleAnimCircle = ({
                     transform: [{ scale: scaleAnim }],
                 }}
             />
-            <Ripple
+            <AnimatedRipple
                 size={size}
                 color={color2}
                 style={{

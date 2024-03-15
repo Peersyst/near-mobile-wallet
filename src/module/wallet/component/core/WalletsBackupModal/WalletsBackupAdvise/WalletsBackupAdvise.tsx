@@ -1,5 +1,5 @@
 import { Col, Typography } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import backupWalletState, { BackUp } from "module/wallet/state/BackUpWalletState";
 import Button from "module/common/component/input/Button/Button";

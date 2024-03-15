@@ -1,5 +1,5 @@
 import { config } from "config";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import BuyWithTransak from "module/fiatorders/components/core/BuyWithTransak/BuyWithTransak";
 import BaseMainScreen from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
 

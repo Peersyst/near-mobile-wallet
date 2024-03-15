@@ -1,5 +1,5 @@
 import CardSelectModal from "module/common/component/feedback/CardSelectModal/CardSelectModal";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import AssetSelect from "../InnerAssetSelect/InnerAssetSelect";
 import { WalletAssetSelectModalProps } from "./WalletAssetSelectModal.types";
 

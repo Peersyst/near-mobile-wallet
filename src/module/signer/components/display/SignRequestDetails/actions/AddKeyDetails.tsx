@@ -1,6 +1,6 @@
 import { ActionDetailsProps } from "../SignRequestDetails.types";
 import { AddKeyActionParams } from "../actions.types";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import ActionDetailsScaffold from "module/signer/components/layout/ActionDetailsScaffold/ActionDetailsScaffold";
 import { ConnectIcon } from "icons";
 import SignerWalletSelector from "module/signer/containers/SignerWalletSelector/SignerWalletSelector";

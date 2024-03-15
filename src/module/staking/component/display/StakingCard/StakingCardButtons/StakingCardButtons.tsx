@@ -1,6 +1,6 @@
 import Button from "module/common/component/input/Button/Button";
 import { useModal } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import AddStakeModal from "module/staking/component/core/AddStakeModal/AddStakeModal";
 
 const StakingCardButtons = (): JSX.Element => {

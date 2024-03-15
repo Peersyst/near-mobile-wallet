@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import TextField from "module/common/component/input/TextField/TextField";
 import ValidatorListSelect from "./ValidatorListSelect/ValidatorListSelect";
 import { Col } from "@peersyst/react-native-components";
