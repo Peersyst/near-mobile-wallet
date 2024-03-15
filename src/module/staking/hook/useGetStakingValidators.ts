@@ -29,34 +29,36 @@ export default function (): UseGetStakingValidatorsReturn {
         refetchAllValidators();
     };
 
-    const isCurrentValidatorActive = (validatorAccountId: string): boolean => {
-        if (allValidators) return allValidators.some(({ accountId }) => accountId === validatorAccountId);
-        return false;
-    };
+    const allValidatorsMap = useMemo(() => {
+        const map = new Map<string, Validator>();
+        for (const validator of allValidators || []) {
+            map.set(validator.accountId, validator);
+        }
+        return map;
+    }, [allValidators]);
+
+    function isCurrentValidatorActive(validatorAccountId: string): boolean {
+        return allValidatorsMap.has(validatorAccountId);
+    }
 
     const { stakingValidators, isIdle, isLoading } = useMemo(() => {
+        let stakingValidators: Validator[] = [];
         if (validators) {
-            const stakingValidators: Validator[] = validators?.map((validator) => {
+            stakingValidators = validators?.map((validator) => {
                 const stakingValidator: Validator = {
                     active: isCurrentValidatorActive(validator.accountId),
                     ...validator,
                 };
                 return stakingValidator;
             });
-            return {
-                stakingValidators,
-                isIdle: isIdleCurrentValidators || isIdleAllValidators,
-                isLoading: isLoadingCurrentValidators || isLoadingAllValidators,
-                refetch: handleRefetch,
-            };
         }
         return {
-            stakingValidators: [],
+            stakingValidators,
             isIdle: isIdleCurrentValidators || isIdleAllValidators,
             isLoading: isLoadingCurrentValidators || isLoadingAllValidators,
             refetch: handleRefetch,
         };
-    }, [validators, allValidators]);
+    }, [validators, allValidatorsMap]);
 
     return { stakingValidators, isIdle, isLoading, refetch: handleRefetch };
 }

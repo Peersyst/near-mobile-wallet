@@ -615,7 +615,7 @@ export class NearSDKService {
             fee = null;
         }
 
-        return { accountId: validatorId, fee };
+        return { accountId: validatorId, fee, ...(activeValidator && { active: true }) };
     }
 
     async getAllValidators(): Promise<Validator[]> {
