@@ -12,7 +12,7 @@ export interface UseGetStakingValidatorsReturn {
 
 export default function (): UseGetStakingValidatorsReturn {
     const {
-        data: validators,
+        data: validators = [],
         isIdle: isIdleCurrentValidators,
         isLoading: isLoadingCurrentValidators,
         refetch: refetchCurrentValidators,
@@ -41,24 +41,17 @@ export default function (): UseGetStakingValidatorsReturn {
         return allValidatorsMap.has(validatorAccountId);
     }
 
-    const { stakingValidators, isIdle, isLoading } = useMemo(() => {
-        let stakingValidators: Validator[] = [];
-        if (validators) {
-            stakingValidators = validators?.map((validator) => {
-                const stakingValidator: Validator = {
-                    active: isCurrentValidatorActive(validator.accountId),
-                    ...validator,
-                };
-                return stakingValidator;
-            });
-        }
-        return {
-            stakingValidators,
-            isIdle: isIdleCurrentValidators || isIdleAllValidators,
-            isLoading: isLoadingCurrentValidators || isLoadingAllValidators,
-            refetch: handleRefetch,
-        };
+    const stakingValidators = useMemo(() => {
+        return validators?.map((validator) => ({
+            ...validator,
+            active: isCurrentValidatorActive(validator.accountId),
+        }));
     }, [validators, allValidatorsMap]);
 
-    return { stakingValidators, isIdle, isLoading, refetch: handleRefetch };
+    return {
+        stakingValidators,
+        isIdle: isIdleCurrentValidators || isIdleAllValidators,
+        isLoading: isLoadingCurrentValidators || isLoadingAllValidators,
+        refetch: handleRefetch,
+    };
 }
