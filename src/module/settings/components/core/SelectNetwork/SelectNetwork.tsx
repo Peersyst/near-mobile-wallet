@@ -1,6 +1,6 @@
 import settingsState, { NetworkType } from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
-import { SelectOption, useConfig } from "@peersyst/react-native-components";
+import { SelectOption, SelectProps, useConfig } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
 import { Chains } from "near-peersyst-sdk";
@@ -8,15 +8,13 @@ import useChangeNetworkModal from "../../../../wallet/hook/useChangeNetwork";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
-import { useControlled } from "@peersyst/react-hooks";
 
-export interface SelectNetworkI {
-    isOpenExternal?: boolean;
+export interface SelectNetworkI extends SelectProps<NetworkType> {
     style?: any;
     setOpenExternal?: (open: boolean) => void;
 }
 
-const SelectNetwork = ({ isOpenExternal = false, style, setOpenExternal }: SelectNetworkI): JSX.Element => {
+const SelectNetwork = ({ style, setOpenExternal, ...rest }: SelectNetworkI): JSX.Element => {
     const translate = useTranslate();
     const {
         state: { loading },
@@ -24,7 +22,6 @@ const SelectNetwork = ({ isOpenExternal = false, style, setOpenExternal }: Selec
     const { reset, isSuccess, changeNetwork } = useChangeNetworkModal();
     const [openLoading, setOpenLoading] = useState(false);
     const [openSelect, setOpenSelect] = useState(false);
-    const [isOpen, setIsOpen] = useControlled(false, isOpenExternal, setOpenExternal);
     let hasSelected = false;
 
     const networkOptions: SelectOption<NetworkType>[] = [
@@ -48,7 +45,7 @@ const SelectNetwork = ({ isOpenExternal = false, style, setOpenExternal }: Selec
 
     const handleCloseSelect = () => {
         setOpenSelect(false);
-        setIsOpen(false);
+        setOpenExternal && setOpenExternal(false);
         setTimeout(() => {
             if (hasSelected) setOpenLoading(true);
         }, 400);
@@ -70,8 +67,9 @@ const SelectNetwork = ({ isOpenExternal = false, style, setOpenExternal }: Selec
                 onChange={handleSelectNetwork}
                 onClose={handleCloseSelect}
                 onOpen={() => setOpenSelect(true)}
-                open={openSelect || isOpen}
+                open={openSelect}
                 style={style}
+                {...rest}
             />
             <LoadingModal
                 processingMessage={translate("recovering_accounts")}
