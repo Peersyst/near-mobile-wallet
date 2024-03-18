@@ -5,7 +5,7 @@ import { ViewStyle } from "react-native";
 export interface NavbarProps {
     back?: ReactNode;
     onBack?: () => unknown;
-    title?: string;
+    title?: ReactNode;
     steps?: StepsProps;
     style?: ViewStyle;
 }

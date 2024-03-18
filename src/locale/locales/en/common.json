@@ -314,5 +314,7 @@
     "delegateCall": "Delegate call to",
     "importAccountManually": "Import account manually",
     "importAccountManuallyDescription": "If you think you have an account that is not showing up, you can import it manually. Just enter the account you want to import.",
-    "enterTheAccount": "Enter the account"
+    "enterTheAccount": "Enter the account",
+    "swap": "swap",
+    "viewTokenInExplorer": "View token in explorer"
 }
