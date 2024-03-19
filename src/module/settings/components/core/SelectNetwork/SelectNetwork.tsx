@@ -10,7 +10,7 @@ import { useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { useControlled } from "@peersyst/react-hooks";
 
-export interface SelectNetworkProps extends SelectProps<NetworkType> {}
+export interface SelectNetworkProps extends Omit<SelectProps<NetworkType>, "options"> {}
 
 const SelectNetwork = ({ onClose, open, ...rest }: SelectNetworkProps): JSX.Element => {
     const translate = useTranslate();
