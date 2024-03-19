@@ -1,10 +1,9 @@
-import { Col, IconButton, Typography } from "@peersyst/react-native-components";
+import { Col, Typography } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import backupWalletState, { BackUp } from "module/wallet/state/BackUpWalletState";
 import Button from "module/common/component/input/Button/Button";
 import { ConfirmPinModalWrapper } from "module/settings/components/core/ConfirmPinModal/ConfirmPinModalWrapper";
-import Advise from "module/common/component/display/Advise/Advise";
 import { BaseUseModalStateReturn } from "module/common/hook/useModalState";
 import { usePostHog } from "posthog-react-native";
 import settingsState from "module/settings/state/SettingsState";
