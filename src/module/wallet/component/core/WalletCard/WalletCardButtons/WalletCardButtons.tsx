@@ -7,9 +7,9 @@ import useIsMainnet from "module/settings/hook/useIsMainnet";
 import useNavigation from "module/common/hook/useNavigation";
 import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
 import { Linking } from "react-native";
-import { config } from "config";
 import { ArrowReceiveIcon, ArrowSendIcon, BuyIcon, SwapIcon } from "icons";
 import LabeledIconButton from "module/common/component/input/LabeledIconButton/LabeledIconButton";
+import useGetSwapLink from "module/common/hook/useGetSwapLink";
 
 const WalletCardButtons = (): JSX.Element => {
     const { showModal } = useModal();
@@ -18,29 +18,27 @@ const WalletCardButtons = (): JSX.Element => {
     const enableBuy = useConfig("enableBuy");
     const isMainnet = useIsMainnet();
     const showBuyButton = enableBuy && isMainnet;
-    const uriSwap = isMainnet ? config.mainnetSwapUrl : config.testnetSwapUrl;
+    const uriSwap = useGetSwapLink();
     return (
         <Row gap={4}>
             {showBuyButton && (
                 <LabeledIconButton
+                    variant="primary"
                     label={capitalize(translate("buy"))}
-                    Icon={<BuyIcon />}
                     onPress={() => navigate.navigate(MainScreens.FIAT_ORDERS)}
-                />
+                >
+                    <BuyIcon />
+                </LabeledIconButton>
             )}
-            <LabeledIconButton
-                variant="secondary"
-                label={capitalize(translate("send"))}
-                Icon={<ArrowSendIcon />}
-                onPress={() => showModal(SendModal)}
-            />
-            <LabeledIconButton
-                variant="secondary"
-                label={capitalize(translate("receive"))}
-                Icon={<ArrowReceiveIcon />}
-                onPress={() => showModal(ReceiveModal)}
-            />
-            <LabeledIconButton label={capitalize(translate("swap"))} Icon={<SwapIcon />} onPress={() => Linking.openURL(uriSwap)} />
+            <LabeledIconButton variant="primary" label={capitalize(translate("send"))} onPress={() => showModal(SendModal)}>
+                <ArrowSendIcon />
+            </LabeledIconButton>
+            <LabeledIconButton variant="primary" label={capitalize(translate("receive"))} onPress={() => showModal(ReceiveModal)}>
+                <ArrowReceiveIcon />
+            </LabeledIconButton>
+            <LabeledIconButton label={capitalize(translate("swap"))} onPress={() => Linking.openURL(uriSwap)}>
+                <SwapIcon />
+            </LabeledIconButton>
         </Row>
     );
 };

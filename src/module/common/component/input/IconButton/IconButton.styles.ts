@@ -1,10 +1,9 @@
-import { Button } from "@peersyst/react-native-components";
+import { IconButton } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
-import { ButtonProps } from "../Button/Button.types";
+import { IconButtonProps } from "./IconButton.types";
 
-export const WalletButton = styled(Button)<ButtonProps>(({ theme }) => {
+export const IconButtonRoot = styled(IconButton)<IconButtonProps>(({ theme }) => {
     return {
-        borderRadius: 100,
         height: 48,
         width: 80,
         paddingHorizontal: 18,
@@ -14,7 +13,7 @@ export const WalletButton = styled(Button)<ButtonProps>(({ theme }) => {
             backgroundColor: theme.palette.overlay["8%"],
             color: "#FFFFFF",
         },
-        secondary: {
+        transparent: {
             backgroundColor: "#FFFFFF",
             color: "#000000",
         },
