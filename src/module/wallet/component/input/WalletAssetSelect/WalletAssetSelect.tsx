@@ -10,11 +10,10 @@ import { Asset } from "module/wallet/wallet.types";
 
 const WalletAssetSelect = ({ index, ...rest }: WalletAssetSelectProps) => {
     useGetAllAssets(index); //On mount start fetching all assets
-
+    console.log("index", index);
     const { open, showModal, hideModal } = useModalState();
     const { value, defaultValue, onChange, LabelProps, ...assetSelectRest } = rest;
     const [asset, setAsset] = useControlled(defaultValue, value, onChange);
-
     const handleAssetChange = (asset: Asset | undefined) => {
         if (asset) {
             setAsset(asset);

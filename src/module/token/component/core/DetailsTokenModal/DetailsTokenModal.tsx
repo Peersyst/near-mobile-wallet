@@ -10,6 +10,9 @@ import TokenBalance from "../../display/TokenBalance/TokenBalance";
 import TokenHeader from "../../display/TokenHeader/TokenHeader";
 import useGetSwapLink from "module/common/hook/useGetSwapLink";
 import { Linking } from "react-native";
+import { useModal } from "@peersyst/react-native-components";
+import SendModal from "module/transaction/component/core/SendModal/SendModal";
+import { AssetType } from "module/wallet/wallet.types";
 
 export interface DetailsTokenModalProps extends ExposedBackdropProps {
     token: Token;
@@ -19,6 +22,8 @@ const DetailsTokenModal = createBackdrop<DetailsTokenModalProps>(({ token, open:
     const translate = useTranslate();
     const [open, setOpen] = useControlled(defaultOpen, openProp, onClose);
     const uriSwap = useGetSwapLink();
+    const { showModal } = useModal();
+
     return (
         <CardNavigatorModal
             open={open}
@@ -33,7 +38,12 @@ const DetailsTokenModal = createBackdrop<DetailsTokenModalProps>(({ token, open:
             <DetailsTokenModalWrapper gap={16} textAlign="center">
                 <TokenBalance token={token} alignItems="center" />
                 <Row gap={4} justifyContent="center">
-                    <DetailsTokenButton variant="secondary" size="md" fullWidth>
+                    <DetailsTokenButton
+                        variant="secondary"
+                        size="md"
+                        fullWidth
+                        onPress={() => showModal(SendModal, { currentAsset: { type: AssetType.TOKEN, ft: token } })}
+                    >
                         {capitalize(translate("send"))}
                     </DetailsTokenButton>
                     <DetailsTokenButton variant="secondary" size="md" fullWidth onPress={() => Linking.openURL(uriSwap)}>

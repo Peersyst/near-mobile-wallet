@@ -7,11 +7,15 @@ import SendConfirmationScreen from "module/transaction/screen/SendConfirmationSc
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 import useTranslate from "module/common/hook/useTranslate";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
-import { AssetType } from "module/wallet/wallet.types";
 import { SendScreens } from "module/transaction/screen/SendScreens.types";
+import { Asset, AssetType } from "module/wallet/wallet.types";
 
-const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
-    const [activeIndex, setActiveIndex] = useState(SendScreens.SEND_TO_ADDRESS);
+export interface SendModalProps extends ExposedBackdropProps {
+    currentAsset?: Asset;
+}
+
+const SendModal = createBackdrop(({ onExited, currentAsset, ...rest }: SendModalProps) => {
+    const [activeIndex, setActiveIndex] = useState(SendScreens.AMOUNT_AND_MESSAGE);
     const setSendState = useSetRecoilState(sendState);
     const resetSendState = useResetRecoilState(sendState);
     const translate = useTranslate();
@@ -22,7 +26,7 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
     };
 
     const handleOnBack = () => {
-        if (activeIndex === SendScreens.AMOUNT_AND_MESSAGE) {
+        if (activeIndex === SendScreens.SEND_TO_ADDRESS) {
             setSendState((oldState) => ({ ...oldState, amount: undefined, asset: { type: AssetType.TOKEN } }));
         }
         setActiveIndex((oldIndex) => oldIndex - 1);
@@ -43,11 +47,11 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
             {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
+                <TabPanel index={SendScreens.AMOUNT_AND_MESSAGE}>
+                    <SendSetAmountScreen currentAsset={currentAsset} />
+                </TabPanel>
                 <TabPanel index={SendScreens.SEND_TO_ADDRESS}>
                     <SendToAddressScreen />
-                </TabPanel>
-                <TabPanel index={SendScreens.AMOUNT_AND_MESSAGE}>
-                    <SendSetAmountScreen />
                 </TabPanel>
                 <TabPanel index={SendScreens.CONFIRMATION}>
                     <SendConfirmationScreen />

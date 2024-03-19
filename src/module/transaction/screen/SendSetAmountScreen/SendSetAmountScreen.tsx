@@ -7,7 +7,7 @@ import CenteredLoader from "module/common/component/feedback/CenteredLoader/Cent
 import useTranslate from "module/common/hook/useTranslate";
 import WalletAssetSelect from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect";
 import AssetAmountTextField from "module/transaction/component/input/AssetAmountTextField/AssetAmountTextField";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Asset } from "module/wallet/wallet.types";
 import { AssetType } from "module/wallet/wallet.types";
 import { SendScreens } from "../SendScreens.types";
@@ -19,13 +19,17 @@ export const SEND_SET_AMOUNT_FORM_KEYS: Partial<Record<keyof SendState, keyof Se
     amount: "amount",
 };
 
-const SendSetAmountScreen = (): JSX.Element => {
+export interface SendSetAmountScreenProps {
+    currentAsset?: Asset;
+}
+
+const SendSetAmountScreen = ({ currentAsset }: SendSetAmountScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     /**
      * asset will never be undefined because by default sendRecoilState has it defined
      * (check the recoil defaultState of sendState)
      */
-    const [asset, setAsset] = useState<Asset | undefined>(sendState.asset);
+    const [asset, setAsset] = useState<Asset | undefined>(currentAsset || sendState.asset);
     const [amount, setAmount] = useState<string | undefined>(sendState.amount?.toString() ?? undefined);
     const translate = useTranslate();
 
@@ -38,14 +42,14 @@ const SendSetAmountScreen = (): JSX.Element => {
             ...oldState,
             ...res,
         }));
-        setTab(SendScreens.CONFIRMATION);
+        setTab(SendScreens.SEND_TO_ADDRESS);
     };
 
     const handleAssetChange = (asset: Asset | undefined): void => {
         setAsset(asset);
         setAmount("");
     };
-
+    console.log("senderWalletIndex", senderWalletIndex);
     return (
         <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
