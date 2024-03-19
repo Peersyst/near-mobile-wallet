@@ -23,20 +23,20 @@ const WalletCardButtons = (): JSX.Element => {
         <Row gap={4}>
             {showBuyButton && (
                 <LabeledIconButton
-                    variant="primary"
+                    variant="glass"
                     label={capitalize(translate("buy"))}
                     onPress={() => navigate.navigate(MainScreens.FIAT_ORDERS)}
                 >
                     <BuyIcon />
                 </LabeledIconButton>
             )}
-            <LabeledIconButton variant="primary" label={capitalize(translate("send"))} onPress={() => showModal(SendModal)}>
+            <LabeledIconButton variant="secondary" label={capitalize(translate("send"))} onPress={() => showModal(SendModal)}>
                 <ArrowSendIcon />
             </LabeledIconButton>
-            <LabeledIconButton variant="primary" label={capitalize(translate("receive"))} onPress={() => showModal(ReceiveModal)}>
+            <LabeledIconButton variant="secondary" label={capitalize(translate("receive"))} onPress={() => showModal(ReceiveModal)}>
                 <ArrowReceiveIcon />
             </LabeledIconButton>
-            <LabeledIconButton label={capitalize(translate("swap"))} onPress={() => Linking.openURL(uriSwap)}>
+            <LabeledIconButton variant="glass" label={capitalize(translate("swap"))} onPress={() => Linking.openURL(uriSwap)}>
                 <SwapIcon />
             </LabeledIconButton>
         </Row>

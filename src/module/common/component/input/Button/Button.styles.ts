@@ -53,6 +53,10 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             color: theme.palette.white,
             backgroundColor: theme.palette.status.error,
         },
+        glass: {
+            backgroundColor: theme.palette.overlay["8%"],
+            color: "#FFFFFF",
+        },
 
         //State Styles
         pressed: {
