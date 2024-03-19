@@ -8,6 +8,8 @@ import { Token } from "near-peersyst-sdk";
 import { capitalize } from "@peersyst/react-utils";
 import TokenBalance from "../../display/TokenBalance/TokenBalance";
 import TokenHeader from "../../display/TokenHeader/TokenHeader";
+import useGetSwapLink from "module/common/hook/useGetSwapLink";
+import { Linking } from "react-native";
 
 export interface DetailsTokenModalProps extends ExposedBackdropProps {
     token: Token;
@@ -16,6 +18,7 @@ export interface DetailsTokenModalProps extends ExposedBackdropProps {
 const DetailsTokenModal = createBackdrop<DetailsTokenModalProps>(({ token, open: openProp, onClose, defaultOpen = true, ...rest }) => {
     const translate = useTranslate();
     const [open, setOpen] = useControlled(defaultOpen, openProp, onClose);
+    const uriSwap = useGetSwapLink();
     return (
         <CardNavigatorModal
             open={open}
@@ -33,7 +36,7 @@ const DetailsTokenModal = createBackdrop<DetailsTokenModalProps>(({ token, open:
                     <DetailsTokenButton variant="secondary" size="md" fullWidth>
                         {capitalize(translate("send"))}
                     </DetailsTokenButton>
-                    <DetailsTokenButton variant="secondary" size="md" fullWidth>
+                    <DetailsTokenButton variant="secondary" size="md" fullWidth onPress={() => Linking.openURL(uriSwap)}>
                         {capitalize(translate("swap"))}
                     </DetailsTokenButton>
                 </Row>
