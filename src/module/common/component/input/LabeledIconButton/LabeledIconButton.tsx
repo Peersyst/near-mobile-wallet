@@ -1,14 +1,14 @@
-import { WalletButton } from "./WalletButtonIcon.styles";
+import { WalletButton } from "./LabeledIconButton.styles";
 import { ReactElement } from "react";
 import { ButtonProps, Col, IconButton } from "@peersyst/react-native-components";
 import { Placeholder } from "../../display/PinDisplay/PinDisplay.styles";
 
-export interface WalletButtonIconProps extends ButtonProps {
+export interface LabeledIconButtonProps extends ButtonProps {
     Icon: ReactElement;
     label: string;
 }
 
-const WalletButtonIcon = ({ label, Icon, onPress, ...rest }: WalletButtonIconProps): JSX.Element => {
+const LabeledIconButton = ({ label, Icon, onPress, ...rest }: LabeledIconButtonProps): JSX.Element => {
     return (
         <Col gap={6} alignItems="center">
             <WalletButton onPress={onPress} {...rest}>
@@ -19,4 +19,4 @@ const WalletButtonIcon = ({ label, Icon, onPress, ...rest }: WalletButtonIconPro
     );
 };
 
-export default WalletButtonIcon;
+export default LabeledIconButton;

@@ -9,7 +9,7 @@ import { MainScreens } from "module/common/component/navigation/MainNavigatorGro
 import { Linking } from "react-native";
 import { config } from "config";
 import { ArrowReceiveIcon, ArrowSendIcon, BuyIcon, SwapIcon } from "icons";
-import WalletButtonIcon from "module/common/component/input/WalletButtonIcon/WalletButtonIcon";
+import LabeledIconButton from "module/common/component/input/LabeledIconButton/LabeledIconButton";
 
 const WalletCardButtons = (): JSX.Element => {
     const { showModal } = useModal();
@@ -22,25 +22,25 @@ const WalletCardButtons = (): JSX.Element => {
     return (
         <Row gap={4}>
             {showBuyButton && (
-                <WalletButtonIcon
+                <LabeledIconButton
                     label={capitalize(translate("buy"))}
                     Icon={<BuyIcon />}
                     onPress={() => navigate.navigate(MainScreens.FIAT_ORDERS)}
                 />
             )}
-            <WalletButtonIcon
+            <LabeledIconButton
                 variant="secondary"
                 label={capitalize(translate("send"))}
                 Icon={<ArrowSendIcon />}
                 onPress={() => showModal(SendModal)}
             />
-            <WalletButtonIcon
+            <LabeledIconButton
                 variant="secondary"
                 label={capitalize(translate("receive"))}
                 Icon={<ArrowReceiveIcon />}
                 onPress={() => showModal(ReceiveModal)}
             />
-            <WalletButtonIcon label={capitalize(translate("swap"))} Icon={<SwapIcon />} onPress={() => Linking.openURL(uriSwap)} />
+            <LabeledIconButton label={capitalize(translate("swap"))} Icon={<SwapIcon />} onPress={() => Linking.openURL(uriSwap)} />
         </Row>
     );
 };
