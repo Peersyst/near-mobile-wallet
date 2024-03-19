@@ -1,4 +1,4 @@
-import { Col, Typography } from "@peersyst/react-native-components";
+import { Col, IconButton, Typography } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import backupWalletState, { BackUp } from "module/wallet/state/BackUpWalletState";
@@ -8,6 +8,10 @@ import Advise from "module/common/component/display/Advise/Advise";
 import { BaseUseModalStateReturn } from "module/common/hook/useModalState";
 import { usePostHog } from "posthog-react-native";
 import settingsState from "module/settings/state/SettingsState";
+import Alert from "module/common/component/feedback/Alert/Alert";
+import WalletsBackupAdviseAlertContent from "../WalletsBackupAdviseAlertContent/WalletsBackupAdviseAlertContent";
+import { SaveIcon } from "icons";
+import { WalletsBackupAdviseIcon } from "./WalletsBackupAdvise.styles";
 
 export interface WalletsBackupAdviseProps {
     onSubmit: () => void;
@@ -41,14 +45,14 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdviseProps): JSX.Elemen
             {({ showModal }) => (
                 <Col gap="10%" flex={1}>
                     <Col flex={1} gap="3%">
-                        <Advise title={translate("keep_this_safe")} />
+                        <WalletsBackupAdviseIcon>
+                            <SaveIcon />
+                        </WalletsBackupAdviseIcon>
                         <Col gap="3%">
-                            <Typography variant="body3Regular" textAlign="center">
+                            <Typography variant="body3Regular" textAlign="center" style={{ lineHeight: 25 }}>
                                 {translate("backup_wallet_advise_text") + " "}
                             </Typography>
-                            <Typography variant="body3Strong" textAlign="center">
-                                {translate("backup_wallet_advise_text_2")}
-                            </Typography>
+                            <Alert color="orange" type="success" content={<WalletsBackupAdviseAlertContent />}></Alert>
                         </Col>
                     </Col>
                     <Col gap="4%">
