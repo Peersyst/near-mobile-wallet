@@ -7,7 +7,7 @@ import CenteredLoader from "module/common/component/feedback/CenteredLoader/Cent
 import useTranslate from "module/common/hook/useTranslate";
 import WalletAssetSelect from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect";
 import AssetAmountTextField from "module/transaction/component/input/AssetAmountTextField/AssetAmountTextField";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Asset } from "module/wallet/wallet.types";
 import { AssetType } from "module/wallet/wallet.types";
 import { SendScreens } from "../SendScreens.types";
@@ -49,7 +49,6 @@ const SendSetAmountScreen = ({ currentAsset }: SendSetAmountScreenProps): JSX.El
         setAsset(asset);
         setAmount("");
     };
-    console.log("senderWalletIndex", senderWalletIndex);
     return (
         <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>

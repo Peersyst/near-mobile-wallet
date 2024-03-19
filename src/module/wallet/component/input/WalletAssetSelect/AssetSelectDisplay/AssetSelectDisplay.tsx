@@ -15,7 +15,6 @@ export interface AssetSelectDisplayProps {
 const AssetSelectDisplay = ({ onPress }: AssetSelectDisplayProps) => {
     const translate = useTranslate();
     const { asset } = useAssetSelect();
-    console.log("AssetSelectDisplay", asset?.ft?.contractId);
     return (
         <TouchableWithoutFeedback onPress={onPress}>
             <Container style={{ width: "100%" }}>
