@@ -8,20 +8,19 @@ import useChangeNetworkModal from "../../../../wallet/hook/useChangeNetwork";
 import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingModal";
 import { useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
+import { useControlled } from "@peersyst/react-hooks";
 
-export interface SelectNetworkI extends SelectProps<NetworkType> {
-    style?: any;
-    setOpenExternal?: (open: boolean) => void;
-}
+export interface SelectNetworkI extends SelectProps<NetworkType> {}
 
-const SelectNetwork = ({ style, setOpenExternal, ...rest }: SelectNetworkI): JSX.Element => {
+const SelectNetwork = ({ onClose, open, ...rest }: SelectNetworkI): JSX.Element => {
     const translate = useTranslate();
     const {
         state: { loading },
     } = useWalletState();
     const { reset, isSuccess, changeNetwork } = useChangeNetworkModal();
     const [openLoading, setOpenLoading] = useState(false);
-    const [openSelect, setOpenSelect] = useState(false);
+    const [openSelect, setOpenSelect] = useControlled(false, open, onClose);
+
     let hasSelected = false;
 
     const networkOptions: SelectOption<NetworkType>[] = [
@@ -45,7 +44,6 @@ const SelectNetwork = ({ style, setOpenExternal, ...rest }: SelectNetworkI): JSX
 
     const handleCloseSelect = () => {
         setOpenSelect(false);
-        setOpenExternal && setOpenExternal(false);
         setTimeout(() => {
             if (hasSelected) setOpenLoading(true);
         }, 400);
@@ -68,7 +66,6 @@ const SelectNetwork = ({ style, setOpenExternal, ...rest }: SelectNetworkI): JSX
                 onClose={handleCloseSelect}
                 onOpen={() => setOpenSelect(true)}
                 open={openSelect}
-                style={style}
                 {...rest}
             />
             <LoadingModal

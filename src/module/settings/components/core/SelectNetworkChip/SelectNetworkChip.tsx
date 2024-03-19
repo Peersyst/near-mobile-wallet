@@ -3,17 +3,22 @@ import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
 import { Row } from "@peersyst/react-native-components";
 import SelectNetwork from "module/settings/components/core/SelectNetwork/SelectNetwork";
-import { ChipNetwork } from "./ChipSelectNetwork.styles";
+import { ChipNetwork } from "./SelectNetworkChip.styles";
+import { ViewStyle } from "react-native";
 
-const ChipSelectNetwork = (): JSX.Element => {
+export interface SelectNetworkChipProps {
+    style?: ViewStyle;
+}
+
+const SelectNetworkChip = ({ style }: SelectNetworkChipProps): JSX.Element => {
     const { network } = useRecoilValue(settingsState);
     const [openSelect, setOpenSelect] = useState(false);
     return (
-        <Row style={{ position: "absolute", left: 8 }}>
+        <Row style={style}>
             <ChipNetwork label={network.toUpperCase()} variant="filled" size="sm" onPress={() => setOpenSelect(true)} type={network} />
-            <SelectNetwork style={{ display: "none" }} setOpenExternal={setOpenSelect} open={openSelect} />
+            <SelectNetwork style={{ display: "none" }} onClose={() => setOpenSelect(false)} open={openSelect} />
         </Row>
     );
 };
 
-export default ChipSelectNetwork;
+export default SelectNetworkChip;

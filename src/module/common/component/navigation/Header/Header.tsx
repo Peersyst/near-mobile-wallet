@@ -5,7 +5,7 @@ import { Row } from "@peersyst/react-native-components";
 import useNavigation from "module/common/hook/useNavigation";
 import { MainScreens } from "../MainNavigatorGroup/MainScreens";
 import useWalletGradient from "module/wallet/hook/useWalletGradient";
-import ChipSelectNetwork from "module/settings/components/core/ChipSelectNetwork/ChipSelectNetwork";
+import SelectNetworkChip from "module/settings/components/core/SelectNetworkChip/SelectNetworkChip";
 
 const Header = (): JSX.Element => {
     const navigation = useNavigation();
@@ -13,7 +13,7 @@ const Header = (): JSX.Element => {
     return (
         <HeaderRoot>
             <Row alignItems="center" justifyContent="center" flex={1}>
-                <ChipSelectNetwork />
+                <SelectNetworkChip style={{ position: "absolute", left: 8 }} />
                 <LinearLogo startColor={startColor} endColor={endColor} />
                 <Row style={{ position: "absolute", right: 8 }}>
                     <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.SETTINGS)}>
