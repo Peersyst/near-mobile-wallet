@@ -11,10 +11,10 @@ import { SendScreens } from "module/transaction/screen/SendScreens.types";
 import { Asset, AssetType } from "module/wallet/wallet.types";
 
 export interface SendModalProps extends ExposedBackdropProps {
-    currentAsset?: Asset;
+    defaultAsset?: Asset;
 }
 
-const SendModal = createBackdrop(({ onExited, currentAsset, ...rest }: SendModalProps) => {
+const SendModal = createBackdrop(({ onExited, defaultAsset, ...rest }: SendModalProps) => {
     const [activeIndex, setActiveIndex] = useState(SendScreens.AMOUNT_AND_MESSAGE);
     const setSendState = useSetRecoilState(sendState);
     const resetSendState = useResetRecoilState(sendState);
@@ -48,7 +48,7 @@ const SendModal = createBackdrop(({ onExited, currentAsset, ...rest }: SendModal
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
                 <TabPanel index={SendScreens.AMOUNT_AND_MESSAGE}>
-                    <SendSetAmountScreen currentAsset={currentAsset} />
+                    <SendSetAmountScreen defaultAsset={defaultAsset} />
                 </TabPanel>
                 <TabPanel index={SendScreens.SEND_TO_ADDRESS}>
                     <SendToAddressScreen />

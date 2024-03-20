@@ -20,16 +20,16 @@ export const SEND_SET_AMOUNT_FORM_KEYS: Partial<Record<keyof SendState, keyof Se
 };
 
 export interface SendSetAmountScreenProps {
-    currentAsset?: Asset;
+    defaultAsset?: Asset;
 }
 
-const SendSetAmountScreen = ({ currentAsset }: SendSetAmountScreenProps): JSX.Element => {
+const SendSetAmountScreen = ({ defaultAsset }: SendSetAmountScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     /**
      * asset will never be undefined because by default sendRecoilState has it defined
      * (check the recoil defaultState of sendState)
      */
-    const [asset, setAsset] = useState<Asset | undefined>(currentAsset || sendState.asset);
+    const [asset, setAsset] = useState<Asset | undefined>(defaultAsset || sendState.asset);
     const [amount, setAmount] = useState<string | undefined>(sendState.amount?.toString() ?? undefined);
     const translate = useTranslate();
 
