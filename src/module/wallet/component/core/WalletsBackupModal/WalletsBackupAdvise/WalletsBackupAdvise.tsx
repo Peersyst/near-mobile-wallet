@@ -42,13 +42,13 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdviseProps): JSX.Elemen
     return (
         <ConfirmPinModalWrapper onConfirmedExited={onSubmit}>
             {({ showModal }) => (
-                <Col gap="10%" flex={1}>
+                <Col gap="3%" flex={1}>
                     <Col flex={1} gap="3%">
                         <WalletsBackupAdviseIcon>
                             <SaveIcon />
                         </WalletsBackupAdviseIcon>
                         <Col gap="3%">
-                            <Typography variant="body3Regular" textAlign="center" style={{ lineHeight: 25 }}>
+                            <Typography variant="body3Regular" textAlign="center">
                                 {translate("backup_wallet_advise_text") + " "}
                             </Typography>
                             <Alert color="orange" type="success" content={<WalletsBackupAdviseAlertContent />}></Alert>
