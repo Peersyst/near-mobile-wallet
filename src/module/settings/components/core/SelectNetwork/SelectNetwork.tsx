@@ -1,6 +1,6 @@
 import settingsState, { NetworkType } from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
-import { SelectOption, SelectProps, useConfig } from "@peersyst/react-native-components";
+import { SelectOption, useConfig } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
 import { Chains } from "near-peersyst-sdk";
@@ -9,8 +9,7 @@ import LoadingModal from "module/common/component/feedback/LoadingModal/LoadingM
 import { useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { useControlled } from "@peersyst/react-hooks";
-
-export interface SelectNetworkProps extends Omit<SelectProps<NetworkType>, "options" | "value" | "defaultValue" | "onChange"> {}
+import { SelectNetworkProps } from "./SelectNetwork.types";
 
 const SelectNetwork = ({ onClose, open, disabled, ...rest }: SelectNetworkProps): JSX.Element => {
     const translate = useTranslate();
