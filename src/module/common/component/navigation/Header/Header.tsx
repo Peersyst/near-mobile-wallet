@@ -16,11 +16,9 @@ const Header = (): JSX.Element => {
             <Row alignItems="center" justifyContent="center" flex={1}>
                 <HeaderNetworkChip />
                 <LinearLogo startColor={startColor} endColor={endColor} />
-                <Row style={{ position: "absolute", right: 8 }}>
-                    <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.SETTINGS)}>
-                        <NotificationIcon icon={<SettingsIcon />} />
-                    </HeaderSettingsButton>
-                </Row>
+                <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.SETTINGS)}>
+                    <NotificationIcon icon={<SettingsIcon />} />
+                </HeaderSettingsButton>
             </Row>
         </HeaderRoot>
     );
