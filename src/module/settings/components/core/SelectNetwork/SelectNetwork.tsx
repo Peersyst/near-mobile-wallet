@@ -10,9 +10,9 @@ import { useState } from "react";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { useControlled } from "@peersyst/react-hooks";
 
-export interface SelectNetworkProps extends Omit<SelectProps<NetworkType>, "options"> {}
+export interface SelectNetworkProps extends Omit<SelectProps<NetworkType>, "options" | "value" | "defaultValue" | "onChange"> {}
 
-const SelectNetwork = ({ onClose, open, ...rest }: SelectNetworkProps): JSX.Element => {
+const SelectNetwork = ({ onClose, open, disabled, ...rest }: SelectNetworkProps): JSX.Element => {
     const translate = useTranslate();
     const {
         state: { loading },
@@ -58,7 +58,7 @@ const SelectNetwork = ({ onClose, open, ...rest }: SelectNetworkProps): JSX.Elem
     return (
         <>
             <SettingsSelect
-                disabled={!enableChangeNetwork || loading}
+                disabled={!enableChangeNetwork || loading || disabled}
                 options={networkOptions}
                 value={settings.network}
                 label={translate("select_your_network")}
