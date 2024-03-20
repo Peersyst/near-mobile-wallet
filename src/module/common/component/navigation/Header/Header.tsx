@@ -8,6 +8,7 @@ import useWalletGradient from "module/wallet/hook/useWalletGradient";
 import Chip from "../../display/Chip/Chip";
 import { useRecoilValue } from "recoil";
 import settingsState from "module/settings/state/SettingsState";
+import NotificationIcon from "../../display/NotificationIcon/NotificationIcon";
 
 const Header = (): JSX.Element => {
     const navigation = useNavigation();
@@ -28,7 +29,7 @@ const Header = (): JSX.Element => {
                 <LinearLogo startColor={startColor} endColor={endColor} />
                 <Row style={{ position: "absolute", right: 8 }}>
                     <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.SETTINGS)}>
-                        <SettingsIcon />
+                        <NotificationIcon icon={<SettingsIcon />} />
                     </HeaderSettingsButton>
                 </Row>
             </Row>
