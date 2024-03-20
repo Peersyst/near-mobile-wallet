@@ -7,19 +7,15 @@ export interface ExternalLinkButtonProps extends Omit<ButtonProps, "children" | 
     label: string;
     url: string;
     showIcon?: boolean;
-    positionIcon?: "left" | "right";
 }
 
-function ExternalLinkButton({ label, url, showIcon, positionIcon = "left", ...rest }: ExternalLinkButtonProps) {
+function ExternalLinkButton({ label, url, showIcon, ...rest }: ExternalLinkButtonProps) {
     function handlePress() {
         Linking.openURL(url);
     }
 
-    const showExternalLinkIconLeft = showIcon && positionIcon === "left" ? <ExternalLinkIcon style={{ fontSize: 20 }} /> : undefined;
-    const showExternalLinkIconRight = showIcon && positionIcon === "right" ? <ExternalLinkIcon style={{ fontSize: 20 }} /> : undefined;
-
     return (
-        <Button onPress={handlePress} leftIcon={showExternalLinkIconLeft} rightIcon={showExternalLinkIconRight} {...rest}>
+        <Button onPress={handlePress} leftIcon={showIcon ? <ExternalLinkIcon style={{ fontSize: 24 }} /> : undefined} {...rest}>
             {label}
         </Button>
     );

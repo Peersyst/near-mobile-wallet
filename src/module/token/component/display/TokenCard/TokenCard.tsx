@@ -17,7 +17,7 @@ const TokenCard = ({ token }: TokenCardProps): JSX.Element => {
         <TouchableWithoutFeedback onPress={() => showModal(DetailsTokenModal, { token: token })}>
             <MainListCard alignItems="center" justifyContent="space-between">
                 <TokenHeader token={token} />
-                <TokenBalance token={token} />
+                <TokenBalance token={token} variant="body3Strong" />
             </MainListCard>
         </TouchableWithoutFeedback>
     );
