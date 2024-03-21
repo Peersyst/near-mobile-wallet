@@ -94,7 +94,10 @@ const CreateWalletNavigatorGroup = () => {
                         <WalletMnemonicScreen onNextScreen={() => handleTabChange(CreateWalletScreens.PICK_WALLET_MNEMONIC)} />
                     </TabPanel>
                     <TabPanel index={CreateWalletScreens.PICK_WALLET_MNEMONIC}>
-                        <PickWalletMnemonicScreen onSubmit={() => handleTabChange(CreateWalletScreens.SET_WALLET_PIN)} />
+                        <PickWalletMnemonicScreen
+                            onSubmit={() => handleTabChange(CreateWalletScreens.SET_WALLET_PIN)}
+                            onNextScreen={() => handleTabChange(CreateWalletScreens.SET_WALLET_PIN)}
+                        />
                     </TabPanel>
                 </CardNavigatorModal>
             </LightThemeProvider>

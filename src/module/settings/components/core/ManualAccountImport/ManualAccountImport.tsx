@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import SettingsMenuItem from "../../navigation/SettingsMenuItem/SettingsMenuItem";
 import { useModal } from "@peersyst/react-native-components";
 import ManualAccountImportModal from "module/wallet/component/core/ManualAccountImportModal/ManualAccountImportModal";

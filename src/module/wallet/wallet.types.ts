@@ -40,6 +40,7 @@ export interface SecureWalletStorageType {
     pin: string | undefined;
     mnemonic: string | undefined;
     mainPrivateKey: string | undefined;
+    isBackupDone: boolean | undefined;
 }
 
 export type StorageWallet = UnencryptedWalletInfo;
@@ -49,6 +50,7 @@ export interface WalletStorageType {
     mnemonic: SecureWalletStorageType["mnemonic"];
     testnet: StorageWallet[];
     mainnet: StorageWallet[];
+    isBackupDone: SecureWalletStorageType["isBackupDone"];
 }
 
 export interface SetWalletsParams {
