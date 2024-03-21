@@ -318,5 +318,6 @@
     "swap": "Swap",
     "backup_wallet_advise_text_2_text": "Remember that neither we nor NEAR will ever ask you for your mnemonic or private key. Only you should know them and never share them with anyone.",
     "backup_wallet_advise_text_2_text_2": "If someone has asked you for your mnemonic or private key, they likely only want to steal your account",
-    "IWillDoItLater": "I’ll do it later"
+    "IWillDoItLater": "I’ll do it later",
+    "notBackup": "Important! You have not done yet"
 }
