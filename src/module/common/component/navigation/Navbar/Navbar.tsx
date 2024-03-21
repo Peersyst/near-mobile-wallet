@@ -6,7 +6,7 @@ import { Col } from "@peersyst/react-native-components";
 import Steps from "module/common/component/display/Steps/Steps";
 import { NavbarTitle } from "./NavbarTitle";
 
-const Navbar = ({ back, title, onBack, steps, style }: NavbarProps): JSX.Element => {
+const Navbar = ({ back, title, onBack, steps, style, align = "center" }: NavbarProps): JSX.Element => {
     const navigation = useNavigation();
 
     const goBack = () => {
@@ -14,9 +14,8 @@ const Navbar = ({ back, title, onBack, steps, style }: NavbarProps): JSX.Element
             navigation.goBack();
         }
     };
-    //style: { justifyContent: "flex-start", paddingLeft: 30 }
     return (
-        <NavbarRoot style={style}>
+        <NavbarRoot style={style} align={align}>
             {back && (
                 <BackIconRoot onPress={onBack || goBack}>
                     <BackIcon />

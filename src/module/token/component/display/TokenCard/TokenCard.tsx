@@ -4,7 +4,7 @@ import { Token } from "near-peersyst-sdk";
 import DetailsTokenModal from "../../core/DetailsTokenModal/DetailsTokenModal";
 import { TouchableWithoutFeedback } from "react-native";
 import TokenBalance from "../TokenBalance/TokenBalance";
-import TokenHeader from "../TokenHeader/TokenHeader";
+import TokenNameWithIcon from "../TokenNameWithIcon/TokenNameWithIcon";
 
 export interface TokenCardProps {
     token: Token;
@@ -16,8 +16,17 @@ const TokenCard = ({ token }: TokenCardProps): JSX.Element => {
     return (
         <TouchableWithoutFeedback onPress={() => showModal(DetailsTokenModal, { token: token })}>
             <MainListCard alignItems="center" justifyContent="space-between">
-                <TokenHeader token={token} />
-                <TokenBalance token={token} variant="body3Strong" />
+                <TokenNameWithIcon
+                    token={token}
+                    gap={16}
+                    typographyProps={{ variant: "body3Strong", numberOfLines: 1, style: { flex: 0.6 } }}
+                />
+                <TokenBalance
+                    balanceProps={{ variant: "body3Strong", textAlign: "right" }}
+                    fiatBalanceProps={{ variant: "body4Strong", light: true }}
+                    token={token}
+                    style={{ flex: 1 }}
+                />
             </MainListCard>
         </TouchableWithoutFeedback>
     );

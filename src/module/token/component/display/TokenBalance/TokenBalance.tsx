@@ -1,23 +1,26 @@
 import { Col } from "@peersyst/react-native-components";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import { Token } from "near-peersyst-sdk";
-import FiatBalance from "module/wallet/component/display/FiatBalance/FiatBalance";
-import { FlexAlignType } from "react-native";
-import { TypographyProps } from "module/common/component/display/Typography/Typography";
+import FiatBalance, { FiatBalanceProps } from "module/wallet/component/display/FiatBalance/FiatBalance";
+import { DimensionValue, FlexAlignType, ViewStyle } from "react-native";
+import { BalanceProps } from "module/wallet/component/display/Balance/Balance.types";
 
-export interface TokenBalanceProps extends TypographyProps {
+export interface TokenBalanceProps {
     token: Token;
     alignItems?: FlexAlignType | undefined;
-    gap?: number;
+    gap?: DimensionValue | undefined;
+    balanceProps?: Omit<BalanceProps, "balance">;
+    fiatBalanceProps?: Omit<FiatBalanceProps, "balance">;
+    style?: ViewStyle;
 }
 
-const TokenBalance = ({ token, alignItems = "flex-end", ...rest }: TokenBalanceProps): JSX.Element => {
+const TokenBalance = ({ token, alignItems = "flex-end", gap, balanceProps, fiatBalanceProps, style }: TokenBalanceProps): JSX.Element => {
     const { symbol } = token.metadata;
 
     return (
-        <Col alignItems={alignItems} justifyContent="center" gap={2} flex={1}>
-            <Balance balance={token.balance} textAlign="right" units={symbol} numberOfLines={undefined} {...rest} />
-            <FiatBalance light balance={token.balance} token={token} variant="body4Strong" />
+        <Col alignItems={alignItems} justifyContent="center" gap={gap} style={style}>
+            <Balance variant={balanceProps?.variant || "body3Strong"} balance={token.balance} units={symbol} {...balanceProps} />
+            <FiatBalance variant={balanceProps?.variant || "body4Strong"} balance={token.balance} token={token} {...fiatBalanceProps} />
         </Col>
     );
 };
