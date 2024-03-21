@@ -8,6 +8,7 @@ import { TypographyProps } from "module/common/component/display/Typography/Typo
 export interface TokenBalanceProps extends TypographyProps {
     token: Token;
     alignItems?: FlexAlignType | undefined;
+    gap?: number;
 }
 
 const TokenBalance = ({ token, alignItems = "flex-end", ...rest }: TokenBalanceProps): JSX.Element => {

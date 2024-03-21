@@ -17,7 +17,7 @@ const DetailsTokenModal = createBackdrop<DetailsTokenModalProps>(({ token, open:
             open={open}
             onClose={() => setOpen(false)}
             closable
-            navbar={{ back: true, title: <TokenHeader token={token} />, style: { justifyContent: "flex-start", paddingLeft: 30 } }}
+            navbar={{ back: true, title: <TokenHeader token={token} /> }}
             {...rest}
         >
             <Typography textAlign="center" variant="body3Regular" color="overlay.60%">

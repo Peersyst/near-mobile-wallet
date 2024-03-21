@@ -14,7 +14,7 @@ const Navbar = ({ back, title, onBack, steps, style }: NavbarProps): JSX.Element
             navigation.goBack();
         }
     };
-
+    //style: { justifyContent: "flex-start", paddingLeft: 30 }
     return (
         <NavbarRoot style={style}>
             {back && (

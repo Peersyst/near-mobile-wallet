@@ -18,7 +18,7 @@ const WalletCardButtons = (): JSX.Element => {
     const enableBuy = useConfig("enableBuy");
     const isMainnet = useIsMainnet();
     const showBuyButton = enableBuy && isMainnet;
-    const uriSwap = useGetSwapLink({});
+    const uriSwap = useGetSwapLink();
     return (
         <Row gap={4}>
             {showBuyButton && (
