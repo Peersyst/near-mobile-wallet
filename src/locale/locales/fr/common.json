@@ -254,7 +254,7 @@
     "date": "Date",
     "shareTxText": "Vérifiez la transaction que je viens de faire dans le réseau NEAR en utilisant le NEAR Mobile wallet dans l'explorateur : {{link}}",
     "dapps": "DApps",
-    "scan": "Scanner",
+    "scan": "Scan",
     "sign": "Signer",
     "reject": "Rejeter",
     "signMessage": "Signer le message",
@@ -314,5 +314,6 @@
     "delegateCall": "Déléguer l'appel à",
     "importAccountManually": "Importer le compte manuellement",
     "importAccountManuallyDescription": "Si vous pensez avoir un compte qui n'apparaît pas, vous pouvez l'importer manuellement. Entrez simplement le compte que vous souhaitez importer.",
-    "enterTheAccount": "Entrez le compte"
+    "enterTheAccount": "Entrez le compte",
+    "swap": "Échanger"
 }
