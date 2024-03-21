@@ -111,7 +111,7 @@
     "delete": "Xóa",
     "back_up_your_accounts": "Sao lưu ví",
     "backup_wallet_advise_text": "Nếu tiếp tục bạn sẽ thấy cụm từ khôi phục hoặc mã bí mật cho từng tài khoản. Nếu thiết bị bị mất hoặc đánh cắp, bạn chỉ có thể lấy lại tiền của mình bằng cụm từ khôi phục này hoặc mã bí mật của từng tài khoản.",
-    "backup_wallet_advise_text_2": "Hãy nhớ rằng các tài khoản gắn thẻ là đã nhập chỉ có thể  được truy xuất với mã bí mật tương ứng với tài khoản đó.",
+    "backup_wallet_advise_text_2_title": "Thông báo an ninh (đọc kỹ):",
     "back_up_now": "Sao lưu ngay",
     "close": "Đóng",
     "mnemonic_for": "Cụm từ khôi phục cho {{name}}",
@@ -315,5 +315,7 @@
     "importAccountManually": "Nhập tài khoản theo cách thủ công",
     "importAccountManuallyDescription": "Nếu bạn cho rằng mình có tài khoản không hiển thị, bạn có thể nhập tài khoản đó theo cách thủ công. Chỉ cần nhập tài khoản bạn muốn nhập.",
     "enterTheAccount": "Nhập tài khoản",
+    "backup_wallet_advise_text_2_text": "Hãy nhớ rằng cả chúng tôi lẫn NEAR sẽ không bao giờ yêu cầu bạn cung cấp mnemonic hoặc khóa riêng tư của bạn. Chỉ có bạn mới biết chúng và không bao giờ chia sẻ với bất kỳ ai.",
+    "backup_wallet_advise_text_2_text_2": "Nếu có ai đó yêu cầu bạn cung cấp mnemonic hoặc khóa riêng tư của bạn, họ có thể chỉ muốn đánh cắp tài khoản của bạn.",
     "swap": "Đổi"
 }

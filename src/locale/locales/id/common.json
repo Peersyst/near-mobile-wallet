@@ -111,7 +111,7 @@
     "delete": "Hapus",
     "back_up_your_accounts": "Buat cadangan dompet Anda",
     "backup_wallet_advise_text": "Jika Anda melanjutkan, Anda akan melihat frasa pemulihan atau kunci pribadi untuk setiap akun Anda. Jika perangkat Anda hilang atau dicuri, Anda hanya dapat memulihkan dana Anda dengan frasa pemulihan ini atau kunci untuk setiap akun",
-    "backup_wallet_advise_text_2": "Ingat bahwa akun yang ditandai sebagai diimpor hanya dapat diambil dengan kunci pribadi yang sesuai dengan akun tersebut",
+    "backup_wallet_advise_text_2_title": "Pemberitahuan keamanan (baca dengan cermat):",
     "back_up_now": "Cadangkan sekarang",
     "close": "Menutup",
     "mnemonic_for": "Mnemonic untuk {{name}}",
@@ -315,5 +315,7 @@
     "importAccountManually": "Impor akun secara manual",
     "importAccountManuallyDescription": "Jika Anda merasa memiliki akun yang tidak muncul, Anda dapat mengimpornya secara manual. Cukup masukkan akun yang ingin Anda impor.",
     "enterTheAccount": "Masukkan akun",
+    "backup_wallet_advise_text_2_text": "Ingatlah bahwa baik kami maupun NEAR tidak akan pernah meminta Anda untuk mnemonik atau kunci privat Anda. Hanya Anda yang seharusnya mengetahuinya dan jangan pernah membagikannya kepada siapapun. ",
+    "backup_wallet_advise_text_2_text_2": "Jika seseorang telah meminta Anda untuk mnemonik atau kunci privat Anda, kemungkinan mereka hanya ingin mencuri akun Anda.",
     "swap": "Tukar"
 }
