@@ -64,6 +64,8 @@ declare module "@peersyst/react-native-components" {
         approveTxWaitTime: number; //In seconds
         testnetTokenPriceUrl: string;
         mainnetTokenPriceUrl: string;
+        testnetSwapUrl: string;
+        mainnetSwapUrl: string;
         refetchIntervals: RefetchIntervals;
         indexerEstimatedDelay: number;
         nearMobileUrl: string;

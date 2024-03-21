@@ -316,5 +316,6 @@
     "importAccountManuallyDescription": "Ikiwa unafikiri kuwa una akaunti ambayo haionekani, unaweza kuiingiza wewe mwenyewe. Ingiza tu akaunti unayotaka kuingiza.",
     "enterTheAccount": "Ingiza akaunti",
     "backup_wallet_advise_text_2_text": "Kumbuka kwamba wala sisi wala NEAR hatutawahi kuuliza nembo yako au ufunguo wako wa faragha. Ni wewe pekee unapaswa kuzijua na kamwe usizigawanye na yeyote.",
-    "backup_wallet_advise_text_2_text_2": "Ikiwa mtu amekuuliza nembo yako au ufunguo wako wa faragha, huenda wanataka tu kuiba akaunti yako."
+    "backup_wallet_advise_text_2_text_2": "Ikiwa mtu amekuuliza nembo yako au ufunguo wako wa faragha, huenda wanataka tu kuiba akaunti yako.",
+    "swap": "Badilisha"
 }
