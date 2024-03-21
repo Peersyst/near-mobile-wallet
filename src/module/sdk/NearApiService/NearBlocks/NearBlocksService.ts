@@ -94,7 +94,25 @@ export class NearBlocksService extends FetchService {
         return actions;
     }
 
-    private addValidatorAmountsFromTxs(txs: NearBlocksTransactionResponseDto, valAmounts: ValidatorAmount): ValidatorAmount {
+    private getAmountFromLogs(logs: string[], address: string): number {
+        for (const log of logs) {
+            const splittedLogs = log.split(" ");
+            if (splittedLogs[0] === `@${address}` && splittedLogs[1] === "withdrawing") {
+                const amount = parseInt(splittedLogs[2].slice(0, -1), 10);
+                if (!Number.isNaN(amount)) {
+                    return amount;
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    private addValidatorAmountsFromTxs(
+        txs: NearBlocksTransactionResponseDto,
+        valAmounts: ValidatorAmount,
+        address: string,
+    ): ValidatorAmount {
         for (let i = 0; i < txs.txns.length; i += 1) {
             const tx = txs.txns[i];
             if (!valAmounts[tx.receiver_account_id]) {
@@ -106,15 +124,14 @@ export class NearBlocksService extends FetchService {
             } else if (DEPOSIT_METHOD === tx.actions[0].method) {
                 valAmounts[tx.receiver_account_id] += tx.actions_agg.deposit;
             } else if (WITHDRAW_METHOD === tx.actions[0].method) {
-                if (tx.logs[0]) {
-                    const amount = parseInt(tx.logs[0].split(" ")[2].slice(0, -1), 10);
-                    valAmounts[tx.receiver_account_id] -= amount;
-                }
+                valAmounts[tx.receiver_account_id] -= this.getAmountFromLogs(tx.logs, address);
             } else if (WITHDRAW_ALL_METHOD === tx.actions[0].method) {
-                if (tx.logs[0]) {
-                    const amount = parseInt(tx.logs[0].split(" ")[2].slice(0, -1), 10);
-                    valAmounts[tx.receiver_account_id] -= amount;
-                }
+                valAmounts[tx.receiver_account_id] -= this.getAmountFromLogs(tx.logs, address);
+            }
+
+            // If it reaches negative values, start again
+            if (valAmounts[tx.receiver_account_id] < 0) {
+                valAmounts[tx.receiver_account_id] = 0;
             }
         }
 
@@ -132,20 +149,18 @@ export class NearBlocksService extends FetchService {
         let resp = await this.fetch<NearBlocksTransactionResponseDto>(
             `/account/${address}/txns?action=${action}&page=${page}&per_page=${pageSize}&order=${order}`,
         );
-        validatorAmounts = this.addValidatorAmountsFromTxs(resp, validatorAmounts);
+        validatorAmounts = this.addValidatorAmountsFromTxs(resp, validatorAmounts, address);
 
         while (resp.txns.length === pageSize) {
             page += 1;
             resp = await this.fetch<NearBlocksTransactionResponseDto>(
                 `/account/${address}/txns?action=${action}&page=${page}&per_page=${pageSize}&order=${order}`,
             );
-            validatorAmounts = this.addValidatorAmountsFromTxs(resp, validatorAmounts);
+            validatorAmounts = this.addValidatorAmountsFromTxs(resp, validatorAmounts, address);
         }
 
         for (const key of Object.keys(validatorAmounts)) {
-            if (validatorAmounts[key] > 0) {
-                deposits.push({ validatorId: key, amount: validatorAmounts[key] });
-            }
+            deposits.push({ validatorId: key, amount: validatorAmounts[key] });
         }
 
         return deposits;

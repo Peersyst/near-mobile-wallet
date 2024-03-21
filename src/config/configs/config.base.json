@@ -1,8 +1,8 @@
 {
     "projectName": "near-mobile-wallet",
     "minimumTransactionAmount": 61,
-    "mainnetExplorerLink": "https://explorer.mainnet.near.org",
-    "testnetExplorerLink": "https://explorer.testnet.near.org",
+    "mainnetExplorerLink": "https://nearblocks.io",
+    "testnetExplorerLink": "https://testnet.nearblocks.io",
     "indexerTestnetUrl": "https://testnet-api.kitwallet.app",
     "nearblocksTesnetApiUrl": "https://api-testnet.nearblocks.io/v1",
     "indexerMainnetUrl": "https://api.kitwallet.app",
