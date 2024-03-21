@@ -14,6 +14,7 @@ const WalletMnemonicBackup = ({ onClose }: WalletMnemonicBackupProps): JSX.Eleme
         state: { isBackupDone },
         setState,
     } = useWalletState();
+
     useEffect(() => {
         const getStorageMnemonic = async () => {
             setMnemonic((await WalletStorage.getMnemonic())?.split(" "));
