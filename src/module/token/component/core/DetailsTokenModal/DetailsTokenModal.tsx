@@ -42,7 +42,7 @@ const DetailsTokenModal = createBackdrop<DetailsTokenModalProps>(({ token, open:
                         variant="secondary"
                         size="md"
                         fullWidth
-                        onPress={() => showModal(SendModal, { defaultAsset: { type: AssetType.TOKEN, ft: token } })}
+                        onPress={() => showModal(SendModal, { defaultAsset: { type: AssetType.FT, ft: token } })}
                     >
                         {capitalize(translate("send"))}
                     </DetailsTokenButton>

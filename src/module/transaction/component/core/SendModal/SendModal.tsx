@@ -27,7 +27,7 @@ const SendModal = createBackdrop(({ onExited, defaultAsset, ...rest }: SendModal
 
     const handleOnBack = () => {
         if (activeIndex === SendScreens.SEND_TO_ADDRESS) {
-            setSendState((oldState) => ({ ...oldState, amount: undefined, asset: { type: AssetType.TOKEN } }));
+            setSendState((oldState) => ({ ...oldState, amount: undefined, asset: { type: AssetType.NATIVE_TOKEN } }));
         }
         setActiveIndex((oldIndex) => oldIndex - 1);
     };

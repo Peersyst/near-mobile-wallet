@@ -65,7 +65,7 @@ const SendSetAmountScreen = ({ defaultAsset }: SendSetAmountScreenProps): JSX.El
                         value={amount}
                         onChange={(amount) => setAmount(amount)}
                         label={translate("select_the_amount_to_send")}
-                        asset={asset ?? { type: AssetType.TOKEN }}
+                        asset={asset ?? { type: AssetType.NATIVE_TOKEN }}
                         placeholder={translate("enter_amount")}
                         name={SEND_SET_AMOUNT_FORM_KEYS.amount}
                         index={sendState.senderWalletIndex}
