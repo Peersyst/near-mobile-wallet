@@ -6,18 +6,19 @@ import useNavigation from "module/common/hook/useNavigation";
 import { MainScreens } from "../MainNavigatorGroup/MainScreens";
 import useWalletGradient from "module/wallet/hook/useWalletGradient";
 import NotificationIcon from "../../display/NotificationIcon/NotificationIcon";
+import useIsBackupDone from "module/settings/hook/useIsBackupDone";
 
 const Header = (): JSX.Element => {
     const navigation = useNavigation();
     const [startColor, endColor] = useWalletGradient();
-
+    const isBackupDone = useIsBackupDone();
     return (
         <HeaderRoot>
             <Row alignItems="center" justifyContent="center" flex={1}>
                 <HeaderNetworkChip />
                 <LinearLogo startColor={startColor} endColor={endColor} />
                 <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.SETTINGS)}>
-                    <NotificationIcon icon={<SettingsIcon />} />
+                    <NotificationIcon icon={<SettingsIcon />} hasNotifications={!isBackupDone} />
                 </HeaderSettingsButton>
             </Row>
         </HeaderRoot>
