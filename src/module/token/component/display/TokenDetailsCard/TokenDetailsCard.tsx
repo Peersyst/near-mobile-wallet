@@ -14,14 +14,20 @@ export interface TokenDetailsCardProps {
 const TokenDetailsCard = ({ token }: TokenDetailsCardProps): JSX.Element => {
     const translate = useTranslate();
     const uriSwap = useGetSwapLink({ contractId: token.contractId });
+
     return (
         <TokenDetailsCardRoot gap={16} textAlign="center">
-            <TokenBalance variant="body3Strong" token={token} alignItems="center" />
-            <Row gap={4} justifyContent="center">
-                <TokenDetailsCardButton variant="secondary" size="md" fullWidth>
+            <TokenBalance
+                balanceProps={{ variant: "body1Strong" }}
+                fiatBalanceProps={{ variant: "body4Strong" }}
+                token={token}
+                alignItems="center"
+            />
+            <Row gap={8}>
+                <TokenDetailsCardButton variant="quaternary" size="lg">
                     {capitalize(translate("send"))}
                 </TokenDetailsCardButton>
-                <TokenDetailsCardButton variant="secondary" size="md" fullWidth onPress={() => Linking.openURL(uriSwap)}>
+                <TokenDetailsCardButton variant="quaternary" size="lg" onPress={() => Linking.openURL(uriSwap)}>
                     {capitalize(translate("swap"))}
                 </TokenDetailsCardButton>
             </Row>

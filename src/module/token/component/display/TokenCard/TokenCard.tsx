@@ -14,16 +14,12 @@ const TokenCard = ({ token }: TokenCardProps): JSX.Element => {
     const { showModal } = useModal();
 
     return (
-        <TouchableWithoutFeedback onPress={() => showModal(DetailsTokenModal, { token: token })}>
+        <TouchableWithoutFeedback onPress={() => showModal(DetailsTokenModal, { token })}>
             <MainListCard alignItems="center" justifyContent="space-between">
-                <TokenNameWithIcon
-                    token={token}
-                    gap={16}
-                    typographyProps={{ variant: "body3Strong", numberOfLines: 1, style: { flex: 0.6 } }}
-                />
+                <TokenNameWithIcon token={token} variant="body3Strong" typographyStyle={{ flex: 0.6 }} />
                 <TokenBalance
                     balanceProps={{ variant: "body3Strong", textAlign: "right" }}
-                    fiatBalanceProps={{ variant: "body4Strong", light: true }}
+                    fiatBalanceProps={{ variant: "body4Strong" }}
                     token={token}
                     style={{ flex: 1 }}
                 />
