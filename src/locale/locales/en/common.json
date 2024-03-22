@@ -317,7 +317,7 @@
     "enterTheAccount": "Enter the account",
     "swap": "swap",
     "addNear": "add near",
-    "buyNear" : "Buy NEAR",
-    "depositNearFromOtherWallet":"Deposit NEAR from other wallet",
-    "iNeedSupport":"I need support"
+    "buyNear": "Buy NEAR",
+    "depositNearFromOtherWallet": "Deposit NEAR from other wallet",
+    "iNeedSupport": "I need support"
 }
