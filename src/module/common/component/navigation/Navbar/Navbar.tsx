@@ -22,7 +22,7 @@ const Navbar = ({ back, title, onBack, steps, style, titlePosition = "center" }:
                 </BackIconRoot>
             )}
             <Col alignItems="center" style={{ ...(back && { paddingHorizontal: 20 }) }}>
-                {title && typeof title === "string" ? <NavbarTitle title={title} textAlign="center" /> : title}
+                {title && <NavbarTitle title={title} />}
                 {steps && <Steps index={steps.index} length={steps.length} />}
             </Col>
         </NavbarRoot>

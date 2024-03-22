@@ -7,9 +7,11 @@ export interface NavbarTitleProps extends Omit<TypographyProps, "variant" | "chi
 }
 
 export const NavbarTitle = ({ title, ...rest }: NavbarTitleProps) => {
-    return (
-        <Typography variant="body1Strong" {...rest}>
+    return typeof title === "string" ? (
+        <Typography variant="body1Strong" textAlign="center" {...rest}>
             {title}
         </Typography>
+    ) : (
+        title
     );
 };
