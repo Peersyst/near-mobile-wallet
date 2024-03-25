@@ -315,5 +315,6 @@
     "importAccountManually": "手动导入账户",
     "importAccountManuallyDescription": "如果您认为您有帐户未显示，您可以手动导入。只需输入您要导入的帐户即可。",
     "enterTheAccount": "输入帐户",
-    "swap": "交换"
+    "swap": "交换",
+    "transfer": "转账"
 }

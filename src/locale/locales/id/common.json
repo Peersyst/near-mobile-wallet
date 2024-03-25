@@ -315,5 +315,6 @@
     "importAccountManually": "Impor akun secara manual",
     "importAccountManuallyDescription": "Jika Anda merasa memiliki akun yang tidak muncul, Anda dapat mengimpornya secara manual. Cukup masukkan akun yang ingin Anda impor.",
     "enterTheAccount": "Masukkan akun",
-    "swap": "Tukar"
+    "swap": "Tukar",
+    "transfer": "Transfer"
 }
