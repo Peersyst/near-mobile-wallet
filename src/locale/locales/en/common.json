@@ -320,5 +320,10 @@
     "IWillDoItLater": "I’ll do it later",
     "notBackup": "Important! You have not done yet",
     "swap": "swap",
-    "theresNotTransactionsYetMeanwhileYouCan": "There are no transactions yet. Meanwhile, you can"
+    "addNear": "add near",
+    "buyNear": "Buy NEAR",
+    "depositNearFromOtherWallet": "Deposit NEAR from other wallet",
+    "iNeedSupport": "I need support",
+    "theresNotTransactionsYetMeanwhileYouCan": "There are no transactions yet. Meanwhile, you can",
+    "addNearButton": "Add NEAR"
 }
