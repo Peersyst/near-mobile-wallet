@@ -5,6 +5,7 @@ declare module "@peersyst/react-native-components" {
         primary: true;
         secondary: true;
         tertiary: true;
+        quaternary: true;
         contrast: true;
         destructive: true;
         glass: true;
