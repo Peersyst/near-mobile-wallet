@@ -317,5 +317,10 @@
     "enterTheAccount": "Entrez le compte",
     "backup_wallet_advise_text_2_text": "Souvenez-vous que ni nous ni NEAR ne vous demanderons jamais votre mnémonique ou votre clé privée. Seul vous devriez les connaître et ne jamais les partager avec personne.",
     "backup_wallet_advise_text_2_text_2": "Si quelqu'un vous a demandé votre mnémonique ou votre clé privée, il est probable qu'il veuille seulement voler votre compte.",
-    "swap": "Échanger"
+    "swap": "Échanger",
+    "theresNotTransactionsYetMeanwhileYouCan": "Il n'y a pas encore de transactions. En attendant, vous pouvez",
+    "addNearButton": "Ajouter NEAR",
+    "andThisYouWillBeAbleToStartUsingTheWallet":"et ainsi vous pourrez commencer à utiliser le portefeuille",
+    "backupWallet" : "Sauvegarder le portefeuille",
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "et ainsi vous pourrez récupérer votre portefeuille quand vous en aurez besoin sans perdre vos NEAR"
 }

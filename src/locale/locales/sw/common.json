@@ -317,5 +317,10 @@
     "enterTheAccount": "Ingiza akaunti",
     "backup_wallet_advise_text_2_text": "Kumbuka kwamba wala sisi wala NEAR hatutawahi kuuliza nembo yako au ufunguo wako wa faragha. Ni wewe pekee unapaswa kuzijua na kamwe usizigawanye na yeyote.",
     "backup_wallet_advise_text_2_text_2": "Ikiwa mtu amekuuliza nembo yako au ufunguo wako wa faragha, huenda wanataka tu kuiba akaunti yako.",
-    "swap": "Badilisha"
+    "swap": "Badilisha",
+    "theresNotTransactionsYetMeanwhileYouCan": "Hakuna miamala bado. Wakati huo unaweza",
+    "addNearButton": "Ongeza NEAR",
+    "andThisYouWillBeAbleToStartUsingTheWallet":"na hivi utaweza kuanza kutumia pochi",
+    "backupWallet" : "Hifadhi pochi",
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "na hivi utaweza kurejesha pochi yako wakati unapohitaji bila kupoteza NEAR yako"
 }
