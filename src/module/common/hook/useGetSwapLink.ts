@@ -1,7 +1,12 @@
 import { config } from "config";
 import useIsMainnet from "module/settings/hook/useIsMainnet";
 
-export default function useGetSwapLink(): string {
+export interface GetSwapLinkParams {
+    contractId?: string;
+}
+
+export default function useGetSwapLink({ contractId = "near" }: GetSwapLinkParams = {}): string {
     const isMainnet = useIsMainnet();
-    return isMainnet ? config.mainnetSwapUrl : config.testnetSwapUrl;
+    const swapUrl = isMainnet ? config.mainnetSwapUrl : config.testnetSwapUrl;
+    return `${swapUrl}/#${contractId}|near`;
 }

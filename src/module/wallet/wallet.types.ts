@@ -2,7 +2,7 @@ import { NetworkType } from "module/settings/state/SettingsState";
 import { NftToken, Token } from "near-peersyst-sdk";
 
 export enum AssetType {
-    TOKEN = "token",
+    NATIVE_TOKEN = "native_token",
     FT = "ft",
     NFT = "nft",
 } //token refers as near token
