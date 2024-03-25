@@ -315,5 +315,6 @@
     "importAccountManually": "Importa account manualmente",
     "importAccountManuallyDescription": "Se ritieni di avere un account che non viene visualizzato, puoi importarlo manualmente. Inserisci semplicemente l'account che desideri importare.",
     "enterTheAccount": "Inserisci l'account",
-    "swap": "Scambio"
+    "swap": "Scambio",
+    "iWillDoItLater": "Lo farò più tardi"
 }

@@ -315,5 +315,6 @@
     "importAccountManually": "手動導入帳戶",
     "importAccountManuallyDescription": "如果您認為您有帳戶未顯示，您可以手動匯入。只需輸入您要匯入的帳戶即可。",
     "enterTheAccount": "輸入帳戶",
-    "swap": "交換"
+    "swap": "交換",
+    "iWillDoItLater": "稍後再說"
 }
