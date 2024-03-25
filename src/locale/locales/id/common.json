@@ -315,7 +315,7 @@
     "importAccountManually": "Impor akun secara manual",
     "importAccountManuallyDescription": "Jika Anda merasa memiliki akun yang tidak muncul, Anda dapat mengimpornya secara manual. Cukup masukkan akun yang ingin Anda impor.",
     "enterTheAccount": "Masukkan akun",
-    "backup_wallet_advise_text_2_text": "Ingatlah bahwa baik kami maupun NEAR tidak akan pernah meminta Anda untuk mnemonik atau kunci privat Anda. Hanya Anda yang seharusnya mengetahuinya dan jangan pernah membagikannya kepada siapapun. ",
-    "backup_wallet_advise_text_2_text_2": "Jika seseorang telah meminta Anda untuk mnemonik atau kunci privat Anda, kemungkinan mereka hanya ingin mencuri akun Anda.",
+    "backup_wallet_advise_description": "Ingatlah bahwa baik kami maupun NEAR tidak akan pernah meminta Anda untuk mnemonik atau kunci privat Anda. Hanya Anda yang seharusnya mengetahuinya dan jangan pernah membagikannya kepada siapapun. ",
+    "backup_wallet_advise_description_2": "Jika seseorang telah meminta Anda untuk mnemonik atau kunci privat Anda, kemungkinan mereka hanya ingin mencuri akun Anda.",
     "swap": "Tukar"
 }

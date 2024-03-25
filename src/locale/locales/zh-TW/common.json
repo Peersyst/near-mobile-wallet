@@ -315,7 +315,7 @@
     "importAccountManually": "手動導入帳戶",
     "importAccountManuallyDescription": "如果您認為您有帳戶未顯示，您可以手動匯入。只需輸入您要匯入的帳戶即可。",
     "enterTheAccount": "輸入帳戶",
-    "backup_wallet_advise_text_2_text": "請記住，我們和NEAR都不會要求您提供助憶詞或私鑰。只有您應該知道它們，永遠不要與任何人分享。",
-    "backup_wallet_advise_text_2_text_2": "如果有人要求您提供助憶詞或私鑰，他們可能只是想偷竊您的帳戶。",
+    "backup_wallet_advise_description": "請記住，我們和NEAR都不會要求您提供助憶詞或私鑰。只有您應該知道它們，永遠不要與任何人分享。",
+    "backup_wallet_advise_description_2": "如果有人要求您提供助憶詞或私鑰，他們可能只是想偷竊您的帳戶。",
     "swap": "交換"
 }
