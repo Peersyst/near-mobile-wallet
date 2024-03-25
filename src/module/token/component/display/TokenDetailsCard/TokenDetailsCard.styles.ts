@@ -9,7 +9,6 @@ export const TokenDetailsCardRoot = styled(Paper, { elevation: 0 })(({ theme: { 
     backgroundColor: palette.overlay["4%"],
 }));
 
-export const TokenDetailsCardButton = styled(Button, { size: "md", variant: "secondary" })(({ theme: { palette } }) => ({
-    color: palette.blue,
-    minWidth: 152,
+export const TokenDetailsCardButton = styled(Button)(() => ({
+    flex: 1,
 }));

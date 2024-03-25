@@ -262,7 +262,7 @@
     "signMessageDescription": "{{receiver}}正在要求您簽署以下訊息：",
     "addFullAccessKey": "新增完整存取金鑰",
     "addFullAccessKeyDescription": "完整存取您的帳戶",
-    "confirmConnectionWith": "確認與{{name}}的連接",
+    "confirmConnectionWith": "確認與的連接",
     "confirmConnectionWithDescription": "連接後，{{name}}將擁有以下權限：",
     "allowedGas": "允許的Gas",
     "methodNames": "方法名稱",

@@ -16,6 +16,7 @@ import {
     dbio,
     deip,
     disc,
+    drip,
     eth,
     flx,
     gear,
@@ -132,4 +133,5 @@ export const SUPPORTED_TOKENS_IMAGES = {
     STNEAR: stnear,
     USN: usn,
     HOT: hot,
+    DRIP: drip,
 };
