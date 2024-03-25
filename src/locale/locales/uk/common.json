@@ -320,7 +320,7 @@
     "swap": "Обмін",
     "theresNotTransactionsYetMeanwhileYouCan": "Поки що немає транзакцій. Можливо, ви хочете",
     "addNearButton": "додати NEAR",
-    "andThisYouWillBeAbleToStartUsingTheWallet":"і почати використовувати гаманець.",
-    "backupWallet" : "Резервне копіювання гаманця",
+    "andThisYouWillBeAbleToStartUsingTheWallet": "і почати використовувати гаманець.",
+    "backupWallet": "Резервне копіювання гаманця",
     "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "і ви зможете відновити свій гаманець, коли вам це знадобиться, не втративши свій NEAR."
 }

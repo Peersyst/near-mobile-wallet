@@ -320,6 +320,6 @@
     "theresNotTransactionsYetMeanwhileYouCan": "Chưa có giao dịch nào. Trong khi chờ, bạn có thể:",
     "addNearButton": "Thêm NEAR",
     "andThisYouWillBeAbleToStartUsingTheWallet": "và bạn sẽ có thể bắt đầu sử dụng ví của mình.",
-    "backupWallet" : "Sao lưu ví",
+    "backupWallet": "Sao lưu ví",
     "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "và bạn sẽ có thể khôi phục ví của mình khi cần mà không mất NEAR của mình."
 }

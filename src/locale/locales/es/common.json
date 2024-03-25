@@ -320,7 +320,7 @@
     "swap": "Swap",
     "theresNotTransactionsYetMeanwhileYouCan": "Aún no hay transacciones. Mientras tanto, puedes",
     "addNearButton": "Añadir NEAR",
-    "andThisYouWillBeAbleToStartUsingTheWallet":"y así podrás empezar a usar la wallet",
-    "backupWallet" : "Respaldar wallet",
+    "andThisYouWillBeAbleToStartUsingTheWallet": "y así podrás empezar a usar la wallet",
+    "backupWallet": "Respaldar wallet",
     "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "y así podrás recuperar tu wallet cuando lo necesites sin perder tus NEAR"
 }

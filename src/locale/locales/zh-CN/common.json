@@ -321,6 +321,6 @@
     "theresNotTransactionsYetMeanwhileYouCan": "目前没有交易。与此同时，您可以",
     "addNearButton": "添加 NEAR",
     "andThisYouWillBeAbleToStartUsingTheWallet": "这样，您就可以开始使用钱包。",
-    "backupWallet" : "备份钱包",
+    "backupWallet": "备份钱包",
     "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "这样，您就可以在需要时恢复您的钱包，而不会丢失您的 NEAR。"
 }
