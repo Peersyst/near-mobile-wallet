@@ -295,7 +295,7 @@
     "viewBalancePermission": "Consultar el balance de su cuenta autorizada",
     "callMethodsPermission": "Llamar a métodos del contrato inteligente en nombre de su cuenta permitida",
     "notTransferTokensPermission": "No permite que la aplicación transfiera tokens",
-    "contract": "Contracto",
+    "contract": "Contrato",
     "networkFeeAllowance": "Comisión de red",
     "networkFeeAllowanceDescription": "La aplicación tendrá permiso para gastar hasta {{amount}} en gastos de red incurridos durante su uso.",
     "signWith": "Firmar con",

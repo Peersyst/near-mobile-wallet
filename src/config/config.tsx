@@ -23,10 +23,10 @@ const config = createConfig({
     components: {
         BlockchainAddress: {
             blockchainLinks: {
-                mainnetAddress: envConfig.mainnetExplorerLink + "/accounts/",
-                mainnetTx: envConfig.mainnetExplorerLink + "/transactions/",
-                testnetAddress: envConfig.testnetExplorerLink + "/accounts/",
-                testnetTx: envConfig.testnetExplorerLink + "/transactions/",
+                mainnetAddress: envConfig.mainnetExplorerLink + "/address/",
+                mainnetTx: envConfig.mainnetExplorerLink + "/txns/",
+                testnetAddress: envConfig.testnetExplorerLink + "/address/",
+                testnetTx: envConfig.testnetExplorerLink + "/txns/",
             },
         },
         Button: {

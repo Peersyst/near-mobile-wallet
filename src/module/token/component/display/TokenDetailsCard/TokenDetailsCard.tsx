@@ -15,26 +15,30 @@ export interface TokenDetailsCardProps {
 
 const TokenDetailsCard = ({ token }: TokenDetailsCardProps): JSX.Element => {
     const translate = useTranslate();
-    const uriSwap = useGetSwapLink({ contractId: token.contractId });
     const { showModal } = useModal();
+    const uriSwap = useGetSwapLink({ contractId: token.contractId });
+
+    function handleOnSwapButtonPress(): void {
+        Linking.openURL(uriSwap);
+    }
+
+    function handleOnSendButtonPress(): void {
+        showModal(SendModal, { defaultAsset: { type: AssetType.FT, ft: token } });
+    }
+
     return (
         <TokenDetailsCardRoot gap={16} textAlign="center">
             <TokenBalance
-                balanceProps={{ variant: "body3Strong", textAlign: "right" }}
-                fiatBalanceProps={{ variant: "body4Strong", light: true }}
+                balanceProps={{ variant: "body1Strong" }}
+                fiatBalanceProps={{ variant: "body4Strong" }}
                 token={token}
                 alignItems="center"
             />
-            <Row gap={4} justifyContent="center">
-                <TokenDetailsCardButton
-                    variant="secondary"
-                    size="md"
-                    fullWidth
-                    onPress={() => showModal(SendModal, { defaultAsset: { type: AssetType.FT, ft: token } })}
-                >
+            <Row gap={8}>
+                <TokenDetailsCardButton variant="quaternary" size="lg" onPress={handleOnSendButtonPress}>
                     {capitalize(translate("send"))}
                 </TokenDetailsCardButton>
-                <TokenDetailsCardButton variant="secondary" size="md" fullWidth onPress={() => Linking.openURL(uriSwap)}>
+                <TokenDetailsCardButton variant="quaternary" size="lg" onPress={handleOnSwapButtonPress}>
                     {capitalize(translate("swap"))}
                 </TokenDetailsCardButton>
             </Row>

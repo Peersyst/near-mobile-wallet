@@ -20,7 +20,7 @@ const WalletCardButtons = (): JSX.Element => {
     const showBuyButton = enableBuy && isMainnet;
     const uriSwap = useGetSwapLink();
     return (
-        <Row gap={4}>
+        <Row gap={6}>
             {showBuyButton && (
                 <LabeledIconButton
                     variant="glass"
