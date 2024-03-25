@@ -319,5 +319,6 @@
     "backup_wallet_advise_text_2_text_2": "If someone has asked you for your mnemonic or private key, they likely only want to steal your account",
     "IWillDoItLater": "I’ll do it later",
     "notBackup": "Important! You have not done yet",
-    "swap": "swap"
+    "swap": "swap",
+    "theresNotTransactionsYetMeanwhileYouCan": "There are no transactions yet. Meanwhile, you can"
 }
