@@ -1,7 +1,6 @@
 import { Col, Form, useSetTab } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import sendRecoilState from "module/transaction/state/SendState";
-import { useState } from "react";
 import { useRecoilState } from "recoil";
 import useTranslate from "module/common/hook/useTranslate";
 import useWalletState from "module/wallet/hook/useWalletState";
@@ -21,11 +20,10 @@ const SendToAddressScreen = () => {
         state: { selectedWallet },
     } = useWalletState();
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
-    const defaultSenderWalletIndex = sendState.senderWalletIndex !== undefined ? sendState.senderWalletIndex : selectedWallet;
-    const [currentSenderWalletIndex] = useState(defaultSenderWalletIndex);
+    const senderWalletIndex = sendState.senderWalletIndex ?? selectedWallet;
 
     const handleSubmit = ({ receiver }: SendForm) => {
-        setSendState((oldState) => ({ ...oldState, senderWalletIndex: currentSenderWalletIndex, receiverAddress: receiver }));
+        setSendState((oldState) => ({ ...oldState, senderWalletIndex, receiverAddress: receiver }));
         setTab(SendScreens.CONFIRMATION);
     };
 
@@ -34,7 +32,7 @@ const SendToAddressScreen = () => {
             <Col gap={24}>
                 <AddressTextFieldWithQRScanner
                     defaultValue={sendState.receiverAddress}
-                    senderWalletIndex={currentSenderWalletIndex}
+                    senderWalletIndex={senderWalletIndex}
                     name="receiver"
                     required
                 />
