@@ -1,12 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import { View } from "react-native";
-import { NotificationIconProps } from "./NotificationIcon";
 
-export const NotificationIconRoot = styled(View)(() => ({
-    position: "relative",
-}));
-
-export const AlertCircle = styled(View)<Pick<NotificationIconProps, "hasNotifications">>(({ hasNotifications, theme }) => {
+export const AlertCircle = styled(View)(({ theme }) => {
     return {
         position: "absolute",
         top: -2,
@@ -15,7 +10,7 @@ export const AlertCircle = styled(View)<Pick<NotificationIconProps, "hasNotifica
         height: 11,
         borderRadius: 50,
         borderWidth: 2,
-        borderColor: hasNotifications ? theme.palette.status.error : theme.palette.text,
-        backgroundColor: hasNotifications ? theme.palette.status.error : undefined,
+        borderColor: theme.palette.status.error,
+        backgroundColor: theme.palette.status.error,
     };
 });
