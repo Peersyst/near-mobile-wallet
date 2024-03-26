@@ -11,7 +11,6 @@ import Alert from "module/common/component/feedback/Alert/Alert";
 import WalletsBackupAdviseAlertContent from "../WalletsBackupAdviseAlertContent/WalletsBackupAdviseAlertContent";
 import { SaveIcon } from "icons";
 import { WalletsBackupAdviseIcon } from "./WalletsBackupAdvise.styles";
-import useDeviceSize from "module/common/hook/useDeviceSize";
 
 export interface WalletsBackupAdviseProps {
     onSubmit: () => void;
@@ -27,7 +26,6 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdviseProps): JSX.Elemen
     const setState = useSetRecoilState(backupWalletState);
     const posthog = usePostHog();
     const { network } = useRecoilValue(settingsState);
-    const deviceSize = useDeviceSize();
 
     const handlePress = ({ method, showModal }: HandlePressParams) => {
         setState({ method });
@@ -46,7 +44,7 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdviseProps): JSX.Elemen
             {({ showModal }) => (
                 <Col gap="3%" flex={1} style={{ paddingTop: 5 }}>
                     <Col flex={1} gap="3%">
-                        <WalletsBackupAdviseIcon size={deviceSize}>
+                        <WalletsBackupAdviseIcon>
                             <SaveIcon />
                         </WalletsBackupAdviseIcon>
                         <Typography variant="body2Regular" textAlign="center">
