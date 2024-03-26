@@ -111,7 +111,7 @@
     "delete": "Futa",
     "back_up_your_accounts": "Hifadhi nakala za pochi zako",
     "backup_wallet_advise_text": "Ukiendelea utaona maneno au ufungu wako wa siri wa kila akaunti zako.Kama kifaa chako imeibiwa au imepotea, utaweza tu kupata mafao yako kutumia maneno au ufunguo huu kwa kila akauti.",
-    "backup_wallet_advise_text_2": "Kumbuka kwamba akaunti zinazooneka zimeingizwa zinaweza tu kupatikana au kurejeshwa kwa ufunguo wa siri unaoendana na akaunti hio. ",
+    "backup_wallet_advise_text_2_title": "Ilani ya usalama (soma kwa makini):",
     "back_up_now": "Hifadhi sasa",
     "close": "Funga",
     "mnemonic_for": "Maneno ya siri ya {{name}}",
@@ -316,5 +316,7 @@
     "importAccountManuallyDescription": "Ikiwa unafikiri kuwa una akaunti ambayo haionekani, unaweza kuiingiza wewe mwenyewe. Ingiza tu akaunti unayotaka kuingiza.",
     "enterTheAccount": "Ingiza akaunti",
     "swap": "Badilisha",
-    "iWillDoItLater": "Nitafanya baadaye"
+    "iWillDoItLater": "Nitafanya baadaye",
+    "backup_wallet_advise_description": "Kumbuka kwamba wala sisi wala NEAR hatutawahi kuuliza nembo yako au ufunguo wako wa faragha. Ni wewe pekee unapaswa kuzijua na kamwe usizigawanye na yeyote.",
+    "backup_wallet_advise_description_2": "Ikiwa mtu amekuuliza nembo yako au ufunguo wako wa faragha, huenda wanataka tu kuiba akaunti yako."
 }

@@ -111,7 +111,7 @@
     "delete": "Delete",
     "back_up_your_accounts": "Faça backup de suas carteiras",
     "backup_wallet_advise_text": "Se continuar, você verá sua frase de recuperação ou chave privada para cada uma de suas contas. Se o seu dispositivo for perdido ou roubado, você só poderá recuperar seus fundos com esta frase de recuperação ou com as chaves de cada conta.",
-    "backup_wallet_advise_text_2": "Lembre-se de que as contas marcadas como importadas só podem ser recuperadas com a chave privada correspondente a essa conta.",
+    "backup_wallet_advise_text_2_title": "Aviso de segurança (leia com atenção):",
     "back_up_now": "Faça backup agora",
     "close": "Fechar",
     "mnemonic_for": "Mnemônico para {{name}}",
@@ -316,5 +316,7 @@
     "importAccountManuallyDescription": "Se você acha que tem uma conta que não está aparecendo, você pode importá-la manualmente. Basta inserir a conta que deseja importar.",
     "enterTheAccount": "Insira a conta",
     "swap": "Trocar",
-    "iWillDoItLater": "Vou fazer isso mais tarde"
+    "iWillDoItLater": "Vou fazer isso mais tarde",
+    "backup_wallet_advise_description": "Lembre-se de que nem nós nem a NEAR jamais solicitaremos sua mnemônica ou chave privada. Somente você deve conhecê-las e nunca compartilhá-las com ninguém.",
+    "backup_wallet_advise_description_2": "Se alguém pediu sua mnemônica ou chave privada, provavelmente só querem roubar sua conta."
 }

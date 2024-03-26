@@ -5,6 +5,7 @@ import { Row } from "@peersyst/react-native-components";
 import useNavigation from "module/common/hook/useNavigation";
 import { MainScreens } from "../MainNavigatorGroup/MainScreens";
 import useWalletGradient from "module/wallet/hook/useWalletGradient";
+import NotificationIcon from "../../display/NotificationIcon/NotificationIcon";
 
 const Header = (): JSX.Element => {
     const navigation = useNavigation();
@@ -16,7 +17,7 @@ const Header = (): JSX.Element => {
                 <HeaderNetworkChip />
                 <LinearLogo startColor={startColor} endColor={endColor} />
                 <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.SETTINGS)}>
-                    <SettingsIcon />
+                    <NotificationIcon icon={<SettingsIcon />} />
                 </HeaderSettingsButton>
             </Row>
         </HeaderRoot>

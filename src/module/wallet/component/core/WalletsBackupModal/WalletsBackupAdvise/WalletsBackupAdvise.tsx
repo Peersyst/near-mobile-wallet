@@ -1,13 +1,16 @@
-import { Col, Typography } from "@peersyst/react-native-components";
+import { Col, SuccessIcon, Typography } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import backupWalletState, { BackUp } from "module/wallet/state/BackUpWalletState";
 import Button from "module/common/component/input/Button/Button";
 import { ConfirmPinModalWrapper } from "module/settings/components/core/ConfirmPinModal/ConfirmPinModalWrapper";
-import Advise from "module/common/component/display/Advise/Advise";
 import { BaseUseModalStateReturn } from "module/common/hook/useModalState";
 import { usePostHog } from "posthog-react-native";
 import settingsState from "module/settings/state/SettingsState";
+import Alert from "module/common/component/feedback/Alert/Alert";
+import WalletsBackupAdviseAlertContent from "../WalletsBackupAdviseAlertContent/WalletsBackupAdviseAlertContent";
+import { SaveIcon } from "icons";
+import { WalletsBackupAdviseIcon } from "./WalletsBackupAdvise.styles";
 
 export interface WalletsBackupAdviseProps {
     onSubmit: () => void;
@@ -39,17 +42,15 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdviseProps): JSX.Elemen
     return (
         <ConfirmPinModalWrapper onConfirmedExited={onSubmit}>
             {({ showModal }) => (
-                <Col gap="10%" flex={1}>
-                    <Col flex={1} gap="3%">
-                        <Advise title={translate("keep_this_safe")} />
-                        <Col gap="3%">
-                            <Typography variant="body3Regular" textAlign="center">
-                                {translate("backup_wallet_advise_text") + " "}
-                            </Typography>
-                            <Typography variant="body3Strong" textAlign="center">
-                                {translate("backup_wallet_advise_text_2")}
-                            </Typography>
-                        </Col>
+                <Col gap="3%" flex={1} style={{ paddingTop: "7%" }}>
+                    <Col flex={1} gap="7%" alignItems="center">
+                        <WalletsBackupAdviseIcon>
+                            <SaveIcon />
+                        </WalletsBackupAdviseIcon>
+                        <Typography variant="body2Regular" textAlign="center">
+                            {translate("backup_wallet_advise_text") + " "}
+                        </Typography>
+                        <Alert type="warning" icon={<SuccessIcon />} content={<WalletsBackupAdviseAlertContent />}></Alert>
                     </Col>
                     <Col gap="4%">
                         <Button
