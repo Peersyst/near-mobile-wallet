@@ -10,7 +10,7 @@ export const AlertCircle = styled(View)(({ theme }) => {
         height: 11,
         borderRadius: 50,
         borderWidth: 2,
-        borderColor: theme.palette.status.error,
+        borderColor: theme.palette.white,
         backgroundColor: theme.palette.status.error,
     };
 });

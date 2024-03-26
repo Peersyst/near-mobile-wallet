@@ -1,10 +1,10 @@
-import { TextStyle, View } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { AlertCircle } from "./NotificationIcon.styles";
 import { ReactElement } from "react";
 
 export interface NotificationIconProps {
     hasNotifications?: boolean;
-    style?: TextStyle;
+    style?: ViewStyle;
     icon: ReactElement;
 }
 
