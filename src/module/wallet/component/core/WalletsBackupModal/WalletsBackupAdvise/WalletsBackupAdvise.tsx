@@ -42,8 +42,8 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdviseProps): JSX.Elemen
     return (
         <ConfirmPinModalWrapper onConfirmedExited={onSubmit}>
             {({ showModal }) => (
-                <Col gap="3%" flex={1} style={{ paddingTop: 5 }}>
-                    <Col flex={1} gap="3%">
+                <Col gap="3%" flex={1} style={{ paddingTop: "7%" }}>
+                    <Col flex={1} gap="7%" alignItems="center">
                         <WalletsBackupAdviseIcon>
                             <SaveIcon />
                         </WalletsBackupAdviseIcon>
