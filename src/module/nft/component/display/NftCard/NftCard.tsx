@@ -18,9 +18,13 @@ const NftCard = ({ nft }: NftCardProps): JSX.Element => {
         token_id,
     } = nft;
 
+    const handleOnPress = () => {
+        showModal(DetailsNftModal, { nft });
+    };
+
     return (
-        <TouchableWithoutFeedback onPress={() => showModal(DetailsNftModal, { nft: nft })}>
-            <MainListCard gap="6.5%" alignItems="center">
+        <TouchableWithoutFeedback onPress={() => handleOnPress()}>
+            <MainListCard gap="6.5%" alignItems="center" flex={1}>
                 <NftImage uri={media_url} tokenId={token_id} />
                 <Col flex={1} gap={12} justifyContent="center">
                     <Col gap={2} flex={1} justifyContent="center">

@@ -5,7 +5,7 @@ export interface DetailsNftModalHeaderProps {
     owner?: string;
 }
 
-const DetailsNftModalHeader = ({ title, owner }: DetailsNftModalHeaderProps) => {
+function DetailsNftModalHeader({ title, owner }: DetailsNftModalHeaderProps): JSX.Element {
     return (
         <Col gap={6}>
             {title && (
@@ -21,6 +21,6 @@ const DetailsNftModalHeader = ({ title, owner }: DetailsNftModalHeaderProps) => 
             )}
         </Col>
     );
-};
+}
 
 export default DetailsNftModalHeader;
