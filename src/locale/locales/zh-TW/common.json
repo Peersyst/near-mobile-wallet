@@ -319,5 +319,9 @@
     "transfer": "轉移",
     "iWillDoItLater": "稍後再說",
     "backup_wallet_advise_description": "請記住，我們和NEAR都不會要求您提供助憶詞或私鑰。只有您應該知道它們，永遠不要與任何人分享。",
-    "backup_wallet_advise_description_2": "如果有人要求您提供助憶詞或私鑰，他們可能只是想偷竊您的帳戶。"
+    "backup_wallet_advise_description_2": "如果有人要求您提供助憶詞或私鑰，他們可能只是想偷竊您的帳戶。",
+    "youHave0NEAR": "您沒有 NEAR",
+    "youHave0NEARDescription": "沒有 NEAR，您將無法支付必要的費用。請存款或購買 NEAR 以繼續。",
+    "youHave0NEARDescription2": "請記住：費用是支付給礦工/驗證者以幫助完成交易的佣金。",
+    "addNearNow": "立即添加 NEAR"
 }

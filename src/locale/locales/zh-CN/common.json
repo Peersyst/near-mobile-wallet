@@ -319,5 +319,9 @@
     "transfer": "转账",
     "iWillDoItLater": "稍后再说",
     "backup_wallet_advise_description": "请记住，我们和NEAR都绝不会要求您提供助记词或私钥。只有您应该知道它们，永远不要与任何人分享。",
-    "backup_wallet_advise_description_2": "如果有人向您索要助记词或私钥，他们可能只想窃取您的账户。"
+    "backup_wallet_advise_description_2": "如果有人向您索要助记词或私钥，他们可能只想窃取您的账户。",
+    "youHave0NEAR": "您没有 NEAR",
+    "youHave0NEARDescription": "没有 NEAR，您将无法支付必要的费用。请存款或购买 NEAR 以继续。",
+    "youHave0NEARDescription2": "请记住：费用是支付给矿工/验证者以帮助完成交易的佣金。",
+    "addNearNow": "立即添加 NEAR"
 }

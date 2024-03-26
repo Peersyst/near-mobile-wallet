@@ -319,5 +319,9 @@
     "transfer": "Transfer",
     "iWillDoItLater": "Saya akan melakukannya nanti",
     "backup_wallet_advise_description": "Ingatlah bahwa baik kami maupun NEAR tidak akan pernah meminta Anda untuk mnemonik atau kunci privat Anda. Hanya Anda yang seharusnya mengetahuinya dan jangan pernah membagikannya kepada siapapun. ",
-    "backup_wallet_advise_description_2": "Jika seseorang telah meminta Anda untuk mnemonik atau kunci privat Anda, kemungkinan mereka hanya ingin mencuri akun Anda."
+    "backup_wallet_advise_description_2": "Jika seseorang telah meminta Anda untuk mnemonik atau kunci privat Anda, kemungkinan mereka hanya ingin mencuri akun Anda.",
+    "youHave0NEAR": "Anda tidak memiliki NEAR",
+    "youHave0NEARDescription": "Tanpa NEAR, Anda tidak akan dapat membayar biaya yang diperlukan. Deposit atau beli NEAR untuk melanjutkan.",
+    "youHave0NEARDescription2": "Ingat: Biaya adalah komisi yang dibayarkan kepada penambang/validator untuk membantu menyelesaikan transaksi.",
+    "addNearNow": "Tambahkan NEAR sekarang"
 }
