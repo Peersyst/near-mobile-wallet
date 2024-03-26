@@ -1,11 +1,11 @@
 import { Col, Typography } from "@peersyst/react-native-components";
 
-export interface DetailsNftModalHeaderProps {
+export interface NftDetailsModalHeaderProps {
     title?: string;
     owner?: string;
 }
 
-function DetailsNftModalHeader({ title, owner }: DetailsNftModalHeaderProps): JSX.Element {
+function NftDetailsModalHeader({ title, owner }: NftDetailsModalHeaderProps): JSX.Element {
     return (
         <Col gap={6}>
             {title && (
@@ -23,4 +23,4 @@ function DetailsNftModalHeader({ title, owner }: DetailsNftModalHeaderProps): JS
     );
 }
 
-export default DetailsNftModalHeader;
+export default NftDetailsModalHeader;

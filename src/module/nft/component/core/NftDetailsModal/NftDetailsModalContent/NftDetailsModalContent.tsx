@@ -1,19 +1,20 @@
 import { Col, Typography, useModal } from "@peersyst/react-native-components";
 import { NftToken } from "near-peersyst-sdk";
-import NftImage, { NftImageSize } from "../../../display/NftImage/NftImage";
+import { NftImageSize } from "../../../display/NftImage/NftImage";
 import useTranslate from "module/common/hook/useTranslate";
 import { capitalize } from "@peersyst/react-utils";
 import Button from "module/common/component/input/Button/Button";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import { AssetType } from "module/wallet/wallet.types";
 import { ViewProps } from "react-native";
-import { DetailsTokenModalCard } from "./DetailsNftModalContentProps.styles";
+import { NftDetailsModalContentImage } from "./NftDetailsModalContent.styles";
+import Card from "module/common/component/surface/Card/Card";
 
-export interface DetailsNftModalContentProps extends ViewProps {
+export interface NftDetailsModalContentProps extends ViewProps {
     nft: NftToken;
 }
 
-const DetailsNftModalContent = ({ nft, ...rest }: DetailsNftModalContentProps) => {
+const NftDetailsModalContent = ({ nft, ...rest }: NftDetailsModalContentProps) => {
     const translate = useTranslate();
     const { showModal } = useModal();
 
@@ -23,15 +24,15 @@ const DetailsNftModalContent = ({ nft, ...rest }: DetailsNftModalContentProps) =
 
     return (
         <Col alignItems="center" gap={16} {...rest}>
-            <NftImage uri={nft.metadata.media_url} tokenId={nft.token_id} size={NftImageSize.LARGE} />
+            <NftDetailsModalContentImage uri={nft.metadata.media_url} tokenId={nft.token_id} size={NftImageSize.LARGE} />
             {nft.metadata.description && <Typography variant="body3Regular">{nft.metadata.description}</Typography>}
-            <DetailsTokenModalCard>
+            <Card>
                 <Button variant="quaternary" size="lg" onPress={handleOnTransferButtonPress}>
                     {capitalize(translate("transfer"))}
                 </Button>
-            </DetailsTokenModalCard>
+            </Card>
         </Col>
     );
 };
 
-export default DetailsNftModalContent;
+export default NftDetailsModalContent;

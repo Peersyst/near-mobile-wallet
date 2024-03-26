@@ -6,7 +6,7 @@ import { NftCardProps } from "./NftCard.types";
 import NftImage from "../NftImage/NftImage";
 import { memo } from "react";
 import useTranslate from "module/common/hook/useTranslate";
-import DetailsNftModal from "../../core/DetailsNftModal/DetailsTokenModal";
+import NftDetailsModal from "../../core/NftDetailsModal/NftDetailsModal";
 
 const NftCard = ({ nft }: NftCardProps): JSX.Element => {
     const t = useTranslate();
@@ -19,7 +19,7 @@ const NftCard = ({ nft }: NftCardProps): JSX.Element => {
     } = nft;
 
     const handleOnPress = () => {
-        showModal(DetailsNftModal, { nft });
+        showModal(NftDetailsModal, { nft });
     };
 
     return (
