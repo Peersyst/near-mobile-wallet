@@ -111,7 +111,7 @@
     "delete": "Delete",
     "back_up_your_accounts": "Back up your wallets",
     "backup_wallet_advise_text": "If you continue you will see your recovery phrase or private key for each of your accounts. If your device is lost or stolen, you will only be able to recover your funds with this recovery phrase or the keys for each account.",
-    "backup_wallet_advise_text_2": "Remember that the accounts tagged as imported can only be retrieved with the private key corresponding to that account.",
+    "backup_wallet_advise_text_2_title": "Security notice (read carefully):",
     "back_up_now": "Back up now",
     "close": "Close",
     "mnemonic_for": "Mnemonic for {{name}}",
@@ -315,5 +315,7 @@
     "importAccountManually": "Import account manually",
     "importAccountManuallyDescription": "If you think you have an account that is not showing up, you can import it manually. Just enter the account you want to import.",
     "enterTheAccount": "Enter the account",
+    "backup_wallet_advise_description": "Remember that neither we nor NEAR will ever ask you for your mnemonic or private key. Only you should know them and never share them with anyone.",
+    "backup_wallet_advise_description_2": "If someone has asked you for your mnemonic or private key, they likely only want to steal your account",
     "swap": "swap"
 }
