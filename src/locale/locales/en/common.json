@@ -321,7 +321,7 @@
     "backup_wallet_advise_description": "Remember that neither we nor NEAR will ever ask you for your mnemonic or private key. Only you should know them and never share them with anyone.",
     "backup_wallet_advise_description_2": "If someone has asked you for your mnemonic or private key, they likely only want to steal your account",
     "youHave0NEAR": "You have 0 NEAR",
-    "youHave0NEARDescription": "Without NEAR you won't be able to pay the necessary fees. Deposit or buy NEAR in order to proceed.",
-    "youHave0NEARDescription2": "Gently reminder: Fees are the commission paid to miners/validators for helping complete transactions.",
+    "youHave0NEARDescription": "You won’t be able to send, swap, unstake or withdraw without NEAR. Deposit or buy NEAR to proceed.",
+    "youHave0NEARDescription2": "Why? Blockchain transactions require fees paid to validators, which are settled in NEAR.",
     "addNearNow": "Add NEAR now"
 }
