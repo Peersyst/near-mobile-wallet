@@ -18,18 +18,6 @@ const useDeviceSize = (): DeviceSize => {
         } else {
             setDeviceSize(DeviceSize.LARGE);
         }
-
-        const handleDimensionsChange = ({ window: { height: newHeight } }: { window: { height: number } }) => {
-            if (newHeight < 600) {
-                setDeviceSize(DeviceSize.SMALL);
-            } else if (newHeight >= 600 && newHeight < 1000) {
-                setDeviceSize(DeviceSize.MEDIUM);
-            } else {
-                setDeviceSize(DeviceSize.LARGE);
-            }
-        };
-
-        Dimensions.addEventListener("change", handleDimensionsChange);
     }, []);
 
     return deviceSize;
