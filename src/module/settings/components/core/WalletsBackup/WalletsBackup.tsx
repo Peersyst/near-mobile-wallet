@@ -6,6 +6,7 @@ import useTranslate from "module/common/hook/useTranslate";
 const WalletsBackup = () => {
     const { showModal } = useModal();
     const translate = useTranslate();
+
     return <SettingsMenuItem text={translate("back_up_your_accounts")} onPress={() => showModal(WalletsBackupModal)} />;
 };
 

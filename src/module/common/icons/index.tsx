@@ -46,6 +46,7 @@ export * from "./RadioCheckedIcon";
 export * from "./RadioUncheckedIcon";
 export * from "./ReceiveIcon";
 export * from "./RefreshIcon";
+export * from "./SaveIcon";
 export * from "./ScanIcon";
 export * from "./SearchIcon";
 export * from "./SendIcon";

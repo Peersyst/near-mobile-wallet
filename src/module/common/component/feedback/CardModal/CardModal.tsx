@@ -42,7 +42,9 @@ const CardModal = ({ children, style, open, closable = true, onClose, ...backdro
                                 alwaysBounceVertical={false}
                                 enableAutomaticScroll={!keyboardPaddingEnabled}
                             >
-                                <CardModalBodyWrapper flex={1}>{body}</CardModalBodyWrapper>
+                                <CardModalBodyWrapper flex={1} onStartShouldSetResponder={() => true}>
+                                    {body}
+                                </CardModalBodyWrapper>
                             </KeyboardAwareScrollView>
                         </CardModalWrapper>
                     </CardModalContent>

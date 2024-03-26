@@ -111,7 +111,7 @@
     "delete": "刪除",
     "back_up_your_accounts": "備份您的帳戶",
     "backup_wallet_advise_text": "如果您繼續操作，您將會看到每個帳戶的恢復短語或私鑰。如果您的設備被盜或遺失，您只能通過這些恢復短語或私鑰來恢復您的資金。",
-    "backup_wallet_advise_text_2": "請記住，帶有“導入”標籤的帳戶只能使用相應的私鑰來恢復。",
+    "backup_wallet_advise_text_2_title": "安全通知（仔細閱讀）：",
     "back_up_now": "立即備份",
     "close": "關閉",
     "mnemonic_for": "{{name}} 的助憶詞",
@@ -316,5 +316,8 @@
     "importAccountManuallyDescription": "如果您認為您有帳戶未顯示，您可以手動匯入。只需輸入您要匯入的帳戶即可。",
     "enterTheAccount": "輸入帳戶",
     "swap": "交換",
-    "transfer": "轉移"
+    "transfer": "轉移",
+    "iWillDoItLater": "稍後再說",
+    "backup_wallet_advise_description": "請記住，我們和NEAR都不會要求您提供助憶詞或私鑰。只有您應該知道它們，永遠不要與任何人分享。",
+    "backup_wallet_advise_description_2": "如果有人要求您提供助憶詞或私鑰，他們可能只是想偷竊您的帳戶。"
 }

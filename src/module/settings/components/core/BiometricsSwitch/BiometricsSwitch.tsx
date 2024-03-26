@@ -6,9 +6,7 @@ import useTranslate from "module/common/hook/useTranslate";
 
 const BiometricsSwitch = (): JSX.Element => {
     const translate = useTranslate();
-
     const [settings, setSettings] = useRecoilState(settingsState);
-
     const handleChange = (biometrics: boolean) => {
         setSettings((s) => ({ ...s, biometrics }));
         SettingsStorage.set({ biometrics });
