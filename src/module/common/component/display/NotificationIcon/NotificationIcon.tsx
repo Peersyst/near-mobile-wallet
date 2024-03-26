@@ -1,19 +1,13 @@
-import { TextStyle } from "react-native";
-import { AlertCircle, NotificationIconRoot } from "./NotificationIcon.styles";
-import { ReactElement } from "react";
-
-export interface NotificationIconProps {
-    hasNotifications?: boolean;
-    style?: TextStyle;
-    icon: ReactElement;
-}
+import { View } from "react-native";
+import { AlertCircle } from "./NotificationIcon.styles";
+import { NotificationIconProps } from "./NotificationIcon.types";
 
 const NotificationIcon = ({ hasNotifications, icon, style }: NotificationIconProps): JSX.Element => {
     return (
-        <NotificationIconRoot style={style}>
+        <View style={style}>
             {icon}
-            {hasNotifications && <AlertCircle testID={"activeCircle"} hasNotifications={hasNotifications} />}
-        </NotificationIconRoot>
+            {hasNotifications && <AlertCircle />}
+        </View>
     );
 };
 
