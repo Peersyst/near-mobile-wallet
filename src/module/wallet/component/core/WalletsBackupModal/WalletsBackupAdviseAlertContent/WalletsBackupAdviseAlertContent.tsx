@@ -6,14 +6,14 @@ const WalletsBackupAdviseAlertContent = (): JSX.Element => {
     const translate = useTranslate();
     return (
         <Col gap={2}>
-            <Typography color="orange" variant="body3Strong">
+            <Typography color="status.warning" variant="body3Strong">
                 {translate("backup_wallet_advise_text_2_title")}
             </Typography>
-            <Typography color="orange" variant="body3Regular">
-                {translate("backup_wallet_advise_text_2_text")}
+            <Typography color="status.warning" variant="body3Regular">
+                {translate("backup_wallet_advise_description")}
             </Typography>
-            <Typography color="orange" variant="body3Regular">
-                {translate("backup_wallet_advise_text_2_text_2")}
+            <Typography color="status.warning" variant="body3Regular">
+                {translate("backup_wallet_advise_description_2")}
             </Typography>
         </Col>
     );

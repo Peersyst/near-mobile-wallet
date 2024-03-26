@@ -315,7 +315,8 @@
     "importAccountManually": "Importar cuenta manualmente",
     "importAccountManuallyDescription": "Si cree que tiene una cuenta que no aparece, puede importarla manualmente. Simplemente ingrese la cuenta que desea importar.",
     "enterTheAccount": "Introduce la cuenta",
-    "backup_wallet_advise_text_2_text": "Recuerde que ni nosotros ni NEAR nunca le pediremos su mnemónico o clave privada. Solo usted debe conocerlos y nunca compartirlos con nadie.",
-    "backup_wallet_advise_text_2_text_2": "Si alguien le ha pedido su mnemónico o clave privada, probablemente solo quieran robar su cuenta.",
-    "swap": "Swap"
+    "swap": "Swap",
+    "iWillDoItLater": "Lo haré más tarde",
+    "backup_wallet_advise_description": "Recuerda que ni nosotros ni NEAR nunca te pediremos tu mnemonic o clave privada. Solo tú debes conocerlos y nunca compartirlos con nadie.",
+    "backup_wallet_advise_description_2": "Si alguien le ha pedido su mnemonic o clave privada, probablemente solo quieran robar su cuenta."
 }
