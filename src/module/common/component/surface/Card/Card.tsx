@@ -5,8 +5,12 @@ export interface CardProps extends PaperProps {
     variant?: "gray" | "blue";
 }
 
-const Card = ({ children, ...rest }: CardProps) => {
-    return <CardRoot {...rest}>{children}</CardRoot>;
+const Card = ({ children, variant = "gray", ...rest }: CardProps) => {
+    return (
+        <CardRoot variant={variant} {...rest}>
+            {children}
+        </CardRoot>
+    );
 };
 
 export default Card;

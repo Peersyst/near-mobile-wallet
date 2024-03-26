@@ -2,7 +2,7 @@ import { Paper } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
 import { CardProps } from "./Card";
 
-export const CardRoot = styled(Paper, { elevation: 0 })<CardProps>(({ theme: { palette }, variant = "gray" }) => ({
+export const CardRoot = styled(Paper, { elevation: 0 })<CardProps>(({ theme: { palette }, variant }) => ({
     justifyContent: "center",
     padding: 24,
     borderRadius: 16,

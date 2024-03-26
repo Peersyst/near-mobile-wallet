@@ -14,7 +14,7 @@ export interface NftImageProps extends Omit<ImageProps, "source"> {
     size?: NftImageSize;
 }
 
-const NftImage = ({ uri, tokenId = "", size = NftImageSize.SMALL, ...rest }: NftImageProps) => {
+const NftImage = ({ uri, tokenId = "", ...rest }: NftImageProps) => {
     return (
         <NftImageRoot
             {...rest}
@@ -22,7 +22,6 @@ const NftImage = ({ uri, tokenId = "", size = NftImageSize.SMALL, ...rest }: Nft
             source={{
                 uri: uri ?? toDataUrl(tokenId),
             }}
-            size={size}
         />
     );
 };
