@@ -11,7 +11,7 @@ import Alert from "module/common/component/feedback/Alert/Alert";
 import WalletsBackupAdviseAlertContent from "../WalletsBackupAdviseAlertContent/WalletsBackupAdviseAlertContent";
 import { SaveIcon } from "icons";
 import { WalletsBackupAdviseIcon } from "./WalletsBackupAdvise.styles";
-import useDeviceSize, { DeviceSize } from "module/common/hook/useDeviceSize";
+import useDeviceSize from "module/common/hook/useDeviceSize";
 
 export interface WalletsBackupAdviseProps {
     onSubmit: () => void;
@@ -44,19 +44,12 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdviseProps): JSX.Elemen
     return (
         <ConfirmPinModalWrapper onConfirmedExited={onSubmit}>
             {({ showModal }) => (
-                <Col gap="3%" flex={1} style={{ paddingTop: deviceSize === DeviceSize.SMALL ? 0 : 25 }}>
-                    <Col flex={1} gap={deviceSize === DeviceSize.SMALL ? "3%" : 24}>
+                <Col gap="3%" flex={1} style={{ paddingTop: 5 }}>
+                    <Col flex={1} gap="3%">
                         <WalletsBackupAdviseIcon size={deviceSize}>
                             <SaveIcon />
                         </WalletsBackupAdviseIcon>
-                        <Typography
-                            variant="body2Regular"
-                            textAlign="center"
-                            style={{
-                                lineHeight: deviceSize === DeviceSize.SMALL ? 17 : 28,
-                                fontSize: deviceSize === DeviceSize.SMALL ? 11 : 16,
-                            }}
-                        >
+                        <Typography variant="body2Regular" textAlign="center">
                             {translate("backup_wallet_advise_text") + " "}
                         </Typography>
                         <Alert type="warning" icon={<SuccessIcon />} content={<WalletsBackupAdviseAlertContent />}></Alert>
