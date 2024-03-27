@@ -325,5 +325,9 @@
     "addNearButton": "Thêm NEAR",
     "andThisYouWillBeAbleToStartUsingTheWallet": "và bạn sẽ có thể bắt đầu sử dụng ví của mình.",
     "backupWallet": "Sao lưu ví",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "và bạn sẽ có thể khôi phục ví của mình khi cần mà không mất NEAR của mình."
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "và bạn sẽ có thể khôi phục ví của mình khi cần mà không mất NEAR của mình.",
+    "addNear": "thêm gần",
+    "buyNear": "Mua NEAR",
+    "depositNearFromOtherWallet": "Nạp NEAR từ ví khác",
+    "iNeedSupport": "Tôi cần hỗ trợ"
 }

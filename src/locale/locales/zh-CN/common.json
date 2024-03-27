@@ -325,5 +325,9 @@
     "addNearButton": "添加 NEAR",
     "andThisYouWillBeAbleToStartUsingTheWallet": "这样，您就可以开始使用钱包。",
     "backupWallet": "备份钱包",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "这样，您就可以在需要时恢复您的钱包，而不会丢失您的 NEAR。"
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "这样，您就可以在需要时恢复您的钱包，而不会丢失您的 NEAR。",
+    "addNear": "添加附近",
+    "buyNear": "购买 NEAR",
+    "depositNearFromOtherWallet": "从其他钱包存入 NEAR",
+    "iNeedSupport": "我需要支持"
 }

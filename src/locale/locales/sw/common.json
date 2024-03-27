@@ -325,5 +325,9 @@
     "addNearButton": "Ongeza NEAR",
     "andThisYouWillBeAbleToStartUsingTheWallet": "na hivi utaweza kuanza kutumia pochi",
     "backupWallet": "Hifadhi pochi",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "na hivi utaweza kurejesha pochi yako wakati unapohitaji bila kupoteza NEAR yako"
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "na hivi utaweza kurejesha pochi yako wakati unapohitaji bila kupoteza NEAR yako",
+    "addNear": "ongeza karibu",
+    "buyNear": "Nunua NEAR",
+    "depositNearFromOtherWallet": "Amana NEAR kutoka pochi nyingine",
+    "iNeedSupport": "Nahitaji msaada"
 }

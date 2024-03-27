@@ -325,5 +325,9 @@
     "addNearButton": "додати NEAR",
     "andThisYouWillBeAbleToStartUsingTheWallet": "і почати використовувати гаманець.",
     "backupWallet": "Резервне копіювання гаманця",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "і ви зможете відновити свій гаманець, коли вам це знадобиться, не втративши свій NEAR."
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "і ви зможете відновити свій гаманець, коли вам це знадобиться, не втративши свій NEAR.",
+    "addNear": "додати близько",
+    "buyNear": "Купити NEAR",
+    "depositNearFromOtherWallet": "Внести NEAR з іншого гаманця",
+    "iNeedSupport": "Мені потрібна підтримка"
 }

@@ -325,5 +325,9 @@
     "addNearButton": "Добавить NEAR",
     "andThisYouWillBeAbleToStartUsingTheWallet": "и начать использовать кошелек",
     "backupWallet": "Резервное копирование кошелька",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "и восстановить кошелек, когда вам это понадобится, не потеряв свои NEAR"
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "и восстановить кошелек, когда вам это понадобится, не потеряв свои NEAR",
+    "addNear": "добавить поблизости",
+    "buyNear": "Купить NEAR",
+    "depositNearFromOtherWallet": "Внести NEAR с другого кошелька",
+    "iNeedSupport": "Мне нужна поддержка"
 }

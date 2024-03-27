@@ -325,5 +325,9 @@
     "addNearButton": "Adicionar NEAR",
     "andThisYouWillBeAbleToStartUsingTheWallet": "e assim você poderá começar a usar a carteira",
     "backupWallet": "Fazer backup da carteira",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "e assim você poderá recuperar sua carteira quando precisar sem perder seus NEAR"
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "e assim você poderá recuperar sua carteira quando precisar sem perder seus NEAR",
+    "addNear": "adicionar próximo",
+    "buyNear": "Comprar NEAR",
+    "depositNearFromOtherWallet": "Depositar NEAR de outra carteira",
+    "iNeedSupport": "Preciso de suporte"
 }

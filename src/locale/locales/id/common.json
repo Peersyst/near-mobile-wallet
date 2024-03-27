@@ -325,5 +325,9 @@
     "addNearButton": "Tambahkan NEAR",
     "andThisYouWillBeAbleToStartUsingTheWallet": "dan dengan ini Anda akan dapat mulai menggunakan dompet",
     "backupWallet": "Cadangkan dompet",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "dan dengan ini Anda akan dapat memulihkan dompet Anda ketika Anda membutuhkannya tanpa kehilangan NEAR Anda"
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "dan dengan ini Anda akan dapat memulihkan dompet Anda ketika Anda membutuhkannya tanpa kehilangan NEAR Anda",
+    "addNear": "tambah dekat",
+    "buyNear": "Beli NEAR",
+    "depositNearFromOtherWallet": "Setor NEAR dari dompet lain",
+    "iNeedSupport": "Saya butuh dukungan"
 }
