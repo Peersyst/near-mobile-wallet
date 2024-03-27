@@ -42,7 +42,7 @@ export const baseTheme: Partial<Theme["palette"]> = {
     status: {
         info: blue,
         success: "#3CDF69",
-        warning: "#FFC860",
+        warning: orange,
         error: "#FF7966",
     },
     wallet: [
