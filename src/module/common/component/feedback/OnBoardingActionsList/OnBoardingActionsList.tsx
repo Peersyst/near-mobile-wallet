@@ -7,7 +7,7 @@ import { capitalize } from "@peersyst/react-utils";
 import { OnBoardingActionsListRoot } from "./OnBoardingActionList.styles";
 import WalletsBackupModal from "module/wallet/component/core/WalletsBackupModal/WalletsBackupModal";
 
-const OnBoardingActionsList = () => {
+const OnBoardingActionsList = (): JSX.Element => {
     const translate = useTranslate();
     const { showModal } = useModal();
     const {
@@ -15,17 +15,17 @@ const OnBoardingActionsList = () => {
     } = useWalletState();
     return (
         <OnBoardingActionsListRoot>
-            <Typography variant="body3Strong" numberOfLines={2} textAlign="center" style={{ width: "60%" }}>
-                {translate("theresNotTransactionsYetMeanwhileYouCan")}
+            <Typography variant="body3Strong" textAlign="center" style={{ width: "60%" }}>
+                {translate("noTransactionsText")}
             </Typography>
             <Button variant="primary" fullWidth onPress={() => showModal(AddNearModal)}>
-                {translate("addNearButton")}
+                {translate("addNearCallToActionText")}
             </Button>
-            <Typography variant="body4Regular">{capitalize(translate("andThisYouWillBeAbleToStartUsingTheWallet"))}</Typography>
+            <Typography variant="body4Regular">{capitalize(translate("backupWallet"))}</Typography>
             {!isBackupDone && (
                 <Col gap={16} style={{ width: "100%" }}>
                     <Button variant="quinary" fullWidth onPress={() => showModal(WalletsBackupModal)}>
-                        {translate("backupWallet")}
+                        {translate("backupWalletCallToActionText")}
                     </Button>
                     <Typography variant="body4Regular" textAlign="center">
                         {capitalize(translate("andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear"))}

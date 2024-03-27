@@ -325,9 +325,9 @@
     "buyNear": "Buy NEAR",
     "depositNearFromOtherWallet": "Deposit NEAR from other wallet",
     "iNeedSupport": "I need support",
-    "theresNotTransactionsYetMeanwhileYouCan": "There are no transactions yet. Meanwhile, you can",
-    "addNearButton": "Add NEAR",
-    "andThisYouWillBeAbleToStartUsingTheWallet": "and this you will be able to start using the wallet",
-    "backupWallet": "Backup wallet",
+    "noTransactionsText": "There are no transactions yet. Meanwhile, you can",
+    "addNearCallToActionText": "Add NEAR",
+    "backupWallet": "and this you will be able to start using the wallet",
+    "backupWalletCallToActionText": "Backup wallet",
     "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "and this you will be able to recover your wallet when you need it without losing your NEAR"
 }
