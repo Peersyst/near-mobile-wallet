@@ -1,20 +1,24 @@
-import { Row } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import SettingsTouchableCard from "../../input/SettingsTouchableCard/SettingsTouchableCard";
+import { ReactElement } from "react";
+import { View, ViewStyle } from "react-native";
 
 export interface SettingsMenuItemProps {
     text: string;
     onPress?: () => void;
     destructive?: boolean;
+    children?: ReactElement;
+    style?: ViewStyle;
 }
 
-const SettingsMenuItem = ({ text, onPress, destructive = false }: SettingsMenuItemProps): JSX.Element => (
+const SettingsMenuItem = ({ text, children, onPress, style, destructive = false }: SettingsMenuItemProps): JSX.Element => (
     <SettingsTouchableCard onPress={onPress}>
-        <Row flex={1} alignItems="center">
+        <View style={style}>
             <Typography variant="body3Strong" color={destructive ? "status.error" : "text"}>
                 {text}
             </Typography>
-        </Row>
+            {children}
+        </View>
     </SettingsTouchableCard>
 );
 

@@ -319,5 +319,5 @@
     "iWillDoItLater": "I’ll do it later",
     "backup_wallet_advise_description": "Remember that neither we nor NEAR will ever ask you for your mnemonic or private key. Only you should know them and never share them with anyone.",
     "backup_wallet_advise_description_2": "If someone has asked you for your mnemonic or private key, they likely only want to steal your account",
-    "notBackup": "Important! You have not done yet"
+    "youHaveNotDoneBackupYet": "Important! You have not done yet"
 }

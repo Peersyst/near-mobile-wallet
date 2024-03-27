@@ -318,5 +318,6 @@
     "swap": "Swap",
     "iWillDoItLater": "Lo haré más tarde",
     "backup_wallet_advise_description": "Recuerda que ni nosotros ni NEAR nunca te pediremos tu mnemonic o clave privada. Solo tú debes conocerlos y nunca compartirlos con nadie.",
-    "backup_wallet_advise_description_2": "Si alguien le ha pedido su mnemonic o clave privada, probablemente solo quieran robar su cuenta."
+    "backup_wallet_advise_description_2": "Si alguien le ha pedido su mnemonic o clave privada, probablemente solo quieran robar su cuenta.",
+    "youHaveNotDoneBackupYet": "¡Importante! Aún no has realizado una copia de seguridad."
 }
