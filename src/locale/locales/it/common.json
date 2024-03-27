@@ -316,7 +316,6 @@
     "importAccountManuallyDescription": "Se ritieni di avere un account che non viene visualizzato, puoi importarlo manualmente. Inserisci semplicemente l'account che desideri importare.",
     "enterTheAccount": "Inserisci l'account",
     "swap": "Scambio",
-    "transfer": "Trasferimento",
     "iWillDoItLater": "Lo farò più tardi",
     "backup_wallet_advise_description": "Ricorda che né noi né NEAR ti chiederemo mai il tuo mnemonico o la tua chiave privata. Solo tu dovresti conoscerli e non condividerli mai con nessuno.",
     "backup_wallet_advise_description_2": "Se qualcuno ti ha chiesto il tuo mnemonico o la tua chiave privata, probabilmente vuole solo rubarti l'account."

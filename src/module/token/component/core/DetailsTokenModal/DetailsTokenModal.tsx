@@ -5,17 +5,17 @@ import { Token } from "near-peersyst-sdk";
 import TokenDetailsCard from "../../display/TokenDetailsCard/TokenDetailsCard";
 import TokenNameWithIcon from "../../display/TokenNameWithIcon/TokenNameWithIcon";
 
-export interface TokenDetailsModalProps extends ExposedBackdropProps {
+export interface DetailsTokenModalProps extends ExposedBackdropProps {
     token: Token;
 }
 
-const TokenDetailsModal = createBackdrop<TokenDetailsModalProps>(({ token, ...rest }) => {
+const DetailsTokenModal = createBackdrop<DetailsTokenModalProps>(({ token, ...rest }) => {
     return (
         <CardNavigatorModal
             closable
             navbar={{
                 back: true,
-                title: <TokenNameWithIcon token={token} variant="body1Strong" style={{ flex: 1, maxWidth: "75%" }} />,
+                title: <TokenNameWithIcon token={token} variant="body1Strong" style={{ maxWidth: "80%" }} />,
                 titlePosition: "left",
             }}
             {...rest}
@@ -28,4 +28,4 @@ const TokenDetailsModal = createBackdrop<TokenDetailsModalProps>(({ token, ...re
     );
 });
 
-export default TokenDetailsModal;
+export default DetailsTokenModal;
