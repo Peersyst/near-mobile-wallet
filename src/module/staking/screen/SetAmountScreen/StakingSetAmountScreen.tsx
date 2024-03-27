@@ -6,6 +6,8 @@ import useTranslate from "module/common/hook/useTranslate";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import NEARAmountWithMaxTextField from "module/transaction/component/input/NEARAmountWithMaxTextField/NEARAmountWithMaxTextField";
 import { ReactElement } from "react";
+import useHaveNearInAccount from "module/common/hook/useHaveNearInAccount";
+import YouDontHaveNearCard from "module/wallet/component/display/YouDontHaveNearCard/YouDontHaveNearCard";
 
 export interface StakeForm {
     amount: string;
@@ -24,6 +26,7 @@ const StakingSetAmountScreen = ({ maxAmount, label, children, onSubmit, fee, dis
     const translate = useTranslate();
     const [stakeState, setStakeState] = useRecoilState(stakeRecoilState);
     const { index } = useSelectedWallet();
+    const haveNearInAccount = useHaveNearInAccount();
 
     const handleSubmit = ({ amount }: StakeForm) => {
         setStakeState((oldState) => ({ ...oldState, amount: amount }));
@@ -48,6 +51,7 @@ const StakingSetAmountScreen = ({ maxAmount, label, children, onSubmit, fee, dis
                     </Col>
                     {children}
                 </Col>
+                {!haveNearInAccount && <YouDontHaveNearCard />}
                 <Button type="submit" fullWidth disabled={disabled}>
                     {translate("next")}
                 </Button>
