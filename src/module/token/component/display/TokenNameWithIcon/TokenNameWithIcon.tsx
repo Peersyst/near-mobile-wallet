@@ -5,7 +5,7 @@ import { TokenNameWithIconProps } from "./TokenNameWithIcon.types";
 
 const TokenNameWithIcon = ({
     token,
-    gap = 16,
+    gap = 12,
     typographyProps = {},
     typographyStyle,
     style,

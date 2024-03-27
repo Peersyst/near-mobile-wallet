@@ -27,7 +27,7 @@ const TokenDetailsCard = ({ token }: TokenDetailsCardProps): JSX.Element => {
     }
 
     return (
-        <TokenDetailsCardRoot gap={16} textAlign="center">
+        <TokenDetailsCardRoot>
             <TokenBalance
                 balanceProps={{ variant: "body1Strong" }}
                 fiatBalanceProps={{ variant: "body4Strong" }}
