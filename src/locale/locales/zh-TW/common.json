@@ -319,5 +319,9 @@
     "transfer": "轉移",
     "iWillDoItLater": "稍後再說",
     "backup_wallet_advise_description": "請記住，我們和NEAR都不會要求您提供助憶詞或私鑰。只有您應該知道它們，永遠不要與任何人分享。",
-    "backup_wallet_advise_description_2": "如果有人要求您提供助憶詞或私鑰，他們可能只是想偷竊您的帳戶。"
+    "backup_wallet_advise_description_2": "如果有人要求您提供助憶詞或私鑰，他們可能只是想偷竊您的帳戶。",
+    "addNear": "添加附近",
+    "buyNear": "购买 NEAR",
+    "depositNearFromOtherWallet": "从其他钱包存入 NEAR",
+    "iNeedSupport": "我需要支援"
 }

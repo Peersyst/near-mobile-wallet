@@ -319,5 +319,9 @@
     "transfer": "Chuyển",
     "iWillDoItLater": "Tôi sẽ làm sau",
     "backup_wallet_advise_description": "Hãy nhớ rằng cả chúng tôi lẫn NEAR sẽ không bao giờ yêu cầu bạn cung cấp mnemonic hoặc khóa riêng tư của bạn. Chỉ có bạn mới biết chúng và không bao giờ chia sẻ với bất kỳ ai.",
-    "backup_wallet_advise_description_2": "Nếu có ai đó yêu cầu bạn cung cấp mnemonic hoặc khóa riêng tư của bạn, họ có thể chỉ muốn đánh cắp tài khoản của bạn."
+    "backup_wallet_advise_description_2": "Nếu có ai đó yêu cầu bạn cung cấp mnemonic hoặc khóa riêng tư của bạn, họ có thể chỉ muốn đánh cắp tài khoản của bạn.",
+    "addNear": "thêm gần",
+    "buyNear": "Mua NEAR",
+    "depositNearFromOtherWallet": "Nạp NEAR từ ví khác",
+    "iNeedSupport": "Tôi cần hỗ trợ"
 }

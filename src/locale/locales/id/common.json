@@ -319,5 +319,9 @@
     "transfer": "Transfer",
     "iWillDoItLater": "Saya akan melakukannya nanti",
     "backup_wallet_advise_description": "Ingatlah bahwa baik kami maupun NEAR tidak akan pernah meminta Anda untuk mnemonik atau kunci privat Anda. Hanya Anda yang seharusnya mengetahuinya dan jangan pernah membagikannya kepada siapapun. ",
-    "backup_wallet_advise_description_2": "Jika seseorang telah meminta Anda untuk mnemonik atau kunci privat Anda, kemungkinan mereka hanya ingin mencuri akun Anda."
+    "backup_wallet_advise_description_2": "Jika seseorang telah meminta Anda untuk mnemonik atau kunci privat Anda, kemungkinan mereka hanya ingin mencuri akun Anda.",
+    "addNear": "tambah dekat",
+    "buyNear": "Beli NEAR",
+    "depositNearFromOtherWallet": "Setor NEAR dari dompet lain",
+    "iNeedSupport": "Saya butuh dukungan"
 }

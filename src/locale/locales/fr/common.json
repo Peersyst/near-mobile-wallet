@@ -319,5 +319,9 @@
     "transfer": "Transférer",
     "iWillDoItLater": "Je le ferai plus tard",
     "backup_wallet_advise_description": "Souvenez-vous que ni nous ni NEAR ne vous demanderons jamais votre mnémonique ou votre clé privée. Seul vous devriez les connaître et ne jamais les partager avec personne.",
-    "backup_wallet_advise_description_2": "Si quelqu'un vous a demandé votre mnémonique ou votre clé privée, il est probable qu'il veuille seulement voler votre compte."
+    "backup_wallet_advise_description_2": "Si quelqu'un vous a demandé votre mnémonique ou votre clé privée, il est probable qu'il veuille seulement voler votre compte.",
+    "addNear": "ajouter près",
+    "buyNear": "Acheter NEAR",
+    "depositNearFromOtherWallet": "Déposer NEAR depuis un autre portefeuille",
+    "iNeedSupport": "J'ai besoin de support"
 }
