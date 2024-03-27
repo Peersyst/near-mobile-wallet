@@ -35,6 +35,7 @@
         "@react-navigation/bottom-tabs": "^6.5.7",
         "@react-navigation/native": "^6.1.6",
         "@react-navigation/native-stack": "^6.3.16",
+        "@swisstype/react": "^0.0.2",
         "assert": "^2.1.0",
         "big-integer": "^1.6.51",
         "bignumber.js": "^9.1.2",
