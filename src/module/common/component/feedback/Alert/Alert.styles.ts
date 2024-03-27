@@ -3,15 +3,14 @@ import { Alert } from "@peersyst/react-native-components";
 import { AlertProps } from "./Alert";
 import { alpha } from "@peersyst/react-utils";
 
-export const AlertRoot = styled(Alert)<AlertProps>(({ theme: { palette }, type, color }) => {
+export const AlertRoot = styled(Alert)<AlertProps>(({ theme: { palette }, type }) => {
     const statusColor = type && type !== "loading" ? palette.status[type] : palette.background;
-    const currentColor = color ? palette[color] : statusColor;
     return {
         borderRadius: 8,
         icon: {
-            color: currentColor,
+            color: statusColor,
         },
-        backgroundColor: alpha(currentColor as string, 0.12),
-        color: currentColor,
+        backgroundColor: alpha(statusColor as string, 0.12),
+        color: statusColor,
     };
 });

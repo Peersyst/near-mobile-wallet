@@ -315,11 +315,12 @@
     "importAccountManually": "Import account manually",
     "importAccountManuallyDescription": "If you think you have an account that is not showing up, you can import it manually. Just enter the account you want to import.",
     "enterTheAccount": "Enter the account",
-    "backup_wallet_advise_text_2_text": "Remember that neither we nor NEAR will ever ask you for your mnemonic or private key. Only you should know them and never share them with anyone.",
-    "backup_wallet_advise_text_2_text_2": "If someone has asked you for your mnemonic or private key, they likely only want to steal your account",
-    "IWillDoItLater": "I’ll do it later",
-    "notBackup": "Important! You have not done yet",
     "swap": "swap",
+    "iWillDoItLater": "I’ll do it later",
+    "backup_wallet_advise_description": "Remember that neither we nor NEAR will ever ask you for your mnemonic or private key. Only you should know them and never share them with anyone.",
+    "backup_wallet_advise_description_2": "If someone has asked you for your mnemonic or private key, they likely only want to steal your account",
+    "youHaveNotDoneBackupYet": "Important! You have not done yet",
+    "transfer": "Transfer",
     "addNear": "add near",
     "buyNear": "Buy NEAR",
     "depositNearFromOtherWallet": "Deposit NEAR from other wallet",
@@ -329,4 +330,5 @@
     "andThisYouWillBeAbleToStartUsingTheWallet": "and this you will be able to start using the wallet",
     "backupWallet": "Backup wallet",
     "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "and this you will be able to recover your wallet when you need it without losing your NEAR"
+
 }

@@ -8,10 +8,9 @@ import Button from "module/common/component/input/Button/Button";
 
 export interface PickWalletMnemonicScreenProps {
     onSubmit: () => void;
-    onNextScreen: () => void;
 }
 
-const PickWalletMnemonicScreen = ({ onSubmit, onNextScreen }: PickWalletMnemonicScreenProps): JSX.Element => {
+const PickWalletMnemonicScreen = ({ onSubmit }: PickWalletMnemonicScreenProps): JSX.Element => {
     const {
         setIsBackupDone,
         state: { mnemonic },
@@ -19,9 +18,9 @@ const PickWalletMnemonicScreen = ({ onSubmit, onNextScreen }: PickWalletMnemonic
     const { showToast } = useToast();
     const translate = useTranslate();
 
-    const handleSkip = async () => {
+    const handleSkip = () => {
         setIsBackupDone(false);
-        onNextScreen();
+        onSubmit();
     };
 
     const handleOnSubmit = () => {
@@ -38,7 +37,7 @@ const PickWalletMnemonicScreen = ({ onSubmit, onNextScreen }: PickWalletMnemonic
                 onError={() => showToast(translate("incorrect_mnemonic"), { type: "error" })}
             />
             <Button fullWidth variant={"text"} onPress={handleSkip}>
-                {translate("IWillDoItLater")}
+                {translate("iWillDoItLater")}
             </Button>
         </PickWalletMnemonicScreenRoot>
     );

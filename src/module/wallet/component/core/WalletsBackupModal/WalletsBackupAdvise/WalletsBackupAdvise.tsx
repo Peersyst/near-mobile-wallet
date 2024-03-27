@@ -1,4 +1,4 @@
-import { Col, Typography } from "@peersyst/react-native-components";
+import { Col, SuccessIcon, Typography } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import backupWalletState, { BackUp } from "module/wallet/state/BackUpWalletState";
@@ -42,17 +42,15 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdviseProps): JSX.Elemen
     return (
         <ConfirmPinModalWrapper onConfirmedExited={onSubmit}>
             {({ showModal }) => (
-                <Col gap="3%" flex={1}>
-                    <Col flex={1} gap="3%">
+                <Col gap="3%" flex={1} style={{ paddingTop: "7%" }}>
+                    <Col flex={1} gap="7%" alignItems="center">
                         <WalletsBackupAdviseIcon>
                             <SaveIcon />
                         </WalletsBackupAdviseIcon>
-                        <Col gap="3%">
-                            <Typography variant="body3Regular" textAlign="center">
-                                {translate("backup_wallet_advise_text") + " "}
-                            </Typography>
-                            <Alert color="orange" type="success" content={<WalletsBackupAdviseAlertContent />}></Alert>
-                        </Col>
+                        <Typography variant="body2Regular" textAlign="center">
+                            {translate("backup_wallet_advise_text") + " "}
+                        </Typography>
+                        <Alert type="warning" icon={<SuccessIcon />} content={<WalletsBackupAdviseAlertContent />}></Alert>
                     </Col>
                     <Col gap="4%">
                         <Button

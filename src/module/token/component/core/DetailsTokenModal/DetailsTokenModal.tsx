@@ -15,7 +15,7 @@ const DetailsTokenModal = createBackdrop<DetailsTokenModalProps>(({ token, ...re
             closable
             navbar={{
                 back: true,
-                title: <TokenNameWithIcon token={token} variant="body1Strong" style={{ maxWidth: "80%" }} />,
+                title: <TokenNameWithIcon token={token} variant="body1Strong" style={{ flex: 1, maxWidth: "75%" }} />,
                 titlePosition: "left",
             }}
             {...rest}
