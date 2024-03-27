@@ -8,4 +8,5 @@ export const NftImageRoot = styled(Image)(({ theme: { palette: p, borderRadiusXs
     backgroundColor: p.gray[300],
     width: NFT_CARD_WIDTH,
     height: NFT_CARD_WIDTH,
+    objectFit: "cover",
 }));
