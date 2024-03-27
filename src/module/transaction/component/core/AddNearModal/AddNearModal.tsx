@@ -3,15 +3,15 @@ import { Col, createBackdrop, ExposedBackdropProps, useModal } from "@peersyst/r
 import useTranslate from "module/common/hook/useTranslate";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import SendModal from "../SendModal/SendModal";
-import AddNearModalItem from "./AddNearModalItem/AddNearModalItem";
 import { ArrowReceiveIcon, BuyIcon, CircleHelpIcon } from "icons";
 import ReceiveModal from "../ReceiveModal/ReceiveModal";
+import AddNearModalOption from "./AddNearModalOption/AddNearModalOption";
 
-const AddNearModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
+const AddNearModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps): JSX.Element => {
     const translate = useTranslate();
     const { showModal } = useModal();
 
-    const handleExited = () => {
+    const handleOnExited = () => {
         onExited?.();
     };
 
@@ -20,19 +20,19 @@ const AddNearModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps
             navbar={{
                 title: translate("addNear").toUpperCase(),
             }}
-            onExited={handleExited}
+            onExited={handleOnExited}
             {...rest}
         >
             <Col gap={20} justifyContent="center">
-                <AddNearModalItem onPress={() => showModal(SendModal)} text={translate("buyNear")} icon={<BuyIcon />} />
-                <AddNearModalItem
+                <AddNearModalOption onPress={() => showModal(SendModal)} text={translate("buyNear")} icon={<BuyIcon />} />
+                <AddNearModalOption
                     onPress={() => showModal(ReceiveModal)}
                     text={translate("depositNearFromOtherWallet")}
                     icon={<ArrowReceiveIcon />}
                 />
 
                 {/* TODO: connect with faqs */}
-                <AddNearModalItem onPress={() => {}} text={translate("iNeedSupport")} icon={<CircleHelpIcon />} />
+                <AddNearModalOption onPress={() => {}} text={translate("iNeedSupport")} icon={<CircleHelpIcon />} />
             </Col>
         </CardNavigatorModal>
     );
