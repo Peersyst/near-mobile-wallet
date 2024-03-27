@@ -1,4 +1,4 @@
-import { Col } from "@peersyst/react-native-components";
+import { Col, useModal } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 import { TouchableWithoutFeedback } from "react-native";
@@ -6,19 +6,23 @@ import { NftCardProps } from "./NftCard.types";
 import NftImage from "../NftImage/NftImage";
 import { memo } from "react";
 import useTranslate from "module/common/hook/useTranslate";
+import NftDetailsModal from "../../core/NftDetailsModal/NftDetailsModal";
 
 const NftCard = ({ nft }: NftCardProps): JSX.Element => {
     const t = useTranslate();
+    const { showModal } = useModal();
     const {
         metadata: { title, media_url },
         collection_metadata,
         owner_id,
         token_id,
     } = nft;
-
+    const handleOnPress = () => {
+        showModal(NftDetailsModal, { nft });
+    };
     return (
-        <TouchableWithoutFeedback>
-            <MainListCard gap="6.5%" alignItems="center">
+        <TouchableWithoutFeedback onPress={handleOnPress}>
+            <MainListCard gap="6.5%" alignItems="center" flex={1}>
                 <NftImage uri={media_url} tokenId={token_id} />
                 <Col flex={1} gap={12} justifyContent="center">
                     <Col gap={2} flex={1} justifyContent="center">
