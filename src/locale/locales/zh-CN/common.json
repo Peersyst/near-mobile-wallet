@@ -319,5 +319,6 @@
     "iWillDoItLater": "稍后再说",
     "backup_wallet_advise_description": "请记住，我们和NEAR都绝不会要求您提供助记词或私钥。只有您应该知道它们，永远不要与任何人分享。",
     "backup_wallet_advise_description_2": "如果有人向您索要助记词或私钥，他们可能只想窃取您的账户。",
-    "youHaveNotDoneBackupYet": "重要！您还没有备份。"
+    "youHaveNotDoneBackupYet": "重要！您还没有备份。",
+    "transfer": "转账"
 }

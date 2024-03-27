@@ -319,5 +319,6 @@
     "iWillDoItLater": "Nitafanya baadaye",
     "backup_wallet_advise_description": "Kumbuka kwamba wala sisi wala NEAR hatutawahi kuuliza nembo yako au ufunguo wako wa faragha. Ni wewe pekee unapaswa kuzijua na kamwe usizigawanye na yeyote.",
     "backup_wallet_advise_description_2": "Ikiwa mtu amekuuliza nembo yako au ufunguo wako wa faragha, huenda wanataka tu kuiba akaunti yako.",
-    "youHaveNotDoneBackupYet": "Muhimu! Hujafanya nakala rudufu bado."
+    "youHaveNotDoneBackupYet": "Muhimu! Hujafanya nakala rudufu bado.",
+    "transfer": "Hamisha"
 }

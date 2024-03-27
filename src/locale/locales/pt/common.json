@@ -319,5 +319,6 @@
     "iWillDoItLater": "Vou fazer isso mais tarde",
     "backup_wallet_advise_description": "Lembre-se de que nem nós nem a NEAR jamais solicitaremos sua mnemônica ou chave privada. Somente você deve conhecê-las e nunca compartilhá-las com ninguém.",
     "backup_wallet_advise_description_2": "Se alguém pediu sua mnemônica ou chave privada, provavelmente só querem roubar sua conta.",
-    "youHaveNotDoneBackupYet": "Importante! Você ainda não fez backup."
+    "youHaveNotDoneBackupYet": "Importante! Você ainda não fez backup.",
+    "transfer": "Transferir"
 }
