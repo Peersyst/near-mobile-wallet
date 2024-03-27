@@ -9,6 +9,6 @@ export const YouDontHaveNearCardCardRoot = styled(Card)(() => ({
 }));
 
 export const DescriptionTypography = styled(Typography)(({ theme }) => ({
-    color: theme.palette.mode === "dark" ? theme.palette.text : alpha(theme.palette.gray[900], 0.6),
+    color: theme.palette.mode === "dark" ? theme.palette.text : alpha(theme.palette.overlay["12%"], 0.6),
     textAlign: "center",
 }));
