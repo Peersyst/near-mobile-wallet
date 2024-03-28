@@ -10,7 +10,6 @@ import { ArrowReceiveIcon, ArrowSendIcon, BuyIcon, SwapIcon } from "icons";
 import LabeledIconButton from "module/common/component/input/LabeledIconButton/LabeledIconButton";
 import useGetSwapLink from "module/common/hook/useGetSwapLink";
 import useIsBuyEnabled from "module/wallet/hook/useIsBuyEnabled";
-import AddNearModal from "module/transaction/component/core/AddNearModal/AddNearModal";
 
 const WalletCardButtons = (): JSX.Element => {
     const { showModal } = useModal();
@@ -30,7 +29,7 @@ const WalletCardButtons = (): JSX.Element => {
                     <BuyIcon />
                 </LabeledIconButton>
             )}
-            <LabeledIconButton variant="secondary" label={capitalize(translate("send"))} onPress={() => showModal(AddNearModal)}>
+            <LabeledIconButton variant="secondary" label={capitalize(translate("send"))} onPress={() => showModal(SendModal)}>
                 <ArrowSendIcon />
             </LabeledIconButton>
             <LabeledIconButton variant="secondary" label={capitalize(translate("receive"))} onPress={() => showModal(ReceiveModal)}>
