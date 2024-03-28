@@ -321,13 +321,13 @@
     "backup_wallet_advise_description_2": "Якщо хтось попросив вас про ваш мнемонічний код або приватний ключ, ймовірно, вони лише хочуть вкрасти ваш обліковий запис.",
     "youHaveNotDoneBackupYet": "Важливо! Ви ще не зробили резервне копіювання.",
     "transfer": "Переказ",
+    "addNear": "додати NEAR",
+    "buyNear": "Купити NEAR",
+    "depositNearFromOtherWallet": "Внести NEAR з іншого гаманця",
+    "iNeedSupport": "Мені потрібна підтримка",
     "noTransactionsText": "Поки що немає транзакцій. Можливо, ви хочете",
     "addNearCallToActionText": "додати NEAR",
     "backupWallet": "і почати використовувати гаманець.",
     "backupWalletCallToActionText": "Резервне копіювання гаманця",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "і ви зможете відновити свій гаманець, коли вам це знадобиться, не втративши свій NEAR.",
-    "addNear": "додати близько",
-    "buyNear": "Купити NEAR",
-    "depositNearFromOtherWallet": "Внести NEAR з іншого гаманця",
-    "iNeedSupport": "Мені потрібна підтримка"
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "і ви зможете відновити свій гаманець, коли вам це знадобиться, не втративши свій NEAR."
 }

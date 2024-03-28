@@ -321,13 +321,13 @@
     "backup_wallet_advise_description_2": "Если кто-то попросил у вас ваш мнемонический код или приватный ключ, вероятно, они хотят только украсть ваш аккаунт.",
     "youHaveNotDoneBackupYet": "Внимание! Вы еще не выполнили резервное копирование.",
     "transfer": "Перевод",
+    "addNear": "добавить NEAR",
+    "buyNear": "Купить NEAR",
+    "depositNearFromOtherWallet": "Внести NEAR с другого кошелька",
+    "iNeedSupport": "Мне нужна поддержка",
     "noTransactionsText": "Пока нет транзакций. Между тем вы можете",
     "addNearCallToActionText": "Добавить NEAR",
     "backupWallet": "и начать использовать кошелек",
     "backupWalletCallToActionText": "Резервное копирование кошелька",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "и восстановить кошелек, когда вам это понадобится, не потеряв свои NEAR",
-    "addNear": "добавить поблизости",
-    "buyNear": "Купить NEAR",
-    "depositNearFromOtherWallet": "Внести NEAR с другого кошелька",
-    "iNeedSupport": "Мне нужна поддержка"
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "и восстановить кошелек, когда вам это понадобится, не потеряв свои NEAR"
 }

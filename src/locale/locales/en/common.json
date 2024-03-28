@@ -321,7 +321,7 @@
     "backup_wallet_advise_description_2": "If someone has asked you for your mnemonic or private key, they likely only want to steal your account",
     "youHaveNotDoneBackupYet": "Important! You have not done yet",
     "transfer": "Transfer",
-    "addNear": "add near",
+    "addNear": "add NEAR",
     "buyNear": "Buy NEAR",
     "depositNearFromOtherWallet": "Deposit NEAR from other wallet",
     "iNeedSupport": "I need support",

@@ -321,13 +321,13 @@
     "backup_wallet_advise_description_2": "Se qualcuno ti ha chiesto il tuo mnemonico o la tua chiave privata, probabilmente vuole solo rubarti l'account.",
     "youHaveNotDoneBackupYet": "Importante! Non hai ancora eseguito il backup.",
     "transfer": "Trasferimento",
+    "addNear": "aggiungi NEAR",
+    "buyNear": "Compra NEAR",
+    "depositNearFromOtherWallet": "Deposita NEAR da un altro portafoglio",
+    "iNeedSupport": "Ho bisogno di supporto",
     "noTransactionsText": "Non ci sono ancora transazioni. Nel frattempo, puoi:",
     "addNearCallToActionText": "Aggiungi NEAR",
     "backupWallet": "e in questo modo potrai iniziare ad utilizzare il wallet",
     "backupWalletCallToActionText": "Backup wallet",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "e in questo modo potrai recuperare il tuo wallet quando ne avrai bisogno senza perdere i tuoi NEAR",
-    "addNear": "aggiungi vicino",
-    "buyNear": "Compra NEAR",
-    "depositNearFromOtherWallet": "Deposita NEAR da un altro portafoglio",
-    "iNeedSupport": "Ho bisogno di supporto"
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "e in questo modo potrai recuperare il tuo wallet quando ne avrai bisogno senza perdere i tuoi NEAR"
 }

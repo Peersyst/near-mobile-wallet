@@ -321,13 +321,13 @@
     "backup_wallet_advise_description_2": "Jika seseorang telah meminta Anda untuk mnemonik atau kunci privat Anda, kemungkinan mereka hanya ingin mencuri akun Anda.",
     "youHaveNotDoneBackupYet": "Penting! Anda belum melakukan backup.",
     "transfer": "Transfer",
+    "addNear": "tambahkan NEAR",
+    "buyNear": "Beli NEAR",
+    "depositNearFromOtherWallet": "Setor NEAR dari dompet lain",
+    "iNeedSupport": "Saya butuh dukungan",
     "noTransactionsText": "Belum ada transaksi. Sementara itu, Anda dapat",
     "addNearCallToActionText": "Tambahkan NEAR",
     "backupWallet": "dan dengan ini Anda akan dapat mulai menggunakan dompet",
     "backupWalletCallToActionText": "Cadangkan dompet",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "dan dengan ini Anda akan dapat memulihkan dompet Anda ketika Anda membutuhkannya tanpa kehilangan NEAR Anda",
-    "addNear": "tambah dekat",
-    "buyNear": "Beli NEAR",
-    "depositNearFromOtherWallet": "Setor NEAR dari dompet lain",
-    "iNeedSupport": "Saya butuh dukungan"
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "dan dengan ini Anda akan dapat memulihkan dompet Anda ketika Anda membutuhkannya tanpa kehilangan NEAR Anda"
 }

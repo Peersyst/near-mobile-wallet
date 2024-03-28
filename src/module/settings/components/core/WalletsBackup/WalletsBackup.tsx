@@ -9,16 +9,12 @@ const WalletsBackup = () => {
     const { showModal } = useModal();
     const translate = useTranslate();
     const isBackupDone = useIsBackupDone();
+
     return (
         <SettingsMenuItem text={translate("back_up_your_accounts")} onPress={() => showModal(WalletsBackupModal)}>
-            <>
-                {!isBackupDone && (
-                    <Alert
-                        type="error"
-                        content={<Typography variant="body3Regular">{translate("youHaveNotDoneBackupYet")}</Typography>}
-                    ></Alert>
-                )}
-            </>
+            {!isBackupDone ? (
+                <Alert type="error" content={<Typography variant="body3Regular">{translate("youHaveNotDoneBackupYet")}</Typography>} />
+            ) : null}
         </SettingsMenuItem>
     );
 };
