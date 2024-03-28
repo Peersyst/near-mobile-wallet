@@ -319,5 +319,9 @@
     "transfer": "Hamisha",
     "iWillDoItLater": "Nitafanya baadaye",
     "backup_wallet_advise_description": "Kumbuka kwamba wala sisi wala NEAR hatutawahi kuuliza nembo yako au ufunguo wako wa faragha. Ni wewe pekee unapaswa kuzijua na kamwe usizigawanye na yeyote.",
-    "backup_wallet_advise_description_2": "Ikiwa mtu amekuuliza nembo yako au ufunguo wako wa faragha, huenda wanataka tu kuiba akaunti yako."
+    "backup_wallet_advise_description_2": "Ikiwa mtu amekuuliza nembo yako au ufunguo wako wa faragha, huenda wanataka tu kuiba akaunti yako.",
+    "addNear": "ongeza NEAR",
+    "buyNear": "Nunua NEAR",
+    "depositNearFromOtherWallet": "Amana NEAR kutoka pochi nyingine",
+    "iNeedSupport": "Nahitaji msaada"
 }
