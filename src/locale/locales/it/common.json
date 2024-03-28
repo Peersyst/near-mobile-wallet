@@ -320,7 +320,7 @@
     "iWillDoItLater": "Lo farò più tardi",
     "backup_wallet_advise_description": "Ricorda che né noi né NEAR ti chiederemo mai il tuo mnemonico o la tua chiave privata. Solo tu dovresti conoscerli e non condividerli mai con nessuno.",
     "backup_wallet_advise_description_2": "Se qualcuno ti ha chiesto il tuo mnemonico o la tua chiave privata, probabilmente vuole solo rubarti l'account.",
-    "addNear": "aggiungi vicino",
+    "addNear": "aggiungi NEAR",
     "buyNear": "Compra NEAR",
     "depositNearFromOtherWallet": "Deposita NEAR da un altro portafoglio",
     "iNeedSupport": "Ho bisogno di supporto"

@@ -320,7 +320,7 @@
     "iWillDoItLater": "稍后再说",
     "backup_wallet_advise_description": "请记住，我们和NEAR都绝不会要求您提供助记词或私钥。只有您应该知道它们，永远不要与任何人分享。",
     "backup_wallet_advise_description_2": "如果有人向您索要助记词或私钥，他们可能只想窃取您的账户。",
-    "addNear": "添加附近",
+    "addNear": "添加 NEAR",
     "buyNear": "购买 NEAR",
     "depositNearFromOtherWallet": "从其他钱包存入 NEAR",
     "iNeedSupport": "我需要支持"
