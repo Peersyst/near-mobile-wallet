@@ -1,7 +1,7 @@
 import { useModal } from "@peersyst/react-native-components";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 import { Token } from "near-peersyst-sdk";
-import DetailsTokenModal from "../../core/DetailsTokenModal/DetailsTokenModal";
+import TokenDetailsModal from "../../core/TokenDetailsModal/TokenDetailsModal";
 import { TouchableWithoutFeedback } from "react-native";
 import TokenBalance from "../TokenBalance/TokenBalance";
 import TokenNameWithIcon from "../TokenNameWithIcon/TokenNameWithIcon";
@@ -14,7 +14,7 @@ const TokenCard = ({ token }: TokenCardProps): JSX.Element => {
     const { showModal } = useModal();
 
     return (
-        <TouchableWithoutFeedback onPress={() => showModal(DetailsTokenModal, { token })}>
+        <TouchableWithoutFeedback onPress={() => showModal(TokenDetailsModal, { token })}>
             <MainListCard alignItems="center" justifyContent="space-between">
                 <TokenNameWithIcon token={token} variant="body3Strong" typographyStyle={{ flex: 0.6 }} />
                 <TokenBalance
