@@ -2382,6 +2382,11 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
+"@swisstype/react@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@swisstype/react/-/react-0.0.2.tgz#a2a9af3ab2409d5a83db29d71d365510114ac334"
+  integrity sha512-sPemwsHXiRa+UvI+AUlav1SaOc7UKmm4+mWNrz7G7QDw8zMWFKeoUDUY8QS8KqsoXzvzsXBbKWLvP6JDJPx8Vg==
+
 "@testing-library/jest-native@^5.1.2":
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/@testing-library/jest-native/-/jest-native-5.4.3.tgz#9334c68eaf45db9eb20d0876728cc5d7fc2c3ea2"
