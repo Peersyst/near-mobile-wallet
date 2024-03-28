@@ -61,6 +61,10 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             backgroundColor: theme.palette.overlay["8%"],
             color: "#FFFFFF",
         },
+        quinary: {
+            backgroundColor: emphasize(theme.palette.blue, 0.9),
+            color: theme.palette.blue,
+        },
 
         //State Styles
         pressed: {

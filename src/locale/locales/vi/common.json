@@ -324,5 +324,10 @@
     "addNear": "thêm NEAR",
     "buyNear": "Mua NEAR",
     "depositNearFromOtherWallet": "Nạp NEAR từ ví khác",
-    "iNeedSupport": "Tôi cần hỗ trợ"
+    "iNeedSupport": "Tôi cần hỗ trợ",
+    "noTransactionsText": "Chưa có giao dịch nào. Trong khi chờ, bạn có thể:",
+    "addNearCallToActionText": "Thêm NEAR",
+    "backupWallet": "và bạn sẽ có thể bắt đầu sử dụng ví của mình.",
+    "backupWalletCallToActionText": "Sao lưu ví",
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "và bạn sẽ có thể khôi phục ví của mình khi cần mà không mất NEAR của mình."
 }

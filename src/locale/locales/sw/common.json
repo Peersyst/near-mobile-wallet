@@ -324,5 +324,10 @@
     "addNear": "ongeza NEAR",
     "buyNear": "Nunua NEAR",
     "depositNearFromOtherWallet": "Amana NEAR kutoka pochi nyingine",
-    "iNeedSupport": "Nahitaji msaada"
+    "iNeedSupport": "Nahitaji msaada",
+    "noTransactionsText": "Hakuna miamala bado. Wakati huo unaweza",
+    "addNearCallToActionText": "Ongeza NEAR",
+    "backupWallet": "na hivi utaweza kuanza kutumia pochi",
+    "backupWalletCallToActionText": "Hifadhi pochi",
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "na hivi utaweza kurejesha pochi yako wakati unapohitaji bila kupoteza NEAR yako"
 }

@@ -324,5 +324,10 @@
     "addNear": "добавить NEAR",
     "buyNear": "Купить NEAR",
     "depositNearFromOtherWallet": "Внести NEAR с другого кошелька",
-    "iNeedSupport": "Мне нужна поддержка"
+    "iNeedSupport": "Мне нужна поддержка",
+    "noTransactionsText": "Пока нет транзакций. Между тем вы можете",
+    "addNearCallToActionText": "Добавить NEAR",
+    "backupWallet": "и начать использовать кошелек",
+    "backupWalletCallToActionText": "Резервное копирование кошелька",
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "и восстановить кошелек, когда вам это понадобится, не потеряв свои NEAR"
 }

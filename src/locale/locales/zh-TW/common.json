@@ -324,5 +324,10 @@
     "addNear": "添加 NEAR",
     "buyNear": "购买 NEAR",
     "depositNearFromOtherWallet": "从其他钱包存入 NEAR",
-    "iNeedSupport": "我需要支援"
+    "iNeedSupport": "我需要支援",
+    "noTransactionsText": "目前沒有交易。與此同時，您可以",
+    "addNearCallToActionText": "添加NEAR",
+    "backupWallet": "這樣您就可以開始使用錢包。",
+    "backupWalletCallToActionText": "備份錢包",
+    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "這樣您就可以在需要時恢復您的錢包，而不會丟失您的NEAR。"
 }
