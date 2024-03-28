@@ -4,8 +4,6 @@ import useTranslate from "module/common/hook/useTranslate";
 import Alert from "module/common/component/feedback/Alert/Alert";
 import useIsBackupDone from "module/settings/hook/useIsBackupDone";
 import SettingsMenuItem from "../../navigation/SettingsMenuItem/SettingsMenuItem";
-import WalletController from "module/wallet/utils/WalletController";
-import { WalletStorage } from "module/wallet/WalletStorage";
 
 const WalletsBackup = () => {
     const { showModal } = useModal();

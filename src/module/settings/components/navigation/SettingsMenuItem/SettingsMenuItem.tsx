@@ -1,6 +1,6 @@
 import Typography from "module/common/component/display/Typography/Typography";
 import SettingsTouchableCard from "../../input/SettingsTouchableCard/SettingsTouchableCard";
-import { ReactElement, ReactNode } from "react";
+import { ReactNode } from "react";
 import { Col } from "@peersyst/react-native-components";
 import { ViewStyle } from "react-native";
 
