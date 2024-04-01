@@ -2,17 +2,15 @@ import { Col, Typography, useModal } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import Button from "../../input/Button/Button";
 import AddNearModal from "module/transaction/component/core/AddNearModal/AddNearModal";
-import useWalletState from "module/wallet/hook/useWalletState";
 import { capitalize } from "@peersyst/react-utils";
 import { OnBoardingActionsListRoot } from "./OnBoardingActionList.styles";
 import WalletsBackupModal from "module/wallet/component/core/WalletsBackupModal/WalletsBackupModal";
+import useIsBackupDone from "module/settings/hook/useIsBackupDone";
 
 const OnBoardingActionsList = (): JSX.Element => {
     const translate = useTranslate();
     const { showModal } = useModal();
-    const {
-        state: { isBackupDone },
-    } = useWalletState();
+    const isBackupDone = useIsBackupDone();
     return (
         <OnBoardingActionsListRoot>
             <Typography variant="body3Strong" textAlign="center" style={{ width: "60%" }}>
@@ -28,7 +26,7 @@ const OnBoardingActionsList = (): JSX.Element => {
                         {translate("backupWalletCallToActionText")}
                     </Button>
                     <Typography variant="body4Regular" textAlign="center">
-                        {capitalize(translate("andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear"))}
+                        {capitalize(translate("backupWalletCallToActionTextDescription"))}
                     </Typography>
                 </Col>
             )}

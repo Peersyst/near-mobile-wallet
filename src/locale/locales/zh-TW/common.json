@@ -329,5 +329,5 @@
     "addNearCallToActionText": "添加NEAR",
     "backupWallet": "這樣您就可以開始使用錢包。",
     "backupWalletCallToActionText": "備份錢包",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "這樣您就可以在需要時恢復您的錢包，而不會丟失您的NEAR。"
+    "backupWalletCallToActionTextDescription": "這樣您就可以在需要時恢復您的錢包，而不會丟失您的NEAR。"
 }

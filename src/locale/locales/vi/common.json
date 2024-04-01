@@ -329,5 +329,5 @@
     "addNearCallToActionText": "Thêm NEAR",
     "backupWallet": "và bạn sẽ có thể bắt đầu sử dụng ví của mình.",
     "backupWalletCallToActionText": "Sao lưu ví",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "và bạn sẽ có thể khôi phục ví của mình khi cần mà không mất NEAR của mình."
+    "backupWalletCallToActionTextDescription": "và bạn sẽ có thể khôi phục ví của mình khi cần mà không mất NEAR của mình."
 }

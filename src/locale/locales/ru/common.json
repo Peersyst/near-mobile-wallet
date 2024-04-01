@@ -329,5 +329,5 @@
     "addNearCallToActionText": "Добавить NEAR",
     "backupWallet": "и начать использовать кошелек",
     "backupWalletCallToActionText": "Резервное копирование кошелька",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "и восстановить кошелек, когда вам это понадобится, не потеряв свои NEAR"
+    "backupWalletCallToActionTextDescription": "и восстановить кошелек, когда вам это понадобится, не потеряв свои NEAR"
 }

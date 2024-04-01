@@ -329,5 +329,5 @@
     "addNearCallToActionText": "додати NEAR",
     "backupWallet": "і почати використовувати гаманець.",
     "backupWalletCallToActionText": "Резервне копіювання гаманця",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "і ви зможете відновити свій гаманець, коли вам це знадобиться, не втративши свій NEAR."
+    "backupWalletCallToActionTextDescription": "і ви зможете відновити свій гаманець, коли вам це знадобиться, не втративши свій NEAR."
 }

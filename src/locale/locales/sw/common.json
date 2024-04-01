@@ -329,5 +329,5 @@
     "addNearCallToActionText": "Ongeza NEAR",
     "backupWallet": "na hivi utaweza kuanza kutumia pochi",
     "backupWalletCallToActionText": "Hifadhi pochi",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "na hivi utaweza kurejesha pochi yako wakati unapohitaji bila kupoteza NEAR yako"
+    "backupWalletCallToActionTextDescription": "na hivi utaweza kurejesha pochi yako wakati unapohitaji bila kupoteza NEAR yako"
 }

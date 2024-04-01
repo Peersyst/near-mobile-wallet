@@ -329,5 +329,5 @@
     "addNearCallToActionText": "Ajouter NEAR",
     "backupWallet": "et ainsi vous pourrez commencer à utiliser le portefeuille",
     "backupWalletCallToActionText": "Sauvegarder le portefeuille",
-    "andThisYouWillBeAbleToRecoverYourWalletWhenYouNeedItWithoutLosingYourNear": "et ainsi vous pourrez récupérer votre portefeuille quand vous en aurez besoin sans perdre vos NEAR"
+    "backupWalletCallToActionTextDescription": "et ainsi vous pourrez récupérer votre portefeuille quand vous en aurez besoin sans perdre vos NEAR"
 }
