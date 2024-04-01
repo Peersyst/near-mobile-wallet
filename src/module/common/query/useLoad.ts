@@ -15,6 +15,7 @@ export function useLoad(): boolean {
     useEffect(() => {
         const getStorage = async () => {
             const hasMnemonic = await WalletController.hasMnemonic();
+            const isBackupDone = await WalletController.getIsBackupDone();
             const settings = { ...defaultSettingsState, ...((await SettingsStorage.getAllSettings()) || {}) };
             if (!hasMnemonic) await SettingsStorage.set(settings);
             // Do not await this so the user can enter the app instantly with a loading state
@@ -23,6 +24,7 @@ export function useLoad(): boolean {
                     ...state,
                     loading: true,
                     hasWallet: true,
+                    isBackupDone,
                 }));
 
                 recoverWallets(settings.network);

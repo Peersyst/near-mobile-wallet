@@ -316,12 +316,17 @@
     "importAccountManuallyDescription": "如果您認為您有帳戶未顯示，您可以手動匯入。只需輸入您要匯入的帳戶即可。",
     "enterTheAccount": "輸入帳戶",
     "swap": "交換",
-    "transfer": "轉移",
     "iWillDoItLater": "稍後再說",
     "backup_wallet_advise_description": "請記住，我們和NEAR都不會要求您提供助憶詞或私鑰。只有您應該知道它們，永遠不要與任何人分享。",
     "backup_wallet_advise_description_2": "如果有人要求您提供助憶詞或私鑰，他們可能只是想偷竊您的帳戶。",
     "youHave0NEAR": "您沒有 NEAR",
     "youHave0NEARDescription": "没有NEAR，您将无法发送、交换、取消抵押或提款。请存款或购买NEAR以继续。",
     "youHave0NEARDescription2": "为什么？区块链交易需要向验证人支付费用，这些费用以NEAR结算。",
-    "addNearNow": "立即添加 NEAR"
+    "addNearNow": "立即添加 NEAR",
+    "youHaveNotDoneBackupYet": "重要！您還沒有備份。",
+    "transfer": "轉移",
+    "addNear": "添加 NEAR",
+    "buyNear": "购买 NEAR",
+    "depositNearFromOtherWallet": "从其他钱包存入 NEAR",
+    "iNeedSupport": "我需要支援"
 }

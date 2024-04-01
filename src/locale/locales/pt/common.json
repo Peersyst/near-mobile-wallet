@@ -316,12 +316,17 @@
     "importAccountManuallyDescription": "Se você acha que tem uma conta que não está aparecendo, você pode importá-la manualmente. Basta inserir a conta que deseja importar.",
     "enterTheAccount": "Insira a conta",
     "swap": "Trocar",
-    "transfer": "Transferir",
     "iWillDoItLater": "Vou fazer isso mais tarde",
     "backup_wallet_advise_description": "Lembre-se de que nem nós nem a NEAR jamais solicitaremos sua mnemônica ou chave privada. Somente você deve conhecê-las e nunca compartilhá-las com ninguém.",
     "backup_wallet_advise_description_2": "Se alguém pediu sua mnemônica ou chave privada, provavelmente só querem roubar sua conta.",
     "youHave0NEAR": "Você não tem NEAR",
     "youHave0NEARDescription": "Você não poderá enviar, trocar, desbloquear ou sacar sem NEAR. Faça um depósito ou compre NEAR para continuar.",
     "youHave0NEARDescription2": "Por quê? Transações de blockchain requerem taxas pagas aos validadores, que são liquidadas em NEAR.",
-    "addNearNow": "Adicionar NEAR agora"
+    "addNearNow": "Adicionar NEAR agora",
+    "youHaveNotDoneBackupYet": "Importante! Você ainda não fez backup.",
+    "transfer": "Transferir",
+    "addNear": "adicionar NEAR",
+    "buyNear": "Comprar NEAR",
+    "depositNearFromOtherWallet": "Depositar NEAR de outra carteira",
+    "iNeedSupport": "Preciso de suporte"
 }

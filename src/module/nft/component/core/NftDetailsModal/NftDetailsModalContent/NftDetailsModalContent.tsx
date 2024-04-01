@@ -1,6 +1,5 @@
 import { Col, Typography, useModal } from "@peersyst/react-native-components";
 import { NftToken } from "near-peersyst-sdk";
-import { NftImageSize } from "../../../display/NftImage/NftImage";
 import useTranslate from "module/common/hook/useTranslate";
 import { capitalize } from "@peersyst/react-utils";
 import Button from "module/common/component/input/Button/Button";
@@ -24,7 +23,7 @@ const NftDetailsModalContent = ({ nft, ...rest }: NftDetailsModalContentProps) =
 
     return (
         <Col alignItems="center" gap={16} {...rest}>
-            <NftDetailsModalContentImage uri={nft.metadata.media_url} tokenId={nft.token_id} size={NftImageSize.LARGE} />
+            <NftDetailsModalContentImage uri={nft.metadata.media_url} tokenId={nft.token_id} />
             {nft.metadata.description && <Typography variant="body3Regular">{nft.metadata.description}</Typography>}
             <Card>
                 <Button variant="quaternary" size="lg" onPress={handleOnTransferButtonPress}>
