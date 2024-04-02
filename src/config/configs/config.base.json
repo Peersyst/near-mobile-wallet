@@ -6,7 +6,7 @@
     "indexerTestnetUrl": "https://testnet-api.kitwallet.app",
     "nearblocksTesnetApiUrl": "https://api-testnet.nearblocks.io/v1",
     "indexerMainnetUrl": "https://api.kitwallet.app",
-    "nearblocksMainnetApiUrl": "https://api.nearblocks.io/v1",
+    "nearblocksMainnetApiUrl": "https://api3.nearblocks.io/v1",
     "faucetUrl": "https://faucet.nervos.org/",
     "mainnetNodeUrl": "https://rpc.mainnet.near.org",
     "testnetNodeUrl": "https://rpc.testnet.near.org",
