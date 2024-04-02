@@ -43,7 +43,10 @@ export class FastNearService extends FetchService implements NearApiServiceInter
     }
 
     async getAccountsFromPublicKey({ address }: NearApiServiceParams): Promise<string[]> {
-        const { account_ids } = await this.fetch<FastNearAccountsFromPublicKeyResponseDto>(`/public_key/${address}`);
+        const { account_ids } = await timeoutPromise<FastNearAccountsFromPublicKeyResponseDto>(
+            this.handleFetch(`https://api.fastnear.com/v0/public_key/${address}`),
+            config.apiRequestTimeout,
+        );
         return this.filterAccountIds(account_ids);
     }
 
@@ -54,13 +57,13 @@ export class FastNearService extends FetchService implements NearApiServiceInter
     }
 
     async getLikelyTokens({ address }: NearApiServiceParams): Promise<string[]> {
-        const { contracts_ids } = await this.fetch<FastNearFTFromAccountIdResponseDto>(`/account/${address}/ft`);
-        return this.filterAccountIds(contracts_ids.map(({ contract_id }) => contract_id));
+        const { tokens } = await this.fetch<FastNearFTFromAccountIdResponseDto>(`/account/${address}/ft`);
+        return this.filterAccountIds(tokens.map(({ contract_id }) => contract_id));
     }
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
-        const { contracts_ids } = await this.fetch<FastNearNFTFromAccountIdResponseDto>(`/account/${address}/nft`);
-        return this.filterAccountIds(contracts_ids.map(({ contract_id }) => contract_id));
+        const { tokens } = await this.fetch<FastNearNFTFromAccountIdResponseDto>(`/account/${address}/nft`);
+        return this.filterAccountIds(tokens.map(({ contract_id }) => contract_id));
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

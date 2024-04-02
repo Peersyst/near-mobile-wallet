@@ -35,8 +35,10 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
         const responseArray: [NBR | undefined, FNR | undefined] = [undefined, undefined];
         const results = await Promise.allSettled([nearBlocksRequest, fastNearRequest]);
 
-        for (const result of results) {
-            if (result.status === "fulfilled") responseArray.push(result.value);
+        for (const [index, result] of results.entries()) {
+            if (result.status === "fulfilled") {
+                responseArray[index] = result.value;
+            } else console.error("reason", JSON.stringify(result.reason));
         }
 
         return responseArray;
