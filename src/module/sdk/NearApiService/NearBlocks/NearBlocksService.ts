@@ -52,49 +52,73 @@ export class NearBlocksService extends FetchService implements NearApiServiceInt
     private getActionsFromTxs(txs: NearBlocksTransactionDto[], address: string): Action[] {
         const actions: Action[] = [];
         for (const tx of txs) {
-            if (tx.predecessor_account_id !== "system") {
-                const baseTransaction: TransactionWithoutActions = {
-                    transactionHash: tx.transaction_hash,
-                    includedInBlockHash: tx.included_in_block_hash,
-                    blockTimestamp: parseBlockTimestamp(tx.block_timestamp),
-                    signerAccountId: tx.predecessor_account_id,
-                    nonce: 0,
-                    receiverAccountId: tx.receiver_account_id,
-                };
-
-                for (const [i, action] of tx.actions.entries()) {
-                    try {
-                        const actionKind = this.parseActionKindApiDto(
-                            action.action as TransactionActionKind,
-                            tx.receiver_account_id,
-                            address,
-                        );
-                        actions.push({
-                            transaction: baseTransaction,
-                            actionKind,
-                            transactionHash: tx.transaction_hash,
-                            indexInTransaction: i,
-                            // codeSha256: "", // For DEPLOY_CONTRACT kind
-                            gas: tx.outcomes_agg.transaction_fee, // For FUNCTION_CALL kind
-                            ...(tx.actions_agg.deposit && {
-                                deposit: this.parseTransactionDeposit(actionKind, tx?.actions_agg.deposit), // For FUNCTION_CALL, TRANSFER kind
-                            }),
-                            // argsBase64: "", // For FUNCTION_CALL kind
-                            // argsJson: "", // For FUNCTION_CALL kind
-                            methodName: action.method || undefined,
-                            // stake: "", // For STAKE kind
-                            // publicKey: baseTransaction.receiverAccountId, // For STAKE, ADD_KEY, DELETE_KEY kind
-                            // accessKey: "", // For ADD_KEY kind
-                            // beneficiaryId: "", // For DELETE_ACCOUNT kind
-                        });
-                    } catch (e) {}
+            try {
+                if (tx.predecessor_account_id !== "system") {
+                    const baseTransaction: TransactionWithoutActions = {
+                        transactionHash: tx.transaction_hash,
+                        includedInBlockHash: tx.included_in_block_hash,
+                        blockTimestamp: parseBlockTimestamp(tx.block_timestamp),
+                        signerAccountId: tx.predecessor_account_id,
+                        nonce: 0,
+                        receiverAccountId: tx.receiver_account_id,
+                    };
+                    if (!tx.actions) {
+                        /* eslint-disable no-console */
+                        console.warn("tx without actions", tx);
+                        break;
+                    }
+                    for (const [i, action] of tx.actions.entries()) {
+                        try {
+                            const actionKind = this.parseActionKindApiDto(
+                                action.action as TransactionActionKind,
+                                tx.receiver_account_id,
+                                address,
+                            );
+                            actions.push({
+                                transaction: baseTransaction,
+                                actionKind,
+                                transactionHash: tx.transaction_hash,
+                                indexInTransaction: i,
+                                // codeSha256: "", // For DEPLOY_CONTRACT kind
+                                gas: tx.outcomes_agg.transaction_fee, // For FUNCTION_CALL kind
+                                ...(tx.actions_agg.deposit && {
+                                    deposit: this.parseTransactionDeposit(actionKind, tx?.actions_agg.deposit), // For FUNCTION_CALL, TRANSFER kind
+                                }),
+                                // argsBase64: "", // For FUNCTION_CALL kind
+                                // argsJson: "", // For FUNCTION_CALL kind
+                                methodName: action.method || undefined,
+                                // stake: "", // For STAKE kind
+                                // publicKey: baseTransaction.receiverAccountId, // For STAKE, ADD_KEY, DELETE_KEY kind
+                                // accessKey: "", // For ADD_KEY kind
+                                // beneficiaryId: "", // For DELETE_ACCOUNT kind
+                            });
+                        } catch (e) {}
+                    }
                 }
-            }
+            } catch (e) {}
         }
         return actions;
     }
 
-    private addValidatorAmountsFromTxs(txs: NearBlocksTransactionResponseDto, valAmounts: ValidatorAmount): ValidatorAmount {
+    private getAmountFromLogs(logs: string[], address: string): number {
+        for (const log of logs) {
+            const splittedLogs = log.split(" ");
+            if (splittedLogs[0] === `@${address}` && splittedLogs[1] === "withdrawing") {
+                const amount = parseInt(splittedLogs[2].slice(0, -1), 10);
+                if (!Number.isNaN(amount)) {
+                    return amount;
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    private addValidatorAmountsFromTxs(
+        txs: NearBlocksTransactionResponseDto,
+        valAmounts: ValidatorAmount,
+        address: string,
+    ): ValidatorAmount {
         for (let i = 0; i < txs.txns.length; i += 1) {
             const tx = txs.txns[i];
             if (!valAmounts[tx.receiver_account_id]) {
@@ -106,15 +130,14 @@ export class NearBlocksService extends FetchService implements NearApiServiceInt
             } else if (DEPOSIT_METHOD === tx.actions[0].method) {
                 valAmounts[tx.receiver_account_id] += tx.actions_agg.deposit;
             } else if (WITHDRAW_METHOD === tx.actions[0].method) {
-                if (tx.logs[0]) {
-                    const amount = parseInt(tx.logs[0].split(" ")[2].slice(0, -1), 10);
-                    valAmounts[tx.receiver_account_id] -= amount;
-                }
+                valAmounts[tx.receiver_account_id] -= this.getAmountFromLogs(tx.logs, address);
             } else if (WITHDRAW_ALL_METHOD === tx.actions[0].method) {
-                if (tx.logs[0]) {
-                    const amount = parseInt(tx.logs[0].split(" ")[2].slice(0, -1), 10);
-                    valAmounts[tx.receiver_account_id] -= amount;
-                }
+                valAmounts[tx.receiver_account_id] -= this.getAmountFromLogs(tx.logs, address);
+            }
+
+            // If it reaches negative values, start again
+            if (valAmounts[tx.receiver_account_id] < 0) {
+                valAmounts[tx.receiver_account_id] = 0;
             }
         }
 
@@ -132,20 +155,18 @@ export class NearBlocksService extends FetchService implements NearApiServiceInt
         let resp = await this.fetch<NearBlocksTransactionResponseDto>(
             `/account/${address}/txns?action=${action}&page=${page}&per_page=${pageSize}&order=${order}`,
         );
-        validatorAmounts = this.addValidatorAmountsFromTxs(resp, validatorAmounts);
+        validatorAmounts = this.addValidatorAmountsFromTxs(resp, validatorAmounts, address);
 
         while (resp.txns.length === pageSize) {
             page += 1;
             resp = await this.fetch<NearBlocksTransactionResponseDto>(
                 `/account/${address}/txns?action=${action}&page=${page}&per_page=${pageSize}&order=${order}`,
             );
-            validatorAmounts = this.addValidatorAmountsFromTxs(resp, validatorAmounts);
+            validatorAmounts = this.addValidatorAmountsFromTxs(resp, validatorAmounts, address);
         }
 
         for (const key of Object.keys(validatorAmounts)) {
-            if (validatorAmounts[key] > 0) {
-                deposits.push({ validatorId: key, amount: validatorAmounts[key] });
-            }
+            deposits.push({ validatorId: key, amount: validatorAmounts[key] });
         }
 
         return deposits;

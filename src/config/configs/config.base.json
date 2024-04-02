@@ -4,7 +4,7 @@
     "mainnetExplorerLink": "https://explorer.mainnet.near.org",
     "testnetExplorerLink": "https://explorer.testnet.near.org",
     "nearblocksTesnetApiUrl": "https://api-testnet.nearblocks.io/v1",
-    "nearblocksMainnetApiUrl": "https://api.nearblocks.io/v1",
+    "nearblocksMainnetApiUrl": "https://api3.nearblocks.io/v1",
     "faucetUrl": "https://faucet.nervos.org/",
     "mainnetNodeUrl": "https://rpc.mainnet.near.org",
     "testnetNodeUrl": "https://rpc.testnet.near.org",
