@@ -36,7 +36,7 @@
     "apiRequestTimeout": 2000,
     "nearMobileUrl": "https://nearmobile.app/",
     "enableManualImport": true,
-    "fastMainnetNearApiUrl": "https://api.fastnear.com/v0",
+    "fastMainnetNearApiUrl": "https://api.fastnear.com/v1",
     "signerFeature": {
         "enabled": false,
         "backendUrl": "",

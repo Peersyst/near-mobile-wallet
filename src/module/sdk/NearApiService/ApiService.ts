@@ -25,61 +25,82 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
         return accounts.map((account) => this.parseNearAccount(account));
     }
 
+    private async getRequestsInParallel<NBR, FNR>(
+        nearBlocksRequest: Promise<NBR>,
+        fastNearRequest: Promise<FNR>,
+    ): Promise<[NBR | undefined, FNR | undefined]> {
+        //Check if `allSettled` method is supported
+        if (typeof Promise.allSettled !== "function") return [await nearBlocksRequest, await fastNearRequest];
+
+        const responseArray: [NBR | undefined, FNR | undefined] = [undefined, undefined];
+        const results = await Promise.allSettled([nearBlocksRequest, fastNearRequest]);
+
+        for (const result of results) {
+            if (result.status === "fulfilled") responseArray.push(result.value);
+        }
+
+        return responseArray;
+    }
+
     /**
      * NearApiServiceInterface methods
      */
 
     async getAccountsFromPublicKey({ address }: NearApiServiceParams): Promise<string[]> {
-        let newAccounts: string[] = [];
-        try {
-            newAccounts = await this.nearblocksService.getAccountsFromPublicKey({ address });
-        } catch (error: unknown) {}
-        let oldAccounts: string[] = [];
-        try {
-            oldAccounts = await this.fastNearService.getAccountsFromPublicKey({ address });
-        } catch (error: unknown) {}
-        const accounts = [...new Set([...newAccounts, ...oldAccounts])];
+        const [nearBlocksAccounts = [], fastNearAccounts = []] = await this.getRequestsInParallel(
+            this.nearblocksService.getAccountsFromPublicKey({ address }),
+            this.fastNearService.getAccountsFromPublicKey({ address }),
+        );
+        const accounts = [...new Set([...nearBlocksAccounts, ...fastNearAccounts])];
 
         return this.parseNearAccounts(accounts);
     }
 
     async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
-        try {
-            return await this.nearblocksService.getStakingDeposits({ address });
-        } catch (error: unknown) {
-            return [];
+        const stakingDeposits: StakingDeposit[] = [];
+        const stakingDepositSet: Set<string> = new Set();
+
+        const [nearBlocksStakingDeposits = [], fastNearStakingDeposits = []] = await this.getRequestsInParallel(
+            this.nearblocksService.getStakingDeposits({ address }),
+            this.fastNearService.getStakingDeposits({ address }),
+        );
+
+        for (const stakingDeposit of nearBlocksStakingDeposits) {
+            stakingDepositSet.add(stakingDeposit.validatorId);
+            stakingDeposits.push(stakingDeposit);
         }
+
+        for (const stakingDeposit of fastNearStakingDeposits) {
+            if (!stakingDepositSet.has(stakingDeposit.validatorId)) {
+                stakingDeposits.push(stakingDeposit);
+            }
+        }
+        return stakingDeposits;
     }
 
     async getLikelyTokens({ address, chain }: NearApiServiceParams): Promise<string[]> {
-        let newContractIds: string[] = [];
-        try {
-            newContractIds = await this.nearblocksService.getLikelyTokens({ address });
-        } catch (error: unknown) {}
-        let oldContractIds: string[] = [];
-        try {
-            oldContractIds = await this.fastNearService.getLikelyTokens({ address });
-        } catch (e) {}
-        const contractIds = [...new Set([...newContractIds, ...oldContractIds])];
+        const [nearBlocksContractsIds = [], fastNearContractsIds = []] = await this.getRequestsInParallel(
+            this.nearblocksService.getLikelyTokens({ address }),
+            this.fastNearService.getLikelyTokens({ address }),
+        );
+
+        const contractIdsSet = new Set([...nearBlocksContractsIds, ...fastNearContractsIds]);
 
         if (chain === Chains.MAINNET) {
-            if (!contractIds.includes("game.hot.tg")) {
-                contractIds.push("game.hot.tg");
+            if (!contractIdsSet.has("game.hot.tg")) {
+                contractIdsSet.add("game.hot.tg");
             }
         }
-        return this.parseNearAccounts(contractIds);
+        return this.parseNearAccounts([...contractIdsSet]);
     }
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
-        let newContractIds: string[] = [];
-        try {
-            newContractIds = await this.nearblocksService.getLikelyNfts({ address });
-        } catch (error: unknown) {}
-        let oldContractIds: string[] = [];
-        try {
-            oldContractIds = await this.fastNearService.getLikelyNfts({ address });
-        } catch (error: unknown) {}
-        const contractIds = [...new Set([...newContractIds, ...oldContractIds])];
+        const [nearBlocksContractsIds = [], fastNearContractsIds = []] = await this.getRequestsInParallel(
+            this.nearblocksService.getLikelyNfts({ address }),
+            this.fastNearService.getLikelyNfts({ address }),
+        );
+
+        const contractIds = [...new Set([...nearBlocksContractsIds, ...fastNearContractsIds])];
 
         return this.parseNearAccounts(contractIds);
     }

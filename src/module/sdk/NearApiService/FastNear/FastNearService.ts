@@ -55,12 +55,12 @@ export class FastNearService extends FetchService implements NearApiServiceInter
 
     async getLikelyTokens({ address }: NearApiServiceParams): Promise<string[]> {
         const { contracts_ids } = await this.fetch<FastNearFTFromAccountIdResponseDto>(`/account/${address}/ft`);
-        return this.filterAccountIds(contracts_ids);
+        return this.filterAccountIds(contracts_ids.map(({ contract_id }) => contract_id));
     }
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
         const { contracts_ids } = await this.fetch<FastNearNFTFromAccountIdResponseDto>(`/account/${address}/nft`);
-        return this.filterAccountIds(contracts_ids);
+        return this.filterAccountIds(contracts_ids.map(({ contract_id }) => contract_id));
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
