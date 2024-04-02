@@ -124,15 +124,15 @@ export class NearBlocksService extends FetchService implements NearApiServiceInt
             if (!valAmounts[tx.receiver_account_id]) {
                 valAmounts[tx.receiver_account_id] = 0;
             }
-
+            if (!tx.actions[0]) break;
             if (DEPOSIT_STAKE_METHOD === tx.actions[0].method) {
                 valAmounts[tx.receiver_account_id] += tx.actions_agg.deposit;
             } else if (DEPOSIT_METHOD === tx.actions[0].method) {
                 valAmounts[tx.receiver_account_id] += tx.actions_agg.deposit;
             } else if (WITHDRAW_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id] -= this.getAmountFromLogs(tx.logs, address);
+                valAmounts[tx.receiver_account_id] -= this.getAmountFromLogs(tx.logs || [], address);
             } else if (WITHDRAW_ALL_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id] -= this.getAmountFromLogs(tx.logs, address);
+                valAmounts[tx.receiver_account_id] -= this.getAmountFromLogs(tx.logs || [], address);
             }
 
             // If it reaches negative values, start again
