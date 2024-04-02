@@ -15,7 +15,7 @@ const Advise = ({ title, text, style, gap }: AdviseProps): JSX.Element => (
             {title}
         </Typography>
         {text && (
-            <Typography variant="body3Regular" textAlign="center" color={(palette) => palette.overlay["60%"]}>
+            <Typography variant="body3Regular" textAlign="center" color="overlay.60%">
                 {text}
             </Typography>
         )}

@@ -5,7 +5,7 @@ import SimpleNewsCard from "../component/display/SimpleNewsCard/SimpleNewsCard";
 import { NewsList, NewsSpacer } from "./NewsScreen.styles";
 import EmptyNewsList from "../component/feedback/EmptyNewsList/EmptyNewsList";
 
-const AnimatedSimpleNewsCard = Animated.createAnimatedComponent.fade(SimpleNewsCard, { duration: 300, appear: true });
+const AnimatedSimpleNewsCard = Animated.createAnimatedComponent.fade(SimpleNewsCard as any, { duration: 300, appear: true });
 
 const NewsScreen = (): JSX.Element => {
     const { data = [], refetch, isLoading } = useGetNews();

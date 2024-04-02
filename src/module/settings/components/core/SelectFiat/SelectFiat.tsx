@@ -2,7 +2,7 @@ import { SettingsStorage } from "module/settings/SettingsStorage";
 import settingsState, { FiatCurrencyType } from "module/settings/state/SettingsState";
 import { useRecoilState } from "recoil";
 import { SelectOption } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import SettingsSelect from "../../input/SettingsSelect/SettingsSelect";
 
 const fiatOptions: SelectOption<FiatCurrencyType>[] = [

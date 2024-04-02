@@ -1,4 +1,4 @@
-import { NftMetadata, NftToken } from "./NearSdkService.types";
+import { NftMetadata, NftToken } from "./NearSdkService";
 
 const collection1Metadata: NftMetadata = {
     spec: "nft-1.0.0",
@@ -24,6 +24,7 @@ const mockNfts: NftToken[] = [
     {
         token_id: "krillin-1",
         owner_id: "jpeersyst.testnet",
+        contractId: "nft-1.jpeersyst.testnet",
         metadata: {
             title: "Krillin dying 1",
             description: "krillin dying by king piccolo",
@@ -45,6 +46,7 @@ const mockNfts: NftToken[] = [
     {
         token_id: "krillin-2",
         owner_id: "jpeersyst.testnet",
+        contractId: "nft-2.jpeersyst.testnet",
         metadata: {
             title: "Krillin dying 2",
             description: "krillin dying by recoome",
@@ -65,6 +67,7 @@ const mockNfts: NftToken[] = [
     {
         token_id: "krillin-3",
         owner_id: "jpeersyst.testnet",
+        contractId: "nft-3.jpeersyst.testnet",
         metadata: {
             title: "Krillin dying 3",
             description: "krillin dying by freezer",
@@ -85,6 +88,7 @@ const mockNfts: NftToken[] = [
     {
         token_id: "krillin-3",
         owner_id: "jpeersyst.testnet",
+        contractId: "nft-4.jpeersyst.testnet",
         metadata: {
             title: "Krillin dying 3",
             description: "krillin dying by freezer",
@@ -105,6 +109,7 @@ const mockNfts: NftToken[] = [
     {
         token_id: "1",
         owner_id: "jpeersyst.testnet",
+        contractId: "nft-5.jpeersyst.testnet",
         metadata: {
             title: "Unnamed minion 1",
             description: "Unnamed minion 1",
@@ -125,6 +130,7 @@ const mockNfts: NftToken[] = [
     {
         token_id: "2",
         owner_id: "jpeersyst.testnet",
+        contractId: "nft-5.jpeersyst.testnet",
         metadata: {
             title: "Unnamed minion 2",
             description: "Unnamed minion 2",
@@ -145,6 +151,7 @@ const mockNfts: NftToken[] = [
     {
         token_id: "3",
         owner_id: "jpeersyst.testnet",
+        contractId: "nft-6.jpeersyst.testnet",
         metadata: {
             title: "Unnamed minion 3",
             description: "Unnamed minion 3",

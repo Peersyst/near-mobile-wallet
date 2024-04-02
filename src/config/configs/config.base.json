@@ -22,6 +22,8 @@
     "approveTxWaitTime": 3000,
     "testnetTokenPriceUrl": "https://testnet-indexer.ref-finance.com/list-token-price",
     "mainnetTokenPriceUrl": "https://indexer.ref.finance/list-token-price",
+    "testnetSwapUrl": "https://testnet.ref.finance",
+    "mainnetSwapUrl": "https://app.ref.finance",
     "refetchIntervals": {
         "nfts": 60000,
         "tokens": 60000,

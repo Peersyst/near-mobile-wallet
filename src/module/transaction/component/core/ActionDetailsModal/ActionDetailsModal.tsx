@@ -3,7 +3,7 @@ import { Action } from "near-peersyst-sdk";
 import ActionDetailsModalHeader from "./ActionDetailsModalHeader/ActionDetailsModalHeader";
 import Container from "module/common/component/display/Container/Container";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { useControlled } from "@peersyst/react-hooks";
 import ActionDetailsModalFooter from "./ActionDetailsModalFooter/ActionDetailsModalFooter";
 import ActionDetailsModalBody from "./ActionDetailsModalBody/ActionDetailsModalBody";
@@ -22,7 +22,6 @@ const ActionDetailsModal = createModal(({ action, defaultOpen, open: openProp, o
                 back: true,
                 title: translate("transactionDetails"),
                 onBack: () => setOpen(false),
-                upperCase: false,
             }}
             open={open}
             onClose={() => setOpen(false)}

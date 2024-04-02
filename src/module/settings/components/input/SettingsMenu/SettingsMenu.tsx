@@ -12,7 +12,7 @@ interface SettingsMenuProps {
 const SettingsMenu = ({ label, location }: SettingsMenuProps): JSX.Element => {
     const navigation = useNavigation();
     return (
-        <SettingsTouchableCard onPress={() => navigation.navigate(location)}>
+        <SettingsTouchableCard onPress={() => navigation.navigate(location as any)}>
             <Row justifyContent="space-between" alignItems="center" flex={1}>
                 <Typography variant="body2Strong">{label}</Typography>
                 <ChevronRightIcon />

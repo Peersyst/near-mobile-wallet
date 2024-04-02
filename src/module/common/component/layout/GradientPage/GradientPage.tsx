@@ -1,6 +1,5 @@
-import { Animated } from "react-native";
+import { Animated, useWindowDimensions } from "react-native";
 import { GradientPageProps } from "module/common/component/layout/GradientPage/GradientPage.types";
-import { useDimensions } from "@react-native-community/hooks";
 import { useEffect, useRef } from "react";
 import { GradientPageGradient, GradientPageRoot } from "module/common/component/layout/GradientPage/GradientPage.styles";
 import useWalletGradient from "module/wallet/hook/useWalletGradient";
@@ -13,9 +12,7 @@ const GradientPage = ({
 }: GradientPageProps): JSX.Element => {
     const walletGradient = useWalletGradient();
 
-    const {
-        screen: { width },
-    } = useDimensions();
+    const { width } = useWindowDimensions();
 
     const gradientAnim = useRef(new Animated.Value(1)).current;
 

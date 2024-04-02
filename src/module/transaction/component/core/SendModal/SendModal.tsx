@@ -5,18 +5,17 @@ import { useResetRecoilState, useSetRecoilState } from "recoil";
 import sendState from "module/transaction/state/SendState";
 import SendConfirmationScreen from "module/transaction/screen/SendConfirmationScreen/SendConfirmationScreen";
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
-import { AssetType } from "module/wallet/wallet.types";
+import { SendScreens } from "module/transaction/screen/SendScreens.types";
+import { Asset, AssetType } from "module/wallet/wallet.types";
 
-export enum SendScreens {
-    SEND_TO_ADDRESS,
-    AMOUNT_AND_MESSAGE,
-    CONFIRMATION,
+export interface SendModalProps extends ExposedBackdropProps {
+    defaultAsset?: Asset;
 }
 
-const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
-    const [activeIndex, setActiveIndex] = useState(SendScreens.SEND_TO_ADDRESS);
+const SendModal = createBackdrop(({ onExited, defaultAsset, ...rest }: SendModalProps) => {
+    const [activeIndex, setActiveIndex] = useState(SendScreens.AMOUNT_AND_MESSAGE);
     const setSendState = useSetRecoilState(sendState);
     const resetSendState = useResetRecoilState(sendState);
     const translate = useTranslate();
@@ -27,8 +26,8 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
     };
 
     const handleOnBack = () => {
-        if (activeIndex === SendScreens.AMOUNT_AND_MESSAGE) {
-            setSendState((oldState) => ({ ...oldState, amount: undefined, asset: { type: AssetType.TOKEN } }));
+        if (activeIndex === SendScreens.SEND_TO_ADDRESS) {
+            setSendState((oldState) => ({ ...oldState, amount: undefined, asset: { type: AssetType.NATIVE_TOKEN } }));
         }
         setActiveIndex((oldIndex) => oldIndex - 1);
     };
@@ -48,11 +47,11 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
             {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
+                <TabPanel index={SendScreens.AMOUNT_AND_MESSAGE}>
+                    <SendSetAmountScreen defaultAsset={defaultAsset} />
+                </TabPanel>
                 <TabPanel index={SendScreens.SEND_TO_ADDRESS}>
                     <SendToAddressScreen />
-                </TabPanel>
-                <TabPanel index={SendScreens.AMOUNT_AND_MESSAGE}>
-                    <SendSetAmountScreen />
                 </TabPanel>
                 <TabPanel index={SendScreens.CONFIRMATION}>
                     <SendConfirmationScreen />

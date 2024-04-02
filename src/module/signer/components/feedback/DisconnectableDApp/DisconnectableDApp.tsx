@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import DApp from "../../display/DApp/DApp";
 import { DisconnectableDAppProps } from "./DisconnectableDApp.types";
 import { DisconnectableDAppRoot } from "./DisconnectableDApp.styles";

@@ -1,3 +1,4 @@
+/* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -22,8 +23,6 @@ export interface OnCancel {
 }
 
 export class CancelablePromise<T> implements Promise<T> {
-    readonly [Symbol.toStringTag]: string;
-
     #isResolved: boolean;
     #isRejected: boolean;
     #isCancelled: boolean;
@@ -52,7 +51,7 @@ export class CancelablePromise<T> implements Promise<T> {
                     return;
                 }
                 this.#isResolved = true;
-                this.#resolve?.(value);
+                if (this.#resolve) this.#resolve(value);
             };
 
             const onReject = (reason?: any): void => {
@@ -60,7 +59,7 @@ export class CancelablePromise<T> implements Promise<T> {
                     return;
                 }
                 this.#isRejected = true;
-                this.#reject?.(reason);
+                if (this.#reject) this.#reject(reason);
             };
 
             const onCancel = (cancelHandler: () => void): void => {
@@ -85,6 +84,10 @@ export class CancelablePromise<T> implements Promise<T> {
             return executor(onResolve, onReject, onCancel as OnCancel);
         });
     }
+
+     get [Symbol.toStringTag]() {
+            return "Cancellable Promise";
+     }
 
     public then<TResult1 = T, TResult2 = never>(
         onFulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | null,
@@ -119,7 +122,7 @@ export class CancelablePromise<T> implements Promise<T> {
             }
         }
         this.#cancelHandlers.length = 0;
-        this.#reject?.(new CancelError('Request aborted'));
+        if (this.#reject) this.#reject(new CancelError('Request aborted'));
     }
 
     public get isCancelled(): boolean {

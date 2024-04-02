@@ -5,6 +5,7 @@ export interface UseCreateWalletResult {
     state: CreateWalletState;
     setName: (name: string | undefined) => void;
     setPin: (pin: string | undefined) => void;
+    setIsBackupDone: (isBackupDone: boolean | undefined) => void;
     setMnemonic: (mnemonic: string[] | undefined) => void;
     setPrivateKey: (privateKey: string) => void;
     setImportWithPrivateKey: (importWithPrivateKey: boolean) => void;
@@ -20,6 +21,7 @@ const useCreateWallet = (): UseCreateWalletResult => {
         state,
         setName: (name) => setState((s) => ({ ...s, name })),
         setPin: (pin) => setState((s) => ({ ...s, pin })),
+        setIsBackupDone: (isBackupDone) => setState((s) => ({ ...s, isBackupDone })),
         setMnemonic: (mnemonic) => setState((s) => ({ ...s, mnemonic })),
         setPrivateKey: (privateKey) => setState((s) => ({ ...s, privateKey })),
         setImportWithPrivateKey: (importWithPrivateKey: boolean) => setState((s) => ({ ...s, importWithPrivateKey })),

@@ -13,7 +13,7 @@ export interface SendState {
 const sendState = atom<SendState>({
     key: "send",
     default: {
-        asset: { type: AssetType.TOKEN },
+        asset: { type: AssetType.NATIVE_TOKEN },
     },
 });
 

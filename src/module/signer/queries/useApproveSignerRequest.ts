@@ -11,6 +11,6 @@ export default function useApproveSignerRequest() {
     const { serviceInstance } = useServiceInstance();
 
     return useMutation(async (id: string) =>
-        SignerRequestService.approveSignerRequest(id, { signerAccountId: serviceInstance.getAddress() }),
+        SignerRequestService.approveSignerRequest(id, { signerAccountId: serviceInstance.getAddress(), txHash: [] }),
     );
 }

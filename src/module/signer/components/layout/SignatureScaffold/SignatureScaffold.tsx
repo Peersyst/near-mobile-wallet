@@ -1,6 +1,6 @@
 import { Col } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { SignatureScaffoldProps } from "./SignatureScaffold.types";
 import Typography from "module/common/component/display/Typography/Typography";
 import useIsAccountActive from "module/signer/queries/useIsActiveAccount";

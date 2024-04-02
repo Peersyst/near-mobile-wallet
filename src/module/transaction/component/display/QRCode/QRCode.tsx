@@ -11,16 +11,16 @@ export interface QRCodeProps {
     style?: QRCodeStyle;
 }
 
-const QRCode = ({ style: { color, ...restStyle } = {} }: QRCodeProps): JSX.Element => {
+const QRCode = ({ style = {} }: QRCodeProps): JSX.Element => {
     const { serviceInstance } = useServiceInstance();
     const { palette } = useTheme();
     const { height: screenHeight } = useWindowDimensions();
     const height = screenHeight * 0.25;
 
     return (
-        <View testID="QRCode" style={restStyle}>
+        <View testID="QRCode" style={style}>
             <QRCodeBase
-                color={color || palette.gray[900]}
+                color={palette.gray[900]}
                 backgroundColor={palette.background}
                 value={serviceInstance?.getAddress()}
                 size={height}

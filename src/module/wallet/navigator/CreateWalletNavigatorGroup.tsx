@@ -1,7 +1,7 @@
 import { useLogoPageFlex, useLogoPageGradient } from "module/common/component/layout/LogoPage/LogoPageContext";
 import { TabPanel, Tabs, useTabs } from "@peersyst/react-native-components";
 import { useState } from "react";
-import { AuthScreens } from "module/auth/AuthNavigatorGroup";
+import { AuthScreens } from "module/auth/AuthNavigatorGroup.types";
 import SetWalletPinScreen from "module/wallet/screen/SetWalletPinScreen";
 import WalletAdvisesScreen from "module/wallet/screen/WalletAdvisesScreen";
 import WalletMnemonicScreen from "module/wallet/screen/WalletMnemonicScreen";
@@ -11,7 +11,7 @@ import { useBackHandler } from "@react-native-community/hooks";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { useResetRecoilState } from "recoil";
 import createWalletState from "module/wallet/state/CreateWalletState";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import LightThemeProvider from "module/common/component/util/ThemeProvider/LightThemeProvider";
 import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 

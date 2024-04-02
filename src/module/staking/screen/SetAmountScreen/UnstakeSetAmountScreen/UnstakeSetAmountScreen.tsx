@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { Col, Label, useSetTab } from "@peersyst/react-native-components";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import stakeState from "module/staking/state/StakeState";

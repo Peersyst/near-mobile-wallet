@@ -1,5 +1,5 @@
-import { Dialog } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import { ButtonProps, Dialog, DialogButton } from "@peersyst/react-native-components";
+import useTranslate from "module/common/hook/useTranslate";
 import { useState } from "react";
 
 interface UseDisconnectDAppDialogProps {
@@ -20,7 +20,7 @@ export default function useDisconnectDAppDialog({ onDisconnect, onCancel, discon
         hideDialog();
     };
 
-    const dialogButtons = [
+    const dialogButtons: DialogButton<ButtonProps>[] = [
         {
             action: onDisconnect,
             text: translate("disconnect"),

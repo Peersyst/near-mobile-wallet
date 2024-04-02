@@ -1,6 +1,6 @@
 import { en } from "locale/locales/en/en";
 import { ApiError } from "module/api/service";
-import { TFunction } from "react-i18next";
+import { TFunction } from "i18next";
 
 export interface HandleApiErrorMessageResult {
     message: string;

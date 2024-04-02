@@ -1,10 +1,10 @@
-import { AuthScreens } from "module/auth/AuthNavigatorGroup";
 import { AnimatedAuthSwitchScreenRoot } from "./AuthSwitchScreen.styles";
 import { useTabs } from "@peersyst/react-native-components";
 import { useLogoPageFlex, useLogoPageGradient } from "module/common/component/layout/LogoPage/LogoPageContext";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import Button from "module/common/component/input/Button/Button";
 import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
+import { AuthScreens } from "module/auth/AuthNavigatorGroup.types";
 
 const AuthSwitchScreen = (): JSX.Element => {
     const setTab = useTabs()[1];

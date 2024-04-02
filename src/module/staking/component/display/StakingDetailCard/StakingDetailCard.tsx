@@ -1,7 +1,7 @@
 import { Col, Row, Skeleton } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import Button from "module/common/component/input/Button/Button";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import Balance from "module/wallet/component/display/Balance/Balance";
 import ActionIcon from "module/transaction/component/display/ActionIcon/ActionIcon";
 import { TransactionActionKind } from "near-peersyst-sdk";

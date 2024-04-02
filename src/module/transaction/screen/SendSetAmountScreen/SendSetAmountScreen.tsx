@@ -3,14 +3,14 @@ import Button from "module/common/component/input/Button/Button";
 import { useRecoilState } from "recoil";
 import sendRecoilState, { SendState } from "module/transaction/state/SendState";
 import useGetBalance from "module/wallet/query/useGetBalance";
-import { SendScreens } from "module/transaction/component/core/SendModal/SendModal";
 import CenteredLoader from "module/common/component/feedback/CenteredLoader/CenteredLoader";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import WalletAssetSelect from "module/wallet/component/input/WalletAssetSelect/WalletAssetSelect";
 import AssetAmountTextField from "module/transaction/component/input/AssetAmountTextField/AssetAmountTextField";
 import { useState } from "react";
 import { Asset } from "module/wallet/wallet.types";
 import { AssetType } from "module/wallet/wallet.types";
+import { SendScreens } from "../SendScreens.types";
 
 export type SendAmountAndMessageResult = Pick<SendState, "amount" | "asset">;
 
@@ -19,13 +19,17 @@ export const SEND_SET_AMOUNT_FORM_KEYS: Partial<Record<keyof SendState, keyof Se
     amount: "amount",
 };
 
-const SendSetAmountScreen = (): JSX.Element => {
+export interface SendSetAmountScreenProps {
+    defaultAsset?: Asset;
+}
+
+const SendSetAmountScreen = ({ defaultAsset }: SendSetAmountScreenProps): JSX.Element => {
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
     /**
      * asset will never be undefined because by default sendRecoilState has it defined
      * (check the recoil defaultState of sendState)
      */
-    const [asset, setAsset] = useState<Asset | undefined>(sendState.asset);
+    const [asset, setAsset] = useState<Asset | undefined>(defaultAsset || sendState.asset);
     const [amount, setAmount] = useState<string | undefined>(sendState.amount?.toString() ?? undefined);
     const translate = useTranslate();
 
@@ -38,14 +42,13 @@ const SendSetAmountScreen = (): JSX.Element => {
             ...oldState,
             ...res,
         }));
-        setTab(SendScreens.CONFIRMATION);
+        setTab(SendScreens.SEND_TO_ADDRESS);
     };
 
     const handleAssetChange = (asset: Asset | undefined): void => {
         setAsset(asset);
         setAmount("");
     };
-
     return (
         <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
@@ -62,7 +65,7 @@ const SendSetAmountScreen = (): JSX.Element => {
                         value={amount}
                         onChange={(amount) => setAmount(amount)}
                         label={translate("select_the_amount_to_send")}
-                        asset={asset ?? { type: AssetType.TOKEN }}
+                        asset={asset ?? { type: AssetType.NATIVE_TOKEN }}
                         placeholder={translate("enter_amount")}
                         name={SEND_SET_AMOUNT_FORM_KEYS.amount}
                         index={sendState.senderWalletIndex}

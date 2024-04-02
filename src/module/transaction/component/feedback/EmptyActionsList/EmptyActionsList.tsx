@@ -1,5 +1,5 @@
 import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 
 const EmptyActionsList = () => {
     const translate = useTranslate();

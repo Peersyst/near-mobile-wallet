@@ -2,7 +2,7 @@ import { Col, Dialog, createModal } from "@peersyst/react-native-components";
 import { DisconnectSiteModalProps } from "./DisconnectSiteModal.types";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { useControlled } from "@peersyst/react-hooks";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import DisconnectSiteDetails from "module/signer/components/display/DisconnectSiteDetails/DisconnectSiteDetails";
 import Button from "module/common/component/input/Button/Button";
 import Typography from "module/common/component/display/Typography/Typography";

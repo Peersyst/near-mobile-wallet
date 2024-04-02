@@ -1,15 +1,9 @@
-import { TypographyProps as BaseTypographyProps, Typography as BaseTypography, Theme, useTheme } from "@peersyst/react-native-components";
+import { TypographyProps as BaseTypographyProps, Typography as BaseTypography } from "@peersyst/react-native-components";
 
-export interface TypographyProps extends Omit<BaseTypographyProps, "fontWeight"> {
-    color?: (theme: Theme["palette"]) => string;
-}
+export interface TypographyProps extends Omit<BaseTypographyProps, "fontWeight"> {}
 
-const Typography = ({ color: colorCb, style, ...rest }: TypographyProps): JSX.Element => {
-    const { palette } = useTheme();
-
-    const color = colorCb?.(palette);
-
-    return <BaseTypography style={{ ...(color && { color }), ...style }} {...rest} />;
+const Typography = (props: TypographyProps): JSX.Element => {
+    return <BaseTypography {...props} />;
 };
 
 export default Typography;

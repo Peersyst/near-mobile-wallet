@@ -1,6 +1,6 @@
 import useWalletState from "module/wallet/hook/useWalletState";
 import useGetTotalStaking from "module/staking/query/useGetTotalStaking";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { StakingDetailCardProps } from "../component/display/StakingDetailCard/StakingDetailCard";
 import UnstakeModal from "module/staking/component/core/UnstakeModal/UnstakeModal";
 import { useModal } from "@peersyst/react-native-components";

@@ -7,14 +7,7 @@ import { useRecoilValue } from "recoil";
 import walletState from "module/wallet/state/WalletState";
 import WelcomeBackScreen from "module/auth/screen/WelcomeBackScreen/WelcomeBackScreen";
 import IntroduceWalletPinScreen from "module/wallet/screen/IntroduceWalletPinScreen";
-
-export enum AuthScreens {
-    AUTH_SWITCH,
-    IMPORT_WALLET,
-    CREATE_WALLET,
-    WELCOME_BACK,
-    INTRODUCE_PIN,
-}
+import { AuthScreens } from "./AuthNavigatorGroup.types";
 
 const AuthNavigatorGroup = () => {
     const { hasWallet } = useRecoilValue(walletState);
