@@ -52,44 +52,50 @@ export class NearBlocksService extends FetchService {
     private getActionsFromTxs(txs: NearBlocksTransactionDto[], address: string): Action[] {
         const actions: Action[] = [];
         for (const tx of txs) {
-            if (tx.predecessor_account_id !== "system") {
-                const baseTransaction: TransactionWithoutActions = {
-                    transactionHash: tx.transaction_hash,
-                    includedInBlockHash: tx.included_in_block_hash,
-                    blockTimestamp: parseBlockTimestamp(tx.block_timestamp),
-                    signerAccountId: tx.predecessor_account_id,
-                    nonce: 0,
-                    receiverAccountId: tx.receiver_account_id,
-                };
-
-                for (const [i, action] of tx.actions.entries()) {
-                    try {
-                        const actionKind = this.parseActionKindApiDto(
-                            action.action as TransactionActionKind,
-                            tx.receiver_account_id,
-                            address,
-                        );
-                        actions.push({
-                            transaction: baseTransaction,
-                            actionKind,
-                            transactionHash: tx.transaction_hash,
-                            indexInTransaction: i,
-                            // codeSha256: "", // For DEPLOY_CONTRACT kind
-                            gas: tx.outcomes_agg.transaction_fee, // For FUNCTION_CALL kind
-                            ...(tx.actions_agg.deposit && {
-                                deposit: this.parseTransactionDeposit(actionKind, tx?.actions_agg.deposit), // For FUNCTION_CALL, TRANSFER kind
-                            }),
-                            // argsBase64: "", // For FUNCTION_CALL kind
-                            // argsJson: "", // For FUNCTION_CALL kind
-                            methodName: action.method || undefined,
-                            // stake: "", // For STAKE kind
-                            // publicKey: baseTransaction.receiverAccountId, // For STAKE, ADD_KEY, DELETE_KEY kind
-                            // accessKey: "", // For ADD_KEY kind
-                            // beneficiaryId: "", // For DELETE_ACCOUNT kind
-                        });
-                    } catch (e) {}
+            try {
+                if (tx.predecessor_account_id !== "system") {
+                    const baseTransaction: TransactionWithoutActions = {
+                        transactionHash: tx.transaction_hash,
+                        includedInBlockHash: tx.included_in_block_hash,
+                        blockTimestamp: parseBlockTimestamp(tx.block_timestamp),
+                        signerAccountId: tx.predecessor_account_id,
+                        nonce: 0,
+                        receiverAccountId: tx.receiver_account_id,
+                    };
+                    if (!tx.actions) {
+                        /* eslint-disable no-console */
+                        console.warn("tx without actions", tx);
+                        break;
+                    }
+                    for (const [i, action] of tx.actions.entries()) {
+                        try {
+                            const actionKind = this.parseActionKindApiDto(
+                                action.action as TransactionActionKind,
+                                tx.receiver_account_id,
+                                address,
+                            );
+                            actions.push({
+                                transaction: baseTransaction,
+                                actionKind,
+                                transactionHash: tx.transaction_hash,
+                                indexInTransaction: i,
+                                // codeSha256: "", // For DEPLOY_CONTRACT kind
+                                gas: tx.outcomes_agg.transaction_fee, // For FUNCTION_CALL kind
+                                ...(tx.actions_agg.deposit && {
+                                    deposit: this.parseTransactionDeposit(actionKind, tx?.actions_agg.deposit), // For FUNCTION_CALL, TRANSFER kind
+                                }),
+                                // argsBase64: "", // For FUNCTION_CALL kind
+                                // argsJson: "", // For FUNCTION_CALL kind
+                                methodName: action.method || undefined,
+                                // stake: "", // For STAKE kind
+                                // publicKey: baseTransaction.receiverAccountId, // For STAKE, ADD_KEY, DELETE_KEY kind
+                                // accessKey: "", // For ADD_KEY kind
+                                // beneficiaryId: "", // For DELETE_ACCOUNT kind
+                            });
+                        } catch (e) {}
+                    }
                 }
-            }
+            } catch (e) {}
         }
         return actions;
     }
