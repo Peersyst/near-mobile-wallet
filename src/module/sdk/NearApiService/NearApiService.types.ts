@@ -1,7 +1,6 @@
 import { Action, Chains, StakingDeposit, TransactionActionKind, TransactionStatus } from "../NearSdkService";
 
 export interface NearApiServiceInterface {
-    baseUrl: string;
     getAccountsFromPublicKey(params: NearApiServiceParams): Promise<string[]>;
     getStakingDeposits(params: NearApiServiceParams): Promise<StakingDeposit[]>;
     getLikelyTokens(params: NearApiServiceParams): Promise<string[]>;
