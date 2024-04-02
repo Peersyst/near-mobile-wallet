@@ -29,6 +29,7 @@ export * from "./FilledNewsIcon";
 export * from "./FilledWalletIcon";
 export * from "./FingerprintIcon";
 export * from "./GridIcon";
+export * from "./HelpCircleIcon";
 export * from "./InfoIcon";
 export * from "./LaptopIcon";
 export * from "./LockIcon";

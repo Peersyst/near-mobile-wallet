@@ -14,13 +14,13 @@ export const HeaderRoot = styled(Toolbar)(({ theme, safeAreaInsets }) => {
     };
 });
 
-export const HeaderSettingsButton = styled(IconButton)(({ theme }) => {
+export const HeaderSettingsButton = styled(IconButton)<{ right: number }>(({ theme, right = 8 }) => {
     const light = theme.palette.mode === "light";
     return {
         color: theme.palette.gray[light ? 600 : 900],
         fontSize: 24,
         position: "absolute",
-        right: 8,
+        right: right,
     };
 });
 

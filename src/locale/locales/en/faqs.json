@@ -1,0 +1,35 @@
+{
+    "aboutTheNearWalletApp": {
+        "label": "About the NEAR Wallet App",
+        "questions": [
+            {
+                "question": "Why can’t I send my tokens?",
+                "answer": "Ensure you have sufficient NEAR in your account to cover the transaction fees. Each action on the blockchain, such as sending or swapping tokens, requires a small amount of NEAR (at least 0.005NEAR) for processing. You buy NEAR by tapping on the buy button in your wallet or deposit NEAR from another wallet"
+            },
+            {
+                "question": "Why can’t I unstake my NEAR tokens?",
+                "answer": "If you’re unable to unstake, it could be because you do not have sufficient NEAR to pay for the unstaking transaction fee. Keep in mind that you cannot use your staked NEAR to pay for the fees, you must have unstaked NEAR available (at least 0.005NEAR)."
+            },
+            {
+                "question": "Why doesn’t my account/balance show up?",
+                "answer": "If you have entered your pass phrase (12 words) and your account does not show up, it may be due to a problem with NEAR blockchain API. To solve it, go to Settings (:engranaje:icon at the top right corner) -> Security settings -> Import account manually, enter your address and tap on import."
+            },
+            {
+                "question": "How can I withdraw my staked NEAR?",
+                "answer": "Once you have click on unstake, you have to wait for 4 epochs (approximately 52-65 hours). After that period, your wallet will show a withdraw button to recover your NEAR"
+            },
+            {
+                "question": "How can I make money with NEAR Mobile?",
+                "answer": "There are several ways to earn through NEAR Mobile: staking NEAR tokens for rewards is the easiest one. You could also use our integration with DEXs such as Ref Finance by going to dApps tab and taping on Ref Finance. Always consider the risks and do your research or consult an expert for strategies best suited to your financial goals."
+            },
+            {
+                "question": "What can I do with my SWEAT Tokens?",
+                "answer": "You can either send them somewhere else or swap them for other tokens using our swap integration with Ref Finance. You can swap it for whatever you want but one option is to swap them for NEAR and stake it to earn rewards. Remember that you need to have some NEAR (at least 0.005NEAR) to send or swap your SWEAT tokens"
+            },
+            {
+                "question": "My problem or question is not here",
+                "answer": "You can check our guide here <a>https://docs.peersyst.com/near-mobile-support-center</a> or contact support here <a>https://t.co/1yW8TGNMTp</a>."
+            }
+        ]
+    }
+}

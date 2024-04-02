@@ -75,6 +75,7 @@ declare module "@peersyst/react-native-components" {
         analytics: AnalyticsConfig;
         enableManualImport: boolean;
         kitWalletTimeout: number;
+        telegramUrl: string;
     }
 
     export interface CreateConfig {
@@ -110,6 +111,7 @@ declare module "@peersyst/react-native-components" {
         analytics: AnalyticsConfig;
         enableManualImport: boolean;
         kitWalletTimeout: number;
+        telegramUrl: string;
     }
 
     export interface ExtraValidators {

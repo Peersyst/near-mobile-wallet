@@ -12,6 +12,7 @@ export type MainStackParamsList = {
     [MainScreens.NEWS]: undefined;
     [MainScreens.STAKING]: undefined;
     [MainScreens.DAPPS]: undefined;
+    [MainScreens.FAQS]: undefined;
 };
 export type SettingsStackParamsList = {
     //Settings

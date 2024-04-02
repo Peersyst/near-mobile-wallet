@@ -2,7 +2,7 @@ import { PaperProps } from "@peersyst/react-native-components";
 import { CardRoot } from "./Card.styles";
 
 export interface CardProps extends PaperProps {
-    variant?: "gray" | "blue";
+    variant?: "gray" | "blue" | "white";
 }
 
 const Card = ({ children, variant = "gray", ...rest }: CardProps) => {

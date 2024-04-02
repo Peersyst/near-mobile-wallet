@@ -1,4 +1,4 @@
-import { SettingsIcon } from "icons";
+import { HelpCircleIcon, SettingsIcon } from "icons";
 import LinearLogo from "../../display/LinearBgLogo/LinearBgLogo";
 import { HeaderNetworkChip, HeaderRoot, HeaderSettingsButton } from "./Header.styles";
 import { Row } from "@peersyst/react-native-components";
@@ -16,6 +16,9 @@ const Header = (): JSX.Element => {
             <Row alignItems="center" justifyContent="center" flex={1}>
                 <HeaderNetworkChip />
                 <LinearLogo startColor={startColor} endColor={endColor} />
+                <HeaderSettingsButton right={40} onPress={() => navigation.navigate(MainScreens.FAQS)}>
+                    <HelpCircleIcon />
+                </HeaderSettingsButton>
                 <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.SETTINGS)}>
                     <NotificationIcon icon={<SettingsIcon />} />
                 </HeaderSettingsButton>

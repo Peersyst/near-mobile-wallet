@@ -319,5 +319,6 @@
     "transfer": "Transfer",
     "iWillDoItLater": "I’ll do it later",
     "backup_wallet_advise_description": "Remember that neither we nor NEAR will ever ask you for your mnemonic or private key. Only you should know them and never share them with anyone.",
-    "backup_wallet_advise_description_2": "If someone has asked you for your mnemonic or private key, they likely only want to steal your account"
+    "backup_wallet_advise_description_2": "If someone has asked you for your mnemonic or private key, they likely only want to steal your account",
+    "supportCardText": "Contact us at our official Telegram channel. Join the community, share your thoughts!"
 }

@@ -1,0 +1,35 @@
+{
+  "aboutTheNearWalletApp": {
+    "label": "Kuhusu Programu ya NEAR Wallet",
+    "questions": [
+      {
+        "question": "Kwa nini siwezi kutuma ishara zangu?",
+        "answer": "Hakikisha una NEAR ya kutosha kwenye akaunti yako kufidia ada za manunuzi. Kila hatua kwenye blockchain, kama vile kutuma au kubadilishana ishara, inahitaji kiasi kidogo cha NEAR (angalau 0.005 NEAR) kwa usindikaji. Unaweza kununua NEAR kwa kugonga kitufe cha kununua kwenye pochi yako au kufanya amana ya NEAR kutoka kwa pochi nyingine."
+      },
+      {
+        "question": "Kwa nini siwezi kufungua ishara zangu za NEAR?",
+        "answer": "Ikiwa huwezi kuzifungua, inaweza kuwa kwa sababu huna NEAR ya kutosha kulipa ada ya manunuzi ya kufungua. Kumbuka kuwa huwezi kutumia NEAR zako zilizofungwa kulipa ada, lazima uwe na NEAR zilizofunguliwa zinazopatikana (angalau 0.005 NEAR)."
+      },
+      {
+        "question": "Kwa nini akaunti/saldo yangu haionekani?",
+        "answer": "Ikiwa umeweka sentensi yako ya siri (maneno 12) na akaunti yako haionekani, inaweza kuwa ni kwa sababu ya shida na API ya blockchain ya NEAR. Ili kuitatua, nenda kwa Vipimo (:ishara ya gia: ikoni juu upande wa kulia) -> Vipimo vya usalama -> Weka akaunti kwa mkono, weka anwani yako na bonyeza ingiza."
+      },
+      {
+        "question": "Ninawezaje kutoa ishara zangu za NEAR zilizofungwa?",
+        "answer": "Unapobonyeza kufungua, lazima ukae kwa epoka 4 (karibu masaa 52-65). Baada ya kipindi hicho, pochi yako itaonyesha kitufe cha kutoa ili kupata NEAR yako."
+      },
+      {
+        "question": "Ninawezaje kupata pesa na NEAR Mobile?",
+        "answer": "Kuna njia kadhaa za kupata kupitia NEAR Mobile: kufunga ishara za NEAR kwa zawadi ni moja rahisi. Unaweza pia kutumia ushirikiano wetu na DEXs kama Ref Finance kwa kwenda kwa kichupo cha dApps na kubonyeza Ref Finance. Kumbuka daima kuzingatia hatari na kufanya utafiti wako au kushauriana na mtaalamu kwa mikakati inayofaa zaidi kwa malengo yako ya kifedha."
+      },
+      {
+        "question": "Ninaweza kufanya nini na Ishara zangu za SWEAT?",
+        "answer": "Unaweza au kuzituma mahali pengine au kuzibadilisha kwa ishara zingine kwa kutumia ushirikiano wetu wa kubadilishana na Ref Finance. Unaweza kuzibadilisha kwa chochote unachotaka, lakini moja ya chaguo ni kuzibadilisha kwa NEAR na kuzifunga kupata zawadi. Kumbuka kwamba unahitaji kuwa na NEAR kidogo (angalau 0.005 NEAR) ili kutuma au kubadilisha ishara zako za SWEAT."
+      },
+      {
+        "question": "Shida yangu au swali halipo hapa",
+        "answer": "Unaweza kuangalia mwongozo wetu hapa <a>https://docs.peersyst.com/near-mobile-support-center</a> au wasiliana na msaada hapa <a>https://t.co/1yW8TGNMTp</a>."
+      }
+    ]
+  }
+}

@@ -319,5 +319,6 @@
     "transfer": "转账",
     "iWillDoItLater": "稍后再说",
     "backup_wallet_advise_description": "请记住，我们和NEAR都绝不会要求您提供助记词或私钥。只有您应该知道它们，永远不要与任何人分享。",
-    "backup_wallet_advise_description_2": "如果有人向您索要助记词或私钥，他们可能只想窃取您的账户。"
+    "backup_wallet_advise_description_2": "如果有人向您索要助记词或私钥，他们可能只想窃取您的账户。",
+    "supportCardText": "请在我们的官方Telegram频道联系我们。加入社区，分享您的想法！"
 }
