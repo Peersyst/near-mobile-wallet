@@ -1,35 +1,35 @@
 {
-  "aboutTheNearWalletApp": {
-    "label": "À propos de l'application NEAR Wallet",
-    "questions": [
-      {
-        "question": "Pourquoi ne puis-je pas envoyer mes jetons?",
-        "answer": "Assurez-vous d'avoir suffisamment de NEAR dans votre compte pour couvrir les frais de transaction. Chaque action sur la blockchain, telle que l'envoi ou l'échange de jetons, nécessite une petite quantité de NEAR (au moins 0,005 NEAR) pour être traitée. Vous pouvez acheter du NEAR en appuyant sur le bouton d'achat dans votre portefeuille ou en déposant du NEAR depuis un autre portefeuille."
-      },
-      {
-        "question": "Pourquoi ne puis-je pas débloquer mes jetons NEAR?",
-        "answer": "Si vous ne pouvez pas les débloquer, cela pourrait être parce que vous n'avez pas suffisamment de NEAR pour payer les frais de transaction de déverrouillage. Gardez à l'esprit que vous ne pouvez pas utiliser vos NEAR bloqués pour payer les frais, vous devez avoir du NEAR débloqué disponible (au moins 0,005 NEAR)."
-      },
-      {
-        "question": "Pourquoi mon compte/solde n'apparaît-il pas?",
-        "answer": "Si vous avez entré votre phrase de passe (12 mots) et que votre compte n'apparaît pas, cela peut être dû à un problème avec l'API de la blockchain NEAR. Pour le résoudre, accédez à Paramètres (: icône d'engrenage: dans le coin supérieur droit) -> Paramètres de sécurité -> Importer le compte manuellement, saisissez votre adresse et appuyez sur importer."
-      },
-      {
-        "question": "Comment puis-je retirer mes jetons NEAR débloqués?",
-        "answer": "Une fois que vous avez cliqué sur débloquer, vous devez attendre 4 époques (environ 52-65 heures). Après cette période, votre portefeuille affichera un bouton de retrait pour récupérer vos NEAR."
-      },
-      {
-        "question": "Comment puis-je gagner de l'argent avec NEAR Mobile?",
-        "answer": "Il existe plusieurs façons de gagner de l'argent avec NEAR Mobile : bloquer des jetons NEAR pour obtenir des récompenses est la plus facile. Vous pouvez également utiliser notre intégration avec des DEX comme Ref Finance en allant dans l'onglet dApps et en appuyant sur Ref Finance. N'oubliez pas de prendre en compte les risques et de faire vos recherches ou de consulter un expert pour des stratégies adaptées à vos objectifs financiers."
-      },
-      {
-        "question": "Que puis-je faire avec mes jetons SWEAT?",
-        "answer": "Vous pouvez les envoyer ailleurs ou les échanger contre d'autres jetons en utilisant notre intégration d'échange avec Ref Finance. Vous pouvez les échanger contre ce que vous voulez, mais une option est de les échanger contre du NEAR et de le bloquer pour obtenir des récompenses. N'oubliez pas que vous devez avoir un peu de NEAR (au moins 0,005 NEAR) pour envoyer ou échanger vos jetons SWEAT."
-      },
-      {
-        "question": "Mon problème ou ma question ne figure pas ici",
-        "answer": "Vous pouvez consulter notre guide ici <a>https://docs.peersyst.com/near-mobile-support-center</a> ou contacter le support ici <a>https://t.co/1yW8TGNMTp</a>."
-      }
-    ]
-  }
+    "aboutTheNearWalletApp": {
+        "label": "À propos de l'application NEAR Wallet",
+        "questions": [
+            {
+                "question": "Pourquoi ne puis-je pas envoyer mes jetons?",
+                "answer": "Assurez-vous d'avoir suffisamment de NEAR dans votre compte pour couvrir les frais de transaction. Chaque action sur la blockchain, telle que l'envoi ou l'échange de jetons, nécessite une petite quantité de NEAR (au moins 0,005 NEAR) pour être traitée. Vous pouvez acheter du NEAR en appuyant sur le bouton d'achat dans votre portefeuille ou en déposant du NEAR depuis un autre portefeuille."
+            },
+            {
+                "question": "Pourquoi ne puis-je pas débloquer mes jetons NEAR?",
+                "answer": "Si vous ne pouvez pas les débloquer, cela pourrait être parce que vous n'avez pas suffisamment de NEAR pour payer les frais de transaction de déverrouillage. Gardez à l'esprit que vous ne pouvez pas utiliser vos NEAR bloqués pour payer les frais, vous devez avoir du NEAR débloqué disponible (au moins 0,005 NEAR)."
+            },
+            {
+                "question": "Pourquoi mon compte/solde n'apparaît-il pas?",
+                "answer": "Si vous avez entré votre phrase de passe (12 mots) et que votre compte n'apparaît pas, cela peut être dû à un problème avec l'API de la blockchain NEAR. Pour le résoudre, accédez à Paramètres (: icône d'engrenage: dans le coin supérieur droit) -> Paramètres de sécurité -> Importer le compte manuellement, saisissez votre adresse et appuyez sur importer."
+            },
+            {
+                "question": "Comment puis-je retirer mes jetons NEAR débloqués?",
+                "answer": "Une fois que vous avez cliqué sur débloquer, vous devez attendre 4 époques (environ 52-65 heures). Après cette période, votre portefeuille affichera un bouton de retrait pour récupérer vos NEAR."
+            },
+            {
+                "question": "Comment puis-je gagner de l'argent avec NEAR Mobile?",
+                "answer": "Il existe plusieurs façons de gagner de l'argent avec NEAR Mobile : bloquer des jetons NEAR pour obtenir des récompenses est la plus facile. Vous pouvez également utiliser notre intégration avec des DEX comme Ref Finance en allant dans l'onglet dApps et en appuyant sur Ref Finance. N'oubliez pas de prendre en compte les risques et de faire vos recherches ou de consulter un expert pour des stratégies adaptées à vos objectifs financiers."
+            },
+            {
+                "question": "Que puis-je faire avec mes jetons SWEAT?",
+                "answer": "Vous pouvez les envoyer ailleurs ou les échanger contre d'autres jetons en utilisant notre intégration d'échange avec Ref Finance. Vous pouvez les échanger contre ce que vous voulez, mais une option est de les échanger contre du NEAR et de le bloquer pour obtenir des récompenses. N'oubliez pas que vous devez avoir un peu de NEAR (au moins 0,005 NEAR) pour envoyer ou échanger vos jetons SWEAT."
+            },
+            {
+                "question": "Mon problème ou ma question ne figure pas ici",
+                "answer": "Vous pouvez consulter notre guide ici <a>https://docs.peersyst.com/near-mobile-support-center</a> ou contacter le support ici <a>https://t.co/1yW8TGNMTp</a>."
+            }
+        ]
+    }
 }

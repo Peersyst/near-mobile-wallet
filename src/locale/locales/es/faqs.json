@@ -2,34 +2,34 @@
     "aboutTheNearWalletApp": {
         "label": "Sobre la aplicación NEAR Wallet",
         "questions": [
-          {
-            "question": "¿Por qué no puedo enviar mis tokens?",
-            "answer": "Asegúrate de tener suficientes NEAR en tu cuenta para cubrir las tarifas de transacción. Cada acción en la blockchain, como enviar o intercambiar tokens, requiere una pequeña cantidad de NEAR (al menos 0.005 NEAR) para procesarse. Puedes comprar NEAR tocando el botón de compra en tu billetera o depositando NEAR desde otra billetera."
-          },
-          {
-            "question": "¿Por qué no puedo desbloquear mis tokens de NEAR?",
-            "answer": "Si no puedes desbloquearlos, podría ser porque no tienes suficiente NEAR para pagar la tarifa de transacción de desbloqueo. Ten en cuenta que no puedes usar tu NEAR bloqueado para pagar las tarifas, debes tener NEAR desbloqueado disponible (al menos 0.005 NEAR)."
-          },
-          {
-            "question": "¿Por qué mi cuenta/saldo no aparece?",
-            "answer": "Si has ingresado tu frase de contraseña (12 palabras) y tu cuenta no aparece, puede deberse a un problema con la API de la blockchain de NEAR. Para solucionarlo, ve a Configuración (:ícono de engranaje: en la esquina superior derecha) -> Configuración de seguridad -> Importar cuenta manualmente, ingresa tu dirección y toca importar."
-          },
-          {
-            "question": "¿Cómo puedo retirar mis tokens de NEAR desbloqueados?",
-            "answer": "Una vez que hayas hecho clic en desbloquear, debes esperar 4 épocas (aproximadamente 52-65 horas). Después de ese período, tu billetera mostrará un botón de retirada para recuperar tus NEAR."
-          },
-          {
-            "question": "¿Cómo puedo ganar dinero con NEAR Mobile?",
-            "answer": "Hay varias formas de ganar a través de NEAR Mobile: bloquear tokens de NEAR para obtener recompensas es la más fácil. También puedes usar nuestra integración con DEXs como Ref Finance yendo a la pestaña de dApps y tocando Ref Finance. Siempre ten en cuenta los riesgos y haz tu investigación o consulta a un experto para estrategias que se adapten mejor a tus objetivos financieros."
-          },
-          {
-            "question": "¿Qué puedo hacer con mis tokens SWEAT?",
-            "answer": "Puedes enviarlos a otro lugar o intercambiarlos por otros tokens usando nuestra integración de intercambio con Ref Finance. Puedes intercambiarlos por lo que quieras, pero una opción es intercambiarlos por NEAR y bloquearlo para obtener recompensas. Recuerda que necesitas tener algo de NEAR (al menos 0.005 NEAR) para enviar o intercambiar tus tokens SWEAT."
-          },
-          {
-            "question": "Mi problema o pregunta no está aquí",
-            "answer": "Puedes consultar nuestra guía aquí <a>https://docs.peersyst.com/near-mobile-support-center</a> o contactar con soporte aquí <a>https://t.co/1yW8TGNMTp</a>."
-          }
+            {
+                "question": "¿Por qué no puedo enviar mis tokens?",
+                "answer": "Asegúrate de tener suficientes NEAR en tu cuenta para cubrir las tarifas de transacción. Cada acción en la blockchain, como enviar o intercambiar tokens, requiere una pequeña cantidad de NEAR (al menos 0.005 NEAR) para procesarse. Puedes comprar NEAR tocando el botón de compra en tu billetera o depositando NEAR desde otra billetera."
+            },
+            {
+                "question": "¿Por qué no puedo desbloquear mis tokens de NEAR?",
+                "answer": "Si no puedes desbloquearlos, podría ser porque no tienes suficiente NEAR para pagar la tarifa de transacción de desbloqueo. Ten en cuenta que no puedes usar tu NEAR bloqueado para pagar las tarifas, debes tener NEAR desbloqueado disponible (al menos 0.005 NEAR)."
+            },
+            {
+                "question": "¿Por qué mi cuenta/saldo no aparece?",
+                "answer": "Si has ingresado tu frase de contraseña (12 palabras) y tu cuenta no aparece, puede deberse a un problema con la API de la blockchain de NEAR. Para solucionarlo, ve a Configuración (:ícono de engranaje: en la esquina superior derecha) -> Configuración de seguridad -> Importar cuenta manualmente, ingresa tu dirección y toca importar."
+            },
+            {
+                "question": "¿Cómo puedo retirar mis tokens de NEAR desbloqueados?",
+                "answer": "Una vez que hayas hecho clic en desbloquear, debes esperar 4 épocas (aproximadamente 52-65 horas). Después de ese período, tu billetera mostrará un botón de retirada para recuperar tus NEAR."
+            },
+            {
+                "question": "¿Cómo puedo ganar dinero con NEAR Mobile?",
+                "answer": "Hay varias formas de ganar a través de NEAR Mobile: bloquear tokens de NEAR para obtener recompensas es la más fácil. También puedes usar nuestra integración con DEXs como Ref Finance yendo a la pestaña de dApps y tocando Ref Finance. Siempre ten en cuenta los riesgos y haz tu investigación o consulta a un experto para estrategias que se adapten mejor a tus objetivos financieros."
+            },
+            {
+                "question": "¿Qué puedo hacer con mis tokens SWEAT?",
+                "answer": "Puedes enviarlos a otro lugar o intercambiarlos por otros tokens usando nuestra integración de intercambio con Ref Finance. Puedes intercambiarlos por lo que quieras, pero una opción es intercambiarlos por NEAR y bloquearlo para obtener recompensas. Recuerda que necesitas tener algo de NEAR (al menos 0.005 NEAR) para enviar o intercambiar tus tokens SWEAT."
+            },
+            {
+                "question": "Mi problema o pregunta no está aquí",
+                "answer": "Puedes consultar nuestra guía aquí <a>https://docs.peersyst.com/near-mobile-support-center</a> o contactar con soporte aquí <a>https://t.co/1yW8TGNMTp</a>."
+            }
         ]
-      }
+    }
 }

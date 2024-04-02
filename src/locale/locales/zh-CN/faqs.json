@@ -1,35 +1,35 @@
 {
-  "aboutTheNearWalletApp": {
-    "label": "关于NEAR钱包应用程序",
-    "questions": [
-      {
-        "question": "为什么我不能发送我的代币？",
-        "answer": "确保您的帐户中有足够的NEAR来支付交易费用。区块链上的每个操作，例如发送或交换代币，都需要少量NEAR（至少0.005NEAR）进行处理。您可以通过点击钱包中的购买按钮购买NEAR，或者从其他钱包存入NEAR"
-      },
-      {
-        "question": "为什么我不能赎回我的NEAR代币？",
-        "answer": "如果您无法赎回，则可能是因为您没有足够的NEAR来支付赎回交易费用。请记住，您不能使用已锁定的NEAR支付费用，您必须有可用的未锁定的NEAR（至少0.005NEAR）。"
-      },
-      {
-        "question": "为什么我的帐户/余额没有显示？",
-        "answer": "如果您已输入您的密码短语（12个单词）而您的帐户没有显示，则可能是由于NEAR区块链API存在问题。要解决此问题，请转到 设置（:齿轮:图标位于右上角）->安全设置->手动导入帐户，输入您的地址然后点击导入。"
-      },
-      {
-        "question": "我如何提取我赎回的NEAR？",
-        "answer": "一旦您单击解除质押，您必须等待4个时期（大约52-65小时）。此后，您的钱包将显示一个取款按钮以恢复您的NEAR"
-      },
-      {
-        "question": "我如何通过NEAR Mobile赚钱？",
-        "answer": "通过NEAR Mobile有几种赚钱的方式：锁定NEAR代币以获得奖励是最简单的一种。您还可以通过我们与Ref Finance等DEX的集成来赚取收益，方法是转到dApps选项卡，然后点击Ref Finance。请始终考虑风险，并进行研究或咨询专家，以了解最适合您财务目标的策略。"
-      },
-      {
-        "question": "我可以用我的SWEAT代币做什么？",
-        "answer": "您可以将其发送到其他地方或使用我们与Ref Finance的交换集成将其与其他代币交换。您可以将其与任何您想要的东西交换，但一个选项是将其与NEAR交换并锁定以获得奖励。请记住，您需要有一些NEAR（至少0.005NEAR）才能发送或交换您的SWEAT代币"
-      },
-      {
-        "question": "我的问题或问题不在这里",
-        "answer": "您可以在这里查看我们的指南<a>https://docs.peersyst.com/near-mobile-support-center</a>或在这里联系支持<a>https://t.co/1yW8TGNMTp</a>。"
-      }
-    ]
-  }
+    "aboutTheNearWalletApp": {
+        "label": "关于NEAR钱包应用程序",
+        "questions": [
+            {
+                "question": "为什么我不能发送我的代币？",
+                "answer": "确保您的帐户中有足够的NEAR来支付交易费用。区块链上的每个操作，例如发送或交换代币，都需要少量NEAR（至少0.005NEAR）进行处理。您可以通过点击钱包中的购买按钮购买NEAR，或者从其他钱包存入NEAR"
+            },
+            {
+                "question": "为什么我不能赎回我的NEAR代币？",
+                "answer": "如果您无法赎回，则可能是因为您没有足够的NEAR来支付赎回交易费用。请记住，您不能使用已锁定的NEAR支付费用，您必须有可用的未锁定的NEAR（至少0.005NEAR）。"
+            },
+            {
+                "question": "为什么我的帐户/余额没有显示？",
+                "answer": "如果您已输入您的密码短语（12个单词）而您的帐户没有显示，则可能是由于NEAR区块链API存在问题。要解决此问题，请转到 设置（:齿轮:图标位于右上角）->安全设置->手动导入帐户，输入您的地址然后点击导入。"
+            },
+            {
+                "question": "我如何提取我赎回的NEAR？",
+                "answer": "一旦您单击解除质押，您必须等待4个时期（大约52-65小时）。此后，您的钱包将显示一个取款按钮以恢复您的NEAR"
+            },
+            {
+                "question": "我如何通过NEAR Mobile赚钱？",
+                "answer": "通过NEAR Mobile有几种赚钱的方式：锁定NEAR代币以获得奖励是最简单的一种。您还可以通过我们与Ref Finance等DEX的集成来赚取收益，方法是转到dApps选项卡，然后点击Ref Finance。请始终考虑风险，并进行研究或咨询专家，以了解最适合您财务目标的策略。"
+            },
+            {
+                "question": "我可以用我的SWEAT代币做什么？",
+                "answer": "您可以将其发送到其他地方或使用我们与Ref Finance的交换集成将其与其他代币交换。您可以将其与任何您想要的东西交换，但一个选项是将其与NEAR交换并锁定以获得奖励。请记住，您需要有一些NEAR（至少0.005NEAR）才能发送或交换您的SWEAT代币"
+            },
+            {
+                "question": "我的问题或问题不在这里",
+                "answer": "您可以在这里查看我们的指南<a>https://docs.peersyst.com/near-mobile-support-center</a>或在这里联系支持<a>https://t.co/1yW8TGNMTp</a>。"
+            }
+        ]
+    }
 }
