@@ -21,7 +21,7 @@ export interface FastNearFTDataFromAccountDto {
 
 export interface FastNearFTFromAccountIdResponseDto {
     account_id: string;
-    contracts_ids: FastNearFTDataFromAccountDto[];
+    tokens: FastNearFTDataFromAccountDto[];
 }
 
 export interface FastNearNFTDataFromAccountDto {
@@ -31,5 +31,5 @@ export interface FastNearNFTDataFromAccountDto {
 
 export interface FastNearNFTFromAccountIdResponseDto {
     account_id: string;
-    contracts_ids: FastNearNFTDataFromAccountDto[];
+    tokens: FastNearNFTDataFromAccountDto[];
 }
