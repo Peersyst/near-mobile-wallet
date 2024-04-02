@@ -38,7 +38,10 @@ export class ApiService extends FetchService implements NearApiServiceInterface 
         for (const [index, result] of results.entries()) {
             if (result.status === "fulfilled") {
                 responseArray[index] = result.value;
-            } else console.error("reason", JSON.stringify(result.reason));
+            } else {
+                // eslint-disable-next-line no-console
+                console.error("Error in api service", JSON.stringify(result.reason));
+            }
         }
 
         return responseArray;
