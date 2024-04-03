@@ -13,4 +13,4 @@ export interface NavbarProps {
     titlePosition?: NavbarTitlePosition;
 }
 
-export type NavbarRootProps = Pick<NavbarProps, "titlePosition">;
+export type NavbarPositionProps = Pick<NavbarProps, "titlePosition">;

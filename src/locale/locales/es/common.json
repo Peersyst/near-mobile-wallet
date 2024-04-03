@@ -316,12 +316,17 @@
     "importAccountManuallyDescription": "Si cree que tiene una cuenta que no aparece, puede importarla manualmente. Simplemente ingrese la cuenta que desea importar.",
     "enterTheAccount": "Introduce la cuenta",
     "swap": "Swap",
-    "transfer": "Transferir",
     "iWillDoItLater": "Lo haré más tarde",
     "backup_wallet_advise_description": "Recuerda que ni nosotros ni NEAR nunca te pediremos tu mnemonic o clave privada. Solo tú debes conocerlos y nunca compartirlos con nadie.",
     "backup_wallet_advise_description_2": "Si alguien le ha pedido su mnemonic o clave privada, probablemente solo quieran robar su cuenta.",
     "youHave0NEAR": "No tienes NEAR",
-    "youHave0NEARDescription": "Sin NEAR no podrás pagar las comisiones necesarias. Deposita o compra NEAR para continuar.",
-    "youHave0NEARDescription2": "Recuerda: Las comisiones son la comisión que se paga a los mineros/validadores por ayudar a completar las transacciones.",
-    "addNearNow": "Añadir NEAR ahora"
+    "youHave0NEARDescription": "No podrás enviar, intercambiar, desbloquear o retirar sin NEAR. Deposita o compra NEAR para continuar.",
+    "youHave0NEARDescription2": "¿Por qué? Las transacciones de blockchain requieren tarifas pagadas a los validadores, que se liquidan en NEAR.",
+    "addNearNow": "Añadir NEAR ahora",
+    "youHaveNotDoneBackupYet": "¡Importante! Aún no has realizado una copia de seguridad.",
+    "transfer": "Transferir",
+    "addNear": "añadir NEAR",
+    "buyNear": "Comprar NEAR",
+    "depositNearFromOtherWallet": "Depositar NEAR desde otro monedero",
+    "iNeedSupport": "Necesito soporte"
 }

@@ -16,12 +16,10 @@ export const serviceInstancesMap = new Map<NetworkType, NearSDKService[]>();
 
 const TESTNET_PARAMS: BaseNearSdkParams = {
     nodeUrl: config.testnetNodeUrl,
-    indexerUrl: config.indexerTestnetUrl,
 };
 
 const MAINNET_PARAMS: BaseNearSdkParams = {
     nodeUrl: config.mainnetNodeUrl,
-    indexerUrl: config.indexerMainnetUrl,
 };
 
 const BASE_NEAR_SDK_PARAMS: Record<NetworkType, BaseNearSdkParams> = {
@@ -60,23 +58,21 @@ export default new (class ServiceInstances {
         likelyNameIds,
     }: Omit<CreateServiceInstancesParams, "serviceIndex">): Promise<NearSDKService[]> {
         let services: NearSDKService[] = [];
-        const { nodeUrl, indexerUrl } = BASE_NEAR_SDK_PARAMS[network];
+        const { nodeUrl } = BASE_NEAR_SDK_PARAMS[network];
         if (mnemonic) {
             services = await NearSDKService.importFromMnemonic({
                 chain: network,
                 nodeUrl,
-                baseApiUrl: indexerUrl,
                 mnemonic,
-                enableIndexer: config.enableIndexer,
+
                 likelyNameIds,
             });
         } else if (privateKey) {
             services = await NearSDKService.importFromSecretKey({
                 chain: network,
                 nodeUrl,
-                baseApiUrl: indexerUrl,
                 secretKey: privateKey,
-                enableIndexer: config.enableIndexer,
+
                 likelyNameIds,
             });
         } else {
@@ -104,13 +100,12 @@ export default new (class ServiceInstances {
     }
 
     async addManualServiceInstance({ network, secretKey, accountId }: AddManualServiceInstanceParams): Promise<NearSDKService> {
-        const { nodeUrl, indexerUrl } = BASE_NEAR_SDK_PARAMS[network];
+        const { nodeUrl } = BASE_NEAR_SDK_PARAMS[network];
         const service = await NearSDKService.createFromSecretKey({
             chain: network,
             nodeUrl,
-            baseApiUrl: indexerUrl,
             secretKey,
-            enableIndexer: config.enableIndexer,
+
             nameId: accountId,
         });
         this.addService({ network, service });
