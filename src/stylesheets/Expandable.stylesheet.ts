@@ -2,12 +2,11 @@ import { Expandable, ExpandableContent, ExpandableDisplay } from "@peersyst/reac
 import { stylesheet } from "@peersyst/react-native-styled";
 
 export const expandableStylesheet = stylesheet(Expandable)(({ fromTheme }) => ({
-    // Comments : not working with theme palette.altOverlay.8% ni palette.altOverlay["8%"], so using "#26262614" instead
-    borderColor: "#26262614",
+    borderColor: fromTheme("palette.overlay.8%"),
     borderWidth: 1,
     borderRadius: 8,
     $open: {
-        borderColor: fromTheme("palette.purple"),
+        borderColor: fromTheme("palette.primary"),
         borderWidth: 2,
     },
 }));
@@ -23,7 +22,7 @@ export const expandableDisplayStylesheet = stylesheet(ExpandableDisplay)(({ from
 
     $open: {
         $icon: {
-            color: fromTheme("palette.purple"),
+            color: fromTheme("palette.primary"),
         },
     },
 }));
