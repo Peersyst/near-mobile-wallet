@@ -240,7 +240,6 @@
     "recovering_accounts": "Recovering your accounts...",
     "start_receiving_nfts": "To start seeing NFTs, send NFTs to your account's address.",
     "start_receiving_tokens": "To start seeing tokens, send tokens to your account's address.",
-    "start_making_transactions": "To start using NEAR Mobile, send NEARs, tokens or NFTs to your account's address and unleash the power of NEAR.",
     "share": "Share",
     "shareYourNearAddress": "Share your NEAR Address",
     "shareYourNearAddressMessage": "This is my address in the NEAR network using the NEAR Mobile wallet:\n\n{{address}}.",

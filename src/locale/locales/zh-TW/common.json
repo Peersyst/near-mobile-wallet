@@ -240,7 +240,6 @@
     "recovering_accounts": "正在恢復您的帳戶...",
     "start_receiving_nfts": "要開始查看NFT，請先將它們發送到您的帳戶地址。",
     "start_receiving_tokens": "要開始查看代幣，請首先將其發送到您的帳戶地址。",
-    "start_making_transactions": "要開始使用 NEAR Mobile，請向您的帳戶地址發送 NEAR、代幣或 NFT，發掘 NEAR 的潛力。",
     "share": "分享",
     "shareYourNearAddress": "分享您的NEAR地址",
     "shareYourNearAddressMessage": "這是我使用NEAR Mobile Wallet的NEAR網絡地址:\n\n{{address}}",
