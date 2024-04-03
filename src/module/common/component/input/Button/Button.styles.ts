@@ -86,6 +86,9 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             destructive: {
                 backgroundColor: emphasize(theme.palette.status.error, 0.15),
             },
+            quinary: {
+                backgroundColor: emphasize(theme.palette.blue, 0.7),
+            },
         },
         disabled: {
             backgroundColor: theme.palette.overlay["20%"],
