@@ -2,6 +2,7 @@
  * Do not `import {config} from "config"` in this file
  * because it will cause a circular dependency with SettingsState
  */
+import { providers } from "near-api-js";
 import config from "../../../../config/config";
 import {
     Action,
@@ -27,26 +28,27 @@ import {
     NearblocksAccessKeyResponseDto,
     NearBlocksTokenResponseDto,
     ValidatorAmount,
+    ValidatorAmountMap,
     NearBlocksTransactionDto,
 } from "./NearBlocksService.types";
+import { JsonRpcProvider } from "near-api-js/lib/providers";
 
 export class NearBlocksService extends FetchService {
     public chain: Chains;
-    public testnetUrl = config.nearblocksTesnetApiUrl;
-    public mainnetUrl = config.nearblocksMainnetApiUrl;
+    public apiUrl: string;
+    public archivalNodeUrl: string;
+    public provider: JsonRpcProvider;
 
     constructor(chain: Chains) {
         super();
         this.chain = chain;
-    }
-
-    private getNearblocksApiUrlFromChain(): string {
-        return this.chain === Chains.MAINNET ? this.mainnetUrl : this.testnetUrl;
+        this.apiUrl = this.chain === Chains.MAINNET ? config.nearblocksMainnetApiUrl : config.nearblocksTesnetApiUrl;
+        this.archivalNodeUrl = this.chain === Chains.MAINNET ? config.mainnetArchivalNodeUrl : config.testnetArchivalNodeUrl;
+        this.provider = new providers.JsonRpcProvider({ url: this.archivalNodeUrl });
     }
 
     private fetch<T>(path: string): Promise<T> {
-        const nearBlocksApi = this.getNearblocksApiUrlFromChain();
-        return this.handleFetch<T>(`${nearBlocksApi}${path}`);
+        return this.handleFetch<T>(`${this.apiUrl}${path}`);
     }
 
     private getActionsFromTxs(txs: NearBlocksTransactionDto[], address: string): Action[] {
@@ -100,44 +102,76 @@ export class NearBlocksService extends FetchService {
         return actions;
     }
 
-    private getAmountFromLogs(logs: string[], address: string): number {
+    private async getLogsFromTx(txHash: string, address: string): Promise<string[]> {
+        const logs: string[] = [];
+
+        try {
+            const result = await this.provider.txStatus(txHash, address);
+            if (!result.receipts_outcome) {
+                return [];
+            }
+
+            for (const receipt of result.receipts_outcome) {
+                if (receipt.outcome) {
+                    logs.push(...receipt.outcome.logs);
+                }
+            }
+        } catch (_e) {
+            console.error("Error getting logs", address, txHash, _e);
+        }
+
+        return logs;
+    }
+
+    private async getAmountFromLogs(logs: string[], txHash: string, address: string): Promise<ValidatorAmount> {
+        if (logs.length === 0) {
+            logs = await this.getLogsFromTx(txHash, address);
+        }
+
         for (const log of logs) {
             const splittedLogs = log.split(" ");
             if (splittedLogs[0] === `@${address}` && splittedLogs[1] === "withdrawing") {
                 const amount = parseInt(splittedLogs[2].slice(0, -1), 10);
                 if (!Number.isNaN(amount)) {
-                    return amount;
+                    return { amount, hasRewards: true };
                 }
             }
         }
 
-        return 0;
+        return { amount: 0, hasRewards: false };
     }
 
-    private addValidatorAmountsFromTxs(
+    private async addValidatorAmountsFromTxs(
         txs: NearBlocksTransactionResponseDto,
-        valAmounts: ValidatorAmount,
+        valAmounts: ValidatorAmountMap,
         address: string,
-    ): ValidatorAmount {
+    ): Promise<ValidatorAmountMap> {
         for (let i = 0; i < txs.txns.length; i += 1) {
             const tx = txs.txns[i];
             if (!valAmounts[tx.receiver_account_id]) {
-                valAmounts[tx.receiver_account_id] = 0;
+                valAmounts[tx.receiver_account_id] = { amount: 0, hasRewards: true };
             }
-            if (!tx.actions[0]) break;
-            if (DEPOSIT_STAKE_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id] += tx.actions_agg.deposit;
-            } else if (DEPOSIT_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id] += tx.actions_agg.deposit;
-            } else if (WITHDRAW_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id] -= this.getAmountFromLogs(tx.logs || [], address);
-            } else if (WITHDRAW_ALL_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id] -= this.getAmountFromLogs(tx.logs || [], address);
+
+            if (!tx.actions[0] || valAmounts[tx.receiver_account_id].hasRewards === false) break;
+
+            if ([DEPOSIT_STAKE_METHOD, DEPOSIT_METHOD].includes(tx.actions[0].method || "")) {
+                if (!tx.actions_agg || !tx.actions_agg.deposit || tx.actions_agg.deposit <= 0) {
+                    valAmounts[tx.receiver_account_id].hasRewards = false;
+                } else {
+                    valAmounts[tx.receiver_account_id].amount += tx.actions_agg.deposit;
+                }
+            } else if ([WITHDRAW_METHOD, WITHDRAW_ALL_METHOD].includes(tx.actions[0].method || "")) {
+                const { amount, hasRewards } = await this.getAmountFromLogs(tx.logs || [], tx.transaction_hash, address);
+                if (hasRewards) {
+                    valAmounts[tx.receiver_account_id].amount -= amount;
+                } else {
+                    valAmounts[tx.receiver_account_id].hasRewards = false;
+                }
             }
 
             // If it reaches negative values, start again
-            if (valAmounts[tx.receiver_account_id] < 0) {
-                valAmounts[tx.receiver_account_id] = 0;
+            if (valAmounts[tx.receiver_account_id].amount < 0) {
+                valAmounts[tx.receiver_account_id].amount = 0;
             }
         }
 
@@ -146,7 +180,7 @@ export class NearBlocksService extends FetchService {
 
     async getAccountDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
         const deposits: StakingDeposit[] = [];
-        let validatorAmounts: ValidatorAmount = {};
+        let validatorAmounts: ValidatorAmountMap = {};
         const pageSize = 25;
         const action = TransactionActionKind.FUNCTION_CALL;
         const order = "asc";
@@ -155,18 +189,18 @@ export class NearBlocksService extends FetchService {
         let resp = await this.fetch<NearBlocksTransactionResponseDto>(
             `/account/${address}/txns?action=${action}&page=${page}&per_page=${pageSize}&order=${order}`,
         );
-        validatorAmounts = this.addValidatorAmountsFromTxs(resp, validatorAmounts, address);
+        validatorAmounts = await this.addValidatorAmountsFromTxs(resp, validatorAmounts, address);
 
         while (resp.txns.length === pageSize) {
             page += 1;
             resp = await this.fetch<NearBlocksTransactionResponseDto>(
                 `/account/${address}/txns?action=${action}&page=${page}&per_page=${pageSize}&order=${order}`,
             );
-            validatorAmounts = this.addValidatorAmountsFromTxs(resp, validatorAmounts, address);
+            validatorAmounts = await this.addValidatorAmountsFromTxs(resp, validatorAmounts, address);
         }
 
         for (const key of Object.keys(validatorAmounts)) {
-            deposits.push({ validatorId: key, amount: validatorAmounts[key] });
+            deposits.push({ validatorId: key, amount: validatorAmounts[key].amount, hasRewards: validatorAmounts[key].hasRewards });
         }
 
         return deposits;
