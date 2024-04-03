@@ -34,7 +34,7 @@ const NftDetailsModalContent = ({ nft, ...rest }: NftDetailsModalContentProps) =
                     {capitalize(translate("transfer"))}
                 </Button>
             </Card>
-            {!haveNearInAccount && <YouDontHaveNearCard />}
+            {haveNearInAccount && <YouDontHaveNearCard />}
         </Col>
     );
 };
