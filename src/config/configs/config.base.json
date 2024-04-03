@@ -10,6 +10,8 @@
     "faucetUrl": "https://faucet.nervos.org/",
     "mainnetNodeUrl": "https://rpc.mainnet.near.org",
     "testnetNodeUrl": "https://rpc.testnet.near.org",
+    "mainnetArchivalNodeUrl": "https://archival-rpc.mainnet.near.org",
+    "testnetArchivalNodeUrl": "https://archival-rpc.testnet.near.org",
     "maxNumberOfDecimals": 5,
     "enableChangeNetwork": true,
     "tokenName": "NEAR",

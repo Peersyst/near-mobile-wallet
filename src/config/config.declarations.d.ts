@@ -54,6 +54,8 @@ declare module "@peersyst/react-native-components" {
         miniTokenUnit: string;
         mainnetNodeUrl: string;
         testnetNodeUrl: string;
+        mainnetArchivalNodeUrl: string;
+        testnetArchivalNodeUrl: string;
         coingeckoTokenApiId: string;
         coingeckoUSDTApiId: string;
         minBalanceToCreateAccount: string;
@@ -90,6 +92,8 @@ declare module "@peersyst/react-native-components" {
         miniTokenUnit: string;
         mainnetNodeUrl: string;
         testnetNodeUrl: string;
+        mainnetArchivalNodeUrl: string;
+        testnetArchivalNodeUrl: string;
         coingeckoTokenApiId: string;
         coingeckoUSDTApiId: string;
         minBalanceToCreateAccount: string;

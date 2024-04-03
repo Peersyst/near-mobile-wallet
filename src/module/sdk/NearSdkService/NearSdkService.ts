@@ -636,8 +636,8 @@ export class NearSDKService {
         let validators: Validator[] = [];
         try {
             const stakingDeposits = await this.apiService.getStakingDeposits({ address: this.getAddress() });
-            const validatorsProms = stakingDeposits.map(({ validatorId, amount }) =>
-                this.getValidatorDataFromId(validatorId, true, amount),
+            const validatorsProms = stakingDeposits.map(({ validatorId, amount, hasRewards }) =>
+                this.getValidatorDataFromId(validatorId, true, hasRewards ? amount : undefined),
             );
             validators = await Promise.all(validatorsProms);
             // Remove validators that no longer have any amount in it
