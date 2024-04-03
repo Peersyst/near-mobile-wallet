@@ -4,9 +4,12 @@ import Typography from "module/common/component/display/Typography/Typography";
 import Button from "module/common/component/input/Button/Button";
 import useTranslate from "module/common/hook/useTranslate";
 import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
+import YouDontHaveNearCard from "module/wallet/component/display/YouDontHaveNearCard/YouDontHaveNearCard";
+import { useGetBalanceAllAccounts } from "module/wallet/query/useGetBalanceAllAccounts";
 
 const AddCustomNameWarning = ({ submitText, onSubmit }: BaseAddWalletModalScreenProps) => {
     const translate = useTranslate();
+    const { balance } = useGetBalanceAllAccounts();
     return (
         <Col justifyContent="space-between" flex={1}>
             <Col flex={1} alignItems="center" gap="5%">
@@ -15,9 +18,12 @@ const AddCustomNameWarning = ({ submitText, onSubmit }: BaseAddWalletModalScreen
                     {translate("add_custom_address_warning")}
                 </Typography>
             </Col>
-            <Button fullWidth onPress={() => onSubmit()}>
-                {submitText || translate("continue")}
-            </Button>
+            <Col gap={10}>
+                {balance !== "" && Number(balance) <= 0 && <YouDontHaveNearCard />}
+                <Button fullWidth onPress={() => onSubmit()}>
+                    {submitText || translate("continue")}
+                </Button>
+            </Col>
         </Col>
     );
 };
