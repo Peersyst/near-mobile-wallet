@@ -31,30 +31,24 @@ import {
     ValidatorAmountMap,
     NearBlocksTransactionDto,
 } from "./NearBlocksService.types";
+import { JsonRpcProvider } from "near-api-js/lib/providers";
 
 export class NearBlocksService extends FetchService {
     public chain: Chains;
-    public mainnetUrl = config.nearblocksMainnetApiUrl;
-    public testnetUrl = config.nearblocksTesnetApiUrl;
-    public mainnetArchivalNode = config.mainnetArchivalNodeUrl;
-    public testnetArchivalNode = config.testnetArchivalNodeUrl;
+    public apiUrl: string;
+    public archivalNodeUrl: string;
+    public provider: JsonRpcProvider;
 
     constructor(chain: Chains) {
         super();
         this.chain = chain;
-    }
-
-    private getNearblocksApiUrlFromChain(): string {
-        return this.chain === Chains.MAINNET ? this.mainnetUrl : this.testnetUrl;
-    }
-
-    private getArchivalNodeUrl(): string {
-        return this.chain === Chains.MAINNET ? this.mainnetArchivalNode : this.testnetArchivalNode;
+        this.apiUrl = this.chain === Chains.MAINNET ? config.nearblocksMainnetApiUrl : config.nearblocksTesnetApiUrl;
+        this.archivalNodeUrl = this.chain === Chains.MAINNET ? config.mainnetArchivalNodeUrl : config.testnetArchivalNodeUrl;
+        this.provider = new providers.JsonRpcProvider({ url: this.archivalNodeUrl });
     }
 
     private fetch<T>(path: string): Promise<T> {
-        const nearBlocksApi = this.getNearblocksApiUrlFromChain();
-        return this.handleFetch<T>(`${nearBlocksApi}${path}`);
+        return this.handleFetch<T>(`${this.apiUrl}${path}`);
     }
 
     private getActionsFromTxs(txs: NearBlocksTransactionDto[], address: string): Action[] {
@@ -109,23 +103,27 @@ export class NearBlocksService extends FetchService {
     }
 
     private async getLogsFromTx(txHash: string, address: string): Promise<string[]> {
-        const provider = new providers.JsonRpcProvider({ url: this.getArchivalNodeUrl() });
-        const result = await provider.txStatus(txHash, address);
-        if (!result.receipts_outcome) {
-            return [];
-        }
-        const logs = [];
+        const logs: string[] = [];
 
-        for (const receipt of result.receipts_outcome) {
-            if (receipt.outcome) {
-                logs.push(...receipt.outcome.logs);
+        try {
+            const result = await this.provider.txStatus(txHash, address);
+            if (!result.receipts_outcome) {
+                return [];
             }
+
+            for (const receipt of result.receipts_outcome) {
+                if (receipt.outcome) {
+                    logs.push(...receipt.outcome.logs);
+                }
+            }
+        } catch (_e) {
+            console.error("Error getting logs", address, txHash, _e);
         }
 
         return logs;
     }
 
-    private async getAmountFromLogs(logs: string[], address: string, txHash: string): Promise<ValidatorAmount> {
+    private async getAmountFromLogs(logs: string[], txHash: string, address: string): Promise<ValidatorAmount> {
         if (logs.length === 0) {
             logs = await this.getLogsFromTx(txHash, address);
         }

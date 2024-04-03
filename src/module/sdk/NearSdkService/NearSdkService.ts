@@ -641,9 +641,22 @@ export class NearSDKService {
             );
             validators = await Promise.all(validatorsProms);
             // Remove validators that no longer have any amount in it
-            validators = validators.filter(
-                ({ stakingBalance: sb }) => sb && (sb.staked !== "0" || sb.available !== "0" || sb.pending !== "0"),
-            );
+            let hasRewards = true;
+            validators = validators.filter(({ stakingBalance: sb }) => {
+                const isActiveValidator = sb && (sb.staked !== "0" || sb.available !== "0" || sb.pending !== "0");
+
+                if (isActiveValidator && (sb.rewardsEarned === undefined || sb.rewardsEarned?.startsWith("-"))) {
+                    hasRewards = false;
+                }
+                return isActiveValidator;
+            });
+
+            if (!hasRewards) {
+                validators = validators.map(
+                    ({ stakingBalance, ...rest }) =>
+                        ({ ...rest, stakingBalance: { ...stakingBalance, rewardsEarned: undefined } } as Validator),
+                );
+            }
         } catch (e) {
             //eslint-disable-next-line no-console
             console.warn("Error in getCurrentValidators: ", e);
@@ -670,7 +683,7 @@ export class NearSDKService {
             staked: act?.staked ? addNearAmounts(ant.staked, act.staked) : ant.staked,
             available: act?.available ? addNearAmounts(ant.available, act.available) : ant.available,
             pending: act?.pending ? addNearAmounts(ant.pending, act.pending) : ant.pending,
-            rewardsEarned: act?.rewardsEarned ? addNearAmounts(ant.rewardsEarned || "0", act.rewardsEarned) : ant.rewardsEarned,
+            rewardsEarned: act?.rewardsEarned ? addNearAmounts(ant.rewardsEarned || "0", act.rewardsEarned || "0") : ant.rewardsEarned,
         };
     }
 
