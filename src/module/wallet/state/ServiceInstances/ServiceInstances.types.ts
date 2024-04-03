@@ -3,6 +3,7 @@ import { NearSDKService } from "near-peersyst-sdk";
 
 export interface BaseNearSdkParams {
     nodeUrl: string;
+    archivalNodeUrl: string;
 }
 
 export interface BaseSetServiceInstancesParams {
