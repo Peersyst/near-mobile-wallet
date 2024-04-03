@@ -9,7 +9,7 @@ import { AssetType } from "module/wallet/wallet.types";
 import { ViewProps } from "react-native";
 import { NftDetailsModalContentImage } from "./NftDetailsModalContent.styles";
 import Card from "module/common/component/surface/Card/Card";
-import useHaveNearInAccount from "module/common/hook/useHaveNearInAccount";
+import useHaveNearInAccount from "module/wallet/hook/useHaveNearInAccount";
 import YouDontHaveNearCard from "module/wallet/component/display/YouDontHaveNearCard/YouDontHaveNearCard";
 
 export interface NftDetailsModalContentProps extends ViewProps {
