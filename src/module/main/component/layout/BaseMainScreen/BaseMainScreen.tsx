@@ -10,7 +10,7 @@ export interface BaseMainScreenProps extends NavbarProps {
     variant?: BaseMainVariant;
 }
 
-const BaseMainScreen = ({ children, variant = BaseMainVariant.WHITE, ...navbarProps }: BaseMainScreenProps): JSX.Element => {
+const BaseMainScreen = ({ children, variant = BaseMainVariant.DEFAULT, ...navbarProps }: BaseMainScreenProps): JSX.Element => {
     return (
         <BaseMainScreenRoot variant={variant}>
             {Object.entries(navbarProps).length > 0 && <Navbar {...navbarProps} />}

@@ -27,7 +27,7 @@ const TokenDetailsCard = ({ token }: TokenDetailsCardProps): JSX.Element => {
     }
 
     return (
-        <TokenDetailsCardRoot>
+        <TokenDetailsCardRoot variant="gray">
             <TokenBalance
                 balanceProps={{ variant: "body1Strong" }}
                 fiatBalanceProps={{ variant: "body4Strong" }}
