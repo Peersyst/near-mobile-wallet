@@ -318,6 +318,7 @@
     "iWillDoItLater": "Lo haré más tarde",
     "backup_wallet_advise_description": "Recuerda que ni nosotros ni NEAR nunca te pediremos tu mnemonic o clave privada. Solo tú debes conocerlos y nunca compartirlos con nadie.",
     "backup_wallet_advise_description_2": "Si alguien le ha pedido su mnemonic o clave privada, probablemente solo quieran robar su cuenta.",
+    "supportCardText": "Contáctenos en nuestro canal oficial de Telegram. ¡Únete a la comunidad, comparte tus pensamientos!",
     "youHave0NEAR": "No tienes NEAR",
     "youHave0NEARDescription": "No podrás enviar, intercambiar, desbloquear o retirar sin NEAR. Deposita o compra NEAR para continuar.",
     "youHave0NEARDescription2": "¿Por qué? Las transacciones de blockchain requieren tarifas pagadas a los validadores, que se liquidan en NEAR.",

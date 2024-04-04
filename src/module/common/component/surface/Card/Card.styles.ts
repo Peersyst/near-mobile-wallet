@@ -11,6 +11,9 @@ export const CardRoot = styled(Paper, { elevation: 0 })<CardProps>(({ theme: { p
     ...(variant === "gray" && {
         backgroundColor: palette.overlay["4%"],
     }),
+    ...(variant === "default" && {
+        backgroundColor: palette.background,
+    }),
     ...(variant === "primary" && {
         backgroundColor: alpha(palette.primary, 0.12),
     }),

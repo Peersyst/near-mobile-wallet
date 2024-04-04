@@ -1,0 +1,35 @@
+{
+    "aboutTheNearWalletApp": {
+        "label": "Tentang Aplikasi NEAR Wallet",
+        "questions": [
+            {
+                "question": "Mengapa saya tidak bisa mengirim token saya?",
+                "answer": "Pastikan Anda memiliki cukup NEAR di akun Anda untuk menutupi biaya transaksi. Setiap tindakan di blockchain, seperti mengirim atau menukar token, membutuhkan sejumlah kecil NEAR (setidaknya 0.005 NEAR) untuk diproses. Anda dapat membeli NEAR dengan mengetuk tombol beli di dompet Anda atau depositkan NEAR dari dompet lain."
+            },
+            {
+                "question": "Mengapa saya tidak bisa menarik kembali token NEAR saya?",
+                "answer": "Jika Anda tidak dapat menarik kembali, bisa jadi karena Anda tidak memiliki cukup NEAR untuk membayar biaya transaksi penarikan kembali. Ingatlah bahwa Anda tidak dapat menggunakan NEAR yang dipertaruhkan Anda untuk membayar biaya, Anda harus memiliki NEAR yang tidak dipertaruhkan tersedia (setidaknya 0.005 NEAR)."
+            },
+            {
+                "question": "Mengapa akun/saldo saya tidak muncul?",
+                "answer": "Jika Anda telah memasukkan frasa sandi Anda (12 kata) dan akun Anda tidak muncul, hal tersebut mungkin disebabkan oleh masalah dengan API blockchain NEAR. Untuk memecahkannya, buka Pengaturan (:ikon gigi: di pojok kanan atas) -> Pengaturan keamanan -> Impor akun secara manual, masukkan alamat Anda dan ketuk impor."
+            },
+            {
+                "question": "Bagaimana cara menarik kembali token NEAR yang dipertaruhkan saya?",
+                "answer": "Setelah Anda mengklik menarik kembali, Anda harus menunggu 4 epoch (sekitar 52-65 jam). Setelah periode tersebut, dompet Anda akan menampilkan tombol tarik kembali untuk mengembalikan NEAR Anda."
+            },
+            {
+                "question": "Bagaimana cara menghasilkan uang dengan NEAR Mobile?",
+                "answer": "Ada beberapa cara untuk menghasilkan uang melalui NEAR Mobile: mempertaruhkan token NEAR untuk hadiah adalah yang paling mudah. Anda juga bisa menggunakan integrasi kami dengan DEX seperti Ref Finance dengan pergi ke tab dApps dan mengetuk Ref Finance. Selalu pertimbangkan risiko dan lakukan riset atau konsultasi dengan ahli untuk strategi yang paling sesuai dengan tujuan keuangan Anda."
+            },
+            {
+                "question": "Apa yang bisa saya lakukan dengan Token SWEAT saya?",
+                "answer": "Anda dapat mengirimnya ke tempat lain atau menukarnya dengan token lain menggunakan integrasi swap kami dengan Ref Finance. Anda dapat menukarnya dengan apa pun yang Anda inginkan, tetapi salah satu opsi adalah menukarnya dengan NEAR dan mempertaruhkannya untuk mendapatkan hadiah. Ingat bahwa Anda perlu memiliki sedikit NEAR (setidaknya 0.005 NEAR) untuk mengirim atau menukar token SWEAT Anda."
+            },
+            {
+                "question": "Masalah atau pertanyaan saya tidak ada di sini",
+                "answer": "Anda dapat memeriksa panduan kami di sini <a>https://docs.peersyst.com/near-mobile-support-center</a> atau menghubungi dukungan di sini <a>https://t.co/1yW8TGNMTp</a>."
+            }
+        ]
+    }
+}

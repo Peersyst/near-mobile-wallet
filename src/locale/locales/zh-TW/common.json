@@ -318,6 +318,7 @@
     "iWillDoItLater": "稍後再說",
     "backup_wallet_advise_description": "請記住，我們和NEAR都不會要求您提供助憶詞或私鑰。只有您應該知道它們，永遠不要與任何人分享。",
     "backup_wallet_advise_description_2": "如果有人要求您提供助憶詞或私鑰，他們可能只是想偷竊您的帳戶。",
+    "supportCardText": "在我們的官方Telegram頻道與我們聯繫。加入社群，分享您的想法！",
     "youHave0NEAR": "您沒有 NEAR",
     "youHave0NEARDescription": "没有NEAR，您将无法发送、交换、取消抵押或提款。请存款或购买NEAR以继续。",
     "youHave0NEARDescription2": "为什么？区块链交易需要向验证人支付费用，这些费用以NEAR结算。",

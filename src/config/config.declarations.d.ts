@@ -73,6 +73,8 @@ declare module "@peersyst/react-native-components" {
         signerFeature: SignerFeatureConfig;
         analytics: AnalyticsConfig;
         enableManualImport: boolean;
+        kitWalletTimeout: number;
+        telegramUrl: string;
         apiRequestTimeout: number;
         fastMainnetNearApiUrl: string;
     }
@@ -108,6 +110,8 @@ declare module "@peersyst/react-native-components" {
         transak: TransakConfig;
         analytics: AnalyticsConfig;
         enableManualImport: boolean;
+        kitWalletTimeout: number;
+        telegramUrl: string;
         apiRequestTimeout: number;
         fastMainnetNearApiUrl: string;
     }
