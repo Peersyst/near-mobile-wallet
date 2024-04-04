@@ -4,8 +4,8 @@ import StakeValidatorSelect, { StakeValidatorSelectProps } from "module/staking/
 import { useSetRecoilState } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
 import { Validator } from "near-peersyst-sdk";
-import useHaveNearInAccount from "module/common/hook/useHaveNearInAccount";
 import YouDontHaveNearCard from "module/wallet/component/display/YouDontHaveNearCard/YouDontHaveNearCard";
+import useHaveNearInAccount from "module/wallet/hook/useHaveNearInAccount";
 
 interface StakingSelectValidatorScreenProps extends StakeValidatorSelectProps {
     message: string;

@@ -6,8 +6,8 @@ import useTranslate from "module/common/hook/useTranslate";
 import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
 import NEARAmountWithMaxTextField from "module/transaction/component/input/NEARAmountWithMaxTextField/NEARAmountWithMaxTextField";
 import { ReactElement } from "react";
-import useHaveNearInAccount from "module/common/hook/useHaveNearInAccount";
 import YouDontHaveNearCard from "module/wallet/component/display/YouDontHaveNearCard/YouDontHaveNearCard";
+import useHaveNearInAccount from "module/wallet/hook/useHaveNearInAccount";
 
 export interface StakeForm {
     amount: string;

@@ -29,11 +29,11 @@ const NftDetailsModalContent = ({ nft, ...rest }: NftDetailsModalContentProps) =
             <NftDetailsModalContentImage uri={nft.metadata.media_url} tokenId={nft.token_id} />
             {nft.metadata.description && <Typography variant="body3Regular">{nft.metadata.description}</Typography>}
             <Card>
-                <Button variant="quaternary" size="lg" onPress={handleOnTransferButtonPress}>
+                <Button size="lg" onPress={handleOnTransferButtonPress} disabled={!haveNearInAccount}>
                     {capitalize(translate("transfer"))}
                 </Button>
             </Card>
-            {haveNearInAccount && <YouDontHaveNearCard />}
+            {!haveNearInAccount && <YouDontHaveNearCard />}
         </Col>
     );
 };
