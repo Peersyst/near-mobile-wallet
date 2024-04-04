@@ -18,13 +18,13 @@ export interface FiatBalanceProps extends Omit<BaseFiatBalanceProps, "units"> {
     token?: Token;
 }
 
-const TokenBalanceInFiat = ({ balance, token, ...rest }: TokenBalanceInFiatProps) => {
+const TokenBalanceInFiat = ({ balance = 0, token, ...rest }: TokenBalanceInFiatProps) => {
     const { value } = useTokenConversion(balance, token.contractId);
-    const isBiggerThanMinThreshold = BalanceOperations.isBigger(balance, FIAT_THRESHOLDS[FIAT_THRESHOLDS.length - 1].value);
+    const isBiggerThanMinThreshold = Number(balance) > FIAT_THRESHOLDS[FIAT_THRESHOLDS.length - 1].value;
     return value ? <Balance balance={value} {...(isBiggerThanMinThreshold && { action: BalanceActions.ROUND })} {...rest} /> : <></>;
 };
 
-const NearBalanceInFiat = ({ balance, ...rest }: BaseFiatBalanceProps) => {
+const NearBalanceInFiat = ({ balance = 0, ...rest }: BaseFiatBalanceProps) => {
     const { value: fiatValue } = useNativeTokenConversion(balance);
     const isBiggerThanMinThreshold = BalanceOperations.isBigger(balance, FIAT_THRESHOLDS[FIAT_THRESHOLDS.length - 1].value);
     return <Balance balance={fiatValue} {...(isBiggerThanMinThreshold && { action: BalanceActions.ROUND })} {...rest} />;

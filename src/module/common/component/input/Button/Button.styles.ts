@@ -39,7 +39,7 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
         },
         quaternary: {
             backgroundColor: "#FFFFFF",
-            color: theme.palette.blue,
+            color: theme.palette.primary,
         },
         contrast: {
             backgroundColor: theme.palette.gray[themeMode === "light" ? "600" : "900"],
