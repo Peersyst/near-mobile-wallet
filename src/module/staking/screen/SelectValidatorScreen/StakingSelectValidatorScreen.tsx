@@ -4,6 +4,8 @@ import StakeValidatorSelect, { StakeValidatorSelectProps } from "module/staking/
 import { useSetRecoilState } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
 import { Validator } from "near-peersyst-sdk";
+import YouDontHaveNearCard from "module/wallet/component/display/YouDontHaveNearCard/YouDontHaveNearCard";
+import useHaveNearInAccount from "module/wallet/hook/useHaveNearInAccount";
 
 interface StakingSelectValidatorScreenProps extends StakeValidatorSelectProps {
     message: string;
@@ -17,6 +19,7 @@ const StakingSelectValidatorScreen = ({
     ...rest
 }: StakingSelectValidatorScreenProps): JSX.Element => {
     const setStakeState = useSetRecoilState(stakeRecoilState);
+    const haveNearInAccount = useHaveNearInAccount();
 
     const handleOnSelected = (validator: Validator) => {
         if (validator.accountId) {
@@ -37,6 +40,7 @@ const StakingSelectValidatorScreen = ({
                 {message}
             </Typography>
             <StakeValidatorSelect onSelected={handleOnSelected} {...rest} />
+            {!haveNearInAccount && <YouDontHaveNearCard />}
         </Col>
     );
 };

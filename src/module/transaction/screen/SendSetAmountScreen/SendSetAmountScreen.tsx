@@ -49,6 +49,7 @@ const SendSetAmountScreen = ({ defaultAsset }: SendSetAmountScreenProps): JSX.El
         setAsset(asset);
         setAmount("");
     };
+
     return (
         <Suspense isLoading={balanceIsLoading} fallback={<CenteredLoader color="black" />}>
             <Form onSubmit={handleSubmit}>
@@ -61,7 +62,7 @@ const SendSetAmountScreen = ({ defaultAsset }: SendSetAmountScreenProps): JSX.El
                         name={SEND_SET_AMOUNT_FORM_KEYS.asset}
                     />
                     <AssetAmountTextField
-                        hideError={amount === ""}
+                        hideError={!amount}
                         value={amount}
                         onChange={(amount) => setAmount(amount)}
                         label={translate("select_the_amount_to_send")}

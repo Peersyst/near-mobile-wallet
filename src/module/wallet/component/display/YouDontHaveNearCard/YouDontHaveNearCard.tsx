@@ -9,7 +9,7 @@ function YouDontHaveNearCard(): JSX.Element {
     const translate = useTranslate();
     const navigate = useNavigation();
     return (
-        <YouDontHaveNearCardCardRoot variant="blue">
+        <YouDontHaveNearCardCardRoot variant="primary">
             <Typography variant="body1Strong" textAlign="center">
                 {translate("youHave0NEAR")}
             </Typography>
