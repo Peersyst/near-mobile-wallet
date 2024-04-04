@@ -105,6 +105,7 @@
         "@types/react-native": "~0.70.6",
         "@typescript-eslint/eslint-plugin": "^5.11.0",
         "@typescript-eslint/parser": "^5.11.0",
+        "@swisstype/react": "^0.0.2",
         "babel-plugin-module-resolver": "^4.1.0",
         "babel-plugin-transform-inline-environment-variables": "^0.4.4",
         "eslint": "^8.56.0",
