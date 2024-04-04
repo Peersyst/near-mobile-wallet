@@ -62,8 +62,8 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             color: "#FFFFFF",
         },
         quinary: {
-            backgroundColor: emphasize(theme.palette.blue, 0.9),
-            color: theme.palette.blue,
+            backgroundColor: emphasize(theme.palette.primary, 0.9),
+            color: theme.palette.primary,
         },
 
         //State Styles
@@ -87,7 +87,7 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
                 backgroundColor: emphasize(theme.palette.status.error, 0.15),
             },
             quinary: {
-                backgroundColor: emphasize(theme.palette.blue, 0.7),
+                backgroundColor: emphasize(theme.palette.primary, 0.7),
             },
         },
         disabled: {

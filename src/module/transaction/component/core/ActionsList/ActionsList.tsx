@@ -17,7 +17,7 @@ const ActionsList = (): JSX.Element => {
     ) : (
         <MainList
             onRefresh={handleRefetch}
-            data={data}
+            data={[]}
             ListEmptyComponent={<EmptyActionsList />}
             renderItem={({ item: action }) => <ActionCard action={action} />}
             keyExtractor={(_, index) => index.toString()}
