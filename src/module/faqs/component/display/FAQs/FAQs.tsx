@@ -11,7 +11,7 @@ const FAQs = (): JSX.Element => {
     const translateFAQ = useTranslate("faqs");
 
     return (
-        <FAQsRoot variant="white">
+        <FAQsRoot variant="default">
             <Col gap={12} flex={1} style={{ width: "100%" }}>
                 {Object.entries(faqs).map(([key, { questions }]) => (
                     <Label

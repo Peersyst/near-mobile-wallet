@@ -3,6 +3,6 @@ import Card from "module/common/component/surface/Card/Card";
 
 export const FAQsRoot = styled(Card)(() => ({
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 30,
     flex: 1,
 }));
