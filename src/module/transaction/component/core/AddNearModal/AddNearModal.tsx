@@ -13,11 +13,12 @@ export type AddNearModalProps = ExposedBackdropProps;
 
 const AddNearModal = createBackdrop(({ ...rest }: AddNearModalProps): JSX.Element => {
     const translate = useTranslate();
-    const { showModal } = useModal();
+    const { showModal, hideModal } = useModal();
     const navigate = useNavigation();
     const showBuyOption = useIsBuyEnabled();
 
     function handleOnBuy() {
+        hideModal(AddNearModal.id);
         navigate.navigate(MainScreens.FIAT_ORDERS);
     }
 
