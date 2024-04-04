@@ -33,7 +33,6 @@
     "invalid_child_account": "Vous ne pouvez pas créer {{nameID}} avec votre compte {{currentAccount}}.",
     "invalid_send_same_account": "Vous ne pouvez pas envoyer vers votre propre compte.",
     "invalid_account_or_not_active": "Le compte du destinataire est invalide ou n'existe pas",
-    "no_transactions": "Il n'y a pas encore de transactions",
     "no_nfts": "Il n'y a pas encore de NFT",
     "no_tokens": "Il n'y a pas encore de jetons",
     "no_news_now": "Pas de nouvelles pour l'instant",

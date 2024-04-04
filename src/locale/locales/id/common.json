@@ -240,7 +240,6 @@
     "recovering_accounts": "Memulihkan akun Anda...",
     "start_receiving_nfts": "Untuk mulai melihat NFT, kirimkan NFT ke alamat akun Anda.",
     "start_receiving_tokens": "Untuk mulai melihat token, kirim token ke alamat akun Anda.",
-    "start_making_transactions": "Untuk mulai menggunakan NEAR Mobile, kirim NEAR, token, atau NFT ke alamat akun Anda dan gunakan kekuatan NEAR.",
     "share": "Bagikan",
     "shareYourNearAddress": "Bagikan alamat NEAR Anda",
     "shareYourNearAddressMessage": "Ini adalah alamat saya di jaringan NEAR menggunakan dompet seluler NEAR:\n\n{{address}}",
@@ -328,5 +327,10 @@
     "addNear": "tambahkan NEAR",
     "buyNear": "Beli NEAR",
     "depositNearFromOtherWallet": "Setor NEAR dari dompet lain",
-    "iNeedSupport": "Saya butuh dukungan"
+    "iNeedSupport": "Saya butuh dukungan",
+    "noTransactionsText": "Belum ada transaksi. Sementara itu, Anda dapat",
+    "addNearCallToActionText": "Tambahkan NEAR",
+    "backupWallet": "dan dengan ini Anda akan dapat mulai menggunakan dompet",
+    "backupWalletCallToActionText": "Cadangkan dompet",
+    "backupWalletCallToActionTextDescription": "dan dengan ini Anda akan dapat memulihkan dompet Anda ketika Anda membutuhkannya tanpa kehilangan NEAR Anda"
 }

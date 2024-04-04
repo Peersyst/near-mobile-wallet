@@ -643,7 +643,7 @@ export class NearSDKService {
             if (!hasRewards) {
                 validators = validators.map(
                     ({ stakingBalance, ...rest }) =>
-                        ({ ...rest, stakingBalance: { ...stakingBalance, rewardsEarned: undefined } } as Validator),
+                        ({ ...rest, stakingBalance: { ...stakingBalance, rewardsEarned: undefined } }) as Validator,
                 );
             }
         } catch (e) {

@@ -240,7 +240,6 @@
     "recovering_accounts": "Récupération de vos comptes...",
     "start_receiving_nfts": "Pour commencer à recevoir des NFT, envoyez des NFT à l'adresse de votre compte",
     "start_receiving_tokens": "Pour commencer à voir des jetons, envoyez des jetons à l'adresse de votre compte",
-    "start_making_transactions": "Pour commencer à utiliser NEAR Mobile, envoyez des NEARs, des tokens ou des NFTs à l'adresse de votre compte et libérez la puissance de NEAR.",
     "share": "Partager",
     "shareYourNearAddress": "Partagez votre adresse NEAR",
     "shareYourNearAddressMessage": "Voici mon adresse dans le réseau NEAR en utilisant le portefeuille mobile NEAR:\n\n{{address}}",
@@ -328,5 +327,10 @@
     "addNear": "ajouter NEAR",
     "buyNear": "Acheter NEAR",
     "depositNearFromOtherWallet": "Déposer NEAR depuis un autre portefeuille",
-    "iNeedSupport": "J'ai besoin de support"
+    "iNeedSupport": "J'ai besoin de support",
+    "noTransactionsText": "Il n'y a pas encore de transactions. En attendant, vous pouvez",
+    "addNearCallToActionText": "Ajouter NEAR",
+    "backupWallet": "et ainsi vous pourrez commencer à utiliser le portefeuille",
+    "backupWalletCallToActionText": "Sauvegarder le portefeuille",
+    "backupWalletCallToActionTextDescription": "et ainsi vous pourrez récupérer votre portefeuille quand vous en aurez besoin sans perdre vos NEAR"
 }

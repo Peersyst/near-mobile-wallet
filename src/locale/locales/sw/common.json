@@ -240,7 +240,6 @@
     "recovering_accounts": "Inarudisha akaunti zako...",
     "start_receiving_nfts": "Kuanza kuona nifiti, tuma nifiti kwenye anuani ya akaunti yako",
     "start_receiving_tokens": "Kuanza kuona tokeni, tuma tokeni kwenye anuani ya akaunti yako",
-    "start_making_transactions": "Kuanza kutumia pochi ya NEAR, tuma NEAR, tokeni au nifiti kwenye anuani ya akaunti yako na achilia nguvu ya NEAR",
     "share": "Onyesha",
     "shareYourNearAddress": "Onyesha anuani yako ya NEAR",
     "shareYourNearAddressMessage": "Hii ni anuani yangu kwenye mtandao wa NEAR kutumia pochi ya simu ya NEAR:\n\n{{address}}.",
@@ -328,5 +327,10 @@
     "addNear": "ongeza NEAR",
     "buyNear": "Nunua NEAR",
     "depositNearFromOtherWallet": "Amana NEAR kutoka pochi nyingine",
-    "iNeedSupport": "Nahitaji msaada"
+    "iNeedSupport": "Nahitaji msaada",
+    "noTransactionsText": "Hakuna miamala bado. Wakati huo unaweza",
+    "addNearCallToActionText": "Ongeza NEAR",
+    "backupWallet": "na hivi utaweza kuanza kutumia pochi",
+    "backupWalletCallToActionText": "Hifadhi pochi",
+    "backupWalletCallToActionTextDescription": "na hivi utaweza kurejesha pochi yako wakati unapohitaji bila kupoteza NEAR yako"
 }

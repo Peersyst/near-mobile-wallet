@@ -240,7 +240,6 @@
     "recovering_accounts": "正在恢复您的账户...",
     "start_receiving_nfts": "要开始查看NFT，请先将它们发送到您的账户地址。",
     "start_receiving_tokens": "要开始查看代币，请首先将其发送到您的账户地址。",
-    "start_making_transactions": "要开始使用 NEAR Mobile，请向您的账户地址发送 NEAR、代币或 NFT，发掘 NEAR 的潜力。",
     "share": "分享",
     "shareYourNearAddress": "分享您的NEAR地址",
     "shareYourNearAddressMessage": "这是我使用NEAR Mobile Wallet的NEAR网络地址:\n\n{{address}}",
@@ -328,5 +327,10 @@
     "addNear": "添加 NEAR",
     "buyNear": "购买 NEAR",
     "depositNearFromOtherWallet": "从其他钱包存入 NEAR",
-    "iNeedSupport": "我需要支持"
+    "iNeedSupport": "我需要支持",
+    "noTransactionsText": "目前没有交易。与此同时，您可以",
+    "addNearCallToActionText": "添加 NEAR",
+    "backupWallet": "这样，您就可以开始使用钱包。",
+    "backupWalletCallToActionText": "备份钱包",
+    "backupWalletCallToActionTextDescription": "这样，您就可以在需要时恢复您的钱包，而不会丢失您的 NEAR。"
 }
