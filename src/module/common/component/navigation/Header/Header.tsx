@@ -6,13 +6,13 @@ import useNavigation from "module/common/hook/useNavigation";
 import { MainScreens } from "../MainNavigatorGroup/MainScreens";
 import useWalletGradient from "module/wallet/hook/useWalletGradient";
 import NotificationIcon from "../../display/NotificationIcon/NotificationIcon";
-import { SettingsScreens } from "module/settings/components/navigation/SettingsNavigatorGroup/SettingsNavigatorGroup";
 import useHasNotifications from "module/common/hook/useHasNotifications";
 
 const Header = (): JSX.Element => {
     const navigation = useNavigation();
     const [startColor, endColor] = useWalletGradient();
     const hasNotifications = useHasNotifications();
+
     return (
         <HeaderRoot>
             <Row alignItems="center" justifyContent="center" flex={1}>
@@ -22,10 +22,7 @@ const Header = (): JSX.Element => {
                     <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.FAQS)}>
                         <HelpCircleIcon />
                     </HeaderSettingsButton>
-                    <HeaderSettingsButton
-                        //@ts-ignore (jordi): navigate does not allow to pass a param to a custom screen
-                        onPress={() => navigation.navigate(MainScreens.SETTINGS, { screen: SettingsScreens.SECURITY_SETTINGS } as any)}
-                    >
+                    <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.SETTINGS)}>
                         <NotificationIcon icon={<SettingsIcon />} hasNotifications={hasNotifications} />
                     </HeaderSettingsButton>
                 </HeaderContentButtons>
