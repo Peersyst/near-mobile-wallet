@@ -14,7 +14,7 @@ export default function TokenDetailsModalContent({ token }: TokenDetailsModalCon
 
     return (
         <Col gap={16}>
-            {token.metadata.reference && (
+            {token.metadata?.reference && (
                 <Typography textAlign="center" variant="body3Regular" color="overlay.60%">
                     {token.metadata.reference}
                 </Typography>
