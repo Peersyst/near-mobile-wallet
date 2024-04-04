@@ -7,6 +7,7 @@ import { formControlLabelStylesheet } from "./FormControlLabel.stylesheet";
 import { labelStylesheet } from "./Label.stylesheet";
 import { paperStylesheet } from "./Paper.stylesheet";
 import { typographyStylesheet } from "./Typography.stylesheet";
+import { expandableStylesheet, expandableDisplayStylesheet, expandableContentStylesheet } from "./Expandable.stylesheet";
 
 export default createStylesheets(
     dialogStylesheet,
@@ -17,4 +18,7 @@ export default createStylesheets(
     labelStylesheet,
     paperStylesheet,
     typographyStylesheet,
+    expandableStylesheet,
+    expandableDisplayStylesheet,
+    expandableContentStylesheet,
 );
