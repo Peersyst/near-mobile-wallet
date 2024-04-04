@@ -1,19 +1,18 @@
 import { NavbarProps } from "module/common/component/navigation/Navbar/Navbar.types";
-import { ReactNode } from "react";
+import { ReactNode, useMemo } from "react";
 import Navbar from "module/common/component/navigation/Navbar/Navbar";
 import { View } from "react-native";
 import { BaseMainScreenRoot } from "module/main/component/layout/BaseMainScreen/BaseMainScreen.styles";
-import { BaseMainVariant } from "./BaseMainScreen.stypes";
 
 export interface BaseMainScreenProps extends NavbarProps {
     children: ReactNode;
-    variant?: BaseMainVariant;
 }
 
-const BaseMainScreen = ({ children, variant = BaseMainVariant.DEFAULT, ...navbarProps }: BaseMainScreenProps): JSX.Element => {
+const BaseMainScreen = ({ children, title, back, ...navbarProps }: BaseMainScreenProps): JSX.Element => {
+    const renderNavbar = title || back;
     return (
-        <BaseMainScreenRoot variant={variant}>
-            {Object.entries(navbarProps).length > 0 && <Navbar {...navbarProps} />}
+        <BaseMainScreenRoot>
+            {renderNavbar && <Navbar title={title} back={back} {...navbarProps} />}
             <View style={{ flex: 1 }}>{children}</View>
         </BaseMainScreenRoot>
     );

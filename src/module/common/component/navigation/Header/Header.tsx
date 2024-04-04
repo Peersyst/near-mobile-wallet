@@ -6,6 +6,7 @@ import useNavigation from "module/common/hook/useNavigation";
 import { MainScreens } from "../MainNavigatorGroup/MainScreens";
 import useWalletGradient from "module/wallet/hook/useWalletGradient";
 import NotificationIcon from "../../display/NotificationIcon/NotificationIcon";
+import { SettingsScreens } from "module/settings/components/navigation/SettingsNavigatorGroup/SettingsNavigatorGroup";
 
 const Header = (): JSX.Element => {
     const navigation = useNavigation();
@@ -20,7 +21,10 @@ const Header = (): JSX.Element => {
                     <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.FAQS)}>
                         <HelpCircleIcon />
                     </HeaderSettingsButton>
-                    <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.SETTINGS)}>
+                    <HeaderSettingsButton
+                        //@ts-ignore (jordi): navigate does not allow to pass a param to a custom screen
+                        onPress={() => navigation.navigate(MainScreens.SETTINGS, { screen: SettingsScreens.SECURITY_SETTINGS } as any)}
+                    >
                         <NotificationIcon icon={<SettingsIcon />} />
                     </HeaderSettingsButton>
                 </HeaderContentButtons>

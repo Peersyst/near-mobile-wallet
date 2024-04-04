@@ -6,7 +6,6 @@ import useTranslate from "module/common/hook/useTranslate";
 import { ResourceType } from "locale/i18n.types";
 import TransExternalLink from "module/common/component/navigation/TransExternalLink/TransExternalLink";
 import { FAQsRoot } from "./FAQs.styles";
-import Typography from "module/common/component/display/Typography/Typography";
 
 const FAQs = (): JSX.Element => {
     const translateFAQ = useTranslate("faqs");
@@ -18,7 +17,8 @@ const FAQs = (): JSX.Element => {
                     <Label
                         style={{ alignItems: "stretch" }}
                         key={key}
-                        label={<Typography variant="body2Strong">{translateFAQ(`${key as keyof ResourceType["faqs"]}.label`)}</Typography>}
+                        variant="body2Strong"
+                        label={translateFAQ(`${key as keyof ResourceType["faqs"]}.label`)}
                     >
                         <Col gap={12}>
                             {questions.map((_, questionIndex) => (
