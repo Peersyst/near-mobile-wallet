@@ -53,5 +53,10 @@ export interface NearBlocksTokenResponseDto {
 }
 
 export interface ValidatorAmount {
-    [validatorId: string]: number;
+    amount: number;
+    hasRewards: boolean;
+}
+
+export interface ValidatorAmountMap {
+    [validatorId: string]: ValidatorAmount;
 }

@@ -1,10 +1,10 @@
 import { useModal } from "@peersyst/react-native-components";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 import { Token } from "near-peersyst-sdk";
+import TokenDetailsModal from "../../core/TokenDetailsModal/TokenDetailsModal";
 import { TouchableWithoutFeedback } from "react-native";
 import TokenBalance from "../TokenBalance/TokenBalance";
 import TokenNameWithIcon from "../TokenNameWithIcon/TokenNameWithIcon";
-import TokenDetailsModal from "../../core/TokenDetailsModal/TokenDetailsModal";
 
 export interface TokenCardProps {
     token: Token;

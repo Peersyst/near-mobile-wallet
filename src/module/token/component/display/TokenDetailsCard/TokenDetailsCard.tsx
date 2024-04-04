@@ -8,6 +8,7 @@ import { Linking } from "react-native";
 import { TokenDetailsCardButton, TokenDetailsCardRoot } from "./TokenDetailsCard.styles";
 import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import { AssetType } from "module/wallet/wallet.types";
+import useHaveNearInAccount from "module/wallet/hook/useHaveNearInAccount";
 
 export interface TokenDetailsCardProps {
     token: Token;
@@ -17,6 +18,7 @@ const TokenDetailsCard = ({ token }: TokenDetailsCardProps): JSX.Element => {
     const translate = useTranslate();
     const { showModal } = useModal();
     const uriSwap = useGetSwapLink({ contractId: token.contractId });
+    const haveNearInAccount = useHaveNearInAccount();
 
     function handleOnSwapButtonPress(): void {
         Linking.openURL(uriSwap);
@@ -35,10 +37,10 @@ const TokenDetailsCard = ({ token }: TokenDetailsCardProps): JSX.Element => {
                 alignItems="center"
             />
             <Row gap={8}>
-                <TokenDetailsCardButton variant="quaternary" size="lg" onPress={handleOnSendButtonPress}>
+                <TokenDetailsCardButton size="lg" variant="quaternary" onPress={handleOnSendButtonPress} disabled={!haveNearInAccount}>
                     {capitalize(translate("send"))}
                 </TokenDetailsCardButton>
-                <TokenDetailsCardButton variant="quaternary" size="lg" onPress={handleOnSwapButtonPress}>
+                <TokenDetailsCardButton size="lg" variant="quaternary" onPress={handleOnSwapButtonPress} disabled={!haveNearInAccount}>
                     {capitalize(translate("swap"))}
                 </TokenDetailsCardButton>
             </Row>

@@ -1,6 +1,7 @@
 import { Paper } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
 import { CardProps } from "./Card";
+import { alpha } from "@peersyst/react-utils";
 
 export const CardRoot = styled(Paper, { elevation: 0 })<CardProps>(({ theme: { palette }, variant }) => ({
     justifyContent: "center",
@@ -12,5 +13,8 @@ export const CardRoot = styled(Paper, { elevation: 0 })<CardProps>(({ theme: { p
     }),
     ...(variant === "default" && {
         backgroundColor: palette.background,
+    }),
+    ...(variant === "primary" && {
+        backgroundColor: alpha(palette.primary, 0.12),
     }),
 }));

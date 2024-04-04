@@ -8,6 +8,8 @@ import { AssetType } from "module/wallet/wallet.types";
 import { ViewProps } from "react-native";
 import { NftDetailsModalContentImage } from "./NftDetailsModalContent.styles";
 import Card from "module/common/component/surface/Card/Card";
+import useHaveNearInAccount from "module/wallet/hook/useHaveNearInAccount";
+import YouDontHaveNearCard from "module/wallet/component/display/YouDontHaveNearCard/YouDontHaveNearCard";
 
 export interface NftDetailsModalContentProps extends ViewProps {
     nft: NftToken;
@@ -16,6 +18,7 @@ export interface NftDetailsModalContentProps extends ViewProps {
 const NftDetailsModalContent = ({ nft, ...rest }: NftDetailsModalContentProps) => {
     const translate = useTranslate();
     const { showModal } = useModal();
+    const haveNearInAccount = useHaveNearInAccount();
 
     function handleOnTransferButtonPress(): void {
         showModal(SendModal, { defaultAsset: { type: AssetType.NFT, nft } });
@@ -26,10 +29,11 @@ const NftDetailsModalContent = ({ nft, ...rest }: NftDetailsModalContentProps) =
             <NftDetailsModalContentImage uri={nft.metadata.media_url} tokenId={nft.token_id} />
             {nft.metadata.description && <Typography variant="body3Regular">{nft.metadata.description}</Typography>}
             <Card variant="gray">
-                <Button variant="quaternary" size="lg" onPress={handleOnTransferButtonPress}>
+                <Button size="lg" variant="quaternary" onPress={handleOnTransferButtonPress} disabled={!haveNearInAccount}>
                     {capitalize(translate("transfer"))}
                 </Button>
             </Card>
+            {!haveNearInAccount && <YouDontHaveNearCard />}
         </Col>
     );
 };

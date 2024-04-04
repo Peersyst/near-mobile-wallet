@@ -33,7 +33,6 @@
     "invalid_child_account": "Anda tidak dapat membuat {{nameID}} dengan akun Anda {{currentAccount}}.",
     "invalid_send_same_account": "Anda tidak dapat mengirim ke akun Anda sendiri.",
     "invalid_account_or_not_active": "Akun penerima tidak valid atau tidak ada",
-    "no_transactions": "Belum ada transaksi",
     "no_nfts": "Belum ada NFT",
     "no_tokens": "Belum ada token",
     "no_news_now": "Tidak ada berita baru sejauh ini",

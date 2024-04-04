@@ -33,7 +33,6 @@
     "invalid_child_account": "您無法使用您當前的賬戶 {{currentAccount}} 創建 {{nameID}}。",
     "invalid_send_same_account": "您不能向自己的賬戶發送資金。",
     "invalid_account_or_not_active": "賬戶無效或不存在",
-    "no_transactions": "沒有交易",
     "no_nfts": "沒有 NFT",
     "no_tokens": "沒有代幣",
     "no_news_now": "暫時沒有新聞",

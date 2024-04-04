@@ -13,6 +13,7 @@ export * from "./ChevronUpIcon";
 export * from "./CircleIcon";
 export * from "./CircleCheckIcon";
 export * from "./CircleErrorIcon";
+export * from "./CircleHelpIcon";
 export * from "./CircleWarningIcon";
 export * from "./ClipboardListIcon";
 export * from "./CodeIcon";

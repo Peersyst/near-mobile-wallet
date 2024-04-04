@@ -41,9 +41,7 @@ declare module "@peersyst/react-native-components" {
 
     export interface Config {
         minimumTransactionAmount: number;
-        indexerTestnetUrl: string;
         nearblocksTesnetApiUrl: string;
-        indexerMainnetUrl: string;
         nearblocksMainnetApiUrl: string;
         mainnetExplorerLink: string;
         testnetExplorerLink: string;
@@ -54,11 +52,12 @@ declare module "@peersyst/react-native-components" {
         miniTokenUnit: string;
         mainnetNodeUrl: string;
         testnetNodeUrl: string;
+        mainnetArchivalNodeUrl: string;
+        testnetArchivalNodeUrl: string;
         coingeckoTokenApiId: string;
         coingeckoUSDTApiId: string;
         minBalanceToCreateAccount: string;
         estimatedFee: string; //In NEAR
-        enableIndexer: boolean;
         newsRSSUrl: string;
         defaultTwitterAccount: string;
         approveTxWaitTime: number; //In seconds
@@ -76,13 +75,13 @@ declare module "@peersyst/react-native-components" {
         enableManualImport: boolean;
         kitWalletTimeout: number;
         telegramUrl: string;
+        apiRequestTimeout: number;
+        fastMainnetNearApiUrl: string;
     }
 
     export interface CreateConfig {
         minimumTransactionAmount: number;
-        indexerTestnetUrl: string;
         nearblocksTesnetApiUrl: string;
-        indexerMainnetUrl: string;
         nearblocksMainnetApiUrl: string;
         mainnetExplorerLink: string;
         testnetExplorerLink: string;
@@ -93,11 +92,12 @@ declare module "@peersyst/react-native-components" {
         miniTokenUnit: string;
         mainnetNodeUrl: string;
         testnetNodeUrl: string;
+        mainnetArchivalNodeUrl: string;
+        testnetArchivalNodeUrl: string;
         coingeckoTokenApiId: string;
         coingeckoUSDTApiId: string;
         minBalanceToCreateAccount: string;
         estimatedFee: string;
-        enableIndexer: boolean;
         newsRSSUrl: string;
         defaultTwitterAccount: string;
         approveTxWaitTime: number; //In seconds
@@ -112,6 +112,8 @@ declare module "@peersyst/react-native-components" {
         enableManualImport: boolean;
         kitWalletTimeout: number;
         telegramUrl: string;
+        apiRequestTimeout: number;
+        fastMainnetNearApiUrl: string;
     }
 
     export interface ExtraValidators {
