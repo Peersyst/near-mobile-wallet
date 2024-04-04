@@ -11,7 +11,7 @@ const OnBoardingActionsList = (): JSX.Element => {
     const translate = useTranslate();
     const { showModal } = useModal();
     const isBackupDone = useIsBackupDone();
-    
+
     return (
         <OnBoardingActionsListRoot gap="6%">
             <Typography variant="body3Strong" textAlign="center" style={{ width: "60%" }}>

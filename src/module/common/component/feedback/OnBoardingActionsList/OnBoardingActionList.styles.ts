@@ -5,6 +5,6 @@ export const OnBoardingActionsListRoot = styled(Col)(() => {
     return {
         alignItems: "center",
         justifyContent: "center",
-        paddingVertical: "3%"
+        paddingVertical: "3%",
     };
 });
