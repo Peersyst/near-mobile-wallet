@@ -61,6 +61,10 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             backgroundColor: theme.palette.overlay["8%"],
             color: "#FFFFFF",
         },
+        quinary: {
+            backgroundColor: emphasize(theme.palette.primary, 0.9),
+            color: theme.palette.primary,
+        },
 
         //State Styles
         pressed: {
@@ -81,6 +85,9 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             },
             destructive: {
                 backgroundColor: emphasize(theme.palette.status.error, 0.15),
+            },
+            quinary: {
+                backgroundColor: emphasize(theme.palette.primary, 0.7),
             },
         },
         disabled: {
