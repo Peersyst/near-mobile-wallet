@@ -38,10 +38,6 @@ export default function (): UseGetStakingDetailsSectionReturn {
             onAction: () => showModal(UnstakeModal),
         },
         {
-            title: translate("rewardsEarned"),
-            amount: rewardsEarned,
-        },
-        {
             title: translate("pendingRelease"),
             amount: pending,
         },
@@ -53,6 +49,13 @@ export default function (): UseGetStakingDetailsSectionReturn {
             onAction: () => showModal(WithdrawModal),
         },
     ];
+
+    if (typeof rewardsEarned === "string") {
+        stakingDetailsSections.splice(1, 0, {
+            title: translate("rewardsEarned"),
+            amount: rewardsEarned,
+        });
+    }
 
     return { isIdle, isLoading, refetch, sections: stakingDetailsSections };
 }

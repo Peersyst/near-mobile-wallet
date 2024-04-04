@@ -16,10 +16,12 @@ export const serviceInstancesMap = new Map<NetworkType, NearSDKService[]>();
 
 const TESTNET_PARAMS: BaseNearSdkParams = {
     nodeUrl: config.testnetNodeUrl,
+    archivalNodeUrl: config.testnetNodeUrl,
 };
 
 const MAINNET_PARAMS: BaseNearSdkParams = {
     nodeUrl: config.mainnetNodeUrl,
+    archivalNodeUrl: config.mainnetNodeUrl,
 };
 
 const BASE_NEAR_SDK_PARAMS: Record<NetworkType, BaseNearSdkParams> = {
