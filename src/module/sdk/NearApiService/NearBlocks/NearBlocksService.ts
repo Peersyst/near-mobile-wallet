@@ -2,6 +2,7 @@
  * Do not `import {config} from "config"` in this file
  * because it will cause a circular dependency with SettingsState
  */
+import { providers } from "near-api-js";
 import config from "../../../../config/config";
 import {
     Action,
@@ -20,127 +21,166 @@ import {
     WITHDRAW_ALL_METHOD,
     convertYoctoToNear,
 } from "../../utils";
-import { FetchService } from "../FetchService";
-import { NearApiServiceParams } from "../NearApiService.types";
+import { FetchService } from "../common/FetchService";
+import { NearApiServiceInterface, NearApiServicePaginatedParams, NearApiServiceParams } from "../NearApiService.types";
 import {
     NearBlocksTransactionResponseDto,
     NearblocksAccessKeyResponseDto,
     NearBlocksTokenResponseDto,
     ValidatorAmount,
+    ValidatorAmountMap,
     NearBlocksTransactionDto,
 } from "./NearBlocksService.types";
+import { JsonRpcProvider } from "near-api-js/lib/providers";
 
-export class NearBlocksService extends FetchService {
+export class NearBlocksService extends FetchService implements NearApiServiceInterface {
     public chain: Chains;
-    public testnetUrl = config.nearblocksTesnetApiUrl;
-    public mainnetUrl = config.nearblocksMainnetApiUrl;
+    public apiUrl: string;
+    public archivalNodeUrl: string;
+    public provider: JsonRpcProvider;
 
     constructor(chain: Chains) {
         super();
         this.chain = chain;
-    }
-
-    private getNearblocksApiUrlFromChain(): string {
-        return this.chain === Chains.MAINNET ? this.mainnetUrl : this.testnetUrl;
+        this.apiUrl = this.chain === Chains.MAINNET ? config.nearblocksMainnetApiUrl : config.nearblocksTesnetApiUrl;
+        this.archivalNodeUrl = this.chain === Chains.MAINNET ? config.mainnetArchivalNodeUrl : config.testnetArchivalNodeUrl;
+        this.provider = new providers.JsonRpcProvider({ url: this.archivalNodeUrl });
     }
 
     private fetch<T>(path: string): Promise<T> {
-        const nearBlocksApi = this.getNearblocksApiUrlFromChain();
-        return this.handleFetch<T>(`${nearBlocksApi}${path}`);
+        return this.handleFetch<T>(`${this.apiUrl}${path}`);
     }
 
     private getActionsFromTxs(txs: NearBlocksTransactionDto[], address: string): Action[] {
         const actions: Action[] = [];
         for (const tx of txs) {
-            if (tx.predecessor_account_id !== "system") {
-                const baseTransaction: TransactionWithoutActions = {
-                    transactionHash: tx.transaction_hash,
-                    includedInBlockHash: tx.included_in_block_hash,
-                    blockTimestamp: parseBlockTimestamp(tx.block_timestamp),
-                    signerAccountId: tx.predecessor_account_id,
-                    nonce: 0,
-                    receiverAccountId: tx.receiver_account_id,
-                };
-
-                for (const [i, action] of tx.actions.entries()) {
-                    try {
-                        const actionKind = this.parseActionKindApiDto(
-                            action.action as TransactionActionKind,
-                            tx.receiver_account_id,
-                            address,
-                        );
-                        actions.push({
-                            transaction: baseTransaction,
-                            actionKind,
-                            transactionHash: tx.transaction_hash,
-                            indexInTransaction: i,
-                            // codeSha256: "", // For DEPLOY_CONTRACT kind
-                            gas: tx.outcomes_agg.transaction_fee, // For FUNCTION_CALL kind
-                            ...(tx.actions_agg.deposit && {
-                                deposit: this.parseTransactionDeposit(actionKind, tx?.actions_agg.deposit), // For FUNCTION_CALL, TRANSFER kind
-                            }),
-                            // argsBase64: "", // For FUNCTION_CALL kind
-                            // argsJson: "", // For FUNCTION_CALL kind
-                            methodName: action.method || undefined,
-                            // stake: "", // For STAKE kind
-                            // publicKey: baseTransaction.receiverAccountId, // For STAKE, ADD_KEY, DELETE_KEY kind
-                            // accessKey: "", // For ADD_KEY kind
-                            // beneficiaryId: "", // For DELETE_ACCOUNT kind
-                        });
-                    } catch (e) {}
+            try {
+                if (tx.predecessor_account_id !== "system") {
+                    const baseTransaction: TransactionWithoutActions = {
+                        transactionHash: tx.transaction_hash,
+                        includedInBlockHash: tx.included_in_block_hash,
+                        blockTimestamp: parseBlockTimestamp(tx.block_timestamp),
+                        signerAccountId: tx.predecessor_account_id,
+                        nonce: 0,
+                        receiverAccountId: tx.receiver_account_id,
+                    };
+                    if (!tx.actions) {
+                        /* eslint-disable no-console */
+                        console.warn("tx without actions", tx);
+                        break;
+                    }
+                    for (const [i, action] of tx.actions.entries()) {
+                        try {
+                            const actionKind = this.parseActionKindApiDto(
+                                action.action as TransactionActionKind,
+                                tx.receiver_account_id,
+                                address,
+                            );
+                            actions.push({
+                                transaction: baseTransaction,
+                                actionKind,
+                                transactionHash: tx.transaction_hash,
+                                indexInTransaction: i,
+                                // codeSha256: "", // For DEPLOY_CONTRACT kind
+                                gas: tx.outcomes_agg.transaction_fee, // For FUNCTION_CALL kind
+                                ...(tx.actions_agg.deposit && {
+                                    deposit: this.parseTransactionDeposit(actionKind, tx?.actions_agg.deposit), // For FUNCTION_CALL, TRANSFER kind
+                                }),
+                                // argsBase64: "", // For FUNCTION_CALL kind
+                                // argsJson: "", // For FUNCTION_CALL kind
+                                methodName: action.method || undefined,
+                                // stake: "", // For STAKE kind
+                                // publicKey: baseTransaction.receiverAccountId, // For STAKE, ADD_KEY, DELETE_KEY kind
+                                // accessKey: "", // For ADD_KEY kind
+                                // beneficiaryId: "", // For DELETE_ACCOUNT kind
+                            });
+                        } catch (e) {}
+                    }
                 }
-            }
+            } catch (e) {}
         }
         return actions;
     }
 
-    private getAmountFromLogs(logs: string[], address: string): number {
+    private async getLogsFromTx(txHash: string, address: string): Promise<string[]> {
+        const logs: string[] = [];
+
+        try {
+            const result = await this.provider.txStatus(txHash, address);
+            if (!result.receipts_outcome) {
+                return [];
+            }
+
+            for (const receipt of result.receipts_outcome) {
+                if (receipt.outcome) {
+                    logs.push(...receipt.outcome.logs);
+                }
+            }
+        } catch (_e) {
+            console.error("Error getting logs", address, txHash, _e);
+        }
+
+        return logs;
+    }
+
+    private async getAmountFromLogs(logs: string[], txHash: string, address: string): Promise<ValidatorAmount> {
+        if (logs.length === 0) {
+            logs = await this.getLogsFromTx(txHash, address);
+        }
+
         for (const log of logs) {
             const splittedLogs = log.split(" ");
             if (splittedLogs[0] === `@${address}` && splittedLogs[1] === "withdrawing") {
                 const amount = parseInt(splittedLogs[2].slice(0, -1), 10);
                 if (!Number.isNaN(amount)) {
-                    return amount;
+                    return { amount, hasRewards: true };
                 }
             }
         }
 
-        return 0;
+        return { amount: 0, hasRewards: false };
     }
 
-    private addValidatorAmountsFromTxs(
+    private async addValidatorAmountsFromTxs(
         txs: NearBlocksTransactionResponseDto,
-        valAmounts: ValidatorAmount,
+        valAmounts: ValidatorAmountMap,
         address: string,
-    ): ValidatorAmount {
+    ): Promise<ValidatorAmountMap> {
         for (let i = 0; i < txs.txns.length; i += 1) {
             const tx = txs.txns[i];
             if (!valAmounts[tx.receiver_account_id]) {
-                valAmounts[tx.receiver_account_id] = 0;
+                valAmounts[tx.receiver_account_id] = { amount: 0, hasRewards: true };
             }
 
-            if (DEPOSIT_STAKE_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id] += tx.actions_agg.deposit;
-            } else if (DEPOSIT_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id] += tx.actions_agg.deposit;
-            } else if (WITHDRAW_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id] -= this.getAmountFromLogs(tx.logs, address);
-            } else if (WITHDRAW_ALL_METHOD === tx.actions[0].method) {
-                valAmounts[tx.receiver_account_id] -= this.getAmountFromLogs(tx.logs, address);
+            if (!tx.actions[0] || valAmounts[tx.receiver_account_id].hasRewards === false) break;
+
+            if ([DEPOSIT_STAKE_METHOD, DEPOSIT_METHOD].includes(tx.actions[0].method || "")) {
+                if (!tx.actions_agg || !tx.actions_agg.deposit || tx.actions_agg.deposit <= 0) {
+                    valAmounts[tx.receiver_account_id].hasRewards = false;
+                } else {
+                    valAmounts[tx.receiver_account_id].amount += tx.actions_agg.deposit;
+                }
+            } else if ([WITHDRAW_METHOD, WITHDRAW_ALL_METHOD].includes(tx.actions[0].method || "")) {
+                const { amount, hasRewards } = await this.getAmountFromLogs(tx.logs || [], tx.transaction_hash, address);
+                if (hasRewards) {
+                    valAmounts[tx.receiver_account_id].amount -= amount;
+                } else {
+                    valAmounts[tx.receiver_account_id].hasRewards = false;
+                }
             }
 
             // If it reaches negative values, start again
-            if (valAmounts[tx.receiver_account_id] < 0) {
-                valAmounts[tx.receiver_account_id] = 0;
+            if (valAmounts[tx.receiver_account_id].amount < 0) {
+                valAmounts[tx.receiver_account_id].amount = 0;
             }
         }
 
         return valAmounts;
     }
 
-    async getAccountDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
+    async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
         const deposits: StakingDeposit[] = [];
-        let validatorAmounts: ValidatorAmount = {};
+        let validatorAmounts: ValidatorAmountMap = {};
         const pageSize = 25;
         const action = TransactionActionKind.FUNCTION_CALL;
         const order = "asc";
@@ -149,18 +189,18 @@ export class NearBlocksService extends FetchService {
         let resp = await this.fetch<NearBlocksTransactionResponseDto>(
             `/account/${address}/txns?action=${action}&page=${page}&per_page=${pageSize}&order=${order}`,
         );
-        validatorAmounts = this.addValidatorAmountsFromTxs(resp, validatorAmounts, address);
+        validatorAmounts = await this.addValidatorAmountsFromTxs(resp, validatorAmounts, address);
 
         while (resp.txns.length === pageSize) {
             page += 1;
             resp = await this.fetch<NearBlocksTransactionResponseDto>(
                 `/account/${address}/txns?action=${action}&page=${page}&per_page=${pageSize}&order=${order}`,
             );
-            validatorAmounts = this.addValidatorAmountsFromTxs(resp, validatorAmounts, address);
+            validatorAmounts = await this.addValidatorAmountsFromTxs(resp, validatorAmounts, address);
         }
 
         for (const key of Object.keys(validatorAmounts)) {
-            deposits.push({ validatorId: key, amount: validatorAmounts[key] });
+            deposits.push({ validatorId: key, amount: validatorAmounts[key].amount, hasRewards: validatorAmounts[key].hasRewards });
         }
 
         return deposits;
@@ -203,6 +243,10 @@ export class NearBlocksService extends FetchService {
             page += 1;
         } while (actions.length < 10 && txns.length === pageSize);
         return actions;
+    }
+
+    async getActionsFromTransactions(params: NearApiServicePaginatedParams): Promise<Action[]> {
+        return this.getRecentActivity(params);
     }
 
     private parseActionKindApiDto(actionKind: TransactionActionKind, receiverId: string, account: string): ActionKind {

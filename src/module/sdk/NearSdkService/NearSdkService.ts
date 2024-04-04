@@ -65,7 +65,7 @@ import {
     formatTokenAmount,
     subtractYoctoAmounts,
 } from "../utils/near.utils";
-import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
+import { ApiService, NearApiServiceInterface } from "../NearApiService";
 import { BalanceOperations } from "../utils";
 import { Payload } from "../utils/SignerPayload";
 
@@ -78,21 +78,17 @@ export class NearSDKService {
     private masterAccount: string;
     private mnemonic?: string;
     private apiService: NearApiServiceInterface;
-    private enableIndexer: boolean;
-    private baseApiUrl: string;
     private static nameRegex = /^(([a-z\d]+[-_])*[a-z\d]+\.)*([a-z\d]+[-_])*[a-z\d]+$/;
     private static addressRegex = /[\da-f]/i;
     public nearDecimals: number | undefined;
 
-    constructor({ chain, nodeUrl, baseApiUrl, enableIndexer, secretKey, nameId, nearDecimals, mnemonic }: CreateNearSdkParams) {
+    constructor({ chain, nodeUrl, secretKey, nameId, nearDecimals, mnemonic }: CreateNearSdkParams) {
         this.chain = chain;
         this.masterAccount = chain === Chains.MAINNET ? "near" : this.chain;
         this.nameId = nameId;
         this.mnemonic = mnemonic;
-        this.baseApiUrl = baseApiUrl;
-        this.apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer, chain);
+        this.apiService = NearSDKService.createApiService(chain);
         this.nearDecimals = nearDecimals;
-        this.enableIndexer = enableIndexer;
         // Create KeyPairEd25519
         this.keyPair = NearSDKService.createKeyPairFromSecretKey(secretKey);
 
@@ -113,8 +109,8 @@ export class NearSDKService {
         return decode(encode(publicKey.data)).toString("hex");
     }
 
-    static createApiService(baseApiUrl: string, enableIndexer: boolean, chain: Chains): NearApiServiceInterface {
-        return enableIndexer ? new IndexerService(baseApiUrl) : new ApiService(baseApiUrl, chain);
+    static createApiService(chain: Chains): NearApiServiceInterface {
+        return new ApiService(chain);
     }
 
     static async createAndConnect(params: BaseCreateNearSdkParams): Promise<NearSDKService> {
@@ -133,21 +129,19 @@ export class NearSDKService {
 
     static async importFromMnemonic({
         mnemonic,
-        baseApiUrl,
-        enableIndexer,
         chain,
         likelyNameIds = [],
         ...rest
     }: CreateNearSdkWithMnemonicParams): Promise<NearSDKService[]> {
         const { secretKey, publicKey } = parseSeedPhrase(mnemonic);
-        const apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer, chain);
+        const apiService = NearSDKService.createApiService(chain);
         const apiNameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
         const nameIds = [...new Set([...apiNameIds, ...likelyNameIds])];
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
         }
         const services = nameIds.map(async (nameId) => {
-            const service = new NearSDKService({ baseApiUrl, secretKey, nameId, mnemonic, enableIndexer, chain, ...rest });
+            const service = new NearSDKService({ secretKey, nameId, mnemonic, chain, ...rest });
             await service.connect();
             return service;
         });
@@ -161,22 +155,20 @@ export class NearSDKService {
 
     static async importFromSecretKey({
         secretKey,
-        baseApiUrl,
-        enableIndexer,
         chain,
         likelyNameIds = [],
         ...rest
     }: CreateNearSdkWithSecretKeyParams): Promise<NearSDKService[]> {
         const secret = secretKey.split(":").pop();
         const publicKey = new KeyPairEd25519(secret!).getPublicKey().toString();
-        const apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer, chain);
+        const apiService = NearSDKService.createApiService(chain);
         const apiNameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
         const nameIds = [...new Set([...apiNameIds, ...likelyNameIds])];
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
         }
         const services = nameIds.map(async (nameId) => {
-            const service = new NearSDKService({ ...rest, baseApiUrl, secretKey, nameId, enableIndexer, chain });
+            const service = new NearSDKService({ ...rest, secretKey, nameId, chain });
             await service.connect();
             return service;
         });
@@ -362,12 +354,10 @@ export class NearSDKService {
         const service = new NearSDKService({
             chain: this.chain,
             nodeUrl: this.nearConfig.nodeUrl,
-            baseApiUrl: this.baseApiUrl,
             secretKey,
             nameId,
             nearDecimals,
             mnemonic: seedPhrase,
-            enableIndexer: this.enableIndexer,
         });
         await service.connect();
         return service;
@@ -384,11 +374,9 @@ export class NearSDKService {
         const service = new NearSDKService({
             chain: this.chain,
             nodeUrl: this.nearConfig.nodeUrl,
-            baseApiUrl: this.baseApiUrl,
             secretKey: keyPair.secretKey,
             nameId,
             nearDecimals,
-            enableIndexer: this.enableIndexer,
         });
         await service.connect();
         return service;
@@ -420,11 +408,9 @@ export class NearSDKService {
             const service = new NearSDKService({
                 chain: this.chain,
                 nodeUrl: this.nearConfig.nodeUrl,
-                baseApiUrl: this.baseApiUrl,
                 secretKey,
                 nameId,
                 nearDecimals,
-                enableIndexer: this.enableIndexer,
             });
             await service.connect();
             return service;
@@ -639,14 +625,27 @@ export class NearSDKService {
         let validators: Validator[] = [];
         try {
             const stakingDeposits = await this.apiService.getStakingDeposits({ address: this.getAddress() });
-            const validatorsProms = stakingDeposits.map(({ validatorId, amount }) =>
-                this.getValidatorDataFromId(validatorId, true, amount),
+            const validatorsProms = stakingDeposits.map(({ validatorId, amount, hasRewards }) =>
+                this.getValidatorDataFromId(validatorId, true, hasRewards ? amount : undefined),
             );
             validators = await Promise.all(validatorsProms);
             // Remove validators that no longer have any amount in it
-            validators = validators.filter(
-                ({ stakingBalance: sb }) => sb && (sb.staked !== "0" || sb.available !== "0" || sb.pending !== "0"),
-            );
+            let hasRewards = true;
+            validators = validators.filter(({ stakingBalance: sb }) => {
+                const isActiveValidator = sb && (sb.staked !== "0" || sb.available !== "0" || sb.pending !== "0");
+
+                if (isActiveValidator && (sb.rewardsEarned === undefined || sb.rewardsEarned?.startsWith("-"))) {
+                    hasRewards = false;
+                }
+                return isActiveValidator;
+            });
+
+            if (!hasRewards) {
+                validators = validators.map(
+                    ({ stakingBalance, ...rest }) =>
+                        ({ ...rest, stakingBalance: { ...stakingBalance, rewardsEarned: undefined } } as Validator),
+                );
+            }
         } catch (e) {
             //eslint-disable-next-line no-console
             console.warn("Error in getCurrentValidators: ", e);
@@ -673,7 +672,7 @@ export class NearSDKService {
             staked: act?.staked ? addNearAmounts(ant.staked, act.staked) : ant.staked,
             available: act?.available ? addNearAmounts(ant.available, act.available) : ant.available,
             pending: act?.pending ? addNearAmounts(ant.pending, act.pending) : ant.pending,
-            rewardsEarned: act?.rewardsEarned ? addNearAmounts(ant.rewardsEarned || "0", act.rewardsEarned) : ant.rewardsEarned,
+            rewardsEarned: act?.rewardsEarned ? addNearAmounts(ant.rewardsEarned || "0", act.rewardsEarned || "0") : ant.rewardsEarned,
         };
     }
 

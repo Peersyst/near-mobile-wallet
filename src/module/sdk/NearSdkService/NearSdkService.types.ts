@@ -6,9 +6,7 @@ import { AccountBalance as BaseAccountBalance } from "near-api-js/lib/account";
 export interface BaseCreateNearSdkParams {
     chain: Chains;
     nodeUrl: string;
-    baseApiUrl: string;
     nearDecimals?: number;
-    enableIndexer: boolean;
 }
 
 export interface CreateNearSdkWithMnemonicParams extends BaseCreateNearSdkParams {
@@ -76,6 +74,7 @@ export interface Validator {
 export interface StakingDeposit {
     validatorId: string;
     amount: number;
+    hasRewards: boolean;
 }
 
 /**
