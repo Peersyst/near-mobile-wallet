@@ -1,5 +1,5 @@
 import { NavbarProps } from "module/common/component/navigation/Navbar/Navbar.types";
-import { ReactNode, useMemo } from "react";
+import { ReactNode } from "react";
 import Navbar from "module/common/component/navigation/Navbar/Navbar";
 import { View } from "react-native";
 import { BaseMainScreenRoot } from "module/main/component/layout/BaseMainScreen/BaseMainScreen.styles";
