@@ -5,11 +5,11 @@ import Button from "module/common/component/input/Button/Button";
 import useTranslate from "module/common/hook/useTranslate";
 import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
 import YouDontHaveNearCard from "module/wallet/component/display/YouDontHaveNearCard/YouDontHaveNearCard";
-import useHaveNearInAllAccount from "module/wallet/hook/useHaveNearInAllAccount";
+import useHaveNearInSomeAccount from "module/wallet/hook/useHaveNearInSomeAccount";
 
 const AddCustomNameWarning = ({ submitText, onSubmit }: BaseAddWalletModalScreenProps) => {
     const translate = useTranslate();
-    const { isLoading, isHaveNearInAllAccount } = useHaveNearInAllAccount();
+    const { haveNearInSomeAccount } = useHaveNearInSomeAccount();
     return (
         <Col justifyContent="space-between" flex={1}>
             <Col flex={1} alignItems="center" gap="5%">
@@ -19,8 +19,8 @@ const AddCustomNameWarning = ({ submitText, onSubmit }: BaseAddWalletModalScreen
                 </Typography>
             </Col>
             <Col gap={10}>
-                {!isLoading && !isHaveNearInAllAccount && <YouDontHaveNearCard />}
-                <Button fullWidth onPress={() => onSubmit()} disabled={!isLoading && !isHaveNearInAllAccount}>
+                {!haveNearInSomeAccount && <YouDontHaveNearCard />}
+                <Button fullWidth onPress={() => onSubmit()} disabled={!haveNearInSomeAccount}>
                     {submitText || translate("continue")}
                 </Button>
             </Col>
