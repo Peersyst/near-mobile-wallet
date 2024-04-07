@@ -1,10 +1,13 @@
 import BaseMainScreen, { BaseMainScreenProps } from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
 import { SecondaryScreenScrollView } from "module/common/component/layout/BaseSecondaryScreen/BaseSecondaryScreen.styles";
 import useNavigation from "module/common/hook/useNavigation";
+import { ViewStyle } from "react-native";
 
-export type BaseSecondaryScreenProps = Omit<BaseMainScreenProps, "onBack">;
+export type BaseSecondaryScreenProps = Omit<BaseMainScreenProps, "onBack"> & {
+    childrenStyle?: ViewStyle;
+};
 
-const BaseSecondaryScreen = ({ children, ...rest }: BaseSecondaryScreenProps): JSX.Element => {
+const BaseSecondaryScreen = ({ children, childrenStyle, ...rest }: BaseSecondaryScreenProps): JSX.Element => {
     const navigation = useNavigation();
 
     const handleBack = () => {
@@ -15,7 +18,9 @@ const BaseSecondaryScreen = ({ children, ...rest }: BaseSecondaryScreenProps): J
 
     return (
         <BaseMainScreen onBack={handleBack} {...rest}>
-            <SecondaryScreenScrollView showsVerticalScrollIndicator={false}>{children}</SecondaryScreenScrollView>
+            <SecondaryScreenScrollView showsVerticalScrollIndicator={false} style={childrenStyle}>
+                {children}
+            </SecondaryScreenScrollView>
         </BaseMainScreen>
     );
 };

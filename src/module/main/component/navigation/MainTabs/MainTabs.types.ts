@@ -7,4 +7,5 @@ export type MainTabItemType = {
 
 export interface MainTabsType {
     tabs: MainTabItemType[];
+    backgroundColor?: boolean;
 }
