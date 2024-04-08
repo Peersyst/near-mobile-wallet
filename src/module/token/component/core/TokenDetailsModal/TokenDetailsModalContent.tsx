@@ -4,6 +4,8 @@ import { Token } from "near-peersyst-sdk";
 import TokenDetailsCard from "../../display/TokenDetailsCard/TokenDetailsCard";
 import useHaveNearInAccount from "module/wallet/hook/useHaveNearInAccount";
 import YouDontHaveNearCard from "module/wallet/component/display/YouDontHaveNearCard/YouDontHaveNearCard";
+import useTranslate from "module/common/hook/useTranslate";
+import { TokensResourceType } from "locale";
 
 export interface TokenDetailsModalContentProps {
     token: Token;
@@ -11,12 +13,12 @@ export interface TokenDetailsModalContentProps {
 
 export default function TokenDetailsModalContent({ token }: TokenDetailsModalContentProps): JSX.Element {
     const haveNearInAccount = useHaveNearInAccount();
-
+    const translate = useTranslate("tokens");
     return (
         <Col gap={16}>
-            {token.metadata?.reference && (
+            {token.metadata?.symbol && (
                 <Typography textAlign="center" variant="body3Regular" color="overlay.60%">
-                    {token.metadata.reference}
+                    {translate(token.metadata?.symbol as TokensResourceType)}
                 </Typography>
             )}
             <TokenDetailsCard token={token} />
