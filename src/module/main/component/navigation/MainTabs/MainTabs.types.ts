@@ -1,3 +1,4 @@
+import { TabGroupProps, TabPanelProps, TabsProps } from "@peersyst/react-native-components";
 import { ReactElement } from "react";
 
 export type MainTabItemType = {
@@ -5,7 +6,13 @@ export type MainTabItemType = {
     item: ReactElement;
 };
 
-export interface MainTabsType {
+export type MainTabsStyle = TabsProps["style"] & {
+    tabGroup?: TabGroupProps["style"];
+    tabPanel?: TabPanelProps["style"];
+};
+
+export interface MainTabsProps {
     tabs: MainTabItemType[];
     backgroundColor?: boolean;
+    style?: MainTabsStyle;
 }
