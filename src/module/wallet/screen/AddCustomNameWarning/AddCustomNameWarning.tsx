@@ -10,6 +10,7 @@ import useHaveNearInSomeAccount from "module/wallet/hook/useHaveNearInSomeAccoun
 const AddCustomNameWarning = ({ submitText, onSubmit }: BaseAddWalletModalScreenProps) => {
     const translate = useTranslate();
     const { haveNearInSomeAccount } = useHaveNearInSomeAccount();
+
     return (
         <Col justifyContent="space-between" flex={1}>
             <Col flex={1} alignItems="center" gap="5%">
@@ -19,7 +20,7 @@ const AddCustomNameWarning = ({ submitText, onSubmit }: BaseAddWalletModalScreen
                 </Typography>
             </Col>
             <Col gap={10}>
-                {!haveNearInSomeAccount && <YouDontHaveNearCard />}
+                {haveNearInSomeAccount === false && <YouDontHaveNearCard />}
                 <Button fullWidth onPress={() => onSubmit()} disabled={!haveNearInSomeAccount}>
                     {submitText || translate("continue")}
                 </Button>

@@ -1,13 +1,14 @@
-import useGetBalanceAllAccounts from "../query/useGetAllAccountsBalance";
+import useGetBalanceAllAccounts from "../query/useGetAllAccountsBalance/useGetAllAccountsBalance";
 
 export interface UseHaveNearInSomeAccountReturn {
     isLoading: boolean;
-    haveNearInSomeAccount: boolean;
+    haveNearInSomeAccount: boolean | undefined;
 }
 export default function useHaveNearInSomeAccount(): UseHaveNearInSomeAccountReturn {
-    const { data, isLoading } = useGetBalanceAllAccounts();
+    const { data, isFetching } = useGetBalanceAllAccounts();
+
     return {
-        isLoading,
-        haveNearInSomeAccount: !isLoading && data !== "0",
+        isLoading: isFetching,
+        haveNearInSomeAccount: isFetching ? undefined : data !== "0",
     };
 }
