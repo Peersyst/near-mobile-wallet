@@ -1,10 +1,10 @@
 import BaseMainScreen, { BaseMainScreenProps } from "module/main/component/layout/BaseMainScreen/BaseMainScreen";
-import { SecondaryScreenScrollView } from "module/common/component/layout/BaseSecondaryScreen/BaseSecondaryScreen.styles";
 import useNavigation from "module/common/hook/useNavigation";
+import { BaseTabsScreenScrollView } from "./BaseTabsScreen.styles";
 
 export type BaseSecondaryScreenProps = Omit<BaseMainScreenProps, "onBack"> & {};
 
-const BaseSecondaryScreen = ({ children, ...rest }: BaseSecondaryScreenProps): JSX.Element => {
+const BaseTabsScreen = ({ children, ...rest }: BaseSecondaryScreenProps): JSX.Element => {
     const navigation = useNavigation();
 
     const handleBack = () => {
@@ -15,9 +15,9 @@ const BaseSecondaryScreen = ({ children, ...rest }: BaseSecondaryScreenProps): J
 
     return (
         <BaseMainScreen onBack={handleBack} {...rest}>
-            <SecondaryScreenScrollView showsVerticalScrollIndicator={false}>{children}</SecondaryScreenScrollView>
+            <BaseTabsScreenScrollView showsVerticalScrollIndicator={false}>{children}</BaseTabsScreenScrollView>
         </BaseMainScreen>
     );
 };
 
-export default BaseSecondaryScreen;
+export default BaseTabsScreen;

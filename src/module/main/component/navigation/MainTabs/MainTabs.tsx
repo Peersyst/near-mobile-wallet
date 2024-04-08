@@ -6,11 +6,7 @@ import { MainTabsProps } from "./MainTabs.types";
 import { LinearGradient } from "expo-linear-gradient";
 import useWalletGradient from "module/wallet/hook/useWalletGradient";
 
-const MainTabs = ({
-    tabs,
-    backgroundColor,
-    style: { tabGroup: tabGroupStyle, tabPanel: tabPanelStyle, ...style } = {},
-}: MainTabsProps): JSX.Element => {
+const MainTabs = ({ tabs, style: { tabGroup: tabGroupStyle, tabPanel: tabPanelStyle, ...style } = {} }: MainTabsProps): JSX.Element => {
     const [index, setIndex] = useState(0);
     const gradientColor = useWalletGradient();
 
@@ -20,7 +16,6 @@ const MainTabs = ({
                 renderIndicator={true}
                 indicator={<LinearGradient start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} colors={gradientColor} />}
                 style={tabGroupStyle}
-                backgroundColor={backgroundColor}
             >
                 {tabs.map(({ title }, index) => {
                     return (

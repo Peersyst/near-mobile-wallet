@@ -13,6 +13,5 @@ export type MainTabsStyle = TabsProps["style"] & {
 
 export interface MainTabsProps {
     tabs: MainTabItemType[];
-    backgroundColor?: boolean;
     style?: MainTabsStyle;
 }

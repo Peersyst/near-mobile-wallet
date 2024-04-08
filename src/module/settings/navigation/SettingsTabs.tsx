@@ -1,15 +1,8 @@
 import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
 import useTranslate from "module/common/hook/useTranslate";
-import MainTabs from "module/main/component/navigation/MainTabs/MainTabs";
 import GeneralSettingsScreen from "../screen/GeneralSettingsScreen";
 import SecuritySettingsScreen from "../screen/SecuritySettingsScreen";
-import styled from "@peersyst/react-native-styled";
-
-const SettingsTabsRoot = styled(MainTabs)(({ theme: { palette } }) => ({
-    tabGroup: {
-        background: palette.background,
-    },
-}));
+import { SettingsTabsRoot } from "./SettingsTabs.styles";
 
 const SettingsTabs = (): JSX.Element => {
     const translate = useTranslate();
@@ -23,7 +16,7 @@ const SettingsTabs = (): JSX.Element => {
             item: <SecuritySettingsScreen />,
         },
     ];
-    return <SettingsTabsRoot tabs={SettingTabs} backgroundColor={true} />;
+    return <SettingsTabsRoot tabs={SettingTabs} />;
 };
 
 export default SettingsTabs;
