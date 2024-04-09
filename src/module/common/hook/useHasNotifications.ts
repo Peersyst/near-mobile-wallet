@@ -1,6 +1,19 @@
 import useIsBackupDone from "module/settings/hook/useIsBackupDone";
+import useWalletState from "module/wallet/hook/useWalletState";
 
-export default function useHasNotifications() {
+export interface UseHasNotificationsReturn {
+    isLoading: boolean;
+    hasNotifications: boolean;
+}
+
+export default function useHasNotifications(): UseHasNotificationsReturn {
+    const {
+        state: { loading },
+    } = useWalletState();
     const isBackupDone = useIsBackupDone();
-    return !isBackupDone;
+
+    return {
+        isLoading: loading,
+        hasNotifications: !isBackupDone,
+    };
 }

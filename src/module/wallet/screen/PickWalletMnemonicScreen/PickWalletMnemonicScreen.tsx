@@ -1,6 +1,6 @@
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import MnemonicPicker from "module/wallet/component/input/MnemonicPicker/MnemonicPicker";
-import { useToast } from "@peersyst/react-native-components";
+import { Col, useToast } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import Advise from "module/common/component/display/Advise/Advise";
 import { PickWalletMnemonicScreenRoot } from "module/wallet/screen/PickWalletMnemonicScreen/PickWalletMnemonicScreen.styles";
@@ -29,17 +29,17 @@ const PickWalletMnemonicScreen = ({ onSubmit }: PickWalletMnemonicScreenProps): 
     };
 
     return (
-        <PickWalletMnemonicScreenRoot>
+        <Col gap={24}>
             <Advise title={translate("select_in_order")} />
             <MnemonicPicker
                 mnemonic={mnemonic!}
                 onSuccess={handleOnSubmit}
                 onError={() => showToast(translate("incorrect_mnemonic"), { type: "error" })}
             />
-            <Button fullWidth variant={"text"} onPress={handleSkip}>
+            <Button fullWidth variant={"text"} onPress={handleSkip} size="sm">
                 {translate("iWillDoItLater")}
             </Button>
-        </PickWalletMnemonicScreenRoot>
+        </Col>
     );
 };
 

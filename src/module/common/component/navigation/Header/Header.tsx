@@ -11,7 +11,7 @@ import useHasNotifications from "module/common/hook/useHasNotifications";
 const Header = (): JSX.Element => {
     const navigation = useNavigation();
     const [startColor, endColor] = useWalletGradient();
-    const hasNotifications = useHasNotifications();
+    const { hasNotifications, isLoading } = useHasNotifications();
 
     return (
         <HeaderRoot>
@@ -23,7 +23,7 @@ const Header = (): JSX.Element => {
                         <HelpCircleIcon />
                     </HeaderSettingsButton>
                     <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.SETTINGS)}>
-                        <NotificationIcon icon={<SettingsIcon />} hasNotifications={hasNotifications} />
+                        <NotificationIcon icon={<SettingsIcon />} hasNotifications={hasNotifications && !isLoading} />
                     </HeaderSettingsButton>
                 </HeaderContentButtons>
             </Row>
