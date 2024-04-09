@@ -4,11 +4,11 @@ import { BaseTabs, BaseTabsScreenScrollView } from "./BaseTabsScreen.styles";
 import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
 import { useMemo } from "react";
 
-export type BaseSecondaryScreenProps = Omit<BaseMainScreenProps, "onBack" | "children"> & {
+export type BaseTabsScreenProps = Omit<BaseMainScreenProps, "onBack" | "children"> & {
     tabs: MainTabItemType[];
 };
 
-const BaseTabsScreen = ({ tabs, ...rest }: BaseSecondaryScreenProps): JSX.Element => {
+const BaseTabsScreen = ({ tabs, ...rest }: BaseTabsScreenProps): JSX.Element => {
     const navigation = useNavigation();
 
     const handleBack = () => {

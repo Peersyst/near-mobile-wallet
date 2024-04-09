@@ -2,7 +2,7 @@ import BaseMainScreen, { BaseMainScreenProps } from "module/main/component/layou
 import { SecondaryScreenScrollView } from "module/common/component/layout/BaseSecondaryScreen/BaseSecondaryScreen.styles";
 import useNavigation from "module/common/hook/useNavigation";
 
-export type BaseSecondaryScreenProps = Omit<BaseMainScreenProps, "onBack"> & {};
+export type BaseSecondaryScreenProps = Omit<BaseMainScreenProps, "onBack">;
 
 const BaseSecondaryScreen = ({ children, ...rest }: BaseSecondaryScreenProps): JSX.Element => {
     const navigation = useNavigation();
