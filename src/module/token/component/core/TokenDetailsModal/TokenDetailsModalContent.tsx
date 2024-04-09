@@ -7,6 +7,7 @@ import YouDontHaveNearCard from "module/wallet/component/display/YouDontHaveNear
 import useTranslate from "module/common/hook/useTranslate";
 import { TokensResourceType } from "locale";
 import tokens from "../../../../../../src/locale/locales/en/tokens.json";
+import { useMemo } from "react";
 
 export interface TokenDetailsModalContentProps {
     token: Token;
@@ -15,10 +16,12 @@ export interface TokenDetailsModalContentProps {
 export default function TokenDetailsModalContent({ token }: TokenDetailsModalContentProps): JSX.Element {
     const haveNearInAccount = useHaveNearInAccount();
     const translate = useTranslate("tokens");
+    const haveTokenDescription = useMemo(() => Object.keys(tokens).includes(token.metadata?.symbol), [token.metadata?.symbol, tokens]);
+
     return (
-        <Col gap={16}>
-            {Object.keys(tokens).includes(token.metadata?.symbol) && (
-                <Typography textAlign="center" variant="body3Regular" color="overlay.60%">
+        <Col gap="7%">
+            {haveTokenDescription && (
+                <Typography textAlign="left" variant="body3Regular" color="overlay.60%">
                     {translate(token.metadata?.symbol as TokensResourceType)}
                 </Typography>
             )}

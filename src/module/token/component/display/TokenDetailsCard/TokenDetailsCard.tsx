@@ -37,10 +37,10 @@ const TokenDetailsCard = ({ token }: TokenDetailsCardProps): JSX.Element => {
                 alignItems="center"
             />
             <Row gap={8}>
-                <TokenDetailsCardButton size="lg" variant="primary" onPress={handleOnSendButtonPress} disabled={!haveNearInAccount}>
+                <TokenDetailsCardButton size="lg" variant="quaternary" onPress={handleOnSendButtonPress} disabled={!haveNearInAccount}>
                     {capitalize(translate("send"))}
                 </TokenDetailsCardButton>
-                <TokenDetailsCardButton size="lg" variant="primary" onPress={handleOnSwapButtonPress} disabled={!haveNearInAccount}>
+                <TokenDetailsCardButton size="lg" variant="quaternary" onPress={handleOnSwapButtonPress} disabled={!haveNearInAccount}>
                     {capitalize(translate("swap"))}
                 </TokenDetailsCardButton>
             </Row>
