@@ -22,6 +22,11 @@ const AddNearModal = createBackdrop(({ ...rest }: AddNearModalProps): JSX.Elemen
         navigate.navigate(MainScreens.FIAT_ORDERS);
     }
 
+    function handleSupport() {
+        hideModal(AddNearModal.id);
+        navigate.navigate(MainScreens.FAQS);
+    }
+
     return (
         <CardNavigatorModal
             navbar={{
@@ -36,8 +41,7 @@ const AddNearModal = createBackdrop(({ ...rest }: AddNearModalProps): JSX.Elemen
                     text={translate("depositNearFromOtherWallet")}
                     icon={<ArrowReceiveIcon />}
                 />
-                {/* TODO: connect with faqs */}
-                <AddNearModalOption onPress={() => {}} text={translate("iNeedSupport")} icon={<CircleHelpIcon />} />
+                <AddNearModalOption onPress={handleSupport} text={translate("iNeedSupport")} icon={<CircleHelpIcon />} />
             </Col>
         </CardNavigatorModal>
     );
