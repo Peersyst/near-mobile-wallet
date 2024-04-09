@@ -1,10 +1,13 @@
-import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
 import useTranslate from "module/common/hook/useTranslate";
+import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
 import GeneralSettingsScreen from "../screen/GeneralSettingsScreen";
 import SecuritySettingsScreen from "../screen/SecuritySettingsScreen";
-import { SettingsTabsRoot } from "./SettingsTabs.styles";
 
-const SettingsTabs = (): JSX.Element => {
+export interface useGetSettingsTabsReturn {
+    SettingTabs: MainTabItemType[];
+}
+
+export default function useGetSettingsTabs(): useGetSettingsTabsReturn {
     const translate = useTranslate();
     const SettingTabs: MainTabItemType[] = [
         {
@@ -16,7 +19,5 @@ const SettingsTabs = (): JSX.Element => {
             item: <SecuritySettingsScreen />,
         },
     ];
-    return <SettingsTabsRoot tabs={SettingTabs} />;
-};
-
-export default SettingsTabs;
+    return { SettingTabs };
+}
