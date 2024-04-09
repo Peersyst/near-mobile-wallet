@@ -5,19 +5,19 @@ import DeleteData from "module/settings/components/core/DeleteData/DeleteData";
 import BiometricsSwitch from "module/settings/components/core/BiometricsSwitch/BiometricsSwitch";
 import ConnectedSites from "../components/core/ConnectedSites/ConnectedSites";
 import ManualAccountImport from "../components/core/ManualAccountImport/ManualAccountImport";
-import { SettingsScreenContentRoot } from "./SettingsScreen.styles";
+import BaseSettingsTab from "../components/layout/BaseSettingsTab/BaseSettingsTab";
 
 const SecuritySettingsScreen = (): JSX.Element => {
     const enableManualImport = useConfig("enableManualImport");
     return (
-        <SettingsScreenContentRoot>
+        <BaseSettingsTab>
             <BiometricsSwitch />
             <ChangePasscode />
             <ConnectedSites />
             <WalletsBackup />
             {enableManualImport && <ManualAccountImport />}
             <DeleteData />
-        </SettingsScreenContentRoot>
+        </BaseSettingsTab>
     );
 };
 

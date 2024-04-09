@@ -7,7 +7,7 @@ import StakingScreen from "module/staking/screen/StakingScreen";
 import DAppsScreen from "module/dapp/screen/DappsScreen/DAppsScreen";
 import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
 import FaqsScreen from "module/faqs/screen/FaqsScreen";
-import SettingsScreen from "module/settings/screen/SettingsScreen";
+import SettingsScreen from "module/settings/screen/SettingsScreen/SettingsScreen";
 
 export const MainBottomNavigatorGroup = () => (
     <BasePage>

@@ -2,16 +2,16 @@ import SelectFiat from "../components/core/SelectFiat/SelectFiat";
 import SelectLocale from "../components/core/SelectLocale/SelectLocale";
 import SelectNetwork from "../components/core/SelectNetwork/SelectNetwork";
 import SwitchTheme from "../components/core/SwitchTheme/SwitchTheme";
-import { SettingsScreenContentRoot } from "./SettingsScreen.styles";
+import BaseSettingsTab from "../components/layout/BaseSettingsTab/BaseSettingsTab";
 
 const GeneralSettingsScreen = (): JSX.Element => {
     return (
-        <SettingsScreenContentRoot>
+        <BaseSettingsTab>
             <SwitchTheme />
             <SelectNetwork />
             <SelectFiat />
             <SelectLocale />
-        </SettingsScreenContentRoot>
+        </BaseSettingsTab>
     );
 };
 

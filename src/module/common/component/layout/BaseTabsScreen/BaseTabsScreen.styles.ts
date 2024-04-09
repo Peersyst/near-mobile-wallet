@@ -4,7 +4,7 @@ import { ScrollView } from "react-native";
 
 export const BaseTabsScreenScrollView = styled(ScrollView)(({ theme }) => ({
     backgroundColor: theme.palette.gray[100],
-    padding: 0,
+    paddingTop: 12,
 }));
 
 export const BaseTabs = styled(MainTabs)(({ theme: { palette } }) => ({

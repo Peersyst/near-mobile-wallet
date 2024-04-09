@@ -1,9 +1,10 @@
-import useGetSettingsTabs from "../hook/useGetSettingsTabs";
+import useGetSettingsTabs from "./useGetSettingsTabs";
 import BaseTabsScreen from "module/common/component/layout/BaseTabsScreen/BaseTabsScreen";
 
 const SettingsScreen = (): JSX.Element => {
-    const { SettingTabs } = useGetSettingsTabs();
-    return <BaseTabsScreen tabs={SettingTabs} />;
+    const { settingsTabs } = useGetSettingsTabs();
+
+    return <BaseTabsScreen tabs={settingsTabs} />;
 };
 
 export default SettingsScreen;

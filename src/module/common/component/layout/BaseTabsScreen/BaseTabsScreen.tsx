@@ -2,6 +2,7 @@ import BaseMainScreen, { BaseMainScreenProps } from "module/main/component/layou
 import useNavigation from "module/common/hook/useNavigation";
 import { BaseTabs, BaseTabsScreenScrollView } from "./BaseTabsScreen.styles";
 import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
+import { useMemo } from "react";
 
 export type BaseSecondaryScreenProps = Omit<BaseMainScreenProps, "onBack" | "children"> & {
     tabs: MainTabItemType[];
@@ -16,11 +17,18 @@ const BaseTabsScreen = ({ tabs, ...rest }: BaseSecondaryScreenProps): JSX.Elemen
         }
     };
 
+    const scrollableTabs = useMemo(
+        () =>
+            tabs.map(({ title, item }) => ({
+                title,
+                item: <BaseTabsScreenScrollView showsVerticalScrollIndicator={false}>{item}</BaseTabsScreenScrollView>,
+            })),
+        [tabs],
+    );
+
     return (
         <BaseMainScreen onBack={handleBack} {...rest}>
-            <BaseTabsScreenScrollView showsVerticalScrollIndicator={false}>
-                <BaseTabs tabs={tabs} />
-            </BaseTabsScreenScrollView>
+            <BaseTabs tabs={scrollableTabs} />
         </BaseMainScreen>
     );
 };

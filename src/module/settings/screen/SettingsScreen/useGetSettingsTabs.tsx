@@ -1,15 +1,15 @@
 import useTranslate from "module/common/hook/useTranslate";
 import { MainTabItemType } from "module/main/component/navigation/MainTabs/MainTabs.types";
-import GeneralSettingsScreen from "../screen/GeneralSettingsScreen";
-import SecuritySettingsScreen from "../screen/SecuritySettingsScreen";
+import GeneralSettingsScreen from "../GeneralSettingsScreen";
+import SecuritySettingsScreen from "../SecuritySettingsScreen";
 
 export interface useGetSettingsTabsReturn {
-    SettingTabs: MainTabItemType[];
+    settingsTabs: MainTabItemType[];
 }
 
 export default function useGetSettingsTabs(): useGetSettingsTabsReturn {
     const translate = useTranslate();
-    const SettingTabs: MainTabItemType[] = [
+    const settingsTabs: MainTabItemType[] = [
         {
             title: translate("general_settings"),
             item: <GeneralSettingsScreen />,
@@ -19,5 +19,5 @@ export default function useGetSettingsTabs(): useGetSettingsTabsReturn {
             item: <SecuritySettingsScreen />,
         },
     ];
-    return { SettingTabs };
+    return { settingsTabs };
 }
