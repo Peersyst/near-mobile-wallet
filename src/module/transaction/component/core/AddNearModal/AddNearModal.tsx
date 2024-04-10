@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { Col, createBackdrop, ExposedBackdropProps, useModal } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
@@ -22,7 +21,7 @@ const AddNearModal = createBackdrop(({ ...rest }: AddNearModalProps): JSX.Elemen
         navigate.navigate(MainScreens.FIAT_ORDERS);
     }
 
-    function handleSupport() {
+    function handleOnSupport() {
         hideModal(AddNearModal.id);
         navigate.navigate(MainScreens.FAQS);
     }
@@ -41,7 +40,7 @@ const AddNearModal = createBackdrop(({ ...rest }: AddNearModalProps): JSX.Elemen
                     text={translate("depositNearFromOtherWallet")}
                     icon={<ArrowReceiveIcon />}
                 />
-                <AddNearModalOption onPress={handleSupport} text={translate("iNeedSupport")} icon={<CircleHelpIcon />} />
+                <AddNearModalOption onPress={handleOnSupport} text={translate("iNeedSupport")} icon={<CircleHelpIcon />} />
             </Col>
         </CardNavigatorModal>
     );
