@@ -16,8 +16,7 @@ const HomeScreen = (): JSX.Element => {
 
     useEffect(() => {
         if (appState === "active") showSignerRequest();
-        //if (isUpdateAvailable)
-        showUpdateAvailableModal();
+        if (isUpdateAvailable) showUpdateAvailableModal();
     }, [appState, isUpdateAvailable]);
 
     return (

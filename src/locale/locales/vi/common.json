@@ -333,5 +333,10 @@
     "addNearCallToActionText": "Thêm NEAR",
     "backupWallet": "và bạn sẽ có thể bắt đầu sử dụng ví của mình.",
     "backupWalletCallToActionText": "Sao lưu ví",
-    "backupWalletCallToActionTextDescription": "và bạn sẽ có thể khôi phục ví của mình khi cần mà không mất NEAR của mình."
+    "backupWalletCallToActionTextDescription": "và bạn sẽ có thể khôi phục ví của mình khi cần mà không mất NEAR của mình.",
+    "updateRequired": "Cập nhật bắt buộc",
+    "updateRequiredDescription": "Một phiên bản mới của ứng dụng đã có sẵn và việc cập nhật là cần thiết để tiếp tục sử dụng nó.",
+    "updateAppNow": "Cập nhật ứng dụng ngay bây giờ",
+    "updatingApp": "Đang cập nhật ứng dụng",
+    "pleaseWaitAMoment": "Vui lòng chờ một chút"
 }

@@ -50,5 +50,6 @@
     "invalidSignerRequest": "Petición de firma inválida",
     "invalidSignerRequestDescription": "La petición no existe. Prueba a crear una nueva petición.",
     "accountAlreadyExists": "La cuenta ya existe",
-    "cantImportAccount": "No se puede importar la cuenta"
+    "cantImportAccount": "No se puede importar la cuenta",
+    "updateAppError": "Error al actualizar la aplicación"
 }

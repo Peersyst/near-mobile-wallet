@@ -1,5 +1,5 @@
 import { useModal } from "@peersyst/react-native-components";
-import AddNearModal from "module/transaction/component/core/AddNearModal/AddNearModal";
+import UpdateRequiredModal from "module/common/component/feedback/UpdateRequiredModal/UpdateRequiredModal";
 
 export interface UseUpdateAvailableModalReturn {
     showUpdateAvailableModal: () => void;
@@ -9,7 +9,7 @@ export default function useShowUpdateAvailableModal(): UseUpdateAvailableModalRe
     const { showModal } = useModal();
 
     const showUpdateAvailableModal = () => {
-        showModal(AddNearModal);
+        showModal(UpdateRequiredModal);
     };
 
     return { showUpdateAvailableModal };

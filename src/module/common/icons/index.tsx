@@ -38,6 +38,7 @@ export * from "./LogoIcon";
 export * from "./LogoColIcon";
 export * from "./MoonIcon";
 export * from "./NearIcon";
+export * from "./NearLoadingIcon";
 export * from "./NearMobileIcon";
 export * from "./NewsIcon";
 export * from "./NotificationIcon";

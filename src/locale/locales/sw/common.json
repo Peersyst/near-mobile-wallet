@@ -333,5 +333,10 @@
     "addNearCallToActionText": "Ongeza NEAR",
     "backupWallet": "na hivi utaweza kuanza kutumia pochi",
     "backupWalletCallToActionText": "Hifadhi pochi",
-    "backupWalletCallToActionTextDescription": "na hivi utaweza kurejesha pochi yako wakati unapohitaji bila kupoteza NEAR yako"
+    "backupWalletCallToActionTextDescription": "na hivi utaweza kurejesha pochi yako wakati unapohitaji bila kupoteza NEAR yako",
+    "updateRequired": "Sasisha inahitajika",
+    "updateRequiredDescription": "Toleo jipya la programu inapatikana na sasisho inahitajika ili kuendelea kutumia.",
+    "updateAppNow": "Sasisha programu sasa",
+    "updatingApp": "Inasasisha programu",
+    "pleaseWaitAMoment": "Tafadhali, subiri kidogo"
 }

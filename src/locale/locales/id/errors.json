@@ -50,5 +50,6 @@
     "invalidSignerRequest": "Permintaan penanda tangan tidak valid",
     "invalidSignerRequestDescription": "Permintaan tidak ada. Coba buat yang lain.",
     "cantImportAccount": "Tidak dapat mengimpor akun",
-    "accountAlreadyExists": "Akun sudah ada"
+    "accountAlreadyExists": "Akun sudah ada",
+    "updateAppError": "Kesalahan saat memperbarui aplikasi"
 }
