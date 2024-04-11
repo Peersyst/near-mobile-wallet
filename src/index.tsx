@@ -32,7 +32,6 @@ LogBox.ignoreLogs(["Require cycles"]);
 function App(): JSX.Element {
     const loading = useLoad();
     const cachedResourceLoaded = useCachedResources();
-
     const { loading: loadingSettings = false } = useRecoilValue(settingsState);
 
     return (
