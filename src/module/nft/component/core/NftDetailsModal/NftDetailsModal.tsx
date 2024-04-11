@@ -25,6 +25,7 @@ const NftDetailsModal = createBackdrop<DetailsNftModalProps>(({ nft, open: openP
                 titlePosition: "left",
             }}
             open={open}
+            onClose={handleOnClose}
             {...rest}
         >
             <NftDetailsModalContent nft={nft} onClose={handleOnClose} />

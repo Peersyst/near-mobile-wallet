@@ -25,6 +25,7 @@ const TokenDetailsModal = createBackdrop<TokenDetailsModalProps>(
                     titlePosition: "left",
                 }}
                 open={open}
+                onClose={handleOnClose}
                 {...rest}
             >
                 <TokenDetailsModalContent token={token} onClose={handleOnClose} />
