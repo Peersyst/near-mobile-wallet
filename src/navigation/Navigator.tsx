@@ -6,7 +6,7 @@ import MainNavigator from "module/common/component/navigation/MainNavigatorGroup
 import { ModalProvider } from "@peersyst/react-native-components";
 import linking from "./Navigator.linking";
 import { AnalyticsProvider } from "../analytics/AnalyticsProvider";
-import { UpdateApp } from "module/common/component/feedback/UpdateApp/UpdateApp";
+import { AppUpdater } from "module/common/component/feedback/AppUpdater/AppUpdater";
 
 const Navigator = (): JSX.Element => {
     const { isAuthenticated } = useRecoilValue(walletState);
@@ -17,7 +17,7 @@ const Navigator = (): JSX.Element => {
             <AnalyticsProvider>
                 <ModalProvider>
                     {isAuthenticated ? <MainNavigator /> : <AuthNavigatorGroup />}
-                    <UpdateApp />
+                    <AppUpdater />
                 </ModalProvider>
             </AnalyticsProvider>
         </NavigationContainer>
