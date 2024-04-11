@@ -1979,7 +1979,7 @@
     "@peersyst/react-utils" "^2.5.0"
     validator "^13.7.0"
 
-"@peersyst/react-hooks@^2.2.10", "@peersyst/react-hooks@^2.2.15":
+"@peersyst/react-hooks@^2.2.15":
   version "2.2.15"
   resolved "https://registry.yarnpkg.com/@peersyst/react-hooks/-/react-hooks-2.2.15.tgz#f14b960bd01da8bb21fc4858ea72976510022678"
   integrity sha512-XZLFVO/CQUmvmyFKA903l5Zc5svhAU5Vg7WVl3JxHZdGFGSF6X1OxxrTEuvL+GUBlcyEQVWbQIsg2D20jIafzQ==
@@ -1987,10 +1987,10 @@
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-utils" "^2.5.0"
 
-"@peersyst/react-native-components@^3.5.0-alpha.1":
-  version "3.5.6"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-3.5.6.tgz#75e07e190f54a46a97b5ca5fddff7b1a50c65c98"
-  integrity sha512-s2Jcfjf1hUTMfUl0Z6q8f5VjtAjDpSMZuu3VgDCFRRHsK+hpXEl7rq3IUZRcDmFHLcBiDDgvoTvHPgu5d3kxJQ==
+"@peersyst/react-native-components@^3.5.7":
+  version "3.5.7"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-components/-/react-native-components-3.5.7.tgz#2b14d6b84a3d6742cd6447991769593cb0620cc1"
+  integrity sha512-ZCLGRxFCL0GXjFsQrCBMT+PQv+Mq1kMkud5LX+24wyVOlYtgWs6obYAaO7ZpjaDhfAlYcLPn6jraA6EZ/WNsUg==
   dependencies:
     "@babel/runtime" "^7.23.2"
     "@peersyst/react-components-core" "^1.7.18"
@@ -2018,7 +2018,7 @@
     react-native-safe-area-context "4.6.3"
     react-native-svg "13.9.0"
 
-"@peersyst/react-native-styled@^3.2.3", "@peersyst/react-native-styled@^3.2.6":
+"@peersyst/react-native-styled@^3.2.6":
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/@peersyst/react-native-styled/-/react-native-styled-3.2.6.tgz#b043281ef7cf98d32641e991870fdbef6f47f368"
   integrity sha512-cb7FxB7AZLXviNcDV2if7uacvGxVpvASbuZ2VAoY6p/70PEysFgUQHAotdWHFo9f7Kj6UV6igksmPTyW/hcEOw==
@@ -2041,7 +2041,7 @@
   resolved "https://registry.yarnpkg.com/@peersyst/react-types/-/react-types-1.6.2.tgz#817de9e236b5259433fc6394a2b5e3a3dfe7fc9c"
   integrity sha512-sClFNAB4Qd8AMm89yhcbv0ngfQ0N+WPDKFdHHOB0UX8pXunsdwNrvEp00WX5BtNWW9ntgN0jek54xisQF3SN6A==
 
-"@peersyst/react-utils@^2.4.1", "@peersyst/react-utils@^2.5.0":
+"@peersyst/react-utils@^2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@peersyst/react-utils/-/react-utils-2.5.0.tgz#e25a3e98a3f6fcd1217762c2c5cb3779845312a0"
   integrity sha512-l7M9XMPwf8KJ/js/3yB8tSJJV01LOSlw+/5kMBzo9el60wAV+L6e5tmLtozyGXR0vSmDb7gyeg1FwUsmzLvk2A==
