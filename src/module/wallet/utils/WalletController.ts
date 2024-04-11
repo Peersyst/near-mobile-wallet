@@ -485,6 +485,14 @@ export default new (class WalletController {
 
     async getIsBackupDone(): Promise<boolean | undefined> {
         const secureStorage = await WalletStorage.getSecure();
+        /*
+        const mnemonic = await WalletStorage.getMnemonic();
+        console.log("secureStorage?.isBackupDone", secureStorage?.isBackupDone);
+        if (secureStorage?.isBackupDone === undefined || !secureStorage?.isBackupDone) {
+            return mnemonic !== undefined;
+        }
+        */
+
         return secureStorage?.isBackupDone;
     }
 })();

@@ -31,6 +31,10 @@ const DeleteData = () => {
         resetWalletState();
     };
 
+    const handleRemoveIsBackupDone = async () => {
+        await WalletStorage.setIsBackupDone(false);
+    };
+
     return (
         <>
             <SettingsMenuItem
@@ -50,6 +54,7 @@ const DeleteData = () => {
                     })
                 }
             />
+            <SettingsMenuItem destructive text={"remover solo isBackupDone"} onPress={handleRemoveIsBackupDone} />
             <ConfirmPinModal open={openConfirmPin} onClose={() => setOpenConfirmPin(false)} onPinConfirmed={handlePinConfirmed} />
         </>
     );
