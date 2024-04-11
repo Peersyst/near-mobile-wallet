@@ -13,14 +13,16 @@ import YouDontHaveNearCard from "module/wallet/component/display/YouDontHaveNear
 
 export interface NftDetailsModalContentProps extends ViewProps {
     nft: NftToken;
+    onClose?: () => void;
 }
 
-const NftDetailsModalContent = ({ nft, ...rest }: NftDetailsModalContentProps) => {
+const NftDetailsModalContent = ({ nft, onClose, ...rest }: NftDetailsModalContentProps) => {
     const translate = useTranslate();
     const { showModal } = useModal();
     const haveNearInAccount = useHaveNearInAccount();
 
     function handleOnTransferButtonPress(): void {
+        onClose?.();
         showModal(SendModal, { defaultAsset: { type: AssetType.NFT, nft } });
     }
 

@@ -12,9 +12,10 @@ import useHaveNearInAccount from "module/wallet/hook/useHaveNearInAccount";
 
 export interface TokenDetailsCardProps {
     token: Token;
+    onClose?: () => void;
 }
 
-const TokenDetailsCard = ({ token }: TokenDetailsCardProps): JSX.Element => {
+const TokenDetailsCard = ({ token, onClose }: TokenDetailsCardProps): JSX.Element => {
     const translate = useTranslate();
     const { showModal } = useModal();
     const uriSwap = useGetSwapLink({ contractId: token.contractId });
@@ -25,6 +26,7 @@ const TokenDetailsCard = ({ token }: TokenDetailsCardProps): JSX.Element => {
     }
 
     function handleOnSendButtonPress(): void {
+        onClose?.();
         showModal(SendModal, { defaultAsset: { type: AssetType.FT, ft: token } });
     }
 
