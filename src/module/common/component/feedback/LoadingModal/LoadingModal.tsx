@@ -1,11 +1,19 @@
 import { LoadingModalProps } from "./LoadingModal.types";
-import { DarkLoadingModalOverlay, LoadingModalRoot, SuccessIcon, LoadingModalContent, LoadingModalMessage } from "./LoadingModal.styles";
+import {
+    DarkLoadingModalOverlay,
+    LoadingModalRoot,
+    SuccessIcon,
+    LoadingModalContent,
+    LoadingModalMessage,
+    LoadingModalContentIcon,
+    LoadingModalIcon,
+} from "./LoadingModal.styles";
 import { useEffect, useState } from "react";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import useTranslate from "module/common/hook/useTranslate";
-import { Backdrop, Col, Spinner } from "@peersyst/react-native-components";
+import { Backdrop, Col } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
-import Logo from "../../display/Logo/Logo";
+import Typography from "../../display/Typography/Typography";
 
 const LoadingModal = ({
     loading,
@@ -13,6 +21,7 @@ const LoadingModal = ({
     error = false,
     success = false,
     processingMessage,
+    processingDescriptionMessage,
     onClose,
     children,
     ...backdropProps
@@ -66,12 +75,20 @@ const LoadingModal = ({
                             </Button>
                         </>
                     ) : (
-                        <Col alignItems="center" gap={14} flex={1} justifyContent="center">
-                            <Logo />
-                            <LoadingModalMessage textAlign="center" variant="body2Strong">
-                                {processingMessage || translate("processing")}
-                            </LoadingModalMessage>
-                            <Spinner size="large" color="white" />
+                        <Col alignItems="center" gap={30} flex={1} justifyContent="center">
+                            <LoadingModalContentIcon>
+                                <LoadingModalIcon />
+                            </LoadingModalContentIcon>
+                            <Col gap={12} alignItems="center">
+                                <LoadingModalMessage variant="body1Strong" color="text">
+                                    {processingMessage || translate("processing")}
+                                </LoadingModalMessage>
+                                {processingDescriptionMessage && (
+                                    <LoadingModalMessage variant="body3Regular" color="overlay.80%">
+                                        {processingDescriptionMessage}
+                                    </LoadingModalMessage>
+                                )}
+                            </Col>
                         </Col>
                     )}
                 </LoadingModalContent>
