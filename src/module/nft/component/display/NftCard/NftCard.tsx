@@ -7,10 +7,13 @@ import NftImage from "../NftImage/NftImage";
 import { Fragment, memo, useState } from "react";
 import useTranslate from "module/common/hook/useTranslate";
 import NftDetailsModal from "../../core/NftDetailsModal/NftDetailsModal";
+import SendModal from "module/transaction/component/core/SendModal/SendModal";
+import { AssetType } from "module/wallet/wallet.types";
 
 const NftCard = ({ nft }: NftCardProps): JSX.Element => {
     const t = useTranslate();
-    const [open, setOpen] = useState(false);
+    const [openNftModal, setOpenNftModal] = useState(false);
+    const [openSendModal, setOpenSendModal] = useState(false);
 
     const {
         metadata: { title, media_url },
@@ -21,7 +24,7 @@ const NftCard = ({ nft }: NftCardProps): JSX.Element => {
 
     return (
         <Fragment>
-            <TouchableWithoutFeedback onPress={() => setOpen(true)}>
+            <TouchableWithoutFeedback onPress={() => setOpenNftModal(true)}>
                 <MainListCard gap="6.5%" alignItems="center" flex={1}>
                     <NftImage uri={media_url} tokenId={token_id} />
                     <Col flex={1} gap={12} justifyContent="center">
@@ -50,7 +53,8 @@ const NftCard = ({ nft }: NftCardProps): JSX.Element => {
                     </Col>
                 </MainListCard>
             </TouchableWithoutFeedback>
-            <NftDetailsModal nft={nft} open={open} onClose={() => setOpen(false)} />
+            <NftDetailsModal nft={nft} open={openNftModal} onSend={() => setOpenSendModal(true)} onClose={() => setOpenNftModal(false)} />
+            <SendModal open={openSendModal} onClose={() => setOpenSendModal(false)} defaultAsset={{ type: AssetType.NFT, nft }} />
         </Fragment>
     );
 };

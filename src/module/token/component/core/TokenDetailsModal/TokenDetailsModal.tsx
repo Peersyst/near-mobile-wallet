@@ -7,15 +7,18 @@ import { useControlled } from "@peersyst/react-hooks";
 
 export interface TokenDetailsModalProps extends ExposedBackdropProps {
     token: Token;
+    onSend: () => void;
 }
 
 const TokenDetailsModal = createBackdrop<TokenDetailsModalProps>(
-    ({ token, open: openProp, defaultOpen, onClose: onCloseProp, ...rest }) => {
+    ({ token, open: openProp, defaultOpen, onClose: onCloseProp, onSend, ...rest }) => {
         const [open, setOpen] = useControlled(defaultOpen, openProp, onCloseProp);
 
-        const handleOnClose = () => {
+        const handleOnSend = () => {
             setOpen(false);
+            onSend();
         };
+
         return (
             <CardNavigatorModal
                 closable
@@ -25,10 +28,10 @@ const TokenDetailsModal = createBackdrop<TokenDetailsModalProps>(
                     titlePosition: "left",
                 }}
                 open={open}
-                onClose={handleOnClose}
+                onClose={() => setOpen(false)}
                 {...rest}
             >
-                <TokenDetailsModalContent token={token} onClose={handleOnClose} />
+                <TokenDetailsModalContent token={token} onSend={handleOnSend} />
             </CardNavigatorModal>
         );
     },

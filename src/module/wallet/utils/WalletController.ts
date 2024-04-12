@@ -487,8 +487,14 @@ export default new (class WalletController {
         const secureStorage = await WalletStorage.getSecure();
         const mnemonic = await WalletStorage.getMnemonic();
 
-        if (secureStorage?.isBackupDone === undefined) {
-            return mnemonic !== undefined;
+        if (secureStorage && secureStorage?.isBackupDone === undefined) {
+            /**
+             * Migrate the storage to the new one
+             */
+            if (mnemonic) {
+                await WalletStorage.setIsBackupDone(true);
+                return true;
+            } else return false;
         }
 
         return secureStorage?.isBackupDone;
