@@ -25,24 +25,22 @@ const TokenDetailsCard = ({ token, onSend }: TokenDetailsCardProps): JSX.Element
     }
 
     return (
-        <>
-            <TokenDetailsCardRoot variant="gray">
-                <TokenBalance
-                    balanceProps={{ variant: "body1Strong" }}
-                    fiatBalanceProps={{ variant: "body4Strong" }}
-                    token={token}
-                    alignItems="center"
-                />
-                <Row gap={8}>
-                    <TokenDetailsCardButton size="lg" variant="quaternary" onPress={onSend} disabled={!haveNearInAccount}>
-                        {capitalize(translate("send"))}
-                    </TokenDetailsCardButton>
-                    <TokenDetailsCardButton size="lg" variant="quaternary" onPress={handleOnSwapButtonPress} disabled={!haveNearInAccount}>
-                        {capitalize(translate("swap"))}
-                    </TokenDetailsCardButton>
-                </Row>
-            </TokenDetailsCardRoot>
-        </>
+        <TokenDetailsCardRoot variant="gray">
+            <TokenBalance
+                balanceProps={{ variant: "body1Strong" }}
+                fiatBalanceProps={{ variant: "body4Strong" }}
+                token={token}
+                alignItems="center"
+            />
+            <Row gap={8}>
+                <TokenDetailsCardButton size="lg" variant="quaternary" onPress={onSend} disabled={!haveNearInAccount}>
+                    {capitalize(translate("send"))}
+                </TokenDetailsCardButton>
+                <TokenDetailsCardButton size="lg" variant="quaternary" onPress={handleOnSwapButtonPress} disabled={!haveNearInAccount}>
+                    {capitalize(translate("swap"))}
+                </TokenDetailsCardButton>
+            </Row>
+        </TokenDetailsCardRoot>
     );
 };
 
