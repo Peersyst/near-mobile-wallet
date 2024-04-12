@@ -11,32 +11,33 @@ import { useState } from "react";
 const OnBoardingActionsList = (): JSX.Element => {
     const translate = useTranslate();
     const isBackupDone = useIsBackupDone();
-    const [openAddNear, setOpenAddNear] = useState(false);
-    const [openWalletsBackup, setOpenWalletsBackup] = useState(false);
+    const [openAddNearModal, setOpenAddNearModal] = useState(false);
+    const [openWalletsBackupModal, setOpenWalletsBackupModal] = useState(false);
 
     return (
-        <OnBoardingActionsListRoot gap="6%">
-            <Typography variant="body3Strong" textAlign="center" style={{ width: "60%" }}>
-                {translate("noTransactionsText")}
-            </Typography>
-            <Button variant="primary" fullWidth onPress={() => setOpenAddNear(true)}>
-                {translate("addNearCallToActionText")}
-            </Button>
-            <Typography variant="body4Regular">{capitalize(translate("backupWallet"))}</Typography>
-            {!isBackupDone && (
-                <Col gap={16} style={{ width: "100%" }}>
-                    <Button variant="quinary" fullWidth onPress={() => setOpenWalletsBackup(true)}>
-                        {translate("backupWalletCallToActionText")}
-                    </Button>
-                    <Typography variant="body4Regular" textAlign="center">
-                        {capitalize(translate("backupWalletCallToActionTextDescription"))}
-                    </Typography>
-                </Col>
-            )}
-
-            <AddNearModal open={openAddNear} onClose={() => setOpenAddNear(false)} />
-            <WalletsBackupModal open={openWalletsBackup} onClose={() => setOpenWalletsBackup(false)} />
-        </OnBoardingActionsListRoot>
+        <>
+            <OnBoardingActionsListRoot gap="6%">
+                <Typography variant="body3Strong" textAlign="center" style={{ width: "60%" }}>
+                    {translate("noTransactionsText")}
+                </Typography>
+                <Button variant="primary" fullWidth onPress={() => setOpenAddNearModal(true)}>
+                    {translate("addNearCallToActionText")}
+                </Button>
+                <Typography variant="body4Regular">{capitalize(translate("backupWallet"))}</Typography>
+                {!isBackupDone && (
+                    <Col gap={16} style={{ width: "100%" }}>
+                        <Button variant="quinary" fullWidth onPress={() => setOpenWalletsBackupModal(true)}>
+                            {translate("backupWalletCallToActionText")}
+                        </Button>
+                        <Typography variant="body4Regular" textAlign="center">
+                            {capitalize(translate("backupWalletCallToActionTextDescription"))}
+                        </Typography>
+                    </Col>
+                )}
+            </OnBoardingActionsListRoot>
+            <AddNearModal open={openAddNearModal} onClose={() => setOpenAddNearModal(false)} />
+            <WalletsBackupModal open={openWalletsBackupModal} onClose={() => setOpenWalletsBackupModal(false)} />
+        </>
     );
 };
 
