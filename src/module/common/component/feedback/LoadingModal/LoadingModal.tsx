@@ -13,7 +13,6 @@ import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import useTranslate from "module/common/hook/useTranslate";
 import { Backdrop, Col } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
-import Typography from "../../display/Typography/Typography";
 
 const LoadingModal = ({
     loading,
