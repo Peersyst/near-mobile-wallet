@@ -1,4 +1,4 @@
-import { Col, createBackdrop, ExposedBackdropProps, useModal } from "@peersyst/react-native-components";
+import { Col, createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { ArrowReceiveIcon, BuyIcon, CircleHelpIcon } from "icons";
@@ -7,41 +7,56 @@ import AddNearModalOption from "./AddNearModalOption/AddNearModalOption";
 import useNavigation from "module/common/hook/useNavigation";
 import useIsBuyEnabled from "module/wallet/hook/useIsBuyEnabled";
 import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
+import { useControlled } from "@peersyst/react-hooks";
+import { useState } from "react";
 
 export type AddNearModalProps = ExposedBackdropProps;
 
-const AddNearModal = createBackdrop(({ ...rest }: AddNearModalProps): JSX.Element => {
+const AddNearModal = createBackdrop(({ open: openProp, defaultOpen, onClose: onCloseProp, ...rest }: AddNearModalProps): JSX.Element => {
     const translate = useTranslate();
-    const { showModal, hideModal } = useModal();
     const navigate = useNavigation();
     const showBuyOption = useIsBuyEnabled();
+    const [open, setOpen] = useControlled(defaultOpen, openProp, onCloseProp);
+    const [openReceiveModal, setOpenReceiveModal] = useState(false);
 
     function handleOnBuy() {
-        hideModal(AddNearModal.id);
+        setOpen(false);
         navigate.navigate(MainScreens.FIAT_ORDERS);
     }
 
     function handleOnSupport() {
-        hideModal(AddNearModal.id);
+        setOpen(false);
         navigate.navigate(MainScreens.FAQS);
     }
+
+    const handleOnClose = () => {
+        setOpen(false);
+    };
+
+    const handleOnReceive = () => {
+        setOpen(false);
+        setOpenReceiveModal(false);
+    };
 
     return (
         <CardNavigatorModal
             navbar={{
                 title: translate("addNear").toUpperCase(),
             }}
+            open={open}
+            onClose={handleOnClose}
             {...rest}
         >
             <Col gap={20} justifyContent="center">
                 {showBuyOption && <AddNearModalOption onPress={handleOnBuy} text={translate("buyNear")} icon={<BuyIcon />} />}
                 <AddNearModalOption
-                    onPress={() => showModal(ReceiveModal)}
+                    onPress={() => setOpenReceiveModal(true)}
                     text={translate("depositNearFromOtherWallet")}
                     icon={<ArrowReceiveIcon />}
                 />
                 <AddNearModalOption onPress={handleOnSupport} text={translate("iNeedSupport")} icon={<CircleHelpIcon />} />
             </Col>
+            <ReceiveModal open={openReceiveModal} onClose={handleOnReceive} />
         </CardNavigatorModal>
     );
 });

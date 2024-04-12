@@ -10,7 +10,7 @@ export interface AssetAmountTextFieldProps extends Omit<TextFieldProps, "keyboar
     index?: number;
 }
 
-const AssetAmountTextField = ({ asset, index = 0, onChange, value, ...rest }: AssetAmountTextFieldProps) => {
+const AssetAmountTextField = ({ asset, index, onChange, value, ...rest }: AssetAmountTextFieldProps) => {
     return (
         <>
             {asset.type === AssetType.NATIVE_TOKEN && (

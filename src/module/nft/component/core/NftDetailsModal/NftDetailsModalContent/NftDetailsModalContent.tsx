@@ -1,10 +1,8 @@
-import { Col, Typography, useModal } from "@peersyst/react-native-components";
+import { Col, Typography } from "@peersyst/react-native-components";
 import { NftToken } from "near-peersyst-sdk";
 import useTranslate from "module/common/hook/useTranslate";
 import { capitalize } from "@peersyst/react-utils";
 import Button from "module/common/component/input/Button/Button";
-import SendModal from "module/transaction/component/core/SendModal/SendModal";
-import { AssetType } from "module/wallet/wallet.types";
 import { ViewProps } from "react-native";
 import { NftDetailsModalContentImage } from "./NftDetailsModalContent.styles";
 import Card from "module/common/component/surface/Card/Card";
@@ -13,16 +11,13 @@ import YouDontHaveNearCard from "module/wallet/component/display/YouDontHaveNear
 
 export interface NftDetailsModalContentProps extends ViewProps {
     nft: NftToken;
+    onSend?: () => void;
 }
 
-const NftDetailsModalContent = ({ nft, ...rest }: NftDetailsModalContentProps) => {
+const NftDetailsModalContent = ({ nft, onSend, ...rest }: NftDetailsModalContentProps) => {
     const translate = useTranslate();
-    const { showModal } = useModal();
-    const haveNearInAccount = useHaveNearInAccount();
 
-    function handleOnTransferButtonPress(): void {
-        showModal(SendModal, { defaultAsset: { type: AssetType.NFT, nft } });
-    }
+    const haveNearInAccount = useHaveNearInAccount();
 
     return (
         <Col alignItems="center" gap="7%" {...rest}>
@@ -33,7 +28,7 @@ const NftDetailsModalContent = ({ nft, ...rest }: NftDetailsModalContentProps) =
                 </Typography>
             )}
             <Card variant="gray">
-                <Button size="lg" variant="quaternary" onPress={handleOnTransferButtonPress} disabled={!haveNearInAccount}>
+                <Button size="lg" variant="quaternary" onPress={onSend} disabled={!haveNearInAccount}>
                     {capitalize(translate("transfer"))}
                 </Button>
             </Card>
