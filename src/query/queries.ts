@@ -19,6 +19,7 @@ enum Queries {
     GET_CONNECTED_SITE_LOGO = "get-connected-site-logo",
     ACCOUNT_IS_ACTIVE = "account-is-active",
     GET_BALANCE_ALL_ACCOUNTS = "get-balance-all-accounts",
+    GET_UPDATE_AVAILABLE = "get-update-available",
 }
 
 export default Queries;

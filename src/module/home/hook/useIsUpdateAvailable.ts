@@ -1,6 +1,18 @@
 import * as Updates from "expo-updates";
+import Queries from "../../../query/queries";
+import { UseQueryResult, useQuery } from "react-query";
 
-export default function useIsUpdateAvailable() {
-    const { isUpdateAvailable } = Updates.useUpdates();
-    return isUpdateAvailable;
-}
+export type UseIsUpdateAvailableReturn = UseQueryResult<boolean, unknown>;
+
+const useIsUpdateAvailable = (): UseIsUpdateAvailableReturn => {
+    return useQuery([Queries.GET_UPDATE_AVAILABLE], async () => {
+        try {
+            const update = await Updates.checkForUpdateAsync();
+            return update.isAvailable;
+        } catch (error) {
+            return false;
+        }
+    });
+};
+
+export default useIsUpdateAvailable;

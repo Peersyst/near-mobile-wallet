@@ -5,37 +5,57 @@ import Typography from "../../display/Typography/Typography";
 import Button from "../../input/Button/Button";
 import { useUpdateApp } from "module/home/hook/useUpdateApp";
 import { UpdatingAppModal } from "../UpdatingAppModal/UpdatingAppModal";
+import { Fragment } from "react";
+import { useControlled } from "@peersyst/react-hooks";
 
 export type UpdateRequiredModalProps = ExposedBackdropProps;
 
-const UpdateRequiredModal = createBackdrop(({ ...rest }: UpdateRequiredModalProps): JSX.Element => {
-    const translate = useTranslate();
-    const { hideModal } = useModal();
-    const { mutate: updateApp, isLoading } = useUpdateApp();
+const UpdateRequiredModal = createBackdrop(
+    ({ defaultOpen, open: openProp, onClose: onCloseProp, ...rest }: UpdateRequiredModalProps): JSX.Element => {
+        const translate = useTranslate();
+        const [open, setOpen] = useControlled(defaultOpen, openProp, onCloseProp);
 
-    const handleUpdate = async () => {
-        hideModal(UpdateRequiredModal.id);
-        updateApp();
-    };
+        const handleOnError = () => {
+            setOpen(false);
+            return;
+        };
 
-    return (
-        <CardNavigatorModal
-            navbar={{
-                title: translate("updateRequired").toUpperCase(),
-            }}
-            {...rest}
-        >
-            <Col gap={24} justifyContent="center">
-                <Typography variant="body3Regular" textAlign="center">
-                    {translate("updateRequiredDescription")}
-                </Typography>
-                <Button variant="primary" fullWidth onPress={handleUpdate}>
-                    {translate("updateAppNow")}
-                </Button>
-            </Col>
-            <UpdatingAppModal open={isLoading} />
-        </CardNavigatorModal>
-    );
-});
+        const {
+            mutate: updateApp,
+            isLoading,
+            isError,
+        } = useUpdateApp({
+            onError: handleOnError,
+        });
+
+        const handleUpdate = async () => {
+            setOpen(false);
+            updateApp();
+        };
+
+        return (
+            <Fragment>
+                <CardNavigatorModal
+                    navbar={{
+                        title: translate("updateRequired").toUpperCase(),
+                    }}
+                    {...rest}
+                    open={open}
+                    onClose={() => setOpen(false)}
+                >
+                    <Col gap={24} justifyContent="center">
+                        <Typography variant="body3Regular" textAlign="center">
+                            {translate("updateRequiredDescription")}
+                        </Typography>
+                        <Button variant="primary" fullWidth onPress={handleUpdate}>
+                            {translate("updateAppNow")}
+                        </Button>
+                    </Col>
+                </CardNavigatorModal>
+                <UpdatingAppModal loading={isLoading} error={isError} />
+            </Fragment>
+        );
+    },
+);
 
 export default UpdateRequiredModal;

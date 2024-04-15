@@ -82,11 +82,9 @@ const LoadingModal = ({
                                 <LoadingModalMessage variant="body1Strong" color="text">
                                     {processingMessage || translate("processing")}
                                 </LoadingModalMessage>
-                                {processingDescriptionMessage && (
-                                    <LoadingModalMessage variant="body3Regular" color="overlay.80%">
-                                        {processingDescriptionMessage}
-                                    </LoadingModalMessage>
-                                )}
+                                <LoadingModalMessage variant="body3Regular" color="overlay.80%">
+                                    {processingDescriptionMessage || translate("pleaseWaitAMoment")}
+                                </LoadingModalMessage>
                             </Col>
                         </Col>
                     )}

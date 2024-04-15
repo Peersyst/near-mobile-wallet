@@ -1,3 +1,3 @@
-import { ModalProps } from "@peersyst/react-native-components";
+import { LoadingModalProps } from "../LoadingModal/LoadingModal.types";
 
-export type UpdatingAppModalProps = Pick<ModalProps, "open">;
+export interface UpdatingAppModalProps extends Omit<LoadingModalProps, "processingMessage" | "processingDescriptionMessage"> {}
