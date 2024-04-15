@@ -15,7 +15,6 @@ export function useUpdateApp({ onError, ...options }: MutationOptions<void, unkn
 
     return useMutation(
         async () => {
-            throw new Error("Update failed");
             await ExpoUpdates.fetchUpdateAsync();
             await ExpoUpdates.reloadAsync();
         },
