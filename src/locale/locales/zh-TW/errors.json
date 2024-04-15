@@ -50,5 +50,6 @@
     "invalidSignerRequest": "无效签名请求",
     "invalidSignerRequestDescription": "该请求不存在。请尝试创建另一个。",
     "cantImportAccount": "無法匯入帳戶",
-    "accountAlreadyExists": "該帳戶已存在"
+    "accountAlreadyExists": "該帳戶已存在",
+    "updateAppError": "更新應用程式時出錯"
 }

@@ -333,5 +333,10 @@
     "addNearCallToActionText": "Ajouter NEAR",
     "backupWallet": "et ainsi vous pourrez commencer à utiliser le portefeuille",
     "backupWalletCallToActionText": "Sauvegarder le portefeuille",
-    "backupWalletCallToActionTextDescription": "et ainsi vous pourrez récupérer votre portefeuille quand vous en aurez besoin sans perdre vos NEAR"
+    "backupWalletCallToActionTextDescription": "et ainsi vous pourrez récupérer votre portefeuille quand vous en aurez besoin sans perdre vos NEAR",
+    "updateRequired": "Mise à jour requise",
+    "updateRequiredDescription": "Une nouvelle version de l'application est disponible et la mise à jour est nécessaire pour continuer à l'utiliser.",
+    "updateAppNow": "Mettre à jour l'application maintenant",
+    "updatingApp": "Mise à jour de l'application",
+    "pleaseWaitAMoment": "Veuillez patienter un moment"
 }

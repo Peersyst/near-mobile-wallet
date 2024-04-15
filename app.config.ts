@@ -57,11 +57,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     plugins: [
         [
             "expo-build-properties",
+            "expo-updates",
             {
                 android: {
                     compileSdkVersion: 33,
                     targetSdkVersion: 33,
                 },
+                username: "near-mobile-wallet",
             },
         ],
     ],

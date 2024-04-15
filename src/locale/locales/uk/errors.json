@@ -50,5 +50,6 @@
     "invalidSignerRequest": "Недійсний запит підписанта",
     "invalidSignerRequestDescription": "Запит не існує. Спробуйте створити інший.",
     "cantImportAccount": "Не вдається імпортувати обліковий запис",
-    "accountAlreadyExists": "Обліковий запис уже існує"
+    "accountAlreadyExists": "Обліковий запис уже існує",
+    "updateAppError": "Помилка під час оновлення додатка"
 }

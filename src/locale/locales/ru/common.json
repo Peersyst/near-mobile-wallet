@@ -333,5 +333,10 @@
     "addNearCallToActionText": "Добавить NEAR",
     "backupWallet": "и начать использовать кошелек",
     "backupWalletCallToActionText": "Резервное копирование кошелька",
-    "backupWalletCallToActionTextDescription": "и восстановить кошелек, когда вам это понадобится, не потеряв свои NEAR"
+    "backupWalletCallToActionTextDescription": "и восстановить кошелек, когда вам это понадобится, не потеряв свои NEAR",
+    "updateRequired": "Требуется обновление",
+    "updateRequiredDescription": "Доступна новая версия приложения, и для продолжения использования необходимо обновить его.",
+    "updateAppNow": "Обновить приложение сейчас",
+    "updatingApp": "Обновление приложения",
+    "pleaseWaitAMoment": "Пожалуйста, подождите немного"
 }

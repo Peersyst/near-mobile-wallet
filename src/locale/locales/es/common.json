@@ -333,5 +333,10 @@
     "addNearCallToActionText": "Añadir NEAR",
     "backupWallet": "y así podrás empezar a usar la wallet",
     "backupWalletCallToActionText": "Respaldar wallet",
-    "backupWalletCallToActionTextDescription": "y así podrás recuperar tu wallet cuando lo necesites sin perder tus NEAR"
+    "backupWalletCallToActionTextDescription": "y así podrás recuperar tu wallet cuando lo necesites sin perder tus NEAR",
+    "updateRequired": "Actualización requerida",
+    "updateRequiredDescription": "Hay disponible una nueva versión de la aplicación y es necesario actualizarla para seguir utilizándola.",
+    "updateAppNow": "Actualizar aplicación ahora",
+    "updatingApp": "Actualizando aplicación",
+    "pleaseWaitAMoment": "Por favor, espere un momento"
 }

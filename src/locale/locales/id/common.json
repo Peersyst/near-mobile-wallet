@@ -333,5 +333,10 @@
     "addNearCallToActionText": "Tambahkan NEAR",
     "backupWallet": "dan dengan ini Anda akan dapat mulai menggunakan dompet",
     "backupWalletCallToActionText": "Cadangkan dompet",
-    "backupWalletCallToActionTextDescription": "dan dengan ini Anda akan dapat memulihkan dompet Anda ketika Anda membutuhkannya tanpa kehilangan NEAR Anda"
+    "backupWalletCallToActionTextDescription": "dan dengan ini Anda akan dapat memulihkan dompet Anda ketika Anda membutuhkannya tanpa kehilangan NEAR Anda",
+    "updateRequired": "Pembaruan diperlukan",
+    "updateRequiredDescription": "Versi baru dari aplikasi tersedia dan pembaruan diperlukan untuk melanjutkan penggunaannya.",
+    "updateAppNow": "Perbarui aplikasi sekarang",
+    "updatingApp": "Memperbarui aplikasi",
+    "pleaseWaitAMoment": "Tunggu sebentar"
 }

@@ -50,5 +50,6 @@
     "invalidSignerRequest": "Ombi la mwenye saini sio sahihi",
     "invalidSignerRequestDescription": "Ombi halipo. Jaribu lingine",
     "cantImportAccount": "Haiwezi kuingiza akaunti",
-    "accountAlreadyExists": "Akaunti tayari ipo"
+    "accountAlreadyExists": "Akaunti tayari ipo",
+    "updateAppError": "Hitilafu wakati wa kusasisha programu"
 }
