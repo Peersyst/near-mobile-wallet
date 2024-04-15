@@ -77,6 +77,7 @@ declare module "@peersyst/react-native-components" {
         telegramUrl: string;
         apiRequestTimeout: number;
         fastMainnetNearApiUrl: string;
+        expoUpdatesEnabled: boolean;
     }
 
     export interface CreateConfig {
@@ -114,6 +115,7 @@ declare module "@peersyst/react-native-components" {
         telegramUrl: string;
         apiRequestTimeout: number;
         fastMainnetNearApiUrl: string;
+        expoUpdatesEnabled: boolean;
     }
 
     export interface ExtraValidators {
