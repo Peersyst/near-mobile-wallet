@@ -1,4 +1,4 @@
-import { Col, createBackdrop, ExposedBackdropProps, useModal } from "@peersyst/react-native-components";
+import { Col, createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import Typography from "../../display/Typography/Typography";
