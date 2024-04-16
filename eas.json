@@ -23,6 +23,16 @@
                 "CONFIG_ENV": "production"
             },
             "android": {}
+        },
+        "productionRelease": {
+            "node": "18.15.0",
+            "env": {
+                "BUILD_NUMBER": "__BUILD_NUMBER__",
+                "CONFIG_ENV": "production"
+            },
+            "android": {
+                "buildType": "apk"
+            }
         }
     },
     "submit": {
