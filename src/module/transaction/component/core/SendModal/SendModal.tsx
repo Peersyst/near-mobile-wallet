@@ -22,6 +22,7 @@ const SendModal = createBackdrop(({ onExited, defaultAsset, onClose, ...rest }: 
 
     const handleExited = () => {
         onExited?.();
+        onClose?.();
         resetSendState();
     };
 
@@ -44,6 +45,7 @@ const SendModal = createBackdrop(({ onExited, defaultAsset, onClose, ...rest }: 
                 },
             }}
             onExited={handleExited}
+            onClose={handleExited}
             {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
