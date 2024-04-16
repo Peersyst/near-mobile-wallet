@@ -1,6 +1,6 @@
 import { Col } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import useGetNfts from "module/nft/query/useGetNfts";
 import { useAssetSelect } from "../../hook/useAssetSelect";
 import { NftSelectItem } from "./NftSelectItem";

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Animated, createBackdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
 import BaseSettingsModalScreen from "../../layout/BaseSettingsModal/BaseSettingsModal";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import BiometricNumericPad from "module/common/component/input/BiometricNumericPad/BiometricNumericPad";
 
 const AnimatedBiometricsNumericPad = Animated.createAnimatedComponent.fade(BiometricNumericPad, { duration: 200, appear: true });

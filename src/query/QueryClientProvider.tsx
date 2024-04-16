@@ -1,8 +1,8 @@
 import { FC, ReactNode, useRef } from "react";
 import { useToast } from "@peersyst/react-native-components";
 import { QueryCache, QueryClient, QueryClientProvider as BaseQueryClientProvider } from "react-query";
-import { useTranslate } from "module/common/hook/useTranslate";
 import { handleErrorMessage } from "./handleErrorMessage";
+import useTranslate from "module/common/hook/useTranslate";
 
 const QueryClientProvider: FC<{ children?: ReactNode }> = ({ children }): JSX.Element => {
     const { showToast } = useToast();

@@ -4,9 +4,9 @@ import { useResetRecoilState } from "recoil";
 import { CardNavigatorModalProps } from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { StakeModalRoot } from "./StakeModal.styles";
 import stakeState from "module/staking/state/StakeState";
-import { AddStakeScreens } from "../AddStakeModal/AddStakeModal";
 import { UnstakeModalScreens } from "module/staking/component/core/UnstakeModal/UnstakeModal";
-import { WithdrawModalScreens } from "module/staking/component/core/WithdrawModal/WithdrawModal";
+import { WithdrawModalScreens } from "../WithdrawModal/WithdrawModal.types";
+import { AddStakeScreens } from "../AddStakeModal/AddStakeModal.types";
 
 export interface ModalTabs {
     title: string;

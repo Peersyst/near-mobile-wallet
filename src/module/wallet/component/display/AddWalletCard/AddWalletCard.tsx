@@ -1,5 +1,5 @@
 import { AddText, ContentRoot } from "./AddWalletCard.style";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { Row, useModal } from "@peersyst/react-native-components";
 import { capitalize } from "@peersyst/react-utils";
 import Button from "module/common/component/input/Button/Button";

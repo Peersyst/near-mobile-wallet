@@ -77,6 +77,7 @@ export default new (class WalletController {
         pin?: string,
         mnemonic?: string,
         privateKeyParam?: string,
+        isBackupDone?: boolean,
     ): Promise<WalletControllerBaseReturn> {
         /**
          * Get secure storage and check if has a mnemonic and if the pK/mnemonic is not repeated (already in storage)
@@ -140,6 +141,7 @@ export default new (class WalletController {
                 mainPrivateKey: parsedPrivateKey,
                 testnet: isTestnet ? newSecureWallets : [],
                 mainnet: !isTestnet ? newSecureWallets : [],
+                isBackupDone,
             });
         } else {
             //Import account with previous accounts
@@ -479,5 +481,22 @@ export default new (class WalletController {
         };
 
         return { wallet: newWallet, canImport: true };
+    }
+
+    async getIsBackupDone(): Promise<boolean | undefined> {
+        const secureStorage = await WalletStorage.getSecure();
+        const mnemonic = await WalletStorage.getMnemonic();
+
+        if (secureStorage && secureStorage?.isBackupDone === undefined) {
+            /**
+             * Migrate the storage to the new one
+             */
+            if (mnemonic) {
+                await WalletStorage.setIsBackupDone(true);
+                return true;
+            } else return false;
+        }
+
+        return secureStorage?.isBackupDone;
     }
 })();

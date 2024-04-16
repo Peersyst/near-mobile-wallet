@@ -41,9 +41,7 @@ declare module "@peersyst/react-native-components" {
 
     export interface Config {
         minimumTransactionAmount: number;
-        indexerTestnetUrl: string;
         nearblocksTesnetApiUrl: string;
-        indexerMainnetUrl: string;
         nearblocksMainnetApiUrl: string;
         mainnetExplorerLink: string;
         testnetExplorerLink: string;
@@ -60,12 +58,13 @@ declare module "@peersyst/react-native-components" {
         coingeckoUSDTApiId: string;
         minBalanceToCreateAccount: string;
         estimatedFee: string; //In NEAR
-        enableIndexer: boolean;
         newsRSSUrl: string;
         defaultTwitterAccount: string;
         approveTxWaitTime: number; //In seconds
         testnetTokenPriceUrl: string;
         mainnetTokenPriceUrl: string;
+        testnetSwapUrl: string;
+        mainnetSwapUrl: string;
         refetchIntervals: RefetchIntervals;
         indexerEstimatedDelay: number;
         nearMobileUrl: string;
@@ -75,13 +74,15 @@ declare module "@peersyst/react-native-components" {
         analytics: AnalyticsConfig;
         enableManualImport: boolean;
         kitWalletTimeout: number;
+        telegramUrl: string;
+        apiRequestTimeout: number;
+        fastMainnetNearApiUrl: string;
+        expoUpdatesEnabled: boolean;
     }
 
     export interface CreateConfig {
         minimumTransactionAmount: number;
-        indexerTestnetUrl: string;
         nearblocksTesnetApiUrl: string;
-        indexerMainnetUrl: string;
         nearblocksMainnetApiUrl: string;
         mainnetExplorerLink: string;
         testnetExplorerLink: string;
@@ -98,7 +99,6 @@ declare module "@peersyst/react-native-components" {
         coingeckoUSDTApiId: string;
         minBalanceToCreateAccount: string;
         estimatedFee: string;
-        enableIndexer: boolean;
         newsRSSUrl: string;
         defaultTwitterAccount: string;
         approveTxWaitTime: number; //In seconds
@@ -112,6 +112,10 @@ declare module "@peersyst/react-native-components" {
         analytics: AnalyticsConfig;
         enableManualImport: boolean;
         kitWalletTimeout: number;
+        telegramUrl: string;
+        apiRequestTimeout: number;
+        fastMainnetNearApiUrl: string;
+        expoUpdatesEnabled: boolean;
     }
 
     export interface ExtraValidators {

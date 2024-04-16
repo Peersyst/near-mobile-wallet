@@ -1,10 +1,11 @@
 import { useModal, useSetTab } from "@peersyst/react-native-components";
 import { useRecoilValue } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
-import AddStakeModal, { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal";
-import { useTranslate } from "module/common/hook/useTranslate";
+import AddStakeModal from "module/staking/component/core/AddStakeModal/AddStakeModal";
+import useTranslate from "module/common/hook/useTranslate";
 import useAddStake from "module/staking/query/useAddStake";
 import StakingConfirmScreen from "../StakingConfirmScreen";
+import { AddStakeScreens } from "module/staking/component/core/AddStakeModal/AddStakeModal.types";
 
 const AddStakeConfirmScreen = () => {
     const { amount, validator } = useRecoilValue(stakeRecoilState);

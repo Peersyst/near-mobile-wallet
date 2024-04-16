@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import settingsState from "module/settings/state/SettingsState";
 import useWalletState from "module/wallet/hook/useWalletState";
 import { useDebounce } from "@peersyst/react-hooks";
@@ -60,14 +60,16 @@ export function useAddressTextField({
     /**
      * Final error and final loading
      */
-    //const error = invalidAccountError || invalidSameAccountError || accountDoesNotExistError;
-    const error = [...invalidAccountError, ...invalidSameAccountError, ...accountDoesNotExistError] as [boolean, string];
+    const error = (debouncedValue ? [...invalidAccountError, ...invalidSameAccountError, ...accountDoesNotExistError] : []) as [
+        boolean,
+        string,
+    ];
     const isLoading = debouncing || isLoadingNameValidity;
 
     return {
         value: value,
         onChange: handleChange,
-        error: error.length > 0 ? error : undefined,
+        error: isLoading || (error.length > 0 ? error : undefined),
         isLoading,
         hideError: isLoading,
     };

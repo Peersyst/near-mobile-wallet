@@ -33,7 +33,6 @@
     "invalid_child_account": "Ви не можете створити {{nameID}} зі свого рахунку {{currentAccount}}.",
     "invalid_send_same_account": "Ви не можете відправити кошти на свій власний рахунок.",
     "invalid_account_or_not_active": "Рахунок отримувача неправильний або не існує",
-    "no_transactions": "Транзакцій ще немає",
     "no_nfts": "Поки що немає NFT",
     "no_tokens": "Поки що немає токенів",
     "no_news_now": "Поки що немає нових новин",
@@ -51,5 +50,6 @@
     "invalidSignerRequest": "Недійсний запит підписанта",
     "invalidSignerRequestDescription": "Запит не існує. Спробуйте створити інший.",
     "cantImportAccount": "Не вдається імпортувати обліковий запис",
-    "accountAlreadyExists": "Обліковий запис уже існує"
+    "accountAlreadyExists": "Обліковий запис уже існує",
+    "updateAppError": "Помилка під час оновлення додатка"
 }

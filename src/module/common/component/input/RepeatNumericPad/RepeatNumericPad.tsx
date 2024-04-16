@@ -3,7 +3,7 @@ import { Animated } from "@peersyst/react-native-components";
 import NumericPad from "../NumericPad/NumericPad";
 import { NumericPadProps } from "../NumericPad/NumericPad.types";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 
 export interface RepeatingPinProps extends Omit<NumericPadProps, "onSubmit" | "error"> {
     onSuccess: NumericPadProps["onSubmit"];

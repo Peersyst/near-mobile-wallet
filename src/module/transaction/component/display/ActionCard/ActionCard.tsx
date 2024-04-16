@@ -38,10 +38,10 @@ const ActionCard = ({ action }: ActionCardProps): JSX.Element => {
                         )}
                     </Row>
                     <Row justifyContent="space-between" alignItems="center">
-                        <Typography variant="body4Strong" color={(p) => p.gray[300]}>
+                        <Typography variant="body4Strong" color="gray.300">
                             {formatDate(Number(blockTimestamp))}
                         </Typography>
-                        {amount && <FiatBalance color={(p) => p.gray[300]} balance={amount} variant="body4Strong" />}
+                        {amount && <FiatBalance color="gray.300" balance={amount} variant="body4Strong" />}
                     </Row>
                 </Col>
             </MainListCard>

@@ -33,7 +33,6 @@
     "invalid_child_account": "Bạn không thể tạo {{nameID}} với tài khoản {{currentAccount}} của mình.",
     "invalid_send_same_account": "Bạn không thể gửi cho tài khoản của chính mình.",
     "invalid_account_or_not_active": "Tài khoản nhận không đúng hoặc không tồn tại",
-    "no_transactions": "Chưa có giao dịch nào",
     "no_nfts": "Chưa có NFT nào",
     "no_tokens": "Chưa có token",
     "no_news_now": "Không có tin tức mới cho đến nay",
@@ -51,5 +50,6 @@
     "invalidSignerRequest": "Yêu cầu ký không hợp lệ",
     "invalidSignerRequestDescription": "Yêu cầu không tồn tại. Hãy thử tạo một yêu cầu khác.",
     "cantImportAccount": "Không thể nhập tài khoản",
-    "accountAlreadyExists": "Tài khoản đã tồn tại"
+    "accountAlreadyExists": "Tài khoản đã tồn tại",
+    "updateAppError": "Lỗi khi cập nhật ứng dụng"
 }

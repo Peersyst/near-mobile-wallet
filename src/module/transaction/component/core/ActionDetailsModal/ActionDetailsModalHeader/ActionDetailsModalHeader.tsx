@@ -20,7 +20,7 @@ const ActionDetailsModalHeader = ({ action }: ActionDetailsModalHeaderProps): JS
             <Col justifyContent="flex-start" flex={1}>
                 <ActionLabel style={{ flex: 1 }} variant="body3Strong" action={action} numberOfLines={amount ? 1 : 2} />
                 {amount && <ActionAmount variant="body1Strong" actionKind={actionKind} amount={amount} units={tokenName} />}
-                {amount && <FiatBalance color={(p) => p.gray[300]} balance={amount} variant="body3Strong" />}
+                {amount && <FiatBalance color="gray.300" balance={amount} variant="body3Strong" />}
             </Col>
         </ActionDetailsModalHeaderRoot>
     );

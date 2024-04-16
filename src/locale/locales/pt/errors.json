@@ -33,7 +33,6 @@
     "invalid_child_account": "Você não pode criar {{nameID}} com sua conta {{currentAccount}}.",
     "invalid_send_same_account": "Você não pode enviar para sua própria conta.",
     "invalid_account_or_not_active": "A conta do destinatário é inválida ou não existe",
-    "no_transactions": "Ainda não há transacções",
     "no_nfts": "There's no NFTs yet",
     "no_tokens": "Ainda não há NFTs",
     "no_news_now": "Nenhuma novidade até agora",
@@ -51,5 +50,6 @@
     "invalidSignerRequest": "Solicitação de assinante inválida",
     "invalidSignerRequestDescription": "A solicitação não existe. Tente criar uma diferente.",
     "cantImportAccount": "Não é possível importar a conta",
-    "accountAlreadyExists": "A conta já existe"
+    "accountAlreadyExists": "A conta já existe",
+    "updateAppError": "Erro ao atualizar o aplicativo"
 }

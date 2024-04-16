@@ -1,5 +1,5 @@
 import { SelectorGroup } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import useWalletSelector from "module/wallet/hook/useWalletSelector";
 import AccountSelector from "./AccountSelector";
 import { WalletSelectorProps } from "./WalletSelectorGroup.types";

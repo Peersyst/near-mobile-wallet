@@ -3,7 +3,7 @@ import ActionDetailsScaffold from "../../layout/ActionDetailsScaffold/ActionDeta
 import { ConnectIcon } from "icons";
 import ActionDetailField from "../ActionDetailField/ActionDetailField";
 import Container from "module/common/component/display/Container/Container";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import SignerWalletSelector from "module/signer/containers/SignerWalletSelector/SignerWalletSelector";
 
 const SignMessageDetails = ({ receiver, message, metadata }: SignMessageDetailsProps): JSX.Element => {

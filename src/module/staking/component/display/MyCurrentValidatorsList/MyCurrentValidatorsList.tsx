@@ -2,7 +2,7 @@ import ValidatorInformation from "module/staking/component/display/ValidatorInfo
 import useGetStakingValidators from "module/staking/hook/useGetStakingValidators";
 import MainList from "module/main/component/display/MainList/MainList";
 import EmptyValidatorList from "../../feedback/EmptyValidatorList/EmptyValidatorList";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import MainListSkeleton from "module/main/component/display/MainList/MainListSkeleton";
 import ValidatorInformationSkeleton from "../ValidatorInformation/ValidatorInformationSkeleton";
 

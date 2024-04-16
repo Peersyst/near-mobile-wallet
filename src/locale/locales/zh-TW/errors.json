@@ -33,7 +33,6 @@
     "invalid_child_account": "您無法使用您當前的賬戶 {{currentAccount}} 創建 {{nameID}}。",
     "invalid_send_same_account": "您不能向自己的賬戶發送資金。",
     "invalid_account_or_not_active": "賬戶無效或不存在",
-    "no_transactions": "沒有交易",
     "no_nfts": "沒有 NFT",
     "no_tokens": "沒有代幣",
     "no_news_now": "暫時沒有新聞",
@@ -51,5 +50,6 @@
     "invalidSignerRequest": "无效签名请求",
     "invalidSignerRequestDescription": "该请求不存在。请尝试创建另一个。",
     "cantImportAccount": "無法匯入帳戶",
-    "accountAlreadyExists": "該帳戶已存在"
+    "accountAlreadyExists": "該帳戶已存在",
+    "updateAppError": "更新應用程式時出錯"
 }

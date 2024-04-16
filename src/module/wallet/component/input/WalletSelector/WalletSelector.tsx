@@ -1,7 +1,7 @@
 import Select, { SelectProps } from "module/common/component/input/Select/Select";
 import WalletItem from "./WalletItem";
 import WalletSelectorItem from "./WalletSelectorItem";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import useWalletSelector from "module/wallet/hook/useWalletSelector";
 
 export type WalletSelectorProps = Omit<

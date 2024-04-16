@@ -6,6 +6,7 @@ export interface LoadingModalProps extends Omit<ExposedBackdropProps, "closable"
     success?: boolean;
     successMessage?: string;
     processingMessage?: string;
+    processingDescriptionMessage?: string;
     error?: boolean;
     /**
      * Children only displayed when loading finishes

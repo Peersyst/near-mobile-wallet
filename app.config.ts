@@ -5,7 +5,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     name: "NEAR Mobile",
     slug: "NEARMobileWallet",
     owner: "peersyst",
-    version: "1.5.2",
+    version: "1.6.0",
     orientation: "portrait",
     icon: "./assets/images/near-icon.png",
     scheme: "near-mobile-wallet",
@@ -55,6 +55,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         favicon: "./assets/images/favicon.png",
     },
     plugins: [
+        ["expo-localization"],
         [
             "expo-build-properties",
             {

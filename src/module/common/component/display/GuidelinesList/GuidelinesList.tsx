@@ -1,8 +1,8 @@
 import { Col, Row, Typography } from "@peersyst/react-native-components";
-import { useTranslate } from "module/common/hook/useTranslate";
 import DotList from "../DotList/DotList";
 import StatusIcon from "../StatusIcon/StatusIcons";
-import { GuidelinesListProps } from "./ExplanationList.types";
+import { GuidelinesListProps } from "./GuidelinesList.types";
+import useTranslate from "module/common/hook/useTranslate";
 
 const GuidelinesList = ({ children, allowed }: GuidelinesListProps) => {
     const translate = useTranslate();

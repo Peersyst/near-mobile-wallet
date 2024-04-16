@@ -1,4 +1,4 @@
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { PermissionFieldProps } from "../../PermissionField/PermissionField.types";
 
 export default function useFunctionCallPermissions() {

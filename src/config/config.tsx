@@ -1,14 +1,13 @@
 import { createConfig } from "@peersyst/react-native-components";
 import lightTheme from "./theme/lightTheme";
-import globalStyles from "config/globalStyles";
 import { ChevronDownIcon } from "icons";
-import darkTheme from "config/theme/darkTheme";
+import darkTheme from "./theme/darkTheme";
 import { AddressValidator } from "./validators/AddressValidator";
 import { PrivateKeyValidator } from "./validators/PrivateKeyValidator";
-import { RadioCheckedIcon } from "module/common/icons/RadioCheckedIcon";
+import { RadioCheckedIcon } from "../module/common/icons/RadioCheckedIcon";
 import { RadioUncheckedIcon } from "module/common/icons/RadioUncheckedIcon";
 import { EnvConfig } from "./config.declarations";
-import Button from "module/common/component/input/Button/Button";
+import Button from "../module/common/component/input/Button/Button";
 import { envConfigs } from "./configs";
 
 const environment = process.env;
@@ -100,7 +99,6 @@ const config = createConfig({
         address: AddressValidator,
         privateKey: PrivateKeyValidator,
     },
-    globalStyles,
 });
 
 export default config;

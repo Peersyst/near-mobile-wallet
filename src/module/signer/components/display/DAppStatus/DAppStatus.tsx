@@ -4,10 +4,10 @@ import { DAppStatusProps } from "./DappStatus.types";
 import useDAppStatus from "./hooks/useDAppStatus";
 
 const DAppStatus = ({ connected }: DAppStatusProps): JSX.Element => {
-    const { label, labelStyles, rootStyles } = useDAppStatus(connected);
+    const { label, labelStyles } = useDAppStatus(connected);
 
     return (
-        <DAppStatusRoot {...rootStyles}>
+        <DAppStatusRoot connected={connected}>
             <Typography {...labelStyles} variant="body4Strong">
                 {label}
             </Typography>

@@ -1,6 +1,6 @@
 import { config } from "config";
 import Typography from "module/common/component/display/Typography/Typography";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import { BaseAddWalletModalScreenProps } from "module/wallet/component/core/AddWalletModal/AddWalletModal.types";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import SelectAccountScreen from "../SelectAccountScreen";

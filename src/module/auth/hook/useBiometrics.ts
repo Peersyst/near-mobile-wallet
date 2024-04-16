@@ -28,7 +28,7 @@ export default function ({
 }: UseBiometricsParams): UseBiometricsResult {
     const [isLoading, setIsLoading] = useState(true);
     const [isEnrolled, setIsEnrolled] = useState(false);
-    const [biometric, setBiometric] = useState<AuthenticationType>(0);
+    const [biometric, setBiometric] = useState<AuthenticationType | 0>(0);
 
     useEffect(() => {
         const isEnrolledPromise = isEnrolledAsync()

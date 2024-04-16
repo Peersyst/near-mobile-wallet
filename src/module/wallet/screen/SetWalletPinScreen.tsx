@@ -1,5 +1,5 @@
 import useCreateWallet from "../hook/useCreateWallet";
-import { useTranslate } from "module/common/hook/useTranslate";
+import useTranslate from "module/common/hook/useTranslate";
 import RepeatNumericPad from "module/common/component/input/RepeatNumericPad/RepeatNumericPad";
 import { useEffect } from "react";
 

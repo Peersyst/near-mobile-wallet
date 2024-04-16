@@ -1,5 +1,6 @@
-import { IconButton, Toolbar } from "@peersyst/react-native-components";
+import { IconButton, Row, Toolbar } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
+import SelectNetworkChip from "module/settings/components/core/SelectNetworkChip/SelectNetworkChip";
 
 export const HeaderRoot = styled(Toolbar)(({ theme, safeAreaInsets }) => {
     return {
@@ -13,6 +14,15 @@ export const HeaderRoot = styled(Toolbar)(({ theme, safeAreaInsets }) => {
     };
 });
 
+export const HeaderContentButtons = styled(Row)(() => {
+    return {
+        position: "absolute",
+        right: 0,
+        top: 0,
+        bottom: 0,
+    };
+});
+
 export const HeaderSettingsButton = styled(IconButton)(({ theme }) => {
     const light = theme.palette.mode === "light";
     return {
@@ -20,3 +30,8 @@ export const HeaderSettingsButton = styled(IconButton)(({ theme }) => {
         fontSize: 24,
     };
 });
+
+export const HeaderNetworkChip = styled(SelectNetworkChip)(() => ({
+    position: "absolute",
+    left: 8,
+}));
