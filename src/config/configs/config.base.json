@@ -1,8 +1,8 @@
 {
     "projectName": "near-mobile-wallet",
     "minimumTransactionAmount": 61,
-    "mainnetExplorerLink": "https://explorer.mainnet.near.org",
-    "testnetExplorerLink": "https://explorer.testnet.near.org",
+    "mainnetExplorerLink": "https://nearblocks.io",
+    "testnetExplorerLink": "https://testnet.nearblocks.io",
     "nearblocksTesnetApiUrl": "https://api-testnet.nearblocks.io/v1",
     "nearblocksMainnetApiUrl": "https://api3.nearblocks.io/v1",
     "faucetUrl": "https://faucet.nervos.org/",
