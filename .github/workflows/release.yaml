@@ -1,38 +1,26 @@
-name: release
-
 on:
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: The tag of the release
-        required: true
-
+  push:
+    branches:
+      - main
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: docker/setup-qemu-action@v2
-      - uses: docker/setup-buildx-action@v2
-      # Docker login
-      - uses: docker/login-action@v2
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v3
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PUSH_TOKEN }}
-      # Build and push docker image
-      - name: Build docker image
-        uses: docker/build-push-action@v4
+          node-version: 18.x
+          cache: yarn
+      - name: 🏗 Setup EAS
+        uses: expo/expo-github-action@v8
         with:
-          file: Dockerfile
-          target: build
-          push: false
-          build-args: |
-            EXPO_TOKEN=${{ secrets.EXPO_TOKEN }}
-            PROFILE=productionRelease
-      # Build and push docker image
-      - name: Generate Github release
-        uses: softprops/action-gh-release@v1
-        with:
-          name: ${{ github.event.inputs.tag }}
-          tag_name: ${{ github.event.inputs.tag }}
-          target_commitish: main
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: 📦 Install dependencies
+        run: yarn install
+      - name: 🏗 Set build number
+        run: sed -i -e "s/__BUILD_NUMBER__/${{ github.run_number }}/" eas.json
+      - name: 🚀 Build app
+        run: eas build --non-interactive --no-wait --platform=android --profile=productionRelease
