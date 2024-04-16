@@ -63,7 +63,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
                     compileSdkVersion: 33,
                     targetSdkVersion: 33,
                 },
-                username: "near-mobile-wallet",
+                username: "nearMmobileWallet",
             },
         ],
     ],
