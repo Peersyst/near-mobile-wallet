@@ -1,7 +1,10 @@
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: The tag of the release
+        required: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,3 +27,9 @@ jobs:
         run: sed -i -e "s/__BUILD_NUMBER__/${{ github.run_number }}/" eas.json
       - name: 🚀 Build app
         run: eas build --non-interactive --no-wait --platform=android --profile=productionRelease
+      - name: Generate Github release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ github.event.inputs.tag }}
+          tag_name: ${{ github.event.inputs.tag }}
+          target_commitish: main
