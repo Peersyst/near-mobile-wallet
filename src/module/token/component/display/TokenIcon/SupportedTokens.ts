@@ -142,6 +142,6 @@ export const SUPPORTED_TOKENS_IMAGES = {
     NEARVIDIA: nearvidia,
     OTTO: otto,
     TOUCHED: touched,
-    USMeme: usm,
+    USM: usm,
     UWON: uwon,
 };
