@@ -144,5 +144,4 @@ export const SUPPORTED_TOKENS_IMAGES = {
     TOUCHED: touched,
     USMeme: usm,
     UWON: uwon,
-
 };
