@@ -20,6 +20,7 @@ import {
     WITHDRAW_METHOD,
     WITHDRAW_ALL_METHOD,
     convertYoctoToNear,
+    addNearAmounts,
 } from "../../utils";
 import { FetchService } from "../common/FetchService";
 import { NearApiServiceInterface, NearApiServicePaginatedParams, NearApiServiceParams } from "../NearApiService.types";
@@ -30,6 +31,7 @@ import {
     ValidatorAmount,
     ValidatorAmountMap,
     NearBlocksTransactionDto,
+    NearBlocksActionDto,
 } from "./NearBlocksService.types";
 import { JsonRpcProvider } from "near-api-js/lib/providers";
 
@@ -83,9 +85,7 @@ export class NearBlocksService extends FetchService implements NearApiServiceInt
                                 indexInTransaction: i,
                                 // codeSha256: "", // For DEPLOY_CONTRACT kind
                                 gas: tx.outcomes_agg.transaction_fee, // For FUNCTION_CALL kind
-                                ...(tx.actions_agg.deposit && {
-                                    deposit: this.parseTransactionDeposit(actionKind, tx?.actions_agg.deposit), // For FUNCTION_CALL, TRANSFER kind
-                                }),
+                                deposit: this.getDepositFromActions(tx?.actions), // For FUNCTION_CALL, TRANSFER kind
                                 // argsBase64: "", // For FUNCTION_CALL kind
                                 // argsJson: "", // For FUNCTION_CALL kind
                                 methodName: action.method || undefined,
@@ -100,6 +100,16 @@ export class NearBlocksService extends FetchService implements NearApiServiceInt
             } catch (e) {}
         }
         return actions;
+    }
+
+    private getDepositFromActions(actions: NearBlocksTransactionDto["actions"]): string | undefined {
+        if (!actions) return convertYoctoToNear(BigInt(0).toString());
+
+        const deposit = actions.reduce((acc: string, current: NearBlocksActionDto) => {
+            return current.deposit ? addNearAmounts(BigInt(acc).toString(), BigInt(current.deposit).toString()) : acc;
+        }, BigInt(0).toString());
+
+        return convertYoctoToNear(deposit.toString());
     }
 
     private async getLogsFromTx(txHash: string, address: string): Promise<string[]> {

@@ -46,6 +46,7 @@ export interface NearBlocksTransactionDto {
 export interface NearBlocksActionDto {
     action: TransactionActionKind;
     method: string | null;
+    deposit: number;
 }
 
 export interface NearBlocksTokenResponseDto {
