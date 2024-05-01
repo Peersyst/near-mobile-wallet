@@ -85,7 +85,9 @@ export class NearBlocksService extends FetchService implements NearApiServiceInt
                                 indexInTransaction: i,
                                 // codeSha256: "", // For DEPLOY_CONTRACT kind
                                 gas: tx.outcomes_agg.transaction_fee, // For FUNCTION_CALL kind
-                                deposit: this.getDepositFromActions(tx?.actions), // For FUNCTION_CALL, TRANSFER kind
+                                ...(tx?.actions && {
+                                    deposit: this.getDepositFromActions(tx?.actions),
+                                }),
                                 // argsBase64: "", // For FUNCTION_CALL kind
                                 // argsJson: "", // For FUNCTION_CALL kind
                                 methodName: action.method || undefined,
@@ -103,7 +105,7 @@ export class NearBlocksService extends FetchService implements NearApiServiceInt
     }
 
     private getDepositFromActions(actions: NearBlocksTransactionDto["actions"]): string | undefined {
-        if (!actions) return convertYoctoToNear(BigInt(0).toString());
+        if (!actions) return "0";
 
         const deposit = actions.reduce((acc: string, current: NearBlocksActionDto) => {
             return current.deposit ? addNearAmounts(BigInt(acc).toString(), BigInt(current.deposit).toString()) : acc;
