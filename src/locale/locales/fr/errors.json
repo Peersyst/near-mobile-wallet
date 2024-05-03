@@ -50,5 +50,6 @@
     "invalidSignerRequest": "Demande de signataire invalide",
     "invalidSignerRequestDescription": "La demande n'existe pas. Essayez d'en créer une différente.",
     "cantImportAccount": "Impossible d'importer le compte",
-    "accountAlreadyExists": "Le compte existe déjà"
+    "accountAlreadyExists": "Le compte existe déjà",
+    "updateAppError": "Erreur lors de la mise à jour de l'application"
 }

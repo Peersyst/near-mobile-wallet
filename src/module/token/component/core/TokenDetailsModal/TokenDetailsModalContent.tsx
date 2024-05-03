@@ -11,9 +11,10 @@ import { useMemo } from "react";
 
 export interface TokenDetailsModalContentProps {
     token: Token;
+    onSend?: () => void;
 }
 
-export default function TokenDetailsModalContent({ token }: TokenDetailsModalContentProps): JSX.Element {
+export default function TokenDetailsModalContent({ token, onSend }: TokenDetailsModalContentProps): JSX.Element {
     const haveNearInAccount = useHaveNearInAccount();
     const translate = useTranslate("tokens");
     const haveTokenDescription = useMemo(() => Object.keys(tokens).includes(token.metadata?.symbol), [token.metadata?.symbol, tokens]);
@@ -25,7 +26,7 @@ export default function TokenDetailsModalContent({ token }: TokenDetailsModalCon
                     {translate(token.metadata?.symbol as TokensResourceType)}
                 </Typography>
             )}
-            <TokenDetailsCard token={token} />
+            <TokenDetailsCard token={token} onSend={onSend} />
             {!haveNearInAccount && <YouDontHaveNearCard />}
         </Col>
     );

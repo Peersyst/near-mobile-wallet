@@ -28,7 +28,7 @@ const FAQs = (): JSX.Element => {
                                     answer={
                                         <Trans
                                             i18nKey={`faqs:${key}.questions.${questionIndex}.answer` as any}
-                                            components={{ a: <TransExternalLink variant="body4Strong" /> }}
+                                            components={{ a: <TransExternalLink variant="body3Strong" /> }}
                                         />
                                     }
                                 />

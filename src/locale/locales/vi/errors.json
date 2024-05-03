@@ -50,5 +50,6 @@
     "invalidSignerRequest": "Yêu cầu ký không hợp lệ",
     "invalidSignerRequestDescription": "Yêu cầu không tồn tại. Hãy thử tạo một yêu cầu khác.",
     "cantImportAccount": "Không thể nhập tài khoản",
-    "accountAlreadyExists": "Tài khoản đã tồn tại"
+    "accountAlreadyExists": "Tài khoản đã tồn tại",
+    "updateAppError": "Lỗi khi cập nhật ứng dụng"
 }

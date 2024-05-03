@@ -14,7 +14,7 @@ export interface SendModalProps extends ExposedBackdropProps {
     defaultAsset?: Asset;
 }
 
-const SendModal = createBackdrop(({ onExited, defaultAsset, ...rest }: SendModalProps) => {
+const SendModal = createBackdrop(({ onExited, defaultAsset, onClose, ...rest }: SendModalProps) => {
     const [activeIndex, setActiveIndex] = useState(SendScreens.AMOUNT_AND_MESSAGE);
     const setSendState = useSetRecoilState(sendState);
     const resetSendState = useResetRecoilState(sendState);
@@ -22,6 +22,7 @@ const SendModal = createBackdrop(({ onExited, defaultAsset, ...rest }: SendModal
 
     const handleExited = () => {
         onExited?.();
+        onClose?.();
         resetSendState();
     };
 
@@ -44,6 +45,7 @@ const SendModal = createBackdrop(({ onExited, defaultAsset, ...rest }: SendModal
                 },
             }}
             onExited={handleExited}
+            onClose={handleExited}
             {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
@@ -54,7 +56,7 @@ const SendModal = createBackdrop(({ onExited, defaultAsset, ...rest }: SendModal
                     <SendToAddressScreen />
                 </TabPanel>
                 <TabPanel index={SendScreens.CONFIRMATION}>
-                    <SendConfirmationScreen />
+                    <SendConfirmationScreen onClose={() => onClose?.()} />
                 </TabPanel>
             </Tabs>
         </CardNavigatorModal>

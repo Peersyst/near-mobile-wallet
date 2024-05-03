@@ -6,7 +6,7 @@ const FAQ = ({ question, answer }: FAQProps): JSX.Element => {
         <Expandable>
             <Expandable.Display>{question}</Expandable.Display>
             <Expandable.Content>
-                <Typography variant="body4Strong" color="gray.300">
+                <Typography variant="body3Strong" color="gray.300">
                     {answer}
                 </Typography>
             </Expandable.Content>
