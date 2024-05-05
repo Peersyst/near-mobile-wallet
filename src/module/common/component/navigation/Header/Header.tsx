@@ -18,7 +18,7 @@ const Header = (): JSX.Element => {
             <Row alignItems="center" justifyContent="center" flex={1}>
                 <HeaderNetworkChip />
                 <LinearLogo startColor={startColor} endColor={endColor} />
-                <HeaderContentButtons gap={4}>
+                <HeaderContentButtons gap={10}>
                     <HeaderSettingsButton onPress={() => navigation.navigate(MainScreens.FAQS)}>
                         <HelpCircleIcon />
                     </HeaderSettingsButton>

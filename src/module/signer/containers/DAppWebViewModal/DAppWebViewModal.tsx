@@ -1,13 +1,22 @@
 import { DAppWebViewProps } from "./DAppWebViewModal.types";
-import { useControlled } from "@peersyst/react-hooks";
 import { SignerModalType } from "../../hooks/useSignerModal";
 import useSignerModal from "../../hooks/useSignerModal";
 import { ShouldStartLoadRequest } from "react-native-webview/lib/WebViewTypes";
 import { DAppWebViewModalRoot, DAppWebView } from "./DAppWebViewModal.styles";
+import { createModal } from "@peersyst/react-native-components";
+import useSelectedWallet from "module/wallet/hook/useSelectedWallet";
+import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 
-export function DAppWebViewModal({ url, name, open: openProp = false, onClose }: DAppWebViewProps): JSX.Element {
-    const [open, setOpen] = useControlled(false, openProp, openProp ? onClose : undefined);
+export const DAppWebViewModal = createModal(function DAppWebViewModal({ url, name, ...restProps }: DAppWebViewProps): JSX.Element {
     const { showSignerModal } = useSignerModal();
+    const { account } = useSelectedWallet();
+    const network = useSelectedNetwork();
+
+    const injectedJavascript = `window.isNearMobile = true;
+    const nearMobileSession = JSON.parse(localStorage.getItem("near-mobile-signer:session"));
+    if (!!nearMobileSession && !!nearMobileSession.${network} && nearMobileSession.${network}.activeAccount !== "${account}") {
+        localStorage.removeItem("near-mobile-signer:session");
+    }`;
 
     /**
      * Handle a request load event from the WebView.
@@ -26,13 +35,13 @@ export function DAppWebViewModal({ url, name, open: openProp = false, onClose }:
     }
 
     return (
-        <DAppWebViewModalRoot open={open} onClose={() => setOpen(false)} navbar={{ back: true, title: name }}>
+        <DAppWebViewModalRoot navbar={{ back: true, title: name }} {...restProps}>
             <DAppWebView
                 source={{ uri: url }}
                 originWhitelist={["*"]}
                 onShouldStartLoadWithRequest={handleWebViewRequestLoad}
-                injectedJavaScript="window.isNearMobile = true;"
+                injectedJavaScriptBeforeContentLoaded={injectedJavascript}
             />
         </DAppWebViewModalRoot>
     );
-}
+});
