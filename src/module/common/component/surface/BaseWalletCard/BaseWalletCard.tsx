@@ -18,7 +18,7 @@ const BaseWalletCard = ({ wallet: { account, imported }, children: { content, fo
             {imported && <ImportedWalletChip label={translate("imported").toUpperCase()} variant="glass" size="sm" />}
             <Col gap={gap} style={{ width: "100%" }}>
                 <Col style={{ width: "100%" }} alignItems="center" gap={10} justifyContent="center">
-                    <Account action="copy" address={account} variant="body2Strong" />
+                    <Account action="copy" address={account} variant="body2Strong" color="white" />
                     {content}
                 </Col>
                 <Row justifyContent="center">{footer}</Row>
