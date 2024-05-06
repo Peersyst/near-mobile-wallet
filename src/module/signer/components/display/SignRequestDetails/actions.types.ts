@@ -60,7 +60,7 @@ export interface StakeAction {
  * AddKeyPermission
  */
 export type FunctionCallPermission = {
-    receiverId: string;
+    receiverId?: string;
     allowance?: string;
     methodNames?: Array<string>;
 };

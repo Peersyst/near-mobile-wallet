@@ -338,5 +338,6 @@
     "updateRequiredDescription": "Hay disponible una nueva versión de la aplicación y es necesario actualizarla para seguir utilizándola.",
     "updateAppNow": "Actualizar aplicación ahora",
     "updatingApp": "Actualizando aplicación",
-    "pleaseWaitAMoment": "Por favor, espere un momento"
+    "pleaseWaitAMoment": "Por favor, espere un momento",
+    "explore": "Explorar"
 }

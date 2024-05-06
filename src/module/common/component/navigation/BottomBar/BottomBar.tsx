@@ -1,5 +1,5 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { GridIcon, NearIcon, PinIcon } from "icons";
+import { CompassIcon, NearIcon, PinIcon } from "icons";
 import { MainStackParamsList } from "stack-navigator";
 import { BottomBarRoot } from "./BottomBar.styles";
 import BottomBarItem from "./BottomBarItem/BottomBarItem";
@@ -40,8 +40,8 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
                 <BottomBarItem
                     onPress={() => handleNavigation(MainScreens.DAPPS)}
                     isActive={activeTab === MainScreens.DAPPS}
-                    label={translate("dapps")}
-                    Icon={<GridIcon />}
+                    label={translate("explore")}
+                    Icon={<CompassIcon />}
                 />
             )}
             <BottomBarItem
