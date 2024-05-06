@@ -41,6 +41,7 @@ export const DAppWebViewModal = createModal(function DAppWebViewModal({ url, nam
                 originWhitelist={["*"]}
                 onShouldStartLoadWithRequest={handleWebViewRequestLoad}
                 injectedJavaScriptBeforeContentLoaded={injectedJavascript}
+                onStartShouldSetResponder={() => true}
             />
         </DAppWebViewModalRoot>
     );

@@ -14,6 +14,14 @@
         "backendUrl": "",
         "recommendedDApps": [
             {
+                "name": "Near Blocks",
+                "description": "Near Blocks is a Block Explorer and Analytics Platform for Near blockchain (N), a new blockchain and smart transaction platform.",
+                "url": "https://nearblocks.io/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/a746b59d-b229-43f4-b49d-0ac8c72188f7.png",
+                "tag": "explorer",
+                "contractId": "near.blocks.io"
+            },
+            {
                 "name": "NEAR",
                 "description": "The OS for an Open Web.",
                 "url": "https://near.org/",
