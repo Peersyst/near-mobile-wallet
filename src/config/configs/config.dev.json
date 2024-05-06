@@ -18,7 +18,7 @@
                 "name": "Near Blocks",
                 "description": "Near Blocks is a Block Explorer and Analytics Platform for Near blockchain (N), a new blockchain and smart transaction platform.",
                 "url": "https://nearblocks.io/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/a746b59d-b229-43f4-b49d-0ac8c72188f7.png",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/cad9b706-db9b-4849-85d4-3cfc30749472.png",
                 "tag": "explorer",
                 "contractId": "near.blocks.io"
             },
@@ -34,7 +34,7 @@
                 "name": "Ref Finance",
                 "description": "Ref Finance is a community-led, multi-purpose Decentralized Finance (DeFi) platform built on NEAR Protocol.",
                 "url": "https://app.ref.finance/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/525f6f41-b6a1-46bd-94ef-23f64f09b4a2.png",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/6fad110d-14a0-4453-b460-20348a26eeed.png",
                 "tag": "dex",
                 "contractId": "asset-manager.orderly-network.near"
             },
