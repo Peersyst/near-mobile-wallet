@@ -338,5 +338,6 @@
     "updateRequiredDescription": "应用程序的新版本已经可用，需要更新才能继续使用。",
     "updateAppNow": "立即更新应用",
     "updatingApp": "正在更新应用",
-    "pleaseWaitAMoment": "请稍等片刻"
+    "pleaseWaitAMoment": "请稍等片刻",
+    "explore": "探索"
 }

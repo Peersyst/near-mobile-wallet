@@ -17,6 +17,7 @@ export * from "./CircleHelpIcon";
 export * from "./CircleWarningIcon";
 export * from "./ClipboardListIcon";
 export * from "./CodeIcon";
+export * from "./CompassIcon";
 export * from "./ConnectIcon";
 export * from "./CopyIcon";
 export * from "./CrossIcon";

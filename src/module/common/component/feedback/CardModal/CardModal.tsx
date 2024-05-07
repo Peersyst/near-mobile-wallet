@@ -1,20 +1,18 @@
-import { Backdrop, ExposedBackdropProps } from "@peersyst/react-native-components";
-import { ReactNode, useState } from "react";
-import { Keyboard, LayoutChangeEvent, ViewStyle, useWindowDimensions } from "react-native";
+import { Backdrop } from "@peersyst/react-native-components";
+import { useState } from "react";
+import { Keyboard, LayoutChangeEvent, useWindowDimensions } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { CardModalBodyWrapper, CardModalContent, CardModalWrapper } from "./CardModal.styles";
+import { CardModalProps } from "./CardModal.types";
 
-export interface CardModalChildren {
-    header: ReactNode;
-    body: ReactNode;
-}
-
-export type CardModalProps = ExposedBackdropProps & {
-    style?: ViewStyle;
-    children: ((open: boolean, setOpen: (value: boolean) => unknown) => CardModalChildren) | CardModalChildren;
-};
-
-const CardModal = ({ children, style, open, closable = true, onClose, ...backdropProps }: CardModalProps): JSX.Element => {
+const CardModal = ({
+    children,
+    style: { body: bodyStyle, ...contentStyle } = {},
+    open,
+    closable = true,
+    onClose,
+    ...backdropProps
+}: CardModalProps): JSX.Element => {
     const [keyboardPaddingEnabled, setKeyboardPaddingEnabled] = useState(false);
     const { height } = useWindowDimensions();
 
@@ -32,7 +30,7 @@ const CardModal = ({ children, style, open, closable = true, onClose, ...backdro
             {(open, setOpen) => {
                 const { header, body } = typeof children === "function" ? children(open, setOpen) : children;
                 return (
-                    <CardModalContent style={style} enabled={keyboardPaddingEnabled} behavior="padding">
+                    <CardModalContent style={contentStyle} enabled={keyboardPaddingEnabled} behavior="padding">
                         <CardModalWrapper onLayout={handleLayout}>
                             {header}
                             <KeyboardAwareScrollView
@@ -42,7 +40,7 @@ const CardModal = ({ children, style, open, closable = true, onClose, ...backdro
                                 alwaysBounceVertical={false}
                                 enableAutomaticScroll={!keyboardPaddingEnabled}
                             >
-                                <CardModalBodyWrapper flex={1} onStartShouldSetResponder={() => true}>
+                                <CardModalBodyWrapper style={bodyStyle} flex={1} onStartShouldSetResponder={() => true}>
                                     {body}
                                 </CardModalBodyWrapper>
                             </KeyboardAwareScrollView>
