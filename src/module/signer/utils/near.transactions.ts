@@ -14,6 +14,8 @@ export const getAccessKey = (permission: AddKeyPermission) => {
 
     const { receiverId, methodNames = [] } = permission;
     const allowance = permission.allowance ? new BN(permission.allowance) : undefined;
+    //TODO: Fix when receiverId is undefined
+    //@ts-ignore
     return transactions.functionCallAccessKey(receiverId, methodNames, allowance);
 };
 
