@@ -14,6 +14,7 @@ import {
 
 export const serviceInstancesMap = new Map<NetworkType, NearSDKService[]>();
 
+// TODO(pablo): This should be moved to a config file
 const TESTNET_PARAMS: BaseNearSdkParams = {
     nodeUrl: config.testnetNodeUrl,
     archivalNodeUrl: config.testnetNodeUrl,
@@ -66,7 +67,6 @@ export default new (class ServiceInstances {
                 chain: network,
                 nodeUrl,
                 mnemonic,
-
                 likelyNameIds,
             });
         } else if (privateKey) {
@@ -74,7 +74,6 @@ export default new (class ServiceInstances {
                 chain: network,
                 nodeUrl,
                 secretKey: privateKey,
-
                 likelyNameIds,
             });
         } else {

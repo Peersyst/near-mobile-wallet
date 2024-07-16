@@ -68,10 +68,12 @@ import {
 import { ApiService, NearApiServiceInterface } from "../NearApiService";
 import { BalanceOperations } from "../utils";
 import { Payload } from "../utils/SignerPayload";
+import RPCControl from "./decorators/RPCControll";
 
 export class NearSDKService {
     private connection?: Near;
     private nearConfig: ConnectConfig;
+    private rpcUrls: string[];
     private nameId: string;
     private keyPair: KeyPairEd25519;
     private chain: Chains;
@@ -100,6 +102,8 @@ export class NearSDKService {
             keyStore,
             nodeUrl,
         };
+
+        this.rpcUrls = [nodeUrl]; // TODO(pablo): Should be an array
     }
 
     // --------------------------------------------------------------
@@ -186,6 +190,10 @@ export class NearSDKService {
         const connection = this.getConnection();
         const address = this.getAddress();
         return connection.account(address);
+    }
+
+    setNearConfig(nearConfig: ConnectConfig): void {
+        this.nearConfig = nearConfig;
     }
 
     async connect(): Promise<void> {
@@ -428,6 +436,19 @@ export class NearSDKService {
     }
 
     // --------------------------------------------------------------
+    // -- NETWORK FUNCTIONS ------------------------------------
+    // --------------------------------------------------------------
+    async checkRpcHealthStatus(): Promise<boolean> {
+        console.log("Checking health status");
+        //TODO(pablo): implement this
+        return Promise.resolve(true);
+    }
+
+    async switchRpcUrl(): Promise<void> {
+        //TODO(pablo): implement this
+    }
+
+    // --------------------------------------------------------------
     // -- UTILS FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
     public parseNearAmount(amount: string): string {
@@ -441,7 +462,9 @@ export class NearSDKService {
     // -- WALLET STATE FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
     //Returns the balance in near
+    @RPCControl()
     async getAccountBalance(): Promise<AccountBalance> {
+        console.log("Getting account balance");
         try {
             const account = await this.getAccount();
             const accountBalance: AccountBalance = await account.getAccountBalance();

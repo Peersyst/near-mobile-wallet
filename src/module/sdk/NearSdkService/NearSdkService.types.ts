@@ -5,7 +5,7 @@ import { AccountBalance as BaseAccountBalance } from "near-api-js/lib/account";
  */
 export interface BaseCreateNearSdkParams {
     chain: Chains;
-    nodeUrl: string;
+    nodeUrl: string; // TODO(pablo): Should be an array
     nearDecimals?: number;
 }
 
