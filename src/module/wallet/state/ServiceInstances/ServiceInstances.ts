@@ -4,7 +4,6 @@ import { NetworkType } from "module/settings/state/SettingsState";
 import {
     AddManualServiceInstanceParams,
     AddServiceParams,
-    BaseNearSdkParams,
     CreateInstanceReturn,
     CreateServiceInstancesParams,
     RecoverInstancesReturn,
@@ -14,18 +13,22 @@ import {
 
 export const serviceInstancesMap = new Map<NetworkType, NearSDKService[]>();
 
-// TODO(pablo): This should be moved to a config file
-const TESTNET_PARAMS: BaseNearSdkParams = {
-    nodeUrl: config.testnetNodeUrl,
+export interface CustomBaseNearSdkParams {
+    rpcList: string[];
+    archivalNodeUrl: string;
+}
+
+const TESTNET_PARAMS: CustomBaseNearSdkParams = {
+    rpcList: config.rpcList["testnet"],
     archivalNodeUrl: config.testnetNodeUrl,
 };
 
-const MAINNET_PARAMS: BaseNearSdkParams = {
-    nodeUrl: config.mainnetNodeUrl,
+const MAINNET_PARAMS: CustomBaseNearSdkParams = {
+    rpcList: config.rpcList["mainnet"],
     archivalNodeUrl: config.mainnetNodeUrl,
 };
 
-const BASE_NEAR_SDK_PARAMS: Record<NetworkType, BaseNearSdkParams> = {
+const BASE_NEAR_SDK_PARAMS: Record<NetworkType, CustomBaseNearSdkParams> = {
     [Chains.TESTNET]: TESTNET_PARAMS,
     [Chains.MAINNET]: MAINNET_PARAMS,
 };
@@ -61,18 +64,18 @@ export default new (class ServiceInstances {
         likelyNameIds,
     }: Omit<CreateServiceInstancesParams, "serviceIndex">): Promise<NearSDKService[]> {
         let services: NearSDKService[] = [];
-        const { nodeUrl } = BASE_NEAR_SDK_PARAMS[network];
+        const { rpcList } = BASE_NEAR_SDK_PARAMS[network];
         if (mnemonic) {
             services = await NearSDKService.importFromMnemonic({
                 chain: network,
-                nodeUrl,
+                rpcList: rpcList,
                 mnemonic,
                 likelyNameIds,
             });
         } else if (privateKey) {
             services = await NearSDKService.importFromSecretKey({
                 chain: network,
-                nodeUrl,
+                rpcList: rpcList,
                 secretKey: privateKey,
                 likelyNameIds,
             });
@@ -101,12 +104,11 @@ export default new (class ServiceInstances {
     }
 
     async addManualServiceInstance({ network, secretKey, accountId }: AddManualServiceInstanceParams): Promise<NearSDKService> {
-        const { nodeUrl } = BASE_NEAR_SDK_PARAMS[network];
+        const { rpcList } = BASE_NEAR_SDK_PARAMS[network];
         const service = await NearSDKService.createFromSecretKey({
             chain: network,
-            nodeUrl,
+            rpcList: rpcList,
             secretKey,
-
             nameId: accountId,
         });
         this.addService({ network, service });

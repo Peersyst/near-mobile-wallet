@@ -68,12 +68,12 @@ import {
 import { ApiService, NearApiServiceInterface } from "../NearApiService";
 import { BalanceOperations } from "../utils";
 import { Payload } from "../utils/SignerPayload";
-import RPCControl from "./decorators/RPCControll";
+import RPCControl from "./decorators/RPCControl";
 
 export class NearSDKService {
     private connection?: Near;
     private nearConfig: ConnectConfig;
-    private rpcUrls: string[];
+    private rpcList: string[];
     private nameId: string;
     private keyPair: KeyPairEd25519;
     private chain: Chains;
@@ -84,7 +84,7 @@ export class NearSDKService {
     private static addressRegex = /[\da-f]/i;
     public nearDecimals: number | undefined;
 
-    constructor({ chain, nodeUrl, secretKey, nameId, nearDecimals, mnemonic }: CreateNearSdkParams) {
+    constructor({ chain, secretKey, nameId, nearDecimals, mnemonic, rpcList }: CreateNearSdkParams) {
         this.chain = chain;
         this.masterAccount = chain === Chains.MAINNET ? "near" : this.chain;
         this.nameId = nameId;
@@ -100,10 +100,10 @@ export class NearSDKService {
         this.nearConfig = {
             networkId: chain,
             keyStore,
-            nodeUrl,
+            nodeUrl: rpcList[0],
         };
 
-        this.rpcUrls = [nodeUrl]; // TODO(pablo): Should be an array
+        this.rpcList = rpcList;
     }
 
     // --------------------------------------------------------------
@@ -361,7 +361,7 @@ export class NearSDKService {
 
         const service = new NearSDKService({
             chain: this.chain,
-            nodeUrl: this.nearConfig.nodeUrl,
+            rpcList: this.rpcList,
             secretKey,
             nameId,
             nearDecimals,
@@ -381,7 +381,7 @@ export class NearSDKService {
         await this.createNewAccount(nameId, keyPair.getPublicKey(), amount);
         const service = new NearSDKService({
             chain: this.chain,
-            nodeUrl: this.nearConfig.nodeUrl,
+            rpcList: this.rpcList,
             secretKey: keyPair.secretKey,
             nameId,
             nearDecimals,
@@ -415,7 +415,7 @@ export class NearSDKService {
             await this.createNewAccount(nameId, publicKey as any, amount);
             const service = new NearSDKService({
                 chain: this.chain,
-                nodeUrl: this.nearConfig.nodeUrl,
+                rpcList: this.rpcList,
                 secretKey,
                 nameId,
                 nearDecimals,
@@ -439,13 +439,27 @@ export class NearSDKService {
     // -- NETWORK FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
     async checkRpcHealthStatus(): Promise<boolean> {
-        console.log("Checking health status");
-        //TODO(pablo): implement this
-        return Promise.resolve(true);
+        const { connection } = this.getConnection();
+        const status = await connection.provider.status();
+        return status.sync_info ? true : false;
     }
 
     async switchRpcUrl(): Promise<void> {
-        //TODO(pablo): implement this
+        const currentNodeUrl = this.nearConfig.nodeUrl;
+        let currentIndex = this.rpcList.indexOf(currentNodeUrl);
+        if (currentIndex === -1) {
+            currentIndex = 0;
+        }
+
+        const nextIndex = (currentIndex + 1) % this.rpcList.length;
+        const nextNodeUrl = this.rpcList[nextIndex];
+
+        this.setNearConfig({
+            ...this.nearConfig,
+            nodeUrl: nextNodeUrl,
+        });
+
+        await this.connect();
     }
 
     // --------------------------------------------------------------
@@ -464,7 +478,6 @@ export class NearSDKService {
     //Returns the balance in near
     @RPCControl()
     async getAccountBalance(): Promise<AccountBalance> {
-        console.log("Getting account balance");
         try {
             const account = await this.getAccount();
             const accountBalance: AccountBalance = await account.getAccountBalance();

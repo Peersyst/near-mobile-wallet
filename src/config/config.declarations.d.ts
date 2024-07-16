@@ -77,6 +77,10 @@ declare module "@peersyst/react-native-components" {
         apiRequestTimeout: number;
         fastMainnetNearApiUrl: string;
         expoUpdatesEnabled: boolean;
+        rpcList: {
+            testnet: string[];
+            mainnet: string[];
+        };
     }
 
     export interface CreateConfig {
@@ -114,6 +118,10 @@ declare module "@peersyst/react-native-components" {
         apiRequestTimeout: number;
         fastMainnetNearApiUrl: string;
         expoUpdatesEnabled: boolean;
+        rpcList: {
+            testnet: string[];
+            mainnet: string[];
+        };
     }
 
     export interface ExtraValidators {

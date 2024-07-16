@@ -9,12 +9,7 @@ export default function RPCControl() {
 
         descriptor.value = async function (...args: any[]) {
             const _this = this as NearSDKService;
-
-            console.log("Checking RPC status");
-            //TODO(pablo): Check status
             const isAvailable = await _this.checkRpcHealthStatus();
-
-            //TODO(pablo): If is not connected change the rpc
             if (!isAvailable) {
                 await _this.switchRpcUrl();
             }

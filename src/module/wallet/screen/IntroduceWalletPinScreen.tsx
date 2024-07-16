@@ -23,7 +23,6 @@ const SetWalletPinScreen = (): JSX.Element => {
 
     const handlePinSubmit = async (pin: string) => {
         const storedPin = await WalletStorage.getPin();
-        console.log("storedPin", storedPin);
         if (storedPin === pin) {
             handleSuccess();
         } else {
