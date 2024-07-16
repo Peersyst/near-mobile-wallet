@@ -6,9 +6,14 @@
     "nearblocksTesnetApiUrl": "https://api-testnet.nearblocks.io/v1",
     "nearblocksMainnetApiUrl": "https://api3.nearblocks.io/v1",
     "faucetUrl": "https://faucet.nervos.org/",
-    "rpcList" : {
-        "mainnet": ["https://rpc.mainnet.near.org","https://near.lava.build","https://free.rpc.fastnear.com","https://1rpc.io/near"],
-        "testnet": ["https://rpc.testnet.near.org","https://rpc.testnet.pagoda.co","https://near-testnet.lava.build","https://rpc.testnet.pagoda.co"]
+    "rpcList": {
+        "mainnet": ["https://rpc.mainnet.near.org", "https://near.lava.build", "https://free.rpc.fastnear.com", "https://1rpc.io/near"],
+        "testnet": [
+            "https://rpc.testnet.near.org",
+            "https://rpc.testnet.pagoda.co",
+            "https://near-testnet.lava.build",
+            "https://rpc.testnet.pagoda.co"
+        ]
     },
     "mainnetNodeUrl": "https://rpc.mainnet.near.org",
     "testnetNodeUrl": "https://rpc.testnet.near.org",
