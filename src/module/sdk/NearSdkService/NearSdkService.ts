@@ -56,6 +56,8 @@ import {
     NFT_OWNER_TOKENS_METHOD,
     NFT_TOKEN_METADATA_METHOD,
     NFT_OWNER_TOKENS_SET_METHOD,
+    STAKING_WITHDRAW_GAS,
+    STAKING_WITHDRAW_ALL_GAS,
 } from "../utils/near.constants";
 import {
     addNearAmounts,
@@ -728,6 +730,7 @@ export class NearSDKService {
             contractId: validatorId,
             methodName: WITHDRAW_METHOD,
             args: { amount: amountInYocto },
+            gas: new BN(STAKING_WITHDRAW_GAS),
         });
         return tx.transaction_outcome.id;
     }
@@ -738,6 +741,7 @@ export class NearSDKService {
         const tx = await account.functionCall({
             contractId: validatorId,
             methodName: WITHDRAW_ALL_METHOD,
+            gas: new BN(STAKING_WITHDRAW_ALL_GAS),
             args: {},
         });
         return tx.transaction_outcome.id;
