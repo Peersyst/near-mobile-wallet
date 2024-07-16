@@ -73,7 +73,7 @@ export interface Validator {
 
 export interface StakingDeposit {
     validatorId: string;
-    amount: number;
+    amount: string;
     hasRewards: boolean;
 }
 
