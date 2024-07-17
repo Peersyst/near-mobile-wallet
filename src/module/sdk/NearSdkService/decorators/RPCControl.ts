@@ -1,8 +1,5 @@
 import { NearSDKService } from "../NearSdkService";
 
-/**
- * Decorator to check if there is a cash instance in the device
- */
 export default function RPCControl() {
     return function (_target: any, _propertyKey: string, descriptor: PropertyDescriptor) {
         const originalMethod = descriptor.value;

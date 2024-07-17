@@ -440,8 +440,12 @@ export class NearSDKService {
     // --------------------------------------------------------------
     async checkRpcHealthStatus(): Promise<boolean> {
         const { connection } = this.getConnection();
-        const status = await connection.provider.status();
-        return status.sync_info ? true : false;
+        try {
+            const status = await connection.provider.status();
+            return status.sync_info ? true : false;
+        } catch (error) {
+            return false;
+        }
     }
 
     async switchRpcUrl(): Promise<void> {
