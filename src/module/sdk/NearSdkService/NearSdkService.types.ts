@@ -3,10 +3,11 @@ import { AccountBalance as BaseAccountBalance } from "near-api-js/lib/account";
 /**
  * SDK Instance Types
  */
+
 export interface BaseCreateNearSdkParams {
     chain: Chains;
-    nodeUrl: string;
     nearDecimals?: number;
+    rpcList: string[];
 }
 
 export interface CreateNearSdkWithMnemonicParams extends BaseCreateNearSdkParams {
