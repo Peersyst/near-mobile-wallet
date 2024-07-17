@@ -6,6 +6,7 @@ import {
     FastNearAccountsFromPublicKeyResponseDto,
     FastNearFTFromAccountIdResponseDto,
     FastNearNFTFromAccountIdResponseDto,
+    FastNearStakingPoolsFromAccountIdResponseDto,
 } from "./FastNearService.types";
 import { timeoutPromise } from "@peersyst/react-utils";
 
@@ -50,10 +51,10 @@ export class FastNearService extends FetchService implements NearApiServiceInter
         return this.filterAccountIds(account_ids);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    getStakingDeposits(_params: NearApiServiceParams): Promise<StakingDeposit[]> {
-        //TODO: use https://api.fastnear.com/v0/account/root.near/staking to get the list of staking pools from an account
-        return Promise.resolve([]);
+    async getStakingDeposits({ address }: NearApiServiceParams): Promise<StakingDeposit[]> {
+        const { pools } = await this.fetch<FastNearStakingPoolsFromAccountIdResponseDto>(`/account/${address}/staking`);
+
+        return pools.map((pool) => ({ validatorId: pool.pool_id, amount: "0", hasRewards: false }));
     }
 
     async getLikelyTokens({ address }: NearApiServiceParams): Promise<string[]> {

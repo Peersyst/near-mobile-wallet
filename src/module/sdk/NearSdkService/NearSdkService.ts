@@ -521,7 +521,7 @@ export class NearSDKService {
         return +((resp.numerator * 100) / resp.denominator);
     }
 
-    private async getValidatorBalance(validatorId: string, validatorDeposit?: number): Promise<StakingBalance> {
+    private async getValidatorBalance(validatorId: string, validatorDeposit?: string): Promise<StakingBalance> {
         const account = await this.getAccount();
         const stakingBalance: StakingBalance = {
             staked: "0",
@@ -582,7 +582,7 @@ export class NearSDKService {
     private async getValidatorDataFromId(
         validatorId: string,
         queryBalance: boolean,
-        totalDeposits?: number,
+        totalDeposits?: string,
         activeValidator?: boolean,
     ): Promise<Validator> {
         let fee: number | null;
