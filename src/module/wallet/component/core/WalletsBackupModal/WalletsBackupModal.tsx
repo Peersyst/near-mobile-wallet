@@ -9,10 +9,12 @@ import backupWalletState from "module/wallet/state/BackUpWalletState";
 import WalletsBackupSelectAccount from "./WalletsBackupSelectAccount/WalletsBackupSelectAccount";
 import WalletPrivateKeyBackup from "./WalletPrivateKeyBackup/WalletPrivateKeyBackup";
 import { useControlled } from "@peersyst/react-hooks";
+import WalletQuizBackup from "./WalletQuizBackup/WalletQuizBackup";
 
 export enum WalletsBackupModalTabs {
     ADVISE,
     SELECT_WALLET,
+    QUIZ,
     SHOW_MNEMONIC,
     SHOW_PRIVATE_KEY,
 }
@@ -26,7 +28,11 @@ const WalletsBackupModal = createModal(
         const [index, setIndex] = useState(0);
         const { method } = useRecoilValue(backupWalletState);
 
-        const handleBackupMethodChange = () => {
+        const handleBackupAdvise = () => {
+            setIndex(WalletsBackupModalTabs.QUIZ);
+        };
+
+        const handleQuizBackup = () => {
             setIndex(method === "mnemonic" ? WalletsBackupModalTabs.SHOW_MNEMONIC : WalletsBackupModalTabs.SELECT_WALLET);
         };
 
@@ -35,14 +41,18 @@ const WalletsBackupModal = createModal(
                 navbar={{ title: translate("back_up_your_accounts"), back: index < WalletsBackupModalTabs.SHOW_MNEMONIC }}
                 open={open}
                 onClose={() => setOpen(false)}
+                index={index}
                 {...props}
             >
                 <Tabs index={index} onIndexChange={setIndex} style={{ height: "100%" }}>
                     <TabPanel index={WalletsBackupModalTabs.ADVISE}>
-                        <WalletsBackupAdvise onSubmit={handleBackupMethodChange} />
+                        <WalletsBackupAdvise onSubmit={handleBackupAdvise} />
                     </TabPanel>
                     <TabPanel index={WalletsBackupModalTabs.SELECT_WALLET}>
                         <WalletsBackupSelectAccount onSubmit={() => setIndex(WalletsBackupModalTabs.SHOW_PRIVATE_KEY)} />
+                    </TabPanel>
+                    <TabPanel index={WalletsBackupModalTabs.QUIZ}>
+                        <WalletQuizBackup onClose={() => setOpen(false)} onSubmit={handleQuizBackup} />
                     </TabPanel>
                     <TabPanel index={WalletsBackupModalTabs.SHOW_MNEMONIC}>
                         <WalletMnemonicBackup onClose={() => setOpen(false)} />

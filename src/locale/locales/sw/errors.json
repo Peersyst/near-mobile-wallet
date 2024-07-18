@@ -51,5 +51,8 @@
     "invalidSignerRequestDescription": "Ombi halipo. Jaribu lingine",
     "cantImportAccount": "Haiwezi kuingiza akaunti",
     "accountAlreadyExists": "Akaunti tayari ipo",
-    "updateAppError": "Hitilafu wakati wa kusasisha programu"
+    "updateAppError": "Hitilafu wakati wa kusasisha programu",
+    "errorSecurityQuiz": "Umejibu swali moja au zaidi vibaya. Tafadhali jaribu tena baadaye. Kumbuka, uthibitishaji huu ni kwa usalama wako mwenyewe.",
+    "tryAgain": "Jaribu tena",
+    "errorInWalletBackupQuizTitle": "Hitilafu kwenye jaribio la chelezo la pochi"
 }

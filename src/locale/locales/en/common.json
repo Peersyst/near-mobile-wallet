@@ -339,5 +339,7 @@
     "updateAppNow": "Update app now",
     "updatingApp": "Updating app",
     "pleaseWaitAMoment": "Please, wait a moment",
-    "explore": "Explore"
+    "explore": "Explore",
+    "welcomeSecurityQuiz": "Answer the following questions correctly to reveal your secret recovery phrase.",
+    "startQuiz": "Start quiz"
 }

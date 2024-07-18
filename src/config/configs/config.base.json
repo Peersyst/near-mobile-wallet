@@ -110,5 +110,97 @@
         "apiKey": "phc_oVIWlo74LoeuEcRZrFYNGpnG6tQridziKDUsNKCPKLc"
     },
     "telegramUrl": "https://t.me/NEARMobile",
-    "expoUpdatesEnabled": true
+    "expoUpdatesEnabled": true,
+    "securityQuizList": [
+        {
+            "answer": "whyShouldYouNeverShareYourMnemonic",
+            "response": [
+                "itCanBeUsedToStealYourTokens",
+                "itSNeededForTechnicalSupport",
+                "itHelpsInResettingYourPassword"
+            ],
+            "correctResponse": 0
+        },
+        {
+            "answer": "whatIsAMnemonic",
+            "response": [
+                "aSeriesOfWordsUsedToRecoverYourAccount",
+                "aTypeOfCryptocurrency",
+                "aPasswordForYourEmailAddress"
+            ],
+            "correctResponse": 0
+        },
+        {
+            "answer": "whereShouldYouStoreYourMnemonic",
+            "response": [
+                "inASecureOfflineLocation",
+                "inATextFileOnYourComputer",
+                "inYourEmailAddress"
+            ],
+            "correctResponse": 0
+        },
+        {
+            "answer": "whatIsAPrivateKey",
+            "response": [
+                "aKeyUsedToEncryptMessages",
+                "aSecretKeyThatGrantsAccessToYourFunds",
+                "aTypeOfDigitalCurrency"
+            ],
+            "correctResponse": 1
+        },
+        {
+            "answer": "shouldYouShareYourPrivateKeyWithAnyone",
+            "response": [
+                "onlyWithTrustedPeople",
+                "yesIfAskedInAnEmail",
+                "neverItCanBeUsedToStealYourTokens"
+            ],
+            "correctResponse": 2
+        },
+        {
+            "answer": "whatShouldYouDoIfYouLoseYourMnemonic",
+            "response": [
+                "nothingYouCanRecoverItOnline",
+                "yourAccountIsAtRiskAndMayBeIrrecoverable",
+                "contactSupportToRecoverYourMnemonic"
+            ],
+            "correctResponse": 1
+        },
+        {
+            "answer": "willVictorOrArnauFromOurSupportTeamAskForYourMnemonic",
+            "response": [
+                "yesSoTheyCanHelpMeOut",
+                "noNeverYouAreProbablyTalkingToAScammerIfSo",
+                "yesIfTheyAskKindly"
+            ],
+            "correctResponse": 1
+        },
+        {
+            "answer": "whatIsTheFirstThingYouShouldDoAfterCreatingYourNearAccount",
+            "response": [
+                "shareYourMnemonicOnSocialMedia",
+                "backupYourMnemonicAndPrivateKey",
+                "nothingTheAccountIsReadyToUse"
+            ],
+            "correctResponse": 1
+        },
+        {
+            "answer": "willAnyoneFromNearMobileTeamAskForYourMnemonic",
+            "response": [
+                "yesToHelpMeThroughTelegram",
+                "noNeverYouAreTalkingToAScammerIfSo",
+                "yesIfItIsAnAdminOfNearMobileSupport"
+            ],
+            "correctResponse": 1
+        },
+        {
+            "answer": "whatShouldYouDoIfYouSuspectSomeoneHasAccessToYourPrivateKey",
+            "response": [
+                "immediatelyChangeYourKeysAndMnemonics",
+                "waitToSeeIfAnythingHappens",
+                "shareYourConcernOnSocialMedia"
+            ],
+            "correctResponse": 0
+        }
+    ]      
 }

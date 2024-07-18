@@ -339,5 +339,7 @@
     "updateAppNow": "Aggiorna app ora",
     "updatingApp": "Aggiornamento dell'applicazione",
     "pleaseWaitAMoment": "Attendere un momento",
-    "explore": "Esplora"
+    "explore": "Esplora",
+    "welcomeSecurityQuiz": "Rispondi correttamente alle seguenti domande per rivelare la tua frase di recupero segreta.",
+    "startQuiz": "Inizia quiz"
 }

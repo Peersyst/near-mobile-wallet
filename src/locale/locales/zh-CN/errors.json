@@ -51,5 +51,8 @@
     "invalidSignerRequestDescription": "该请求不存在。请尝试创建另一个。",
     "cantImportAccount": "无法导入帐户",
     "accountAlreadyExists": "该帐户已存在",
-    "updateAppError": "更新应用程序时出错"
+    "updateAppError": "更新应用程序时出错",
+    "errorSecurityQuiz": "您回答了一个或多个问题错误。请稍后再试。请记住，此验证仅用于您的安全。",
+    "tryAgain": "再试一次",
+    "errorInWalletBackupQuizTitle": "钱包备份测验中的错误"
 }

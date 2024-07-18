@@ -339,5 +339,7 @@
     "updateAppNow": "Cập nhật ứng dụng ngay bây giờ",
     "updatingApp": "Đang cập nhật ứng dụng",
     "pleaseWaitAMoment": "Vui lòng chờ một chút",
-    "explore": "Khám phá"
+    "explore": "Khám phá",
+    "welcomeSecurityQuiz": "Trả lời đúng các câu hỏi sau để tiết lộ cụm từ khôi phục bí mật của bạn.",
+    "startQuiz": "Bắt đầu câu đố"
 }

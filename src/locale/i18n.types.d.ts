@@ -22,6 +22,7 @@ export type ErrorResourceType = keyof ResourceType["error"];
 export type LocaleResourceType = keyof ResourceType["langs"];
 export type TransaltionResourceType = keyof ResourceType["translation"];
 export type TokensResourceType = keyof ResourceType["tokens"];
+export type QuizResourceType = keyof ResourceType["quiz"];
 
 declare module "i18next" {
     interface CustomTypeOptions {

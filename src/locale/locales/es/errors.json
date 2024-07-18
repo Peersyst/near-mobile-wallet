@@ -51,5 +51,8 @@
     "invalidSignerRequestDescription": "La petición no existe. Prueba a crear una nueva petición.",
     "accountAlreadyExists": "La cuenta ya existe",
     "cantImportAccount": "No se puede importar la cuenta",
-    "updateAppError": "Error al actualizar la aplicación"
+    "updateAppError": "Error al actualizar la aplicación",
+    "errorSecurityQuiz": "Has respondido incorrectamente una o más preguntas. Inténtalo de nuevo más tarde. Recuerda, esta validación es solo para tu propia seguridad.",
+    "tryAgain": "Intentar de nuevo",
+    "errorInWalletBackupQuizTitle": "Error en el quiz de respaldo de la billetera"
 }

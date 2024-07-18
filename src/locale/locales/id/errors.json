@@ -51,5 +51,8 @@
     "invalidSignerRequestDescription": "Permintaan tidak ada. Coba buat yang lain.",
     "cantImportAccount": "Tidak dapat mengimpor akun",
     "accountAlreadyExists": "Akun sudah ada",
-    "updateAppError": "Kesalahan saat memperbarui aplikasi"
+    "updateAppError": "Kesalahan saat memperbarui aplikasi",
+    "errorSecurityQuiz": "Anda telah menjawab satu atau lebih pertanyaan dengan salah. Silakan coba lagi nanti. Ingat, validasi ini hanya untuk keamanan Anda sendiri.",
+    "tryAgain": "Coba lagi",
+    "errorInWalletBackupQuizTitle": "Kesalahan dalam kuis cadangan dompet"
 }
