@@ -114,93 +114,53 @@
     "securityQuizList": [
         {
             "answer": "whyShouldYouNeverShareYourMnemonic",
-            "response": [
-                "itCanBeUsedToStealYourTokens",
-                "itSNeededForTechnicalSupport",
-                "itHelpsInResettingYourPassword"
-            ],
+            "response": ["itCanBeUsedToStealYourTokens", "itSNeededForTechnicalSupport", "itHelpsInResettingYourPassword"],
             "correctResponse": 0
         },
         {
             "answer": "whatIsAMnemonic",
-            "response": [
-                "aSeriesOfWordsUsedToRecoverYourAccount",
-                "aTypeOfCryptocurrency",
-                "aPasswordForYourEmailAddress"
-            ],
+            "response": ["aSeriesOfWordsUsedToRecoverYourAccount", "aTypeOfCryptocurrency", "aPasswordForYourEmailAddress"],
             "correctResponse": 0
         },
         {
             "answer": "whereShouldYouStoreYourMnemonic",
-            "response": [
-                "inASecureOfflineLocation",
-                "inATextFileOnYourComputer",
-                "inYourEmailAddress"
-            ],
+            "response": ["inASecureOfflineLocation", "inATextFileOnYourComputer", "inYourEmailAddress"],
             "correctResponse": 0
         },
         {
             "answer": "whatIsAPrivateKey",
-            "response": [
-                "aKeyUsedToEncryptMessages",
-                "aSecretKeyThatGrantsAccessToYourFunds",
-                "aTypeOfDigitalCurrency"
-            ],
+            "response": ["aKeyUsedToEncryptMessages", "aSecretKeyThatGrantsAccessToYourFunds", "aTypeOfDigitalCurrency"],
             "correctResponse": 1
         },
         {
             "answer": "shouldYouShareYourPrivateKeyWithAnyone",
-            "response": [
-                "onlyWithTrustedPeople",
-                "yesIfAskedInAnEmail",
-                "neverItCanBeUsedToStealYourTokens"
-            ],
+            "response": ["onlyWithTrustedPeople", "yesIfAskedInAnEmail", "neverItCanBeUsedToStealYourTokens"],
             "correctResponse": 2
         },
         {
             "answer": "whatShouldYouDoIfYouLoseYourMnemonic",
-            "response": [
-                "nothingYouCanRecoverItOnline",
-                "yourAccountIsAtRiskAndMayBeIrrecoverable",
-                "contactSupportToRecoverYourMnemonic"
-            ],
+            "response": ["nothingYouCanRecoverItOnline", "yourAccountIsAtRiskAndMayBeIrrecoverable", "contactSupportToRecoverYourMnemonic"],
             "correctResponse": 1
         },
         {
             "answer": "willVictorOrArnauFromOurSupportTeamAskForYourMnemonic",
-            "response": [
-                "yesSoTheyCanHelpMeOut",
-                "noNeverYouAreProbablyTalkingToAScammerIfSo",
-                "yesIfTheyAskKindly"
-            ],
+            "response": ["yesSoTheyCanHelpMeOut", "noNeverYouAreProbablyTalkingToAScammerIfSo", "yesIfTheyAskKindly"],
             "correctResponse": 1
         },
         {
             "answer": "whatIsTheFirstThingYouShouldDoAfterCreatingYourNearAccount",
-            "response": [
-                "shareYourMnemonicOnSocialMedia",
-                "backupYourMnemonicAndPrivateKey",
-                "nothingTheAccountIsReadyToUse"
-            ],
+            "response": ["shareYourMnemonicOnSocialMedia", "backupYourMnemonicAndPrivateKey", "nothingTheAccountIsReadyToUse"],
             "correctResponse": 1
         },
         {
             "answer": "willAnyoneFromNearMobileTeamAskForYourMnemonic",
-            "response": [
-                "yesToHelpMeThroughTelegram",
-                "noNeverYouAreTalkingToAScammerIfSo",
-                "yesIfItIsAnAdminOfNearMobileSupport"
-            ],
+            "response": ["yesToHelpMeThroughTelegram", "noNeverYouAreTalkingToAScammerIfSo", "yesIfItIsAnAdminOfNearMobileSupport"],
             "correctResponse": 1
         },
         {
             "answer": "whatShouldYouDoIfYouSuspectSomeoneHasAccessToYourPrivateKey",
-            "response": [
-                "immediatelyChangeYourKeysAndMnemonics",
-                "waitToSeeIfAnythingHappens",
-                "shareYourConcernOnSocialMedia"
-            ],
+            "response": ["immediatelyChangeYourKeysAndMnemonics", "waitToSeeIfAnythingHappens", "shareYourConcernOnSocialMedia"],
             "correctResponse": 0
         }
-    ]      
+    ]
 }
