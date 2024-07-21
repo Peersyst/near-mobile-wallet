@@ -1,33 +1,45 @@
 import { convertNearToYocto, convertYoctoToNear } from "./near.utils";
-const BN = require("bn.js");
 
 export class BalanceOperations {
-    //Big number operations
+    // Big number operations
     static BNToString(bn: string): string {
-        return new BN(bn).toString();
+        return BigInt(bn).toString();
     }
     static BNExp(base: number, exponent: number): string {
-        return new BN(base).pow(new BN(exponent)).toString();
+        let result = BigInt(1);
+        let baseBigInt = BigInt(base);
+        let exp = BigInt(exponent);
+
+        while (exp > BigInt(0)) {
+            if (exp % BigInt(2) === BigInt(1)) {
+                result *= baseBigInt;
+            }
+            exp /= BigInt(2);
+            baseBigInt *= baseBigInt;
+        }
+
+        return result.toString();
     }
+
     static BNIsBigger(a: string, b: string): boolean {
-        return new BN(a).gt(new BN(b));
+        return BigInt(a) > BigInt(b);
     }
     static BNIsBiggerOrEqual(a: string, b: string): boolean {
-        return new BN(a).gte(new BN(b));
+        return BigInt(a) >= BigInt(b);
     }
-    static BNDevide(a: string, b: string): string {
+    static BNDivide(a: string, b: string): string {
         const numerator = BigInt(a);
         const denominator = BigInt(b);
         return (numerator / denominator).toString();
     }
     static BNMultiply(a: string, b: string): string {
-        return new BN(a).mul(new BN(b)).toString();
+        return (BigInt(a) * BigInt(b)).toString();
     }
     static BNSubtract(a: string, b: string): string {
-        return new BN(a).sub(new BN(b)).toString();
+        return (BigInt(a) - BigInt(b)).toString();
     }
     static BNAdd(a: string, b: string): string {
-        return new BN(a).add(new BN(b)).toString();
+        return (BigInt(a) + BigInt(b)).toString();
     }
 
     // Number operations
@@ -37,7 +49,7 @@ export class BalanceOperations {
     static isBigger(a: string | number, b: string | number): boolean {
         const finalA = convertNearToYocto(a.toString());
         const finalB = convertNearToYocto(b.toString());
-        return new BN(finalA).gt(new BN(finalB));
+        return BigInt(finalA) > BigInt(finalB);
     }
 
     /**
@@ -47,8 +59,8 @@ export class BalanceOperations {
         try {
             const finalA = convertNearToYocto(a.toString());
             const finalB = convertNearToYocto(b.toString());
-            const res = new BN(finalA).add(new BN(finalB));
-            return convertYoctoToNear(res).toString();
+            const res = BigInt(finalA) + BigInt(finalB);
+            return convertYoctoToNear(res.toString());
         } catch (e) {
             // eslint-disable-next-line no-console
             console.warn("Error adding", a, b, e);
@@ -64,14 +76,9 @@ export class BalanceOperations {
         try {
             const finalA = convertNearToYocto(a.toString());
             const finalB = convertNearToYocto(b.toString());
-            const bigRes = new BN(finalA).mul(new BN(finalB));
-            //We need to divide because if we convert the amount to yoctos, the exponents will be added
-            // 3 near = 3 * 10^24 yoctos
-            // 3 near = 3 * 10^24 yoctos
-            // 3 * 3 * 10^(24 + 24) = 9 * 10 ^ 48  yoctos
-            // 9 * 10^48 yoctos / 1 * 10^24 = 9 * 10^(48 - 24) = 9 * 10^24 near
-            const res = bigRes.div(new BN(convertNearToYocto("1")));
-            return convertYoctoToNear(res).toString();
+            const bigRes = BigInt(finalA) * BigInt(finalB);
+            const res = bigRes / BigInt(convertNearToYocto("1"));
+            return convertYoctoToNear(res.toString());
         } catch (e) {
             // eslint-disable-next-line no-console
             console.warn("Error multiplying", a, b, e);

@@ -64,7 +64,7 @@
         "i18next": "^23.7.6",
         "intl": "^1.2.5",
         "js-sha256": "^0.11.0",
-        "near-api-js": "^3.0.2",
+        "near-api-js": "^4.0.0",
         "near-seed-phrase": "^0.2.0",
         "path-browserify": "^1.0.1",
         "posthog-react-native": "^2.10.0",
