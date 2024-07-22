@@ -7,23 +7,28 @@ import SendConfirmationScreen from "module/transaction/screen/SendConfirmationSc
 import SendSetAmountScreen from "module/transaction/screen/SendSetAmountScreen/SendSetAmountScreen";
 import useTranslate from "module/common/hook/useTranslate";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
-import { AssetType } from "module/wallet/wallet.types";
 import { SendScreens } from "module/transaction/screen/SendScreens.types";
+import { Asset, AssetType } from "module/wallet/wallet.types";
 
-const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) => {
-    const [activeIndex, setActiveIndex] = useState(SendScreens.SEND_TO_ADDRESS);
+export interface SendModalProps extends ExposedBackdropProps {
+    defaultAsset?: Asset;
+}
+
+const SendModal = createBackdrop(({ onExited, defaultAsset, onClose, ...rest }: SendModalProps) => {
+    const [activeIndex, setActiveIndex] = useState(SendScreens.AMOUNT_AND_MESSAGE);
     const setSendState = useSetRecoilState(sendState);
     const resetSendState = useResetRecoilState(sendState);
     const translate = useTranslate();
 
     const handleExited = () => {
         onExited?.();
+        onClose?.();
         resetSendState();
     };
 
     const handleOnBack = () => {
-        if (activeIndex === SendScreens.AMOUNT_AND_MESSAGE) {
-            setSendState((oldState) => ({ ...oldState, amount: undefined, asset: { type: AssetType.TOKEN } }));
+        if (activeIndex === SendScreens.SEND_TO_ADDRESS) {
+            setSendState((oldState) => ({ ...oldState, amount: undefined, asset: { type: AssetType.NATIVE_TOKEN } }));
         }
         setActiveIndex((oldIndex) => oldIndex - 1);
     };
@@ -40,17 +45,18 @@ const SendModal = createBackdrop(({ onExited, ...rest }: ExposedBackdropProps) =
                 },
             }}
             onExited={handleExited}
+            onClose={handleExited}
             {...rest}
         >
             <Tabs index={activeIndex} onIndexChange={setActiveIndex}>
+                <TabPanel index={SendScreens.AMOUNT_AND_MESSAGE}>
+                    <SendSetAmountScreen defaultAsset={defaultAsset} />
+                </TabPanel>
                 <TabPanel index={SendScreens.SEND_TO_ADDRESS}>
                     <SendToAddressScreen />
                 </TabPanel>
-                <TabPanel index={SendScreens.AMOUNT_AND_MESSAGE}>
-                    <SendSetAmountScreen />
-                </TabPanel>
                 <TabPanel index={SendScreens.CONFIRMATION}>
-                    <SendConfirmationScreen />
+                    <SendConfirmationScreen onClose={() => onClose?.()} />
                 </TabPanel>
             </Tabs>
         </CardNavigatorModal>

@@ -8,6 +8,7 @@ import WithdrawModal from "module/staking/component/core/WithdrawModal/WithdrawM
 import { BalanceOperations } from "near-peersyst-sdk";
 
 interface UseGetStakingDetailsSectionReturn {
+    isIdle: boolean;
     isLoading: boolean;
     refetch: () => void;
     sections: StakingDetailsSection[];
@@ -22,6 +23,7 @@ export default function (): UseGetStakingDetailsSectionReturn {
         state: { selectedWallet },
     } = useWalletState();
     const {
+        isIdle,
         isLoading,
         data: { staked, rewardsEarned, pending, available } = { staked: "0", pending: "0", available: "0", rewardsEarned: "0" },
         refetch,
@@ -36,10 +38,6 @@ export default function (): UseGetStakingDetailsSectionReturn {
             onAction: () => showModal(UnstakeModal),
         },
         {
-            title: translate("rewardsEarned"),
-            amount: rewardsEarned,
-        },
-        {
             title: translate("pendingRelease"),
             amount: pending,
         },
@@ -52,5 +50,12 @@ export default function (): UseGetStakingDetailsSectionReturn {
         },
     ];
 
-    return { isLoading, refetch, sections: stakingDetailsSections };
+    if (typeof rewardsEarned === "string") {
+        stakingDetailsSections.splice(1, 0, {
+            title: translate("rewardsEarned"),
+            amount: rewardsEarned,
+        });
+    }
+
+    return { isIdle, isLoading, refetch, sections: stakingDetailsSections };
 }

@@ -2,8 +2,8 @@ import { config } from "config";
 import { Chains, NearSDKService } from "near-peersyst-sdk";
 import { NetworkType } from "module/settings/state/SettingsState";
 import {
+    AddManualServiceInstanceParams,
     AddServiceParams,
-    BaseNearSdkParams,
     CreateInstanceReturn,
     CreateServiceInstancesParams,
     RecoverInstancesReturn,
@@ -13,17 +13,22 @@ import {
 
 export const serviceInstancesMap = new Map<NetworkType, NearSDKService[]>();
 
-const TESTNET_PARAMS: BaseNearSdkParams = {
-    nodeUrl: config.testnetNodeUrl,
-    indexerUrl: config.indexerTestnetUrl,
+export interface CustomBaseNearSdkParams {
+    rpcList: string[];
+    archivalNodeUrl: string;
+}
+
+const TESTNET_PARAMS: CustomBaseNearSdkParams = {
+    rpcList: config.rpcList["testnet"],
+    archivalNodeUrl: config.testnetNodeUrl,
 };
 
-const MAINNET_PARAMS: BaseNearSdkParams = {
-    nodeUrl: config.mainnetNodeUrl,
-    indexerUrl: config.indexerMainnetUrl,
+const MAINNET_PARAMS: CustomBaseNearSdkParams = {
+    rpcList: config.rpcList["mainnet"],
+    archivalNodeUrl: config.mainnetNodeUrl,
 };
 
-const BASE_NEAR_SDK_PARAMS: Record<NetworkType, BaseNearSdkParams> = {
+const BASE_NEAR_SDK_PARAMS: Record<NetworkType, CustomBaseNearSdkParams> = {
     [Chains.TESTNET]: TESTNET_PARAMS,
     [Chains.MAINNET]: MAINNET_PARAMS,
 };
@@ -56,24 +61,23 @@ export default new (class ServiceInstances {
         privateKey,
         network,
         mnemonic,
+        likelyNameIds,
     }: Omit<CreateServiceInstancesParams, "serviceIndex">): Promise<NearSDKService[]> {
         let services: NearSDKService[] = [];
-        const { nodeUrl, indexerUrl } = BASE_NEAR_SDK_PARAMS[network];
+        const { rpcList } = BASE_NEAR_SDK_PARAMS[network];
         if (mnemonic) {
             services = await NearSDKService.importFromMnemonic({
                 chain: network,
-                nodeUrl,
-                baseApiUrl: indexerUrl,
+                rpcList: rpcList,
                 mnemonic,
-                enableIndexer: config.enableIndexer,
+                likelyNameIds,
             });
         } else if (privateKey) {
             services = await NearSDKService.importFromSecretKey({
                 chain: network,
-                nodeUrl,
-                baseApiUrl: indexerUrl,
+                rpcList: rpcList,
                 secretKey: privateKey,
-                enableIndexer: config.enableIndexer,
+                likelyNameIds,
             });
         } else {
             /* eslint-disable no-console */
@@ -81,12 +85,6 @@ export default new (class ServiceInstances {
             return services;
         }
         return services;
-    }
-
-    async initializeServiceInstances({ network, ...rest }: CreateServiceInstancesParams): Promise<CreateInstanceReturn[]> {
-        const services = await this.createServiceInstances({ network, ...rest });
-        this.setServiceInstances({ network, services });
-        return services.map((s) => ({ account: s.getAddress(), privateKey: s.getKeyPair() }));
     }
 
     async recoverServiceInstances({ network, ...rest }: CreateServiceInstancesParams): Promise<RecoverInstancesReturn[]> {
@@ -103,5 +101,17 @@ export default new (class ServiceInstances {
         const currentServices = this.getServiceInstances(network);
         this.setServiceInstances({ network, services: [...currentServices, ...services] });
         return services.map((s) => ({ account: s.getAddress(), privateKey: s.getKeyPair() }));
+    }
+
+    async addManualServiceInstance({ network, secretKey, accountId }: AddManualServiceInstanceParams): Promise<NearSDKService> {
+        const { rpcList } = BASE_NEAR_SDK_PARAMS[network];
+        const service = await NearSDKService.createFromSecretKey({
+            chain: network,
+            rpcList: rpcList,
+            secretKey,
+            nameId: accountId,
+        });
+        this.addService({ network, service });
+        return service;
     }
 })();

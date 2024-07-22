@@ -1,31 +1,42 @@
-import { Col, Row } from "@peersyst/react-native-components";
-import Balance from "module/wallet/component/display/Balance/Balance";
-import Typography from "module/common/component/display/Typography/Typography";
 import MainListCard from "module/main/component/display/MainListCard/MainListCard";
 import { Token } from "near-peersyst-sdk";
-import TokenIcon from "../TokenIcon/TokenIcon";
-import FiatBalance from "module/wallet/component/display/FiatBalance/FiatBalance";
+import TokenDetailsModal from "../../core/TokenDetailsModal/TokenDetailsModal";
+import { TouchableWithoutFeedback } from "react-native";
+import TokenBalance from "../TokenBalance/TokenBalance";
+import TokenNameWithIcon from "../TokenNameWithIcon/TokenNameWithIcon";
+import { Fragment, useState } from "react";
+import SendModal from "module/transaction/component/core/SendModal/SendModal";
+import { AssetType } from "module/wallet/wallet.types";
 
 export interface TokenCardProps {
     token: Token;
 }
 
 const TokenCard = ({ token }: TokenCardProps): JSX.Element => {
-    const { name, symbol } = token.metadata;
+    const [openTokenModal, setOpenTokenModal] = useState(false);
+    const [openSendModal, setOpenSendModal] = useState(false);
 
     return (
-        <MainListCard alignItems="center" justifyContent="space-between">
-            <Row alignItems="center" gap={16}>
-                <TokenIcon token={token} />
-                <Typography variant="body3Strong" numberOfLines={1} style={{ maxWidth: "70%" }}>
-                    {name}
-                </Typography>
-            </Row>
-            <Col alignItems="flex-end" justifyContent="center" gap={2}>
-                <Balance balance={token.balance} variant="body3Strong" units={symbol} />
-                <FiatBalance light balance={token.balance} token={token} variant="body4Strong" />
-            </Col>
-        </MainListCard>
+        <Fragment>
+            <TouchableWithoutFeedback onPress={() => setOpenTokenModal(true)}>
+                <MainListCard alignItems="center" justifyContent="space-between">
+                    <TokenNameWithIcon token={token} variant="body3Strong" typographyStyle={{ flex: 0.6 }} />
+                    <TokenBalance
+                        balanceProps={{ variant: "body3Strong", textAlign: "right" }}
+                        fiatBalanceProps={{ variant: "body4Strong" }}
+                        token={token}
+                        style={{ flex: 1 }}
+                    />
+                </MainListCard>
+            </TouchableWithoutFeedback>
+            <TokenDetailsModal
+                token={token}
+                open={openTokenModal}
+                onClose={() => setOpenTokenModal(false)}
+                onSend={() => setOpenSendModal(true)}
+            />
+            <SendModal defaultAsset={{ type: AssetType.FT, ft: token }} open={openSendModal} onClose={() => setOpenSendModal(false)} />
+        </Fragment>
     );
 };
 

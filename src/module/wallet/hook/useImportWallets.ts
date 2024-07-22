@@ -6,24 +6,25 @@ import useCreateWallet from "./useCreateWallet";
 
 export default function useImportWallets() {
     const {
-        state: { mnemonic, pin, privateKey },
+        state: { mnemonic, pin, privateKey, isBackupDone },
     } = useCreateWallet();
     const setWalletState = useSetRecoilState(walletState);
 
     const importWallets = async (network: NetworkType): Promise<Wallet[]> => {
         const parsedMnemonic = mnemonic?.join(" ");
-        const { wallets } = await WalletController.importWallets(network, pin, parsedMnemonic, privateKey);
+        const { wallets } = await WalletController.importWallets(network, pin, parsedMnemonic, privateKey, isBackupDone);
 
-        if (wallets.length > 0) {
-            setWalletState((state) => {
-                return {
-                    ...state,
-                    wallets: [...state.wallets, ...wallets],
-                    hasWallet: true,
-                    isAuthenticated: true,
-                };
-            });
-        }
+        setWalletState((state) => {
+            return {
+                ...state,
+                wallets: [...state.wallets, ...wallets],
+                hasWallet: true,
+                isAuthenticated: true,
+                loading: false,
+                isBackupDone,
+            };
+        });
+
         return wallets;
     };
     return importWallets;

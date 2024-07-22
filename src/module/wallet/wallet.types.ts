@@ -2,7 +2,7 @@ import { NetworkType } from "module/settings/state/SettingsState";
 import { NftToken, Token } from "near-peersyst-sdk";
 
 export enum AssetType {
-    TOKEN = "token",
+    NATIVE_TOKEN = "native_token",
     FT = "ft",
     NFT = "nft",
 } //token refers as near token
@@ -25,7 +25,7 @@ export interface UnencryptedWalletInfo extends BaseWallet {
 }
 
 export interface UnsecureWalletStorageType {
-    testnet: [];
+    testnet: UnencryptedWalletInfo[];
     mainnet: UnencryptedWalletInfo[];
 }
 
@@ -40,6 +40,7 @@ export interface SecureWalletStorageType {
     pin: string | undefined;
     mnemonic: string | undefined;
     mainPrivateKey: string | undefined;
+    isBackupDone: boolean | undefined;
 }
 
 export type StorageWallet = UnencryptedWalletInfo;
@@ -49,6 +50,7 @@ export interface WalletStorageType {
     mnemonic: SecureWalletStorageType["mnemonic"];
     testnet: StorageWallet[];
     mainnet: StorageWallet[];
+    isBackupDone: SecureWalletStorageType["isBackupDone"];
 }
 
 export interface SetWalletsParams {

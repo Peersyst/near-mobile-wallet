@@ -13,9 +13,8 @@ export interface TokenIconProps extends Partial<TokenSize> {
 }
 
 const TokenIcon = ({ height = 44, width = 44, token, nativeToken = false }: TokenIconProps) => {
-    const sizeProps = { height, width };
     const source = useGetSupportedTokenImageSource(token, nativeToken);
-    return <TokenIconRoot source={source} {...sizeProps} />;
+    return <TokenIconRoot source={source} height={height} width={width} />;
 };
 
 export default TokenIcon;

@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, UseMutationOptions, useQueryClient } from "react-query";
 import { Action } from "../components/display/SignRequestDetails/actions.types";
 import { SignerRequestDto, SignerRequestService } from "module/api/service";
 import useServiceInstance from "module/wallet/hook/useServiceInstance";
@@ -10,7 +10,10 @@ interface UseSignRequestActionsParams {
     transactions: SignerRequestDto["requests"];
 }
 
-export default function useSignRequestActions(indexProp?: number) {
+export default function useSignRequestActions(
+    indexProp?: number,
+    { onSuccess, ...restOptions }: UseMutationOptions<SignerRequestDto, unknown, UseSignRequestActionsParams, unknown> = {},
+) {
     const { serviceInstance, index, network } = useServiceInstance(indexProp);
     const queryClient = useQueryClient();
 
@@ -30,12 +33,14 @@ export default function useSignRequestActions(indexProp?: number) {
             });
         },
         {
-            onSuccess: async () => {
+            onSuccess: async (data, variables, context) => {
+                onSuccess?.(data, variables, context);
                 await queryClient.invalidateQueries([Queries.ACTIONS, index, network]);
                 await queryClient.invalidateQueries([Queries.GET_BALANCE, index, network]);
                 await queryClient.invalidateQueries([Queries.IS_DAPP_CONNECTED, index, network]);
                 await queryClient.invalidateQueries([Queries.GET_ACCOUNT_ACCESS_KEYS, index, network]);
             },
+            ...restOptions,
         },
     );
 }

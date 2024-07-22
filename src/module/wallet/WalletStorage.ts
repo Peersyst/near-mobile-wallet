@@ -35,6 +35,18 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
         }
     }
 
+    async getIsBackupDone(): Promise<WalletStorageType["isBackupDone"]> {
+        const secureStorage = await this.getSecure();
+        return secureStorage?.isBackupDone;
+    }
+
+    async setIsBackupDone(isBackupDone: boolean): Promise<void> {
+        const secureStorage = await this.getSecure();
+        if (secureStorage) {
+            this.setSecure({ ...secureStorage, isBackupDone });
+        }
+    }
+
     async getMnemonic(): Promise<WalletStorageType["mnemonic"]> {
         return (await this.getSecure())?.mnemonic;
     }
@@ -92,7 +104,14 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
 
     async setSecureWallets(wallets: SecureWalletInfo[], network: NetworkType, secureStorageParam?: SecureWalletStorageType): Promise<void> {
         const secureStorage = secureStorageParam ||
-            (await this.getSecure()) || { pin: undefined, mnemonic: undefined, testnet: [], mainnet: [], mainPrivateKey: undefined };
+            (await this.getSecure()) || {
+                pin: undefined,
+                mnemonic: undefined,
+                testnet: [],
+                mainnet: [],
+                mainPrivateKey: undefined,
+                isBackupDone: undefined,
+            };
         await this.setSecure({ ...secureStorage, [network]: wallets });
     }
 
@@ -107,6 +126,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
             testnet: [],
             mainnet: [],
             mainPrivateKey: undefined,
+            isBackupDone: undefined,
         };
         const secureWallets = secureStorage[network];
         const walletGroup = WalletUtils.findByPrivateKey(privateKey, secureWallets);
@@ -130,6 +150,7 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
             testnet: [],
             mainnet: [],
             mainPrivateKey: undefined,
+            isBackupDone: undefined,
         };
         const wallets = secureStorage[network];
         const newWallets = WalletUtils.deleteWalletId(walletIdToBeDeleted, wallets);
@@ -146,6 +167,20 @@ export const WalletStorage = new (class extends BaseStorageService<SecureWalletS
     async getUnencryptedWallet(index: number, network: NetworkType): Promise<UnencryptedWalletInfo | undefined> {
         const wallets = await this.getUnencryptedWallets(network);
         return WalletUtils.getWallet(index, wallets);
+    }
+
+    async getAccountsFromPrivateKey(privateKey: string, network: NetworkType): Promise<string[]> {
+        const accounts: string[] = [];
+
+        const walletGroup = await this.getSecureWalletGroup(privateKey, network);
+        if (!walletGroup) return accounts;
+
+        const wallets = await this.getUnencryptedWallets(network);
+        for (const walletId of walletGroup.walletIds) {
+            const wallet = WalletUtils.getWallet(walletId, wallets);
+            if (wallet) accounts.push(wallet.account);
+        }
+        return accounts;
     }
 
     async setUnencryptedWallets(

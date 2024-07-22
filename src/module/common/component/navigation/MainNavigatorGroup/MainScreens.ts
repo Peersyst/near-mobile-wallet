@@ -8,6 +8,7 @@ export enum MainScreens {
     STAKING = "Main/Staking",
     NEWS = "Main/News",
     DAPPS = "Main/DApps",
+    FAQS = "Main/FAQs",
 }
 
 export type MainNavigatorGroupParams = {
@@ -18,4 +19,5 @@ export type MainNavigatorGroupParams = {
     [MainScreens.STAKING]: undefined;
     [MainScreens.NEWS]: undefined;
     [MainScreens.DAPPS]: undefined;
+    [MainScreens.FAQS]: undefined;
 };

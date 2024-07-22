@@ -1,8 +1,12 @@
-import { AlertProps } from "@peersyst/react-native-components";
+import { AlertProps as BaseAlertPros } from "@peersyst/react-native-components";
 import { AlertRoot } from "module/common/component/feedback/Alert/Alert.styles";
+import { ReactElement } from "react";
 
-const Alert = (props: AlertProps): JSX.Element => {
-    return <AlertRoot {...props} />;
+export interface AlertProps extends BaseAlertPros {
+    icon?: boolean | ReactElement;
+}
+const Alert = ({ icon, ...rest }: AlertProps): JSX.Element => {
+    return <AlertRoot icon={icon} {...rest} />;
 };
 
 export default Alert;

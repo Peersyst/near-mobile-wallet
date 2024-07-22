@@ -1,13 +1,24 @@
 {
     "projectName": "near-mobile-wallet",
     "minimumTransactionAmount": 61,
-    "mainnetExplorerLink": "https://explorer.mainnet.near.org",
-    "testnetExplorerLink": "https://explorer.testnet.near.org",
-    "indexerTestnetUrl": "https://testnet-api.kitwallet.app",
-    "indexerMainnetUrl": "https://api.kitwallet.app",
+    "mainnetExplorerLink": "https://nearblocks.io",
+    "testnetExplorerLink": "https://testnet.nearblocks.io",
+    "nearblocksTesnetApiUrl": "https://api-testnet.nearblocks.io/v1",
+    "nearblocksMainnetApiUrl": "https://api3.nearblocks.io/v1",
     "faucetUrl": "https://faucet.nervos.org/",
+    "rpcList": {
+        "mainnet": ["https://rpc.mainnet.near.org", "https://near.lava.build", "https://free.rpc.fastnear.com", "https://1rpc.io/near"],
+        "testnet": [
+            "https://rpc.testnet.near.org",
+            "https://rpc.testnet.pagoda.co",
+            "https://near-testnet.lava.build",
+            "https://rpc.testnet.pagoda.co"
+        ]
+    },
     "mainnetNodeUrl": "https://rpc.mainnet.near.org",
     "testnetNodeUrl": "https://rpc.testnet.near.org",
+    "mainnetArchivalNodeUrl": "https://archival-rpc.mainnet.near.org",
+    "testnetArchivalNodeUrl": "https://archival-rpc.testnet.near.org",
     "maxNumberOfDecimals": 5,
     "enableChangeNetwork": true,
     "tokenName": "NEAR",
@@ -22,6 +33,8 @@
     "approveTxWaitTime": 3000,
     "testnetTokenPriceUrl": "https://testnet-indexer.ref-finance.com/list-token-price",
     "mainnetTokenPriceUrl": "https://indexer.ref.finance/list-token-price",
+    "testnetSwapUrl": "https://testnet.ref.finance",
+    "mainnetSwapUrl": "https://app.ref.finance",
     "refetchIntervals": {
         "nfts": 60000,
         "tokens": 60000,
@@ -33,12 +46,23 @@
         "validators": 180000
     },
     "indexerEstimatedDelay": 30000,
+    "apiRequestTimeout": 2000,
     "nearMobileUrl": "https://nearmobile.app/",
+    "enableManualImport": true,
+    "fastMainnetNearApiUrl": "https://api.fastnear.com/v1",
     "signerFeature": {
         "enabled": false,
         "backendUrl": "",
         "dAppLogoFallback": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/d57a615b-b77f-487d-95ee-714e659cb8a3.png",
         "recommendedDApps": [
+            {
+                "name": "Near Blocks",
+                "description": "Near Blocks is a Block Explorer and Analytics Platform for Near blockchain (N), a new blockchain and smart transaction platform.",
+                "url": "https://nearblocks.io/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/a746b59d-b229-43f4-b49d-0ac8c72188f7.png",
+                "tag": "explorer",
+                "contractId": "near.blocks.io"
+            },
             {
                 "name": "NEAR",
                 "description": "The OS for an Open Web.",
@@ -78,35 +102,13 @@
                 "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/7047b4cb-2467-4396-a436-d14627ead2ab.jpg",
                 "tag": "social",
                 "contractId": "app.popula.near"
-            },
-            {
-                "name": "Near Social",
-                "description": "Decentralized Composable Frontends and Social Data Protocol for NEAR.",
-                "url": "https://near.social/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/9e615abb-f211-488e-9e96-e476da76df35.webp",
-                "tag": "social",
-                "contractId": "social.near"
-            },
-            {
-                "name": "Learn NEAR Club",
-                "description": "Learn how to use and build on NEAR and Earn NEAR.",
-                "url": "https://learnnear.club/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/b23431ac-4ff4-41ed-95f9-522c2f185e0f.png",
-                "tag": "learning",
-                "contractId": "login.learnclub.near"
-            },
-            {
-                "name": "Jumbo",
-                "description": "Jumbo provides Ecosystem-Wide Liquidity for users and projects.",
-                "url": "https://jumbo.exchange/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/915c1657-8485-4c92-80a0-c455b6f45057.png",
-                "tag": "dex",
-                "contractId": "v1.jumbo_exchange.near"
             }
         ]
     },
     "analytics": {
         "host": "https://eu.posthog.com",
         "apiKey": "phc_oVIWlo74LoeuEcRZrFYNGpnG6tQridziKDUsNKCPKLc"
-    }
+    },
+    "telegramUrl": "https://t.me/NEARMobile",
+    "expoUpdatesEnabled": true
 }

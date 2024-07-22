@@ -39,6 +39,10 @@ export default function useDAppTagSelectOptions(): SelectOption<DAppTagOption>[]
             label: DAppTag.NFT_MARKETPLACE,
             value: DAppTag.NFT_MARKETPLACE,
         },
+        {
+            label: DAppTag.EXPLORER,
+            value: DAppTag.EXPLORER,
+        },
     ];
 
     const parsedOptions = options.map((option) => ({

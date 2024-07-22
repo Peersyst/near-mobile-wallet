@@ -22,7 +22,7 @@ export const AssetValueDisplay = ({ ...rest }: AssetValueDisplayProps): JSX.Elem
                 </Typography>
             )}
             {type === AssetType.FT && <Balance units={ft?.metadata.symbol} balance={ft?.balance ?? "0"} {...rest} />}
-            {type === AssetType.TOKEN && <Balance units="token" balance={available} {...rest} />}
+            {type === AssetType.NATIVE_TOKEN && <Balance units="token" balance={available} {...rest} />}
         </>
     );
 };

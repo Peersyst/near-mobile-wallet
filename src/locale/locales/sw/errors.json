@@ -33,7 +33,6 @@
     "invalid_child_account": "Huwezi tengeneza {{nameID}} na akaunti yako ya {{currentAccount}}.",
     "invalid_send_same_account": "Huwezi kujitumia kwenye akaunti yako",
     "invalid_account_or_not_active": "Akaunti ya mpokeaji sio sahihi au haipo",
-    "no_transactions": "Hakuna muamala bado",
     "no_nfts": "Hakuna NFT bado",
     "no_tokens": "Hakuna tokeni bado",
     "no_news_now": "Hakuna taarifa mpya bado",
@@ -49,5 +48,8 @@
     "invalidSigner": "Akaunti ya mwenye saini sio sahihi",
     "invalidSignerDescription": "Hujachaugua akaunti inayotakiwa isaini ombi hili",
     "invalidSignerRequest": "Ombi la mwenye saini sio sahihi",
-    "invalidSignerRequestDescription": "Ombi halipo. Jaribu lingine"
+    "invalidSignerRequestDescription": "Ombi halipo. Jaribu lingine",
+    "cantImportAccount": "Haiwezi kuingiza akaunti",
+    "accountAlreadyExists": "Akaunti tayari ipo",
+    "updateAppError": "Hitilafu wakati wa kusasisha programu"
 }

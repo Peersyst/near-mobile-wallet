@@ -41,7 +41,9 @@ const AnimatedActionable = ({
 
     return (
         <AnimatedActionableRoot style={rootStyle} {...rest}>
-            {enabled ? <Swipeable {...swipeableProps}>{children}</Swipeable> : children}
+            <Swipeable enabled={enabled} {...swipeableProps}>
+                {children}
+            </Swipeable>
         </AnimatedActionableRoot>
     );
 };

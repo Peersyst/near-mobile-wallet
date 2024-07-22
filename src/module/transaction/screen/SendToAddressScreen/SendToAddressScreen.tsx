@@ -1,12 +1,8 @@
 import { Col, Form, useSetTab } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
 import sendRecoilState from "module/transaction/state/SendState";
-import { useState } from "react";
-
 import { useRecoilState } from "recoil";
-import WalletSelector from "module/wallet/component/input/WalletSelector/WalletSelector";
 import useTranslate from "module/common/hook/useTranslate";
-import { config } from "config";
 import useWalletState from "module/wallet/hook/useWalletState";
 import AddressTextFieldWithQRScanner from "module/transaction/component/input/AddressTextFieldWithQRScanner/AddressTextFieldWithQRScanner";
 import { SendScreens } from "../SendScreens.types";
@@ -24,28 +20,19 @@ const SendToAddressScreen = () => {
         state: { selectedWallet },
     } = useWalletState();
     const [sendState, setSendState] = useRecoilState(sendRecoilState);
-    const defaultSenderWalletIndex = sendState.senderWalletIndex !== undefined ? sendState.senderWalletIndex : selectedWallet;
-    const [currentSenderWalletIndex, setCurrentSenderWalletIndex] = useState(defaultSenderWalletIndex);
+    const senderWalletIndex = sendState.senderWalletIndex ?? selectedWallet;
 
-    const handleSubmit = ({ sender, receiver }: SendForm) => {
-        setSendState((oldState) => ({ ...oldState, senderWalletIndex: sender, receiverAddress: receiver }));
-        setTab(SendScreens.AMOUNT_AND_MESSAGE);
+    const handleSubmit = ({ receiver }: SendForm) => {
+        setSendState((oldState) => ({ ...oldState, senderWalletIndex, receiverAddress: receiver }));
+        setTab(SendScreens.CONFIRMATION);
     };
 
     return (
         <Form onSubmit={handleSubmit}>
             <Col gap={24}>
-                <WalletSelector
-                    value={currentSenderWalletIndex}
-                    onChange={setCurrentSenderWalletIndex}
-                    label={translate("select_a_wallet")}
-                    required
-                    name="sender"
-                    minBalance={config.estimatedFee}
-                />
                 <AddressTextFieldWithQRScanner
                     defaultValue={sendState.receiverAddress}
-                    senderWalletIndex={currentSenderWalletIndex}
+                    senderWalletIndex={senderWalletIndex}
                     name="receiver"
                     required
                 />

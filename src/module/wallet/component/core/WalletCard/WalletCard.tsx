@@ -25,7 +25,7 @@ const WalletCard = ({ wallet }: WalletCardProps): JSX.Element => {
     };
 
     return (
-        <BaseWalletCard wallet={wallet} gap={20}>
+        <BaseWalletCard wallet={wallet} gap={15}>
             {{
                 content: (
                     <Balance

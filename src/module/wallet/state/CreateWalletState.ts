@@ -12,6 +12,7 @@ export interface CreateWalletState {
     privateKey?: string | undefined; //Only used for import with privateKey (has other previous accounts)
     importWithPrivateKey?: boolean;
     fundingAccount?: number;
+    isBackupDone?: boolean;
 }
 
 const createWalletState = atom<CreateWalletState>({
@@ -22,6 +23,7 @@ const createWalletState = atom<CreateWalletState>({
         privateKey: undefined,
         mnemonic: undefined,
         importWithPrivateKey: false,
+        isBackupDone: undefined,
     },
 });
 

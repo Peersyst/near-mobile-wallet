@@ -56,6 +56,8 @@ import {
     NFT_OWNER_TOKENS_METHOD,
     NFT_TOKEN_METADATA_METHOD,
     NFT_OWNER_TOKENS_SET_METHOD,
+    STAKING_WITHDRAW_GAS,
+    STAKING_WITHDRAW_ALL_GAS,
 } from "../utils/near.constants";
 import {
     addNearAmounts,
@@ -65,34 +67,32 @@ import {
     formatTokenAmount,
     subtractYoctoAmounts,
 } from "../utils/near.utils";
-import { ApiService, IndexerService, NearApiServiceInterface } from "../NearApiService";
+import { ApiService, NearApiServiceInterface } from "../NearApiService";
 import { BalanceOperations } from "../utils";
 import { Payload } from "../utils/SignerPayload";
+import RPCControl from "./decorators/RPCControl";
 
 export class NearSDKService {
     private connection?: Near;
     private nearConfig: ConnectConfig;
+    private rpcList: string[];
     private nameId: string;
     private keyPair: KeyPairEd25519;
     private chain: Chains;
     private masterAccount: string;
     private mnemonic?: string;
     private apiService: NearApiServiceInterface;
-    private enableIndexer: boolean;
-    private baseApiUrl: string;
     private static nameRegex = /^(([a-z\d]+[-_])*[a-z\d]+\.)*([a-z\d]+[-_])*[a-z\d]+$/;
     private static addressRegex = /[\da-f]/i;
     public nearDecimals: number | undefined;
 
-    constructor({ chain, nodeUrl, baseApiUrl, enableIndexer, secretKey, nameId, nearDecimals, mnemonic }: CreateNearSdkParams) {
+    constructor({ chain, secretKey, nameId, nearDecimals, mnemonic, rpcList }: CreateNearSdkParams) {
         this.chain = chain;
         this.masterAccount = chain === Chains.MAINNET ? "near" : this.chain;
         this.nameId = nameId;
         this.mnemonic = mnemonic;
-        this.baseApiUrl = baseApiUrl;
-        this.apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer);
+        this.apiService = NearSDKService.createApiService(chain);
         this.nearDecimals = nearDecimals;
-        this.enableIndexer = enableIndexer;
         // Create KeyPairEd25519
         this.keyPair = NearSDKService.createKeyPairFromSecretKey(secretKey);
 
@@ -102,8 +102,10 @@ export class NearSDKService {
         this.nearConfig = {
             networkId: chain,
             keyStore,
-            nodeUrl,
+            nodeUrl: rpcList[0],
         };
+
+        this.rpcList = rpcList;
     }
 
     // --------------------------------------------------------------
@@ -113,8 +115,8 @@ export class NearSDKService {
         return decode(encode(publicKey.data)).toString("hex");
     }
 
-    static createApiService(baseApiUrl: string, enableIndexer: boolean): NearApiServiceInterface {
-        return enableIndexer ? new IndexerService(baseApiUrl) : new ApiService(baseApiUrl);
+    static createApiService(chain: Chains): NearApiServiceInterface {
+        return new ApiService(chain);
     }
 
     static async createAndConnect(params: BaseCreateNearSdkParams): Promise<NearSDKService> {
@@ -125,41 +127,54 @@ export class NearSDKService {
         return service;
     }
 
+    static async createFromSecretKey(params: BaseCreateNearSdkParams & { secretKey: string; nameId: string }): Promise<NearSDKService> {
+        const service = new NearSDKService(params);
+        await service.connect();
+        return service;
+    }
+
     static async importFromMnemonic({
         mnemonic,
-        baseApiUrl,
-        enableIndexer,
+        chain,
+        likelyNameIds = [],
         ...rest
     }: CreateNearSdkWithMnemonicParams): Promise<NearSDKService[]> {
         const { secretKey, publicKey } = parseSeedPhrase(mnemonic);
-        const apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer);
-        const nameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
+        const apiService = NearSDKService.createApiService(chain);
+        const apiNameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
+        const nameIds = [...new Set([...apiNameIds, ...likelyNameIds])];
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
         }
         const services = nameIds.map(async (nameId) => {
-            const service = new NearSDKService({ baseApiUrl, secretKey, nameId, mnemonic, enableIndexer, ...rest });
+            const service = new NearSDKService({ secretKey, nameId, mnemonic, chain, ...rest });
             await service.connect();
             return service;
         });
         return Promise.all(services);
     }
 
+    static getPublicKeyFromSecretKey(secretKey: string): string {
+        const keyPair = KeyPairEd25519.fromString(secretKey);
+        return keyPair.getPublicKey().toString();
+    }
+
     static async importFromSecretKey({
         secretKey,
-        baseApiUrl,
-        enableIndexer,
+        chain,
+        likelyNameIds = [],
         ...rest
     }: CreateNearSdkWithSecretKeyParams): Promise<NearSDKService[]> {
         const secret = secretKey.split(":").pop();
         const publicKey = new KeyPairEd25519(secret!).getPublicKey().toString();
-        const apiService = NearSDKService.createApiService(baseApiUrl, enableIndexer);
-        const nameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
+        const apiService = NearSDKService.createApiService(chain);
+        const apiNameIds = await apiService.getAccountsFromPublicKey({ address: publicKey });
+        const nameIds = [...new Set([...apiNameIds, ...likelyNameIds])];
         if (nameIds.length === 0) {
             nameIds.push(NearSDKService.getAddressFromPublicKey(PublicKey.fromString(publicKey)));
         }
         const services = nameIds.map(async (nameId) => {
-            const service = new NearSDKService({ ...rest, baseApiUrl, secretKey, nameId, enableIndexer });
+            const service = new NearSDKService({ ...rest, secretKey, nameId, chain });
             await service.connect();
             return service;
         });
@@ -177,6 +192,10 @@ export class NearSDKService {
         const connection = this.getConnection();
         const address = this.getAddress();
         return connection.account(address);
+    }
+
+    setNearConfig(nearConfig: ConnectConfig): void {
+        this.nearConfig = nearConfig;
     }
 
     async connect(): Promise<void> {
@@ -344,13 +363,11 @@ export class NearSDKService {
 
         const service = new NearSDKService({
             chain: this.chain,
-            nodeUrl: this.nearConfig.nodeUrl,
-            baseApiUrl: this.baseApiUrl,
+            rpcList: this.rpcList,
             secretKey,
             nameId,
             nearDecimals,
             mnemonic: seedPhrase,
-            enableIndexer: this.enableIndexer,
         });
         await service.connect();
         return service;
@@ -366,12 +383,10 @@ export class NearSDKService {
         await this.createNewAccount(nameId, keyPair.getPublicKey(), amount);
         const service = new NearSDKService({
             chain: this.chain,
-            nodeUrl: this.nearConfig.nodeUrl,
-            baseApiUrl: this.baseApiUrl,
+            rpcList: this.rpcList,
             secretKey: keyPair.secretKey,
             nameId,
             nearDecimals,
-            enableIndexer: this.enableIndexer,
         });
         await service.connect();
         return service;
@@ -402,12 +417,10 @@ export class NearSDKService {
             await this.createNewAccount(nameId, publicKey as any, amount);
             const service = new NearSDKService({
                 chain: this.chain,
-                nodeUrl: this.nearConfig.nodeUrl,
-                baseApiUrl: this.baseApiUrl,
+                rpcList: this.rpcList,
                 secretKey,
                 nameId,
                 nearDecimals,
-                enableIndexer: this.enableIndexer,
             });
             await service.connect();
             return service;
@@ -425,6 +438,37 @@ export class NearSDKService {
     }
 
     // --------------------------------------------------------------
+    // -- NETWORK FUNCTIONS ------------------------------------
+    // --------------------------------------------------------------
+    async checkRpcHealthStatus(): Promise<boolean> {
+        const { connection } = this.getConnection();
+        try {
+            const status = await connection.provider.status();
+            return status.sync_info ? true : false;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async switchRpcUrl(): Promise<void> {
+        const currentNodeUrl = this.nearConfig.nodeUrl;
+        let currentIndex = this.rpcList.indexOf(currentNodeUrl);
+        if (currentIndex === -1) {
+            currentIndex = 0;
+        }
+
+        const nextIndex = (currentIndex + 1) % this.rpcList.length;
+        const nextNodeUrl = this.rpcList[nextIndex];
+
+        this.setNearConfig({
+            ...this.nearConfig,
+            nodeUrl: nextNodeUrl,
+        });
+
+        await this.connect();
+    }
+
+    // --------------------------------------------------------------
     // -- UTILS FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
     public parseNearAmount(amount: string): string {
@@ -438,6 +482,7 @@ export class NearSDKService {
     // -- WALLET STATE FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
     //Returns the balance in near
+    @RPCControl()
     async getAccountBalance(): Promise<AccountBalance> {
         try {
             const account = await this.getAccount();
@@ -478,7 +523,14 @@ export class NearSDKService {
 
     async getRecentActivity(): Promise<Action[]> {
         this.getConnection();
-        return await this.apiService.getRecentActivity({ address: this.getAddress() });
+        let actions: Action[] = [];
+        try {
+            actions = await this.apiService.getRecentActivity({ address: this.getAddress() });
+        } catch (e: any) {
+            //eslint-disable-next-line no-console
+            console.warn("Error getting recent activity: ", e);
+        }
+        return actions;
     }
 
     // --------------------------------------------------------------
@@ -509,7 +561,7 @@ export class NearSDKService {
         return +((resp.numerator * 100) / resp.denominator);
     }
 
-    private async getValidatorBalance(validatorId: string, validatorDeposit?: number): Promise<StakingBalance> {
+    private async getValidatorBalance(validatorId: string, validatorDeposit?: string): Promise<StakingBalance> {
         const account = await this.getAccount();
         const stakingBalance: StakingBalance = {
             staked: "0",
@@ -522,38 +574,40 @@ export class NearSDKService {
             methodName: ACCOUNT_TOTAL_BALANCE_METHOD,
             args: { account_id: account.accountId },
         });
+        if (parseInt(total, 10) <= 0 || Number.isNaN(parseInt(total, 10))) {
+            // It is not truly a validator
+            return stakingBalance;
+        }
+
+        const stakedStr = await account.viewFunction({
+            contractId: validatorId,
+            methodName: ACCOUNT_STAKED_BALANCE_METHOD,
+            args: { account_id: account.accountId },
+        });
+        stakingBalance.staked = stakedStr;
+
+        const unstakedStr = await account.viewFunction({
+            contractId: validatorId,
+            methodName: ACCOUNT_UNSTAKED_BALANCE_METHOD,
+            args: { account_id: account.accountId },
+        });
+
+        if (parseInt(unstakedStr, 10) > MINIMUM_UNSTAKED) {
+            const isAvailable = await account.viewFunction({
+                contractId: validatorId,
+                methodName: IS_ACCOUNT_UNSTAKED_BALANCE_AVAILABLE_METHOD,
+                args: { account_id: account.accountId },
+            });
+
+            if (isAvailable) {
+                stakingBalance.available = unstakedStr;
+            } else {
+                stakingBalance.pending = unstakedStr;
+            }
+        }
 
         if (validatorDeposit) {
             stakingBalance.rewardsEarned = subtractYoctoAmounts(BigInt(total).toString(), BigInt(validatorDeposit).toString());
-        }
-
-        if (parseInt(total, 10) > 0) {
-            const stakedStr = await account.viewFunction({
-                contractId: validatorId,
-                methodName: ACCOUNT_STAKED_BALANCE_METHOD,
-                args: { account_id: account.accountId },
-            });
-            stakingBalance.staked = stakedStr;
-
-            const unstakedStr = await account.viewFunction({
-                contractId: validatorId,
-                methodName: ACCOUNT_UNSTAKED_BALANCE_METHOD,
-                args: { account_id: account.accountId },
-            });
-
-            if (parseInt(unstakedStr, 10) > MINIMUM_UNSTAKED) {
-                const isAvailable = await account.viewFunction({
-                    contractId: validatorId,
-                    methodName: IS_ACCOUNT_UNSTAKED_BALANCE_AVAILABLE_METHOD,
-                    args: { account_id: account.accountId },
-                });
-
-                if (isAvailable) {
-                    stakingBalance.available = unstakedStr;
-                } else {
-                    stakingBalance.pending = unstakedStr;
-                }
-            }
         }
 
         return stakingBalance;
@@ -568,7 +622,7 @@ export class NearSDKService {
     private async getValidatorDataFromId(
         validatorId: string,
         queryBalance: boolean,
-        totalDeposits?: number,
+        totalDeposits?: string,
         activeValidator?: boolean,
     ): Promise<Validator> {
         let fee: number | null;
@@ -591,20 +645,54 @@ export class NearSDKService {
             fee = null;
         }
 
-        return { accountId: validatorId, fee };
+        return { accountId: validatorId, fee, ...(activeValidator && { active: true }) };
     }
 
     async getAllValidators(): Promise<Validator[]> {
-        const validators = await this.getAllValidatorIds();
-        const validatorsProms = validators.map((validator) => this.getValidatorDataFromId(validator, false, undefined, true));
-        const validatorsPromise = await Promise.all(validatorsProms);
-        return validatorsPromise.filter((validator: Validator) => (validator.fee ? validator.fee : 0 > 0));
+        let availableValidatorsList: Validator[] = [];
+        try {
+            const validatorsIds = await this.getAllValidatorIds();
+            const getValidatorsDataPromise = validatorsIds.map((validator) =>
+                this.getValidatorDataFromId(validator, false, undefined, true),
+            );
+            availableValidatorsList = await Promise.all(getValidatorsDataPromise);
+        } catch (e) {
+            //eslint-disable-next-line no-console
+            console.warn("Error in getAllValidators: ", e);
+        }
+        return availableValidatorsList;
     }
 
     async getCurrentValidators(): Promise<Validator[]> {
-        const stakingDeposits = await this.apiService.getStakingDeposits({ address: this.getAddress() });
-        const validatorsProms = stakingDeposits.map(({ validatorId, amount }) => this.getValidatorDataFromId(validatorId, true, amount));
-        return await Promise.all(validatorsProms);
+        let validators: Validator[] = [];
+        try {
+            const stakingDeposits = await this.apiService.getStakingDeposits({ address: this.getAddress() });
+            const validatorsProms = stakingDeposits.map(({ validatorId, amount, hasRewards }) =>
+                this.getValidatorDataFromId(validatorId, true, hasRewards ? amount : undefined),
+            );
+            validators = await Promise.all(validatorsProms);
+            // Remove validators that no longer have any amount in it
+            let hasRewards = true;
+            validators = validators.filter(({ stakingBalance: sb }) => {
+                const isActiveValidator = sb && (sb.staked !== "0" || sb.available !== "0" || sb.pending !== "0");
+
+                if (isActiveValidator && (sb.rewardsEarned === undefined || sb.rewardsEarned?.startsWith("-"))) {
+                    hasRewards = false;
+                }
+                return isActiveValidator;
+            });
+
+            if (!hasRewards) {
+                validators = validators.map(
+                    ({ stakingBalance, ...rest }) =>
+                        ({ ...rest, stakingBalance: { ...stakingBalance, rewardsEarned: undefined } }) as Validator,
+                );
+            }
+        } catch (e) {
+            //eslint-disable-next-line no-console
+            console.warn("Error in getCurrentValidators: ", e);
+        }
+        return validators;
     }
 
     private addStakingBalancesFromValidators(validators: Validator[]): StakingBalance {
@@ -626,7 +714,7 @@ export class NearSDKService {
             staked: act?.staked ? addNearAmounts(ant.staked, act.staked) : ant.staked,
             available: act?.available ? addNearAmounts(ant.available, act.available) : ant.available,
             pending: act?.pending ? addNearAmounts(ant.pending, act.pending) : ant.pending,
-            rewardsEarned: act?.rewardsEarned ? addNearAmounts(ant.rewardsEarned || "0", act.rewardsEarned) : ant.rewardsEarned,
+            rewardsEarned: act?.rewardsEarned ? addNearAmounts(ant.rewardsEarned || "0", act.rewardsEarned || "0") : ant.rewardsEarned,
         };
     }
 
@@ -682,6 +770,7 @@ export class NearSDKService {
             contractId: validatorId,
             methodName: WITHDRAW_METHOD,
             args: { amount: amountInYocto },
+            gas: new BN(STAKING_WITHDRAW_GAS),
         });
         return tx.transaction_outcome.id;
     }
@@ -692,6 +781,7 @@ export class NearSDKService {
         const tx = await account.functionCall({
             contractId: validatorId,
             methodName: WITHDRAW_ALL_METHOD,
+            gas: new BN(STAKING_WITHDRAW_ALL_GAS),
             args: {},
         });
         return tx.transaction_outcome.id;
@@ -1071,5 +1161,18 @@ export class NearSDKService {
 
         // Return the AuthenticationToken
         return { accountId: this.getAddress(), publicKey: this.getPublicKey(), signature: encoded };
+    }
+
+    public async getAccountFullAccessPublicKeys(accountId: string): Promise<string[]> {
+        const connection = this.getConnection();
+        const account = await connection.account(accountId);
+        const accessKeys = await account.getAccessKeys();
+        const keys: string[] = [];
+
+        for (const key of accessKeys) {
+            if (key.access_key.permission === "FullAccess") keys.push(key.public_key);
+        }
+
+        return keys;
     }
 }

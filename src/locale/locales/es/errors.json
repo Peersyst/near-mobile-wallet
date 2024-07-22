@@ -33,7 +33,6 @@
     "invalid_child_account": "No puedes crear {{nameID}} con tu cuenta {{currentAccount}}.",
     "invalid_send_same_account": "No puedes mandarte a tu misma cuenta.",
     "invalid_account_or_not_active": "La cuenta no es válida o no existe",
-    "no_transactions": "No hay transacciones",
     "no_nfts": "No hay NFTs",
     "no_tokens": "No hay tokens",
     "no_news_now": "Sin noticias nuevas por ahora",
@@ -49,5 +48,8 @@
     "invalidSigner": "Cuenta inválida",
     "invalidSignerDescription": "No tienes permisos para realizar esta acción. Por favor, cambia de cuenta.",
     "invalidSignerRequest": "Petición de firma inválida",
-    "invalidSignerRequestDescription": "La petición no existe. Prueba a crear una nueva petición."
+    "invalidSignerRequestDescription": "La petición no existe. Prueba a crear una nueva petición.",
+    "accountAlreadyExists": "La cuenta ya existe",
+    "cantImportAccount": "No se puede importar la cuenta",
+    "updateAppError": "Error al actualizar la aplicación"
 }
