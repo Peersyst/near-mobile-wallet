@@ -17,6 +17,7 @@ import { LogBox, Platform, UIManager } from "react-native";
 import Providers from "./providers/Providers";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useRecoilValue } from "recoil";
+import useIsUpdateAvailable from "module/home/hook/useIsUpdateAvailable";
 
 if (Platform.OS === "android") {
     if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -32,11 +33,11 @@ LogBox.ignoreLogs(["Require cycles"]);
 function App(): JSX.Element {
     const loading = useLoad();
     const cachedResourceLoaded = useCachedResources();
-
     const { loading: loadingSettings = false } = useRecoilValue(settingsState);
+    const { isLoading: isLoadingCheckUpdateApp } = useIsUpdateAvailable();
 
     return (
-        <Suspense fallback={<LogoPage />} isLoading={loading || loadingSettings || !cachedResourceLoaded}>
+        <Suspense fallback={<LogoPage />} isLoading={loading || loadingSettings || !cachedResourceLoaded || isLoadingCheckUpdateApp}>
             <Navigator />
         </Suspense>
     );

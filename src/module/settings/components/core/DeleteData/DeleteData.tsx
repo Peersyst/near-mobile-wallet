@@ -27,7 +27,7 @@ const DeleteData = () => {
         setWalletState((state) => ({ ...state, isAuthenticated: false, hasWallet: false }));
         serviceInstancesMap.clear();
         await SettingsStorage.clear();
-        await queryClient.invalidateQueries();
+        queryClient.removeQueries();
         resetWalletState();
     };
 

@@ -4,7 +4,7 @@ import useNavigation from "module/common/hook/useNavigation";
 
 export type BaseSecondaryScreenProps = Omit<BaseMainScreenProps, "onBack">;
 
-const BaseSecondaryScreen = ({ children, title, back }: BaseSecondaryScreenProps): JSX.Element => {
+const BaseSecondaryScreen = ({ children, ...rest }: BaseSecondaryScreenProps): JSX.Element => {
     const navigation = useNavigation();
 
     const handleBack = () => {
@@ -12,8 +12,9 @@ const BaseSecondaryScreen = ({ children, title, back }: BaseSecondaryScreenProps
             navigation.goBack();
         }
     };
+
     return (
-        <BaseMainScreen title={title} back={back} onBack={handleBack}>
+        <BaseMainScreen onBack={handleBack} {...rest}>
             <SecondaryScreenScrollView showsVerticalScrollIndicator={false}>{children}</SecondaryScreenScrollView>
         </BaseMainScreen>
     );

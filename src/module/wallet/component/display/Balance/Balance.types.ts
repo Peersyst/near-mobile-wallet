@@ -19,7 +19,7 @@ export interface BalanceThreshold {
     decimals: number;
 }
 
-export interface BalanceProps extends Omit<TypographyProps, "children" | "numberOfLines"> {
+export interface BalanceProps extends Omit<TypographyProps, "children"> {
     balance: FullNumber;
     units?: AppCurrency | string;
     unitsPosition?: "left" | "right";

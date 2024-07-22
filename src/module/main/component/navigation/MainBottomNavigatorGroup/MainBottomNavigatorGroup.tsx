@@ -6,6 +6,8 @@ import BasePage from "module/common/component/layout/BasePage/BasePage";
 import StakingScreen from "module/staking/screen/StakingScreen";
 import DAppsScreen from "module/dapp/screen/DappsScreen/DAppsScreen";
 import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
+import FaqsScreen from "module/faqs/screen/FaqsScreen";
+import SettingsScreen from "module/settings/screen/SettingsScreen/SettingsScreen";
 
 export const MainBottomNavigatorGroup = () => (
     <BasePage>
@@ -20,6 +22,8 @@ export const MainBottomNavigatorGroup = () => (
             <BottomTab.Screen name={MainScreens.NEWS} component={NewsScreen} />
             <BottomTab.Screen name={MainScreens.STAKING} component={StakingScreen} />
             <BottomTab.Screen name={MainScreens.DAPPS} component={DAppsScreen} />
+            <BottomTab.Screen name={MainScreens.FAQS} component={FaqsScreen} />
+            <BottomTab.Screen name={MainScreens.SETTINGS} component={SettingsScreen} />
         </BottomTab.Navigator>
     </BasePage>
 );

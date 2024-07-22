@@ -13,7 +13,7 @@ import { BalanceProps } from "module/wallet/component/display/Balance/Balance.ty
 import BlockchainAddress from "module/common/component/display/BlockchainAddress/BlockchainAddress";
 
 const FunctionCallPermissions = ({
-    permission: { allowance: allowanceInYocto = "", receiverId },
+    permission: { allowance: allowanceInYocto = "", receiverId = "" },
 }: FunctionCallPermissionsProps): JSX.Element => {
     const translate = useTranslate();
     const permissions = useFunctionCallPermissions();

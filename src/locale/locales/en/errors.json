@@ -33,7 +33,6 @@
     "invalid_child_account": "You can not create {{nameID}} with your account {{currentAccount}}.",
     "invalid_send_same_account": "You can not send to your own account.",
     "invalid_account_or_not_active": "The receiver account is invalid or does not exist",
-    "no_transactions": "There's no transactions yet",
     "no_nfts": "There's no NFTs yet",
     "no_tokens": "There's no tokens yet",
     "no_news_now": "No new news so far",
@@ -49,5 +48,8 @@
     "invalidSigner": "Invalid signer account",
     "invalidSignerDescription": "You have not selected the expected account to sign this request",
     "invalidSignerRequest": "Invalid signer request",
-    "invalidSignerRequestDescription": "The request does not exists. Try creating a different one."
+    "invalidSignerRequestDescription": "The request does not exists. Try creating a different one.",
+    "cantImportAccount": "Can't import account",
+    "accountAlreadyExists": "The account already exists",
+    "updateAppError": "Error updating app"
 }

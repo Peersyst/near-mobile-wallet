@@ -1,0 +1,35 @@
+{
+    "aboutTheNearWalletApp": {
+        "label": "Về Ứng dụng Ví NEAR",
+        "questions": [
+            {
+                "question": "Tại sao tôi không thể gửi các token của mình?",
+                "answer": "Đảm bảo bạn có đủ NEAR trong tài khoản để cover phí giao dịch. Mỗi hành động trên blockchain, như gửi hoặc đổi token, đều cần một lượng nhỏ NEAR (ít nhất 0,005 NEAR) để xử lý. Bạn có thể mua NEAR bằng cách nhấn vào nút mua trong ví của bạn hoặc nạp NEAR từ một ví khác."
+            },
+            {
+                "question": "Tại sao tôi không thể gỡ token NEAR của mình?",
+                "answer": "Nếu bạn không thể gỡ token, có thể do bạn không có đủ NEAR để trả phí giao dịch gỡ token. Hãy nhớ rằng bạn không thể sử dụng NEAR đã gởi để trả phí, bạn phải có NEAR đã gởi có sẵn (ít nhất 0,005 NEAR)."
+            },
+            {
+                "question": "Tại sao tài khoản/số dư của tôi không hiển thị?",
+                "answer": "Nếu bạn đã nhập cụm từ mật khẩu của mình (12 từ) và tài khoản của bạn không hiển thị, có thể do vấn đề với API blockchain NEAR. Để giải quyết vấn đề, hãy vào Cài đặt (:biểu tượng bánh răng: ở góc trên bên phải) -> Cài đặt bảo mật -> Nhập tài khoản bằng tay, nhập địa chỉ của bạn và nhấn nhập."
+            },
+            {
+                "question": "Làm thế nào để tôi rút token NEAR đã gửi của mình?",
+                "answer": "Sau khi bạn đã nhấp vào gỡ token, bạn phải đợi 4 epoch (khoảng 52-65 giờ). Sau thời gian đó, ví của bạn sẽ hiển thị một nút rút để khôi phục NEAR của bạn."
+            },
+            {
+                "question": "Tôi có thể kiếm tiền với NEAR Mobile như thế nào?",
+                "answer": "Có một số cách để kiếm tiền thông qua NEAR Mobile: gửi token NEAR để nhận phần thưởng là cách dễ nhất. Bạn cũng có thể sử dụng tích hợp của chúng tôi với DEX như Ref Finance bằng cách vào tab dApps và nhấp vào Ref Finance. Luôn luôn cân nhắc các rủi ro và tìm hiểu hoặc tham khảo ý kiến của một chuyên gia để lựa chọn các chiến lược phù hợp nhất với mục tiêu tài chính của bạn."
+            },
+            {
+                "question": "Tôi có thể làm gì với token SWEAT của mình?",
+                "answer": "Bạn có thể hoặc gửi chúng đi nơi khác hoặc đổi chúng sang các token khác bằng cách sử dụng tích hợp đổi của chúng tôi với Ref Finance. Bạn có thể đổi chúng lấy bất cứ thứ gì bạn muốn, nhưng một lựa chọn là đổi chúng sang NEAR và gửi chúng để nhận phần thưởng. Hãy nhớ rằng bạn cần phải có một ít NEAR (ít nhất 0,005 NEAR) để gửi hoặc đổi token SWEAT của bạn."
+            },
+            {
+                "question": "Vấn đề hoặc câu hỏi của tôi không ở đây",
+                "answer": "Bạn có thể kiểm tra hướng dẫn của chúng tôi tại đây <a>https://docs.peersyst.com/near-mobile-support-center</a> hoặc liên hệ với bộ phận hỗ trợ tại đây <a>https://t.co/1yW8TGNMTp</a>."
+            }
+        ]
+    }
+}

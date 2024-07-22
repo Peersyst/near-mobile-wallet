@@ -6,11 +6,15 @@ import useWalletState from "module/wallet/hook/useWalletState";
 import SendSummary from "./SendSummary";
 import useTranslate from "module/common/hook/useTranslate";
 import SendTransactionModal from "module/transaction/component/feedback/SendTransactionModal/SendTransactionModal";
-import SendModal from "module/transaction/component/core/SendModal/SendModal";
 import { useSendTransaction } from "module/transaction/hook/useSendTransaction";
 import { config } from "config";
+import SendModal from "module/transaction/component/core/SendModal/SendModal";
 
-const SendConfirmationScreen = (): JSX.Element => {
+export interface SendConfirmationScreenProps {
+    onClose?: () => void | undefined;
+}
+
+const SendConfirmationScreen = ({ onClose }: SendConfirmationScreenProps): JSX.Element => {
     const translate = useTranslate();
     const { hideModal } = useModal();
     const { showToast } = useToast();
@@ -25,6 +29,7 @@ const SendConfirmationScreen = (): JSX.Element => {
     const { account: senderName } = senderWallet;
 
     function closeModal() {
+        onClose && onClose?.();
         hideModal(SendModal.id);
         if (isSuccess) showToast(translate("send_success"), { type: "success" });
     }

@@ -6,6 +6,7 @@ export enum DAppTag {
     SOCIAL = "social",
     LENDING = "lending",
     NFT_MARKETPLACE = "nftMarketplace",
+    EXPLORER = "explorer",
 }
 
 export interface DApp {

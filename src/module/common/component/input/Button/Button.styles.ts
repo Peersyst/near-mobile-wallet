@@ -37,6 +37,10 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             backgroundColor: theme.palette.overlay["12%"],
             color: "#ffffff",
         },
+        quaternary: {
+            backgroundColor: "#FFFFFF",
+            color: theme.palette.primary,
+        },
         contrast: {
             backgroundColor: theme.palette.gray[themeMode === "light" ? "600" : "900"],
             color: theme.palette.red,
@@ -52,6 +56,14 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
         destructive: {
             color: theme.palette.white,
             backgroundColor: theme.palette.status.error,
+        },
+        glass: {
+            backgroundColor: theme.palette.overlay["8%"],
+            color: "#FFFFFF",
+        },
+        quinary: {
+            backgroundColor: emphasize(theme.palette.primary, 0.9),
+            color: theme.palette.primary,
         },
 
         //State Styles
@@ -74,20 +86,25 @@ export const ButtonRoot = styled(Button)<ButtonProps>(({ theme, rounded = true }
             destructive: {
                 backgroundColor: emphasize(theme.palette.status.error, 0.15),
             },
+            quinary: {
+                backgroundColor: emphasize(theme.palette.primary, 0.7),
+            },
         },
         disabled: {
             backgroundColor: theme.palette.overlay["20%"],
             color: "white",
-            variant: {
-                outlined: {
-                    backgroundColor: "transparent",
-                    color: theme.palette.overlay["20%"],
-                    borderColor: theme.palette.overlay["20%"],
-                },
-                text: {
-                    backgroundColor: "transparent",
-                    color: theme.palette.overlay["20%"],
-                },
+            outlined: {
+                backgroundColor: "transparent",
+                color: theme.palette.overlay["20%"],
+                borderColor: theme.palette.overlay["20%"],
+            },
+            text: {
+                backgroundColor: "transparent",
+                color: theme.palette.overlay["20%"],
+            },
+            quaternary: {
+                backgroundColor: "#FFFFFF",
+                color: theme.palette.overlay["20%"],
             },
         },
     };

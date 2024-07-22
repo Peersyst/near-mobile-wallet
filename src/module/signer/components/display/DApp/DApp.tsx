@@ -2,17 +2,40 @@ import { DAppProps } from "./DApp.types";
 import { DAppRoot, DAppLogo, DAppTag, DAppLinkIcon } from "./DApp.styles";
 import { Col, Row, Skeleton, Typography } from "@peersyst/react-native-components";
 import DAppStatus from "../DAppStatus/DAppStatus";
-import { Linking } from "react-native";
 // TouchableOpacity from react-native-gesture-handler handles touches with Swipeable.
 // Otherwise, Swipeable triggers the `onPress`
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useRecoilValue } from "recoil";
+import settingsState from "module/settings/state/SettingsState";
+import useWalletState from "module/wallet/hook/useWalletState";
+import { usePostHog } from "posthog-react-native";
+import { DAppWebViewModal } from "../../../containers/DAppWebViewModal/DAppWebViewModal";
+import { useModalState } from "../../../../common/hook/useModalState";
 
 const DApp = ({ dapp, connected = false, loading = false }: DAppProps): JSX.Element => {
     const { name, description, logoUrl, url, tag } = dapp;
+    const {
+        state: { selectedWallet, wallets },
+    } = useWalletState();
+    const { network } = useRecoilValue(settingsState);
+    const posthog = usePostHog();
+    const { open: openDAppWebViewModal, showModal: showDAppWebViewModal, hideModal: hideDAppWebViewModal } = useModalState();
 
+    function handleOnPress(): void {
+        try {
+            posthog?.capture("dapp_click", {
+                wallet_address: wallets[selectedWallet].account,
+                dapp_url: url,
+                dapp_name: name,
+                chain: network,
+            });
+        } catch (error) {}
+
+        showDAppWebViewModal();
+    }
     return (
         <DAppRoot gap={16}>
-            <TouchableOpacity activeOpacity={0.6} onPress={() => Linking.openURL(url)}>
+            <TouchableOpacity activeOpacity={0.6} onPress={handleOnPress}>
                 <Row gap={16} alignItems="center">
                     <DAppLogo source={{ uri: logoUrl }} />
                     <Col flex={1}>
@@ -36,6 +59,7 @@ const DApp = ({ dapp, connected = false, loading = false }: DAppProps): JSX.Elem
                     </Col>
                 </Row>
             </TouchableOpacity>
+            <DAppWebViewModal url={url} name={name} open={openDAppWebViewModal} onClose={hideDAppWebViewModal} />
         </DAppRoot>
     );
 };

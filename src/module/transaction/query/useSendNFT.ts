@@ -4,6 +4,7 @@ import Queries from "../../../query/queries";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
 import { useSetRecoilState } from "recoil";
 import sendState from "../state/SendState";
+import { usePostHog } from "posthog-react-native";
 
 export interface UseSendNFTParams {
     contractId: string;
@@ -12,9 +13,10 @@ export interface UseSendNFTParams {
 }
 
 const useSendNFT = (senderIndex: number) => {
-    const { serviceInstance } = useServiceInstance(senderIndex);
+    const { serviceInstance, network } = useServiceInstance(senderIndex);
     const invalidateQueries = useInvalidateServiceInstanceQueries(senderIndex);
     const setSendState = useSetRecoilState(sendState);
+    const posthog = usePostHog();
 
     return useMutation(
         async ({ contractId, tokenId, receiverId }: UseSendNFTParams) => {
@@ -22,8 +24,18 @@ const useSendNFT = (senderIndex: number) => {
             setSendState((oldState) => ({ ...oldState, txHash }));
         },
         {
-            onSuccess: () => {
+            onSuccess: (_data, variables) => {
                 invalidateQueries([Queries.GET_BALANCE, Queries.GET_NFTS, Queries.ACTIONS]);
+                try {
+                    posthog?.capture("send", {
+                        asset: "NFT",
+                        wallet_address: serviceInstance.getAddress(),
+                        destination_address: variables.receiverId,
+                        amount: 1,
+                        contract_id: variables.contractId,
+                        chain: network,
+                    });
+                } catch (error) {}
             },
         },
     );

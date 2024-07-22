@@ -8,10 +8,11 @@ export interface BaseMainScreenProps extends NavbarProps {
     children: ReactNode;
 }
 
-const BaseMainScreen = ({ children, ...navbarProps }: BaseMainScreenProps): JSX.Element => {
+const BaseMainScreen = ({ children, title, back, ...navbarProps }: BaseMainScreenProps): JSX.Element => {
+    const renderNavbar = title || back;
     return (
         <BaseMainScreenRoot>
-            {Object.entries(navbarProps).length > 0 && <Navbar {...navbarProps} />}
+            {renderNavbar && <Navbar title={title} back={back} {...navbarProps} />}
             <View style={{ flex: 1 }}>{children}</View>
         </BaseMainScreenRoot>
     );

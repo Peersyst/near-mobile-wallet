@@ -5,6 +5,7 @@ import useGetTotalStaking from "module/staking/query/useGetTotalStaking";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import { Wallet } from "module/wallet/state/WalletState";
 import StakingInfoLabel from "../../StakingInfoLabel/StakingInfoLabel";
+import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 
 interface StakingCardContentProps {
     wallet: Wallet;
@@ -18,11 +19,13 @@ const StakingCardContent = ({ wallet }: StakingCardContentProps): JSX.Element =>
     const stakedLabel = translate("staked");
 
     return (
-        <Row style={{ marginTop: 6 }} alignItems="center" gap={16}>
-            <StakingInfoLabel loading={isBalanceLoading} amount={available} label={availableLabel} />
-            <SlashIcon />
-            <StakingInfoLabel loading={isStakingLoading} amount={staked} label={stakedLabel} />
-        </Row>
+        <DarkThemeProvider>
+            <Row style={{ marginTop: 6 }} alignItems="center" gap={16}>
+                <StakingInfoLabel loading={isBalanceLoading} amount={available} label={availableLabel} />
+                <SlashIcon />
+                <StakingInfoLabel loading={isStakingLoading} amount={staked} label={stakedLabel} />
+            </Row>
+        </DarkThemeProvider>
     );
 };
 

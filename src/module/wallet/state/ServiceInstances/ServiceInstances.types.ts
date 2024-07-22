@@ -3,7 +3,7 @@ import { NearSDKService } from "near-peersyst-sdk";
 
 export interface BaseNearSdkParams {
     nodeUrl: string;
-    indexerUrl: string;
+    archivalNodeUrl: string;
 }
 
 export interface BaseSetServiceInstancesParams {
@@ -27,10 +27,16 @@ export interface CreateServiceInstancesParams extends BaseSetServiceInstancesPar
     privateKey?: string;
     mnemonic?: string;
     nameId?: string;
+    likelyNameIds?: string[];
 }
 
 export interface InitServiceInstancesParams extends Omit<SetServicesParams, "services"> {
     mnemonic?: string;
+}
+
+export interface AddManualServiceInstanceParams extends BaseSetServiceInstancesParams {
+    secretKey: string;
+    accountId: string;
 }
 
 export interface CreateInstanceReturn {

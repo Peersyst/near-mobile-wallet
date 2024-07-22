@@ -7,6 +7,7 @@ export type Wallet = StorageWallet & {
 };
 
 export interface WalletState {
+    loading: boolean;
     hasWallet: boolean;
     isAuthenticated: boolean;
     /**
@@ -16,11 +17,12 @@ export interface WalletState {
      */
     wallets: Wallet[];
     selectedWallet: number;
+    isBackupDone?: boolean;
 }
 
 const walletState = atom<WalletState>({
     key: "wallet",
-    default: { hasWallet: false, isAuthenticated: false, wallets: [], selectedWallet: 0 },
+    default: { loading: false, hasWallet: false, isAuthenticated: false, wallets: [], selectedWallet: 0, isBackupDone: undefined },
 });
 
 export default walletState;

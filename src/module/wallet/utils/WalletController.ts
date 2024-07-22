@@ -49,6 +49,12 @@ export interface CheckWalletsReturn extends GetWalletsReturn {
     hasNewAccounts: boolean;
 }
 
+export interface ImportAccountManuallyReturn {
+    canImport?: boolean;
+    alreadyImported?: boolean;
+    wallet?: Wallet;
+}
+
 export default new (class WalletController {
     private isSameSecretKey(secretKey1: string, secretKey2: string) {
         return NearSDKService.isSameSecretKey(secretKey1, secretKey2);
@@ -71,6 +77,7 @@ export default new (class WalletController {
         pin?: string,
         mnemonic?: string,
         privateKeyParam?: string,
+        isBackupDone?: boolean,
     ): Promise<WalletControllerBaseReturn> {
         /**
          * Get secure storage and check if has a mnemonic and if the pK/mnemonic is not repeated (already in storage)
@@ -96,7 +103,8 @@ export default new (class WalletController {
             (!!secureStorage?.mainPrivateKey && this.isImported(secureStorage.mainPrivateKey, finalPrivateKeyParam));
 
         //Init serviceInstancesMap
-        const accounts = await ServiceInstances.addServiceInstances({ network, privateKey: finalPrivateKeyParam, mnemonic });
+        const likelyNameIds = await WalletStorage.getAccountsFromPrivateKey(privateKey, network);
+        const accounts = await ServiceInstances.addServiceInstances({ network, privateKey: finalPrivateKeyParam, mnemonic, likelyNameIds });
 
         //Add new accounts
         for (const [index, { account, privateKey: pK }] of accounts.entries()) {
@@ -133,6 +141,7 @@ export default new (class WalletController {
                 mainPrivateKey: parsedPrivateKey,
                 testnet: isTestnet ? newSecureWallets : [],
                 mainnet: !isTestnet ? newSecureWallets : [],
+                isBackupDone,
             });
         } else {
             //Import account with previous accounts
@@ -166,9 +175,6 @@ export default new (class WalletController {
         const storageWallets = await WalletStorage.getWallets(network); //Sorted by index
         //Has all the privateKeys and walletIds that point into the oldStorageWallets
         const walletGroups = secureStorage?.[network] || [];
-
-        //Does not have any previous wallet
-        if (storageWallets.length === 0 || walletGroups.length === 0) return { wallets: [] };
 
         const mainPrivateKey = this.parsePrivateKey(secureStorage?.mainPrivateKey || ""); //If has previous wallets, it has a mainPrivateKey
 
@@ -258,7 +264,12 @@ export default new (class WalletController {
             const accountDeletedIds: number[] = [];
             const parsedPrivateKey = this.parsePrivateKey(walletGroup.privateKey);
             //Get all the accounts from the private key
-            const accounts = await ServiceInstances.recoverServiceInstances({ network: network, privateKey: parsedPrivateKey });
+            const likelyNameIds = await WalletStorage.getAccountsFromPrivateKey(parsedPrivateKey, network);
+            const accounts = await ServiceInstances.recoverServiceInstances({
+                network: network,
+                likelyNameIds,
+                privateKey: parsedPrivateKey,
+            });
             const imported = this.isImported(parsedPrivateKey, mainPrivateKey);
             //Recover the old accounts and check if there are deleted accounts
             for (const walletId of walletGroup.walletIds) {
@@ -427,5 +438,65 @@ export default new (class WalletController {
             colorIndex: WalletUtils.getWalletColor(newAccount),
             ...(imported && { imported }),
         };
+    }
+
+    async importAccountManually(account: string, accessKeys: string[], network: NetworkType): Promise<ImportAccountManuallyReturn> {
+        //Check if the some of the account's accessKeys are in the secure storage
+        const walletGroups = await WalletStorage.getSecureWallets(network);
+        const secureWallet = walletGroups.find((walletGroup) => {
+            const publicKey = NearSDKService.getPublicKeyFromSecretKey(walletGroup.privateKey);
+            return accessKeys.includes(publicKey);
+        });
+        if (!secureWallet) return { canImport: false };
+
+        //Check if the account is already in the unencrypted storage
+        const wallets = await WalletStorage.getUnencryptedWallets(network);
+        for (const walletId of secureWallet.walletIds) {
+            const wallet = wallets.find((w) => w.index === walletId);
+            if (wallet && wallet.account === account) {
+                return { alreadyImported: true };
+            }
+        }
+
+        //Create new ServiceInstance
+        await ServiceInstances.addManualServiceInstance({
+            network,
+            secretKey: secureWallet.privateKey,
+            accountId: account,
+        });
+
+        //Add new wallet to the storage
+        const isImported = this.isImported(secureWallet.privateKey, await WalletStorage.getMainPrivateKey());
+        const newIndex = await WalletStorage.addNewUnencryptedWallet({ account }, network);
+        if (newIndex === undefined) return { canImport: false };
+
+        //Add new wallet to the secure storage
+        await WalletStorage.setSecureWalletId(newIndex, secureWallet.privateKey, network);
+
+        const newWallet: Wallet = {
+            account,
+            index: newIndex,
+            colorIndex: WalletUtils.getWalletColor(account),
+            ...(isImported && { imported: true }),
+        };
+
+        return { wallet: newWallet, canImport: true };
+    }
+
+    async getIsBackupDone(): Promise<boolean | undefined> {
+        const secureStorage = await WalletStorage.getSecure();
+        const mnemonic = await WalletStorage.getMnemonic();
+
+        if (secureStorage && secureStorage?.isBackupDone === undefined) {
+            /**
+             * Migrate the storage to the new one
+             */
+            if (mnemonic) {
+                await WalletStorage.setIsBackupDone(true);
+                return true;
+            } else return false;
+        }
+
+        return secureStorage?.isBackupDone;
     }
 })();
