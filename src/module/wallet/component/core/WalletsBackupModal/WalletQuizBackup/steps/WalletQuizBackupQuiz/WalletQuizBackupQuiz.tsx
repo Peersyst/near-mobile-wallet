@@ -29,7 +29,11 @@ const WalletQuizBackupQuiz = ({
             <Form onSubmit={handleNextQuestion} style={{ flex: 1 }}>
                 <Col flex={1} gap={24}>
                     <Typography variant="body2Regular">{translateQuiz(currentQuestion.question as QuizResourceType)}</Typography>
-                    <SelectorGroup<number, false, "column"> name={`question_${currentQuestionIndex}`} onChange={handleAnswerChange}>
+                    <SelectorGroup<number, false, "column">
+                        name={`question_${currentQuestionIndex}`}
+                        onChange={handleAnswerChange}
+                        key={currentQuestion.question}
+                    >
                         {currentQuestion.responses.map((response, index) => (
                             <Selector<number>
                                 key={index}

@@ -26,7 +26,7 @@ const useQuizInitialization = () => {
 
     return useMemo(() => {
         const quizQuestions = initializeQuizQuestions(questions, quizNumberOfQuestions);
-        const quizQuestionsShuffled = initializeQuizQuestionsShuffled(questions, quizNumberOfQuestions);
+        const quizQuestionsShuffled = initializeQuizQuestionsShuffled(quizQuestions, quizNumberOfQuestions);
         return { quizQuestions, quizQuestionsShuffled };
     }, [questions, quizNumberOfQuestions]);
 };
