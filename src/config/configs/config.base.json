@@ -139,7 +139,11 @@
         },
         {
             "question": "whatShouldYouDoIfYouLoseYourMnemonic",
-            "responses": ["nothingYouCanRecoverItOnline", "yourAccountIsAtRiskAndMayBeIrrecoverable", "contactSupportToRecoverYourMnemonic"],
+            "responses": [
+                "nothingYouCanRecoverItOnline",
+                "yourAccountIsAtRiskAndMayBeIrrecoverable",
+                "contactSupportToRecoverYourMnemonic"
+            ],
             "correctResponse": 1
         },
         {
