@@ -38,7 +38,7 @@ const WalletQuizBackup = ({ onClose, onSubmit }: WalletQuizBackupProps): JSX.Ele
             return;
         }
 
-        setError("");
+        setError(undefined);
         if (currentQuestionIndex < quizQuestions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
             setAnswers([...answers.slice(0, currentQuestionIndex + 1), 0]);
