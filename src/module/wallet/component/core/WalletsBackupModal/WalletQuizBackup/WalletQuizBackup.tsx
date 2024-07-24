@@ -66,7 +66,6 @@ const WalletQuizBackup = ({ onClose, onSubmit }: WalletQuizBackupProps): JSX.Ele
                         handleAnswerChange={handleAnswerChange}
                         currentQuestionIndex={currentQuestionIndex}
                         quizQuestions={quizQuestionsShuffled}
-                        key={currentQuestionIndex}
                     />
                 </TabPanel>
                 <TabPanel index={QuizStep.Error}>
