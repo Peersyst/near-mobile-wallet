@@ -20,7 +20,7 @@ const WalletQuizBackupWelcome = ({ onNext }: WalletQuizBackupWelcomeProps) => {
                 </Button>
             }
         >
-            <Col style={{ justifyContent: "center", alignItems: "center" }} flex={1} gap={40}>
+            <Col justifyContent="center" alignItems="center" flex={1} gap={40}>
                 <Typography variant="body2Regular">{translate("welcomeSecurityQuiz")}</Typography>
                 <WalletQuizBackupIcon>
                     <SecurityQuizIcon />

@@ -1,10 +1,11 @@
-import { Col, Form, RadioButton, Selector, SelectorGroup } from "@peersyst/react-native-components";
+import { Col, Form, Selector, SelectorGroup } from "@peersyst/react-native-components";
 import Typography from "module/common/component/display/Typography/Typography";
 import Button from "module/common/component/input/Button/Button";
-import { QuizQuestion } from "../WalletQuizBackup.stypes";
-import WalletQuizBackupLayout from "./WalletQuizBackupLayout";
+import { QuizQuestion } from "../../WalletQuizBackup.stypes";
+import WalletQuizBackupLayout from "../WalletQuizBackupLayout";
 import useTranslate from "module/common/hook/useTranslate";
 import { QuizResourceType } from "locale";
+import { QuizRadionButton } from "./WalletQuizBackupQuiz.styles";
 
 export interface WalletQuizBackupQuizProps {
     handleAnswerChange: (value: number) => void;
@@ -27,17 +28,19 @@ const WalletQuizBackupQuiz = ({
         <WalletQuizBackupLayout>
             <Form onSubmit={handleNextQuestion} style={{ flex: 1 }}>
                 <Col flex={1} gap={24}>
-                    <Typography variant="body2Regular">{translateQuiz(currentQuestion.answer as QuizResourceType)}</Typography>
+                    <Typography variant="body2Regular">{translateQuiz(currentQuestion.question as QuizResourceType)}</Typography>
                     <SelectorGroup<number, false, "column"> name={`question_${currentQuestionIndex}`} onChange={handleAnswerChange}>
-                        {currentQuestion.response.map((response, index) => (
+                        {currentQuestion.responses.map((response, index) => (
                             <Selector<number>
                                 key={index}
                                 value={index}
                                 renderController={({ selected, setSelected }) => (
-                                    <RadioButton
+                                    <QuizRadionButton
                                         value={index === selected}
-                                        onChange={(v) => v && setSelected()}
-                                        label={translateQuiz(response as QuizResourceType)}
+                                        onChange={(v: any) => v && setSelected()}
+                                        label={
+                                            <Typography variant="body2Regular">{translateQuiz(response as QuizResourceType)}</Typography>
+                                        }
                                     />
                                 )}
                             />

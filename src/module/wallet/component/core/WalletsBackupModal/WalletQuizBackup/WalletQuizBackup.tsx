@@ -1,47 +1,37 @@
-import { useState, useEffect } from "react";
-import { config } from "config";
+import { useState } from "react";
 import WalletQuizBackupError from "./steps/WalletQuizBackupError";
 import WalletQuizBackupWelcome from "./steps/WalletQuizBackupWelcome";
-import { QuizQuestion, QuizStep, WalletQuizBackupProps } from "./WalletQuizBackup.stypes";
-import WalletQuizBackupQuiz from "./steps/WalletQuizBackupQuiz";
+import { QuizStep, WalletQuizBackupProps } from "./WalletQuizBackup.stypes";
+import WalletQuizBackupQuiz from "./steps/WalletQuizBackupQuiz/WalletQuizBackupQuiz";
 import useTranslate from "module/common/hook/useTranslate";
 import ConfirmPinModal from "module/settings/components/core/ConfirmPinModal/ConfirmPinModal";
 import { TabPanel, Tabs } from "@peersyst/react-native-components";
 import { NotificationFeedbackType, notificationAsync } from "expo-haptics";
+import useQuizInitialization from "module/wallet/hook/useQuizInitialization";
 
 const WalletQuizBackup = ({ onClose, onSubmit }: WalletQuizBackupProps): JSX.Element => {
     const translateError = useTranslate("error");
-    const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>([]);
+    const { quizQuestions, quizQuestionsShuffled } = useQuizInitialization();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
     const [answers, setAnswers] = useState<number[]>([]);
-    const [error, setError] = useState<string>("");
+    const [error, setError] = useState<string | undefined>("");
     const [quizStep, setQuizStep] = useState<QuizStep>(QuizStep.Welcome);
     const [showModal, setShowModal] = useState(false);
-    const [quizQuestionsShuffled, setQuizQuestionsShuffled] = useState<QuizQuestion[]>([]);
-
-    useEffect(() => {
-        const shuffledQuestions = [...config.securityQuizList].sort(() => 0.5 - Math.random());
-        const originalShuffledQuestions = shuffledQuestions.slice(0, 3);
-        setQuizQuestions(originalShuffledQuestions);
-        const shuffledQuestionsWithShuffledResponses = originalShuffledQuestions.map((question) => {
-            const shuffledResponses = [...question.response].sort(() => 0.5 - Math.random());
-            return { ...question, response: shuffledResponses };
-        });
-
-        setQuizQuestionsShuffled(shuffledQuestionsWithShuffledResponses);
-    }, []);
 
     const handleAnswerChange = (value: number) => {
-        const updatedAnswers = [...answers];
-        updatedAnswers[currentQuestionIndex] = value;
-        setAnswers(updatedAnswers);
+        setAnswers((answers) => {
+            answers[currentQuestionIndex] = value;
+            return answers;
+        });
     };
 
     const handleNextQuestion = () => {
-        const currentQuestion = quizQuestions.find((question) => question.answer === quizQuestionsShuffled[currentQuestionIndex].answer);
-        const userResponse = quizQuestionsShuffled[currentQuestionIndex].response[answers[currentQuestionIndex]];
+        const currentQuestion = quizQuestions.find(
+            (question) => question.question === quizQuestionsShuffled[currentQuestionIndex].question,
+        );
+        const userResponse = quizQuestionsShuffled[currentQuestionIndex].responses[answers[currentQuestionIndex]];
 
-        if (currentQuestion?.response[currentQuestion.correctResponse] !== userResponse) {
+        if (currentQuestion?.responses[currentQuestion.correctResponse] !== userResponse) {
             setQuizStep(QuizStep.Error);
             notificationAsync(NotificationFeedbackType.Error);
             setError(translateError("errorSecurityQuiz"));
@@ -61,7 +51,7 @@ const WalletQuizBackup = ({ onClose, onSubmit }: WalletQuizBackupProps): JSX.Ele
         setQuizStep(QuizStep.Questions);
         setCurrentQuestionIndex(0);
         setAnswers([]);
-        setError("");
+        setError(undefined);
     };
 
     return (
@@ -80,7 +70,7 @@ const WalletQuizBackup = ({ onClose, onSubmit }: WalletQuizBackupProps): JSX.Ele
                     />
                 </TabPanel>
                 <TabPanel index={QuizStep.Error}>
-                    <WalletQuizBackupError error={error} onClose={onClose} />
+                    <WalletQuizBackupError error={error || ""} onClose={onClose} />
                 </TabPanel>
             </Tabs>
             <ConfirmPinModal open={showModal} onPinConfirmed={onSubmit} onClose={() => setShowModal(false)} />

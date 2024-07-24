@@ -1,16 +1,16 @@
 {
     "whyShouldYouNeverShareYourMnemonic": "Why should you never share your mnemonic?",
     "itCanBeUsedToStealYourTokens": "It can be used to steal your tokens",
-    "itsNeededForTechnicalSupport": "It's needed for technical support",
+    "itSNeededForTechnicalSupport": "It's needed for technical support",
     "itHelpsInResettingYourPassword": "It helps in resetting your password",
     "whatIsAMnemonic": "What is a mnemonic?",
     "aSeriesOfWordsUsedToRecoverYourAccount": "A series of words used to recover your account",
     "aTypeOfCryptocurrency": "A type of cryptocurrency",
-    "aPasswordForYourEmailAccount": "A password for your email account",
+    "aPasswordForYourEmailAddress": "A password for your email address",
     "whereShouldYouStoreYourMnemonic": "Where should you store your mnemonic?",
     "inASecureOfflineLocation": "In a secure offline location",
     "inATextFileOnYourComputer": "In a text file on your computer",
-    "inYourEmailAccount": "In your email account",
+    "inYourEmailAddress": "In your email address",
     "whatIsAPrivateKey": "What is a private key?",
     "aKeyUsedToEncryptMessages": "A key used to encrypt messages",
     "aSecretKeyThatGrantsAccessToYourFunds": "A secret key that grants access to your funds",
@@ -38,8 +38,5 @@
     "whatShouldYouDoIfYouSuspectSomeoneHasAccessToYourPrivateKey": "What should you do if you suspect someone has access to your private key?",
     "immediatelyChangeYourKeysAndMnemonics": "Immediately change your keys and mnemonics",
     "waitToSeeIfAnythingHappens": "Wait to see if anything happens",
-    "shareYourConcernOnSocialMedia": "Share your concern on social media",
-    "itSNeededForTechnicalSupport": "It's needed for technical support",
-    "inYourEmailAddress": "In your email address",
-    "aPasswordForYourEmailAddress": "A password for your email address"
+    "shareYourConcernOnSocialMedia": "Share your concern on social media"
 }

@@ -8,8 +8,8 @@ export interface WalletQuizBackupProps {
 }
 
 export interface QuizQuestion {
-    answer: string;
-    response: string[];
+    question: string;
+    responses: string[];
     correctResponse: number;
 }
 

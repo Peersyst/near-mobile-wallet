@@ -26,8 +26,8 @@ export interface RefetchIntervals {
 }
 
 export interface SecurityQuizBackup {
-    answer: string;
-    response: string[];
+    question: string;
+    responses: string[];
     correctResponse: number;
 }
 
@@ -88,6 +88,7 @@ declare module "@peersyst/react-native-components" {
             mainnet: string[];
         };
         securityQuizList: SecurityQuizBackup[];
+        quizNumberOfQuestions: number;
     }
 
     export interface CreateConfig {
@@ -130,6 +131,7 @@ declare module "@peersyst/react-native-components" {
             mainnet: string[];
         };
         securityQuizList: SecurityQuizBackup[];
+        quizNumberOfQuestions: number;
     }
 
     export interface ExtraValidators {

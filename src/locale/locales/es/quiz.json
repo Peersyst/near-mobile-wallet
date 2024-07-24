@@ -1,16 +1,16 @@
 {
     "whyShouldYouNeverShareYourMnemonic": "¿Por qué nunca debes compartir tu mnemónico?",
     "itCanBeUsedToStealYourTokens": "Puede ser utilizado para robar tus tokens",
-    "itsNeededForTechnicalSupport": "Es necesario para el soporte técnico",
+    "itSNeededForTechnicalSupport": "Es necesario para el soporte técnico",
     "itHelpsInResettingYourPassword": "Ayuda a restablecer tu contraseña",
     "whatIsAMnemonic": "¿Qué es un mnemónico?",
     "aSeriesOfWordsUsedToRecoverYourAccount": "Una serie de palabras usadas para recuperar tu cuenta",
     "aTypeOfCryptocurrency": "Un tipo de criptomoneda",
-    "aPasswordForYourEmailAccount": "Una contraseña para tu cuenta de correo electrónico",
+    "aPasswordForYourEmailAddress": "Una contraseña para tu dirección de correo electrónico",
     "whereShouldYouStoreYourMnemonic": "¿Dónde debes guardar tu mnemónico?",
     "inASecureOfflineLocation": "En un lugar seguro y fuera de línea",
     "inATextFileOnYourComputer": "En un archivo de texto en tu computadora",
-    "inYourEmailAccount": "En tu cuenta de correo electrónico",
+    "inYourEmailAddress": "En tu dirección de correo electrónico",
     "whatIsAPrivateKey": "¿Qué es una clave privada?",
     "aKeyUsedToEncryptMessages": "Una clave utilizada para encriptar mensajes",
     "aSecretKeyThatGrantsAccessToYourFunds": "Una clave secreta que otorga acceso a tus fondos",
@@ -38,8 +38,5 @@
     "whatShouldYouDoIfYouSuspectSomeoneHasAccessToYourPrivateKey": "¿Qué debes hacer si sospechas que alguien tiene acceso a tu clave privada?",
     "immediatelyChangeYourKeysAndMnemonics": "Cambia inmediatamente tus claves y mnemónicos",
     "waitToSeeIfAnythingHappens": "Espera a ver si pasa algo",
-    "shareYourConcernOnSocialMedia": "Comparte tu preocupación en las redes sociales",
-    "itSNeededForTechnicalSupport": "Es necesario para el soporte técnico",
-    "inYourEmailAddress": "En tu dirección de correo electrónico",
-    "aPasswordForYourEmailAddress": "Una contraseña para tu dirección de correo electrónico"
+    "shareYourConcernOnSocialMedia": "Comparte tu preocupación en las redes sociales"
 }

@@ -3,13 +3,14 @@ import WalletsBackupAdvise from "module/wallet/component/core/WalletsBackupModal
 import { useState } from "react";
 import WalletMnemonicBackup from "module/wallet/component/core/WalletsBackupModal/WalletMnemonicBackup/WalletMnemonicBackup";
 import useTranslate from "module/common/hook/useTranslate";
-import { WalletBackupModalRoot } from "./WalletsBackupModal.styles";
 import { useRecoilValue } from "recoil";
 import backupWalletState from "module/wallet/state/BackUpWalletState";
 import WalletsBackupSelectAccount from "./WalletsBackupSelectAccount/WalletsBackupSelectAccount";
 import WalletPrivateKeyBackup from "./WalletPrivateKeyBackup/WalletPrivateKeyBackup";
 import { useControlled } from "@peersyst/react-hooks";
 import WalletQuizBackup from "./WalletQuizBackup/WalletQuizBackup";
+import { useWindowDimensions } from "react-native";
+import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 
 export enum WalletsBackupModalTabs {
     ADVISE,
@@ -27,6 +28,7 @@ const WalletsBackupModal = createModal(
         const [open, setOpen] = useControlled(defaultOpen, openProp, onCloseProp);
         const [index, setIndex] = useState(0);
         const { method } = useRecoilValue(backupWalletState);
+        const { height } = useWindowDimensions();
 
         const handleBackupAdvise = () => {
             setIndex(WalletsBackupModalTabs.QUIZ);
@@ -37,14 +39,17 @@ const WalletsBackupModal = createModal(
         };
 
         return (
-            <WalletBackupModalRoot
+            <CardNavigatorModal
                 navbar={{ title: translate("back_up_your_accounts"), back: index < WalletsBackupModalTabs.SHOW_MNEMONIC }}
                 open={open}
                 onClose={() => setOpen(false)}
-                index={index}
                 {...props}
             >
-                <Tabs index={index} onIndexChange={setIndex} style={{ height: "100%" }}>
+                <Tabs
+                    index={index}
+                    onIndexChange={setIndex}
+                    style={{ minHeight: index === WalletsBackupModalTabs.QUIZ ? height * 0.3 : height * 0.7 }}
+                >
                     <TabPanel index={WalletsBackupModalTabs.ADVISE}>
                         <WalletsBackupAdvise onSubmit={handleBackupAdvise} />
                     </TabPanel>
@@ -61,7 +66,7 @@ const WalletsBackupModal = createModal(
                         <WalletPrivateKeyBackup onClose={() => setOpen(false)} />
                     </TabPanel>
                 </Tabs>
-            </WalletBackupModalRoot>
+            </CardNavigatorModal>
         );
     },
 );

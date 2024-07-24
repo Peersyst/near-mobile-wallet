@@ -10,7 +10,7 @@ const WalletQuizBackupLayout = ({ children, button }: WalletQuizBackupLayoutProp
         <Col flex={1} gap={24}>
             {children}
             {button && (
-                <Col flex={1} style={{ justifyContent: "flex-end" }}>
+                <Col flex={1} justifyContent="flex-end">
                     {button}
                 </Col>
             )}
