@@ -339,5 +339,7 @@
     "updateAppNow": "立即更新應用程式",
     "updatingApp": "正在更新應用程式",
     "pleaseWaitAMoment": "請稍等片刻",
-    "explore": "探索"
+    "explore": "探索",
+    "welcomeSecurityQuiz": "正確回答以下問題以顯示您的秘密恢復短語。",
+    "startQuiz": "開始測驗"
 }

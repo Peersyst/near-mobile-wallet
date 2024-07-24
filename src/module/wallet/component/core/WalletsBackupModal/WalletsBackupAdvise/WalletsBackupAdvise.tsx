@@ -3,8 +3,6 @@ import useTranslate from "module/common/hook/useTranslate";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import backupWalletState, { BackUp } from "module/wallet/state/BackUpWalletState";
 import Button from "module/common/component/input/Button/Button";
-import { ConfirmPinModalWrapper } from "module/settings/components/core/ConfirmPinModal/ConfirmPinModalWrapper";
-import { BaseUseModalStateReturn } from "module/common/hook/useModalState";
 import { usePostHog } from "posthog-react-native";
 import settingsState from "module/settings/state/SettingsState";
 import Alert from "module/common/component/feedback/Alert/Alert";
@@ -17,7 +15,6 @@ export interface WalletsBackupAdviseProps {
 }
 
 export interface HandlePressParams {
-    showModal: BaseUseModalStateReturn["showModal"];
     method: BackUp;
 }
 
@@ -27,7 +24,7 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdviseProps): JSX.Elemen
     const posthog = usePostHog();
     const { network } = useRecoilValue(settingsState);
 
-    const handlePress = ({ method, showModal }: HandlePressParams) => {
+    const handlePress = ({ method }: HandlePressParams) => {
         setState({ method });
         try {
             posthog?.capture("backup", {
@@ -36,49 +33,43 @@ const WalletsBackupAdvise = ({ onSubmit }: WalletsBackupAdviseProps): JSX.Elemen
             });
         } catch (error) {}
 
-        showModal();
+        onSubmit();
     };
 
     return (
-        <ConfirmPinModalWrapper onConfirmedExited={onSubmit}>
-            {({ showModal }) => (
-                <Col gap="10%" flex={1} style={{ paddingTop: "7%" }}>
-                    <Col flex={1} gap="7%" alignItems="center">
-                        <WalletsBackupAdviseIcon>
-                            <SaveIcon />
-                        </WalletsBackupAdviseIcon>
-                        <Typography variant="body2Regular" textAlign="center">
-                            {translate("backup_wallet_advise_text") + " "}
-                        </Typography>
-                        <Alert type="warning" icon={<SuccessIcon />} content={<WalletsBackupAdviseAlertContent />}></Alert>
-                    </Col>
-                    <Col gap="4%">
-                        <Button
-                            fullWidth
-                            onPress={() =>
-                                handlePress({
-                                    method: "mnemonic",
-                                    showModal,
-                                })
-                            }
-                        >
-                            {translate("export_mnemonic")}
-                        </Button>
-                        <Button
-                            fullWidth
-                            onPress={() =>
-                                handlePress({
-                                    method: "privateKey",
-                                    showModal,
-                                })
-                            }
-                        >
-                            {translate("export_private_key")}
-                        </Button>
-                    </Col>
-                </Col>
-            )}
-        </ConfirmPinModalWrapper>
+        <Col gap="10%" flex={1} style={{ paddingTop: "7%" }}>
+            <Col flex={1} gap="7%" alignItems="center">
+                <WalletsBackupAdviseIcon>
+                    <SaveIcon />
+                </WalletsBackupAdviseIcon>
+                <Typography variant="body2Regular" textAlign="center">
+                    {translate("backup_wallet_advise_text") + " "}
+                </Typography>
+                <Alert type="warning" icon={<SuccessIcon />} content={<WalletsBackupAdviseAlertContent />}></Alert>
+            </Col>
+            <Col gap="4%">
+                <Button
+                    fullWidth
+                    onPress={() =>
+                        handlePress({
+                            method: "mnemonic",
+                        })
+                    }
+                >
+                    {translate("export_mnemonic")}
+                </Button>
+                <Button
+                    fullWidth
+                    onPress={() =>
+                        handlePress({
+                            method: "privateKey",
+                        })
+                    }
+                >
+                    {translate("export_private_key")}
+                </Button>
+            </Col>
+        </Col>
     );
 };
 
