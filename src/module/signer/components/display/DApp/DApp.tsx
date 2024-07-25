@@ -15,7 +15,7 @@ import { Linking, Platform } from "react-native";
 
 const DApp = ({ dapp, connected = false, loading = false }: DAppProps): JSX.Element => {
     const { name, description, logoUrl, url, tag } = dapp;
-    const isAndroid = Platform.OS === "android";
+
     const {
         state: { selectedWallet, wallets },
     } = useWalletState();
@@ -32,7 +32,11 @@ const DApp = ({ dapp, connected = false, loading = false }: DAppProps): JSX.Elem
                 chain: network,
             });
         } catch (error) {}
-        isAndroid ? Linking.openURL(url) : showDAppWebViewModal();
+        if (Platform.OS === "android") {
+            Linking.openURL(url);
+        } else {
+            showDAppWebViewModal();
+        }
     }
     return (
         <DAppRoot gap={16}>
