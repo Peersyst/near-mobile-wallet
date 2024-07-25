@@ -11,9 +11,11 @@ import useWalletState from "module/wallet/hook/useWalletState";
 import { usePostHog } from "posthog-react-native";
 import { DAppWebViewModal } from "../../../containers/DAppWebViewModal/DAppWebViewModal";
 import { useModalState } from "../../../../common/hook/useModalState";
+import { Linking, Platform } from "react-native";
 
 const DApp = ({ dapp, connected = false, loading = false }: DAppProps): JSX.Element => {
     const { name, description, logoUrl, url, tag } = dapp;
+    const isAndroid = Platform.OS === "android";
     const {
         state: { selectedWallet, wallets },
     } = useWalletState();
@@ -30,8 +32,7 @@ const DApp = ({ dapp, connected = false, loading = false }: DAppProps): JSX.Elem
                 chain: network,
             });
         } catch (error) {}
-
-        showDAppWebViewModal();
+        isAndroid ? Linking.openURL(url) : showDAppWebViewModal();
     }
     return (
         <DAppRoot gap={16}>

@@ -11,6 +11,8 @@ import useGetSwapLink from "module/common/hook/useGetSwapLink";
 import useIsBuyEnabled from "module/wallet/hook/useIsBuyEnabled";
 import { DAppWebViewModal } from "module/signer/containers/DAppWebViewModal/DAppWebViewModal";
 import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
+import { Linking, Platform } from "react-native";
+import { Link } from "@react-navigation/native";
 
 const WalletCardButtons = (): JSX.Element => {
     const translate = useTranslate();
@@ -20,9 +22,15 @@ const WalletCardButtons = (): JSX.Element => {
     const { showModal, hideModal } = useModal();
 
     function handleSwapPress(): void {
-        showModal(DAppWebViewModal, { url: uriSwap, name: capitalize(translate("swap")), onClose: () => hideModal(DAppWebViewModal.id) });
+        isAndroid
+            ? Linking.openURL(uriSwap)
+            : showModal(DAppWebViewModal, {
+                  url: uriSwap,
+                  name: capitalize(translate("swap")),
+                  onClose: () => hideModal(DAppWebViewModal.id),
+              });
     }
-
+    const isAndroid = Platform.OS === "android";
     return (
         <DarkThemeProvider>
             <Row gap={6}>
@@ -41,6 +49,7 @@ const WalletCardButtons = (): JSX.Element => {
                 <LabeledIconButton variant="secondary" label={capitalize(translate("receive"))} onPress={() => showModal(ReceiveModal)}>
                     <ArrowReceiveIcon />
                 </LabeledIconButton>
+
                 <LabeledIconButton variant="glass" label={capitalize(translate("swap"))} onPress={handleSwapPress}>
                     <SwapIcon />
                 </LabeledIconButton>
