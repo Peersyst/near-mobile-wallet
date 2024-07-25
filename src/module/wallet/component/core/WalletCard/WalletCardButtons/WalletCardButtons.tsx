@@ -12,7 +12,6 @@ import useIsBuyEnabled from "module/wallet/hook/useIsBuyEnabled";
 import { DAppWebViewModal } from "module/signer/containers/DAppWebViewModal/DAppWebViewModal";
 import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
 import { Linking, Platform } from "react-native";
-import { Link } from "@react-navigation/native";
 
 const WalletCardButtons = (): JSX.Element => {
     const translate = useTranslate();
