@@ -21,15 +21,16 @@ const WalletCardButtons = (): JSX.Element => {
     const { showModal, hideModal } = useModal();
 
     function handleSwapPress(): void {
-        isAndroid
-            ? Linking.openURL(uriSwap)
-            : showModal(DAppWebViewModal, {
-                  url: uriSwap,
-                  name: capitalize(translate("swap")),
-                  onClose: () => hideModal(DAppWebViewModal.id),
-              });
+        const isAndroid = Platform.OS === "android";
+
+        if (isAndroid) Linking.openURL(uriSwap);
+        showModal(DAppWebViewModal, {
+            url: uriSwap,
+            name: capitalize(translate("swap")),
+            onClose: () => hideModal(DAppWebViewModal.id),
+        });
     }
-    const isAndroid = Platform.OS === "android";
+
     return (
         <DarkThemeProvider>
             <Row gap={6}>
