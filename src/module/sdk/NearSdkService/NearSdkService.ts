@@ -2,7 +2,7 @@ import { connect, keyStores, Near, ConnectConfig, Account } from "near-api-js";
 import { Action as NearAction } from "near-api-js/lib/transaction";
 import { AccountBalance } from "near-api-js/lib/account";
 import { AccessKeyInfoView, AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
-import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
+import { KeyPair, KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 // @ts-ignore
 import { parseSeedPhrase, generateSeedPhrase } from "near-seed-phrase";
 import { decode, encode } from "bs58";
@@ -286,7 +286,7 @@ export class NearSDKService {
     }
 
     static createKeyPairFromSecretKey(secretKey: string): KeyPairEd25519 {
-        return KeyPairEd25519.fromString(secretKey) as KeyPairEd25519;
+        return KeyPair.fromString(secretKey) as KeyPairEd25519;
     }
 
     static isSecretKeyValid(secretKey: string): boolean {
