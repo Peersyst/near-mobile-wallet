@@ -1,6 +1,5 @@
 import { Action, AddKeyPermission } from "../components/display/SignRequestDetails/actions.types";
 import { transactions, utils } from "near-api-js";
-import BN from "bn.js";
 
 export const parseArgs = (data: Object | string) => {
     if (typeof data === "string") return Buffer.from(data, "base64");
@@ -13,7 +12,7 @@ export const getAccessKey = (permission: AddKeyPermission) => {
     }
 
     const { receiverId, methodNames = [] } = permission;
-    const allowance = permission.allowance ? new BN(permission.allowance) : undefined;
+    const allowance = permission.allowance ? BigInt(permission.allowance) : undefined;
     //TODO: Fix when receiverId is undefined
     //@ts-ignore
     return transactions.functionCallAccessKey(receiverId, methodNames, allowance);
@@ -28,17 +27,17 @@ export const createAction = (action: Action) => {
 
         case "FunctionCall": {
             const { methodName, args, gas, deposit } = action.params;
-            return transactions.functionCall(methodName, parseArgs(args), new BN(gas), new BN(deposit));
+            return transactions.functionCall(methodName, parseArgs(args), BigInt(gas), BigInt(deposit));
         }
 
         case "Transfer": {
             const { deposit } = action.params;
-            return transactions.transfer(new BN(deposit));
+            return transactions.transfer(BigInt(deposit));
         }
 
         case "Stake": {
             const { stake, publicKey } = action.params;
-            return transactions.stake(new BN(stake), utils.PublicKey.from(publicKey));
+            return transactions.stake(BigInt(stake), utils.PublicKey.from(publicKey));
         }
 
         case "AddKey": {
