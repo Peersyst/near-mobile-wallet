@@ -22,6 +22,13 @@ export interface NearBlocksTransactionResponseDto {
     txns: NearBlocksTransactionDto[];
 }
 
+export type NearBlocksKitWalletStakingDepositsResponseDto = NearBlocksKitWalletStakingDeposit[];
+
+export interface NearBlocksKitWalletStakingDeposit {
+    validator_id: string;
+    deposit: string;
+}
+
 export interface NearBlocksTransactionDto {
     receipt_id: string;
     predecessor_account_id: string; //system or account.near
@@ -51,13 +58,4 @@ export interface NearBlocksActionDto {
 
 export interface NearBlocksTokenResponseDto {
     tokens: { fts: string[]; nfts: string[] };
-}
-
-export interface ValidatorAmount {
-    amount: number;
-    hasRewards: boolean;
-}
-
-export interface ValidatorAmountMap {
-    [validatorId: string]: ValidatorAmount;
 }

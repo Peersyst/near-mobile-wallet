@@ -2,12 +2,11 @@ import { connect, keyStores, Near, ConnectConfig, Account } from "near-api-js";
 import { Action as NearAction } from "near-api-js/lib/transaction";
 import { AccountBalance } from "near-api-js/lib/account";
 import { AccessKeyInfoView, AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
-import { KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
+import { KeyPair, KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 // @ts-ignore
 import { parseSeedPhrase, generateSeedPhrase } from "near-seed-phrase";
 import { decode, encode } from "bs58";
 import * as Borsh from "borsh";
-import BN from "bn.js";
 import JSsha256 from "js-sha256";
 // @ts-ignore
 import bip39 from "bip39-light";
@@ -70,10 +69,12 @@ import {
 import { ApiService, NearApiServiceInterface } from "../NearApiService";
 import { BalanceOperations } from "../utils";
 import { Payload } from "../utils/SignerPayload";
+import RPCControl from "./decorators/RPCControl";
 
 export class NearSDKService {
     private connection?: Near;
     private nearConfig: ConnectConfig;
+    private rpcList: string[];
     private nameId: string;
     private keyPair: KeyPairEd25519;
     private chain: Chains;
@@ -84,7 +85,7 @@ export class NearSDKService {
     private static addressRegex = /[\da-f]/i;
     public nearDecimals: number | undefined;
 
-    constructor({ chain, nodeUrl, secretKey, nameId, nearDecimals, mnemonic }: CreateNearSdkParams) {
+    constructor({ chain, secretKey, nameId, nearDecimals, mnemonic, rpcList }: CreateNearSdkParams) {
         this.chain = chain;
         this.masterAccount = chain === Chains.MAINNET ? "near" : this.chain;
         this.nameId = nameId;
@@ -100,8 +101,10 @@ export class NearSDKService {
         this.nearConfig = {
             networkId: chain,
             keyStore,
-            nodeUrl,
+            nodeUrl: rpcList[0],
         };
+
+        this.rpcList = rpcList;
     }
 
     // --------------------------------------------------------------
@@ -188,6 +191,10 @@ export class NearSDKService {
         const connection = this.getConnection();
         const address = this.getAddress();
         return connection.account(address);
+    }
+
+    setNearConfig(nearConfig: ConnectConfig): void {
+        this.nearConfig = nearConfig;
     }
 
     async connect(): Promise<void> {
@@ -278,7 +285,7 @@ export class NearSDKService {
     }
 
     static createKeyPairFromSecretKey(secretKey: string): KeyPairEd25519 {
-        return KeyPairEd25519.fromString(secretKey) as KeyPairEd25519;
+        return KeyPair.fromString(secretKey) as KeyPairEd25519;
     }
 
     static isSecretKeyValid(secretKey: string): boolean {
@@ -330,7 +337,7 @@ export class NearSDKService {
         const account = await this.getAccount();
 
         if (nameId.includes(account.accountId)) {
-            const tx = await account.createAccount(nameId, publicKey, new BN(this.parseNearAmount(amount)));
+            const tx = await account.createAccount(nameId, publicKey, BigInt(this.parseNearAmount(amount)));
             return tx.transaction_outcome.id;
         }
 
@@ -338,7 +345,7 @@ export class NearSDKService {
             contractId: this.masterAccount,
             methodName: "create_account",
             args: { new_account_id: nameId, new_public_key: publicKey.toString() },
-            attachedDeposit: new BN(this.parseNearAmount(amount)),
+            attachedDeposit: BigInt(this.parseNearAmount(amount)),
         });
         return tx.transaction_outcome.id;
     }
@@ -355,7 +362,7 @@ export class NearSDKService {
 
         const service = new NearSDKService({
             chain: this.chain,
-            nodeUrl: this.nearConfig.nodeUrl,
+            rpcList: this.rpcList,
             secretKey,
             nameId,
             nearDecimals,
@@ -375,7 +382,7 @@ export class NearSDKService {
         await this.createNewAccount(nameId, keyPair.getPublicKey(), amount);
         const service = new NearSDKService({
             chain: this.chain,
-            nodeUrl: this.nearConfig.nodeUrl,
+            rpcList: this.rpcList,
             secretKey: keyPair.secretKey,
             nameId,
             nearDecimals,
@@ -409,7 +416,7 @@ export class NearSDKService {
             await this.createNewAccount(nameId, publicKey as any, amount);
             const service = new NearSDKService({
                 chain: this.chain,
-                nodeUrl: this.nearConfig.nodeUrl,
+                rpcList: this.rpcList,
                 secretKey,
                 nameId,
                 nearDecimals,
@@ -430,6 +437,37 @@ export class NearSDKService {
     }
 
     // --------------------------------------------------------------
+    // -- NETWORK FUNCTIONS ------------------------------------
+    // --------------------------------------------------------------
+    async checkRpcHealthStatus(): Promise<boolean> {
+        const { connection } = this.getConnection();
+        try {
+            const status = await connection.provider.status();
+            return status.sync_info ? true : false;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async switchRpcUrl(): Promise<void> {
+        const currentNodeUrl = this.nearConfig.nodeUrl;
+        let currentIndex = this.rpcList.indexOf(currentNodeUrl);
+        if (currentIndex === -1) {
+            currentIndex = 0;
+        }
+
+        const nextIndex = (currentIndex + 1) % this.rpcList.length;
+        const nextNodeUrl = this.rpcList[nextIndex];
+
+        this.setNearConfig({
+            ...this.nearConfig,
+            nodeUrl: nextNodeUrl,
+        });
+
+        await this.connect();
+    }
+
+    // --------------------------------------------------------------
     // -- UTILS FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
     public parseNearAmount(amount: string): string {
@@ -443,6 +481,7 @@ export class NearSDKService {
     // -- WALLET STATE FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
     //Returns the balance in near
+    @RPCControl()
     async getAccountBalance(): Promise<AccountBalance> {
         try {
             const account = await this.getAccount();
@@ -471,14 +510,14 @@ export class NearSDKService {
         const account = await this.getAccount();
         const amountInYocto = this.parseNearAmount(amount);
 
-        const tx = await account.sendMoney(to, new BN(amountInYocto));
+        const tx = await account.sendMoney(to, BigInt(amountInYocto));
         return tx.transaction_outcome.id;
     }
 
     async getTransactionStatus(txHash: string): Promise<FinalExecutionOutcome> {
         const { connection } = this.getConnection();
         const address = this.getAddress();
-        return connection.provider.txStatus(txHash, address);
+        return connection.provider.txStatus(txHash, address, "EXECUTED_OPTIMISTIC");
     }
 
     async getRecentActivity(): Promise<Action[]> {
@@ -502,7 +541,7 @@ export class NearSDKService {
         const account = await this.getAccount();
         const amountInYocto = this.parseNearAmount(amount);
 
-        const tx = await account.stake(this.keyPair.getPublicKey(), new BN(amountInYocto));
+        const tx = await account.stake(this.keyPair.getPublicKey(), BigInt(amountInYocto));
         return tx.transaction_outcome.id;
     }
 
@@ -510,7 +549,7 @@ export class NearSDKService {
     async unstake(): Promise<string> {
         const account = await this.getAccount();
 
-        const tx = await account.stake(this.keyPair.getPublicKey(), new BN(0));
+        const tx = await account.stake(this.keyPair.getPublicKey(), BigInt(0));
         return tx.transaction_outcome.id;
     }
 
@@ -521,7 +560,7 @@ export class NearSDKService {
         return +((resp.numerator * 100) / resp.denominator);
     }
 
-    private async getValidatorBalance(validatorId: string, validatorDeposit?: number): Promise<StakingBalance> {
+    private async getValidatorBalance(validatorId: string, validatorDeposit?: string): Promise<StakingBalance> {
         const account = await this.getAccount();
         const stakingBalance: StakingBalance = {
             staked: "0",
@@ -582,7 +621,7 @@ export class NearSDKService {
     private async getValidatorDataFromId(
         validatorId: string,
         queryBalance: boolean,
-        totalDeposits?: number,
+        totalDeposits?: string,
         activeValidator?: boolean,
     ): Promise<Validator> {
         let fee: number | null;
@@ -692,7 +731,7 @@ export class NearSDKService {
             contractId: validatorId,
             methodName: DEPOSIT_STAKE_METHOD,
             args: {},
-            attachedDeposit: new BN(amountInYocto),
+            attachedDeposit: BigInt(amountInYocto),
         });
         return tx.transaction_outcome.id;
     }
@@ -770,8 +809,8 @@ export class NearSDKService {
                 contractId,
                 methodName: STORAGE_DEPOSIT_METHOD,
                 args: { account_id: receiverId, registration_only: true },
-                gas: new BN(FT_STORAGE_DEPOSIT_GAS),
-                attachedDeposit: new BN(FT_MINIMUM_STORAGE_BALANCE),
+                gas: BigInt(FT_STORAGE_DEPOSIT_GAS),
+                attachedDeposit: BigInt(FT_MINIMUM_STORAGE_BALANCE),
             });
         } catch (e: any) {
             if (e.message.includes("attached deposit is less than")) {
@@ -779,8 +818,8 @@ export class NearSDKService {
                     contractId,
                     methodName: STORAGE_DEPOSIT_METHOD,
                     args: { account_id: receiverId, registration_only: true },
-                    gas: new BN(FT_STORAGE_DEPOSIT_GAS),
-                    attachedDeposit: new BN(FT_MINIMUM_STORAGE_BALANCE_LARGE),
+                    gas: BigInt(FT_STORAGE_DEPOSIT_GAS),
+                    attachedDeposit: BigInt(FT_MINIMUM_STORAGE_BALANCE_LARGE),
                 });
             } else {
                 throw e;
@@ -801,8 +840,8 @@ export class NearSDKService {
             contractId,
             methodName: FT_TRANSFER_METHOD,
             args: { amount, receiver_id: receiverId, memo },
-            gas: new BN(FT_TRANSFER_GAS),
-            attachedDeposit: new BN(TOKEN_TRANSFER_DEPOSIT),
+            gas: BigInt(FT_TRANSFER_GAS),
+            attachedDeposit: BigInt(TOKEN_TRANSFER_DEPOSIT),
         });
 
         return tx.transaction_outcome.id;
@@ -881,8 +920,8 @@ export class NearSDKService {
             contractId,
             methodName: NFT_TRANSFER_METHOD,
             args: { receiver_id: receiverId, token_id: tokenId },
-            gas: new BN(NFT_TRANSFER_GAS),
-            attachedDeposit: new BN(TOKEN_TRANSFER_DEPOSIT),
+            gas: BigInt(NFT_TRANSFER_GAS),
+            attachedDeposit: BigInt(TOKEN_TRANSFER_DEPOSIT),
         });
 
         return tx.transaction_outcome.id;

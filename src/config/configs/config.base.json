@@ -6,6 +6,15 @@
     "nearblocksTesnetApiUrl": "https://api-testnet.nearblocks.io/v1",
     "nearblocksMainnetApiUrl": "https://api3.nearblocks.io/v1",
     "faucetUrl": "https://faucet.nervos.org/",
+    "rpcList": {
+        "mainnet": ["https://rpc.mainnet.near.org", "https://near.lava.build", "https://free.rpc.fastnear.com", "https://1rpc.io/near"],
+        "testnet": [
+            "https://rpc.testnet.near.org",
+            "https://rpc.testnet.pagoda.co",
+            "https://near-testnet.lava.build",
+            "https://rpc.testnet.pagoda.co"
+        ]
+    },
     "mainnetNodeUrl": "https://rpc.mainnet.near.org",
     "testnetNodeUrl": "https://rpc.testnet.near.org",
     "mainnetArchivalNodeUrl": "https://archival-rpc.mainnet.near.org",
@@ -101,5 +110,62 @@
         "apiKey": "phc_oVIWlo74LoeuEcRZrFYNGpnG6tQridziKDUsNKCPKLc"
     },
     "telegramUrl": "https://t.me/NEARMobile",
-    "expoUpdatesEnabled": true
+    "expoUpdatesEnabled": true,
+    "securityQuizList": [
+        {
+            "question": "whyShouldYouNeverShareYourMnemonic",
+            "responses": ["itCanBeUsedToStealYourTokens", "itSNeededForTechnicalSupport", "itHelpsInResettingYourPassword"],
+            "correctResponse": 0
+        },
+        {
+            "question": "whatIsAMnemonic",
+            "responses": ["aSeriesOfWordsUsedToRecoverYourAccount", "aTypeOfCryptocurrency", "aPasswordForYourEmailAddress"],
+            "correctResponse": 0
+        },
+        {
+            "question": "whereShouldYouStoreYourMnemonic",
+            "responses": ["inASecureOfflineLocation", "inATextFileOnYourComputer", "inYourEmailAddress"],
+            "correctResponse": 0
+        },
+        {
+            "question": "whatIsAPrivateKey",
+            "responses": ["aKeyUsedToEncryptMessages", "aSecretKeyThatGrantsAccessToYourFunds", "aTypeOfDigitalCurrency"],
+            "correctResponse": 1
+        },
+        {
+            "question": "shouldYouShareYourPrivateKeyWithAnyone",
+            "responses": ["onlyWithTrustedPeople", "yesIfAskedInAnEmail", "neverItCanBeUsedToStealYourTokens"],
+            "correctResponse": 2
+        },
+        {
+            "question": "whatShouldYouDoIfYouLoseYourMnemonic",
+            "responses": [
+                "nothingYouCanRecoverItOnline",
+                "yourAccountIsAtRiskAndMayBeIrrecoverable",
+                "contactSupportToRecoverYourMnemonic"
+            ],
+            "correctResponse": 1
+        },
+        {
+            "question": "willVictorOrArnauFromOurSupportTeamAskForYourMnemonic",
+            "responses": ["yesSoTheyCanHelpMeOut", "noNeverYouAreProbablyTalkingToAScammerIfSo", "yesIfTheyAskKindly"],
+            "correctResponse": 1
+        },
+        {
+            "question": "whatIsTheFirstThingYouShouldDoAfterCreatingYourNearAccount",
+            "responses": ["shareYourMnemonicOnSocialMedia", "backupYourMnemonicAndPrivateKey", "nothingTheAccountIsReadyToUse"],
+            "correctResponse": 1
+        },
+        {
+            "question": "willAnyoneFromNearMobileTeamAskForYourMnemonic",
+            "responses": ["yesToHelpMeThroughTelegram", "noNeverYouAreTalkingToAScammerIfSo", "yesIfItIsAnAdminOfNearMobileSupport"],
+            "correctResponse": 1
+        },
+        {
+            "question": "whatShouldYouDoIfYouSuspectSomeoneHasAccessToYourPrivateKey",
+            "responses": ["immediatelyChangeYourKeysAndMnemonics", "waitToSeeIfAnythingHappens", "shareYourConcernOnSocialMedia"],
+            "correctResponse": 0
+        }
+    ],
+    "quizNumberOfQuestions": 3
 }

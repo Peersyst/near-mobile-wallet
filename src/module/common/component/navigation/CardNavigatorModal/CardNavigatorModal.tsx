@@ -9,6 +9,7 @@ export type CardNavigatorModalProps = ExposedBackdropProps & {
     navbar?: NavbarProps;
     children: ReactNode;
     style?: CardModalProps["style"];
+    index?: number;
 };
 
 const CardNavigatorModal = ({

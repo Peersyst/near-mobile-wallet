@@ -53,6 +53,7 @@ export * from "./RefreshIcon";
 export * from "./SaveIcon";
 export * from "./ScanIcon";
 export * from "./SearchIcon";
+export * from "./SecurityQuizIcon";
 export * from "./SendIcon";
 export * from "./SettingsIcon";
 export * from "./ShareIcon";

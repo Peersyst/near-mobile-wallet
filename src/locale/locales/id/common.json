@@ -339,5 +339,7 @@
     "updateAppNow": "Perbarui aplikasi sekarang",
     "updatingApp": "Memperbarui aplikasi",
     "pleaseWaitAMoment": "Tunggu sebentar",
-    "explore": "Jelajahi"
+    "explore": "Jelajahi",
+    "welcomeSecurityQuiz": "Jawab pertanyaan berikut dengan benar untuk mengungkapkan frasa pemulihan rahasia Anda.",
+    "startQuiz": "Mulai kuis"
 }
