@@ -154,7 +154,7 @@ export class NearSDKService {
     }
 
     static getPublicKeyFromSecretKey(secretKey: string): string {
-        const keyPair = KeyPairEd25519.fromString(secretKey);
+        const keyPair = new KeyPairEd25519(secretKey);
         return keyPair.getPublicKey().toString();
     }
 
@@ -769,7 +769,7 @@ export class NearSDKService {
             contractId: validatorId,
             methodName: WITHDRAW_METHOD,
             args: { amount: amountInYocto },
-            gas: new BN(STAKING_WITHDRAW_GAS),
+            gas: BigInt(STAKING_WITHDRAW_GAS),
         });
         return tx.transaction_outcome.id;
     }
@@ -780,7 +780,7 @@ export class NearSDKService {
         const tx = await account.functionCall({
             contractId: validatorId,
             methodName: WITHDRAW_ALL_METHOD,
-            gas: new BN(STAKING_WITHDRAW_ALL_GAS),
+            gas: BigInt(STAKING_WITHDRAW_ALL_GAS),
             args: {},
         });
         return tx.transaction_outcome.id;
