@@ -22,7 +22,8 @@
         "test:ci": "jest --runInBand",
         "test:debug": "jest --no-cache --runInBand || true",
         "check-types": "tsc --noemit",
-        "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0"
+        "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0 && yarn check-types",
+        "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0 --fix && yarn check-types"
     },
     "dependencies": {
         "@expo-google-fonts/manrope": "^0.2.2",
