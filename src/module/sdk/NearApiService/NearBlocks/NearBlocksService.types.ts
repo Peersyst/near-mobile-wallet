@@ -56,6 +56,23 @@ export interface NearBlocksActionDto {
     deposit: number;
 }
 
+export interface NearBlocksActivityDto {
+    block_hash: string;
+    block_timestamp: string;
+    hash: string;
+    action_index: number;
+    signer_id: string;
+    receiver_id: string;
+    action_kind: string;
+    args: {
+        gas: number;
+        deposit: string;
+        args_json: object;
+        args_base64: string | null;
+        method_name: string;
+    };
+}
+
 export interface NearBlocksTokenResponseDto {
     tokens: { fts: string[]; nfts: string[] };
 }

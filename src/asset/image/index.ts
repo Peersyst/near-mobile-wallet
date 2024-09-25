@@ -1,5 +1,6 @@
 //@ts-nocheck
 export { default as support } from "./Support.png";
+export { default as dapps } from "./dapps.png";
 export { default as default_token } from "./default-token.png";
 export { default as near_bg_0 } from "./near-bg-0.png";
 export { default as near_bg_1 } from "./near-bg-1.png";
