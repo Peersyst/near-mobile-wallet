@@ -4,10 +4,12 @@ export interface StoredDApp {
     logoUrl: string;
 }
 
-export interface DAppsState {
+export interface IDAppsStorage {
     favourites: StoredDApp[];
+    history: string[];
 }
 
-export const defaulDAppsState: DAppsState = {
+export const defaulDAppsState: IDAppsStorage = {
     favourites: [],
+    history: [],
 };

@@ -1,36 +1,57 @@
 import { BaseStorageService } from "module/common/service/BaseStorageService";
-import { DAppsState, defaulDAppsState, StoredDApp } from "./state/DAppsState";
+import { IDAppsStorage, defaulDAppsState, StoredDApp } from "./state/DAppsState";
 
-export const DAppsStorage = new (class extends BaseStorageService<undefined, DAppsState> {
+export const DAppsStorage = new (class extends BaseStorageService<undefined, IDAppsStorage> {
     constructor() {
         super("dapps");
     }
 
-    async getDApps(): Promise<DAppsState> {
-        return (await this.get()) || { favourites: [] };
+    async get(): Promise<IDAppsStorage> {
+        return (await super.get()) || defaulDAppsState;
+    }
+
+    async getDApps(): Promise<StoredDApp[]> {
+        return (await this.get()).favourites;
     }
 
     async deleteDApp(dApp: StoredDApp): Promise<void> {
-        const storedValues = await this.get();
-        const url = dApp.url;
-        if (storedValues) {
-            await this.set({
-                favourites: storedValues.favourites.filter((dApp) => dApp.url !== url),
-            });
-        }
+        await this.updateFavourites((favourites) => {
+            return favourites.filter((item) => item.url !== dApp.url);
+        });
     }
 
     async addDApp(dApp: StoredDApp): Promise<void> {
-        const storedValues = await this.get();
-        if (storedValues) {
-            await this.set({
-                favourites: [...storedValues.favourites, dApp],
-            });
-        }
+        await this.updateFavourites((favourites) => {
+            return [...favourites, dApp];
+        });
     }
 
-    async set(values: Partial<DAppsState>): Promise<void> {
+    async addHistory(url: string): Promise<void> {
+        await this.updateHistory((history) => {
+            return [url, ...history.filter((item) => item !== url)].slice(0, 4);
+        });
+    }
+
+    private async updateHistory(updater: (params: string[]) => string[]): Promise<void> {
+        await this.update((storedValues) => {
+            return {
+                ...storedValues,
+                history: updater(storedValues.history),
+            };
+        });
+    }
+
+    private async updateFavourites(updater: (params: StoredDApp[]) => StoredDApp[]): Promise<void> {
+        await this.update((storedValues) => {
+            return {
+                ...storedValues,
+                favourites: updater(storedValues.favourites),
+            };
+        });
+    }
+
+    async update(updater: (params: IDAppsStorage) => IDAppsStorage): Promise<void> {
         const storedValues = await this.get();
-        await super.set({ ...(storedValues || defaulDAppsState), ...values });
+        await super.set(updater(storedValues || defaulDAppsState));
     }
 })();

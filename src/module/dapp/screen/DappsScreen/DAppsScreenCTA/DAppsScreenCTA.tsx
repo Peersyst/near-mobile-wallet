@@ -17,7 +17,7 @@ const DAppsScreenCTA = (): JSX.Element => {
         <TouchableWithoutFeedback onPress={() => navigate(DAppScreens.WEBVIEW, { url: "https://peersyst.com" })}>
             <DAppsScreenCTARoot>
                 <DAppsScreenCTAContent>
-                    <Typography variant="body3Strong" style={{ flex: 0.5 }}>
+                    <Typography variant="body3Strong" style={{ flex: 0.4 }}>
                         Take a look at our dApp selection
                     </Typography>
                 </DAppsScreenCTAContent>
