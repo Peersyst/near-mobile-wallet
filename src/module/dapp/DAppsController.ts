@@ -1,16 +1,16 @@
 import { DAppsStorage } from "./DAppsStorage";
-import { StoredDApp } from "./state/DAppsState";
+import { FavouriteDApp } from "./types";
 
 export default new (class DAppsController {
     async getDApps() {
         return await DAppsStorage.getDApps();
     }
 
-    async deleteDApp(dApp: StoredDApp) {
+    async deleteDApp(dApp: FavouriteDApp) {
         return await DAppsStorage.deleteDApp(dApp);
     }
 
-    async addDApp(dApp: StoredDApp) {
+    async addDApp(dApp: FavouriteDApp) {
         return await DAppsStorage.addDApp(dApp);
     }
 

@@ -2,12 +2,12 @@ import { useMutation } from "react-query";
 import DAppsController from "../DAppsController";
 import { useInvalidateQueries } from "../../../query/useInvalidateQueries";
 import Queries from "../../../query/queries";
-import { StoredDApp } from "../state/DAppsState";
+import { FavouriteDApp } from "../types";
 
 export default function useAddDAppFromFavourites() {
     const invalidateQueries = useInvalidateQueries();
     return useMutation(
-        async (dApp: StoredDApp) => {
+        async (dApp: FavouriteDApp) => {
             await DAppsController.addDApp(dApp);
         },
         {

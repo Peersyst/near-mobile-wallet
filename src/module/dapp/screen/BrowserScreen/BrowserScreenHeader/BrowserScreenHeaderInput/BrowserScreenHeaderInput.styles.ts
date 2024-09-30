@@ -1,6 +1,6 @@
 import { Row } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
-import { EmptyStarIcon, FavoriteIcon } from "icons";
+import { EmptyFavoriteIcon, FavoriteIcon } from "icons";
 
 export const BrowserScreenHeaderInputRoot = styled(Row)(({ theme }) => ({
     backgroundColor: theme.palette.overlay["4%"],
@@ -19,6 +19,7 @@ export const FavouriteWebIcon = styled(FavoriteIcon)(({ theme }) => ({
     fontSize: 16,
 }));
 
-export const NotFavouriteWebIcon = styled(EmptyStarIcon)(() => ({
+export const NotFavouriteWebIcon = styled(EmptyFavoriteIcon)(({ theme }) => ({
     fontSize: 16,
+    color: theme.palette.primary,
 }));

@@ -11,6 +11,7 @@ export function useBrowserScreen() {
     const [canGoBack, setCanGoBack] = useState(false);
     const [canGoForward, setCanGoForward] = useState(false);
     const [loading, setLoading] = useState(true);
+
     const { navigate } = useNavigation();
     const { params } = useRoute<RouteProp<DAppsParamsList, DAppScreens.WEBVIEW>>();
     const [url, setUrl] = useState(cleanURL(params.url));
@@ -32,12 +33,12 @@ export function useBrowserScreen() {
     }
 
     const handleOnNavigationStateChange = useCallback(
-        function ({ canGoBack, canGoForward, title }: WebViewNavigation) {
+        function ({ canGoBack, canGoForward, title, url }: WebViewNavigation) {
             setCanGoBack(canGoBack);
             setCanGoForward(canGoForward);
-            console.log("Title: ", title);
+            setUrl(cleanURL(url));
         },
-        [setCanGoBack, setCanGoForward],
+        [setCanGoBack, setCanGoForward, setUrl],
     );
 
     const handleOnLoad = useCallback(() => {

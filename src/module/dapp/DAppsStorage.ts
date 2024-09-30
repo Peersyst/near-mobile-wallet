@@ -1,5 +1,10 @@
 import { BaseStorageService } from "module/common/service/BaseStorageService";
-import { IDAppsStorage, defaulDAppsState, StoredDApp } from "./state/DAppsState";
+import { IDAppsStorage, FavouriteDApp } from "./types";
+
+const defaultDAppStorage: IDAppsStorage = {
+    favourites: [],
+    history: [],
+};
 
 export const DAppsStorage = new (class extends BaseStorageService<undefined, IDAppsStorage> {
     constructor() {
@@ -7,20 +12,20 @@ export const DAppsStorage = new (class extends BaseStorageService<undefined, IDA
     }
 
     async get(): Promise<IDAppsStorage> {
-        return (await super.get()) || defaulDAppsState;
+        return (await super.get()) || defaultDAppStorage;
     }
 
-    async getDApps(): Promise<StoredDApp[]> {
+    async getDApps(): Promise<FavouriteDApp[]> {
         return (await this.get()).favourites;
     }
 
-    async deleteDApp(dApp: StoredDApp): Promise<void> {
+    async deleteDApp(dApp: FavouriteDApp): Promise<void> {
         await this.updateFavourites((favourites) => {
             return favourites.filter((item) => item.url !== dApp.url);
         });
     }
 
-    async addDApp(dApp: StoredDApp): Promise<void> {
+    async addDApp(dApp: FavouriteDApp): Promise<void> {
         await this.updateFavourites((favourites) => {
             return [...favourites, dApp];
         });
@@ -45,7 +50,7 @@ export const DAppsStorage = new (class extends BaseStorageService<undefined, IDA
         });
     }
 
-    async updateFavourites(updater: (params: StoredDApp[]) => StoredDApp[]): Promise<void> {
+    async updateFavourites(updater: (params: FavouriteDApp[]) => FavouriteDApp[]): Promise<void> {
         await this.update((storedValues) => {
             return {
                 ...storedValues,
@@ -56,6 +61,6 @@ export const DAppsStorage = new (class extends BaseStorageService<undefined, IDA
 
     async update(updater: (params: IDAppsStorage) => IDAppsStorage): Promise<void> {
         const storedValues = await this.get();
-        await super.set(updater(storedValues || defaulDAppsState));
+        await super.set(updater(storedValues || defaultDAppStorage));
     }
 })();
