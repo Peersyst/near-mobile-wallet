@@ -1,25 +1,16 @@
-import { Col } from "@peersyst/react-native-components";
-import { RouteProp, useRoute } from "@react-navigation/native";
-import { DAppScreens, DAppsParamsList } from "module/dapp/navigator/DAppsNavigator.types";
 import WebView from "react-native-webview";
-
-function cleanUrl(url: string): string {
-    if (url.startsWith("http://")) {
-        return url.replace("http://", "https://");
-    } else if (url.startsWith("https://")) {
-        return url;
-    } else {
-        return `https://www.google.com/search?q=${url}`;
-    }
-}
+import { BrowserScreenRoot } from "./BrowserScreen.styles";
+import { useBrowserScreen } from "./hooks/useBrowserScreen";
+import BrowserScreenHeader from "./BrowserScreenHeader/BrowserScreenHeader";
 
 const BrowserScreen = (): JSX.Element => {
-    const { params } = useRoute<RouteProp<DAppsParamsList, DAppScreens.WEBVIEW>>();
+    const { headerProps, webviewProps } = useBrowserScreen();
 
     return (
-        <Col flex={1}>
-            <WebView source={{ uri: cleanUrl(params.url) }} />
-        </Col>
+        <BrowserScreenRoot>
+            <BrowserScreenHeader {...headerProps} />
+            <WebView {...webviewProps} />
+        </BrowserScreenRoot>
     );
 };
 

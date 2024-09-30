@@ -13,4 +13,12 @@ export default new (class DAppsController {
     async addDApp(dApp: StoredDApp) {
         return await DAppsStorage.addDApp(dApp);
     }
+
+    async getHistory() {
+        return await DAppsStorage.getHistory();
+    }
+
+    async addHistory(history: string) {
+        return await DAppsStorage.addHistory(history);
+    }
 })();

@@ -8,7 +8,7 @@ export default function useMainBottomNavigatorGroupHeader() {
     function handleRouteChange(route: any) {
         if (route.name === MainScreens.DAPPS) {
             const routeIndex = route.state?.index;
-            if (route?.state?.routes?.[routeIndex]?.name === DAppScreens.SEARCH) {
+            if ([DAppScreens.WEBVIEW].includes(route?.state?.routes?.[routeIndex]?.name)) {
                 setShowHeader(false);
             } else {
                 setShowHeader(true);

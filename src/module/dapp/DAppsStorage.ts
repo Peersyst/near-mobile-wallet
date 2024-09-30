@@ -28,11 +28,15 @@ export const DAppsStorage = new (class extends BaseStorageService<undefined, IDA
 
     async addHistory(url: string): Promise<void> {
         await this.updateHistory((history) => {
-            return [url, ...history.filter((item) => item !== url)].slice(0, 4);
+            return [url, ...history.filter((item) => item !== url)].slice(0, 5);
         });
     }
 
-    private async updateHistory(updater: (params: string[]) => string[]): Promise<void> {
+    async getHistory(): Promise<string[]> {
+        return (await this.get()).history;
+    }
+
+    async updateHistory(updater: (params: string[]) => string[]): Promise<void> {
         await this.update((storedValues) => {
             return {
                 ...storedValues,
@@ -41,7 +45,7 @@ export const DAppsStorage = new (class extends BaseStorageService<undefined, IDA
         });
     }
 
-    private async updateFavourites(updater: (params: StoredDApp[]) => StoredDApp[]): Promise<void> {
+    async updateFavourites(updater: (params: StoredDApp[]) => StoredDApp[]): Promise<void> {
         await this.update((storedValues) => {
             return {
                 ...storedValues,

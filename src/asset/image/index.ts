@@ -1,9 +1,14 @@
 //@ts-nocheck
 export { default as support } from "./Support.png";
 export { default as dapps } from "./dapps.png";
+export { default as dapps1 } from "./dapps1.png";
+export { default as dapps2 } from "./dapps2.png";
+export { default as dapps3 } from "./dapps3.png";
+export { default as dappscta } from "./dappscta.png";
 export { default as default_token } from "./default-token.png";
 export { default as near_bg_0 } from "./near-bg-0.png";
 export { default as near_bg_1 } from "./near-bg-1.png";
+export { default as nebula } from "./nebula.png";
 export { default as placeholder_image } from "./placeholder-image.png";
 export { default as abr } from "./tokens/abr.png";
 export { default as apys } from "./tokens/apys.png";

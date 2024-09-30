@@ -1,6 +1,7 @@
 import styled from "@peersyst/react-native-styled";
-import { EmptyStarIcon } from "icons";
+import { ListIcon } from "icons";
 
-export const EmptyFavouritesDAppsIcon = styled(EmptyStarIcon)(({ theme }) => ({
-    color: theme.palette.primary,
+export const EmptyFavouritesDAppsIcon = styled(ListIcon)(({ theme }) => ({
+    color: theme.palette.gray[300],
+    fontSize: 32,
 }));

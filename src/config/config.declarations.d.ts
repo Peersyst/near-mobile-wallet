@@ -40,6 +40,10 @@ export interface TransakConfig extends Omit<TransakOnRampQueryParams, "environme
     environment: string;
 }
 
+export interface ExploreDAppsConfig {
+    exploreDAppsUrl: string;
+}
+
 declare module "@peersyst/react-native-components" {
     export interface ConfigTypes {
         TranslateFn: TFunction<"error">;
@@ -89,6 +93,7 @@ declare module "@peersyst/react-native-components" {
         };
         securityQuizList: SecurityQuizBackup[];
         quizNumberOfQuestions: number;
+        exploreDApps: ExploreDAppsConfig;
     }
 
     export interface CreateConfig {
@@ -132,6 +137,7 @@ declare module "@peersyst/react-native-components" {
         };
         securityQuizList: SecurityQuizBackup[];
         quizNumberOfQuestions: number;
+        exploreDApps: ExploreDAppsConfig;
     }
 
     export interface ExtraValidators {
