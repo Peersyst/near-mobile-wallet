@@ -5,9 +5,16 @@ import WebView, { WebViewProps } from "react-native-webview";
 import useSignerModal, { SignerModalType } from "module/signer/hooks/useSignerModal";
 import { forwardRef, memo } from "react";
 
-export type DAppWebViewProps = Omit<WebViewProps, "injectedJavascript" | "onStartShouldSetResponder" | "originWhitelist">;
+export type DAppWebViewProps = Omit<
+    WebViewProps,
+    | "injectedJavascript"
+    | "onShouldStartLoadWithRequest"
+    | "originWhitelist"
+    | "onStartShouldSetResponder"
+    | "injectedJavaScriptBeforeContentLoaded"
+>;
 
-const DAppWebView = forwardRef<WebView, DAppWebViewProps>(({ onShouldStartLoadWithRequest, ...rest }, ref): JSX.Element => {
+const DAppWebView = forwardRef<WebView, DAppWebViewProps>(({ ...rest }, ref): JSX.Element => {
     const { showSignerModal } = useSignerModal();
     const { account } = useSelectedWallet();
     const network = useSelectedNetwork();
@@ -48,5 +55,7 @@ const DAppWebView = forwardRef<WebView, DAppWebViewProps>(({ onShouldStartLoadWi
         />
     );
 });
+
+DAppWebView.displayName = "DAppWebView";
 
 export default memo(DAppWebView);
