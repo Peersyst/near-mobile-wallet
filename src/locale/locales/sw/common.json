@@ -341,5 +341,17 @@
     "pleaseWaitAMoment": "Tafadhali, subiri kidogo",
     "explore": "Chunguza",
     "welcomeSecurityQuiz": "Jibu maswali yafuatayo kwa usahihi ili kufichua kifungu chako cha siri cha urejeshaji.",
-    "startQuiz": "Anza jaribio"
+    "startQuiz": "Anza jaribio",
+    "discoverNewDApps": "Gundua dApps mpya",
+    "dAppSelectCTA": "Tazama uteuzi wetu wa dApps",
+    "emptyFavouritesDAppsTitle": "Huna vipendwa bado",
+    "emptyFavouritesDAppsDescription": "Ongeza dApps mpya kwenye vipendwa vyako kwa kutembelea tovuti yao na kubofya alama ya nyota. Pia unaweza kuona uteuzi wetu wa dApps bora.",
+    "yourFavouritesDApps": "dApps zako uzipendazo",
+    "emptyHistory": "Hakuna historia ya utafutaji",
+    "history": "Historia",
+    "name": "Jina",
+    "URL": "URL",
+    "add": "Ongeza",
+    "addToFavourites": "Ongeza kwenye vipendwa",
+    "removeFavourites": "Ondoa kwenye vipendwa"
 }

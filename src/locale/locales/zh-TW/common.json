@@ -341,5 +341,17 @@
     "pleaseWaitAMoment": "請稍等片刻",
     "explore": "探索",
     "welcomeSecurityQuiz": "正確回答以下問題以顯示您的秘密恢復短語。",
-    "startQuiz": "開始測驗"
+    "startQuiz": "開始測驗",
+    "discoverNewDApps": "發現新的dApps",
+    "dAppSelectCTA": "查看我們的dApps精選",
+    "emptyFavouritesDAppsTitle": "你還沒有收藏任何內容",
+    "emptyFavouritesDAppsDescription": "通過訪問網站並點擊星標圖示，將新的dApps添加到你的收藏夾中。你也可以查看我們的頂級dApps精選。",
+    "yourFavouritesDApps": "你最喜歡的dApps",
+    "emptyHistory": "沒有搜尋記錄",
+    "history": "歷史",
+    "name": "名稱",
+    "URL": "網址",
+    "add": "添加",
+    "addToFavourites": "添加到收藏夾",
+    "removeFavourites": "從收藏夾中移除"
 }
