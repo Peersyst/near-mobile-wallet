@@ -10,7 +10,7 @@ export interface FavouritesDAppsProps {
     children?: React.ReactNode;
 }
 
-function FavouritesDApps({ children, ...rest }: FavouritesDAppsProps) {
+function FavouritesDApps({ children, ...rest }: FavouritesDAppsProps): JSX.Element {
     const translate = useTranslate();
     const { data: dApps } = useGetFavouritesDApps();
     const hasDApps = dApps && dApps.length > 0;

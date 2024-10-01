@@ -9,7 +9,6 @@ import { capitalize } from "@peersyst/react-utils";
 import { config } from "config";
 import BottomBarQRScanner from "./BottomBarQRScanner/BottomBarQRScanner";
 import { MainScreens } from "../MainNavigatorGroup/MainScreens";
-import buildReset from "../../../../../navigation/utils/buildReset";
 
 type BottomBarProps = Pick<BottomTabBarProps, "state" | "navigation">;
 
@@ -18,7 +17,6 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
     const activeTab = state.routeNames[state.index];
     const handleNavigation = (link: keyof MainStackParamsList) => {
         if (activeTab !== link) {
-            navigation.reset({ index: 0, routes: [{ name: link }] });
             navigation.navigate(link);
         }
     };

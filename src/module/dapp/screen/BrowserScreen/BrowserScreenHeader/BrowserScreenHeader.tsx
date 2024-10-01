@@ -5,15 +5,7 @@ import useTranslate from "module/common/hook/useTranslate";
 import useNavigation from "module/common/hook/useNavigation";
 import { DAppScreens } from "module/dapp/navigator/DAppsNavigator.types";
 import BrowserScreenHeaderInput from "./BrowserScreenHeaderInput/BrowserScreenHeaderInput";
-
-export interface BrowserScreenHeaderProps {
-    canGoBack: boolean;
-    canGoForward: boolean;
-    onGoBack: () => void;
-    onGoForward: () => void;
-    onSearch: (search: string) => void;
-    url: string;
-}
+import { BrowserScreenHeaderProps } from "./BrowserScreenHeader.types";
 
 function BrowserScreenHeader({ url, onGoBack, canGoForward, onGoForward, onSearch }: BrowserScreenHeaderProps): JSX.Element {
     const translate = useTranslate();

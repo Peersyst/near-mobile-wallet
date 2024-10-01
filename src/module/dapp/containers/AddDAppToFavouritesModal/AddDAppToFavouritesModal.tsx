@@ -1,8 +1,8 @@
-import { Col, ExposedBackdropProps, Form } from "@peersyst/react-native-components";
+import { Col, Form } from "@peersyst/react-native-components";
 import { useControlled } from "@peersyst/react-hooks";
 import useTranslate from "module/common/hook/useTranslate";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
-import useAddDAppFromFavourites from "module/dapp/query/useAddDAppToFavourites";
+import useAddDAppToFavourites from "module/dapp/query/useAddDAppToFavourites";
 import TextField from "module/common/component/input/TextField/TextField";
 import Button from "module/common/component/input/Button/Button";
 import { AddDAppToFavouritesModalProps, AddDAppToFavouritesModalFormData } from "./AddDAppToFavouritesModal.types";
@@ -16,11 +16,11 @@ const AddDAppToFavouritesModal = ({
     ...rest
 }: AddDAppToFavouritesModalProps): JSX.Element => {
     const [open, setOpen] = useControlled(defaultOpen, openProp, openProp ? onCloseProp : onOpen);
-    const { mutate } = useAddDAppFromFavourites();
+    const { mutate: addToFavourites } = useAddDAppToFavourites();
     const translate = useTranslate();
 
     function handleSubmit({ name, url }: AddDAppToFavouritesModalFormData) {
-        mutate({ name, url });
+        addToFavourites({ name, url });
         setOpen(false);
     }
 

@@ -1,6 +1,5 @@
 import Typography from "module/common/component/display/Typography/Typography";
-import { SearchHistoryRoot } from "./SearchHistory.styles";
-import EmptyListComponent from "module/common/component/display/EmptyListComponent/EmptyListComponent";
+import { EmptyHistory, SearchHistoryRoot } from "./SearchHistory.styles";
 import useGetSearchHistory from "module/dapp/query/useGetSearchHistory";
 import { Col } from "@peersyst/react-native-components";
 import SearchHistoryItem from "./SearchHistoryItem/SearchHistoryItem";
@@ -11,7 +10,7 @@ export interface SearchHistoryProps {
     onHistoryClick: (text: string) => void;
 }
 
-function SearchHistory({ children, onHistoryClick, ...rest }: SearchHistoryProps) {
+function SearchHistory({ children, onHistoryClick, ...rest }: SearchHistoryProps): JSX.Element {
     const translate = useTranslate();
     const { data: history = [] } = useGetSearchHistory();
 
@@ -25,7 +24,7 @@ function SearchHistory({ children, onHistoryClick, ...rest }: SearchHistoryProps
                     ))}
                 </Col>
             ) : (
-                <EmptyListComponent title={translate("emptyHistory")} style={{ paddingVertical: 20 }} />
+                <EmptyHistory title={translate("emptyHistory")} />
             )}
         </SearchHistoryRoot>
     );

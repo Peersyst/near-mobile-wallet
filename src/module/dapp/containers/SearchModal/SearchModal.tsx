@@ -4,7 +4,7 @@ import SearchBar from "module/common/component/input/SearchBar/SearchBar";
 import { Col, ExposedBackdropProps } from "@peersyst/react-native-components";
 import SearchHistory from "../SearchHistory/SearchHistory";
 import { useControlled } from "@peersyst/react-hooks";
-import useAddSearch from "module/dapp/query/useAddSearch";
+import useAddSearchToHistory from "module/dapp/query/useAddSearchToHistory";
 import useTranslate from "module/common/hook/useTranslate";
 
 export interface SearchModalProps extends ExposedBackdropProps {
@@ -13,13 +13,13 @@ export interface SearchModalProps extends ExposedBackdropProps {
 
 const SearchModal = ({ defaultOpen, open: openProp, onClose: onCloseProp, onOpen, onSearch, ...rest }: SearchModalProps): JSX.Element => {
     const [open, setOpen] = useControlled(defaultOpen, openProp, openProp ? onCloseProp : onOpen);
-    const { mutate } = useAddSearch();
+    const { mutate: addSearch } = useAddSearchToHistory();
     const translate = useTranslate();
 
     async function handleSearch(search: string) {
         const trimmedSearch = search.trim();
         onSearch(trimmedSearch);
-        mutate(trimmedSearch);
+        addSearch(trimmedSearch);
         setOpen(false);
     }
 

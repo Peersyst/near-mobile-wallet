@@ -8,21 +8,13 @@ import { FavouriteDAppLinkIcon, FavouriteDAppLogo, FavouriteDAppOptionsIcon, Fav
 import useNavigation from "module/common/hook/useNavigation";
 import { DAppScreens } from "module/dapp/navigator/DAppsNavigator.types";
 import useConnectedSiteLogo from "module/signer/queries/useConnectedSiteLogo";
-import * as URL from "url";
+import { getHostFromUrl } from "./utils/getHostFromUrl";
 
 export interface FavouriteDAppProps {
     dApp: IFavouriteDApp;
 }
 
-const getHostFromUrl = (url: string): string | null => {
-    try {
-        return URL.parse(url).host;
-    } catch (error) {
-        return null;
-    }
-};
-
-function FavouriteDApp({ dApp }: FavouriteDAppProps) {
+function FavouriteDApp({ dApp }: FavouriteDAppProps): JSX.Element {
     const { navigate } = useNavigation();
     const host = getHostFromUrl(dApp.url);
     const { data: dAppUrl, isLoading } = useConnectedSiteLogo({ url: host ?? "" });

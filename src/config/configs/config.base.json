@@ -169,6 +169,7 @@
     ],
     "quizNumberOfQuestions": 3,
     "exploreDApps": {
-        "exploreDAppsUrl": "https://nearmobile.app/"
+        "exploreDAppsUrl": "https://nearmobile.app/",
+        "historyLimit": 5
     }
 }

@@ -42,6 +42,7 @@ export interface TransakConfig extends Omit<TransakOnRampQueryParams, "environme
 
 export interface ExploreDAppsConfig {
     exploreDAppsUrl: string;
+    historyLimit: number;
 }
 
 declare module "@peersyst/react-native-components" {

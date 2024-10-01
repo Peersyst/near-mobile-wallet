@@ -3,7 +3,7 @@ import DAppsController from "../DAppsController";
 import { useInvalidateQueries } from "../../../query/useInvalidateQueries";
 import Queries from "../../../query/queries";
 
-export default function useAddSearch() {
+export default function useAddSearchToHistory() {
     const invalidateQueries = useInvalidateQueries();
     return useMutation(
         async (search: string) => {

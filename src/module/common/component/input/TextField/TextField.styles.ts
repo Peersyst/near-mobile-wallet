@@ -1,7 +1,6 @@
 import styled from "@peersyst/react-native-styled";
 import { InputStyle, TextField } from "@peersyst/react-native-components";
 import { TextFieldRootProps, TextFieldSize } from "./TextField.types";
-import { t } from "i18next";
 
 export const TextFieldRoot = styled(TextField)<TextFieldRootProps>(({ theme, size = "lg", readonly, disabled }) => {
     const inputSizeStyles: Record<TextFieldSize, InputStyle> = {

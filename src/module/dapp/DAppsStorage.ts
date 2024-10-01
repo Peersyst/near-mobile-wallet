@@ -1,5 +1,6 @@
 import { BaseStorageService } from "module/common/service/BaseStorageService";
 import { IDAppsStorage, FavouriteDApp } from "./types";
+import { config } from "config";
 
 const defaultDAppStorage: IDAppsStorage = {
     favourites: [],
@@ -33,7 +34,7 @@ export const DAppsStorage = new (class extends BaseStorageService<undefined, IDA
 
     async addHistory(url: string): Promise<void> {
         await this.updateHistory((history) => {
-            return [url, ...history.filter((item) => item !== url)].slice(0, 5);
+            return [url, ...history.filter((item) => item !== url)].slice(0, config.exploreDApps.historyLimit);
         });
     }
 

@@ -3,7 +3,7 @@ import { Col } from "@peersyst/react-native-components";
 import { EmptyFavouritesDAppsIcon } from "./EmptyFavouritesDApps.styles";
 import useTranslate from "module/common/hook/useTranslate";
 
-function EmptyFavouritesDApps() {
+function EmptyFavouritesDApps(): JSX.Element {
     const translate = useTranslate();
 
     return (

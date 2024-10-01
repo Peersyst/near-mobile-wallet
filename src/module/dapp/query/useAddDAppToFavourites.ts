@@ -4,7 +4,7 @@ import { useInvalidateQueries } from "../../../query/useInvalidateQueries";
 import Queries from "../../../query/queries";
 import { FavouriteDApp } from "../types";
 
-export default function useAddDAppFromFavourites() {
+export default function useAddDAppToFavourites() {
     const invalidateQueries = useInvalidateQueries();
     return useMutation(
         async (dApp: FavouriteDApp) => {

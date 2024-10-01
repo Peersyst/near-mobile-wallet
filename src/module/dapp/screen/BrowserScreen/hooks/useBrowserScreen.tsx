@@ -1,13 +1,13 @@
 import { useRoute, RouteProp } from "@react-navigation/native";
 import { DAppsParamsList, DAppScreens } from "module/dapp/navigator/DAppsNavigator.types";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import WebView, { WebViewNavigation } from "react-native-webview";
 import { cleanURL } from "../utils/cleanURL";
 import useBrowserBackHandler from "./useBrowserBackHandler";
 import useNavigation from "module/common/hook/useNavigation";
 
 export function useBrowserScreen() {
-    const ref = useRef<WebView>(null);
+    const webViewRef = useRef<WebView>(null);
     const [canGoBack, setCanGoBack] = useState(false);
     const [canGoForward, setCanGoForward] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -16,11 +16,11 @@ export function useBrowserScreen() {
     const { params } = useRoute<RouteProp<DAppsParamsList, DAppScreens.WEBVIEW>>();
     const [url, setUrl] = useState(cleanURL(params.url));
 
-    useBrowserBackHandler(canGoBack, ref); // Hook to handle back button
+    useBrowserBackHandler(canGoBack, webViewRef); // Hook to handle back button
 
     function handleOnGoBack() {
         if (canGoBack) {
-            ref.current?.goBack();
+            webViewRef.current?.goBack();
         } else {
             navigate(DAppScreens.HOME);
         }
@@ -28,12 +28,12 @@ export function useBrowserScreen() {
 
     function handleOnGoForward() {
         if (canGoForward) {
-            ref.current?.goForward();
+            webViewRef.current?.goForward();
         }
     }
 
     const handleOnNavigationStateChange = useCallback(
-        function ({ canGoBack, canGoForward, title, url }: WebViewNavigation) {
+        function ({ canGoBack, canGoForward, url }: WebViewNavigation) {
             setCanGoBack(canGoBack);
             setCanGoForward(canGoForward);
             setUrl(cleanURL(url));
@@ -49,12 +49,14 @@ export function useBrowserScreen() {
         setUrl(cleanURL(search));
     }
 
+    const source = useMemo(() => ({ uri: url }), [url]);
+
     return {
         webviewProps: {
-            ref,
+            ref: webViewRef,
             onNavigationStateChange: handleOnNavigationStateChange,
             onLoad: handleOnLoad,
-            source: { uri: url },
+            source,
         },
         headerProps: {
             canGoBack,
