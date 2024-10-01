@@ -7,7 +7,7 @@ export const FavouriteDAppRoot = styled(Row)(() => ({
     paddingVertical: 8,
     width: "100%",
     alignItems: "center",
-    columnGap: 4,
+    columnGap: 8,
 }));
 
 export const FavouriteDAppLinkIcon = styled(ExternalLinkIcon)(({ theme }) => ({

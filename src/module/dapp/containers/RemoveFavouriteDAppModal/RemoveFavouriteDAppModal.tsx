@@ -1,11 +1,11 @@
-import { Row } from "@peersyst/react-native-components";
+import { Typography } from "@peersyst/react-native-components";
 import { useControlled } from "@peersyst/react-hooks";
 import useTranslate from "module/common/hook/useTranslate";
 import CardNavigatorModal from "module/common/component/navigation/CardNavigatorModal/CardNavigatorModal";
 import { RemoveFavouriteDAppModalProps } from "./RemoveFavouriteDAppModal.types";
-import { TouchableWithoutFeedback } from "react-native";
+import { TouchableOpacity } from "react-native";
 import useRemoveDAppFromFavourites from "module/dapp/query/useRemoveDAppFromFavourites";
-import { DeleteIcon } from "icons";
+import { CardNavigatorModalContent, RemoveFavouriteDAppModalIcon } from "./RemoveFavouriteDAppModal.styles";
 
 const RemoveFavouriteDAppModal = ({
     defaultOpen,
@@ -16,11 +16,11 @@ const RemoveFavouriteDAppModal = ({
     ...rest
 }: RemoveFavouriteDAppModalProps): JSX.Element => {
     const [open, setOpen] = useControlled(defaultOpen, openProp, openProp ? onCloseProp : onOpen);
-    const { mutate } = useRemoveDAppFromFavourites();
+    const { mutate: removeFromFavourites } = useRemoveDAppFromFavourites();
     const translate = useTranslate();
 
     function handleOnPress() {
-        mutate(dApp);
+        removeFromFavourites(dApp.url);
         setOpen(false);
     }
 
@@ -34,11 +34,12 @@ const RemoveFavouriteDAppModal = ({
             onOpen={onOpen}
             {...rest}
         >
-            <TouchableWithoutFeedback>
-                <Row>
-                    <DeleteIcon />
-                </Row>
-            </TouchableWithoutFeedback>
+            <TouchableOpacity onPress={handleOnPress}>
+                <CardNavigatorModalContent>
+                    <RemoveFavouriteDAppModalIcon />
+                    <Typography variant="body2Regular">{translate("removeFavourites")}</Typography>
+                </CardNavigatorModalContent>
+            </TouchableOpacity>
         </CardNavigatorModal>
     );
 };

@@ -352,5 +352,6 @@
     "name": "Name",
     "URL": "URL",
     "add": "Add",
-    "addToFavourites": "Add to favourites"
+    "addToFavourites": "Add to favourites",
+    "removeFavourites": "Remove from favourites"
 }

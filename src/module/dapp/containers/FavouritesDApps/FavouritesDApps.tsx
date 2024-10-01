@@ -1,5 +1,5 @@
 import Typography from "module/common/component/display/Typography/Typography";
-import useGetFavouritesDApps from "module/dapp/query/useGetFavouritesDApps";
+import { useGetFavouritesDApps } from "module/dapp/query/useGetFavouritesDApps";
 import { FavouritesDAppsRoot } from "./FavouritesDApps.styles";
 import EmptyFavouritesDApps from "./EmptyFavouritesDApps/EmptyFavouritesDApps";
 import { List } from "@peersyst/react-native-components";

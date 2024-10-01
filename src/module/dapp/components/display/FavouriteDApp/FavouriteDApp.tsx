@@ -35,7 +35,7 @@ function FavouriteDApp({ dApp }: FavouriteDAppProps) {
     return (
         <>
             <FavouriteDAppRoot>
-                <FavouriteDAppLogo loading={isLoading} source={{ uri: dAppUrl }} />
+                <FavouriteDAppLogo loading={isLoading} {...(dAppUrl && { source: { uri: dAppUrl } })} />
                 <FavouriteDAppLinkIcon onPress={handleOnLinkPress}>
                     <ExternalLinkIcon />
                 </FavouriteDAppLinkIcon>

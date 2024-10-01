@@ -6,8 +6,8 @@ export default new (class DAppsController {
         return await DAppsStorage.getDApps();
     }
 
-    async deleteDApp(dApp: FavouriteDApp) {
-        return await DAppsStorage.deleteDApp(dApp);
+    async deleteDApp(url: string) {
+        return await DAppsStorage.deleteDApp(url);
     }
 
     async addDApp(dApp: FavouriteDApp) {

@@ -19,9 +19,9 @@ export const DAppsStorage = new (class extends BaseStorageService<undefined, IDA
         return (await this.get()).favourites;
     }
 
-    async deleteDApp(dApp: FavouriteDApp): Promise<void> {
+    async deleteDApp(dAppUrl: string): Promise<void> {
         await this.updateFavourites((favourites) => {
-            return favourites.filter((item) => item.url !== dApp.url);
+            return favourites.filter((item) => item.url !== dAppUrl);
         });
     }
 
