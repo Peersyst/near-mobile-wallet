@@ -6,17 +6,13 @@ import { List } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import FavouriteDApp from "module/dapp/components/display/FavouriteDApp/FavouriteDApp";
 
-export interface FavouritesDAppsProps {
-    children?: React.ReactNode;
-}
-
-function FavouritesDApps({ children, ...rest }: FavouritesDAppsProps): JSX.Element {
+function FavouritesDApps(): JSX.Element {
     const translate = useTranslate();
     const { data: dApps } = useGetFavouritesDApps();
     const hasDApps = dApps && dApps.length > 0;
 
     return (
-        <FavouritesDAppsRoot {...rest}>
+        <FavouritesDAppsRoot>
             {hasDApps && <Typography variant="body2Strong">{translate("yourFavouritesDApps")}</Typography>}
             <List
                 data={dApps}

@@ -6,11 +6,10 @@ import SearchHistoryItem from "./SearchHistoryItem/SearchHistoryItem";
 import useTranslate from "module/common/hook/useTranslate";
 
 export interface SearchHistoryProps {
-    children?: React.ReactNode;
     onHistoryClick: (text: string) => void;
 }
 
-function SearchHistory({ children, onHistoryClick, ...rest }: SearchHistoryProps): JSX.Element {
+function SearchHistory({ onHistoryClick, ...rest }: SearchHistoryProps): JSX.Element {
     const translate = useTranslate();
     const { data: history = [] } = useGetSearchHistory();
 

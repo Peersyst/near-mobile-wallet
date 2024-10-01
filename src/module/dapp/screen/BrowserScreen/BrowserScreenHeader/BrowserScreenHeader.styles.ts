@@ -1,6 +1,5 @@
-import { Row, StartIcon } from "@peersyst/react-native-components";
+import { Row } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
-import { EmptyStarIcon } from "icons";
 import Button from "module/common/component/input/Button/Button";
 
 export const BrowserScreenHeaderRoot = styled(Row)(({ theme, safeAreaInsets }) => ({
