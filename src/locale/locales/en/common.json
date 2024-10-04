@@ -341,5 +341,7 @@
     "pleaseWaitAMoment": "Please, wait a moment",
     "explore": "Explore",
     "welcomeSecurityQuiz": "Answer the following questions correctly to reveal your secret recovery phrase.",
-    "startQuiz": "Start quiz"
+    "startQuiz": "Start quiz",
+    "scanQR": "Scan QR",
+    "actions": "Actions"
 }

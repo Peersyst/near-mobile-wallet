@@ -3,6 +3,7 @@ import "@peersyst/react-native-components";
 declare module "@peersyst/react-native-components" {
     export interface ButtonVariantOverrides {
         primary: true;
+        primarySoft: true;
         secondary: true;
         tertiary: true;
         quaternary: true;

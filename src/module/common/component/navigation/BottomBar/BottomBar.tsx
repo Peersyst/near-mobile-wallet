@@ -7,7 +7,7 @@ import { DatabaseIcon } from "module/common/icons/DatabaseIcon";
 import useTranslate from "module/common/hook/useTranslate";
 import { capitalize } from "@peersyst/react-utils";
 import { config } from "config";
-import BottomBarQRScanner from "./BottomBarQRScanner/BottomBarQRScanner";
+import QuickActionsBottomBarItem from "./QuickActionsBottomBarItem/QuickActionsBottomBarItem";
 import { MainScreens } from "../MainNavigatorGroup/MainScreens";
 
 type BottomBarProps = Pick<BottomTabBarProps, "state" | "navigation">;
@@ -35,7 +35,7 @@ const BottomBar = ({ state, navigation }: BottomBarProps): JSX.Element => {
                 label={capitalize(translate("staking"))}
                 Icon={<DatabaseIcon />}
             />
-            {config.signerFeature.enabled && <BottomBarQRScanner />}
+            <QuickActionsBottomBarItem />
             {config.signerFeature.enabled && (
                 <BottomBarItem
                     onPress={() => handleNavigation(MainScreens.DAPPS)}
