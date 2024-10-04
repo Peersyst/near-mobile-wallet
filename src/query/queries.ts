@@ -20,6 +20,8 @@ enum Queries {
     ACCOUNT_IS_ACTIVE = "account-is-active",
     GET_BALANCE_ALL_ACCOUNTS = "get-balance-all-accounts",
     GET_UPDATE_AVAILABLE = "get-update-available",
+    GET_FAVOURITES_DAPPS = "get-favourites-dapps",
+    GET_DAPPS_SEARCH_HISTORY = "get-dapps-search-history",
 }
 
 export default Queries;

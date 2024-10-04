@@ -167,5 +167,9 @@
             "correctResponse": 0
         }
     ],
-    "quizNumberOfQuestions": 3
+    "quizNumberOfQuestions": 3,
+    "exploreDApps": {
+        "exploreDAppsUrl": "https://nearmobile.app/",
+        "historyLimit": 5
+    }
 }

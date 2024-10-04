@@ -10,7 +10,7 @@ const ConnectedSite = ({
         accessKey: { public_key },
     },
 }: ConnectedSiteProps) => {
-    const { data: siteLogo, isLoading } = useConnectedSiteLogo(name);
+    const { data: siteLogo, isLoading } = useConnectedSiteLogo({ contractId: name });
 
     return (
         <ConnectedSiteRoot flex={1} gap={12}>

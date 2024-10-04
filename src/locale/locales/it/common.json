@@ -341,5 +341,17 @@
     "pleaseWaitAMoment": "Attendere un momento",
     "explore": "Esplora",
     "welcomeSecurityQuiz": "Rispondi correttamente alle seguenti domande per rivelare la tua frase di recupero segreta.",
-    "startQuiz": "Inizia quiz"
+    "startQuiz": "Inizia quiz",
+    "discoverNewDApps": "Scopri nuove dApps",
+    "dAppSelectCTA": "Dai un'occhiata alla nostra selezione di dApps",
+    "emptyFavouritesDAppsTitle": "Non hai ancora preferiti",
+    "emptyFavouritesDAppsDescription": "Aggiungi nuove dApps ai tuoi preferiti visitando il loro sito web e cliccando sull'icona della stella. Puoi anche dare un'occhiata alla nostra selezione delle migliori dApps.",
+    "yourFavouritesDApps": "Le tue dApps preferite",
+    "emptyHistory": "Nessuna cronologia di ricerca",
+    "history": "Cronologia",
+    "name": "Nome",
+    "URL": "URL",
+    "add": "Aggiungi",
+    "addToFavourites": "Aggiungi ai preferiti",
+    "removeFavourites": "Rimuovi dai preferiti"
 }

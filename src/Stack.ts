@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
+import { DAppsParamsList } from "module/dapp/navigator/DAppsNavigator.types";
 import { HomeScreenParams } from "module/home/screen/HomeScreen.types";
 
 export type MainStackParamsList = {
@@ -33,10 +34,16 @@ export type AuthStackParamsList = {
     CreateWallet: undefined;
     ImportWallet: undefined;
 };
-export type RootStackParamsList = AuthStackParamsList & MainStackParamsList & SettingsStackParamsList & FiatOrdersStackParamsList;
+
+export type RootStackParamsList = AuthStackParamsList &
+    MainStackParamsList &
+    SettingsStackParamsList &
+    FiatOrdersStackParamsList &
+    DAppsParamsList;
 
 export const BottomTab = createBottomTabNavigator<MainStackParamsList>();
 export const SettingTab = createNativeStackNavigator<SettingsStackParamsList>();
 export const FiatOrderTab = createNativeStackNavigator<FiatOrdersStackParamsList>();
+export const DAppsTab = createNativeStackNavigator<DAppsParamsList>();
 
 export default createNativeStackNavigator<RootStackParamsList>();
