@@ -9,26 +9,19 @@ import { ArrowReceiveIcon, ArrowSendIcon, BuyIcon, SwapIcon } from "icons";
 import LabeledIconButton from "module/common/component/input/LabeledIconButton/LabeledIconButton";
 import useGetSwapLink from "module/common/hook/useGetSwapLink";
 import useIsBuyEnabled from "module/wallet/hook/useIsBuyEnabled";
-import { DAppWebViewModal } from "module/signer/containers/DAppWebViewModal/DAppWebViewModal";
 import DarkThemeProvider from "module/common/component/util/ThemeProvider/DarkThemeProvider";
-import { Linking, Platform } from "react-native";
+import { DAppScreens } from "module/dapp/navigator/DAppsNavigator.types";
 
 const WalletCardButtons = (): JSX.Element => {
     const translate = useTranslate();
     const navigate = useNavigation();
     const showBuyButton = useIsBuyEnabled();
     const uriSwap = useGetSwapLink();
-    const { showModal, hideModal } = useModal();
+    const { showModal } = useModal();
 
     function handleSwapPress(): void {
-        if (Platform.OS === "android") Linking.openURL(uriSwap);
-        else {
-            showModal(DAppWebViewModal, {
-                url: uriSwap,
-                name: capitalize(translate("swap")),
-                onClose: () => hideModal(DAppWebViewModal.id),
-            });
-        }
+        // (jordi): We need to cast the navigate.navigate to any because the React Navigation types are not working properly
+        navigate.navigate(MainScreens.DAPPS, { screen: DAppScreens.WEBVIEW, params: { url: uriSwap } } as any);
     }
 
     return (

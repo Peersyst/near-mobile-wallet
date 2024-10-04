@@ -10,7 +10,7 @@ export function useBrowserScreenWebview() {
     const [canGoBack, setCanGoBack] = useState(false);
     const [canGoForward, setCanGoForward] = useState(false);
     const { params } = useRoute<RouteProp<DAppsParamsList, DAppScreens.WEBVIEW>>();
-    const [url, setUrl] = useState(cleanURL(params.url));
+    const [url, setUrl] = useState(cleanURL(params.url || ""));
 
     const source = useMemo(() => ({ uri: url }), [url]);
     useBrowserBackHandler(canGoBack, webViewRef); // Hook to handle back button
