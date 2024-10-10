@@ -12,6 +12,7 @@ import QrScanner from "module/common/component/input/QrScanner/QrScanner";
 import { useScanQuickAction } from "./useScanQuickAction";
 import { useSwapQuickAction } from "./useSwapQuickAction";
 import { useBuyQuickAction } from "./useBuyQuickAction";
+import { useConfig } from "@peersyst/react-native-components";
 
 export interface UseQuickActionsBottomBarItemReturn {
     actions: QuickAction[];
@@ -24,7 +25,7 @@ export interface UseQuickActionsBottomBarItemReturn {
 export function useQuickActionsBottomBarItem(): UseQuickActionsBottomBarItemReturn {
     const { open, showModal, hideModal } = useModalState();
     const translate = useTranslate();
-
+    const signerFeatureConfig = useConfig("signerFeature");
     const { handleSwapPress } = useSwapQuickAction();
     const { handleBuyPress } = useBuyQuickAction();
     const { scanOpened, showScanModal, handleScan, hideScanModal } = useScanQuickAction();
@@ -61,12 +62,16 @@ export function useQuickActionsBottomBarItem(): UseQuickActionsBottomBarItemRetu
             onPress: withHandleOnPress(showReceiveModal),
             variant: "soft",
         },
-        {
-            Icon: SwapIcon,
-            label: getCapitalizedTranslation("swap"),
-            onPress: withHandleOnPress(handleSwapPress),
-            variant: "soft",
-        },
+        ...(signerFeatureConfig.enabled
+            ? [
+                  {
+                      Icon: SwapIcon,
+                      label: getCapitalizedTranslation("swap"),
+                      onPress: withHandleOnPress(handleSwapPress),
+                      variant: "soft",
+                  } as const,
+              ]
+            : []),
         {
             Icon: BuyIcon,
             label: getCapitalizedTranslation("buy"),
