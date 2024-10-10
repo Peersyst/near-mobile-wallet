@@ -353,5 +353,6 @@
     "URL": "URL",
     "add": "Добавить",
     "addToFavourites": "Добавить в избранное",
-    "removeFavourites": "Удалить из избранного"
+    "removeFavourites": "Удалить из избранного",
+    "version": "Версия"
 }

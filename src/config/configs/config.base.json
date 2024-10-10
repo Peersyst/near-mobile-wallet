@@ -1,4 +1,5 @@
 {
+    "appVersion": "1.7.3",
     "projectName": "near-mobile-wallet",
     "minimumTransactionAmount": 61,
     "mainnetExplorerLink": "https://nearblocks.io",

@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
-import { Col } from "@peersyst/react-native-components";
+import { BaseSettingsTabRoot } from "./BaseSettingsTab.styles";
 
 export interface BaseSettingsTabProps {
     children: ReactNode;
 }
 
 export default function BaseSettingsTab({ children }: BaseSettingsTabProps) {
-    return <Col gap={12}>{children}</Col>;
+    return <BaseSettingsTabRoot gap={12}>{children}</BaseSettingsTabRoot>;
 }

@@ -1,4 +1,5 @@
 {
+    "version": "1.7.3",
     "name": "near-mobile-wallet",
     "private": true,
     "main": "./index.js",

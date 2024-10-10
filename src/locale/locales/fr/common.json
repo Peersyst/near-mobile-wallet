@@ -353,5 +353,6 @@
     "URL": "URL",
     "add": "Ajouter",
     "addToFavourites": "Ajouter aux favoris",
-    "removeFavourites": "Retirer des favoris"
+    "removeFavourites": "Retirer des favoris",
+    "version": "Version"
 }
