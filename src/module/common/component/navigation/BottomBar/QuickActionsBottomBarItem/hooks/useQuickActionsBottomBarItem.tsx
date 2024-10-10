@@ -13,7 +13,15 @@ import { useScanQuickAction } from "./useScanQuickAction";
 import { useSwapQuickAction } from "./useSwapQuickAction";
 import { useBuyQuickAction } from "./useBuyQuickAction";
 
-export function useQuickActionsBottomBarItem() {
+export interface UseQuickActionsBottomBarItemReturn {
+    actions: QuickAction[];
+    modals: JSX.Element;
+    open: boolean;
+    showModal: () => void;
+    hideModal: () => void;
+}
+
+export function useQuickActionsBottomBarItem(): UseQuickActionsBottomBarItemReturn {
     const { open, showModal, hideModal } = useModalState();
     const translate = useTranslate();
 

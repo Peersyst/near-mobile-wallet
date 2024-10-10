@@ -12,7 +12,7 @@ export function useSwapQuickAction(): UseSwapQuickActionReturn {
     const uriSwap = useGetSwapLink();
 
     function handleSwapPress(): void {
-        // We need to cast the navigate.navigate to any because the React Navigation types are not working properly
+        // We need to cast the params of the navigate.navigate to any because the React Navigation types are not working properly
         navigate.navigate(MainScreens.DAPPS, { screen: DAppScreens.WEBVIEW, params: { url: uriSwap } } as any);
     }
 
