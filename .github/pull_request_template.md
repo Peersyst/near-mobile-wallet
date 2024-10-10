@@ -1,13 +1,35 @@
-# Name
+# PR Name
 
-## Issues
+## Motivation 💡
 
-closes #
+<!--
+Describe the problem or motivation behind this pull request
+-->
 
-## Dependencies
+-   Briefly describe the issue or motivation for this PR. Include any relevant background information.
 
-#
+## Changes 🛠
 
-## Changes
+<!--
+Explain the changes made in this pull request
+-->
 
--
+-   Describe the 1st change ✨
+-   Describe the 2nd change ✨
+
+## Considerations 🤔
+
+<!--
+List any additional considerations, potential impacts, or things reviewers should be aware of.
+-->
+
+-   Warning... ⚠️
+-   This part could be improved...
+
+## Dependencies 📦
+
+<!--
+Provide links to any branches or repositories this pull request depends on
+-->
+
+-   [Main](https://github.com/Peersyst/near-mobile-wallet)
