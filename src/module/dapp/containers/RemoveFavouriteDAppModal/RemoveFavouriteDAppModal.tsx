@@ -6,6 +6,7 @@ import { RemoveFavouriteDAppModalProps } from "./RemoveFavouriteDAppModal.types"
 import { TouchableOpacity } from "react-native";
 import useRemoveDAppFromFavourites from "module/dapp/query/useRemoveDAppFromFavourites";
 import { CardNavigatorModalContent, RemoveFavouriteDAppModalIcon } from "./RemoveFavouriteDAppModal.styles";
+import { DeleteIcon } from "icons";
 
 const RemoveFavouriteDAppModal = ({
     defaultOpen,
@@ -16,7 +17,7 @@ const RemoveFavouriteDAppModal = ({
     ...rest
 }: RemoveFavouriteDAppModalProps): JSX.Element => {
     const [open, setOpen] = useControlled(defaultOpen, openProp, openProp ? onCloseProp : onOpen);
-    const { mutate: removeFromFavourites } = useRemoveDAppFromFavourites();
+    const { mutate: removeFromFavourites, isLoading } = useRemoveDAppFromFavourites();
     const translate = useTranslate();
 
     function handleOnPress() {
@@ -36,7 +37,9 @@ const RemoveFavouriteDAppModal = ({
         >
             <TouchableOpacity onPress={handleOnPress}>
                 <CardNavigatorModalContent>
-                    <RemoveFavouriteDAppModalIcon />
+                    <RemoveFavouriteDAppModalIcon loading={isLoading}>
+                        <DeleteIcon />
+                    </RemoveFavouriteDAppModalIcon>
                     <Typography variant="body2Regular">{translate("removeFavourites")}</Typography>
                 </CardNavigatorModalContent>
             </TouchableOpacity>

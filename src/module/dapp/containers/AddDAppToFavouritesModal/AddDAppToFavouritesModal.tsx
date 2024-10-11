@@ -16,7 +16,7 @@ const AddDAppToFavouritesModal = ({
     ...rest
 }: AddDAppToFavouritesModalProps): JSX.Element => {
     const [open, setOpen] = useControlled(defaultOpen, openProp, openProp ? onCloseProp : onOpen);
-    const { mutate: addToFavourites } = useAddDAppToFavourites();
+    const { mutate: addToFavourites, isLoading } = useAddDAppToFavourites();
     const translate = useTranslate();
 
     function handleSubmit({ name, url }: AddDAppToFavouritesModalFormData) {
@@ -38,7 +38,7 @@ const AddDAppToFavouritesModal = ({
                 <Col gap={24}>
                     <TextField label={translate("name")} name="name" required />
                     <TextField selection={{ start: 0, end: 0 }} label={translate("URL")} name="url" readonly value={url} />
-                    <Button type="submit" fullWidth>
+                    <Button type="submit" fullWidth loading={isLoading}>
                         {translate("add")}
                     </Button>
                 </Col>

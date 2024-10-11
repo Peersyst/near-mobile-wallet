@@ -16,9 +16,10 @@ function BrowserScreenHeaderInput({ url, onSearch }: BrowserScreenHeaderInputPro
     const [openSearchModal, setSearchModalOpen] = useState(false);
     const [openAddToFavouritesModal, setAddToFavouritesModal] = useState(false);
     const { data: isFavourite } = useIsUrlInFavourites(url);
-    const { mutate: removeFromFavourites } = useRemoveDAppFromFavourites();
+    const { mutate: removeFromFavourites, isLoading } = useRemoveDAppFromFavourites();
 
     function handleOnFavouritePress() {
+        if (isLoading) return;
         if (!isFavourite) {
             setAddToFavouritesModal(true);
         } else {

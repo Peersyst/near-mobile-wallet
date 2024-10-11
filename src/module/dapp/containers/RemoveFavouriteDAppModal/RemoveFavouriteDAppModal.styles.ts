@@ -1,8 +1,7 @@
-import { Row } from "@peersyst/react-native-components";
+import { IconButton, Row } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
-import { DeleteIcon } from "icons";
 
-export const RemoveFavouriteDAppModalIcon = styled(DeleteIcon)(({ theme }) => ({
+export const RemoveFavouriteDAppModalIcon = styled(IconButton)(({ theme }) => ({
     color: theme.palette.status.error,
 }));
 
