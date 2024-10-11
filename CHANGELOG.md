@@ -27,3 +27,7 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 -   Add `app version` in settings [feat/add-versions](https://github.com/Peersyst/near-mobile-wallet/pull/536)
 -   Add actions in main app menu in [feat/main-button](https://github.com/Peersyst/near-mobile-wallet/pull/535)
 -   Refactor explore dApps tab [refactor/explore-dapp](https://github.com/Peersyst/near-mobile-wallet/pull/533)
+
+### 🐛 Bug Fixes
+
+-   Fix NFTs not being displayed in the APP [fix/nft-not-being-displayed](https://github.com/Peersyst/near-mobile-wallet/pull/537)
