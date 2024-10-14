@@ -12,7 +12,7 @@ export interface ActionsSliderProps {
 
 const ActionsSlider = ({ actions, ...rest }: ActionsSliderProps) => {
     return (
-        <ActionsSliderRoot gap={0} showPageIndicator={actions.length > 1} style={{ flex: 1 }}>
+        <ActionsSliderRoot onStartShouldSetResponder={() => true} gap={0} showPageIndicator={actions.length > 1} style={{ flex: 1 }}>
             {actions.map(({ type, params }, index) => {
                 const ActionComponent = ActionDetails[type];
                 return <ActionComponent key={index} params={params} {...rest} />;
