@@ -22,7 +22,7 @@ const DisconnectSiteDetails = ({ site }: DisconnectSiteDetailsProps): JSX.Elemen
                   methodNames: permission.FunctionCall.method_names || undefined,
               };
 
-    const { data: siteLogo } = useConnectedSiteLogo(site.name);
+    const { data: siteLogo } = useConnectedSiteLogo({ contractId: site.name });
 
     return (
         <ActionDetailsScaffold description={translate("withPermissions")} showPreview previewProps={{ logoUrl: siteLogo }} scrollable>

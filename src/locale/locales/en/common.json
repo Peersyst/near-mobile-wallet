@@ -341,5 +341,17 @@
     "pleaseWaitAMoment": "Please, wait a moment",
     "explore": "Explore",
     "welcomeSecurityQuiz": "Answer the following questions correctly to reveal your secret recovery phrase.",
-    "startQuiz": "Start quiz"
+    "startQuiz": "Start quiz",
+    "discoverNewDApps": "Discover new dApps",
+    "dAppSelectCTA": "Take a look at our dApp selection",
+    "emptyFavouritesDAppsTitle": "You don’t have any favorites yet",
+    "emptyFavouritesDAppsDescription": "Add new dApps to your favorites by visiting their website and clicking on the star icon. You can also take a look at our selection of top dApps.",
+    "yourFavouritesDApps": "Your favourite dApps",
+    "emptyHistory": "No search history",
+    "history": "History",
+    "name": "Name",
+    "URL": "URL",
+    "add": "Add",
+    "addToFavourites": "Add to favourites",
+    "removeFavourites": "Remove from favourites"
 }
