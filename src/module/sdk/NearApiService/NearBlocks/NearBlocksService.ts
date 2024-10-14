@@ -22,6 +22,7 @@ import {
     NearBlocksTransactionDto,
     NearBlocksActionDto,
     NearBlocksKitWalletStakingDepositsResponseDto,
+    NearBlocksActivityDto,
 } from "./NearBlocksService.types";
 
 export class NearBlocksService extends FetchService implements NearApiServiceInterface {
@@ -136,9 +137,43 @@ export class NearBlocksService extends FetchService implements NearApiServiceInt
     }
 
     async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
+        try {
+            const activities = await this.fetch<NearBlocksActivityDto[]>(`/kitwallet/account/${address}/activities`);
+
+            return activities.map((activity) => {
+                const transaction: TransactionWithoutActions = {
+                    transactionHash: activity.hash,
+                    includedInBlockHash: activity.block_hash,
+                    blockTimestamp: String(BigInt(activity.block_timestamp) / BigInt(1000000)),
+                    signerAccountId: activity.signer_id,
+                    receiverAccountId: activity.receiver_id,
+                };
+                const action: Action = {
+                    actionKind: this.parseActionKindApiDto(activity.action_kind, activity.receiver_id, address),
+                    transaction: transaction,
+                    transactionHash: activity.hash,
+                    indexInTransaction: activity.action_index,
+                    ...(activity.args.code_sha_256 && { gas: Number(activity.args.code_sha_256) }), // For FUNCTION_CALL kind
+                    ...(activity.args.gas && { gas: Number(activity.args.gas ?? 0) }), // For FUNCTION_CALL kind
+                    ...(activity.args.deposit && { deposit: convertYoctoToNear(activity.args.deposit) }), // For
+                    ...(activity.args.args_base64 && { argsBase64: activity.args.args_base64 }), // For FUNCTION_CALL kind
+                    ...(activity.args.args_json && { argsJson: activity.args.args_json }), // For FUNCTION_CALL kind
+                    ...(activity.args.method_name && { methodName: activity.args.method_name }), // For FUNCTION_CALL kind
+                    ...(activity.args.stake && { stake: convertYoctoToNear(activity.args.stake) }), // For STAKE kind
+                    ...(activity.args.public_key && { publicKey: activity.args.public_key }), // For STAKE, ADD_KEY, DELETE_KEY kind
+                    // ...(activity.args.access_key && { accessKey: activity.args.access_key }), // For ADD_KEY kind
+                    ...(activity.args.beneficiary_id && { beneficiaryId: activity.args.beneficiary_id }), // For DELETE_ACCOUNT kind
+                };
+                return action;
+            });
+        } catch (e) {
+            return [];
+        }
+    }
+
+    async getPaginatedActions({ address, page = 1, pageSize = 10 }: NearApiServicePaginatedParams): Promise<Action[]> {
         const actions = [];
-        let page = 1;
-        const pageSize = 10;
+
         let txns: NearBlocksTransactionDto[] = [];
         do {
             txns = (
