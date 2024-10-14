@@ -353,5 +353,7 @@
     "URL": "URL",
     "add": "Add",
     "addToFavourites": "Add to favourites",
-    "removeFavourites": "Remove from favourites"
+    "removeFavourites": "Remove from favourites",
+    "scanQR": "Scan QR",
+    "actions": "Actions"
 }
