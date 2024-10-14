@@ -51,6 +51,7 @@ declare module "@peersyst/react-native-components" {
     }
 
     export interface Config {
+        appVersion: string;
         minimumTransactionAmount: number;
         nearblocksTesnetApiUrl: string;
         nearblocksMainnetApiUrl: string;
@@ -98,6 +99,7 @@ declare module "@peersyst/react-native-components" {
     }
 
     export interface CreateConfig {
+        appVersion: string;
         minimumTransactionAmount: number;
         nearblocksTesnetApiUrl: string;
         nearblocksMainnetApiUrl: string;
