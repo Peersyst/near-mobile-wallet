@@ -38,6 +38,7 @@ export interface AnalyticsConfig {
 
 export interface TransakConfig extends Omit<TransakOnRampQueryParams, "environment"> {
     environment: string;
+    supportedCountries: string[];
 }
 
 export interface ExploreDAppsConfig {
