@@ -27,7 +27,7 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 -   Add `app version` in settings [feat/add-versions](https://github.com/Peersyst/near-mobile-wallet/pull/536)
 -   Add actions in main app menu in [feat/main-button](https://github.com/Peersyst/near-mobile-wallet/pull/535)
 -   Refactor explore dApps tab [refactor/explore-dapp](https://github.com/Peersyst/near-mobile-wallet/pull/533)
--   Limit Transak to only in the countries that is supported [feat/limit-transak](https://github.com/Peersyst/near-mobile-wallet/pull/538)
+-   Limit Transak to only in the countries that is supported [feat/limit-transak](https://github.com/Peersyst/near-mobile-wallet/pull/539)
 
 ### 🐛 Bug Fixes
 
