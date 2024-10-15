@@ -63,14 +63,47 @@ export interface NearBlocksActivityDto {
     action_index: number;
     signer_id: string;
     receiver_id: string;
-    action_kind: string;
-    args: {
-        gas: number;
-        deposit: string;
-        args_json: object;
-        args_base64: string | null;
-        method_name: string;
-    };
+    action_kind: TransactionActionKind;
+    args: NearBlocksArgs;
+}
+
+export interface NearBlocksArgs {
+    public_key: string;
+    access_key?: NearBlocksAccessKey;
+    deposit?: string;
+    gas?: number;
+    args_json?: NearBlocksArgsJson;
+    args_base64?: string | null;
+    method_name?: string;
+    stake?: string;
+    code_sha_256?: string;
+    beneficiary_id?: string;
+}
+
+export interface NearBlocksArgsJson {
+    msg?: string;
+    amount?: string;
+    receiver_id?: string;
+    account_id?: string;
+    new_account_id?: string;
+    new_public_key?: string;
+    registration_only?: boolean;
+}
+
+export interface NearBlocksAccessKey {
+    nonce: number;
+    permission: NearBlocksPermission;
+}
+
+export interface NearBlocksPermission {
+    permission_kind: string;
+    permission_details: NearBlocksPermissionDetails;
+}
+
+export interface NearBlocksPermissionDetails {
+    allowance?: string | null;
+    receiver_id: string;
+    method_names: string[];
 }
 
 export interface NearBlocksTokenResponseDto {

@@ -32,3 +32,4 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 ### 🐛 Bug Fixes
 
 -   Fix NFTs not being displayed in the APP [fix/nft-not-being-displayed](https://github.com/Peersyst/near-mobile-wallet/pull/537)
+-   Get actions from the kitwallet api of NearBlocks [fix/actions-rate-limited](https://github.com/Peersyst/near-mobile-wallet/pull/540)
