@@ -17,8 +17,6 @@ import { FetchService } from "../common/FetchService";
 import { NearApiServiceInterface, NearApiServicePaginatedParams, NearApiServiceParams } from "../NearApiService.types";
 import {
     NearBlocksTransactionResponseDto,
-    NearblocksAccessKeyResponseDto,
-    NearBlocksTokenResponseDto,
     NearBlocksTransactionDto,
     NearBlocksActionDto,
     NearBlocksKitWalletStakingDepositsResponseDto,
@@ -113,27 +111,15 @@ export class NearBlocksService extends FetchService implements NearApiServiceInt
     }
 
     async getAccountsFromPublicKey({ address }: NearApiServiceParams): Promise<string[]> {
-        const accounts: string[] = [];
-        const keys = await this.fetch<NearblocksAccessKeyResponseDto>(`/keys/${address}`);
-        if (!keys?.keys || keys.keys.length === 0) return accounts;
-        for (const key of keys.keys) {
-            if (key.permission_kind === "FULL_ACCESS") {
-                accounts.push(key.account_id);
-            }
-        }
-        return accounts;
-    }
-
-    private async getAccountTokens({ address }: NearApiServiceParams): Promise<NearBlocksTokenResponseDto> {
-        return await this.fetch<NearBlocksTokenResponseDto>(`/account/${address}/tokens`);
+        return await this.fetch<string[]>(`/kitwallet/publicKey/${address}/accounts`);
     }
 
     async getLikelyTokens({ address }: NearApiServiceParams): Promise<string[]> {
-        return (await this.getAccountTokens({ address })).tokens.fts;
+        return await this.fetch<string[]>(`/kitwallet/account/${address}/likelyTokens`);
     }
 
     async getLikelyNfts({ address }: NearApiServiceParams): Promise<string[]> {
-        return (await this.getAccountTokens({ address })).tokens.nfts;
+        return await this.fetch<string[]>(`/kitwallet/account/${address}/likelyNFTs`);
     }
 
     async getRecentActivity({ address }: NearApiServiceParams): Promise<Action[]> {
