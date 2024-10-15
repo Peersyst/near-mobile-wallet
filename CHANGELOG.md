@@ -35,3 +35,7 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 -   Get actions from the kitwallet api of NearBlocks [fix/actions-rate-limited](https://github.com/Peersyst/near-mobile-wallet/pull/540)
 -   Fix SignerRequestModal not scrolling on Android [fix/signer-request-not-scrolling-on-android](https://github.com/Peersyst/near-mobile-wallet/pull/538)
 -   Fix NFTs not being displayed in the APP [fix/nft-not-being-displayed](https://github.com/Peersyst/near-mobile-wallet/pull/537)
+
+### 📚 Third-Party Library Updates
+
+-   Add `@react-native-community/netinfo` in [feat/refetch-handler](https://github.com/Peersyst/near-mobile-wallet/pull/541)
