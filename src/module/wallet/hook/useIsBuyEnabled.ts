@@ -7,13 +7,13 @@ export default function useIsBuyEnabled(): boolean {
     const enableBuy = useConfig("enableBuy");
     const isMainnet = useIsMainnet();
     const locales = getLocales();
-    const { supportedCountries } = useConfig("transak");
+    const { unsupportedCountries } = useConfig("transak");
 
     const countryCode = locales[0]?.regionCode;
 
     const countrySupported = useMemo(
-        () => supportedCountries.some((country) => country.toLocaleLowerCase() === countryCode?.toLocaleLowerCase()),
-        [countryCode, supportedCountries],
+        () => !unsupportedCountries.some((country) => country.toLocaleLowerCase() === countryCode?.toLocaleLowerCase()),
+        [countryCode, unsupportedCountries],
     );
 
     return enableBuy && isMainnet && countrySupported;
