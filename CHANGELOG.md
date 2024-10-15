@@ -24,11 +24,13 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 ### 🎉 New Features
 
+-   Limit Transak to only in the countries that is supported [feat/limit-transak](https://github.com/Peersyst/near-mobile-wallet/pull/539)
 -   Add `app version` in settings [feat/add-versions](https://github.com/Peersyst/near-mobile-wallet/pull/536)
 -   Add actions in main app menu in [feat/main-button](https://github.com/Peersyst/near-mobile-wallet/pull/535)
 -   Refactor explore dApps tab [refactor/explore-dapp](https://github.com/Peersyst/near-mobile-wallet/pull/533)
 
 ### 🐛 Bug Fixes
 
--   Fix NFTs not being displayed in the APP [fix/nft-not-being-displayed](https://github.com/Peersyst/near-mobile-wallet/pull/537)
+-   Get actions from the kitwallet api of NearBlocks [fix/actions-rate-limited](https://github.com/Peersyst/near-mobile-wallet/pull/540)
 -   Fix SignerRequestModal not scrolling on Android [fix/signer-request-not-scrolling-on-android](https://github.com/Peersyst/near-mobile-wallet/pull/538)
+-   Fix NFTs not being displayed in the APP [fix/nft-not-being-displayed](https://github.com/Peersyst/near-mobile-wallet/pull/537)

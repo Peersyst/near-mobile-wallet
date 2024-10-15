@@ -202,7 +202,7 @@ export type ActionKind = Exclude<keyof typeof TransactionActionKind, "TRANSFER">
 
 export type TransactionWithoutActions = Omit<Transaction, "transactionActions">;
 
-export type Action = Omit<TransactionAction, "actionKind"> & {
+export type Action = Omit<TransactionAction, "actionKind" | "transactionActions"> & {
     transaction: TransactionWithoutActions;
     actionKind: ActionKind;
 };
