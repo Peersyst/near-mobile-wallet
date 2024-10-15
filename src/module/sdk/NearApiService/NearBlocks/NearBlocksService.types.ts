@@ -65,16 +65,16 @@ export interface NearBlocksActivityDto {
     receiver_id: string;
     action_kind: TransactionActionKind;
     args: NearBlocksArgs;
-} // Validated
+}
 
 export interface NearBlocksArgs {
-    public_key: string; //
-    access_key?: NearBlocksAccessKey; //
-    deposit?: string; //
-    gas?: number; //
-    args_json?: NearBlocksArgsJson; //
-    args_base64?: string | null; //
-    method_name?: string; //
+    public_key: string;
+    access_key?: NearBlocksAccessKey;
+    deposit?: string;
+    gas?: number;
+    args_json?: NearBlocksArgsJson;
+    args_base64?: string | null;
+    method_name?: string;
     stake?: string;
     code_sha_256?: string;
     beneficiary_id?: string;
@@ -82,12 +82,12 @@ export interface NearBlocksArgs {
 
 export interface NearBlocksArgsJson {
     msg?: string;
-    amount?: string; //
-    receiver_id?: string; //
-    account_id?: string; //
+    amount?: string;
+    receiver_id?: string;
+    account_id?: string;
     new_account_id?: string;
     new_public_key?: string;
-    registration_only?: boolean; //
+    registration_only?: boolean;
 }
 
 export interface NearBlocksAccessKey {
