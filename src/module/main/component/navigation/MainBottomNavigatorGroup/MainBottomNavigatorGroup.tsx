@@ -17,14 +17,14 @@ export const MainBottomNavigatorGroup = () => {
         <BasePage header={header}>
             <BottomTab.Navigator
                 screenListeners={({ route }) => ({
-                    state: () => {
+                    beforeRemove: () => {
                         onRouteChange(route);
                     },
                 })}
                 initialRouteName={MainScreens.HOME}
                 tabBar={(props) => <BottomBar {...props} />}
                 screenOptions={{ headerShown: false }}
-                sceneContainerStyle={{ backgroundColor: "transparent" }}
+                sceneContainerStyle={{ backgroundColor: "transparent", flex: 1 }}
                 backBehavior="history"
             >
                 <BottomTab.Screen name={MainScreens.HOME} component={HomeScreen} />
