@@ -7,7 +7,7 @@ export default function DAppsNavigator(): JSX.Element {
     return (
         <DAppsTab.Navigator initialRouteName={DAppScreens.HOME} screenOptions={{ headerShown: false }}>
             <DAppsTab.Screen name={DAppScreens.HOME} component={DAppsScreen} />
-            <DAppsTab.Screen name={DAppScreens.WEBVIEW} component={BrowserScreen} />
+            <DAppsTab.Screen name={DAppScreens.WEBVIEW} component={BrowserScreen} options={{ animation: "none" }} />
         </DAppsTab.Navigator>
     );
 }
