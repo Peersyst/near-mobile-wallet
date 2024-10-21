@@ -7,18 +7,17 @@ import DAppsScreenHeader from "./DAppsScreenHeader/DAppsScreenHeader";
 import { useDAppsScreen } from "./hooks/useDAppsScreen";
 
 const DAppsScreen = (): JSX.Element => {
-    const { handleOnOpen, setOpen, open, handleOnClose, setSearch } = useDAppsScreen();
+    const { handleOnOpen, setOpen, open, handleOnClose, setSearch, onRefresh } = useDAppsScreen();
 
     return (
         <>
-            <BaseDAppsScreen>
+            <BaseDAppsScreen onRefresh={onRefresh}>
                 <Col flex={1} gap={20}>
                     <DAppsScreenHeader onPress={() => setOpen(true)} />
                     <DAppsScreenCTA />
                     <FavouritesDApps />
                 </Col>
             </BaseDAppsScreen>
-
             <SearchModal open={open} onOpen={handleOnOpen} onClose={handleOnClose} onSearch={setSearch} />
         </>
     );

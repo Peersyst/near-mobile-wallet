@@ -1,8 +1,7 @@
 import { MainBottomBarItemBackgroundGradiend, MainBottomBarItemRoot } from "./MainBottomBarItem.styles";
-import { Col } from "@peersyst/react-native-components";
+import { Col, useTheme } from "@peersyst/react-native-components";
 import { useEffect, useRef } from "react";
 import useThemeMode from "module/common/hook/useThemeMode";
-import { theme } from "config/theme/theme";
 import useWalletGradient from "module/wallet/hook/useWalletGradient";
 import { Animated, ViewStyle } from "react-native";
 import { NearIcon } from "icons";
@@ -14,8 +13,8 @@ export interface MainBottomBarItemProps {
 
 const MainBottomBarItem = (props: MainBottomBarItemProps): JSX.Element => {
     const mode = useThemeMode();
-
-    const textColor = mode === "light" ? theme.palette.background : theme.palette.text;
+    const { palette } = useTheme();
+    const textColor = mode === "light" ? palette.background : palette.text;
 
     const walletGradient = useWalletGradient();
 

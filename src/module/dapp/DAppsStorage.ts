@@ -28,7 +28,7 @@ export const DAppsStorage = new (class extends BaseStorageService<undefined, IDA
 
     async addDApp(dApp: FavouriteDApp): Promise<void> {
         await this.updateFavourites((favourites) => {
-            return [...favourites, dApp];
+            return [dApp, ...favourites];
         });
     }
 
