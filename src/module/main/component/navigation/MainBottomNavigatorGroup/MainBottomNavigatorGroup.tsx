@@ -17,7 +17,7 @@ export const MainBottomNavigatorGroup = () => {
         <BasePage header={header}>
             <BottomTab.Navigator
                 screenListeners={({ route }) => ({
-                    beforeRemove: () => {
+                    state: () => {
                         onRouteChange(route);
                     },
                 })}

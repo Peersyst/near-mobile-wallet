@@ -13,7 +13,7 @@ export default function useMainBottomNavigatorGroupHeader() {
             const paramsRouteName = route?.params?.screen;
             /**
              * 1 condition. If the route is WEBVIEW, hide the header
-             * 2 contiion. If the route is WEBVIEW and comes from a nested route, hide the header
+             * 2 condition. If the route is WEBVIEW and comes from a nested route, hide the header
              */
             if (routeName === DAppScreens.WEBVIEW || (paramsRouteName === DAppScreens.WEBVIEW && !route?.state)) {
                 setShowHeader(false);
