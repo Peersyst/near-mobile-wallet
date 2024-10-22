@@ -19,6 +19,11 @@ function SendTransactionModal({ onExited, children, sendTransaction, isLoading, 
         } catch (e) {}
     };
 
+    function handleOnExited() {
+        setShowConfirmation(false);
+        onExited?.();
+    }
+
     return (
         <>
             {children({ showModal: () => setShowConfirmation(true), isError, isSuccess, isLoading: isLoading || showConfirmation })}
@@ -27,7 +32,7 @@ function SendTransactionModal({ onExited, children, sendTransaction, isLoading, 
                 loading={isLoading}
                 success={isSuccess}
                 error={isError}
-                onExited={onExited}
+                onExited={handleOnExited}
                 successMessage={translate("transaction_completed")}
             >
                 <>{txHash && <SendTxHashContent txHash={txHash} />}</>
