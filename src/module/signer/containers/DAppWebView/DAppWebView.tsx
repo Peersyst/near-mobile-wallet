@@ -47,6 +47,7 @@ const DAppWebView = forwardRef<WebView, DAppWebViewProps>(({ style, ...rest }, r
         <WebView
             ref={ref}
             originWhitelist={["*"]}
+            setSupportMultipleWindows={false} // Prevents the WebView from opening native browser on Android
             onShouldStartLoadWithRequest={handleWebViewRequestLoad}
             injectedJavaScriptBeforeContentLoaded={injectedJavascript}
             onStartShouldSetResponder={() => true}
