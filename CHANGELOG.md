@@ -32,6 +32,7 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 ### 🐛 Bug Fixes
 
+-   Fix withdraw showing success when failing [fix/android-opening-default-browser](https://github.com/Peersyst/near-mobile-wallet/pull/545)
 -   Fix Android opening default browser [fix/android-opening-default-browser](https://github.com/Peersyst/near-mobile-wallet/pull/544)
 -   Improve UI of the explore section [fix/explore-ui-fixes](https://github.com/Peersyst/near-mobile-wallet/pull/543)
 -   Get actions from the kitwallet api of NearBlocks [fix/actions-rate-limited](https://github.com/Peersyst/near-mobile-wallet/pull/540)
