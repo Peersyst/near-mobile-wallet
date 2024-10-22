@@ -32,10 +32,11 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 ### 🐛 Bug Fixes
 
+-   Fix Android opening default browser [fix/android-opening-default-browser](https://github.com/Peersyst/near-mobile-wallet/pull/544)
+-   Improve UI of the explore section [fix/explore-ui-fixes](https://github.com/Peersyst/near-mobile-wallet/pull/543)
 -   Get actions from the kitwallet api of NearBlocks [fix/actions-rate-limited](https://github.com/Peersyst/near-mobile-wallet/pull/540)
 -   Fix SignerRequestModal not scrolling on Android [fix/signer-request-not-scrolling-on-android](https://github.com/Peersyst/near-mobile-wallet/pull/538)
 -   Fix NFTs not being displayed in the APP [fix/nft-not-being-displayed](https://github.com/Peersyst/near-mobile-wallet/pull/537)
--   Improve UI of the explore section [fix/explore-ui-fixes](https://github.com/Peersyst/near-mobile-wallet/pull/543)
 
 ### 📚 Third-Party Library Updates
 
