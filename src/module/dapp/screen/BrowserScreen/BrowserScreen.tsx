@@ -1,14 +1,15 @@
-import { BrowserScreenRoot } from "./BrowserScreen.styles";
+import { BrowserScreenLoadingContainer, BrowserScreenRoot, BrowserScreenWebView } from "./BrowserScreen.styles";
 import { useBrowserScreen } from "./hooks/useBrowserScreen";
 import BrowserScreenHeader from "./BrowserScreenHeader/BrowserScreenHeader";
-import DAppWebView from "module/signer/containers/DAppWebView/DAppWebView";
 import { useEffect, useState } from "react";
+import { LoadingLogo } from "module/common/component/feedback/LoadingLogo/LoadingLogo";
+import { Col } from "@peersyst/react-native-components";
 
 const BrowserScreen = (): JSX.Element => {
     const { headerProps, webviewProps } = useBrowserScreen();
-
     // Workaround to ensure the screen infers the correct height without the header
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isWebViewLoaded, setIsWebViewLoaded] = useState(false);
 
     useEffect(() => {
         setTimeout(() => {
@@ -18,14 +19,15 @@ const BrowserScreen = (): JSX.Element => {
 
     return (
         <BrowserScreenRoot>
-            {isLoaded ? (
-                <>
-                    <BrowserScreenHeader {...headerProps} />
-                    <DAppWebView {...webviewProps} />
-                </>
-            ) : (
-                <></>
-            )}
+            <BrowserScreenHeader {...headerProps} />
+            <Col flex={1}>
+                {isLoaded && <BrowserScreenWebView onLoadEnd={() => setIsWebViewLoaded(true)} {...webviewProps} />}
+                {(!isLoaded || !isWebViewLoaded) && (
+                    <BrowserScreenLoadingContainer>
+                        <LoadingLogo />
+                    </BrowserScreenLoadingContainer>
+                )}
+            </Col>
         </BrowserScreenRoot>
     );
 };

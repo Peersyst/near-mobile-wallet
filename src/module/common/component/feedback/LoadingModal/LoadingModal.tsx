@@ -1,18 +1,11 @@
 import { LoadingModalProps } from "./LoadingModal.types";
-import {
-    DarkLoadingModalOverlay,
-    LoadingModalRoot,
-    SuccessIcon,
-    LoadingModalContent,
-    LoadingModalMessage,
-    LoadingModalContentIcon,
-    LoadingModalIcon,
-} from "./LoadingModal.styles";
+import { DarkLoadingModalOverlay, LoadingModalRoot, SuccessIcon, LoadingModalContent, LoadingModalMessage } from "./LoadingModal.styles";
 import { useEffect, useState } from "react";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import useTranslate from "module/common/hook/useTranslate";
 import { Backdrop, Col } from "@peersyst/react-native-components";
 import Button from "module/common/component/input/Button/Button";
+import { LoadingLogo } from "../LoadingLogo/LoadingLogo";
 
 const LoadingModal = ({
     loading,
@@ -75,9 +68,7 @@ const LoadingModal = ({
                         </>
                     ) : (
                         <Col alignItems="center" gap={30} flex={1} justifyContent="center">
-                            <LoadingModalContentIcon>
-                                <LoadingModalIcon />
-                            </LoadingModalContentIcon>
+                            <LoadingLogo color="white" />
                             <Col gap={12} alignItems="center">
                                 <LoadingModalMessage variant="body1Strong" color="text">
                                     {processingMessage || translate("processing")}

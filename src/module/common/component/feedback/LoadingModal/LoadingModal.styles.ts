@@ -1,8 +1,8 @@
 import styled from "@peersyst/react-native-styled";
-import { CircularProgress, Col } from "@peersyst/react-native-components";
+import { Col } from "@peersyst/react-native-components";
 import GradientPage from "module/common/component/layout/GradientPage/GradientPage";
 import { View } from "react-native";
-import { CircleCheckIcon, NearLoadingIcon } from "icons";
+import { CircleCheckIcon } from "icons";
 import Typography from "module/common/component/display/Typography/Typography";
 
 export const DarkLoadingModalOverlay = styled(View)(({ theme }) => ({
@@ -31,16 +31,4 @@ export const SuccessIcon = styled(CircleCheckIcon)(({ theme }) => ({
 
 export const LoadingModalMessage = styled(Typography)(({ theme }) => ({
     color: theme.palette.white,
-}));
-
-export const LoadingModalContentIcon = styled(CircularProgress)(({ theme }) => ({
-    size: 120,
-    thickness: 3,
-    color: theme.palette.white,
-    backgroundColor: theme.palette.overlay["20%"],
-}));
-
-export const LoadingModalIcon = styled(NearLoadingIcon)(({ theme }) => ({
-    color: theme.palette.white,
-    fontSize: 48,
 }));
