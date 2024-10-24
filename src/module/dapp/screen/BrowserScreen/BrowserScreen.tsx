@@ -13,7 +13,7 @@ const BrowserScreen = (): JSX.Element => {
     useEffect(() => {
         setTimeout(() => {
             setIsLoaded(true);
-        }, 250);
+        }, 500);
     }, []);
 
     return (
