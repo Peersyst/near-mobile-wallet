@@ -32,6 +32,7 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 ### 🐛 Bug Fixes
 
+-   Fix account being duplicated when creating new account [fix/create-account-duplicated](https://github.com/Peersyst/near-mobile-wallet/pull/546)
 -   Fix withdraw showing success when failing [fix/android-opening-default-browser](https://github.com/Peersyst/near-mobile-wallet/pull/545)
 -   Fix Android opening default browser [fix/android-opening-default-browser](https://github.com/Peersyst/near-mobile-wallet/pull/544)
 -   Improve UI of the explore section [fix/explore-ui-fixes](https://github.com/Peersyst/near-mobile-wallet/pull/543)
