@@ -50,6 +50,7 @@ const DAppWebView = forwardRef<WebView, DAppWebViewProps>(({ style, ...rest }, r
             setSupportMultipleWindows={false} // Prevents the WebView from opening native browser on Android
             onShouldStartLoadWithRequest={handleWebViewRequestLoad}
             injectedJavaScriptBeforeContentLoaded={injectedJavascript}
+            allowsInlineMediaPlayback={true} // Allows video playback in the WebView. Prevents fullscreen video playback on iOS.
             onStartShouldSetResponder={() => true}
             style={[{ backgroundColor: "transparent", flex: 1 }, style]}
             {...rest}

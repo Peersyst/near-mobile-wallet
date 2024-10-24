@@ -115,7 +115,7 @@
             {
                 "name": "Meta Pool",
                 "description": "Stake NEAR. Receive a liquid token to simultaneously accrue staking rewards and unlock liquidity to participate in DeFi activities",
-                "url": "https://metapool.app/",
+                "url": "https://www.metapool.app/",
                 "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/647377ad-d8a3-4497-9ca6-2a41154664bc.png",
                 "tag": "liquidStaking",
                 "contractId": "meta-pool.near"

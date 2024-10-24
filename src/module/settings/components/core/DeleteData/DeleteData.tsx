@@ -8,6 +8,7 @@ import useTranslate from "module/common/hook/useTranslate";
 import useWalletState from "module/wallet/hook/useWalletState";
 import useCancelableDialog from "module/common/hook/useCancelableDialog";
 import { useState } from "react";
+import { DAppsStorage } from "module/dapp/DAppsStorage";
 
 const DeleteData = () => {
     const translate = useTranslate();
@@ -27,6 +28,7 @@ const DeleteData = () => {
         setWalletState((state) => ({ ...state, isAuthenticated: false, hasWallet: false }));
         serviceInstancesMap.clear();
         await SettingsStorage.clear();
+        await DAppsStorage.clear();
         queryClient.removeQueries();
         resetWalletState();
     };

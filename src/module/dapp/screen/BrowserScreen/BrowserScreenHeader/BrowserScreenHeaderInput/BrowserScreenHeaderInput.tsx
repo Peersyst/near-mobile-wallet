@@ -35,9 +35,11 @@ function BrowserScreenHeaderInput({ url, onSearch }: BrowserScreenHeaderInputPro
                         {url}
                     </Typography>
                 </TouchableOpacity>
-                <IconButton onPress={handleOnFavouritePress}>{isFavourite ? <FavouriteWebIcon /> : <NotFavouriteWebIcon />}</IconButton>
+                <IconButton hitSlop={5} onPress={handleOnFavouritePress}>
+                    {isFavourite ? <FavouriteWebIcon /> : <NotFavouriteWebIcon />}
+                </IconButton>
             </BrowserScreenHeaderInputRoot>
-            <SearchModal open={openSearchModal} onClose={() => setSearchModalOpen(false)} onSearch={onSearch} />
+            <SearchModal defaultUrl={url} open={openSearchModal} onClose={() => setSearchModalOpen(false)} onSearch={onSearch} />
             <AddDAppToFavouritesModal url={url} open={openAddToFavouritesModal} onClose={() => setAddToFavouritesModal(false)} />
         </>
     );

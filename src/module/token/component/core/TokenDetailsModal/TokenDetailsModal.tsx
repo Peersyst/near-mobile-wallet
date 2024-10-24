@@ -31,7 +31,7 @@ const TokenDetailsModal = createBackdrop<TokenDetailsModalProps>(
                 onClose={() => setOpen(false)}
                 {...rest}
             >
-                <TokenDetailsModalContent token={token} onSend={handleOnSend} />
+                <TokenDetailsModalContent token={token} onSend={handleOnSend} onSwap={() => setOpen(false)} />
             </CardNavigatorModal>
         );
     },
