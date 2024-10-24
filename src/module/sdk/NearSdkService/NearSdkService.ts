@@ -224,7 +224,7 @@ export class NearSDKService {
     }
 
     getSecretKey(): string {
-        return this.keyPair.secretKey;
+        return this.keyPair.extendedSecretKey;
     }
 
     static isSameSecretKey(secretKey1: string, secretKey2: string): boolean {
