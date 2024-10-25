@@ -26,7 +26,7 @@ const TokenDetailsCard = ({ token, onSend, onSwap }: TokenDetailsCardProps): JSX
     function handleSwapPress(): void {
         onSwap?.();
         setTimeout(() => {
-            // (jordi): We need to cast the navigate.navigate to any because the React Navigation types are not working properly
+            // We need to cast the navigate.navigate to any because the React Navigation types are not working properly
             navigate(MainScreens.DAPPS, { screen: DAppScreens.WEBVIEW, params: { url: uriSwap } } as any);
         }, 500);
     }
