@@ -1,28 +1,34 @@
-import { Row, useModal } from "@peersyst/react-native-components";
+import { Row } from "@peersyst/react-native-components";
 import useTranslate from "module/common/hook/useTranslate";
 import { Token } from "near-peersyst-sdk";
 import { capitalize } from "@peersyst/react-utils";
 import TokenBalance from "../../display/TokenBalance/TokenBalance";
 import useGetSwapLink from "module/common/hook/useGetSwapLink";
 import { TokenDetailsCardButton, TokenDetailsCardRoot } from "./TokenDetailsCard.styles";
-
 import useHaveNearInAccount from "module/wallet/hook/useHaveNearInAccount";
-import { DAppWebViewModal } from "module/signer/containers/DAppWebViewModal/DAppWebViewModal";
+import useNavigation from "module/common/hook/useNavigation";
+import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
+import { DAppScreens } from "module/dapp/navigator/DAppsNavigator.types";
 
 export interface TokenDetailsCardProps {
     token: Token;
     onSend?: () => void;
+    onSwap?: () => void;
 }
 
-const TokenDetailsCard = ({ token, onSend }: TokenDetailsCardProps): JSX.Element => {
+const TokenDetailsCard = ({ token, onSend, onSwap }: TokenDetailsCardProps): JSX.Element => {
     const translate = useTranslate();
-    const { showModal, hideModal } = useModal();
+    const { navigate } = useNavigation();
 
     const uriSwap = useGetSwapLink({ contractId: token.contractId });
     const haveNearInAccount = useHaveNearInAccount();
 
     function handleSwapPress(): void {
-        showModal(DAppWebViewModal, { url: uriSwap, name: capitalize(translate("swap")), onClose: () => hideModal(DAppWebViewModal.id) });
+        onSwap?.();
+        setTimeout(() => {
+            // We need to cast the navigate.navigate to any because the React Navigation types are not working properly
+            navigate(MainScreens.DAPPS, { screen: DAppScreens.WEBVIEW, params: { url: uriSwap } } as any);
+        }, 500);
     }
 
     return (
