@@ -24,6 +24,7 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 ### 🎉 New Features
 
+-   Block buy based on the IP [refactor/buy-ip-blocking](https://github.com/Peersyst/near-mobile-wallet/pull/549)
 -   Add a `RefetchHandler` to improve the sync of the balance between the online/offline and the active/background states [feat/refetch-handler](https://github.com/Peersyst/near-mobile-wallet/pull/541)
 -   Limit Transak to only in the countries that is supported [feat/limit-transak](https://github.com/Peersyst/near-mobile-wallet/pull/539)
 -   Add `app version` in settings [feat/add-versions](https://github.com/Peersyst/near-mobile-wallet/pull/536)
