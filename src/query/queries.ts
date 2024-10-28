@@ -22,6 +22,8 @@ enum Queries {
     GET_UPDATE_AVAILABLE = "get-update-available",
     GET_FAVOURITES_DAPPS = "get-favourites-dapps",
     GET_DAPPS_SEARCH_HISTORY = "get-dapps-search-history",
+    GET_COUNTRY_BY_IP = "get-country-by-ip",
+    IS_BUY_ENABLED = "is-buy-enabled",
 }
 
 export default Queries;
