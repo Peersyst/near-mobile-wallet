@@ -15,7 +15,7 @@ import { DAppScreens } from "module/dapp/navigator/DAppsNavigator.types";
 const WalletCardButtons = (): JSX.Element => {
     const translate = useTranslate();
     const navigate = useNavigation();
-    const showBuyButton = useIsBuyEnabled();
+    const { data: showBuyButton } = useIsBuyEnabled();
     const uriSwap = useGetSwapLink();
     const { showModal } = useModal();
 

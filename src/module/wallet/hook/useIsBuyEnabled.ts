@@ -1,20 +1,21 @@
 import { useConfig } from "@peersyst/react-native-components";
-import { getLocales } from "expo-localization";
+import { useGetIPCountry } from "module/common/query/useGetIPCountry";
 import useIsMainnet from "module/settings/hook/useIsMainnet";
-import { useMemo } from "react";
+import { useQuery } from "react-query";
+import { QueryResult } from "query-utils";
+import Queries from "../../../query/queries";
 
-export default function useIsBuyEnabled(): boolean {
+export default function useIsBuyEnabled(): QueryResult<boolean> {
     const enableBuy = useConfig("enableBuy");
     const isMainnet = useIsMainnet();
-    const locales = getLocales();
     const { unsupportedCountries } = useConfig("transak");
 
-    const countryCode = locales[0]?.regionCode;
+    const { data: countryCode } = useGetIPCountry();
 
-    const countrySupported = useMemo(
-        () => !unsupportedCountries.some((country) => country.toLocaleLowerCase() === countryCode?.toLocaleLowerCase()),
-        [countryCode, unsupportedCountries],
-    );
+    return useQuery([Queries.IS_BUY_ENABLED, countryCode, unsupportedCountries], () => {
+        const countrySupported =
+            countryCode && !unsupportedCountries.some((country) => country.toLocaleLowerCase() === countryCode?.toLocaleLowerCase());
 
-    return enableBuy && isMainnet && countrySupported;
+        return Boolean(enableBuy && isMainnet && countrySupported);
+    });
 }
