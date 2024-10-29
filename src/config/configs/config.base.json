@@ -170,7 +170,7 @@
     ],
     "quizNumberOfQuestions": 3,
     "exploreDApps": {
-        "exploreDAppsUrl": "https://nearmobile.app/",
+        "exploreDAppsUrl": "https://near-dapps-website.vercel.app",
         "historyLimit": 5
     }
 }

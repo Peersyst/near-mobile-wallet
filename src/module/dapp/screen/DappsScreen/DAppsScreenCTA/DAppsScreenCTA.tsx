@@ -6,12 +6,12 @@ import { DAppsScreenCTAContent, DAppsScreenCTAImageBackground, DAppsScreenCTARoo
 import { DAppsScreenCTAImage } from "./DAppsScreenCTAImage";
 import useTranslate from "module/common/hook/useTranslate";
 import Button from "module/common/component/input/Button/Button";
-import { useConfig } from "@peersyst/react-native-components";
+import useDAppsExploreLink from "./hooks/useDAppsExploreLink";
 
 const DAppsScreenCTA = (): JSX.Element => {
     const { navigate } = useNavigation();
     const translate = useTranslate();
-    const { exploreDAppsUrl } = useConfig("exploreDApps");
+    const exploreDAppsUrl = useDAppsExploreLink();
 
     function handleOnPress() {
         navigate(DAppScreens.WEBVIEW, { url: exploreDAppsUrl });
