@@ -19,7 +19,7 @@ export const useGetIPCountry = (): QueryResult<string | undefined> & { isEnabled
                     return geoIpInfo?.countryCode;
                 } catch (e) {
                     // eslint-disable-next-line no-console
-                    console.warn("Error loading coingecko price", JSON.stringify(e));
+                    console.warn("Error loading IP geo info", JSON.stringify(e));
                     return undefined;
                 }
             },
