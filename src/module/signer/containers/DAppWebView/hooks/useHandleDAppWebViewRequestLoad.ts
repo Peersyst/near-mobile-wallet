@@ -21,6 +21,9 @@ export default function useHandleDAppWebViewRequestLoad(): (request: ShouldStart
     /**
      * Handle a request load event from the WebView.
      * If the new url is a NEAR Mobile sign deeplink, show the signer modal.
+     * Otherwise, allow the WebView to load the new url.
+     * Important: we do not open the showSignerModal here because it will cause the WebView to load the DeepLink on Android.
+     * We need to wait for the next render to show the modal.
      */
     const handleWebViewRequestLoad = useCallback(
         (request: ShouldStartLoadRequest) => {
@@ -39,8 +42,11 @@ export default function useHandleDAppWebViewRequestLoad(): (request: ShouldStart
                 return true;
             }
 
-            setId(id);
-            setType(type);
+            if (type && id) {
+                setId(id);
+                setType(type);
+            }
+
             return false;
         },
         [showSignerModal, setId, setType],
