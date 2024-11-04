@@ -97,6 +97,7 @@ declare module "@peersyst/react-native-components" {
         securityQuizList: SecurityQuizBackup[];
         quizNumberOfQuestions: number;
         exploreDApps: ExploreDAppsConfig;
+        appUrlScheme: string;
     }
 
     export interface CreateConfig {
@@ -142,6 +143,7 @@ declare module "@peersyst/react-native-components" {
         securityQuizList: SecurityQuizBackup[];
         quizNumberOfQuestions: number;
         exploreDApps: ExploreDAppsConfig;
+        appUrlScheme: string;
     }
 
     export interface ExtraValidators {
