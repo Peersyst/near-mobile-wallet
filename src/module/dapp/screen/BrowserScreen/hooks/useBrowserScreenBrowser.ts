@@ -4,6 +4,7 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import WebView, { WebViewNavigation } from "react-native-webview";
 import { cleanURL } from "../utils/cleanURL";
 import useBrowserBackHandler from "./useBrowserBackHandler";
+import { useConfig } from "@peersyst/react-native-components";
 
 export function useBrowserScreenWebview() {
     const webViewRef = useRef<WebView>(null);
@@ -11,19 +12,20 @@ export function useBrowserScreenWebview() {
     const [canGoForward, setCanGoForward] = useState(false);
     const { params } = useRoute<RouteProp<DAppsParamsList, DAppScreens.WEBVIEW>>();
     const [url, setUrl] = useState(cleanURL(params.url || ""));
+    const appUrlScheme = useConfig("appUrlScheme");
 
     const source = useMemo(() => ({ uri: url }), [url]);
     useBrowserBackHandler(canGoBack, webViewRef); // Hook to handle back button
 
     const handleOnNavigationStateChange = useCallback(
         function ({ canGoBack, canGoForward, url }: WebViewNavigation) {
-            if (!url.startsWith("near-mobile-wallet://sign")) {
+            if (!url.startsWith(`${appUrlScheme}://sign`)) {
                 setCanGoBack(canGoBack);
                 setCanGoForward(canGoForward);
                 setUrl(cleanURL(url));
             }
         },
-        [setCanGoBack, setCanGoForward, setUrl],
+        [setCanGoBack, setCanGoForward, setUrl, appUrlScheme],
     );
 
     function navigateBack() {

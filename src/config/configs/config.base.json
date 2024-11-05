@@ -172,5 +172,6 @@
     "exploreDApps": {
         "exploreDAppsUrl": "https://near-dapps-website.vercel.app",
         "historyLimit": 5
-    }
+    },
+    "appUrlScheme": "near-mobile-wallet"
 }
