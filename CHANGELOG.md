@@ -34,6 +34,7 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 ### 🐛 Bug Fixes
 
+-   Fix ref finance web infinite loop loading [fix/loop-in-ref-finance-web-view](https://github.com/Peersyst/near-mobile-wallet/pull/552)
 -   Fix dApps `onShouldStartLoadWithRequest` not working correctly on Android [feat/update-explore-dapps-link](https://github.com/Peersyst/near-mobile-wallet/pull/551)
 -   Fix dapps webview loading [fix/dapps-webview-loading](https://github.com/Peersyst/near-mobile-wallet/pull/548)
 -   Fix explore usabilty [fix/explore/usability-improvements](https://github.com/Peersyst/near-mobile-wallet/pull/547)
