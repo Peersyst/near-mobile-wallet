@@ -12,9 +12,10 @@ export function useBrowserScreenWebview() {
     const [canGoForward, setCanGoForward] = useState(false);
     const { params } = useRoute<RouteProp<DAppsParamsList, DAppScreens.WEBVIEW>>();
     const [url, setUrl] = useState(cleanURL(params.url || ""));
+    const [search, setSearch] = useState(cleanURL(params.url || ""));
     const appUrlScheme = useConfig("appUrlScheme");
 
-    const source = useMemo(() => ({ uri: url }), [url]);
+    const source = useMemo(() => ({ uri: search }), [search]);
     useBrowserBackHandler(canGoBack, webViewRef); // Hook to handle back button
 
     const handleOnNavigationStateChange = useCallback(
@@ -40,6 +41,10 @@ export function useBrowserScreenWebview() {
         }
     }
 
+    function handleOnSearch(search: string) {
+        setSearch(search);
+    }
+
     return {
         webviewProps: {
             ref: webViewRef,
@@ -47,7 +52,7 @@ export function useBrowserScreenWebview() {
             source,
         },
         url,
-        setUrl,
+        setUrl: handleOnSearch,
         canGoBack,
         canGoForward,
         navigateBack,
