@@ -14,13 +14,13 @@ import { useBasePagePaddingTop } from "module/common/component/layout/BasePage/h
 export const MainBottomNavigatorGroup = () => {
     const { header, onRouteChange } = useMainBottomNavigatorGroupHeader();
     /**
-     * Due to a problem with the MainBottomNavigatorGroup a paddingTop is needed to be passed to the main
-     * children of the BasePage. This is a workaround to fix the issue with the padding.
+     * Due to a problem with react navigation which infers height in an anti-intuitive and unresponsive way,
+     * the `BasePage` content padding top has to be added manually to the navigator.
      */
     const paddingTop = useBasePagePaddingTop({ header });
 
     return (
-        <BasePage header={header}>
+        <BasePage header={header} handlePadding={false}>
             <BottomTab.Navigator
                 screenListeners={({ route }) => ({
                     state: () => {

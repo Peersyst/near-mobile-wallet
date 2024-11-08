@@ -8,4 +8,5 @@ export interface BasePageProps {
     gradient?: boolean;
     style?: ViewStyle;
     watchStatusBar?: boolean;
+    handlePadding?: boolean;
 }
