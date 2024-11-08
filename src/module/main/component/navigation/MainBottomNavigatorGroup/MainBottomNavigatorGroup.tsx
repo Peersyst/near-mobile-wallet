@@ -9,9 +9,15 @@ import FaqsScreen from "module/faqs/screen/FaqsScreen";
 import SettingsScreen from "module/settings/screen/SettingsScreen/SettingsScreen";
 import DAppsNavigator from "module/dapp/navigator/DAppsNavigator";
 import useMainBottomNavigatorGroupHeader from "./hooks/useMainBottomNavigatorGroupHeader";
+import { useBasePagePaddingTop } from "module/common/component/layout/BasePage/hooks/useBasePagePaddingTop";
 
 export const MainBottomNavigatorGroup = () => {
     const { header, onRouteChange } = useMainBottomNavigatorGroupHeader();
+    /**
+     * Due to a problem with the MainBottomNavigatorGroup a paddingTop is needed to be passed to the main
+     * children of the BasePage. This is a workaround to fix the issue with the padding.
+     */
+    const paddingTop = useBasePagePaddingTop({ header });
 
     return (
         <BasePage header={header}>
@@ -24,7 +30,11 @@ export const MainBottomNavigatorGroup = () => {
                 initialRouteName={MainScreens.HOME}
                 tabBar={(props) => <BottomBar {...props} />}
                 screenOptions={{ headerShown: false }}
-                sceneContainerStyle={{ backgroundColor: "transparent", flex: 1 }}
+                sceneContainerStyle={{
+                    backgroundColor: "transparent",
+                    flex: 1,
+                    paddingTop,
+                }}
                 backBehavior="history"
             >
                 <BottomTab.Screen name={MainScreens.HOME} component={HomeScreen} />

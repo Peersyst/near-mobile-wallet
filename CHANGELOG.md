@@ -24,6 +24,7 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 ### 🎉 New Features
 
+-   Add new currencies icons [add-near-coins](https://github.com/Peersyst/near-mobile-wallet/pull/553)
 -   Add final DApps explore link [feat/update-explore-dapps-link](https://github.com/Peersyst/near-mobile-wallet/pull/550)
 -   Block buy based on the IP [refactor/buy-ip-blocking](https://github.com/Peersyst/near-mobile-wallet/pull/549)
 -   Add a `RefetchHandler` to improve the sync of the balance between the online/offline and the active/background states [feat/refetch-handler](https://github.com/Peersyst/near-mobile-wallet/pull/541)
@@ -34,6 +35,7 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 ### 🐛 Bug Fixes
 
+-   Fix IOs WebView not ocuppying full height [refactor/base-page-padding](https://github.com/Peersyst/near-mobile-wallet/pull/555)
 -   Fix ref finance web infinite loop loading [fix/loop-in-ref-finance-web-view](https://github.com/Peersyst/near-mobile-wallet/pull/552)
 -   Fix dApps `onShouldStartLoadWithRequest` not working correctly on Android [feat/update-explore-dapps-link](https://github.com/Peersyst/near-mobile-wallet/pull/551)
 -   Fix dapps webview loading [fix/dapps-webview-loading](https://github.com/Peersyst/near-mobile-wallet/pull/548)

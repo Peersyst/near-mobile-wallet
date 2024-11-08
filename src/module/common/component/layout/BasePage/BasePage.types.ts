@@ -9,8 +9,3 @@ export interface BasePageProps {
     style?: ViewStyle;
     watchStatusBar?: boolean;
 }
-
-export interface BasePageContentProps {
-    header: boolean;
-    watchStatusBar: boolean;
-}
