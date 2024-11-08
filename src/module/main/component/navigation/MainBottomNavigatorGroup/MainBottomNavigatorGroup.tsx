@@ -9,12 +9,18 @@ import FaqsScreen from "module/faqs/screen/FaqsScreen";
 import SettingsScreen from "module/settings/screen/SettingsScreen/SettingsScreen";
 import DAppsNavigator from "module/dapp/navigator/DAppsNavigator";
 import useMainBottomNavigatorGroupHeader from "./hooks/useMainBottomNavigatorGroupHeader";
+import { useBasePagePaddingTop } from "module/common/component/layout/BasePage/hooks/useBasePagePaddingTop";
 
 export const MainBottomNavigatorGroup = () => {
     const { header, onRouteChange } = useMainBottomNavigatorGroupHeader();
+    /**
+     * Due to a problem with react navigation which infers height in an anti-intuitive and unresponsive way,
+     * the `BasePage` content padding top has to be added manually to the navigator.
+     */
+    const paddingTop = useBasePagePaddingTop({ header });
 
     return (
-        <BasePage header={header}>
+        <BasePage header={header} handlePadding={false}>
             <BottomTab.Navigator
                 screenListeners={({ route }) => ({
                     state: () => {
@@ -24,7 +30,11 @@ export const MainBottomNavigatorGroup = () => {
                 initialRouteName={MainScreens.HOME}
                 tabBar={(props) => <BottomBar {...props} />}
                 screenOptions={{ headerShown: false }}
-                sceneContainerStyle={{ backgroundColor: "transparent", flex: 1 }}
+                sceneContainerStyle={{
+                    backgroundColor: "transparent",
+                    flex: 1,
+                    paddingTop,
+                }}
                 backBehavior="history"
             >
                 <BottomTab.Screen name={MainScreens.HOME} component={HomeScreen} />
