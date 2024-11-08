@@ -18,14 +18,6 @@ export function useBrowserScreenWebview() {
     const source = useMemo(() => ({ uri: search }), [search]);
     useBrowserBackHandler(canGoBack, webViewRef); // Hook to handle back button
 
-    useEffect(() => {
-        const cleanedUrl = cleanURL(params.url);
-        if (search !== cleanedUrl) {
-            setUrl(cleanedUrl);
-            setSearch(cleanedUrl);
-        }
-    }, [params.url]);
-
     const handleOnNavigationStateChange = useCallback(
         function ({ canGoBack, canGoForward, url }: WebViewNavigation) {
             if (!url.startsWith(`${appUrlScheme}://sign`)) {
