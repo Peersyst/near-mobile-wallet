@@ -15,6 +15,7 @@ const NewsScreen = (): JSX.Element => {
                 renderItem={({ item, index }) => {
                     return <AnimatedSimpleNewsCard loading={isLoading} in {...item} key={index} />;
                 }}
+                contentContainerStyle={{ paddingHorizontal: 20, paddingTop: "5%" }}
                 refreshControlProps={{ tintColor: "black" }}
                 onRefresh={refetch}
                 keyExtractor={(_, index) => index.toString()}
