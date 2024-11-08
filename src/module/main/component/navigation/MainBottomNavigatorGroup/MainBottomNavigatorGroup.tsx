@@ -9,7 +9,7 @@ import FaqsScreen from "module/faqs/screen/FaqsScreen";
 import SettingsScreen from "module/settings/screen/SettingsScreen/SettingsScreen";
 import DAppsNavigator from "module/dapp/navigator/DAppsNavigator";
 import useMainBottomNavigatorGroupHeader from "./hooks/useMainBottomNavigatorGroupHeader";
-import { withBaseBottomBarScreen } from "module/common/component/layout/BaseBottomBarScreen/hoc/withBaseBottomBarScreen";
+import { withBasePageContent } from "module/common/component/layout/BasePage/BasePageContent/hoc/withBasePageContent";
 
 export const MainBottomNavigatorGroup = () => {
     const { header, onRouteChange } = useMainBottomNavigatorGroupHeader();
@@ -28,16 +28,12 @@ export const MainBottomNavigatorGroup = () => {
                 sceneContainerStyle={{ backgroundColor: "transparent", flex: 1 }}
                 backBehavior="history"
             >
-                <BottomTab.Screen name={MainScreens.HOME} component={withBaseBottomBarScreen(HomeScreen)} />
-                <BottomTab.Screen name={MainScreens.NEWS} component={withBaseBottomBarScreen(NewsScreen)} />
-                <BottomTab.Screen name={MainScreens.STAKING} component={withBaseBottomBarScreen(StakingScreen)} />
-                <BottomTab.Screen
-                    options={{ unmountOnBlur: true }}
-                    name={MainScreens.DAPPS}
-                    component={withBaseBottomBarScreen(DAppsNavigator)}
-                />
-                <BottomTab.Screen name={MainScreens.FAQS} component={withBaseBottomBarScreen(FaqsScreen)} />
-                <BottomTab.Screen name={MainScreens.SETTINGS} component={withBaseBottomBarScreen(SettingsScreen)} />
+                <BottomTab.Screen name={MainScreens.HOME} component={withBasePageContent(HomeScreen)} />
+                <BottomTab.Screen name={MainScreens.NEWS} component={withBasePageContent(NewsScreen)} />
+                <BottomTab.Screen name={MainScreens.STAKING} component={withBasePageContent(StakingScreen)} />
+                <BottomTab.Screen options={{ unmountOnBlur: true }} name={MainScreens.DAPPS} component={DAppsNavigator} />
+                <BottomTab.Screen name={MainScreens.FAQS} component={withBasePageContent(FaqsScreen)} />
+                <BottomTab.Screen name={MainScreens.SETTINGS} component={withBasePageContent(SettingsScreen)} />
             </BottomTab.Navigator>
         </BasePage>
     );

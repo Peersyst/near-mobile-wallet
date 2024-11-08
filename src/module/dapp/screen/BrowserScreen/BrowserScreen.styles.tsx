@@ -1,8 +1,9 @@
 import { Col } from "@peersyst/react-native-components";
 import styled from "@peersyst/react-native-styled";
+import { BasePageContent } from "module/common/component/layout/BasePage/BasePageContent/BasePageContent";
 import DAppWebView from "module/signer/containers/DAppWebView/DAppWebView";
 
-export const BrowserScreenRoot = styled(Col)(({ theme }) => ({
+export const BrowserScreenRoot = styled(BasePageContent)(({ theme }) => ({
     flex: 1,
     backgroundColor: theme.palette.background,
 }));
