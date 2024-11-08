@@ -1,6 +1,6 @@
 import { useRoute, RouteProp } from "@react-navigation/native";
 import { DAppsParamsList, DAppScreens } from "module/dapp/navigator/DAppsNavigator.types";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import WebView, { WebViewNavigation } from "react-native-webview";
 import { cleanURL } from "../utils/cleanURL";
 import useBrowserBackHandler from "./useBrowserBackHandler";
@@ -17,6 +17,14 @@ export function useBrowserScreenWebview() {
 
     const source = useMemo(() => ({ uri: search }), [search]);
     useBrowserBackHandler(canGoBack, webViewRef); // Hook to handle back button
+
+    useEffect(() => {
+        const cleanedUrl = cleanURL(params.url);
+        if (search !== cleanedUrl) {
+            setUrl(cleanedUrl);
+            setSearch(cleanedUrl);
+        }
+    }, [params.url]);
 
     const handleOnNavigationStateChange = useCallback(
         function ({ canGoBack, canGoForward, url }: WebViewNavigation) {
