@@ -1,6 +1,6 @@
 import { useRoute, RouteProp } from "@react-navigation/native";
 import { DAppsParamsList, DAppScreens } from "module/dapp/navigator/DAppsNavigator.types";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import WebView, { WebViewNavigation } from "react-native-webview";
 import { cleanURL } from "../utils/cleanURL";
 import useBrowserBackHandler from "./useBrowserBackHandler";
