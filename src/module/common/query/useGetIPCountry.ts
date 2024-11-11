@@ -14,10 +14,9 @@ export const useGetIPCountry = (): QueryResult<string | undefined> & { isEnabled
             [Queries.GET_COUNTRY_BY_IP, netInfo],
             async () => {
                 try {
-                    const ip = await (await fetch(`https://api.ipify.org`)).text(); // Unlimited usage
-                    const geoIpInfo = await (await fetch(`http://ip-api.com/json/${ip}`)).json(); // 45 requests per minute
-                    return geoIpInfo?.countryCode;
-                } catch (e) {
+                    const geoIPInfo = await (await fetch(`https://reallyfreegeoip.org/json/`)).json();
+                    return geoIPInfo?.country_code;
+                } catch (e: any) {
                     // eslint-disable-next-line no-console
                     console.warn("Error loading IP geo info", JSON.stringify(e));
                     return undefined;
