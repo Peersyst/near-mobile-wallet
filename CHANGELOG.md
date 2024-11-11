@@ -35,7 +35,8 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 ### 🐛 Bug Fixes
 
--   Fix website not reactive if comming from swap url [fix/news-screen-padding](https://github.com/Peersyst/near-mobile-wallet/pull/557)
+-   Update swap links for ref finance [refactor/ref-finance-links](https://github.com/Peersyst/near-mobile-wallet/pull/558)
+-   Fix padding in news screen [fix/news-screen-padding](https://github.com/Peersyst/near-mobile-wallet/pull/557)
 -   Fix website not reactive if comming from swap url [fix/web-view-not-reacting](https://github.com/Peersyst/near-mobile-wallet/pull/556)
 -   Fix IOs WebView not ocuppying full height [refactor/base-page-padding](https://github.com/Peersyst/near-mobile-wallet/pull/555)
 -   Fix ref finance web infinite loop loading [fix/loop-in-ref-finance-web-view](https://github.com/Peersyst/near-mobile-wallet/pull/552)
