@@ -24,6 +24,7 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 ### 🎉 New Features
 
+-   Update dAppsList in the config [add-new-dapps-config](https://github.com/Peersyst/near-mobile-wallet/pull/560)
 -   Add new currencies icons [add-near-coins](https://github.com/Peersyst/near-mobile-wallet/pull/553)
 -   Add final DApps explore link [feat/update-explore-dapps-link](https://github.com/Peersyst/near-mobile-wallet/pull/550)
 -   Block buy based on the IP [refactor/buy-ip-blocking](https://github.com/Peersyst/near-mobile-wallet/pull/549)

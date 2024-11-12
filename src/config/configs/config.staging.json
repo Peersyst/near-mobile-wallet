@@ -115,7 +115,7 @@
             {
                 "name": "Meta Pool",
                 "description": "Stake NEAR. Receive a liquid token to simultaneously accrue staking rewards and unlock liquidity to participate in DeFi activities",
-                "url": "https://www.metapool.app/",
+                "url": "https://metapool.app/",
                 "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/647377ad-d8a3-4497-9ca6-2a41154664bc.png",
                 "tag": "liquidStaking",
                 "contractId": "meta-pool.near"
@@ -135,6 +135,86 @@
                 "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/7047b4cb-2467-4396-a436-d14627ead2ab.jpg",
                 "tag": "social",
                 "contractId": "app.popula.near"
+            },
+            {
+                "name": "near.social",
+                "description": "A BOS component NEAR on chain twitter-like social network.",
+                "url": "https://near.social",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/de53e1e8-42e2-46f3-9c9c-6981616bbfb5.JPG",
+                "tag": "social",
+                "contractId": "social.near"
+            },
+            {
+                "name": "Delta Trade",
+                "description": "BOT for TRADOORS – Grid, Swing, and DCA. No Fees. Launched on Solana and NEAR. Volatile market = Juicy incentives",
+                "url": "https://deltatrade.ai",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/f6faac86-aa6d-4f38-a197-4a5f13b6abc2.JPG",
+                "tag": "defi",
+                "contractId": "grid.deltatrade.near"
+            },
+            {
+                "name": "Shitzu",
+                "description": "EARN $DOGSHIT. By Staking with SHITZU Pool, Staker will earn $DOGSHIT which could be redeemed for a bag of Meme token.",
+                "url": "https://app.shitzuapes.xyz",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/70e23c3f-9b8a-4ec9-87a0-3fddf9573ec3.JPG",
+                "tag": "memes",
+                "contractId": "token.0xshitzu.near"
+            },
+            {
+                "name": "MEME.COOKING",
+                "description": "Meme.Cooking is a permissionless meme token launchpad on Near Protocol with the goal of being truly fair and rug-proof.",
+                "url": "https://meme.cooking/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/af01bfc9-dcf4-4d88-aa75-d55bc7d8438f.JPG",
+                "tag": "launchpad",
+                "contractId": "meme-cooking.near"
+            },
+            {
+                "name": "ShardDog",
+                "description": "Marketing platform for empowering creators, brands, and projects to leverage digital collectables || Developed & maintained by RLO Labs @ready_layer_one",
+                "url": "https://shard.dog/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/a51999cb-dcaf-48d9-ae89-f25d14ff2cc0.JPG",
+                "tag": "nft",
+                "contractId": "mintv2.sharddog.near"
+            },
+            {
+                "name": "nada.bot",
+                "description": "Proof you are not a bot 🤖 a sybil contract aggregator on #NEAR @NEARProtocol powering @PotLock_",
+                "url": "https://app.nada.bot/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/648700ed-89ae-4aee-8ba4-37dbefdff62e.PNG",
+                "tag": "did",
+                "contractId": "v1.nadabot.near"
+            },
+            {
+                "name": "PotLock",
+                "description": "AI-PGF @ai_pgf + THE OPEN FUNDING STACK Where anyone can put funding on the table. Discover impact projects, donate directly, & participate in funding rounds.",
+                "url": "https://app.potlock.org/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/da270c50-9911-429c-ada3-437f9503707d.JPG",
+                "tag": "funding",
+                "contractId": "social.near"
+            },
+            {
+                "name": "JUMP DEFI",
+                "description": "One-stop platform lowering the barrier of entry to DeFi for users and developers",
+                "url": "https://app.jumpdefi.xyz/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/3031f0c9-7073-43f6-ac71-ce5521993afc.JPG",
+                "tag": "defi",
+                "contractId": "nftstaking.jumpfinance.near"
+            },
+            {
+                "name": "Token Bridge",
+                "description": "User-friendly @NEARProtocoland @solanatokenbridge. Built by @crownyio, powered by @wormhole.",
+                "url": "https://tokenbridge.app",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/e8fc4be0-ffb3-458a-bab0-ee059ee38372.JPG",
+                "tag": "bridge",
+                "contractId": "contract.portalbridge.near"
+            },
+            {
+                "name": "TKN",
+                "description": "Near chain's exclusive Token Launch Platform,  Token will automatically whitelist on @finance_ref.",
+                "url": "https://tkn.homes/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/5739203a-8e24-43a5-974a-e5f08975f330.JPG",
+                "tag": "launchpad",
+                "contractId": "tknx.near"
             }
         ]
     }
