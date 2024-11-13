@@ -11,9 +11,7 @@ export default function (index?: number): QueryResult<StakingBalance> {
     return useQuery(
         [Queries.TOTAL_STAKING_BALANCE, usedIndex, network],
         async (): Promise<StakingBalance> => {
-            const totalStakingBalance = await serviceInstance.getTotalStakingBalance();
-
-            return totalStakingBalance;
+            return await serviceInstance.getTotalStakingBalance();
         },
         {
             enabled: queryEnabled,
