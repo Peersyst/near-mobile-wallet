@@ -22,9 +22,7 @@ const useCaptureAccounts = () => {
                 accountIds: wallets.map((wallet) => wallet.account),
                 network,
             });
-        } catch {
-            console.log("Failed to capture accounts");
-        }
+        } catch {}
     });
 };
 
