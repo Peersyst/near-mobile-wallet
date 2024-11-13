@@ -1,7 +1,7 @@
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 import { NetworkType } from "module/settings/state/SettingsState";
 import useWalletState from "module/wallet/hook/useWalletState";
-import useCaptureAccounts from "module/capture/hooks/useCaptureAccounts";
+import useCaptureAccounts from "module/analytics/hooks/useCaptureAccounts";
 import { useEffect, useRef } from "react";
 
 export function useCapture() {
