@@ -19,7 +19,7 @@ const useCaptureAccounts = () => {
     return useMutation(async () => {
         try {
             posthog?.capture("load_accounts", {
-                accountIds: wallets.map((wallet) => wallet.account),
+                account_ids: wallets.map((wallet) => wallet.account),
                 network,
             });
         } catch {}

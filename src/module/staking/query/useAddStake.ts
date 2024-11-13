@@ -13,7 +13,7 @@ export interface UseAddStakeParams {
 
 const useAddStake = (senderIndex?: number) => {
     const setStateState = useSetRecoilState(stakeState);
-    const { serviceInstance } = useServiceInstance(senderIndex);
+    const { serviceInstance, network } = useServiceInstance(senderIndex);
     const invalidateServiceInstanceQueries = useInvalidateServiceInstanceQueries(senderIndex);
     const posthog = usePostHog();
 
@@ -22,7 +22,7 @@ const useAddStake = (senderIndex?: number) => {
             const txHash = await serviceInstance.depositAndStakeFromValidator(validatorId.toString(), amount.toString());
             setStateState((oldState) => ({ ...oldState, txHash }));
             try {
-                posthog?.capture("add_stake", { amount, validatorId });
+                posthog?.capture("add_stake", { amount, validator_id: validatorId, account: serviceInstance.getAddress(), network });
             } catch {}
         },
         {

@@ -13,7 +13,7 @@ export default function useAddDAppToFavourites() {
         async (dApp: FavouriteDApp) => {
             await DAppsController.addDApp(dApp);
             try {
-                posthog?.capture("add_dapp_to_favourites", { dApp });
+                posthog?.capture("add_dapp_to_favourites", { ...dApp });
             } catch {}
         },
         {
