@@ -1,13 +1,7 @@
-import { NetworkType } from "module/settings/state/SettingsState";
 import { usePostHog } from "posthog-react-native";
 import { useMutation } from "react-query";
 import useWalletState from "../../wallet/hook/useWalletState";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
-
-export interface UseCaptureAccountsParams {
-    accountIds: string[];
-    network: NetworkType;
-}
 
 const useCaptureAccounts = () => {
     const posthog = usePostHog();
