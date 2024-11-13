@@ -7,6 +7,8 @@ import ImportWalletModal from "../ImportWalletModal";
 import useTranslate from "module/common/hook/useTranslate";
 import { ErrorResourceType, TransaltionResourceType } from "locale";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
+import { usePostHog } from "posthog-react-native";
+import useCaptureAccounts from "module/wallet/query/useCaptureAccounts";
 
 export type UseImportWalletModalReturnType = {
     handleWalletCreation: () => Promise<void>;
@@ -24,6 +26,8 @@ export default function useImportWalletModal(): UseImportWalletModalReturnType {
     const {
         state: { mnemonic },
     } = useCreateWallet();
+    const posthog = usePostHog();
+    const { mutate: captureAccounts } = useCaptureAccounts();
 
     async function handleWalletCreation() {
         //Close keyboard
@@ -36,6 +40,14 @@ export default function useImportWalletModal(): UseImportWalletModalReturnType {
         hideModal(ImportWalletModal.id);
 
         if (wallets.length !== 0) {
+            try {
+                posthog?.capture("wallet_imported", {
+                    wallets: wallets.length,
+                    method: mnemonic ? "mnemonic" : "private_key",
+                });
+                captureAccounts();
+            } catch {}
+
             setTimeout(() => {
                 showToast(translate(("import_success" + (wallets.length === 1 ? "_one" : "_other")) as TransaltionResourceType), {
                     type: "success",
