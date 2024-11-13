@@ -5,7 +5,7 @@ import WalletController from "../utils/WalletController";
 import useCreateWallet from "./useCreateWallet";
 import useWalletState from "./useWalletState";
 import { usePostHog } from "posthog-react-native";
-import useCaptureAccounts from "../query/useCaptureAccounts";
+import useCaptureAccounts from "../../capture/hooks/useCaptureAccounts";
 
 export default function useCreateNewWallet() {
     const {

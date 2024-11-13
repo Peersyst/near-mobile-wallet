@@ -6,7 +6,7 @@ import { SettingsStorage } from "module/settings/SettingsStorage";
 import { useState } from "react";
 import useInitWallets from "./useInitWallets";
 import { usePostHog } from "posthog-react-native";
-import useCaptureAccounts from "../query/useCaptureAccounts";
+import useCaptureAccounts from "../../capture/hooks/useCaptureAccounts";
 
 export interface UseChangeNetworkResult {
     isLoading: boolean;

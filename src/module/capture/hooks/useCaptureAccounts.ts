@@ -1,7 +1,7 @@
 import { NetworkType } from "module/settings/state/SettingsState";
 import { usePostHog } from "posthog-react-native";
 import { useMutation } from "react-query";
-import useWalletState from "../hook/useWalletState";
+import useWalletState from "../../wallet/hook/useWalletState";
 import useSelectedNetwork from "module/settings/hook/useSelectedNetwork";
 
 export interface UseCaptureAccountsParams {
@@ -22,7 +22,9 @@ const useCaptureAccounts = () => {
                 accountIds: wallets.map((wallet) => wallet.account),
                 network,
             });
-        } catch {}
+        } catch {
+            console.log("Failed to capture accounts");
+        }
     });
 };
 

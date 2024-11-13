@@ -8,7 +8,7 @@ import useTranslate from "module/common/hook/useTranslate";
 import { ErrorResourceType, TransaltionResourceType } from "locale";
 import useCreateWallet from "module/wallet/hook/useCreateWallet";
 import { usePostHog } from "posthog-react-native";
-import useCaptureAccounts from "module/wallet/query/useCaptureAccounts";
+import useCaptureAccounts from "module/capture/hooks/useCaptureAccounts";
 
 export type UseImportWalletModalReturnType = {
     handleWalletCreation: () => Promise<void>;
