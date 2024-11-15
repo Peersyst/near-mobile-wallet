@@ -22,5 +22,5 @@ export function useCapture() {
             prevNetwork.current = network;
             captureAccounts();
         }
-    }, [state.wallets]);
+    }, [state.wallets.length]);
 }
