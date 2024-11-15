@@ -4,6 +4,8 @@ import { Wallet } from "../state/WalletState";
 import WalletController from "../utils/WalletController";
 import useCreateWallet from "./useCreateWallet";
 import useWalletState from "./useWalletState";
+import { usePostHog } from "posthog-react-native";
+import useCaptureAccounts from "../../analytics/hooks/useCaptureAccounts";
 
 export default function useCreateNewWallet() {
     const {
@@ -12,6 +14,8 @@ export default function useCreateNewWallet() {
 
     const { setState: setWalletState } = useWalletState();
     const { mutateAsync } = useCreateAccount(fundingAccount!);
+    const posthog = usePostHog();
+    const { mutate: captureAccounts } = useCaptureAccounts();
 
     const createWallet = async (network: NetworkType): Promise<Wallet | undefined> => {
         try {
@@ -29,6 +33,14 @@ export default function useCreateNewWallet() {
                 ...state,
                 wallets: [...state.wallets, newWallet],
             }));
+
+            try {
+                posthog?.capture("create_wallet", {
+                    account: newWallet.account,
+                    network,
+                });
+                captureAccounts();
+            } catch {}
 
             return newWallet;
         } catch (e) {

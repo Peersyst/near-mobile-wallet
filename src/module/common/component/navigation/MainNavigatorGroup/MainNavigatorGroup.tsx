@@ -2,8 +2,10 @@ import MainBottomNavigatorGroup from "module/main/component/navigation/MainBotto
 import Stack from "stack-navigator";
 import { MainScreens } from "module/common/component/navigation/MainNavigatorGroup/MainScreens";
 import FiatOrdersNavigationGroup from "module/fiatorders/components/navigation/FiatOrdersNavigatorGroup/FiatOrdersNavigatorGroup";
+import { useCapture } from "module/analytics/hooks/useCapture";
 
 const MainNavigator = () => {
+    useCapture();
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name={MainScreens.MAIN} component={MainBottomNavigatorGroup} />

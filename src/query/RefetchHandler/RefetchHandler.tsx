@@ -5,5 +5,6 @@ import { usePrefetchQueries } from "./hooks/usePrefetchQueries";
 export default function RefetchHandler({ children }: PropsWithChildren): JSX.Element {
     useRefetchHandler();
     usePrefetchQueries();
+
     return <>{children}</>;
 }
