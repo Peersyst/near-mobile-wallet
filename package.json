@@ -1,4 +1,5 @@
 {
+    "version": "1.8.0",
     "name": "near-mobile-wallet",
     "private": true,
     "main": "./index.js",
@@ -22,7 +23,8 @@
         "test:ci": "jest --runInBand",
         "test:debug": "jest --no-cache --runInBand || true",
         "check-types": "tsc --noemit",
-        "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0"
+        "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0 && yarn check-types",
+        "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0 --fix && yarn check-types"
     },
     "dependencies": {
         "@expo-google-fonts/manrope": "^0.2.2",
@@ -32,6 +34,7 @@
         "@peersyst/react-utils": "^2.5.0",
         "@react-native-async-storage/async-storage": "1.18.2",
         "@react-native-community/hooks": "^3.0.0",
+        "@react-native-community/netinfo": "9.3.10",
         "@react-navigation/bottom-tabs": "^6.5.7",
         "@react-navigation/native": "^6.1.6",
         "@react-navigation/native-stack": "^6.3.16",

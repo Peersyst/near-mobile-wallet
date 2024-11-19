@@ -38,6 +38,12 @@ export interface AnalyticsConfig {
 
 export interface TransakConfig extends Omit<TransakOnRampQueryParams, "environment"> {
     environment: string;
+    unsupportedCountries: string[];
+}
+
+export interface ExploreDAppsConfig {
+    exploreDAppsUrl: string;
+    historyLimit: number;
 }
 
 declare module "@peersyst/react-native-components" {
@@ -46,6 +52,7 @@ declare module "@peersyst/react-native-components" {
     }
 
     export interface Config {
+        appVersion: string;
         minimumTransactionAmount: number;
         nearblocksTesnetApiUrl: string;
         nearblocksMainnetApiUrl: string;
@@ -89,9 +96,12 @@ declare module "@peersyst/react-native-components" {
         };
         securityQuizList: SecurityQuizBackup[];
         quizNumberOfQuestions: number;
+        exploreDApps: ExploreDAppsConfig;
+        appUrlScheme: string;
     }
 
     export interface CreateConfig {
+        appVersion: string;
         minimumTransactionAmount: number;
         nearblocksTesnetApiUrl: string;
         nearblocksMainnetApiUrl: string;
@@ -132,6 +142,8 @@ declare module "@peersyst/react-native-components" {
         };
         securityQuizList: SecurityQuizBackup[];
         quizNumberOfQuestions: number;
+        exploreDApps: ExploreDAppsConfig;
+        appUrlScheme: string;
     }
 
     export interface ExtraValidators {

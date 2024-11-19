@@ -24,7 +24,9 @@ export const NFT_TRANSFER_METHOD = "nft_transfer";
 export const NFT_METADATA_METHOD = "nft_metadata";
 export const NFT_TOKEN_METHOD = "nft_token";
 export const NFT_TOKEN_METADATA_METHOD = "nft_token_metadata";
+export const GET_TOKEN_METADATA_METHOD = "get_token_metadata";
 export const NFT_SUPPLY_METHOD = "nft_supply_for_owner";
+export const NFT_GET_TOKENS_BY_OWNER = "get_tokens_by_owner";
 export const NFT_OWNER_TOKENS_METHOD = "nft_tokens_for_owner";
 export const NFT_OWNER_TOKENS_SET_METHOD = "nft_tokens_for_owner_set";
 //Fungible token

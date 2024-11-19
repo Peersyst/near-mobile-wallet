@@ -4,6 +4,7 @@ import Queries from "../../../query/queries";
 import { useInvalidateServiceInstanceQueries } from "module/wallet/query/useInvalidateServiceInstanceQueries";
 import { useSetRecoilState } from "recoil";
 import stakeState from "../state/StakeState";
+import { usePostHog } from "posthog-react-native";
 
 export interface UnstakeParams {
     amount: string;
@@ -12,13 +13,18 @@ export interface UnstakeParams {
 
 export default function (senderIndex?: number) {
     const setStateState = useSetRecoilState(stakeState);
-    const { serviceInstance } = useServiceInstance(senderIndex);
+    const { serviceInstance, network } = useServiceInstance(senderIndex);
+
     const invalidateServiceInstanceQueries = useInvalidateServiceInstanceQueries(senderIndex);
+    const posthog = usePostHog();
 
     return useMutation(
         async ({ amount, validatorId }: UnstakeParams) => {
             const txHash = await serviceInstance.unstakeFromValidator(validatorId, amount);
             setStateState((oldState) => ({ ...oldState, txHash }));
+            try {
+                posthog?.capture("unstake", { amount, validator_id: validatorId, network, account: serviceInstance.getAddress() });
+            } catch {}
         },
         {
             onSuccess: async () => {

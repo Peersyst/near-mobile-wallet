@@ -341,5 +341,18 @@
     "pleaseWaitAMoment": "请稍等片刻",
     "explore": "探索",
     "welcomeSecurityQuiz": "正确回答以下问题以显示您的秘密恢复短语。",
-    "startQuiz": "开始测验"
+    "startQuiz": "开始测验",
+    "discoverNewDApps": "发现新的dApps",
+    "dAppSelectCTA": "查看我们的dApps精选",
+    "emptyFavouritesDAppsTitle": "你还没有收藏任何内容",
+    "emptyFavouritesDAppsDescription": "通过访问网站并点击星标图标，将新的dApps添加到你的收藏夹中。你也可以查看我们的顶级dApps精选。",
+    "yourFavouritesDApps": "你最喜欢的dApps",
+    "emptyHistory": "没有搜索历史",
+    "history": "历史",
+    "name": "名称",
+    "URL": "网址",
+    "add": "添加",
+    "addToFavourites": "添加到收藏夹",
+    "removeFavourites": "从收藏夹中删除",
+    "version": "版本"
 }

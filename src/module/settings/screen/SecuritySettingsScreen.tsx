@@ -6,6 +6,7 @@ import BiometricsSwitch from "module/settings/components/core/BiometricsSwitch/B
 import ConnectedSites from "../components/core/ConnectedSites/ConnectedSites";
 import ManualAccountImport from "../components/core/ManualAccountImport/ManualAccountImport";
 import BaseSettingsTab from "../components/layout/BaseSettingsTab/BaseSettingsTab";
+import VersionNumber from "../components/core/VersionNumber/VersionNumber";
 
 const SecuritySettingsScreen = (): JSX.Element => {
     const enableManualImport = useConfig("enableManualImport");
@@ -17,6 +18,7 @@ const SecuritySettingsScreen = (): JSX.Element => {
             <WalletsBackup />
             {enableManualImport && <ManualAccountImport />}
             <DeleteData />
+            <VersionNumber />
         </BaseSettingsTab>
     );
 };

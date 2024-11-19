@@ -24,6 +24,7 @@ import {
     CreateNearSdkWithMnemonicParams,
     CreateNearSdkWithSecretKeyParams,
     Action,
+    NftTokenMetadata,
 } from "./NearSdkService.types";
 import {
     MINIMUM_UNSTAKED,
@@ -57,6 +58,8 @@ import {
     NFT_OWNER_TOKENS_SET_METHOD,
     STAKING_WITHDRAW_GAS,
     STAKING_WITHDRAW_ALL_GAS,
+    NFT_GET_TOKENS_BY_OWNER,
+    GET_TOKEN_METADATA_METHOD,
 } from "../utils/near.constants";
 import {
     addNearAmounts,
@@ -221,7 +224,7 @@ export class NearSDKService {
     }
 
     getSecretKey(): string {
-        return this.keyPair.secretKey;
+        return this.keyPair.extendedSecretKey;
     }
 
     static isSameSecretKey(secretKey1: string, secretKey2: string): boolean {
@@ -930,11 +933,31 @@ export class NearSDKService {
     // User has nfts of contract
     async getNftTokensAmount(contractId: string): Promise<number> {
         const account = await this.getAccount();
-        return account.viewFunction({
-            contractId,
-            methodName: NFT_SUPPLY_METHOD,
-            args: { account_id: account.accountId },
-        });
+        try {
+            return await account.viewFunction({
+                contractId,
+                methodName: NFT_SUPPLY_METHOD,
+                args: { account_id: account.accountId },
+            });
+        } catch (err: any) {
+            if (!err.toString().includes("Contract method is not found")) {
+                throw err;
+            }
+            try {
+                // example contract: mintv2.sharddog.near
+                const nftsIds = await account.viewFunction({
+                    contractId,
+                    methodName: NFT_GET_TOKENS_BY_OWNER,
+                    args: { account_id: account.accountId },
+                });
+
+                if (Array.isArray(nftsIds)) {
+                    return nftsIds.length;
+                }
+            } catch {}
+
+            return 0;
+        }
     }
 
     async getNftMetadata(contractId: string): Promise<NftMetadata> {
@@ -947,18 +970,34 @@ export class NearSDKService {
     }
 
     // Mintbase non-standard method
-    private async getNftTokenMetadata(contractId: string, tokenId: string, baseUri: string): Promise<NftMetadata> {
+    private async getNftTokenMetadata(contractId: string, tokenId: string, baseUri: string): Promise<NftTokenMetadata> {
         const account = await this.getAccount();
-        let metadata = await account.viewFunction({
-            contractId,
-            methodName: NFT_TOKEN_METADATA_METHOD,
-            args: { token_id: tokenId },
-        });
+        let metadata;
 
-        if (!metadata.media && metadata.reference) {
+        try {
+            metadata = await account.viewFunction({
+                contractId,
+                methodName: NFT_TOKEN_METADATA_METHOD,
+                args: { token_id: tokenId },
+            });
+
+            if (!(metadata as NftMetadata).media && (metadata as NftMetadata).reference) {
+                try {
+                    metadata = await (await fetch(`${baseUri}/${(metadata as NftMetadata).reference}`)).json();
+                } catch {}
+            }
+        } catch (err: any) {
+            if (!err.toString().includes("Contract method is not found")) {
+                throw err;
+            }
             try {
-                metadata = await (await fetch(`${baseUri}/${metadata.reference}`)).json();
-            } catch {}
+                // example contract: mintv2.sharddog.near
+                return await account.viewFunction({
+                    contractId,
+                    methodName: GET_TOKEN_METADATA_METHOD,
+                    args: { token_id: Number(tokenId) }, // We need to cast toa number here to avoid smart contract type issues
+                });
+            } catch (e) {}
         }
 
         return metadata;
@@ -984,6 +1023,7 @@ export class NearSDKService {
         }
 
         const media = token.metadata.media;
+
         if (media && media.includes("://")) {
             token.metadata.media_url = media;
             token.metadata.media = null;
@@ -992,6 +1032,22 @@ export class NearSDKService {
             const url = baseUri ? `${baseUri}/${media}` : `https://cloudflare-ipfs.com/ipfs/${media}`;
             token.metadata.media_url = url;
             token.metadata.media = null;
+        }
+
+        if (!token.metadata.media_url) {
+            const reference = token.metadata.reference;
+
+            if (reference) {
+                if (reference.includes("://")) {
+                    token.metadata.media_url = reference;
+                    token.metadata.media = null;
+                }
+                if (!reference.includes("://") && !reference.startsWith("data:image")) {
+                    const url = baseUri ? `${baseUri}/${reference}` : `https://cloudflare-ipfs.com/ipfs/${reference}`;
+                    token.metadata.media_url = url;
+                    token.metadata.media = null;
+                }
+            }
         }
 
         return token;
@@ -1016,11 +1072,24 @@ export class NearSDKService {
         const account = await this.getAccount();
         let tokens: NftToken[] = [];
         try {
-            const tokenIds = await account.viewFunction({
-                contractId,
-                methodName: NFT_OWNER_TOKENS_SET_METHOD,
-                args: { account_id: account.accountId },
-            });
+            let tokenIds;
+            try {
+                tokenIds = await account.viewFunction({
+                    contractId,
+                    methodName: NFT_OWNER_TOKENS_SET_METHOD,
+                    args: { account_id: account.accountId },
+                });
+            } catch (err: any) {
+                if (!err.toString().includes("Contract method is not found")) {
+                    throw err;
+                }
+                tokenIds = await account.viewFunction({
+                    contractId,
+                    methodName: NFT_GET_TOKENS_BY_OWNER,
+                    args: { account_id: account.accountId },
+                });
+            }
+
             tokens = await Promise.all(
                 tokenIds.map(async (tokenId: number | string) => ({
                     token_id: tokenId.toString(),
@@ -1029,7 +1098,7 @@ export class NearSDKService {
                 })),
             );
         } catch (err: any) {
-            if (!err.toString().includes("MethodResolveError(MethodNotFound)")) {
+            if (!err.toString().includes("Contract method is not found")) {
                 throw err;
             }
             tokens = await account.viewFunction({
@@ -1038,6 +1107,7 @@ export class NearSDKService {
                 args: { account_id: account.accountId },
             });
         }
+
         const parsedTokens = tokens.map((token: any) => this.parseNftToken(token, contractId, baseUri));
         return Promise.all(parsedTokens);
     }
@@ -1050,9 +1120,9 @@ export class NearSDKService {
             let contractNfts = 0;
             try {
                 contractNfts = await this.getNftTokensAmount(contractId);
-            } catch {
+            } catch (e) {
                 // eslint-disable-next-line no-console
-                console.warn("Error getting nft amount for contract", contractId);
+                console.warn("Error getting nft amount for contract " + contractId, e);
             }
 
             if (contractNfts > 0) {
@@ -1062,9 +1132,9 @@ export class NearSDKService {
                     nftTokens.push(
                         ...newNftTokens.map((token: NftToken) => ({ ...token, collection_metadata: collectionMetadata, contractId })),
                     );
-                } catch {
+                } catch (e) {
                     // eslint-disable-next-line no-console
-                    console.warn("Error getting nft tokens for contract", contractId);
+                    console.warn("Error getting nft tokens for contract " + contractId, e);
                 }
             }
         }

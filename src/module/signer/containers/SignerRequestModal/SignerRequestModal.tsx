@@ -26,7 +26,14 @@ const SignerRequestModal = createModal(({ id, ...modalProps }: SignerModalProps)
     const handleReject = () => rejectRequest(id);
 
     return (
-        <CardSelectModal {...modalProps} title={translate("reviewRequest")} dismissal="close" style={{ height: "95%" }}>
+        <CardSelectModal
+            propagateSwipe
+            swipeable={false}
+            {...modalProps}
+            title={translate("reviewRequest")}
+            dismissal="close"
+            style={{ height: "95%" }}
+        >
             <Skeleton loading={isLoading}>
                 {isSignerRequestError ? (
                     signerRequestError

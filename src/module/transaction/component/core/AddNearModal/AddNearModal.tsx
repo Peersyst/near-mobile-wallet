@@ -15,7 +15,7 @@ export type AddNearModalProps = ExposedBackdropProps;
 const AddNearModal = createBackdrop(({ open: openProp, defaultOpen, onClose: onCloseProp, ...rest }: AddNearModalProps): JSX.Element => {
     const translate = useTranslate();
     const navigate = useNavigation();
-    const showBuyOption = useIsBuyEnabled();
+    const { data: showBuyOption = true } = useIsBuyEnabled();
     const [open, setOpen] = useControlled(defaultOpen, openProp, onCloseProp);
     const [openReceiveModal, setOpenReceiveModal] = useState(false);
 

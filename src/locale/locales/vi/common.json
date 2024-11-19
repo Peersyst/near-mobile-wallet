@@ -341,5 +341,18 @@
     "pleaseWaitAMoment": "Vui lòng chờ một chút",
     "explore": "Khám phá",
     "welcomeSecurityQuiz": "Trả lời đúng các câu hỏi sau để tiết lộ cụm từ khôi phục bí mật của bạn.",
-    "startQuiz": "Bắt đầu câu đố"
+    "startQuiz": "Bắt đầu câu đố",
+    "discoverNewDApps": "Khám phá dApps mới",
+    "dAppSelectCTA": "Xem qua tuyển chọn dApps của chúng tôi",
+    "emptyFavouritesDAppsTitle": "Bạn chưa có yêu thích nào",
+    "emptyFavouritesDAppsDescription": "Thêm dApps mới vào mục yêu thích của bạn bằng cách truy cập trang web của họ và nhấp vào biểu tượng ngôi sao. Bạn cũng có thể xem qua tuyển chọn dApps hàng đầu của chúng tôi.",
+    "yourFavouritesDApps": "dApps yêu thích của bạn",
+    "emptyHistory": "Không có lịch sử tìm kiếm",
+    "history": "Lịch sử",
+    "name": "Tên",
+    "URL": "URL",
+    "add": "Thêm",
+    "addToFavourites": "Thêm vào mục yêu thích",
+    "removeFavourites": "Xóa khỏi mục yêu thích",
+    "version": "Phiên bản"
 }

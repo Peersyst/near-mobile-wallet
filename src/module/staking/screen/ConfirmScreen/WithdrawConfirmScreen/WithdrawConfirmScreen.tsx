@@ -3,14 +3,15 @@ import { useRecoilValue } from "recoil";
 import stakeRecoilState from "module/staking/state/StakeState";
 import useTranslate from "module/common/hook/useTranslate";
 import StakingConfirmScreen from "../StakingConfirmScreen";
-import UseWithdraw from "module/staking/query/useWithdraw";
+import useWithdraw from "module/staking/query/useWithdraw";
 import WithdrawModal from "module/staking/component/core/WithdrawModal/WithdrawModal";
 import { WithdrawModalScreens } from "module/staking/component/core/WithdrawModal/WithdrawModal.types";
 
 const WithdrawConfirmScreen = () => {
     const { validator } = useRecoilValue(stakeRecoilState);
     const setTab = useSetTab();
-    const { mutate: withdrawStake, isLoading, isError, isSuccess } = UseWithdraw();
+
+    const { mutate: withdrawStake, isLoading, isError, isSuccess } = useWithdraw();
     const translate = useTranslate();
     const { hideModal } = useModal();
 
@@ -18,13 +19,8 @@ const WithdrawConfirmScreen = () => {
         withdrawStake({ validatorId: validator.accountId });
     };
 
-    const onExited = () => {
-        setTab(WithdrawModalScreens.SUCCESS);
-    };
-
     return (
         <StakingConfirmScreen
-            onExited={onExited}
             sendTransaction={handleWithdrawStake}
             isLoading={isLoading}
             isError={isError}

@@ -15,6 +15,14 @@ body:
               - IOS
       validations:
           required: true
+    - type: input
+      attributes:
+          label: Version number
+          description: "Version number of the app"
+          placeholder: "Version number"
+          value: "2.13"
+      validations:
+          required: true
     - type: textarea
       attributes:
           label: Steps to reproduce

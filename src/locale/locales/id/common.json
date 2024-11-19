@@ -341,5 +341,18 @@
     "pleaseWaitAMoment": "Tunggu sebentar",
     "explore": "Jelajahi",
     "welcomeSecurityQuiz": "Jawab pertanyaan berikut dengan benar untuk mengungkapkan frasa pemulihan rahasia Anda.",
-    "startQuiz": "Mulai kuis"
+    "startQuiz": "Mulai kuis",
+    "discoverNewDApps": "Temukan dApps baru",
+    "dAppSelectCTA": "Lihat pilihan dApps kami",
+    "emptyFavouritesDAppsTitle": "Anda belum memiliki favorit",
+    "emptyFavouritesDAppsDescription": "Tambahkan dApps baru ke favorit Anda dengan mengunjungi situs web mereka dan mengklik ikon bintang. Anda juga dapat melihat pilihan dApps teratas kami.",
+    "yourFavouritesDApps": "dApps favorit Anda",
+    "emptyHistory": "Tidak ada riwayat pencarian",
+    "history": "Riwayat",
+    "name": "Nama",
+    "URL": "URL",
+    "add": "Tambahkan",
+    "addToFavourites": "Tambahkan ke favorit",
+    "removeFavourites": "Hapus dari favorit",
+    "version": "Versi"
 }

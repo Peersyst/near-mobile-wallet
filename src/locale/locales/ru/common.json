@@ -341,5 +341,18 @@
     "pleaseWaitAMoment": "Пожалуйста, подождите немного",
     "explore": "Исследовать",
     "welcomeSecurityQuiz": "Ответьте правильно на следующие вопросы, чтобы раскрыть свою секретную фразу для восстановления.",
-    "startQuiz": "Начать викторину"
+    "startQuiz": "Начать викторину",
+    "discoverNewDApps": "Откройте новые dApps",
+    "dAppSelectCTA": "Ознакомьтесь с нашим выбором dApps",
+    "emptyFavouritesDAppsTitle": "У вас пока нет избранных",
+    "emptyFavouritesDAppsDescription": "Добавьте новые dApps в избранное, посетив их сайт и нажав на значок звезды. Вы также можете ознакомиться с нашим выбором лучших dApps.",
+    "yourFavouritesDApps": "Ваши любимые dApps",
+    "emptyHistory": "Нет истории поиска",
+    "history": "История",
+    "name": "Имя",
+    "URL": "URL",
+    "add": "Добавить",
+    "addToFavourites": "Добавить в избранное",
+    "removeFavourites": "Удалить из избранного",
+    "version": "Версия"
 }

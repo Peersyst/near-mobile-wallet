@@ -8,6 +8,7 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "../locale/i18n";
 import WalletColorProvider from "module/wallet/component/core/WalletColorProvider/WalletColorProvider";
 import { StylesheetProvider } from "../stylesheets/StylesheetsProvider";
+import RefetchHandler from "../query/RefetchHandler/RefetchHandler";
 
 export default function Providers({ children }: PropsWithChildren<unknown>): JSX.Element {
     return (
@@ -18,7 +19,9 @@ export default function Providers({ children }: PropsWithChildren<unknown>): JSX
                         <StylesheetProvider>
                             <ToastProvider>
                                 <QueryClientProvider>
-                                    <WalletColorProvider>{children}</WalletColorProvider>
+                                    <RefetchHandler>
+                                        <WalletColorProvider>{children}</WalletColorProvider>
+                                    </RefetchHandler>
                                 </QueryClientProvider>
                             </ToastProvider>
                         </StylesheetProvider>
