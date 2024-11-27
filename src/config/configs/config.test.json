@@ -80,7 +80,9 @@
             "LY",
             "CV",
             "EC",
-            "SA"
+            "SA",
+            "IN",
+            "GB"
         ]
     },
     "signerFeature": {
@@ -214,6 +216,22 @@
                 "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/5739203a-8e24-43a5-974a-e5f08975f330.JPG",
                 "tag": "launchpad",
                 "contractId": "tknx.near"
+            },
+            {
+                "name": "MITTE",
+                "description": "A mobile-optimized NFT and Meme Trading Platform built on NEAR.",
+                "url": "https://beta.mitte.gg/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/b8b0a2d5-f7ee-4d21-9b85-8ce7638b4876.jpg",
+                "tag": "nft",
+                "contractId": "a.mitte-orderbook.near"
+            },
+            {
+                "name": "Rainbow Bridge",
+                "description": "Bridge between or send within Ethereum, NEAR and Aurora!",
+                "url": "https://rainbowbridge.app/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/a57d2ed4-5310-427f-bef9-449563f5330a.png",
+                "tag": "bridge",
+                "contractId": "client-eth2.bridge.near"
             }
         ]
     }
