@@ -12,7 +12,7 @@ export default function useIsBuyEnabled(): QueryResult<boolean> {
 
     const { data: countryCode } = useGetIPCountry();
 
-    return useQuery([Queries.IS_BUY_ENABLED, countryCode, unsupportedCountries], () => {
+    return useQuery([Queries.IS_BUY_ENABLED, countryCode, unsupportedCountries, isMainnet], () => {
         const countrySupported =
             countryCode && !unsupportedCountries.some((country) => country.toLocaleLowerCase() === countryCode?.toLocaleLowerCase());
 
