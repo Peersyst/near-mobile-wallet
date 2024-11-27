@@ -250,7 +250,7 @@
     ],
     "quizNumberOfQuestions": 3,
     "exploreDApps": {
-        "exploreDAppsUrl": "https://near-dapps-website.vercel.app",
+        "exploreDAppsUrl": "https://explore.nearmobile.app",
         "historyLimit": 5
     },
     "appUrlScheme": "near-mobile-wallet"
