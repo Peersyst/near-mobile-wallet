@@ -20,6 +20,13 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 -   Document resolved bugs for improved performance and security.
 
+## 1.8.1
+
+### 🐛 Bug Fixes
+
+-   Update config to limit transak and update DApps [fix/update-config](https://github.com/Peersyst/near-mobile-wallet/pull/566)
+-   Update explore link [fix/exploreDAppsUrl](https://github.com/Peersyst/near-mobile-wallet/pull/565)
+
 ## 1.7.3
 
 ### 🎉 New Features
