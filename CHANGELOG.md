@@ -24,7 +24,8 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 ### 🐛 Bug Fixes
 
--   Fix wrong schema for callback url [fix/sign-message-wrong-schema](https://github.com/Peersyst/near-mobile-wallet/pull/567)
+-   Fix manual account import [fix/manual-account-import](https://github.com/Peersyst/near-mobile-wallet/pull/574)
+-   Fix wrong schema for callback url [fix/sign-message-wrong-schema](https://github.com/Peersyst/near-mobile-wallet/pull/573)
 
 ## 1.8.1
 

@@ -444,9 +444,11 @@ export default new (class WalletController {
         //Check if the some of the account's accessKeys are in the secure storage
         const walletGroups = await WalletStorage.getSecureWallets(network);
         const secureWallet = walletGroups.find((walletGroup) => {
-            const publicKey = NearSDKService.getPublicKeyFromSecretKey(walletGroup.privateKey);
+            const keyPair = NearSDKService.createKeyPairFromSecretKey(walletGroup.privateKey);
+            const publicKey = NearSDKService.getPublicKeyFromSecretKey(keyPair.extendedSecretKey);
             return accessKeys.includes(publicKey);
         });
+
         if (!secureWallet) return { canImport: false };
 
         //Check if the account is already in the unencrypted storage
