@@ -1218,7 +1218,7 @@ export class NearSDKService {
                     message: "string",
                     nonce: { array: { type: "u8", len: 32 } },
                     recipient: "string",
-                    callbackUrl: { option: { struct: { callbackUrl: "string" } } },
+                    callbackUrl: { option: "string" },
                 },
             },
             payload,
