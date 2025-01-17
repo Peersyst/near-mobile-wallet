@@ -48,7 +48,7 @@ export { default as hot } from "./tokens/hot.png";
 export { default as ht } from "./tokens/ht.png";
 export { default as intel } from "./tokens/intel.png";
 export { default as jump } from "./tokens/jump.png";
-export { default as kat } from "./tokens/kat.png";
+export { default as kat } from "./tokens/kat2.png";
 export { default as linear } from "./tokens/linear.png";
 export { default as link } from "./tokens/link.png";
 export { default as lol } from "./tokens/lol.png";
