@@ -1,5 +1,5 @@
-import { addEventListener } from "@react-native-community/netinfo";
-import { useEffect, useCallback } from "react";
+import { NetInfoState, useNetInfo } from "@react-native-community/netinfo";
+import { useEffect, useCallback, useRef } from "react";
 import useGetBalance from "module/wallet/query/useGetBalance";
 import useGetActions from "module/transaction/query/useGetActions";
 import { useAppState } from "@react-native-community/hooks";
@@ -10,6 +10,8 @@ export function useRefetchHandler(): void {
     const { refetch: refetchBalance } = useGetBalance();
     const { refetch: refetchActions } = useGetActions();
     const appState = useAppState();
+    const onlineState = useNetInfo();
+    const latestOnlineStateRef = useRef<NetInfoState>();
 
     const handleRefetch = useCallback(async () => {
         try {
@@ -19,20 +21,9 @@ export function useRefetchHandler(): void {
     }, [refetchActions, refetchBalance, queryEnabled]);
 
     useEffect(() => {
-        const unsubscribe = addEventListener(async (state) => {
-            if (state.isConnected) {
-                await handleRefetch();
-            }
-        });
-
-        return () => {
-            unsubscribe();
-        };
-    }, [handleRefetch]);
-
-    useEffect(() => {
-        if (appState === "active") {
+        if (appState === "active" && !latestOnlineStateRef.current?.isConnected && onlineState.isConnected) {
+            latestOnlineStateRef.current = onlineState;
             handleRefetch();
         }
-    }, [appState, handleRefetch]);
+    }, [appState, onlineState, handleRefetch]);
 }
