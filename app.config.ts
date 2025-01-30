@@ -60,8 +60,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
             "expo-build-properties",
             {
                 android: {
-                    compileSdkVersion: 34,
-                    targetSdkVersion: 34,
+                    compileSdkVersion: 33,
+                    targetSdkVersion: 33,
                 },
             },
         ],
