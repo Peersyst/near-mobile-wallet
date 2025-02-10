@@ -54,5 +54,7 @@
     "updateAppError": "更新應用程式時出錯",
     "errorSecurityQuiz": "您回答了一個或多個問題錯誤。請稍後再試。請記住，此驗證僅用於您的安全。",
     "tryAgain": "再試一次",
-    "errorInWalletBackupQuizTitle": "錢包備份測驗中的錯誤"
+    "errorInWalletBackupQuizTitle": "錢包備份測驗中的錯誤",
+    "somethingWentWrongLoadingTheAppTitle": "載入應用程式時發生錯誤。",
+    "somethingWentWrongLoadingTheAppDescription": "請透過點擊下方按鈕通過 Telegram 聯繫我們。"
 }

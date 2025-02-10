@@ -54,5 +54,7 @@
     "updateAppError": "Lỗi khi cập nhật ứng dụng",
     "errorSecurityQuiz": "Bạn đã trả lời sai một hoặc nhiều câu hỏi. Vui lòng thử lại sau. Hãy nhớ, việc xác thực này chỉ nhằm mục đích bảo mật cho riêng bạn.",
     "tryAgain": "Thử lại",
-    "errorInWalletBackupQuizTitle": "Lỗi trong câu đố sao lưu ví"
+    "errorInWalletBackupQuizTitle": "Lỗi trong câu đố sao lưu ví",
+    "somethingWentWrongLoadingTheAppTitle": "Đã xảy ra lỗi khi tải ứng dụng.",
+    "somethingWentWrongLoadingTheAppDescription": "Vui lòng liên hệ với chúng tôi qua Telegram bằng cách nhấn nút bên dưới."
 }

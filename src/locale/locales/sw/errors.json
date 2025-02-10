@@ -54,5 +54,7 @@
     "updateAppError": "Hitilafu wakati wa kusasisha programu",
     "errorSecurityQuiz": "Umejibu swali moja au zaidi vibaya. Tafadhali jaribu tena baadaye. Kumbuka, uthibitishaji huu ni kwa usalama wako mwenyewe.",
     "tryAgain": "Jaribu tena",
-    "errorInWalletBackupQuizTitle": "Hitilafu kwenye jaribio la chelezo la pochi"
+    "errorInWalletBackupQuizTitle": "Hitilafu kwenye jaribio la chelezo la pochi",
+    "somethingWentWrongLoadingTheAppTitle": "Kuna kitu kimeenda vibaya wakati wa kupakia programu.",
+    "somethingWentWrongLoadingTheAppDescription": "Tafadhali, wasiliana nasi kupitia Telegram kwa kubonyeza kitufe hapa chini."
 }
