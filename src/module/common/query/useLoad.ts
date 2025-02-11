@@ -5,12 +5,14 @@ import settingsState, { defaultSettingsState } from "module/settings/state/Setti
 import useRecoverWallets from "module/wallet/hook/useRecoverWallets";
 import WalletController from "module/wallet/utils/WalletController";
 import walletState from "../../wallet/state/WalletState";
-import { Alert } from "react-native";
-
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as ExpoSecureStore from "expo-secure-store";
+import { Alert, Linking } from "react-native";
+import { WalletStorage } from "module/wallet/WalletStorage";
+import useTranslate from "../hook/useTranslate";
+import { config } from "config";
 
 export function useLoad(): boolean {
+    const translate = useTranslate();
+    const translateError = useTranslate("error");
     const [loading, setLoading] = useState(true);
     const setSettingsState = useSetRecoilState(settingsState);
     const setWalletState = useSetRecoilState(walletState);
@@ -18,10 +20,11 @@ export function useLoad(): boolean {
 
     useEffect(() => {
         const getStorage = async () => {
+            const settings = { ...defaultSettingsState, ...((await SettingsStorage.getAllSettings()) || {}) };
+
             try {
                 const hasMnemonic = await WalletController.hasMnemonic();
                 const isBackupDone = await WalletController.getIsBackupDone();
-                const settings = { ...defaultSettingsState, ...((await SettingsStorage.getAllSettings()) || {}) };
                 if (!hasMnemonic) await SettingsStorage.set(settings);
                 // Do not await this so the user can enter the app instantly with a loading state
                 else {
@@ -38,23 +41,34 @@ export function useLoad(): boolean {
                 setSettingsState(settings);
 
                 setLoading(false);
-
-                AsyncStorage.getItem("wallet").then((value) => {
-                    Alert.alert("wallet", JSON.stringify(value));
-                });
-
-                ExpoSecureStore.getItemAsync("wallet_SECURE").then((value) => {
-                    Alert.alert("wallet_SECURE", JSON.stringify(value));
-                });
             } catch (e) {
-                Alert.alert("Error", e instanceof Error ? e.message : JSON.stringify(e));
-                AsyncStorage.getItem("wallet").then((value) => {
-                    Alert.alert("wallet", JSON.stringify(value));
-                });
+                // If the error was caused by the decryption of backed up data in Android, it means the user reinstalled the app.
+                // We can safely clear the storage and start fresh.
+                // To test this Android behavior, see this page: https://developer.android.com/identity/data/testingbackup
+                // @see https://docs.expo.dev/versions/v52.0.0/sdk/securestore/#android-auto-backup
+                // @see https://github.com/expo/expo/issues/23426
+                if (e instanceof Error && e.message === "Could not encrypt/decrypt the value for SecureStore") {
+                    await WalletStorage.clearAll();
 
-                ExpoSecureStore.getItemAsync("wallet_SECURE").then((value) => {
-                    Alert.alert("wallet_SECURE", JSON.stringify(value));
-                });
+                    setSettingsState(settings);
+
+                    setLoading(false);
+                } else {
+                    Alert.alert(
+                        translateError("somethingWentWrongLoadingTheAppTitle"),
+                        translateError("somethingWentWrongLoadingTheAppDescription"),
+                        [
+                            {
+                                text: translate("contactUs"),
+                                onPress: () => Linking.openURL(config.telegramUrl),
+                            },
+                            {
+                                text: translate("close"),
+                                style: "cancel",
+                            },
+                        ],
+                    );
+                }
             }
         };
         getStorage();

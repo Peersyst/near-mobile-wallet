@@ -54,5 +54,7 @@
     "updateAppError": "Kesalahan saat memperbarui aplikasi",
     "errorSecurityQuiz": "Anda telah menjawab satu atau lebih pertanyaan dengan salah. Silakan coba lagi nanti. Ingat, validasi ini hanya untuk keamanan Anda sendiri.",
     "tryAgain": "Coba lagi",
-    "errorInWalletBackupQuizTitle": "Kesalahan dalam kuis cadangan dompet"
+    "errorInWalletBackupQuizTitle": "Kesalahan dalam kuis cadangan dompet",
+    "somethingWentWrongLoadingTheAppTitle": "Ada yang salah saat memuat aplikasi.",
+    "somethingWentWrongLoadingTheAppDescription": "Silakan hubungi kami melalui Telegram dengan menekan tombol di bawah ini."
 }

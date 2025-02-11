@@ -54,5 +54,7 @@
     "updateAppError": "Ошибка при обновлении приложения",
     "errorSecurityQuiz": "Вы ответили неправильно на один или несколько вопросов. Попробуйте еще раз позже. Помните, эта проверка предназначена исключительно для вашей безопасности.",
     "tryAgain": "Попробовать снова",
-    "errorInWalletBackupQuizTitle": "Ошибка в викторине резервного копирования кошелька"
+    "errorInWalletBackupQuizTitle": "Ошибка в викторине резервного копирования кошелька",
+    "somethingWentWrongLoadingTheAppTitle": "Что-то пошло не так при загрузке приложения.",
+    "somethingWentWrongLoadingTheAppDescription": "Пожалуйста, свяжитесь с нами через Telegram, нажав кнопку ниже."
 }
