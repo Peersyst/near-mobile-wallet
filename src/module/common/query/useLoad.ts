@@ -5,7 +5,7 @@ import settingsState, { defaultSettingsState } from "module/settings/state/Setti
 import useRecoverWallets from "module/wallet/hook/useRecoverWallets";
 import WalletController from "module/wallet/utils/WalletController";
 import walletState from "../../wallet/state/WalletState";
-import { Alert, Linking } from "react-native";
+import { Alert, Linking, Platform } from "react-native";
 import { WalletStorage } from "module/wallet/WalletStorage";
 import useTranslate from "../hook/useTranslate";
 import { config } from "config";
@@ -47,7 +47,12 @@ export function useLoad(): boolean {
                 // To test this Android behavior, see this page: https://developer.android.com/identity/data/testingbackup
                 // @see https://docs.expo.dev/versions/v52.0.0/sdk/securestore/#android-auto-backup
                 // @see https://github.com/expo/expo/issues/23426
-                if (e instanceof Error && e.message === "Could not encrypt/decrypt the value for SecureStore") {
+                // @see https://github.com/expo/expo/issues/23426#issuecomment-2178534351
+                if (
+                    e instanceof Error &&
+                    Platform.OS === "android" &&
+                    e.message === "Could not encrypt/decrypt the value for SecureStore"
+                ) {
                     await WalletStorage.clearAll();
 
                     setSettingsState(settings);
