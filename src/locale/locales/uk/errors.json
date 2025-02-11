@@ -54,5 +54,7 @@
     "updateAppError": "Помилка під час оновлення додатка",
     "errorSecurityQuiz": "Ви відповіли неправильно на одне або більше питань. Будь ласка, спробуйте пізніше. Пам'ятайте, ця перевірка тільки для вашої безпеки.",
     "tryAgain": "Спробуйте ще раз",
-    "errorInWalletBackupQuizTitle": "Помилка у вікторині резервного копіювання гаманця"
+    "errorInWalletBackupQuizTitle": "Помилка у вікторині резервного копіювання гаманця",
+    "somethingWentWrongLoadingTheAppTitle": "Щось пішло не так під час завантаження додатку.",
+    "somethingWentWrongLoadingTheAppDescription": "Будь ласка, зв'яжіться з нами через Telegram, натиснувши кнопку нижче."
 }

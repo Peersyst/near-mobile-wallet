@@ -54,5 +54,7 @@
     "updateAppError": "Error al actualizar la aplicación",
     "errorSecurityQuiz": "Has respondido incorrectamente una o más preguntas. Inténtalo de nuevo más tarde. Recuerda, esta validación es solo para tu propia seguridad.",
     "tryAgain": "Intentar de nuevo",
-    "errorInWalletBackupQuizTitle": "Error en el quiz de respaldo de la billetera"
+    "errorInWalletBackupQuizTitle": "Error en el quiz de respaldo de la billetera",
+    "somethingWentWrongLoadingTheAppTitle": "Algo salió mal al cargar la aplicación.",
+    "somethingWentWrongLoadingTheAppDescription": "Por favor, contáctanos a través de Telegram presionando el botón de abajo."
 }

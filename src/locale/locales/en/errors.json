@@ -54,5 +54,7 @@
     "updateAppError": "Error updating app",
     "errorSecurityQuiz": "You have answered one or more questions incorrectly. Please try again later. Remember, this validation is solely for your own security.",
     "tryAgain": "Try again",
-    "errorInWalletBackupQuizTitle": "Error in wallet backup quiz"
+    "errorInWalletBackupQuizTitle": "Error in wallet backup quiz",
+    "somethingWentWrongLoadingTheAppTitle": "Something went wrong loading the app.",
+    "somethingWentWrongLoadingTheAppDescription": "Please, contact us via Telegram pressing the button below."
 }

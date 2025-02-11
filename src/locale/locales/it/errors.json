@@ -54,5 +54,7 @@
     "updateAppError": "Errore durante l'aggiornamento dell'applicazione",
     "errorSecurityQuiz": "Hai risposto in modo errato a una o più domande. Riprova più tardi. Ricorda, questa validazione è solo per la tua sicurezza.",
     "tryAgain": "Riprova",
-    "errorInWalletBackupQuizTitle": "Errore nel quiz di backup del portafoglio"
+    "errorInWalletBackupQuizTitle": "Errore nel quiz di backup del portafoglio",
+    "somethingWentWrongLoadingTheAppTitle": "Si è verificato un errore durante il caricamento dell'app.",
+    "somethingWentWrongLoadingTheAppDescription": "Per favore, contattaci tramite Telegram premendo il pulsante qui sotto."
 }
