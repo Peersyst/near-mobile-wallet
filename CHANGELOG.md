@@ -20,6 +20,18 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 -   Document resolved bugs for improved performance and security.
 
+## 1.8.6
+
+### 🐛 Bug Fixes
+
+-   Fix `android` backup data bug
+
+## 1.8.3 - 1.8.5
+
+### 🐛 Bug Fixes
+
+-   Update `eas.json`
+
 ## 1.8.2
 
 ### 🐛 Bug Fixes
