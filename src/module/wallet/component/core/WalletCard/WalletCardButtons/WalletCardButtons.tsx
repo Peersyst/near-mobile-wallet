@@ -16,7 +16,7 @@ const WalletCardButtons = (): JSX.Element => {
     const translate = useTranslate();
     const navigate = useNavigation();
     const { data: showBuyButton } = useIsBuyEnabled();
-    const uriSwap = useGetSwapLink();
+    const uriSwap = useGetSwapLink({ showIntentsIfPossible: true });
     const { showModal } = useModal();
 
     function handleSwapPress(): void {
