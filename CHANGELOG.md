@@ -20,6 +20,12 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 -   Document resolved bugs for improved performance and security.
 
+## 1.8.7
+
+### 🎉 New Features
+
+-   Set `near-intents` as default url for swap.
+
 ## 1.8.6
 
 ### 🐛 Bug Fixes
