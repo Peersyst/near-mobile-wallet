@@ -36,6 +36,13 @@
     "mainnetTokenPriceUrl": "https://indexer.ref.finance/list-token-price",
     "testnetSwapUrl": "https://testnet.ref.finance",
     "mainnetSwapUrl": "https://app.ref.finance",
+    "intents": {
+        "enabled": false,
+        "baseUrl": "https://app.near-intents.org",
+        "depositPath": "/deposit",
+        "withdrawPath": "/withdraw",
+        "swapPath": "/"
+    },
     "refetchIntervals": {
         "nfts": 60000,
         "tokens": 60000,
