@@ -20,7 +20,7 @@ export function useGetExchangePrice<TData = ExchangePrice>(
             try {
                 const res = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd`);
                 const data: CoingeckoPrice[] = await res.json();
-                let result: ExchangePrice = {};
+                const result: ExchangePrice = {};
 
                 for (const tokenPrice of data) {
                     result[tokenPrice.symbol.toUpperCase()] = tokenPrice.current_price;

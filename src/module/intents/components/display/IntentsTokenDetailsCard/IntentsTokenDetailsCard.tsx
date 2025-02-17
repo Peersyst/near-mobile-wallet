@@ -23,7 +23,7 @@ const IntentsTokenDetailsCard = ({ token, onWithdraw, onSwap }: IntentsTokenDeta
     const uriWithdraw = useGetIntentsLink({ type: "withdraw" });
 
     function handlePress(type: "swap" | "withdraw"): void {
-        let uri = type === "swap" ? uriSwap : uriWithdraw;
+        const uri = type === "swap" ? uriSwap : uriWithdraw;
 
         setTimeout(() => {
             // We need to cast the navigate.navigate to any because the React Navigation types are not working properly

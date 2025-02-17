@@ -48,7 +48,7 @@ export class IntentsService {
         depositedBalances: Map<string, string>,
         transitBalances: Map<string, string>,
     ): IntentsTokenBalance[] {
-        let balances: IntentsTokenBalance[] = [];
+        const balances: IntentsTokenBalance[] = [];
 
         for (const token of this.supportedTokens) {
             const totalBalance: IntentsTokenBalance = getEmptyIntentsTokenBalance(token);

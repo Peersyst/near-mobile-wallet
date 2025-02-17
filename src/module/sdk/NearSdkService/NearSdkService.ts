@@ -1,7 +1,7 @@
 import { connect, keyStores, Near, ConnectConfig, Account } from "near-api-js";
 import { Action as NearAction } from "near-api-js/lib/transaction";
 import { AccountBalance } from "near-api-js/lib/account";
-import { AccessKeyInfoView, AccountView, CodeResult, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
+import { AccessKeyInfoView, AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
 import { KeyPair, KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 // @ts-ignore
 import { parseSeedPhrase, generateSeedPhrase } from "near-seed-phrase";

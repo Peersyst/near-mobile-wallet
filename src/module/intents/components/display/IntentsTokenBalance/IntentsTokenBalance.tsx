@@ -18,15 +18,15 @@ const IntentsTokenBalance = ({
     const symbol = token.symbol;
     const parsedBalance = formatTokenAmount(token.totalBalance, token.decimals.toString());
     const { getIntentsFiatPrice } = useGetIntentsFiatPrice();
-    const fiatValue = getIntentsFiatPrice(symbol);
+    const tokenFiatPrice = getIntentsFiatPrice(symbol);
 
     return (
         <Col alignItems={alignItems} justifyContent="center" gap={gap} style={style}>
             <Balance variant={balanceProps?.variant || "body3Strong"} balance={parsedBalance} units={symbol} {...balanceProps} />
-            {typeof fiatValue === "number" && (
+            {typeof tokenFiatPrice === "number" && (
                 <Balance
                     variant={balanceProps?.variant || "body3Strong"}
-                    balance={(Number(parsedBalance) * fiatValue).toFixed(2)}
+                    balance={(Number(parsedBalance) * tokenFiatPrice).toFixed(2)}
                     action="round"
                     light
                     units={fiat}
