@@ -1,7 +1,7 @@
 import { connect, keyStores, Near, ConnectConfig, Account } from "near-api-js";
 import { Action as NearAction } from "near-api-js/lib/transaction";
 import { AccountBalance } from "near-api-js/lib/account";
-import { AccessKeyInfoView, AccountView, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
+import { AccessKeyInfoView, AccountView, CodeResult, FinalExecutionOutcome } from "near-api-js/lib/providers/provider";
 import { KeyPair, KeyPairEd25519, PublicKey } from "near-api-js/lib/utils";
 // @ts-ignore
 import { parseSeedPhrase, generateSeedPhrase } from "near-seed-phrase";
@@ -73,6 +73,8 @@ import { ApiService, NearApiServiceInterface } from "../NearApiService";
 import { BalanceOperations } from "../utils";
 import { Payload } from "../utils/SignerPayload";
 import RPCControl from "./decorators/RPCControl";
+import { IntentsService } from "./intents/IntentsService";
+import { IntentsTokenBalance } from "./intents/intents.types";
 
 export class NearSDKService {
     private connection?: Near;
@@ -87,6 +89,7 @@ export class NearSDKService {
     private static nameRegex = /^(([a-z\d]+[-_])*[a-z\d]+\.)*([a-z\d]+[-_])*[a-z\d]+$/;
     private static addressRegex = /[\da-f]/i;
     public nearDecimals: number | undefined;
+    private defuseService: IntentsService;
 
     constructor({ chain, secretKey, nameId, nearDecimals, mnemonic, rpcList }: CreateNearSdkParams) {
         this.chain = chain;
@@ -108,6 +111,7 @@ export class NearSDKService {
         };
 
         this.rpcList = rpcList;
+        this.defuseService = new IntentsService(rpcList);
     }
 
     // --------------------------------------------------------------
@@ -1243,5 +1247,12 @@ export class NearSDKService {
         }
 
         return keys;
+    }
+
+    /**
+     * NEAR INTENTS
+     */
+    public async getIntentsTokenBalances(): Promise<IntentsTokenBalance[]> {
+        return await this.defuseService.getIntentsTokenBalances(this.getAddress());
     }
 }
