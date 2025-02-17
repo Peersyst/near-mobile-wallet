@@ -6,6 +6,7 @@ enum Queries {
     ACCOUNT_VALID_RECEIVER = "account-valid-receiver",
     ACTIONS = "actions",
     COIN_PRICE = "coin-price",
+    EXCHANGE_PRICE = "exchange-price",
     TOKENS_PRICE = "tokens-price",
     TOTAL_STAKING_BALANCE = "total-staking-balance",
     GET_CURRENT_VALIDATORS = "current-validators",
@@ -24,6 +25,7 @@ enum Queries {
     GET_DAPPS_SEARCH_HISTORY = "get-dapps-search-history",
     GET_COUNTRY_BY_IP = "get-country-by-ip",
     IS_BUY_ENABLED = "is-buy-enabled",
+    GET_INTENTS = "get-intents",
 }
 
 export default Queries;

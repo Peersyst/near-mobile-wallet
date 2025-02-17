@@ -37,7 +37,7 @@
     "testnetSwapUrl": "https://testnet.ref.finance",
     "mainnetSwapUrl": "https://app.ref.finance",
     "intents": {
-        "enabled": false,
+        "enabled": true,
         "baseUrl": "https://app.near-intents.org",
         "depositPath": "/deposit",
         "withdrawPath": "/withdraw",
