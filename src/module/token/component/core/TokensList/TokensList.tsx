@@ -1,25 +1,22 @@
 import TokenCard from "../../display/TokenCard/TokenCard";
-import useGetTokens from "../../../query/useGetTokens";
 import MainList from "module/main/component/display/MainList/MainList";
 import settingsState from "module/settings/state/SettingsState";
 import { useRecoilValue } from "recoil";
 import { useRefetchQueries } from "../../../../../query/useRefetchQueries";
-import useWalletState from "module/wallet/hook/useWalletState";
 import Queries from "../../../../../query/queries";
 import { config } from "config";
 import useGetTokenPriceInUsd from "module/token/query/useGetTokenPriceInUsd";
 import EmptyTokenList from "../../feedback/EmptyTokenList/EmptyTokenList";
 import MainListSkeleton from "module/main/component/display/MainList/MainListSkeleton";
 import TokenCardSkeleton from "../../display/TokenCard/TokenCardSkeleton";
+import IntentsTokenCard from "module/intents/components/display/IntentsTokenCard/IntentsTokenCard";
+import { useGetSortedTokens } from "module/token/query/useGetSortedTokens";
 
 const TokensList = (): JSX.Element => {
     const { fiat, network } = useRecoilValue(settingsState);
-    const {
-        state: { selectedWallet },
-    } = useWalletState();
-    const { isIdle: isIdleTokens, isLoading: isLoadingTokens, data: tokens = [], refetch: refetchTokens } = useGetTokens(selectedWallet);
     const { isLoading: isPriceLoading } = useGetTokenPriceInUsd();
     const refetch = useRefetchQueries();
+    const { refetch: refetchTokens, tokens, isIdle: isIdleTokens, isLoading: isLoadingTokens } = useGetSortedTokens();
 
     const handleRefetch = async () => {
         await Promise.all([
@@ -39,7 +36,12 @@ const TokensList = (): JSX.Element => {
             loading={isLoading}
             ListEmptyComponent={<EmptyTokenList />}
             data={tokens}
-            renderItem={({ item: token }) => <TokenCard token={token} />}
+            renderItem={({ item: token }) => {
+                if ("totalBalance" in token) {
+                    return <IntentsTokenCard token={token} />;
+                }
+                return <TokenCard token={token} />;
+            }}
             keyExtractor={(_, index) => index.toString()}
         />
     );

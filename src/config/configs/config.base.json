@@ -1,5 +1,5 @@
 {
-    "appVersion": "1.8.6",
+    "appVersion": "1.8.7",
     "projectName": "near-mobile-wallet",
     "minimumTransactionAmount": 61,
     "mainnetExplorerLink": "https://nearblocks.io",
@@ -36,6 +36,13 @@
     "mainnetTokenPriceUrl": "https://indexer.ref.finance/list-token-price",
     "testnetSwapUrl": "https://testnet.ref.finance",
     "mainnetSwapUrl": "https://app.ref.finance",
+    "intents": {
+        "enabled": true,
+        "baseUrl": "https://app.near-intents.org",
+        "depositPath": "/deposit",
+        "withdrawPath": "/withdraw",
+        "swapPath": "/"
+    },
     "refetchIntervals": {
         "nfts": 60000,
         "tokens": 60000,

@@ -2,7 +2,7 @@ import { ViewStyle, TextStyle } from "react-native";
 
 export type ChipStyle = ViewStyle & TextStyle;
 
-export type ChipVariant = "filled" | "outlined" | "glass";
+export type ChipVariant = "filled" | "outlined" | "glass" | "gradient";
 
 export type ChipSize = "xs" | "sm" | "md";
 
