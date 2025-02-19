@@ -18,8 +18,8 @@ const tokenMap: Record<string, string> = {
 };
 
 export function useGetExchangePrice<TData = ExchangePrice>(
-    ids = "zcash", // comma separated list of ids
     options: Omit<UseQueryOptions<ExchangePrice, unknown, TData, Queries[]>, "queryFn" | "queryKey"> = {},
+    ids = "zcash", // comma separated list of ids
 ) {
     return useQuery(
         [Queries.EXCHANGE_PRICE],
