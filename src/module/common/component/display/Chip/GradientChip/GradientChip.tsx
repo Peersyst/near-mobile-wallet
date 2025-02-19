@@ -3,7 +3,7 @@ import { useTheme } from "@peersyst/react-native-components";
 import { useEffect, useMemo, useRef } from "react";
 import useThemeMode from "module/common/hook/useThemeMode";
 import useWalletGradient from "module/wallet/hook/useWalletGradient";
-import { Animated, ViewStyle } from "react-native";
+import { Animated, View, ViewStyle } from "react-native";
 import { ChipRoot, ChipText } from "../Chip.styles";
 import { ChipProps } from "../Chip.types";
 import { extractTextStyles } from "utils/extractTextStyles";
@@ -34,19 +34,21 @@ const GradientChip = ({ label, size, style, fullWidth, ...rest }: GradientChipPr
 
     return (
         <GradientChipRoot {...rest} style={rootStyles}>
-            <ChipRoot size={size} fullWidth={fullWidth}>
-                <ChipText size={size} style={{ color: textColor, ...textStyles }}>
-                    {label}
-                </ChipText>
-            </ChipRoot>
-            <GradientChipBackgroundGradiend
-                colors={[backgroundColor, secondaryBackgroundColor]}
-                start={{ x: 0, y: 0.5 }}
-                end={{ x: 1, y: 0.5 }}
-                style={{
-                    transform: [{ translateX: gradientAnim }],
-                }}
-            />
+            <View>
+                <ChipRoot size={size} fullWidth={fullWidth}>
+                    <ChipText size={size} style={{ color: textColor, ...textStyles }}>
+                        {label}
+                    </ChipText>
+                </ChipRoot>
+                <GradientChipBackgroundGradiend
+                    colors={[backgroundColor, secondaryBackgroundColor]}
+                    start={{ x: 0, y: 0.5 }}
+                    end={{ x: 1, y: 0.5 }}
+                    style={{
+                        transform: [{ translateX: gradientAnim }],
+                    }}
+                />
+            </View>
         </GradientChipRoot>
     );
 };

@@ -17,7 +17,7 @@ const IntentsTokenCard = ({ token }: IntentsTokenCardProps): JSX.Element => {
         <Fragment>
             <TouchableWithoutFeedback onPress={() => setOpenTokenModal(true)}>
                 <MainListCard alignItems="center" justifyContent="space-between">
-                    <IntentsTokenNameWithIcon token={token} variant="body3Strong" typographyStyle={{ flex: 0.6 }} />
+                    <IntentsTokenNameWithIcon token={token} variant="body3Strong" typographyStyle={{ flex: 0.6 }} style={{ flex: 1 }} />
                     <IntentsTokenBalance
                         balanceProps={{ variant: "body3Strong", textAlign: "right" }}
                         fiatBalanceProps={{ variant: "body4Strong" }}
