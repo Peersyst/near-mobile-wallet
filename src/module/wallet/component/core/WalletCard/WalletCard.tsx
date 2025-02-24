@@ -8,6 +8,7 @@ import { impactAsync, ImpactFeedbackStyle } from "expo-haptics";
 import Balance from "../../display/Balance/Balance";
 import useNativeTokenConversion from "module/common/hook/useNativeTokenConversion";
 import BaseWalletCard from "module/common/component/surface/BaseWalletCard/BaseWalletCard";
+import useSelectedWalletIndex from "module/wallet/hook/useSelectedWalletIndex";
 
 export interface WalletCardProps {
     wallet: Wallet;
@@ -15,7 +16,11 @@ export interface WalletCardProps {
 
 const WalletCard = ({ wallet }: WalletCardProps): JSX.Element => {
     const { fiat } = useRecoilValue(settingsState);
-    const { data: { available } = { available: "0" }, isLoading } = useGetBalance(wallet.index);
+    const selectedWallet = useSelectedWalletIndex();
+    const isNextWallet = selectedWallet - wallet.index <= 2;
+    const { data: { available } = { available: "0" }, isLoading } = useGetBalance(wallet.index, {
+        enabled: wallet.index === selectedWallet || isNextWallet,
+    });
     const { value: fiatValue } = useNativeTokenConversion(available, fiat);
     const [showFiat, setCurrencyMode] = useState<boolean>(false);
 

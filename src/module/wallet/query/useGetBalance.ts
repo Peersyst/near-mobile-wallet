@@ -1,9 +1,13 @@
 import Queries from "../../../query/queries";
-import { useQuery } from "react-query";
+import { useQuery, UseQueryOptions } from "react-query";
 import useServiceInstance from "../hook/useServiceInstance";
 import { config } from "config";
+import { AccountBalance } from "near-peersyst-sdk";
 
-const useGetBalance = (index?: number) => {
+function useGetBalance<TData = AccountBalance>(
+    index?: number,
+    options: Omit<UseQueryOptions<AccountBalance, unknown, TData, any[]>, "queryFn" | "queryKey"> = {},
+) {
     const { index: usedIndex, network, serviceInstance, queryEnabled } = useServiceInstance(index);
 
     return useQuery(
@@ -14,8 +18,9 @@ const useGetBalance = (index?: number) => {
         {
             enabled: queryEnabled,
             refetchInterval: config.refetchIntervals.balance,
+            ...options,
         },
     );
-};
+}
 
 export default useGetBalance;
