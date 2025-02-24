@@ -894,21 +894,38 @@ export class NearSDKService {
         }
     }
 
+    async getTokenBalanceAndMetadata(contractId: string): Promise<[string, TokenMetadata | undefined]> {
+        const balance = await this.getTokenBalance(contractId);
+        let metadata: TokenMetadata | undefined;
+        if (BalanceOperations.BNIsBigger(balance, "0")) {
+            metadata = await this.getTokenMetadata(contractId);
+        }
+        return [balance, metadata];
+    }
+
     async getAccountTokens(): Promise<Token[]> {
         const contractIds = await this.apiService.getLikelyTokens({ address: this.getAddress(), chain: this.chain });
         const tokens: Token[] = [];
 
         for (const contractId of contractIds) {
             try {
-                const [balance, metadata] = await Promise.all([this.getTokenBalance(contractId), this.getTokenMetadata(contractId)]);
-                if (BalanceOperations.BNIsBigger(balance, "0")) {
-                    tokens.push({
-                        balance: formatTokenAmount(balance, metadata.decimals.toString()),
-                        metadata,
-                        contractId: contractId,
-                    });
+                const [balance, metadata] = await this.getTokenBalanceAndMetadata(contractId);
+                if (metadata) {
+                    tokens.push({ contractId, balance: formatTokenAmount(balance, metadata.decimals.toString()), metadata });
                 }
-            } catch (e) {
+            } catch (e: unknown) {
+                if (e instanceof Error && e.message?.includes("429")) {
+                    // eslint-disable-next-line no-console
+                    console.warn("Rate limited, switching rpc");
+                    try {
+                        await this.switchRpcUrl();
+                        const [balance, metadata] = await this.getTokenBalanceAndMetadata(contractId);
+                        if (metadata) {
+                            tokens.push({ contractId, balance: formatTokenAmount(balance, metadata.decimals.toString()), metadata });
+                        }
+                    } catch {}
+                    continue;
+                }
                 //eslint-disable-next-line no-console
                 console.warn("Error in getAccountTokens: ", contractId, e);
                 continue;
