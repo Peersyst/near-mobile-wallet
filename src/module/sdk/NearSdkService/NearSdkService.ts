@@ -215,6 +215,10 @@ export class NearSDKService {
         return this.connection;
     }
 
+    private getProvider(): Near["connection"]["provider"] {
+        return this.getConnection().connection.provider;
+    }
+
     getAddress(): string {
         return this.nameId;
     }
@@ -491,9 +495,26 @@ export class NearSDKService {
     @RPCControl()
     async getAccountBalance(): Promise<AccountBalance> {
         try {
-            const account = await this.getAccount();
-            const accountBalance: AccountBalance = await account.getAccountBalance();
-            return this.convertAccountBalanceToNear(accountBalance);
+            const accountBalance: AccountView = await this.getProvider().query({
+                request_type: "view_account",
+                account_id: this.getAddress(),
+                finality: "final",
+            });
+
+            const protocolConfig = await this.getProvider().experimental_protocolConfig({ finality: "final" });
+            const storageAmountPerByte = protocolConfig.runtime_config.storage_amount_per_byte;
+
+            const staked = BigInt(accountBalance.locked);
+            const available = BigInt(accountBalance.amount);
+            const stateStaked = BigInt(accountBalance.storage_usage) * BigInt(storageAmountPerByte); // Used for storage
+            const total = BigInt(accountBalance.amount) + staked + stateStaked;
+
+            return this.convertAccountBalanceToNear({
+                total: total.toString(),
+                stateStaked: stateStaked.toString(),
+                staked: staked.toString(),
+                available: available.toString(),
+            });
         } catch (e: any) {
             return {
                 total: "0",
