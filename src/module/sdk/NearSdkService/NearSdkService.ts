@@ -505,12 +505,16 @@ export class NearSDKService {
             const storageAmountPerByte = protocolConfig.runtime_config.storage_amount_per_byte;
 
             const staked = BigInt(accountBalance.locked);
+            /**
+             * The available balance is the total balance that the user can spend.
+             * https://github.com/near/nearcore/blob/master/runtime/runtime/src/verifier.rs#L186
+             */
             const available = BigInt(accountBalance.amount);
             const stateStaked = BigInt(accountBalance.storage_usage) * BigInt(storageAmountPerByte); // Used for storage
             const total = BigInt(accountBalance.amount) + staked + stateStaked;
 
             return this.convertAccountBalanceToNear({
-                total: total.toString(),
+                total: total.toString(), // Not used
                 stateStaked: stateStaked.toString(),
                 staked: staked.toString(),
                 available: available.toString(),
