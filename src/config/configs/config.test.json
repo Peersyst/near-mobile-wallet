@@ -101,17 +101,26 @@
                 "name": "NEAR",
                 "description": "The OS for an Open Web.",
                 "url": "https://near.org/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/ea2d8bdc-c47a-423c-933a-b242a6e525cf.jpg",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/77974b8e-51f4-4a06-b914-bdd21ce990ca.png",
                 "tag": "social",
                 "contractId": "social.near"
             },
             {
-                "name": "Ref Finance",
-                "description": "Ref Finance is a community-led, multi-purpose Decentralized Finance (DeFi) platform built on NEAR Protocol.",
-                "url": "https://app.ref.finance/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/525f6f41-b6a1-46bd-94ef-23f64f09b4a2.png",
+                "name": "NEAR Intents",
+                "description": "NEAR Intents: Fast cross-chain trades, no bridging needed. Swap assets effortlessly with Chain Abstraction.",
+                "url": "https://app.near-intents.org/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/85b7e8c9-30d6-4344-a024-d4c3adeb5e5b.png",
                 "tag": "dex",
-                "contractId": "asset-manager.orderly-network.near"
+                "contractId": "intents.near"
+            },
+            {
+              "name": "RHEA Finance",
+              "description": "Rhea Finance merges Ref Finance (top DEX) and Burrow Finance (top Lending Protocol) to create a next-gen abstracted liquidity solution covering Bitcoin, NEAR, and all other blue-chip assets.",
+              "url": "https://rhea.finance/",
+              "logoUrl":
+                "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/81a0b625-47e5-4da4-a3f9-c50589fdf247.jpg",
+              "tags": ["dex","lending"],
+              "contractId": "boostfarm.ref-labs.near"
             },
             {
                 "name": "Meta Pool",
@@ -120,14 +129,6 @@
                 "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/647377ad-d8a3-4497-9ca6-2a41154664bc.png",
                 "tag": "liquidStaking",
                 "contractId": "meta-pool.near"
-            },
-            {
-                "name": "Burrow",
-                "description": "Supply and borrow interest-bearing assets (stNEAR, stETH, aUSDC) on NEAR Protocol.",
-                "url": "https://app.burrow.finance/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/fde1877b-7c77-4073-b46e-eabfe91bcedf.webp",
-                "tag": "lending",
-                "contractId": "contract.main.burrow.near"
             },
             {
                 "name": "Popula",
@@ -141,7 +142,7 @@
                 "name": "near.social",
                 "description": "A BOS component NEAR on chain twitter-like social network.",
                 "url": "https://near.social",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/de53e1e8-42e2-46f3-9c9c-6981616bbfb5.JPG",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/77974b8e-51f4-4a06-b914-bdd21ce990ca.png",
                 "tag": "social",
                 "contractId": "social.near"
             },
@@ -189,7 +190,7 @@
                 "name": "PotLock",
                 "description": "AI-PGF @ai_pgf + THE OPEN FUNDING STACK Where anyone can put funding on the table. Discover impact projects, donate directly, & participate in funding rounds.",
                 "url": "https://app.potlock.org/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/da270c50-9911-429c-ada3-437f9503707d.JPG",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/77974b8e-51f4-4a06-b914-bdd21ce990ca.png",
                 "tag": "funding",
                 "contractId": "social.near"
             },
@@ -208,14 +209,6 @@
                 "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/e8fc4be0-ffb3-458a-bab0-ee059ee38372.JPG",
                 "tag": "bridge",
                 "contractId": "contract.portalbridge.near"
-            },
-            {
-                "name": "TKN",
-                "description": "Near chain's exclusive Token Launch Platform,  Token will automatically whitelist on @finance_ref.",
-                "url": "https://tkn.homes/",
-                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/5739203a-8e24-43a5-974a-e5f08975f330.JPG",
-                "tag": "launchpad",
-                "contractId": "tknx.near"
             },
             {
                 "name": "MITTE",
