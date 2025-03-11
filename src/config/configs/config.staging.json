@@ -115,13 +115,12 @@
                 "contractId": "intents.near"
             },
             {
-              "name": "RHEA Finance",
-              "description": "Rhea Finance merges Ref Finance (top DEX) and Burrow Finance (top Lending Protocol) to create a next-gen abstracted liquidity solution covering Bitcoin, NEAR, and all other blue-chip assets.",
-              "url": "https://rhea.finance/",
-              "logoUrl":
-                "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/81a0b625-47e5-4da4-a3f9-c50589fdf247.jpg",
-              "tags": ["dex","lending"],
-              "contractId": "boostfarm.ref-labs.near"
+                "name": "RHEA Finance",
+                "description": "Rhea Finance merges Ref Finance (top DEX) and Burrow Finance (top Lending Protocol) to create a next-gen abstracted liquidity solution covering Bitcoin, NEAR, and all other blue-chip assets.",
+                "url": "https://rhea.finance/",
+                "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/81a0b625-47e5-4da4-a3f9-c50589fdf247.jpg",
+                "tag": "dex",
+                "contractId": "boostfarm.ref-labs.near"
             },
             {
                 "name": "Meta Pool",
