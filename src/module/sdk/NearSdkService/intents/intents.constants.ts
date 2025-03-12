@@ -42,6 +42,11 @@ export const INTENTS_TOKEN_LIST: IntentsToken[] = [
                 address: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
                 chain: "solana",
             },
+            {
+                defuseAssetId: "nep141:gnosis-0x2a22f9c3b484c3629090feed35f17ff8f88f76f0.omft.near",
+                address: "0x2a22f9c3b484c3629090feed35f17ff8f88f76f0",
+                chain: "gnosis",
+            },
         ],
     },
     {
@@ -192,6 +197,11 @@ export const INTENTS_TOKEN_LIST: IntentsToken[] = [
                 defuseAssetId: "nep141:arb.omft.near",
                 address: "native",
                 chain: "arbitrum",
+            },
+            {
+                defuseAssetId: "nep141:gnosis-0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1.omft.near",
+                address: "0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1",
+                chain: "gnosis",
             },
         ],
     },
@@ -561,13 +571,70 @@ export const INTENTS_TOKEN_LIST: IntentsToken[] = [
     {
         decimals: 18,
         icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNiAzNiI+PHBhdGggZmlsbD0iIzNFNzIxRCIgZD0iTTEyLjQzNCAyOS44MzNjLjYyNi02LjcwOC00LjQxNy03LjU0Mi02LjQxNy02LjA4My0xLjA5Ny44LTEuMzUzIDIuMzIzLS40NzkgMS41MjEgMS41NDItMS40MTYgMi4wODMtLjM3NS45MTcuMzc1cy0xLjM3NSAyLjE0NS0uMDgzIDEuMTg4YzEuMjkyLS45NTggMS42NDYtLjMzNC42NDYuODk1LS42MDUuNzQ0LjA0MiAxLjQzOCAxLjE2Ny0uMDYyLjkzOC0xLjI1MSAzLjItMS4yOTQgMi42NjIgMi45OS0uMjIyIDEuNzU2IDEuNDUzLjYwOCAxLjU4Ny0uODI0em03Ljk0MS0yMS4wMjJjLS41ODMtMy41LTEuMTI1LTUuMjQ4LTQuNjI1LTUuODMycy02LjQxNyAxLjc1LTYuNDE3IDEuNzUuNTgzLTMuNSAyLjMzMy00LjY2N2MuNjg2LS40NTggMS4xNjcgMS43NSAxLjc1IDEuNzVzMS4xNjctMS43NSAyLjkxNy0xLjc1Yy41ODMgMCAuNTgzIDEuNzUgMS4xNjcgMS43NS41ODMgMCAyLjI0My0uNTc3IDIuMzMzIDAgLjEyNi44MTItLjE2NyAxLjcyOS4yOTIgMi4xMDRzMS41NTMtLjE0OCAxLjkwMS40ODljLjM0OS42MzYtLjYxIDEuNTUzLS41MjYgMS45N3MuNzE5LjU4My41MjYgMS4zNzUtLjY1LjgzMy0uNjkyIDEuNDE3Ljg4NSAxLjA4MS42OTIgMS42ODZjLS4xOTIuNjA2LS42NTEuNjg4LS44NTkgMS40NTktLjIwOC43NzEuNTQxLjY0OS4zMzMgMS40MzktLjIwOC43OS0uOTU4Ljk5MS0xLjIwOCAxLjc2Ni0uMjUuNzc0LjY2Ni45NDEuMjA4IDEuNjkxcy0xLjI5MS44NzUtMS4zMzMgMS4zMzMuMjA5LjgxOC4wNDIgMS41NTVjLS4xNjcuNzM2LTEuMTI2LjM2Mi0xLjIwOS45NDVzLjIwOS44NzUuMjA5IDEuNTgzLS43MDkuODM0LS42MjUgMS41NDIuNzUuMTY3IDEuMTY3IDEtLjI0OSAxLjU4My4yMDkgMi4wODMgMS4wODMtLjY2NyAxLjcwOC0uMjVjLjYyNS40MTcuNjc3IDEuMjUgMS4zNTkgMS4zNzVzLjg5MS0xLjI5MiAxLjM5MS0xLjI1IDEuNjI1LjcwOSAyLjIwOC40MTcuNTQxLTEuNDU5IDEtMS45NTkgMS4wNDItLjA0MSAxLjQ1OC0uNTgzLS4xNDUtMS4xNzUtLjA2Mi0xLjk2Ny44NTQtMS4yNDEuODEyLTEuODY2LS42NjctLjYyNS0uOTE3LTEuMjkyLjQ1OC0xLjI1LjIwOC0xLjg3NS0xLjMzMi0uODMzLTEuMjkxLTEuNDU4LjQ1OS0xLjMzMy4yNS0yLjA0Mi0xLjA4NC0xLjE2Ni0xLjA0Mi0xLjcwNy40OTktMS4yNS41ODMtMS42NDYtLjc0OS0uODEyLS42NjYtMS40NzkuNjI0LS42MjEuODMyLTEuMjIzYy4yMDgtLjYwMi0uNzQ5LS45MDEtLjI0OS0xLjY3MnMuNzUxLS4yNyAxLjE2Ny0uNjg4Yy40MTYtLjQxNy0uMDAxLTEuMzM0LjQxNi0xLjU0Mi40MTctLjIwOCAxLjI1LS4wNDIgMS42NjctLjMzM3MuNDE3LS43MDguODc1LS44NzVjLjQ1OC0uMTY3IDEuMDQyLjU0MiAxLjQxNy41NDJzMS4wNDEtLjcwOCAxLjU0MS0uNTQyYy41LjE2NyAxLjU4NCAxLjMzMy45MTcgMS42ODhzLTUuNzUxLjYwNS01Ljc5MiAyLjkzOCAyLjc5MyAxMi45MTcgMS45NTkgMTUuNTgzLTQuMjkxIDguMzM0LTguMjUgNy4yNWMtMy45NTktMS4wODQtOC42NjctMy41MDEtNy41NDItNy4yMDkgMS4xMjUtMy43MDkgNC43NDktMTEuMjk2IDUuNDU4LTE0Ljc3M3oiLz48cGF0aCBmaWxsPSIjNzdCMjU1IiBkPSJNMjEgNy44OTdjMCAzLjk3OC0yLjM4MiA4LjE0NC01LjgzMyA3LjU2Ni01LjMyMy0uODktNS42MDYtMi41ODctNi40MTctMS41NDYtMi45MTcgMy43NDMtNC42NDQtLjQ4NS01LjMwNy0xLjE4NkMzLjI3NiAxMi41NTUgMCAxMS41OSAwIDkuNzQ0YzAtMS4xOTcgMS43NS0yLjQxOCAyLjkxNy0xLjIzMSAxLjcyMi0uMDQzIDguMTY3LTYuMTU2IDEyLjI1LTYuMTU2QzE5LjI1IDIuMzU2IDIxIDUuNDM1IDIxIDcuODk3eiIvPjxwYXRoIGZpbGw9IiMyOTJGMzMiIGQ9Ik0xNC41ODMgNy4wNjJjMCAuNjQ0LS41MjMgMS4xNjctMS4xNjcgMS4xNjdzLTEuMTY3LS41MjMtMS4xNjctMS4xNjcuNTIzLTEuMTY3IDEuMTY3LTEuMTY3Yy42NDUuMDAxIDEuMTY3LjUyMyAxLjE2NyAxLjE2N3oiLz48cGF0aCBmaWxsPSIjM0U3MjFEIiBkPSJNMi45MTcgMTAuMjcxYzAgLjQ4My0uMzkyLjI5Mi0uODc1LjI5MnMtLjg3NS4xOTEtLjg3NS0uMjkyLjM5Mi0uODc1Ljg3NS0uODc1Ljg3NS4zOTIuODc1Ljg3NXoiLz48cGF0aCBmaWxsPSIjRkZGIiBkPSJNMTEuMDgzIDExLjE0NGMwIC42NDUtLjM5Mi41ODMtLjg3NS41ODNzLS44NzUuMDYxLS44NzUtLjU4M2MwLS42NDQuMzkyLTIuMzMzLjg3NS0yLjMzM3MuODc1IDEuNjg5Ljg3NSAyLjMzM3ptLTIuMzMzLjU4M2MwIC42NDUtLjM5Mi41ODMtLjg3NS41ODMtLjQ4My4wMDEtLjg3NS4wNjItLjg3NS0uNTgzIDAtLjY0NC4zOTItMi4zMzMuODc1LTIuMzMzcy44NzUgMS42ODkuODc1IDIuMzMzeiIvPjxwYXRoIGZpbGw9IiMzRTcyMUQiIGQ9Ik0xMS4wMDEgMTEuMTUyYy0zLjA5NS40NDItNi4yMTUgMS4yMjQtNy41NTggMS41NzkuMTY3LjE3Ny40MDMuNTc5LjcwOSAxLjAyMSAxLjQ3Mi0uMzggNC4yNTMtMS4wNTEgNy4wMTUtMS40NDQuMzE5LS4wNDYuNTQtLjM0Mi40OTUtLjY2MS0uMDQ3LS4zMi0uMzQ0LS41NDItLjY2MS0uNDk1eiIvPjxwYXRoIGZpbGw9IiM3N0IyNTUiIGQ9Ik0yMC45NDYgOC45MzdjMCA0LjM3NS0xLjcxNCA4LjIwMS0yLjk0NiAxMS4xNy0xLjMzMyAzLjIxMi0xIDkgNCA5czYuNTExLTMuMTkxIDctNWMxLjM1OC01LjAyMS0yLTgtMi0xMyAwLTkgOC03IDgtNnMtNi45MzQgMS4zNzQtMyA5UzM2IDM2IDIyIDM2IDggMjcuMTA3IDEwIDIzLjEwN2MxLjQxNi0yLjgzMiA0LTcuMTA3LjUtOS4wNDUtMi4yODItMS4yNjMgMTAuNDQ2LTUuMTI1IDEwLjQ0Ni01LjEyNXoiLz48cGF0aCBmaWxsPSIjM0U3MjFEIiBkPSJNMTEuMzM1IDcuNzcxYy0uMjU2IDAtLjUxMi0uMDk4LS43MDctLjI5My0uMzkxLS4zOTEtLjM5MS0xLjAyMyAwLTEuNDE0LjA4My0uMDgzIDIuMDgxLTIuMDQzIDUuMzc0LTIuMDQzLjU1MiAwIDEgLjQ0OCAxIDFzLS40NDggMS0xIDFjLTIuNDM1IDAtMy45NDUgMS40NDItMy45NiAxLjQ1Ny0uMTk1LjE5NS0uNDUxLjI5My0uNzA3LjI5M3oiLz48cGF0aCBmaWxsPSIjNUM5MTNCIiBkPSJNMTAuNzA4IDI1LjMzM2MuNjI3LTYuNzA4LTUuNDE3LTcuNTQyLTcuNDE3LTYuMDgzLTEuMDk3LjgtMS4zNTMgMi4zMjMtLjQ3OSAxLjUyMSAxLjU0Mi0xLjQxNiAyLjA4My0uMzc1LjkxNy4zNzUtMS4xNjcuNzUtMS4zNzUgMi4xNDYtLjA4MyAxLjE4OHMxLjY0Ni0uMzM0LjY0Ni44OTVjLS42MDUuNzQ0LjA0MiAxLjQzOCAxLjE2Ny0uMDYyLjkzOC0xLjI1MSA0LjItMS4yOTQgMy42NjIgMi45OS0uMjIyIDEuNzU2IDEuNDU0LjYwOCAxLjU4Ny0uODI0eiIvPjwvc3ZnPg==",
-        symbol: "gnear",
+        symbol: "GNEAR",
         name: "gnear",
         groupedTokens: [
             {
                 defuseAssetId: "nep141:gnear-229.meme-cooking.near",
                 address: "gnear-229.meme-cooking.near",
                 chain: "near",
+            },
+        ],
+    },
+    {
+        decimals: 18,
+        icon: "https://s2.coinmarketcap.com/static/img/coins/128x128/4943.png",
+        symbol: "DAI",
+        name: "Dai",
+        groupedTokens: [
+            {
+                defuseAssetId: "nep141:eth-0x6b175474e89094c44da98b954eedeac495271d0f.omft.near",
+                address: "0x6b175474e89094c44da98b954eedeac495271d0f",
+                chain: "eth",
+            },
+            {
+                defuseAssetId: "nep141:gnosis.omft.near",
+                address: "native",
+                chain: "gnosis",
+            },
+        ],
+    },
+    {
+        decimals: 18,
+        icon: "https://s2.coinmarketcap.com/static/img/coins/128x128/1659.png",
+        symbol: "GNO",
+        name: "Gnosis",
+        groupedTokens: [
+            {
+                defuseAssetId: "nep141:gnosis-0x9c58bacc331c9aa871afd802db6379a98e80cedb.omft.near",
+                address: "0x9c58bacc331c9aa871afd802db6379a98e80cedb",
+                chain: "gnosis",
+            },
+        ],
+    },
+    {
+        decimals: 18,
+        icon: "https://s2.coinmarketcap.com/static/img/coins/128x128/19269.png",
+        symbol: "COW",
+        name: "CoW Protocol",
+        groupedTokens: [
+            {
+                defuseAssetId: "nep141:gnosis-0x177127622c4a00f3d409b75571e12cb3c8973d3c.omft.near",
+                address: "0x177127622c4a00f3d409b75571e12cb3c8973d3c",
+                chain: "gnosis",
+            },
+        ],
+    },
+    {
+        decimals: 18,
+        icon: "https://s2.coinmarketcap.com/static/img/coins/128x128/21585.png",
+        symbol: "SAFE",
+        name: "Safe",
+        groupedTokens: [
+            {
+                defuseAssetId: "nep141:gnosis-0x4d18815d14fe5c3304e87b3fa18318baa5c23820.omft.near",
+                address: "0x4d18815d14fe5c3304e87b3fa18318baa5c23820",
+                chain: "gnosis",
             },
         ],
     },

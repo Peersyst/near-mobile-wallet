@@ -25,6 +25,8 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 ### 🎉 New Features
 
 -   Set `near-intents` as default url for swap.
+-   Update config for intents
+-   Change REF to RHEA
 
 ## 1.8.6
 
