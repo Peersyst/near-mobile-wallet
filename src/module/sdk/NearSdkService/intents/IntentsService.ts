@@ -52,15 +52,21 @@ export class IntentsService {
 
         for (const token of this.supportedTokens) {
             const totalBalance: IntentsTokenBalance = getEmptyIntentsTokenBalance(token);
-
+            const chainTokenSet = new Set<string>();
             for (const chainToken of token.groupedTokens || []) {
-                const chainBalance: IntentsChainTokenBalance = this.computeChainTokenBalance(
-                    chainToken,
-                    transitBalances.get(chainToken.defuseAssetId),
-                    depositedBalances.get(chainToken.defuseAssetId),
-                );
-
-                this.aggregateTokenBalances(totalBalance, chainBalance);
+                const defuseAssetId = chainToken.defuseAssetId;
+                // Already processed this token.
+                // The near contract is duplicated in the token list.
+                if (chainTokenSet.has(defuseAssetId)) continue;
+                else {
+                    chainTokenSet.add(defuseAssetId);
+                    const chainBalance: IntentsChainTokenBalance = this.computeChainTokenBalance(
+                        chainToken,
+                        transitBalances.get(chainToken.defuseAssetId),
+                        depositedBalances.get(chainToken.defuseAssetId),
+                    );
+                    this.aggregateTokenBalances(totalBalance, chainBalance);
+                }
             }
 
             if (totalBalance.totalBalance !== "0") {
