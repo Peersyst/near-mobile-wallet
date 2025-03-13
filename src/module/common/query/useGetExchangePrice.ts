@@ -15,11 +15,31 @@ export type ExchangePrice = Record<string, number>;
 
 const tokenMap: Record<string, string> = {
     zcash: "ZEC",
+    ["melania-meme"]: "MELANIA",
+    ["berachain-bera"]: "BERA",
+    ["aurora-near"]: "AURORA",
+    ["shiba-inu"]: "SHIB",
+    gmx: "GMX",
+    ["mog-coin"]: "MOG",
+    ["based-brett"]: "BRETT",
+    sweatcoin: "SWEAT",
+    turbo: "TURBO",
+    dogwifcoin: "WIF",
+    ["book-of-meme"]: "BOME",
+    ["black-dragon"]: "BLACKDRAGON",
+    shitzu: "SHITZU",
+    ["forgive-me-father"]: "PURGE",
+    burrow: "BRRR",
+    gnosis: "GNO",
+    ["cow-protocol"]: "COW",
+    safe: "SAFE",
 };
+
+const IDS = Object.keys(tokenMap).join(",");
 
 export function useGetExchangePrice<TData = ExchangePrice>(
     options: Omit<UseQueryOptions<ExchangePrice, unknown, TData, Queries[]>, "queryFn" | "queryKey"> = {},
-    ids = "zcash", // comma separated list of ids
+    ids = IDS, // comma separated list of ids
 ) {
     return useQuery(
         [Queries.EXCHANGE_PRICE],
