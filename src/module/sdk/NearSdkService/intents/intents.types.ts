@@ -51,7 +51,7 @@ export interface IntentsChainTokenBalance extends IntentsTokenChainInfo {
     totalBalance: string;
 }
 
-export interface IntentsTokenBalance extends Omit<IntentsToken, "groupedTokens"> {
+export interface IntentsTokenBalance extends IntentsToken {
     /**
      * List of balances across different chains in Defuse/Intents
      */

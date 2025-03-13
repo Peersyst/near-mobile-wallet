@@ -31,24 +31,42 @@ export function useGetSortedTokens() {
     const sortedTokens = useMemo(() => {
         const mixedTokens = [...intentsTokens, ...tokens];
         const tokensWithPrice = mixedTokens.map((token) => {
-            let price = 0;
+            let price = undefined;
             let fiatBalance = "0";
 
             if ("totalBalance" in token) {
-                price = tokenPrices?.[token.symbol] || 0;
+                price = tokenPrices?.[token.symbol];
+                if (!price) {
+                    // try to find the price by contractId in ref finance
+                    let found = false;
+                    for (const groupedToken of token.groupedTokens) {
+                        const refTokenPrice = refTokenPrices[groupedToken.defuseAssetId.split("nep141:")[1]];
+                        if (refTokenPrice) {
+                            price = Number(refTokenPrice.price || 0);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) price = 0;
+                }
                 const formattedValue = formatTokenAmount(token.totalBalance || "0", token.decimals.toString());
-                fiatBalance = new BigNumber(formattedValue).multipliedBy(price).toFixed(3);
+                fiatBalance = new BigNumber(formattedValue).multipliedBy(price).toFixed(24);
             } else if (token.contractId) {
                 price = Number(refTokenPrices[token.contractId]?.price || 0);
-                fiatBalance = new BigNumber(token.balance).multipliedBy(price).toFixed(3);
+                fiatBalance = new BigNumber(token.balance).multipliedBy(price).toFixed(24);
             } else {
                 // eslint-disable-next-line no-console
                 console.error("Token without price", token);
             }
-            return { ...token, price, fiatBalance };
+            return { ...token, price: price ?? 0, fiatBalance };
         });
 
-        return tokensWithPrice.sort((a, b) => new BigNumber(b.fiatBalance).minus(a.fiatBalance).toNumber());
+        return tokensWithPrice.sort((a, b) => {
+            const dif = new BigNumber(b.fiatBalance).minus(a.fiatBalance);
+            if (dif.isGreaterThan(0)) return 1;
+            if (dif.isLessThan(0)) return -1;
+            return 0;
+        });
     }, [intentsTokens, tokens, tokenPrices, refTokenPrices]);
 
     const handleRefetch = useCallback(async () => {
