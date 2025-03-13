@@ -33,7 +33,7 @@ export function useGetIntentsFiatPrice(): UseGetIntentsPriceReturn {
             }
             return getTokenPrice(tokenPrice, fiatPrice);
         },
-        [tokenPrices, fiatPrice],
+        [tokenPrices, fiatPrice, refTokenPrices],
     );
 
     return {
