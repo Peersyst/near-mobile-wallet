@@ -23,12 +23,10 @@ export function useGetIntentsFiatPrice(): UseGetIntentsPriceReturn {
             let tokenPrice = tokenPrices?.[token.symbol];
             if (!tokenPrice) {
                 // try to find the price by contractId
-                let found = false;
                 for (const groupedToken of token.groupedTokens) {
                     const refTokenPrice = refTokenPrices[groupedToken.defuseAssetId.split("nep141:")[1]];
                     if (refTokenPrice) {
                         tokenPrice = Number(refTokenPrice.price || 0);
-                        found = true;
                         break;
                     }
                 }
