@@ -35,10 +35,10 @@
     "testnetTokenPriceUrl": "https://testnet-indexer.ref-finance.com/list-token-price",
     "mainnetTokenPriceUrl": "https://indexer.ref.finance/list-token-price",
     "testnetSwapUrl": "https://testnet.ref.finance",
-    "mainnetSwapUrl": "https://app.ref.finance",
+    "mainnetSwapUrl": "https://dex.rhea.finance",
     "intents": {
         "enabled": true,
-        "baseUrl": "https://app.near-intents.org",
+        "baseUrl": "https://defuse-widget-git-feat-near-mobile-wallet-defuse-94bbc1b2.vercel.app/",
         "depositPath": "/deposit",
         "withdrawPath": "/withdraw",
         "swapPath": "/"
