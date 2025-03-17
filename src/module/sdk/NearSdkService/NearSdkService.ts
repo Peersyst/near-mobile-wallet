@@ -73,6 +73,8 @@ import { ApiService, NearApiServiceInterface } from "../NearApiService";
 import { BalanceOperations } from "../utils";
 import { Payload } from "../utils/SignerPayload";
 import RPCControl from "./decorators/RPCControl";
+import { IntentsService } from "./intents/IntentsService";
+import { IntentsTokenBalance } from "./intents/intents.types";
 
 export class NearSDKService {
     private connection?: Near;
@@ -87,6 +89,7 @@ export class NearSDKService {
     private static nameRegex = /^(([a-z\d]+[-_])*[a-z\d]+\.)*([a-z\d]+[-_])*[a-z\d]+$/;
     private static addressRegex = /[\da-f]/i;
     public nearDecimals: number | undefined;
+    private defuseService: IntentsService;
 
     constructor({ chain, secretKey, nameId, nearDecimals, mnemonic, rpcList }: CreateNearSdkParams) {
         this.chain = chain;
@@ -108,6 +111,7 @@ export class NearSDKService {
         };
 
         this.rpcList = rpcList;
+        this.defuseService = new IntentsService(rpcList);
     }
 
     // --------------------------------------------------------------
@@ -209,6 +213,10 @@ export class NearSDKService {
             throw new Error("Not connected");
         }
         return this.connection;
+    }
+
+    private getProvider(): Near["connection"]["provider"] {
+        return this.getConnection().connection.provider;
     }
 
     getAddress(): string {
@@ -487,9 +495,30 @@ export class NearSDKService {
     @RPCControl()
     async getAccountBalance(): Promise<AccountBalance> {
         try {
-            const account = await this.getAccount();
-            const accountBalance: AccountBalance = await account.getAccountBalance();
-            return this.convertAccountBalanceToNear(accountBalance);
+            const accountBalance: AccountView = await this.getProvider().query({
+                request_type: "view_account",
+                account_id: this.getAddress(),
+                finality: "final",
+            });
+
+            const protocolConfig = await this.getProvider().experimental_protocolConfig({ finality: "final" });
+            const storageAmountPerByte = protocolConfig.runtime_config.storage_amount_per_byte;
+
+            const staked = BigInt(accountBalance.locked);
+            /**
+             * The available balance is the total balance that the user can spend.
+             * https://github.com/near/nearcore/blob/master/runtime/runtime/src/verifier.rs#L186
+             */
+            const available = BigInt(accountBalance.amount);
+            const stateStaked = BigInt(accountBalance.storage_usage) * BigInt(storageAmountPerByte); // Used for storage
+            const total = BigInt(accountBalance.amount) + staked + stateStaked;
+
+            return this.convertAccountBalanceToNear({
+                total: total.toString(), // Not used
+                stateStaked: stateStaked.toString(),
+                staked: staked.toString(),
+                available: available.toString(),
+            });
         } catch (e: any) {
             return {
                 total: "0",
@@ -890,21 +919,38 @@ export class NearSDKService {
         }
     }
 
+    async getTokenBalanceAndMetadata(contractId: string): Promise<[string, TokenMetadata | undefined]> {
+        const balance = await this.getTokenBalance(contractId);
+        let metadata: TokenMetadata | undefined;
+        if (BalanceOperations.BNIsBigger(balance, "0")) {
+            metadata = await this.getTokenMetadata(contractId);
+        }
+        return [balance, metadata];
+    }
+
     async getAccountTokens(): Promise<Token[]> {
         const contractIds = await this.apiService.getLikelyTokens({ address: this.getAddress(), chain: this.chain });
         const tokens: Token[] = [];
 
         for (const contractId of contractIds) {
             try {
-                const [balance, metadata] = await Promise.all([this.getTokenBalance(contractId), this.getTokenMetadata(contractId)]);
-                if (BalanceOperations.BNIsBigger(balance, "0")) {
-                    tokens.push({
-                        balance: formatTokenAmount(balance, metadata.decimals.toString()),
-                        metadata,
-                        contractId: contractId,
-                    });
+                const [balance, metadata] = await this.getTokenBalanceAndMetadata(contractId);
+                if (metadata) {
+                    tokens.push({ contractId, balance: formatTokenAmount(balance, metadata.decimals.toString()), metadata });
                 }
-            } catch (e) {
+            } catch (e: unknown) {
+                if (e instanceof Error && e.message?.includes("429")) {
+                    // eslint-disable-next-line no-console
+                    console.warn("Rate limited, switching rpc");
+                    try {
+                        await this.switchRpcUrl();
+                        const [balance, metadata] = await this.getTokenBalanceAndMetadata(contractId);
+                        if (metadata) {
+                            tokens.push({ contractId, balance: formatTokenAmount(balance, metadata.decimals.toString()), metadata });
+                        }
+                    } catch {}
+                    continue;
+                }
                 //eslint-disable-next-line no-console
                 console.warn("Error in getAccountTokens: ", contractId, e);
                 continue;
@@ -1243,5 +1289,12 @@ export class NearSDKService {
         }
 
         return keys;
+    }
+
+    /**
+     * NEAR INTENTS
+     */
+    public async getIntentsTokenBalances(): Promise<IntentsTokenBalance[]> {
+        return await this.defuseService.getIntentsTokenBalances(this.getAddress());
     }
 }

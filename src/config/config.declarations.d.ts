@@ -46,6 +46,14 @@ export interface ExploreDAppsConfig {
     historyLimit: number;
 }
 
+export interface IntentsConfig {
+    enabled: boolean;
+    baseUrl: string;
+    depositPath: string;
+    withdrawPath: string;
+    swapPath: string;
+}
+
 declare module "@peersyst/react-native-components" {
     export interface ConfigTypes {
         TranslateFn: TFunction<"error">;
@@ -78,6 +86,7 @@ declare module "@peersyst/react-native-components" {
         mainnetTokenPriceUrl: string;
         testnetSwapUrl: string;
         mainnetSwapUrl: string;
+        intents: IntentsConfig;
         refetchIntervals: RefetchIntervals;
         indexerEstimatedDelay: number;
         nearMobileUrl: string;
