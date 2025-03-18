@@ -1,5 +1,5 @@
 {
-    "appVersion": "1.8.7",
+    "appVersion": "1.8.8",
     "projectName": "near-mobile-wallet",
     "minimumTransactionAmount": 61,
     "mainnetExplorerLink": "https://nearblocks.io",
@@ -38,7 +38,7 @@
     "mainnetSwapUrl": "https://dex.rhea.finance",
     "intents": {
         "enabled": true,
-        "baseUrl": "https://defuse-widget-git-feat-near-mobile-wallet-defuse-94bbc1b2.vercel.app/",
+        "baseUrl": "https://defuse-widget-git-feat-near-mobile-wallet-defuse-94bbc1b2.vercel.app",
         "depositPath": "/deposit",
         "withdrawPath": "/withdraw",
         "swapPath": "/"
@@ -82,7 +82,7 @@
             {
                 "name": "NEAR Intents",
                 "description": "NEAR Intents: Fast cross-chain trades, no bridging needed. Swap assets effortlessly with Chain Abstraction.",
-                "url": "https://app.near-intents.org/",
+                "url": "https://defuse-widget-git-feat-near-mobile-wallet-defuse-94bbc1b2.vercel.app",
                 "logoUrl": "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/85b7e8c9-30d6-4344-a024-d4c3adeb5e5b.png",
                 "tag": "dex",
                 "contractId": "intents.near"
