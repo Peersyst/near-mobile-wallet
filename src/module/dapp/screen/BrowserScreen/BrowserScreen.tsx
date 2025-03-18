@@ -28,7 +28,6 @@ const BrowserScreen = (): JSX.Element => {
                 {isLoaded && <BrowserScreenWebView onLoadEnd={() => setIsWebViewLoaded(true)} {...webviewProps} />}
                 {(!isLoaded || !isWebViewLoaded) && (
                     <BrowserScreenLoadingContainer>
-                        {/*    <LoadingLogo /> */}
                         <Col alignItems="center" gap={30} justifyContent="center">
                             <LoadingLogo />
                             {Platform.OS === "android" && (
