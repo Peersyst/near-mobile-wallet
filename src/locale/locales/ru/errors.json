@@ -56,5 +56,7 @@
     "tryAgain": "Попробовать снова",
     "errorInWalletBackupQuizTitle": "Ошибка в викторине резервного копирования кошелька",
     "somethingWentWrongLoadingTheAppTitle": "Что-то пошло не так при загрузке приложения.",
-    "somethingWentWrongLoadingTheAppDescription": "Пожалуйста, свяжитесь с нами через Telegram, нажав кнопку ниже."
+    "somethingWentWrongLoadingTheAppDescription": "Пожалуйста, свяжитесь с нами через Telegram, нажав кнопку ниже.",
+    "notEnoughBalance": "Недостаточный баланс.",
+    "notEnoughBalanceForStorage": "Недостаточный баланс для хранения."
 }
