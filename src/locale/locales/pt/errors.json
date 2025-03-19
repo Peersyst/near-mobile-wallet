@@ -56,5 +56,7 @@
     "tryAgain": "Tente novamente",
     "errorInWalletBackupQuizTitle": "Erro no quiz de backup da carteira",
     "somethingWentWrongLoadingTheAppTitle": "Algo deu errado ao carregar o aplicativo.",
-    "somethingWentWrongLoadingTheAppDescription": "Por favor, entre em contato conosco via Telegram pressionando o botão abaixo."
+    "somethingWentWrongLoadingTheAppDescription": "Por favor, entre em contato conosco via Telegram pressionando o botão abaixo.",
+    "notEnoughBalance": "Saldo insuficiente.",
+    "notEnoughBalanceForStorage": "Saldo insuficiente para armazenamento."
 }

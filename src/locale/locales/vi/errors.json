@@ -56,5 +56,7 @@
     "tryAgain": "Thử lại",
     "errorInWalletBackupQuizTitle": "Lỗi trong câu đố sao lưu ví",
     "somethingWentWrongLoadingTheAppTitle": "Đã xảy ra lỗi khi tải ứng dụng.",
-    "somethingWentWrongLoadingTheAppDescription": "Vui lòng liên hệ với chúng tôi qua Telegram bằng cách nhấn nút bên dưới."
+    "somethingWentWrongLoadingTheAppDescription": "Vui lòng liên hệ với chúng tôi qua Telegram bằng cách nhấn nút bên dưới.",
+    "notEnoughBalance": "Số dư không đủ.",
+    "notEnoughBalanceForStorage": "Số dư không đủ cho lưu trữ."
 }
