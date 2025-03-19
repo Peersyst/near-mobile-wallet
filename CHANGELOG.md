@@ -24,10 +24,10 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 ### 🐛 Bug Fixes
 
--   Fix intents uri.
--   Add NBTC to tokens list.
--   Quick actions buttons not redirecting to swap uri.
--   Handle ZeroBalanceAccounts and improve not enough balance error messages.
+-   Fixed incorrect intent URIs in the dApps list.
+-   Added NBTC to the tokens list.
+-   Resolved issue where quick action buttons did not redirect to the intents swap URI.
+-   Improved handling of ZeroBalanceAccounts and enhanced "not enough balance" error messages.
 
 ## 1.8.7
 
