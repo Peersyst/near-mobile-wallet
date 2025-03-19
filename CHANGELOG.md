@@ -20,6 +20,14 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 
 -   Document resolved bugs for improved performance and security.
 
+## 1.8.8
+
+### 🐛 Bug Fixes
+
+-   Fix intents uri.
+-   Add NBTC to tokens list.
+-   Quick actions buttons not redirecting to swap uri.
+
 ## 1.8.7
 
 ### 🎉 New Features
