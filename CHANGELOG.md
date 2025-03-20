@@ -28,6 +28,7 @@ This document logs notable, developer-facing updates to the NEAR Mobile Wallet.
 -   Added NBTC to the tokens list.
 -   Resolved issue where quick action buttons did not redirect to the intents swap URI.
 -   Improved handling of ZeroBalanceAccounts and enhanced "not enough balance" error messages.
+-   Display main domain image when connecting to subdomains in connected sites.
 
 ## 1.8.7
 
