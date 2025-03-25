@@ -60,6 +60,7 @@ import {
     STAKING_WITHDRAW_ALL_GAS,
     NFT_GET_TOKENS_BY_OWNER,
     GET_TOKEN_METADATA_METHOD,
+    ZERO_BALANCE_ACCOUNT_STORAGE_LIMIT,
 } from "../utils/near.constants";
 import {
     addNearAmounts,
@@ -491,6 +492,15 @@ export class NearSDKService {
     // --------------------------------------------------------------
     // -- WALLET STATE FUNCTIONS ------------------------------------
     // --------------------------------------------------------------
+    /**
+     * Checks if the account is a zero balance account.
+     * @param account The account.
+     * @returns A boolean indicating if the account is a zero balance account.
+     */
+    private isZeroBalanceAccount(account: AccountView): boolean {
+        return BigInt(account.storage_usage) < BigInt(ZERO_BALANCE_ACCOUNT_STORAGE_LIMIT);
+    }
+
     //Returns the balance in near
     @RPCControl()
     async getAccountBalance(): Promise<AccountBalance> {
@@ -504,14 +514,21 @@ export class NearSDKService {
             const protocolConfig = await this.getProvider().experimental_protocolConfig({ finality: "final" });
             const storageAmountPerByte = protocolConfig.runtime_config.storage_amount_per_byte;
 
-            const staked = BigInt(accountBalance.locked);
             /**
              * The available balance is the total balance that the user can spend.
              * https://github.com/near/nearcore/blob/master/runtime/runtime/src/verifier.rs#L186
              */
-            const available = BigInt(accountBalance.amount);
+            const staked = BigInt(accountBalance.locked);
+            let available = BigInt(accountBalance.amount);
+            const total = available + staked;
             const stateStaked = BigInt(accountBalance.storage_usage) * BigInt(storageAmountPerByte); // Used for storage
-            const total = BigInt(accountBalance.amount) + staked + stateStaked;
+            /**
+             * If it is not a zero balance account, the available balance is the total balance minus the staked balance.
+             * Know more: https://github.com/near/NEPs/blob/master/neps/nep-0448.md#reference-implementation-required-for-protocol-working-group-proposals-optional-for-other-categories
+             */
+            if (!this.isZeroBalanceAccount(accountBalance)) {
+                available = available - stateStaked;
+            }
 
             return this.convertAccountBalanceToNear({
                 total: total.toString(), // Not used

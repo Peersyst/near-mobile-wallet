@@ -4,6 +4,7 @@ export { default as dapps1 } from "./dapps1.png";
 export { default as dapps2 } from "./dapps2.png";
 export { default as dapps3 } from "./dapps3.png";
 export { default as default_token } from "./default-token.png";
+export { default as nbtc } from "./nbtc.png";
 export { default as near_bg_0 } from "./near-bg-0.png";
 export { default as near_bg_1 } from "./near-bg-1.png";
 export { default as nebula } from "./nebula.png";

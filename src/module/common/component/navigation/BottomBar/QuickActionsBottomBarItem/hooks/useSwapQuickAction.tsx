@@ -9,7 +9,7 @@ export interface UseSwapQuickActionReturn {
 
 export function useSwapQuickAction(): UseSwapQuickActionReturn {
     const navigate = useNavigation();
-    const uriSwap = useGetSwapLink();
+    const uriSwap = useGetSwapLink({ showIntentsIfPossible: true });
 
     function handleSwapPress(): void {
         // We need to cast the params of the navigate.navigate to any because the React Navigation types are not working properly

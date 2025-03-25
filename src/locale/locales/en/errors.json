@@ -56,5 +56,7 @@
     "tryAgain": "Try again",
     "errorInWalletBackupQuizTitle": "Error in wallet backup quiz",
     "somethingWentWrongLoadingTheAppTitle": "Something went wrong loading the app.",
-    "somethingWentWrongLoadingTheAppDescription": "Please, contact us via Telegram pressing the button below."
+    "somethingWentWrongLoadingTheAppDescription": "Please, contact us via Telegram pressing the button below.",
+    "notEnoughBalance": "Insufficient balance.",
+    "notEnoughBalanceForStorage": "Insufficient balance for storage."
 }

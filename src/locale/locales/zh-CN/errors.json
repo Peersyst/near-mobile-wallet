@@ -56,5 +56,7 @@
     "tryAgain": "再试一次",
     "errorInWalletBackupQuizTitle": "钱包备份测验中的错误",
     "somethingWentWrongLoadingTheAppTitle": "加载应用程序时出现错误。",
-    "somethingWentWrongLoadingTheAppDescription": "请通过点击下方按钮通过 Telegram 联系我们。"
+    "somethingWentWrongLoadingTheAppDescription": "请通过点击下方按钮通过 Telegram 联系我们。",
+    "notEnoughBalance": "余额不足。",
+    "notEnoughBalanceForStorage": "余额不足以支付存储费用。"
 }

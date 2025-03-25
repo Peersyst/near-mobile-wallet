@@ -56,5 +56,7 @@
     "tryAgain": "Спробуйте ще раз",
     "errorInWalletBackupQuizTitle": "Помилка у вікторині резервного копіювання гаманця",
     "somethingWentWrongLoadingTheAppTitle": "Щось пішло не так під час завантаження додатку.",
-    "somethingWentWrongLoadingTheAppDescription": "Будь ласка, зв'яжіться з нами через Telegram, натиснувши кнопку нижче."
+    "somethingWentWrongLoadingTheAppDescription": "Будь ласка, зв'яжіться з нами через Telegram, натиснувши кнопку нижче.",
+    "notEnoughBalance": "Недостатній баланс.",
+    "notEnoughBalanceForStorage": "Недостатній баланс для зберігання."
 }

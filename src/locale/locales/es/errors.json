@@ -56,5 +56,7 @@
     "tryAgain": "Intentar de nuevo",
     "errorInWalletBackupQuizTitle": "Error en el quiz de respaldo de la billetera",
     "somethingWentWrongLoadingTheAppTitle": "Algo salió mal al cargar la aplicación.",
-    "somethingWentWrongLoadingTheAppDescription": "Por favor, contáctanos a través de Telegram presionando el botón de abajo."
+    "somethingWentWrongLoadingTheAppDescription": "Por favor, contáctanos a través de Telegram presionando el botón de abajo.",
+    "notEnoughBalance": "No tienes balance suficiente.",
+    "notEnoughBalanceForStorage": "No tienes balance suficiente para almacenamiento."
 }

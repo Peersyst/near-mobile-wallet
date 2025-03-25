@@ -104,6 +104,7 @@ import {
     woo,
     xref,
     zml,
+    nbtc,
 } from "images";
 
 export const SUPPORTED_TOKENS_IMAGES = {
@@ -212,4 +213,5 @@ export const SUPPORTED_TOKENS_IMAGES = {
     WOO: woo,
     xREF: xref,
     ZML: zml,
+    NBTC: nbtc,
 };
