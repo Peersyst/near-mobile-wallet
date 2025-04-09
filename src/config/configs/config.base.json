@@ -205,7 +205,7 @@
         "host": "https://eu.posthog.com",
         "apiKey": "phc_oVIWlo74LoeuEcRZrFYNGpnG6tQridziKDUsNKCPKLc"
     },
-    "telegramUrl": "https://t.me/NEARMobile",
+    "discordUrl": "https://discord.gg/y3dsWCJFcM",
     "expoUpdatesEnabled": true,
     "securityQuizList": [
         {

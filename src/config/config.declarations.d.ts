@@ -95,7 +95,7 @@ declare module "@peersyst/react-native-components" {
         signerFeature: SignerFeatureConfig;
         analytics: AnalyticsConfig;
         enableManualImport: boolean;
-        telegramUrl: string;
+        discordUrl: string;
         apiRequestTimeout: number;
         fastMainnetNearApiUrl: string;
         expoUpdatesEnabled: boolean;
