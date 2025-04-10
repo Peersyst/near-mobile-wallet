@@ -254,7 +254,7 @@
         },
         {
             "question": "willAnyoneFromNearMobileTeamAskForYourMnemonic",
-            "responses": ["yesToHelpMeThroughTelegram", "noNeverYouAreTalkingToAScammerIfSo", "yesIfItIsAnAdminOfNearMobileSupport"],
+            "responses": ["yesToHelpMeThroughDiscord", "noNeverYouAreTalkingToAScammerIfSo", "yesIfItIsAnAdminOfNearMobileSupport"],
             "correctResponse": 1
         },
         {

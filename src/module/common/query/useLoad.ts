@@ -65,7 +65,7 @@ export function useLoad(): boolean {
                         [
                             {
                                 text: translate("contactUs"),
-                                onPress: () => Linking.openURL(config.telegramUrl),
+                                onPress: () => Linking.openURL(config.discordUrl),
                             },
                             {
                                 text: translate("close"),

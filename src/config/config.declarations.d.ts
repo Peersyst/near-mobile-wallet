@@ -141,7 +141,7 @@ declare module "@peersyst/react-native-components" {
         transak: TransakConfig;
         analytics: AnalyticsConfig;
         enableManualImport: boolean;
-        telegramUrl: string;
+        discordUrl: string;
         apiRequestTimeout: number;
         fastMainnetNearApiUrl: string;
         expoUpdatesEnabled: boolean;
