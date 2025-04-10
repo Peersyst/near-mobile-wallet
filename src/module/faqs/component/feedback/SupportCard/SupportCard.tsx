@@ -16,8 +16,8 @@ const SupportCard = (): JSX.Element => {
                 <Typography variant="body3Strong" textAlign="center">
                     {translate("supportCardText")}
                 </Typography>
-                <Button variant="primary" onPress={() => Linking.openURL(config.telegramUrl)}>
-                    {config.telegramUrl}
+                <Button variant="primary" onPress={() => Linking.openURL(config.discordUrl)}>
+                    {config.discordUrl}
                 </Button>
             </Col>
         </SupportCardRoot>
