@@ -14,7 +14,7 @@ const ConfigProvider = ({ children }: ConfigProviderProps): JSX.Element => {
     const { locale = "en" } = useRecoilValue(settingsState);
 
     return (
-        <GenesysConfigProvider config={{ ...config, locale: locale, translate }} storeTheme>
+        <GenesysConfigProvider config={{ ...config, locale, translate }} storeTheme>
             {children}
         </GenesysConfigProvider>
     );
